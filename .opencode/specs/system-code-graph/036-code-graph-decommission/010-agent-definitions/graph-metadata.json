@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eight agents are defined three times over — once per runtime, in Markdown for OpenCode and Claude and in TOML for Codex — and each copy grants the code-graph tools and carries prose telling the agent to prefer structural search",
     "created_at": "2026-07-27T16:33:58Z",
-    "last_save_at": "2026-07-27T20:56:21.856Z",
+    "last_save_at": "2026-07-28T04:51:22.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52486c185036199803e210d0e7bd1f7f2dfa6eeef7909767ed4546a3fdc7768b",
+    "source_fingerprint": "sha256:a1af286afc924a41ef51fc490b7b4ef9b4aaf8642934cc957cd574a6f9552721",
     "source_doc_hashes": {
-      "spec.md": "68f644b2410a2cb014ab1b60b353447ff41b792d8e8c4f8421cfe632779a6b80",
-      "plan.md": "0a27ef90b0d7130ec8bef6ce36f56c542d2a151dade44c56f31922c4ce9af407",
-      "tasks.md": "27b7c1e56632f75456c4340a5770457b878fb662b1fe374ef25788941b739510",
-      "implementation-summary.md": "370370d3d2a2c43c8b38ccc49bb454f59e8117a50d329ac49328fb3e782ca6ed"
+      "spec.md": "89e1b9790a0e200e0af2888bf8a685ad5ab7511dfb7d04feb902d711471ec1ef",
+      "plan.md": "4fea4095b4ce5c3776e14f7a2fa721fa1f86fa2d216a7e5d21d4f66c431fe6bd",
+      "tasks.md": "527f88ee187ab671d9e5bbae99a835035fdc6280b370d352af500885375e93b4",
+      "implementation-summary.md": "83c48310ccc5b157d1cbeb50e4f0dbae18e584b5c94fca6222f9fa836fbdfdf7"
     },
     "last_active_child_id": null,
     "last_active_at": null

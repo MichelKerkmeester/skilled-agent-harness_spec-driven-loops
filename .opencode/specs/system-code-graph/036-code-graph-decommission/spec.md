@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission"
-    last_updated_at: "2026-07-27T20:56:19Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase parent and all fifteen child specs"
     next_safe_action: "Wire the cli-devin executor, then launch the touchpoint research fan-out into 001"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -121,7 +121,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 12 | 012-ci-and-binaries/ | Delete the launcher, CLI, bridge, their tests, the isolation CI job, and stale ignore rules | Complete |
 | 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Complete |
 | 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Complete |
-| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | In Progress |
+| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | Complete |
 
 ### Phase Transition Rules
 

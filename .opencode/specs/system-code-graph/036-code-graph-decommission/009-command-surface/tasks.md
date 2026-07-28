@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/009-command-surface"
-    last_updated_at: "2026-07-27T16:33:58Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Identify that compiled-contract allowlists are compiler-owned (hidden drift source) — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Delete `doctor-code-graph.yaml` and remove its `_routes.yaml` entry
+- [x] T003 Clear `mcp-doctor.sh` and `doctor-mcp-*.yaml` of the server
+- [x] T004 Remove graph tool ids from `deep/*.md` allowed-tools and prose
+- [x] T005 Clear `create/assets/*.yaml` boilerplate
+- [x] T006 Fix allowlists at source, then re-render compiled contracts — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 Compiled-route guard passes with no drift after regeneration — evidence: `scratch/closeout-facts.md`
+- [x] T008 Doctor router lists only routes that resolve; no command grants a removed tool — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (route guard + integrity check)
 <!-- /ANCHOR:completion -->
 
 ---

@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/005-spec-kit-runtime-decoupling"
-    last_updated_at: "2026-07-27T16:33:56Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 005-spec-kit-runtime-decoupling |
 | **Completed** | 2026-07-27 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +57,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The deepest consumer of the code graph is now self-contained. The process-level boundary that spawned the launcher over stdio is gone, the shared contracts module is deleted, and 25 call sites across 9 importers no longer reach for graph state. Session payloads report trust as permanently 'absent' rather than promising readiness the system can no longer produce.
 
-### [Feature Name]
+### Boundary and contracts removed
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The `code-graph-boundary.ts` module that resolved and spawned the launcher was deleted. The shared `code-graph-contracts.ts` module was deleted only after an import proof confirmed nothing surviving in spec-kit still referenced its types. The context server's enrichment call was removed; passive enrichment keeps the session-warning step only, so context retrieval degrades deliberately rather than calling a dead tool.
+
+### Session handlers rewritten
+
+Bootstrap, health, resume, and memory-context handlers no longer report graph readiness. Trust states are set to permanently 'absent', an honest value rather than a placeholder. The quality score was reweighted to 0.44/0.31/0.25 to reflect the new scoring landscape without the graph lane. A dead structural routing nudge was also removed from the context-server and memory-context paths.
 
 ### Files Changed
 
@@ -69,7 +73,12 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `code-graph-boundary.ts` | Deleted | Launcher spawn boundary removed |
+| `code-graph-contracts.ts` | Deleted | Shared contracts removed after import proof |
+| `context-server.ts` | Modified | Enrichment call removed; session-warning step kept |
+| `tool-schemas.ts` | Modified | Mirrored code-graph schema entries removed |
+| `handlers/session-*.ts` | Modified | Graph readiness reporting removed |
+| `handlers/memory-context.ts` | Modified | Graph-backed context path removed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +92,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The 25 call sites were enumerated before any edit so the removal was complete in one pass. The contracts module was deleted only after proving it unimported, not on assumption. TypeScript typecheck confirmed zero unresolved references, and the quality-score reweight was committed alongside the boundary removal so the scoring change landed atomically.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +105,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Set trust states to permanently 'absent' | An honest value is better than a placeholder that implies the system might recover graph state |
+| Keep the session-warning step in passive enrichment | The step still has value without the graph call; removing it entirely would lose unrelated advisory behavior |
+| Delete contracts only after import proof | Types like `GraphFreshness` might have been referenced by surviving spec-kit code; proving unimported first avoids breaking the build |
+| Reweight quality score to 0.44/0.31/0.25 | The graph lane is gone; the remaining lanes need honest weights that reflect the new scoring landscape |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +121,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| TypeScript typecheck | PASS — zero unresolved references |
+| No launcher spawn in production source | PASS — `rg` sweep clean |
+| Session output omits graph fields | PASS — trust states permanently 'absent' |
+| Quality-score reweight | PASS — 0.44/0.31/0.25 committed in `1ea5f7c1b4` |
+| Contracts deletion safe | PASS — import proof confirmed before deletion (`1e548b0ed5`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +138,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Context enrichment quality dropped without notice at runtime.** The enrichment path was removed rather than degraded, so context retrieval no longer includes graph-backed structural results. The accepted quality change is recorded in the phase 002 decision record (ADR-003).
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +148,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-

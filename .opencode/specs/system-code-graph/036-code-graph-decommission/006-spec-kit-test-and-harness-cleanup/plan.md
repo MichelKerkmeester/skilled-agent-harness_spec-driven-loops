@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: spec-kit-test-and-harness-cleanup"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Retired the spec-kit test files that existed only to cover the removed code-graph coupling: 4 graph-only test files deleted first, mock/import strips across 10 more, and 2 whole suites deleted later when every case proved graph-subject, leaving 418 tests green."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/006-spec-kit-test-and-harness-cleanup"
-    last_updated_at: "2026-07-27T16:33:56Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (vitest) |
+| **Framework** | system-spec-kit test suite |
+| **Storage** | None |
+| **Testing** | vitest — 418 tests green after cleanup |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Retired the spec-kit tests that existed only to cover the removed code-graph coupling. Four graph-only test files were deleted first, mock and import strips were applied across 10 more files, and two whole suites were deleted later when every case in them proved graph-subject. The suite ended at 418 tests green with no skipped or deleted-module test.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Phased test retirement: delete graph-only files first, strip mocks/imports from mixed files, then delete whole suites when every case proves graph-subject.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Graph-only test files**: 4 files deleted first (existed solely to test the launcher lifecycle and boundary proxy)
+- **Mixed test files**: 10 files with mock/import strips (surviving behavior kept, graph assertions removed)
+- **Graph-subject suites**: 2 whole suites deleted later (`session-health.vitest.ts`, `session-bootstrap.vitest.ts`)
+- **Smoke matrices**: graph tool templates removed from matrix runners
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each test file was classified before deletion: graph-only (delete), mixed (strip graph cases, keep surviving behavior), or graph-subject (delete whole when every case asserted removed graph sections). The suite ran green at 418 tests after each pass.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +95,14 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable as a fix_bug finding. This phase is a test cleanup, not a bug fix.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Graph-only test files | Covered removed launcher/boundary | Deleted (4 files) | No unresolved import in the suite |
+| Mixed test files | Covered surviving behavior plus graph assertions | Mock/import stripped (10 files) | Surviving assertions still pass |
+| Graph-subject suites | Every case asserted removed graph sections | Deleted whole (2 suites) | 418 tests green |
+| Smoke matrices | Included graph tool templates | Templates and manifest rows removed | Matrix manifest internally consistent |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +111,23 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed phase 005 removed the production coupling these tests cover
+- [x] Classified each test file as graph-only, mixed, or graph-subject
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Deleted 4 graph-only test files (launcher lifecycle and boundary proxy)
+- [x] Stripped mocks and imports across 10 mixed test files (surviving behavior kept)
+- [x] Deleted `session-health.vitest.ts` whole (every case proved graph-subject)
+- [x] Deleted `session-bootstrap.vitest.ts` whole (every case proved graph-subject)
+- [x] Removed individual graph cases from `session-resume` and `context-metrics` tests
+- [x] Removed graph tool templates and manifest rows from matrix runners
+- [x] Removed smoke matrices (commit `fef098b6b2`)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Full spec-kit suite passes at 418 tests green (commit `607ba8cdf6`)
+- [x] No test imports a deleted module
+- [x] No test is skipped to make the run pass
+- [x] Dropped coverage enumerated explicitly
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +137,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Full spec-kit suite | vitest |
+| Validation | No unresolved imports | vitest collection phase |
+| Manual | Dropped coverage enumeration | Summary review |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +149,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 005 | Internal | Green | Production coupling must be removed before test cleanup |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +157,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A deleted test covered surviving behavior that was missed (not expected; each case was classified before deletion).
+- **Procedure**: Restore the test file from git history (commit `607ba8cdf6` predecessor) and re-add the graph assertions if the coupling is also restored.
 <!-- /ANCHOR:rollback -->
 
 ---

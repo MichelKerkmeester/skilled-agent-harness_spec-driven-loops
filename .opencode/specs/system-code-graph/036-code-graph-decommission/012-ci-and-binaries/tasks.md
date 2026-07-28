@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/012-ci-and-binaries"
-    last_updated_at: "2026-07-27T16:34:01Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm phases 003-011 removed every caller so deleting the launcher breaks nothing — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Delete launcher, CLI shim, and six launcher vitest suites (concurrent session)
+- [x] T003 Strip the shared `launcher-ipc-bridge.cjs` code-graph branch (never deleted; serves mk-spec-memory + mk-skill-advisor)
+- [x] T004 Remove smoke matrices (commit `fef098b6b2`)
+- [x] T005 Clear gitignore patterns for the subsystem's database and build artifacts
+- [x] T006 Remove `build_pkg "code-graph"` step from `deploy-mcp.sh`
+- [x] T007 Delete the CI isolation job (commit `1e548b0ed5`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Confirm both surviving daemons (mk-spec-memory, mk-skill-advisor) start and serve after the shared bridge strip — evidence: `scratch/closeout-facts.md`
+- [x] T009 Confirm remaining CI is green with the isolation job absent — evidence: `scratch/closeout-facts.md`
+- [x] T010 Confirm no executable targeting the subsystem remains in the bin directory — evidence: `scratch/closeout-facts.md`
+- [x] T011 Confirm no gitignore orphan pattern points inside the removed folder — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (daemon start + CI green + sweep)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +104,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

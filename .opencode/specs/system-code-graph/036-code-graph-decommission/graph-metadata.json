@@ -74,12 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -96,19 +90,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `system-code-graph` skill is not documentation — it is the live implementation of the `mkcodeindex` MCP server, hosting all eight `codegraph` tools, a SQLite graph store, and a CLI",
     "created_at": "2026-07-27T16:33:52Z",
-    "last_save_at": "2026-07-27T20:56:19.423Z",
+    "last_save_at": "2026-07-28T04:54:17.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c2b8605e878e9699a305abdb5246e670f56ad51d3f4734d9ab3277581c1ed771",
+    "source_fingerprint": "sha256:6f77bf04bfc3ea655e4b6f1f2bb5c39f2ca8d5c8fbc581d9190b30970e7f763c",
     "source_doc_hashes": {
-      "spec.md": "b46175278766963121544d2e331b399927c1e81d0362cd3efd7956597d5a60e1"
+      "spec.md": "2210e7c458cf8f9b0061598ebbc5564977b53b4fead4993d4009be40bb41005f"
     },
     "last_active_child_id": null,
     "last_active_at": null

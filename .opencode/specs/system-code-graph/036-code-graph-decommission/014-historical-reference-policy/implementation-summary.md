@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/014-historical-reference-policy"
-    last_updated_at: "2026-07-27T16:34:02Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 014-historical-reference-policy |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A single tombstone at the code-graph spec track root now explains the removal to anyone who follows a stale pointer, and the thousands of references inside archived packets, changelogs, and benchmark reports were left untouched. The decision trail stays intact; the signpost makes the dead ends legible.
 
-### [Feature Name]
+### Tombstone added
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`context-index.md` was created at `.opencode/specs/system-code-graph/` stating what was removed, when, why, where the decision is recorded (phase 002), the removal commit, and what to use instead (Grep/Glob for code, `memory_search` for spec docs). The archival boundary ratified in phase 002 was applied: archived spec packets, changelogs, and benchmark reports are historical measurements and were not edited. A diff over archived paths confirmed no archived surface was modified during the packet, and no edits were made under `specs/**` except the 036 packet itself.
 
 ### Files Changed
 
@@ -69,7 +68,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/specs/system-code-graph/context-index.md` | Created | Tombstone explaining the removal and pointing at the record |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +82,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One durable signpost was added at the track root and linked to the decision record and an immutable commit, then a diff over archived paths confirmed the decision trail was not falsified. The tombstone cites the commit alongside the path so it cannot go stale if the record moves.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +95,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Add one tombstone instead of scrubbing archives | Rewriting archived packets would falsify the decision trail; a signpost is the cheapest honest fix |
+| Cite an immutable commit alongside the path | A path-only link goes stale if the record moves; a commit hash does not |
+| Keep the migration narrative here, not in doctrine | Instruction files stay present-tense; the tombstone owns the history |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +110,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Diff over archived paths | PASS — empty, no archived packet modified |
+| Packet write boundary | PASS — no edits under `specs/**` except the 036 packet |
+| Tombstone discoverability | PASS — sits at the track root |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +125,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **None identified.** The archival boundary is deliberately absolute; the tombstone is the only intended write.
 <!-- /ANCHOR:limitations -->
 
 ---

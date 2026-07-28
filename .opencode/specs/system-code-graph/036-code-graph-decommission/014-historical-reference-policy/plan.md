@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 14: historical-reference-policy"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Added a single tombstone (context-index.md) at the code-graph spec track root explaining the removal and pointing at the decision record and removal commit, and confirmed that no archived spec packet, changelog, or benchmark report was modified."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/014-historical-reference-policy"
-    last_updated_at: "2026-07-27T16:34:02Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown tombstone |
+| **Framework** | Spec track root (`.opencode/specs/system-code-graph/`) |
+| **Storage** | None |
+| **Testing** | diff over archived paths (empty), no edits under `specs/**` except the 036 packet |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Authored a single tombstone `context-index.md` at the code-graph spec track root that states what was removed, when, why, where the decision is recorded, and what to use instead. The thousands of references inside archived spec packets, changelogs, and benchmark reports were left untouched, and a diff over archived paths confirmed no archived surface was modified during the packet.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Cheapest honest resolution: change no history, add one durable signpost.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Tombstone**: `context-index.md` at the track root
+- **Links**: decision record (phase 002) and the removal commit
+- **Archival boundary**: archived packets/changelogs/benchmark reports are read, never edited
 
 ### Data Flow
-[Brief description of how data moves through the system]
+A future reader following a stale pointer into the skill directory finds the tombstone within one hop and reaches the decision record and replacement routing.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +94,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not a `fix_bug` finding; this is an archival-reference policy. The only write is the tombstone; archived surfaces are explicitly out of bounds.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| track root | Held no signpost | Tombstone created | discoverable at track root |
+| archived packets/changelogs/benchmarks | Historical record | Untouched | diff over archived paths empty |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +108,16 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed the archival boundary ratified in phase 002
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Authored `context-index.md` tombstone at `.opencode/specs/system-code-graph/`
+- [x] Linked the tombstone to the decision record and the removal commit
+- [x] Restated the replacement routing (Grep/Glob for code, `memory_search` for spec docs)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Diff over archived paths is empty (no archived packet modified)
+- [x] No edits under `specs/**` except the 036 packet itself
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +127,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Manual | archived-surface diff | git diff over archived paths |
+| Manual | packet write boundary | no edits under `specs/**` except 036 |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +138,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 013 (removal) | Internal | Green | The tombstone describes a completed removal |
+| Phase 002 (archival boundary) | Internal | Green | Ratified the do-not-edit rule this phase applies |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +147,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The tombstone must be withdrawn (not expected).
+- **Procedure**: Delete `context-index.md` from git history. Archived surfaces were never touched, so there is nothing else to revert.
 <!-- /ANCHOR:rollback -->
 
 ---

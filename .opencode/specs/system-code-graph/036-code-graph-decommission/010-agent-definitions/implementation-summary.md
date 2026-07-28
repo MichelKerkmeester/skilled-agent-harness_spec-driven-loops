@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/010-agent-definitions"
-    last_updated_at: "2026-07-27T16:33:59Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 010-agent-definitions |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+No agent in any runtime grants or documents a removed code-graph tool. The eight agents were updated across all four regular-file mirrors at once, so the Markdown and TOML projections carry equivalent intent and no runtime is left holding a grant for a nonexistent tool.
 
-### [Feature Name]
+### Agent grants and prose cleared
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Graph tool ids were removed from the tool-grant lists of all eight agents across `.opencode`, `.claude`, `.codex`, and `.pi` (the Pi mirror arrived mid-packet and is a regular-file projection, not a symlink). Search-routing prose that told agents to prefer structural search was rewritten to name the phase 002 replacement path, and the wedged-daemon fallback prose was reduced to the spec-memory daemon only, matching the already-migrated `.claude` wording. `.cursor/agents/` is symlinked and followed automatically.
 
 ### Files Changed
 
@@ -69,7 +68,10 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/agents/*.md` | Modified | Removed grants and graph-first prose |
+| `.claude/agents/*.md` | Modified | Markdown mirror |
+| `.codex/agents/*.toml` | Modified | TOML mirror |
+| `.pi/agents/*.md` | Modified | Fourth mirror; 8 files carried grants + daemon-fallback prose |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +85,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+All four mirrors were edited together so no runtime silently diverged, then frontmatter/TOML parse and a mirror parity diff confirmed equivalent intent. The `context` and `deep-review` agents, which leaned on structural search hardest, were rewritten to describe what they can still do.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +98,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Edit all four mirrors together | Mirrors are not a shared source; editing one runtime would silently diverge the others |
+| Reduce the wedged-daemon fallback to the spec-memory daemon only | The removed daemon is gone; only the surviving spec-memory daemon belongs in the ladder |
+| Rewrite the `context`/`deep-review` prose, not just the grants | Leaving prose assuming structural search would waste agent turns |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +113,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Markdown frontmatter / TOML parse | PASS |
+| Mirror parity across four runtimes | PASS — equivalent tool grants |
+| No graph tool id in any definition | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +128,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Per-runtime dispatch was not exercised** in the facts; parity was confirmed by parse and diff, not by dispatching each agent and observing no unknown-tool error.
 <!-- /ANCHOR:limitations -->
 
 ---

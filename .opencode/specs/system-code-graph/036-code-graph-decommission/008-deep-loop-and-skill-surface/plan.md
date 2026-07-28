@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 8: deep-loop-and-skill-surface"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Cleared code-graph references from the remaining skills (deep-loop, cli-external-orchestration, sk-doc, sk-code, mcp-code-mode), updated the mcp-code-mode route-guard code and tests, and removed the skills index table row."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/008-deep-loop-and-skill-surface"
-    last_updated_at: "2026-07-27T16:33:57Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown docs + TypeScript route-guard code |
+| **Framework** | OpenCode skills tree |
+| **Storage** | None |
+| **Testing** | mcp-code-mode route-guard suite |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Swept the remaining skills for code-graph references, handling the three forms differently: rewrote prose, corrected routing data (skills index table, CLI skill listings), and updated actual route-guard code in `mcp-code-mode` along with its tests. Replaced worked examples in `sk-doc` so they keep teaching their original point without naming a removed skill, and removed graph steps from `sk-code` checklists and playbooks.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Three-form sweep: prose rewrite, routing-data correction, and live route-guard code update with tests.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Prose**: `system-deep-loop` docs and tool grants, `sk-code` checklists/playbooks
+- **Routing data**: skills index table (`skills/README.md`), `cli-external-orchestration` roster listings
+- **Live code**: `mcp-code-mode` route-guard source + tests
+- **Examples**: `sk-doc` worked examples
 
 ### Data Flow
-[Brief description of how data moves through the system]
+No surviving skill routes to, documents, or guards the removed subsystem; the mcp-code-mode suite stays green.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +95,13 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not a `fix_bug` finding; this is a decommission sweep across the skill tree. The route-guard code change is the only live-code surface.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| mcp-code-mode route guard | Guarded a removed route | Updated code + tests | suite green before and after |
+| skills index table | Listed the removed skill | Row removed | roster count consistent |
+| skill docs/examples | Named graph tools | Rewritten/replaced | live-surface sweep clean |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +110,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Inventoried the three reference forms (prose, routing data, live code) across the skill tree
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Cleared graph tool ids from `system-deep-loop` docs and grants
+- [x] Updated `mcp-code-mode` route-guard code and tests
+- [x] Replaced `sk-doc` worked examples that used the skill
+- [x] Removed graph steps from `sk-code` checklists and playbooks
+- [x] Updated `cli-external-orchestration` skill roster listings
+- [x] Removed the skills index table row in `skills/README.md`
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] mcp-code-mode suite green after the route-guard update
+- [x] Live-surface sweep of the skills tree returns no reference outside the removed folder
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +132,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | mcp-code-mode route-guard | vitest |
+| Manual | live-surface sweep of skills tree | `rg --hidden --no-ignore` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +143,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 002 replacement routing | Internal | Green | Gives doc edits a real target to point at |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +151,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A skill must reference the subsystem again (not expected).
+- **Procedure**: Restore the removed prose/routing rows and route-guard entries from git history.
 <!-- /ANCHOR:rollback -->
 
 ---

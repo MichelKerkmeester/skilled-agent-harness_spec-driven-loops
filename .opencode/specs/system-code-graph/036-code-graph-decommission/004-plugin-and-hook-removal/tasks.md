@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal"
-    last_updated_at: "2026-07-27T16:33:55Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Enumerate plugins, hook manifests, and lifecycle scripts touching the skill folder — evidence: `scratch/closeout-facts.md`
+- [x] T002 Identify the Cursor hook housed inside `system-spec-kit` (outside the other three)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Delete `mk-code-graph.js` + `mk-code-graph-freshness.js` + their tests
+- [x] T004 Remove freshness hook from `.codex/hooks.json` and `.devin/hooks.v1.json`
+- [x] T005 Strip the Cursor chained hook inside `system-spec-kit`
+- [x] T006 Remove post-commit database invalidation — evidence: `scratch/closeout-facts.md`
+- [x] T007 Remove daemon match patterns from `session-cleanup.sh` and `orphan-mcp-sweeper.sh`
+- [x] T008 Clean worktree copy/exclude rules in `worktree-session.sh`
+- [x] T009 Delete the `.code-graph-freshness-state` directory
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Session-cleanup test repointed at a surviving launcher (13/13 green)
+- [x] T011 Hook manifests parse and omit the entry; reapers match nothing — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (tests + manifest parse)
 <!-- /ANCHOR:completion -->
 
 ---

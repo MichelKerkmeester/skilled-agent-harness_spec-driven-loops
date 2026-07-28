@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/003-runtime-deregistration"
-    last_updated_at: "2026-07-27T16:33:54Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Resolve `.mcp.json` / `.cursor/mcp.json` symlinks and enumerate real config files
+- [x] T002 Confirm `.codex/config.toml` already clean
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Remove `mk_code_index` block from `opencode.json`
+- [x] T004 Remove block from `.claude/mcp.json` (covers `.mcp.json` + `.cursor/mcp.json` symlinks)
+- [x] T005 Remove `[mcp_servers.mk_code_index]` from `.codex/config.toml` (already absent)
+- [x] T006 Remove block from `.pi/mcp.json`
+- [x] T007 Remove PostToolUse freshness hook from `.claude/settings.json`
+- [x] T008 Remove `code-index.cjs` from `.claude/settings.local.json` allowlist
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 `rg --hidden --no-ignore` sweep returns no `mk_code_index` in configs
+- [x] T010 JSON and TOML parse cleanly after edits — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (sweep + parse)
 <!-- /ANCHOR:completion -->
 
 ---

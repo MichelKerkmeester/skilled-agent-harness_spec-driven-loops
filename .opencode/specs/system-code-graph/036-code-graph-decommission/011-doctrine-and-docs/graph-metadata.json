@@ -136,25 +136,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Rewrote",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Pattern Doctrine",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,33 +160,45 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Rewrite Mandatory Tools",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "Quick Reference",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "Code Graph",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Project doctrine does not merely mention the code graph; it mandates it",
     "created_at": "2026-07-27T16:33:59Z",
-    "last_save_at": "2026-07-27T20:56:22.090Z",
+    "last_save_at": "2026-07-28T04:51:22.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc8143ea77f86697a1d394e9d33a45eb2fd1626a6758eb0d8daf514b09d062fa",
+    "source_fingerprint": "sha256:ae684c38beff5e1aace41a4df20e4aefdbd7e7e4804f07ee32f5af85c9bdd18b",
     "source_doc_hashes": {
-      "spec.md": "46754994c398de18a582c84b3946d6e17777ae66650730afcafb96b50fea4122",
-      "plan.md": "f3905b3f43edf44a5f38a97b94df5476718a4b3557e9b0974125e4cbbbe8b7fb",
-      "tasks.md": "d0aa61268f1a4e927d84f8c28ac2106ecc9d8782d95e5f151890be575cb13ddd",
-      "implementation-summary.md": "b667b67567e5e10e9b21e7579f9be0a964ef1581397d0d6a1bd55e681d5d5ace"
+      "spec.md": "00e6916c2c3a0bce9c04262da177c11657191ef3194de87ef000bd922f29300b",
+      "plan.md": "8c4c4c3b8a1d4b8c77cc286779c64bc3b8a5d02d0ce5cc3d3db72a0234f14a3f",
+      "tasks.md": "c1a502079a7b7f1fb396f159e6aea61d1b87726a82910f00b36480e231f01128",
+      "implementation-summary.md": "dab854d3da3029d7ac733414f56298061b9daf5ae5955da5be4287c593438c9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

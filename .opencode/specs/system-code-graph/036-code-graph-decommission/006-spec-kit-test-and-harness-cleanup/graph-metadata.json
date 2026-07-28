@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Retired",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Phased",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Roughly fifty spec-kit test files reference the code graph, and they are not uniform: some exist solely to test the launcher lifecycle and boundary proxy and become meaningless, while others assert on session payloads that survive phase 005 in a changed shape",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-27T20:56:20.905Z",
+    "last_save_at": "2026-07-28T04:51:21.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c3c1dc3b40b93652c44cd4f2a75001e18ae81213e80c33fe8a2251a4e443ce0",
+    "source_fingerprint": "sha256:2d1aa4636247099954f63b34c08b97c233a1ac90bfb18d59fbcb08c00a939262",
     "source_doc_hashes": {
-      "spec.md": "6f1bc56170b71fd9e535c4033cf5a238eb4e519a1b14052bcf2396029adf6b91",
-      "plan.md": "74eed37b33291038ab43334891616fc836ab68093c6c2d89045a453fc897114b",
-      "tasks.md": "d4fc48afe7544c923be78798d8ff7e432766c4b71444864a63d8d44c2015f391",
-      "implementation-summary.md": "7b61ff101e5ed4909d2729af80c91eb71421641854903a21ffb663519f6da6ac"
+      "spec.md": "10102849c2598e8b857515ffc4af52bbdea41e9f1f352c9bd5b6e08fb03e990b",
+      "plan.md": "1c917b2f3905e399c92e9ac4313d6abb9f186212d21f24614d187b99d57e7319",
+      "tasks.md": "452b38c7116191f04dba213807a5801972c2a489b2d910677c98aee77d3ce6e1",
+      "implementation-summary.md": "e2a532eb92108222cbeb46b34f35e677f4f888572386aa577e977d8c591b503d"
     },
     "last_active_child_id": null,
     "last_active_at": null

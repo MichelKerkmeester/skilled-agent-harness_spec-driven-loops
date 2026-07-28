@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/013-skill-deletion-and-daemon-reap"
-    last_updated_at: "2026-07-27T16:34:01Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm phases 003-012 complete and verified before this phase — evidence: `scratch/closeout-facts.md`
+- [x] T002 Confirm the repository is quiet (no concurrent session mid-write) — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Reap the running daemon process (no `mk-code-index` process survives)
+- [x] T004 Remove the `/tmp/mk-code-index` IPC socket and its temporary directory
+- [x] T005 Confirm the skill directory is absent from the working tree (concurrent session removed it) — evidence: `scratch/closeout-facts.md`
+- [x] T006 Confirm the skill directory is absent from the git index (`git ls-files` clean)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +70,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 Process check finds no `mk-code-index` process
+- [x] T008 Socket check finds no `/tmp/mk-code-index` socket
+- [x] T009 `git ls-files` shows 0 tracked files under the old skill path
+- [x] T010 Config sweep finds no `mk_code_index` in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (process + socket + tree + config sweep)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +103,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

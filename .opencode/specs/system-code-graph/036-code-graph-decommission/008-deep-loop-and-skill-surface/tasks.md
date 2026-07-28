@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/008-deep-loop-and-skill-surface"
-    last_updated_at: "2026-07-27T16:33:57Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Inventory the three reference forms (prose, routing data, live code) across the skill tree — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Clear graph tool ids from `system-deep-loop` docs and grants
+- [x] T003 Update `mcp-code-mode` route-guard code and tests
+- [x] T004 Replace `sk-doc` worked examples that used the skill
+- [x] T005 Remove graph steps from `sk-code` checklists and playbooks
+- [x] T006 Update `cli-external-orchestration` skill roster listings
+- [x] T007 Remove the skills index table row in `skills/README.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 mcp-code-mode suite green after the route-guard update — evidence: `scratch/closeout-facts.md`
+- [x] T009 Live-surface sweep of the skills tree returns no reference outside the removed folder — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (suite + sweep)
 <!-- /ANCHOR:completion -->
 
 ---

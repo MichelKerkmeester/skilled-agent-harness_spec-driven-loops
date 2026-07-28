@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/007-skill-advisor-decoupling"
-    last_updated_at: "2026-07-27T16:33:57Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 007-skill-advisor-decoupling |
 | **Completed** | 2026-07-27 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +57,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The skill advisor no longer knows the code graph exists. Its graph node, edges, family membership, and intent signals are gone, the skill count dropped from 12 to 11, and every scorer lane in both TypeScript and Python was stripped in parity. Structural-search prompts now route to surviving skills instead of a skill whose directory has been deleted.
 
-### [Feature Name]
+### Graph data and scorer lanes
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The node, family membership, adjacency edges, and intent-signal block were removed from `skill-graph.json`, and the declared skill count was corrected from 12 to 11. All three TS scorer lanes (lexical, explicit, fusion) were stripped of the skill reference, and the Python scorer twin was kept in parity so the two language surfaces match. Corpora rows referencing the removed skill were dropped.
+
+### Benches and drill
+
+The two latency benches that imported the removed package's TypeScript internals directly, the one place in the repo with source-level coupling, were deleted. The tri-daemon drill was reduced from three legs to the two surviving daemons, and the advisor database was rebuilt to serve the corrected roster.
 
 ### Files Changed
 
@@ -69,7 +73,13 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `skill-graph.json` | Modified | Node, family, edges, signals removed; count 12 to 11 |
+| `lanes/lexical.ts` | Modified | Skill reference removed |
+| `lanes/explicit.ts` | Modified | Skill reference removed |
+| `fusion.ts` | Modified | Skill reference removed |
+| Python scorer (py-twin) | Modified | Stripped in parity with TS lanes |
+| `bench/code-graph-*.bench.ts` (2 files) | Deleted | Imported removed package internals |
+| `tri-daemon-drill.vitest.ts` | Modified | Reduced to two surviving daemons |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +93,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Both directions of the adjacency edges were pruned before graph validation ran, so no dangling edges survived. The Python scorer was stripped in parity with the TS lanes to keep the two surfaces consistent. The advisor database was rebuilt and a live routing query confirmed that a structural-search prompt returns no recommendation for the removed skill.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +106,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Strip the Python scorer in parity with the TS lanes | The two language surfaces must match; leaving the Python twin referencing the removed skill would create a silent divergence |
+| Delete the latency benches rather than stub them | They imported the removed package's internals directly; stubbing would test nothing real |
+| Reduce the tri-daemon drill to two legs rather than keeping a no-op third | A no-op leg adds no coverage and masks the fact that the daemon is gone |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +121,12 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Advisor database rebuild | PASS — corrected 11-skill roster served (commit `5a2aab0d37`) |
+| Structural-search prompt routing | PASS — no recommendation for the removed skill |
+| No source-level import of removed package | PASS — benches deleted |
+| Inbound edges pruned | PASS — no dangling edges; graph validation passes |
+| Reduced tri-daemon drill | PASS — drill passes without the removed leg |
+| Python scorer parity | PASS — py-twin matches TS lane state |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +139,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Routing quality for structural-search prompts may shift.** With the code-graph skill gone, prompts that previously routed to it now route to whatever surviving skills the scorer lanes surface. A before-and-after comparison on a fixed prompt set was not separately recorded beyond confirming no recommendation for the removed skill.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +149,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-

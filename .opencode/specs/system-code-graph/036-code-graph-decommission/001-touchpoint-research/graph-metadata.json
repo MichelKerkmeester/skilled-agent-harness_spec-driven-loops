@@ -44,8 +44,8 @@
       "spec.md",
       "research/research.md",
       ".pi/mcp.json",
-      ".cursor/mcp.json",
       ".claude/settings.local.json",
+      ".cursor/mcp.json",
       "plan.md",
       ".claude/mcp.json",
       ".claude/CLAUDE.md",
@@ -150,7 +150,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,13 +168,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -192,15 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "cited",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The subsystem is reached from five runtime registrations, two plugins, three per-runtime freshness hooks, a git post-commit hook, two session reapers, a process-level boundary in `system-spec-kit`, the skill-advisor graph, a CI job, and the `/doctor` surface",
     "created_at": "2026-07-27T16:33:53Z",
-    "last_save_at": "2026-07-27T20:56:19.665Z",
+    "last_save_at": "2026-07-28T04:48:09.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e4a5050ef35daf0bea61e4625bd989b0b7474016298941a0b683af5832464400",
+    "source_fingerprint": "sha256:7e9e95a8fb4b3ecf55ef153194c0621d1c5e915c6a0c0351c6f0908afa8741e1",
     "source_doc_hashes": {
-      "spec.md": "c345bc8e325a9948a30a39f83305eda30874d1ca9e19c084c9b0bc5e9fdeb709",
-      "plan.md": "36ee9c995629f36761428e5b1d57aaa47ae6732c6f9da845262b2445160bdef9",
-      "tasks.md": "7658102131e18ebdca91a5b64f69f3293529a6d0446a072f88675fff61fef991",
-      "implementation-summary.md": "39bbe94412c95410d0cb68ea728bce37a340aa0a25198c1fd2b513d9fc913e49",
+      "spec.md": "1d1ec21989ac5fd91bd7d672810e7d536a5c9d9aa9e1838f4909b94a30f665e7",
+      "plan.md": "6462b1edfa4fe1f990b24d4f4b3eda7332151e4b402468de6fd7dd241a7be19b",
+      "tasks.md": "a6dd4213d41ed9d59b12bd66d7df9ff138cd03aba4d39b7b808471e7b6038b32",
+      "implementation-summary.md": "d536c85b5f542ebb4bccd54115a988b3377c7ba61a007f3f9b5083275e353835",
       "research/research.md": "43c7697cc6947444edd3117dce2c68c4a69b7d0bfdaf85026eaf5777cbc35ffd"
     },
     "last_active_child_id": null,

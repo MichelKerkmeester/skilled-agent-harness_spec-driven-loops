@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm `cli-codex` and `cli-cursor` executors wired in `runtime/lib/deep-loop/executor-config.ts`
+- [x] T002 Confirm `cli-devin` executor wiring (`system-deep-loop/041`) landed for the GLM lane
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 [P] Run lane sol: cli-codex gpt-5.6-sol high, 10 iterations (`research/lineages/sol/**`)
+- [x] T004 [P] Run lane glm: cli-devin glm-5-2 free, 5 iterations (`research/lineages/glm/**`)
+- [x] T005 [P] Run lane grok: cli-cursor cursor-grok-4.5-high, 5 iterations (`research/lineages/grok/**`)
+- [x] T006 Merge three lineages into `research/research.md` with cited touchpoint inventory and ordering graph
+- [x] T007 Record refuted-claims ledger (`.pi/mcp.json` not a fourth registration; no Pi freshness hook at `.pi/extensions/`)
+- [x] T008 Assign every inventory entry to exactly one downstream phase 003-014 — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Post-research `rg --hidden --no-ignore` sweep finds no live-surface reference absent from the inventory
+- [x] T010 Confirm confirmed touchpoints carry file:line citations distinct from inferred ones — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +81,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (sweep + refuted-claims ledger)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +103,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

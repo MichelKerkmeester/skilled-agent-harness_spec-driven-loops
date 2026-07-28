@@ -155,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Graph",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,13 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The advisor treats the code graph as a first-class routable skill: it is a node in the skill graph with a declared dependency edge and inbound edges from two other skills, it carries a block of intent signals, and it is counted in the total skill population",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-27T20:56:21.140Z",
+    "last_save_at": "2026-07-28T04:51:21.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:206368450d5050ed3689d25b0fa709e05a6dfeab5c5f3e53cab6d0df8d3de5ce",
+    "source_fingerprint": "sha256:d9ca74a0e24d59d16556c767a3b24eb5f3f755895803385e5ad10e5d31d90d4c",
     "source_doc_hashes": {
-      "spec.md": "0d214ef0f32c5ff8271562ac747e1e22e8ef9ed8892d74877f69f35de0efc4a4",
-      "plan.md": "359c0803b2f07f015076efad4abe80a34ecd3faa3f28807728e3ecd78d997614",
-      "tasks.md": "b08ead095daa5ad7e720d462c776c42e3c3cdea5d70417e6191c279fa2221a0b",
-      "implementation-summary.md": "9ae80ef1414b77c031ce01f1acf9ab11aeeca6f77c58fdd0356bc51611a19bc0"
+      "spec.md": "45f0c16d452984ac601ff1c50a357b0d6c3d74363e8e2155acdcb1f36f9112ff",
+      "plan.md": "ddd68840a473d39108e194bf789d7b1b2fc7ac52a102406aaee74748d46bd858",
+      "tasks.md": "16c0930ccf0ea1ab3583b8e29eecd6208a57e77bd6aeda7cf733c4b84ffb1ea5",
+      "implementation-summary.md": "37bf28b76441ded26074cbfe5960a71aded29a99ee1be5ac850d158df3838c62"
     },
     "last_active_child_id": null,
     "last_active_at": null

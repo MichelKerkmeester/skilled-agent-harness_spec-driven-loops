@@ -12,7 +12,7 @@ contextType: "architecture"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/002-decommission-decision-record"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Ratified the decommission decisions from the merged research synthesis"
     next_safe_action: "Answer the single open operator question on ignored-state retention, then begin phase 003"

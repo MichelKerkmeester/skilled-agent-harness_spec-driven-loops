@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/005-spec-kit-runtime-decoupling"
-    last_updated_at: "2026-07-27T16:33:56Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm phase 002 disposition (remove the enrichment path, not fallback) — evidence: `scratch/closeout-facts.md`
+- [x] T002 Enumerate 25 call sites across 9 importers — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Delete `code-graph-boundary.ts` (launcher spawn boundary)
+- [x] T004 Rewrite 25 call sites across 9 importers to remove graph dependency — evidence: `scratch/closeout-facts.md`
+- [x] T005 Remove context-server enrichment call; keep session-warning step only (`context-server.ts`)
+- [x] T006 Remove graph readiness reporting from session bootstrap, health, resume, memory-context handlers — evidence: `scratch/closeout-facts.md`
+- [x] T007 Set trust states to permanently 'absent' (honest value) — evidence: `scratch/closeout-facts.md`
+- [x] T008 Remove mirrored code-graph schema entries from `tool-schemas.ts`
+- [x] T009 Delete `code-graph-contracts.ts` after proving it unimported (commit `1e548b0ed5`)
+- [x] T010 Remove dead structural routing nudge from context-server and memory-context (commit `b54aeea89e`)
+- [x] T011 Reweight quality-score to 0.44/0.31/0.25 (commit `1ea5f7c1b4`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T012 TypeScript typecheck passes with zero unresolved references
+- [x] T013 Confirm no spec-kit production source spawns the launcher — evidence: `scratch/closeout-facts.md`
+- [x] T014 Confirm session output omits graph fields rather than reporting them unavailable — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (typecheck + sweep)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +107,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

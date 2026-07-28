@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-27T16:34:03Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm all prior phases complete — evidence: `scratch/closeout-facts.md`
+- [x] T002 Confirm the pre-work baseline was captured before phase 003 began — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Run `rg --hidden --no-ignore` live-surface sweep with archival exclusions (50 residual hits, all string literals)
+- [x] T004 Run spec-kit typecheck (0 errors)
+- [x] T005 Run spec-kit test suite (418 tests green across changed files) — evidence: `scratch/closeout-facts.md`
+- [x] T006 Run mcp-route-guard (16/16 assertions pass)
+- [x] T007 Confirm no `mk-code-index` process and no `/tmp/mk-code-index` socket
+- [x] T008 Confirm 0 tracked files under the old skill path (`git ls-files`)
+- [x] T009 Confirm no `mk_code_index` in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json`
+- [x] T010 Rebuild advisor and confirm the removed skill is unroutable
+- [x] T011 Reconcile completion metadata across packet documents — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +75,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T012 Confirm live-surface sweep uses `--hidden --no-ignore` (REQ-001)
+- [x] T013 Confirm only intended references survive (REQ-002: tombstone + archival paths) — evidence: `scratch/closeout-facts.md`
+- [x] T014 Confirm results reported as deltas (REQ-003: before/after numbers recorded) — evidence: `scratch/closeout-facts.md`
+- [ ] T015 Full-suite run complete — still in flight at authoring time; 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)
+- [x] T016 Confirm completion metadata reconciled across packet documents (REQ-005) — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +87,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked `[x]` — T015 pending (full-suite run in flight)
+- [ ] No `[B]` blocked tasks remaining — T015 is not blocked; the run is in progress
+- [x] Manual verification passed (sweep + typecheck + 418 tests + route-guard + process/socket/tree/config)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +109,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

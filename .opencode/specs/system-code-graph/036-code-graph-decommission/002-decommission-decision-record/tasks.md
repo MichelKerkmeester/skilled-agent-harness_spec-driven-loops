@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/002-decommission-decision-record"
-    last_updated_at: "2026-07-27T16:33:54Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm phase 001 synthesis (`research/research.md`) exists before drafting
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Draft ADR-001: accept permanent loss of the eight `code_graph_*` tool ids (`decision-record.md`)
+- [x] T003 Draft ADR-002: replacement routing (Grep/Glob for code, `memory_search` for spec docs)
+- [x] T004 Draft ADR-003: per-consumer disposition table (remove vs fallback) — evidence: `scratch/closeout-facts.md`
+- [x] T005 Draft ADR-004: archival boundary (`.opencode/specs/**`, changelogs, benchmark reports)
+- [x] T006 Draft ADR-005: rollback procedure with exact steps from git history — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +70,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 Ratify all five ADRs as Accepted — evidence: `scratch/closeout-facts.md`
+- [x] T008 Confirm rollback procedure is specific enough to execute without further research — evidence: `scratch/closeout-facts.md`
+- [x] T009 Confirm no requirement in phases 003-014 contradicts a recorded disposition — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (ADR cross-reference check)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +102,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

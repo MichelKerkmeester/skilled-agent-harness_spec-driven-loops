@@ -43,6 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".pi/mcp.json",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -57,6 +60,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -120,7 +135,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Reaped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Process",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Process",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -178,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is the one step that cannot be undone by editing a file back",
     "created_at": "2026-07-27T16:34:01Z",
-    "last_save_at": "2026-07-27T20:56:22.559Z",
+    "last_save_at": "2026-07-28T04:51:23.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41e1e3d2ef85ad18e3468ac76749500516532ac1589abd07b122270f142680d0",
+    "source_fingerprint": "sha256:5129e0f7a1fe35a9de52992946665463c833b8202bc0db1a9457bbebb6d58dda",
     "source_doc_hashes": {
-      "spec.md": "48fd963efdc7cda92ed16f1f5ad8b721cf6a424b026623db2bf03072d5170c65",
-      "plan.md": "3027056cdff5cb3e7b3cb986fc1cb6d113b0fb92babd9da8a413a6069d8a8214",
-      "tasks.md": "7de6eb9dfbf73e199d3d26649111a8b40783512e2f6a2bc7cb6c3342270e17bf",
-      "implementation-summary.md": "4a4448d3ca1ecfc5c2a39910917e5ac4e0627d8cc165d5ed4022fefa9bf5c2ab"
+      "spec.md": "60088d86cd281917e8d208b134504d1da11a138dca451fd614107b58377f8902",
+      "plan.md": "346f51286030d2ad0bcd674d0d5454decc8e69958d8fefa41ed078a1e29e494d",
+      "tasks.md": "08717a293f56a7fce509fe11e27dfc14a6ee0677b64fec82c1ecd83476823237",
+      "implementation-summary.md": "d87a7be6b9c26d39b906f06b6a2aa0b22f3474fdff296bca7e89d390b9239113"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,8 +44,9 @@
       "spec.md",
       "plan.md",
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".codex/config.toml",
       ".claude/settings.json",
       ".claude/settings.local.json",
       "tasks.md",
@@ -149,7 +150,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Resolved",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,13 +168,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and `.cursor/mcp.json` both resolve to `.claude/mcp.json`, which makes Cursor a fifth registered surface that a naive audit misses",
     "created_at": "2026-07-27T16:33:54Z",
-    "last_save_at": "2026-07-27T20:56:20.135Z",
+    "last_save_at": "2026-07-28T04:51:20.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f5913948c849600a6419bb724cab3e97bfbb3db7a331e3bbea9723cd2498758",
+    "source_fingerprint": "sha256:280fa7780d6d8d0c2ab822c5d84f641929ff7f400827cf33cd77443466981178",
     "source_doc_hashes": {
-      "spec.md": "44d5319853b405c6bc4e09092e0c54a02fd2aa0de57a9c3cc48906335261cbfc",
-      "plan.md": "696dafaf2a9a5e9d12a0d1bbea95e417b9e2608be03bffdfa1ff66d909b1897b",
-      "tasks.md": "5e8362f9ae24758c5c76bb79fb21e199cdc6d27a902efb519b4ab50ba7abfa03",
-      "implementation-summary.md": "6d0625adb3eacfc8c158e9743e4addb08b70063673460c23c6ae0b918ffe34da"
+      "spec.md": "40bb58a98669e77bcd48ae31dd32b45aefdc3f77b2137ae14942a91ff4556f07",
+      "plan.md": "ee51e18d15f4b761603725c36cbd49cfa7b037960b4e3d8ff3f7d30de8897a6c",
+      "tasks.md": "db35480d72b58390ddfd5ea3e24690a60db407a2e6de1959e6e6dd31994a2b9f",
+      "implementation-summary.md": "fdce5652f313626c4480ca9b1f3008e86e89854c5cf8c4450d7da8a103beb647"
     },
     "last_active_child_id": null,
     "last_active_at": null

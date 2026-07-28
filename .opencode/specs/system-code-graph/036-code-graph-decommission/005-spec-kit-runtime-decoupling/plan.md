@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: spec-kit-runtime-decoupling"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Removed system-spec-kit's process-level boundary to the code graph, deleted the shared contracts module after proving it unimported, rewrote 25 call sites across 9 importers, and set trust states to permanently 'absent' so the spec-kit server is self-contained."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/005-spec-kit-runtime-decoupling"
-    last_updated_at: "2026-07-27T16:33:56Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (spec-kit MCP server) |
+| **Framework** | system-spec-kit MCP server |
+| **Storage** | None (boundary removed; no SQLite) |
+| **Testing** | TypeScript typecheck + vitest suite (phase 006) |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Removed the code-graph boundary module that spawned the launcher over stdio, deleted the shared contracts module after proving it unimported, rewrote 25 call sites across 9 importers so session bootstrap, health, resume, and memory-context handlers no longer report or depend on graph state, and set trust states to permanently 'absent'. The spec-kit server is now self-contained with no spawn, no shared contract, and no mirrored schema.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,17 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Process-boundary removal plus contract deletion across 9 importers and 25 call sites.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Boundary module**: `code-graph-boundary.ts` deleted (launcher spawn over stdio)
+- **Shared contracts**: `code-graph-contracts.ts` deleted after import proof
+- **Context server**: enrichment call removed; passive enrichment keeps session-warning step only
+- **Session handlers**: bootstrap, health, resume, memory-context no longer report graph readiness
+- **Trust states**: permanently 'absent' (honest value, not a placeholder)
 
 ### Data Flow
-[Brief description of how data moves through the system]
+With the boundary and contracts gone, the spec-kit server no longer spawns a launcher, no longer calls `code_graph_context` during enrichment, and session payloads omit graph fields rather than reporting them unavailable.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +96,14 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable as a fix_bug finding. This phase is a decoupling removal, not a bug fix.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Boundary module | Spawned the launcher over stdio | Deleted | No reference to launcher path in production source |
+| Shared contracts | Carried graph types across the boundary | Deleted after import proof | `code-graph-contracts.ts` removed; no unresolved import |
+| Context server | Called `code_graph_context` during enrichment | Enrichment call removed | Passive enrichment keeps session-warning step only |
+| Session handlers | Reported graph readiness in output | Graph fields omitted | Trust states permanently 'absent' |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +112,24 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed phase 002 disposition (remove the enrichment path, not fallback)
+- [x] Enumerated 25 call sites across 9 importers
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Deleted `code-graph-boundary.ts` (launcher spawn boundary)
+- [x] Rewrote 25 call sites across 9 importers to remove graph dependency
+- [x] Removed context-server enrichment call; passive enrichment keeps session-warning step only
+- [x] Removed graph readiness reporting from session bootstrap, health, resume, and memory-context handlers
+- [x] Set trust states to permanently 'absent' (honest value)
+- [x] Removed mirrored code-graph schema entries from the spec-kit schema surface
+- [x] Deleted `code-graph-contracts.ts` after proving it unimported (commit `1e548b0ed5`)
+- [x] Removed dead structural routing nudge from context-server and memory-context (commit `b54aeea89e`)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] TypeScript typecheck passes with zero unresolved references
+- [x] No spec-kit production source spawns the launcher
+- [x] Session output makes no graph claim (fields omitted, not reported unavailable)
+- [x] Quality-score reweighted to 0.44/0.31/0.25 (commit `1ea5f7c1b4`)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +139,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Typecheck | Zero unresolved imports | `tsc` |
+| Unit | Session payload shape | vitest (phase 006 rebaseline) |
+| Manual | No launcher spawn in production source | `rg` sweep |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +151,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 002 disposition | Internal | Green | Decides remove-vs-fallback for the enrichment path |
+| Phase 006 | Internal | Green | Rebaselines the test suite against the new payload shape |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +160,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Spec-kit needs the graph enrichment path back (not expected; the decommission is the intended end state).
+- **Procedure**: Restore the boundary module and contracts from git history (commit `1ea5f7c1b4` predecessor), then re-add the enrichment call and graph fields to session handlers.
 <!-- /ANCHOR:rollback -->
 
 ---

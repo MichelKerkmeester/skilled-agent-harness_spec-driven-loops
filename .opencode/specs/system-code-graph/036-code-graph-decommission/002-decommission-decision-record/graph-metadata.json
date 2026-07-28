@@ -141,7 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Authored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,13 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "exact",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Removing the subsystem permanently deletes a capability that project doctrine currently lists as mandatory: `codegraphquery` and its siblings are named in the Mandatory Tools table, the Code Search Decision Tree, and eight agent definitions across three runtimes",
     "created_at": "2026-07-27T16:33:53Z",
-    "last_save_at": "2026-07-27T20:56:19.901Z",
+    "last_save_at": "2026-07-28T04:51:20.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:714d7eb347431165069875686f25f4fb644bf0c381e1155d2877f16d724c1cf1",
+    "source_fingerprint": "sha256:9e216e22448b40e0239f4a21971f87d471c0e4338bd8db1ade276e334fec6a2e",
     "source_doc_hashes": {
-      "spec.md": "29b5cfe6af92fc09980881f85a5ce1c87654da0a415f834057b6af65b63a4300",
-      "plan.md": "734659cc18072cccbe7dbcee3538b6923a6b1c70f9305b756599ce369c870755",
-      "tasks.md": "7c3f2c9ac8c468a151715836a8565a01e42676cf191e8c092d4712ddf71b25db",
-      "checklist.md": "6e9cc274346cd71dd7871c7eadf151f3385f7b635090d15a81a122d777dcc1a0",
-      "decision-record.md": "ad6189195a9a879f5ea70e1e74b7543340bab609e746975f24fdf8a5fde284fa",
-      "implementation-summary.md": "c59a69f06e98d783d4f197078f9b2918a2616fcae6a3c33a00f4731b1c08839f"
+      "spec.md": "c91b2ea100204323a37aac03b1311ebda887453af2111300904a627914c6cb54",
+      "plan.md": "91c67d765f8b7ef69485d2d0def6a9344ee0f14008a2b472cd75f93fe6dc4892",
+      "tasks.md": "cdfdf38906279428b96a863f2f4e624e502b9eb996a85b6b6031b07a4f5b725b",
+      "checklist.md": "ddffd367131cda082f7e7deb7d706733d794a0d1137b549f5ad0596e1f36f974",
+      "decision-record.md": "e58d4de2d4f8ad3e0299baf833dddc411b959ac908c76238117f74d38fc068c6",
+      "implementation-summary.md": "f18657cd534048cd72075f36fcbd465561941a93d15e9f0c8af87075bfeeb860"
     },
     "last_active_child_id": null,
     "last_active_at": null

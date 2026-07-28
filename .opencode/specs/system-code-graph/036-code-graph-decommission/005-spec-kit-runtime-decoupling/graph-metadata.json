@@ -43,6 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts",
@@ -63,6 +64,12 @@
         "source": "derived"
       },
       {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
         "name": "context-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
@@ -72,12 +79,6 @@
         "name": "tool-schemas.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts",
         "source": "derived"
       },
       {
@@ -141,7 +142,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Process",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,13 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "zero",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "`system-spec-kit` is the deepest consumer",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T20:56:20.664Z",
+    "last_save_at": "2026-07-28T04:51:21.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70c6f0eddae3c83a3d1555470383c3838c0b359b9739c2e6299e6438927f224f",
+    "source_fingerprint": "sha256:399b37c33bd914bcc7a6f38c97a8719ce704a9b867db79a42a989f4cdaf47646",
     "source_doc_hashes": {
-      "spec.md": "008aed6ed816622f09e58665359f08d57fe52895ebda5e8a4028398c24ce1ae7",
-      "plan.md": "6efa7c19345b62c1b0ea0704a42d5d7d82d241e34785dcc01fe6b7df6f80ffcf",
-      "tasks.md": "df1eebd6ba336780ac778d9a0cff7e5d02435b47ac72a3e5f46cc606f68822ab",
-      "implementation-summary.md": "8df87a90957492447f16d00685a8e2e678b3fd622f8e84043494fea8213fdcfb"
+      "spec.md": "c4266e463a97554109f6e7fdd7f60d0a9fcf92d1553dc109c1f3c82467fe95fc",
+      "plan.md": "d7594b43ce83bedd619f74aa8b27722d1fe7b7c3e651a5524ba69aa5ebd40dd6",
+      "tasks.md": "d75c5279f2045c47a1d7c4d2841ffd583f0be88235d09beb885ec8ef97cc5e7e",
+      "implementation-summary.md": "827f63d7856ceaeeeb31deb1071152488fe2fd45ec389afdd475f8a9fd769f0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -127,7 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Authored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Cheapest",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -140,12 +146,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The overwhelming majority of references to the subsystem — several thousand files — live inside archived spec packets, changelogs, and benchmark reports",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-27T20:56:22.798Z",
+    "last_save_at": "2026-07-28T04:51:23.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:addc4635ad31702ee8924df3be947e5f15ba72b77d70c24983e8fbd0e7ac2ae1",
+    "source_fingerprint": "sha256:ab8c66a9177b1052375054a8af4d65125c2e0ee6c12bc22329bb892c5729e4ea",
     "source_doc_hashes": {
-      "spec.md": "e8dd89f1849a2b5628ccdac3ce89ae25f8d5a177548787d3eb3612042fd257b4",
-      "plan.md": "b856dce23367078a2977782fb8c49c6272e07e7f58fa3bea4322bc5c8f65e3e7",
-      "tasks.md": "9b4e04f0d6ad49958573864cab280a76345ff86b10c73292aae096f7728000e0",
-      "implementation-summary.md": "5ee3c96820267574b1bd9f79ace5ef77c6a916393cade17f227baf58b109b02e"
+      "spec.md": "8e233b06097881da4ee0bd3fa0149c5bf5812a9431e376147c52ec1737b5b3d6",
+      "plan.md": "67bdda82cd909f0ab64480fd80c46a581efc44bf823c572d84211d577faee340",
+      "tasks.md": "ec0aad0c4608c388d0ee7e035d567dd80bf4241003ab8e782f4126bd5c7699ae",
+      "implementation-summary.md": "d684f23883917de65a2479f5e43937d1e56397376758e72625709b724f83068f"
     },
     "last_active_child_id": null,
     "last_active_at": null

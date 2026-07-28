@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/009-command-surface"
-    last_updated_at: "2026-07-27T16:33:58Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 009-command-surface |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The command surface no longer routes to, grants, or documents the removed code-graph tools. The doctor route dedicated to the subsystem is gone, the deep commands' allowed-tools are clean, and every compiled contract was re-rendered from a fixed source so the route guard reports no drift.
 
-### [Feature Name]
+### Doctor route and contracts
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The code-graph doctor route asset was deleted and its `_routes.yaml` entry removed, so the router lists only routes that resolve. Graph tool ids were stripped from the deep commands' allowed-tools and prose, and boilerplate was cleared from the create assets. The decisive move was treating the compiled contracts as generated output: their allowlists are compiler-owned, so the sources were fixed first and the contracts re-rendered, avoiding a hand-edit that the next sync would overwrite and the route guard would flag.
 
 ### Files Changed
 
@@ -69,7 +68,13 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/commands/doctor/assets/doctor-code-graph.yaml` | Deleted | Route existed only for the removed subsystem |
+| `.opencode/commands/doctor/_routes.yaml` | Modified | Removed the route entry |
+| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modified | Removed skill-dir and server checks |
+| `.opencode/commands/doctor/assets/doctor-mcp-*.yaml` | Modified | Removed the server from install/debug flows |
+| `.opencode/commands/deep/*.md` | Modified | Removed graph tool grants and prose |
+| `.opencode/commands/deep/assets/compiled/*.contract.md` | Regenerated | Re-rendered from updated sources |
+| `.opencode/commands/create/assets/*.yaml` | Modified | Cleared boilerplate references |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +88,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The compiler-owned allowlists were fixed at the source and the contracts re-rendered, then the compiled-route guard confirmed no drift between source and output. The doctor router was checked to resolve only existing assets.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +101,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Fix allowlists at the source, then re-render contracts | Hand-editing a generated contract is lost on the next sync and fails the route guard |
+| Delete the doctor route outright | A route that diagnoses a removed subsystem has no replacement purpose |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +115,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Compiled-route guard (drift) | PASS — no drift after regeneration |
+| Doctor router resolution | PASS — every listed route resolves |
+| Command allowed-tools | PASS — no graph tool id remains |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +130,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **None identified.** The doctor surface did not gain a replacement route for the remaining two daemons; the facts do not record one as needed.
 <!-- /ANCHOR:limitations -->
 
 ---

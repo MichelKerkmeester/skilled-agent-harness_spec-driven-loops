@@ -45,10 +45,10 @@
       "plan.md",
       ".codex/hooks.json",
       ".devin/hooks.v1.json",
-      ".opencode/scripts/session-cleanup.sh",
-      ".opencode/scripts/orphan-mcp-sweeper.sh",
-      ".opencode/bin/worktree-session.sh",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -78,15 +78,15 @@
         "source": "derived"
       },
       {
-        "name": "session-cleanup.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/session-cleanup.sh",
+        "name": "post-tool-use.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
         "source": "derived"
       },
       {
-        "name": "orphan-mcp-sweeper.sh",
+        "name": "session-cleanup.sh",
         "kind": "script",
-        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "path": ".opencode/scripts/session-cleanup.sh",
         "source": "derived"
       },
       {
@@ -96,9 +96,9 @@
         "source": "derived"
       },
       {
-        "name": "post-tool-use.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
         "source": "derived"
       },
       {
@@ -162,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Deleted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Load",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,13 +180,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two OpenCode plugins reach into the skill folder at load time — one through a static ESM import of a transport bridge, one through a `require` of the shared freshness core",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T20:56:20.402Z",
+    "last_save_at": "2026-07-28T04:51:20.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aac48dfdd6c310c7e35c1ec08218e4fb495f992e5aaf05ea158eaff98dc699ed",
+    "source_fingerprint": "sha256:0a07a41929b73bb161b3666fcfa6bfd546bf5c23d7fe64578e5e7c352542d313",
     "source_doc_hashes": {
-      "spec.md": "c3fbce7d298c02661ab47d3147546b71c5edb1f9bedafb606dca4829c212df63",
-      "plan.md": "f492932edfb030e9e3f5a166810413a8034668d333e57c9bfff992106785cc9e",
-      "tasks.md": "5341a0cd7268513a599bc37281e80f5a6b872d24d79941abec545732cef9d2fa",
-      "implementation-summary.md": "8af79e16c9fdba77b55cc2aec6aed5112a2cc4614d21270d7ccc21c0c06e3edd"
+      "spec.md": "598ea5935e85cb3ceb8f370ab4cca7787aadc4412d4656aae6fba5160571a3db",
+      "plan.md": "d1a74c597a50205d331c2f421577fa85acd26d1c54b1f1a6cddeb33e0a130d5f",
+      "tasks.md": "ce792a2ea8b82aa9fdcfbf4ef9e6704d7275f19a772e55b7234035f84e39ade0",
+      "implementation-summary.md": "4d79f55b05c00cc5321d920aaa437d071dc667415215b24edf9e33e7c838b615"
     },
     "last_active_child_id": null,
     "last_active_at": null

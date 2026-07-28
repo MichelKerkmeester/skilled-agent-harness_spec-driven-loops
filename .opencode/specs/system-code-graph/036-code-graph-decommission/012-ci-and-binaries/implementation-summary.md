@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/012-ci-and-binaries"
-    last_updated_at: "2026-07-27T16:34:01Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 012-ci-and-binaries |
 | **Completed** | 2026-07-27 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +57,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Nothing in the repository can now attempt to start, test, or police the code-graph subsystem. The launcher, CLI shim, and their test suites are gone, the shared launcher bridge is stripped of its code-graph branch but still serves the two surviving daemons, and the CI isolation job that guarded the import boundary is deleted.
 
-### [Feature Name]
+### Shared bridge stripped, not deleted
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The `launcher-ipc-bridge.cjs` library branches on `serviceName` for three daemons: mk-spec-memory, mk-code-index, and mk-skill-advisor. Only the code-graph branch was removed; the library itself was never deleted, because the surviving mk-spec-memory and mk-skill-advisor daemons still load it. Both surviving daemons were verified to start and serve after the strip.
+
+### CI and deploy surface cleaned
+
+The isolation-check CI workflow, whose entire purpose was to forbid source-level imports across the spec-kit boundary, was deleted because the boundary no longer exists. The `build_pkg "code-graph"` step was removed from the deploy script, smoke matrices were stripped of the removed CLI, and gitignore patterns for the subsystem's database and build artifacts were cleared.
 
 ### Files Changed
 
@@ -69,7 +73,14 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `mk-code-index-launcher.cjs` | Deleted | Registered launcher for the removed server |
+| `code-index.cjs` | Deleted | CLI front door |
+| `mk-code-index-launcher-*.vitest.ts` (6 suites) | Deleted | Covered the removed launcher |
+| `lib/launcher-ipc-bridge.cjs` | Stripped | Code-graph branch removed; library kept for surviving daemons |
+| `cli-*-smoke*.cjs` | Modified | Removed CLI from smoke matrices |
+| `deploy-mcp.sh` | Modified | Removed `build_pkg "code-graph"` step |
+| `.github/workflows/isolation-check.yml` | Deleted | Guarded a boundary that no longer exists |
+| `.gitignore` | Modified | Artifact patterns cleared |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +94,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The launcher, CLI, and their tests were deleted by a concurrent session before this session completed the remainder. This session stripped the shared bridge branch, then started both surviving daemons to verify the strip did not break them. The CI isolation job was deleted and the remaining workflow suite confirmed green.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +107,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Strip the shared bridge, never delete it | The library serves mk-spec-memory and mk-skill-advisor; deleting it would break both surviving daemons at startup |
+| Delete the CI isolation job rather than repurpose it | The guard policed the spec-kit import boundary, which no longer exists; repurposing would test nothing real |
+| Remove the `build_pkg "code-graph"` step from deploy-mcp.sh | The deploy script builds packages; the removed package no longer exists |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +122,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Both surviving daemons start and serve | PASS — mk-spec-memory and mk-skill-advisor verified loading after bridge strip |
+| Remaining CI green | PASS — isolation job absent, no other job newly failing |
+| No executable targeting the subsystem | PASS — bin directory clean |
+| No gitignore orphan pattern | PASS — no ignore rule points inside the removed folder |
+| Smoke scripts pass | PASS — offline and exit-taxonomy smokes run without the removed CLI |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +139,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Launcher and CLI deletion was performed by a concurrent session.** This session completed the shared-bridge strip, smoke matrices, gitignore, deploy step, and CI job, but the initial binary deletion landed in the main tree before this session ran. The surviving-daemon start check confirmed the concurrent deletion did not break the shared bridge.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +149,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-
