@@ -285,16 +285,6 @@ describe('Context Server', () => {
     })
   })
 
-  describe('Structural bootstrap guidance honesty', () => {
-    // The code-graph read handler is false-safe: a stale graph BLOCKS reads
-    // (code_graph_not_ready) until refreshed. The bootstrap guidance must not
-    // claim queries "still work" on a stale graph.
-    it('stale-branch guidance does not claim code_graph_query still works', () => {
-      expect(sourceCode).not.toContain('mcp__mk_code_index__code_graph_query still works')
-    })
-
-  })
-
   // =================================================================
   // GROUP 3: Tool Dispatch Coverage (dispatchTool replaces switch)
   // =================================================================
@@ -345,7 +335,6 @@ describe('Context Server', () => {
     function readDispatchModuleCode(): string {
       const moduleDirs = [
         path.join(SERVER_DIR, 'tools'),
-        path.join(SERVER_DIR, 'code_graph', 'tools'),
       ];
       let allToolModulesCode = '';
       for (const moduleDir of moduleDirs.filter((dir) => fs.existsSync(dir))) {

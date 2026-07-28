@@ -118,7 +118,7 @@ function extractTopics(lines: string[]): string[] {
   for (const line of lines) {
     const specMatch = line.match(/specs\/[\w-]+/g);
     if (specMatch) specMatch.forEach(m => topics.add(m));
-    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
+    const toolMatch = line.match(/memory_\w+|task_\w+/g);
     if (toolMatch) toolMatch.forEach(m => topics.add(m));
   }
   return [...topics].slice(0, 10);

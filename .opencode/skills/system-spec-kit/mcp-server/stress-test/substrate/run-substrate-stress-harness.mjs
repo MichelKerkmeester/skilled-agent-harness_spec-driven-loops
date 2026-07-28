@@ -24,18 +24,14 @@ const MEMORY_DAEMON_STDERR_LOG = path.join(
   SANDBOX_EVIDENCE_DIR,
   'run-2026-05-14-shared-daemon.daemon.stderr.log',
 );
-const CODE_INDEX_DAEMON_STDERR_LOG = path.join(
-  SANDBOX_EVIDENCE_DIR,
-  'run-2026-05-14-shared-daemon.code-index.stderr.log',
-);
 // Each spawned daemon needs a SHORT, EXISTING IPC socket directory. The default
 // in-database socket path (under mcp-server/database/, ~134 chars from this repo
 // root) blows past the macOS sun_path limit (~104 bytes), so the daemon's listen()
 // fails with EINVAL and the child dies before the client can connect. os.tmpdir()
-// is a short socket root allowed by both daemons (the code-graph server's allowlist
-// is cwd / os.tmpdir() / /tmp) and is portable to Linux CI. Each daemon gets its
-// own subdir so two daemons never collide on the same daemon-ipc.sock filename, and
-// the dir is created up front because listen() on a missing directory also fails
+// is a short socket root allowed by the daemon and is portable to Linux CI. Each
+// daemon gets its own subdir so two daemons never collide on the same
+// daemon-ipc.sock filename, and the dir is created up front because listen() on a
+// missing directory also fails
 // with EINVAL. Done here so the suite is green without the caller exporting any env.
 function shortSocketDir(slug) {
   const dir = path.join(os.tmpdir(), `spk-substrate-${slug}`);
@@ -55,19 +51,6 @@ export const RUN_ID = new Date().toISOString().replace(/[:.]/g, '-');
 // crashed daemon's PID. Accept an owner only when its real start time matches the lease's
 // recorded start time within this tolerance (clock granularity + write lag).
 const LEASE_START_TOLERANCE_MS = 2000;
-
-// Forced OFF in the spawned code-index child. The launcher loads .env.local and, when
-// SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set there, runs a full INDEX_* scan that rewrites
-// graph-metadata across the tree. The launcher's env loader is set-if-absent, so these explicit
-// values win — a clean-env / CI harness run can no longer mutate the working tree.
-export const CODE_INDEX_INDEX_SUPPRESSION = {
-  SPECKIT_CODE_GRAPH_MAINTAINER_MODE: 'false',
-  SPECKIT_CODE_GRAPH_INDEX_SKILLS: 'false',
-  SPECKIT_CODE_GRAPH_INDEX_AGENTS: 'false',
-  SPECKIT_CODE_GRAPH_INDEX_COMMANDS: 'false',
-  SPECKIT_CODE_GRAPH_INDEX_SPECS: 'false',
-  SPECKIT_CODE_GRAPH_INDEX_PLUGINS: 'false',
-};
 
 const sdkRequire = createRequire(path.join(MEMORY_SERVER_ROOT, 'package.json'));
 const { Client } = await import(pathToFileURL(sdkRequire.resolve('@modelcontextprotocol/sdk/client/index.js')));
@@ -189,9 +172,6 @@ export function normalizeArguments(toolName, args) {
 export function selectClientForServer(clients, server) {
   if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
     return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? null;
-  }
-  if (server === 'mk_code_index' || server === 'mk-code-index') {
-    return clients.mk_code_index ?? clients['mk-code-index'] ?? null;
   }
   return null;
 }
@@ -402,14 +382,6 @@ function liveOwnerForService(name) {
     leasePath = path.join(MEMORY_SERVER_ROOT, 'database', '.mk-spec-memory-launcher.json');
     pidFields = ['ownerPid', 'pid'];
     startedAtField = 'startedAt';
-  } else if (name === 'mk-code-index') {
-    leasePath = path.join(
-      REPO_ROOT,
-      '.opencode/skills/system-code-graph/mcp-server/database',
-      '.code-graph-owner.json',
-    );
-    pidFields = ['ownerPid'];
-    startedAtField = 'startedAtIso';
   } else {
     return null;
   }
@@ -769,33 +741,11 @@ function writeSummary(rows) {
   return writeSummaryWithFallback(renderSummaryTsv(rows));
 }
 
-// Opt-in full isolation for clean-env / CI verification: when SPECKIT_SUBSTRATE_HERMETIC=1, give
-// the code-index child its own throwaway DB dir (within repo root, required by the launcher's path
-// guard) so it acquires its OWN lease instead of contending with a live operator daemon. Default
-// (unset) keeps the normal skip-not-fail behavior unchanged. Returns the dir path or null.
-export function hermeticCodeIndexDbDir(runId = RUN_ID) {
-  if (process.env.SPECKIT_SUBSTRATE_HERMETIC !== '1') return null;
-  return path.join(REPO_ROOT, '_sandbox/local-llm-query-intelligence/.tmp-cg-db', runId);
-}
-
-function hermeticCodeIndexExtras() {
-  const dir = hermeticCodeIndexDbDir();
-  if (!dir) return {};
-  fs.mkdirSync(dir, { recursive: true });
-  return { SPECKIT_CODE_GRAPH_DB_DIR: dir };
-}
-
 // The sandbox under the repo root holds only regenerated run artifacts: the summary TSV and a
-// workload dump, plus a throwaway hermetic code-graph DB. The DB is scratch and is always removed
-// once the daemons are closed. `clean` additionally drops the whole sandbox for standalone runs;
+// workload dump. `clean` additionally drops the whole sandbox for standalone runs;
 // the vitest runner omits it because it reads the summary TSV after the harness process exits and
 // clears the sandbox itself.
 function cleanupSandbox({ clean = false } = {}) {
-  try {
-    fs.rmSync(path.join(SANDBOX_RUN_DIR, '.tmp-cg-db'), { recursive: true, force: true });
-  } catch {
-    // best-effort scratch cleanup
-  }
   if (clean) {
     try {
       fs.rmSync(SANDBOX_RUN_DIR, { recursive: true, force: true });
@@ -833,31 +783,6 @@ async function main() {
     });
     connections.push(memoryConnection);
 
-    // Second real daemon: the code-graph index. Scenarios 403, 404 and 407 call
-    // mcp__mk_code_index__code_graph_context, so they only execute against a real
-    // daemon when this is connected — otherwise they SKIP. Dedicated child (bridge
-    // disabled, its own short socket dir). Maintainer mode and all INDEX_* flags are
-    // explicitly forced OFF: the launcher would otherwise load .env.local and run a
-    // full INDEX_* scan that rewrites graph-metadata across the tree. The graph must
-    // already be populated (run code_graph_scan once) for the scenarios to resolve
-    // nodes; an empty graph yields tolerated SKIP/blocked.
-    const codeIndexConnection = await connectSharedClient({
-      name: 'mk-code-index',
-      transportOptions: {
-        command: process.execPath,
-        args: ['.opencode/bin/mk-code-index-launcher.cjs'],
-        cwd: REPO_ROOT,
-        env: buildDaemonEnv({
-          SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
-          SPECKIT_IPC_SOCKET_DIR: shortSocketDir('cg'),
-          ...CODE_INDEX_INDEX_SUPPRESSION,
-          ...hermeticCodeIndexExtras(),
-        }),
-      },
-      stderrLog: options.stderrLog ? CODE_INDEX_DAEMON_STDERR_LOG : null,
-    });
-    connections.push(codeIndexConnection);
-
     for (const connection of connections) {
       if (connection.diagnostic) {
         rows.push(connection.diagnostic);
@@ -867,11 +792,9 @@ async function main() {
 
     const clients = {
       mk_spec_memory: memoryConnection.client,
-      mk_code_index: codeIndexConnection.client,
     };
     const toolNameSets = {
       mk_spec_memory: memoryConnection.toolNames,
-      mk_code_index: codeIndexConnection.toolNames,
     };
     for (const scenario of options.scenarios) {
       const row = await runScenario(clients, toolNameSets, scenario);

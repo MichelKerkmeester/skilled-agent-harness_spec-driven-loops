@@ -41,7 +41,7 @@ describe('substrate stress harness (045 promoted)', () => {
     }
   });
 
-  it('runs scenarios 403/404/407/410 against the real mk-spec-memory and mk-code-index daemons with no connection or scenario failures (tolerates a live-owner skip)', async () => {
+  it('runs scenarios 403/404/407/410 against the real mk-spec-memory daemon with no connection or scenario failures (tolerates a live-owner skip)', async () => {
     await execFileAsync('node', [HARNESS, '--no-stderr-log', '--scenarios', '403,404,407,410'], {
       cwd: REPO_ROOT,
       timeout: 180_000,
@@ -63,8 +63,8 @@ describe('substrate stress harness (045 promoted)', () => {
     // connect for a reason the harness could not explain — a real substrate failure that must not
     // occur. A SKIP means a live operator daemon legitimately holds the single-writer lease while
     // bridging is disabled, so the harness could not spawn a dedicated child; that is expected
-    // during an interactive session and is tolerated. The runner starts two real daemons
-    // (mk-spec-memory and mk-code-index), so a connect failure on either surfaces here.
+    // during an interactive session and is tolerated. The runner starts the mk-spec-memory
+    // daemon, so a connect failure surfaces here.
     const diagnostics = rows.filter((row) => row.scenario.startsWith('runner:'));
     const failedConnections = diagnostics.filter((row) => row.verdict === 'FAIL');
     expect(failedConnections, `shared-daemon connection failures: ${JSON.stringify(failedConnections)}`).toHaveLength(0);
@@ -75,11 +75,9 @@ describe('substrate stress harness (045 promoted)', () => {
     expect(scenarioRows).toHaveLength(4);
     expect(new Set(scenarioRows.map((row) => row.scenario))).toEqual(new Set(['403', '404', '407', '410']));
 
-    // The runner starts the mk-code-index daemon alongside mk-spec-memory, so the Code-Graph-backed
-    // scenarios (403, 404 and 407) execute against it rather than SKIPping — provided the code-graph
-    // DB is populated. No scenario may FAIL; SKIP is still tolerated as a fallback (e.g. an empty
-    // graph, a code-graph client that cannot start, or a live-owner connection skip), and PARTIAL
-    // is tolerated.
+    // Structural-search scenarios (403, 404 and 407) have no backing daemon after the
+    // code-graph decommission and are expected to SKIP. No scenario may FAIL; SKIP and
+    // PARTIAL are tolerated.
     for (const { scenario, verdict } of scenarioRows) {
       expect(['PASS', 'SKIP', 'PARTIAL'], `${scenario} verdict ${verdict} must not be FAIL`).toContain(verdict);
     }

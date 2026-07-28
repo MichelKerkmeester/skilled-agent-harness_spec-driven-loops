@@ -1,9 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  CODE_INDEX_INDEX_SUPPRESSION,
   RUN_ID,
-  hermeticCodeIndexDbDir,
   leaseOwnerMatch,
   processStartedAt,
   renderSummaryTsv,
@@ -67,23 +65,6 @@ describe('substrate harness — TSV run-id + sidecar', () => {
   });
 });
 
-// Clean-env hermeticity: a harness run must never trigger the maintainer-mode INDEX scan that
-// rewrites graph-metadata across the tree. The flags below are spread into the code-index child env.
-describe('substrate harness — maintainer-mode suppression', () => {
-  it('forces maintainer mode and all five INDEX_* flags off for the code-index child', () => {
-    expect(CODE_INDEX_INDEX_SUPPRESSION.SPECKIT_CODE_GRAPH_MAINTAINER_MODE).toBe('false');
-    for (const key of [
-      'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
-      'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
-      'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
-      'SPECKIT_CODE_GRAPH_INDEX_SPECS',
-      'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
-    ] as const) {
-      expect(CODE_INDEX_INDEX_SUPPRESSION[key]).toBe('false');
-    }
-  });
-});
-
 // EPERM fallback (forced via an injected writer): the canonical write throws EPERM, so the current
 // run's evidence must be redirected to the run-id sidecar rather than silently dropped.
 describe('substrate harness — EPERM sidecar fallback', () => {
@@ -120,22 +101,3 @@ describe('substrate harness — EPERM sidecar fallback', () => {
   });
 });
 
-// Hermetic lever: opt-in via SPECKIT_SUBSTRATE_HERMETIC=1, giving the code-index child its own
-// within-repo throwaway DB dir so it never contends with a live owner during clean-env runs.
-describe('substrate harness — hermetic code-index DB dir', () => {
-  it('returns null unless hermetic mode is explicitly enabled', () => {
-    const prev = process.env.SPECKIT_SUBSTRATE_HERMETIC;
-    try {
-      delete process.env.SPECKIT_SUBSTRATE_HERMETIC;
-      expect(hermeticCodeIndexDbDir('R1')).toBeNull();
-      process.env.SPECKIT_SUBSTRATE_HERMETIC = '1';
-      const dir = hermeticCodeIndexDbDir('R1');
-      expect(dir).not.toBeNull();
-      expect(dir).toContain('_sandbox');
-      expect((dir as string).endsWith('/R1')).toBe(true);
-    } finally {
-      if (prev === undefined) delete process.env.SPECKIT_SUBSTRATE_HERMETIC;
-      else process.env.SPECKIT_SUBSTRATE_HERMETIC = prev;
-    }
-  });
-});

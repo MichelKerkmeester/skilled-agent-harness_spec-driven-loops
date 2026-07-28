@@ -100,8 +100,6 @@ Plugins that correlate `tool.execute.before` with `tool.execute.after` use `call
 ```text
 plugins/
 +-- mk-cli-dispatch-audit.js
-+-- mk-code-graph-freshness.js
-+-- mk-code-graph.js
 +-- mk-completion-sentinel.js
 +-- mk-deep-loop-guard.js
 +-- mk-dist-freshness-guard.js
@@ -124,7 +122,6 @@ plugins/
 | File | Purpose | Hook events and registrations |
 |---|---|---|
 | `mk-cli-dispatch-audit.js` | Records redacted, rotated JSONL telemetry after completed `opencode run` and `claude -p` Bash dispatches. The adapter is observe-only and fail-open. | `tool.execute.after` |
-| `mk-code-graph-freshness.js` | Correlates source edits, debounces edit bursts and requests a warm-only incremental code graph scan when an established graph needs refresh. It also sweeps stale freshness state and clears timers during disposal events. | `tool.execute.before`, `tool.execute.after`, `event` for `session.created`, `server.instance.disposed` and `global.disposed` |
 | `mk-completion-sentinel.js` | Detects completion claims at session idle and checks recorded spec evidence without running tests, builds or validation scripts. It logs advisory results and sweeps stale sentinel state. | `event` for `session.created` and `session.idle` |
 | `mk-deep-loop-guard.js` | Checks Task dispatches for deep-loop route mismatches and repeated non-command-driven loop handoffs. It warns by default and supports opt-in rejection. | `tool.execute.before`, `event` for `session.created` |
 | `mk-dist-freshness-guard.js` | Checks watched compiled outputs before risky Bash commands and at session creation. It invalidates cached diagnostics after relevant mutations and injects bounded stale-dist warnings. | `tool.execute.before`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
@@ -158,7 +155,6 @@ Plugins and their shared cores may write runtime state under these skill-owned f
 |---|---|
 | `../skills/.goal-state/` | `mk-goal.js` stores active, archived and diagnostic goal state. |
 | `../skills/.loop-guard-state/` | `mk-deep-loop-guard.js` and its shared dispatch-guard core store session counters and warning logs. |
-| `../skills/.code-graph-freshness-state/` | `mk-code-graph-freshness.js` and its shared freshness core store pending refresh and scan coordination state. |
 | `../skills/.spec-gate-state/` | `mk-spec-gate.js` and its shared gate core store per-session Gate 3 decisions and telemetry. |
 | `../skills/.completion-sentinel-state/` | `mk-completion-sentinel.js` and its shared sentinel core store advisory deduplication state. |
 

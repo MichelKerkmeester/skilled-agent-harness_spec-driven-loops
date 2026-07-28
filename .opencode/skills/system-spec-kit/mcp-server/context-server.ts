@@ -1024,7 +1024,6 @@ function registerContextServerHandlers(targetServer: Server): void {
     if (name === 'memory_context' && validatedArgs.mode === 'resume') {
       recordMetricEvent({ kind: 'memory_recovery' });
     }
-    // Code-graph MCP metrics now originate from standalone mk-code-index
     if (typeof validatedArgs.specFolder === 'string' && validatedArgs.specFolder) {
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
@@ -1123,7 +1122,7 @@ function registerContextServerHandlers(targetServer: Server): void {
           const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
           if (envelope && typeof envelope === 'object' && !Array.isArray(envelope)) {
             const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-            existingHints.push('Tip: For code search queries, use mcp__mk_code_index__code_graph_query for structural lookups and Grep for exact text or token searches.');
+            existingHints.push('Tip: For code search queries, use Grep for exact text or token searches and Glob to map the surrounding tree.');
             envelope.hints = existingHints;
             result.content[0].text = JSON.stringify(envelope, null, 2);
           }
@@ -1149,8 +1148,8 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // Passive context enrichment pipeline — adds code graph symbols
-    // near mentioned file paths and session continuity warnings.
+    // Passive context enrichment pipeline — adds session continuity warnings
+    // near mentioned file paths.
     if (result && !result.isError && result.content?.[0]?.text) {
       try {
         const { runPassiveEnrichment } = await import('./lib/enrichment/passive-enrichment.js');

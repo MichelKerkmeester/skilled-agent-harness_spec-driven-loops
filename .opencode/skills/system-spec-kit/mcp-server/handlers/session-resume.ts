@@ -2,15 +2,14 @@
 // MODULE: Session Resume Handler
 // ───────────────────────────────────────────────────────────────
 // Composite MCP tool that merges memory resume context,
-// and code graph status into a single call.
+// into a single call.
 // Bind public session_resume sessionId input to the
 // MCP transport caller context before cached-session lookups can consume it.
 // Default mode is strict rejection; MCP_SESSION_RESUME_AUTH_MODE=permissive
 // logs mismatches for staged canary rollout instead of rejecting immediately.
 
 import { createHash } from 'node:crypto';
-import { existsSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { statSync } from 'node:fs';
 import { computeQualityScore, recordMetricEvent, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 import {
   buildStructuralContextTrust,
@@ -131,15 +130,6 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
   return trimmed.replace(/^\.opencode\//, '');
 }
 
-function resolveCodeGraphBinaryPath(): string {
-  const candidates = [
-    fileURLToPath(new URL('../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
-    fileURLToPath(new URL('../../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
-  ];
-
-  return candidates.find(candidate => existsSync(candidate)) ?? candidates[0];
-}
-
 function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPayloadEnvelope {
 
   return createSharedPayloadEnvelope({
@@ -155,7 +145,7 @@ function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPa
       trustState: 'absent',
       generatedAt: new Date().toISOString(),
       lastUpdated: null,
-      sourceRefs: ['code-graph-db', 'session-snapshot'],
+      sourceRefs: ['session-snapshot'],
     },
   });
 }
@@ -599,7 +589,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
       trustState: 'absent',
       generatedAt: new Date().toISOString(),
       lastUpdated: null,
-      sourceRefs: ['resume-ladder', 'code-graph-db', 'session-snapshot'],
+      sourceRefs: ['resume-ladder', 'session-snapshot'],
     },
   });
   const result: SessionResumeResult = {

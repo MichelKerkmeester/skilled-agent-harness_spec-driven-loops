@@ -49,7 +49,6 @@ Classification deliberately ignores every other file, including generated output
 | Class | Roots |
 | --- | --- |
 | **H** (7) | `cli-external-orchestration`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-prompt`, `system-deep-loop` |
-| **S** (5) | `mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit` |
 
 ---
 

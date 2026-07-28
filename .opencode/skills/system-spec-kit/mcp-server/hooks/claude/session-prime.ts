@@ -209,7 +209,6 @@ export function handleStartup(
         '- `memory_context({ input, mode })` — unified context retrieval',
         '- `memory_match_triggers({ prompt })` — fast trigger matching',
         '- `memory_search({ query })` — semantic search',
-        '- `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`',
       ].join('\n'),
     },
   ];

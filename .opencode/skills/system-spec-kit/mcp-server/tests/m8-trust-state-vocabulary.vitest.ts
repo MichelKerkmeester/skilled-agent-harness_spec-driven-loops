@@ -12,7 +12,6 @@
 //      collapse 'missing'/'empty' into 'stale'.
 //   2. opencode-transport coerceSharedPayloadEnvelope validates trustState
 //      and rejects legacy scalar fabrications such as 'ready'.
-//   3. code_graph_query emits a readiness block with canonical vocabulary
 //      (canonicalReadiness + trustState) aligned with session_bootstrap.
 
 import { describe, expect, it } from 'vitest';
@@ -108,22 +107,3 @@ describe('M8 — opencode-transport coerceSharedPayloadEnvelope validates trustS
   });
 });
 
-describe('M8 — code_graph_query readiness vocabulary (T-CGQ-11 / R22-001, R23-001)', () => {
-  it('mapping helpers produce aligned canonical readiness + trust state for each freshness', async () => {
-    // Re-import the helper module under test after the vi.doMock calls above
-    // would have been set up in other suites; here we only exercise the raw
-    // mapping rules, so no mocks are required.
-    expect(trustStateFromGraphState('ready')).toBe('live');
-    expect(trustStateFromGraphState('stale')).toBe('stale');
-    expect(trustStateFromGraphState('empty')).toBe('absent');
-    expect(trustStateFromGraphState('error')).toBe('unavailable');
-
-    // The canonical readiness vocabulary matches the ops-hardening contract
-    // (ready | stale | missing) regardless of the trust-state axis.
-    const { normalizeStructuralReadiness } = await import('@spec-kit/shared/code-graph-contracts');
-    expect(normalizeStructuralReadiness('fresh')).toBe('ready');
-    expect(normalizeStructuralReadiness('stale')).toBe('stale');
-    expect(normalizeStructuralReadiness('empty')).toBe('missing');
-    expect(normalizeStructuralReadiness('error')).toBe('missing');
-  });
-});

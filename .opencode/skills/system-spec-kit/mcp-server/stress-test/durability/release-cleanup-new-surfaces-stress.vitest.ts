@@ -36,13 +36,11 @@ import {
   storeQueryEmbedding,
   triggerTestProfile,
 } from '../../tests/trigger-shadow-db-fixture';
-import { CODE_GRAPH_TOOL_SCHEMAS } from '../../../../system-code-graph/mcp-server/tool-schemas.js';
 import { SKILL_ADVISOR_CLI_TOOL_MANIFEST } from '../../../../system-skill-advisor/mcp-server/skill-advisor-cli-manifest.js';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../..');
 const cliShims = {
   specMemory: join(repoRoot, '.opencode/bin/spec-memory.cjs'),
-  codeIndex: join(repoRoot, '.opencode/bin/code-index.cjs'),
   skillAdvisor: join(repoRoot, '.opencode/bin/skill-advisor.cjs'),
 };
 
@@ -371,16 +369,13 @@ describe('release-cleanup stress coverage for new memory and CLI surfaces', () =
     const before = daemonProcessRows();
 
     expectListTools(cliShims.specMemory, TOOL_DEFINITIONS.map((tool) => tool.name), 'spec-memory-cli-stress');
-    expectListTools(cliShims.codeIndex, CODE_GRAPH_TOOL_SCHEMAS.map((tool) => tool.name), 'code-index-cli-stress');
     expectListTools(cliShims.skillAdvisor, SKILL_ADVISOR_CLI_TOOL_MANIFEST.map((tool) => tool.name), 'skill-advisor-cli-stress');
 
     expect(TOOL_DEFINITIONS).toHaveLength(41);
-    expect(CODE_GRAPH_TOOL_SCHEMAS).toHaveLength(8);
     expect(SKILL_ADVISOR_CLI_TOOL_MANIFEST).toHaveLength(9);
 
     const warmOnlyRuns = [
       runShim(cliShims.specMemory, ['memory_health', '--warm-only', '--format', 'json', '--timeout-ms', '1000'], 'spec-memory-warm-only'),
-      runShim(cliShims.codeIndex, ['code_graph_status', '--warm-only', '--format', 'json', '--timeout-ms', '1000'], 'code-index-warm-only'),
       runShim(cliShims.skillAdvisor, [
         'advisor_recommend',
         '--json',
