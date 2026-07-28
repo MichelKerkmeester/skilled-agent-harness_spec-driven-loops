@@ -1,6 +1,6 @@
 ---
 name: deep-alignment
-description: LEAF deep-alignment iteration agent: per-lane conformance check against a named authority, verify-first findings, JSONL state.
+description: "LEAF deep-alignment iteration agent: per-lane conformance check against a named authority, verify-first findings, JSONL state."
 mode: subagent
 temperature: 0.1
 permission:

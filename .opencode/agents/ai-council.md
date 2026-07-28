@@ -1,6 +1,6 @@
 ---
 name: ai-council
-description: AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only.
+description: "AI Council scoped-write planning architect: diverse AI lenses, multi-round deliberation, ai-council artifact writes only."
 mode: subagent
 temperature: 0.1
 permission:
