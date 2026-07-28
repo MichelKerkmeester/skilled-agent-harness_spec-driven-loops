@@ -17,7 +17,8 @@
       "template placeholder validation fixes",
       "create journey gate fixes plan",
       "create journey gate fixes tasks",
-      "create journey gate fixes checklist"
+      "create journey gate fixes checklist",
+      "create journey gate fixes summary"
     ],
     "key_topics": [
       "journey",
@@ -34,7 +35,7 @@
       "placeholder"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +49,8 @@
       ".opencode/skills/sk-doc/create-skill/SKILL.md",
       ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
       ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -130,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -137,12 +145,6 @@
       },
       {
         "name": "Journey Gate Fixes",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,6 +163,12 @@
       },
       {
         "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,31 +196,27 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Breakdown",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
     "created_at": "2026-07-28T15:11:50.262Z",
-    "last_save_at": "2026-07-28T15:12:55.058Z",
+    "last_save_at": "2026-07-28T16:27:03.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:648f32816a16c0d9fd020eaac65323d65000a84f102bb6fe05f5990c7219901f",
+    "source_fingerprint": "sha256:cf8d5c5270a22383c874a2a6ff0eb4ccf72282b2bd6104a789420732389ccb39",
     "source_doc_hashes": {
-      "spec.md": "326e0ee7b4f14df411501ffaa50022e066a4aa4023d665ca8619df6b2167410f",
-      "plan.md": "6afdfcf0d469c58a6fb028c9ad32d3130c63fd367ea184ade2f495f93358d73f",
-      "tasks.md": "41956ddcc34b963f4d548c12f4dcc0e241d14d9259972c4d7623c656afcaf992",
-      "checklist.md": "7c06d31fd2fa3ffc4983c120afc8b6d164ede81b6d6fe862c9c21a6a84e89f50"
+      "spec.md": "b8924e97eaa1443ff384ca98ef9e50cda17fd87dd8f87309a7edd802a02581c4",
+      "plan.md": "4059a792e9ab7984b6585b1b7975b32b4cf5f1100227b0767cf8e95cf864ae1c",
+      "tasks.md": "6ec1ea5781c42fb150eeeb12b8a8d4c88f313fbb149f9e2c4f2b7c1219de22cc",
+      "checklist.md": "f03ccb6b527ab75cea8e45480e4a0628977b008be8920558d4528937e18fceb8",
+      "implementation-summary.md": "a2cd5126279a95174d63b67c6dcc3dbce8a5d376f1f00eeab75c313b8ab0c80f"
     },
     "last_active_child_id": null,
     "last_active_at": null

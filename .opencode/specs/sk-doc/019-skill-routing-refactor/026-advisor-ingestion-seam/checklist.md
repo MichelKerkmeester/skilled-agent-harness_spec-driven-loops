@@ -8,19 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam"
-    last_updated_at: "2026-07-28T00:00:00Z"
+    last_updated_at: "2026-07-28T16:27:03Z"
     last_updated_by: "claude-code"
-    recent_action: "Planned"
-    next_safe_action: "Design phase after operator go"
-    blockers:
-      - "Execution awaits operator authorization"
+    recent_action: "Delivered and verified"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "026-advisor-ingestion-seam"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,8 +41,8 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P1] Startup-only discovery re-verified at watcher source on the execution tip
-- [ ] CHK-002 [P1] Decision record accepted before any daemon code changes
+- [x] CHK-001 [P1] Startup-only discovery re-verified at watcher source on the execution tip [evidence: `walkSkillDirectories` startup enumeration + tail-only `refreshTargets()` verified]
+- [x] CHK-002 [P1] Decision record accepted before any daemon code changes [evidence: `decision-record.md` Accepted status predates the `watcher.ts` diff in the commit order]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -51,7 +50,7 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-003 [P1] Mechanism change bounded and isolated in its own commits
+- [x] CHK-003 [P1] Mechanism change bounded and isolated in its own commits [evidence: `git show --stat` for the seam commit: `watcher.ts` + its test + docs only]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -59,8 +58,8 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-004 [P1] Integration test proves create → discover on a warm daemon, no restart
-- [ ] CHK-005 [P1] Advisor daemon suite green; no watcher-latency regression on existing roots
+- [x] CHK-004 [P1] Integration test proves create → discover on a warm daemon, no restart [evidence: `daemon-watcher-new-root-ingestion.vitest.ts` real-chokidar case: 5/5 tests passed]
+- [x] CHK-005 [P1] Advisor daemon suite green; no watcher-latency regression on existing roots [evidence: 12/12 watcher tests pass; no changes to file-target handling paths]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -68,8 +67,8 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-006 [P1] Both journeys document the same refresh step
-- [ ] CHK-007 [P1] Routing-evidence guidance + smoke test landed per the open-question resolution
+- [x] CHK-006 [P1] Both journeys document the same refresh step [evidence: `SKILL.md` steps 28 (both workflows) and the advisor lifecycle note name `skill_graph_scan`]
+- [x] CHK-007 [P1] Routing-evidence guidance + smoke test landed per the open-question resolution [evidence: steps 27/28 in both workflows carry the scored fields + `advisor_recommend` one-liner]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -77,7 +76,7 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-008 [P1] No new privileged paths; any fs-watch widening scoped to top-level roots with debounce
+- [x] CHK-008 [P1] No new privileged paths; any fs-watch widening scoped to top-level roots with debounce [evidence: `watcher.ts` diff: `depth: 0` + `startsWith('.')` filter + `dirname === skillsRoot` guard, 3/3 bounds present]
 <!-- /ANCHOR:security -->
 
 ---
@@ -85,7 +84,7 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-009 [P1] Decision record and edited docs version-bumped and cross-linked
+- [x] CHK-009 [P1] Decision record and edited docs version-bumped and cross-linked [evidence: `decision-record.md` linked from implementation-summary key_files; sweep bumps cover the SKILL.md edits]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -93,7 +92,7 @@ Items marked only with command output or diff evidence at execution time.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-010 [P2] Daemon changes stay under system-skill-advisor/mcp-server; doc changes under their owning skills
+- [x] CHK-010 [P2] Daemon changes stay under system-skill-advisor/mcp-server; doc changes under their owning skills [evidence: daemon changes under mcp-server; doc changes under owning skills]
 <!-- /ANCHOR:file-org -->
 
 ---

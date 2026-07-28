@@ -17,7 +17,8 @@
       "canonical contract missing links",
       "doctrine coherence sweep plan",
       "doctrine coherence sweep tasks",
-      "doctrine coherence sweep checklist"
+      "doctrine coherence sweep checklist",
+      "doctrine coherence sweep summary"
     ],
     "key_topics": [
       "doctrine",
@@ -34,13 +35,14 @@
       "canonical"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,6 +73,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -164,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -174,37 +188,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doc-coherence lens found 22 places where older prose contradicts the metadata contract",
     "created_at": "2026-07-28T15:14:09.404Z",
-    "last_save_at": "2026-07-28T15:14:32.721Z",
+    "last_save_at": "2026-07-28T16:27:06.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c48a21cda9936b65051314c0642b0ba26b1d8058dc9985a8d008ec1afe5038d5",
+    "source_fingerprint": "sha256:b19c81c54eded1b07f0e8bdefb972646856010df2e22a1d8898843411c96df98",
     "source_doc_hashes": {
-      "spec.md": "9ae238639bb29375d6d2f4ca1c9bcf99949414eebf68c76f58804b5d63354bf4",
-      "plan.md": "1fcbf9b36147d3546fe58b005c2cebe77c1dad7885e143db2f44bdaf34e4ecd4",
-      "tasks.md": "4f050caab3137e0e50b25111b1c77a8ad9fafa68833388a487004d51f588aac4",
-      "checklist.md": "01a6852d4f1be74ebb3b5cf6143cd4315d8cd38f75028face36a4a422d8fbcad"
+      "spec.md": "20bce1d116d5ce1edeaf8075c820053957f1826c3c5fc36821276db24f7742e3",
+      "plan.md": "26897b7295c913ebebad702612bb6124a3b46a900983f1e6e4bd2ceafa3a49d0",
+      "tasks.md": "82f5411db1799e5bbc451a6bf0efc1d09366490949c11cda154f673df24d3d81",
+      "checklist.md": "870f3d8aa8be4517e8a1e17a67022e7fa1d1e3b6540418ca93938f5c798cce66",
+      "implementation-summary.md": "80d8d8396d676d8f732176187ce6dc19cb17dd99afdf4d2f2323dbc0bd12cbce"
     },
     "last_active_child_id": null,
     "last_active_at": null

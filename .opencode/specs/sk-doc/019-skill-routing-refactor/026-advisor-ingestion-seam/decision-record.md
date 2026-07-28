@@ -9,7 +9,7 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam"
-    last_updated_at: "2026-07-28T00:00:00Z"
+    last_updated_at: "2026-07-28T16:27:03Z"
     last_updated_by: "claude-code"
     recent_action: "Recorded the mechanism decision from live watcher-source evidence"
     next_safe_action: "Implement per the accepted decision"
