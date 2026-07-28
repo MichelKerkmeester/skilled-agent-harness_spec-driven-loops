@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that a static visual-system request (the kind that used to route to the retired `foundations` mode) still routes through the `sk-design` hub to `workflowMode: interface`, since the `design-foundations` capability folded into `interface`.
+This scenario verifies that a static visual-system request (the kind that used to route to the retired `foundations` mode) still routes through the `sk-design` hub to `workflowMode: sk-design-interface`, since the former foundations capability folded into `sk-design-interface`.
 
 ---
 
@@ -29,7 +29,7 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 **Expected mode resolution**: `interface`.
 
 **Why**:
-- `mode-registry.json` lists only `interface`, `motion`, `md-generator`, and `design-mcp-open-design` as modes; `foundations` no longer exists as a mode.
+- `mode-registry.json` lists only `sk-design-interface`, `sk-design-md-generator`, and `sk-design-mcp-open-design` as modes; `foundations` no longer exists as a mode.
 - `hub-router.json` routes the `foundations-color`, `foundations-type`, `foundations-layout`, and `foundations-tokens` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:

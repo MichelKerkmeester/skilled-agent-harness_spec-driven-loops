@@ -21,7 +21,7 @@ Shared naming for color, typography, layout, elevation, motion, and state tokens
 
 ### Purpose
 
-Keep token language consistent when design children discuss visual systems, so a term means the same thing across interface, foundations, motion, and audit work.
+Keep token language consistent when design children discuss visual systems, so a term means the same thing across `sk-design-interface` and `sk-design-md-generator` work.
 
 ### Usage
 

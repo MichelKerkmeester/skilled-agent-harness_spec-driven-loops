@@ -110,7 +110,7 @@ See [`procedure-card-system/procedure-card-schema-and-selection.md`](procedure-c
 
 #### Description
 
-The hub has a current inventory of 12 private procedure cards across the design family: one shared card, nine interface cards (including three folded in from the retired foundations mode), one motion card, and one md-generator card.
+The hub has a current inventory of 12 private procedure cards across the design family: one shared card, ten `sk-design-interface` cards (including cards folded in from the retired foundations and motion modes), and one `sk-design-md-generator` card.
 
 #### Current Reality
 
@@ -176,11 +176,11 @@ See [`styles-library-utilization/shared-corpus-context-seam.md`](styles-library-
 
 #### Description
 
-Interface, motion and Open Design transport consume styles-library evidence through four mode-specific closed contracts (interface has two handlers).
+`sk-design-interface` and the Open Design transport consume styles-library evidence through the surviving closed contracts.
 
 #### Current Reality
 
-Interface emits a decision-only relational handoff, interface's static-system consumer (formerly `foundations`) emits typed relationships, motion runs restraint before retrieval and transport carries metadata-only grounding receipts. Each consumer fails closed and leaves acceptance with the selected mode.
+`sk-design-interface` emits a decision-only relational handoff, its static-system consumer (formerly `foundations`) emits typed relationships, and its temporal consumer (formerly `motion`) runs restraint before retrieval; transport carries metadata-only grounding receipts. Each consumer fails closed and leaves acceptance with the selected mode.
 
 #### Source Files
 
@@ -210,11 +210,11 @@ See [`styles-library-utilization/md-generator-schema-and-study.md`](styles-libra
 
 #### Description
 
-Three canonical `/interface:*` commands provide one creation surface for design, motion and design-reference workflows.
+Two canonical `/interface:*` commands provide one creation surface for design and design-reference workflows; motion is part of the design workflow.
 
 #### Current Reality
 
-`/interface:{design,motion,design-reference}` maps to the unchanged `interface`, `motion` and `md-generator` mode IDs. All three commands reference one shared nine-stage creation contract. `/interface:foundations` and `/interface:audit` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
+`/interface:{design,design-reference}` maps to `sk-design-interface` and `sk-design-md-generator`. Both commands reference one shared nine-stage creation contract. `/interface:foundations`, `/interface:motion`, and `/interface:audit` are retired with no alias or transition period, and the former `/design:*` alias namespace is retired — `/interface:*` is the sole creation surface.
 
 #### Source Files
 

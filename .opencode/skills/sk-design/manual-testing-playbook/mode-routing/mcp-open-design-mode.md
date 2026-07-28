@@ -62,7 +62,7 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 ### Pass/Fail Criteria
 
 - **PASS** iff advisor top-1 is `sk-design`, resolved mode is `sk-design-mcp-open-design`, packet is `sk-design-mcp-open-design/SKILL.md`, and no `Write`/`Edit` tool call occurs.
-- **FAIL** iff a design-judgment mode (`sk-design-interface`/`foundations`/`motion`/`audit`/`sk-design-md-generator`) wins instead, the external `mcp-figma` skill wins, or a mutating tool beyond `Bash` is used.
+- **FAIL** iff a design-judgment mode (`sk-design-interface` or `sk-design-md-generator`) wins instead, the external `mcp-figma` skill wins, or a mutating tool beyond `Bash` is used.
 
 ### Failure Triage
 

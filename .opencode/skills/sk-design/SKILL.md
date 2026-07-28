@@ -1,6 +1,6 @@
 ---
 name: sk-design
-description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to two design modes (interface, md-generator) plus a nested Open Design transport packet via mode-registry.json, and each holds its own logic."
+description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to sk-design-interface and sk-design-md-generator plus the nested sk-design-mcp-open-design transport packet via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.7.0.0
 metadata:
@@ -22,16 +22,16 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 
 | Mode | Use it for | Packet |
 |------|-----------|--------|
-| **interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/sk-design-interface/` |
-| **md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/sk-design-md-generator/` |
-| **design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/sk-design-mcp-open-design/` |
+| **sk-design-interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/sk-design-interface/` |
+| **sk-design-md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/sk-design-md-generator/` |
+| **sk-design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/sk-design-mcp-open-design/` |
 
 ### Canonical Creation Commands
 
 | Command | Stable `workflowMode` |
 |---|---|
-| `/interface:design` | `interface` |
-| `/interface:design-reference` | `md-generator` |
+| `/interface:design` | `sk-design-interface` |
+| `/interface:design-reference` | `sk-design-md-generator` |
 
 These commands share `shared/creation-contract.md` and are the sole public design command surface. Internal mode IDs are unchanged.
 
@@ -69,9 +69,9 @@ If a required fact is unknown and changes the route or acceptance bar, ask a foc
 **No hedge-everything bundling**: when the user names several candidate modes as uncertain (e.g. "not sure whether this needs interface direction/motion or a DESIGN.md extract") with no other disambiguating signal, that is not evidence for bundling all of them — it is exactly the missing-fact case that requires the ONE focused question first ("which of these is the primary concern: direction and system, or extraction?"), or an explicitly stated assumption narrowing to the smallest useful mode. Do not resolve an uncertain multi-mode prompt into a full bundle as a way to avoid asking; that produces the generic, unfocused output this section exists to prevent.
 
 ### The discriminator
-- **`workflowMode`** — the public mode key (every mode): `interface`, `md-generator`, and the `design-mcp-open-design` transport.
-- **`packetKind`** — `workflow` for the two design-judgment modes; `transport` for `design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
-- **`backendKind`** — which backend runs the mode: `reference-base` (`interface` cites the shared design reference base), `playwright-extract` (`md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
+- **`workflowMode`** — the public mode key (every mode): `sk-design-interface`, `sk-design-md-generator`, and the `sk-design-mcp-open-design` transport.
+- **`packetKind`** — `workflow` for the two design-judgment modes; `transport` for `sk-design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
+- **`backendKind`** — which backend runs the mode: `reference-base` (`sk-design-interface` cites the shared design reference base), `playwright-extract` (`sk-design-md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `sk-design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
 
 ### Routing rule
 ```
@@ -151,13 +151,13 @@ def resolve_mode_packet(mode: str, intent_confidence: float):
 
 Do not hardcode a file inventory of mode references/assets in the hub. If a future design workflow needs runtime-keyed resource folders, add them to the relevant mode packet and adapt that packet's router to the canonical discovery/guard/fallback pattern rather than loading raw paths here.
 
-Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **interface** — it owns visual direction, the static visual system, the temporal/motion layer, and quality review together — unless the prompt is explicitly md-generator (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. interface + md-generator for a redesign grounded in measured CSS).
+Intent classification favors the smallest useful mode. Default a generic "make this look good" prompt to **sk-design-interface** — it owns visual direction, the static visual system, the temporal/motion layer, and quality review together — unless the prompt is explicitly `sk-design-md-generator` (`DESIGN.md`/style-reference extraction). Pair modes only when the prompt has clearly separate design axes (e.g. `sk-design-interface` + `sk-design-md-generator` for a redesign grounded in measured CSS).
 
 ### Mode Vocabulary Guardrails
 
 Treat hub identity terms such as `sk-design`, `design-family`, and `mode-registry` as family context, not as evidence for a child mode by themselves. Use these disambiguators when routing vocabulary overlaps:
-- **interface** owns end-to-end visual direction and application verbs (make it look better, less generic, custom not templated, hero or landing-page direction, visual identity, transform commands framed as "make it bolder/quieter/clearer"), the static visual system (color, type, spacing, grid, layout rhythm, visual hierarchy, information hierarchy, responsive adaptation, and design-token system design), the temporal/motion layer (animation, interaction states, hover/focus/active feedback, transitions, choreography, motion budget, reduced motion, and motion performance), and quality review (critique, WCAG, anti-slop, production hardening) through the interface pre-delivery gate. `tokens.json` and `DESIGN.md` as measured artifacts still route to `md-generator`, not interface, unless the prompt asks to design or adapt a token system.
-- **md-generator** owns measured extraction and fidelity artifacts: live-URL CSS capture, `tokens.json`, `DESIGN.md`, style reference, validation, reports, and source-of-truth provenance.
+- **sk-design-interface** owns end-to-end visual direction and application verbs (make it look better, less generic, custom not templated, hero or landing-page direction, visual identity, transform commands framed as "make it bolder/quieter/clearer"), the static visual system (color, type, spacing, grid, layout rhythm, visual hierarchy, information hierarchy, responsive adaptation, and design-token system design), the temporal/motion layer (animation, interaction states, hover/focus/active feedback, transitions, choreography, motion budget, reduced motion, and motion performance), and quality review (critique, WCAG, anti-slop, production hardening) through the interface pre-delivery gate. `tokens.json` and `DESIGN.md` as measured artifacts still route to `sk-design-md-generator`, not `sk-design-interface`, unless the prompt asks to design or adapt a token system.
+- **sk-design-md-generator** owns measured extraction and fidelity artifacts: live-URL CSS capture, `tokens.json`, `DESIGN.md`, style reference, validation, reports, and source-of-truth provenance.
 
 Keep these guardrails synchronized with `hub-router.json` `vocabularyClasses`/`routerSignals` and with the `aliases` / `transformVerbRouting` vocabulary in `mode-registry.json`; do not change registry structure or tool surfaces to resolve vocabulary ambiguity.
 

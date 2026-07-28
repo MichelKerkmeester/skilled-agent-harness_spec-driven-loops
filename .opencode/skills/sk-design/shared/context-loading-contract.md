@@ -302,7 +302,7 @@ Fan-out or delegated recommendations are candidates until merged, attributed, an
 | `surface` | string | yes | The surface the design work targets: route, page, frame, file, or artifact. |
 | `taskType` | string | yes | One of `advice`, `build`, `redesign`, `generation`, or `dispatch`, matching the CONTEXT MANIFEST task-type set. |
 | `skDesignLoaded` | boolean | yes | Whether the hub was loaded before the manifest was resolved. Must be `true` to dispatch design work. |
-| `workflowModes` | string array | yes | Non-empty list of registry-valid modes: `interface`, `motion`, or `md-generator`, validated against `mode-registry.json`. |
+| `workflowModes` | string array | yes | Non-empty list of registry-valid modes: `sk-design-interface`, `sk-design-md-generator`, or `sk-design-mcp-open-design`, validated against `mode-registry.json`. |
 | `register` | string | yes | `Brand` or `Product`. Must be resolved before dispatch; `unknown` is rejected. |
 | `dials` | object | yes | `VARIANCE`, `MOTION`, and `DENSITY`, matching the Register And Dials shape. |
 | `loadedFiles` | array | yes | Non-empty `{path, sha256}` entries for the design-context files the child must carry, using the proof-token loadedFiles convention by reference. |

@@ -1,6 +1,6 @@
 ---
 title: "Interface Creation Commands"
-description: "Three canonical /interface:* creation commands sharing one nine-stage contract. /interface:foundations and /interface:audit are retired with no alias or transition period, and the former /design:* alias namespace is retired — /interface:* is the sole creation surface."
+description: "Two canonical /interface:* creation commands sharing one nine-stage contract. /interface:foundations, /interface:motion, and /interface:audit are retired with no alias or transition period, and the former /design:* alias namespace is retired — /interface:* is the sole creation surface."
 trigger_phrases:
   - "Interface Creation Commands"
   - "interface command surface"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The canonical creation-command surface is `/interface:{design,motion,design-reference}`. These commands map to the existing `interface`, `motion` and `md-generator` workflow modes without renaming the internal IDs.
+The canonical creation-command surface is `/interface:{design,design-reference}`. These commands map to the existing `sk-design-interface` and `sk-design-md-generator` workflow modes.
 
 The former `/design:{interface,foundations,motion,audit,md-generator}` alias namespace is retired, and `/interface:foundations` and `/interface:audit` are retired with no alias or transition period: `/interface:*` is the sole public creation surface. The alias wrappers, their assets, and the registry alias plumbing have been removed end-to-end; the alias era is preserved only in the historical changelog.
 

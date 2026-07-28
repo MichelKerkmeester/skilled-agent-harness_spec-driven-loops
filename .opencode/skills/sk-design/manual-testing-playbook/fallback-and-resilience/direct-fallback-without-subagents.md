@@ -51,7 +51,7 @@ Subagents are unavailable. Define the feedback states and reduced-motion path fo
 
 ### Pass/Fail Criteria
 
-- **PASS** iff interface executes directly without Task, Write, Edit, or Bash and still provides selected card, context basis, reduced-motion proof, and verification risks; md-generator executes directly under its normal backend boundary and names the backend entrypoint/provenance/validation proof.
+- **PASS** iff `sk-design-interface` executes directly without Task, Write, Edit, or Bash and still provides selected card, context basis, reduced-motion proof, and verification risks; `sk-design-md-generator` executes directly under its normal backend boundary and names the backend entrypoint/provenance/validation proof.
 - **FAIL** iff read-only fallback dispatches a subagent, uses mutating tools, skips proof because subagents are unavailable, or md-generator is incorrectly forced into Read/Glob/Grep-only behavior.
 
 ### Failure Triage

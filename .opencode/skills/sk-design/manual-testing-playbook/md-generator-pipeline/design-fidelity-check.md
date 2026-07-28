@@ -81,7 +81,7 @@ Run a design fidelity check for /tmp/skd-MG003/DESIGN.md and its tokens.json, th
 
 ### Failure Triage
 
-1. If `audit` wins, inspect precedence for the exact alias `design fidelity check` in `mode-registry.json`.
+1. If `sk-design-interface` wins, inspect precedence for the exact alias `design fidelity check` in `mode-registry.json`.
 2. If REPORT is missing, inspect `sk-design-md-generator/SKILL.md` Phase 4 guidance.
 3. If visual artifacts are written outside the sandbox, stop and rerun with explicit output paths.
 

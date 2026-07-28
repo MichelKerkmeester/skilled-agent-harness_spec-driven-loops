@@ -65,7 +65,7 @@ All digest fields use `sha256:<64 lowercase hex>`. Unknown top-level fields MAY 
       "sha256": "sha256:b9df8f2bcbf1b5e0c20d3e105a2db5d0802b257cb65ebf3ec779d99f7f8ce4c1"
     }
   ],
-  "workflowModes": ["interface", "motion"],
+  "workflowModes": ["sk-design-interface"],
   "subjectDigest": "sha256:97cf3e7d3f45a02f6500d8d44ab227772adf51e0d8c0fd22b25c7e13e13d9c6b",
   "briefDigest": "sha256:0d6b8ce8b3f5d372f3c86f4f06cf7f575d8c7fe0f68b3f245d2a9916c4d73301",
   "formAnswersDigest": "sha256:6d57c0f6a25d8ad0d2a88e6e65f379dfb6a5a4d0a7db6a5567a8747b2f04ad19",

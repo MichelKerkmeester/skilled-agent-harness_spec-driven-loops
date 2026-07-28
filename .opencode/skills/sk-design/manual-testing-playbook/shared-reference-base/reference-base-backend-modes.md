@@ -33,9 +33,9 @@ This scenario verifies that the one non-md-generator design mode, `interface`, u
 - P3: `interface`
 
 **Why**:
-- `mode-registry.json` sets `backendKind: reference-base` for `interface`, the only remaining doc-guidance mode after `foundations`, `audit`, and `motion` were retired as separate registry entries.
-- `mode-registry.json` sets `backendKind: playwright-extract` only for `md-generator`.
-- `hub-router.json` routes the `foundations-*` vocabulary classes (token/spacing/color/type/layout signals) and the `motion-*` vocabulary classes (animation/transition/reduced-motion signals) into `interface`'s `routerSignals`, and the retired `audit` capability's anti-slop/severity-ranked findings now run through `interface`'s own pre-delivery gate (`sk-design-interface/assets/interface-preflight-card.md`).
+- `mode-registry.json` sets `backendKind: reference-base` for `sk-design-interface`, the only remaining doc-guidance mode after `foundations`, `audit`, and `motion` were retired as separate registry entries.
+- `mode-registry.json` sets `backendKind: playwright-extract` only for `sk-design-md-generator`.
+- `hub-router.json` routes the `foundations-*` vocabulary classes (token/spacing/color/type/layout signals) and the `motion-*` vocabulary classes (animation/transition/reduced-motion signals) into `sk-design-interface`'s `routerSignals`, and the retired `audit` capability's anti-slop/severity-ranked findings now run through `sk-design-interface`'s own pre-delivery gate (`sk-design-interface/assets/interface-preflight-card.md`).
 - The mode packet cites `../shared/register.md` for family-level posture or severity calibration.
 
 **Expected packets loaded**:

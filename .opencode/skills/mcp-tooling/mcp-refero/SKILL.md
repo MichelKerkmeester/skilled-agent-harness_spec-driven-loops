@@ -360,7 +360,7 @@ Breadth is allowed during transport research; for design-affecting use, `sk-desi
 
 ### Cross-Workflow Contracts
 
-- **`sk-design`** is the mandatory cross-hub judgment pairing: it owns intake, mode selection, register, reference locks, and every taste/accessibility/readiness verdict. `interface` is the primary Refero consumer; `audit` may evaluate against evidence; `foundations` can interpret explicit style-system evidence; `motion` may use flow sequences. This packet retrieves only requested evidence and returns it to the design mode.
+- **`sk-design`** is the mandatory cross-hub judgment pairing: it owns intake, mode selection, register, reference locks, and every taste/accessibility/readiness verdict. `sk-design-interface` is the Refero consumer for interface direction, static-system interpretation, temporal behavior, and quality review; `sk-design-md-generator` consumes measured extraction evidence when applicable. This packet retrieves only requested evidence and returns it to the selected design mode.
 - **`mcp-code-mode`** is the substrate: manuals, `{manual}.{manual}_{tool}` naming, prefixed env vars (`refero_<NAME>` if a token is ever wired via env), discovery, and the error-envelope discipline all come from it.
 - **`mcp-figma`** is the sibling Figma transport in this hub; **`mcp-mobbin`** is a planned future sibling for Mobbin research. Neither overlaps this packet's Refero surface.
 

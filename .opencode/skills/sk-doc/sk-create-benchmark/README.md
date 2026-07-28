@@ -69,12 +69,12 @@ For MCP promotion, the flagship command-driven family, the sequence runs: confir
 
 | Family | What it measures | Package lives at |
 |---|---|---|
-| MCP promotion | Retrieval, quality, runtime or throughput from a shipped MCP stack | `<skill>/mcp-server/benchmarks/benchmark-<date>/` |
-| Behavior | Executor-model behavior at a deep-loop mode's invocation surface | `<mode>/behavior-benchmark/` |
-| Conformance | Deterministic artifact conformance against a named authority | `<mode>/assets/conformance-benchmark/<benchmark-id>/` |
-| Skill-benchmark (Lane C) | Whether a skill is well-routed, discoverable and useful | `<skill>/benchmark/<run-label>/` |
-| Model-benchmark (Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model-benchmark/` |
-| Agent-improvement (Lane A) | An agent's quality across five dimensions | deep-improvement lane, in-lane, guide only here |
+| MCP promotion (`shared`) | Retrieval, quality, runtime or throughput from a shipped MCP stack | `<skill>/mcp-server/benchmarks/benchmark-<date>/` |
+| Behavior (`behavior_benchmark`) | Executor-model behavior at a deep-loop mode's invocation surface | `<mode>/behavior-benchmark/` |
+| Conformance (`conformance_benchmark`) | Deterministic artifact conformance against a named authority | `<mode>/assets/conformance-benchmark/<benchmark-id>/` |
+| Skill-benchmark (`skill_benchmark`, Lane C) | Whether a skill is well-routed, discoverable and useful | `<skill>/benchmark/<run-label>/` |
+| Model-benchmark (`model_benchmark`, Lane B) | What a model or prompt framework produces against a held-out oracle | `system-deep-loop/deep-improvement/assets/model-benchmark/` |
+| Agent-improvement (`agent_improvement`, Lane A) | An agent's quality across five dimensions | deep-improvement lane, in-lane, guide only here |
 
 ### Key Concept: Authoring Never Crosses Into Scoring
 

@@ -23,7 +23,7 @@ The intake captures goal, surface, inputs, constraints, and proof expectations. 
 
 ## 2. HOW IT WORKS
 
-The hub reads `mode-registry.json` and resolves the smallest useful mode: `interface`, `motion`, or `md-generator`. Generic "make it look good" prompts default to `interface`, which now also owns the static-system and quality-review axes; explicit temporal or extraction language routes to `motion` or `md-generator`.
+The hub reads `mode-registry.json` and resolves the smallest useful mode: `sk-design-interface`, `sk-design-md-generator`, or the `sk-design-mcp-open-design` transport. Generic "make it look good" and temporal prompts default to `sk-design-interface`, which owns the static-system, motion, and quality-review axes; explicit extraction language routes to `sk-design-md-generator`.
 
 Before substantial design direction, build-ready guidance, implementation handoff, or transport work, the hub shows a concise plan naming the selected mode or bundle, loaded or missing context, intended design moves or preflight dimensions, proof required before ready, and any handoff target.
 

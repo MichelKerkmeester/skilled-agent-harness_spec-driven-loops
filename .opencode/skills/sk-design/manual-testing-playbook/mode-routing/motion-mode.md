@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that a temporal-interaction request (the kind that used to route to the retired `motion` mode) still routes through the `sk-design` hub to `workflowMode: interface`, since the `design-motion` capability folded into `interface`.
+This scenario verifies that a temporal-interaction request (the kind that used to route to the retired `motion` mode) still routes through the `sk-design` hub to `workflowMode: sk-design-interface`, since the former motion capability folded into `sk-design-interface`.
 
 ---
 
@@ -29,7 +29,7 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 **Expected mode resolution**: `interface`.
 
 **Why**:
-- `mode-registry.json` lists only `interface`, `md-generator`, and `design-mcp-open-design` as modes; `motion` no longer exists as a mode, and its aliases (`motion design`, `animate this`, `micro-interactions`, `transitions`, `AnimatePresence`, `exit animation`, `reduced motion`, `motion performance`) were merged into `interface`'s alias list.
+- `mode-registry.json` lists only `sk-design-interface`, `sk-design-md-generator`, and `sk-design-mcp-open-design` as modes; `motion` no longer exists as a mode, and its aliases (`motion design`, `animate this`, `micro-interactions`, `transitions`, `AnimatePresence`, `exit animation`, `reduced motion`, `motion performance`) were merged into `sk-design-interface`'s alias list.
 - `hub-router.json` routes the `motion-aliases`, `motion-temporal`, `motion-runtime`, and `motion-feel` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:

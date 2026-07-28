@@ -28,7 +28,7 @@ Private procedure card for applying the existing design-md-generator measured ex
 
 ## 2. TOOL BOUNDARY
 
-`design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the four read-only advisory modes.
+`sk-design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode or the `sk-design-mcp-open-design` transport.
 
 ## 3. PROCEDURE
 
@@ -36,7 +36,7 @@ Private procedure card for applying the existing design-md-generator measured ex
 2. Extract by category: colors, typography, spacing, radii, shadows, and any present z-index, animation, breakpoint, or container tokens.
 3. Keep source names, intended usage, gaps, and inconsistencies visible.
 4. Emit or plan the target reference format that matches the mode's current extraction contract.
-5. Recommend review before future interface or foundations work consumes the extracted system.
+5. Recommend review before future `sk-design-interface` work consumes the extracted system.
 
 ## 4. CONFLICT RULE
 
