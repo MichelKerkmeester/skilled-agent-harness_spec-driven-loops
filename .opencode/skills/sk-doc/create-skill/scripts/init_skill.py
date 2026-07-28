@@ -597,6 +597,10 @@ def init_parent_skill(
         with (skill_dir / 'description.json').open('w', encoding='utf-8') as handle:
             json.dump(description, handle, indent=2)
             handle.write('\n')
+        # The command surface starts empty; each entry is authored when the hub
+        # gains a slash command, and the fleet gate validates entries against
+        # the registry and the disk.
+        (skill_dir / 'command-metadata.json').write_text('[]\n', encoding='utf-8')
 
         (packet_dir / 'SKILL.md').write_text(packet_content, encoding='utf-8')
         (packet_dir / 'README.md').write_text(

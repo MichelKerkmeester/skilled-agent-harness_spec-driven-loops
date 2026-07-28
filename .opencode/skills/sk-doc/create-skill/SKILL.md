@@ -251,7 +251,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
 3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
 4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
-5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json` (one entry per owned slash command, `[]` when the hub owns none), `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
 6. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
 7. Add `references/` and `assets/` to surface packets when they carry evidence material.
 8. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.

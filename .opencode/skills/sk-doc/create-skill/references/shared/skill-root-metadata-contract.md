@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 # Skill Root Metadata Contract
@@ -66,7 +66,7 @@ Classification deliberately ignores every other file, including generated output
 | `leaf-manifest.config.json` | **forbidden** | required | authored |
 | `leaf-manifest.json` | required | required | **generated** |
 | `leaf-aliases.json` | optional, authored | required, **generated** | see §4 |
-| `command-metadata.json` | overlay, `sk-design` only | overlay, none | authored |
+| `command-metadata.json` | required | **forbidden** | authored |
 
 Forbidden is not stylistic. Each forbidden file would create a second source of truth for something the class already declares elsewhere: a hub carrying a standalone manifest config would hand the generator two competing inputs, and a standalone carrying registry, router, or description would claim a hub identity its packet layout cannot back.
 
@@ -74,9 +74,11 @@ Forbidden is not stylistic. Each forbidden file would create a second source of 
 
 No production consumer reads a skill-root `description.json`. The advisor ingests `graph-metadata.json` — that is what supplies identity, domains, intent signals, and typed edges to the skill graph. `description.json` exists for the hub doctor checks, which are hub-scoped. Adding one to a standalone root would produce prose nothing consults, so the contract forbids it rather than leaving it as a harmless option.
 
-### Why `command-metadata.json` is an overlay
+### Why `command-metadata.json` is hub-required
 
-Its consumers do not discover roots generically: the design command-surface validator and its contract test derive the enclosing `sk-design` root, the skill-benchmark test names `sk-design` directly, and the advisor command-binding test loops a fixed hub allowlist. Copying the file to another root would produce a file no consumer can find. Owning commands does not imply owning this file — `sk-doc` and `system-deep-loop` declare their commands in their mode registries. Widening the overlay requires a shared schema and a production consumer that enumerates roots, not another copy.
+Every hub declares its slash-command surface as checkable data: one entry per command it owns, or an empty array (`[]`) when it owns none. The fleet gate is the root-enumerating consumer — it validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.opencode/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The file started as an sk-design-only overlay and graduated to a class requirement once this consumer existed — the rule that an extension never ships without a reader still holds. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
+
+The file is forbidden on standalone roots: every entry binds a command to an `ownerMode` in a mode registry, and a standalone root has none.
 
 ---
 
@@ -95,7 +97,7 @@ A **hub's** alias rows carry real compatibility triples — they relocate a mode
 
 A **standalone** root has exactly one workflow mode, so the same triple degenerates to an identity projection over its own leaves: `workflowMode` is the skill id and `leafResourceId` equals `diskPath` on every row. That is a pure function of the manifest, so deriving it is strictly better than authoring it — a hand-maintained identity list silently rots the moment a leaf is added.
 
-The remaining six files carry authored semantic identity, routing policy, or a declaration only a human can make. `--fix` never touches them.
+The remaining seven files carry authored semantic identity, routing policy, or a declaration only a human can make. `--fix` never touches them.
 
 ---
 
@@ -120,6 +122,7 @@ Beyond presence and forbidden files, the gate enforces:
 
 - **One advisor identity per root.** A nested `graph-metadata.json` or `description.json` below the root is rejected. Identity is discriminated by content (`skill_id` / `family` / `edges`), so a same-named continuity file is correctly ignored as a neighbour rather than a rival.
 - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
+- **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
 
 ### Violation codes
 
@@ -129,16 +132,17 @@ Beyond presence and forbidden files, the gate enforces:
 | `MISSING_REQUIRED_FILE` | An authored class-required file is absent — write it by hand |
 | `MISSING_GENERATED_FILE` | A derivable class-required file is absent — `--fix` resolves it |
 | `FORBIDDEN_FILE` | Present but forbidden for this class |
-| `UNDECLARED_OVERLAY` | An overlay file on a root outside its declared scope |
+| `UNDECLARED_OVERLAY` | An overlay file on a root outside its declared scope (the overlay set is currently empty; the mechanism remains for the next extension that ships before its consumer) |
 | `NESTED_IDENTITY` | A second advisor identity below the root |
 | `STALE_GENERATED_FILE` | Committed bytes differ from a regeneration |
 | `MANIFEST_REGENERATION_FAILED` | The generator could not run, usually a missing or malformed input |
+| `COMMAND_METADATA_*` | A hub's command entry fails the core schema: unknown owner mode, unresolvable choreography resource, missing command definition file, duplicate command or owned signal, malformed entry |
 
 ---
 
 ## 6. ADDING A ROOT
 
-**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, `hub-router.json`. Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet.
+**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, `hub-router.json`, and `command-metadata.json` (one entry per owned slash command, `[]` when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet.
 
 **A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Run `--fix` to generate the manifest and the alias projection.
 
@@ -152,4 +156,5 @@ A standalone root therefore needs exactly one authored metadata file beyond iden
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - Field-level schema for `mode-registry.json` and `hub-router.json`
 - [validation-and-packaging.md](validation-and-packaging.md) - The validation tiers a skill passes before release
 - `scripts/lib/skill-root-metadata-contract.cjs` - The pure library this document describes
+- `scripts/lib/command-metadata-schema.cjs` - The core command-metadata schema validated per hub
 - `scripts/ci-skill-root-metadata.cjs` - The fleet gate

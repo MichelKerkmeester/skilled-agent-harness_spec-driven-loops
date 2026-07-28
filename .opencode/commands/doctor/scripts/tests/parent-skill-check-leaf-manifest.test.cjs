@@ -136,6 +136,9 @@ function buildCleanFixture() {
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
   writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
+  // A hub declares its command surface even when empty; the class check
+  // requires the file's presence, so the fixture carries the empty form.
+  writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');

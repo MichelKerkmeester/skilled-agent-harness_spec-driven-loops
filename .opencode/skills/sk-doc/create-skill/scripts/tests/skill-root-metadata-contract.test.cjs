@@ -120,9 +120,20 @@ function testHubRequiresItsFullSet() {
     'hub-router.json': true,
     'graph-metadata.json': true,
     'leaf-manifest.json': true,
+    'command-metadata.json': true,
   });
   assert.deepEqual(codesOf(missingDescription), ['MISSING_REQUIRED_FILE']);
   assert.equal(missingDescription.violations[0].file, 'description.json');
+
+  const missingCommands = contract.evaluateRoot('some-hub', {
+    'mode-registry.json': true,
+    'hub-router.json': true,
+    'graph-metadata.json': true,
+    'description.json': true,
+    'leaf-manifest.json': true,
+  });
+  assert.deepEqual(codesOf(missingCommands), ['MISSING_REQUIRED_FILE']);
+  assert.equal(missingCommands.violations[0].file, 'command-metadata.json');
 }
 
 function testStandaloneRequiresItsFullSet() {
@@ -142,6 +153,7 @@ function testForbiddenFilesAreRejectedPerClass() {
     'graph-metadata.json': true,
     'description.json': true,
     'leaf-manifest.json': true,
+    'command-metadata.json': true,
     'leaf-manifest.config.json': true,
   });
   assert.deepEqual(codesOf(hubWithConfig), ['FORBIDDEN_FILE']);
@@ -156,9 +168,22 @@ function testForbiddenFilesAreRejectedPerClass() {
   });
   assert.deepEqual(codesOf(standaloneWithDescription), ['FORBIDDEN_FILE']);
   assert.equal(standaloneWithDescription.violations[0].file, 'description.json');
+
+  // Command metadata binds commands to registry modes a standalone lacks.
+  const standaloneWithCommands = contract.evaluateRoot('some-standalone', {
+    'graph-metadata.json': true,
+    'leaf-manifest.config.json': true,
+    'leaf-manifest.json': true,
+    'leaf-aliases.json': true,
+    'command-metadata.json': true,
+  });
+  assert.deepEqual(codesOf(standaloneWithCommands), ['FORBIDDEN_FILE']);
+  assert.equal(standaloneWithCommands.violations[0].file, 'command-metadata.json');
 }
 
-function testOverlayIsScopedToItsDeclaredRoots() {
+function testCommandMetadataIsUniformAcrossHubs() {
+  // The command surface is class policy, not a per-root overlay: the same
+  // conforming hub presence map passes regardless of which hub carries it.
   const conformingHub = {
     'mode-registry.json': true,
     'hub-router.json': true,
@@ -168,9 +193,8 @@ function testOverlayIsScopedToItsDeclaredRoots() {
     'command-metadata.json': true,
   };
   assert.deepEqual(contract.evaluateRoot('sk-design', conformingHub).violations, []);
-
-  const elsewhere = contract.evaluateRoot('sk-doc', conformingHub);
-  assert.deepEqual(codesOf(elsewhere), ['UNDECLARED_OVERLAY']);
+  assert.deepEqual(contract.evaluateRoot('sk-doc', conformingHub).violations, []);
+  assert.deepEqual(contract.OVERLAY_FILES, {});
 }
 
 function testGeneratedIsClassSensitive() {
@@ -184,10 +208,11 @@ function testGeneratedIsClassSensitive() {
 }
 
 function testLegalFilesForClass() {
-  const hubLegal = contract.legalFilesForClass(contract.CLASS_HUB, 'sk-design');
-  assert.ok(hubLegal.includes('command-metadata.json'));
-  assert.ok(!contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('command-metadata.json'));
+  // Command metadata is class policy now, so every hub's legal set carries it.
+  assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-design').includes('command-metadata.json'));
+  assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('command-metadata.json'));
   assert.ok(contract.legalFilesForClass(contract.CLASS_HUB, 'sk-doc').includes('leaf-aliases.json'));
+  assert.ok(!contract.legalFilesForClass(contract.CLASS_STANDALONE, 'sk-git').includes('command-metadata.json'));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -352,6 +377,81 @@ function testGateRunExitsNonZeroOnViolations() {
 // 7. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 6b. COMMAND-METADATA CORE SCHEMA
+// ─────────────────────────────────────────────────────────────────────────────
+
+const commandSchema = require('../lib/command-metadata-schema.cjs');
+
+function validEntry(overrides) {
+  return Object.assign({
+    command: '/demo:run',
+    ownerMode: 'demo-mode',
+    description: 'Run the demo workflow.',
+    argumentHint: '<target> [:auto]',
+    userIntent: { job: 'I want to run the demo.', ownedSignals: ['run the demo'] },
+    choreography: [
+      { order: 1, skill: 'demo', resource: 'SKILL.md', action: 'load the hub' },
+      { order: 2, skill: 'demo-mode', resource: 'demo-mode/SKILL.md', action: 'apply to $ARGUMENTS' },
+    ],
+  }, overrides);
+}
+
+function schemaCodes(entries, extra) {
+  return commandSchema.validateCommandMetadata(entries, Object.assign({
+    skillId: 'demo', registryModes: ['demo-mode'],
+  }, extra)).map((v) => v.code).sort();
+}
+
+function testCommandSchemaAcceptsValidAndEmpty() {
+  assert.deepEqual(schemaCodes([]), []);
+  assert.deepEqual(schemaCodes([validEntry()]), []);
+  // Unknown extension fields are deliberately legal — the design hub's richer
+  // shape must keep validating without the core knowing its fields.
+  assert.deepEqual(schemaCodes([validEntry({ registerPolicy: { accepted: ['brand'] } })]), []);
+  // Choreography order is relative, not one-based: a step numbered 0 is legal.
+  assert.deepEqual(schemaCodes([validEntry({
+    choreography: [
+      { order: 0, skill: 'demo', resource: 'SKILL.md', action: 'load' },
+      { order: 1, skill: 'demo', resource: 'SKILL.md', action: 'apply' },
+    ],
+  })]), []);
+}
+
+function testCommandSchemaRejectsCoreViolations() {
+  assert.deepEqual(schemaCodes('nope'), ['COMMAND_METADATA_NOT_ARRAY']);
+  assert.deepEqual(schemaCodes([{}]).includes('MISSING_FIELD'), true);
+  assert.deepEqual(schemaCodes([validEntry({ command: 'create:skill' })]), ['BAD_COMMAND_ID']);
+  assert.deepEqual(schemaCodes([validEntry({ ownerMode: 'ghost' })]), ['UNKNOWN_OWNER_MODE']);
+  assert.deepEqual(schemaCodes([validEntry(), validEntry()]).includes('DUPLICATE_COMMAND'), true);
+  const clash = [
+    validEntry(),
+    validEntry({ command: '/demo:other', userIntent: { job: 'other job here', ownedSignals: ['Run The Demo'] } }),
+  ];
+  assert.ok(schemaCodes(clash).includes('DUPLICATE_OWNED_SIGNAL'), 'signal dedup must be case-insensitive');
+  assert.deepEqual(schemaCodes([validEntry({ userIntent: { job: 'j', ownedSignals: [] } })]), ['BAD_USER_INTENT']);
+  assert.deepEqual(schemaCodes([validEntry({ choreography: [] })]), ['BAD_CHOREOGRAPHY']);
+  assert.deepEqual(schemaCodes([validEntry({
+    choreography: [
+      { order: 2, skill: 'demo', resource: 'SKILL.md', action: 'load' },
+      { order: 1, skill: 'demo', resource: 'SKILL.md', action: 'apply' },
+    ],
+  })]), ['CHOREOGRAPHY_ORDER']);
+}
+
+function testCommandSchemaUsesInjectedProbes() {
+  const missingResource = commandSchema.validateCommandMetadata([validEntry()], {
+    skillId: 'demo', registryModes: ['demo-mode'], resourceExists: () => false,
+  });
+  assert.ok(missingResource.some((v) => v.code === 'CHOREOGRAPHY_RESOURCE_MISSING'));
+  const missingCommand = commandSchema.validateCommandMetadata([validEntry()], {
+    skillId: 'demo', registryModes: ['demo-mode'], commandExists: () => false,
+  });
+  assert.ok(missingCommand.some((v) => v.code === 'COMMAND_FILE_MISSING'));
+  assert.equal(commandSchema.commandDefinitionRelPath('/create:skill'), 'create/skill.md');
+  assert.equal(commandSchema.commandDefinitionRelPath('/doctor'), 'doctor.md');
+}
+
 try {
   testDiscriminatorDecidesClass();
   testClassificationIgnoresGeneratedOutput();
@@ -359,7 +459,7 @@ try {
   testHubRequiresItsFullSet();
   testStandaloneRequiresItsFullSet();
   testForbiddenFilesAreRejectedPerClass();
-  testOverlayIsScopedToItsDeclaredRoots();
+  testCommandMetadataIsUniformAcrossHubs();
   testGeneratedIsClassSensitive();
   testLegalFilesForClass();
   testFleetDiscoveryUsesTheAuthoredMarker();
@@ -374,6 +474,9 @@ try {
   testFixDoesNotTouchHubAliases();
   testAliasProjectionIsDeterministicAndSetPreserving();
   testGateRunExitsNonZeroOnViolations();
+  testCommandSchemaAcceptsValidAndEmpty();
+  testCommandSchemaRejectsCoreViolations();
+  testCommandSchemaUsesInjectedProbes();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });
 }

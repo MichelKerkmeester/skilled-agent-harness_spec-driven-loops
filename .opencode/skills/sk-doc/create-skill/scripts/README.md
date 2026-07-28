@@ -20,7 +20,7 @@ description: "Python CLIs that init, package and validate a skill folder, plus N
 | `validate_skill_package.py` | Runs the completion checks required for a standalone skill or parent hub, including compiled-routing readiness markers in `SKILL.md`. |
 | `generate-leaf-manifest.cjs` | Walks a hub's declared packets, normalizes every leaf resource through `lib/leaf-resource-contract.cjs` and writes or checks `leaf-manifest.json`. |
 | `ci-leaf-manifest-freshness.cjs` | Fleet-wide CI gate that regenerates every committed `leaf-manifest.json` and fails on any byte drift. |
-| `ci-skill-root-metadata.cjs` | Fleet-wide class gate: classifies every skill root, enforces its required/forbidden/overlay metadata files, rejects nested advisor identities and stale generated files. `--fix` writes derivable files only. |
+| `ci-skill-root-metadata.cjs` | Fleet-wide class gate: classifies every skill root, enforces its required/forbidden/overlay metadata files, validates every hub's `command-metadata.json` against the core schema, rejects nested advisor identities and stale generated files. `--fix` writes derivable files only. |
 | `validate-playbook-topology.cjs` | Pre-dispatch gate for a hub's manual testing playbook: schema, manifest resolution and selected-map join checks on typed gold. |
 | `validate-compiled-routing-scenarios.cjs` | Content admission gate for a hub's compiled-routing scenario matrix, hard-rejecting id-only or evidence-incomplete scenarios. |
 

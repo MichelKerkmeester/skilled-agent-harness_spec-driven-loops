@@ -51,6 +51,7 @@ const path = require('path');
 const { buildManifestBytes } = require('./generate-leaf-manifest.cjs');
 const leafContract = require('./lib/leaf-resource-contract.cjs');
 const rootContract = require('./lib/skill-root-metadata-contract.cjs');
+const commandSchema = require('./lib/command-metadata-schema.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -250,6 +251,57 @@ function checkDerivedAliases(skillDir, presence, manifestBytes, fix) {
   };
 }
 
+/**
+ * Validate a hub's command-metadata.json against the core schema, resolving
+ * choreography resources and command definition files on disk. Skipped when
+ * the file is absent (presence is already the class contract's finding) or
+ * unparseable (reported as one malformed-JSON violation instead).
+ */
+function checkCommandMetadata(skillDir) {
+  const skillsDir = path.dirname(skillDir);
+  const filePath = path.join(skillDir, 'command-metadata.json');
+  if (!fs.existsSync(filePath)) return [];
+
+  let entries;
+  try {
+    entries = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (err) {
+    return [{
+      code: 'COMMAND_METADATA_INVALID',
+      file: 'command-metadata.json',
+      message: `${path.basename(skillDir)}: command-metadata.json is not valid JSON: ${err.message}`,
+    }];
+  }
+
+  let registryModes = [];
+  try {
+    const registry = JSON.parse(fs.readFileSync(path.join(skillDir, 'mode-registry.json'), 'utf8'));
+    registryModes = (registry.modes || []).map((m) => m && m.workflowMode).filter(Boolean);
+  } catch {
+    // A missing/broken registry is already an unclassifiable or missing-file
+    // finding elsewhere; command validation proceeds with owner checks moot.
+  }
+
+  const repoRoot = path.dirname(path.dirname(skillsDir));
+  const commandsDir = path.join(repoRoot, '.opencode', 'commands');
+
+  const violations = commandSchema.validateCommandMetadata(entries, {
+    skillId: path.basename(skillDir),
+    registryModes,
+    resourceExists: (rel) => fs.existsSync(path.join(repoRoot, rel))
+      || fs.existsSync(path.join(skillDir, rel)),
+    commandExists: (commandId) => fs.existsSync(
+      path.join(commandsDir, commandSchema.commandDefinitionRelPath(commandId)),
+    ),
+  });
+
+  return violations.map((v) => ({
+    code: `COMMAND_METADATA_${v.code}`,
+    file: 'command-metadata.json',
+    message: v.message,
+  }));
+}
+
 /** Evaluate one root end to end: class, presence, identity, freshness. */
 function checkRoot(skillDir, options = {}) {
   const fix = Boolean(options.fix);
@@ -295,6 +347,13 @@ function checkRoot(skillDir, options = {}) {
       }
     }
     fixed = writtenFiles.length > 0;
+  }
+
+  // Hubs additionally get their command surface validated as data: entries
+  // against the core schema, owner modes against the registry, choreography
+  // resources and command definition files against the disk.
+  if (evaluation.skillClass === rootContract.CLASS_HUB) {
+    violations.push(...checkCommandMetadata(skillDir));
   }
 
   return {
@@ -366,6 +425,7 @@ module.exports = {
   buildAliasBytes,
   checkGeneratedManifest,
   checkDerivedAliases,
+  checkCommandMetadata,
   checkRoot,
   run,
 };

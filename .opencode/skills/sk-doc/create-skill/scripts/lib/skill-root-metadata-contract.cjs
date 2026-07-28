@@ -77,6 +77,7 @@ const REQUIRED_BY_CLASS = Object.freeze({
     'mode-registry.json',
     'hub-router.json',
     'leaf-manifest.json',
+    'command-metadata.json',
   ]),
   [CLASS_STANDALONE]: Object.freeze([
     'graph-metadata.json',
@@ -99,6 +100,9 @@ const FORBIDDEN_BY_CLASS = Object.freeze({
     'description.json',
     'mode-registry.json',
     'hub-router.json',
+    // Command metadata binds each command to an ownerMode in the registry a
+    // standalone root does not have, so the file cannot be coherent on S.
+    'command-metadata.json',
   ]),
 });
 
@@ -108,10 +112,15 @@ const FORBIDDEN_BY_CLASS = Object.freeze({
  * discover roots generically, so widening it silently would produce files
  * nothing reads. Adding a root here is a deliberate act that must come with a
  * consumer able to find it.
+ *
+ * Currently empty. `command-metadata.json` graduated from this tier to a
+ * class-H requirement once the fleet gate became its root-enumerating
+ * consumer: every hub now declares its slash-command surface as checkable
+ * data (an empty array when it owns none), validated against the core schema
+ * in command-metadata-schema.cjs. The mechanism stays for the next extension
+ * that ships before its consumer can enumerate roots.
  */
-const OVERLAY_FILES = Object.freeze({
-  'command-metadata.json': Object.freeze(['sk-design']),
-});
+const OVERLAY_FILES = Object.freeze({});
 
 /**
  * What a tool may write unattended, per class. Everything else carries authored
