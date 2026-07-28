@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: sk-design design-reference creation command, interactive execution
 purpose: Extract a provenance-rich validated Style Reference DESIGN.md from a canonical live source
-action: Resolve private access and overwrite decisions once, then apply workflowMode=md-generator
+action: Resolve private access and overwrite decisions once, then apply workflowMode=sk-design-md-generator
 
 operating_mode:
   workflow: sequential_creation_contract
@@ -109,7 +109,7 @@ gate_logic:
       description: "The consolidated confirmation reply must be received before extraction work"
       fail_action: "WAIT for the bundled reply"
     H1_route_proof:
-      description: "The canonical /interface:design-reference route + workflowMode=md-generator must be proven"
+      description: "The canonical /interface:design-reference route + workflowMode=sk-design-md-generator must be proven"
       fail_action: "STOP and record the route proof"
     H2_creation_contract:
       description: "The shared creation contract must be loaded before extraction work"
@@ -180,7 +180,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical extraction route and output policy
-    action: "Record command=/interface:design-reference, workflowMode=md-generator, canonical source, and proof environment"
+    action: "Record command=/interface:design-reference, workflowMode=sk-design-md-generator, canonical source, and proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load source origin, representative routes/states/viewports/themes, access, dynamic loading, output, and overwrite policy

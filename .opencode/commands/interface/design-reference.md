@@ -1,12 +1,12 @@
 ---
-description: "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode."
+description: "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design sk-design-md-generator mode."
 argument-hint: "<live-url> --output <dir> [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # /interface:design-reference
 
-Creation-template router for stable `workflowMode=md-generator`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the md-generator pipeline to `$ARGUMENTS`.
+Creation-template router for stable `workflowMode=sk-design-md-generator`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the md-generator pipeline to `$ARGUMENTS`.
 
 <!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design/shared/creation-contract.md
@@ -24,7 +24,7 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 - **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is quality review rather than extraction.
 - **The interface mode owns authored static-system direction directly.**
 - **Prefer `/interface:design` when** the request is a new direction, including temporal design.
-- **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is Open Design transport operation rather than website extraction.
+- **Prefer the `sk-design` hub's `sk-design-mcp-open-design` transport when** the request is Open Design transport operation rather than website extraction.
 - **Defer to the `sk-design` hub when** the request spans redesign, critique, or invention beyond source-faithful extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 
@@ -49,7 +49,7 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 
 1. Parse `$ARGUMENTS`; resolve route proof, consent, source identity, and output policy.
 2. Treat the source website as the primary exemplar; no `no-fit` fallback applies.
-3. Load `workflowMode=md-generator` and its owned pipeline.
+3. Load `workflowMode=sk-design-md-generator` and its owned pipeline.
 4. Capture provenance and the route/state/viewport/theme matrix.
 5. Run extract, write, and validate; label inferred semantics and gaps.
 6. Stop with diagnostics instead of generating a generic replacement when capture fails.

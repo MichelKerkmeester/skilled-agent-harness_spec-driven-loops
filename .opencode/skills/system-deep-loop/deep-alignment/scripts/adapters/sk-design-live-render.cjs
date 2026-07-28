@@ -11,7 +11,7 @@
 // ║ file wraps NO locally-executable renderer. sk-doc.cjs shells out to two  ║
 // ║ real Python validators via child_process; this adapter has nothing to   ║
 // ║ shell out to — the only capability that can render a live target        ║
-// ║ (design-mcp-open-design's MCP tool surface) is callable only from an    ║
+// ║ (sk-design-mcp-open-design's MCP tool surface) is callable only from an    ║
 // ║ agent's own tool-use loop, never from a spawned subprocess, AND (per    ║
 // ║ direct research) that tool surface has no tool that renders an          ║
 // ║ arbitrary external URL/route in the first place — see                   ║
@@ -40,7 +40,7 @@
  *
  * check(artifact, rules, options) NEVER renders anything itself. It requires
  * `options.renderResult` — render evidence the caller (the ITERATE-state driving agent,
- * which holds the real MCP connection and dispatched through design-mcp-open-design)
+ * which holds the real MCP connection and dispatched through sk-design-mcp-open-design)
  * already obtained and supplies as a plain object. Without it, check() returns
  * a single honest `render-unavailable` finding, never a fabricated pass.
  *
@@ -48,7 +48,7 @@
  *   const adapter = require('./sk-design-live-render.cjs');
  *   const { artifacts, nodes } = adapter.discover({ type: 'paths', values: ['http://localhost:3000/dashboard'] });
  *   const rules = adapter.standardSource('sk-design');
- *   const findings = adapter.check(artifacts[0], rules, { renderResult: { dispatchedThrough: 'design-mcp-open-design', renderedAt: new Date().toISOString(), measurements: {...} } });
+ *   const findings = adapter.check(artifacts[0], rules, { renderResult: { dispatchedThrough: 'sk-design-mcp-open-design', renderedAt: new Date().toISOString(), measurements: {...} } });
  *
  * CLI usage (manual dry-run, no engine wiring required):
  *   node sk-design-live-render.cjs discover [--glob] <target-value...>
@@ -90,7 +90,7 @@ const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'a
 // The locked dispatch-boundary constraint, enforced as a literal value check on caller-
 // supplied render evidence: a renderResult that does not self-report coming through this
 // boundary is refused, not silently trusted.
-const REQUIRED_DISPATCH_BOUNDARY = 'design-mcp-open-design';
+const REQUIRED_DISPATCH_BOUNDARY = 'sk-design-mcp-open-design';
 
 // Cited verbatim from accessibility_performance.md:67-76 ("Concrete Thresholds") — not
 // re-derived, not invented. clsMax/lcpMaxMs/inpMaxMs from that file's Core Web Vitals row
@@ -434,7 +434,7 @@ function checkJudgmentFindings(artifact, renderResult, evidenceLabel) {
  *
  * This function NEVER renders anything itself (see this file's header comment and the
  * adapter spec Section 8). It requires `options.renderResult` — render evidence the
- * caller already obtained by dispatching through design-mcp-open-design.
+ * caller already obtained by dispatching through sk-design-mcp-open-design.
  * Four short-circuit conditions (missing renderResult, wrong dispatch boundary,
  * dispatch rejected, auth-blocked target) each return a single honest finding instead
  * of crashing or fabricating a pass. Otherwise runs deterministic threshold checks over
@@ -457,7 +457,7 @@ function check(artifact, rules, options) {
       type: 'render-unavailable',
       producedBy: 'unavailable',
       evidenceLabel: 'unavailable',
-      message: 'No renderResult supplied: this adapter cannot render standalone (adapter spec Section 8) — the ITERATE-state driving agent must dispatch through design-mcp-open-design and supply the render evidence via options.renderResult.',
+      message: 'No renderResult supplied: this adapter cannot render standalone (adapter spec Section 8) — the ITERATE-state driving agent must dispatch through sk-design-mcp-open-design and supply the render evidence via options.renderResult.',
       artifact: normalizedArtifact,
     })], knownDeviations);
   }

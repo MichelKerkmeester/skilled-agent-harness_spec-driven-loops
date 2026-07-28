@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: sk-design interface creation command, autonomous execution
 purpose: Create or reshape an end-to-end interface direction
-action: Apply workflowMode=interface to $ARGUMENTS through the shared creation contract
+action: Apply workflowMode=sk-design-interface to $ARGUMENTS through the shared creation contract
 
 operating_mode:
   workflow: sequential_creation_contract
@@ -96,7 +96,7 @@ workflow_enforcement:
 gate_logic:
   hard:
     H0_route_proof:
-      description: "The canonical /interface:design route + workflowMode=interface must be proven"
+      description: "The canonical /interface:design route + workflowMode=sk-design-interface must be proven"
       fail_action: "STOP and record the route proof"
     H1_creation_contract:
       description: "The shared creation contract must be loaded before design work"
@@ -156,10 +156,10 @@ user_inputs:
   register: "brand|product; default auto"
 
 task_projections:
-  bolder: "Apply within workflowMode=interface."
-  quieter: "Apply within workflowMode=interface."
-  distill: "Apply within workflowMode=interface."
-  delight: "Apply within workflowMode=interface."
+  bolder: "Apply within workflowMode=sk-design-interface."
+  quieter: "Apply within workflowMode=sk-design-interface."
+  distill: "Apply within workflowMode=sk-design-interface."
+  delight: "Apply within workflowMode=sk-design-interface."
   negative_corpus: "These are advisory verbs, never standalone commands."
 
 workflow:
@@ -173,7 +173,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical route before design work
-    action: "Record command=/interface:design, workflowMode=interface, interface-owned static-system decisions when building UI, and the proof environment"
+    action: "Record command=/interface:design, workflowMode=sk-design-interface, interface-owned static-system decisions when building UI, and the proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load the target, owned system, content, data, constraints, artifacts, and runtime context

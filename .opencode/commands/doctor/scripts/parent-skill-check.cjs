@@ -1076,7 +1076,7 @@ function main() {
     // lives canonically under sk-doc, not inside every hub. A hub can carry a
     // leaf-manifest.json without owning the create-skill authoring mode, so
     // resolve the generator from the canonical location rather than from target.
-    const canonicalManifestScripts = path.join(path.dirname(target), 'sk-doc', 'create-skill', 'scripts');
+    const canonicalManifestScripts = path.join(path.dirname(target), 'sk-doc', 'sk-create-skill', 'scripts');
     const generatorPath = path.join(canonicalManifestScripts, 'generate-leaf-manifest.cjs');
     const contractLibPath = path.join(canonicalManifestScripts, 'lib', 'leaf-resource-contract.cjs');
 

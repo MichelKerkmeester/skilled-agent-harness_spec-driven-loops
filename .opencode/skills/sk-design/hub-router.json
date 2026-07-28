@@ -2,7 +2,7 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "routerPolicy": {
-    "defaultMode": "interface",
+    "defaultMode": "sk-design-interface",
     "ambiguityDelta": 1,
     "tieBreak": ["sk-design-interface", "sk-design-md-generator", "sk-design-mcp-open-design"],
     "outcomes": {
@@ -19,8 +19,8 @@
   "commandSurface": {
     "canonicalNamespace": "interface",
     "canonicalByMode": {
-      "interface": "/interface:design",
-      "md-generator": "/interface:design-reference"
+      "sk-design-interface": "/interface:design",
+      "sk-design-md-generator": "/interface:design-reference"
     }
   },
   "routerSignals": {

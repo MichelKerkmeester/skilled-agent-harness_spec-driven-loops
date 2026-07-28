@@ -1,12 +1,12 @@
 ---
-description: "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode."
+description: "Interface direction: distinctive UI, palette, type, layout, motion. sk-design sk-design-interface mode."
 argument-hint: "<target> [--mode direction|directions|redesign|preflight|handoff] [--register brand|product] [:auto|:confirm]"
 allowed-tools: Read, Glob, Grep
 ---
 
 # /interface:design
 
-Creation-template router for stable `workflowMode=interface`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the interface mode to `$ARGUMENTS`.
+Creation-template router for stable `workflowMode=sk-design-interface`. Read `.opencode/skills/sk-design/shared/creation-contract.md`, resolve the execution mode, load the owned assets, and apply the interface mode to `$ARGUMENTS`.
 
 <!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design/shared/creation-contract.md
@@ -25,7 +25,7 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 - **The interface mode owns static-system work directly:** color, typography, layout, spacing, responsive adaptation, and theming.
 - **Prefer `/interface:design-reference` when** the request is extracting a live site's measured CSS into DESIGN.md.
 - **This command owns temporal design directly:** animation choreography, transitions, micro-interactions, and reduced-motion behavior, via the `motion-*` task lanes.
-- **Prefer the `sk-design` hub's `design-mcp-open-design` transport when** the request is to drive Open Design rather than decide direction.
+- **Prefer the `sk-design` hub's `sk-design-mcp-open-design` transport when** the request is to drive Open Design rather than decide direction.
 - **Defer to the `sk-design` hub when** another axis dominates or a supporting bundle is required.
 <!-- /ANCHOR:sibling-discriminator -->
 
@@ -52,7 +52,7 @@ Use the shared nine-stage contract for public choreography. The `interface` mode
 2. Without a suffix, use auto when the target is present; otherwise use the confirm presentation once.
 3. Resolve the context envelope and `Route Proof` before loading mode-specific references.
 4. Ground the owned system first, then at most one brief-fit exemplar and one contrast; `no-fit` is valid.
-5. Load `workflowMode=interface`; keep static-system decisions and production checks within the mode without invoking another command.
+5. Load `workflowMode=sk-design-interface`; keep static-system decisions and production checks within the mode without invoking another command.
 6. Execute the selected owned workflow and return every visible block.
 
 ### INTERFACE TASK LANES

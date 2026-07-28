@@ -60,7 +60,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | Rule | Requirement |
 |------|-------------|
 | **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. See `constitutional/cli-dispatch-skill-preload.md`. |
-| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/prompt-models`. |
+| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/sk-prompt-models`. |
 | **Fable subagent dispatch** | When the main loop runs on a Fable model, every subagent MUST be dispatched with an explicit `model: "opus"` or `model: "sonnet"`. Forks and model-less dispatches inherit Fable and are forbidden (enforced by the `fable-subagent-guard` PreToolUse hook in `.claude/settings.json`). See `constitutional/fable-subagent-model-policy.md`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 | **Open Design dispatch** | UI or design work through `design-mcp-open-design` (a nested transport packet of `sk-design`) MUST co-load `sk-design`'s own workflow modes first (the transport never decides taste). Pure transport is exempt. `mcp-figma` is the external sibling Figma transport (a transport mode of the `mcp-tooling` hub, as are the `mcp-refero`/`mcp-mobbin` design-research transports). |

@@ -2,7 +2,7 @@
   {
     "command": "/interface:design",
     "ownerMode": "sk-design-interface",
-    "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design interface mode.",
+    "description": "Interface direction: distinctive UI, palette, type, layout, motion. sk-design sk-design-interface mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": [
@@ -236,7 +236,7 @@
     "taskProjections": [
       {
         "verb": "bolder",
-        "ownerMode": "interface",
+        "ownerMode": "sk-design-interface",
         "strictness": "advisory",
         "referenceSources": [
           "sk-design-interface/references/design-process/transform-application.md",
@@ -250,7 +250,7 @@
       },
       {
         "verb": "quieter",
-        "ownerMode": "interface",
+        "ownerMode": "sk-design-interface",
         "strictness": "advisory",
         "referenceSources": [
           "sk-design-interface/references/design-process/transform-application.md",
@@ -264,7 +264,7 @@
       },
       {
         "verb": "distill",
-        "ownerMode": "interface",
+        "ownerMode": "sk-design-interface",
         "strictness": "advisory",
         "referenceSources": [
           "sk-design-interface/references/design-process/transform-application.md",
@@ -278,7 +278,7 @@
       },
       {
         "verb": "delight",
-        "ownerMode": "interface",
+        "ownerMode": "sk-design-interface",
         "strictness": "advisory",
         "referenceSources": [
           "sk-design-interface/references/design-process/transform-application.md",
@@ -328,8 +328,8 @@
           "when": "Prefer md-generator when the request is extracting a live site's measured CSS into DESIGN.md."
         },
         {
-          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
+          "sibling": "sk-design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
+          "when": "Prefer sk-design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
         }
       ],
       "pairWithHubWhen": "the request is primarily measured CSS extraction",
@@ -374,7 +374,7 @@
   {
     "command": "/interface:design-reference",
     "ownerMode": "sk-design-md-generator",
-    "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design md-generator mode.",
+    "description": "Style Reference DESIGN.md extraction: live CSS and measured tokens. sk-design sk-design-md-generator mode.",
     "descriptionRole": "hub-keyword-projection",
     "autoTriggerEligible": false,
     "hubKeywordProjection": [
@@ -528,8 +528,8 @@
           "when": "Prefer interface when the request is to invent a new design direction instead of capturing what already exists."
         },
         {
-          "sibling": "design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than extract measured CSS from a live website."
+          "sibling": "sk-design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
+          "when": "Prefer sk-design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than extract measured CSS from a live website."
         }
       ],
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",

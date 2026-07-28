@@ -6,7 +6,7 @@
 // ║ authority: discover(scope), standardSource(authority), check(artifact,   ║
 // ║ rules). Shape copied from the reference adapter (sk-doc.cjs).            ║
 // ║ STATIC-ONLY: reads DESIGN.md/tokens.json only. Never                     ║
-// ║ renders, never invokes design-md-generator's Playwright pipeline, never  ║
+// ║ renders, never invokes sk-design-md-generator's Playwright pipeline, never  ║
 // ║ drives chrome-devtools. Live-render audits belong to a separate          ║
 // ║ live-render adapter, not this one.                                       ║
 // ║                                                                          ║
@@ -61,7 +61,7 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode
 const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 
 const SK_DESIGN_DIR = path.join(SKILLS_DIR, 'sk-design');
-const DESIGN_MD_FORMAT_MD = path.join(SK_DESIGN_DIR, 'design-md-generator', 'references', 'design-md-format.md');
+const DESIGN_MD_FORMAT_MD = path.join(SK_DESIGN_DIR, 'sk-design-md-generator', 'references', 'design-md-format.md');
 const DESIGN_TOKEN_VOCAB_MD = path.join(SK_DESIGN_DIR, 'shared', 'design-token-vocabulary.md');
 const AUDIT_CONTRACT_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'audit-contract.md');
 const ACCESSIBILITY_PERFORMANCE_MD = path.join(SK_DESIGN_DIR, 'design-audit', 'references', 'accessibility-performance.md');
@@ -526,7 +526,7 @@ function checkTokensJsonArtifact(artifact) {
   // Deeper per-field token-shape validation is out of this v1 adapter's
   // scope -- see sk_design_adapter.md Section 4.3's documented limit; this
   // check only confirms the file is well-formed JSON, not that its shape
-  // matches design-md-generator's internal token schema.
+  // matches sk-design-md-generator's internal token schema.
   return [];
 }
 

@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: sk-design interface creation command, interactive execution
 purpose: Create or reshape an end-to-end interface direction
-action: Resolve confirmation-required fields once, then apply workflowMode=interface through the shared creation contract
+action: Resolve confirmation-required fields once, then apply workflowMode=sk-design-interface through the shared creation contract
 
 operating_mode:
   workflow: sequential_creation_contract
@@ -110,7 +110,7 @@ gate_logic:
       description: "The consolidated confirmation reply must be received before design work"
       fail_action: "WAIT for the bundled reply"
     H1_route_proof:
-      description: "The canonical /interface:design route + workflowMode=interface must be proven"
+      description: "The canonical /interface:design route + workflowMode=sk-design-interface must be proven"
       fail_action: "STOP and record the route proof"
     H2_creation_contract:
       description: "The shared creation contract must be loaded before design work"
@@ -163,10 +163,10 @@ quality_standards:
     handoff_contract: ".opencode/skills/sk-design/shared/sk-code-handoff.md"
 
 task_projections:
-  bolder: "Apply within workflowMode=interface."
-  quieter: "Apply within workflowMode=interface."
-  distill: "Apply within workflowMode=interface."
-  delight: "Apply within workflowMode=interface."
+  bolder: "Apply within workflowMode=sk-design-interface."
+  quieter: "Apply within workflowMode=sk-design-interface."
+  distill: "Apply within workflowMode=sk-design-interface."
+  delight: "Apply within workflowMode=sk-design-interface."
   negative_corpus: "These are advisory verbs, never standalone commands."
 
 workflow:
@@ -184,7 +184,7 @@ workflow:
     output: creation_contract
   step_3_route_proof:
     purpose: Prove the canonical route before design work
-    action: "Record command=/interface:design, workflowMode=interface, interface-owned static-system decisions when building UI, and the proof environment"
+    action: "Record command=/interface:design, workflowMode=sk-design-interface, interface-owned static-system decisions when building UI, and the proof environment"
     output: route_proof
   step_4_context_manifest:
     purpose: Load the target, owned system, content, data, constraints, artifacts, and runtime context

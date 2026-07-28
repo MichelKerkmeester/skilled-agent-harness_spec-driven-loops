@@ -23,12 +23,12 @@ id: T-CR-001
 category: compiled_routing
 stage: routing
 route_shape: default
-expected_intent: prompt-improve
+expected_intent: sk-prompt-improve
 expected_resources:
-  - prompt-improve/references/depth-framework.md
-expected_workflow_mode: prompt-improve
+  - sk-prompt-improve/references/depth-framework.md
+expected_workflow_mode: sk-prompt-improve
 expected_leaf_resources:
-  - workflow_mode: prompt-improve
+  - workflow_mode: sk-prompt-improve
     leaf_resource_id: references/depth-framework.md
 evidence_compiled_route: sk-prompt/sk-prompt-improve
 evidence_serving_authority: compiled

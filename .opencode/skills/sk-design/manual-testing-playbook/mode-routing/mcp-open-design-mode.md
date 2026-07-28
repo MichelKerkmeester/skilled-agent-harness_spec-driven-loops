@@ -1,6 +1,6 @@
 ---
 title: "MDR-007: Open Design Transport Mode Routing"
-description: "Verify Open Design wiring/CLI requests resolve to the nested design-mcp-open-design transport packet, not a design-judgment mode."
+description: "Verify Open Design wiring/CLI requests resolve to the nested sk-design-mcp-open-design transport packet, not a design-judgment mode."
 version: 1.0.0.0
 id: MDR-007
 expected_workflow_mode: sk-design-mcp-open-design
@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies that requests to wire, connect, or drive the Open Design app's `od` CLI route through the `sk-design` hub to `workflowMode: design-mcp-open-design` — the hub's `packetKind: "transport"` entry — rather than being absorbed into a design-judgment mode or lost to the external sibling `mcp-figma`.
+This scenario verifies that requests to wire, connect, or drive the Open Design app's `od` CLI route through the `sk-design` hub to `workflowMode: sk-design-mcp-open-design` — the hub's `packetKind: "transport"` entry — rather than being absorbed into a design-judgment mode or lost to the external sibling `mcp-figma`.
 
 ---
 
@@ -26,22 +26,22 @@ This scenario verifies that requests to wire, connect, or drive the Open Design 
 Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.
 ```
 
-**Expected mode resolution**: `design-mcp-open-design`.
+**Expected mode resolution**: `sk-design-mcp-open-design`.
 
 **Why**:
-- `mode-registry.json` lists `design-mcp-open-design` with `packetKind: "transport"` and aliases including `open design`, `od mcp`, `od cli`, `wire open design`, and `connect open design`.
-- `hub-router.json` maps `design-mcp-open-design-aliases` (weight 4) plus `hub-identity` to `design-mcp-open-design`.
+- `mode-registry.json` lists `sk-design-mcp-open-design` with `packetKind: "transport"` and aliases including `open design`, `od mcp`, `od cli`, `wire open design`, and `connect open design`.
+- `hub-router.json` maps `sk-design-mcp-open-design-aliases` (weight 4) plus `hub-identity` to `sk-design-mcp-open-design`.
 - The request names Open Design and a wiring action, not a visual-direction, token, motion, audit, or extraction axis, so none of the five `packetKind: "workflow"` modes should win.
 
 **Expected packet loaded**:
 - `sk-design-mcp-open-design/SKILL.md`
 
 **Expected shared resources loaded or cited**:
-- None required. `design-mcp-open-design` is a transport packet, not a doc-guidance mode; it does not consume `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, or `shared/design-token-vocabulary.md`.
+- None required. `sk-design-mcp-open-design` is a transport packet, not a doc-guidance mode; it does not consume `shared/anti-slop-principles.md`, `shared/cognitive-laws.md`, or `shared/design-token-vocabulary.md`.
 
-**Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`, with the hub then resolving `design-mcp-open-design`, not the external `mcp-figma` sibling skill.
+**Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`, with the hub then resolving `sk-design-mcp-open-design`, not the external `mcp-figma` sibling skill.
 
-**Expected tool surface**: `Read` and `Bash` only. The `design-mcp-open-design` registry entry forbids `Write` and `Edit`, and `mutatesWorkspace` is `false` — its `Bash` calls drive the external Open Design daemon, never this repo's own workspace.
+**Expected tool surface**: `Read` and `Bash` only. The `sk-design-mcp-open-design` registry entry forbids `Write` and `Edit`, and `mutatesWorkspace` is `false` — its `Bash` calls drive the external Open Design daemon, never this repo's own workspace.
 
 ---
 
@@ -49,8 +49,8 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 ### Preconditions
 
-1. `mode-registry.json` contains a mode with `workflowMode: design-mcp-open-design`, `packetKind: "transport"`, and `packet: design-mcp-open-design`.
-2. `hub-router.json` contains a `design-mcp-open-design-aliases` vocabulary class and a matching `routerSignals` entry.
+1. `mode-registry.json` contains a mode with `workflowMode: sk-design-mcp-open-design`, `packetKind: "transport"`, and `packet: sk-design-mcp-open-design`.
+2. `hub-router.json` contains a `sk-design-mcp-open-design-aliases` vocabulary class and a matching `routerSignals` entry.
 3. `.opencode/skills/sk-design/sk-design-mcp-open-design/` exists with `SKILL.md` and no `graph-metadata.json` of its own.
 
 ### Exact Command Sequence
@@ -61,13 +61,13 @@ Wire Open Design's MCP server into opencode so I can drive od cli from the termi
 
 ### Pass/Fail Criteria
 
-- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `design-mcp-open-design`, packet is `sk-design-mcp-open-design/SKILL.md`, and no `Write`/`Edit` tool call occurs.
+- **PASS** iff advisor top-1 is `sk-design`, resolved mode is `sk-design-mcp-open-design`, packet is `sk-design-mcp-open-design/SKILL.md`, and no `Write`/`Edit` tool call occurs.
 - **FAIL** iff a design-judgment mode (`interface`/`foundations`/`motion`/`audit`/`md-generator`) wins instead, the external `mcp-figma` skill wins, or a mutating tool beyond `Bash` is used.
 
 ### Failure Triage
 
-1. If a design-judgment mode wins instead, verify `design-mcp-open-design-aliases` keywords (`open design`, `od cli`, `od mcp`, `wire open design`, `connect open design`) are present and not shadowed by a higher-weight class.
-2. If `mcp-figma` wins instead, verify the prompt names Open Design specifically and check for accidental keyword overlap between `design-mcp-open-design-aliases` and `mcp-figma`'s own vocabulary.
+1. If a design-judgment mode wins instead, verify `sk-design-mcp-open-design-aliases` keywords (`open design`, `od cli`, `od mcp`, `wire open design`, `connect open design`) are present and not shadowed by a higher-weight class.
+2. If `mcp-figma` wins instead, verify the prompt names Open Design specifically and check for accidental keyword overlap between `sk-design-mcp-open-design-aliases` and `mcp-figma`'s own vocabulary.
 3. If a mutating tool call beyond `Bash` occurs, verify the registry's `toolSurface.forbidden` still lists `Write` and `Edit` for this mode.
 
 ---

@@ -74,19 +74,19 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..'); // .opencode
 const REPO_ROOT = path.resolve(SKILLS_DIR, '..', '..'); // repo root
 
 const SK_CODE_DIR = path.join(SKILLS_DIR, 'sk-code');
-const VERIFY_ALIGNMENT_DRIFT_PY = path.join(SK_CODE_DIR, 'code-opencode', 'assets', 'scripts', 'verify_alignment_drift.py');
-const VERIFY_MINIFICATION_MJS = path.join(SK_CODE_DIR, 'code-webflow', 'assets', 'scripts', 'verify-minification.mjs');
-const TEST_MINIFIED_RUNTIME_MJS = path.join(SK_CODE_DIR, 'code-webflow', 'assets', 'scripts', 'test-minified-runtime.mjs');
+const VERIFY_ALIGNMENT_DRIFT_PY = path.join(SK_CODE_DIR, 'sk-code-opencode', 'assets', 'scripts', 'verify_alignment_drift.py');
+const VERIFY_MINIFICATION_MJS = path.join(SK_CODE_DIR, 'sk-code-webflow', 'assets', 'scripts', 'verify-minification.mjs');
+const TEST_MINIFIED_RUNTIME_MJS = path.join(SK_CODE_DIR, 'sk-code-webflow', 'assets', 'scripts', 'test-minified-runtime.mjs');
 // Referenced for standardSource()'s excludedFromCheck record ONLY — check()
 // never spawns this script. See Section 8 checkWebflowDeterministic()'s
 // header comment for why (it writes z_minified/*.min.js + manifest.tsv,
 // violating read-only-by-default).
-const MINIFY_WEBFLOW_MJS = path.join(SK_CODE_DIR, 'code-webflow', 'assets', 'scripts', 'minify-webflow.mjs');
+const MINIFY_WEBFLOW_MJS = path.join(SK_CODE_DIR, 'sk-code-webflow', 'assets', 'scripts', 'minify-webflow.mjs');
 const SMART_ROUTING_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'smart-routing.md');
 const STACK_DETECTION_MD = path.join(SK_CODE_DIR, 'shared', 'references', 'stack-detection.md');
-const OPENCODE_REFERENCES_DIR = path.join(SK_CODE_DIR, 'code-opencode', 'references');
-const WEBFLOW_REFERENCES_DIR = path.join(SK_CODE_DIR, 'code-webflow', 'references');
-const MOTION_OVERLAY_DIR = path.join(SK_CODE_DIR, 'code-webflow', 'references', 'animation');
+const OPENCODE_REFERENCES_DIR = path.join(SK_CODE_DIR, 'sk-code-opencode', 'references');
+const WEBFLOW_REFERENCES_DIR = path.join(SK_CODE_DIR, 'sk-code-webflow', 'references');
+const MOTION_OVERLAY_DIR = path.join(SK_CODE_DIR, 'sk-code-webflow', 'references', 'animation');
 const KNOWN_DEVIATIONS_MD = path.resolve(__dirname, '..', '..', 'references', 'adapters', 'sk-code-known-deviations.md');
 
 // Ported verbatim from verify_alignment_drift.py:39-51's SUPPORTED_EXTENSIONS —
