@@ -45,7 +45,6 @@ const EXPECTED_CLASSES = {
   'sk-doc': contract.CLASS_HUB,
   'sk-git': contract.CLASS_STANDALONE,
   'sk-prompt': contract.CLASS_HUB,
-  'system-code-graph': contract.CLASS_STANDALONE,
   'system-deep-loop': contract.CLASS_HUB,
   'system-skill-advisor': contract.CLASS_STANDALONE,
   'system-spec-kit': contract.CLASS_STANDALONE,
