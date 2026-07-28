@@ -38,7 +38,7 @@ Phase 3 snapshots in place -> auto-rollback on gold-battery regression.
    X) Cancel + rollback
 ```
 
-Accept `1`, `A`, `Y`, or `Proceed` as both. Accept `2` or `Skip` as code-graph only. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+Accept `1`, `A`, `Y`, or `Proceed` as both. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
 
 ### Q-LONG - Long-Pole ETA Prompt
 
@@ -134,7 +134,6 @@ Cross-Subsystem Health Dashboard
 
 | Subsystem     | Status | Age | Coverage | Recommended Action |
 |---------------|--------|-----|----------|--------------------|
-| code-graph    | [OK|STALE|MISSING|REGRESSED] | [age] | [n/a|metric] | [scan|skip|rollback] |
 | context-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [index-scan|skip|rollback] |
 | causal-edges  | [OK|LOW-COVERAGE|REGRESSED] | [age] | [metric] | [init-links|skip|rollback] |
 | skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
@@ -192,7 +191,6 @@ State log: .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.l
 | `/doctor memory` | Isolated context-index and vector-index health diagnosis |
 | `/doctor causal-graph` | Isolated causal edge coverage diagnosis |
 | `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
-| `/doctor code-graph` | Isolated structural graph diagnosis |
 | `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
 | `/doctor skill-budget` | Advisor budget/status helper |
 | `/doctor:mcp debug --fix` | MCP infrastructure repair before subsystem diagnostics |
