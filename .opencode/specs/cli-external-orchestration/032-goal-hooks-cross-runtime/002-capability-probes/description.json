@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes",
+  "description": "Live per-runtime capability probes fixing the honest parity tier for devin/cursor/pi adapters",
+  "keywords": [
+    "live",
+    "per-runtime",
+    "capability",
+    "probes",
+    "honest",
+    "parity",
+    "tier",
+    "devin",
+    "cursor",
+    "adapters"
+  ],
+  "lastUpdated": "2026-07-28T17:24:41.380Z",
+  "specId": "002",
+  "folderSlug": "capability-probes",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

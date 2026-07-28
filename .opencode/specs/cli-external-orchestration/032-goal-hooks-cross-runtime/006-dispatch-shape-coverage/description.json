@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "description": "Extend shared DISPATCH_SHAPES for devin/cursor/pi + fold in Codex's local shape + resolve severity mapping",
+  "keywords": [
+    "extend",
+    "shared",
+    "devin",
+    "cursor",
+    "fold",
+    "codex",
+    "local",
+    "shape",
+    "resolve",
+    "severity",
+    "mapping"
+  ],
+  "lastUpdated": "2026-07-28T17:27:29.903Z",
+  "specId": "006",
+  "folderSlug": "dispatch-shape-coverage",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "spec_folder": "cli-external-orchestration/032-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "parent_id": "cli-external-orchestration/032-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch shape coverage",
+      "devin cursor pi dispatch regex",
+      "codex dispatch shape fold-in",
+      "severity mapping block warn",
+      "dispatch shape coverage plan",
+      "codex shape fold-in plan",
+      "severity mapping implementation",
+      "dispatch shape coverage tasks",
+      "dispatch shape coverage checklist",
+      "dispatch shape coverage summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "shape",
+      "coverage",
+      "devin",
+      "cursor",
+      "regex",
+      "codex",
+      "fold-in",
+      "severity",
+      "mapping",
+      "block",
+      "warn"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      ".codex/hooks.json",
+      ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/spec.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/hooks/dispatch/README.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fold Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard, deep-loop-runtime delegation — all `severity: error`), but the shared dispatch-shape registry (`DISPATCHSHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) only recognizes `opencode run` and `claude -p` command shapes",
+    "created_at": "2026-07-28T17:27:32.298Z",
+    "last_save_at": "2026-07-28T17:33:56.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53e1df7e25a9cb2241ddcb10ef310b33377efa9d0fc6ba07a7645066591affeb",
+    "source_doc_hashes": {
+      "spec.md": "620a493087a7041b6bc1653c2ce351ae2d2d17e955ae27a50e627ebab3972ebc",
+      "plan.md": "9d83268eeb9b9beeb4e4d1009036ec9afb2b3092a3281171799ef623a1209a21",
+      "tasks.md": "fe9468fa50c022f02d746ba35f0d0d2e0fe8f7800827fe14143f4f8733a30ed3",
+      "checklist.md": "985cdeca4e5e9faf62115796a28c4bfb950634abcc10379db9360cc1eca970b2",
+      "implementation-summary.md": "57cd8046c0f19bb942e84088077da4181cf1441c38068793ae22d1549e478921"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

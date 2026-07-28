@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks",
+  "spec_folder": "cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks",
+  "parent_id": "cli-external-orchestration/032-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin goal hooks",
+      "devin goal hook adapters",
+      "devin userpromptsubmit goal inject",
+      "devin stop hook goal verify",
+      "devin goal hooks plan",
+      "devin goal adapter implementation",
+      "devin goal hooks tasks",
+      "devin goal hooks checklist",
+      "devin goal hooks summary"
+    ],
+    "key_topics": [
+      "devin",
+      "goal",
+      "hooks",
+      "hook",
+      "adapters",
+      "userpromptsubmit",
+      "inject",
+      "stop",
+      "verify",
+      "plan",
+      "adapter",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".devin/hooks.v1.json",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
+    "created_at": "2026-07-28T17:25:01.861Z",
+    "last_save_at": "2026-07-28T17:33:55.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de4e7d8e9f38ced52aa17392559f83cdb98d103c6ce2f6fa8937b71206ec07b4",
+    "source_doc_hashes": {
+      "spec.md": "e0283f76e66adbe639028ba31d1d37ba020ce6f7867dc1e33addc2f36b0e0535",
+      "plan.md": "4f42dd9dde074613cb5486aad2d1597844c15c7ca44990473ead6ec5dbab9e6c",
+      "tasks.md": "001637d301e0aacfd0784518c9ef0cdd19a1b658e69e03619f59dd3d3a0a5d59",
+      "checklist.md": "651f747032a727edef975af468770d36c25d6deee80c29bde1a1564d630c77d7",
+      "implementation-summary.md": "62cdf093cc00e3cfa5f41c0df97b52498beaa00015b1cb459110735e962f5823"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/005-pi-goal-hooks",
+  "description": "Pi goal extension: input-transform injection, session_start restore, turn-end verify per capability probes",
+  "keywords": [
+    "goal",
+    "extension",
+    "input-transform",
+    "injection",
+    "restore",
+    "turn-end",
+    "verify",
+    "per",
+    "capability",
+    "probes"
+  ],
+  "lastUpdated": "2026-07-28T17:25:55.937Z",
+  "specId": "005",
+  "folderSlug": "pi-goal-hooks",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

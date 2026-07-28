@@ -120,7 +120,7 @@ test('terminal same-objective set reports replacement and resets counters', asyn
 }));
 
 test('goal command documentation exposes the registered command contract', async () => {
-  const commandPath = join(opencodeRoot, 'commands', 'goal-opencode.md');
+  const commandPath = join(opencodeRoot, 'commands', 'goal', 'goal-opencode.md');
   const commandDoc = await readFile(commandPath, 'utf8');
   assert.match(commandDoc, /^# \/goal/m);
   assert.match(commandDoc, /allowed-tools: mk_goal, mk_goal_status/);

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+  "spec_folder": "cli-external-orchestration/032-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+  "parent_id": "cli-external-orchestration/032-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode plugin symlinks",
+      "opencode hooks browsability mirror",
+      "hooks tree opencode row",
+      "opencode symlink plan",
+      "hooks tree opencode row plan",
+      "opencode symlink tasks",
+      "opencode symlink summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "plugin",
+      "symlinks",
+      "hooks",
+      "browsability",
+      "mirror",
+      "tree",
+      "row",
+      "symlink",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/hooks/README.md",
+      ".opencode/plugins/mk-cli-dispatch-audit.js",
+      "plan.md",
+      ".opencode/plugins/mk-spec-gate.js",
+      ".opencode/plugins/mk-git-preflight-advisory.js",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/plugins/mk-mcp-route-guard.js",
+      ".opencode/plugins/mk-post-edit-quality.js",
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/mk-goal.js",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-git-preflight-advisory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-git-preflight-advisory.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-mcp-route-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-mcp-route-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-post-edit-quality.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-post-edit-quality.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "touches",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reverse Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add relative, browsability-only symlinks inside .opencode/hooks/ concern folders pointing at the real OpenCode plugin files in .opencode/plugins/, so every AI runtime's adapters are visible from one unified tree without relocating OpenCode's plugin-discovery files.",
+    "created_at": "2026-07-28T17:25:55.157Z",
+    "last_save_at": "2026-07-28T17:33:56.249Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea6a715ffffcbbc9b90f842a4ee73347b6e1ad9c53c82d3ec485f34a858d5027",
+    "source_doc_hashes": {
+      "spec.md": "84c923393e614d6224cfb6b671e94e0b1589f0058b258e6275a6e111b7149299",
+      "plan.md": "1829431cb70b8b8e3a59c80968311860892dcce47ceff89e7760f4349d9a020e",
+      "tasks.md": "37eabc1c54dcc74627c82af48538d799d44cdf1da3fcccc37680e7eab2dd6a5c",
+      "implementation-summary.md": "bfa94bcc67925f3f34f05a10d637bb07628a6cdd9a83efe8d9374bf66b3af1d0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
