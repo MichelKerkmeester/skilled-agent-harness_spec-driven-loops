@@ -207,7 +207,12 @@ def main() -> int:
     # case is failed explicitly rather than resolved to either kind.
     has_registry = (skill_path / 'mode-registry.json').exists()
     has_router = (skill_path / 'hub-router.json').exists()
-    kind = 'parent' if has_registry else 'standalone'
+    if has_registry != has_router:
+        kind = 'unclassified'
+    elif has_registry:
+        kind = 'parent'
+    else:
+        kind = 'standalone'
     partial_declaration_error = None
     if has_registry != has_router:
         present, absent = (
