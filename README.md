@@ -5,7 +5,6 @@
 | 📋 **Spec Kit Framework**　　　| Structured plans, task tracking, validation gates, and handover docs    |
 | 🧠 **Cognitive Memory**　　　　| Local-first project memory for decisions, context, and continuity       |
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context  |
-| 🔍 **Code Graph**　　　　　　　| Callers, imports, impact paths, and Code Graph + Grep code discovery    |
 | 🤖 **12 Specialized Agents**　 | Focused roles for implementation, review, research, docs, git, and more |
 | 🎯 **20 On-Demand Skills**　　 | Skill Advisor routing for the right workflow at the right time          |
 
@@ -55,12 +54,11 @@
 
 AI coding assistants have amnesia. Every session starts from zero. You explain your architecture Monday. By Wednesday, it is gone. Decisions, trade-offs, the carefully reasoned choices behind them, all lost the moment the conversation window closes. This framework fixes that.
 
-The framework adds four layers on top of the base platform:
+The framework adds three layers on top of the base platform:
 
 1. **Structured documentation** (Spec Kit) - every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
 2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
-3. **Code intelligence** (Code Graph) - structural graph indexing handles callers, imports and impact analysis.
-4. **Coordinated agents and skills** - 12 specialized agents routed by a gate system that loads the right skills at the right time.
+3. **Coordinated agents and skills** - 12 specialized agents routed by a gate system that loads the right skills at the right time.
 
 
 ### How It All Connects
@@ -185,9 +183,6 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `system-deep-loop`, `cli-external-orchestration`, `mcp-tooling`) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
-
-### Code-Graph Indexing
-
 
 <!-- /ANCHOR:quick-start -->
 
@@ -370,7 +365,7 @@ The full MCP API reference is in the [MCP Server README](.opencode/skills/system
 &nbsp;
 #### Layered MCP Surface
 
-The `mk-spec-memory` tools are organized into a layered architecture. Code graph and skill-advisor tools moved to standalone MCP servers, so this table covers memory-owned tools only:
+The `mk-spec-memory` tools are organized into a layered architecture. Skill-advisor tools moved to a standalone MCP server, so this table covers memory-owned tools only:
 
 | Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
 | ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
@@ -398,7 +393,7 @@ Every search checks five core channels at once:
 - **Causal Graph** - Follows cause-and-effect links between memories.
 - **Degree** - Scores by graph connectivity, weighted by edge type.
 
-**Reciprocal Rank Fusion (RRF)** combines results across channels so memories scoring well in multiple channels rise to the top. **Graph-first routing** dispatches structural queries to the standalone Code Graph first, then the memory pipeline. A **3-tier FTS fallback** activates when those channels miss: FTS5 full-text, BM25 keyword scoring, then Grep/Glob filesystem search. The system truncates weak results and ensures every active channel is represented.
+**Reciprocal Rank Fusion (RRF)** combines results across channels so memories scoring well in multiple channels rise to the top. A **3-tier FTS fallback** activates when those channels miss: FTS5 full-text, BM25 keyword scoring, then Grep/Glob filesystem search. The system truncates weak results and ensures every active channel is represented.
 
 &nbsp;
 #### Search Pipeline
@@ -845,7 +840,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 **Context**
 - **Finds what you already know before searching code.** Memory-first retrieval in order: `match_triggers` → `memory_context` → `memory_search` → grep/glob
-- **Returns a Context Package** that combines memory findings with codebase evidence, drawing on the 5-channel memory system and Code Graph lookups. Read-only
+- **Returns a Context Package** that combines memory findings with codebase evidence, drawing on the 5-channel memory system. Read-only
 
 **Review**
 - **Guards code quality, never edits.** Strict read-only, loading `sk-code`'s `code-review` mode (the findings-first baseline) and layering its router-selected surface standards

@@ -57,7 +57,7 @@ The `install-guides/` directory is the central hub for all OpenCode setup and in
 |----------|-------|---------|
 | Guide files | 13 | 6 MCP guides + 2 skill-package install guides, 4 SET-UP guides, 1 index guide (this README) |
 | Install scripts | 8 | 3 real + 5 symlinks in `install-scripts/` |
-| Registered MCP servers | 5 | Code Mode, Spec Kit Memory, Skill Advisor, System Code Graph, Sequential Thinking (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
+| Registered MCP servers | 4 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -365,7 +365,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 **Full Bundle** (all components):
 ```
 Prerequisites → Local Embeddings → Code Mode → Spec Kit Memory →
-Skill Advisor → System Code Graph →
+Skill Advisor →
 Sequential Thinking → Chrome DevTools CLI →
 Antigravity Auth → OpenAI Codex Auth
 ```
@@ -375,15 +375,10 @@ Antigravity Auth → OpenAI Codex Auth
 Prerequisites → Code Mode → Spec Kit Memory
 ```
 
-> Its 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags default to `false` so end users get
-> a quiet, low-disk install — maintainers opt in via `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true`
-> in `.env.local` (see the skill-level INSTALL-GUIDE.md).
-
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
 - [ ] Spec Kit Memory (context preservation)
 - [ ] Skill Advisor (native advisor_recommend + skill_graph_* — 8 tools)
-- [ ] System Code Graph (structural AST + blast-radius + 8 graph tools; default off for end users)
 - [ ] Sequential Thinking (complex reasoning)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
@@ -693,48 +688,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ---
 
-
-
-> **Runtime Diagnostics:** See [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) for `/doctor code-graph` post-install audit.
-
-
-**Check:**
-```bash
-```
-
-**Install if missing:**
-```bash
-```
-
-**Configure in `opencode.json`:**
-```json
-{
-  "mcp": {
-      "type": "local",
-      "environment": {
-        "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_SPECS": "false",
-        "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
-      }
-    }
-  }
-}
-```
-
-**Maintainer-mode toggle:** End-user defaults keep all 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags `false` so the index stays small. Maintainers who want full coverage set `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true` in `.env.local` (gitignored) and the launcher forces all 5 flags to `true` on startup.
-
-
-
-**Quick Verification:**
-```bash
-  echo "✅ PASS" || echo "❌ FAIL"
-```
-
----
-
-### 10.5 Skill Advisor (`mk_skill_advisor` — Native Recommendation)
+### 10.4 Skill Advisor (`mk_skill_advisor` — Native Recommendation)
 
 The standalone `mk_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
 
@@ -792,7 +746,7 @@ test -f .opencode/bin/mk-skill-advisor-launcher.cjs && \
 
 ---
 
-### 10.6 Chrome DevTools CLI (Optional)
+### 10.5 Chrome DevTools CLI (Optional)
 
 Chrome DevTools provides browser automation and debugging via CLI.
 
@@ -1060,9 +1014,9 @@ After the static checks above pass, run the interactive doctor surface to verify
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
-- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, System Code Graph, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
+- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, Code Mode, Sequential Thinking) and offers guided repair with `--fix`.
 
-Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget.
+Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, deep-loop, skill-advisor, skill-budget.
 
 ---
 
@@ -1556,7 +1510,6 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and memory system documentation |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
 | [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
-| [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) | Runtime diagnostics for `/doctor code-graph` |
 
 ### External Resources
 
