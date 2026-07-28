@@ -39,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,25 +173,45 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Resume Adapter",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds shared reducers, rebuilds the continuity ladder for authority-bound per-lane conformance, and defines idempotent re-entry without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:43.893Z",
-    "last_save_at": "2026-07-24T07:16:38.752Z",
+    "last_save_at": "2026-07-28T03:34:09.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e0dafd2941c99091de7ea80437f589e7e86e102b381ef8dc0acbd7915c84020",
+    "source_fingerprint": "sha256:c458a4c889052512e3cbd2e67e3b1ce022d253d9cb05579a924b52f5d9a75548",
     "source_doc_hashes": {
-      "spec.md": "644995fd30cf95448eff44a17d91eca224d5db1cce8a3c062bdf866c98beaf6a",
+      "spec.md": "7fd0d08add6338fefc54ade41be74846e7104d6f950c2185834a9e91efa32ee4",
       "plan.md": "d1de0ce3e3912fe58331c29277be6945bcf6c4d760f6fc4fecc12d65ea189b4d",
       "tasks.md": "f8344ebc831247ae119a745b931a5498fdcb8b82d38ff3807bcc2de92f5b0e09",
-      "checklist.md": "f54be9c325d939ac127535ebbf036540871576647482d05f3dbfe15446713dbb"
+      "checklist.md": "f54be9c325d939ac127535ebbf036540871576647482d05f3dbfe15446713dbb",
+      "implementation-summary.md": "e26c0386ed111b4c07109d20a41a5788ab047e5f9ae62abb17fcf840f111e143"
     },
     "last_active_child_id": null,
     "last_active_at": null

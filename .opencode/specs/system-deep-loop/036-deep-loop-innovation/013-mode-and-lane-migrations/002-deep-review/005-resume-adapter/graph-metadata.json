@@ -39,12 +39,13 @@
       "idempotent"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -178,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds the shared review-loop history through versioned reducers, maps the continuity ladder from scope through dimension passes, findings, convergence, and review-report, and re-enters idempotently without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:33.197Z",
-    "last_save_at": "2026-07-24T07:16:37.276Z",
+    "last_save_at": "2026-07-27T21:58:58.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b09a905b2897df5055e43a0141cb2c12d08bd4ae5e79759d872f35e7626670d6",
+    "source_fingerprint": "sha256:85f9b50965ec4fe76f060ca7506c587332030c82c0d8e36a849598fbe10013f3",
     "source_doc_hashes": {
-      "spec.md": "636b8929d7631d63aed8abc1a729dff2db415b0e92b589ae8ad39e57f86bbf46",
-      "plan.md": "ce3259515e4c06998836b020ea19aa160bf97379b22808d5e9bdc2a162213016",
-      "tasks.md": "2fec9117d093496fb2bb5a70b82e5df167a2b2e43ba0590974d3d8ca688af5b9",
-      "checklist.md": "8f6e3169803eac704a245f929222a6338c1d437b942641c39aa856baf33213b0"
+      "spec.md": "69133028c35f6f75961d23a9b6faf4a484f27f646812fef705cc287572ce31f1",
+      "plan.md": "131a318e31ff7836d3a595a5d58dcc218c6de5df76e518139aca58c2220925c7",
+      "tasks.md": "9ec06825709d961dcabb6f715d72f19fd256593b92e238c276bd1188a7b16816",
+      "checklist.md": "ac875d8893d3c1dd40a99ae093644b5965880942d4c196be8e6f9aebb0d72ca4",
+      "implementation-summary.md": "702c5ecb57d7ad27fa3f52f035cf3a5fa6bca43deb9f6a76b2a3851049947ebd"
     },
     "last_active_child_id": null,
     "last_active_at": null

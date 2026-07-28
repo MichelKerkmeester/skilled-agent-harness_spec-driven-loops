@@ -39,14 +39,36 @@
       "ledger-backed"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-resume-adapter.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-resume-adapter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-resume-adapter.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +91,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -144,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "stable IDs",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -160,49 +194,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep AI Council resume adapter for the typed event-ledger migration. The adapter reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers, maps the continuity ladder to derived runtime state, and makes re-entry idempotent without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:34.996Z",
-    "last_save_at": "2026-07-24T07:16:37.511Z",
+    "last_save_at": "2026-07-27T22:14:00.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17d0a99d241c5ba2f3edfa0790813362a04141764c9205adb6600bc2dd2fab66",
+    "source_fingerprint": "sha256:a989a991eb023dca0b657d6cb6bf7829313702c6a3a4bd34f65c00c4e7be6a83",
     "source_doc_hashes": {
-      "spec.md": "bb7b26d13e1fe8243c7573766f463e55d246fdf4bbfd589dec5cd7365e8be5a1",
-      "plan.md": "41e3946d5e5d49f56dbcd4442f2101766b7e770b2cf6c6d1dc4a524e67050545",
-      "tasks.md": "f0ae2eeffeadc6b918ca36e2875056bf50d767c7d83a90f658770aabcc15bb5b",
-      "checklist.md": "f8c5f041e0d700a3a668d89537f79cdeb121b3ffcb1e1c4e927831656d698bef"
+      "spec.md": "8f30a9e758dd4ab47839e284e1c277e552a04413015614653ed4b0a3792ec182",
+      "plan.md": "adf9f60585fafa7ca489df5557da55b7c379f851e89eb70fad1073d5fade823c",
+      "tasks.md": "65f3b80b43fcbb712a117c53b1049e28e20eaf5a039bd5b61b3055bebd796bcd",
+      "checklist.md": "fb4d26b366203ca15d4a97a62cbd30b65c3af9af67ddbd9677cce74ac5bea10d",
+      "implementation-summary.md": "2aed9254590a049f9860fc086c040df04619c9b3889a2de43ae1c06cf188d772"
     },
     "last_active_child_id": null,
     "last_active_at": null
