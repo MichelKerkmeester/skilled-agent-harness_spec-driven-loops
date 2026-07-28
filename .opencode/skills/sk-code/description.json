@@ -40,7 +40,11 @@
     "mcp_server_authoring",
     "code-quality",
     "debugging",
-    "verification"
+    "verification",
+    "sk-code-quality",
+    "sk-code-review",
+    "sk-code-webflow",
+    "sk-code-opencode"
   ],
   "trigger_examples": [
     "fix Webflow animation flicker",

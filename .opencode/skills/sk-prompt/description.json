@@ -14,7 +14,9 @@
     "prompt engineering",
     "clear scoring",
     "depth thinking",
-    "small model dispatch"
+    "small model dispatch",
+    "sk-prompt-improve",
+    "sk-prompt-models"
   ],
   "trigger_examples": [
     "improve this prompt for clarity",

@@ -54,7 +54,10 @@
     "spacing-rhythm",
     "hierarchy-and-spacing-rhythm",
     "confirmed-versus-inferred-design-evidence",
-    "proof-before-design-ready"
+    "proof-before-design-ready",
+    "sk-design-interface",
+    "sk-design-md-generator",
+    "sk-design-mcp-open-design"
   ],
   "trigger_examples": [
     "make this landing page look less templated",

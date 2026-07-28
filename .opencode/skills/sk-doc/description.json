@@ -29,7 +29,8 @@
     "sk-create-quality-control",
     "shared-backbone",
     "dqi",
-    "human-voice"
+    "human-voice",
+    "sk-create-skill-parent"
   ],
   "trigger_examples": [
     "create a new skill",
