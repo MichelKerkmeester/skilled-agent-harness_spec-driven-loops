@@ -34,6 +34,14 @@ function formatAdvisory(command: string, violations: Array<{ id: string; message
 
 /** Advises on bash git commands that violate the shared sk-git hard rules. */
 export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
+  // Advisory text is evaluated before execution but delivered on the tool RESULT, keyed by
+  // call id. Pi's agent core reads a tool_call handler's return only for `.block` — a bare
+  // `reason` without a block is discarded before the model ever sees it (confirmed against
+  // the installed agent-loop source, and by a live dispatch where the warning never arrived).
+  // A tool_result handler's returned content, by contrast, replaces what the model reads.
+  const pendingByCallId = new Map<string, string>();
+  const MAX_PENDING = 20;
+
   pi.on("tool_call", async (event, ctx) => {
     try {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
@@ -61,11 +69,33 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
         checks: gitChecks.GIT_CHECKS,
         context,
       });
-      if (violations.length > 0) return { reason: formatAdvisory(command, violations) };
+      if (violations.length > 0) {
+        if (pendingByCallId.size >= MAX_PENDING) {
+          const oldest = pendingByCallId.keys().next().value;
+          if (oldest !== undefined) pendingByCallId.delete(oldest);
+        }
+        pendingByCallId.set(event.toolCallId, formatAdvisory(command, violations));
+      }
     } catch {
       // Fail open because an advisory bug must never block a valid command.
       return undefined;
     }
     return undefined;
+  });
+
+  pi.on("tool_result", async (event) => {
+    try {
+      const advisory = pendingByCallId.get(event.toolCallId);
+      if (!advisory) return;
+      pendingByCallId.delete(event.toolCallId);
+      return {
+        content: [...event.content, { type: "text", text: advisory }],
+        details: event.details,
+        isError: event.isError,
+      };
+    } catch {
+      // Fail open: losing an advisory must never corrupt a tool result.
+      return undefined;
+    }
   });
 }

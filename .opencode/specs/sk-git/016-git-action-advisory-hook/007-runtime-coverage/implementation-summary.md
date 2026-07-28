@@ -118,8 +118,8 @@ One pass on the packet's established discipline: import the shared cores rather 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The Pi extension was not compiled (`tsc` unavailable in this checkout; no `.pi/tsconfig.json`); import paths were verified to resolve and runtime execution exercised through an in-process simulation, not a live Pi session.
-2. The OpenCode plugin delivery was verified by code review against the sibling `mk-skill-advisor.js` transform pattern and an in-process simulation, not by a live OpenCode TUI session.
-3. The Cursor proxy was verified by stdin simulation, not by a live cursor-agent session.
-4. No live Cursor editor, Devin host, Pi host, or OpenCode TUI session was launched; adapter contracts were exercised through real entrypoint or in-process simulations.
+1. **All three previously-simulated adapters are now live-verified (2026-07-28).** Real dispatches — Pi with GPT-5.6-SOL, OpenCode with GLM-5.2, Cursor with Composer-2.5-fast — each ran the trap command, received the advisory verbatim (both rule ids quoted back), and confirmed the command executed unblocked.
+2. **The live Pi smoke found and fixed a real delivery bug.** Pi's agent core reads a `tool_call` handler's return only for `.block`; a bare `reason` is discarded before the model sees it. The extension now evaluates before execution and delivers by appending to the tool result, which the model demonstrably reads. The sibling dispatch-preflight-lint extension's warn tier has the same dead path and is flagged separately; its block tier is unaffected.
+3. The OpenCode plugin's transform delivery lands the advisory on the request after the tool call, which is the earliest a plugin may speak; within a single agent turn this is one model-step later than the hook runtimes.
+
 <!-- /ANCHOR:limitations -->
