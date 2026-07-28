@@ -99,6 +99,7 @@ Expected result: an isolated directory on an owner-first `{owner}/{NNNN}-{slug}`
 | Worktree reaper | Auto-reaps qualifying wrapper worktrees, keeps the rest and reports orphan daemons without acting |
 | Deterministic commits | The same diff and metadata always produce the same Conventional Commit subject |
 | Safety refusals | Blocks no-verify bypasses, secrets in a diff, amending published commits and force-pushing main |
+| Preflight advisory | Evaluates every git command against 17 state-gated rules across all six AI runtimes and prints the matching rule before it runs — advisory only, never blocking (see `scripts/hooks/README.md`) |
 
 ---
 
