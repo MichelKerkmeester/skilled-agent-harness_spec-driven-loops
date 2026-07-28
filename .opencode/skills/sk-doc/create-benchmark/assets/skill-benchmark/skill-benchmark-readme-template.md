@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Skill-Benchmark README Index Template
+
+This template produces a README index for a skill-benchmark package.
+
+---
+
 <!--
 Copy-paste scaffold for a HUB BENCHMARK INDEX:
   <skill-hub>/benchmark/README.md

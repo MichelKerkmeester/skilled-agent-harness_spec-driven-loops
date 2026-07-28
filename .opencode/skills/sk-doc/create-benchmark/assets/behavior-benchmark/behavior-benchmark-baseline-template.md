@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Behavior Benchmark Baseline Template
+
+This template produces a behavior benchmark baseline with per-scenario reference checkpoints and capture provenance.
+
+---
+
 <!--
 Copy-paste scaffold for a behavior-benchmark BASELINE:
   <deep-loop-mode>/behavior-benchmark/baselines/claude-baseline.md

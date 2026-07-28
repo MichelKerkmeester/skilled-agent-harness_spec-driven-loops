@@ -12,6 +12,12 @@ contextType: "general"
 version: 1.8.0.4
 ---
 
+# Benchmark Report Template
+
+This template produces a benchmark report that records candidates, measurements, and the selected winner.
+
+---
+
 <!--
 Copy-paste-ready scaffold for mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/benchmark-report.md.
 
