@@ -119,5 +119,5 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 |---|---|
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only and not the execution path |
 | [`agents/README.txt`](agents/README.txt) | Agent roster |
-| [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |
+| [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |
 | `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |

@@ -36,6 +36,8 @@ const LINKED = [
 const AUTHORED = [
   { id: 'opencode', rel: (n) => `.opencode/agents/${n}.md`, ext: '.md' },
   { id: 'codex', rel: (n) => `.codex/agents/${n}.toml`, ext: '.toml' },
+  // Pi agents are generated real files (sync-agents-pi.cjs), not symlinks.
+  { id: 'pi', rel: (n) => `.pi/agents/${n}.md`, ext: '.md' },
 ];
 
 function canonicalRoster() {
