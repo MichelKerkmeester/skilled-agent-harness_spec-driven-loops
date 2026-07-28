@@ -23,7 +23,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const guardCore = require('../lib/mcp-route-guard.cjs');
-const { parseJsonFailOpen, readStdin } = require('../../../skills/system-spec-kit/runtime/lib/hook-adapter-shared.cjs');
+const { parseJsonFailOpen, readStdin } = require('../../shared/hook-adapter-shared.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS

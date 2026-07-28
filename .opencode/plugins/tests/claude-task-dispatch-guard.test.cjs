@@ -296,13 +296,56 @@ function main() {
   assert.equal(decisionOf(hook), 'deny', 'deep-alignment repeated hand-off must reach loop rejection');
   assert.match(reasonOf(hook), /mk-deep-loop-guard: loop-like repeated dispatch/, 'deny must carry the loop-repeat reason for deep-alignment');
 
-  // Command-driven dispatches never count toward the threshold.
+  // Command-driven dispatches never count toward the threshold -- but only when the
+  // iteration marker co-occurs with a Config: path resolving to a real, on-disk
+  // deep-loop config. This is the genuine command-driven case: the marker AND the
+  // filesystem artifact both check out.
   const sessionCmd = 'claude-loop-cmd';
   clearGuardLog(cwd);
+  const realConfigDir = path.join(cwd, 'specs', 'example', 'review');
+  fs.mkdirSync(realConfigDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(realConfigDir, 'deep-review-config.json'),
+    JSON.stringify({ mode: 'review', maxIterations: 10 }),
+  );
   for (let i = 1; i <= 5; i += 1) {
-    runHook({ tool_name: 'Task', session_id: sessionCmd, tool_input: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\nmode=review do it` }, cwd });
+    runHook({
+      tool_name: 'Task',
+      session_id: sessionCmd,
+      tool_input: {
+        subagent_type: 'general',
+        prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: specs/example/review/deep-review-config.json\nmode=review do it`,
+      },
+      cwd,
+    });
   }
-  assert.doesNotMatch(readGuardLog(cwd), /loop-like/, 'command-driven iterations must never trigger loop-repeat warn');
+  assert.doesNotMatch(readGuardLog(cwd), /loop-like/, 'genuinely command-driven iterations (marker + real config file) must never trigger loop-repeat warn');
+
+  // Forgery regression (R3-P1-001): a bare iteration marker with NO Config: line, or one
+  // pointing at a path that does not exist, must NOT be exempted -- it has to count toward
+  // the loop-repeat threshold like any other hand-off, closing the "just paste the marker
+  // text" bypass.
+  const sessionForgedNoConfig = 'claude-loop-forged-no-config';
+  clearGuardLog(cwd);
+  for (let i = 1; i <= 3; i += 1) {
+    runHook({ tool_name: 'Task', session_id: sessionForgedNoConfig, tool_input: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\nmode=review do it` }, cwd });
+  }
+  assert.match(readGuardLog(cwd), /loop-like repeated dispatch/, 'a bare iteration marker with no Config: reference must not bypass loop-repeat counting');
+
+  const sessionForgedGhostConfig = 'claude-loop-forged-ghost-config';
+  clearGuardLog(cwd);
+  for (let i = 1; i <= 3; i += 1) {
+    runHook({
+      tool_name: 'Task',
+      session_id: sessionForgedGhostConfig,
+      tool_input: {
+        subagent_type: 'general',
+        prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: specs/does-not-exist/review/deep-review-config.json\nmode=review do it`,
+      },
+      cwd,
+    });
+  }
+  assert.match(readGuardLog(cwd), /loop-like repeated dispatch/, 'an iteration marker with a Config: path pointing at a nonexistent file must not bypass loop-repeat counting');
 
   // Prose collisions and impossible bounds do not bypass repeat counting.
   const nearMisses = [

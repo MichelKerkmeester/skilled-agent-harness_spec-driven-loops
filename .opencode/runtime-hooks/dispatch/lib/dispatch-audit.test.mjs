@@ -248,6 +248,21 @@ describe('buildAuditLine', () => {
     expect(parsed.command).toContain('Authorization: [REDACTED]');
   });
 
+  it('scrubs a bare PEM private-key block with no surrounding keyword', () => {
+    const command = 'echo "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAtest\nmore body lines here\n-----END RSA PRIVATE KEY-----" | some-cli';
+    const parsed = JSON.parse(buildAuditLine({ command }));
+    expect(parsed.command).not.toContain('MIIEowIBAAKCAQEAtest');
+    expect(parsed.command).toContain('[REDACTED]');
+    expect(parsed.command).not.toContain('-----BEGIN RSA PRIVATE KEY-----');
+  });
+
+  it('scrubs a bare JWT with no surrounding keyword', () => {
+    const jwt = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U';
+    const parsed = JSON.parse(buildAuditLine({ command: `curl -H "X-Custom: ${jwt}" opencode run` }));
+    expect(parsed.command).not.toContain(jwt);
+    expect(parsed.command).toContain('[REDACTED]');
+  });
+
   it('truncates an oversized target field before serialization', () => {
     const line = buildAuditLine({ command: 'x', target: 'y'.repeat(2000) });
     const parsed = JSON.parse(line);

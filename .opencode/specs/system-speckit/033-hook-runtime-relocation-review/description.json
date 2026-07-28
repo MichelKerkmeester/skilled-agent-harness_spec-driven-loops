@@ -1,6 +1,7 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/033-hook-runtime-relocation-review",
-  "description": "Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/, then gate merge on a forced 5-iteration deep review.",
+  "description": "Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/; deep review returned CONDITIONAL (P0=0 P1=6 P2=4); all 6 P1s remediate",
   "keywords": [
     "relocate",
     "fully-portable",
@@ -9,20 +10,23 @@
     "cores",
     "opencode",
     "runtime-hooks",
-    "gate",
-    "merge",
-    "forced",
-    "5-iteration",
     "deep",
-    "review"
+    "review",
+    "returned",
+    "conditional",
+    "p1s",
+    "remediated",
+    "t017-t023",
+    "re-review",
+    "t025",
+    "pending"
   ],
-  "lastUpdated": "2026-07-28T12:19:52.542Z",
+  "lastUpdated": "2026-07-28T14:10:05.335Z",
   "specId": "033",
   "folderSlug": "hook-runtime-relocation-review",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

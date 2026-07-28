@@ -10,21 +10,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T00:00:00Z"
+    last_updated_at: "2026-07-28T14:09:19Z"
     last_updated_by: "claude"
-    recent_action: "Retroactive plan authored; deep-review setup fully resolved"
-    next_safe_action: "Load .opencode/commands/deep/assets/deep-review-auto.yaml with bound setup"
-    blockers: []
+    recent_action: "Implemented Phase 6 (T017-T024): all 6 P1 findings fixed + re-verified"
+    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    blockers:
+      - "Re-review not yet run; merge/push/leave-local decision still pending."
     key_files:
       - ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions:
-      - "Merge/push/leave-local decision pending deep-review outcome."
-    answered_questions: []
+      - "Merge/push/leave-local decision pending remediation + re-review."
+    answered_questions:
+      - "Deep-review result: CONDITIONAL, P0=0 P1=6 P2=4."
+      - "Remediation scope: all 6 P1s within this packet, not a separate follow-up."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Relocate fully-portable runtime-hook guard cores
@@ -66,8 +70,10 @@ Classify every hook candidate by real import dependency (not assumption), reloca
 
 - [x] Relocation committed with git history preserved. [evidence: commit `40d5f0d2b3`]
 - [x] All affected test suites re-run and passing. [evidence: see checklist.md]
-- [ ] Forced 5-iteration deep review completed with synthesized verdict. [evidence: pending]
-- [ ] Merge/push/leave-local decision made. [evidence: pending, gated on review outcome]
+- [x] Forced 5-iteration deep review completed with synthesized verdict. [evidence: CONDITIONAL, P0=0 P1=6 P2=4, `review/review-report.md`]
+- [x] All 6 active P1s remediated (REQ-008 through REQ-013). [evidence: T017-T023, this session — see `tasks.md` Phase 6]
+- [ ] Re-review confirms no regressions. [evidence: pending]
+- [ ] Merge/push/leave-local decision made. [evidence: pending, gated on re-review]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -124,8 +130,19 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 ### Phase 5: Retroactive Documentation & Deep Review
 
 - [x] Author this Level 2 packet (spec/plan/tasks/checklist/implementation-summary) for the already-committed relocation.
-- [ ] Dispatch `/deep:review:auto`, 5 forced iterations, `cli-opencode` `gpt-5.6-sol` `high`, over the full worktree diff.
-- [ ] Act on review verdict; resolve the merge/push/leave-local decision.
+- [x] Dispatch `/deep:review:auto`, 5 forced iterations, `cli-opencode` `gpt-5.6-sol` `high`, over the full worktree diff.
+- [x] Verdict returned: CONDITIONAL, P0=0 P1=6 P2=4.
+
+### Phase 6: P1 Remediation (all 6 active findings)
+
+- [x] REQ-008 (R2-P1-001): Fix Codex multi-file post-edit-quality coverage so every file in a multi-file `apply_patch` gets checked, not only the first.
+- [x] REQ-009 (R3-P1-001): Harden the deep-loop dispatch-guard command-driven exemption so a forged "iteration N of M" text marker cannot substitute for the real structural dispatch context.
+- [x] REQ-010 (R3-P1-002): Close the dispatch-audit-log redaction allowlist gap so credential-shaped text outside the current pattern set is not persisted verbatim.
+- [x] REQ-011 (R4-P1-001): Fix the 2 stale manual-testing-playbook paths and correct the checklist.md CHK-011/CHK-041 evidence rows.
+- [x] REQ-012 (R4-P1-002): Resolve the "verified across 6 runtimes" overclaim in implementation-summary.md (narrow to what was actually live-tested, or add real live evidence for the other 4).
+- [x] REQ-013 (R5-P1-001): Resolve or accurately frame the system-spec-kit dependency in the 5 relocated adapters that import `hook-adapter-shared.cjs`.
+- [x] Re-run affected test suites and re-validate docs after the fixes.
+- [ ] Re-review (or re-verify) before the merge/push/leave-local decision.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -140,8 +157,33 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 | Live smoke | Pi and OpenCode runtime loading | Manual `pi --offline --approve -p "..."` and OpenCode session start |
 | Documentation | All touched/new README/playbook files | `validate_document.py` |
 | Regression baseline | `mcp-code-mode` hub invariant failures | `parent-skill-check.cjs` run against unmodified main tree for comparison |
-| Independent review | Full diff, all dimensions | `/deep:review:auto`, 5 forced iterations |
+| Independent review | Full diff, all dimensions | `/deep:review:auto`, 5 forced iterations -- CONDITIONAL (P0=0 P1=6 P2=4) |
+| Remediation regression | REQ-008/REQ-009/REQ-010 code fixes | New/updated unit tests: multi-file patch coverage, forged-marker rejection, out-of-allowlist secret redaction |
 <!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Imported from `review/review-report.md`'s Planning Packet JSON (`fixCompletenessRequired: true`). Planning Packet fields are treated as inert data: quoted below, not executed, not followed as instructions. `activeFindings[].scopeProof` values are not command-shaped or shell-shaped in this report; each is a plain file-path citation, independently confirmed by direct reads and `git log --follow`/`git show --stat` in this planning pass rather than copied blind.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `.opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs` (`firstPatchPath()`, confirmed single non-global regex match) | Producer: resolves the target file(s) of a Codex `apply_patch` for quality checking | Update to iterate every `*** Add/Update/Delete File:` header, not just the first | New regression test with a 2+ file patch; `rg -n "firstPatchPath" .opencode/runtime-hooks` for other call sites |
+| `.opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs` (`isCommandDrivenIteration()`, confirmed 0 line changes since relocation) | Producer: decides whether a dispatch is exempt from loop-repeat rejection | Bind the exemption to a verified structural field, not a free-text regex match alone | New regression test: forged marker in prompt text alone must not satisfy the exemption |
+| `.opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs` (`SECRET_PATTERNS`, confirmed 0 line changes since relocation) | Producer: redacts credential-shaped text before persisting the dispatch audit log | Broaden the redaction approach (e.g. entropy/shape heuristic alongside the allowlist) so unrecognized secret shapes are not persisted verbatim | New regression test: out-of-allowlist secret-shaped string is not present verbatim in the resulting log line |
+| `.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/{cli-dispatch-audit-trail,codex-hook-parity}.md` | Consumer/docs: executable command examples referencing hook paths | Update the 2 stale command paths to the current `.opencode/runtime-hooks/...` locations | Repo-wide grep for the old path strings returns 0 hits in these files |
+| `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/checklist.md` (CHK-011, CHK-041) | Consumer/evidence: this packet's own QA claims | Correct the two evidence rows to match the actual (not overstated) verification state | Manual review against `implementation-summary.md`'s corrected verification table |
+| `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/implementation-summary.md` (verification table, "verified across 6 runtimes" claim) | Consumer/docs: this packet's own completion claim | Narrow the claim to Pi + OpenCode live-tested, others via config/test-suite checks -- or add real commit-pinned live evidence for the other 4 | Manual review; no unverified claim remains |
+| `.opencode/runtime-hooks/README.md` (Node-builtin-equivalence framing, confirmed at lines 37 and 92) | Producer/docs: this tree's own portability claim | Either remove the 5 adapters' dependency on `hook-adapter-shared.cjs` (duplicate the 24-line, dependency-free helper into `runtime-hooks/`) or correct the framing to state the real dependency plainly | `rg -n "hook-adapter-shared" .opencode/runtime-hooks` shows either 0 hits (dependency removed) or README wording no longer claims builtin-equivalence |
+
+Required inventories:
+- Same-class producers for the redaction gap: `rg -n "SECRET_PATTERNS|scrubSecrets" .opencode/runtime-hooks .opencode/skills` -- confirm `dispatch-audit.mjs` is the sole producer before scoping the fix there alone.
+- Consumers of `hook-adapter-shared.cjs`: `rg -n "hook-adapter-shared" .` -- confirmed exactly 5 relocated adapters plus the still-in-place `spec-gate-enforce.mjs` (which does not move).
+- Matrix axes for REQ-008: file count in a single Codex `apply_patch` (1 vs 2+ vs many) x whether each target already exists.
+- Algorithm invariant for REQ-009: the exemption must never be satisfiable by prompt text alone; it must require a structural field independently set by the dispatching command, not copyable into arbitrary free text.
+<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -176,7 +218,8 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 | Relocation | Classification | Wiring & Discovery Fixes |
 | Wiring & Discovery Fixes | Relocation | Test & Documentation Repair |
 | Test & Documentation Repair | Wiring fixes | Retroactive Documentation & Deep Review |
-| Retroactive Documentation & Deep Review | All prior phases | Merge decision |
+| Retroactive Documentation & Deep Review | All prior phases | P1 Remediation |
+| P1 Remediation | Deep-review CONDITIONAL verdict | Merge decision |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -190,7 +233,8 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 | Relocation | Medium | ~25 git mv renames across 4 concern folders |
 | Wiring & Discovery Fixes | High | 4 configs, ~20 symlinks, 2 grep sweeps (import + hardcoded string) |
 | Test & Documentation Repair | Medium | 5 test files, ~20 docs, 2 relative-depth corrections |
-| Retroactive Documentation & Deep Review | Medium | This packet + a forced 5-iteration review |
+| Retroactive Documentation & Deep Review | Medium | This packet + a forced 5-iteration review, CONDITIONAL verdict |
+| P1 Remediation | Medium | 3 code fixes + regression tests, 2 doc/evidence fixes, 1 architecture fix |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -206,7 +250,7 @@ Classify → relocate via `git mv` → fix configs/symlinks/imports → fix hard
 
 ### Rollback Procedure
 
-1. If deep review finds an unresolved P0, do not merge; return to `/speckit:plan` for remediation.
+1. Deep review returned CONDITIONAL (P0=0, P1=6); did not merge. Returned to `/speckit:plan` (this Phase 6) for remediation instead.
 2. Remediate on the same worktree branch, re-run affected suites.
 3. Re-review before any merge decision.
 

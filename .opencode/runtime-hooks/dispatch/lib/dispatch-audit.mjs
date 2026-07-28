@@ -130,6 +130,14 @@ const SECRET_PATTERNS = [
   // Common provider secret-key prefixes appearing bare in the command text (hyphen-delimited
   // and underscore-delimited live/test key formats alike).
   { regex: /\b(sk-[A-Za-z0-9_-]{10,}|sk_(?:live|test)_[A-Za-z0-9]{10,}|pk_(?:live|test)_[A-Za-z0-9]{10,}|ghp_[A-Za-z0-9]{10,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{12,})\b/g, replacement: REDACTED_PLACEHOLDER },
+  // Bare PEM key/certificate blocks (e.g. a private key piped straight into a command)
+  // carry no token/key/secret keyword for the patterns above to anchor on, so they need
+  // their own multi-line match. Non-greedy body + `s` flag so `.` spans the embedded
+  // newlines between the BEGIN/END markers without over-consuming past the first block.
+  { regex: /-----BEGIN [A-Z0-9 ]+(?:PRIVATE KEY|CERTIFICATE)-----[\s\S]+?-----END [A-Z0-9 ]+(?:PRIVATE KEY|CERTIFICATE)-----/g, replacement: REDACTED_PLACEHOLDER },
+  // Bare JWTs (header.payload.signature) carry no keyword either; the base64url JSON header
+  // always starts with `eyJ` (the encoding of `{"`), a reliable, low-false-positive anchor.
+  { regex: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, replacement: REDACTED_PLACEHOLDER },
 ];
 
 function scrubSecrets(text) {

@@ -32,7 +32,7 @@ const {
   unlinkSync,
   writeFileSync,
 } = require('node:fs');
-const { join } = require('node:path');
+const { isAbsolute, join } = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -121,13 +121,47 @@ function mismatchDetail(subagentType, registryModes, declaredMode) {
   ].join(' ');
 }
 
-function isCommandDrivenIteration(promptText) {
+// A real per-iteration prompt pack from a /deep:* command always names its own
+// config artifact under a "Config:" line (e.g. "- Config: {spec_folder}/review/
+// deep-review-config.json"). A bare "Iteration: N of M" marker alone is just
+// prompt text -- any caller, or untrusted content echoed into a prompt via
+// injection, can include that string with no relationship to a real dispatch.
+// Requiring the marker to co-occur with a Config: path that resolves to a real,
+// on-disk deep-loop config ties the exemption to filesystem state a forger
+// cannot produce with text alone.
+const STATE_CONFIG_PATH_REGEX = /(?:^|\n)\s*-?\s*Config:\s*(\S+)/i;
+
+function resolveCommandConfigPath(promptText, projectDir) {
+  const match = STATE_CONFIG_PATH_REGEX.exec(promptText || '');
+  if (!match) return null;
+  const rawPath = match[1].trim();
+  if (!rawPath || rawPath.includes('..')) return null;
+  return isAbsolute(rawPath) ? rawPath : join(projectDir || '.', rawPath);
+}
+
+function isCommandDrivenIteration(promptText, projectDir) {
   const match = ITERATION_MARKER_REGEX.exec(promptText || '');
   if (!match) return false;
 
   const iteration = Number(match[1]);
   const maxIterations = Number(match[2]);
-  return iteration >= 1 && maxIterations >= 1 && iteration <= maxIterations;
+  if (!(iteration >= 1 && maxIterations >= 1 && iteration <= maxIterations)) return false;
+
+  const configPath = resolveCommandConfigPath(promptText, projectDir);
+  if (!configPath) return false;
+
+  try {
+    const raw = readFileSync(configPath, 'utf8');
+    const config = JSON.parse(raw);
+    // Not an exact match against the claimed N/M -- a slightly stale prompt pack
+    // from an earlier reducer sync is legitimate. This only proves the referenced
+    // path is a genuine, on-disk deep-loop config artifact, not a phantom string.
+    return Boolean(config) && typeof config === 'object'
+      && typeof config.mode === 'string'
+      && Number.isFinite(Number(config.maxIterations));
+  } catch (_) {
+    return false;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -520,7 +554,7 @@ function evaluateDispatch(request = {}) {
 
     // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
     if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && sessionID) {
-      const commandDriven = isCommandDrivenIteration(prompt);
+      const commandDriven = isCommandDrivenIteration(prompt, projectDir);
       const { count, persisted } = recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven);
 
       if (!persisted) {
@@ -571,6 +605,7 @@ module.exports = {
   declaredModeFromPrompt,
   mismatchDetail,
   isCommandDrivenIteration,
+  resolveCommandConfigPath,
   resolveTargetIdentity,
   // loop-state helpers
   sessionStateKey,

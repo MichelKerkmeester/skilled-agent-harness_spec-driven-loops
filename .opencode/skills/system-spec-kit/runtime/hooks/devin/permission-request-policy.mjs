@@ -19,7 +19,7 @@
 import { fileURLToPath } from 'node:url';
 
 import * as guardCore from '../../lib/spec-gate/spec-gate-core.mjs';
-import { evaluate, readHardRules } from '../../../../cli-external-orchestration/cli-opencode/scripts/lib/dispatch-rule-checks.mjs';
+import { evaluate, readHardRules } from '../../../../../runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

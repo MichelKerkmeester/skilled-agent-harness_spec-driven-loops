@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Relocate fully-portable runtime-hook guard cores"
-description: "Four fully-portable hook cores moved out of their owning skills into .opencode/runtime-hooks/, decoupling enforcement from skill knowledge, verified across 6 runtimes, now gated on a forced 5-iteration deep review before merge."
+description: "Four fully-portable hook cores moved out of their owning skills into .opencode/runtime-hooks/, decoupling enforcement from skill knowledge -- live smoke-tested for Pi and OpenCode, verified via config/symlink/test-suite checks for Claude/Cursor/Devin/Codex -- now gated on a forced 5-iteration deep review before merge."
 trigger_phrases:
   - "hook relocation summary"
 importance_tier: "normal"
@@ -8,26 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T00:00:00Z"
+    last_updated_at: "2026-07-28T14:42:45Z"
     last_updated_by: "claude"
-    recent_action: "Retroactive packet authored; about to dispatch /deep:review:auto with fully bound setup"
-    next_safe_action: "Load .opencode/commands/deep/assets/deep-review-auto.yaml with the resolved PRE-BOUND SETUP ANSWERS block"
-    blockers: []
+    recent_action: "Round-2 fan-out review failed P0=4/P1=4/P2=1; fixed all 7 findings this pass"
+    next_safe_action: "Verify fixes independently, then decide merge or push or leave-local"
+    blockers:
+      - "3rd verification not yet run; merge decision pending."
+      - "cli-pi fanout dispatch unimplemented in fanout-run.cjs; separate follow-up, not this packet's scope."
     key_files:
       - ".opencode/runtime-hooks/README.md"
-      - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
-      - ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/checklist.md"
+      - ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions:
-      - "Merge into skilled/v4.0.0.0 now, push branch only, or leave local — gated on deep-review outcome."
+      - "Merge/push/leave-local — gated on a clean 3rd verification pass."
+      - "Whether/when to fix the cli-pi fanout gap — separate from this packet."
     answered_questions:
-      - "Relocation scope: fully-portable set only (dispatch, mcp-route-guard, post-edit-quality, task-dispatch)."
-      - "Worktree vs branch: isolated worktree."
-      - "Deep-review setup: new packet, force all 5 iterations regardless of early convergence."
+      - "Relocation scope: fully-portable set only. Worktree, not branch."
+      - "Review 1 (cli-opencode, 5 iters): CONDITIONAL P0=0/P1=6/P2=4, remediated."
+      - "Review 2 (fan-out glm+luna, 3 iters, restart): FAIL P0=4/P1=4/P2=1 (luna never ran, cli-pi gap); all 7 fixed+reverified this pass — see Known Limitations."
 ---
 # Implementation Summary
 
@@ -112,7 +114,12 @@ Built in an isolated worktree (`.worktrees/0118-skilled-hook-runtime-relocation`
 | Documentation (`validate_document.py`) | PASS, 0 issues on all touched/new files |
 | `mcp-code-mode` `parent-skill-check.cjs` | Pre-existing failure confirmed unrelated (identical result against the unmodified main tree) |
 | Live smoke tests (Pi, OpenCode) | PASS, both runtimes load affected extensions/plugins with zero errors |
-| This packet's own `validate.sh --strict` | FAIL on `EVIDENCE_MARKER_LINT`/`GENERATED_METADATA_INTEGRITY`/`GENERATED_METADATA_DRIFT` — the worktree's `node_modules/.bin/tsx` is missing, a worktree-environment gap, not a content defect. Re-run from the main tree (or after `npm install` in the worktree) before final closeout. |
+| Claude, Cursor, Devin, Codex runtime verification | Verified via config/symlink resolution checks plus each runtime's own test suites (`claude-task-dispatch-guard.test.cjs`, `mcp-route-guard.test.cjs`, etc.) — NOT live-smoke-tested post-move. This is the narrowed, accurate claim per `spec.md` REQ-002/NFR-R01; "verified across 6 runtimes" (this doc's earlier wording) overstated it. |
+| This packet's own `validate.sh --strict` | PASS, Errors 0 / Warnings 0 (re-run after the Phase 6 fixes, description/graph-metadata regeneration, and a continuity-freshness timestamp refresh) |
+| 5-iteration forced `/deep:review:auto` (`cli-opencode`, `gpt-5.6-sol`, `high`, `stop_policy=max-iterations`) — round 1 | CONDITIONAL, P0=0 P1=6 P2=4. Session archived at `review/review-archive/20260728T161859/` after round 2's `lineage_mode=restart`. |
+| Phase 6 P1 remediation (round 1) | 3 pre-existing code bugs fixed (Codex multi-file coverage, dispatch-guard forgery hardening, credential-redaction gap) + 2 doc/evidence gaps fixed + 1 architecture-boundary item addressed (system-spec-kit dependency removed via new `runtime-hooks/shared/hook-adapter-shared.cjs`). |
+| Fan-out re-review — round 2 (`cli-devin`/`glm-5-2` + `cli-pi`/`gpt-5.6-luna`, 3 iters each, `stop_policy=max-iterations`, `lineage_mode=restart`) | FAIL, P0=4 P1=4 P2=1, all from the `glm` lineage. `luna` lineage never dispatched (pre-existing `fanout-run.cjs` gap, see Known Limitations). See `review/review-report.md` and `review/lineages/glm/review-report.md`. |
+| Round-2 remediation (this pass, done directly rather than via another full plan/implement cycle given the small mechanical scope) | 4 P0 broken imports fixed in `system-spec-kit`/`sk-git` (`permission-request-policy.mjs`, `git-preflight-advisory.mjs`, `advisory-noise-audit.mjs`, `git-rule-checks.test.mjs`) — all still pointed at the pre-relocation `dispatch-rule-checks.mjs` path, surviving the relocation, round-1 review, AND round-1 remediation. Plus 3 P1 stale-doc-reference fixes (`cli-codex/references/hook-contract.md`, `deep-alignment/references/adapters/sk-doc-known-deviations.md`, `.loop-guard-state/README.md`) and this packet's own CHK-011/CHK-041 evidence rows corrected again. Independently re-verified: module resolution succeeds on all 3 previously-broken `.mjs` files, `node --test` 23/23 + 2/2 on their suites, and a genuine unscoped repo-wide grep for every old relocated-core path string now returns zero hits outside archival specs/benchmark history. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -120,7 +127,9 @@ Built in an isolated worktree (`.worktrees/0118-skilled-hook-runtime-relocation`
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Worktree tsx runtime gap.** `validate.sh --strict` cannot complete `EVIDENCE_MARKER_LINT`, `GENERATED_METADATA_INTEGRITY`, or `GENERATED_METADATA_DRIFT` inside this worktree because `node_modules/.bin/tsx` was never installed there. Re-run these three checks from the main tree, or install dependencies in the worktree, before the final pre-merge validation pass.
-2. **Deep review not yet run.** The forced 5-iteration `/deep:review:auto` (executor `cli-opencode`, model `gpt-5.6-sol`, reasoning `high`, `stop_policy=max-iterations`) has not started as of this summary; findings from that review may require follow-up fixes before merge.
-3. **Merge decision deferred.** Whether to merge into `skilled/v4.0.0.0`, push the branch only, or leave it local is intentionally left open pending the review outcome, per explicit operator instruction.
+1. **Worktree tsx runtime gap, resolved.** `node_modules/.bin/tsx` was missing earlier in this session; it now resolves inside `system-spec-kit/scripts/`, and `EVIDENCE_MARKER_LINT`/`GENERATED_METADATA_INTEGRITY`/`GENERATED_METADATA_DRIFT` all run for real now (no longer a tooling-only failure).
+2. **Two remediation rounds so far; a third verification pass is the next safe action.** Round 1 (CONDITIONAL, P0=0/P1=6/P2=4) was fixed and re-verified, but the re-review (round 2, fan-out) found the round-1 sweep still wasn't genuinely repo-wide — 4 more P0 broken imports and 3 more stale doc references had survived in `system-spec-kit`/`sk-git`, outside every prior sweep's scope. Those are now fixed too (this pass), but given the pattern of two consecutive "fixed and verified" claims each missing real issues, a third independent check (full re-review, or at minimum a fresh unscoped repo-wide grep) is warranted before trusting a clean state.
+3. **`cli-pi` fan-out dispatch is unimplemented, unrelated to this packet.** `buildPiLineageCommand()` in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (~line 1830) is a deliberate stub that throws `'cli-pi command construction is unavailable until its headless invocation contract is confirmed'`. The round-2 re-review's `luna` lineage never executed because of this — a genuine, pre-existing gap in the shared deep-loop runtime, not a configuration mistake in this session's dispatch. No flag or model choice would have fixed it. This needs its own decision/fix outside this packet's scope.
+4. **Merge decision deferred.** Whether to merge into `skilled/v4.0.0.0`, push the branch only, or leave it local remains open pending a clean re-review, per explicit operator instruction.
+5. **Claude/Cursor/Devin/Codex are not live-smoke-tested post-move.** Only Pi and OpenCode received a real post-move live session check. The other 4 runtimes' correctness rests on config/symlink resolution plus their own test suites — a real but narrower form of evidence than a live post-move smoke test. Producing genuine live evidence for all 4 (rather than just narrowing this claim, which is what shipped) remains a legitimate future improvement, not a blocker.
 <!-- /ANCHOR:limitations -->

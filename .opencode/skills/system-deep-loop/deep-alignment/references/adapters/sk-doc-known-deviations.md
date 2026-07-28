@@ -90,8 +90,8 @@ Each entry below was re-probed against live repo state while this list was autho
 
 **Evidence**:
 - `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md:14`, "...cli-family `hard_rules` frontmatter..." listed among established, non-finding gaps.
-- `.opencode/skills/cli-external/cli-claude-code/SKILL.md:6` and `.opencode/skills/cli-external/cli-opencode/SKILL.md:6`, both declare `hard_rules:` in their live frontmatter (re-confirmed by direct grep, 2026-07-11).
-- `.opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs:5,14,21` and `.opencode/skills/cli-external/cli-opencode/scripts/lib/dispatch-rule-checks.mjs:3,22,33`, the field is actively read and enforced by real, live dispatch tooling, not vestigial.
+- `.opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md:6` and `.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:6`, both declare `hard_rules:` in their live frontmatter (re-confirmed by direct grep, 2026-07-11).
+- `.opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:10` and `.opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.mjs:3,22,33` (relocated from `cli-opencode/scripts/{hooks,lib}/` 2026-07-28), the field is actively read and enforced by real, live dispatch tooling, not vestigial.
 
 **Match rule**: none currently. `matchTypes` is empty. See Live-Reality Check.
 

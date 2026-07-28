@@ -1,0 +1,94 @@
+{
+  "topic": "Re-review of the .opencode/runtime-hooks/ relocation after Phase 6 P1 remediation \u2014 verify the 6 original P1s are fixed AND no regressions were introduced, with a repo-wide stale-path sweep",
+  "sessionId": "fanout-glm-1785248351785-j63aes",
+  "parentSessionId": "fanout-glm-1785248351785-j63aes",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-speckit/033-hook-runtime-relocation-review",
+  "createdAt": "2026-07-28T14:19:11Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "glm-5-2",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-speckit/033-hook-runtime-relocation-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "resource_map_present": false,
+  "fanout_lineage": {
+    "label": "glm",
+    "lineage_artifact_dir": ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/review/lineages/glm",
+    "executor": "cli-devin model=glm-5-2",
+    "loop_type": "review"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

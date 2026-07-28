@@ -11,25 +11,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-hook-runtime-relocation-review"
-    last_updated_at: "2026-07-28T00:00:00Z"
+    last_updated_at: "2026-07-28T14:09:19Z"
     last_updated_by: "claude"
-    recent_action: "Authored retroactive Level 2 packet for the already-committed hook relocation; initiating forced 5-iteration deep-review before merge"
-    next_safe_action: "Run /deep:review:auto (cli-opencode, gpt-5.6-sol, high, stop_policy=max-iterations, maxIterations=5) over the worktree diff"
-    blockers: []
+    recent_action: "Implemented Phase 6 (T017-T024): all 6 P1 findings fixed + re-verified"
+    next_safe_action: "Re-run /deep:review before the merge/push/leave-local decision"
+    blockers:
+      - "Re-review not yet run; merge/push/leave-local decision still pending."
     key_files:
       - ".opencode/runtime-hooks/README.md"
       - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
+      - "review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "hook-runtime-relocation-review-20260728"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 95
     open_questions:
-      - "Merge into skilled/v4.0.0.0 now, push the branch only, or leave local, pending deep-review results."
+      - "Merge into skilled/v4.0.0.0 now, push the branch only, or leave local, pending remediation + re-review."
     answered_questions:
       - "Relocation scope: fully-portable set only (dispatch, mcp-route-guard, post-edit-quality, task-dispatch)."
       - "Worktree vs branch: isolated worktree."
       - "Deep-review setup: new packet, force all 5 iterations regardless of early convergence."
+      - "Deep-review result: CONDITIONAL, P0=0 P1=6 P2=4 -- see review/review-report.md."
+      - "Remediation scope: fix all 6 active P1s within this same packet (not split into a separate follow-up packet), per operator direction."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Relocate fully-portable runtime-hook guard cores into .opencode/runtime-hooks/
@@ -45,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Relocation complete; deep-review pending |
+| **Status** | In Progress — remediation phase (deep review CONDITIONAL, P0=0 P1=6 P2=4) |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/0118-hook-runtime-relocation` (worktree `.worktrees/0118-skilled-hook-runtime-relocation`, from `skilled/v4.0.0.0`) |
 | **Workflow** | Claude plan-mode implementation, followed by `/deep:review:auto` |
@@ -89,6 +93,17 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 - Updating ~20 documentation files (`injection-contract.md`, 4 runtime hook README mirrors, `.opencode/plugins/README.md`, manual-testing-playbook files) to the new paths.
 - A forced 5-iteration `/deep:review` (executor `cli-opencode`, model `gpt-5.6-sol`, reasoning `high`, `stop_policy=max-iterations`) over the full diff before any merge.
 
+### Remediation Scope (added after the CONDITIONAL review verdict)
+
+The 5-iteration review (see `review/review-report.md`) returned CONDITIONAL: P0=0, P1=6, P2=4. Per operator direction, all 6 active P1s are remediated within this same packet rather than split into a separate follow-up:
+
+- **R2-P1-001** (pre-existing bug, surfaced not caused by this move): `.opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs`'s `firstPatchPath()` uses a single (non-global) regex match, so a Codex multi-file `apply_patch` only ever gets its first file checked for post-edit quality.
+- **R3-P1-001** (pre-existing bug): `.opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs`'s `isCommandDrivenIteration()` accepts any prompt text containing an "iteration N of M" marker with no structural/cryptographic binding to the real dispatch context, so the marker can be forged to defeat loop-repeat rejection.
+- **R3-P1-002** (pre-existing bug): `.opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs`'s `SECRET_PATTERNS` is a curated allowlist (flag/env/bearer/known-prefix forms); credential-shaped text in any other shape (e.g. a bare PEM block, an unrecognized token format) is not redacted before being persisted to the audit log.
+- **R4-P1-001** (gap introduced by this session's own retroactive documentation): 2 manual-testing-playbook files (`cli-dispatch-audit-trail.md`, `codex-hook-parity.md`) still carry executable commands pointing at pre-relocation, skill-owned paths; `checklist.md`'s CHK-011/CHK-041 rows currently overstate these as already fixed.
+- **R4-P1-002** (gap introduced by this session's own retroactive documentation): `implementation-summary.md` claims verification "across 6 runtimes" but this session only live-smoke-tested Pi and OpenCode; Claude/Cursor/Devin/Codex were only confirmed via config/symlink/test-suite checks, not live post-move smoke tests.
+- **R5-P1-001** (design gap, not a regression): 5 relocated adapters (Claude+Devin task-dispatch, Claude+Codex+Devin mcp-route-guard) hard-import `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` (confirmed: exactly 24 lines, zero external dependencies of its own); `.opencode/runtime-hooks/README.md` currently frames this as equivalent to relying on a Node builtin, which is not accurate for these 5 files.
+
 ### Out of Scope
 
 - Spec-gate, session-lifecycle, and skill-advisor-brief hooks — these are genuinely part of their owning skill's own engine (`spec-gate-core.mjs` depends on system-spec-kit's own `gate-3-classifier.js`; the advisor brief IS system-skill-advisor's core deliverable) and were confirmed NOT fully-portable.
@@ -119,8 +134,8 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Relocate only genuinely fully-portable guard cores. | Each moved core imports nothing but Node builtins or an unmoved checker via project-root-relative `spawnSync`. |
-| REQ-002 | Zero functional regression across all 6 runtimes. | Every moved/affected test suite passes post-move; live spawn/smoke tests confirm each adapter still fires. |
-| REQ-003 | No stale path reference survives the move. | A repo-wide grep for every old path string returns zero hits outside git history. |
+| REQ-002 | Zero functional regression across all 6 runtimes, with evidence scoped honestly to what was actually verified. | Every moved/affected test suite passes post-move for all 6 runtimes; live post-move smoke tests are recorded for Pi and OpenCode; Claude, Cursor, Devin, and Codex are verified via config/symlink resolution checks plus their own test suites (not claimed as live-smoke-tested unless a commit-pinned live run is actually recorded). |
+| REQ-003 | No stale path reference survives the move. | A repo-wide grep for every old path string returns zero hits outside git history, including manual-testing-playbook executable command blocks. |
 | REQ-004 | Subject the relocation to a forced, non-early-converging deep review. | `/deep:review:auto` runs exactly 5 iterations (`stop_policy=max-iterations`) with executor `cli-opencode`, model `gpt-5.6-sol`, reasoning `high`. |
 
 ### P1 - Required
@@ -128,8 +143,19 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Preserve git history on every relocated file. | Relocations use `git mv`, confirmed via `git show --stat` on the relocation commit. |
-| REQ-006 | Keep documentation in sync with the new tree. | All touched/new README and manual-testing-playbook files pass `validate_document.py` with 0 issues. |
+| REQ-006 | Keep documentation in sync with the new tree. | All touched/new README and manual-testing-playbook files pass `validate_document.py` with 0 issues, and every executable command block in those files targets a currently-real path. |
 | REQ-007 | Confirm pre-existing, unrelated hub failures are not attributed to this work. | `parent-skill-check.cjs` run against the unmodified main tree reproduces the identical failure list for `mcp-code-mode`. |
+
+### P1 - Remediation (from the CONDITIONAL deep-review verdict)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-008 | Fix Codex multi-file post-edit-quality coverage (R2-P1-001). | `firstPatchPath()`-equivalent logic checks every file target in a multi-file `apply_patch`, not only the first; a regression test with a 2+ file patch confirms all targets are checked. |
+| REQ-009 | Harden the deep-loop dispatch-guard command-driven exemption against forgery (R3-P1-001). | `isCommandDrivenIteration()` no longer trusts a bare text-pattern match alone; a regression test proves a forged "iteration N of M" marker in free-text prompt content no longer satisfies the exemption unless backed by the real structural dispatch context. |
+| REQ-010 | Close the credential-redaction allowlist gap in the dispatch audit log (R3-P1-002). | Credential-shaped text outside the current `SECRET_PATTERNS` allowlist (e.g. unrecognized token/key shapes) is either redacted by a broadened pattern set or never persisted; a regression test with an out-of-allowlist secret-shaped string confirms it does not reach the audit log verbatim. |
+| REQ-011 | Fix the 2 stale manual-testing-playbook paths and correct their checklist evidence (R4-P1-001). | `cli-dispatch-audit-trail.md` and `codex-hook-parity.md` point only at real, current paths; `checklist.md` CHK-011/CHK-041 evidence lines reflect the actual state, not an overstated claim. |
+| REQ-012 | Resolve the "verified across 6 runtimes" overclaim (R4-P1-002). | `implementation-summary.md` either carries real commit-pinned live smoke evidence for Claude, Cursor, Devin, and Codex, or explicitly states that only Pi and OpenCode were live-smoke-tested and the other 4 were verified via config/symlink/test-suite checks. |
+| REQ-013 | Resolve or accurately frame the system-spec-kit dependency in 5 relocated adapters (R5-P1-001). | Either the 5 adapters no longer import `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` (e.g. via a duplicated dependency-free helper inside `runtime-hooks/`), or `runtime-hooks/README.md` states plainly that `system-spec-kit` is a required runtime dependency for those 5 adapters, dropping the Node-builtin-equivalence framing. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -140,7 +166,8 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 - **SC-001**: Relocation commit `40d5f0d2b3` contains 25 real `git mv` renames, 58 modifications, 1 addition, with zero unrelated files touched.
 - **SC-002**: All directly affected test suites pass post-move (`dispatch-rule-checks.test.mjs` 6/6, `mcp-route-guard.test.cjs` 1/1, `mk-post-edit-quality.test.cjs` + `mk-deep-loop-guard.test.cjs` + `claude-task-dispatch-guard.test.cjs` combined 40/40, `test-root-name-consumer-matrix.cjs` 17/17, `dispatch-audit.test.mjs` 38/38 via its own documented `npx vitest run` invocation).
 - **SC-003**: A live Pi session and a live OpenCode session both load all touched extensions/plugins with zero errors.
-- **SC-004**: The forced 5-iteration deep review completes with a synthesized verdict (PASS/CONDITIONAL/FAIL) and no unresolved P0 findings before merge.
+- **SC-004**: The forced 5-iteration deep review completes with a synthesized verdict (PASS/CONDITIONAL/FAIL) and no unresolved P0 findings before merge. **Result: CONDITIONAL, P0=0, P1=6, P2=4** -- see `review/review-report.md`.
+- **SC-005**: All 6 active P1s from the review (REQ-008 through REQ-013) are resolved and a re-review confirms no regressions before the merge/push/leave-local decision.
 
 ### Acceptance Scenarios
 
@@ -179,7 +206,7 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 
 ### Reliability
 
-- **NFR-R01**: No runtime's hook wiring may regress; each of the 6 runtimes must be independently verifiable post-move.
+- **NFR-R01**: No runtime's hook wiring may regress; each of the 6 runtimes must be independently verifiable post-move, either via a recorded commit-pinned live smoke test (Pi, OpenCode) or via config-resolution plus that runtime's own test-suite checks (Claude, Cursor, Devin, Codex) -- claims of "live-verified" must not extend beyond what was actually run live.
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -216,5 +243,5 @@ As an operator running six AI-runtime integrations (Claude, Cursor, Devin, Codex
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Merge into `skilled/v4.0.0.0` now, push the branch only, or leave local — deferred until the forced 5-iteration deep review completes.
+- Merge into `skilled/v4.0.0.0` now, push the branch only, or leave local — deferred until remediation (REQ-008 through REQ-013) is implemented and re-reviewed.
 <!-- /ANCHOR:questions -->

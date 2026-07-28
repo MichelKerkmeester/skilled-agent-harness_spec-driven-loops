@@ -34,7 +34,7 @@ A core only qualifies for this tree when it imports nothing but Node builtins (o
 
 Hooks that did **not** move stay inside their owning skill because their core logic genuinely is that skill's engine, not a bolt-on guard: `spec-gate-*`, the session-lifecycle hooks, and `completion-evidence-stop` (`system-spec-kit`), the skill-advisor brief (`system-skill-advisor`), and `git-preflight-advisory` (`sk-git`, depends on its own `git-context.mjs`/`git-rule-checks.mjs` rule engine).
 
-`hook-adapter-shared.cjs`, a tiny stdin-parsing helper with zero dependencies of its own, also stays in `system-spec-kit/runtime/lib/` since the still-in-place `spec-gate-enforce.mjs` depends on it too. The adapters here that need it reach back for it, the same way every hook already reaches into Node's own builtins.
+`hook-adapter-shared.cjs`, a tiny stdin-parsing helper with zero dependencies of its own, has its own local copy at `shared/hook-adapter-shared.cjs`. It used to be a single copy left in `system-spec-kit/runtime/lib/` that adapters here reached back into — a real cross-tree dependency that contradicted the whole point of this relocation (a user adopting the enforcement layer without the skill would still have pulled in a `system-spec-kit` file). A second, independent copy still lives at `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` for that skill's own `spec-gate-enforce.mjs`, which is not part of the fully-portable set; the two copies are allowed to drift only in the sense that either could change independently, though in practice this file is small and stable enough that they shouldn't.
 
 ---
 
@@ -42,6 +42,8 @@ Hooks that did **not** move stay inside their owning skill because their core lo
 
 ```text
 runtime-hooks/
++-- shared/
+|   `-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by 5 adapters below
 +-- dispatch/                        # cli-opencode dispatch-shape hard-rule + audit hooks
 |   +-- lib/
 |   |   +-- dispatch-rule-checks.mjs
@@ -82,6 +84,8 @@ Pi (`.pi/extensions/*.ts`) and OpenCode (`.opencode/plugins/*.js`) cannot have t
 
 `mk-git-preflight-advisory.js` and `mk-cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 
+`shared/hook-adapter-shared.cjs` is imported by the 5 adapters that parse raw stdin JSON: `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` and `task-dispatch/{claude,devin}/task-dispatch-guard.cjs`.
+
 ---
 
 ## 4. BOUNDARIES AND FLOW
@@ -89,7 +93,7 @@ Pi (`.pi/extensions/*.ts`) and OpenCode (`.opencode/plugins/*.js`) cannot have t
 | Boundary | Rule |
 |---|---|
 | Ownership | A core belongs here only when it has no real dependency on a specific skill's other content. If a future core develops one, move it back out. |
-| Imports | Cores import Node builtins only, or shell out to an unmoved checker script by project-root-relative path. Adapters import their concern's own `lib/` (one level up) plus, where needed, `system-spec-kit/runtime/lib/hook-adapter-shared.cjs` (three levels up into `../../../skills/system-spec-kit/...`). |
+| Imports | Cores import Node builtins only, or shell out to an unmoved checker script by project-root-relative path. Adapters import their concern's own `lib/` (one level up) plus, where needed, the local `shared/hook-adapter-shared.cjs` (two levels up into `../../shared/`) — no adapter under this tree imports anything outside it. |
 | Runtime wiring | Each runtime's own config (`.claude/settings.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`, `.codex/hooks.json`) points its command string directly at the real file here. The four runtime discovery mirrors (`.claude/hooks/`, `.cursor/hooks/`, `.devin/hooks/`, `.codex/hooks/`) hold a relative symlink to the same file, for browsability only. |
 | Tests | Each concern's `lib/` keeps its co-located test file, moved alongside its core. |
 

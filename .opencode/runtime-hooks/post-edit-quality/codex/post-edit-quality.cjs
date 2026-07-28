@@ -42,21 +42,29 @@ function remainingMs(startedAt, budgetMs) {
   return budgetMs - (Date.now() - startedAt);
 }
 
-// Codex `apply_patch` carries the target inside the patch body (tool_input.command)
-// as an `*** Add/Update/Delete File:` header, not a file_path field. Without parsing
-// it the checker never runs on a Codex patch.
-function firstPatchPath(patchText) {
-  if (typeof patchText !== 'string') return undefined;
-  const match = patchText.match(/^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/m)
-    || patchText.match(/^\*\*\* Move to: (.+?)\s*$/m);
-  return match ? match[1].trim() : undefined;
+// Codex `apply_patch` carries every touched file inside the patch body
+// (tool_input.command) as one `*** Add/Update/Delete File:` header per file, not a
+// file_path field -- a single apply_patch call can bundle several files in one
+// patch. Matching with the `g` flag and collecting every header (not just the
+// first) is what lets a multi-file patch get every file checked, not only the
+// first one named in the body.
+function patchPaths(patchText) {
+  if (typeof patchText !== 'string') return [];
+  const paths = [];
+  for (const match of patchText.matchAll(/^\*\*\* (?:Add|Update|Delete) File: (.+?)\s*$/gm)) {
+    paths.push(match[1].trim());
+  }
+  for (const match of patchText.matchAll(/^\*\*\* Move to: (.+?)\s*$/gm)) {
+    paths.push(match[1].trim());
+  }
+  return paths;
 }
 
-function filePathFrom(toolInput) {
-  if (!toolInput || typeof toolInput !== 'object') return undefined;
+function filePathsFrom(toolInput) {
+  if (!toolInput || typeof toolInput !== 'object') return [];
   const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  if (typeof candidate === 'string' && candidate) return candidate;
-  return firstPatchPath(toolInput.command || toolInput.input || toolInput.patch);
+  if (typeof candidate === 'string' && candidate) return [candidate];
+  return patchPaths(toolInput.command || toolInput.input || toolInput.patch);
 }
 
 function printCommentHygieneFinding(finding, filePath) {
@@ -113,38 +121,58 @@ async function main() {
     ? payload.cwd
     : (process.env.CODEX_PROJECT_DIR || process.cwd());
 
-  let filePath = filePathFrom(toolInput);
-  if (typeof filePath !== 'string' || !filePath) return;
-  // A patch-derived path is relative to the project dir; resolve it so the
+  const rawFilePaths = filePathsFrom(toolInput);
+  if (rawFilePaths.length === 0) return;
+  // A patch-derived path is relative to the project dir; resolve each so the
   // existence check and the checkers see the real file rather than a path
   // relative to wherever the hook process happens to be running.
-  if (!path.isAbsolute(filePath)) filePath = path.join(projectDir, filePath);
+  const filePaths = rawFilePaths
+    .filter((candidate) => typeof candidate === 'string' && candidate)
+    .map((candidate) => (path.isAbsolute(candidate) ? candidate : path.join(projectDir, candidate)));
 
-  let fileExists = false;
-  try {
-    fileExists = fs.existsSync(filePath);
-  } catch (_) {
-    fileExists = false;
+  // A multi-file apply_patch shares one time budget across every file -- remainingMs
+  // keeps shrinking as the loop runs, so a later file in a large patch can be
+  // skipped once the budget is spent rather than starving earlier files.
+  for (const filePath of filePaths) {
+    if (remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS) < router.CLAUDE_MIN_CHECKER_MS) break;
+
+    let fileExists = false;
+    try {
+      fileExists = fs.existsSync(filePath);
+    } catch (_) {
+      fileExists = false;
+    }
+    if (!fileExists) continue;
+
+    try {
+      const entries = router.resolveDispatch(filePath, projectDir);
+      const checksBudget = remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS);
+      const findings = router.runChecks(entries, checksBudget, {
+        perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,
+        minCheckerMs: router.CLAUDE_MIN_CHECKER_MS,
+      });
+      printFindings(findings, filePath);
+    } catch (_) {
+      // Fail-open: a dispatch/spawn bug must never surface a traceback.
+    }
   }
-  if (!fileExists) return;
 
-  try {
-    const entries = router.resolveDispatch(filePath, projectDir);
-    const checksBudget = remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS);
-    const findings = router.runChecks(entries, checksBudget, {
-      perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,
-      minCheckerMs: router.CLAUDE_MIN_CHECKER_MS,
-    });
-    printFindings(findings, filePath);
-  } catch (_) {
-    // Fail-open: a dispatch/spawn bug must never surface a traceback.
-  }
+  // Dist-staleness coverage, preserved independent of the shared table. Runs once
+  // against the first existing file -- one staleness banner per patch is enough
+  // signal without repeating the same repo-wide check per file in a large patch.
+  const firstExistingPath = filePaths.find((candidate) => {
+    try {
+      return fs.existsSync(candidate);
+    } catch (_) {
+      return false;
+    }
+  });
+  if (!firstExistingPath) return;
 
-  // Dist-staleness coverage, preserved independent of the shared table.
   try {
     const distBudget = remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS);
     if (distBudget >= router.CLAUDE_MIN_CHECKER_MS) {
-      const banner = router.runDistStalenessCheck(filePath, projectDir, {
+      const banner = router.runDistStalenessCheck(firstExistingPath, projectDir, {
         timeoutMs: Math.min(distBudget, router.CLAUDE_CHECKER_TIMEOUT_MS),
       });
       if (banner) process.stdout.write(`\n${banner}\n\n`);

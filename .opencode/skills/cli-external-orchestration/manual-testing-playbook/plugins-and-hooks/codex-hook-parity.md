@@ -33,8 +33,8 @@ The adapters under test:
 | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | PreToolUse | `spec-gate-core.mjs` · `evaluateMutation` | deny-capable |
 | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | UserPromptSubmit | `spec-gate-core.mjs` · `classifyIntent` | advisory |
 | `runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs` | PostToolUse | `post-edit-router.cjs` · `resolveDispatch`/`runChecks` | advisory |
-| `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
-| `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
+| `.opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs` | PreToolUse(exec) | `dispatch-rule-checks.mjs` · `evaluate` | deny-capable |
+| `.opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` | PostToolUse(exec) | `dispatch-audit.mjs` primitives | observe |
 | `system-spec-kit/mcp-server/hooks/codex/completion-evidence-stop.cjs` | Stop | `completion-evidence-sentinel.cjs` · `evaluateCompletionEvidence` | advisory |
 | `runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs` | PreToolUse(`mcp__.*`) | `mcp-route-guard.cjs` · `evaluateNativeMcpCall` | advisory (dormant) |
 

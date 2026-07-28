@@ -49,7 +49,7 @@ This scenario validates: the shared core's unit-test suite (real, isolated vites
 1. Run the shared core's unit-test suite in isolation (scoped to avoid picking up stale worktree copies of the same file):
 
 ```bash
-npx vitest run --root .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib dispatch-audit.test.mjs --reporter=verbose
+npx vitest run --root .opencode/runtime-hooks/dispatch/lib dispatch-audit.test.mjs --reporter=verbose
 ```
 
 2. Live-invoke the Claude PostToolUse(Bash) hook adapter via stdin against a scratch project directory, with a dispatch command carrying an embedded secret flag:
@@ -126,7 +126,7 @@ ls "$SCRATCH_DIR4/.opencode/logs/cli-dispatch-audit.log" 2>&1 || echo "no log fi
 Core unit-test suite, isolated to the canonical file (excludes stale `.worktrees/*` copies of the same test):
 
 ```bash
-npx vitest run --root .opencode/skills/cli-external-orchestration/cli-opencode/scripts/lib dispatch-audit.test.mjs --reporter=verbose
+npx vitest run --root .opencode/runtime-hooks/dispatch/lib dispatch-audit.test.mjs --reporter=verbose
 ```
 
 ```text
