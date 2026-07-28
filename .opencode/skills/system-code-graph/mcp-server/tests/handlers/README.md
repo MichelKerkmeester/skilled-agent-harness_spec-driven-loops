@@ -106,4 +106,4 @@ Expected output: Current `code_graph_classify_query_intent` dispatch coverage fo
 |---|---|
 | [`system-code-graph/SKILL.md`](../../../SKILL.md) | Runtime instructions for the owning skill. |
 | [`sk-code/SKILL.md`](../../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill-readme-template.md`](../../../../sk-doc/create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+| [`sk-doc skill-readme-template.md`](../../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |

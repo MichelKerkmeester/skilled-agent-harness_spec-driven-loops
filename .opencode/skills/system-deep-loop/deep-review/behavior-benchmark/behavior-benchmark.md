@@ -61,4 +61,4 @@ executing phase. Per-scenario baseline checkpoints live in
 
 ## RELATED RESOURCES
 
-> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.
+> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.

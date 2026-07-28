@@ -10,10 +10,10 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are create-diff packet resources available?
 
 Indicators:
-- `.opencode/skills/sk-doc/create-diff/SKILL.md` is readable
-- `.opencode/skills/sk-doc/create-diff/scripts/create_diff.py` exists
-- `.opencode/skills/sk-doc/create-diff/scripts/validate_report.py` exists
-- `.opencode/skills/sk-doc/create-diff/references/cli-reference.md` is readable
+- `.opencode/skills/sk-doc/sk-create-diff/SKILL.md` is readable
+- `.opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py` exists
+- `.opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py` exists
+- `.opencode/skills/sk-doc/sk-create-diff/references/cli-reference.md` is readable
 
 If all indicators are present:
 - create_diff_verified = true
@@ -35,10 +35,10 @@ This command requires the create-diff packet for:
 - Report safety/self-containment validation
 
 Required engine:
-python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities
+python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py capabilities
 
 Required validator:
-python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report.html>
+python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py <report.html>
 
 STATUS=FAIL ERROR="create-diff resources unavailable"
 ```
@@ -156,7 +156,7 @@ Changes:
 - Fidelity tier: [full | text | text*]
 
 Validation:
-- Command: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report-path]
+- Command: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py [report-path]
 - Result: PASS
 
 Output:

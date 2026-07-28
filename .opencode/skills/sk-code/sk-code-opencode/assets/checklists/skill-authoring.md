@@ -34,7 +34,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 ## 2. PRE-CHECKS
 
 - [ ] Read the live parent-hub example at `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code/graph-metadata.json`, `.opencode/skills/sk-code/mode-registry.json`, and `.opencode/skills/sk-code/hub-router.json` before copying a hub pattern.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/create-skill/references/README.md` and the parent-hub pattern at `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/sk-create-skill/references/README.md` and the parent-hub pattern at `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - [ ] Decide the skill shape: flat skill or parent-hub skill. A parent hub has one advisor-routable identity and nested mode packets.
 - [ ] For any parent hub, require hub-level `graph-metadata.json`, `mode-registry.json`, `hub-router.json`, and `description.json`; nested packets must not carry their own `graph-metadata.json`.
 - [ ] Verify whether the target skill uses a 3-part version or a 4-part version; `.opencode/skills/sk-code/SKILL.md` uses a 4-part version.
@@ -74,7 +74,7 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 
 ## 5. RELATED RESOURCES
 
-- `.opencode/skills/sk-doc/create-skill/references/README.md` (source index for skill structure rules)
-- `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
+- `.opencode/skills/sk-doc/sk-create-skill/references/README.md` (source index for skill structure rules)
+- `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-hub structure and metadata contract)
 - Parent-hub example: `.opencode/skills/sk-code/SKILL.md`, `.opencode/skills/sk-code/graph-metadata.json`, `.opencode/skills/sk-code/mode-registry.json`, `.opencode/skills/sk-code/hub-router.json`
 - Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

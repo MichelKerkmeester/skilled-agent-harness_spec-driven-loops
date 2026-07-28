@@ -54,5 +54,5 @@ Expected result: `validate_document.py` exits 0 on a valid document, 1 on blocki
 ## 4. RELATED
 
 - [`README.md`](../README.md)
-- [`create-readme/scripts/audit_readmes.py`](../../create-readme/scripts/audit_readmes.py), the fleet-wide README auditor this validator underlies.
-- [`create-feature-catalog/scripts/validate_catalog_package.py`](../../create-feature-catalog/scripts/validate_catalog_package.py), a package-level validator built on `validate_document.py`.
+- [`sk-create-readme/scripts/audit_readmes.py`](../../sk-create-readme/scripts/audit_readmes.py), the fleet-wide README auditor this validator underlies.
+- [`sk-create-feature-catalog/scripts/validate_catalog_package.py`](../../sk-create-feature-catalog/scripts/validate_catalog_package.py), a package-level validator built on `validate_document.py`.

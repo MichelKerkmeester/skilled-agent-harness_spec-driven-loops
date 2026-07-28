@@ -1,1 +1,1 @@
-../create-skill/scripts/validate_skill_package.py
+../sk-create-skill/scripts/validate_skill_package.py

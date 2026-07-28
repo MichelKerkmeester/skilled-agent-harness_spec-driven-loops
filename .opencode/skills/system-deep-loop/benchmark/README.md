@@ -11,7 +11,7 @@ trigger_phrases:
 
 > Reports for benchmarking how well `system-deep-loop` is routed, discovered, and used in practice, kept beside the skill they measure.
 
-> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/create-benchmark`](../../sk-doc/create-benchmark/SKILL.md) §10 ([`skill-benchmark-readme-template.md`](../../sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays in deep-improvement.
+> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/sk-create-benchmark`](../../sk-doc/sk-create-benchmark/SKILL.md) §10 ([`skill-benchmark-readme-template.md`](../../sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays in deep-improvement.
 
 ---
 
@@ -67,4 +67,4 @@ Compare against `baseline/skill-benchmark-report.json`. The D5 connectivity gate
 
 Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
-Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).
+Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

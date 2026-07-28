@@ -111,7 +111,7 @@ Executor MECHANICS and runtime code live elsewhere — a profile points at them,
 
 ### Smart Router Pseudocode
 
-> Pattern: see [`../../sk-doc/create-skill/assets/skill/skill-smart-router.md`](../../sk-doc/create-skill/assets/skill/skill-smart-router.md)
+> Pattern: see [`../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md`](../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md)
 > for the canonical runtime-discovery, guarded-load, routing-key, and fallback reference. This hub
 > routes by MODEL: `routing_key` = the canonical model id, resource = `references/models/<id>.md`.
 > There are no per-model `assets/<id>/` folders; assets are shared registry/checklist data and are

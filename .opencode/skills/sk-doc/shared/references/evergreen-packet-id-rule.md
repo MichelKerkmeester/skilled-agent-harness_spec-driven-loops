@@ -38,7 +38,7 @@ Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist
 ### Prerequisites
 
 - Read [core-standards.md](./core-standards.md) for document type rules.
-- Read [readme-template.md](../../create-readme/assets/readme-template.md), [feature-catalog-template.md](../../create-feature-catalog/assets/feature-catalog-template.md), and [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — these templates already enforce evergreen authoring patterns.
+- Read [readme-template.md](../../sk-create-readme/assets/readme-template.md), [feature-catalog-template.md](../../sk-create-feature-catalog/assets/feature-catalog-template.md), and [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — these templates already enforce evergreen authoring patterns.
 - Confirm the doc class (spec-local vs evergreen) before applying the audit grep, because spec-local docs are exempt by design.
 
 ---
@@ -103,14 +103,13 @@ The target sentence should remain true after packet renumbering.
 
 ### Templates
 
-- [feature-catalog-template.md](../../create-feature-catalog/assets/feature-catalog-template.md) — feature catalog evergreen-authoring shape
-- [feature-catalog-snippet-template.md](../../create-feature-catalog/assets/feature-catalog-snippet-template.md) — per-feature snippet shape (OVERVIEW / CURRENT REALITY / SOURCE FILES / SOURCE METADATA)
-- [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — playbook authoring shape
-- [readme-template.md](../../create-readme/assets/readme-template.md) — README authoring shape
-- [skill-reference-template.md](../../create-skill/assets/skill/skill-reference-template.md) — reference file structure (this file's own template)
+- [feature-catalog-template.md](../../sk-create-feature-catalog/assets/feature-catalog-template.md) — feature catalog evergreen-authoring shape
+- [feature-catalog-snippet-template.md](../../sk-create-feature-catalog/assets/feature-catalog-snippet-template.md) — per-feature snippet shape (OVERVIEW / CURRENT REALITY / SOURCE FILES / SOURCE METADATA)
+- [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md) — playbook authoring shape
+- [readme-template.md](../../sk-create-readme/assets/readme-template.md) — README authoring shape
+- [skill-reference-template.md](../../sk-create-skill/assets/skill/skill-reference-template.md) — reference file structure (this file's own template)
 
 ### Standards
 
 - [core-standards.md](./core-standards.md) — document type rules and frontmatter conventions
 - [hvr-rules.md](./hvr-rules.md) — high-value content rules used by sk-doc validation
-

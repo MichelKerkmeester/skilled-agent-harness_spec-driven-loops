@@ -11,7 +11,7 @@ trigger_phrases:
 
 > Reports for benchmarking how well `system-deep-loop/deep-improvement` is routed, discovered, and used in practice, kept beside the skill they measure. Each run-label folder holds one run's rendered report pair; this file indexes them.
 
-> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/create-benchmark`](../../../sk-doc/create-benchmark/SKILL.md) §10 ([`skill-benchmark-readme-template.md`](../../../sk-doc/create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../../sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays lane-owned in deep-improvement.
+> Authoring: this `benchmark/README.md` index template and the run-label storage standard live in [`sk-doc/sk-create-benchmark`](../../../sk-doc/sk-create-benchmark/SKILL.md) §10 ([`skill-benchmark-readme-template.md`](../../../sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` is renderer-owned and never templated, and the Lane C run/scoring stays lane-owned in deep-improvement.
 
 ---
 
@@ -45,7 +45,7 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 | [`router-mode-a/`](./reports/2026-07-10--router-mode-a--router/) | Router-mode (Mode A) deterministic replay run | PASS · 100 (router) | [report](./reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md) |
 | [`live-mode-b/`](./reports/2026-07-10--live-mode-b--live/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 90 (live) | [report](./reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md) |
 
-> Baseline status: this tree does not yet carry a frozen `baseline/` before-anchor. The create-benchmark storage convention (`sk-doc/create-benchmark/SKILL.md` §10) expects a `baseline/` folder as the frozen pre-optimization comparison snapshot, never regenerated. Establishing it is pending a first frozen run; until then the only run-label folders on disk are `router-mode-a/` and `live-mode-b/` above.
+> Baseline status: this tree does not yet carry a frozen `baseline/` before-anchor. The create-benchmark storage convention (`sk-doc/sk-create-benchmark/SKILL.md` §10) expects a `baseline/` folder as the frozen pre-optimization comparison snapshot, never regenerated. Establishing it is pending a first frozen run; until then the only run-label folders on disk are `router-mode-a/` and `live-mode-b/` above.
 
 ## 3. RE-RUNNING
 

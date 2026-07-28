@@ -2,27 +2,27 @@
 id: SD-007
 category: unknown_fallback
 title: 'Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta'
-expected_intent: create-quality-control+create-flowchart
+expected_intent: sk-create-quality-control+sk-create-flowchart
 expected_resources:
   - shared/references/validation.md
-  - create-quality-control/references/workflows.md
+  - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-  - create-flowchart/assets/simple-workflow.md
-  - create-flowchart/assets/decision-tree-flow.md
-expected_workflow_mode: create-quality-control+create-flowchart
+  - sk-create-flowchart/assets/simple-workflow.md
+  - sk-create-flowchart/assets/decision-tree-flow.md
+expected_workflow_mode: sk-create-quality-control+sk-create-flowchart
 expected_leaf_resources:
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/core-standards.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
-  - workflow_mode: create-flowchart
+  - workflow_mode: sk-create-flowchart
     leaf_resource_id: assets/simple-workflow.md
-  - workflow_mode: create-flowchart
+  - workflow_mode: sk-create-flowchart
     leaf_resource_id: assets/decision-tree-flow.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000

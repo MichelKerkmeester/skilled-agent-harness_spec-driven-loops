@@ -10,11 +10,11 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are create-flowchart packet resources available?
 
 Indicators:
-- `.opencode/skills/sk-doc/create-flowchart/SKILL.md` is readable
-- `.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh` exists
-- `.opencode/skills/sk-doc/create-flowchart/assets/*.md` pattern assets are available
-- `.opencode/skills/sk-doc/create-flowchart/references/notation-and-validator.md` is readable
-- `.opencode/skills/sk-doc/create-flowchart/references/pattern-selection.md` is readable
+- `.opencode/skills/sk-doc/sk-create-flowchart/SKILL.md` is readable
+- `.opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh` exists
+- `.opencode/skills/sk-doc/sk-create-flowchart/assets/*.md` pattern assets are available
+- `.opencode/skills/sk-doc/sk-create-flowchart/references/notation-and-validator.md` is readable
+- `.opencode/skills/sk-doc/sk-create-flowchart/references/pattern-selection.md` is readable
 
 If all indicators are present:
 - create_flowchart_verified = true
@@ -36,7 +36,7 @@ This command requires the create-flowchart packet for:
 - Packet-local validation
 
 Required validator:
-bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh <target-flowchart.md>
+bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh <target-flowchart.md>
 
 STATUS=FAIL ERROR="create-flowchart resources unavailable"
 ```
@@ -147,7 +147,7 @@ Source:
 - Unknowns: [unknowns-or-none]
 
 Validation:
-- Command: bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target-flowchart-path]
+- Command: bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target-flowchart-path]
 - Result: PASSED
 
 Output:

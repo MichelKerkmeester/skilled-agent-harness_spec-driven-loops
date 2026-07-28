@@ -53,7 +53,7 @@ Generic command-Markdown validation remains owned by `validate_document.py --typ
 | --- | --- | --- |
 | Validator | `.opencode/commands/scripts/validate-command-references.cjs` | Shared command target, mirror and topology inventory signals |
 | Inventory | `.opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs` | Exact live canonical-source and generated-mirror parity gate |
-| Template canon | `.opencode/skills/sk-doc/create-command/SKILL.md` | Command frontmatter, routing, capability and presentation rules |
+| Template canon | `.opencode/skills/sk-doc/sk-create-command/SKILL.md` | Command frontmatter, routing, capability and presentation rules |
 | Topology rules | Command topology taxonomy | Execution-ownership classification for workflow, subaction, direct-tool/plugin and monolithic commands |
 | Adapter rules | `sk-doc-command-adapter.md` | S1 to S5 finding definitions and mapping |
 | Deviations | `sk-doc-command-known-deviations.md` | Peer-specific suppression data |

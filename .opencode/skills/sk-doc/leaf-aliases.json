@@ -1,31 +1,31 @@
 [
   {
-    "workflowMode": "create-changelog",
+    "workflowMode": "sk-create-changelog",
     "leafResourceId": "assets/changelog-template.md",
     "diskPath": "shared/assets/changelog-template.md"
   },
   {
-    "workflowMode": "create-quality-control",
+    "workflowMode": "sk-create-quality-control",
     "leafResourceId": "assets/llmstxt-templates.md",
     "diskPath": "shared/assets/llmstxt-templates.md"
   },
   {
-    "workflowMode": "create-quality-control",
+    "workflowMode": "sk-create-quality-control",
     "leafResourceId": "references/validation.md",
     "diskPath": "shared/references/validation.md"
   },
   {
-    "workflowMode": "create-quality-control",
+    "workflowMode": "sk-create-quality-control",
     "leafResourceId": "references/core-standards.md",
     "diskPath": "shared/references/core-standards.md"
   },
   {
-    "workflowMode": "create-quality-control",
+    "workflowMode": "sk-create-quality-control",
     "leafResourceId": "references/hvr-rules.md",
     "diskPath": "shared/references/hvr-rules.md"
   },
   {
-    "workflowMode": "create-quality-control",
+    "workflowMode": "sk-create-quality-control",
     "leafResourceId": "references/evergreen-packet-id-rule.md",
     "diskPath": "shared/references/evergreen-packet-id-rule.md"
   }

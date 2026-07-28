@@ -28,7 +28,7 @@ Read this when implementing or auditing the `foundations` static-axis routing be
 
 ### Core Principle
 
-This is the mode-specific implementation of the general resilience pattern in [skill-smart-router.md](../../../sk-doc/create-skill/assets/skill/skill-smart-router.md): `discover_markdown_resources()` and `_guard_in_skill()` supply the discovery and guard mechanics, `route_foundations_resources()` supplies the `foundations`-specific `INTENT_SIGNALS`, `RESOURCE_MAP`, and `UNKNOWN_FALLBACK_CHECKLIST`.
+This is the mode-specific implementation of the general resilience pattern in [skill-smart-router.md](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md): `discover_markdown_resources()` and `_guard_in_skill()` supply the discovery and guard mechanics, `route_foundations_resources()` supplies the `foundations`-specific `INTENT_SIGNALS`, `RESOURCE_MAP`, and `UNKNOWN_FALLBACK_CHECKLIST`.
 
 ---
 

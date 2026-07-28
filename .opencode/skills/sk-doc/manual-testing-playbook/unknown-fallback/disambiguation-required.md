@@ -2,15 +2,15 @@
 id: SD-009
 category: unknown_fallback
 title: 'FEATURE_CATALOG vs PLAYBOOK tie within delta=1'
-expected_intent: create-feature-catalog+create-manual-testing-playbook
+expected_intent: sk-create-feature-catalog+sk-create-manual-testing-playbook
 expected_resources:
-  - create-feature-catalog/references/README.md
-  - create-manual-testing-playbook/references/README.md
-expected_workflow_mode: create-feature-catalog+create-manual-testing-playbook
+  - sk-create-feature-catalog/references/README.md
+  - sk-create-manual-testing-playbook/references/README.md
+expected_workflow_mode: sk-create-feature-catalog+sk-create-manual-testing-playbook
 expected_leaf_resources:
-  - workflow_mode: create-feature-catalog
+  - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/README.md
-  - workflow_mode: create-manual-testing-playbook
+  - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: references/README.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 1000-2500

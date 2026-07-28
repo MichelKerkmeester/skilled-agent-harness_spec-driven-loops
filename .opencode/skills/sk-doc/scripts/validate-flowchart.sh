@@ -1,1 +1,1 @@
-../create-flowchart/scripts/validate-flowchart.sh
+../sk-create-flowchart/scripts/validate-flowchart.sh

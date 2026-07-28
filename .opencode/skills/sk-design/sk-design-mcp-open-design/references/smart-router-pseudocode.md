@@ -25,7 +25,7 @@ Implements the keyword-weighted intent classifier, the resource map per directio
 
 ### Resilience Pattern
 
-> See [sk-doc smart-router template](../../../sk-doc/create-skill/assets/skill/skill-smart-router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
+> See [sk-doc smart-router template](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md). This skill is a flat intent router (WIRE / READ / RUN), not a keyed `references/<key>/` or `assets/<key>/` resource router. Guard paths, discover current markdown resources at runtime, load only existing resources once, and fall back with an explicit checklist when unsure.
 
 ---
 

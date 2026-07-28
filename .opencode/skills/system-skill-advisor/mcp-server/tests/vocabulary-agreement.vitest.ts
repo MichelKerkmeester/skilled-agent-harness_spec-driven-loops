@@ -57,7 +57,7 @@ const TOOLS = '.opencode/skills/system-skill-advisor/mcp-server/tools/skill-grap
 const CLI_MANIFEST = '.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts';
 const QUERY = '.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/query.ts';
 const CHECKER = '.opencode/commands/doctor/scripts/parent-skill-check.cjs';
-const TEMPLATE = '.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json';
+const TEMPLATE = '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json';
 const DRIFT_GUARD = '.opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts';
 // gated scorer-track read-only subsets — flagged, never asserted-equal
 const ADVISOR_PY = '.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py';

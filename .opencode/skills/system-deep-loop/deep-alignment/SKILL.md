@@ -342,7 +342,7 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 **Validation passes when**:
 - ✅ `node .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs` passes
 - ✅ `node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs <spec-folder>` returns a JSON summary with `registryPath`, `reportPath`, `overallVerdict`, `laneCount`, `findingsBySeverity`, and `corruptionCount`
-- ✅ `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/system-deep-loop/deep-alignment --check` prints `Result: PASS`
+- ✅ `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/system-deep-loop/deep-alignment --check` prints `Result: PASS`
 
 ---
 

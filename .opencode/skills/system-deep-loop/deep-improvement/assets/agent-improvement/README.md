@@ -68,4 +68,4 @@ Expected result: the command exits 0, confirming `improvement-config.json` is va
 - [`scripts/agent-improvement README`](../../scripts/README.md)
 - [`model-benchmark README`](../../scripts/model-benchmark/README.md)
 - [`deep-improvement SKILL.md`](../../SKILL.md)
-- [`Authoring: agent-improvement-authoring-guide.md`](../../../../sk-doc/create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md) — how to author these Lane A inputs (create-benchmark). The rubric, config schema, and run logic stay here in-lane and are cross-linked, never relocated.
+- [`Authoring: agent-improvement-authoring-guide.md`](../../../../sk-doc/sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md) — how to author these Lane A inputs (create-benchmark). The rubric, config schema, and run logic stay here in-lane and are cross-linked, never relocated.

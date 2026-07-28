@@ -2,21 +2,21 @@
 id: SD-003
 category: intent_detection
 title: 'AGENT_COMMAND intent: author paired @agent and /create command'
-expected_intent: create-agent+create-command
+expected_intent: sk-create-agent+sk-create-command
 expected_resources:
-  - create-agent/references/README.md
-  - create-agent/assets/agent-template.md
-  - create-command/references/README.md
-  - create-command/assets/command-template.md
-expected_workflow_mode: create-agent+create-command
+  - sk-create-agent/references/README.md
+  - sk-create-agent/assets/agent-template.md
+  - sk-create-command/references/README.md
+  - sk-create-command/assets/command-template.md
+expected_workflow_mode: sk-create-agent+sk-create-command
 expected_leaf_resources:
-  - workflow_mode: create-agent
+  - workflow_mode: sk-create-agent
     leaf_resource_id: references/README.md
-  - workflow_mode: create-agent
+  - workflow_mode: sk-create-agent
     leaf_resource_id: assets/agent-template.md
-  - workflow_mode: create-command
+  - workflow_mode: sk-create-command
     leaf_resource_id: references/README.md
-  - workflow_mode: create-command
+  - workflow_mode: sk-create-command
     leaf_resource_id: assets/command-template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000

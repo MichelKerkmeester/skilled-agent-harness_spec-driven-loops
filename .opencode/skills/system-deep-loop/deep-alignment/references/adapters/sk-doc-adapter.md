@@ -40,7 +40,7 @@ Four real, already-shipping sk-doc sources, cited with exact line numbers so thi
 
 1. `.opencode/skills/sk-doc/scripts/validate_document.py`: template/format validator. CLI usage block at lines 12-27. Exit codes at lines 18-20 (`0` valid, `1` invalid/blocking, `2` file-not-found/parse-error). `--type` choices at line 826 (`readme|skill|reference|asset|agent|command|install_guide|spec|changelog`). `--json` flag always prints machine-readable output regardless of the error/skip/normal path (lines 844-897).
 2. `.opencode/skills/sk-doc/scripts/extract_structure.py`: Document Quality Index. `detect_document_type()` at lines 617-653. `calculate_dqi()` at line 940. DQI formula at line 951 ("Structure (40pts), Content (30pts), Style (30pts) = 100pts total"). CLI at lines 1234-1256, always prints JSON to stdout, exits `1` only when the result carries an `error` key (lines 1251-1252), `0` otherwise.
-3. The `create-skill` templates under `.opencode/skills/sk-doc/create-skill/assets/` and `.opencode/skills/sk-doc/create-skill/references/`: the authored-document shape reference.
+3. The `create-skill` templates under `.opencode/skills/sk-doc/sk-create-skill/assets/` and `.opencode/skills/sk-doc/sk-create-skill/references/`: the authored-document shape reference.
 4. `.opencode/skills/sk-doc/shared/references/core-standards.md`: filename conventions (Section 2), document-type detection priority order (Section 3), structural validation rules (Sections 4-7).
 
 Explicitly **not wrapped** by this adapter (out of this phase's scope, per `spec.md` Out of Scope): `.opencode/skills/sk-doc/scripts/quick_validate.py` (filename-casing enforcement lives there, not in either wrapped script. See `sk-doc-known-deviations.md` Section 4's Live-Reality Check).
@@ -59,8 +59,8 @@ Explicitly **not wrapped** by this adapter (out of this phase's scope, per `spec
     dqi:                 { tool: 'extract_structure.py',  path: '<repo>/.opencode/skills/sk-doc/scripts/extract_structure.py' },
   },
   templates: {
-    assetsDir:     '<repo>/.opencode/skills/sk-doc/create-skill/assets',
-    referencesDir: '<repo>/.opencode/skills/sk-doc/create-skill/references',
+    assetsDir:     '<repo>/.opencode/skills/sk-doc/sk-create-skill/assets',
+    referencesDir: '<repo>/.opencode/skills/sk-doc/sk-create-skill/references',
   },
   standardsDoc: '<repo>/.opencode/skills/sk-doc/shared/references/core-standards.md',
   knownDeviations: [ /* parsed from sk-doc-known-deviations.md Section 8 */ ],

@@ -36,7 +36,7 @@ const path = require('path');
 const REPO_ROOT = findRepoRoot(__dirname);
 const CONTRACT_PATH = path.join(
   REPO_ROOT,
-  '.opencode/skills/sk-doc/create-command/assets/command-contract.json'
+  '.opencode/skills/sk-doc/sk-create-command/assets/command-contract.json'
 );
 const COMMANDS_DIR = path.join(REPO_ROOT, '.opencode/commands');
 

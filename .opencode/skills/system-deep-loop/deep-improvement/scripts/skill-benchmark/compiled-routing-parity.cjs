@@ -62,7 +62,7 @@ const { spawnSync } = require('child_process');
 // compiled qualified id to the manifest mode that declares its leaves. Consumed,
 // never redefined, so this harness and the drift guards agree byte for byte.
 const { qualifiedIdToLeaf } = require(
-  path.join(__dirname, '..', '..', '..', '..', 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
+  path.join(__dirname, '..', '..', '..', '..', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
 );
 
 // The frozen evaluator is the sole authority for legacy route-gold scoring. It
@@ -91,8 +91,8 @@ const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-stat
 // be scored against a scorer that changed mid-flight. These are the same digests
 // the activation driver refuses to run without.
 const PINNED_FROZEN_SCORER_DIGESTS = Object.freeze({
-  'router-replay.cjs': '141250811e33ca750687199c94155d4810034d83252132e333e2abf73c31dc7b',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
   'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
 });
 

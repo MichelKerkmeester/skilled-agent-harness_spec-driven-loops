@@ -2,21 +2,21 @@
 id: SD-H07
 category: holdout
 title: 'Independent holdout — DOC_QUALITY (keyword-blind)'
-expected_intent: create-quality-control
+expected_intent: sk-create-quality-control
 expected_resources:
   - shared/references/validation.md
-  - create-quality-control/references/workflows.md
+  - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-expected_workflow_mode: create-quality-control
+expected_workflow_mode: sk-create-quality-control
 expected_leaf_resources:
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/core-standards.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
 stage: holdout
 created: 2026-07-16

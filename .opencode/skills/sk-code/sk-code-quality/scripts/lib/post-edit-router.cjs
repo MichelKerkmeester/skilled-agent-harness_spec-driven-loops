@@ -34,7 +34,7 @@ const { spawnSync } = require('node:child_process');
 // under sk-doc.
 const CHECKER_RELATIVE_PATHS = {
   commentHygiene: '.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh',
-  flowchart: '.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh',
+  flowchart: '.opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh',
   frontmatterVersions: '.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
   placeholders: '.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh',
   wikilinks: '.opencode/skills/system-spec-kit/scripts/rules/check-links.sh',

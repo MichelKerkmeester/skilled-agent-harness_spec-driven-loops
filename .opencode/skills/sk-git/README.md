@@ -224,7 +224,7 @@ The skill ships a manual testing playbook (41 scenarios across 7 categories) and
 
 | Check | How to run it |
 |---|---|
-| Skill packaging and structure | `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
+| Skill packaging and structure | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-git --check` reports `PASS` (snake_case findings on `references/`/`assets/` are advisory ahead of the hyphen-naming program) |
 | Allocator behavior | `bash .opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` ends in `FAIL=0` |
 | Live behavior | Run the playbook scenarios under `manual-testing-playbook/<topic>/` in a live session |
 

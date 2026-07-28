@@ -134,7 +134,7 @@ field_handling:
 
   defaults:
     output_format: "markdown file containing a fenced text flowchart"
-    validator_command: "bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]"
+    validator_command: "bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]"
     spec_path_from_phase: "FROM USER CHOICE IN SETUP PHASE, if documentation is requested"
 
 input_contract:
@@ -161,24 +161,24 @@ documentation_level:
 # FLOWCHART CREATION RESOURCES
 # -----------------------------------------------------------------
 flowchart_resources:
-  skill_contract: .opencode/skills/sk-doc/create-flowchart/SKILL.md
+  skill_contract: .opencode/skills/sk-doc/sk-create-flowchart/SKILL.md
 
 flowchart_scripts:
-  validate_flowchart: .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh
+  validate_flowchart: .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh
 
 flowchart_references:
-  route_map: .opencode/skills/sk-doc/create-flowchart/references/README.md
-  notation_and_validator: .opencode/skills/sk-doc/create-flowchart/references/notation-and-validator.md
-  pattern_selection: .opencode/skills/sk-doc/create-flowchart/references/pattern-selection.md
-  worked_example: .opencode/skills/sk-doc/create-flowchart/references/worked-example.md
+  route_map: .opencode/skills/sk-doc/sk-create-flowchart/references/README.md
+  notation_and_validator: .opencode/skills/sk-doc/sk-create-flowchart/references/notation-and-validator.md
+  pattern_selection: .opencode/skills/sk-doc/sk-create-flowchart/references/pattern-selection.md
+  worked_example: .opencode/skills/sk-doc/sk-create-flowchart/references/worked-example.md
 
 flowchart_patterns:
-  linear: .opencode/skills/sk-doc/create-flowchart/assets/simple-workflow.md
-  decision: .opencode/skills/sk-doc/create-flowchart/assets/decision-tree-flow.md
-  parallel: .opencode/skills/sk-doc/create-flowchart/assets/parallel-execution.md
-  approval: .opencode/skills/sk-doc/create-flowchart/assets/approval-workflow-loops.md
-  swimlane: .opencode/skills/sk-doc/create-flowchart/assets/system-architecture-swimlane.md
-  journey: .opencode/skills/sk-doc/create-flowchart/assets/user-onboarding.md
+  linear: .opencode/skills/sk-doc/sk-create-flowchart/assets/simple-workflow.md
+  decision: .opencode/skills/sk-doc/sk-create-flowchart/assets/decision-tree-flow.md
+  parallel: .opencode/skills/sk-doc/sk-create-flowchart/assets/parallel-execution.md
+  approval: .opencode/skills/sk-doc/sk-create-flowchart/assets/approval-workflow-loops.md
+  swimlane: .opencode/skills/sk-doc/sk-create-flowchart/assets/system-architecture-swimlane.md
+  journey: .opencode/skills/sk-doc/sk-create-flowchart/assets/user-onboarding.md
 
 # -----------------------------------------------------------------
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -377,30 +377,30 @@ workflow:
   step_3_pattern_selection:
     purpose: Select the closest flowchart pattern and plan notation
     activities:
-    - Load .opencode/skills/sk-doc/create-flowchart/SKILL.md
-    - Load .opencode/skills/sk-doc/create-flowchart/references/pattern-selection.md when workflow shape needs comparison
+    - Load .opencode/skills/sk-doc/sk-create-flowchart/SKILL.md
+    - Load .opencode/skills/sk-doc/sk-create-flowchart/references/pattern-selection.md when workflow shape needs comparison
     - Select exactly one closest pattern from flowchart_patterns
     - Read the selected pattern asset before drafting
-    - Load .opencode/skills/sk-doc/create-flowchart/references/notation-and-validator.md for validation-sensitive notation rules
+    - Load .opencode/skills/sk-doc/sk-create-flowchart/references/notation-and-validator.md for validation-sensitive notation rules
     - Plan branch labels, connector style, box width strategy, and terminal states
     pattern_selection:
       linear:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/simple-workflow.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/simple-workflow.md
         use_case: "single primary path with little branching"
       decision:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/decision-tree-flow.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/decision-tree-flow.md
         use_case: "branching logic, validation, retries, fallback outcomes"
       parallel:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/parallel-execution.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/parallel-execution.md
         use_case: "fan-out, concurrent work, fan-in, aggregate gates"
       approval:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/approval-workflow-loops.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/approval-workflow-loops.md
         use_case: "review, revision, sign-off, escalation"
       swimlane:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/system-architecture-swimlane.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/system-architecture-swimlane.md
         use_case: "request or data movement across layers or services"
       journey:
-        asset: .opencode/skills/sk-doc/create-flowchart/assets/user-onboarding.md
+        asset: .opencode/skills/sk-doc/sk-create-flowchart/assets/user-onboarding.md
         use_case: "user-facing milestones, validation, support, completion"
     outputs:
     - pattern_asset_selected
@@ -430,7 +430,7 @@ workflow:
       ```
 
       Validation:
-      - `bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]` -> [result]
+      - `bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]` -> [result]
     quality_requirements:
       source_fidelity: "diagram reflects only real or explicitly UNKNOWN process facts"
       notation: "consistent ASCII or box-drawing style"
@@ -446,13 +446,13 @@ workflow:
     purpose: Packet-local flowchart validation and quality checks
     enforcement: HARD_BLOCK
     activities:
-    - Run .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh against target_flowchart_path
+    - Run .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh against target_flowchart_path
     - Verify validator exits 0 before delivery
     - If validation fails, fix issues and re-run
     - Address warnings when practical as readability defects
     - Repeat until passing or report the exact validator failure if it cannot run
     validation_command: |
-      bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]
+      bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]
     quality_gates:
       validator_exit: "must be 0 before clean delivery"
       connector_presence: "boxes must have arrows or branch markers"
@@ -507,9 +507,9 @@ workflow:
     validation: delivery_ready
 
     validation_evidence:
-      validator: .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh
+      validator: .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh
       invocation: |
-        bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]
+        bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target_flowchart_path]
       critical_note: "Run the packet-local validator directly before delivery. Do not claim a clean validation result if the command fails or cannot run."
       when: "Immediately after the flowchart markdown file is written or edited"
 
@@ -587,7 +587,7 @@ quality_standards:
     stage_3: "Box-width, nesting, and size checks"
     stage_4: "Readability and source-fidelity review"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/create-flowchart/SKILL.md"
+  core_standards_reference: ".opencode/skills/sk-doc/sk-create-flowchart/SKILL.md"
 
 # -----------------------------------------------------------------
 # COMPLETION REPORT TEMPLATE
@@ -607,7 +607,7 @@ completion_report:
     - Unknowns: [unknowns-or-none]
 
     Validation:
-    - Command: bash .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh [target-flowchart-path]
+    - Command: bash .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh [target-flowchart-path]
     - Result: PASSED
 
     Output:

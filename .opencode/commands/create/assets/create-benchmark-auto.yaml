@@ -194,22 +194,22 @@ operation_router:
       - assets/conformance-benchmark/BENCHMARK-ID/fixtures/fixture-manifest.json
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/create-benchmark/SKILL.md
-  reference_map: .opencode/skills/sk-doc/create-benchmark/references/shared/README.md
-  case_studies: .opencode/skills/sk-doc/create-benchmark/references/shared/case-studies.md
-  pitfalls: .opencode/skills/sk-doc/create-benchmark/references/shared/pitfalls.md
-  worked_example: .opencode/skills/sk-doc/create-benchmark/references/shared/worked-example.md
-  conformance_guide: .opencode/skills/sk-doc/create-benchmark/references/conformance-benchmark/conformance-benchmark-authoring-guide.md
+  specific_creation: .opencode/skills/sk-doc/sk-create-benchmark/SKILL.md
+  reference_map: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md
+  case_studies: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
+  pitfalls: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
+  worked_example: .opencode/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
+  conformance_guide: .opencode/skills/sk-doc/sk-create-benchmark/references/conformance-benchmark/conformance-benchmark-authoring-guide.md
   core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  benchmark_report: .opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md
-  source_file: .opencode/skills/sk-doc/create-benchmark/assets/shared/source-template.md
-  conformance_readme: .opencode/skills/sk-doc/create-benchmark/assets/conformance-benchmark/conformance-benchmark-readme-template.md
-  conformance_contract: .opencode/skills/sk-doc/create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md
-  conformance_lane_config: .opencode/skills/sk-doc/create-benchmark/assets/conformance-benchmark/conformance-benchmark-lane-config-template.md
-  conformance_fixture_manifest: .opencode/skills/sk-doc/create-benchmark/assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md
+  benchmark_report: .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md
+  source_file: .opencode/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md
+  conformance_readme: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-readme-template.md
+  conformance_contract: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md
+  conformance_lane_config: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-lane-config-template.md
+  conformance_fixture_manifest: .opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/shared/scripts/validate_document.py

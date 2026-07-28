@@ -162,6 +162,6 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 
 ## 8. RELATED RESOURCES
 
-- Pattern: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
+- Pattern: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` (parent-skill hub + nested packets, the one-graph-metadata invariant).
 - Sibling example: `.opencode/skills/sk-design/` (the same invokable-hub + `mode-registry.json` Option E pattern).
 - Registry: `mode-registry.json` (this hub's routing contract).

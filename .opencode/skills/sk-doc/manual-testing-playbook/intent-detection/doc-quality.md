@@ -2,21 +2,21 @@
 id: SD-001
 category: intent_detection
 title: 'DOC_QUALITY intent: validate documentation quality for a skill'
-expected_intent: create-quality-control
+expected_intent: sk-create-quality-control
 expected_resources:
   - shared/references/validation.md
-  - create-quality-control/references/workflows.md
+  - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-expected_workflow_mode: create-quality-control
+expected_workflow_mode: sk-create-quality-control
 expected_leaf_resources:
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/core-standards.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 800-2500
@@ -69,7 +69,7 @@ Validate documentation quality for skill X and report which sections fail sk-doc
 - **Intent picked**: `DOC_QUALITY`
 - **Resources loaded**:
   - `references/validation.md`
-  - `create-quality-control/references/workflows.md`
+  - `sk-create-quality-control/references/workflows.md`
   - `references/core-standards.md`
   - `references/evergreen-packet-id-rule.md`
 - **Outcome**: CLI loads only the four global references above and produces a non-empty validation-style response (DQI checklist or per-section findings) referencing at least one of those resources.

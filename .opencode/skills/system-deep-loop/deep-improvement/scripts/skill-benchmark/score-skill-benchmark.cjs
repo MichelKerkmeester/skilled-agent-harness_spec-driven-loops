@@ -1203,7 +1203,7 @@ function buildLiveEvidence(obs) {
 // fixture with no typed gold, never enters this path at all.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TOPOLOGY_VALIDATOR_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'create-skill', 'scripts', 'validate-playbook-topology.cjs');
+const TOPOLOGY_VALIDATOR_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'sk-create-skill', 'scripts', 'validate-playbook-topology.cjs');
 let cachedTopologyValidator;
 function loadTopologyValidator() {
   if (cachedTopologyValidator !== undefined) return cachedTopologyValidator;

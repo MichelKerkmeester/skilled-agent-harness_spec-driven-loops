@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["create-quality-control", "create-skill", "create-skill-parent", "create-readme", "create-agent", "create-command", "create-feature-catalog", "create-manual-testing-playbook", "create-benchmark", "create-flowchart", "create-changelog", "create-diff"],
+    "tieBreak": ["sk-create-quality-control", "sk-create-skill", "sk-create-skill-parent", "sk-create-readme", "sk-create-agent", "sk-create-command", "sk-create-feature-catalog", "sk-create-manual-testing-playbook", "sk-create-benchmark", "sk-create-flowchart", "sk-create-changelog", "sk-create-diff"],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
@@ -14,24 +14,24 @@
     "bundleRules": [
       {
         "name": "create-then-quality",
-        "whenAll": ["create-skill", "create-quality-control"],
+        "whenAll": ["sk-create-skill", "sk-create-quality-control"],
         "outcome": "orderedBundle"
       }
     ]
   },
   "routerSignals": {
-    "create-skill": { "weight": 4, "classes": ["create-skill-aliases"], "resources": ["create-skill/SKILL.md"] },
-    "create-skill-parent": { "weight": 4, "classes": ["create-skill-parent-aliases"], "resources": ["create-skill/SKILL.md"] },
-    "create-readme": { "weight": 4, "classes": ["create-readme-aliases"], "resources": ["create-readme/SKILL.md"] },
-    "create-agent": { "weight": 4, "classes": ["create-agent-aliases"], "resources": ["create-agent/SKILL.md"] },
-    "create-command": { "weight": 3, "classes": ["create-command-aliases"], "resources": ["create-command/SKILL.md"] },
-    "create-feature-catalog": { "weight": 4, "classes": ["create-feature-catalog-aliases"], "resources": ["create-feature-catalog/SKILL.md"] },
-    "create-manual-testing-playbook": { "weight": 4, "classes": ["create-manual-testing-playbook-aliases"], "resources": ["create-manual-testing-playbook/SKILL.md"] },
-    "create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases"], "resources": ["create-benchmark/SKILL.md"] },
-    "create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases"], "resources": ["create-flowchart/SKILL.md"] },
-    "create-changelog": { "weight": 3, "classes": ["create-changelog-aliases"], "resources": ["create-changelog/SKILL.md"] },
-    "create-diff": { "weight": 3, "classes": ["create-diff-aliases"], "resources": ["create-diff/SKILL.md"] },
-    "create-quality-control": { "weight": 4, "classes": ["create-quality-control-aliases", "quality-actions"], "resources": ["create-quality-control/SKILL.md"] }
+    "sk-create-skill": { "weight": 4, "classes": ["create-skill-aliases"], "resources": ["sk-create-skill/SKILL.md"] },
+    "sk-create-skill-parent": { "weight": 4, "classes": ["create-skill-parent-aliases"], "resources": ["sk-create-skill/SKILL.md"] },
+    "sk-create-readme": { "weight": 4, "classes": ["create-readme-aliases"], "resources": ["sk-create-readme/SKILL.md"] },
+    "sk-create-agent": { "weight": 4, "classes": ["create-agent-aliases"], "resources": ["sk-create-agent/SKILL.md"] },
+    "sk-create-command": { "weight": 3, "classes": ["create-command-aliases"], "resources": ["sk-create-command/SKILL.md"] },
+    "sk-create-feature-catalog": { "weight": 4, "classes": ["create-feature-catalog-aliases"], "resources": ["sk-create-feature-catalog/SKILL.md"] },
+    "sk-create-manual-testing-playbook": { "weight": 4, "classes": ["create-manual-testing-playbook-aliases"], "resources": ["sk-create-manual-testing-playbook/SKILL.md"] },
+    "sk-create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases"], "resources": ["sk-create-benchmark/SKILL.md"] },
+    "sk-create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases"], "resources": ["sk-create-flowchart/SKILL.md"] },
+    "sk-create-changelog": { "weight": 3, "classes": ["create-changelog-aliases"], "resources": ["sk-create-changelog/SKILL.md"] },
+    "sk-create-diff": { "weight": 3, "classes": ["create-diff-aliases"], "resources": ["sk-create-diff/SKILL.md"] },
+    "sk-create-quality-control": { "weight": 4, "classes": ["create-quality-control-aliases", "quality-actions"], "resources": ["sk-create-quality-control/SKILL.md"] }
   },
   "vocabularyClasses": {
     "quality-actions": { "keywords": ["validate", "score", "optimize", "check", "review", "harden", "audit"] },

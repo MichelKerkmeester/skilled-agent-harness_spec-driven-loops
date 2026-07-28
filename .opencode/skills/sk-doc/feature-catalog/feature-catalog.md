@@ -56,4 +56,4 @@ The directive is on by default for `sk-doc`, one of the seven activated hubs: wi
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing. `create-diff` already owns a per-packet child-mode catalog (`create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+Note: this catalog documents `sk-doc`'s own hub-level routing. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

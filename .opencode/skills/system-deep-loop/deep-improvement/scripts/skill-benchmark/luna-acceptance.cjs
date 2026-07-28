@@ -90,8 +90,8 @@ const SCENARIO_MAP = Object.freeze({
     holdout: { id: 'LUNA-SDG-H', prompt: 'Turn this live website into a documented design-system file capturing its colors, type, and spacing as tokens.', goldMode: 'md-generator', matchTokens: ['md-generator', 'design-md', 'DESIGN.md'] },
   },
   'sk-doc': {
-    routing: { id: 'LUNA-SD-R', prompt: 'Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.', goldMode: 'create-skill', matchTokens: ['create-skill'] },
-    holdout: { id: 'LUNA-SD-H', prompt: 'I want to scaffold a brand-new reusable skill component with its main definition file and starter references.', goldMode: 'create-skill', matchTokens: ['create-skill'] },
+    routing: { id: 'LUNA-SD-R', prompt: 'Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.', goldMode: 'sk-create-skill', matchTokens: ['sk-create-skill'] },
+    holdout: { id: 'LUNA-SD-H', prompt: 'I want to scaffold a brand-new reusable skill component with its main definition file and starter references.', goldMode: 'sk-create-skill', matchTokens: ['sk-create-skill'] },
   },
 });
 

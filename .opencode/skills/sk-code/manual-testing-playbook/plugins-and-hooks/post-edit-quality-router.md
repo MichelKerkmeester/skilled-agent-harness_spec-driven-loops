@@ -288,7 +288,7 @@ Checker-path existence check (all six canonical paths `post-edit-router.cjs` dis
 
 ```text
 OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh
-OK  .opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh
+OK  .opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh
 OK  .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
 OK  .opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh
 OK  .opencode/skills/system-spec-kit/scripts/rules/check-links.sh
@@ -341,7 +341,7 @@ directories; it made no edits to any source file.
 - Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
 - Checkers dispatched by the router:
   - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
-  - `.opencode/skills/sk-doc/create-flowchart/scripts/validate-flowchart.sh`
+  - `.opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh`
   - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
   - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
   - `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh`

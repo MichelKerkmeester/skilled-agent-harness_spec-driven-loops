@@ -139,4 +139,4 @@ This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advis
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
 - Packets: `prompt-improve/`, `prompt-models/`.
-- Parent-skill pattern: `sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- Parent-skill pattern: `sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.

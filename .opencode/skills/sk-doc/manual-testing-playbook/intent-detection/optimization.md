@@ -2,15 +2,15 @@
 id: SD-016
 category: intent_detection
 title: 'OPTIMIZATION intent: rewrite a doc for token efficiency / llms.txt generation'
-expected_intent: create-quality-control
+expected_intent: sk-create-quality-control
 expected_resources:
-  - create-quality-control/references/optimization.md
+  - sk-create-quality-control/references/optimization.md
   - shared/assets/llmstxt-templates.md
-expected_workflow_mode: create-quality-control
+expected_workflow_mode: sk-create-quality-control
 expected_leaf_resources:
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/optimization.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: assets/llmstxt-templates.md
 expected_token_range_input: 800-2500
 expected_token_range_output: 800-2500
@@ -62,7 +62,7 @@ Optimize this long SKILL.md for token efficiency and generate an llms.txt summar
 
 - **Intent picked**: `OPTIMIZATION`
 - **Resources loaded**:
-  - `create-quality-control/references/optimization.md`
+  - `sk-create-quality-control/references/optimization.md`
   - `assets/llmstxt-templates.md`
 - **Outcome**: CLI loads only the two optimization-specific resources and produces a structured response describing token-compression strategies + an llms.txt scaffold suggestion.
 

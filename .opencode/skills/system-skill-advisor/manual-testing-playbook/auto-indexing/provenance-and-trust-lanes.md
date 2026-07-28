@@ -152,8 +152,8 @@ Target skill metadata read from `.opencode/skills/sk-doc/graph-metadata.json`:
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/skills/sk-doc/shared/references/validation.md",
-      ".opencode/skills/sk-doc/create-skill/references/README.md",
-      ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/README.md",
+      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/scripts/extract_structure.py",
       ".opencode/skills/sk-doc/shared/assets/template-rules.json"
@@ -213,10 +213,10 @@ Local docs/assets source check returned paths including:
 
 ```text
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/assets/frontmatter-templates.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/validation.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-skill/references/README.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/create-readme/references/README.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-skill/references/README.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-readme/references/README.md
 ```
 
 The scenario command below was not run because this manual execution was constrained to write only this scenario file, and `touch` would modify `.opencode/skills/sk-doc/SKILL.md` metadata:

@@ -40,4 +40,4 @@ Fixture: `fixtures/fx-004-improvement-target` (a deliberately weak toy agent
 
 ## RELATED RESOURCES
 
-> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.
+> Authoring: [`create-benchmark` behavior-benchmark guide](../../../sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md) owns the templates and authoring guide for this `behavior_benchmark` package, while the framework and scoring stay lane-owned here.

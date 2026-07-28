@@ -200,11 +200,11 @@ operation_profiles:
     objective: "Create or update one asset document"
 
 template_sources:
-  skill_md: .opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md
-  skill_reference: .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md
-  skill_asset: .opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md
-  skill_smart_router: .opencode/skills/sk-doc/create-skill/assets/skill/skill-smart-router.md
-  skill_readme: .opencode/skills/sk-doc/create-skill/assets/skill/skill-readme-template.md
+  skill_md: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
+  skill_reference: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
+  skill_asset: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
+  skill_smart_router: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
+  skill_readme: .opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
 
 frontmatter_contract:
   rule: "Every authored .md ships frontmatter from its template before completion."

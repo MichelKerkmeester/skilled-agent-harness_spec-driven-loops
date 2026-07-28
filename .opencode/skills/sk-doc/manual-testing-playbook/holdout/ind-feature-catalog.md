@@ -2,12 +2,12 @@
 id: SD-H13
 category: holdout
 title: 'Independent holdout — FEATURE_CATALOG (keyword-blind)'
-expected_intent: create-feature-catalog
+expected_intent: sk-create-feature-catalog
 expected_resources:
-  - create-feature-catalog/references/README.md
-expected_workflow_mode: create-feature-catalog
+  - sk-create-feature-catalog/references/README.md
+expected_workflow_mode: sk-create-feature-catalog
 expected_leaf_resources:
-  - workflow_mode: create-feature-catalog
+  - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/README.md
 stage: holdout
 created: 2026-07-16

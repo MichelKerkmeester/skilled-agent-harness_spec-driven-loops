@@ -3,13 +3,13 @@ id: SD-018
 category: agent_dispatch
 title: '@markdown agent dispatch via cli-claude-code'
 execution_mode: dispatch_real
-expected_intent: create-changelog
+expected_intent: sk-create-changelog
 expected_agent: '@markdown'
 expected_resources:
   - shared/assets/changelog-template.md
-expected_workflow_mode: create-changelog
+expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
-  - workflow_mode: create-changelog
+  - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 expected_token_range_input: 400-1500
 expected_token_range_output: 1500-4000
@@ -78,7 +78,7 @@ test -f /tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md && \
 - **Executor**: `@markdown` agent (Phase 0 verification text appears verbatim in transcript)
 - **Resources loaded**:
   - `.opencode/skills/sk-doc/shared/assets/changelog-template.md`
-  - `.opencode/skills/sk-doc/create-changelog/references/README.md`
+  - `.opencode/skills/sk-doc/sk-create-changelog/references/README.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md`.
 
 ## Cross-CLI Variants

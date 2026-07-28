@@ -115,10 +115,10 @@
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-doc/description.json",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
-      ".opencode/skills/sk-doc/create-changelog/SKILL.md",
-      ".opencode/skills/sk-doc/create-diff/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/sk-doc/shared/scripts/extract_structure.py"
     ],
@@ -142,27 +142,27 @@
         "source": "derived"
       },
       {
-        "name": "create-skill",
+        "name": "sk-create-skill",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "create-quality-control",
+        "name": "sk-create-quality-control",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "create-changelog",
+        "name": "sk-create-changelog",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/create-changelog/SKILL.md",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "create-diff",
+        "name": "sk-create-diff",
         "kind": "reference",
-        "path": ".opencode/skills/sk-doc/create-diff/SKILL.md",
+        "path": ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
         "source": "derived"
       },
       {
@@ -178,17 +178,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets (create-skill/-parent, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-diff, create-quality-control). The universal create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-flowchart, sk-create-changelog, sk-create-diff, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
     "source_docs": [
       "SKILL.md",
       "README.md",
       "mode-registry.json",
       "hub-router.json",
       "description.json",
-      "create-skill/SKILL.md",
-      "create-quality-control/SKILL.md",
-      "create-changelog/SKILL.md",
-      "create-diff/SKILL.md"
+      "sk-create-skill/SKILL.md",
+      "sk-create-quality-control/SKILL.md",
+      "sk-create-changelog/SKILL.md",
+      "sk-create-diff/SKILL.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-07-14T00:00:00Z"

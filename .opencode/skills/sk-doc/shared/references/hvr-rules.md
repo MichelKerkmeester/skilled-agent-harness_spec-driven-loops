@@ -498,13 +498,13 @@ pre_publish_checklist:
 |----------|----------|-------|
 | Implementation Summary | `.opencode/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
 | Decision Record | `.opencode/skills/system-spec-kit/templates/level-3*/decision-record.md` | Clear rationale, no hedging, active voice |
-| README | `.opencode/skills/sk-doc/create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
-| Install Guide | `.opencode/skills/sk-doc/create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
+| README | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
+| Install Guide | `.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
 
 ### Standards
 - [core-standards.md](./core-standards.md) - Document formatting standards
 - [sk-doc SKILL.md](../../SKILL.md) - Parent skill with HVR enforcement rules
 
 ### Creation Guides
-- [references/README.md](../../create-readme/references/README.md) - README creation workflow and standards
-- [references/README.md](../../create-readme/references/README.md) - Install guide creation workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow and standards
+- [references/README.md](../../sk-create-readme/references/README.md) - Install guide creation workflow

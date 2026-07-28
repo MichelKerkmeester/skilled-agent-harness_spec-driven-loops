@@ -188,7 +188,7 @@ function buildRegistryIndex(skillRoot) {
 // leaf-manifest.json today; buildResourceContract() below is a pure no-op for
 // every skill that lacks one, so requiring this fixed path never touches a
 // benchmark run for any other skill.
-const CONTRACT_LIB_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+const CONTRACT_LIB_PATH = path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
 let cachedContractLib;
 function loadContractLib() {
   if (cachedContractLib !== undefined) return cachedContractLib;

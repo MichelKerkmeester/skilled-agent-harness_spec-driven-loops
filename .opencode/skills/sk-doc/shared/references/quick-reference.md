@@ -354,22 +354,22 @@ Validation note: the current validator checks the root playbook and does not rec
 ### Reference Files
 - [core-standards.md](./core-standards.md) - Document type rules and structural requirements
 - [validation.md](./validation.md) - Quality scoring and validation workflows
-- [optimization.md](../../create-quality-control/references/optimization.md) - Content transformation patterns
-- [workflows.md](../../create-quality-control/references/workflows.md) - Execution modes and workflows
-- [skill-creation.md](../../create-skill/references/README.md) - Skill creation workflow
-- [references/README.md](../../create-agent/references/README.md) - Agent authority, permissions, and creation workflow
-- [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
-- [references/README.md](../../create-feature-catalog/references/README.md) - Feature catalog standards and workflow
-- [references/README.md](../../create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
+- [optimization.md](../../sk-create-quality-control/references/optimization.md) - Content transformation patterns
+- [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution modes and workflows
+- [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
+- [references/README.md](../../sk-create-agent/references/README.md) - Agent authority, permissions, and creation workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - Install guide standards and workflow
+- [references/README.md](../../sk-create-feature-catalog/references/README.md) - Feature catalog standards and workflow
+- [references/README.md](../../sk-create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
 
 ### Templates
-- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
 - [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter by document type
-- [command-template.md](../../create-command/assets/command-template.md) - Command file templates
-- [feature-catalog-template.md](../../create-feature-catalog/assets/feature-catalog-template.md) - Feature catalog template
-- [feature-catalog-snippet-template.md](../../create-feature-catalog/assets/feature-catalog-snippet-template.md) - Per-feature catalog template
-- [manual-testing-playbook-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-template.md) - Playbook creation template
-- [manual-testing-playbook-snippet-template.md](../../create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md) - Per-feature snippet template
+- [command-template.md](../../sk-create-command/assets/command-template.md) - Command file templates
+- [feature-catalog-template.md](../../sk-create-feature-catalog/assets/feature-catalog-template.md) - Feature catalog template
+- [feature-catalog-snippet-template.md](../../sk-create-feature-catalog/assets/feature-catalog-snippet-template.md) - Per-feature catalog template
+- [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md) - Playbook creation template
+- [manual-testing-playbook-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md) - Per-feature snippet template
 
 ### Related Skills
 - `git-commit` - Git commit workflows

@@ -29,7 +29,7 @@ Validation provides a comprehensive quality assessment framework for markdown do
 - **Improvement guidance** - Actionable recommendations based on AI analysis
 - **Checklist validation** - Automated structural checks via script
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../create-skill/references/shared/overview.md#3-skill-structure-system).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
@@ -528,17 +528,17 @@ fi
 
 ### Reference Files
 - [core-standards.md](./core-standards.md) - Document type rules and structural requirements
-- [workflows.md](../../create-quality-control/references/workflows.md) - Execution modes and workflow details
-- [optimization.md](../../create-quality-control/references/optimization.md) - Content transformation patterns
+- [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution modes and workflow details
+- [optimization.md](../../sk-create-quality-control/references/optimization.md) - Content transformation patterns
 - [quick-reference.md](./quick-reference.md) - Quick command reference
-- [skill-creation.md](../../create-skill/references/README.md) - Skill creation workflow
-- [references/README.md](../../create-readme/references/README.md) - Install guide standards and workflow
+- [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
+- [references/README.md](../../sk-create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
-- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
-- [skill-asset-template.md](../../create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
-- [readme-template.md](../../create-readme/assets/readme-template.md) - Comprehensive README guide (13 sections)
-- [command-template.md](../../create-command/assets/command-template.md) - Command creation guide (19 sections)
-- [install-guide-template.md](../../create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-asset-template.md](../../sk-create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
+- [readme-template.md](../../sk-create-readme/assets/readme-template.md) - Comprehensive README guide (13 sections)
+- [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide (19 sections)
+- [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
 - [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)

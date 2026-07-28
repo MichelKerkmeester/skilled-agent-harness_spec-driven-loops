@@ -174,7 +174,7 @@ A: No. It is a transport with `mutatesWorkspace: false`: Write, Edit, and Task a
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-mobbin --check` reports zero errors |
+| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-mobbin --check` reports zero errors |
 | SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md` shows `name: mcp-mobbin`, a `description`, and `version: 1.1.0.0` |
 | Wiring state | `bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/doctor.sh` reports `OK 'mobbin' manual registered` plus the bridge shape (absence would be ERR) |
 | Install posture | `bash .opencode/skills/mcp-tooling/mcp-mobbin/scripts/install.sh` verifies Node 18+/npx and the registered manual, then points at the operator-only OAuth step |

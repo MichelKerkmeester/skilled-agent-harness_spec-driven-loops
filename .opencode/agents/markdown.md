@@ -189,18 +189,18 @@ Read `sk-doc` first, then read the matching template before writing.
 
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/create-agent/assets/agent-template.md`                                                                                               |
-| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md` and, when needed, `.opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md` |
-| `/create:skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`) | `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md` and `.opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json` |
-| `/create:feature-catalog`  | `feature-catalog/` package                              | `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
-| `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
-| `/create:readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/create-readme/assets/readme-template.md`                                                                                       |
+| `/create:agent`            | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                                                                               |
+| `/create:skill`         | New skill `SKILL.md` or doc-only skill resource         | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` and, when needed, `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
+| `/create:skill-parent`     | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`) | `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` and `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-registry-template.json` |
+| `/create:feature-catalog`  | `feature-catalog/` package                              | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
+| `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
+| `/create:readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                                                                                       |
 | `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/shared/assets/changelog-template.md`                                                                                           |
-| `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/create-command/assets/command-template.md`                                                                      |
-| `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
-| `/create:flowchart`        | Validated ASCII flowchart markdown                      | `.opencode/skills/sk-doc/create-flowchart/assets/` (pattern templates)                                                                |
+| `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
+| `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
+| `/create:flowchart`        | Validated ASCII flowchart markdown                      | `.opencode/skills/sk-doc/sk-create-flowchart/assets/` (pattern templates)                                                                |
 | `spec-doc`                 | Spec folder documentation                               | `.opencode/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
-| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
+| `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
 
 If the command or markdown workflow asks for a template not listed here and no existing document structure applies, return:
 
@@ -291,11 +291,11 @@ Treat hook-injected skill-advisor recommendations as routing hints only. They ne
 | Resource                                                                              | Purpose                                                            |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | `.opencode/skills/sk-doc/SKILL.md`                                                    | Required skill routing and documentation creation standards        |
-| `.opencode/skills/sk-doc/create-agent/assets/agent-template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
-| `.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:skill`                     |
-| `.opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
-| `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |
-| `.opencode/skills/sk-doc/create-readme/assets/readme-template.md`                            | README template for `/create:readme`                        |
+| `.opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md`                                    | Production agent structure, BINDING, REFUSE, and summary contracts |
+| `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md`                           | Skill creation template for `/create:skill`                     |
+| `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
+| `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |
+| `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                            | README template for `/create:readme`                        |
 | `.opencode/skills/sk-doc/shared/assets/changelog-template.md`                                | Changelog template for `/create:changelog`                         |
 
 ---

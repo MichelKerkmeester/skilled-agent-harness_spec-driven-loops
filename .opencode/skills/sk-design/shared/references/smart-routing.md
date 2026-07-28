@@ -26,7 +26,7 @@ request's design intent to the exact packet-local leaf resources that mode shoul
 load. Every path is packet-qualified (`design-<mode>/references|assets/…`) and
 converts to the canonical `(workflowMode, leafResourceId)` pair at the one
 contract boundary
-(`sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs`), where the packet
+(`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`), where the packet
 segment (`design-interface`, …) resolves to its declared `workflowMode`
 (`interface`, …).
 Routing is two stages: the hub picks the WORKFLOW MODE (mode telemetry), this

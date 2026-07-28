@@ -2,12 +2,12 @@
 id: SD-010
 category: cross_cli_dispatch
 title: 'Short-prompt baseline: CHANGELOG intent across all 3 CLIs'
-expected_intent: create-changelog
+expected_intent: sk-create-changelog
 expected_resources:
   - shared/assets/changelog-template.md
-expected_workflow_mode: create-changelog
+expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
-  - workflow_mode: create-changelog
+  - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 expected_token_range_input: 200-800
 expected_token_range_output: 800-2000

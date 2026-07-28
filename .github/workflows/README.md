@@ -59,4 +59,4 @@ workflows/
 ## 4. RELATED
 
 - [`../hooks/scripts/README.md`](../hooks/scripts/README.md)
-- [`../../.opencode/skills/sk-doc/create-skill/scripts/package_skill.py`](../../.opencode/skills/sk-doc/create-skill/scripts/package_skill.py)
+- [`../../.opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py`](../../.opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py)

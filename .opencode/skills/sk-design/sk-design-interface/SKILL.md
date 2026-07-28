@@ -153,7 +153,7 @@ RESOURCE_MAP = {
     "MOTION_ADVANCED_CRAFT": ["references/motion/animation-decision-framework.md", "references/motion/advanced-craft.md", "references/motion/performance-reduced-motion.md"],
 }
 
-# Resilience guards (see ../../sk-doc/create-skill/assets/skill/skill_smart_router.md):
+# Resilience guards (see ../../sk-doc/sk-create-skill/assets/skill/skill_smart_router.md):
 # runtime-discover what's actually on disk, guard every path inside the skill
 # before loading it, and fall back to disambiguation instead of guessing.
 SKILL_ROOT = Path(__file__).resolve().parent

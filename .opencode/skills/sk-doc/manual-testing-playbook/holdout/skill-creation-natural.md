@@ -2,21 +2,21 @@
 id: SD-H01
 category: holdout
 title: 'Holdout — SKILL_CREATION via natural phrasing'
-expected_intent: create-skill
+expected_intent: sk-create-skill
 expected_resources:
-  - create-skill/references/skill/creation-workflow.md
-  - create-skill/assets/skill/skill-md-template.md
-  - create-skill/assets/skill/skill-readme-template.md
-  - create-skill/assets/skill/skill-reference-template.md
-expected_workflow_mode: create-skill
+  - sk-create-skill/references/skill/creation-workflow.md
+  - sk-create-skill/assets/skill/skill-md-template.md
+  - sk-create-skill/assets/skill/skill-readme-template.md
+  - sk-create-skill/assets/skill/skill-reference-template.md
+expected_workflow_mode: sk-create-skill
 expected_leaf_resources:
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: references/skill/creation-workflow.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
 stage: holdout
 created: 2026-07-16

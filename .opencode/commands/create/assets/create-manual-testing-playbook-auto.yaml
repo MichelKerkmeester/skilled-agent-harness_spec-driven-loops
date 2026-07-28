@@ -142,13 +142,13 @@ operation_router:
       - manual-testing-playbook/category-name/scenario-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/create-manual-testing-playbook/references/README.md
+  specific_creation: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
   core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  root_playbook: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md
-  feature_file: .opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
+  root_playbook: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
+  feature_file: .opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py

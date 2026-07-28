@@ -52,7 +52,7 @@ const {
 const { routeSkillResources } = require('./router-replay.cjs');
 const {
   parseScenario, VERDICT,
-} = require('../../../../sk-doc/create-skill/scripts/validate-compiled-routing-scenarios.cjs');
+} = require('../../../../sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

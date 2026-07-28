@@ -258,7 +258,7 @@ def test_parent_scaffold_legacy_rejects_preexisting_manifest(tmp_path, capsys):
 
 
 def test_parent_templates_carry_the_same_exact_directive():
-    root = Path(__file__).resolve().parents[2] / "create-skill/assets/parent-skill"
+    root = Path(__file__).resolve().parents[2] / "sk-create-skill/assets/parent-skill"
     scaffold = (root / "scaffold/hub-skill-scaffold.md").resolve()
     canonical = (root / "parent-skill-hub-template.md").resolve()
 

@@ -1,1 +1,1 @@
-../create-skill/scripts/init_skill.py
+../sk-create-skill/scripts/init_skill.py

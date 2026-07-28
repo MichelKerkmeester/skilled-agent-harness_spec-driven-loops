@@ -19,7 +19,7 @@ this doc maps a request's prompt-craft intent to the exact packet-local leaf
 resources that mode should load. Every path is packet-qualified
 (`<packet>/references|assets/…`) and converts to the canonical
 `(workflowMode, leafResourceId)` pair at the one contract boundary
-(`sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs`).
+(`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
 
 Routing is two stages: the hub picks the WORKFLOW (mode telemetry), this router
 picks the LEAVES within it. The two layers stay separate — the hub never emits

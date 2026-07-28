@@ -1105,7 +1105,7 @@ function main() {
     let contractLib = null;
     let generatorLib = null;
     if (!fs.existsSync(generatorPath) || !fs.existsSync(contractLibPath)) {
-      sourceIssues.push('the shared leaf-resource contract library/generator is missing under sk-doc/create-skill/scripts/');
+      sourceIssues.push('the shared leaf-resource contract library/generator is missing under sk-doc/sk-create-skill/scripts/');
     } else {
       try {
         // eslint-disable-next-line global-require, import/no-dynamic-require

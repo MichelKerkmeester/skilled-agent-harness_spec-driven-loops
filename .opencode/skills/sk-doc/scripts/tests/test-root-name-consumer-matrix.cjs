@@ -11,9 +11,9 @@ const REPO = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const LOADER_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs');
 const GENERATOR_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs');
 const POST_ROUTER_PATH = path.join(REPO, '.opencode/skills/sk-code/sk-code-quality/scripts/lib/post-edit-router.cjs');
-const LEAF_GENERATOR_PATH = path.join(REPO, '.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs');
-const LEAF_CONTRACT_PATH = path.join(REPO, '.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs');
-const TOPOLOGY_PATH = path.join(REPO, '.opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs');
+const LEAF_GENERATOR_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs');
+const LEAF_CONTRACT_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs');
+const TOPOLOGY_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs');
 const FRONTMATTER_PATH = path.join(REPO, '.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs');
 const DRIFT_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs');
 

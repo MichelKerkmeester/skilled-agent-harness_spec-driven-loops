@@ -931,8 +931,8 @@ Skill references/assets additionally require `trigger_phrases` (3-8), `importanc
 ## 11. RELATED RESOURCES
 
 ### Templates
-- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
-- [command-template.md](../../create-command/assets/command-template.md) - Command file templates
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [command-template.md](../../sk-create-command/assets/command-template.md) - Command file templates
 
 ### Standards
 - [core-standards.md](../references/core-standards.md) - Document type rules

@@ -164,14 +164,14 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skills/sk-doc/create-agent/assets/agent-template.md
+  primary: .opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md
 
 agent_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
   extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
 
 agent_references:
-  agent_creation: .opencode/skills/sk-doc/create-agent/references/README.md
+  agent_creation: .opencode/skills/sk-doc/sk-create-agent/references/README.md
   core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 

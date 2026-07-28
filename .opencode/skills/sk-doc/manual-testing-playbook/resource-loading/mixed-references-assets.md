@@ -2,15 +2,15 @@
 id: SD-006
 category: resource_loading
 title: 'README_CREATION intent loads mixed references + assets'
-expected_intent: create-readme
+expected_intent: sk-create-readme
 expected_resources:
-  - create-readme/references/README.md
-  - create-readme/assets/readme-template.md
-expected_workflow_mode: create-readme
+  - sk-create-readme/references/README.md
+  - sk-create-readme/assets/readme-template.md
+expected_workflow_mode: sk-create-readme
 expected_leaf_resources:
-  - workflow_mode: create-readme
+  - workflow_mode: sk-create-readme
     leaf_resource_id: references/README.md
-  - workflow_mode: create-readme
+  - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000

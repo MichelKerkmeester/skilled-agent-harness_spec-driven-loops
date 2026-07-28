@@ -2,12 +2,12 @@
 id: SD-004
 category: resource_loading
 title: 'HVR intent loads only references/hvr-rules.md'
-expected_intent: create-quality-control
+expected_intent: sk-create-quality-control
 expected_resources:
   - shared/references/hvr-rules.md
-expected_workflow_mode: create-quality-control
+expected_workflow_mode: sk-create-quality-control
 expected_leaf_resources:
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/hvr-rules.md
 expected_token_range_input: 1000-2000
 expected_token_range_output: 800-2000

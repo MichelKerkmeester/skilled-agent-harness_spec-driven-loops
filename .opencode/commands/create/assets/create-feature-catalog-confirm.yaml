@@ -174,13 +174,13 @@ operation_router:
       - feature-catalog/category-name/feature-name.md
 
 reference_sources:
-  specific_creation: .opencode/skills/sk-doc/create-feature-catalog/references/README.md
+  specific_creation: .opencode/skills/sk-doc/sk-create-feature-catalog/references/README.md
   core_standards: .opencode/skills/sk-doc/shared/references/core-standards.md
   validation: .opencode/skills/sk-doc/shared/references/validation.md
 
 template_sources:
-  root_catalog: .opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-template.md
-  feature_file: .opencode/skills/sk-doc/create-feature-catalog/assets/feature-catalog-snippet-template.md
+  root_catalog: .opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md
+  feature_file: .opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md
 
 validation_scripts:
   validate_document: .opencode/skills/sk-doc/scripts/validate_document.py

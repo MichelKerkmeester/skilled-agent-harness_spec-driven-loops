@@ -33,7 +33,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 ## 2. PRE-CHECKS
 
 - [ ] Read the mirrored `code` agent examples at `.opencode/agents/code.md` and `.claude/agents/code.md`.
-- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/create-agent/references/README.md`.
+- [ ] Read `sk-doc` source rules at `.opencode/skills/sk-doc/sk-create-agent/references/README.md`.
 - [ ] Read the mirror checker at `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`; it treats `.opencode/agents/` as canonical and `.claude/agents/` as the runtime mirror.
 - [ ] Decide whether the agent is LEAF-only or an orchestrator before granting task/delegation authority.
 - [ ] Confirm the dispatch contract: who may invoke the agent, what inputs it expects, and what outputs it returns.
@@ -69,7 +69,7 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 
 ## 5. RELATED RESOURCES
 
-- `.opencode/skills/sk-doc/create-agent/references/README.md` (source-of-truth for agent content rules)
+- `.opencode/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
 - Mirror checker: `.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`
 - Mirrored example: `.opencode/agents/code.md` and `.claude/agents/code.md`
 - Runtime directories: `.opencode/agents/` and `.claude/agents/`

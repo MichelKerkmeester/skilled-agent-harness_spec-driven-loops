@@ -10,11 +10,11 @@ Run this automatic self-check before setup. This is not a user question.
 SELF-CHECK: Are the create-command packet resources available?
 
 Required resources:
-- .opencode/skills/sk-doc/create-command/SKILL.md
-- .opencode/skills/sk-doc/create-command/assets/command-template.md
-- .opencode/skills/sk-doc/create-command/assets/command-presentation-template.md
-- .opencode/skills/sk-doc/create-command/references/router-presentation-split.md
-- .opencode/skills/sk-doc/create-command/references/argument-hints-and-modes.md
+- .opencode/skills/sk-doc/sk-create-command/SKILL.md
+- .opencode/skills/sk-doc/sk-create-command/assets/command-template.md
+- .opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
+- .opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+- .opencode/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
 
 If all resources exist:
 - create_command_verified = true

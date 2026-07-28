@@ -2,12 +2,12 @@
 id: SD-H04
 category: holdout
 title: 'Holdout — CHANGELOG via natural phrasing'
-expected_intent: create-changelog
+expected_intent: sk-create-changelog
 expected_resources:
   - shared/assets/changelog-template.md
-expected_workflow_mode: create-changelog
+expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
-  - workflow_mode: create-changelog
+  - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 stage: holdout
 created: 2026-07-16

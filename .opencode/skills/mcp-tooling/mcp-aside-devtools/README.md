@@ -172,7 +172,7 @@ A: Unresolved. Docs examples show `-m provider/model`; the installed help shows 
 | CLI health | `command -v aside && aside --version 2>&1 && aside account status 2>&1` all pass |
 | Doctor | `bash .opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh` exits 0 and reports binary, version, account, MCP handshake state, and the registered `aside` manual (a missing manual is an error) |
 | MCP handshake | `examples/mcp-handshake-probe.sh` reports the protocol version and the discovered tool list (expect `repl` on the pinned version; rediscover on yours) |
-| Skill package | `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-aside-devtools --check` reports 0 errors |
+| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-aside-devtools --check` reports 0 errors |
 
 ---
 

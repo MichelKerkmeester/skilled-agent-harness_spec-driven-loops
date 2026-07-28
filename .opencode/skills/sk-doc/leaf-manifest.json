@@ -8,8 +8,8 @@
         "references/common-pitfalls.md",
         "references/permission-design.md"
       ],
-      "packet": "create-agent",
-      "workflowMode": "create-agent"
+      "packet": "sk-create-agent",
+      "workflowMode": "sk-create-agent"
     },
     {
       "leaves": [
@@ -38,8 +38,8 @@
         "references/skill-benchmark/serving-snapshot-schema.md",
         "references/skill-benchmark/skill-benchmark-storage-guide.md"
       ],
-      "packet": "create-benchmark",
-      "workflowMode": "create-benchmark"
+      "packet": "sk-create-benchmark",
+      "workflowMode": "sk-create-benchmark"
     },
     {
       "leaves": [
@@ -49,8 +49,8 @@
         "references/version-bump-rules.md",
         "references/worked-examples.md"
       ],
-      "packet": "create-changelog",
-      "workflowMode": "create-changelog"
+      "packet": "sk-create-changelog",
+      "workflowMode": "sk-create-changelog"
     },
     {
       "leaves": [
@@ -65,8 +65,8 @@
         "references/router-presentation-split.md",
         "references/worked-example.md"
       ],
-      "packet": "create-command",
-      "workflowMode": "create-command"
+      "packet": "sk-create-command",
+      "workflowMode": "sk-create-command"
     },
     {
       "leaves": [
@@ -80,8 +80,8 @@
         "references/worked-example.md",
         "references/workflow.md"
       ],
-      "packet": "create-diff",
-      "workflowMode": "create-diff"
+      "packet": "sk-create-diff",
+      "workflowMode": "sk-create-diff"
     },
     {
       "leaves": [
@@ -91,8 +91,8 @@
         "references/common-pitfalls.md",
         "references/examples.md"
       ],
-      "packet": "create-feature-catalog",
-      "workflowMode": "create-feature-catalog"
+      "packet": "sk-create-feature-catalog",
+      "workflowMode": "sk-create-feature-catalog"
     },
     {
       "leaves": [
@@ -107,8 +107,8 @@
         "references/pattern-selection.md",
         "references/worked-example.md"
       ],
-      "packet": "create-flowchart",
-      "workflowMode": "create-flowchart"
+      "packet": "sk-create-flowchart",
+      "workflowMode": "sk-create-flowchart"
     },
     {
       "leaves": [
@@ -119,8 +119,8 @@
         "references/examples.md",
         "references/prompt-voice.md"
       ],
-      "packet": "create-manual-testing-playbook",
-      "workflowMode": "create-manual-testing-playbook"
+      "packet": "sk-create-manual-testing-playbook",
+      "workflowMode": "sk-create-manual-testing-playbook"
     },
     {
       "leaves": [
@@ -136,8 +136,8 @@
         "references/workflow-examples.md",
         "references/workflows.md"
       ],
-      "packet": "create-quality-control",
-      "workflowMode": "create-quality-control"
+      "packet": "sk-create-quality-control",
+      "workflowMode": "sk-create-quality-control"
     },
     {
       "leaves": [
@@ -151,8 +151,8 @@
         "references/readme/types-and-voice.md",
         "references/readme/writing-patterns.md"
       ],
-      "packet": "create-readme",
-      "workflowMode": "create-readme"
+      "packet": "sk-create-readme",
+      "workflowMode": "sk-create-readme"
     },
     {
       "leaves": [
@@ -182,8 +182,8 @@
         "references/skill/creation-workflow.md",
         "references/skill/examples-and-maintenance.md"
       ],
-      "packet": "create-skill",
-      "workflowMode": "create-skill"
+      "packet": "sk-create-skill",
+      "workflowMode": "sk-create-skill"
     },
     {
       "leaves": [
@@ -213,8 +213,8 @@
         "references/skill/creation-workflow.md",
         "references/skill/examples-and-maintenance.md"
       ],
-      "packet": "create-skill",
-      "workflowMode": "create-skill-parent"
+      "packet": "sk-create-skill",
+      "workflowMode": "sk-create-skill-parent"
     }
   ],
   "resourceContractVersion": 1

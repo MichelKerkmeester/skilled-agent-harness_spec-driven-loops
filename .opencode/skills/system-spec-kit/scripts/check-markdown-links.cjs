@@ -39,22 +39,22 @@ const EXCLUDE_SEGMENTS = [
 // Adding a genuinely-new broken link still fails — these specific pairs are the only waivers.
 const ALLOWLIST = new Set([
   // benchmark report template — sibling artifacts the report author creates
-  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md::./SOURCE.md',
-  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',
-  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md::./per-probe.jsonl',
-  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md::./runtime-measurements.md',
-  '.opencode/skills/sk-doc/create-benchmark/assets/shared/benchmark-report-template.md::../README.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./SOURCE.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./per-probe.jsonl',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./runtime-measurements.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::../README.md',
   // skill_md_template — fill-in names the author replaces per skill
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::./references/workflow-name.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::./assets/template-name.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::./assets/checklist-name.md',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-md-template.md::INSTALL-GUIDE.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-name.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/template-name.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./assets/checklist-name.md',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::INSTALL-GUIDE.md',
   // skill_reference_template — use-site example paths
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md::../scripts/',
-  '.opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md::../assets/',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
+  '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
   // illustrative client-domain example path
   '.opencode/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
 ]);

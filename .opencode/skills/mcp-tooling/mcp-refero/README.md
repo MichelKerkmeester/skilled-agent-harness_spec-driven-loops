@@ -168,7 +168,7 @@ A: `sk-design` owns the design judgment and is loaded first for any design-affec
 
 | Check | How to run it |
 |---|---|
-| Skill package | `python3 .opencode/skills/sk-doc/create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check` reports zero errors |
+| Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-refero --check` reports zero errors |
 | SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-refero/SKILL.md` shows `name: mcp-refero`, a `description`, and `version: 1.1.0.0` |
 | Install posture | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh` exits 0 (verify-only; nothing installed or modified) |
 | Wiring presence | `bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh` reports the `refero` manual registered (read-only grep) |

@@ -164,19 +164,19 @@ documentation_level:
 # COMMAND CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 command_templates:
-  command_markdown: .opencode/skills/sk-doc/create-command/assets/command-template.md
-  presentation_contract: .opencode/skills/sk-doc/create-command/assets/command-presentation-template.md
+  command_markdown: .opencode/skills/sk-doc/sk-create-command/assets/command-template.md
+  presentation_contract: .opencode/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
 
 command_scripts:
   packet_local: "No packet-local scripts are wired; follow create-command/SKILL.md validation instructions."
 
 command_references:
-  command_creation: .opencode/skills/sk-doc/create-command/SKILL.md
-  route_map: .opencode/skills/sk-doc/create-command/references/README.md
-  worked_example: .opencode/skills/sk-doc/create-command/references/worked-example.md
-  router_presentation_split: .opencode/skills/sk-doc/create-command/references/router-presentation-split.md
-  argument_hints_and_modes: .opencode/skills/sk-doc/create-command/references/argument-hints-and-modes.md
-  common_pitfalls: .opencode/skills/sk-doc/create-command/references/common-pitfalls.md
+  command_creation: .opencode/skills/sk-doc/sk-create-command/SKILL.md
+  route_map: .opencode/skills/sk-doc/sk-create-command/references/README.md
+  worked_example: .opencode/skills/sk-doc/sk-create-command/references/worked-example.md
+  router_presentation_split: .opencode/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+  argument_hints_and_modes: .opencode/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
+  common_pitfalls: .opencode/skills/sk-doc/sk-create-command/references/common-pitfalls.md
 
 # ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
@@ -465,7 +465,7 @@ workflow:
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
     validation_command: |
-      Run the validators specified by .opencode/skills/sk-doc/create-command/SKILL.md Step 13 when available.
+      Run the validators specified by .opencode/skills/sk-doc/sk-create-command/SKILL.md Step 13 when available.
       grep -R "[source-workflow-name]" [generated-file-list]
     quality_gates:
       frontmatter_parse: "must pass"
@@ -505,7 +505,7 @@ workflow:
     description_budget:
       soft_target: 110
       hard_cap: 1536
-      reference: ".opencode/skills/sk-doc/create-command/assets/command-template.md"
+      reference: ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md"
     outputs:
     - quality_score: number
     - validation_findings: list
@@ -654,7 +654,7 @@ quality_standards:
     stage_4: "Resource path existence check"
     stage_5: "Leftover source-name grep"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/create-command/SKILL.md"
+  core_standards_reference: ".opencode/skills/sk-doc/sk-create-command/SKILL.md"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

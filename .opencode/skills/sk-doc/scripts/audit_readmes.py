@@ -1,1 +1,1 @@
-../create-readme/scripts/audit_readmes.py
+../sk-create-readme/scripts/audit_readmes.py

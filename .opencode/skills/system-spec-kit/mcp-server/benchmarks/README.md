@@ -61,7 +61,7 @@ Open each folder's `benchmark-report.md` for the full headline, methodology, per
 - A curated, skill-local record of benchmark runs that have already shipped.
 - The first place a future engineer should look when asking "which embedder is the production default and why."
 - A pointer-rich index back to the spec packet that owns the full audit trail.
-- The home of the convention route-mapped by `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md` (the overflow route-map / convention index); the authoritative report contract and mechanics live in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` §3-8.
+- The home of the convention route-mapped by `.opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md` (the overflow route-map / convention index); the authoritative report contract and mechanics live in `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md` §3-8.
 
 ### What this folder is NOT
 
@@ -99,7 +99,7 @@ The flow assumes the bench has already completed inside a spec packet.
    - `per-probe-*.jsonl` (per-query rows) when the bench produced per-probe data
    - `runtime-measurements.md` when there is a meaningful runtime profile worth promoting
 4. **Write [`SOURCE.md`](./2026-05-17--run--unspecified/SOURCE.md)** as a thin pointer to the spec packet. Include the spec packet path, the list of key files inside it, and a "last updated" date.
-5. **Write `benchmark-report.md`** following `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`. The required 10-section structure is:
+5. **Write `benchmark-report.md`** following `.opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md`. The required 10-section structure is:
    1. Overview and headline
    2. Aggregate results
    3. Methodology
@@ -125,7 +125,7 @@ A re-run that does not change the headline does not need a new dated folder. Upd
 3. **If the headline flips**, treat the re-run as a new bench. Open a new spec packet, ship it, and promote a new `benchmark-<YYYY-MM-DD>/` folder per Section 5.
 4. **CSV and JSONL artifacts** should be appended or replaced to match the new evidence. Do not delete historical rows; mark them with a `Re-run` note in the report.
 
-The bake-off promotion flow is documented in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` (the MCP promotion family, sections 4 through 8: authoring workflow, report contract, naming, gates, and success criteria).
+The bake-off promotion flow is documented in `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md` (the MCP promotion family, sections 4 through 8: authoring workflow, report contract, naming, gates, and success criteria).
 
 ---
 
@@ -135,7 +135,7 @@ The bake-off promotion flow is documented in `.opencode/skills/sk-doc/create-ben
 
 | File | Purpose |
 |---|---|
-| `references/README.md` | Convention every dated subfolder follows. The overflow route-map / convention index is `.opencode/skills/sk-doc/create-benchmark/references/shared/README.md`; the canonical report contract and mechanics live in `.opencode/skills/sk-doc/create-benchmark/SKILL.md` §3-8. |
+| `references/README.md` | Convention every dated subfolder follows. The overflow route-map / convention index is `.opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md`; the canonical report contract and mechanics live in `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md` §3-8. |
 | [`benchmark-2026-05-17/benchmark-report.md`](./2026-05-17--run--unspecified/benchmark-report.md) | The May 17, 2026 mk-spec-memory text-embedder bake-off report. |
 | [`benchmark-2026-05-17/SOURCE.md`](./2026-05-17--run--unspecified/SOURCE.md) | Pointer to the May 17, 2026 spec packet. |
 

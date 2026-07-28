@@ -848,7 +848,7 @@ Add sections:
 
 ### Templates
 - [frontmatter-templates.md](./frontmatter-templates.md) - Frontmatter by document type
-- [skill-md-template.md](../../create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
 
 ### Standards
 - [core-standards.md](../references/core-standards.md) - Document type rules

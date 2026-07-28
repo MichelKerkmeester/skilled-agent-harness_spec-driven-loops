@@ -183,5 +183,5 @@ The `surface-router` backend is the shared surface-detection router under `share
 - Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.
-- Parent-skill pattern: `.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md`.
+- Parent-skill pattern: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 - Sibling example: `.opencode/skills/sk-design/`.

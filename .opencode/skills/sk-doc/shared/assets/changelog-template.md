@@ -280,8 +280,8 @@ The global component versioning rules in this file do not apply to nested packet
 
 ### Templates
 
-- [readme-template.md](../../create-readme/assets/readme-template.md) - README structure and quality rules
-- [install-guide-template.md](../../create-readme/assets/install-guide-template.md) - Phased installation guides
+- [readme-template.md](../../sk-create-readme/assets/readme-template.md) - README structure and quality rules
+- [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Phased installation guides
 - [llmstxt-templates.md](./llmstxt-templates.md) - llms.txt site-map files
 - [frontmatter-templates.md](./frontmatter-templates.md) - YAML frontmatter by document type
 

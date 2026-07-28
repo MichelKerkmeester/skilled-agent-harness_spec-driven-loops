@@ -2,36 +2,36 @@
 id: SD-012
 category: cross_cli_dispatch
 title: 'Multi-step dispatch: 3 sequential sk-doc invocations'
-expected_intent: create-skill → create-quality-control → create-changelog
+expected_intent: sk-create-skill → sk-create-quality-control → sk-create-changelog
 expected_resources:
-  - create-skill/references/skill/creation-workflow.md
-  - create-skill/assets/skill/skill-md-template.md
-  - create-skill/assets/skill/skill-readme-template.md
-  - create-skill/assets/skill/skill-reference-template.md
+  - sk-create-skill/references/skill/creation-workflow.md
+  - sk-create-skill/assets/skill/skill-md-template.md
+  - sk-create-skill/assets/skill/skill-readme-template.md
+  - sk-create-skill/assets/skill/skill-reference-template.md
   - shared/references/validation.md
-  - create-quality-control/references/workflows.md
+  - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
   - shared/assets/changelog-template.md
-expected_workflow_mode: create-skill → create-quality-control → create-changelog
+expected_workflow_mode: sk-create-skill → sk-create-quality-control → sk-create-changelog
 expected_leaf_resources:
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: references/skill/creation-workflow.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-md-template.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-readme-template.md
-  - workflow_mode: create-skill
+  - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/validation.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/workflows.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/core-standards.md
-  - workflow_mode: create-quality-control
+  - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
-  - workflow_mode: create-changelog
+  - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 expected_token_range_input: 2000-5000
 expected_token_range_output: 3000-6000

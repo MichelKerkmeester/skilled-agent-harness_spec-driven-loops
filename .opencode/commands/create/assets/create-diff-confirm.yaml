@@ -154,8 +154,8 @@ field_handling:
 
   defaults:
     output_format: "single self-contained HTML report (inlined CSS, no scripts, no network)"
-    engine_command: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py"
-    validator_command: "python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]"
+    engine_command: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py"
+    validator_command: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py [report_path]"
 
 input_contract:
   required:
@@ -182,30 +182,30 @@ documentation_level:
 # CREATE-DIFF RESOURCES
 # -----------------------------------------------------------------
 diff_resources:
-  skill_contract: .opencode/skills/sk-doc/create-diff/SKILL.md
+  skill_contract: .opencode/skills/sk-doc/sk-create-diff/SKILL.md
 
 diff_scripts:
-  create_diff_engine: .opencode/skills/sk-doc/create-diff/scripts/create_diff.py
-  validate_report: .opencode/skills/sk-doc/create-diff/scripts/validate_report.py
+  create_diff_engine: .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py
+  validate_report: .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py
 
 diff_references:
-  route_map: .opencode/skills/sk-doc/create-diff/references/README.md
-  cli_reference: .opencode/skills/sk-doc/create-diff/references/cli-reference.md
-  capabilities_and_fidelity: .opencode/skills/sk-doc/create-diff/references/capabilities-and-fidelity.md
-  workflow: .opencode/skills/sk-doc/create-diff/references/workflow.md
-  accessibility_contract: .opencode/skills/sk-doc/create-diff/references/accessibility-contract.md
-  worked_example: .opencode/skills/sk-doc/create-diff/references/worked-example.md
+  route_map: .opencode/skills/sk-doc/sk-create-diff/references/README.md
+  cli_reference: .opencode/skills/sk-doc/sk-create-diff/references/cli-reference.md
+  capabilities_and_fidelity: .opencode/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
+  workflow: .opencode/skills/sk-doc/sk-create-diff/references/workflow.md
+  accessibility_contract: .opencode/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
+  worked_example: .opencode/skills/sk-doc/sk-create-diff/references/worked-example.md
 
 # -----------------------------------------------------------------
 # ENGINE COMMAND REFERENCE (authoritative flags from cli-reference.md)
 # -----------------------------------------------------------------
 engine_commands:
-  capabilities: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
-  snapshot: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py snapshot <file> [--state-dir DIR]"
-  compare: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare <file> [--report OUT] [--view unified|side-by-side] [--state-dir DIR] [--json]"
-  compare_pair: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare-pair --before A --after B [--report OUT] [--view unified|side-by-side] [--label-before L] [--label-after L] [--json]"
-  status: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py status [<file>] [--state-dir DIR] [--json]"
-  validate: "python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report.html> [more.html ...]"
+  capabilities: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py capabilities [--json]"
+  snapshot: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py snapshot <file> [--state-dir DIR]"
+  compare: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py compare <file> [--report OUT] [--view unified|side-by-side] [--state-dir DIR] [--json]"
+  compare_pair: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py compare-pair --before A --after B [--report OUT] [--view unified|side-by-side] [--label-before L] [--label-after L] [--json]"
+  status: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py status [<file>] [--state-dir DIR] [--json]"
+  validate: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py <report.html> [more.html ...]"
 
 # -----------------------------------------------------------------
 # CHECKPOINT OPTIONS
@@ -279,7 +279,7 @@ context_loading:
   applies_when: "an existing baseline may be present for the target document, OR a prior report exists at the report path, OR the request names specific before/after files"
   tool_integration:
     primary: "Glob/Grep to locate the target document, before/after files, and any prior report; Read matches before reuse"
-    engine_state_probe: "python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py status [<file>] --json"
+    engine_state_probe: "python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py status [<file>] --json"
   behavior:
     automatic_mode: "Run `status <file>` to detect an existing baseline; if one exists, compare against it, else snapshot first"
     explicit_pair_mode: "Load only the named --before/--after files; no stored state is used"
@@ -344,7 +344,7 @@ workflow:
     purpose: Confirm format support and fidelity tier when uncertain
     condition: "run when the input format is uncertain (e.g. DOCX or PDF) or before a first comparison"
     activities:
-    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py capabilities [--json]"
+    - "Run: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py capabilities [--json]"
     - "Determine the fidelity tier for the input format (full / text / text*)"
     - "IF the format is a text-layer PDF and no extractor is available (exit 3): do not claim a diff; offer the explicit-pair fallback with pre-extracted text"
     - "Record the fidelity tier to state honestly at delivery"
@@ -392,14 +392,14 @@ workflow:
       when: "review_mode=automatic"
       steps:
       - "IF a baseline already exists (from baseline_state): skip snapshot"
-      - "ELSE capture a baseline BEFORE the edit: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py snapshot <target_document> [--state-dir DIR]"
+      - "ELSE capture a baseline BEFORE the edit: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py snapshot <target_document> [--state-dir DIR]"
       - "... allow the edit to happen (AI or human) between snapshot and compare ..."
-      - "AFTER the edit, compare and render: python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare <target_document> --report <report_path> [--view side-by-side] [--state-dir DIR] --json"
+      - "AFTER the edit, compare and render: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py compare <target_document> --report <report_path> [--view side-by-side] [--state-dir DIR] --json"
       invariant: "The baseline must be captured before the edit; a compare with no baseline exits 4"
     branch_explicit_pair:
       when: "review_mode=explicit-pair"
       steps:
-      - "Compare two explicit files (no stored state): python3 .opencode/skills/sk-doc/create-diff/scripts/create_diff.py compare-pair --before <before_file> --after <after_file> --report <report_path> [--view side-by-side] [--label-before L] [--label-after L] --json"
+      - "Compare two explicit files (no stored state): python3 .opencode/skills/sk-doc/sk-create-diff/scripts/create_diff.py compare-pair --before <before_file> --after <after_file> --report <report_path> [--view side-by-side] [--label-before L] [--label-after L] --json"
     exit_code_handling:
       "0": "Success - capture the JSON change summary and continue to Step 4"
       "2": "Usage error (bad arguments) - fix the invocation and re-run"
@@ -428,12 +428,12 @@ workflow:
     purpose: Validate the generated report is safe and self-contained
     enforcement: HARD_BLOCK
     activities:
-    - "Run: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py <report_path>"
+    - "Run: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py <report_path>"
     - "Expect exit 0 (asserts doctype, <html lang>, a Content-Security-Policy meta tag, zero <script> tags, no inline event handlers, no remote href/src)"
     - "IF the validator exits 1: STOP - do not claim a clean self-contained report; report the specific failure"
     - "Confirm the source document is byte-for-byte unchanged (comparison is read-only against it)"
     validation_command: |
-      python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]
+      python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py [report_path]
     quality_gates:
       validator_exit: "must be 0 before clean delivery"
       source_immutable: "source document unchanged by capture or comparison"
@@ -481,9 +481,9 @@ workflow:
         description: "Show final summary"
 
     validation_evidence:
-      validator: .opencode/skills/sk-doc/create-diff/scripts/validate_report.py
+      validator: .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py
       invocation: |
-        python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report_path]
+        python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py [report_path]
       critical_note: "Run the report validator directly before delivery. Do not claim a clean, self-contained report if the command fails or exits non-zero."
       when: "Immediately after the report is written"
 
@@ -557,7 +557,7 @@ quality_standards:
     stage_3: "Source document confirmed unchanged"
     stage_4: "Fidelity tier stated honestly"
   template_adherence: required
-  core_standards_reference: ".opencode/skills/sk-doc/create-diff/SKILL.md"
+  core_standards_reference: ".opencode/skills/sk-doc/sk-create-diff/SKILL.md"
 
 # -----------------------------------------------------------------
 # COMPLETION REPORT TEMPLATE
@@ -581,7 +581,7 @@ completion_report:
     - Fidelity tier: [full | text | text*]
 
     Validation:
-    - Command: python3 .opencode/skills/sk-doc/create-diff/scripts/validate_report.py [report-path]
+    - Command: python3 .opencode/skills/sk-doc/sk-create-diff/scripts/validate_report.py [report-path]
     - Result: PASS
 
     Output:

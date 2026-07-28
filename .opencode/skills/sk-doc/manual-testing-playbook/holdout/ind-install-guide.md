@@ -2,15 +2,15 @@
 id: SD-H12
 category: holdout
 title: 'Independent holdout — INSTALL_GUIDE (keyword-blind)'
-expected_intent: create-readme
+expected_intent: sk-create-readme
 expected_resources:
-  - create-readme/assets/install-guide-template.md
-  - create-readme/references/README.md
-expected_workflow_mode: create-readme
+  - sk-create-readme/assets/install-guide-template.md
+  - sk-create-readme/references/README.md
+expected_workflow_mode: sk-create-readme
 expected_leaf_resources:
-  - workflow_mode: create-readme
+  - workflow_mode: sk-create-readme
     leaf_resource_id: assets/install-guide-template.md
-  - workflow_mode: create-readme
+  - workflow_mode: sk-create-readme
     leaf_resource_id: references/README.md
 stage: holdout
 created: 2026-07-16

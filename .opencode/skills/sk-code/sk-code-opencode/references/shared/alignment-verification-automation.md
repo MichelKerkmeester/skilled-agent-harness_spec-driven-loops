@@ -118,7 +118,7 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
    block, which name `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality
    guard (the markdown-blind `verify_alignment_drift.py` is not that authority).
 2. **Bijection module** — `qualifiedIdToLeaf` in
-   `.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs`:
+   `.opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`:
    the one bridge from a compiled router destination id
    (`<hub>/<workflowMode>/<packet>/<kind>/<slug>`) to a `leaf-manifest.json` mode,
    exercised by the router-sync suite.

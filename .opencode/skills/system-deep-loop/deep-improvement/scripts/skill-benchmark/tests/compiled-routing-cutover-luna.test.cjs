@@ -12,7 +12,7 @@ const path = require('node:path');
 
 const cutover = require('../cutover-playbook-executor.cjs');
 const luna = require('../luna-acceptance.cjs');
-const topology = require('../../../../../sk-doc/create-skill/scripts/validate-playbook-topology.cjs');
+const topology = require('../../../../../sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs');
 
 const EVIDENCE = {
   compiled_route: 'demo-hub/mode-a', serving_authority: 'compiled', flag_state: 'unset',
