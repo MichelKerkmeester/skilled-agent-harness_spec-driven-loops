@@ -39,6 +39,16 @@
         ]
       },
       {
+        "matcher": "Task|Agent",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-deep-loop/runtime/hooks/claude/fable-subagent-guard.mjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
         "matcher": "mcp__claude_ai_.*",
         "hooks": [
           {
