@@ -1,0 +1,1 @@
+{"type": "delta", "iteration": 3, "findingsNew": {"P0": 0, "P1": 1, "P2": 0}, "findingDetails": [{"findingId": "F001", "severity": "P1", "category": "completion-metadata", "dimension": "traceability", "title": "Parent spec Status Planned contradicts phase 008 Complete", "file": "spec.md", "line": 25, "content_hash": "msk-f001-parent-planned"}], "newFindingsRatio": 0.45}

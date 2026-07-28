@@ -3374,7 +3374,7 @@ def _build_executor_alias_table() -> Dict[str, Any]:
             if spaced != noun:
                 orchestrator.setdefault(spaced, skill_id)
 
-    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt", "prompt-models", "assets", "model-profiles.json")
+    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt", "sk-prompt-models", "assets", "model-profiles.json")
     try:
         with open(model_profiles_path, "r", encoding="utf-8") as handle:
             profiles = json.load(handle)

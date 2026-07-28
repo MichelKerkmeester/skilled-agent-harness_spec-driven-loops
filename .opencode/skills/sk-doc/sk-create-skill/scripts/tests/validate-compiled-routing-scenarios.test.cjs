@@ -63,14 +63,14 @@ const HOLDOUT_LEAK = `---
 id: T-CR-003
 stage: holdout
 route_shape: default
-expected_intent: md-generator
+expected_intent: sk-design-md-generator
 expected_resources:
-  - design-md-generator/references/design-md-format.md
-expected_workflow_mode: md-generator
+  - sk-design-md-generator/references/design-md-format.md
+expected_workflow_mode: sk-design-md-generator
 expected_leaf_resources:
-  - workflow_mode: md-generator
+  - workflow_mode: sk-design-md-generator
     leaf_resource_id: references/design-md-format.md
-evidence_compiled_route: sk-design/md-generator
+evidence_compiled_route: sk-design/sk-design-md-generator
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving
@@ -83,7 +83,7 @@ evidence_reasoning_effort: high
 
 **Exact prompt**:
 \`\`\`text
-Route this through the md-generator mode please.
+Route this through the sk-design-md-generator mode please.
 \`\`\`
 
 ## Pass/Fail Criteria

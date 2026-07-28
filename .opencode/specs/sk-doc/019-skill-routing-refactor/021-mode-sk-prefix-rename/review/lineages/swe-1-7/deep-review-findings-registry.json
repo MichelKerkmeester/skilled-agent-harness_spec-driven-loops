@@ -1,0 +1,312 @@
+{
+  "sessionId": "fanout-swe-1-7-1785217654899-ls3rh2",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": null,
+    "totalIterations": null,
+    "timestamp": "2026-07-28T05:56:04.700Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "skill_advisor hardcodes old sk-prompt/prompt-models path",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": 3377,
+      "description": "The advisor constructs model_profiles_path from the pre-rename directory \"sk-prompt/prompt-models\", which no longer exists. The try/except silently swallows the OSError, so small-model prompt dispatch may run with empty profiles and no diagnostics.",
+      "findingClass": "correctness",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "sk-design skill-benchmark route-gold fixtures still expect old workflowMode names",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design/sk-design-transform-bolder-alias.private.json",
+      "line": 10,
+      "description": "The fixture expects \"workflowMode\": \"interface\" and \"resources\": [\"design-interface/SKILL.md\"]. Multiple sk-design gold files in the same directory share this pattern. The implementation summary reports sk-design BLOCKED-BY-ROUTE-GOLD 91, confirming these stale expectations are still being honored rather than updated to sk-design-interface.",
+      "findingClass": "correctness",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "sk-design shared creation-contract example uses stale workflowMode \"interface\"",
+      "file": ".opencode/skills/sk-design/shared/creation-contract.md",
+      "line": 80,
+      "description": "The typed context envelope JSON example still uses the pre-rename \"workflowMode\": \"interface\". This is a live shared reference consumed by modes and can mislead implementers.",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "sk-design-mcp-open-design CLI pairing example references pre-rename packet name",
+      "file": ".opencode/skills/sk-design/sk-design-mcp-open-design/references/cli-child-pairing.md",
+      "line": 83,
+      "description": "The childLoadedSkills example lists \"design-mcp-open-design\" instead of the renamed \"sk-design-mcp-open-design\".",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "sk-design manual-testing playbook uses old design mode names in pass/fail criteria",
+      "file": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/mcp-open-design-mode.md",
+      "line": 64,
+      "description": "The FAIL criteria list the pre-rename design-judgment modes \"interface/foundations/motion/audit/md-generator\". These names no longer exist in the registry and could confuse test operators.",
+      "findingClass": "traceability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "sk-create-skill test fixture uses old md-generator workflow and resources",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs",
+      "line": 68,
+      "description": "The HOLDOUT_LEAK fixture hardcodes \"expected_workflow_mode: md-generator\", \"expected_resources: design-md-generator/references/design-md-format.md\", and \"evidence_compiled_route: sk-design/md-generator\". These are pre-rename identifiers.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "sk-prompt hub description uses bare pre-rename keywords",
+      "file": ".opencode/skills/sk-prompt/description.json",
+      "line": 12,
+      "description": "The keywords array includes \"prompt-improve\" and \"prompt-models\" without the sk- prefix. These are not the canonical workflowMode names and can pollute advisor search results.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "sk-doc hub description uses bare pre-rename phrases in keywords",
+      "file": ".opencode/skills/sk-doc/description.json",
+      "line": 25,
+      "description": "The keywords array includes \"create diff report\" and \"document before after review\" without the sk- prefix. These match the pre-rename workflow names.",
+      "findingClass": "maintainability",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 7
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -62,7 +62,7 @@ def _resource_keys(root: Path) -> set[str]:
 def validate_registry() -> None:
     """Assert router, resources, projections, and ownership boundaries agree."""
     sk_doc_root = Path(__file__).resolve().parents[2]
-    benchmark_root = sk_doc_root / "create-benchmark"
+    benchmark_root = sk_doc_root / "sk-create-benchmark"
     assets_root = benchmark_root / "assets"
     references_root = benchmark_root / "references"
     skill_text = (benchmark_root / "SKILL.md").read_text(encoding="utf-8")

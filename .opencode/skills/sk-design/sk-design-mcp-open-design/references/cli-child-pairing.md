@@ -80,7 +80,7 @@ Required conditionals are evaluated by operation class. A guarded `RUN`, mutatin
   "OPEN_DESIGN_TRANSPORT_RESULT": {
     "version": 1,
     "dispatchId": "dispatch-open-design-example",
-    "childLoadedSkills": ["sk-design", "design-mcp-open-design"],
+    "childLoadedSkills": ["sk-design", "sk-design-mcp-open-design"],
     "direction": "RUN",
     "operationClass": "mutating",
     "liveToolsListVerified": true,
@@ -281,7 +281,7 @@ The child MUST emit the assertion as structured metadata named `OPEN_DESIGN_TRAN
   "OPEN_DESIGN_TRANSPORT_ASSERTION": {
     "version": 1,
     "dispatchId": "dispatch-open-design-example",
-    "childLoadedSkills": ["sk-design", "design-mcp-open-design"],
+    "childLoadedSkills": ["sk-design", "sk-design-mcp-open-design"],
     "operationClass": "mutating",
     "liveToolsListVerified": true,
     "payloadDigests": {

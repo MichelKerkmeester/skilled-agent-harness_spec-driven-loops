@@ -1,0 +1,71 @@
+{
+  "run_id": "1785217654899-ls3rh2",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "composer-2-5",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review/lineages/composer-2-5/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-28T05:47:34.903Z",
+        "end_at_iso": "2026-07-28T05:49:59.133Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 14
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T05:52:00.000Z",
+          "deltaMs": 867
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T05:53:00.000Z",
+          "deltaMs": 60867
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T05:54:00.000Z",
+          "deltaMs": 120867
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T05:55:00.000Z",
+          "deltaMs": 180867
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T05:56:00.000Z",
+          "deltaMs": 240867
+        }
+      ]
+    }
+  ]
+}

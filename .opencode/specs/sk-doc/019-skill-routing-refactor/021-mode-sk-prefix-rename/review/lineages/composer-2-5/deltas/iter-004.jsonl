@@ -1,0 +1,1 @@
+{"type": "delta", "iteration": 4, "findingsNew": {"P0": 0, "P1": 1, "P2": 0}, "findingDetails": [{"findingId": "F002", "severity": "P1", "category": "completion-metadata", "dimension": "maintainability", "title": "Parent graph-metadata status remains planned", "file": "graph-metadata.json", "line": 42, "content_hash": "msk-f002-gm-planned"}], "newFindingsRatio": 0.35}

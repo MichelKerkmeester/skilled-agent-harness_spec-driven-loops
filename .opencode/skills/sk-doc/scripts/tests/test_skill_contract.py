@@ -14,7 +14,7 @@ from pathlib import Path
 
 _SK_DOC = Path(__file__).resolve().parents[2]
 _SHARED_SCRIPTS = _SK_DOC / "shared" / "scripts"
-_CREATE_SKILL = _SK_DOC / "create-skill"
+_CREATE_SKILL = _SK_DOC / "sk-create-skill"
 
 
 def _load_contract_module():

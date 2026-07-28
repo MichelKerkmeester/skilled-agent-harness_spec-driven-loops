@@ -77,7 +77,7 @@ Carry this envelope through every stage:
 ```json
 {
   "command": "interface:design",
-  "workflowMode": "interface",
+  "workflowMode": "sk-design-interface",
   "request": "...",
   "resolvedBrief": {},
   "assumptionLedger": [],
