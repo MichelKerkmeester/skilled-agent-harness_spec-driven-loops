@@ -1,0 +1,378 @@
+[
+  {
+    "command": "/deep:research",
+    "ownerMode": "research",
+    "description": "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.",
+    "argumentHint": "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--no-resource-map] [--dry-run] [--executor=<type> [--model=X] [--config-dir=PATH] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] [--iters=N] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to investigate a topic iteratively until the research converges.",
+      "ownedSignals": [
+        "investigate a topic iteratively",
+        "run a research convergence loop",
+        "gather deep technical findings"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-research",
+        "resource": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+        "action": "load the autonomous deep-research mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-research",
+        "resource": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the work is open-ended iterative investigation with a convergence loop.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:review",
+          "when": "Prefer review when the target is a code or documentation audit with severity-weighted findings."
+        },
+        {
+          "sibling": "/deep:ai-council",
+          "when": "Prefer AI Council when the deliverable is a multi-seat planning deliberation rather than an investigation loop."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:review",
+    "ownerMode": "review",
+    "description": "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.",
+    "argumentHint": "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--convergence-mode=default|off|sliding-window|divergent] [--lineage-timeout-hours=N] [--stop-policy=convergence|max-iterations] [--spec-folder=PATH] [--no-resource-map] [--restart|--lineage-mode=restart] [--executor=<type> --model=X --config-dir=PATH --reasoning-effort=LEVEL --service-tier=TIER --executor-timeout=SECONDS --iters=N --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to audit a code or documentation target iteratively and reduce findings to convergence.",
+      "ownedSignals": [
+        "audit code iteratively",
+        "run a deep code review",
+        "find P0 P1 P2 issues"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-review",
+        "resource": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "action": "load the autonomous deep-review mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-review",
+        "resource": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the work is an iterative code or documentation audit with severity-weighted findings.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:research",
+          "when": "Prefer research when the target needs open-ended investigation rather than an audit verdict."
+        },
+        {
+          "sibling": "/deep:alignment",
+          "when": "Prefer alignment when artifacts must be checked against a named standard authority."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:ai-council",
+    "ownerMode": "ai-council",
+    "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
+    "argumentHint": "<deliberation-topic|topics> [:auto|:confirm] [--max-rounds-per-topic=N] [--max-topics=N] [--saturation=N] [--convergence=N] [--spec-folder=PATH] [--executor-mode=in-cli|external-cli] [--executor=<type>] [--model=X] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (:auto supports PRE-BOUND SETUP ANSWERS)",
+    "userIntent": {
+      "job": "I want to convene several AI perspectives into a convergent planning decision.",
+      "ownedSignals": [
+        "convene an AI council",
+        "run multi-seat deliberation",
+        "make a planning decision with several perspectives"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-ai-council",
+        "resource": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+        "action": "load the AI Council mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-ai-council",
+        "resource": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a bounded multi-seat planning deliberation with adjudication.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:research",
+          "when": "Prefer research when one investigation loop, rather than several deliberative seats, should produce the findings."
+        },
+        {
+          "sibling": "/deep:review",
+          "when": "Prefer review when the primary output is an audit verdict and severity-weighted findings."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:agent-improvement",
+    "ownerMode": "agent-improvement",
+    "description": "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. Modes :auto, :confirm.",
+    "argumentHint": "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to evaluate and improve an agent definition through guarded scoring and promotion.",
+      "ownedSignals": [
+        "improve an agent definition",
+        "score an agent candidate",
+        "promote an agent change"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-improvement",
+        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "action": "load the evaluator-first agent-improvement mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-improvement",
+        "resource": ".opencode/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the target is an agent definition that needs evaluator-first improvement and guarded promotion.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:model-benchmark",
+          "when": "Prefer model benchmark when the target is a model or prompt framework profile rather than an agent definition."
+        },
+        {
+          "sibling": "/deep:skill-benchmark",
+          "when": "Prefer skill benchmark when the target is a skill's routing, discovery, or usefulness."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:model-benchmark",
+    "ownerMode": "model-benchmark",
+    "description": "Benchmark a model or prompt framework: fixtures, pattern, 5dim, or reviewer scoring; deterministic or graded runs. :auto/:confirm.",
+    "argumentHint": "<profile_path> [:auto|:confirm] [--spec-folder=PATH] [--scorer=pattern|5dim|reviewer] [--grader=noop|mock|llm] [--iterations=N] [--executor=NAME --model=NAME] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to benchmark a model or prompt framework with deterministic or graded runs.",
+      "ownedSignals": [
+        "benchmark a model",
+        "test a prompt framework",
+        "score model outputs"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-improvement",
+        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "action": "load the evaluator-first model-benchmark mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-improvement",
+        "resource": ".opencode/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the target is a model or prompt framework profile to benchmark.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:agent-improvement",
+          "when": "Prefer agent improvement when the target is an agent definition to change and promote."
+        },
+        {
+          "sibling": "/deep:skill-benchmark",
+          "when": "Prefer skill benchmark when the target is a skill's real-world routing and usefulness."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:skill-benchmark",
+    "ownerMode": "skill-benchmark",
+    "description": "Benchmark a skill's real-world routing, discovery, efficiency, and usefulness (Lane C). Emits a ranked, remediable Skill Benchmark Report. Modes :auto, :confirm.",
+    "argumentHint": "<skill_id_or_root> [:auto|:confirm] [--outputs-dir=PATH] [--fixtures-dir=PATH] [--trace-mode=router|live] [--advisor-mode=python]",
+    "userIntent": {
+      "job": "I want to measure a skill's routing, discovery, efficiency, and usefulness in practice.",
+      "ownedSignals": [
+        "benchmark a skill",
+        "test skill routing",
+        "measure skill usefulness"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-improvement",
+        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "action": "load the evaluator-first skill-benchmark mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-improvement",
+        "resource": ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the target is a skill whose real-world routing and usefulness should be benchmarked.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:agent-improvement",
+          "when": "Prefer agent improvement when the target is an agent definition to change and promote."
+        },
+        {
+          "sibling": "/deep:model-benchmark",
+          "when": "Prefer model benchmark when the target is a model or prompt framework profile."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:alignment",
+    "ownerMode": "alignment",
+    "description": "Autonomous deep-alignment loop: conformance audit against named standard authorities across resolved lanes. Modes :auto, :confirm.",
+    "argumentHint": "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--convergence-mode=default|off] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex|cli-opencode] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort apply to cli-codex and cli-opencode; --service-tier is cli-codex-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to check artifacts for conformance to a named standard authority across resolved lanes.",
+      "ownedSignals": [
+        "check conformance to a standard",
+        "audit artifacts against an authority",
+        "run an alignment lane"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-alignment",
+        "resource": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "action": "load the named-standard alignment mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-alignment",
+        "resource": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when artifacts must be checked against a named authority's standard across one or more alignment lanes.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:command-benchmark",
+          "when": "Prefer command benchmark when the target is the slash-command surface and its conformance or behavior matrix."
+        },
+        {
+          "sibling": "/deep:review",
+          "when": "Prefer review when the target is a general code audit without a named standard authority."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/deep:command-benchmark",
+    "ownerMode": "alignment",
+    "description": "Run the command-surface benchmark through reused conformance and behavior engines. Modes :auto/:confirm.",
+    "argumentHint": "<spec-folder> [:auto|:confirm] [--axis=conformance|behavior|all] [--run-id=ID]",
+    "userIntent": {
+      "job": "I want to benchmark a slash-command surface through conformance and behavior engines.",
+      "ownedSignals": [
+        "benchmark slash commands",
+        "test command surface behavior",
+        "run command conformance checks"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "system-deep-loop",
+        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
+        "action": "load the system-deep-loop parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "deep-alignment",
+        "resource": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "action": "load the command-surface alignment mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "deep-alignment",
+        "resource": ".opencode/commands/deep/assets/deep-command-benchmark-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the target is a slash-command surface requiring the conformance or behavior benchmark.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/deep:alignment",
+          "when": "Prefer alignment when the target is broader artifact conformance against a named authority rather than the command surface."
+        },
+        {
+          "sibling": "/deep:review",
+          "when": "Prefer review when the target is a general code audit rather than a command benchmark."
+        }
+      ]
+    }
+  }
+]

@@ -23,7 +23,7 @@
       "packet": "prompt-improve",
       "packetSkillName": "prompt-improve",
       "grandfatheredFolderMismatch": false,
-      "command": "/prompt-improve",
+      "command": "/prompt:improve",
       "aliases": ["improve prompt", "enhance prompt", "prompt framework", "clear score", "depth thinking", "prompt engineering"],
       "advisorRouting": { "routingClass": "metadata", "packetSkillName": "prompt-improve" }
     },
