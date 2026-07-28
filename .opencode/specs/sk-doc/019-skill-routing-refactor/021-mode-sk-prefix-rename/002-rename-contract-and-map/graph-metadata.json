@@ -29,7 +29,7 @@
       "exception"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "One frozen contract and machine-readable map: 21 workflowModes, 20 packet directories, the shared-packet exception, gate definitions and history exclusions.",
     "created_at": "2026-07-28T05:34:09.175Z",
-    "last_save_at": "2026-07-28T05:38:27.156Z",
+    "last_save_at": "2026-07-28T06:05:57.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +193,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5e1bd55c696b4620e98783feb24482e0b2bd09efababe59d5178b103928c3be",
+    "source_fingerprint": "sha256:b9199335a6f17ed74b2fd86b02897f858bfc2d3134989dfe96f9e2e5775128ad",
     "source_doc_hashes": {
       "spec.md": "10138350aa72c0e73286dc5fe09a5a021381621e29cb90edefc2897fee71a926",
       "plan.md": "733ce283d2805497e6c972f7edf5b2a5036542e0820ef68ec952d2df10b48d51",
       "tasks.md": "fbda44f635c2fb295e8ae35079b225e6b19d122a21bd2209120bf95dbce074ea",
-      "implementation-summary.md": "283d099705c3eb09590598e421cbe47f56363def2a67439a3a8b147a32bdba17"
+      "implementation-summary.md": "896bd1a29a2c0ea2ab0b29ef7a79c7d1e9090993d6843857a947aa3e642e6cd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

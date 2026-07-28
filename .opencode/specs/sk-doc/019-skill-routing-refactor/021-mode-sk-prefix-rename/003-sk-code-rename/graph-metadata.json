@@ -29,7 +29,7 @@
       "engine"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move code-quality, code-review, code-webflow and code-opencode to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and hold BLOCKED-BY-ROUTE-GOLD 91.",
     "created_at": "2026-07-28T05:34:09.695Z",
-    "last_save_at": "2026-07-28T05:38:28.170Z",
+    "last_save_at": "2026-07-28T06:05:58.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +193,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c62a932c0aba9859baa7d017a3de34fecaf4947c1e8a0eac80275cd3a9e72c1",
+    "source_fingerprint": "sha256:0968f7565e20e9e76a5184501461ebe569e3d1c58382aa5925670be5aba9b5dd",
     "source_doc_hashes": {
       "spec.md": "b4c01c15fe1b00c00e014604e7b1aa61eb3142deb2514fe7b0a6b2c55de67111",
       "plan.md": "9101a075eaf235b0263bb47076b81916771da9dd7631340367b1e5c729477189",
       "tasks.md": "7a975f777f2d08305754dacb3910c0de34f3c30f797dd13e07dc6bc51c6a7247",
-      "implementation-summary.md": "ace962fb2bf85803476b861371635ff777fb8e223d3ed3ad49c6fc6ca2c5909d"
+      "implementation-summary.md": "ee5a9fca43633bcf4598fe767f832c55fad50ed8852500f6b7bd5f6eb99e4695"
     },
     "last_active_child_id": null,
     "last_active_at": null

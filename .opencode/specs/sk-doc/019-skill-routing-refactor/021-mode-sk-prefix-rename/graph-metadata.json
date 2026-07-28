@@ -89,15 +89,15 @@
     ],
     "causal_summary": "Rename 20 mode packets and 21 workflowMode keys across the four sk- hubs so a mode's directory name and its routing key are the same string, and every consumer follows.",
     "created_at": "2026-07-28T05:26:24.269Z",
-    "last_save_at": "2026-07-28T05:26:24.269Z",
+    "last_save_at": "2026-07-28T06:04:09.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bb2fa7e68b6d4a3d0fe293bf16f85ba97d22a277bcc0e836937577e69fcb5121",
+    "source_fingerprint": "sha256:6102e61a730c2f79e2b5fb0aed5a859c74c90f3f81b9c7fdb8e5408aa3f208c8",
     "source_doc_hashes": {
-      "spec.md": "79e280cb2dc3c1b33ad17521243e86e7ca8d3c6aa53b3d04362fcf48f968e776"
+      "spec.md": "6ccb7b4c1a8ac44b8f4846f02da914dca14527816cb35bbf388e35ee56e84593"
     },
     "last_active_child_id": null,
     "last_active_at": null

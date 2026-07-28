@@ -29,7 +29,7 @@
       "including"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move all eleven create-* packets to sk-create-* and twelve routing keys including the shared-packet pair sk-create-skill and sk-create-skill-parent, holding PASS 98.",
     "created_at": "2026-07-28T05:34:10.590Z",
-    "last_save_at": "2026-07-28T05:38:30.118Z",
+    "last_save_at": "2026-07-28T06:05:58.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +193,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e868c96c1c76dd42d0267a509a13aa32658dc2b56815bf622f72d1d05046e173",
+    "source_fingerprint": "sha256:ef86ee1adb050044bd48a064d63c8e60c502b9bd72f5f9147151af9e9c91ac05",
     "source_doc_hashes": {
       "spec.md": "28b058595a87206fd7eb50e0cf19d073418e3613faf1a44c017a9ebe699e4f30",
       "plan.md": "368698d49e678ea7227b54c0fe8c5d46e1cceef78f61b66f985dfc29428f4b90",
       "tasks.md": "76a8fbf97e4456f8eabb86ca981bc0ba3b5f0305bcf3be45a63f03b206d993ed",
-      "implementation-summary.md": "bfd94ea69709da870c0d0de7216e6fca295232fc7a7328f45d9ae7d783b41c51"
+      "implementation-summary.md": "ac21d7d1f8154f3e2e3cb816936a4b31a8cbc694a0534945d23e837077328838"
     },
     "last_active_child_id": null,
     "last_active_at": null

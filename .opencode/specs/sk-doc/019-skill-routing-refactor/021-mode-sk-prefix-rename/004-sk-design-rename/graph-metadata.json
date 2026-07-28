@@ -29,7 +29,7 @@
       "blocked-by-route-gold"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move design-interface, design-md-generator and design-mcp-open-design to their sk-design-* names, holding the pre-existing BLOCKED-BY-ROUTE-GOLD 91 verdict constant rather than fixing it.",
     "created_at": "2026-07-28T05:34:10.180Z",
-    "last_save_at": "2026-07-28T05:38:29.152Z",
+    "last_save_at": "2026-07-28T06:05:58.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +193,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07a4e73e832aeaeb802a9fe77e69826b59085aee32738bb972f1dd4d1f01adaf",
+    "source_fingerprint": "sha256:b9971c6e8aee14550f36c05d36a3f7c0aaa8ac83551cf529876f4925ac237ffb",
     "source_doc_hashes": {
       "spec.md": "40a0af32b695dff5049d78a71416d066fa7f90455dec76a119a060834dd0f4ba",
       "plan.md": "73897fcf37acae6b1636444789f00e66711099be5edc4fa79b98c9e80ab5b3df",
       "tasks.md": "958c57f51c0871ff79a38b3b718cda57ba95383815e8af494c104590f4161999",
-      "implementation-summary.md": "f0a525bf70a439e5a21b258e5a96f8d1402da546352b6017988b94bf43832b22"
+      "implementation-summary.md": "c404491103cccb1e02995a802f089e8d55f803217d2251dc90a6bf79d74adc2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

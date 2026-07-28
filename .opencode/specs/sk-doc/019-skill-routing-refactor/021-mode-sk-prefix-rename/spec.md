@@ -22,7 +22,7 @@ parent: "sk-doc/019-skill-routing-refactor"
 |-------|-------|
 | **Packet** | sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename |
 | **Level** | 3 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Owner** | sk-doc, which owns skill and hub authoring |
 | **Scope** | The four sk- hubs: sk-code, sk-design, sk-doc, sk-prompt |
 <!-- /ANCHOR:metadata -->

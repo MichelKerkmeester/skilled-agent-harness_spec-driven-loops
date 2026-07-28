@@ -1,69 +1,69 @@
 {
-  "run_id": "1785217654899-ls3rh2",
+  "run_id": "1785218484113-fxt4vn",
   "loop_type": "review",
   "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
   "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review",
-  "total_cli_lineages": 2,
+  "total_cli_lineages": 1,
   "orphaned_lineages": [],
-  "total": 2,
+  "total": 1,
   "succeeded": 1,
-  "failed": 1,
+  "failed": 0,
   "all_failed": false,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 1
+    "failed": 0
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 1,
+    "exit": 0,
     "salvage_miss": 0
   },
   "timestamp_anomalies": [
     {
-      "label": "composer-2-5",
-      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review/lineages/composer-2-5/deep-review-state.jsonl",
+      "label": "composer-2-5-r2",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review/lineages/composer-2-5-r2/deep-review-state.jsonl",
       "window": {
-        "start_at_iso": "2026-07-28T05:47:34.903Z",
-        "end_at_iso": "2026-07-28T05:49:59.133Z",
+        "start_at_iso": "2026-07-28T06:01:24.117Z",
+        "end_at_iso": "2026-07-28T06:03:27.871Z",
         "tolerance_ms": 120000
       },
       "counts": {
-        "anomalous": 6,
+        "anomalous": 8,
         "untimestamped": 1,
         "unparseable": 0,
         "total": 14
       },
       "sample": [
         {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-28T06:06:00.000Z",
+          "deltaMs": 32129
+        },
+        {
           "index": 6,
           "reason": "after_window",
-          "timestamp": "2026-07-28T05:52:00.000Z",
-          "deltaMs": 867
+          "timestamp": "2026-07-28T06:07:00.000Z",
+          "deltaMs": 92129
         },
         {
           "index": 7,
           "reason": "after_window",
-          "timestamp": "2026-07-28T05:53:00.000Z",
-          "deltaMs": 60867
+          "timestamp": "2026-07-28T06:08:00.000Z",
+          "deltaMs": 152129
         },
         {
           "index": 8,
           "reason": "after_window",
-          "timestamp": "2026-07-28T05:54:00.000Z",
-          "deltaMs": 120867
+          "timestamp": "2026-07-28T06:09:00.000Z",
+          "deltaMs": 212129
         },
         {
           "index": 9,
           "reason": "after_window",
-          "timestamp": "2026-07-28T05:55:00.000Z",
-          "deltaMs": 180867
-        },
-        {
-          "index": 10,
-          "reason": "after_window",
-          "timestamp": "2026-07-28T05:56:00.000Z",
-          "deltaMs": 240867
+          "timestamp": "2026-07-28T06:10:00.000Z",
+          "deltaMs": 272129
         }
       ]
     }

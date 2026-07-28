@@ -29,7 +29,7 @@
       "hubs"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Sweep live surfaces outside the four hubs — runtime mirrors, agent definitions, commands, workflows, cli-orchestration docs, metadata — to the sk- names, leaving history untouched.",
     "created_at": "2026-07-28T05:34:11.431Z",
-    "last_save_at": "2026-07-28T05:38:32.160Z",
+    "last_save_at": "2026-07-28T06:05:59.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +193,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b04b55ad1b60957ab49872c0f8150313cd2c582e2a5c62361df30a51d2ab5e06",
+    "source_fingerprint": "sha256:a1a6921af97ce8816044e0dff415d5915ee168c31e8ca485f5a7972839c8cd0a",
     "source_doc_hashes": {
       "spec.md": "91edc1c488e26244e614a51610461f755314359bf312c90b01a132108fb8af7d",
       "plan.md": "425110827cf9d4eab7d0c09224e7deb0c155c8c1da2cbd6006c5c6271ffec38a",
       "tasks.md": "ce0d3ed880c073025bd79676e814c76e8234ec1611afe5af45374b79b2f31927",
-      "implementation-summary.md": "78195e40413e40aca9cdd4a10ecd0913ff33deae84cac9c5d2f1b078ab029a85"
+      "implementation-summary.md": "23b47130c1614ac2c1f86dda8ce81d484e4a93e7193b731d126c6940e72d3cdb"
     },
     "last_active_child_id": null,
     "last_active_at": null
