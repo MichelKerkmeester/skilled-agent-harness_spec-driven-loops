@@ -15,6 +15,7 @@
         "references/debugging/troubleshooting.md",
         "references/debugging/universal-debugging-methodology.md",
         "references/hooks/goal-plugin.md",
+        "references/hooks/injection-contract.md",
         "references/hooks/skill-advisor-hook-validation.md",
         "references/hooks/skill-advisor-hook.md",
         "references/memory/embedder-architecture.md",

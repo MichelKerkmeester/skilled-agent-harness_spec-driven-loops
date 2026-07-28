@@ -66,6 +66,11 @@
   },
   {
     "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/hooks/injection-contract.md",
+    "diskPath": "references/hooks/injection-contract.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/hooks/skill-advisor-hook-validation.md",
     "diskPath": "references/hooks/skill-advisor-hook-validation.md"
   },
