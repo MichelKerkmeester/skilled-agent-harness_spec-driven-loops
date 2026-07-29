@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/043-cli-executor-fanout-parity",
+  "description": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
+  "keywords": [
+    "deep-loop",
+    "fan-out",
+    "declares",
+    "seven",
+    "executor",
+    "kinds",
+    "executorkinds",
+    "uniformly",
+    "reachable",
+    "end-to-end"
+  ],
+  "lastUpdated": "2026-07-29T08:29:14.823Z",
+  "specId": "043",
+  "folderSlug": "cli-executor-fanout-parity",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
