@@ -136,7 +136,7 @@ result with an end-to-end combination test.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | 001-executor-matrix-audit/ | Authoritative cli×provider×model×mode matrix + gap register | In Progress |
-| 002 | 002-cli-pi-fanout-wiring/ | Real buildPiLineageCommand + cli-pi flags + tests | Planned |
+| 002 | 002-cli-pi-fanout-wiring/ | Real buildPiLineageCommand + cli-pi flags + tests | Complete |
 | 003 | 003-devin-cursor-exec-hardening/ | devin exec write path + cursor containment | Planned |
 | 004 | 004-per-mode-executor-parity/ | Per-mode executor availability parity | Planned |
 | 005 | 005-combo-test-matrix/ | End-to-end (cli,provider,model) combo test | Planned |

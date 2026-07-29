@@ -1236,32 +1236,82 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     )).toThrow(/command -v pi failed/);
   });
 
-  it('passes the allowlist gate for every operator-confirmed picker id before the headless contract guard', () => {
+  it('builds the headless pi command with the provider-prefixed model and --offline for every picker id', () => {
     const binDir = makeTempDir('fanout-run-pi-allowlist-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['deepseek-v4-pro', 'minimax-m3', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra', 'mimo-v2.5-pro', 'mimo-v2.5-pro-ultraspeed']) {
-      expect(() => buildLineageCommand(
+    const providerByModel: Record<string, string> = {
+      'deepseek-v4-pro': 'deepseek',
+      'minimax-m3': 'minimax',
+      'gpt-5.6-luna': 'openai-codex',
+      'gpt-5.6-sol': 'openai-codex',
+      'gpt-5.6-terra': 'openai-codex',
+      'mimo-v2.5-pro': 'xiaomi',
+      'mimo-v2.5-pro-ultraspeed': 'xiaomi',
+    };
+    for (const [model, provider] of Object.entries(providerByModel)) {
+      const command = buildLineageCommand(
         { kind: 'cli-pi', model },
         'bounded prompt',
         'workspace-write',
         'default',
         opts,
-      )).toThrow(/headless invocation contract is confirmed/);
+      ) as { command: string; args: string[]; effectiveConfig: { model: string } };
+      expect(command.command).toBe('pi');
+      expect(command.args).toEqual(['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt']);
+      expect(command.effectiveConfig.model).toBe(model);
     }
   });
 
-  it('defaults an omitted model to deepseek-v4-pro before the headless contract guard', () => {
+  it('defaults an omitted model to deepseek-v4-pro with its provider prefix', () => {
     const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    expect(() => buildLineageCommand(
+    const command = buildLineageCommand(
       { kind: 'cli-pi' },
       'bounded prompt',
       'workspace-write',
       'default',
       opts,
-    )).toThrow(/headless invocation contract is confirmed/);
+    ) as { args: string[]; effectiveConfig: { model: string } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', 'bounded prompt']);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4-pro');
+  });
+
+  it('forwards reasoningEffort as --thinking and rejects an invalid level', () => {
+    const binDir = makeTempDir('fanout-run-pi-thinking-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const command = buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'xhigh' },
+      'p',
+      'workspace-write',
+      'default',
+      opts,
+    ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null; serviceTier: string | null } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-luna', '--thinking', 'xhigh', 'p']);
+    expect(command.effectiveConfig.reasoningEffort).toBe('xhigh');
+    expect(command.effectiveConfig.serviceTier).toBeNull();
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'ludicrous' },
+      'p', 'workspace-write', 'default', opts,
+    )).toThrow(/not a valid --thinking level/);
+  });
+
+  it('restricts the tool allowlist to reads for a read-only leaf, unrestricted otherwise', () => {
+    const binDir = makeTempDir('fanout-run-pi-readonly-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const readOnly = buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      'p', 'read-only', 'plan', opts,
+    ) as { args: string[] };
+    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--tools', 'read,grep,find,ls', 'p']);
+    const write = buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[] };
+    expect(write.args).not.toContain('--tools');
   });
 
   it('rejects an out-of-roster model before command construction', () => {

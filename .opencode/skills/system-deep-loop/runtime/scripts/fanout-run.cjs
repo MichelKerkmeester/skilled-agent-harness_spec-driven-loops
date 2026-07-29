@@ -1817,6 +1817,24 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   });
 }
 
+// Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
+// (openai-codex fronts the GPT-5.6 tunes; deepseek, minimax, and xiaomi front
+// their own families). Pi selects a model as `<provider>/<id>`; without the
+// provider prefix it falls back to its default provider and dispatches the wrong
+// model. Hand-duplicated as a plain literal so command construction stays
+// synchronous and unit-testable, matching this file's per-kind convention.
+const PI_MODEL_PROVIDERS = new Map([
+  ['deepseek-v4-pro', 'deepseek'],
+  ['minimax-m3', 'minimax'],
+  ['gpt-5.6-luna', 'openai-codex'],
+  ['gpt-5.6-sol', 'openai-codex'],
+  ['gpt-5.6-terra', 'openai-codex'],
+  ['mimo-v2.5-pro', 'xiaomi'],
+  ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
+]);
+// The exact levels Pi's `--thinking` accepts, from the installed `pi --help`.
+const PI_THINKING_LEVELS = new Set(['off', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max']);
+
 function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isPiBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-pi executor unavailable: command -v pi failed');
@@ -1827,9 +1845,45 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
       `cli-pi model '${model}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
     );
   }
-  // TODO: Build args only after Pi's headless command contract is confirmed.
-  // Do not treat a subprocess exit code alone as proof of a successful dispatch.
-  throw inputError('cli-pi command construction is unavailable until its headless invocation contract is confirmed');
+  const provider = PI_MODEL_PROVIDERS.get(model);
+  if (!provider) {
+    throw inputError(`cli-pi model '${model}' has no known provider mapping`);
+  }
+  // Pi has no --dir flag (it runs in the spawned working directory) and no
+  // service-tier surface, so neither is forwarded. --offline is mandatory: a
+  // non-interactive dispatch without it can hang for minutes on startup network
+  // probes. The caller must read the OUTPUT TEXT for the result and for
+  // "No API key found" — Pi's exit code is not a reliable success or auth signal.
+  const args = ['-p', '--offline', '--model', `${provider}/${model}`];
+  // Pi enforces no OS-level sandbox (its flag support intentionally omits one);
+  // a read-only leaf is bounded by restricting the tool allowlist to reads.
+  if (resolvedSandbox === 'read-only') {
+    args.push('--tools', 'read,grep,find,ls');
+  }
+  if (lineage.reasoningEffort) {
+    if (!PI_THINKING_LEVELS.has(lineage.reasoningEffort)) {
+      throw inputError(
+        `cli-pi reasoningEffort '${lineage.reasoningEffort}' is not a valid --thinking level: ${[...PI_THINKING_LEVELS].join(', ')}`,
+      );
+    }
+    args.push('--thinking', lineage.reasoningEffort);
+  }
+  args.push(prompt);
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'pi',
+    args,
+    input: '',
+    prompt,
+    promptArgIndexes: [args.length - 1],
+    executableVersion: resolveExecutableVersion('pi', options),
+    model,
+    reasoningEffort: lineage.reasoningEffort || null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
 }
 
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({

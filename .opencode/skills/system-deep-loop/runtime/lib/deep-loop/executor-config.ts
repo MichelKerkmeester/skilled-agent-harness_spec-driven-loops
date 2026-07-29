@@ -90,7 +90,10 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // (~/.config/devin/config.json), not a home directory, so it does not fit the
   // configDir contract the way CLAUDE_CONFIG_DIR does.
   'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
-  'cli-pi': ['model', 'timeoutSeconds', 'liveTools'],
+  // Pi exposes reasoning as a first-class `--thinking` flag (off..max), independent
+  // of the model id, so reasoningEffort is forwarded; it has no OS sandbox or
+  // service-tier surface, so neither sandboxMode nor serviceTier is supported.
+  'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
 };
 
 /** Proven web-search policies for every shipped executor kind. */
