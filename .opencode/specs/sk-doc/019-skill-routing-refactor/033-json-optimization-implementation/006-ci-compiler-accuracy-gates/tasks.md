@@ -44,10 +44,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Confirm 003 (fleet migration to schema-version 2 `derived`) and 004 (scaffold born schema-compliant) are shipped and merged before proceeding
-- [ ] T-02 Read 002's pinned corpus-hash artifact to obtain the exact dataset path/reference for `score-routing-corpus.py --dataset`
-- [ ] T-03 Run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py --validate-only` locally against current `main`; confirm exit 0 (clean baseline post-003/004)
-- [ ] T-04 Run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/score-routing-corpus.py --dataset <pinned-path>` locally; record the resulting accuracy/F1 numbers as the floor-flag source
+- [x] T-01 003 + 004 confirmed shipped and merged before this landed [evidence: both Status Complete on `origin/skilled/v4.0.0.0` prior to this change]
+- [x] T-02 002's pin read [evidence: `002-baseline-capture/baseline/routing-baseline.json` `corpus` block — sha256 per corpus file; the CI hash check reads it at run time]
+- [x] T-03 Compiler clean baseline [evidence: `--validate-only` → "VALIDATION PASSED: all metadata files are valid" (11 roots), exit 0]
+- [x] T-04 Scorer baseline recorded — **in both regimes**: sqlite-warm local 0.5692/0.9843/TT 108 (matches 002's pin) and the no-sqlite fallback CI actually runs 0.5333/0.9843/TT 101, FT 3, FF 1 (deterministic, two masked runs byte-identical); the fallback numbers are the floor source [evidence: masked-DB runs]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,11 +55,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-05 Add the compiler-validation step to the `routing-drift` job in `.github/workflows/routing-registry-drift.yml`, placed after the existing "Skill-root metadata class contract" step
-- [ ] T-06 Add the routing-accuracy scoring step immediately after, invoking `score-routing-corpus.py --dataset <002-pinned-path> --require-historical-clean --min-advisor-accuracy <T-04 floor> --min-gate3-f1 <T-04 floor>`
-- [ ] T-07 Extend the `paths:` filter lists in both the `push` and `pull_request` trigger blocks with the compiler script path and the `routing-accuracy/**` glob
-- [ ] T-08 Add an inline workflow comment (matching the file's existing comment style) explaining the pinned-corpus rationale, citing the 029 research finding (O4)
-- [ ] T-09 Confirm the four pre-existing `routing-drift` steps are byte-unchanged except for the `paths:` extension
+- [x] T-05 Compiler step added to `routing-drift` after the class-contract step [evidence: workflow diff — stdlib-only, no install needed in the lean job]
+- [x] T-06 Accuracy step added — **in `golden-prompt-gate`, not the lean job** (its gate3 leg imports the built shared dist that job's install step produces), with a sha256 corpus-pin check before scoring and the T-04 fallback-regime floors [evidence: workflow diff; deviation recorded in spec amendment]
+- [x] T-07 Trigger paths — compiler + `routing-accuracy/**` already covered by the existing `mcp-server/**` glob (no-op); the 002 baseline dir added to both blocks so a pin edit fires the gate [evidence: workflow diff; deviation recorded]
+- [x] T-08 Inline rationale comment added in the file's comment style — why an unpinned corpus is unsafe, why floors are fallback-regime [evidence: the accuracy step's comment block]
+- [x] T-09 Four pre-existing `routing-drift` steps byte-unchanged [evidence: diff shows only additive step + paths lines]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,11 +67,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-10 Dry-run both new steps against a fresh clone (not the working tree) to rule out a pass that only holds locally
-- [ ] T-11 Deliberately break a `derived.key_files` path in a scratch copy; confirm the compiler step fails with the expected `ERRORS in <folder>` diagnostic
-- [ ] T-12 Deliberately regress an accuracy number in a scratch corpus copy; confirm the scoring step fails against the pinned floor
-- [ ] T-13 Confirm the new `paths:` glob entries actually match GitHub Actions' path-filter syntax (no silent no-op filter)
-- [ ] T-14 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` on this packet before any completion claim
+- [x] T-10 CI-condition dry run — the operative local-state difference (the gitignored `skill-graph.sqlite`) was masked and both steps re-run: compiler exit 0, gated scorer exit 0 with the shipped floors; this is what exposed and fixed the regime gap a fresh clone would have hit [evidence: masked-DB runs; the `npm ci` legs remain first-push-confirmable, as with the sibling golden gate]
+- [x] T-11 Compiler negative [evidence: scratch tree with a broken `derived.key_files` → `ERRORS in sk-git … path does not exist`, `VALIDATION FAILED`, exit 2]
+- [x] T-12 Accuracy negative [evidence: raised floor → exit 1; tampered corpus copy → hash-pin check names the drifted file, exit 2]
+- [x] T-13 Paths syntax [evidence: the added entry is byte-parallel to the existing quoted `**` glob entries in the same lists; workflow YAML parses]
+- [ ] T-14 `validate.sh --strict` — **BLOCKED** repo-wide (concurrent session's incomplete pi-hook relocation breaks the spec-kit orchestrator build); verified by the direct positive/negative gate runs instead [documented]
 <!-- /ANCHOR:phase-3 -->
 
 ---

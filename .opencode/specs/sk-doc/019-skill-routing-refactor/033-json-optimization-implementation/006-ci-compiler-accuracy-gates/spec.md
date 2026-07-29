@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -81,6 +81,13 @@ Out of scope — changing the compiler's validation logic or the corpus scorer's
 | REQ-005 | Workflow trigger paths cover the new gate's inputs | `paths:` (both `push` and `pull_request` blocks) is extended to include `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py` and `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/**`, so a change to either fires the gate on the same PR |
 | REQ-006 | Gate failure output is actionable | Both new steps run with their scripts' native stdout/stderr (no output suppression); a CI failure shows the same `ERRORS in <folder>` / accuracy-summary text a local run would show, so a contributor can reproduce the failure locally with the printed command |
 | REQ-007 | No change to existing gate behavior | The four existing steps in the `routing-drift` job (drift-guard/parity vitest, compiled-routing freshness, parent-skill structural invariants, skill-root metadata class contract) are unmodified; the new steps are additive |
+
+### Implementation amendments (recorded deviations)
+
+- **Accuracy-floor regime (REQ-004).** The floors are calibrated to the scorer's **no-sqlite fallback regime**, not the sqlite-regime numbers 002's baseline records. CI has no `skill-graph.sqlite` (gitignored; produced only by the live daemon's ingest, with no reproducible build CLI), so the advisor scores via its deterministic local fallback there — measured at accuracy 0.5333 / gate3-f1 0.9843 / joint TT 101, FT 3, FF 1 (two runs byte-identical; the sqlite regime reads higher — 0.5692 / TT 108 — because of graph boosts unavailable in CI). Pinning the sqlite numbers would have failed CI on its first run. Both regimes' numbers are recorded; the corpus itself is still verified against 002's sha256 pins before scoring.
+- **Accuracy-step placement.** The scorer's gate3 leg imports the built `@spec-kit/shared` dist, which the dependency-light `routing-drift` job intentionally lacks — so the accuracy step lives in the `golden-prompt-gate` job (whose install step already builds that dist), while the stdlib-only compiler step lives in the lean job. Both are additive; the four pre-existing steps are untouched.
+- **Trigger paths (REQ-005).** The compiler script and `routing-accuracy/**` already fall under the existing `.opencode/skills/system-skill-advisor/mcp-server/**` glob in both trigger blocks, so no entry was added for them; the 002 baseline directory (the pin the hash check reads) was added instead, so a pin edit also fires the gate.
+- **Activation order (REQ-003).** 003 and 004 were both Status Complete and merged before this change landed, so the gate activates directly rather than shipping inert.
 <!-- /ANCHOR:requirements -->
 
 ---

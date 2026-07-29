@@ -31,6 +31,7 @@ on:
       - '.opencode/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
+      - '.opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
   pull_request:
     branches: [main]
     paths:
@@ -52,6 +53,7 @@ on:
       - '.opencode/bin/compiled-route*'
       - '.opencode/bin/lib/compiled-route*'
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
+      - '.opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
 
 jobs:
   routing-drift:
@@ -111,6 +113,17 @@ jobs:
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+      - name: Skill-graph compiler validation — full derived schema + path existence
+        # The gates above check presence and byte-freshness; only the compiler
+        # validates the full derived block (topics/entities/causal_summary, edge
+        # weight bands, dependency cycles) and that every key_files/source_docs/
+        # entities path resolves to a real file. Without it a malformed derived
+        # block passes CI green and only fails later at an offline advisor
+        # rebuild. Stdlib-only python, so it runs in this lean job as-is; the
+        # same command reproduces any failure locally.
+        run: |
+          set -euo pipefail
+          python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py --validate-only
 
   golden-prompt-gate:
     name: Gate-2 golden prompts — real scorer top-1/top-3 + joined compiled mode
@@ -141,3 +154,44 @@ jobs:
         run: |
           set -euo pipefail
           npx vitest run tests/routing-golden-prompts.vitest.ts
+      - name: Routing-accuracy corpus gate — pinned corpus, baseline floors
+        # An unpinned corpus makes an accuracy floor meaningless: silently adding
+        # or relabeling rows moves the number without any routing change. So the
+        # corpus files are first verified against the sha256 pins recorded in the
+        # checked-in baseline capture, and only then scored. The floors are the
+        # scorer's deterministic no-sqlite (fallback-regime) baseline — CI has no
+        # skill-graph.sqlite (gitignored, produced only by the live daemon's
+        # ingest), so the advisor scores via its local fallback here and the
+        # sqlite-regime numbers in the baseline capture do not apply (they read
+        # higher: graph boosts). Equality passes; any regression in CI's own
+        # regime fails. historical-clean keeps known-good prompts from regressing
+        # inside the allowed band. Runs here rather than in the lean job because
+        # the gate3 leg imports the built shared dist the install step produces.
+        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        run: |
+          set -euo pipefail
+          python3 - <<'EOF'
+          import hashlib, json, pathlib, sys
+          baseline = json.load(open("../../../specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/routing-baseline.json"))
+          corpus_dir = pathlib.Path("scripts/routing-accuracy")
+          bad = []
+          for name, meta in baseline["corpus"].items():
+              if not isinstance(meta, dict) or "sha256" not in meta:
+                  continue
+              actual = hashlib.sha256((corpus_dir / name).read_bytes()).hexdigest()
+              if actual != meta["sha256"]:
+                  bad.append(f"{name}: pinned {meta['sha256'][:16]}… actual {actual[:16]}…")
+          if bad:
+              print("CORPUS DRIFTED FROM PIN — recapture the baseline before scoring:")
+              print("\n".join(f"  {line}" for line in bad))
+              sys.exit(2)
+          print("corpus matches the pinned baseline hashes")
+          EOF
+          python3 scripts/routing-accuracy/score-routing-corpus.py \
+            --dataset "$PWD/scripts/routing-accuracy/labeled-prompts.jsonl" \
+            --min-advisor-accuracy 0.5333 \
+            --min-gate3-f1 0.9843 \
+            --min-joint-tt 101 \
+            --max-joint-ft 3 \
+            --max-joint-ff 1 \
+            --require-historical-clean
