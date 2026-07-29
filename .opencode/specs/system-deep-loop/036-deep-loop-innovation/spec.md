@@ -228,6 +228,8 @@ Deferred to the phase that owns the decision (per the SOL review):
 | 016 | 016-whole-system-gate/ | Whole-system gate on the frozen SHA | Planned |
 | 017 | 017-integrate-latest-and-closeout/ | Integrate latest, rerun gate, reconcile, close out | Planned |
 | 018 | 018-drift-census-and-plan-revalidation/ | Drift census: revalidate phases 003-017 against current HEAD before execution | In Progress |
+| 019 | 019-runtime-code-readmes/ | Code READMEs for every source folder in the deep-loop runtime (sk-doc create-readme standard) | Planned |
+| 020 | 020-sk-code-opencode-alignment/ | Align the deep-loop runtime code with the sk-code code-opencode surface conventions (behavior-preserving) | Planned |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

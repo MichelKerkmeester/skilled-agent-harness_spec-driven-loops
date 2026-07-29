@@ -21,7 +21,9 @@
     "system-deep-loop/036-deep-loop-innovation/015-legacy-writer-retirement",
     "system-deep-loop/036-deep-loop-innovation/016-whole-system-gate",
     "system-deep-loop/036-deep-loop-innovation/017-integrate-latest-and-closeout",
-    "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation"
+    "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
+    "system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes",
+    "system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -157,16 +159,16 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-07-20T17:52:34.044Z",
+    "last_save_at": "2026-07-29T06:54:29.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:cc8974bb96f30a39ff69369ee0fac4348ff3a2c292223ec319e9b4d96e0cd3d9",
+    "source_fingerprint": "sha256:21d80c5758309350791c3a4b5ddad2512b93b08c746555bc625586598c80fe24",
     "source_doc_hashes": {
-      "spec.md": "d5cb19392cfec58a51869de37e1f8c546f9db3669d703ad0174a6fec6923d634",
+      "spec.md": "a46ec0febe2666865d6c4c7f0b37b5d5bba6c20621f3dd25d3d574151b99d58b",
       "handover.md": "c75e48300eaa3143ea3f141e5284f93c848904ff3b4eede35506570a822eb6c3"
     },
     "last_active_child_id": null,
