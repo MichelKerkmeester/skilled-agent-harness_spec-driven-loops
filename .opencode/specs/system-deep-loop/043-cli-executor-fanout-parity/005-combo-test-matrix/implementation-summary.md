@@ -13,17 +13,16 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix"
     last_updated_at: "2026-07-29T15:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Built the combo coverage matrix over the shared builder"
-    next_safe_action: "Build the cursor/devin/MCP ambient-config isolation"
+    recent_action: "Fixed the two SOL P1s on the cursor isolation leaf"
+    next_safe_action: "Land leaf 3, close 005, then do 006 docs closeout"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts"
-    completion_pct: 60
-    open_questions:
-      - "Least-invasive mechanism to isolate cursor hooks + MCP for a read-only leaf while keeping repo read access"
+    completion_pct: 90
+    open_questions: []
     answered_questions:
       - "read-only pi is text-analysis-only, so --no-extensions/--no-skills/--no-prompt-templates is behavior-preserving"
       - "the pi flags are valid and accepted live; the read-only pi invocation writes nothing"
@@ -65,6 +64,15 @@ _memory:
 | File | Action | Purpose |
 |---|---|---|
 | `runtime/tests/unit/combo-matrix.vitest.ts` | Added | Full construction-coverage matrix over the shared builder; logs every live skip |
+
+**Leaf 3 — cursor neutral-workspace isolation (built).** The read-only cursor builder now emits `--workspace <tmp>/deep-loop-cursor-neutral-workspace --add-dir <working-dir>` in addition to `--mode plan --trust`. Live testing established that `--workspace` controls where cursor loads `.cursor/` hooks and MCP config from — even when cwd is the repo — so an empty neutral workspace loads no repo hooks and exposes no repo MCP servers (closing both the hook-write and MCP-approval-hang vectors for cursor), while `--add-dir` preserves read access to the working directory and `--mode plan` keeps it read-only. The neutral path is stable (not per-invocation) so the invocation fingerprint stays deterministic, and read-only leaves never write to it, so it is safe to share across concurrent leaves. Together with leaf 1 (pi extensions) and the already-verified devin config, the ambient-config isolation boundary is now closed for every read-only executor.
+
+| File | Action | Purpose |
+|---|---|---|
+| `runtime/scripts/fanout-run.cjs` | Modified | Read-only cursor builder adds `--workspace <neutral> --add-dir <cwd>`; fail-closed neutral-dir validation; env-injectable neutral path |
+| `model-benchmark/dispatch-model.cjs` + `deep-ai-council/scripts/orchestrate-session.cjs` | Modified | Pass the spawn cwd into the builder so `--add-dir` tracks the actual run dir (SOL P1-1) |
+| `runtime/tests/unit/fanout-run.vitest.ts` + `combo-matrix.vitest.ts` | Modified | Lock the new read-only cursor argv; add the fail-closed squat-rejection test |
+| model-benchmark `remediation.vitest.ts` + ai-council `orchestrate-session-cli.vitest.ts` | Modified | Lock the new read-only cursor argv incl. `--add-dir` = the spawn dir |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -93,7 +101,18 @@ The change is confined to the read-only branch of `buildPiLineageCommand`; works
 | ai-council Vitest | PASS — 106 tests (10 files) |
 | Whole-runtime TypeScript | PASS — zero diagnostics |
 | Live pi with the new flags | PASS — flags accepted (no rejection), git status byte-identical (no write) |
+| Leaf 2 combo-matrix Vitest | PASS — 2 tests, 117 combinations asserted |
+| Leaf 3 all four suites | PASS — fan-out 93, combo-matrix 2, model-benchmark 35, ai-council 106; tsc 0 |
+| Leaf 3 end-to-end isolation probe | PASS — with the exact builder args in a repo carrying a sessionStart hook: the hook did NOT fire, the repo read succeeded via `--add-dir`, the neutral workspace stayed empty of `.cursor/` |
+| Leaf 3 SOL cross-verify (cli-opencode GPT-5.6-SOL, high) | REQUESTED_CHANGES, 0 P0 / 2 P1 — both fixed + tested (see below); re-gate fan-out 94, combo 2, model-benchmark 35, ai-council 106, tsc 0 |
 | `validate.sh --strict` | Errors 0 (tolerated warnings, sibling-phase baseline) |
+
+### SOL review disposition (leaf 3)
+
+SOL found two real P1s (0 P0), both consequences of the isolation change; each is fixed and covered by a test:
+
+- **P1-1 (`--add-dir` mismatched the actual spawn cwd) — FIXED.** The builder used `process.cwd()` for `--add-dir`, but model-benchmark and ai-council spawn cursor in their OWN cwd (an isolated per-cell dir / a custom seat cwd) while passing only `env`. So a benchmark cell would fail to read its own dir and the repo would be unintentionally exposed. Both consumers now pass their spawn `cwd` into `buildLineageCommand`; the model-benchmark test asserts `--add-dir` equals the resolved spawn dir (`/work`), not the repo.
+- **P1-2 (the predictable neutral workspace was squattable) — FIXED.** The neutral path is well-known, so a stale process or another local user could pre-plant `.cursor/hooks.json` there and cursor would load it under `--trust`. The builder now fails closed unless the neutral directory is a real, current-user-owned, non-symlink directory with no `.cursor/` inside; the path is env-injectable (`DEEP_LOOP_CURSOR_NEUTRAL_WORKSPACE`) so a unit test verifies both the squat-rejection and the clean-acceptance. Live-reproduced: a planted `.cursor/` throws; a clean path is accepted.
 
 Leaf 1 is a small, exact-arg-test-guarded shared-builder change, verified inline (gates + live probe); a full cross-model SOL run was not spent on a three-flag addition already locked by three exact-arg suites.
 <!-- /ANCHOR:verification -->

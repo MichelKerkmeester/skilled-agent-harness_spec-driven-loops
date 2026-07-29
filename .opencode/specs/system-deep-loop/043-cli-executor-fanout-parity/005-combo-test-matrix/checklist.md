@@ -32,13 +32,13 @@ Per leaf: exact-arg / coverage tests (full output, never through `tail`) + whole
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 - [x] The pi extension-lifecycle write vector for read-only leaves/seats is closed structurally.
-- [ ] Cursor hooks / devin config / unapproved MCP isolation closed for read-only leaves.
+- [x] Cursor hooks + unapproved MCP isolated for read-only leaves via the neutral workspace; devin config verified with no override rules. Ambient-config boundary closed for all read-only executors.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 - [x] Read-only pi cannot load a write-capable extension/skill/template.
-- [ ] No read-only executor can write or hang via ambient config (all vectors).
+- [x] No read-only executor can write or hang via ambient config: pi extensions off (leaf 1), cursor hooks+MCP isolated via neutral workspace (leaf 3, end-to-end verified), devin config verified no-override.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->

@@ -246,6 +246,9 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     expect(readOnly.bin).toBe('cursor-agent');
     expect(readOnly.args).toEqual([
       '-p', 'prompt', '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust',
+      // --add-dir tracks the resolved spawn dir (resolved.dir === '/work'), NOT the repo,
+      // so an isolated per-cell dispatch reads its own cell and never exposes the repo.
+      '--workspace', path.join(os.tmpdir(), 'deep-loop-cursor-neutral-workspace'), '--add-dir', '/work',
     ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';

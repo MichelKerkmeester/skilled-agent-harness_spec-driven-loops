@@ -19,7 +19,7 @@
 - [x] Leaf 1 — add `--no-extensions --no-skills --no-prompt-templates` to the read-only branch of the shared pi builder.
 - [x] Leaf 1 — update the exact-arg pi read-only assertions in the fan-out, model-benchmark, and ai-council suites.
 - [x] Leaf 2 — combo coverage matrix (`combo-matrix.vitest.ts`): 117 (kind × model × sandbox) combinations constructed via the real `buildLineageCommand`, exact-argv proven per kind, full allowlist coverage asserted, every live credentialed dispatch logged as an explicit skip; out-of-roster models fail closed.
-- [ ] Leaf 3 — cursor/devin/MCP ambient-config isolation for read-only leaves/seats.
+- [x] Leaf 3 — read-only cursor runs against a neutral empty workspace (`--workspace <tmp>/deep-loop-cursor-neutral-workspace`) + re-adds the working dir (`--add-dir`); this loads no repo hooks/MCP while preserving reads. devin is already config-safe; pi's extension vector was closed in leaf 1, so the ambient-config boundary is closed for all read-only executors.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -27,8 +27,9 @@
 - [x] Leaf 1: fan-out 93/93, model-benchmark 35/35, ai-council 106/106; whole-runtime tsc 0.
 - [x] Leaf 1: live pi accepts the new flags (no rejection) and writes nothing (git status unchanged).
 - [x] Leaf 2: combo-matrix vitest 2/2 (117 combos asserted), whole-runtime tsc 0; additive test file, no source touched (zero regression risk).
-- [ ] Leaf 3 built + verified.
-- [ ] `validate.sh --strict` passes for this phase.
+- [x] Leaf 3: fan-out 93/93, combo-matrix 2/2, model-benchmark 35/35, ai-council 106/106, tsc 0; end-to-end probe with the exact builder args — repo hook did NOT fire (isolated), repo read worked, neutral workspace stayed empty.
+- [x] Leaf 3 SOL cross-verify: 0 P0 / 2 P1 — both fixed + tested. P1-1: model-benchmark + ai-council now pass their spawn cwd so `--add-dir` tracks it (not the repo). P1-2: neutral workspace fails closed against a squatted/planted `.cursor/` (env-injectable path + unit test). Re-gate fan-out 94, combo 2, model-benchmark 35, ai-council 106, tsc 0.
+- [x] `validate.sh --strict` passes for this phase (Errors 0).
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->

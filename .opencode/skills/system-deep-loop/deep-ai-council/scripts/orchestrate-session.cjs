@@ -259,12 +259,14 @@ function runSeatSubprocess(seatPrompt, options) {
   let args;
   if (options.executorKind === 'cli-cursor' || options.executorKind === 'cli-devin' || options.executorKind === 'cli-pi') {
     // Read-only deliberation seats reuse the shared builder's hardened flags for each CLI.
+    // Pass the seat's spawn cwd so a read-only cursor seat's --add-dir points at the
+    // directory the subprocess actually runs in, not the orchestrator's cwd.
     const built = buildLineageCommand(
       { kind: options.executorKind, model },
       seatPrompt,
       'read-only',
       'plan',
-      { env: options.env || process.env },
+      { env: options.env || process.env, cwd: options.cwd || process.cwd() },
     );
     command = built.command;
     args = built.args;

@@ -427,7 +427,9 @@ function buildSpawnSpec(executor, promptText, resolved) {
       promptText,
       sandboxMode,
       'default',
-      { env: process.env },
+      // Pass the resolved spawn dir so a read-only cursor leaf's --add-dir points at
+      // the directory it actually runs in (e.g. an isolated per-cell dir), not the repo.
+      { env: process.env, cwd: dir },
     );
     return { bin: built.command, args: built.args, input: built.input ?? null };
   };

@@ -1738,7 +1738,34 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   if (resolvedSandbox === 'danger-full-access') {
     args.push('--force', '--sandbox', 'disabled');
   } else if (resolvedSandbox === 'read-only') {
-    args.push('--mode', 'plan', '--trust');
+    // A read-only leaf additionally runs against a neutral empty workspace and
+    // re-adds the working directory as a read root. --workspace controls where
+    // cursor loads .cursor/ hooks and MCP config from, so an empty neutral
+    // workspace loads no repo hooks/MCP (which could write or hang independent of
+    // the read-only mode), while --add-dir preserves read access. The neutral
+    // path is stable (not per-invocation) so the invocation fingerprint stays
+    // deterministic, and read-only leaves never write to it, so it is safe to
+    // share across concurrent leaves.
+    const cursorEnv = (options && options.env) || process.env;
+    const neutralWorkspace = cursorEnv.DEEP_LOOP_CURSOR_NEUTRAL_WORKSPACE
+      || path.join(os.tmpdir(), 'deep-loop-cursor-neutral-workspace');
+    fs.mkdirSync(neutralWorkspace, { recursive: true, mode: 0o700 });
+    // Fail closed: the neutral path is predictable, so a stale process or another
+    // local user could pre-create it as a symlink or plant a `.cursor/` config that
+    // cursor would then load under --trust — defeating the isolation. Require a
+    // real, current-user-owned directory with no `.cursor/` inside before using it.
+    const neutralStat = fs.lstatSync(neutralWorkspace);
+    const currentUid = typeof process.getuid === 'function' ? process.getuid() : null;
+    if (
+      neutralStat.isSymbolicLink()
+      || !neutralStat.isDirectory()
+      || (currentUid !== null && neutralStat.uid !== currentUid)
+      || fs.existsSync(path.join(neutralWorkspace, '.cursor'))
+    ) {
+      throw inputError(`cli-cursor neutral workspace '${neutralWorkspace}' is not a safe owner-owned empty directory`);
+    }
+    const repoRoot = (options && options.cwd) || process.cwd();
+    args.push('--mode', 'plan', '--trust', '--workspace', neutralWorkspace, '--add-dir', repoRoot);
   } else {
     args.push('--force', '--sandbox', 'enabled');
   }

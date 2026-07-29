@@ -133,7 +133,11 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
     case 'cli-opencode':
       return ['run', '--model', model ?? '', '--format', 'json', '--dir', process.cwd(), MATRIX_PROMPT];
     case 'cli-cursor':
-      return ['-p', MATRIX_PROMPT, '--output-format', 'text', '--model', model ?? '', '--mode', 'plan', '--trust'];
+      return [
+        '-p', MATRIX_PROMPT, '--output-format', 'text', '--model', model ?? '',
+        '--mode', 'plan', '--trust',
+        '--workspace', join(tmpdir(), 'deep-loop-cursor-neutral-workspace'), '--add-dir', process.cwd(),
+      ];
     case 'cli-devin':
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto'];
     case 'cli-pi':

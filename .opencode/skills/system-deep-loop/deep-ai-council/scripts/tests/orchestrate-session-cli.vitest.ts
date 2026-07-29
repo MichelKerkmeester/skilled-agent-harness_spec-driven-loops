@@ -321,7 +321,10 @@ describe('deep-ai-council session CLI runner', () => {
       kind: 'cli-cursor',
       model: 'composer-2.5',
       command: 'cursor-agent',
-      expectedArgs: (prompt: string) => ['-p', prompt, '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust'],
+      expectedArgs: (prompt: string) => [
+        '-p', prompt, '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust',
+        '--workspace', join(tmpdir(), 'deep-loop-cursor-neutral-workspace'), '--add-dir', process.cwd(),
+      ],
     },
     {
       kind: 'cli-devin',

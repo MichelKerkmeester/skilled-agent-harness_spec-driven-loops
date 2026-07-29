@@ -1021,8 +1021,13 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     writeStubBinary(binDir, 'cursor-agent');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
 
+    const neutralWorkspace = join(tmpdir(), 'deep-loop-cursor-neutral-workspace');
+    const repoRoot = process.cwd();
     const readOnly = buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'read-only', 'plan', opts);
-    expect(readOnly.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust']);
+    expect(readOnly.args).toEqual([
+      '-p', 'p', '--output-format', 'text', '--model', 'composer-2.5',
+      '--mode', 'plan', '--trust', '--workspace', neutralWorkspace, '--add-dir', repoRoot,
+    ]);
     expect(readOnly.args).not.toContain('--force');
     expect(readOnly.args).not.toContain('--auto-review');
     expect(readOnly.args).not.toContain('--sandbox');
@@ -1033,6 +1038,23 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
 
     const danger = buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'danger-full-access', 'bypassPermissions', opts);
     expect(danger.args).toEqual(['-p', 'p', '--output-format', 'text', '--model', 'composer-2.5', '--force', '--sandbox', 'disabled']);
+  });
+
+  it('read-only cursor fails closed when the neutral workspace is unsafe (a planted .cursor/), and accepts a clean one', () => {
+    const binDir = makeTempDir('fanout-run-cursor-neutral-');
+    writeStubBinary(binDir, 'cursor-agent');
+    const neutral = makeTempDir('cursor-neutral-ws-');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}`, DEEP_LOOP_CURSOR_NEUTRAL_WORKSPACE: neutral } };
+
+    // A clean, owner-owned, empty neutral workspace is accepted, and --workspace points at it.
+    const ok = buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'read-only', 'plan', opts);
+    expect(ok.args[ok.args.indexOf('--workspace') + 1]).toBe(neutral);
+
+    // A squatted neutral path carrying a planted .cursor/ config must be rejected fail-closed,
+    // so cursor can never load smuggled hooks/MCP under --trust.
+    mkdirSync(join(neutral, '.cursor'), { recursive: true });
+    expect(() => buildLineageCommand({ kind: 'cli-cursor', model: 'composer-2.5' }, 'p', 'read-only', 'plan', opts))
+      .toThrow(/not a safe/);
   });
 
   it('defaults an omitted model to composer-2.5 (auto is no longer an allowed id)', () => {

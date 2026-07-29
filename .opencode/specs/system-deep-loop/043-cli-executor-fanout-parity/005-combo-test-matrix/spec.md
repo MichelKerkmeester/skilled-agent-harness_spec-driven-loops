@@ -116,5 +116,5 @@ Assemble the end-to-end combo coverage matrix (log every skip) and close the amb
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What is the least-invasive mechanism to isolate cursor hooks + MCP for a read-only leaf while preserving repo read access (neutral `--workspace` + `--add-dir`, an isolated config dir, or a hooks-disable env)?
+- Resolved: the isolation mechanism is `--workspace <neutral-empty-dir> --add-dir <working-dir>` for read-only cursor — live-verified to load no repo hooks/MCP while preserving reads, builder-only (no shared-spawn change), fingerprint-stable.
 <!-- /ANCHOR:questions -->
