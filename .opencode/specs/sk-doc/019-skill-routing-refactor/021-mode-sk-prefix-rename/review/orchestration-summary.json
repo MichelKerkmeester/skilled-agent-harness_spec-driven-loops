@@ -1,5 +1,5 @@
 {
-  "run_id": "1785218484113-fxt4vn",
+  "run_id": "1785304228962-ywfkk2",
   "loop_type": "review",
   "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
   "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review",
@@ -21,49 +21,49 @@
   },
   "timestamp_anomalies": [
     {
-      "label": "composer-2-5-r2",
-      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review/lineages/composer-2-5-r2/deep-review-state.jsonl",
+      "label": "grok-4-5-high",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename/review/lineages/grok-4-5-high/deep-review-state.jsonl",
       "window": {
-        "start_at_iso": "2026-07-28T06:01:24.117Z",
-        "end_at_iso": "2026-07-28T06:03:27.871Z",
+        "start_at_iso": "2026-07-29T05:50:28.966Z",
+        "end_at_iso": "2026-07-29T05:57:42.943Z",
         "tolerance_ms": 120000
       },
       "counts": {
-        "anomalous": 8,
+        "anomalous": 11,
         "untimestamped": 1,
         "unparseable": 0,
-        "total": 14
+        "total": 12
       },
       "sample": [
         {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:00:00.000Z",
+          "deltaMs": 17057
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T07:00:00.000Z",
+          "deltaMs": 3617057
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T08:00:00.000Z",
+          "deltaMs": 7217057
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T09:00:00.000Z",
+          "deltaMs": 10817057
+        },
+        {
           "index": 5,
           "reason": "after_window",
-          "timestamp": "2026-07-28T06:06:00.000Z",
-          "deltaMs": 32129
-        },
-        {
-          "index": 6,
-          "reason": "after_window",
-          "timestamp": "2026-07-28T06:07:00.000Z",
-          "deltaMs": 92129
-        },
-        {
-          "index": 7,
-          "reason": "after_window",
-          "timestamp": "2026-07-28T06:08:00.000Z",
-          "deltaMs": 152129
-        },
-        {
-          "index": 8,
-          "reason": "after_window",
-          "timestamp": "2026-07-28T06:09:00.000Z",
-          "deltaMs": 212129
-        },
-        {
-          "index": 9,
-          "reason": "after_window",
-          "timestamp": "2026-07-28T06:10:00.000Z",
-          "deltaMs": 272129
+          "timestamp": "2026-07-29T10:00:00.000Z",
+          "deltaMs": 14417057
         }
       ]
     }

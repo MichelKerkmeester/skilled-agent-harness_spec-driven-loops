@@ -1,0 +1,1 @@
+{"type":"delta","iteration":9,"findingsNew":{"P0":0,"P1":0,"P2":1},"newFindingsRatio":0.1,"findingDetails":[{"findingId":"F012","severity":"P2","category":"advisor-metadata","dimension":"maintainability","title":"Dual bare+sk keyword vocabulary retained by Lane D design","file":".opencode/skills/sk-prompt/description.json","line":12,"content_hash":"grok-f012-dual-vocab"}]}

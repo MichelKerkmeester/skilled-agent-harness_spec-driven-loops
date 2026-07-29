@@ -1,0 +1,25 @@
+- The packet router fires only `DESIGN_PRINCIPLES` via the bare `design` token; `MECHANICAL_PREFLIGHT` has no matching probe term; see `sk-design-interface/SKILL.md:112-120`.
+- Its preflight card is conditional, not default; see `sk-design-interface/SKILL.md:70-84`.
+- This is an ownership/proof prompt, not a request to execute the mechanical gate. The gold over-specifies the detailed card, matching the cited sk-code precedent.
+- sk-code surface filtering does not apply: filtering activates only for maps containing both `sk-code-webflow` and `sk-code-opencode` resources; see `router-replay.cjs:603-620`.
+**Classification: A — GOLD OVER-SPECIFIED**
+**Minimal fix:** Remove `sk-design-interface/assets/interface-preflight-card.md` from SR-004’s expected mode-resource list. Do not add routing keywords.
+**Over-routing risk:** Adding a broad `pre-delivery` or `quality` signal would load detailed preflight guidance for narrow ownership questions.
+**RECOMMENDATION SR-004:** **A — trim `sk-design-interface/assets/interface-preflight-card.md` from the scenario gold.**
+## PB-007
+**Probe:** `.../interface-variation-set-selection-proof.md:28-31`  
+**Gold:** `.../interface-variation-set-selection-proof.md:50-54`.
+- Hub routing correctly selects `sk-design-interface` through `visual direction`; see `hub-router.json:27-44, 101-128`.
+- The packet router fires `VARIATION_DIVERSITY` because both `variation` and `variations` match; see `sk-design-interface/SKILL.md:114-117`.
+- That intent maps to `references/design-process/variation-diversity.md`; see `sk-design-interface/SKILL.md:135-142`.
+- The shared surface router’s `INTERFACE` map loads `brief-to-dials.md` but omits `variation-diversity.md`; see `shared/references/smart-routing.md:80-102`.
+- The procedure card is selected by the prose procedure table, not by `RESOURCE_MAP`; see `sk-design-interface/SKILL.md:191-200`.
+This is not the precedent’s narrow-unfired-tier case: the prompt explicitly requests multiple directions and the packet’s own declared variation intent fires.
+**Classification: B — ROUTER UNDER-LOADS A DECLARED RESOURCE**
+**Minimal fix:** Add a conditional surface-router intent in `shared/references/smart-routing.md`:
+- Keywords: `"three genuinely distinct visual directions"`, `"genuinely distinct visual directions"`
+- Resource: `sk-design-interface/references/design-process/variation-diversity.md`
+The two phrases tie with the existing `INTERFACE` score for this probe, while avoiding loading variation guidance for every interface request.
+**Over-routing risk:** Low; the phrases are deliberately specific to multi-direction requests.
+**RECOMMENDATION PB-007:** **B — add a conditional variation-diversity intent and map it to `sk-design-interface/references/design-process/variation-diversity.md`.**
+INVESTIGATION-COMPLETE

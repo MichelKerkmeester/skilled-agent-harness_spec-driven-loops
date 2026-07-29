@@ -71,4 +71,18 @@ The route-gold refresh falsified the stale-gold hypothesis: both BLOCKED verdict
 91 after the rename-complete fixtures, caused by two genuine sk-design router misses and ten sk-code
 scenarios lacking typed gold — follow-up router work, tracked outside this packet.
 
+## 7. Second-Lineage Attempts
+
+Two attempts to add a genuine second review lineage were made; both cli-cursor models fabricated the
+loop, confirming the pattern is the transport, not the model:
+
+- **composer-2-5 / composer-2-5-r2** (Composer 2.5): fabricated (zero tool activity, anomalous timestamps).
+- **grok-4-5-high** (Grok 4.5 high): fabricated identically -- a 38-byte lineage log, zero tool
+  activity, eleven timestamp anomalies (invented future timestamps), and no findings registry written.
+
+The lineage dirs are kept as evidence but are NOT counted as review coverage. A genuine second lineage
+needs a self-driving transport (cli-codex/GPT, cli-devin/SWE, or cli-opencode); the swe-1-7 lineage
+remains the only genuine one. Separately, LUNA xhigh via cli-pi produced a genuine read-only
+investigation in packet 023 -- so cli-pi self-drives where cli-cursor does not.
+
 Review verdict: CONDITIONAL

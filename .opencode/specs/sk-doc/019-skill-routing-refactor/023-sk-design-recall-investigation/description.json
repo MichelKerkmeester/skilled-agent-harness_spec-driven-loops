@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/023-sk-design-recall-investigation",
+  "description": "Take sk-design to PASS by loading exactly the resources each scenario expects, moving no other scenario",
+  "keywords": [
+    "take",
+    "sk-design",
+    "pass",
+    "loading",
+    "exactly",
+    "resources",
+    "scenario",
+    "expects",
+    "moving"
+  ],
+  "lastUpdated": "2026-07-29T06:28:52.461Z",
+  "specId": "023",
+  "folderSlug": "sk-design-recall-investigation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
