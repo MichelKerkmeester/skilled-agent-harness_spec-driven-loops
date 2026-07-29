@@ -10,10 +10,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/001-derived-authority-decision"
-    last_updated_at: "2026-07-29T00:00:00Z"
+    last_updated_at: "2026-07-29T10:44:35Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
+    recent_action: "Accepted ADR-001/ADR-002; verified claims vs source"
+    next_safe_action: "Phase 003 builds against the accepted merged shape"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,13 +22,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "001-derived-authority-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "Operator sign-off on the ADR-001 recommendation (merged/additive schema, Python shape as core) before phase 003 begins build"
-      - "Confirm no production reader of the TS-schema-only lifecycle fields exists beyond the four cited files"
+      - "Nested vs top-level intent_signals duplicate deferred to a later cleanup phase (out of scope here)"
     answered_questions:
-      - "Live on-disk derived shape confirmed uniform Python-compiler vocabulary (key_topics/entities/causal_summary/created_at/last_updated_at) across all 11 schema_version-2 roots"
-      - "syncDerivedMetadata and backfillDerivedV2 confirmed to have zero production callers (test-only) by repo-wide grep"
+      - "Canonical derived shape = Python-compiler core + TS lifecycle fields additive (ADR-001, Accepted)"
+      - "On-disk derived is uniformly the Python shape across 11/11 roots; 0 carry any TS-only field (re-verified)"
+      - "syncDerivedMetadata/backfillDerivedV2 have zero production invocations (extract.ts ref is a comment) — repurpose as the phase-003 regenerator entry point (ADR-002)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/030-json-optimization-implementation` |
@@ -114,8 +114,8 @@ Out of scope — building the regenerator itself (phase 003 per the 029 research
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Operator sign-off on the ADR-001 recommendation is required before phase 003 begins build — this phase produces a recommendation, not an accepted decision (packet Status is Planned).
-- Whether the duplicate `intent_signals` field (present both at `graph-metadata.json` top level and nested inside `derived` on all 11 live roots) should be resolved in this same decision or deferred to a separate cleanup — flagged here, not resolved, per this phase's scope lock to the `derived`-authority question only.
+- ADR-001/ADR-002 are Accepted (autonomously, under the 030 implementation goal) after every load-bearing claim was re-verified against the current tree; the real schema/code change stays phase 003's guarded, reversible work. If a later phase surfaces a production consumer of the TS-only lifecycle fields that this verification missed, ADR-001 is revised before 003 acts on it.
+- The duplicate `intent_signals` field (present both at `graph-metadata.json` top level and nested inside `derived` on all 11 live roots) is deferred to a later cleanup phase — flagged, not resolved, per this phase's scope lock to the `derived`-authority question only.
 <!-- /ANCHOR:questions -->
 
 ---

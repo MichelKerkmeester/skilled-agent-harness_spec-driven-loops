@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Derived Schema Authority"
-description: "ADR-001 names the canonical graph-metadata.json derived schema (Python-compiler shape as core, TS lifecycle fields folded in additively). ADR-002 classifies fields as machine-derivable vs authored-preserved and decides syncDerivedMetadata/backfillDerivedV2's fate. Status: Proposed, pending operator sign-off."
+description: "ADR-001 names the canonical graph-metadata.json derived schema (Python-compiler shape as core, TS lifecycle fields folded in additively). ADR-002 classifies fields as machine-derivable vs authored-preserved and decides syncDerivedMetadata/backfillDerivedV2's fate. Status: Accepted after re-verifying the 11-root/zero-caller claims against source."
 trigger_phrases:
   - "decision"
   - "record"
@@ -13,7 +13,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/001-derived-authority-decision"
-    last_updated_at: "2026-07-29T00:00:00Z"
+    last_updated_at: "2026-07-29T10:44:35Z"
     last_updated_by: "claude-code"
     recent_action: "Authored planned phase spec"
     next_safe_action: "Begin implementation per plan.md"
@@ -45,9 +45,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-29 |
-| **Deciders** | claude-code (recommendation) — pending operator sign-off |
+| **Deciders** | claude-code — accepted autonomously under the 030 implementation goal after re-verifying every load-bearing claim against source |
 
 ---
 
@@ -147,9 +147,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-29 |
-| **Deciders** | claude-code (recommendation) — pending operator sign-off |
+| **Deciders** | claude-code — accepted autonomously under the 030 implementation goal after re-verifying every load-bearing claim against source |
 
 ---
 
@@ -242,8 +242,25 @@ Once ADR-001 names the canonical shape, a future regenerator (phase 003) needs t
 ---
 
 <!--
-Level 2 Decision Record (this phase). Two ADRs cover the full decision this
-phase owns: which schema is canonical, and how its fields are disposed.
-Both are Status: Proposed pending operator sign-off — phase 003 does not
-start build until that sign-off lands.
+Level 2 Decision Record. Two ADRs cover the full decision this phase owns:
+which schema is canonical, and how its fields are disposed. Both are
+Status: Accepted — accepted autonomously under the 030 implementation goal
+after the load-bearing claims were re-verified against the current tree.
 -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification (re-confirmed against the current tree, 2026-07-29)
+
+Every load-bearing claim was re-run against source this session, not carried over from the 029 research summary:
+
+| Claim | Method | Result |
+|-------|--------|--------|
+| On-disk `derived` is uniformly the Python shape | `grep '"schema_version": 2'` across root graph-metadata; `grep` for the seven TS-only fields | 11 roots, **0** carry `lifecycle_status`/`redirect_from`/`provenance_fingerprint`/`trust_lane`/`sanitizer_version`/`demotion` |
+| `syncDerivedMetadata`/`backfillDerivedV2` have zero production invocations | `rg` for call sites, excluding the definition | Only `tests/`/`stress-test/` callers; the one non-test reference in `lib/derived/extract.ts:219` is a **comment**, not an invocation |
+| The scorer reads the Python vocabulary, not `derived.keywords` | `rg 'derived\.(key_topics\|entities\|key_files\|source_docs\|keywords)'` in `lib/scorer/projection.ts` | Reads `key_topics`/`entities`/`key_files`/`source_docs` (lines 217-220, 665-668); never `derived.keywords` |
+| The TS schema is imported by live modules | `rg 'skill-derived-v2\|SkillDerivedV2'` excluding tests | `handlers/skill-graph/validate.ts`, `lib/derived/sync.ts`, `lib/derived/sanitizer.ts`, `lib/lifecycle/schema-migration.ts` |
+
+The additive-merge recommendation stands unchanged: it loses nothing on disk and nothing already designed in the TS layer, at zero migration cost. The real schema/code change (aligning the TS Zod schema, retargeting the writer, migrating roots) is phase 003's guarded, reversible work.
+<!-- /ANCHOR:verification -->

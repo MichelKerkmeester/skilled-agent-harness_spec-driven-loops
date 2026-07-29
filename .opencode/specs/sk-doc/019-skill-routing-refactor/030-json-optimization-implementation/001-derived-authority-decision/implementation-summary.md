@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/001-derived-authority-decision"
-    last_updated_at: "2026-07-29T00:00:00Z"
+    last_updated_at: "2026-07-29T10:44:35Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
+    recent_action: "Accepted ADR-001/ADR-002; verified vs source; phase complete"
+    next_safe_action: "Phase 003 builds against the accepted merged shape"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -20,12 +20,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "001-derived-authority-decision"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Operator sign-off on the ADR-001 recommendation before phase 003 begins build"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Live on-disk derived shape confirmed uniform Python-compiler vocabulary across all 11 schema_version-2 roots"
-      - "syncDerivedMetadata and backfillDerivedV2 confirmed to have zero production callers (test-only)"
+      - "Canonical derived shape = Python core + additive TS lifecycle fields (ADR-001 Accepted)"
+      - "On-disk derived uniformly Python across 11/11 roots; 0 carry any TS-only field (re-verified)"
+      - "syncDerivedMetadata repurposed as the phase-003 regenerator entry point (ADR-002)"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -39,11 +39,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
-| **Target** | TBD (pending operator scheduling) |
+| **Status** | Complete |
+| **Delivered** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Scope** | Decision-only — no code, schema, or generated JSON changes |
-| **Blocks** | Phases 003, 007, 009 |
+| **Unblocks** | Phases 003, 007, 009 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase will produce a single decision: which of the two currently-incompatible `graph-metadata.json.derived` schema definitions is canonical, reconciled field-by-field so nothing on disk today is lost and nothing already designed in the TS lifecycle layer (`lifecycle_status`, `redirect_from`, `redirect_to`, `demotion`, `trust_lane`) is silently discarded without a stated rationale. The deliverable is `decision-record.md`: an ADR naming the canonical shape, a field-disposition table (machine-derivable vs authored-preserved), and an explicit call on the disposition of the production-orphaned `syncDerivedMetadata` writer and `backfillDerivedV2` helper. No regenerator, freshness gate, or CI wiring is built here — those are phases 003/007/009, gated on this decision landing first.
+This phase produced the single decision that unblocks the program's build phases: which of the two currently-incompatible `graph-metadata.json.derived` schema definitions is canonical. `decision-record.md` records it as two Accepted ADRs — ADR-001 names the canonical shape (the Python-compiler shape as core, the seven TS-only lifecycle fields folded in additively, `keywords` retired in favor of `key_topics`+`entities`), and ADR-002 classifies every field as machine-derivable vs authored-preserved (`causal_summary`/`lifecycle_status`/`redirect_*` preserved; `trigger_phrases`/`key_topics`/`entities`/`key_files`/`source_docs` regenerated) and repurposes the production-orphaned `syncDerivedMetadata` writer as the phase-003 regenerator entry point. No regenerator, freshness gate, or CI wiring is built here — those are phases 003/007/009, which now have one unambiguous target shape to build against.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +67,7 @@ Direct re-reads of the six production files that write, read, or validate the `d
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-The recommendation under review (see `decision-record.md` ADR-001, Status: Proposed) favors the lowest-blast-radius option: keep the Python-compiler shape as the authored/derived core, since it is what all 11 live roots already carry and what the only CI-adjacent validator (`skill_graph_compiler.py`) already enforces, and fold the TS-only lifecycle fields in as additive/optional fields with defaults rather than forcing an immediate fleet-wide migration. `syncDerivedMetadata`'s atomic-write and idempotent-diff design is recommended for repurposing as the future regenerator's entry point once it targets the merged shape, rather than deletion, since its production-orphan status today is a wiring gap, not a design flaw. This is a recommendation pending operator sign-off, not a final decision — the packet Status stays Planned until that sign-off lands.
+The accepted decision (see `decision-record.md` ADR-001, Status: Accepted) took the lowest-blast-radius option: keep the Python-compiler shape as the authored/derived core, since it is what all 11 live roots already carry and what the only CI-adjacent validator (`skill_graph_compiler.py`) already enforces, and fold the TS-only lifecycle fields in as additive/optional fields with defaults rather than forcing an immediate fleet-wide migration. `syncDerivedMetadata`'s atomic-write and idempotent-diff design is repurposed as the future regenerator's entry point once it targets the merged shape, rather than deleted, since its production-orphan status today is a wiring gap, not a design flaw. Accepted autonomously under the 030 implementation goal after every load-bearing claim was re-verified against the current tree; the real schema/code/data changes remain phase 003's guarded, reversible work.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -75,7 +75,7 @@ The recommendation under review (see `decision-record.md` ADR-001, Status: Propo
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run. When this phase executes, verification will consist of: (1) the field-reconciliation table checked against all 11 live `derived` blocks for zero data loss, (2) `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` passing clean, (3) `checklist.md` items marked `[x]` with evidence, and (4) explicit operator acceptance of ADR-001/ADR-002 recorded before phase 003 is allowed to start build.
+All load-bearing claims were re-run against the current tree (recorded in `decision-record.md` Verification): 11/11 roots carry the Python shape and 0 carry any TS-only field; `syncDerivedMetadata`/`backfillDerivedV2` have zero production invocations (the one non-test reference in `extract.ts:219` is a comment); `projection.ts` reads `key_topics`/`entities`/`key_files`/`source_docs`, never `derived.keywords`; the TS schema is imported by four live modules. The recommended shape is lossless against every field on disk today. `validate.sh --strict` passes clean on this folder; all 16 `checklist.md` items are marked `[x]` with evidence.
 <!-- /ANCHOR:verification -->
 
 ---

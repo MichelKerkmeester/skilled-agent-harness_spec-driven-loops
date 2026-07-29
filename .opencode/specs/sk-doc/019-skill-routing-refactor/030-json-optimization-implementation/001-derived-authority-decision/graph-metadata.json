@@ -39,7 +39,7 @@
       "mapping"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape against the TS Zod SkillDerivedV2 schema used by the lifecycle subsystem.",
     "created_at": "2026-07-29T07:59:56.768Z",
-    "last_save_at": "2026-07-29T08:12:35.463Z",
+    "last_save_at": "2026-07-29T08:44:35.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d564c572d6936214556ce4dfb9b8473c46a8470db5cb6387c1884b7aa19d9cb2",
+    "source_fingerprint": "sha256:5cb28896a848ae450c114310461a88b574c72f26dcdc0b90918dde5c2e1e0548",
     "source_doc_hashes": {
-      "spec.md": "4c9b64d98704cd56aa27dbd66862c02aadcfe33864720fe2215f7cebac5d1759",
-      "plan.md": "40b48e9d48b050a4a11966fb84449888974784ca890c3cb6a2348131a82a4e32",
-      "tasks.md": "270a15af17187e6fba8f80ac27d7393207387a7401cf83cbc709d07ea58750b9",
-      "checklist.md": "051f6c8389120e64c5f699dad28b50dbe862da837c9136f002d3777b96b4e1de",
-      "decision-record.md": "0f6bd85573da1200544f9740bcd4d2565dd6c74b2b8cb934f329c1f85cbfe011",
-      "implementation-summary.md": "3864b7641c51a4628f7de837dd794a235144b054decffc7ccbc6ffede278984c"
+      "spec.md": "17639895e244af826f430de92beaec76e999f649b52b79435b96764fbce3e510",
+      "plan.md": "54c47c977d164e77a4a1f2bd3ef79bd953b1f22bc2bee264d2e9a9f7d36d3bec",
+      "tasks.md": "070efa4ed5a8e36a7d52efdca5574da377d805c2db0d63307475cfe1aa8db4ce",
+      "checklist.md": "530ad22f14e721612b0ebb3ff71fcdba91695706cbdd7d49c215047a3599c6c8",
+      "decision-record.md": "f44add413956f20b3b8181a3683acd195332fb0ce8d1b35c1824dd280d9667c2",
+      "implementation-summary.md": "7aa5235fc07e63ded6e2240847d680b5959165407eae163ac921de2e8aeba40e"
     },
     "last_active_child_id": null,
     "last_active_at": null
