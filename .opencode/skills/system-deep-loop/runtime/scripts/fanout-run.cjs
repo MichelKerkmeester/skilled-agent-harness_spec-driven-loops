@@ -1888,9 +1888,12 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   // "No API key found" — Pi's exit code is not a reliable success or auth signal.
   const args = ['-p', '--offline', '--model', `${provider}/${model}`];
   // Pi enforces no OS-level sandbox (its flag support intentionally omits one);
-  // a read-only leaf is bounded by restricting the tool allowlist to reads.
+  // a read-only leaf is bounded by restricting the tool allowlist to reads AND by
+  // disabling auto-discovered extensions, skills, and prompt templates. Their
+  // lifecycle code loads and can run independent of the tool allowlist, so a
+  // genuinely read-only leaf must not load a write-capable extension/skill/template.
   if (resolvedSandbox === 'read-only') {
-    args.push('--tools', 'read,grep,find,ls');
+    args.push('--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates');
   }
   if (lineage.reasoningEffort) {
     const thinking = REASONING_TO_PI_THINKING.get(lineage.reasoningEffort);

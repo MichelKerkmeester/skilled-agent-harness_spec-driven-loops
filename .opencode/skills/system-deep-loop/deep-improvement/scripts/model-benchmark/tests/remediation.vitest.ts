@@ -276,7 +276,7 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     expect(readOnly.bin).toBe('pi');
     expect(readOnly.args).toEqual([
       '-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol',
-      '--tools', 'read,grep,find,ls', '--thinking', 'high', 'prompt',
+      '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'high', 'prompt',
     ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
@@ -289,7 +289,7 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
   it('cli-pi defaults an omitted model to deepseek-v4-pro', () => {
     const spec = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined });
     expect(spec.args).toEqual([
-      '-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', 'prompt',
+      '-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'prompt',
     ]);
   });
 

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix",
+  "spec_folder": "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix",
+  "parent_id": "system-deep-loop/043-cli-executor-fanout-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "combo test matrix executor parity",
+      "ambient-config isolation read-only leaf",
+      "pi no-extensions read-only hardening",
+      "log every credentials-gated skip",
+      "combo matrix ambient isolation progress",
+      "pi no-extensions read-only builder",
+      "read-only leaf hermetic ambient config"
+    ],
+    "key_topics": [
+      "combo",
+      "test",
+      "matrix",
+      "executor",
+      "parity",
+      "ambient-config",
+      "isolation",
+      "read-only",
+      "leaf",
+      "no-extensions",
+      "hardening",
+      "log"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".cursor/hooks.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Combo Test Matrix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Assemble",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Per",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two things remain to close the fan-out parity packet",
+    "created_at": "2026-07-29T15:59:11.801Z",
+    "last_save_at": "2026-07-29T15:59:11.801Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:adbec8f3cf6718ad7b4481fb4d3fb20aaab32727df176d2fcb4f793c96caacd3",
+    "source_doc_hashes": {
+      "spec.md": "a9d3aeec840ea6875dac3c7833ea8dfb6e74c667a15bb44cbb45c2417ac9533a",
+      "plan.md": "93670e8d8dff6a0b32b55da64ea24ccb8abdee92ccc57e1fbd9c516eae23e4db",
+      "tasks.md": "f850ba306e50b62f8b95d09bd71b49f74b490fd8e43ff646bb94ed35445b00e4",
+      "checklist.md": "d1f413f6aeaadde706c147142f951be645fdea6a68e6b91fa1688919a82817e8",
+      "implementation-summary.md": "2b4719eed8ada92ea4265af011b703b3fca8efe96de5ff452e3374d4e434d714"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

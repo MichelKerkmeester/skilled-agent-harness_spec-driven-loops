@@ -333,7 +333,7 @@ describe('deep-ai-council session CLI runner', () => {
       kind: 'cli-pi',
       model: 'deepseek-v4-pro',
       command: 'pi',
-      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', prompt],
+      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', prompt],
     },
   ])('dispatches read-only %kind seats through the shared builder', async ({ kind, model, command, expectedArgs }) => {
     await withTempPacket(async (packetSpecFolder) => {

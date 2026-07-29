@@ -1322,7 +1322,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       { kind: 'cli-pi', model: 'gpt-5.6-sol' },
       'p', 'read-only', 'plan', opts,
     ) as { args: string[] };
-    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--tools', 'read,grep,find,ls', 'p']);
+    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'p']);
     const write = buildLineageCommand(
       { kind: 'cli-pi', model: 'gpt-5.6-sol' },
       'p', 'workspace-write', 'default', opts,
