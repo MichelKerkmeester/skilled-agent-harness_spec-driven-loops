@@ -27,7 +27,7 @@ Unit tests over the exact constructed args for all three sandbox modes of both k
 - [x] fanout-run 93/93 and executor-config 86/86 green.
 - [x] Whole-runtime tsc 0.
 - [x] Live probes: read-only writes blocked + reads allowed; workspace-write writes succeed with no stall.
-- [x] SOL cross-verify: 0 P0; the one stall P1 (Smart Auto) fixed via `--force --sandbox enabled`; two pre-existing ambient-config P1s (repo hooks, unapproved MCP) tracked to the combo-matrix phase.
+- [x] SOL cross-verify: 0 P0; the one stall P1 (Smart Auto) fixed via `--force --sandbox enabled`; the two ambient-config P1s (repo hooks, unapproved MCP) verified NON-reproducing against the real hooks/MCP (read-only leaf wrote zero files in-repo under the real dispatch env; MCPs skipped) — tracked as defense-in-depth for the combo-matrix phase.
 - [x] `validate.sh --strict`: Errors 0 (5 tolerated warnings matching the sibling phase baseline).
 <!-- /ANCHOR:testing -->
 

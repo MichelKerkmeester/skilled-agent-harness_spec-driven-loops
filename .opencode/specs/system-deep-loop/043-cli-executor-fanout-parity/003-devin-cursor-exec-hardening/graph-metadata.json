@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The devin and cursor fan-out lineage builders mapped the generic sandbox modes (`read-only`, `workspace-write`, `danger-full-access`) to CLI flags that live testing of the installed binaries proved incorrect:",
     "created_at": "2026-07-29T12:31:59.435Z",
-    "last_save_at": "2026-07-29T12:55:10.596Z",
+    "last_save_at": "2026-07-29T13:07:28.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:083cc6a6145032bd9a427ad80d21fd9acea90eee37acf37bbce824d44652c082",
+    "source_fingerprint": "sha256:1c3201d19ffed659168923cffc4d0a82616205f3271bd1122faa2eb949c86abc",
     "source_doc_hashes": {
       "spec.md": "dfcb566d13b0dcfb6d2b2f73dddfa058fede170faecf404b67dce6c6bd2a0c4e",
       "plan.md": "dc98bc24bfdee0f730c2e56aea917d81c113dd48b9a12759581139fe04eb8647",
       "tasks.md": "9e3533e99fc386b49d85174d647535c54c274af29bff9d664063031e215f5c57",
-      "checklist.md": "659411aa60ac4217e6972428f58dbf26d6604720eeed55d8a48e252e301602c4",
-      "implementation-summary.md": "d27eb7cf771c551c7e7f24a438f70bb02d5cd9241bb0d8b6a8d377477181392a"
+      "checklist.md": "2fb92b17556dc77640aef81fd85cbbdc86320be50bfe1ea78bd9c901e0731718",
+      "implementation-summary.md": "abcdbf9a39133796a2ed8e16b912556937395765c1525b6cea746611711d7f16"
     },
     "last_active_child_id": null,
     "last_active_at": null
