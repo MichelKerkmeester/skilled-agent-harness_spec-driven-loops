@@ -15,7 +15,7 @@ trigger_phrases:
   - "delegate to pi"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # cli-external-orchestration
@@ -48,7 +48,7 @@ version: 1.1.0.0
 
 Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity, tool surface and advisor routing. `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi` when multiple are explicitly requested (an `orderedBundle` outcome), and `defaultMode` is `cli-opencode`, but genuinely unclear or contradictory dispatch intent still defers to disambiguation instead of defaulting silently.
 
-All six packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/` (`cli-opencode/` additionally keeps `scripts/`). The hub carries the single `graph-metadata.json` advisor identity for all six, unioning their intent signals, trigger phrases, domains and outward edges.
+All six packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Each mode's `references/` includes a dedicated `providers-and-models.md` — the single-source catalog of that mode's providers, model ids, personas/effort tiers, and dispatch shapes. The hub carries the single `graph-metadata.json` advisor identity for all six, unioning their intent signals, trigger phrases, domains and outward edges.
 
 ---
 

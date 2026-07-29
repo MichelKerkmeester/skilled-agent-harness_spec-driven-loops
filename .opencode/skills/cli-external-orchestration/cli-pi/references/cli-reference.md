@@ -196,27 +196,9 @@ The shared runtime must keep the process alive, write newline-delimited JSON req
 
 ## 13. MODEL SELECTION
 
-Pi is a multi-provider passthrough with no enforced allowlist at this layer. Select models with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort is a first-class flag independent of the model id: `--thinking off|minimal|low|medium|high|xhigh|max` (installed help, confirmed live). Unlike `cli-cursor`/`cli-devin`, no effort tier is baked into any model id.
+Pi is a multi-provider passthrough with no enforced allowlist at this layer and no fixed default model. Pi's own `--provider` default is `google`, which is not authenticated here, so every real dispatch names its provider and model explicitly. Select models with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`).
 
-### Authenticated Provider Roster (2026-07-28)
+Reasoning effort is a first-class flag independent of the model id: `--thinking off|minimal|low|medium|high|xhigh|max` (installed help, confirmed live). Unlike `cli-cursor`/`cli-devin`, no effort tier is baked into any model id. Codex's config-level `-c model_reasoning_effort=...` and `-c service_tier=...` forms are Codex-specific syntax and must NOT be copied into a Pi invocation; Pi has no confirmed service-tier control surface.
 
-The machine-local `~/.pi/agent/auth.json` and `models-store.json` confirm four authenticated providers and their installed catalogs. A live `pi --provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn on this roster.
-
-| Provider | Installed model ids |
-|---|---|
-| `openai-codex` | `gpt-5.3-codex-spark`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-sol` |
-| `deepseek` | `deepseek-v4-flash`, `deepseek-v4-pro` |
-| `minimax` | `MiniMax-M2.7`, `MiniMax-M2.7-highspeed`, `MiniMax-M3` |
-| `xiaomi` | `mimo-v2-flash`, `mimo-v2-omni`, `mimo-v2-pro`, `mimo-v2.5`, `mimo-v2.5-pro`, `mimo-v2.5-pro-ultraspeed` |
-
-The roster is machine state, not a contract: re-read `models-store.json` (or the in-session model picker) before relying on a specific id.
-
-### GPT-5.6 Tiers Through The `openai-codex` Provider
-
-| Model | Codex-documented effort ceiling | Reachable via Pi `--thinking`? |
-|---|---|---|
-| `gpt-5.6-luna` | `max` | Yes — `max` is the top of Pi's own scale |
-| `gpt-5.6-sol` | `ultra` | Partially — Pi's `--thinking` scale stops at `max`; `ultra` has no Pi-side value |
-
-The ceilings come from the cli-codex model-selection table ([`cli-codex/SKILL.md`](../../cli-codex/SKILL.md)); the `-c model_reasoning_effort=...` and `-c service_tier=...` forms there are Codex-specific syntax and must not be copied into a Pi invocation. Pi has no confirmed service-tier control surface.
+**Full authenticated provider/model roster, the `--thinking` scale, and the GPT-5.6 ceiling cross-map → [providers-and-models.md](./providers-and-models.md).**
 

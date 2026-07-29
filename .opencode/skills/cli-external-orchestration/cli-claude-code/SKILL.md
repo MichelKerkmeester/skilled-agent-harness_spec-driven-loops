@@ -226,15 +226,7 @@ claude -p "<prompt>" \
 
 ### Model Selection
 
-`claude-sonnet-4-6` is the skill default. The full roster (including the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs), with cost and per-task selection guidance, lives in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) §6.
-
-| Model | ID | When to reach for it |
-|-------|----|----------------------|
-| **Opus** | `claude-opus-4-6` (current: `claude-opus-4-8`) | Deep reasoning, complex architecture, extended thinking (`--effort high`) |
-| **Sonnet** ★ default | `claude-sonnet-4-6` (current: `claude-sonnet-5`) | Balanced performance/cost — default for most tasks |
-| **Haiku** | `claude-haiku-4-5-20251001` | Fast, lightweight tasks; use only when explicitly requested |
-
-Default to Sonnet unless the task needs Opus deep reasoning; name a current-generation ID explicitly when you want it.
+`claude-sonnet-4-6` is the skill default. Reach for `claude-opus-4-6` (deep reasoning / complex architecture — pair with `--effort high`) or `claude-haiku-4-5-20251001` (fast, lightweight; only when explicitly requested); the current-generation `claude-opus-4-8` / `claude-sonnet-5` / `claude-fable-5` IDs are selectable by name where the environment supports them. Full roster with tiers, cost, defaults, and the `--effort` mapping → [references/providers-and-models.md](references/providers-and-models.md).
 
 ### Claude Code Agent Delegation
 

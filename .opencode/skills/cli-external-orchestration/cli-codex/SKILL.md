@@ -226,22 +226,13 @@ codex exec \
 | "Use gpt 5.6 terra high" | `--model gpt-5.6-terra -c model_reasoning_effort="high" -c service_tier="fast"` |
 | "Use gpt 5.6 sol ultra" | `--model gpt-5.6-sol -c model_reasoning_effort="ultra" -c service_tier="fast"` |
 
-Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (defined in the roster below).
+Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](references/providers-and-models.md)).
 
 ### Model Selection
 
-`gpt-5.5` at `medium` is the skill default for cross-AI delegation. Four GPT models are callable on the `fast` service tier via `--model`; each caps at a different reasoning-effort ceiling. Pick the model for the task, then tune reasoning effort within that model's ceiling. All are `-c service_tier="fast"`.
+`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation. Alternates: `gpt-5.6-luna` / `gpt-5.6-terra` (≤ `max`), `gpt-5.6-sol` (≤ `ultra`) — full roster, per-model effort ceilings, and the 8-level effort ladder in [references/providers-and-models.md](references/providers-and-models.md). Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
 
-| Model | ID | Reasoning-effort range (fast tier) | When to reach for it |
-|-------|----|------------------------------------|----------------------|
-| **GPT-5.5** ★ default | `gpt-5.5` | `low` · `medium` · `high` · `xhigh` | General delegation — generation, review, docs, research. Default at `medium`. |
-| **GPT-5.6 LUNA** | `gpt-5.6-luna` | `low` · `medium` · `high` · `xhigh` · `max` | Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max`. |
-| **GPT-5.6 TERRA** | `gpt-5.6-terra` | `low` · `medium` · `high` · `xhigh` · `max` | A GPT-5.6 fast sibling; callable directly via `-m gpt-5.6-terra` (no dedicated config profile). |
-| **GPT-5.6 SOL** | `gpt-5.6-sol` | `low` · `medium` · `high` · `xhigh` · `max` · `ultra` | Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh`. |
-
-**Reasoning-effort scale** (ascending): `none` · `minimal` · `low` · `medium` (5.5 default) · `high` · `xhigh` · `max` · `ultra`. Ceilings per model: `gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`. Set effort with `-c model_reasoning_effort="<level>"` (there is **no `--reasoning-effort` flag**).
-
-**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate to a GPT-5.6 model when the task wants reasoning past `xhigh` — `gpt-5.6-luna max` for implementation, `gpt-5.6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Codex Agent Delegation
 

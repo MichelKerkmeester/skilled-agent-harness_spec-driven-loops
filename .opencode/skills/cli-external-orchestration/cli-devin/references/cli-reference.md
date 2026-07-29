@@ -182,21 +182,9 @@ devin -- add a login page
 
 ### Supported Models
 
-Devin CLI supports multiple AI models. Short names always resolve to the latest version in that family. `adaptive` enables the intelligent model router.
+Devin dispatches **`adaptive`** (the intelligent model router) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
-| Model | Short name | Best For |
-|-------|------------|----------|
-| **Adaptive** ★ default | `adaptive` | General delegation — the router auto-selects the best model per task |
-| **Claude Opus** | `opus` | Complex refactoring, architecture changes, deep reasoning |
-| **Claude Sonnet** | `sonnet` | Balanced coding, implementation, review |
-| **SWE-1.6** | `swe` | Fast, cost-effective edits, bug fixes, questions |
-| **SWE-1.6 Fast** | `swe-1-6-fast` | Quickest turnaround for straightforward edits |
-| **GPT** | `gpt` | Multi-file refactors, OpenAI-model strengths |
-| **Codex** | `codex` | OpenAI coding-model dispatch through Devin |
-| **Gemini** | `gemini` | Google-model tasks |
-| **DeepSeek** | `deepseek` | Open-source model tasks |
-| **Kimi** | `kimi` | Open-source model tasks |
-| **GLM** | `glm-5-2`, `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `glm-5-2-none`, `glm-5-2-none-1m` | Open-source model tasks |
+**Full sub-model roster (opus/sonnet/swe/gpt/codex/gemini/deepseek/kimi/glm-5-2 family) → [providers-and-models.md](./providers-and-models.md).**
 
 ### Setting the Model
 
@@ -218,10 +206,6 @@ devin -p --model swe -- "list all TODO comments"
   }
 }
 ```
-
-### Reasoning / Thinking Levels
-
-Some models support configurable reasoning levels, which control how much compute the model spends "thinking" before responding. Cycle the thinking level with `Alt+T` (macOS: `Opt+T`) during a session.
 
 ### Selection Strategy
 

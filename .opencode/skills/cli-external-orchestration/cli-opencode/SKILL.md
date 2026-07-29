@@ -185,7 +185,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Alternates (all omit `--agent`): MiniMax Token Plan/Direct API `MiniMax-M3`, Xiaomi Token Plan/Direct API `mimo-v2.5-pro` (+ low-latency `-ultraspeed`), Kimi For Coding `k2p7` (256k, subscription), Z.AI GLM Coding Plan `glm-5.2` (1M, subscription), and the OpenAI GPT-5.6 catalog (`gpt-5.6-sol` flagship default; bare/Sol/Terra/Luna x base/Fast/Pro, `--variant` up to `xhigh`). Full model table, per-provider `--variant` mapping, and model-specific operational caveats: `references/cli-reference.md` §5.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default: `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Common alternates (all omit `--agent`): `deepseek-v4-flash`, `kimi-for-coding/k2p7`, `zai-coding-plan/glm-5.2`, GPT-5.6 slugs — full roster, GPT-5.6 slug grid, per-provider `--variant` mapping, and model-specific operational caveats in [references/providers-and-models.md](references/providers-and-models.md).
 
 Shared small-model facts, context defaults, quota pools, and fallback targets live in `../../sk-prompt/sk-prompt-models/assets/model-profiles.json`.
 

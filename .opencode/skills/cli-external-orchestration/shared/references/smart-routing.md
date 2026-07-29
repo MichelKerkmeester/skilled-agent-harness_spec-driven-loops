@@ -8,16 +8,17 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 
 # cli-external-orchestration Surface Router — per-mode leaf sets
 
 This is cli-external-orchestration's second-layer (surface) router. The hub
 selects a workflow mode in [`hub-router.json`](../../hub-router.json)
-(`cli-opencode`, `cli-claude-code`, or `cli-codex`); this doc maps a request's
-CLI-dispatch intent to the exact packet-local leaf resources that mode should
-load. Every path is packet-qualified (`<packet>/references|assets/…`, where
+(`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or
+`cli-pi`); this doc maps a request's CLI-dispatch intent to the exact
+packet-local leaf resources that mode should load. Every path is
+packet-qualified (`<packet>/references|assets/…`, where
 `<packet>` is the mode's `mode-registry.json` `packet` field) and converts to
 the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary
 (`sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs`).
@@ -30,6 +31,12 @@ emits leaf paths, and this router never re-decides the mode.
 
 ## 1. INTENT MODEL
 
+Each mode's first-slice leaf set is its CLI command reference + its
+integration-pattern guide. Each mode ALSO carries a dedicated
+`references/providers-and-models.md` catalog (provider / model / effort /
+invocation index) that loads on demand inside the packet — like the deeper
+per-mode references, it is not part of the first slice.
+
 - **cli-opencode leaves** — the OpenCode CLI command reference (invocation flags,
   models, sandbox) and the integration-pattern guide a request to dispatch an
   external / parallel-detached OpenCode session, run a full plugin + Spec-Kit
@@ -41,6 +48,16 @@ emits leaf paths, and this router never re-decides the mode.
 - **cli-codex leaves** — the Codex CLI command reference (`codex exec`, sandbox
   modes, web research) and the integration-pattern guide a request to dispatch an
   OpenAI-backed coding / review / research session loads.
+- **cli-cursor leaves** — the Cursor CLI command reference (`cursor-agent -p`,
+  Composer + the enforced model allowlist) and the integration-pattern guide a
+  request to dispatch a Cursor-Composer coding session loads.
+- **cli-devin leaves** — the Devin CLI command reference (`devin -p`, the adaptive
+  router + sub-model roster, permission modes) and the integration-pattern guide a
+  request to dispatch a Cognition-backed autonomous SWE session or cloud handoff
+  loads.
+- **cli-pi leaves** — the Pi CLI command reference (headless print mode, the
+  multi-provider passthrough + `--thinking` lever) and the integration-pattern
+  guide a request to dispatch a Pi passthrough session loads.
 
 A bare CLI-dispatch phrase that names no executor (e.g. "dispatch this to a CLI
 executor") names no mode, so it fires no intent and falls back to the hub default
@@ -67,6 +84,9 @@ INTENT_SIGNALS = {
     "OPENCODE":    {"weight": 4, "keywords": ["opencode", "opencode cli", "opencode run", "delegate to opencode", "cli-opencode", "parallel detached session", "full plugin runtime", "full plugin and memory stack", "spec kit runtime", "spec kit memory", "ablation suite", "worker farm opencode"]},
     "CLAUDE_CODE": {"weight": 4, "keywords": ["claude code", "claude cli", "cli-claude-code", "anthropic cli", "anthropic cli second opinion", "delegate to claude", "extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review"]},
     "CODEX":       {"weight": 4, "keywords": ["codex", "codex cli", "codex exec", "cli-codex", "openai cli second opinion", "delegate to codex", "openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]},
+    "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch"]},
+    "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "adaptive model dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "swe-1.6 dispatch"]},
+    "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider"]},
 }
 
 RESOURCE_MAP = {
@@ -82,6 +102,18 @@ RESOURCE_MAP = {
         "cli-codex/references/cli-reference.md",
         "cli-codex/references/integration-patterns.md"
     ],
+    "CURSOR": [
+        "cli-cursor/references/cli-reference.md",
+        "cli-cursor/references/integration-patterns.md"
+    ],
+    "DEVIN": [
+        "cli-devin/references/cli-reference.md",
+        "cli-devin/references/integration-patterns.md"
+    ],
+    "PI": [
+        "cli-pi/references/cli-reference.md",
+        "cli-pi/references/integration-patterns.md"
+    ],
 }
 ```
 
@@ -91,8 +123,11 @@ RESOURCE_MAP = {
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the
   union is deduped by canonical pair and capped at the selected-map union limit —
   the `orderedBundle` outcome `hub-router.json` declares.
-- Each mode's leaves are its own CLI command reference plus its integration-pattern
-  guide; the deeper per-mode references (tool catalogs, permission matrices,
-  self-invocation guards) load on demand inside the packet, not on the first slice.
+- Each mode's first-slice leaves are its own CLI command reference plus its
+  integration-pattern guide; the deeper per-mode references (its
+  `providers-and-models.md` provider/model catalog, tool catalogs, permission
+  matrices, self-invocation guards) load on demand inside the packet, not on the
+  first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
-  (`cli-opencode`, `cli-claude-code`, or `cli-codex`) before loading anything.
+  (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or
+  `cli-pi`) before loading anything.

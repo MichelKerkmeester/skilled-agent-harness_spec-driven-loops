@@ -162,6 +162,8 @@ cursor-agent -p "Summarize this module" --output-format json --model composer-2.
 
 ## 5. MODEL SELECTION
 
+**Full model catalog (allowlist mirror + enforcement link + effort explanation) → [providers-and-models.md](./providers-and-models.md).**
+
 ### Supported Models — Enforced Allowlist
 
 Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 10 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
@@ -176,7 +178,7 @@ Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-fast`/`-max`), n
 
 ### Reasoning Effort Configuration
 
-**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Live-tested against two real model ids (a Grok bracket variant and the exact bracket example from Cursor's own `--help` text, `claude-opus-4-8[context=1m,effort=high,fast=false]`) — both were rejected outright with `Cannot use this model: <literal string>`. Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `cursor-grok-4.5-high` instead of `cursor-grok-4.5` + a bracket).
+**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `cursor-grok-4.5-high` instead of `cursor-grok-4.5` + a bracket); the bracket form is rejected outright with `Cannot use this model`. Full live-tested detail and the id-form footgun → [providers-and-models.md](./providers-and-models.md) §4.
 
 ### Selection Strategy
 

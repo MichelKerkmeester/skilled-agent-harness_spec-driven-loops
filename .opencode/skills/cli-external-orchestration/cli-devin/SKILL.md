@@ -228,20 +228,9 @@ Honor whichever dimensions the user names. Model stays on `adaptive` and permiss
 
 ### Model Selection
 
-Devin CLI supports multiple AI models from Anthropic, OpenAI, Google, Cognition, and leading open-source providers (DeepSeek, Kimi, GLM). Short names (`opus`, `sonnet`, `swe`, `gpt`, `codex`, `gemini`) always resolve to the latest version in that family. `adaptive` enables the intelligent model router that auto-selects the best model per task.
+Default `adaptive` (the intelligent model router; short names resolve to the latest version in a family). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Alternates: `opus` / `sonnet` / `swe` / `swe-1-6-fast` / `gpt` / `codex` / `gemini` / `deepseek` / `kimi` / `glm-5-2` — full roster (incl. the glm-5-2 suffix family) and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
-| Model | Short name | When to reach for it |
-|-------|------------|----------------------|
-| **Adaptive** ★ default | `adaptive` | General delegation — the router picks the best model per task automatically |
-| **Claude Opus** | `opus` | Complex refactoring, architecture changes, deep reasoning |
-| **Claude Sonnet** | `sonnet` | Balanced coding, implementation, review |
-| **SWE-1.6** | `swe` | Fast, cost-effective edits, bug fixes, questions |
-| **SWE-1.6 Fast** | `swe-1-6-fast` | Quickest turnaround for straightforward edits |
-| **GPT** | `gpt` | Multi-file refactors, OpenAI-model strengths |
-| **Codex** | `codex` | OpenAI coding-model dispatch through Devin |
-| **Gemini** | `gemini` | Google-model tasks |
-
-**Selection Strategy**: default `adaptive`; switch to `opus` for complex refactoring and architecture; use `swe` / `swe-1-6-fast` for quick edits and cost-sensitive work; use `gpt` for OpenAI-model strengths. Set with `--model <name>` (short names resolve to latest). Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `adaptive`; switch to `opus` for complex refactoring and architecture; use `swe` / `swe-1-6-fast` for quick edits and cost-sensitive work; use `gpt` for OpenAI-model strengths. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 

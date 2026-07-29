@@ -178,16 +178,9 @@ codex exec "Refactor this function" --oss
 
 ## 5. MODEL SELECTION
 
-### Supported Models
+Default: `gpt-5.5` at `-c model_reasoning_effort="medium"` on the `fast` service tier (`-c service_tier="fast"`). Set reasoning effort with the config override **`-c model_reasoning_effort="<level>"`** — there is **no `--reasoning-effort` CLI flag** — and keep it within the chosen model's ceiling.
 
-Four GPT models are callable on the `fast` service tier via `--model` / `-m`. `gpt-5.5` at `medium` is the skill default; each model caps at a different reasoning-effort ceiling.
-
-| Model | ID | Reasoning-effort ceiling | Best For |
-|-------|----|--------------------------|----------|
-| **GPT-5.5** ★ default | `gpt-5.5` | `xhigh` (default `medium`) | General delegation — generation, review, implementation, docs, architecture, research |
-| **GPT-5.6 LUNA** | `gpt-5.6-luna` | `max` | Implementation-heavy work; the `luna-impl` profile pins `max` |
-| **GPT-5.6 TERRA** | `gpt-5.6-terra` | `max` | GPT-5.6 fast sibling; no dedicated profile — call directly via `-m gpt-5.6-terra` |
-| **GPT-5.6 SOL** | `gpt-5.6-sol` | `ultra` | Verification / review and hardest planning; only model reaching `ultra` (the `sol-verify` profile pins `xhigh`) |
+**Full model roster, per-model effort ceilings, and the 8-level effort ladder → [providers-and-models.md](./providers-and-models.md).**
 
 ### Reasoning Effort Configuration
 
@@ -198,18 +191,7 @@ Reasoning effort controls how much "thinking" the model does. There is **no `--r
 3. **Profile:** `[profiles.review]` → `model_reasoning_effort = "xhigh"`
 4. **Plan mode:** `plan_mode_reasoning_effort = "medium"` (Plan-mode-specific override)
 
-**Valid values** (from `codex-rs/core/config.schema.json`):
-
-| Value | Description | Model ceiling |
-|-------|-------------|---------------|
-| `none` | No reasoning — fastest, lowest cost | all |
-| `minimal` | Minimal reasoning | all |
-| `low` | Low reasoning effort | all |
-| `medium` | Standard reasoning (skill default) | all |
-| `high` | High reasoning effort | all |
-| `xhigh` | Deep reasoning — ceiling for `gpt-5.5` | all |
-| `max` | Deeper reasoning — `gpt-5.6-luna` / `gpt-5.6-terra` / `gpt-5.6-sol` | 5.6 family |
-| `ultra` | Deepest reasoning — `gpt-5.6-sol` only | `gpt-5.6-sol` |
+The 8-level effort ladder and its per-model ceilings live in [providers-and-models.md](./providers-and-models.md) §4.
 
 ### Selection Strategy
 
@@ -225,7 +207,7 @@ Reasoning effort controls how much "thinking" the model does. There is **no `--r
 | Documentation | `medium` (default) | Efficient for structured doc generation |
 | Trivial lookups / formatting | `low` / `minimal` | Minimize cost and latency |
 
-Always specify `--model` explicitly in scripts for predictability (`gpt-5.5` is the skill default); omitting it relies on the CLI default, which may change across versions. When a task wants reasoning past `xhigh`, escalate the model: `--model gpt-5.6-luna -c model_reasoning_effort="max"` for deep implementation, `--model gpt-5.6-sol -c model_reasoning_effort="ultra"` for the hardest verification/review.
+Always specify `--model` explicitly in scripts for predictability (`gpt-5.5` is the skill default); omitting it relies on the CLI default, which may change across versions. When a task wants reasoning past `xhigh`, escalate the model — see the roster and ceilings in [providers-and-models.md](./providers-and-models.md).
 
 ### Command-Line Specification
 

@@ -267,35 +267,9 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-OpenCode resolves models through configured providers. The cli-opencode skill supports `deepseek` (default), `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable; NOTE: observed not resolving on this install 2026-06-11 (ProviderModelNotFoundError surfaced as 'Unexpected server error'); re-auth via `opencode auth login` or use the `xiaomi` Direct API instead), and `xiaomi` (Xiaomi Direct API — MiMo: `xiaomi/mimo-v2.5-pro` + low-latency `xiaomi/mimo-v2.5-pro-ultraspeed`, pay-per-token) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
+Default model `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Reasoning effort is expressed through the `--variant` flag, which maps to a provider-specific effort scale. The model string passed to `--model` is always `provider/model-id`; run `opencode models <provider>` for the live list on a given install.
 
-| Provider | Example model id | Use case |
-|----------|------------------|----------|
-| `deepseek` (DEFAULT) | `deepseek/deepseek-v4-pro` | Default — deep reasoning at low cost via direct DeepSeek API |
-| `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
-| `kimi-for-coding` | `kimi-for-coding/k2p7` | Long-context Kimi K2.7 Code (256k; subscription plan) |
-| `zai-coding-plan` | `zai-coding-plan/glm-5.2` | Z.AI GLM Coding Plan — GLM-5.2 flagship long-horizon coding (1M context; subscription); omit `--agent`; verify with `opencode models zai-coding-plan` |
-| `minimax-coding-plan` (DEFAULT MiniMax) | `minimax-coding-plan/MiniMax-M3` | MiniMax Token Plan (subscription) — default MiniMax dispatch; omit `--agent`; verify with `opencode models minimax-coding-plan` |
-| `minimax` | `minimax/MiniMax-M3` | MiniMax Direct API — pay-per-token alternative; needs `MINIMAX_API_KEY`; confirm the live id via `opencode models minimax` |
-| `xiaomi-token-plan-ams` | `xiaomi-token-plan-ams/mimo-v2.5-pro` | Xiaomi Token Plan (Europe) — MiMo-V2.5-Pro: 1M-token context, strongly agentic (1000+ tool calls), token-efficient; omit `--agent`; verify with `opencode models xiaomi-token-plan-ams` |
-| `xiaomi` | `xiaomi/mimo-v2.5-pro` | Xiaomi Direct API — pay-per-token; MiMo-V2.5-Pro; confirm the live id via `opencode models xiaomi` |
-
-`opencode models <provider>` lists every model id the provider exposes. The model string passed to `--model` is always `provider/model-id`.
-
-### Reasoning effort via `--variant`
-
-The `--variant` flag maps to provider-specific reasoning effort. Underlying-model conventions apply per provider routing.
-
-| Provider | Variant values |
-|----------|----------------|
-| `deepseek` (`deepseek-v4-pro`) | reasoning effort accepted |
-| `deepseek` (`deepseek-v4-flash`) | non-reasoning — `--variant` ignored |
-| `minimax-coding-plan` / `minimax` (MiniMax-M3) | `--variant` behavior unverified — omitted by default; confirm against the MiniMax API before relying on it |
-| `xiaomi-token-plan-ams` (mimo-v2.5-pro) | `--variant` maps to MiMo reasoning effort (low/medium/high); **always use `--variant high`** (confirmed accepted on opencode 1.15.13) |
-| `zai-coding-plan` (glm-5.2) | GLM has native `reasoning_effort` (high/max); whether opencode `--variant` forwards to it is unverified — smoke-test before relying on it |
-| `openai` GPT-5.6 (`gpt-5.6` / `gpt-5.6-fast` / `gpt-5.6-pro` / `gpt-5.6-sol` / `gpt-5.6-sol-fast` / `gpt-5.6-sol-pro` / `gpt-5.6-terra` / `gpt-5.6-terra-fast` / `gpt-5.6-terra-pro` / `gpt-5.6-luna` / `gpt-5.6-luna-fast` / `gpt-5.6-luna-pro`) | `--variant` maps to OpenAI reasoning effort — a separate lever from the model tier: `none`/`low`/`medium`/`high`/**`xhigh`** (Pro tiers — `gpt-5.6-pro` / `gpt-5.6-sol-pro` / `gpt-5.6-terra-pro` / `gpt-5.6-luna-pro`: `medium`/`high`/`xhigh` — **inferred from the now-retired `gpt-5.5-pro` mapping and unverified against the live catalog (which no longer lists `gpt-5.5-pro` to re-check); smoke-test a Pro slug at `--variant low` before relying on the restriction**). **The `-fast` slugs** (`gpt-5.6-fast` / `gpt-5.6-sol-fast` / `gpt-5.6-terra-fast` / `gpt-5.6-luna-fast`) are the low-latency **Fast** model tier (OpenAI `priority` service tier) with the same effort range — e.g. `--model openai/gpt-5.6-sol-fast --variant xhigh`. `gpt-5.6-sol` is the flagship default; confirm live slugs via `opencode models openai`. |
-
-Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
+**Full provider/model roster, the GPT-5.6 slug grid, and the per-provider `--variant` effort map → [providers-and-models.md](./providers-and-models.md).**
 
 ### Model-specific operational caveats
 

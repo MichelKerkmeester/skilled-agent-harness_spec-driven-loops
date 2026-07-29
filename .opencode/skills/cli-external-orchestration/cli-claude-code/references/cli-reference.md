@@ -195,6 +195,8 @@ claude "Start by reviewing the auth module"
 
 ## 6. MODELS
 
+**Full model catalog with tiers, defaults, and `--effort` mapping → [providers-and-models.md](./providers-and-models.md).**
+
 ### Available Models
 
 | Model | ID | Strengths | Cost | Best For |
@@ -205,34 +207,6 @@ claude "Start by reviewing the auth module"
 | **Opus 4.6** | `claude-opus-4-6` | Prior-generation deep reasoning | Highest | Architecture decisions, complex trade-offs, extended thinking |
 | **Sonnet 4.6** | `claude-sonnet-4-6` | Prior-generation balanced | Medium | General tasks, code generation, reviews — **current skill default** |
 | **Haiku 4.5** | `claude-haiku-4-5-20251001` | Fastest, most cost-effective | Lowest | Classification, formatting, simple queries, batch ops |
-
-> **Model IDs**: Opus 4.8, Sonnet 5, and Fable 5 are the current Claude generation and are selectable via `--model` where the calling environment supports them. The skill default pin elsewhere in these docs is still `claude-sonnet-4-6`; name a current-generation ID explicitly when you want it. Pin the exact ID the target CLI accepts.
-
-### Model Selection Guide
-
-```
-Is the task complex (architecture, trade-offs, multi-step reasoning)?
-  YES → claude-opus-4-6 with --effort high
-  NO  → Is the task trivial (classify, format, simple extraction)?
-          YES → claude-haiku-4-5-20251001
-          NO  → claude-sonnet-4-6 (default)
-```
-
-### Usage Examples
-
-```bash
-# Opus for deep reasoning
-claude -p "Design the data model for a multi-tenant SaaS platform" \
-  --model claude-opus-4-6 --effort high --output-format text 2>&1
-
-# Sonnet for general tasks (default)
-claude -p "Refactor this function to use async/await" \
-  --model claude-sonnet-4-6 --output-format text 2>&1
-
-# Haiku for fast classification
-claude -p "Classify these 50 log entries by severity" \
-  --model claude-haiku-4-5-20251001 --output-format text 2>&1
-```
 
 ---
 

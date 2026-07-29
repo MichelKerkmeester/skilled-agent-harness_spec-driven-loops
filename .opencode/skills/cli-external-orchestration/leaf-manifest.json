@@ -7,7 +7,8 @@
         "references/agent-delegation.md",
         "references/claude-tools.md",
         "references/cli-reference.md",
-        "references/integration-patterns.md"
+        "references/integration-patterns.md",
+        "references/providers-and-models.md"
       ],
       "packet": "cli-claude-code",
       "workflowMode": "cli-claude-code"
@@ -20,7 +21,8 @@
         "references/cli-reference.md",
         "references/codex-tools.md",
         "references/hook-contract.md",
-        "references/integration-patterns.md"
+        "references/integration-patterns.md",
+        "references/providers-and-models.md"
       ],
       "packet": "cli-codex",
       "workflowMode": "cli-codex"
@@ -34,6 +36,7 @@
         "references/cursor-tools.md",
         "references/hook-contract.md",
         "references/integration-patterns.md",
+        "references/providers-and-models.md",
         "references/shared-editor-config.md"
       ],
       "packet": "cli-cursor",
@@ -47,7 +50,8 @@
         "references/cli-reference.md",
         "references/cloud-handoff.md",
         "references/devin-tools.md",
-        "references/integration-patterns.md"
+        "references/integration-patterns.md",
+        "references/providers-and-models.md"
       ],
       "packet": "cli-devin",
       "workflowMode": "cli-devin"
@@ -67,6 +71,7 @@
         "references/integration-patterns.md",
         "references/opencode-tools.md",
         "references/permissions-matrix.md",
+        "references/providers-and-models.md",
         "references/self-invocation-guard.md"
       ],
       "packet": "cli-opencode",
@@ -81,7 +86,8 @@
         "references/integration-patterns.md",
         "references/mcp-and-third-party-packages.md",
         "references/native-skills-and-extensions.md",
-        "references/pi-tools.md"
+        "references/pi-tools.md",
+        "references/providers-and-models.md"
       ],
       "packet": "cli-pi",
       "workflowMode": "cli-pi"

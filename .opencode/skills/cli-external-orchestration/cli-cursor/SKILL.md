@@ -236,17 +236,9 @@ Honor whichever dimensions the user names (approval level, mode). Model stays on
 
 ### Model Selection — Enforced Allowlist
 
-Cursor's live roster spans 150+ hosted-frontier ids across GPT/Claude/Gemini/Grok/GLM/Kimi families with no per-model prompt-craft data for almost all of them, and ids drift over time. **cli-cursor dispatch is scoped to exactly these 10 ids — never dispatch a model outside this list, and never substitute the closest-sounding allowed model without telling the user.** Effort tiers are baked into the model id suffix — Cursor has no `--reasoning-effort` flag and rejects the parameterized `model[effort=...]` bracket outright.
+**cli-cursor dispatch is scoped to exactly 10 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Grok 4.5 / GLM 5.2 tier only when the task or user explicitly names that family. Effort tiers are baked into the model id suffix — Cursor has no `--reasoning-effort` flag and rejects the parameterized `model[effort=...]` bracket outright.
 
-| Family | Allowed ids | When to reach for it |
-|-------|----|-----------------------|
-| **Composer** (Cursor-native) ★ default | `composer-2.5`, `composer-2.5-fast` | Cursor-exclusive; the direct analog to reaching for a provider's own house model. Default choice absent other direction. |
-| **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | When the task wants xAI's Grok at a specific thinking tier through Cursor's roster. |
-| **GLM 5.2** (via Cursor) | `glm-5.2-high`, `glm-5.2-max` | When the task wants Z.AI's GLM at a specific tier through Cursor's roster. |
-
-**No `auto` and no roster outside this table.** `auto` (Cursor's own router) is deliberately excluded — enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside this table, escalate to the user rather than fabricating a substitute or falling back to `auto`.
-
-**Selection Strategy**: default `composer-2.5`; pick a Grok/GLM tier only when the task or user explicitly names that family. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+The enforced allowlist (10 ids) and the per-task rationale table live inline in [references/cli-reference.md](./references/cli-reference.md) §5 and [references/providers-and-models.md](./references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
 
 ### Cursor Agent Delegation
 
