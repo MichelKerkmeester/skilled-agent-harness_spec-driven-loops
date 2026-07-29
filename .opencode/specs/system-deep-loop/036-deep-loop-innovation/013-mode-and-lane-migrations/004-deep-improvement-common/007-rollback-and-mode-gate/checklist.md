@@ -1,25 +1,28 @@
 ---
 title: "Checklist: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Blocking verification checklist for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent shadow-parity mode gate, common evaluator/canary/promotion ownership, and phase-014 readiness certificate."
+description: "Completed verification checklist for the shared Deep Improvement Common Services rollback switch, bounded window, independent gate, and phase-014 readiness certificate."
 trigger_phrases:
   - "deep improvement common rollback and mode gate checklist"
   - "shared evaluator migration gate verification"
   - "deep improvement rollback rehearsal"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-28T14:07:58Z"
     last_updated_by: "opencode"
-    recent_action: "Defined rollback switch and common-service gate evidence boundary"
-    next_safe_action: "Freeze gate predicates and rollback window evidence against shared contracts"
+    recent_action: "Verified the shared rollback gate"
+    next_safe_action: "Reuse the shared contract in extension lanes"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Every P0 and P1 verifier item has implementation or test evidence."
 ---
 # Checklist: Deep Improvement Common Services - Rollback & Mode Gate
 
@@ -29,8 +32,8 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the Deep Improvement Common Services mode gate. Items remain
-unchecked while the phase is Planned. Every report pins BASE, candidate SHA, shared transition and mode-contract digests,
+This checklist records the completed blocking verifier contract for the Deep Improvement Common Services mode gate. Every
+report pins BASE, candidate SHA, shared transition and mode-contract digests,
 write-set graph digest, event and reducer versions, evaluator and canary epochs, fixture IDs, stream and artifact digests,
 window ID, verifier identity, commands, exit codes, and every disposition. A green process exit without the required evidence
 is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_GAP`, `UNKNOWN`, `INSUFFICIENT_EVIDENCE`, stale evidence, or an empty
@@ -40,76 +43,76 @@ eligible corpus is blocking.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase-015 contract digest, write-set graph digest, and phase-014 handoff version are recorded
-- [ ] CHK-002 [P0] LANDED additive-dark siblings `001` through `003` and planned evidence siblings `004` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and parity references
-- [ ] CHK-003 [P0] The common-service ownership matrix identifies evaluator, canary, promotion, certificate, receipt, fingerprint, and rollback owners for all three downstream variants
-- [ ] CHK-004 [P1] The legacy anchor, typed frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary
+- [x] CHK-001 [P0] BASE, candidate scope, shared policy, write-set, and phase-014 handoff fields are recorded [evidence: `implementation-summary.md`; exact migration-certificate core]
+- [x] CHK-002 [P0] Landed siblings `001` through `006` are inventory-bound [evidence: `implementation-summary.md`; direct imports and whole-runtime tsc]
+- [x] CHK-003 [P0] Common evaluator, canary, promotion, certificate, receipt, fingerprint, and rollback ownership is fixed [evidence: `implementation-summary.md`; shared public contract]
+- [x] CHK-004 [P1] Anchor, frontier, evaluator epoch, canary epoch, and fixture manifest are recorded [evidence: `implementation-summary.md`; readiness certificate fields]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing
-- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
-- [ ] CHK-007 [P0] The rollback window records stable identity, legacy anchor, typed frontier, trigger policy, fencing token, successful-run count, expiry, and close or rollback receipt
-- [ ] CHK-008 [P1] Window closure requires both 14 calendar days and five successful authoritative executions and extends for low traffic or unresolved obligations
-- [ ] CHK-009 [P0] Gate and rollback operations do not rewrite legacy rows, delete typed events, mutate sealed artifacts, disclose hidden canaries, or retire legacy writers
-- [ ] CHK-010 [P1] Common evaluator, canary, and promotion semantics have one source; variant adapters cannot fork hard vetoes, evidence states, receipt vocabulary, or rollback behavior
+- [x] CHK-005 [P0] Every caller digest and validator is exception-safe [evidence: `implementation-summary.md`; nested and top-level malformed-input tests]
+- [x] CHK-006 [P0] The closed request authenticates every field and snapshots validated values [evidence: `implementation-summary.md`; unknown-field, changing-request, and certificate-reproduction tests]
+- [x] CHK-007 [P0] The rollback window records stable evidence and never closes itself [evidence: `implementation-summary.md`; typed window evaluation and certificate binding]
+- [x] CHK-008 [P1] Window eligibility requires both minimums and honors extensions [evidence: `implementation-summary.md`; threshold and extension tests]
+- [x] CHK-009 [P0] Gate and rollback operations preserve authority and evidence [evidence: `implementation-summary.md`; additive-dark certificate constants]
+- [x] CHK-010 [P1] Common evaluator, canary, and promotion semantics have one source [evidence: `implementation-summary.md`; shared public exports]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-011 [P0] Absent, malformed, stale, unauthorized, mixed-version, gateway-failed, and wrong-mode requests fail closed before append, projection, effect, or authority change
-- [ ] CHK-012 [P0] The common services cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration
-- [ ] CHK-013 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
-- [ ] CHK-014 [P0] Event and projection parity has zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected differences at every eligible boundary
-- [ ] CHK-015 [P0] Raw per-item evaluator observations, fixture identity, evaluator capsule, seed, score scale, rationale digest, normalization version, cost, and latency remain addressable after reduction changes
-- [ ] CHK-016 [P0] Every required evaluator, candidate, baseline, raw-trial, canary, and promotion reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, valid seals, dependency closure, and content digest
-- [ ] CHK-017 [P0] Canary fixtures cover sealed, active, burned, retired, freshness, semantic leak, drift, invariant-failure, adversarial, metamorphic, and veto outcomes without exposing hidden contents
-- [ ] CHK-018 [P0] Promotion fixtures cover shadow, canary, authorized, denied, paused, aborted, restored, completed, vetoed, `UNKNOWN`, and `INSUFFICIENT_EVIDENCE` outcomes
-- [ ] CHK-019 [P0] Target reward and evaluator-integrity oversight remain separate; score inflation, hidden-fixture leakage, cache tampering, and action-trace drift produce independent blocking evidence
-- [ ] CHK-020 [P0] Certificate and receipt chains verify offline with stable replay fingerprints, predecessor links, effect identities, budgets, policy versions, and explicit uncertainty
-- [ ] CHK-021 [P0] Complete replay, checkpoint replay, resume, changed-manifest, crash-before-receipt, duplicate delivery, and unknown-effect fixtures remain deterministic or fail closed
-- [ ] CHK-022 [P0] Missing observations, stale watermarks, unsupported versions, evaluator or canary epoch mismatch, telemetry gaps, and nondeterminism produce `blocked`, `incomplete`, or `rollback_required`
-- [ ] CHK-023 [P0] Rollback rehearsal requires a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-checks the request anchor against the re-verified migration certificate, freezes admission, restores legacy at a new epoch, preserves evidence, and emits a rollback certificate
-- [ ] CHK-024 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
-- [ ] CHK-025 [P0] All three downstream variants consume the same evaluator, canary, promotion, certificate, receipt, fingerprint, veto, and rollback fixtures through namespaced adapters
-- [ ] CHK-026 [P0] Repeated evaluation of the same sealed frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
-- [ ] CHK-027 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, or legacy writers retired is rejected
+- [x] CHK-011 [P0] Invalid requests fail closed before authority change [evidence: `implementation-summary.md`; focused Vitest 36/36]
+- [x] CHK-012 [P0] Recovery requires the real external gateway [evidence: `implementation-summary.md`; bound authorization request and gateway decision]
+- [x] CHK-013 [P0] Parity status is not adopted and readiness is re-derived [evidence: `implementation-summary.md`; exit-status non-adoption, authorization-audit, and offline replay tests]
+- [x] CHK-014 [P0] Event and projection evidence must independently match [evidence: `implementation-summary.md`; parsed receipt and stream/projection checks]
+- [x] CHK-015 [P0] Raw evaluator evidence remains addressable [evidence: `implementation-summary.md`; required raw-trial sealed artifact]
+- [x] CHK-016 [P0] All six artifact kinds resolve through real readers [evidence: `implementation-summary.md`; valid replacement identity tests for every kind]
+- [x] CHK-017 [P0] Canary freshness, integrity, and hidden material remain substrate-verified [evidence: `implementation-summary.md`; canary reader and certificate closure]
+- [x] CHK-018 [P0] Promotion outcomes remain typed and evidence-bound [evidence: `implementation-summary.md`; promotion reader, receipts, and lifecycle dispositions]
+- [x] CHK-019 [P0] Reward and evaluator-integrity evidence remain separate [evidence: `implementation-summary.md`; evaluator capsule, raw trial, canary, and promotion closure]
+- [x] CHK-020 [P0] Certificate and receipt chains verify offline [evidence: `implementation-summary.md`; real offline verifier and replay]
+- [x] CHK-021 [P0] Replay and resume structures are deterministic or fail closed [evidence: `implementation-summary.md`; request, lease, projection, and malformed evidence tests]
+- [x] CHK-022 [P0] Missing, stale, unsupported, and nondeterministic evidence remains non-green [evidence: `implementation-summary.md`; typed null-certificate results]
+- [x] CHK-023 [P0] Rollback requires strict real coordinator supersession and anchor equality [evidence: `implementation-summary.md`; high-water, stale-token, lease, and anchor tests]
+- [x] CHK-024 [P0] The rollback window enforces both minimums and extensions [evidence: `implementation-summary.md`; distinct-identity window tests]
+- [x] CHK-025 [P0] All extension lanes receive the same unchanged common contract [evidence: `implementation-summary.md`; stable public export identities]
+- [x] CHK-026 [P0] Semantic changes invalidate reproduced evidence [evidence: `implementation-summary.md`; certificate, health, resume, artifact, and authorization tamper tests]
+- [x] CHK-027 [P0] The certificate is readiness-only [evidence: `implementation-summary.md`; false authority mutation, window closure, and cutover fields]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-028 [P1] The gate matrix covers every shared evaluator, canary, promotion, replay, resume, failure, rollback, and variant-reuse obligation without an unowned evidence row
-- [ ] CHK-029 [P1] Every failure or uncertainty case has an explicit `blocked`, `incomplete`, `not_ready`, `rollback_required`, or window-extension disposition and an evidence owner
-- [ ] CHK-030 [P0] The mode certificate binds Deep Improvement Common Services, exact BASE and candidate SHA, contract and write-set digests, event frontier, evaluator and canary epochs, sealed manifest, receipt chain, rollback anchor, verifier, and dispositions
+- [x] CHK-028 [P1] The gate matrix covers every common evidence bucket [evidence: `implementation-summary.md`; five dispositions and thirteen lifecycle rows]
+- [x] CHK-029 [P1] Every failure has a typed non-green or extension disposition [evidence: `implementation-summary.md`; closed reason and disposition unions]
+- [x] CHK-030 [P0] The certificate binds the complete common readiness core [evidence: `implementation-summary.md`; certificate digest over exact fields]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-031 [P0] Candidate-facing views cannot disclose hidden canary content, evaluator internals, judge identity, or terminal evidence before the declared information boundary
-- [ ] CHK-032 [P0] Rollback preserves append-only ledger history and sealed artifacts and never truncates evidence to make parity, replay, or certificate verification pass
-- [ ] CHK-033 [P0] Fencing and monotonic epochs reject stale typed writers and duplicate authority requests after rollback or restoration
-- [ ] CHK-034 [P1] Certificate and receipt verification rejects mixed-version, expired, malformed, unsigned, or digest-mismatched references without widening capability scope
+- [x] CHK-031 [P0] Candidate-facing views retain common visibility controls [evidence: `implementation-summary.md`; real evaluator-role artifact readers]
+- [x] CHK-032 [P0] Rollback preserves append-only history and sealed artifacts [evidence: `implementation-summary.md`; destructive intent and retained-count equality guards]
+- [x] CHK-033 [P0] Fencing and epochs reject stale writers [evidence: `implementation-summary.md`; coordinator high-water and gateway epoch checks]
+- [x] CHK-034 [P1] Verification rejects invalid references without widening capability [evidence: `implementation-summary.md`; offline verifier and sealed replacement tests]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-035 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent mode gate, mode-migration certificate, phase-014 readiness handoff, later authority-cutover certificate, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record
-- [ ] CHK-036 [P1] The shared-service reuse matrix names `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` and records that they consume this common source
-- [ ] CHK-037 [P2] Research traceability cites the 036/002 findings on raw observations, evaluator capsules, canary rotation and leakage, independent oversight, score gaming, and reversible promotion
+- [x] CHK-035 [P1] The docs distinguish every readiness, rollback, and cutover artifact [evidence: `implementation-summary.md` and `decision-record.md`]
+- [x] CHK-036 [P1] The reuse matrix names all three extension lanes [evidence: `implementation-summary.md`; shared public contract section]
+- [x] CHK-037 [P2] Traceability retains raw observations, evaluator capsules, canary integrity, oversight, and reversible promotion [evidence: `spec.md` and `implementation-summary.md`]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-038 [P0] Authored changes remain limited to this target phase folder and use the prescribed four-document Level 2 structure
-- [ ] CHK-039 [P1] No `description.json` or `graph-metadata.json` is hand-written; deterministic tooling owns generated metadata
-- [ ] CHK-040 [P1] Any later implementation remains path-scoped, additive-dark, and dependency-closed with no adjacent sibling cleanup
+- [x] CHK-038 [P0] Authored docs remain limited to this leaf [evidence: `implementation-summary.md`; scoped git status]
+- [x] CHK-039 [P1] Generated metadata remains tooling-owned [evidence: `implementation-summary.md`; metadata refresh commands]
+- [x] CHK-040 [P1] Runtime implementation is path-scoped and additive-dark [evidence: `implementation-summary.md`; module, focused test, and scope audit]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

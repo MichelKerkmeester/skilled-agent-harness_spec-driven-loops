@@ -1,31 +1,33 @@
 ---
 title: "Feature Specification: Deep AI Council - Rollback & Mode Gate"
-description: "Plan the Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate. The contract keeps authority fail-closed, bounds the rollback window, proves shadow parity, verifies sealed council artifacts, and emits a mode-specific certificate before phase-014 authority cutover."
+description: "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate."
 trigger_phrases:
   - "Deep AI Council rollback and mode gate"
   - "deep-ai-council fail-closed cutover"
   - "deep-ai-council rollback window"
   - "deep-ai-council shadow parity certificate"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T23:30:00Z"
+    last_updated_at: "2026-07-28T18:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Scoped the Deep AI Council rollback switch and independent mode gate"
-    next_safe_action: "Freeze gate predicates and rollback evidence against shared cutover contracts"
+    recent_action: "Built the additive-dark Council rollback gate"
+    next_safe_action: "Phase 014 may verify the readiness certificate"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which shared transition token and certificate verifier authorize the mode gate?"
-      - "What exact elapsed window and health evidence permit automatic rollback?"
-      - "Which shadow fixtures are mandatory for the Deep AI Council gate?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/mode-gate.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/rollback-switch.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase is planning only; phase-014 owns authority cutover"
       - "The gate certifies Deep AI Council evidence, not semantic truth or cross-mode readiness"
+      - "Rollback-window credit requires 14 days and five distinct authenticated execution identities"
+      - "The real offline verifier and authorization audit re-derive readiness"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -44,7 +46,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Final Deep AI Council child concern in the phase-013 per-mode migration fan-out |

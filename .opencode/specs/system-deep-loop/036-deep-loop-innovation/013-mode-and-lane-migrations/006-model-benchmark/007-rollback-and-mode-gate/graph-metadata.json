@@ -39,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -148,25 +155,51 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
     "created_at": "2026-07-16T03:43:40.820Z",
-    "last_save_at": "2026-07-24T07:35:17.001Z",
+    "last_save_at": "2026-07-29T05:36:27.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:217037dbb0ccb6abb585943dcfa7b02bd1eec7d7192242fe1f844d5936c3d98c",
+    "source_fingerprint": "sha256:7566f31ced8629865be862ba73fc88b3422dc0efe4ff71c8e1555fcba8053750",
     "source_doc_hashes": {
-      "spec.md": "a6b52549056a1757b8db2649c3deb47858f3279e4c47e6882adbcab584fa6350",
+      "spec.md": "7c7867b914ca6fd5d088b42802f7c4034f1051ab16293718933290642e02686b",
       "plan.md": "340b2be8b6ce3811d2368838a7bee149355702fde4186938c108cf5762c83c84",
       "tasks.md": "3d91cb3cd830f06c7ac57a15689291ec80c9ad97baa1f5557650ea76b17e2c30",
-      "checklist.md": "e1bb8dd166e8a2c3d4da26ce6c05b245ac09236eb3d756d518796e9c8ab9199b"
+      "checklist.md": "e1bb8dd166e8a2c3d4da26ce6c05b245ac09236eb3d756d518796e9c8ab9199b",
+      "implementation-summary.md": "1ed0b8fcecbce1530962127571d3d54384287e815c72bbe07fb4ba208b578422"
     },
     "last_active_child_id": null,
     "last_active_at": null
