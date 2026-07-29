@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/033-per-mode-provider-model-reference/003-trim-duplicates",
+  "description": "Now that each mode has a dedicated `providers-and-models.md`, the exhaustive model enumerations still living in that mode's `cli-reference.md` model",
+  "keywords": [
+    "now",
+    "mode",
+    "dedicated",
+    "providers-and-models",
+    "exhaustive",
+    "model",
+    "enumerations",
+    "still",
+    "living",
+    "cli-reference"
+  ],
+  "lastUpdated": "2026-07-29T09:38:48.065Z",
+  "specId": "003",
+  "folderSlug": "trim-duplicates",
+  "parentChain": [
+    "cli-external-orchestration",
+    "033-per-mode-provider-model-reference"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
