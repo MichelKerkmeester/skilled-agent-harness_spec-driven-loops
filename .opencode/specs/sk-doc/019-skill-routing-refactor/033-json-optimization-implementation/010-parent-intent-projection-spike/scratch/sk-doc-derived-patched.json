@@ -1,0 +1,228 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-doc",
+  "family": "sk-util",
+  "category": "utility",
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.5,
+        "context": "doc creation for specs"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-git",
+        "weight": 0.4,
+        "context": "workflow utility peer for completion and handoff documentation"
+      },
+      {
+        "target": "sk-prompt",
+        "weight": 0.4,
+        "context": "documentation and prompt-improvement workflows hand off to each other"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "documentation",
+    "markdown",
+    "authoring",
+    "parent-hub",
+    "mode-registry",
+    "hub-router",
+    "workflowMode",
+    "readme",
+    "install-guide",
+    "agent",
+    "command",
+    "feature-catalog",
+    "testing-playbook",
+    "benchmark",
+    "flowchart",
+    "changelog",
+    "document-diff",
+    "create-quality-control"
+  ],
+  "intent_signals": [
+    "create skill",
+    "create parent skill hub",
+    "create readme",
+    "write install guide",
+    "create agent",
+    "create command",
+    "create feature catalog",
+    "create manual testing playbook",
+    "promote benchmark folder",
+    "create ascii flowchart",
+    "create changelog",
+    "create diff report",
+    "document before after review",
+    "before after document diff",
+    "document change report",
+    "validate document",
+    "score document quality",
+    "optimize documentation"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc",
+      "documentation hub",
+      "create skill",
+      "create parent skill",
+      "create readme",
+      "install guide",
+      "create agent",
+      "create command",
+      "feature catalog",
+      "manual testing playbook",
+      "create benchmark",
+      "ascii flowchart",
+      "create changelog",
+      "doc quality",
+      "validate markdown",
+      "dqi score",
+      "which json files does a skill need",
+      "leaf-manifest config aliases required",
+      "hub versus standalone skill class",
+      "skill root metadata contract"
+    ],
+    "key_topics": [
+      "documentation",
+      "markdown",
+      "authoring",
+      "parent-hub",
+      "mode-registry",
+      "hub-router",
+      "workflowMode",
+      "packetKind",
+      "shared-backbone",
+      "create-quality-control-pipeline",
+      "document-diff",
+      "component-creation",
+      "templates",
+      "skill metadata drift gate",
+      "getting our project running",
+      "Lane A agent-improvement",
+      "since the last version",
+      "vX.Y.Z.B",
+      "SKILL.md scaffold",
+      "starter reference docs",
+      "nested workflow packet",
+      "code folder readme",
+      "front-page overview",
+      "running from scratch",
+      "Claude Code agent",
+      "runtime agent directory",
+      "agent and paired",
+      "router presentation split",
+      "per-feature files",
+      "multi-agent execution",
+      "benchmark-report.md",
+      "mcp-server/benchmarks",
+      "MCP bake-off",
+      "behavior-benchmark.md",
+      "peer adapter benchmark",
+      "deep-alignment benchmark",
+      "lane-config benchmark",
+      "sk-doc-command",
+      "benchmark/README.md",
+      "run-label folder",
+      "reviewer-prompt fixture",
+      "agent quality dimensions",
+      "parallel execution diagram",
+      "approval loop diagram"
+    ],
+    "intent_signals": [
+      "create an OpenCode component (skill/agent/command)",
+      "author a doc package (readme/catalog/playbook/benchmark/flowchart/changelog/diff)",
+      "validate/score/optimize an existing document"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/description.json",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/shared/scripts/extract_structure.py"
+    ],
+    "entities": [
+      {
+        "name": "sk-doc",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-create-skill",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-create-quality-control",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-create-changelog",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-create-diff",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "extract_structure",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/shared/scripts/extract_structure.py",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-flowchart, sk-create-changelog, sk-create-diff, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json",
+      "hub-router.json",
+      "description.json",
+      "sk-create-skill/SKILL.md",
+      "sk-create-quality-control/SKILL.md",
+      "sk-create-changelog/SKILL.md",
+      "sk-create-diff/SKILL.md"
+    ],
+    "created_at": "2026-04-13T00:00:00Z",
+    "last_updated_at": "2026-07-14T00:00:00Z"
+  }
+}

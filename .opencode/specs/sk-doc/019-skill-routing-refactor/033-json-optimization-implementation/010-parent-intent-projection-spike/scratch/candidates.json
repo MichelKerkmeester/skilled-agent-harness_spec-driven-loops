@@ -1,0 +1,515 @@
+{
+  "skill": "sk-doc",
+  "rules": {
+    "specificityFloor": 0.88,
+    "minimumTokenCount": 2,
+    "fleetDistinctiveness": "Candidate is not a case-insensitive substring of any other direct skill root routing entry.",
+    "triggerTarget": 20,
+    "topicTarget": 44,
+    "reservedHeadroomPerField": 4,
+    "rank": "tokenCount descending, then source order"
+  },
+  "candidates": [
+    {
+      "phrase": "which json files does a skill need",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 7,
+      "specificity": 1,
+      "destination": "derived.trigger_phrases",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.trigger_phrases headroom."
+    },
+    {
+      "phrase": "leaf-manifest config aliases required",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 5,
+      "specificity": 1,
+      "destination": "derived.trigger_phrases",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.trigger_phrases headroom."
+    },
+    {
+      "phrase": "hub versus standalone skill class",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 5,
+      "specificity": 1,
+      "destination": "derived.trigger_phrases",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.trigger_phrases headroom."
+    },
+    {
+      "phrase": "skill root metadata contract",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.trigger_phrases",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.trigger_phrases headroom."
+    },
+    {
+      "phrase": "skill metadata drift gate",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "getting our project running",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-readme-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "Lane A agent-improvement",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "since the last version",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-changelog-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "vX.Y.Z.B",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-changelog-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-changelog"
+        ]
+      },
+      "tokenCount": 4,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "SKILL.md scaffold",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "starter reference docs",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "nested workflow packet",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-skill-parent-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-skill-parent"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "code folder readme",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-readme-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-readme"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "front-page overview",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-readme-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "running from scratch",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-readme-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "Claude Code agent",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-agent-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-agent"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "runtime agent directory",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-agent-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-agent"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "agent and paired",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-agent-aliases"
+        ],
+        "workflowModes": []
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "router presentation split",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-command-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-command"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "per-feature files",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-feature-catalog-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-feature-catalog"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "multi-agent execution",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-manual-testing-playbook-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-manual-testing-playbook"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "benchmark-report.md",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "mcp-server/benchmarks",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "MCP bake-off",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "behavior-benchmark.md",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "peer adapter benchmark",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "deep-alignment benchmark",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "lane-config benchmark",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "sk-doc-command",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "benchmark/README.md",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "run-label folder",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "reviewer-prompt fixture",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "agent quality dimensions",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-benchmark-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-benchmark"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "parallel execution diagram",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-flowchart-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-flowchart"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    },
+    {
+      "phrase": "approval loop diagram",
+      "provenance": {
+        "vocabularyClasses": [
+          "create-flowchart-aliases"
+        ],
+        "workflowModes": [
+          "sk-create-flowchart"
+        ]
+      },
+      "tokenCount": 3,
+      "specificity": 1,
+      "destination": "derived.key_topics",
+      "whyKept": "Specificity 1.00 meets the 0.88 floor; phrase is absent from other root metadata and existing sk-doc routing fields; token-count rank fits derived.key_topics headroom."
+    }
+  ]
+}

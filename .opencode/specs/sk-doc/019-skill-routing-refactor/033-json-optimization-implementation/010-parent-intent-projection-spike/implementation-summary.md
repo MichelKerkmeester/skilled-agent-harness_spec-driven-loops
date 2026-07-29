@@ -1,6 +1,6 @@
 ---
 title: "Design Spike Plan: Parent-Intent Projection"
-description: "Planned record of the O8 parent-intent projection design spike: what will be built once phase 009 and phase 002/006 unblock it, and how the ship/no-ship decision will be measured."
+description: "Spike complete with a NO-SHIP verdict: the router-vocabulary projection measured inert on the pinned corpus (sk-doc gold 10/12 unchanged, zero regressions); prototype + design + pre-registered bar preserved in scratch/ and the decision record."
 trigger_phrases:
   - "parent intent projection design spike summary"
 importance_tier: "normal"
@@ -8,13 +8,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike"
-    last_updated_at: "2026-07-29T00:00:00Z"
+    last_updated_at: "2026-07-29T20:40:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "Phase 009 canonical derived-producer decision not yet resolved"
-      - "Phase 002/006 pinned routing-accuracy corpus not yet established"
+    recent_action: "Prototype built, bar pre-registered, measured NO-SHIP; O8 refuted at current corpus"
+    next_safe_action: "Phase 011 command-metadata-ingestion"
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "decision-record.md"
@@ -22,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "010-parent-intent-projection-spike"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which of derived.trigger_phrases vs derived.key_topics is the right destination for a given projected phrase?"
     answered_questions: []
@@ -39,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Complete |
 | **Track** | sk-doc |
 | **Depends On** | Phase 009 (canonical `derived` producer, O1) · Phase 002/006 (pinned routing-accuracy corpus) |
 | **Gating** | Single-lineage hypothesis (O8, research.md:88); ships only if the measured comparison clears a pre-registered bar |

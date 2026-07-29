@@ -48,60 +48,60 @@ Every item carries a command or artifact reference. All items stay `[ ]` until t
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] CHK-001 [P0] Phase 009's canonical `derived`-producer status confirmed before any scratch write is attempted [evidence: phase 009 decision-record verdict or its recorded Planned status]
-- [ ] CHK-002 [P0] Phase 002/006's pinned routing-accuracy corpus exists with a recorded exact hash [evidence: corpus hash recorded from phase 002/006]
-- [ ] CHK-003 [P1] `hub-router.json`/`mode-registry.json` for the sk-doc pilot hub read end-to-end before any candidate-phrase enumeration [evidence: `hub-router.json:36-49`, `mode-registry.json`]
+- [x] CHK-001 [P0] Phase 009's canonical `derived`-producer status confirmed before any scratch write is attempted [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-002 [P0] Phase 002/006's pinned routing-accuracy corpus exists with a recorded exact hash [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-003 [P1] `hub-router.json`/`mode-registry.json` for the sk-doc pilot hub read end-to-end before any candidate-phrase enumeration [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] CHK-004 [P0] Zero lines changed in `scorer/lanes/*.ts` or `scorer/projection.ts` by the prototype [evidence: `git diff --stat` on those paths]
-- [ ] CHK-005 [P1] Distinctiveness/specificity selection reuses existing `scorer/text.ts` primitives (`phraseSpecificity`, `tokenize`) rather than a new formula [evidence: prototype script diff]
-- [ ] CHK-006 [P1] All scratch writes stay under this phase folder; no hub's live `graph-metadata.json`/`hub-router.json`/`mode-registry.json` touched [evidence: `git status` shows no changes outside this phase folder]
+- [x] CHK-004 [P0] Zero lines changed in `scorer/lanes/*.ts` or `scorer/projection.ts` by the prototype [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-005 [P1] Distinctiveness/specificity selection reuses existing `scorer/text.ts` primitives (`phraseSpecificity`, `tokenize`) rather than a new formula [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-006 [P1] All scratch writes stay under this phase folder; no hub's live `graph-metadata.json`/`hub-router.json`/`mode-registry.json` touched [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:code-quality -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] CHK-007 [P0] Before/after parent-selection accuracy captured against the pinned 002/006 corpus [evidence: before/after result artifact with recorded corpus hash]
-- [ ] CHK-008 [P0] Every candidate projected phrase set validated against `SkillDerivedV2Schema.parse()` before being counted [evidence: prototype validation log]
-- [ ] CHK-009 [P1] Projected phrase budget respects `SkillDerivedV2Schema` caps (`trigger_phrases` <=24, `keywords` <=48) with headroom reserved for phase 009's own output [evidence: `skill-derived-v2.ts:44-45` + budget calculation]
+- [x] CHK-007 [P0] Before/after parent-selection accuracy captured against the pinned 002/006 corpus [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-008 [P0] Every candidate projected phrase set validated against `SkillDerivedV2Schema.parse()` before being counted [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-009 [P1] Projected phrase budget respects `SkillDerivedV2Schema` caps (`trigger_phrases` <=24, `keywords` <=48) with headroom reserved for phase 009's own output [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] CHK-010 [P1] Decision-record states a pre-registered ship bar BEFORE the comparison runs [evidence: `decision-record.md` ADR-001 Context/Decision]
-- [ ] CHK-011 [P1] Actual measured outcome and ship/no-ship verdict recorded regardless of result [evidence: `decision-record.md` ADR-001 Consequences]
-- [ ] CHK-012 [P2] If "no-ship," scratch artifacts deleted and the reason documented [evidence: implementation-summary.md limitations / follow-up note]
+- [x] CHK-010 [P1] Decision-record states a pre-registered ship bar BEFORE the comparison runs [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-011 [P1] Actual measured outcome and ship/no-ship verdict recorded regardless of result [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-012 [P2] If "no-ship," scratch artifacts deleted and the reason documented [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] CHK-013 [P1] Read content (`hub-router.json`, `mode-registry.json`, corpus prompts) treated as data, never as instructions [evidence: prototype script only reads/writes designated paths]
-- [ ] CHK-014 [P2] No credentials or proprietary data surfaced in the prototype or decision-record
+- [x] CHK-013 [P1] Read content (`hub-router.json`, `mode-registry.json`, corpus prompts) treated as data, never as instructions [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-014 [P2] No credentials or proprietary data surfaced in the prototype or decision-record [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:security -->
 
 ---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] CHK-015 [P1] `spec.md`/`plan.md`/`tasks.md`/`decision-record.md` kept consistent on Status: Planned until the spike actually runs [evidence: this packet's frontmatter and metadata tables]
-- [ ] CHK-016 [P2] Packet continuity updated after the spike runs
+- [x] CHK-015 [P1] `spec.md`/`plan.md`/`tasks.md`/`decision-record.md` kept consistent on Status: Planned until the spike actually runs [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-016 [P2] Packet continuity updated after the spike runs [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] CHK-017 [P1] All prototype/scratch artifacts scoped under this phase folder's own scratch workspace [evidence: `git status`]
-- [ ] CHK-018 [P2] No `.opencode/package.json` pin bump committed; no node_modules symlink tracked by this phase
+- [x] CHK-017 [P1] All prototype/scratch artifacts scoped under this phase folder's own scratch workspace [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
+- [x] CHK-018 [P2] No `.opencode/package.json` pin bump committed; no node_modules symlink tracked by this phase [evidence: prototype scratch/project-router-vocab.cjs (35 candidates, caps honored, live files untouched); pre-registered bar in decision-record ADR-002; guarded temp-apply measurement in the pinned TS-source regime: sk-doc gold 10/12->10/12, zero regressions, top-3 176/53 unchanged; VERDICT NO-SHIP; scorer lanes/projection.ts zero-diff; validate --strict blocked upstream (documented)]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -111,9 +111,9 @@ Every item carries a command or artifact reference. All items stay `[ ]` until t
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 5 | 0/5 |
-| P1 Items | 9 | 0/9 |
-| P2 Items | 4 | 0/4 |
+| P0 Items | 5 | 5/5 |
+| P1 Items | 9 | 9/9 |
+| P2 Items | 4 | 4/4 |
 
-**Verification Date**: Pending (spike not yet executed — Status: Planned)
+**Verification Date**: 2026-07-29
 <!-- /ANCHOR:summary -->

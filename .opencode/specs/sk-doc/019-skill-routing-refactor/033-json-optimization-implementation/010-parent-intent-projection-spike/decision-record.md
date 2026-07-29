@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed — design selected for the prototype; the ship/no-ship verdict itself is Pending, gated on phase 009, phase 002/006, and the measured comparison (`plan.md` Phase 3) |
+| **Status** | Accepted — prototype built and measured; verdict NO-SHIP recorded in ADR-002 |
 | **Date** | 2026-07-29 |
 | **Deciders** | Phase packet owner, O8 finding from the 029 skill/advisor JSON optimization research |
 
@@ -99,6 +99,29 @@ O8 observes that `hub-router.json`'s `vocabularyClasses` (e.g. sk-doc's `create-
 | Projected phrases dilute precision on unrelated prompts | M | Fleet-wide distinctiveness gate required before a phrase becomes a candidate (`plan.md` §3, step 3) |
 | Phase 009 resolves with a producer design incompatible with a simple additive write | L | This spike's scratch writer is explicitly scoped to go through whichever path 009 designates; if incompatible, the spike documents the mismatch in its decision-record rather than working around it |
 <!-- /ANCHOR:adr-001-consequences -->
+
+---
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Pre-Registered Ship Bar and Measured Verdict
+
+**Pre-registered ship bar (recorded 2026-07-29, BEFORE any before/after comparison ran):**
+Measured in the pinned force-local TS-source regime (the same reproducible regime the program's baseline capture uses), over the hash-pinned labeled corpus (195 rows) + holdout (72 rows):
+
+1. sk-doc-gold rows: top-1 correct count must INCREASE by >= 2 net (after minus before), AND
+2. non-sk-doc-gold rows: zero top-1 regressions (no row correct-before becoming incorrect-after), AND
+3. full-corpus top-3 (176/195) and holdout top-3 (53/72) must not drop.
+
+Anything less is a NO-SHIP. The bar is deliberately asymmetric: the projection only touches sk-doc's derived fields, so it must prove sk-doc gains without collateral damage anywhere else.
+
+**Measured outcome (2026-07-29, pinned force-local TS-source regime, guarded temp-apply of the scratch-patched sk-doc derived block, live file trap-restored):**
+- Prototype selected 35 hub-distinctive multi-word candidates; patched trigger_phrases 16→20 (cap 24, 4 headroom), key_topics →44 (cap 48).
+- sk-doc-gold top-1: 10/12 before → 10/12 after (bar required +2 net) — no movement.
+- Non-sk-doc-gold top-1 regressions: 0 (bar met, but vacuously — nothing moved).
+- Full-corpus top-3: 176→176; holdout top-3: 53→53 (no drop).
+
+**Verdict: NO-SHIP.** The projection is measurably inert on the pinned corpus: the derived lane's phrase matching already saturates on sk-doc's existing signal set for every corpus prompt it can win, and the added router vocabulary changed no outcome. The O8 single-lineage hypothesis is refuted at current corpus composition. Revisit only if a future corpus expansion adds parent-hub-scaffolding-style prompts where the distinctive per-mode tier could plausibly discriminate — and then through a fresh, separately gated phase.
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
