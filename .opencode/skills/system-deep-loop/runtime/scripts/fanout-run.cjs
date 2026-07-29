@@ -1832,8 +1832,20 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
 ]);
-// The exact levels Pi's `--thinking` accepts, from the installed `pi --help`.
-const PI_THINKING_LEVELS = new Set(['off', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max']);
+// Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
+// installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'
+// caps at Pi's top level 'max'; every other level is identity. A map (not a plain
+// allowlist) is required so a valid reasoningEffort never fails closed on a naming gap.
+const REASONING_TO_PI_THINKING = new Map([
+  ['none', 'off'],
+  ['minimal', 'minimal'],
+  ['low', 'low'],
+  ['medium', 'medium'],
+  ['high', 'high'],
+  ['xhigh', 'xhigh'],
+  ['max', 'max'],
+  ['ultra', 'max'],
+]);
 
 function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isPiBinaryAvailable(options.env || process.env)) {
@@ -1861,12 +1873,13 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
     args.push('--tools', 'read,grep,find,ls');
   }
   if (lineage.reasoningEffort) {
-    if (!PI_THINKING_LEVELS.has(lineage.reasoningEffort)) {
+    const thinking = REASONING_TO_PI_THINKING.get(lineage.reasoningEffort);
+    if (!thinking) {
       throw inputError(
-        `cli-pi reasoningEffort '${lineage.reasoningEffort}' is not a valid --thinking level: ${[...PI_THINKING_LEVELS].join(', ')}`,
+        `cli-pi reasoningEffort '${lineage.reasoningEffort}' has no pi --thinking mapping: ${[...REASONING_TO_PI_THINKING.keys()].join(', ')}`,
       );
     }
-    args.push('--thinking', lineage.reasoningEffort);
+    args.push('--thinking', thinking);
   }
   args.push(prompt);
   return finalizeLineageCommand({
@@ -2412,7 +2425,14 @@ async function main() {
       // in summary.failed/all_failed, which drives the process exit code. Returning a
       // plain object here would let the pool record any completed worker as fulfilled
       // regardless of the underlying CLI exit, masking failed/timed-out lineages.
-      if (timedOut || killedBySignal || exitCode !== 0) {
+      //
+      // Pi is the exception: it returns a non-zero exit code non-deterministically even
+      // on a successful dispatch (identical unauthenticated runs returned 0 then 1), so
+      // for cli-pi a non-zero exit is not a failure signal. The artifact validation below
+      // is its success gate instead — a genuinely failed pi run produces no artifact and
+      // is rejected there. Timeouts and signal kills remain real failures for every kind.
+      const exitCodeIsFailure = exitCode !== 0 && lineage.kind !== 'cli-pi';
+      if (timedOut || killedBySignal || exitCodeIsFailure) {
         const reason = timedOut
           ? 'timed out'
           : killedBySignal

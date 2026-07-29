@@ -100,6 +100,12 @@ command construction stays synchronous and unit-testable, matching this file's e
 Live command shape produced by the builder:
 
 `pi -p --offline --model openai-codex/gpt-5.6-luna --thinking xhigh <prompt>`
+
+An independent cross-verify (cli-opencode GPT-5.6-SOL, high) returned REQUESTED_CHANGES with two P1 findings, both fixed with
+driven tests and re-verified green: the shared `reasoningEffort` levels `none` and `ultra` had no pi `--thinking` mapping (now
+`none` maps to `off` and `ultra` caps at `max`), and the generic worker treated pi's contractually-unreliable non-zero exit code as
+a failure (now cli-pi tolerates a non-zero exit and is gated by artifact validation instead). Final suites: fanout-run 93,
+executor-config 86, executor-audit 27; whole-runtime tsc 0.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->
