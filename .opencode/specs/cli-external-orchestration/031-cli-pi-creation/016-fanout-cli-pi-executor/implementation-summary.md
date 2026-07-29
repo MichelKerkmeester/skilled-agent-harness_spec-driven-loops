@@ -10,10 +10,10 @@ parent: "cli-external-orchestration/031-cli-pi-creation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor"
-    last_updated_at: "2026-07-29T05:00:00Z"
+    last_updated_at: "2026-07-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Implemented buildPiLineageCommand + reasoningEffort field; 178 tests pass"
-    next_safe_action: "Optional: a hermetic live fan-out smoke test; confirm non-gpt provider routes"
+    recent_action: "Superseded by mainline cli-pi fan-out (d9e5678edd/2ddbe3c82e); adopted that version in the v4 merge, 179 tests pass"
+    next_safe_action: "None — feature shipped via the mainline implementation; packet retained as record"
     blockers: []
     completion_pct: 100
 ---
@@ -39,6 +39,15 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
+
+> **Superseded by the mainline implementation (2026-07-29).** The release branch
+> landed an equivalent cli-pi fan-out executor independently (commit `d9e5678edd`,
+> fixed forward by `2ddbe3c82e`). When that branch merged into this work, its version
+> was adopted wholesale over the one described below — it is the more robust of the
+> two: a fail-closed `PI_MODEL_PROVIDERS` map (throws on an unknown model rather than
+> passing it through), `--offline`, `SPECKIT_PI_STATE_DIR` state integration, and a
+> fail-closed reasoning->`--thinking` map. The section below is retained as the record
+> of what this packet built; the shipped code is the mainline version.
 
 `fanout-run.cjs` gained `PI_MODEL_PROVIDERS` + `qualifyPiModel` + `piThinkingLevel` helpers and a real `buildPiLineageCommand` that emits `pi -p <prompt> --model <provider/model> [--thinking <level>]`, replacing the unconditional throw. `executor-config.ts` added `reasoningEffort` to the cli-pi field allowlist (it maps to `--thinking`). The cli-pi SKILL.md execution-ownership note now states the runtime supports the executor kind.
 <!-- /ANCHOR:what-built -->
