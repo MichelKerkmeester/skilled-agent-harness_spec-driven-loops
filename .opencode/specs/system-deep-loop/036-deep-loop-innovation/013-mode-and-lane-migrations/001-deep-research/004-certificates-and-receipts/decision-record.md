@@ -272,3 +272,43 @@ Every declared identity must be present and no undeclared identity may be padded
 | Keep format-only digest checks | No code change | Accepts fabricated attestations and does not prove correspondence | 0/10 |
 | Map plan and recipe to unrelated initialization fields | Produces a superficially complete table | Misattributes facts the event schema does not carry | 1/10 |
 <!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Bind Run-Certificate Outputs to Authorized Transitions and Ordered Provenance
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-07-29 |
+| **Deciders** | Deep Research certificate maintainers |
+
+---
+
+### Context
+
+This golden lane landed before the clone certificate lanes received their deeper hardening pass, so a pre-cutover
+adversarial re-probe found two dark-only soundness gaps the converged clones already close. The run certificate
+classified run outputs by artifact kind alone, so a validly-sealed synthesis report or memory handoff that no
+transition receipt declared could be certified as a run output. Separately, the convergence and synthesis
+input-binding check compared `orderedInputDigests` as an unordered set, so a permuted provenance passed. Both are
+non-authoritative until authority cutover, at which point they would become live.
+
+### Decision
+
+Enforce output-artifact receipt coverage and ordered provenance at both issuance and offline verification:
+
+- A synthesis-report or memory-handoff output claim is admitted only when a transition receipt declares it and that
+  receipt is bound to its authorized synthesis or memory-save result event.
+- Each output artifact's `orderedInputDigests` must equal the declared input identities as an ordered per-output
+  sequence, so both reordering and cross-output flattening fail closed on the existing typed invalid-artifact path.
+
+### Consequences
+
+- Closes both gaps on both paths and matches the converged clone posture (receipt coverage plus ordered closure).
+- Additive-dark: exported certificate and receipt types are unchanged; only private derivation and validation logic.
+- The certificate suite grew from 31 to 36 tests (decoy output and permuted provenance across both paths, plus a
+  positive control); the whole-runtime type-check stays clean. An independent adversarial re-verify confirmed both
+  holes closed with no over-tightening. Landed on the release branch as commit 6320b9bfd7.
+<!-- /ANCHOR:adr-004 -->

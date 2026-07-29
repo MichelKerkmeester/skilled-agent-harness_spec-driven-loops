@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts"
-    last_updated_at: "2026-07-22T06:26:51Z"
-    last_updated_by: "codex"
-    recent_action: "Closed handoff digest, initialization-kind, and provenance-set correspondence"
-    next_safe_action: "Successor 005-resume-adapter can consume the exported evidence contracts"
+    last_updated_at: "2026-07-29T21:15:00Z"
+    last_updated_by: "claude"
+    recent_action: "Pre-014 hardening bound run-cert outputs to authorized transitions and ordered provenance"
+    next_safe_action: "Validation gate re-checks golden 005 006 007 for the same class"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/index.ts"
