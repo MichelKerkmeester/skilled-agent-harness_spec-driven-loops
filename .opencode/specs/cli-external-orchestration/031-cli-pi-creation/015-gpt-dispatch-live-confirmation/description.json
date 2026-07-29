@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+  "description": "Resolve the pi-contract track's open live-dispatch item: document the confirmed openai-codex/gpt-5.6-* + --thinking invocation.",
+  "keywords": [
+    "resolve",
+    "pi-contract",
+    "track",
+    "open",
+    "live-dispatch",
+    "item",
+    "document",
+    "confirmed",
+    "openai-codex",
+    "gpt-5",
+    "thinking",
+    "invocation"
+  ],
+  "lastUpdated": "2026-07-29T06:41:05.897Z",
+  "specId": "015",
+  "folderSlug": "gpt-dispatch-live-confirmation",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

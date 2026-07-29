@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/015-gpt-dispatch-live-confirmation",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi gpt dispatch confirmation",
+      "cli-pi gpt-5.6 invocation"
+    ],
+    "key_topics": [
+      "gpt",
+      "dispatch",
+      "confirmation",
+      "cli-pi",
+      "gpt-5",
+      "invocation",
+      "resolve",
+      "pi-contract",
+      "track",
+      "open",
+      "live-dispatch",
+      "item"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Invocation From",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Invocation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Updated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Resolve the pi-contract track's open live-dispatch item: document the confirmed openai-codex/gpt-5.6-* + --thinking invocation.",
+    "created_at": "2026-07-29T06:40:16.956Z",
+    "last_save_at": "2026-07-29T06:42:02.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f386f0f52e99e0682e6cdff4cf98653db2ae62f06240ae15f94e5ac64b2445a8",
+    "source_doc_hashes": {
+      "spec.md": "01f015ed6feb07bd519f162b6173f69622a3f96f9247738d518c0bbe8f2bff38",
+      "plan.md": "552a71a70cfcf7245a0aaa9868887511f57042b5fd1eb5015f99de5379acacc3",
+      "tasks.md": "7eb5bd384288d6df864fb3e1077f81895c2af830f414b9da4cfd1b0119487f92",
+      "implementation-summary.md": "10dba2e94f2ec7d336d9749797bd51fee493acd5057daece8dbbabedf46f5c40"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
