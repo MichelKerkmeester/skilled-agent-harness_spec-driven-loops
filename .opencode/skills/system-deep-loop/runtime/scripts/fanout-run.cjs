@@ -1715,21 +1715,32 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   // 2026-07-24 against cursor-agent 2026.07.23-e383d2b) — effort tiers are baked
   // into the model id itself (e.g. gpt-5.2-high), so reasoningEffort is never
   // forwarded here (also unsupported at the executor-config.ts flag-support
-  // layer). The approval-flag mapping below intentionally mirrors
-  // resolveCursorApprovalMode() in executor-config.ts (kept independent rather
-  // than imported, matching how the codex/opencode adapters above already
-  // derive their own kind-specific flags from resolvedSandbox rather than
-  // calling a shared resolver): read-only leaves Cursor's own prompt-and-block
-  // default in place (no flag — nothing unattended can answer the prompt),
-  // workspace-write uses --auto-review ("Smart Auto"), danger-full-access uses
-  // --force ("Run Everything"). --sandbox tracks the same 2-way OS toggle.
+  // layer). The sandbox->flag mapping below is grounded in the installed
+  // cursor-agent's live headless behavior and is kept independent of
+  // resolveCursorApprovalMode() in executor-config.ts (matching how the
+  // codex/opencode adapters above derive their own kind-specific flags from
+  // resolvedSandbox rather than calling a shared resolver). In -p
+  // (non-interactive) mode cursor-agent can use every tool (write + shell) and,
+  // in an untrusted directory, refuses to run any tool unless a trust flag is
+  // passed. read-only uses --mode plan (Cursor's read-only/planning mode: file
+  // reads allowed, edits and shell writes blocked) plus --trust to clear that
+  // gate — --sandbox enabled is NOT used for read-only because it confines
+  // processes but still permits writes to the working directory, so it does not
+  // make a leaf read-only. Both write modes use --force ("Run Everything"),
+  // which auto-approves every tool so the leaf never stalls and already implies
+  // trust: --auto-review ("Smart Auto") is deliberately avoided because it
+  // prompts for tool calls it deems unsafe, and a non-interactive leaf has no
+  // stdin to answer, so it could block until the lineage timeout. The two write
+  // modes differ only by OS confinement: workspace-write adds --sandbox enabled
+  // (writes confined to the working directory), danger-full-access uses
+  // --sandbox disabled (unconfined).
   const args = ['-p', prompt, '--output-format', 'text', '--model', model];
   if (resolvedSandbox === 'danger-full-access') {
     args.push('--force', '--sandbox', 'disabled');
   } else if (resolvedSandbox === 'read-only') {
-    args.push('--sandbox', 'enabled');
+    args.push('--mode', 'plan', '--trust');
   } else {
-    args.push('--auto-review', '--sandbox', 'enabled');
+    args.push('--force', '--sandbox', 'enabled');
   }
   return finalizeLineageCommand({
     kind: lineage.kind,
@@ -1787,18 +1798,27 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   // reasoningEffort/serviceTier are never forwarded here — matching the
   // flag-support declaration in executor-config.ts.
   //
-  // Permission mapping, from the live `devin --help` mode descriptions: "auto"
-  // auto-approves read-only tools, "accept-edits" also auto-approves workspace
-  // edits, "dangerous" auto-approves all tools. --sandbox is a boolean opt-in
-  // that enforces the active Read/Write scopes at the OS level, so it is set for
-  // the two bounded modes and dropped for full access.
+  // Permission mapping, grounded in the live headless behavior of the installed
+  // devin: --sandbox forces the "autonomous" permission mode and IGNORES
+  // --permission-mode, and without explicitly granted Write(...) scopes (which
+  // the CLI only accepts via --agent-config, not passed here) the sandbox
+  // defaults to a writable working directory. So:
+  //   - read-only uses "auto" WITHOUT --sandbox: in non-interactive mode devin
+  //     cleanly rejects the shell/exec and write tools while still auto-approving
+  //     native file reads, giving genuine read-only. --sandbox must NOT be added
+  //     here — it would flip the leaf to autonomous and let it write to cwd.
+  //   - workspace-write uses "dangerous" WITH --sandbox: --sandbox makes the leaf
+  //     autonomous so it never stalls on a permission prompt, and confines writes
+  //     to the sandbox scope (the working directory) at the OS level; "dangerous"
+  //     is the honest label for that autonomous behavior.
+  //   - full access uses "dangerous" WITHOUT --sandbox: autonomous and unconfined.
   const args = ['-p', prompt, '--model', model];
   if (resolvedSandbox === 'danger-full-access') {
     args.push('--permission-mode', 'dangerous');
   } else if (resolvedSandbox === 'read-only') {
-    args.push('--permission-mode', 'auto', '--sandbox');
+    args.push('--permission-mode', 'auto');
   } else {
-    args.push('--permission-mode', 'accept-edits', '--sandbox');
+    args.push('--permission-mode', 'dangerous', '--sandbox');
   }
   return finalizeLineageCommand({
     kind: lineage.kind,

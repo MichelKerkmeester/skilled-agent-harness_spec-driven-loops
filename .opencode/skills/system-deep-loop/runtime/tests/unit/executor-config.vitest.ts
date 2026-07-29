@@ -711,14 +711,14 @@ describe('expandLineages', () => {
 });
 
 describe('resolveCursorApprovalMode', () => {
-  it('maps read-only to the CLI unflagged default (ask)', () => {
-    expect(resolveCursorApprovalMode('read-only')).toBe('ask');
+  it('maps read-only to plan (cursor --mode plan read-only mode)', () => {
+    expect(resolveCursorApprovalMode('read-only')).toBe('plan');
   });
 
-  it('maps workspace-write (and the null/undefined default) to auto-review', () => {
-    expect(resolveCursorApprovalMode('workspace-write')).toBe('auto-review');
-    expect(resolveCursorApprovalMode(null)).toBe('auto-review');
-    expect(resolveCursorApprovalMode(undefined)).toBe('auto-review');
+  it('maps both write modes (and the null/undefined default) to force, never auto-review', () => {
+    expect(resolveCursorApprovalMode('workspace-write')).toBe('force');
+    expect(resolveCursorApprovalMode(null)).toBe('force');
+    expect(resolveCursorApprovalMode(undefined)).toBe('force');
   });
 
   it('maps danger-full-access to force (--force/--yolo), never a sandbox value', () => {

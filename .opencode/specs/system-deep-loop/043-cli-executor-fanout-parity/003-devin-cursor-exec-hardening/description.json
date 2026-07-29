@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/043-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
+  "description": "The devin and cursor fan-out lineage builders mapped the generic sandbox modes (`read-only`, `workspace-write`, `danger-full-access`) to CLI flags",
+  "keywords": [
+    "devin",
+    "cursor",
+    "fan-out",
+    "lineage",
+    "builders",
+    "mapped",
+    "generic",
+    "sandbox",
+    "modes",
+    "read-only",
+    "workspace-write",
+    "danger-full-access",
+    "cli",
+    "flags"
+  ],
+  "lastUpdated": "2026-07-29T13:07:10.621Z",
+  "specId": "003",
+  "folderSlug": "devin-cursor-exec-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "043-cli-executor-fanout-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
