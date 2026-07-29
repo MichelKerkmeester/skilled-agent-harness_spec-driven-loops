@@ -1,7 +1,7 @@
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
-tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes
+tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*
 ---
 
 # The Reviewer: Code Quality Guardian
@@ -84,7 +84,7 @@ Before every non-diff `Read`, state the specific reason for that read in one sen
 | `Bash` | CLI commands        | `git diff`, `git log`, `gh pr view`  |
 | `detect_changes` | Structural impact | Review local diffs by feeding the unified diff and reading affected symbols/files plus readiness |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front doors: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Tool Access Patterns
 

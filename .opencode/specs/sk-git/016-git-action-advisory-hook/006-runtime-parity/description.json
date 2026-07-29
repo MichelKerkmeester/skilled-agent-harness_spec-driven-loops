@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-git/016-git-action-advisory-hook/006-runtime-parity",
+  "description": "The hook was registered for the Claude runtime only, so under Codex the rules stayed prose-only — the exact gap this packet exists to close, reopened",
+  "keywords": [
+    "hook",
+    "registered",
+    "claude",
+    "runtime",
+    "only",
+    "codex",
+    "rules",
+    "stayed",
+    "prose-only",
+    "exact",
+    "gap",
+    "packet",
+    "exists",
+    "close",
+    "reopened"
+  ],
+  "lastUpdated": "2026-07-28T03:39:58.283Z",
+  "specId": "006",
+  "folderSlug": "runtime-parity",
+  "parentChain": [
+    "sk-git",
+    "016-git-action-advisory-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

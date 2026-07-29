@@ -78,12 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eight agents are defined three times over — once per runtime, in Markdown for OpenCode and Claude and in TOML for Codex — and each copy grants the code-graph tools and carries prose telling the agent to prefer structural search",
     "created_at": "2026-07-27T16:33:58Z",
-    "last_save_at": "2026-07-27T16:49:46.691Z",
+    "last_save_at": "2026-07-28T09:42:19.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd84ce2e7553e5933c31e4c323b9018dd47295e64987fceb139682fbc40f075d",
+    "source_fingerprint": "sha256:d8767615ccc216b9748e4b136fad3d0c1c1c95cf5290ba761f6b0cbb3ec8be0c",
     "source_doc_hashes": {
-      "spec.md": "7e9371a35e195fe2d9549ca689a76b1bae711e8f9f4a3035bde138789245c221",
-      "plan.md": "0a27ef90b0d7130ec8bef6ce36f56c542d2a151dade44c56f31922c4ce9af407",
-      "tasks.md": "27b7c1e56632f75456c4340a5770457b878fb662b1fe374ef25788941b739510",
-      "implementation-summary.md": "370370d3d2a2c43c8b38ccc49bb454f59e8117a50d329ac49328fb3e782ca6ed"
+      "spec.md": "c5d657ebfa2f56a4c581bd93d774f7810fc5119de69d28cd995377ace23a816e",
+      "plan.md": "4fea4095b4ce5c3776e14f7a2fa721fa1f86fa2d216a7e5d21d4f66c431fe6bd",
+      "tasks.md": "527f88ee187ab671d9e5bbae99a835035fdc6280b370d352af500885375e93b4",
+      "implementation-summary.md": "ab6563f3a7fdc51050cf8660501cce0a19bad2e6101de056526e9c7bd28ab64c"
     },
     "last_active_child_id": null,
     "last_active_at": null

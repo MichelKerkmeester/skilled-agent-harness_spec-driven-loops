@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Model Benchmark Profile Template
+
+This template produces a JSON run profile for a model benchmark.
+
+---
+
 <!--
 Copy-paste scaffold for ONE Lane B model-benchmark PROFILE:
   system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/<your-profile>.json

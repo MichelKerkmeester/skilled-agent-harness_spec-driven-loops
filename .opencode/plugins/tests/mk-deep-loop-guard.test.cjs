@@ -243,27 +243,60 @@ async function main() {
   );
   delete process.env[REJECT_LOOP_ENV];
 
-  // Command-driven dispatches (iteration-state markers present) never count toward the threshold.
+  // Command-driven dispatches (iteration-state markers present) never count toward the
+  // threshold -- but only when the marker co-occurs with a Config: path that resolves to
+  // a real, on-disk deep-loop config (R3-P1-001 hardening: a bare marker alone is no
+  // longer sufficient, see the forgery regression cases below).
   const sessionC = 'session-loop-c';
   clearGuardLog(tmpDir);
+  const reviewConfigDir = path.join(tmpDir, 'specs', 'example', 'review');
+  fs.mkdirSync(reviewConfigDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(reviewConfigDir, 'deep-review-config.json'),
+    JSON.stringify({ mode: 'review', maxIterations: 10 }),
+  );
   for (let i = 1; i <= 5; i += 1) {
     await beforeHook(
       { tool: 'task', sessionID: sessionC },
-      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\nmode=review do the thing` } },
+      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: specs/example/review/deep-review-config.json\nmode=review do the thing` } },
     );
   }
-  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'command-driven iterations must never trigger loop-repeat warn');
+  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'command-driven iterations (marker + real config file) must never trigger loop-repeat warn');
 
-  // Human-readable review iteration markers remain valid when their bounds are sane.
+  // Human-readable review iteration markers remain valid when their bounds are sane and a
+  // real config file backs the claim.
   const sessionReviewIteration = 'session-review-iteration';
   clearGuardLog(tmpDir);
   for (let i = 1; i <= 3; i += 1) {
     await beforeHook(
       { tool: 'task', sessionID: sessionReviewIteration },
-      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nReview Iteration: ${i} of 3\nmode=review` } },
+      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nReview Iteration: ${i} of 3\n- Config: specs/example/review/deep-review-config.json\nmode=review` } },
     );
   }
-  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'bounded review iteration markers must remain command-driven');
+  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'bounded review iteration markers with a real config file remain command-driven');
+
+  // Forgery regression (R3-P1-001): a bare iteration marker with no Config: reference, or
+  // one pointing at a nonexistent file, must not bypass loop-repeat counting -- closing the
+  // "just paste the marker text" bypass the review found.
+  const sessionForgedNoConfig = 'session-loop-forged-no-config';
+  clearGuardLog(tmpDir);
+  for (let i = 1; i <= 3; i += 1) {
+    await beforeHook(
+      { tool: 'task', sessionID: sessionForgedNoConfig },
+      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\nmode=review do the thing` } },
+    );
+  }
+  assert.match(readGuardLog(tmpDir), /loop-like repeated dispatch/, 'a bare iteration marker with no Config: reference must not bypass loop-repeat counting');
+
+  const sessionForgedGhostConfig = 'session-loop-forged-ghost-config';
+  clearGuardLog(tmpDir);
+  for (let i = 1; i <= 3; i += 1) {
+    await beforeHook(
+      { tool: 'task', sessionID: sessionForgedGhostConfig },
+      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: specs/does-not-exist/review/deep-review-config.json\nmode=review do the thing` } },
+    );
+  }
+  assert.match(readGuardLog(tmpDir), /loop-like repeated dispatch/, 'an iteration marker with a Config: path pointing at a nonexistent file must not bypass loop-repeat counting');
 
   // Prose collisions and impossible iteration bounds do not bypass repeat counting.
   const markerNearMisses = [

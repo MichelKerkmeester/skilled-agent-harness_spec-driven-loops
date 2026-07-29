@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create journey gate fixes",
+      "resourceContractVersion missing registry",
+      "parent hub scaffold fails doctor",
+      "template placeholder validation fixes",
+      "create journey gate fixes plan",
+      "create journey gate fixes tasks",
+      "create journey gate fixes checklist",
+      "create journey gate fixes summary"
+    ],
+    "key_topics": [
+      "journey",
+      "gate",
+      "resourcecontractversion",
+      "missing",
+      "registry",
+      "parent",
+      "hub",
+      "scaffold",
+      "fails",
+      "doctor",
+      "template",
+      "placeholder"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/swarm/lens2-report.md",
+      "research/swarm/lens3-report.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json",
+      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+      ".opencode/skills/sk-doc/create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "lens2-report.md",
+        "kind": "doc",
+        "path": "research/swarm/lens2-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "lens3-report.md",
+        "kind": "doc",
+        "path": "research/swarm/lens3-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-registry-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-registry-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-router-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-graph-metadata-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Journey Gate Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two review lenses independently proved the parent-hub creation journey cannot succeed as documented",
+    "created_at": "2026-07-28T15:11:50.262Z",
+    "last_save_at": "2026-07-28T16:27:03.342Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf8d5c5270a22383c874a2a6ff0eb4ccf72282b2bd6104a789420732389ccb39",
+    "source_doc_hashes": {
+      "spec.md": "b8924e97eaa1443ff384ca98ef9e50cda17fd87dd8f87309a7edd802a02581c4",
+      "plan.md": "4059a792e9ab7984b6585b1b7975b32b4cf5f1100227b0767cf8e95cf864ae1c",
+      "tasks.md": "6ec1ea5781c42fb150eeeb12b8a8d4c88f313fbb149f9e2c4f2b7c1219de22cc",
+      "checklist.md": "f03ccb6b527ab75cea8e45480e4a0628977b008be8920558d4528937e18fceb8",
+      "implementation-summary.md": "a2cd5126279a95174d63b67c6dcc3dbce8a5d376f1f00eeab75c313b8ab0c80f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

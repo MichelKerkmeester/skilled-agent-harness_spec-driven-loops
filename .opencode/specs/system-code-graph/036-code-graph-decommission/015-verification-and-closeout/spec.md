@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 15: verification-and-closeout"
-description: "Prove the decommission landed: a no-ignore sweep of the live surface, green suites against a captured baseline, clean starts in all runtimes, a rebuilt advisor, and reconciled completion metadata across the packet."
+description: "Prove the decommission landed: a hidden-inclusive no-ignore sweep of the live surface, green suites against a captured baseline, clean starts in all runtimes, a rebuilt advisor, and reconciled completion metadata across the packet."
 trigger_phrases:
   - "code graph decommission verification"
   - "decommission closeout gate"
@@ -12,10 +12,10 @@ contextType: "testing"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-28T09:34:43Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded the decommission phase child"
-    next_safe_action: "Populate requirements from the touchpoint research synthesis"
+    recent_action: "Executed the phase and verified it"
+    next_safe_action: "Closeout verification in phase 015"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,13 +42,13 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 15 of 15 |
+| **Phase** | 15 of 16 |
 | **Predecessor** | 014-historical-reference-policy |
-| **Successor** | None |
+| **Successor** | 016-deep-review |
 | **Handoff Criteria** | Every gate below passes with recorded evidence, and no packet document claims a state contradicted by another |
 <!-- /ANCHOR:metadata -->
 
@@ -82,7 +82,7 @@ This is **Phase 15** of the code graph decommission specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A decommission of this breadth fails quietly rather than loudly. A missed registration only shows up when a particular runtime starts; a missed import only when a particular test runs; a stale advisor node only when a particular prompt is routed. The earlier sweep also proved that the obvious verification command is itself unreliable — without an explicit no-ignore flag it skips the very config files that matter most. Declaring completion on the strength of a green-looking partial check is the likeliest way this packet ends up wrong.
+A decommission of this breadth fails quietly rather than loudly. A missed registration only shows up when a particular runtime starts; a missed import only when a particular test runs; a stale advisor node only when a particular prompt is routed. The earlier sweep also proved that the obvious verification command is itself unreliable — without both an explicit no-ignore flag and --hidden it skips the very config files that matter most. Declaring completion on the strength of a green-looking partial check is the likeliest way this packet ends up wrong.
 
 ### Purpose
 Close the packet on evidence rather than assertion: real numbers on both sides of the change, sweeps that cannot silently skip files, and a first-run check in every runtime that consumed the subsystem.
@@ -94,7 +94,7 @@ Close the packet on evidence rather than assertion: real numbers on both sides o
 ## 3. SCOPE
 
 ### In Scope
-- The no-ignore live-surface sweep with archival exclusions.
+- The `--hidden --no-ignore` live-surface sweep with archival exclusions.
 - Recursive strict validation of the packet.
 - Test suites for spec-kit, skill-advisor, deep-loop, plugins, and commands, reported as a delta.
 - Clean-start checks in OpenCode, Claude Code, Codex, and Cursor.
@@ -122,7 +122,7 @@ Close the packet on evidence rather than assertion: real numbers on both sides o
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The live-surface sweep uses `--no-ignore` | The recorded command includes the flag and the archival exclusions |
+| REQ-001 | The live-surface sweep uses `--hidden --no-ignore` | The recorded command includes both flags and the archival exclusions |
 | REQ-002 | Only intended references survive | Every remaining hit is the tombstone or an archival path |
 | REQ-003 | Results are reported as a delta | Before and after numbers are recorded for each suite, not just a final pass |
 | REQ-004 | Every runtime starts clean | No MCP, plugin, or hook error in any of the four surfaces |
@@ -155,7 +155,7 @@ Close the packet on evidence rather than assertion: real numbers on both sides o
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | A sweep without `--no-ignore` reports a false all-clear | The packet closes with a live registration intact | REQ-001 pins the exact command shape |
+| Risk | A sweep missing `--hidden` or `--no-ignore` reports a false all-clear | The packet closes with a live registration intact | REQ-001 pins the exact command shape |
 | Risk | "No regressions" asserted without a baseline | Unverifiable completion claim | REQ-003 requires numbers on both sides |
 | Risk | Runtime-specific breakage found after closeout | Rework after the fact | REQ-004 checks every runtime, not just the current one |
 | Dependency | Baseline captured before phase 003 | No comparison possible | Capture is pre-work, not part of this phase |

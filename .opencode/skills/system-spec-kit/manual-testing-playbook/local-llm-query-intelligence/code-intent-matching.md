@@ -42,7 +42,6 @@ For each of 4 code-intent queries, check whether the implementation file ranks a
 
 **Query A — provider cascade:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "how does embedding provider auto-cascade resolution work when no API keys are set",
   queryMode: "neighborhood",
 })
@@ -51,7 +50,6 @@ Expected: `shared/embeddings/factory.ts` (impl) ranks above `shared/embeddings/R
 
 **Query B — ollama availability probe:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "how does the system detect whether ollama runtime is installed",
   queryMode: "neighborhood",
 })
@@ -60,7 +58,6 @@ Expected: `shared/embeddings/ollama-availability.ts` (impl) ranks above `shared/
 
 **Query C — sqlite-vec virtual table creation:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "how is the sqlite-vec virtual table created and queried for embeddings",
   queryMode: "neighborhood",
 })
@@ -69,7 +66,6 @@ Expected: `mcp-server/lib/search/vector-index-store.ts` or `vector-index-impl.ts
 
 **Query D — profile-keyed DB filename:**
 ```
-mcp__mk_code_index__code_graph_context({
   input: "how is the active profile sqlite filename derived from provider model dim and dtype",
   queryMode: "neighborhood",
 })
@@ -95,7 +91,6 @@ A table like:
 
 ### Evidence
 
-- The exact `mcp__mk_code_index__code_graph_context` payload for each query.
 - The top-10 result paths for each query.
 - The rank-pair table above.
 - An honest assessment: if implementation ranks below docs, IS the doc actually a better answer for this query? (Sometimes the inversion is correct — INSTALL_GUIDE may be more authoritative for setup-related questions.)
@@ -103,7 +98,6 @@ A table like:
 
 Observed 2026-07-03 in `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
 
-Direct Code Graph MCP status available in this session:
 
 ```text
 plugin_id=mk-code-graph
@@ -115,13 +109,11 @@ messages_transform_mode=schema_aligned
 runtime_ready=false
 node_binary=node
 bridge_timeout_ms=15000
-bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
 last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
 cache_entries=0
 cache=empty
 ```
 
-The exact payloads required by this scenario were run through the daemon-backed `code_graph_context` CLI surface because the direct `mcp__mk_code_index__code_graph_context` tool was not exposed in this session.
 
 Query A payload:
 
@@ -134,7 +126,6 @@ Query A output:
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -150,7 +141,6 @@ Query B output:
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -166,7 +156,6 @@ Query C output:
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -182,17 +171,14 @@ Query D output:
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
 
-Retried `code_graph_status` through the same CLI surface:
 
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -209,7 +195,6 @@ Daemon-backed `memory_health` returned:
 @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
 ```
 
-Top-10 result paths: unavailable for all four queries because `code_graph_context` did not execute successfully.
 
 Rank-pair table:
 
@@ -222,8 +207,6 @@ Rank-pair table:
 | D | shared/embeddings/profile.ts:resolveActiveProfileDbPath | unavailable | mcp-server/INSTALL-GUIDE.md | unavailable | BLOCKED |
 ```
 
-Honest assessment: no implementation-vs-doc ranking assessment is possible because Code Graph returned no ranked results. The missing precondition is a reachable Code Graph backend at `/tmp/mk-code-index/daemon-ipc.sock`; active provider evidence is also blocked by stale Spec Memory MCP dist output.
 
 ### Pass/Fail
 
-BLOCKED — Code Graph `code_graph_context` could not execute because the backend socket `/tmp/mk-code-index/daemon-ipc.sock` was absent (`exitCode: 75`), and `memory_health` active-provider evidence was unavailable because the Spec Memory MCP backend reported stale dist.

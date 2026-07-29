@@ -6,7 +6,7 @@ trigger_phrases:
   - "prompt engineering"
   - "framework"
   - "CLEAR scoring"
-  - "/prompt-improve"
+  - "/prompt:improve"
 version: 2.3.0.21
 ---
 
@@ -21,7 +21,7 @@ version: 2.3.0.21
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Transforming a rough or under-specified request into a prompt that clears a fixed quality bar |
-| **Invoke with** | The `/prompt-improve` command, the `@prompt-improver` agent or keyword routing through Gate 2 |
+| **Invoke with** | The `/prompt:improve` command, the `@prompt-improver` agent or keyword routing through Gate 2 |
 | **Works on** | Any text task that benefits from structure: generation, review, research, editing and analysis |
 | **Produces** | An enhanced prompt with a transparency report naming the framework, the rounds, the CLEAR breakdown and any flagged assumptions |
 
@@ -35,18 +35,18 @@ A vague prompt gets a vague answer. People under-specify the role, skip the cons
 
 ### What It Does
 
-The `prompt-improve` packet (part of the sk-prompt hub) is the prompt-engineering engine. It evaluates the task across seven frameworks, runs the selected prompt through DEPTH (a five-phase thinking pass of Discover, Engineer, Prototype, Test and Harmonize), scores every dimension of the output with the CLEAR rubric and delivers the result with a transparency report. You call it through the `/prompt-improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
+The `prompt-improve` packet (part of the sk-prompt hub) is the prompt-engineering engine. It evaluates the task across seven frameworks, runs the selected prompt through DEPTH (a five-phase thinking pass of Discover, Engineer, Prototype, Test and Harmonize), scores every dimension of the output with the CLEAR rubric and delivers the result with a transparency report. You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Type `/prompt-improve` followed by a mode flag and your request.
+**Step 1: Invoke it.** Type `/prompt:improve` followed by a mode flag and your request.
 
 **Step 2: Run the primary workflow.**
 
 ```bash
-/prompt-improve $text "Write a cold email for a SaaS CRM targeting mid-market sales leaders"
+/prompt:improve $text "Write a cold email for a SaaS CRM targeting mid-market sales leaders"
 ```
 
 The skill runs a ten-round DEPTH pass, picks the best framework, scores the result with CLEAR and delivers the enhanced prompt. Below it you get a transparency report:
@@ -62,13 +62,13 @@ ASSUMPTIONS FLAGGED: audience title inferred from "mid-market sales leaders"
 **Step 3: Use a mode flag for speed.** Add `$short` for a three-round pass or `$raw` for a zero-round passthrough when you are certain the prompt is ready.
 
 ```bash
-/prompt-improve $short "Rephrase this PR description for a non-technical reviewer: ..."
+/prompt:improve $short "Rephrase this PR description for a non-technical reviewer: ..."
 ```
 
 **Step 4: Verify the README structure before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/sk-prompt-improve/README.md --type readme
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt:improve/README.md --type readme
 ```
 
 Zero issues means the README matches the house template.
@@ -200,7 +200,7 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/sk-prompt-improve/README.md --type readme` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt:improve/README.md --type readme` reports zero issues |
 | Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
 | Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
 

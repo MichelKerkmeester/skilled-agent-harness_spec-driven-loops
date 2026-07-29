@@ -7,7 +7,11 @@
     "sk-git/016-git-action-advisory-hook/001-advisory-research",
     "sk-git/016-git-action-advisory-hook/002-rule-encoding",
     "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-    "sk-git/016-git-action-advisory-hook/004-pathspec-integrity"
+    "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
+    "sk-git/016-git-action-advisory-hook/005-destructive-tier",
+    "sk-git/016-git-action-advisory-hook/006-runtime-parity",
+    "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
+    "sk-git/016-git-action-advisory-hook/008-docs-and-playbooks"
   ],
   "manual": {
     "depends_on": [],
@@ -93,17 +97,17 @@
     ],
     "causal_summary": "sk-git already documents the rules that would have prevented four separate incidents in a single session",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-07-27T19:53:27.354Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-28T13:26:56.868Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c79816f139be70e8619456471033006d75281312d9ba7e50c01181516d108ff6",
+    "source_fingerprint": "sha256:2911ca94ed528d3d3e23c26fe4747d000dc22dd0351835793c3fe9628f1f3a9e",
     "source_doc_hashes": {
-      "spec.md": "1bdb231513e2fb7ab431c2dcd07807c2c06798c4d9d3a87e7df10eb57a13698b"
+      "spec.md": "e6b82bb4e0594feeb3fe3afd3e283603c72792b28a3623e996113ea06a48039e"
     },
-    "last_active_child_id": "sk-git/016-git-action-advisory-hook/001-advisory-research",
-    "last_active_at": "2026-07-27T19:53:27.354Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-07-28T13:26:56.868Z"
   }
 }

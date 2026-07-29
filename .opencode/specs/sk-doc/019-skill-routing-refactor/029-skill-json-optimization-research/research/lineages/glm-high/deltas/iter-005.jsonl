@@ -1,0 +1,1 @@
+{"type":"delta","iteration":5,"focus":"testing-integration","findings":["F5.1 CI map, advisor compiler not in CI","F5.2 uneven test coverage (leaf-aliases 1, command-metadata 2)","F5.3 routing-accuracy offline not CI-gated","F5.4 three end-to-end chain breaks","F5.5 malformed derived silent until offline rebuild"],"newInfoRatio":0.75}

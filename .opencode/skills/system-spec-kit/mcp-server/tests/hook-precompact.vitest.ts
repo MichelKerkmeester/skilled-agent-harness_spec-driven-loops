@@ -115,7 +115,7 @@ describe('precompact hook', () => {
 
       expect(context).toContain('## Recent Topics');
       expect(context).toContain('- memory_search');
-      expect(context).toContain('- code_graph_query');
+      expect(context).not.toContain('- code_graph_query');
       expect(context).toContain('- specs/system-speckit');
       expect(context).toContain('- task_context');
     });

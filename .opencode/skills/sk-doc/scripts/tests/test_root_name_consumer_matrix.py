@@ -11,7 +11,7 @@ TEST_DIR = Path(__file__).resolve().parent
 SK_DOC = TEST_DIR.parents[1]
 REPO = TEST_DIR.parents[4]
 SHARED = SK_DOC / 'shared' / 'scripts'
-CREATE_SKILL = SK_DOC / 'create-skill' / 'scripts'
+CREATE_SKILL = SK_DOC / 'sk-create-skill' / 'scripts'
 MANIFEST = REPO / '.opencode' / 'specs' / 'sk-doc' / '020-hyphen-naming-convention' / '002-root-name-consumer-migration' / 'manifest' / 'consumer-manifest.md'
 JS_MATRIX = TEST_DIR / 'test-root-name-consumer-matrix.cjs'
 

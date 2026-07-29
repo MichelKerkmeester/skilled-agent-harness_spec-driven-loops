@@ -39,14 +39,36 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/types.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-resume-adapter.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-resume-adapter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-resume-adapter.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,6 +94,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -90,31 +118,25 @@
         "source": "derived"
       },
       {
-        "name": "Bounded Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Skill Contribution Certificate",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Outlined Skill Benchmark",
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,9 +154,9 @@
         "source": "derived"
       },
       {
-        "name": "Separated Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "filesystem",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -156,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -166,37 +194,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
     "created_at": "2026-07-16T03:43:42.100Z",
-    "last_save_at": "2026-07-24T07:16:38.515Z",
+    "last_save_at": "2026-07-28T03:53:53.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5837bef50abe4378312af65013ff25fa562b4cb50558d9b514baf556dad6f553",
+    "source_fingerprint": "sha256:59dbe34fd0fd4b0de34a6aa26976f84b75d5728f90c91852294cdeca4b637e4d",
     "source_doc_hashes": {
-      "spec.md": "af5f3761621df00c1b0ab9dd4fe932177928d0e927414af7725fccd7b67bad82",
-      "plan.md": "d9d03b7fff5dacdfae62a2c0b368d2007746bc9143cdd7c036ed08c5d5f24d2f",
-      "tasks.md": "e7f2fc6546f9caff5a62244e2e942877d5756664f628be2eadee20b131e91be5",
-      "checklist.md": "6f99a7359ffd3635d97a36bea43ad9883ec3cfa5acaf4d522bb69820be50abac"
+      "spec.md": "ee6684d5245877378366b9547c60237a26e7c19e8c0314afefdcdac2278fdcde",
+      "plan.md": "af0578518e3d714c24db5b12af3c1d0f8ea16d2f1bb907323cb881cdb1648a6d",
+      "tasks.md": "67f0016e2cd13d25909c927a0a686424b5ce082f11c792a915558bab49cbebb0",
+      "checklist.md": "f909d5683345039fd88d716a20948b9fc538b629a9a5270e3a5e6dd0916ef1bd",
+      "implementation-summary.md": "8da94077b80e8aaa6a96c8434cf886a0f8494c630139bbc61ff060286378c095"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,394 @@
+[
+  {
+    "command": "/create:skill",
+    "ownerMode": "create-skill",
+    "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
+    "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to create or update a standalone OpenCode skill package.",
+      "ownedSignals": [
+        "create an OpenCode skill",
+        "scaffold a skill package",
+        "update a skill definition"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-skill",
+        "resource": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "action": "load the standalone-skill scaffolding mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-skill",
+        "resource": ".opencode/commands/create/assets/create-skill-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a standalone OpenCode skill or a shared skill packet.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill-parent",
+          "when": "Prefer the parent command when the deliverable is a hub with multiple nested workflow or surface packets."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:skill-parent",
+    "ownerMode": "create-skill-parent",
+    "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). Modes :auto, :confirm.",
+    "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to scaffold or update a parent skill hub with nested mode packets.",
+      "ownedSignals": [
+        "create a parent skill hub",
+        "add nested mode packets",
+        "scaffold a skill router"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-skill",
+        "resource": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "action": "load the parent-hub scaffolding mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-skill",
+        "resource": ".opencode/commands/create/assets/create-skill-parent-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is a parent skill hub with nested workflow or surface packets.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill",
+          "when": "Prefer the standalone command when the deliverable is one skill package without a multi-packet hub."
+        }
+      ]
+    }
+  },
+  {
+    "command": "/create:readme",
+    "ownerMode": "create-readme",
+    "description": "Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.",
+    "argumentHint": "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to write a current-state README or install guide for a folder.",
+      "ownedSignals": [
+        "write a folder README",
+        "create an install guide",
+        "document a project folder"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-readme",
+        "resource": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+        "action": "load the README authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-readme",
+        "resource": ".opencode/commands/create/assets/create-readme-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:agent",
+    "ownerMode": "create-agent",
+    "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
+    "argumentHint": "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to create an OpenCode agent with explicit permissions and behavioral rules.",
+      "ownedSignals": [
+        "create an OpenCode agent",
+        "define agent permissions",
+        "write an agent persona"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-agent",
+        "resource": ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+        "action": "load the agent-authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-agent",
+        "resource": ".opencode/commands/create/assets/create-agent-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:command",
+    "ownerMode": "create-command",
+    "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
+    "argumentHint": "<command_invocation> [command_request] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to create or update an OpenCode slash command with routed workflow assets.",
+      "ownedSignals": [
+        "create a slash command",
+        "scaffold command routing",
+        "write command frontmatter"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-command",
+        "resource": ".opencode/skills/sk-doc/sk-create-command/SKILL.md",
+        "action": "load the slash-command authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-command",
+        "resource": ".opencode/commands/create/assets/create-command-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:feature-catalog",
+    "ownerMode": "create-feature-catalog",
+    "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to build a feature catalog with auditable per-feature documentation.",
+      "ownedSignals": [
+        "build a feature catalog",
+        "inventory system capabilities",
+        "add per-feature documentation"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-feature-catalog",
+        "resource": ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "action": "load the feature-catalog authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-feature-catalog",
+        "resource": ".opencode/commands/create/assets/create-feature-catalog-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:manual-testing-playbook",
+    "ownerMode": "create-manual-testing-playbook",
+    "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
+    "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to author a deterministic manual testing playbook with evidence capture.",
+      "ownedSignals": [
+        "create a testing playbook",
+        "write deterministic test scenarios",
+        "plan evidence collection"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-manual-testing-playbook",
+        "resource": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "action": "load the manual-testing-playbook authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-manual-testing-playbook",
+        "resource": ".opencode/commands/create/assets/create-manual-testing-playbook-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:benchmark",
+    "ownerMode": "create-benchmark",
+    "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
+    "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to author benchmark artifacts, fixtures, or conformance packages for a skill or mode.",
+      "ownedSignals": [
+        "author benchmark artifacts",
+        "create a conformance benchmark",
+        "write benchmark fixtures"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-benchmark",
+        "resource": ".opencode/skills/sk-doc/sk-create-benchmark/SKILL.md",
+        "action": "load the benchmark-authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-benchmark",
+        "resource": ".opencode/commands/create/assets/create-benchmark-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:flowchart",
+    "ownerMode": "create-flowchart",
+    "description": "Create an ASCII flowchart markdown file with pattern selection and validation. Modes :auto, :confirm.",
+    "argumentHint": "<target-flowchart.md> [source/process description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to turn a real process or decision tree into a validated ASCII flowchart.",
+      "ownedSignals": [
+        "draw an ASCII flowchart",
+        "map a process as a diagram",
+        "validate a flowchart"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-flowchart",
+        "resource": ".opencode/skills/sk-doc/sk-create-flowchart/SKILL.md",
+        "action": "load the flowchart authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-flowchart",
+        "resource": ".opencode/commands/create/assets/create-flowchart-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:changelog",
+    "ownerMode": "create-changelog",
+    "description": "Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.",
+    "argumentHint": "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to create a global or packet-local changelog with release notes.",
+      "ownedSignals": [
+        "write release notes",
+        "create a packet changelog",
+        "bump a component version"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-changelog",
+        "resource": ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "action": "load the changelog authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-changelog",
+        "resource": ".opencode/commands/create/assets/create-changelog-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  },
+  {
+    "command": "/create:diff",
+    "ownerMode": "create-diff",
+    "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
+    "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want to compare document versions and produce a self-contained HTML diff report.",
+      "ownedSignals": [
+        "compare document versions",
+        "review a document diff",
+        "make an HTML diff report"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-diff",
+        "resource": ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
+        "action": "load the document-diff mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-diff",
+        "resource": ".opencode/commands/create/assets/create-diff-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
+  }
+]

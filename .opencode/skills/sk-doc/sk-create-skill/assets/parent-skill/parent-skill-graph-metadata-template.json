@@ -1,8 +1,8 @@
 {
-  "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the one advisor identity node for the hub; packet folders do not carry graph-metadata.json. The canonical live example is sk-code/graph-metadata.json.",
+  "_template": "Parent-skill hub graph-metadata.json scaffold. Replace every [bracketed] placeholder. This is the one advisor identity node for the hub; packet folders do not carry graph-metadata.json. The canonical live example is sk-code/graph-metadata.json. Legal family values are cli, mcp, sk-code, sk-hub, deep-loop, sk-util, and system; parent hubs use sk-hub.",
   "schema_version": 2,
   "skill_id": "[parent-skill-name]",
-  "family": "[cli|mcp|sk-code|sk-hub|deep-loop|sk-util|system]",
+  "family": "sk-hub",
   "category": "[category]",
   "deprecated": false,
   "edges": {
@@ -84,7 +84,6 @@
       "README.md",
       "mode-registry.json",
       "hub-router.json",
-      "description.json",
       "[workflow-packet-a]/SKILL.md",
       "[surface-name]/SKILL.md",
       "[surface-name]/references/[reference].md"
@@ -94,7 +93,6 @@
       ".opencode/skills/[parent-skill-name]/README.md",
       ".opencode/skills/[parent-skill-name]/mode-registry.json",
       ".opencode/skills/[parent-skill-name]/hub-router.json",
-      ".opencode/skills/[parent-skill-name]/description.json",
       ".opencode/skills/[parent-skill-name]/graph-metadata.json",
       ".opencode/skills/[parent-skill-name]/[workflow-packet-a]/SKILL.md",
       ".opencode/skills/[parent-skill-name]/[surface-name]/SKILL.md"

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "cli-external-orchestration/025-cli-codex-deprecation",
+  "specFolder": "cli-external-orchestration/z_archive/025-cli-codex-deprecation",
   "description": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
   "keywords": [
     "cli-codex",
@@ -17,11 +17,12 @@
     "wants",
     "deprecated"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.263Z",
+  "lastUpdated": "2026-07-24T13:10:49.868Z",
   "specId": "025",
   "folderSlug": "cli-codex-deprecation",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 4,
   "memoryNameHistory": [

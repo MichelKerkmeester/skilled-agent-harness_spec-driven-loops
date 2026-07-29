@@ -1,0 +1,1 @@
+{"type":"delta","iteration":4,"focus":"effectiveness","findings":["F4.1 HIGH extreme signal variance, advisor own skill thin","F4.2 dead fields routing-neutral","F4.3 domains∩intent_signals double-count in lexical","F4.4 file paths as routing keywords","F4.5 HIGH command-metadata.json not ingested by advisor (COMMAND_BRIDGES hardcoded)"],"newInfoRatio":0.80}

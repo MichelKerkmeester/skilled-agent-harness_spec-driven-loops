@@ -1,0 +1,23 @@
+{
+  "lineage": "glm-high",
+  "sessionId": "fanout-glm-high-1785305275596-oro54j",
+  "iterationsCompleted": 5,
+  "stopReason": "max_iterations",
+  "totalFindings": 28,
+  "rankedOpportunities": 14,
+  "tier1": ["O1 derived regenerator+freshness gate", "O2 advisor compiler in CI", "O3 ingest command-metadata into routing", "O4 normalize intent-signal coverage", "O5 gate routing-accuracy in CI"],
+  "tier2": ["O6 remove dead fields", "O7 dedup domains vs intent_signals", "O8 reconsider path-keywords", "O9 generate leaf-manifest.config defaults", "O10 auto-suggest command-metadata", "O11 rich derived template", "O12 drop/repurpose causal_summary"],
+  "tier3": ["O13 leaf-aliases/command-metadata vitest coverage", "O14 unify dual signal source"],
+  "crossDimensionClusters": ["derived-regenerator (optimization+automation+testing)", "command-data (effectiveness+integration)", "signal-quality (effectiveness+optimization)"],
+  "questions": {
+    "Q1_INVENTORY": "answered",
+    "Q2_OPTIMIZATION": "answered",
+    "Q3_AUTOMATION": "answered",
+    "Q4_EFFECTIVENESS": "answered",
+    "Q5_TESTING_INTEGRATION": "answered"
+  },
+  "ruledOut": [
+    {"approach": "hub-router.json as dead field", "reason": "compiled-route-manifest.cjs:405-420 consumes it"},
+    {"approach": "dead fields harm routing", "reason": "routing-neutral; never enter any projection"}
+  ]
+}

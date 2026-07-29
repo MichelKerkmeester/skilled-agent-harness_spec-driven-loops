@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Conformance Benchmark Contract Template
+
+This template produces a deterministic artifact-conformance benchmark contract.
+
+---
+
 <!--
 Copy-paste scaffold for ONE conformance-benchmark CONTRACT:
   <deep-loop-mode>/assets/conformance-benchmark/<benchmark-id>/conformance-benchmark.md

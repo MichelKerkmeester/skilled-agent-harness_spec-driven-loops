@@ -33,6 +33,8 @@ from rename_engine_core import (  # noqa: E402
     rollback_plan,
 )
 
+from git_env import scrub_git_env  # noqa: E402
+
 
 class FixtureRepository:
     """A real Git repository contained entirely in one temporary directory."""
@@ -113,12 +115,15 @@ class FixtureRepository:
         return self.evidence / "journal.json"
 
     def _git(self, *arguments: str) -> subprocess.CompletedProcess[str]:
+        # env scrub: keep cwd authoritative so a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect
+        # this fixture's writes onto the real, worktree-shared repository.
         return subprocess.run(
             ["git", *arguments],
             cwd=self.root,
             check=True,
             capture_output=True,
             text=True,
+            env=scrub_git_env(),
         )
 
 

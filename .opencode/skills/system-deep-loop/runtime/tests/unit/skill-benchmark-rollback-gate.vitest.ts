@@ -1,0 +1,894 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Benchmark Rollback Gate Tests
+// ───────────────────────────────────────────────────────────────────
+
+import { createHash } from 'node:crypto';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import {
+  AppendOnlyLedger,
+  TransitionAuthorizationGateway,
+  TransitionPolicyRegistry,
+} from '../../lib/authorized-ledger/index.js';
+import {
+  DEEP_IMPROVEMENT_COMMON_ROLLBACK_MINIMUM_DAYS,
+  DEEP_IMPROVEMENT_COMMON_ROLLBACK_MINIMUM_SUCCESSFUL_EXECUTIONS,
+} from '../../lib/deep-improvement-common-rollback-gate/index.js';
+import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
+import {
+  AtomicityDomains,
+  FencedLeaseCoordinator,
+  ProtectedResourceKinds,
+} from '../../lib/locks-and-fencing/index.js';
+import {
+  SKILL_BENCHMARK_EVENT_VERSION,
+} from '../../lib/skill-benchmark-ledger-schema/index.js';
+import {
+  SKILL_BENCHMARK_PROJECTION_SCHEMA_VERSION,
+  SKILL_BENCHMARK_REDUCER_VERSION,
+} from '../../lib/skill-benchmark-reducers/index.js';
+import {
+  SkillBenchmarkModeMigrationGate,
+  SkillBenchmarkRollbackSwitch,
+  SKILL_BENCHMARK_ROLLBACK_GATE_SCHEMA_VERSION,
+  SKILL_BENCHMARK_ROLLBACK_MINIMUM_DAYS,
+  SKILL_BENCHMARK_ROLLBACK_MINIMUM_SUCCESSFUL_EXECUTIONS,
+  evaluateSkillBenchmarkRollbackWindow,
+} from '../../lib/skill-benchmark-rollback-gate/index.js';
+import {
+  createSkillBenchmarkSealedArtifactStore,
+} from '../../lib/skill-benchmark-sealed-artifacts/index.js';
+import {
+  createSkillBenchmarkModeGateInput,
+} from '../../lib/skill-benchmark-shadow-parity/index.js';
+import { compileParityCaseManifest } from '../../lib/shadow-parity/index.js';
+import {
+  FIXTURE_AUDIT_LEDGER_ID,
+  FIXTURE_AUTHORITY,
+  FIXTURE_LEDGER_ID,
+  createFixtureEvent,
+  createFixtureEventRegistry,
+  createFixturePolicyRegistry,
+  createFixtureRequest,
+} from '../fixtures/authorized-ledger-fixtures.js';
+
+import type {
+  AuthoritySnapshot,
+  TransitionAuthorizationRequest,
+} from '../../lib/authorized-ledger/index.js';
+import type {
+  DeepImprovementCommonModeGateInput,
+} from '../../lib/deep-improvement-common-rollback-gate/index.js';
+import type { JsonObject } from '../../lib/event-envelope/index.js';
+import type {
+  SkillBenchmarkModeGateInput,
+  SkillBenchmarkRollbackRequest,
+  SkillBenchmarkRollbackWindowExecution,
+} from '../../lib/skill-benchmark-rollback-gate/index.js';
+
+// Delegated services keep their own real-substrate suites as the executable contract.
+import './deep-improvement-common-rollback-gate.vitest.js';
+import './skill-benchmark-certificates.vitest.js';
+import './skill-benchmark-resume-adapter.vitest.js';
+import './skill-benchmark-sealed-artifacts.vitest.js';
+import './skill-benchmark-shadow-parity.vitest.js';
+import './skill-benchmark-reducers.vitest.js';
+import './skill-benchmark-ledger-schema.vitest.js';
+
+// This suite imports the sibling contract suites above; the resume-adapter suite runs heavy
+// replay cases that need a long budget. vi.setConfig is last-wins per module, so this value must
+// not fall below the most-demanding imported suite or those cases are starved and time out.
+vi.setConfig({ testTimeout: 3_600_000 });
+
+const BASE_SHA = '1'.repeat(40);
+const CANDIDATE_SHA = '2'.repeat(40);
+const temporaryRoots: string[] = [];
+
+function temporaryRoot(label: string): string {
+  const root = mkdtempSync(join(tmpdir(), `skill-benchmark-rollback-${label}-`));
+  temporaryRoots.push(root);
+  return root;
+}
+
+function digest(value: unknown): string {
+  return sha256Bytes(canonicalBytes(value as JsonObject));
+}
+
+function hash(label: string): string {
+  return createHash('sha256').update(label, 'utf8').digest('hex');
+}
+
+function successfulExecutions(count = 5): SkillBenchmarkRollbackWindowExecution[] {
+  return Array.from({ length: count }, (_, index) => ({
+    executionId: `execution-${index + 1}`,
+    authorityState: 'new_authoritative_reversible',
+    authorityEpoch: 9,
+    result: 'trusted-completion',
+    certificateDigest: hash(`certificate-${index + 1}`),
+  }));
+}
+
+function successfulExecution(): SkillBenchmarkRollbackWindowExecution {
+  const [execution] = successfulExecutions(1);
+  if (execution === undefined) throw new Error('Expected one successful execution fixture');
+  return execution;
+}
+
+function emptyCommonGateInput(): DeepImprovementCommonModeGateInput<JsonObject> {
+  return {
+    candidateSha: CANDIDATE_SHA,
+    baseSha: BASE_SHA,
+    sharedContractDigest: hash('shared-contract'),
+    writeSetDigest: hash('write-set'),
+    versions: {
+      eventEnvelopeVersion: 1,
+      eventSchemaVersion: 'deep-improvement-common-event@1',
+      reducerVersion: 'deep-improvement-common-reducer@1',
+      projectionVersion: 'deep-improvement-common-projection@1',
+    },
+    verifierIdentity: 'external-verifier',
+    verifierVersion: 'verifier@1',
+    authority: { state: 'legacy_authoritative', epoch: 1 },
+    parity: null,
+    sealedArtifacts: null,
+    certificates: null,
+    resumeEvidence: null,
+    lifecycle: [],
+    rollback: null,
+    rollbackWindow: {
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions(),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    },
+    unresolvedRiskIds: [],
+  };
+}
+
+function emptyModeGateInput(): SkillBenchmarkModeGateInput<JsonObject> {
+  const commonGateInput = emptyCommonGateInput();
+  return {
+    candidateSha: commonGateInput.candidateSha,
+    baseSha: commonGateInput.baseSha,
+    sharedContractDigest: commonGateInput.sharedContractDigest,
+    writeSetDigest: commonGateInput.writeSetDigest,
+    versions: {
+      eventEnvelopeVersion: 1,
+      eventSchemaVersion: `skill-benchmark-event@${SKILL_BENCHMARK_EVENT_VERSION}`,
+      reducerVersion: SKILL_BENCHMARK_REDUCER_VERSION,
+      projectionVersion: SKILL_BENCHMARK_PROJECTION_SCHEMA_VERSION,
+    },
+    verifierIdentity: commonGateInput.verifierIdentity,
+    verifierVersion: commonGateInput.verifierVersion,
+    authority: commonGateInput.authority,
+    commonGateInput,
+    parity: null,
+    sealedArtifacts: null,
+    certificates: null,
+    resumeEvidence: null,
+    lifecycle: [],
+    rollbackWindow: commonGateInput.rollbackWindow,
+    unresolvedRiskIds: [],
+  };
+}
+
+async function gatewayHarness(
+  authority: AuthoritySnapshot = FIXTURE_AUTHORITY,
+) {
+  const rootDirectory = temporaryRoot('gateway');
+  const registry = createFixtureEventRegistry();
+  const policies = createFixturePolicyRegistry();
+  const authorityProvider = () => authority;
+  const ledger = new AppendOnlyLedger({
+    rootDirectory,
+    ledgerId: FIXTURE_LEDGER_ID,
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+    authorityProvider,
+  }, registry);
+  const gateway = new TransitionAuthorizationGateway({
+    rootDirectory,
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+    authorityProvider,
+  }, ledger, policies);
+  return { rootDirectory, registry, policies, ledger, gateway };
+}
+
+afterEach(() => {
+  while (temporaryRoots.length > 0) {
+    const root = temporaryRoots.pop();
+    if (root !== undefined) rmSync(root, { recursive: true, force: true });
+  }
+});
+
+describe('skill benchmark rollback window', () => {
+  it('inherits the common minimums without forking policy', () => {
+    expect(SKILL_BENCHMARK_ROLLBACK_MINIMUM_DAYS).toBe(14);
+    expect(SKILL_BENCHMARK_ROLLBACK_MINIMUM_SUCCESSFUL_EXECUTIONS).toBe(5);
+    expect(SKILL_BENCHMARK_ROLLBACK_MINIMUM_DAYS)
+      .toBe(DEEP_IMPROVEMENT_COMMON_ROLLBACK_MINIMUM_DAYS);
+    expect(SKILL_BENCHMARK_ROLLBACK_MINIMUM_SUCCESSFUL_EXECUTIONS)
+      .toBe(DEEP_IMPROVEMENT_COMMON_ROLLBACK_MINIMUM_SUCCESSFUL_EXECUTIONS);
+  });
+
+  it('requires both calendar days and distinct successful executions', () => {
+    const tooEarly = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-14T23:59:59.999Z',
+      executions: successfulExecutions(),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    const tooFew = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions(4),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    const eligible = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions(),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+
+    expect(tooEarly).toMatchObject({ state: 'open', elapsedCalendarDays: 13 });
+    expect(tooFew).toMatchObject({ state: 'open', successfulAuthoritativeExecutions: 4 });
+    expect(eligible).toMatchObject({
+      state: 'eligible_to_close',
+      successfulAuthoritativeExecutions: 5,
+      windowClosed: false,
+    });
+  });
+
+  it('deduplicates repeated rows before the success threshold', () => {
+    const execution = successfulExecution();
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: Array.from({ length: 20 }, () => ({ ...execution })),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(result).toMatchObject({ state: 'open', successfulAuthoritativeExecutions: 1 });
+  });
+
+  it('deduplicates one execution across changed certificate labels', () => {
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions().map((entry, index) => ({
+        ...entry,
+        executionId: 'one-logical-execution',
+        certificateDigest: hash(`retry-certificate-${index}`),
+      })),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(result.successfulAuthoritativeExecutions).toBe(1);
+    expect(result.state).toBe('open');
+  });
+
+  it('deduplicates one certificate across changed execution labels', () => {
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions().map((entry) => ({
+        ...entry,
+        certificateDigest: hash('one-logical-certificate'),
+      })),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(result.successfulAuthoritativeExecutions).toBe(1);
+    expect(result.state).toBe('open');
+  });
+
+  it('collapses execution and certificate aliases transitively', () => {
+    const first = successfulExecution();
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: [
+        { ...first, executionId: 'execution-a', certificateDigest: hash('certificate-a') },
+        { ...first, executionId: 'execution-a', certificateDigest: hash('certificate-b') },
+        { ...first, executionId: 'execution-b', certificateDigest: hash('certificate-b') },
+        { ...first, executionId: 'execution-c', certificateDigest: hash('certificate-c') },
+      ],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(result.successfulAuthoritativeExecutions).toBe(2);
+    expect(result.state).toBe('open');
+  });
+
+  it.each([
+    ['blocked', 'blocked'],
+    ['failed', 'failed'],
+    ['incomplete', 'incomplete'],
+    ['abstained', 'abstained'],
+  ] as const)('does not count a %s execution', (_label, executionResult) => {
+    const executions: SkillBenchmarkRollbackWindowExecution[] = [
+      ...successfulExecutions(4),
+      {
+        executionId: 'non-success',
+        authorityState: 'new_authoritative_reversible',
+        authorityEpoch: 9,
+        result: executionResult,
+        certificateDigest: hash(`non-success-${executionResult}`),
+      },
+    ];
+    const evaluation = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+    expect(evaluation.state).toBe('open');
+  });
+
+  it('excludes executions outside reversible authority', () => {
+    const executions = successfulExecutions().map((entry, index) => index === 4
+      ? { ...entry, authorityState: 'legacy_authoritative' as const }
+      : entry);
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions,
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(result.successfulAuthoritativeExecutions).toBe(4);
+  });
+
+  it.each([
+    ['low traffic', true, 0],
+    ['unresolved evidence', false, 1],
+    ['both extension causes', true, 9],
+  ] as const)('extends for %s after both minimums are met', (
+    _label,
+    lowTraffic,
+    unresolvedEvidenceCount,
+  ) => {
+    const result = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions(),
+      unresolvedEvidenceCount,
+      lowTraffic,
+    });
+    expect(result.state).toBe('extended');
+    expect(result.windowClosed).toBe(false);
+  });
+
+  it('commits the complete evidence input rather than only the summary', () => {
+    const first = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions(),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    const second = evaluateSkillBenchmarkRollbackWindow({
+      openedAt: '2026-07-01T00:00:00.000Z',
+      evaluatedAt: '2026-07-15T00:00:00.000Z',
+      executions: successfulExecutions().map((entry, index) => ({
+        ...entry,
+        executionId: `replacement-${index}`,
+        certificateDigest: hash(`replacement-${index}`),
+      })),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(second.state).toBe(first.state);
+    expect(second.successfulAuthoritativeExecutions)
+      .toBe(first.successfulAuthoritativeExecutions);
+    expect(second.evaluationDigest).not.toBe(first.evaluationDigest);
+  });
+
+  it.each([
+    {},
+    { openedAt: 'not-a-date', evaluatedAt: '2026-07-15T00:00:00Z', executions: [], unresolvedEvidenceCount: 0, lowTraffic: false },
+    { openedAt: '2026-07-15T00:00:00Z', evaluatedAt: '2026-07-01T00:00:00Z', executions: [], unresolvedEvidenceCount: 0, lowTraffic: false },
+    { openedAt: '2026-07-01T00:00:00Z', evaluatedAt: '2026-07-15T00:00:00Z', executions: [], unresolvedEvidenceCount: -1, lowTraffic: false },
+    { openedAt: '2026-07-01T00:00:00Z', evaluatedAt: '2026-07-15T00:00:00Z', executions: [], unresolvedEvidenceCount: 0, lowTraffic: 'false' },
+  ])('rejects malformed standalone window input', (input) => {
+    expect(() => evaluateSkillBenchmarkRollbackWindow(input as never)).toThrow(TypeError);
+  });
+});
+
+describe('skill benchmark independent fail-closed gate', () => {
+  it('maps every absent evidence bucket to its typed disposition', async () => {
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate(emptyModeGateInput());
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.map((entry) => [entry.input, entry.disposition, entry.reasonCode]))
+      .toEqual([
+        ['shadow_parity', 'blocked', 'EVIDENCE_MISSING'],
+        ['sealed_artifacts', 'not_ready', 'EVIDENCE_MISSING'],
+        ['certificates_receipts', 'blocked', 'EVIDENCE_MISSING'],
+        ['lifecycle_resume', 'blocked', 'RESUME_INVALID'],
+        ['rollback_readiness', 'rollback_required', 'COMMON_GATE_INVALID'],
+      ]);
+  });
+
+  it('drives the real offline verifier and preserves its failure as a typed denial', async () => {
+    const input = {
+      ...emptyModeGateInput(),
+      certificates: { verificationInput: {} as never },
+    };
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate(input);
+    expect(result).toMatchObject({ verdict: 'rollback_required', certificate: null });
+    expect(result.dispositions).toContainEqual(expect.objectContaining({
+      input: 'certificates_receipts',
+      disposition: 'blocked',
+      reasonCode: 'MODE_CERTIFICATE_INVALID',
+    }));
+  });
+
+  it('does not adopt a self-reported passing parity handoff', async () => {
+    const manifest = compileParityCaseManifest({
+      baseSha: BASE_SHA,
+      baselineRows: [{
+        scenarioId: 'forged-green',
+        mode: 'skill-benchmark',
+        contractDigest: hash('contract'),
+        disposition: 'protected',
+      }],
+      cases: [{
+        caseId: 'forged-green',
+        scenarioId: 'forged-green',
+        mode: 'skill-benchmark',
+        contractDigest: hash('contract'),
+        requiredObservations: ['ordered-transitions'],
+        projectionIds: ['skill-benchmark'],
+        timeoutMs: 1_000,
+        terminationPolicy: 'bounded',
+      }],
+    });
+    const computed = createSkillBenchmarkModeGateInput({
+      manifest,
+      expectedFixtureIds: ['forged-green'],
+      receipts: [],
+    });
+    const { gateInputDigest: ignored, ...reportedBody } = computed;
+    void ignored;
+    const forgedBody = {
+      ...reportedBody,
+      parityReceiptDigests: [hash('forged-receipt')],
+      exitStatus: 'pass' as const,
+      zeroUnexplainedDiffs: true,
+      allReceiptsPresent: true,
+      deterministicReplay: true,
+      certificatesVerified: true,
+      blockingReasonCode: null,
+    };
+    const modeGateInput = { ...forgedBody, gateInputDigest: digest(forgedBody) };
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...emptyModeGateInput(),
+      parity: {
+        manifest,
+        modeGateInput,
+        receipts: [{ exitStatus: 'green', receiptDigest: hash('forged-receipt') }],
+        authorizationAuditRootDirectory: temporaryRoot('forged-parity'),
+        authorizationAuditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      },
+    });
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions).toContainEqual(expect.objectContaining({
+      input: 'shadow_parity',
+      disposition: 'blocked',
+      reasonCode: 'EVIDENCE_MALFORMED',
+    }));
+  });
+
+  it('still rejects forged green evidence when a real gateway audit contains an allow', async () => {
+    const harness = await gatewayHarness();
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(
+      harness.ledger,
+      event,
+      harness.policies,
+      'forged-green-audit-anchor',
+      { mode: 'skill-benchmark', evidenceDigest: hash('forged-attestation') },
+    );
+    expect((await harness.gateway.authorize(request)).verdict).toBe('allow');
+    const manifest = compileParityCaseManifest({
+      baseSha: BASE_SHA,
+      baselineRows: [{ scenarioId: 'forged', mode: 'skill-benchmark', contractDigest: hash('contract'), disposition: 'protected' }],
+      cases: [{ caseId: 'forged', scenarioId: 'forged', mode: 'skill-benchmark', contractDigest: hash('contract'), requiredObservations: ['ordered-transitions'], projectionIds: ['skill-benchmark'], timeoutMs: 1_000, terminationPolicy: 'bounded' }],
+    });
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...emptyModeGateInput(),
+      parity: {
+        manifest,
+        modeGateInput: { exitStatus: 'pass' },
+        receipts: [{ exitStatus: 'green', ledgerStreamDigest: event.canonicalDigest }],
+        authorizationAuditRootDirectory: harness.rootDirectory,
+        authorizationAuditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      },
+    });
+    expect(result.dispositions).toContainEqual(expect.objectContaining({
+      input: 'shadow_parity',
+      reasonCode: 'EVIDENCE_MALFORMED',
+    }));
+  });
+
+  it('uses the real sealed store and treats absent mode claims as not ready', async () => {
+    const store = createSkillBenchmarkSealedArtifactStore({
+      rootDirectory: temporaryRoot('sealed'),
+    });
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...emptyModeGateInput(),
+      sealedArtifacts: { store, bindings: [] },
+    });
+    expect(result.dispositions).toContainEqual(expect.objectContaining({
+      input: 'sealed_artifacts',
+      disposition: 'not_ready',
+      reasonCode: 'EVIDENCE_MISSING',
+    }));
+  });
+
+  it.each([
+    ['candidateSha', 'not-a-sha'],
+    ['baseSha', 'not-a-sha'],
+    ['sharedContractDigest', 'not-a-digest'],
+    ['writeSetDigest', 'not-a-digest'],
+    ['verifierIdentity', 'contains spaces'],
+    ['verifierVersion', 'contains spaces'],
+  ] as const)('turns malformed top-level %s into typed denials without throwing', async (
+    field,
+    value,
+  ) => {
+    const input = { ...emptyModeGateInput(), [field]: value };
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate(input);
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.every((entry) => entry.reasonCode === 'EVIDENCE_MALFORMED'))
+      .toBe(true);
+  });
+
+  it.each([
+    null,
+    [],
+    'not-an-object',
+    42,
+    Object.create({ inherited: true }),
+  ])('never throws for a malformed top-level caller value', async (input) => {
+    await expect(new SkillBenchmarkModeMigrationGate().evaluate(input as never))
+      .resolves.toMatchObject({ certificate: null });
+  });
+
+  it('rejects unknown top-level fields instead of treating them as inert', async () => {
+    const input = {
+      ...emptyModeGateInput(),
+      authorityOverride: 'new_authoritative_final',
+    } as unknown as SkillBenchmarkModeGateInput<JsonObject>;
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate(input);
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.every((entry) => entry.reasonCode === 'EVIDENCE_MALFORMED'))
+      .toBe(true);
+  });
+
+  it('rejects a versions object with extra consequential fields', async () => {
+    const input = emptyModeGateInput();
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...input,
+      versions: { ...input.versions, authorityOverride: 'new_authoritative_final' } as never,
+    });
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.every((entry) => entry.reasonCode === 'EVIDENCE_MALFORMED'))
+      .toBe(true);
+  });
+
+  it('converts a malformed rollback window into rollback-required evidence', async () => {
+    const input = emptyModeGateInput();
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...input,
+      rollbackWindow: { ...input.rollbackWindow, evaluatedAt: 'not-a-time' },
+    });
+    expect(result.dispositions).toContainEqual(expect.objectContaining({
+      input: 'rollback_readiness',
+      disposition: 'rollback_required',
+      reasonCode: 'EVIDENCE_MALFORMED',
+    }));
+  });
+
+  it('converts circular evidence into typed malformed dispositions', async () => {
+    const circular: Record<string, unknown> = {};
+    circular.self = circular;
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...emptyModeGateInput(),
+      parity: circular as never,
+    });
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.every((entry) => entry.reasonCode === 'EVIDENCE_MALFORMED'))
+      .toBe(true);
+  });
+
+  it('cannot turn unresolved risk assertions into a certificate', async () => {
+    const result = await new SkillBenchmarkModeMigrationGate().evaluate({
+      ...emptyModeGateInput(),
+      unresolvedRiskIds: ['critical-invariant-unknown'],
+    });
+    expect(result.verdict).not.toBe('pass');
+    expect(result.certificate).toBeNull();
+  });
+});
+
+describe('skill benchmark rollback switch caller boundary', () => {
+  async function rollbackSwitch(authority: AuthoritySnapshot = FIXTURE_AUTHORITY) {
+    const harness = await gatewayHarness(authority);
+    const fencingCoordinator = new FencedLeaseCoordinator({
+      rootDirectory: temporaryRoot('fencing'),
+      operationTimeoutMs: 1_000,
+    });
+    return {
+      harness,
+      fencingCoordinator,
+      rollbackSwitch: new SkillBenchmarkRollbackSwitch({
+        gateway: harness.gateway,
+        fencingCoordinator,
+      }),
+    };
+  }
+
+  it.each([
+    [{}, 'MISSING_CONFIGURATION'],
+    [{ configurationVersion: 'v1' }, 'UNKNOWN_STATE'],
+    [{ configurationVersion: 'v1', operation: 'not-real', currentAuthority: FIXTURE_AUTHORITY, expectedAuthorityEpoch: 1 }, 'UNKNOWN_STATE'],
+    [{ configurationVersion: 'v1', operation: 'rollback', currentAuthority: { state: 'invented', epoch: 1 }, expectedAuthorityEpoch: 1 }, 'UNKNOWN_STATE'],
+    [{ configurationVersion: 'v1', operation: 'rollback', currentAuthority: FIXTURE_AUTHORITY, expectedAuthorityEpoch: 2 }, 'STALE_AUTHORITY_EPOCH'],
+    [{ configurationVersion: 'v1', operation: 'rollback', currentAuthority: FIXTURE_AUTHORITY, expectedAuthorityEpoch: 1, gateCertificate: null }, 'ABSENT_GATE_CERTIFICATE'],
+  ] as const)('returns typed denial %s without throwing', async (request, reasonCode) => {
+    const fixture = await rollbackSwitch();
+    await expect(fixture.rollbackSwitch.requestRollback(request as SkillBenchmarkRollbackRequest))
+      .resolves.toMatchObject({
+        disposition: 'denied',
+        authorityState: 'legacy_authoritative',
+        ledgerAuthority: 'denied',
+        reasonCode,
+        certificate: null,
+      });
+  });
+
+  it.each([null, [], 'invalid', 9, Object.create({ inherited: true })])(
+    'returns a typed denial for non-plain request input',
+    async (input) => {
+      const fixture = await rollbackSwitch();
+      await expect(fixture.rollbackSwitch.requestRollback(input as never)).resolves.toMatchObject({
+        disposition: 'denied',
+        reasonCode: 'EVIDENCE_INCOMPLETE',
+        certificate: null,
+      });
+    },
+  );
+
+  it('rejects unknown request fields before any gateway decision', async () => {
+    const fixture = await rollbackSwitch();
+    const result = await fixture.rollbackSwitch.requestRollback({
+      configurationVersion: 'v1',
+      operation: 'rollback',
+      currentAuthority: FIXTURE_AUTHORITY,
+      expectedAuthorityEpoch: 1,
+      gateCertificate: null,
+      selfAuthorization: true,
+    } as unknown as SkillBenchmarkRollbackRequest);
+    expect(result).toMatchObject({ disposition: 'denied', reasonCode: 'EVIDENCE_INCOMPLETE' });
+  });
+
+  it('rejects a self-consistent invented migration certificate by re-running the gate', async () => {
+    const fixture = await rollbackSwitch();
+    const core = {
+      schemaVersion: SKILL_BENCHMARK_ROLLBACK_GATE_SCHEMA_VERSION,
+      certificateKind: 'mode-migration-readiness' as const,
+      mode: 'skill-benchmark' as const,
+      readiness: 'ready-for-phase-014-consideration' as const,
+      authorityState: 'legacy_authoritative' as const,
+      authorityMutation: false as const,
+      rollbackWindowClosed: false as const,
+      cutoverCertificate: false as const,
+      effectCertificateApplied: false as const,
+      legacyWriterRetired: false as const,
+      rollbackAnchorDigest: hash('rollback-anchor'),
+    };
+    const gateCertificate = { ...core, certificateDigest: digest(core) } as never;
+    const result = await fixture.rollbackSwitch.requestRollback({
+      configurationVersion: 'v1',
+      operation: 'rollback',
+      currentAuthority: FIXTURE_AUTHORITY,
+      expectedAuthorityEpoch: 1,
+      gateCertificate,
+      gateInput: emptyModeGateInput(),
+    });
+    expect(result).toMatchObject({
+      disposition: 'denied',
+      reasonCode: 'ABSENT_GATE_CERTIFICATE',
+      certificate: null,
+    });
+  });
+
+  it.each(['truncate-ledger', 'rewrite-sealed-artifact', 'non-reproduction-proof'] as const)(
+    'does not let destructive %s intent bypass certificate re-verification',
+    async (destructiveIntent) => {
+      const fixture = await rollbackSwitch();
+      const result = await fixture.rollbackSwitch.requestRollback({
+        configurationVersion: 'v1',
+        operation: 'rollback',
+        currentAuthority: FIXTURE_AUTHORITY,
+        expectedAuthorityEpoch: 1,
+        gateCertificate: null,
+        destructiveIntent,
+      });
+      expect(result).toMatchObject({
+        disposition: 'denied',
+        reasonCode: 'ABSENT_GATE_CERTIFICATE',
+        certificate: null,
+      });
+    },
+  );
+
+  it.each([
+    ['configurationVersion', 'contains spaces', 'MISSING_CONFIGURATION'],
+    ['operation', 'invented', 'UNKNOWN_STATE'],
+    ['currentAuthority', { state: 'invented', epoch: 1 }, 'UNKNOWN_STATE'],
+    ['expectedAuthorityEpoch', 99, 'STALE_AUTHORITY_EPOCH'],
+    ['gateCertificate', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['gateInput', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['authorizationRequest', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['rollbackReason', '', 'ABSENT_GATE_CERTIFICATE'],
+    ['admissionState', 'open', 'ABSENT_GATE_CERTIFICATE'],
+    ['classificationManifest', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['resumeEvidence', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['writerResource', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['staleWriterLease', null, 'ABSENT_GATE_CERTIFICATE'],
+    ['destructiveIntent', 'truncate-ledger', 'ABSENT_GATE_CERTIFICATE'],
+    ['retainedEventCountBefore', -1, 'ABSENT_GATE_CERTIFICATE'],
+    ['retainedEventCountAfter', -1, 'ABSENT_GATE_CERTIFICATE'],
+    ['retainedArtifactCountBefore', -1, 'ABSENT_GATE_CERTIFICATE'],
+    ['retainedArtifactCountAfter', -1, 'ABSENT_GATE_CERTIFICATE'],
+    ['rollbackAnchorDigest', 'not-a-digest', 'ABSENT_GATE_CERTIFICATE'],
+  ] as const)('fails closed with typed denial when request field %s is forged', async (
+    field,
+    value,
+    reasonCode,
+  ) => {
+    const fixture = await rollbackSwitch();
+    const request = {
+      configurationVersion: 'v1',
+      operation: 'rollback',
+      currentAuthority: FIXTURE_AUTHORITY,
+      expectedAuthorityEpoch: FIXTURE_AUTHORITY.epoch,
+      gateCertificate: null,
+      [field]: value,
+    } as unknown as SkillBenchmarkRollbackRequest;
+    await expect(fixture.rollbackSwitch.requestRollback(request)).resolves.toMatchObject({
+      disposition: 'denied',
+      reasonCode,
+      certificate: null,
+    });
+  });
+
+  it('proves the real coordinator advances a durable high-water mark above a stale token', async () => {
+    const fixture = await rollbackSwitch();
+    const resource = {
+      kind: ProtectedResourceKinds.WRITER,
+      components: { writerId: 'skill-benchmark-ledger-writer' },
+      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+    } as const;
+    const stale = await fixture.fencingCoordinator.acquire({
+      resource,
+      ownerId: 'stale-skill-benchmark-writer',
+      correlationId: 'stale-skill-benchmark-writer',
+      ttlMs: 60_000,
+      acquireTimeoutMs: 1_000,
+    });
+    await fixture.fencingCoordinator.release(stale);
+    const current = await fixture.fencingCoordinator.acquire({
+      resource,
+      ownerId: 'rollback-skill-benchmark-writer',
+      correlationId: 'rollback-skill-benchmark-writer',
+      ttlMs: 60_000,
+      acquireTimeoutMs: 1_000,
+    });
+    const durable = await fixture.fencingCoordinator.inspect(resource);
+    expect(stale.fenceToken).toBeLessThan(current.fenceToken);
+    expect(stale.fenceToken).toBeLessThan(durable.lastFenceToken);
+    expect(durable.activeLease?.leaseId).toBe(current.leaseId);
+    expect(durable.activeLease?.ownerId).toBe('rollback-skill-benchmark-writer');
+    await fixture.fencingCoordinator.release(current);
+  });
+
+  it('rejects a stale authority token at the real transition gateway', async () => {
+    const authority = { state: 'legacy_authoritative', epoch: 2 } as const;
+    const fixture = await rollbackSwitch(authority);
+    const event = createFixtureEvent(fixture.harness.registry, 1, { authority_epoch: 1 });
+    const request: TransitionAuthorizationRequest = await createFixtureRequest(
+      fixture.harness.ledger,
+      event,
+      fixture.harness.policies,
+      'stale-skill-benchmark-token',
+      { mode: 'skill-benchmark', authorityEpoch: 1 },
+    );
+    await expect(fixture.harness.gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: 'stale_authority_epoch',
+    });
+  });
+
+  it('rejects a causal gap at the real gateway', async () => {
+    const fixture = await rollbackSwitch();
+    const staleHead = await fixture.harness.ledger.getVerifiedHead();
+    const firstEvent = createFixtureEvent(fixture.harness.registry, 1);
+    const firstRequest = await createFixtureRequest(
+      fixture.harness.ledger,
+      firstEvent,
+      fixture.harness.policies,
+      'causal-gap-anchor',
+      { mode: 'skill-benchmark' },
+    );
+    const firstAuthorization = await fixture.harness.gateway.authorize(firstRequest);
+    if (firstAuthorization.verdict !== 'allow') {
+      throw new Error(`Expected the anchor event to be authorized, got ${firstAuthorization.reasonCode}`);
+    }
+    await fixture.harness.ledger.appendAuthorized(firstEvent, firstAuthorization.proof);
+
+    const event = createFixtureEvent(fixture.harness.registry, 2);
+    const request = await createFixtureRequest(
+      fixture.harness.ledger,
+      event,
+      fixture.harness.policies,
+      'causal-gap-skill-benchmark',
+      { mode: 'skill-benchmark', priorHead: staleHead },
+    );
+    await expect(fixture.harness.gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: 'stale_head',
+    });
+  });
+
+  it('keeps external policy denial distinct from malformed caller denial', async () => {
+    const rootDirectory = temporaryRoot('denying-gateway');
+    const registry = createFixtureEventRegistry();
+    const policies = new TransitionPolicyRegistry([{
+      policyId: 'fixture-capability-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['external-authority-only'],
+      evaluate: () => ({
+        verdict: 'deny',
+        reasonCode: 'policy_denied',
+        matchedRuleIds: ['external-authority-only'],
+      }),
+    }]);
+    const ledger = new AppendOnlyLedger({
+      rootDirectory,
+      ledgerId: FIXTURE_LEDGER_ID,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider: () => FIXTURE_AUTHORITY,
+    }, registry);
+    const gateway = new TransitionAuthorizationGateway({
+      rootDirectory,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider: () => FIXTURE_AUTHORITY,
+    }, ledger, policies);
+    const event = createFixtureEvent(registry, 1);
+    const request = await createFixtureRequest(
+      ledger,
+      event,
+      policies,
+      'self-authorized-skill-benchmark-recovery',
+      { mode: 'skill-benchmark', capabilityId: 'self-authorized-recovery' },
+    );
+    await expect(gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: 'policy_denied',
+    });
+  });
+});

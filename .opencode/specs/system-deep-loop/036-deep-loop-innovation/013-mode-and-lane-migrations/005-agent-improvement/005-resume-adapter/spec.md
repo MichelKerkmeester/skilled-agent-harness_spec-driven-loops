@@ -12,15 +12,23 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Bound resume scope to ledger-only reducer reconstruction and common-service reuse"
-    next_safe_action: "Define AgentIR continuity levels and idempotent re-entry fixtures"
+    last_updated_at: "2026-07-28T03:24:46Z"
+    last_updated_by: "codex"
+    recent_action: "Rebuilt the full resume decision layer"
+    next_safe_action: "Consume the closed decision surface in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/agent-improvement-resume-adapter.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The mode verifier gates all reuse before the shared adapter classifies compatibility"
+      - "Shared decision compatibility branch and effect identities remain unchanged"
+      - "The resume fingerprint is recomputed from mode and common verified inputs"
+      - "Authenticated checkpoints and certificate frontiers fail closed on divergence"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -39,7 +47,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
 | **Origin** | Phase 005 of the Agent Improvement migration under phase 013 |

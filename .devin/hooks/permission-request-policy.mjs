@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs
+../../.opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs

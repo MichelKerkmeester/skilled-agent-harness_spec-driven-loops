@@ -42,7 +42,6 @@ export SPECKIT_DAEMON_REELECTION=0
 BEFORE=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
 
 node .opencode/bin/spec-memory.cjs memory_stats --warm-only --timeout-ms 3000 --format json; echo "spec-memory exit=$?"
-node .opencode/bin/code-index.cjs code_graph_status --warm-only --timeout-ms 3000 --format json; echo "code-index exit=$?"
 node .opencode/bin/skill-advisor.cjs advisor_status --workspaceRoot . --warm-only --timeout-ms 3000 --format json; echo "skill-advisor exit=$?"
 
 AFTER=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
@@ -102,7 +101,6 @@ An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR
 | File | Role |
 |---|---|
 | `mcp-server/spec-memory-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | code-index warm-only branch |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor warm-only branch |
 | `mcp-server/hooks/spec-memory-cli-fallback.ts` | Hook helper relying on this contract |
 

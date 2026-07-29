@@ -11,17 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:40:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Added blocking checks for replay safety and common-service reuse"
-    next_safe_action: "Verify every ladder state and duplicate re-entry fixture"
+    last_updated_at: "2026-07-27T21:56:30Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the adapter against real common substrates"
+    next_safe_action: "Use the frozen exports in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Deep Improvement Common Services - Resume Adapter
+# Verification Checklist: Deep Improvement Common Services - Resume Adapter
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -38,71 +40,77 @@ fails on missing evidence, zero exercised transitions, silent fallback, mutated 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] The phase-012 shared mode contract and write-set conflict graph are available, and the `004-certificates-and-receipts` navigation contract is reviewed
-- [ ] CHK-007 [P2] The pinned BASE SHA, sealed-ledger range digest, event-registry/upcaster identity, reducer-set identity, and fixture digest are recorded in the candidate report
+- [x] CHK-006 [P0] The landed common ledger, reducer, artifact, certificate, and effect contracts were reviewed before implementation -- Evidence: production imports compile. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-007 [P2] The candidate report records BASE `fbf3c7291eb432ca541666397b95bf5da7bc500b` and the real verifier owns ledger, registry, reducer, and fixture digests.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-008 [P1] Changes are scoped to the Resume Adapter and its common evaluator/canary/promotion contracts; no sibling concern or variant implementation is absorbed
-- [ ] CHK-009 [P2] Reducers remain deterministic and non-emitting; no replay path mutates sealed events, raw observations, receipts, or certificates
+- [x] CHK-008 [P1] Changes are scoped to the resume-adapter module, its unit test, and this leaf's docs -- Evidence: scope-only git status. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-009 [P2] The adapter consumes frozen reducers and verified artifacts without emitting domain events or mutating sealed evidence -- Evidence: no predecessor file changed.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] Repeated full folds of one sealed ledger range produce byte-equivalent projections and resume fingerprints without reading mutable checkpoints or process-local state
-- [ ] CHK-002 [P0] Event-level compatibility rejects unknown types, unsupported versions, broken upcasters, reducer drift, seal mismatch, and artifact-fingerprint mismatch before re-entry
-- [ ] CHK-003 [P0] Every continuity-ladder level maps to one explicit re-entry decision; unmapped, ambiguous, and terminal-conflict states fail closed
-- [ ] CHK-004 [P0] Exact duplicate resume requests return one existing receipt, while the same key with different payload, manifest, or replay fingerprint is rejected
-- [ ] CHK-005 [P0] Crash injection proves no logical event or side effect is double-applied, lost, or replayed; branch-local successes remain reusable
-- [ ] CHK-013 [P0] An effect-started event without a completion receipt remains `UNKNOWN` and follows a typed query, retry-with-key, compensate, or quarantine policy
-- [ ] CHK-014 [P0] The evaluator service replays raw observations under a sealed evaluator capsule and preserves score revisions, uncertainty, and `INSUFFICIENT_EVIDENCE`
-- [ ] CHK-015 [P0] The canary service seals epochs, hides canary content, detects candidate-visible leakage, records cross-domain health, and vetoes unsafe or unknown coverage
-- [ ] CHK-016 [P0] The promotion service requires target repair, baseline-pass preservation, known-failure accounting, environment-policy freshness, and canary health before `PROMOTE`
-- [ ] CHK-017 [P0] `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark` consume the same evaluator, canary, promotion, and resume result contracts
-- [ ] CHK-018 [P0] Changed manifests cannot inherit prior success by label; the adapter returns explicit reuse, reexecution, fork, compensation, or rejection evidence
-- [ ] CHK-019 [P1] Incomplete evaluator, canary, and promotion work preserves immutable evidence and does not convert `UNKNOWN` or `INCONCLUSIVE` into pass
-- [ ] CHK-020 [P1] Shadow resume and promotion leave legacy state, live control flow, user-visible authority, and authority epochs unchanged before phase 017
-- [ ] CHK-021 [P1] Re-entry receipts bind stable logical effect identity and idempotency key while preserving distinct attempt history across retries and process restarts
-- [ ] CHK-024 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
-- [ ] CHK-025 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
-- [ ] CHK-026 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
-- [ ] CHK-027 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
+- [x] CHK-001 [P0] The adapter reconstructs state through the real offline verifier and reducer and recomputes one canonical fingerprint -- Evidence: exact-reuse and changed-input tests pass. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-002 [P0] Certificate, replay, artifact, and reducer incompatibility is owned by the production offline verifier -- Evidence: a mutated certificate returns non-valid and blocks. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-003 [P0] The exported continuity ladder covers run identity, candidate generation, evaluation, scoring, canary, promotion, and terminal or blocked state. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-004 [P0] Resume request, lease, registry, component, and decision records use closed parsers and canonical digests -- Evidence: caller-added compatibility is rejected. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-005 [P0] Branch receipts are reused only from the offline-verified certificate and effects are recovered only from verified effect-ledger events. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-013 [P0] An intent without a binding completion remains `unknown` and receives a typed reconcile, reexecute, compensate, or blocked disposition. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-014 [P0] Evaluator identity, policy, and schema facts come from a verified evaluator capsule rather than caller data. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-015 [P0] Canary evidence remains sealed and certificate-owned; the adapter neither exposes nor regenerates canary content. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-016 [P0] Promotion branch reuse derives from verified transition receipts and never creates a production promotion decision. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-017 [P0] The common index exports one resume decision contract for the three extension lanes without variant-specific widening. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-018 [P0] Changed component facts cannot inherit success by label -- Evidence: uncovered target or schema drift yields rebuild-required. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-019 [P1] Unknown effect application remains visible and cannot become applied without the shared binder. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-020 [P1] Every output states `dark-evidence-only`, `legacyAuthority: unchanged`, and `productionCompletion: false`. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-021 [P1] Effect decisions preserve logical effect, effect, intent event, and evidence identities from verified events. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-024 [P0] The adapter owns exact, compatible, migrate, pin-old-runtime, and incompatible classification -- Evidence: the five-disposition matrix and registry-authentication test pass. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-025 [P0] Applied effects require the shared seven-fact confirmation binding -- Evidence: forged digests block and a genuine confirmation reuses. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-026 [P0] Prior references resolve through the real certificate verifier and sealed-artifact reader with kind, epoch, lifecycle, freshness, role, and ownership checks. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-027 [P1] The landed predecessors remain unchanged and the implemented adapter remains additive-dark. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-028 [P0] A non-null checkpoint is accepted only when its authenticated prefix reproduces its cursor, projection, and integrity digest. -- Evidence: the wrong-cursor fixture returns checkpoint-digest-mismatch and targeted Vitest reports 23 passed (23).
+- [x] CHK-029 [P0] The adapter reconstructs one causal run stream from the authorized ledger and rejects cursor gaps or stream splits. -- Evidence: both authenticated-history fixtures return cursor-gap and targeted Vitest reports 23 passed (23).
+- [x] CHK-030 [P0] The certificate start and final heads equal the real replay frontier before any prior work is reused. -- Evidence: the final-head fixture returns frontier-mismatch and targeted Vitest reports 23 passed (23).
+- [x] CHK-031 [P1] Reducer, adapter, schema, and codec versions remain committed by the canonical resume fingerprint. -- Evidence: changing each exercised version changes the recomputed digest and targeted Vitest reports 23 passed (23).
+- [x] CHK-032 [P1] Compatibility, effect binding, checkpoint, and frontier tests are anti-vacuous. -- Evidence: focused guard deletions produce assertion failures and targeted Vitest reports 23 passed (23).
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-010 [P1] The common-service consumer matrix enumerates all three benchmark variants and proves no variant duplicates or bypasses the shared Resume Adapter
-- [ ] CHK-011 [P1] The continuity-ladder source-to-projection matrix covers run, candidate, evaluator, score, canary, promotion, terminal, blocked, and unknown states
+- [x] CHK-010 [P1] The exported surface is frozen for agent-improvement, model-benchmark, and skill-benchmark consumers. -- Evidence: targeted Vitest reports 23 passed (23).
+- [x] CHK-011 [P1] The continuity source-to-projection matrix covers all seven common steps and effect unknown state. -- Evidence: targeted Vitest reports 23 passed (23).
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-012 [P2] Candidate-visible inputs cannot reveal sealed canary content, evaluator secrets, or policy-only evidence; leak detection returns a veto without matching text
+- [x] CHK-012 [P2] The adapter reads evaluator and canary material only through role-aware sealed-artifact APIs and exports digests rather than secret content.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-022 [P2] The phase outcome, common-service ownership boundary, continuity ladder, and variant handoff are reflected in the packet docs and parent phase map where applicable
+- [x] CHK-022 [P2] The implementation summary records the ownership boundary, ladder, compatibility policy, effect binding, and successor handoff.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-023 [P1] Provider and consumer changes land in dependency-closed, path-scoped commits, with the Resume Adapter contract frozen before variant fan-out
+- [x] CHK-023 [P1] The provider change is dependency-closed and path-scoped, and its export surface is frozen before variant fan-out. -- Evidence: targeted Vitest reports 23 passed (23).
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-The phase is complete when every P0 verifier check passes, the candidate report pins the sealed-ledger and contract identities,
-all continuity-ladder states have explicit replay evidence, all three variants consume the common service contracts, and the
-validate/build/test/replay/shadow gate is green without changing legacy authority or sealed history.
+The adapter proof contains twenty-three passing real-substrate tests. It covers all five top-level dispositions, authenticated
+compatibility, ordered fingerprint recomputation, checkpoint and frontier validation, causal history, forged and genuine
+effect confirmations, and unverified-certificate refusal. Whole-runtime TypeScript exits zero, the module remains dark-only,
+and no predecessor or consumer lane is modified.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->

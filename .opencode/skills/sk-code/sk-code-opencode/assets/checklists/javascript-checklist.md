@@ -8,7 +8,7 @@ trigger_phrases:
   - "use strict checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.27
+version: 1.0.0.28
 ---
 
 # JavaScript Code Quality Checklist
@@ -47,12 +47,12 @@ These items MUST be fixed before any commit.
 [ ] File has box header with component identification
 ```
 
-**Required format**:
+**Required format** (the plain-name box from the style guide — the two-row
+COMPONENT/PURPOSE variant is retired; no shipped file uses it, and two competing
+templates meant neither could be checked):
 ```javascript
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: [Component Name]                                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: [Brief description of what this file does]                       ║
+// ║ [module-name] — [one-line description]                                    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 

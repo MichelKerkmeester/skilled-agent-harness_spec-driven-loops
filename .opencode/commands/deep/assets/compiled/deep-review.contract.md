@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "1e624374cab9bb2c181a8c1654d02f1a93d570c6817abcf592089981f93f4101",
+      "sha256": "434b64b0b10081600144715817f59645f97f135105b3336934e9875463a52a60",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "0eb92612cfd679cf0a9ce2ef9cfd1655f37b0b2725c067801ba52d68a16157a8",
+      "sha256": "e97412d6af5385efa5c8715ba757d8ea911cad207992e65c96786f8e0cd6626f",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "1fccf235ea6f20efb7cfe9565f50cebdaf6849487f793baa3d4dbd276e126942",
+      "sha256": "d8c0deeb55c902d4ea80ec9528453e3bb7ef392460d9842322f4e515d178e4c7",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "da9aea9cb7872db9b2d92540a688a60737bc79a39d5f30d7e067cce9366c86e9",
+      "sha256": "5eed6bc832e28d1dcb780022d0c37aa43b1f0788d82a63dfe8c94e58bafcbbc3",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "ca98339e26678bfb355be7653618c28c3c8b91cfce9132155212f14b765e2f36",
+      "sha256": "5d357b24882d2bf557e1f96801ef7a79828791a5319b819f5b02113249ef56e5",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "c4e565c6046df270de789c8814fbe6769ade5d73268132b1f397e86de8854505"
+  "compiledBodyDigest": "1ae0fd6d403a6282347c3d1a25e085ce11ee49181cfd1a2b6eca75ca4322176d"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -494,8 +494,6 @@ allowed:
   - "Task"
   - "memory_context"
   - "memory_search"
-  - "code_graph_query"
-  - "code_graph_context"
 permittedByExecutor:
   native:
     - "Read"
@@ -506,8 +504,6 @@ permittedByExecutor:
     - "Glob"
     - "memory_context"
     - "memory_search"
-    - "code_graph_query"
-    - "code_graph_context"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

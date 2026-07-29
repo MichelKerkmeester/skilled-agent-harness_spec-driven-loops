@@ -32,7 +32,6 @@ The protocol is documented in four reference files under packet `008-mcp-daemon-
 
 `mcp-rebuild-restart-protocol.md` documents the rebuild plus restart sequence and the per-client restart commands. OpenCode reloads tools, Claude Code restarts the binary, and the OpenCode restarts its binary. The restart command differs per client because the MCP daemon process is owned by the host runtime, not the Spec Kit workspace.
 
-`live-probe-template.md` defines the live MCP probe envelope. The envelope shape is shared across affected subsystems (`memory_context`, `memory_search`, `code_graph_query`, `memory_causal_stats`) so a single probe can confirm the post-fix contract field is present without bespoke per-subsystem scaffolding. The probe is the only step in the four-part contract that touches the running daemon; the earlier steps work against the workspace tree.
 
 ### Quality Gates & Validation
 
@@ -55,7 +54,6 @@ The rebuild-and-restart half of the contract is automated by `.opencode/skills/s
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol/references/mcp-rebuild-restart-protocol.md` | Reference | Documents the rebuild plus restart sequence and per-client restart commands |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol/references/live-probe-template.md` | Reference | Defines the live MCP probe envelope shared across memory_context, memory_search, code_graph_query, and memory_causal_stats |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol/references/dist-marker-grep-cheatsheet.md` | Reference | Lists grep patterns and mtime checks for verifying dist artifacts carry the new source change |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/008-mcp-daemon-rebuild-protocol/references/implementation-verification-checklist.md` | Reference | Canonical post-rebuild checklist that chains the four parts of the contract |
 

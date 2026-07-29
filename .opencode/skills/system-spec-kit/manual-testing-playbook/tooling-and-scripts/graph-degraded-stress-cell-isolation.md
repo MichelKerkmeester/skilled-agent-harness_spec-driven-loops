@@ -19,10 +19,8 @@ This scenario validates the integration sweep that closes the v1.0.2 NEUTRAL ver
 
 
 - Objective: Verify the deterministic isolated-DB sweep exercises all 4 `fallbackDecision` matrix branches end-to-end without touching the live code-graph DB; Each bucket sets up a fresh tmpdir, swaps the DB singleton via `initDb(tempDir)`, and pins `process.cwd()` to keep the readiness-debounce cache key unique per test.
-- Real user request: `` Please validate Graph degraded stress cell with SPEC_KIT_DB_DIR isolation against cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts and tell me whether the expected signals are present: All 4 buckets pass: empty + broad-stale → `nextTool:"code_graph_scan"`; readiness exception → `nextTool:"rg"`; fresh → no `fallbackDecision`; Live `code-graph.sqlite` sha256 byte-equal before and after the sweep (proves `initDb(tmpdir)` + spy isolation works); Suite runtime < 1 second (deterministic, no I/O against the live DB); The dedicated guard test (`does not mutate the live code-graph.sqlite during the sweep`) is wired and passes. ``
 - Prompt: `Validate the graph degraded stress cell isolation contract against cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: All 4 buckets pass: empty + broad-stale → `nextTool:"code_graph_scan"`; readiness exception → `nextTool:"rg"`; fresh → no `fallbackDecision`; Live `code-graph.sqlite` sha256 byte-equal before and after the sweep (proves `initDb(tmpdir)` + spy isolation works); Suite runtime < 1 second (deterministic, no I/O against the live DB); The dedicated guard test (`does not mutate the live code-graph.sqlite during the sweep`) is wired and passes
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: 4 buckets correct routing AND live DB byte-equal AND runtime under 1s AND guard test passes; FAIL: any bucket mis-routes, live DB sha256 changes, runtime exceeds budget by >5x, or the guard test silently no-ops because the live DB is missing
 
@@ -38,9 +36,7 @@ Validate the graph degraded stress cell isolation contract against cd .opencode/
 
 ### Commands
 
-1. `shasum -a 256 .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite > /tmp/279-pre.sha`
 2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts 2>&1 | tee /tmp/279-vitest.txt`
-3. `shasum -a 256 .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite > /tmp/279-post.sha && diff /tmp/279-pre.sha /tmp/279-post.sha`
 
 ### Expected
 
@@ -64,13 +60,11 @@ exclude:  mcp-server/tests/memory-save.vitest.ts, mcp-server/tests/archive/**
 `/tmp/279-pre.sha`:
 
 ```text
-f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite
 ```
 
 `/tmp/279-post.sha`:
 
 ```text
-f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite
 ```
 
 `diff /tmp/279-pre.sha /tmp/279-post.sha`:
@@ -84,7 +78,6 @@ f817640df0db31c04220f159b7a71c9e038f6965c84704a9fe1fca34288adaf5  .opencode/skil
 
 ### Failure Triage
 
-If sha256 diff non-empty: inspect `mcp-server/tests/code-graph-degraded-sweep.vitest.ts` for missing `initDb(tempDir)` call, missing `vi.spyOn(process, 'cwd')` pin, or readiness-debounce cache leak. If guard test no-ops (live DB absent): the protection check cannot run; restore the live DB before re-running. If a bucket mis-routes: cross-check against `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts` `buildGraphQueryPayload()` and `.opencode/skills/system-code-graph/mcp-server/lib/ensure-ready.ts` `detectState()`.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

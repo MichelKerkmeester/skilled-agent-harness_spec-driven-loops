@@ -24,7 +24,6 @@ In-memory tracker records file accesses with count and timestamp. getTopRoots(n)
 
 ## 2. HOW IT WORKS
 
-.opencode/skills/system-code-graph/mcp-server/lib/working-set-tracker.ts
 
 ---
 

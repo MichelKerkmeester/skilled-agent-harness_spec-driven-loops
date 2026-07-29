@@ -1,0 +1,36 @@
+**PRE-BOUND SETUP ANSWERS**
+
+```
+BINDING: review_target=.opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename
+BINDING: review_target_type=spec-folder
+BINDING: review_dimensions=all
+BINDING: spec_folder=.opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename
+BINDING: execution_mode=AUTONOMOUS
+BINDING: lineage_mode=auto
+BINDING: artifact_dir=.opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/review/lineages/composer-2-5
+```
+
+**Phase summary**
+
+| Phase | Result |
+|-------|--------|
+| `phase_init` | Config, strategy, registry, JSONL config record created under lineage dir |
+| `phase_main_loop` | 10 iterations (max-iterations stop; convergence telemetry only) |
+| `phase_synthesis` | `review-report.md`, `convergence-report.md`, reducer refresh |
+
+**Verdict: CONDITIONAL** — 0 P0, 2 P1, 4 P2
+
+| ID | Sev | Finding |
+|----|-----|---------|
+| F001 | P1 | Parent `spec.md:25` still **Planned** while `008-verification-and-closeout` is **Complete** |
+| F002 | P1 | `graph-metadata.json` `derived.status` = `planned`, `last_active_child_id` = null |
+| F003 | P2 | Level 3 parent has no `checklist.md` |
+| F004 | P2 | REQ-005 partial — sk-code/sk-design BLOCKED-BY-ROUTE-GOLD 91 held by design |
+| F005 | P2 | Contract freeze-evidence cites pre-rename paths without explicit label |
+| F006 | P2 | Problem statement still uses pre-rename examples (`code-quality`, `design-interface`) |
+
+**Confirmed:** Live `mode-registry.json` files match `rename-map.json`; old packet dirs gone; runtime hooks use `sk-code-quality` paths; phase 008 gate reproduction documented.
+
+Artifacts: `.opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/review/lineages/composer-2-5/`
+
+FANOUT_LINEAGE_COMPLETE:composer-2-5

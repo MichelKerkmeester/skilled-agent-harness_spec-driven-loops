@@ -2,7 +2,7 @@
 name: {{HUB_NAME}}
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: {{ALLOWED_TOOLS}}
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # {{HUB_TITLE}}
@@ -118,7 +118,7 @@ The initial registry contains one mode, `{{MODE}}`, which routes to `{{PACKET}}/
 
 - `README.md` — short operator entry point.
 - `graph-metadata.json` — hub discovery metadata.
-- `description.json` — advisor-facing hub description.
+- [`description.json`](../../../references/shared/skill-root-metadata-contract.md) — hub-doctor metadata.
 
 ---
 

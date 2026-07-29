@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 15: verification-and-closeout"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Prove the decommission landed: a hidden-inclusive no-ignore sweep of the live surface, green suites against a captured baseline, clean runtime starts, a rebuilt advisor, and reconciled completion metadata. The full-suite run has since completed with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/015-verification-and-closeout"
-    last_updated_at: "2026-07-27T16:34:03Z"
+    last_updated_at: "2026-07-28T09:34:43Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Shell (sweeps), TypeScript (suites), process checks |
+| **Framework** | spec-kit, skill-advisor, deep-loop, plugins, commands |
+| **Storage** | None |
+| **Testing** | `rg --hidden --no-ignore` sweep, vitest, typecheck, mcp-route-guard |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Verification and metadata reconciliation for the entire decommission. A `--hidden --no-ignore` live-surface sweep confirmed no unintended reference survives (residual 50 hits, all string literals in fixtures/corpora/manifests). Spec-kit typecheck passed with 0 errors, 418 tests green across changed spec-kit files, mcp-route-guard 16/16, no daemon process or socket, 0 tracked files under the old skill path. The full-suite run has since completed with 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met — full-suite run complete with 3 accounted-for failures
+- [x] Tests passing (if applicable) — spec-kit typecheck 0 errors, 418 tests green, mcp-route-guard 16/16
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,17 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Evidence-based closeout: sweeps that cannot silently skip files, suites reported as deltas, and runtime start checks.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Live-surface sweep**: `rg --hidden --no-ignore` with archival exclusions
+- **Suite deltas**: spec-kit typecheck, 418 tests, mcp-route-guard 16/16
+- **Runtime checks**: no daemon process, no socket, 0 tracked files, clean configs
+- **Advisor rebuild**: confirmed the removed skill is unroutable
+- **Metadata reconciliation**: completion metadata across packet documents
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each check produces recorded evidence rather than assertion. The sweep uses both `--hidden` and `--no-ignore` so it cannot skip the dot-prefixed config files that matter most.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +96,14 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable as a fix_bug finding. This phase is verification and metadata reconciliation, not a bug fix.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Live surface | May carry unintended references | Swept | 50 residual hits, all string literals in fixtures/corpora/manifests; no live imports |
+| Runtime configs | May still register the server | Swept | No `mk_code_index` in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json` |
+| Process / socket | Daemon may still run | Checked | No `mk-code-index` process; no `/tmp/mk-code-index` socket |
+| Git index | Directory may still be tracked | Checked | 0 tracked files under the old skill path |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +112,25 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed all prior phases complete
+- [x] Confirmed the pre-work baseline was captured before phase 003 began
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Ran `rg --hidden --no-ignore` live-surface sweep with archival exclusions (50 residual hits, all string literals)
+- [x] Ran spec-kit typecheck (0 errors)
+- [x] Ran spec-kit test suite (418 tests green across changed files)
+- [x] Ran mcp-route-guard (16/16 assertions pass)
+- [x] Confirmed no `mk-code-index` process and no `/tmp/mk-code-index` socket
+- [x] Confirmed 0 tracked files under the old skill path
+- [x] Confirmed no `mk_code_index` in all four runtime configs
+- [x] Rebuilt advisor and confirmed the removed skill is unroutable
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Live-surface sweep uses `--hidden --no-ignore` (REQ-001)
+- [x] Only intended references survive (REQ-002: tombstone + archival paths)
+- [x] Results reported as deltas (REQ-003: before/after numbers recorded)
+- [x] Full-suite run complete — 3 accounted-for failures (2 pre-existing unrelated, 1 timeout artifact that passes in isolation)
+- [x] Completion metadata reconciled across packet documents
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +140,11 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Manual | Live-surface sweep | `rg --hidden --no-ignore` |
+| Unit | spec-kit suite | vitest (418 green) |
+| Typecheck | spec-kit | `tsc` (0 errors) |
+| Integration | mcp-route-guard | route-guard harness (16/16) |
+| Manual | Process / socket / tree / config | process check, filesystem, `git ls-files`, `rg` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +154,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| All prior phases | Internal | Green | Verification cannot run until all phases complete |
+| Pre-work baseline | Internal | Green | Captured before phase 003; enables delta reporting |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +163,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Not applicable. This phase produces verification evidence only; no runtime change to revert.
+- **Procedure**: If a defect is found, it routes back to the owning phase per the scope boundary in spec.md.
 <!-- /ANCHOR:rollback -->
 
 ---

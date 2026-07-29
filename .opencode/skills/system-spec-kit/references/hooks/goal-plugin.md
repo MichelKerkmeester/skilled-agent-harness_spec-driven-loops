@@ -27,7 +27,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | Surface | Path | Role |
 |---|---|---|
 | Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
-| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| Command | `.opencode/commands/goal/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
@@ -89,11 +89,11 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 ## 6. BOUNDARIES
 
-- Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
+- Keep `.opencode/commands/goal/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `mk-goal` through Spec Kit Memory or the code-index/skill-advisor daemon CLIs. Goal state is session-local plugin state.
 - Do not store objective-derived runtime state in spec docs or memory rows unless the user explicitly asks to save continuity.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
-- Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
+- Restart OpenCode after changing `.opencode/plugins/mk-goal.js`, `.opencode/commands/goal/goal-opencode.md`, or this plugin's load-time configuration.
 
 ## 7. VERIFICATION
 
@@ -113,9 +113,27 @@ python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.s
 
 For documentation-only changes under `system-spec-kit`, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
 
-## 8. RELATED REFERENCES
+## 8. CROSS-RUNTIME RELATIONSHIP
+
+This plugin is the OpenCode-native goal system. Devin, Cursor, and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
+
+**State model — two distinct files in the same directory.** `mk-goal` (this plugin) keeps **per-OpenCode-session** state, one file per hex session id under `.opencode/skills/.goal-state/`, with native token accounting from OpenCode's `message.updated` feed. The cross-runtime port keeps **one shared** `.opencode/skills/.goal-state/active-goal.json`, read/written by the Devin/Cursor/Pi adapters and the `.opencode/hooks/goal/bin/goal.cjs` manage CLI; it sits beside — never touching — mk-goal's per-session files, and its `usage_source` is honestly `turn-count-estimate` (no native token feed outside OpenCode).
+
+**Capability tiers** (from the packet's phase 002 live probes):
+
+| Runtime | Inject | Verify | Continue | Goal text visible to operator |
+|---------|--------|--------|----------|-------------------------------|
+| OpenCode (mk-goal) | yes | yes (heuristic/LLM) | yes (`session.idle`) | no (`[SYS]`) |
+| Devin | yes | yes | yes (`Stop` block, dormant) | no |
+| Cursor | yes (`sessionStart` only) | no | no | no |
+| Pi | yes (operator-visible) | yes (`turn_end`) | no | yes (`[MSG]`) |
+
+Canonical matrix: `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md`. Concern README: `.opencode/hooks/goal/README.md`.
+
+## 9. RELATED REFERENCES
 
 - `references/config/hook-system.md` - cross-runtime hook and plugin transport map.
+- `references/hooks/injection-contract.md` - the active-goal block's per-runtime visibility.
 - `feature-catalog/ux-hooks/goal-opencode-plugin.md` - current feature catalog entry.
 - `manual-testing-playbook/ux-hooks/goal-opencode-plugin.md` - operator validation scenario.
-- `.opencode/specs/deep-loops/032-goal-opencode-plugin/` - implementation packet for `/goal`.
+- `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/` - the cross-runtime goal-hook packet (the legacy `/goal` OpenCode packet is archived at `system-deep-loop/z_archive/026-goal-opencode-plugin/`).

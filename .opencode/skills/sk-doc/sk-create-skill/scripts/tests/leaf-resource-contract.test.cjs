@@ -19,9 +19,11 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const contract = require('../lib/leaf-resource-contract.cjs');
+const generator = require('../generate-leaf-manifest.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURES
@@ -223,7 +225,70 @@ function testDualReadOfSharedAliasRequiresAuthoredEntry() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. TESTS: QUALIFIED-ID BRIDGE
+// 8. TESTS: ALIAS MODE CONTRACT
+// ─────────────────────────────────────────────────────────────────────────────
+
+function testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes() {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-resource-orphan-alias-'));
+  try {
+    fs.mkdirSync(path.join(tempDir, 'known-mode', 'references'), { recursive: true });
+    fs.writeFileSync(path.join(tempDir, 'known-mode', 'references', 'known.md'), '# known\n');
+    fs.writeFileSync(path.join(tempDir, 'mode-registry.json'), `${JSON.stringify({
+      resourceContractVersion: 1,
+      modes: [{ workflowMode: 'known-mode', packet: 'known-mode' }],
+    }, null, 2)}\n`);
+    fs.writeFileSync(path.join(tempDir, 'leaf-aliases.json'), `${JSON.stringify([{
+      workflowMode: 'ghost-mode',
+      leafResourceId: 'references/ghost.md',
+      diskPath: 'shared/references/ghost.md',
+    }], null, 2)}\n`);
+
+    assert.throws(
+      () => generator.buildManifestBytes(tempDir),
+      (error) => {
+        assert.equal(error.code, 'ORPHAN_ALIAS_MODE');
+        assert.match(error.message, /ghost-mode/);
+        assert.match(error.message, /references\/ghost\.md/);
+        return true;
+      },
+    );
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+
+  const committed = fs.readFileSync(path.join(SK_DOC_ROOT, 'leaf-manifest.json'));
+  const fresh = generator.buildManifestBytes(SK_DOC_ROOT);
+  assert.equal(Buffer.compare(committed, fresh), 0, 'sk-doc aliases must retain byte-identical manifest generation');
+}
+
+function testStandaloneConfigRejectsPacketEscapingRoot() {
+  // A standalone config whose packet climbs out of the skill root would make
+  // the generator enumerate — and publish leaf ids for — files that belong to
+  // sibling skills. The escape must be rejected before the walker ever runs.
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-packet-escape-'));
+  try {
+    fs.writeFileSync(path.join(tempDir, 'leaf-manifest.config.json'), `${JSON.stringify({
+      resourceContractVersion: 1,
+      workflowMode: 'solo-mode',
+      packet: '../..',
+      leafRoots: ['references'],
+    }, null, 2)}\n`);
+
+    assert.throws(
+      () => generator.buildManifestBytes(tempDir),
+      (error) => {
+        assert.equal(error.code, 'PACKET_OUT_OF_ROOT');
+        assert.match(error.message, /within the skill root/);
+        return true;
+      },
+    );
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. TESTS: QUALIFIED-ID BRIDGE
 // ─────────────────────────────────────────────────────────────────────────────
 
 function testQualifiedIdToLeafParsesAndResolves() {
@@ -275,7 +340,7 @@ function testQualifiedIdToLeafFailsClosedOnOrphansAndMismatch() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. RUN
+// 10. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
 testNormalizationToTypedPair();
@@ -285,6 +350,8 @@ testCompositeUniquenessIsPerModeNotGlobal();
 testContainmentRejectsTraversalAndAbsolutePaths();
 testDualReadDoesNotGenericallyStripUnrecognizedPrefixes();
 testCanonicalBytesAreDeterministic();
+testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes();
+testStandaloneConfigRejectsPacketEscapingRoot();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();
 testQualifiedIdToLeafParsesAndResolves();

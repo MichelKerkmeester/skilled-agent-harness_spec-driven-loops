@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) OpenCode plugin and its shared [`dispatch-guard.cjs`](../system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs) policy core. The guard checks `Task` dispatches that target deep-loop agents before OpenCode executes them. It uses per-session dispatch counts to distinguish a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command.
+This folder stores machine-specific state for the [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) OpenCode plugin and its shared [`dispatch-guard.cjs`](../../hooks/task-dispatch/lib/dispatch-guard.cjs) policy core. The guard checks `Task` dispatches that target deep-loop agents before OpenCode executes them. It uses per-session dispatch counts to distinguish a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command.
 
 The plugin is a transport adapter. It maps OpenCode's `tool.execute.before` and `session.created` events onto the shared core. The core resolves target identity, reads the deep-loop mode registry, evaluates dispatch policy, persists counters and maintains this directory. The adapter writes returned warnings and audits to the bounded log. It throws the core's rejection error only when an opt-in rejection setting applies.
 
@@ -74,7 +74,7 @@ OpenCode and Claude Code consume the same policy core and state directory:
 | Runtime surface | Adapter behavior |
 |---|---|
 | OpenCode plugin | [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) evaluates lowercase-normalized `task` calls in `tool.execute.before`. It logs advisories and throws a confirmed rejection. Its `session.created` event requests state maintenance. |
-| Claude hook | [`task-dispatch-guard.cjs`](../system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs) evaluates `PreToolUse(Task)` payloads. It logs to the same warning path, returns warnings as `additionalContext` and returns confirmed rejection through Claude's deny response. |
+| Claude hook | [`task-dispatch-guard.cjs`](../../hooks/task-dispatch/claude/task-dispatch-guard.cjs) evaluates `PreToolUse(Task)` payloads. It logs to the same warning path, returns warnings as `additionalContext` and returns confirmed rejection through Claude's deny response. |
 
 The shared core returns a transport-free `allow`, `warn` or `reject` decision. Each adapter presents that decision through its runtime protocol. The core never writes standard output or standard error. The adapters keep warning signals in this directory so OpenCode warnings do not disrupt the interactive prompt line and both runtimes retain one bounded audit trail.
 
@@ -104,7 +104,7 @@ Warnings never need to exist for the guard to enforce a confirmed opt-in rejecti
 ## 7. RELATED RESOURCES
 
 - [`mk-deep-loop-guard.js`](../../plugins/mk-deep-loop-guard.js) connects OpenCode events to the shared guard.
-- [`dispatch-guard.cjs`](../system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs) defines the state shape, logging rules and cleanup lifecycle.
+- [`dispatch-guard.cjs`](../../hooks/task-dispatch/lib/dispatch-guard.cjs) defines the state shape, logging rules and cleanup lifecycle.
 - [`system-deep-loop`](../system-deep-loop/SKILL.md) defines the related skill hub, registered workflow families and runtime boundary.
 - [`mode-registry.json`](../system-deep-loop/mode-registry.json) maps workflow modes to their commands, agents and mode packets.
-- [`task-dispatch-guard.cjs`](../system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs) applies the same policy through Claude's `PreToolUse(Task)` hook.
+- [`task-dispatch-guard.cjs`](../../hooks/task-dispatch/claude/task-dispatch-guard.cjs) applies the same policy through Claude's `PreToolUse(Task)` hook.

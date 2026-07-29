@@ -22,20 +22,9 @@
         "context": "opencode standards and verification"
       }
     ],
-    "siblings": [
-      {
-        "target": "system-code-graph",
-        "weight": 0.5,
-        "context": "co-resident system skill after code-graph extraction"
-      }
-    ],
+    "siblings": [],
     "conflicts_with": [],
     "prerequisite_for": [
-      {
-        "target": "system-code-graph",
-        "weight": 0.8,
-        "context": "provides co-resident MCP registration and extraction parent"
-      },
       {
         "target": "system-deep-loop",
         "weight": 0.7,

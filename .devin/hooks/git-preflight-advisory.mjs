@@ -1,0 +1,1 @@
+../../.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs

@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
-import { WorkingSetTracker } from '../../../system-code-graph/mcp-server/lib/working-set-tracker.js';
 
 function createInput(overrides: Partial<MergeInput> = {}): MergeInput {
   return {
@@ -31,50 +30,6 @@ function emitCompactMergerDiagnostics(result: ReturnType<typeof mergeCompactBrie
 }
 
 describe('compact merger manual scenarios 257 and 258', () => {
-  it('tracks files with recency-weighted ordering and serializes state', () => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-05-17T06:00:00.000Z'));
-
-    try {
-      const tracker = new WorkingSetTracker(3);
-      tracker.trackFile('/repo/a.ts');
-      vi.advanceTimersByTime(60_000);
-      tracker.trackFile('/repo/b.ts');
-      tracker.trackFile('/repo/b.ts');
-      vi.advanceTimersByTime(60_000);
-      tracker.trackSymbol('sym-1', 'SessionResume.handle', '/repo/c.ts');
-
-      const topRoots = tracker.getTopRoots(3);
-      expect(topRoots.map((entry) => entry.filePath)).toEqual(['/repo/b.ts', '/repo/c.ts', '/repo/a.ts']);
-      expect(topRoots[0]).toMatchObject({ filePath: '/repo/b.ts', accessCount: 2 });
-      expect(topRoots[1]?.symbolRefs).toContain('SessionResume.handle');
-
-      const restored = WorkingSetTracker.deserialize(tracker.serialize());
-      expect(restored.getTrackedFiles().sort()).toEqual(['/repo/a.ts', '/repo/b.ts', '/repo/c.ts']);
-    } finally {
-      vi.useRealTimers();
-    }
-  });
-
-  it('evicts oldest files back to maxFiles when capacity is exceeded', () => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date('2026-05-17T06:00:00.000Z'));
-
-    try {
-      const tracker = new WorkingSetTracker(2);
-      tracker.trackFile('/repo/old.ts');
-      vi.advanceTimersByTime(60_000);
-      tracker.trackFile('/repo/mid.ts');
-      vi.advanceTimersByTime(60_000);
-      tracker.trackFile('/repo/new.ts');
-
-      expect(tracker.size).toBe(2);
-      expect(tracker.getTrackedFiles().sort()).toEqual(['/repo/mid.ts', '/repo/new.ts']);
-    } finally {
-      vi.useRealTimers();
-    }
-  });
-
   it('renders all non-empty compact sections in priority order within budget', () => {
     const result = mergeCompactBrief(createInput({
       sessionState: 'Next: run context-preservation scenario verification.\nActive file: /repo/src/session-resume.ts',

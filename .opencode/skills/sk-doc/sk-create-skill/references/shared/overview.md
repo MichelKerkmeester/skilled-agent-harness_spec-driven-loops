@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.8.0.2
 ---
 
 # Skill Anatomy and Structure System
@@ -36,7 +36,7 @@ Skills are modular packages that extend an AI agent with specialized workflows, 
 
 ## 2. SKILL ANATOMY
 
-Every skill consists of a required SKILL.md file and optional human-facing README plus bundled resources:
+Every skill has a required `SKILL.md` root marker plus class-specific root metadata; the human-facing README and bundled content resources are optional:
 
 ```
 skill-name/
@@ -54,6 +54,8 @@ skill-name/
         ├── agents/        - Agent and command creation templates
         └── readme/ - README-shaped scaffolds (README, install guide)
 ```
+
+The content directories shown here are optional, but root metadata is not; use the [skill-root-metadata-contract.md](./skill-root-metadata-contract.md) matrix for the class-specific authored and generated files.
 
 **Folder Organization Principle**:
 - **references/** = flat for small skills, domain subfolders for medium/complex skills

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
   "description": "The small-model rotation needs Kimi K2.7 Code (the \"Kimi For Coding\" coding-plan model, live slug `kimi-for-coding/k2p7`) available as a first-class",
   "keywords": [
     "small-model",
@@ -18,11 +18,12 @@
     "available",
     "first-class"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.257Z",
+  "lastUpdated": "2026-07-24T13:10:49.856Z",
   "specId": "023",
   "folderSlug": "kimi-k2-7-code-support",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

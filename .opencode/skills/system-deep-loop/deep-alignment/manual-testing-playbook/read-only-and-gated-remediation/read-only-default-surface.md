@@ -50,7 +50,6 @@ Validate the deep-alignment read-only default: no Write/Edit in the default surf
 3. `bash: node -e "const c=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs'); const ss=c.standardSource('sk-code'); console.log(JSON.stringify(ss.excludedFromCheck,null,2));"`
 4. `bash: rg -n 'never render|STATIC-ONLY|NFR-S01' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs; rg -n 'Read-only by default|Keep the audited target read-only|Modify an audited artifact' .opencode/skills/system-deep-loop/deep-alignment/SKILL.md`
 ### Expected
-`allowed-tools` lists `[Read, Grep, Glob, Task, Bash, memory_context, memory_search, code_graph_query]` with the SKILL.md note that the default surface has no Write/Edit and Task/Bash are reserved for gated remediation; `check-convergence.cjs` has no `writeFileSync` (decision-only, confirmed by the header "no writes"); `sk-code` `excludedFromCheck` names `minify-webflow.mjs` with a reason citing ADR-005/NFR-S01 tree mutation; the static sk-design adapter declares STATIC-ONLY and has no render path; SKILL.md ALWAYS-#4 / NEVER-#3 state the read-only rule.
 ### Evidence
 Capture the allowed-tools + read-only note, the absence of writes in check-convergence.cjs, the excludedFromCheck entry, and the STATIC-ONLY / ALWAYS-#4 / NEVER-#3 statements.
 ### Pass/Fail

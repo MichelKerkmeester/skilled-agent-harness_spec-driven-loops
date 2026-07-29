@@ -14,14 +14,6 @@ vi.mock('../lib/search/pipeline/index.js', () => ({
   executePipeline: vi.fn(),
 }));
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getGraphReadinessSnapshotFromMarker: vi.fn(() => ({
-    freshness: 'fresh',
-    action: 'none',
-    reason: 'fixture graph is fresh',
-  })),
-}));
-
 import { handleMemorySearch } from '../handlers/memory-search.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 

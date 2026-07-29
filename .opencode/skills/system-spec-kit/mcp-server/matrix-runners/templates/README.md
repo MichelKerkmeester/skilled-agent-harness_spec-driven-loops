@@ -37,8 +37,6 @@ Current state:
 | `F2-skill-advisor.md` | Prompt template for testing skill advisor and skill graph routing. |
 | `F3-memory-search.md` | Prompt template for testing memory_search functionality. |
 | `F4-memory-context.md` | Prompt template for testing memory_context functionality. |
-| `F5-code-graph-query.md` | Prompt template for testing code_graph_query functionality. |
-| `F6-code-graph-scan.md` | Prompt template for testing code_graph_scan and verify functionality. |
 | `F7-causal-graph.md` | Prompt template for testing causal graph functionality. |
 | `F8-code_graph.md` | Prompt template for testing Code Graph search functionality. |
 | `F9-continuity.md` | Prompt template for testing continuity and generate-context functionality. |

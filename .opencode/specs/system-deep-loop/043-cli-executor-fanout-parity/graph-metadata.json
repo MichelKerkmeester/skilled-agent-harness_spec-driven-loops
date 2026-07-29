@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/043-cli-executor-fanout-parity",
+  "spec_folder": "system-deep-loop/043-cli-executor-fanout-parity",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli executor fanout parity",
+      "every cli provider model combo works",
+      "wire cli-pi into the deep-loop fanout",
+      "buildPiLineageCommand stub",
+      "deep-loop executor matrix audit"
+    ],
+    "key_topics": [
+      "cli",
+      "executor",
+      "fanout",
+      "parity",
+      "every",
+      "provider",
+      "model",
+      "combo",
+      "works",
+      "wire",
+      "cli-pi",
+      "deep-loop"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
+    "created_at": "2026-07-29T08:25:06.055Z",
+    "last_save_at": "2026-07-29T08:29:15.769Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5e60eee96368dd25efb503534de3ca4dda462ae1b2e959ae141d022617f17967",
+    "source_doc_hashes": {
+      "spec.md": "3bef39f96f335e10589c7c67b97c2b02a771d4f47ea9983b3f38e8122f4ff2c2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Model Benchmark Code-Task Fixture Template
+
+This template produces a JSON code-task oracle fixture for a model benchmark.
+
+---
+
 <!--
 Copy-paste scaffold for ONE model-benchmark code-task oracle fixture:
   <deep-improvement>/assets/model-benchmark/benchmark-fixtures/<slug>.json

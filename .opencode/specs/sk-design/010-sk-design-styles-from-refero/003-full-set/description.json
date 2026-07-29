@@ -1,20 +1,15 @@
 {
+  "level": "1",
   "specFolder": "sk-design/010-sk-design-styles-from-refero/003-full-set",
-  "description": "Full-set extraction: all 1,290 Refero styles captured with 0 errors into the Extended-only 6-file shape, shape-validated and indexed.",
+  "description": "The pilot proved the harness on 50 styles and recorded GO",
   "keywords": [
-    "full-set",
-    "extraction",
-    "refero",
+    "pilot",
+    "proved",
+    "harness",
     "styles",
-    "captured",
-    "errors",
-    "extended-only",
-    "6-file",
-    "shape",
-    "shape-validated",
-    "indexed"
+    "recorded"
   ],
-  "lastUpdated": "2026-07-18T10:25:46.734Z",
+  "lastUpdated": "2026-07-21T05:58:25.580Z",
   "specId": "003",
   "folderSlug": "full-set",
   "parentChain": [
@@ -22,6 +17,5 @@
     "010-sk-design-styles-from-refero"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

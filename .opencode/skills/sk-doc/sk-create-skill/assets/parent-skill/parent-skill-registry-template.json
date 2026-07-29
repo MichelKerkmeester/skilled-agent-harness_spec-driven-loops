@@ -1,5 +1,6 @@
 {
   "_template": "Parent-skill mode-registry.json scaffold. Replace every [bracketed] placeholder. Keep one modes[] array for workflow, surface, and transport packets; packetKind is the axis discriminator. The canonical live example is sk-code/mode-registry.json.",
+  "resourceContractVersion": 1,
   "skill": "[parent-skill-name]",
   "version": "1.0.0.0",
   "description": "[Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for [parent-skill-name]. The advisor routes the hub identity; the hub selects workflow and surface packets.]",
@@ -165,8 +166,8 @@
   "extensions": {
     "_template": "OPTIONAL declaration-only block. Keep only extensions this hub actually uses; delete this block for a pure two-tier hub.",
     "runtime-loop": {
-      "_example": "Activates runtimeLoopType per workflow mode; lists the valid loop types (runtimeLoopType is validated against exactly these).",
-      "runtimeLoopTypes": ["[loop-type-a]", "[loop-type-b]"]
+      "_example": "Activates runtimeLoopType per workflow mode; the doctor validates each mode against its hard-coded legal set {research, review, council, null}. This list documents that set but is not read by the doctor.",
+      "runtimeLoopTypes": ["research", "review", "council", null]
     },
     "advisor-projection": {
       "_example": "Required when any mode uses routingClass lexical or alias-fold.",
@@ -186,7 +187,7 @@
     },
     "transport-axis": {
       "_example": "Declares packetKind transport packets that bridge to an external tool's CLI/MCP surface; every listed transport must be a registered packetKind:\"transport\" mode.",
-      "transports": ["[transport-mode-name]"]
+      "transports": ["[transport-name]"]
     }
   }
 }

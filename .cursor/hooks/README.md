@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 ## 1. OVERVIEW
 
-`.cursor/hooks/` contains 15 symlinks after including the session-start spec-gate prebind. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
+`.cursor/hooks/` contains 15 symlinks after including the session-start spec-gate prebind. `mcp-route-guard.mjs` and `task-dispatch-guard.mjs` target `.opencode/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.opencode/hooks/README.md)); the rest target their owning skill under `.opencode/skills/`. Cursor executes the real paths declared in `.cursor/hooks.json`, not this discovery mirror.
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 
@@ -55,3 +55,5 @@ Expected result: exit 0, proving the discovery link exists and resolves.
 - [Claude mirror](../../.claude/hooks/README.md)
 - [Codex mirror](../../.codex/hooks/README.md)
 - [Devin mirror](../../.devin/hooks/README.md)
+- [Injection contract](../../.opencode/skills/system-spec-kit/references/hooks/injection-contract.md): what each of these hooks actually injects, on which event, and whether it is visible to the human by default
+- [Runtime hooks tree](../../.opencode/hooks/README.md): the two fully-portable guard cores this mirror points at outside `.opencode/skills/`

@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "31c2864bcb2316a7b8227104c00a08a18201d1c8521fcc645392876777007d96",
+      "sha256": "457bac97ab47c1fda8c80c7b73f6554e0912dc21452ec26e54303b52712542d0",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/agents/deep-alignment.md",
-      "sha256": "6df2ab581af9382ea21894a710072896fcab1c12c3abec1986b6790aa2701006",
+      "sha256": "0553a931cf89346904d053fbdf65fd58d67f6d4615c7af6d44bd479e83b3360d",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "ffda77017c08ca0a04f11acb7c616085e0cc08167311b8dbff54f2291b34c92d"
+  "compiledBodyDigest": "1cc26549fdb1b398244429504dc2078df1d1d104aba9d0161177bec66c50cbca"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:alignment
@@ -444,7 +444,6 @@ allowed:
   - "Bash"
   - "memory_context"
   - "memory_search"
-  - "code_graph_query"
 permittedByExecutor:
   native:
     - "Read"
@@ -454,7 +453,6 @@ permittedByExecutor:
     - "Bash"
     - "memory_context"
     - "memory_search"
-    - "code_graph_query"
 ```
 
 ## absorptionAbort

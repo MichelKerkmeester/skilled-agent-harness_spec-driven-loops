@@ -34,6 +34,7 @@ const CHECKER_PATH = path.join(__dirname, '..', 'parent-skill-check.cjs');
 const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 'sk-doc');
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
 const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
+const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
@@ -65,6 +66,10 @@ function installContractLibrary(hubRoot) {
   fs.mkdirSync(libDir, { recursive: true });
   fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
   fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
+  // The root-metadata class check resolves from the same sibling location, so a
+  // fixture that stages only the leaf tooling would fail on a missing library
+  // rather than on the leaf-manifest behaviour these cases exist to cover.
+  fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -131,6 +136,9 @@ function buildCleanFixture() {
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
   writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
+  // A hub declares its command surface even when empty; the class check
+  // requires the file's presence, so the fixture carries the empty form.
+  writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');

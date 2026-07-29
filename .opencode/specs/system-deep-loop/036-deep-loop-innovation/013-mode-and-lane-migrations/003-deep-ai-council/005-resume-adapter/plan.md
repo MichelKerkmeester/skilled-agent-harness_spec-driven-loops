@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped council stages to sealed-ledger reducer state"
-    next_safe_action: "Define recovery dispositions for every crash boundary"
+    last_updated_at: "2026-07-27T22:02:42Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered deterministic resume classification and recovery"
+    next_safe_action: "Shadow parity folds over the resume projection"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,18 +49,18 @@ artifacts untouched. Detailed event names remain aligned to the shared namespace
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The shared event envelope, seal frontier, replay registry, authorization gateway, and effect-recovery capability contract are frozen.
-- [ ] The Deep AI Council event inventory identifies logical branches, attempts, claims, messages, rounds, judge observations, artifacts, and gate decisions.
-- [ ] The certificates and receipts boundary exposes immutable receipt lookup and unknown-effect dispositions.
-- [ ] The continuity-ladder mapping names every derived field and its ledger projection source.
-- [ ] Crash fixtures cover interruption before dispatch, after dispatch, after result, during reduction, after artifact sealing, and before gate completion.
-- [ ] The idempotency key and resume-request identity are defined independently from attempt IDs and process IDs.
+- [x] The shared event envelope, seal frontier, replay registry, authorization gateway, and effect-recovery capability contract are frozen.
+- [x] The Deep AI Council event inventory identifies logical branches, attempts, claims, messages, rounds, judge observations, artifacts, and gate decisions.
+- [x] The certificates and receipts boundary exposes immutable receipt lookup and unknown-effect dispositions.
+- [x] The continuity-ladder mapping names every derived field and its ledger projection source.
+- [x] Crash fixtures cover interruption before dispatch, after dispatch, after result, during reduction, after artifact sealing, and before gate completion.
+- [x] The idempotency key and resume-request identity are defined independently from attempt IDs and process IDs.
 
 ### Definition of Done
-- [ ] A sealed-ledger replay reconstructs the council state and deterministic next action for every declared stage.
-- [ ] Duplicate resume requests and duplicate event delivery are observationally idempotent.
-- [ ] Unknown, incompatible, unsealed, and tampered histories fail closed with a persisted recovery disposition.
-- [ ] The mode gate consumes the adapter's derived state without changing authority or invoking a new model call for immutable inputs.
+- [x] A sealed-ledger replay reconstructs the council state and deterministic next action for every declared stage.
+- [x] Duplicate resume requests and duplicate event delivery are observationally idempotent.
+- [x] Unknown, incompatible, unsealed, and tampered histories fail closed with a persisted recovery disposition.
+- [x] The mode gate consumes the adapter's derived state without changing authority or invoking a new model call for immutable inputs.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

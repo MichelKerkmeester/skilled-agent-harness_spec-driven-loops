@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`mk-spec-gate.js`](../../plugins/mk-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
+This folder stores machine-specific state for the [`mk-spec-gate.js`](../../plugins/mk-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
 
 Gate 3 is the **SPEC FOLDER QUESTION** in the [`system-spec-kit` gate rules](../system-spec-kit/constitutional/gate-enforcement.md). It asks for an A-E choice before file mutation work. The persisted status lets the prompt-classification hook and the later tool-execution hook share one answer even though they run at different points in the OpenCode lifecycle.
 
@@ -104,6 +104,6 @@ The core is runtime-neutral so another runtime adapter can use the same policy a
 ## 6. RELATED FILES
 
 - [`mk-spec-gate.js`](../../plugins/mk-spec-gate.js) connects OpenCode prompts, mutations and session events to the gate.
-- [`spec-gate-core.mjs`](../system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs) defines state persistence, event logging and cleanup.
+- [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs) defines state persistence, event logging and cleanup.
 - [`gate-3-classifier.ts`](../system-spec-kit/shared/gate-3-classifier.ts) defines the authoritative Gate 3 trigger and binding contract.
 - [`gate-enforcement.md`](../system-spec-kit/constitutional/gate-enforcement.md) summarizes the human-facing gate rules and their relationship to the broader workflow.

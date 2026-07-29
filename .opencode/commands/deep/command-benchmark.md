@@ -1,7 +1,7 @@
 ---
 description: "Run the command-surface benchmark through reused conformance and behavior engines. Modes :auto/:confirm."
 argument-hint: "<spec-folder> [:auto|:confirm] [--axis=conformance|behavior|all] [--run-id=ID]"
-allowed-tools: [Read, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_code_index__code_graph_query]
+allowed-tools: [Read, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search]
 skill: system-deep-loop
 ---
 

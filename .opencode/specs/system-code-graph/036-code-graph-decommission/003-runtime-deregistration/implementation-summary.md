@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/003-runtime-deregistration"
-    last_updated_at: "2026-07-27T16:33:54Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 003-runtime-deregistration |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Every runtime config that registered the `mk_code_index` MCP server has been cleared, and the two Claude hook/allowlist entries that pointed into the skill folder are gone. No runtime now attempts to spawn a launcher whose target is about to disappear.
 
-### [Feature Name]
+### Registrations cleared
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The `mk_code_index` server block was removed from `opencode.json`, `.claude/mcp.json` (which the `.mcp.json` and `.cursor/mcp.json` symlinks resolve to), `.pi/mcp.json`, and `.codex/config.toml` (the latter was already clean). The Claude `Write|Edit` PostToolUse freshness hook was removed from `.claude/settings.json`, and the `code-index.cjs` entry was removed from the `.claude/settings.local.json` Bash allowlist. You can start OpenCode, Claude, Codex, or Pi without an MCP registration error.
 
 ### Files Changed
 
@@ -69,7 +68,11 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `opencode.json` | Modified | Removed `mk_code_index` server block |
+| `.claude/mcp.json` | Modified | Removed block (covers `.mcp.json` + `.cursor/mcp.json` symlinks) |
+| `.pi/mcp.json` | Modified | Removed block |
+| `.claude/settings.json` | Modified | Removed PostToolUse freshness hook |
+| `.claude/settings.local.json` | Modified | Removed `code-index.cjs` allowlist entry |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +86,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Symlinks were resolved first so each real file was edited exactly once, then a `rg --hidden --no-ignore` sweep confirmed no `mk_code_index` reference survives in any config and JSON/TOML still parse.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +99,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Edit the real file behind the symlinks, not each link | Editing through a symlink would create a duplicate file and diverge the runtimes |
+| Record `.codex/config.toml` as already-clean rather than editing | It contained no `mk_code_index` entry, so no change was needed or made |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +113,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `rg --hidden --no-ignore mk_code_index` across configs | PASS — no hit in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json` |
+| JSON / TOML parse after edits | PASS |
+| Fresh session start per runtime | Not separately recorded; inferred clean from the config sweep |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +128,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Fresh-session start was not separately captured** per runtime in the facts; the clean config sweep is the recorded evidence. A runtime restart beyond a fresh session is not measured.
 <!-- /ANCHOR:limitations -->
 
 ---

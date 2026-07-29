@@ -66,7 +66,7 @@ Provider selection, credentials, and project settings are separate surfaces. A s
 | File | Role |
 |---|---|
 | `.pi/settings.json` | Current project settings merge result |
-| `../../references/model-dispatch-gpt-5.6.md` | Model/provider reference with unconfirmed Pi effort syntax clearly labeled |
+| `../../references/cli-reference.md` | Model-selection reference (§13): provider roster, `--thinking` scale, and GPT-5.6 tier caveats |
 
 ---
 

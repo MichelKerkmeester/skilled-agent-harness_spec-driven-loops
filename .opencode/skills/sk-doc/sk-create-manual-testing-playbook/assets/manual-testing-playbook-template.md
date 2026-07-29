@@ -51,7 +51,6 @@ Category folders and per-feature files use descriptive kebab-case names; the roo
 
 **Existing Examples**:
 - `.opencode/skills/system-spec-kit/manual-testing-playbook/` (integrated root playbook + 195 per-feature files)
-- `.opencode/skills/system-code-graph/manual-testing-playbook/` (older package shape; migrate toward integrated root guidance)
 
 These existing examples keep their legacy underscore roots until the repository content migration. New packages emit only the canonical hyphenated layout above.
 

@@ -13,7 +13,7 @@
     "llamaembeddingcontext",
     "getembeddingfor"
   ],
-  "lastUpdated": "2026-07-17T17:01:48.613Z",
+  "lastUpdated": "2026-07-21T05:58:28.669Z",
   "specId": "039",
   "folderSlug": "token-aware-chunking",
   "parentChain": [

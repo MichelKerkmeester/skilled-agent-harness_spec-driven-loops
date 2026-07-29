@@ -24,11 +24,26 @@ import {
 
 const tempRoots: string[] = [];
 
+// git resolves its target repo/config from these env vars IN PREFERENCE to cwd/-C. Left in place,
+// a poisoned parent env (routine inside a git worktree, which shares one .git/config) redirects a
+// fixture's init/config/commit onto the real repository. Strip them so -C is authoritative.
+const GIT_ENV_REDIRECTORS = [
+  'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE',
+  'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+  'GIT_CONFIG', 'GIT_CONFIG_GLOBAL', 'GIT_CONFIG_SYSTEM', 'GIT_CONFIG_COUNT',
+  'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
+];
+function cleanGitEnv(): NodeJS.ProcessEnv {
+  const env = { ...process.env };
+  for (const key of GIT_ENV_REDIRECTORS) delete env[key];
+  return env;
+}
+
 // git commits inside the test must bypass the host's global commit-msg hook.
 function git(repoRoot: string, args: string[]): string {
   const result = spawnSync('git', ['-c', 'core.hooksPath=/dev/null', '-C', repoRoot, ...args], {
     encoding: 'utf8',
-    env: process.env,
+    env: cleanGitEnv(),
   });
   if (result.status !== 0) {
     throw new Error(`git ${args.join(' ')} failed in ${repoRoot}: ${result.stderr || result.stdout}`);

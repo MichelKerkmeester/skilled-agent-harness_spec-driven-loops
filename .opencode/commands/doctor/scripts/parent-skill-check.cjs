@@ -19,11 +19,13 @@
  *
  * Usage:
  *   node parent-skill-check.cjs [parent-skill-dir]
- *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-9 as WARN (WIP opt-out)
+ *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-11 as WARN (WIP opt-out)
  *
  * The canon checks 5-9 (hub-router validity, registry/directory reverse
  * consistency, changelog shape, description.json, playbook + benchmark
- * baseline) FAIL by default now that every hub carries the canon fields;
+ * baseline), check 10 (leaf-manifest contract guards, opt-in once a hub
+ * commits a manifest), and check 11 (skill-root metadata class contract)
+ * FAIL by default now that every hub carries the canon fields;
  * PARENT_HUB_CHECK_STRICT=0 downgrades them to advisory WARN for a
  * work-in-progress hub still being scaffolded.
  *
@@ -1230,6 +1232,46 @@ function main() {
         pass(`10d-reachability: all ${manifestModes.size} manifest mode(s) reach back to a registered mode and vice versa`);
       } else {
         softFail(`10d-reachability: mode-registry ↔ leaf-manifest mismatch — missing from manifest: [${missingFromManifest.join(', ') || 'none'}], orphaned in manifest: [${orphanedInManifest.join(', ') || 'none'}]`);
+      }
+    }
+  }
+
+  // ───────────────────────────────────────────────────────────────
+  // 11. Root-metadata class contract (canon: FAIL by default)
+  //
+  // Checks 1-10 each assume the target is a hub and gate one file at a time,
+  // so a root that adopted none of them produced silence rather than findings.
+  // The shared classifier decides the root's class from its own authored
+  // declaration first, then reports the whole required/forbidden/overlay set at
+  // once — which is what makes a never-adopted file reportable here.
+  // ───────────────────────────────────────────────────────────────
+  const rootContractPath = path.join(
+    path.dirname(target), 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs',
+  );
+  if (!fs.existsSync(rootContractPath)) {
+    softFail('11-lib: the shared skill-root metadata contract library is missing under sk-doc/sk-create-skill/scripts/lib/');
+  } else {
+    let rootContract = null;
+    try {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      rootContract = require(rootContractPath);
+    } catch (e) {
+      softFail(`11-lib: failed to load the skill-root metadata contract library: ${e.message}`);
+    }
+    if (rootContract) {
+      const presence = {};
+      for (const name of rootContract.METADATA_FILES) {
+        presence[name] = fs.existsSync(path.join(target, name));
+      }
+      const evaluation = rootContract.evaluateRoot(basename, presence);
+      if (evaluation.skillClass === null) {
+        softFail(`11a-class: ${evaluation.reason}`);
+      } else if (evaluation.violations.length === 0) {
+        pass(`11a-class: root metadata conforms to class ${evaluation.skillClass} (${evaluation.reason})`);
+      } else {
+        for (const violation of evaluation.violations) {
+          softFail(`11a-class: ${violation.code} — ${violation.message}`);
+        }
       }
     }
   }

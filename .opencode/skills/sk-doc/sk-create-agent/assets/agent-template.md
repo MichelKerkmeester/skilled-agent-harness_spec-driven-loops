@@ -139,7 +139,6 @@ The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-
 | `patch` | Apply patches | `allow` only for implementation agents that need patching |
 | `external_directory` | Access outside project | `allow` only when cross-repo context is expected |
 
-**MCP-tool-scoped permission keys.** Beyond the table above, an `.opencode/agents/` agent may add `permission` keys scoped to the specific MCP tools it calls — for example `code_graph_query`, `code_graph_context`, and `detect_changes` (Code Graph), as the deep-loop iteration agents do. These are sanctioned extensions, not the full table: grant only the scoped keys the role actually uses. Mirror them on the `.claude/agents/` side as the fully-qualified `tools:` ids (e.g. `mcp__mk_code_index__code_graph_query`, `mcp__mk_code_index__detect_changes`).
 
 ---
 

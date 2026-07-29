@@ -1,0 +1,1 @@
+../../.opencode/commands/goal/goal-opencode.md

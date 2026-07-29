@@ -442,11 +442,10 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### OpenCode Goal Plugin
 
-The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal-plugin.md`](./references/hooks/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
+The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal-plugin.md`](./references/hooks/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 
-Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the 8-tool `mcp__mk_code_index__*` surface: read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
 
 ---
 

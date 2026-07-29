@@ -18,10 +18,13 @@ const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const ROUTER_PATH = path.join(
-  __dirname, '..', '..', 'skills', 'sk-code', 'sk-code-quality', 'scripts', 'lib', 'post-edit-router.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'lib', 'post-edit-router.cjs',
 );
 const CLAUDE_HOOK_PATH = path.join(
-  __dirname, '..', '..', 'skills', 'sk-code', 'sk-code-quality', 'scripts', 'hooks', 'claude-posttooluse.cjs',
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'claude', 'claude-posttooluse.cjs',
+);
+const CODEX_HOOK_PATH = path.join(
+  __dirname, '..', '..', 'hooks', 'post-edit-quality', 'codex', 'post-edit-quality.cjs',
 );
 const REPO_ROOT = path.join(__dirname, '..', '..', '..');
 const LOG_RELATIVE = ['.opencode', 'logs', 'post-edit-quality.log'];
@@ -576,6 +579,45 @@ test('Claude hook is a full no-op under its kill-switch env', (t) => {
   });
   assert.equal(result.status, 0);
   assert.equal(result.stdout, '');
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4b. CODEX ADAPTER -- multi-file apply_patch coverage (regression for the
+//     single-match firstPatchPath() bug: a multi-file patch previously only
+//     ever got its first named file checked)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('Codex hook checks every file named in a multi-file apply_patch, not only the first', (t) => {
+  const tmpDir = temporaryDirectory(t, 'codex-post-edit-hook-multi-');
+  const fileA = writeFile(path.join(tmpDir, 'a.ts'), 'export const a = true;\n');
+  const fileB = writeFile(path.join(tmpDir, 'b.ts'), 'export const b = true;\n');
+  writeExecutable(
+    checkerFixturePath(tmpDir, 'commentHygiene'),
+    '#!/usr/bin/env bash\necho "$1:1: fake violation in $1"\nexit 1\n',
+  );
+
+  const patch = [
+    '*** Begin Patch',
+    '*** Update File: a.ts',
+    '@@',
+    '-export const a = true;',
+    '+export const a = false;',
+    '*** Update File: b.ts',
+    '@@',
+    '-export const b = true;',
+    '+export const b = false;',
+    '*** End Patch',
+    '',
+  ].join('\n');
+
+  const result = spawnSync(process.execPath, [CODEX_HOOK_PATH], {
+    input: JSON.stringify({ tool_name: 'apply_patch', tool_input: { command: patch }, cwd: tmpDir }),
+    encoding: 'utf8',
+    timeout: 11_000,
+  });
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, new RegExp(`fake violation in ${fileA.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), 'the first patched file must be checked');
+  assert.match(result.stdout, new RegExp(`fake violation in ${fileB.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), 'the second patched file must ALSO be checked -- this is the regression this test pins');
 });
 
 test('Claude hook is a no-op for a missing file (never crashes on a stale path)', (t) => {

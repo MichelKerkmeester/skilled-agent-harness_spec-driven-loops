@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs
+../../.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs

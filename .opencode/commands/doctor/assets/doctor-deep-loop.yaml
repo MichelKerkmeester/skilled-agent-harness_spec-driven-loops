@@ -98,7 +98,6 @@ mutation_boundaries:
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
     - "mcp-server/database/*context-index*"
     - "mcp-server/database/*voyage*"
-    - "mcp-server/database/*code-graph*"
     - "mcp-server/database/*skill*"
     - "mcp-server/database/*eval*"
     - "mcp-server/database/*causal*"

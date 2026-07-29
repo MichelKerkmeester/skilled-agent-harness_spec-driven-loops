@@ -1,25 +1,28 @@
 ---
 title: "Implementation Plan: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Planning workflow for the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent migration gate, common evaluator/canary/promotion ownership, and phase-014 readiness certificate."
+description: "Completed workflow for the shared Deep Improvement Common Services rollback switch, bounded window, independent gate, and phase-014 readiness certificate."
 trigger_phrases:
   - "deep improvement common rollback and mode gate implementation plan"
   - "shared evaluator promotion authority switch plan"
   - "deep improvement migration certificate plan"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-28T14:07:58Z"
     last_updated_by: "opencode"
-    recent_action: "Defined rollback switch and common-service gate evidence boundary"
-    next_safe_action: "Freeze gate predicates and rollback window evidence against shared contracts"
+    recent_action: "Verified the shared rollback gate"
+    next_safe_action: "Reuse the shared contract in extension lanes"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The common gate contract is frozen for unchanged extension-lane reuse."
 ---
 # Implementation Plan: Deep Improvement Common Services - Rollback & Mode Gate
 
@@ -50,25 +53,25 @@ legacy writer, or allows a variant to redefine evaluator, canary, or promotion s
 
 ### Definition of Ready
 
-- [ ] The shared transition/versioning/rollback policy is pinned, including deny-by-default authorization, monotonic epochs,
+- [x] The shared transition/versioning/rollback policy is pinned, including deny-by-default authorization, monotonic epochs,
   one-writer ownership, and the 14-day/five-successful-authoritative-execution minimum.
-- [ ] Siblings `001-typed-ledger-schema` through `006-shadow-parity` expose their event, projection, seal, certificate,
+- [x] Siblings `001-typed-ledger-schema` through `006-shadow-parity` expose their event, projection, seal, certificate,
   receipt, replay, resume, and parity evidence boundaries.
-- [ ] The phase-012 shared mode interfaces and executable write-set conflict graph are available for the downstream handoff.
-- [ ] The switch states, request fields, trigger classes, fencing behavior, and external authorization boundary are reviewed.
-- [ ] The gate matrix names every common evaluator, canary, promotion, replay, resume, failure, and rollback fixture.
-- [ ] The three downstream variants agree to consume one shared evaluator, canary, promotion, certificate, receipt, and
+- [x] The phase-012 shared mode interfaces and executable write-set conflict graph are available for the downstream handoff.
+- [x] The switch states, request fields, trigger classes, fencing behavior, and external authorization boundary are reviewed.
+- [x] The gate matrix names every common evaluator, canary, promotion, replay, resume, failure, and rollback fixture.
+- [x] The three downstream variants agree to consume one shared evaluator, canary, promotion, certificate, receipt, and
   fingerprint contract through adapters.
-- [ ] The phase-014 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
+- [x] The phase-014 handoff distinguishes migration readiness from authority cutover and legacy-writer retirement.
 
 ### Definition of Done
 
-- [ ] The switch rejects absent, stale, malformed, unauthorized, mixed-version, and wrong-mode inputs without semantic change.
-- [ ] The rollback window is bounded, observable, extension-safe, and restorable to the pinned legacy anchor.
-- [ ] The independent gate is green only with shadow parity, sealed evidence, complete receipts and certificates,
+- [x] The switch rejects absent, stale, malformed, unauthorized, mixed-version, and wrong-mode inputs without semantic change.
+- [x] The rollback window is bounded, observable, extension-safe, and restorable to the pinned legacy anchor.
+- [x] The independent gate is green only with shadow parity, sealed evidence, complete receipts and certificates,
   deterministic replay, resume coverage, variant reuse, and rollback rehearsal.
-- [ ] The mode certificate is exact-SHA bound, independently verifiable, and explicit about unresolved obligations.
-- [ ] The phase-014 handoff receives readiness evidence without an authority transition or a global cutover claim.
+- [x] The mode certificate is exact-SHA bound, independently verifiable, and explicit about unresolved obligations.
+- [x] The phase-014 handoff receives readiness evidence without an authority transition or a global cutover claim.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -182,9 +185,9 @@ rollback findings in `findings-registry.json`.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase changes planning documents only. Before runtime adoption, reverting the four path-scoped authored files and
-re-ratifying the parent gate removes the proposed switch and mode-gate contract without touching the legacy emitter, typed
-ledger, evaluator assets, canary fixtures, or downstream variants. Generated metadata remains owned by deterministic tooling.
+This phase adds one path-scoped runtime module and focused test without changing authority. Reverting the new module, test,
+and leaf completion docs removes the switch and mode-gate contract without touching the legacy emitter, typed ledger,
+evaluator assets, canary fixtures, or downstream variants. Generated metadata remains owned by deterministic tooling.
 
 During later implementation, a failed or inconclusive gate leaves `legacy_authoritative` selected and disables the proposed
 common-service authority policy. A post-cutover incident uses the declared window: freeze typed-authoritative admission,

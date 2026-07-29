@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 <!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
@@ -52,6 +52,7 @@ SKILL AUTHORING REQUEST
     |   +- scripts/init_skill.py
     |   +- assets/skill/skill-md-template.md
     |   +- assets/skill/skill-readme-template.md
+    |   +- assets/skill/skill-sync-manifest-template.md
     |
     +- Parent hub -> workflowMode: sk-create-skill-parent
         +- assets/parent-skill/parent-skill-hub-template.md
@@ -73,6 +74,7 @@ Ask one focused clarification before authoring if it is unclear whether the user
 | --- | --- | --- |
 | Scaffolding | `scripts/init_skill.py`, `assets/skill/skill-md-template.md`, `assets/skill/skill-readme-template.md` | Create or normalize standalone skill files. |
 | Resource templates | `assets/skill/skill-reference-template.md`, `assets/skill/skill-asset-template.md`, `assets/skill/skill-smart-router.md` | Create routed references, assets, and resilient smart-router pseudocode. |
+| Runtime sync manifests | `assets/skill/skill-sync-manifest-template.md` | Document how a runtime config dir derives from the canonical `.opencode` tree (SYNC manifest). |
 | Procedure cards | `assets/skill/skill-procedure-template.md` | Add a private, triggerable internal procedure to a skill or mode without a new public identity. |
 | Parent hubs | `assets/parent-skill/parent-skill-*` | Create hub SKILL, registry, router, description, and graph metadata files. |
 | Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |
@@ -183,25 +185,33 @@ Follow these steps in order, skipping only when the target skill already exists 
 13. Delete generated example files and directories that the final skill does not need.
 14. Create reference markdown from `assets/skill/skill-reference-template.md`.
 15. Create asset markdown from `assets/skill/skill-asset-template.md`.
-16. Use kebab-case for generated filesystem names in `references/`, `assets/`, and other authored resource trees. Keep Python filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` unchanged.
-17. Create `README.md` from `assets/skill/skill-readme-template.md` when operators need quick start, examples, troubleshooting, or a package map.
-18. Author `SKILL.md` as the executable runtime contract, not as a link farm.
-19. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
-20. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
-21. Put the ordered execution path and decision points in `HOW IT WORKS`.
-22. Put required actions, forbidden actions, and escalation conditions in `RULES`.
-23. Put completion checks in `SUCCESS CRITERIA`.
-24. Put references only as overflow pointers for deep detail, examples, or schemas.
-25. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
-26. Fix every hard failure and rerun the check until it exits clean.
-27. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
-28. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
+16. When work creates or reshapes a runtime config dir (`.claude/`, `.codex/`, `.cursor/`, `.devin/`, `.pi/`, or a new runtime), author or update that dir's `SYNC.md` from `assets/skill/skill-sync-manifest-template.md` and cross-link it from every sibling manifest.
+17. Use kebab-case for generated filesystem names in `references/`, `assets/`, and other authored resource trees. Keep Python filenames, Python import-package directories, and tool-mandated names such as `SKILL.md` and `README.md` unchanged.
+18. Create `README.md` from `assets/skill/skill-readme-template.md` when operators need quick start, examples, troubleshooting, or a package map.
+19. Author `SKILL.md` as the executable runtime contract, not as a link farm.
+20. Keep `WHEN TO USE` limited to activation triggers, use cases, keyword triggers, and when-not-to-use boundaries.
+21. Put resource selection in `SMART ROUTING`, including detection signals, resource domains, loading levels, and smart-router pseudocode.
+22. Put the ordered execution path and decision points in `HOW IT WORKS`.
+23. Put required actions, forbidden actions, and escalation conditions in `RULES`.
+24. Put completion checks in `SUCCESS CRITERIA`.
+25. Put references only as overflow pointers for deep detail, examples, or schemas.
+26. Run `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` after authoring so the manifest and derived aliases are generated and the root passes its class gate.
+27. Replace every slug-only routing default before calling the skill done: `graph-metadata.json` `domains` and `intent_signals` plus the `SKILL.md` keyword comment are the fields the advisor's scorers actually read, so fill them with phrases a user would genuinely type, not the skill name repeated.
+28. Confirm advisor discovery. A warm advisor daemon ingests a new root automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next daemon start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test routing with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
+29. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
+30. Fix every hard failure and rerun the check until it exits clean.
+31. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
+32. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
 
 ### Required Standalone Skill Shape
 
 ```text
 skill-name/
 ├── SKILL.md
+├── graph-metadata.json
+├── leaf-manifest.config.json
+├── leaf-manifest.json              # generated
+├── leaf-aliases.json               # generated identity projection
 ├── README.md
 ├── references/
 ├── assets/
@@ -215,7 +225,9 @@ skill-name/
         └── <YYYY-MM-DD>--<subject>--<variant>/
 ```
 
-`SKILL.md` is required. `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+`SKILL.md` is the root marker. Root JSON requirements are class-specific; the complete authored/generated matrix is [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md). `README.md`, `references/`, `assets/`, and `scripts/` are optional only when they are genuinely unnecessary.
+
+A standalone skill is class **S** under the root-metadata contract, so beyond `graph-metadata.json` it authors exactly one more metadata file — `leaf-manifest.config.json`, naming its single workflow mode and leaf roots — and generates the rest. Required, forbidden, and generated-versus-authored rules for every root JSON live in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md); do not infer them from a sibling skill.
 
 The last two directories are a pair: `manual-testing-playbook/` holds the corpus a run reads, and
 `benchmark/` holds what the run wrote. Keeping them apart is what lets a run be re-executed against
@@ -245,7 +257,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 2. Keep the hub routing-only; nested packets own detailed workflows, evidence, examples, tool boundaries, and validation.
 3. Ask whether the generated state must be `legacy` or `ready`; do not silently choose in the authoring workflow. Existing CLI calls remain backward-compatible and default to `legacy`.
 4. Scaffold the selected state with `scripts/init_skill.py <hub-name> --path <parent-directory> --kind parent --compiled-routing legacy|ready`.
-5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+5. Create the hub root with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json` (one entry per owned slash command, `[]` when the hub owns none), and generated `leaf-manifest.json`, plus `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
 6. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
 7. Add `references/` and `assets/` to surface packets when they carry evidence material.
 8. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
@@ -266,6 +278,9 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 23. Use named `extensions` only when real routing semantics require them; do not add extra directory tiers for extensions.
 24. Treat `legacy (no manifest)` as complete only when no canonical manifest was emitted. For `ready`, the initializer calls `compiled-route-manifest.cjs mint` after the final router inputs exist and then calls `freshness` against the same hub root.
 25. Accept `compiled-ready (fresh manifest verified)` only from a valid, fresh canonical result. A missing minter, failed mint, malformed manifest, or stale manifest is a failed generation and retains legacy fallback; never synthesize a digest or author an activation manifest.
+26. Confirm the finished hub conforms to class **H** of the root-metadata contract with `node scripts/ci-skill-root-metadata.cjs --fix`, then rerun `node scripts/ci-skill-root-metadata.cjs` to prove cleanliness. Declaring `mode-registry.json` and `hub-router.json` is what makes a root a hub; declaring only one of them is a half-written declaration the gate rejects. Required, forbidden, and generated-versus-authored rules are in [`references/shared/skill-root-metadata-contract.md`](references/shared/skill-root-metadata-contract.md).
+27. Replace every slug-only routing default: `graph-metadata.json` `domains` and `intent_signals`, `description.json` keywords, and per-mode registry aliases are the fields the advisor's scorers read — fill them with phrases a user would genuinely type.
+28. Confirm advisor discovery. A warm advisor daemon ingests a new hub automatically (its watcher watches the skills root for new top-level directories); with no daemon running, the next start ingests it. Manual refresh: `node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted`. Smoke-test with `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json`.
 
 ### Parent Hub Shape
 
@@ -276,6 +291,8 @@ parent-hub/
 ├── hub-router.json
 ├── description.json
 ├── graph-metadata.json
+├── command-metadata.json
+├── leaf-manifest.json              # generated
 ├── changelog/
 ├── manual-testing-playbook/          # the scenario corpus — an input
 │   └── manual-testing-playbook.md    # the index; per-feature files in category folders
@@ -296,6 +313,8 @@ parent-hub/
     ├── assets/
     └── changelog/
 ```
+
+Class-H root metadata follows the [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md) matrix, including authored versus generated files.
 
 A packet may carry its own `benchmark/` in the same shape when it is measured separately from its
 hub. The corpus/output pairing and the owning-skill references described under the standalone shape

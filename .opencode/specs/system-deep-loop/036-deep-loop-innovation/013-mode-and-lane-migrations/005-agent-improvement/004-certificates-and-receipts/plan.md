@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:50:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the Agent Improvement evidence contract and offline verification route"
-    next_safe_action: "Map mode transitions to receipt obligations and canonical fingerprint inputs"
+    last_updated_at: "2026-07-27T18:49:19Z"
+    last_updated_by: "codex"
+    recent_action: "Delivered the certificate and offline verifier plan"
+    next_safe_action: "Resume adapter can consume the exported evidence contract"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,18 +43,18 @@ The implementation adds a mode-owned certificate projection and receipt payloads
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 012 shared mode contracts, event namespace, and write-set ownership are frozen
-- [ ] Phase-007 receipt/certificate primitives and `003-sealed-artifacts` references have stable schemas
-- [ ] Mode 004 `004-deep-improvement-common` service IDs, epochs, and receipt interfaces are available
-- [ ] The Agent Improvement transition matrix names every proposal, execution, scoring, canary, promotion, rollback, and closure event
-- [ ] The replay-fingerprint canonicalization and verifier refusal vocabulary are agreed
+- [x] Phase 012 shared mode contracts, event namespace, and write-set ownership are frozen
+- [x] Phase-007 receipt/certificate primitives and `003-sealed-artifacts` references have stable schemas
+- [x] Mode 004 `004-deep-improvement-common` service IDs, epochs, and receipt interfaces are available
+- [x] The Agent Improvement transition matrix names every proposal, execution, scoring, canary, promotion, rollback, and closure event
+- [x] The replay-fingerprint canonicalization and verifier refusal vocabulary are agreed
 
 ### Definition of Done
-- [ ] One per-run certificate and one receipt contract cover every in-scope Agent Improvement transition
-- [ ] Fingerprints recompute from local immutable evidence and detect every declared input change
-- [ ] Offline verification accepts valid fixtures and rejects tampered, incomplete, stale, reordered, or unauthorized runs
-- [ ] Shared evaluator/canary/promotion services are reused through typed dependencies, not reimplemented
-- [ ] The Agent Improvement mode gate records shadow parity without changing authority
+- [x] One per-run certificate and one receipt contract cover every in-scope Agent Improvement transition
+- [x] Fingerprints recompute from local immutable evidence and detect every declared input change
+- [x] Offline verification accepts valid fixtures and rejects tampered, incomplete, stale, reordered, or unauthorized runs
+- [x] Shared evaluator/canary/promotion services are reused through typed dependencies, not reimplemented
+- [x] The Agent Improvement mode gate records shadow parity without changing authority
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -80,26 +80,26 @@ The mode emits an authorized event and its typed transition receipt together. Th
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Pin the phase-012 shared contract digest, phase-007 primitives, sealed-artifact schema, and common-service interface versions
-- [ ] Inventory Agent Improvement transitions and assign ownership using the phase-012 write-set graph
-- [ ] Freeze the certificate field matrix, receipt-per-transition matrix, canonical encoding, and typed verifier refusal codes
-- [ ] Confirm all hidden or protected evaluator inputs are represented by commitments and disclosure transitions rather than raw payloads
+- [x] Pin the phase-012 shared contract digest, phase-007 primitives, sealed-artifact schema, and common-service interface versions
+- [x] Inventory Agent Improvement transitions and assign ownership using the phase-012 write-set graph
+- [x] Freeze the certificate field matrix, receipt-per-transition matrix, canonical encoding, and typed verifier refusal codes
+- [x] Confirm all hidden or protected evaluator inputs are represented by commitments and disclosure transitions rather than raw payloads
 
 ### Phase 2: Implementation
-- [ ] Define the Agent Improvement certificate schema and builder over the phase-007 primitive, with stable run, lineage, artifact, epoch, and receipt-root bindings
-- [ ] Define receipt payloads for proposal generation, candidate execution, evaluator observation, reduction, canary, promotion, rollback, and closure transitions
-- [ ] Implement the canonical replay-fingerprint vector and make every declared dependency change observable in the resulting digest
-- [ ] Bind mode 004 evaluator/canary/promotion receipts and epochs as immutable typed dependencies; do not duplicate their algorithms or thresholds
-- [ ] Implement the pure offline verifier with explicit schema, ordering, digest, authorization, epoch, and completeness failures
-- [ ] Build local fixtures for valid lineages, operator changes, evaluator-epoch changes, score-policy replay, artifact changes, receipt gaps, and receipt reorderings
+- [x] Define the Agent Improvement certificate schema and builder over the phase-007 primitive, with stable run, lineage, artifact, epoch, and receipt-root bindings
+- [x] Define receipt payloads for proposal generation, candidate execution, evaluator observation, reduction, canary, promotion, rollback, and closure transitions
+- [x] Implement the canonical replay-fingerprint vector and make every declared dependency change observable in the resulting digest
+- [x] Bind mode 004 evaluator/canary/promotion receipts and epochs as immutable typed dependencies; do not duplicate their algorithms or thresholds
+- [x] Implement the pure offline verifier with explicit schema, ordering, digest, authorization, epoch, and completeness failures
+- [x] Build local fixtures for valid lineages, operator changes, evaluator-epoch changes, score-policy replay, artifact changes, receipt gaps, and receipt reorderings
 
 ### Phase 3: Verification
-- [ ] Verify a complete valid run from local immutable inputs and compare the certificate root with a recomputed root
-- [ ] Mutate each fingerprint input and confirm the verifier rejects the run with the expected typed refusal
-- [ ] Confirm raw observations remain replayable independently from normalization and score reduction policy changes
-- [ ] Confirm the verifier cannot reach a live evaluator, canary, promotion service, network, or mutable workspace during validation
-- [ ] Run Agent Improvement shadow parity and mode-gate checks without an authority flip
-- [ ] Run strict validation for this phase folder and preserve the four authored docs as the complete planning write-set
+- [x] Verify a complete valid run from local immutable inputs and compare the certificate root with a recomputed root
+- [x] Mutate each fingerprint input and confirm the verifier rejects the run with the expected typed refusal
+- [x] Confirm raw observations remain replayable independently from normalization and score reduction policy changes
+- [x] Confirm the verifier cannot reach a live evaluator, canary, promotion service, network, or mutable workspace during validation
+- [x] Run Agent Improvement shadow parity and mode-gate checks without an authority flip
+- [x] Run strict validation for this phase folder and preserve the four authored docs as the complete planning write-set
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -124,11 +124,11 @@ The mode emits an authorized event and its typed transition receipt together. Th
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 007 receipt/certificate primitives | Internal contract | Planned prerequisite | Certificate and receipt ownership cannot be pinned; stop before defining incompatible local primitives |
-| `003-sealed-artifacts` | Sibling mode phase | Planned predecessor | Artifact references and lifecycle checks remain undefined; do not accept certificate fixtures |
-| `004-deep-improvement-common` | Internal shared mode | Planned prerequisite | Evaluator/canary/promotion references cannot be validated; keep this phase at contract planning |
-| Phase 012 shared mode contracts and write-set graph | Internal contract | Planned prerequisite | Event names and parallel write ownership can drift; defer implementation until frozen |
-| Phases 006-008 ledger, evidence, and compatibility services | Internal substrate | Planned | No stable event/authorization/recovery behavior exists for integration; keep legacy authority and use fixtures only |
+| Phase 007 receipt/certificate primitives | Internal contract | Landed and consumed | Certificate and receipt ownership cannot be pinned if the contract changes incompatibly |
+| `003-sealed-artifacts` | Sibling mode phase | Landed and consumed | Artifact references and lifecycle checks remain undefined if the predecessor regresses |
+| `004-deep-improvement-common` | Internal shared mode | Landed and consumed | Evaluator/canary/promotion references cannot be validated if the common verifier is unavailable |
+| Phase 012 shared mode contracts and write-set graph | Internal contract | Frozen | Event names and parallel write ownership can drift if the contract changes |
+| Phases 006-008 ledger, evidence, and compatibility services | Internal substrate | Landed and consumed | Authorization and replay evidence cannot verify if the shared substrate is unavailable |
 | `005-resume-adapter` | Sibling successor | Planned successor | Resume consumption is not available; this phase still freezes the evidence contract without implementing resume |
 <!-- /ANCHOR:dependencies -->
 

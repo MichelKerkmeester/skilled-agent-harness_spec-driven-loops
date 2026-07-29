@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity"
     last_updated_at: "2026-07-15T23:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Bounded parity around Model Benchmark runs and scoring projections"
-    next_safe_action: "Define paired adapters, protected matrix fields, and parity fixtures"
+    recent_action: "Verified Model Benchmark shadow parity"
+    next_safe_action: "Hand parity evidence to the successor gate"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -33,7 +33,7 @@ _memory:
 |--------|-------|
 | **Surface** | system-deep-loop / Model Benchmark mode |
 | **Change class** | Shadow verification harness and model-benchmark parity contract |
-| **Execution** | Planning-only child; legacy emitter remains authoritative and shared services are reused |
+| **Execution** | Implemented additive-dark child with legacy authority retained and shared services reused |
 
 ### Overview
 The phase defines the Model Benchmark shadow path over the typed event ledger. A mode adapter observes the legacy multi-model
@@ -49,22 +49,22 @@ receipt is the handoff artifact, not a cutover certificate.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-012 shared contracts and phase-015 mode interfaces, fixture rules, and write-set conflict graph are pinned inputs
-- [ ] Phase-014 health and degeneration shadow inputs, cursors, policy digests, telemetry-gap states, and non-authoritative action semantics are available
-- [ ] Mode 004 exposes evaluator, canary, promotion, receipt, budget, health, and generic parity ports without a variant-local reimplementation
-- [ ] Model Benchmark legacy boundaries are inventoried for run, trial, scoring, calibration, contamination, workload, resume, and terminal behavior
-- [ ] The canonical event tuple, protected matrix fields, normalization manifest, mismatch taxonomy, and parity receipt schema are frozen
-- [ ] The fixture corpus freezes model/executor cells, task families, common anchors, diagnostic tails, recipes, evaluator epoch, workload, and expected dispositions
-- [ ] The legacy emitter and typed ledger path can receive one coherent run context with isolated output sinks
+- [x] Phase-012 shared contracts and phase-015 mode interfaces, fixture rules, and write-set conflict graph are pinned inputs
+- [x] Phase-014 health and degeneration shadow inputs, cursors, policy digests, telemetry-gap states, and non-authoritative action semantics are available
+- [x] Mode 004 exposes evaluator, canary, promotion, receipt, budget, health, and generic parity ports without a variant-local reimplementation
+- [x] Model Benchmark legacy boundaries are inventoried for run, trial, scoring, calibration, contamination, workload, resume, and terminal behavior
+- [x] The canonical event tuple, protected matrix fields, normalization manifest, mismatch taxonomy, and parity receipt schema are frozen
+- [x] The fixture corpus freezes model/executor cells, task families, common anchors, diagnostic tails, recipes, evaluator epoch, workload, and expected dispositions
+- [x] The legacy emitter and typed ledger path can receive one coherent run context with isolated output sinks
 
 ### Definition of Done
-- [ ] Every required Model Benchmark fixture has a legacy stream, typed stream, canonical diff, projection comparison, and reproducible receipt
-- [ ] Event-for-event parity has zero unexplained semantic differences across run, cell, score, validity, contamination, workload, and terminal behavior
-- [ ] Matrix permutations, complete replay, checkpoint replay, resume, late completion, and duplicate delivery are deterministic
-- [ ] Common anchors, adaptive diagnostic evidence, family coverage, missing evidence, and operational usage remain explicit
-- [ ] Phase-014 health observations remain shadow-only and fail closed on telemetry gaps or stale watermarks
-- [ ] Mode 004 common services are consumed through shared contracts without duplicate evaluator, canary, or promotion semantics
-- [ ] A green parity report blocks later cutover but cannot authorize cutover, dispatch, promotion, or legacy-writer retirement
+- [x] Every required Model Benchmark fixture has a legacy stream, typed stream, canonical diff, projection comparison, and reproducible receipt
+- [x] Event-for-event parity has zero unexplained semantic differences across run, cell, score, validity, contamination, workload, and terminal behavior
+- [x] Matrix permutations, complete replay, checkpoint replay, resume, late completion, and duplicate delivery are deterministic
+- [x] Common anchors, adaptive diagnostic evidence, family coverage, missing evidence, and operational usage remain explicit
+- [x] Phase-014 health observations remain shadow-only and fail closed on telemetry gaps or stale watermarks
+- [x] Mode 004 common services are consumed through shared contracts without duplicate evaluator, canary, or promotion semantics
+- [x] A green parity report blocks later cutover but cannot authorize cutover, dispatch, promotion, or legacy-writer retirement
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -189,9 +189,9 @@ graph.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This child changes planning artifacts only and performs no runtime write or data migration. If the contract fails review, revert
-the four phase documents and reopen the parity boundary without touching the legacy benchmark emitter, typed ledger, common
-evaluator/canary/promotion services, sealed task pools, or downstream variants.
+This child adds an isolated runtime module, focused unit test, and leaf documentation without a data migration. If the contract
+fails review, remove the additive module and focused test and reopen the parity boundary without touching the legacy benchmark
+emitter, common evaluator/canary/promotion services, sealed task pools, or downstream variants.
 
 During later implementation, disable the shadow consumer at its explicit feature boundary while retaining immutable event pairs,
 matrix snapshots, and mismatch receipts for diagnosis. The legacy emitter remains authoritative throughout. A failed or

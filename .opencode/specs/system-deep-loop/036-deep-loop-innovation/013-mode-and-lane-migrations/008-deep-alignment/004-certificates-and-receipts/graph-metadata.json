@@ -39,12 +39,13 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -79,12 +86,6 @@
       },
       {
         "name": "Deep Alignment",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Defined Deep Alignment",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,6 +109,12 @@
         "source": "derived"
       },
       {
+        "name": "Because Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,6 +128,12 @@
       },
       {
         "name": "Keep Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Deep Alignment",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines authority and applicability attestations, verify-first finding coverage, replay-fingerprint inputs, and independent offline verification for per-lane conformance against a named authority.",
     "created_at": "2026-07-16T03:43:43.622Z",
-    "last_save_at": "2026-07-24T07:18:39.959Z",
+    "last_save_at": "2026-07-27T21:33:56.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ad1de85b6e9e20c512451437aab9a80c4b72272cc4496609d93e7dd9fe2820d",
+    "source_fingerprint": "sha256:8427732ad6b5a97b03c2629595932a63136dfe184d2e6dc28c92d9ff0823eb1e",
     "source_doc_hashes": {
-      "spec.md": "f94197512eaac59cbb2a7f712f7d955182e899a40c96dbfa0f4f26c8eca4af4e",
-      "plan.md": "ca898146b8b92537e2154871a5298675579f9a3eb976f6cb99dac4dffc6f35de",
-      "tasks.md": "3b9bc4f4d5053abacdee49b7dd64572078942896a9c31f13073c21306945fb80",
-      "checklist.md": "3ee6b77351d40994be0d34afd2d8b317b9089e50572e5cda7f7f53a7203bcc56"
+      "spec.md": "922f1c180403e61142dbf9b2ac018cb41de5e767e35880a1dacbfbd57b2be1b1",
+      "plan.md": "8d5414a25d161b1ba3004e1cc86e3b59d0579e16e20de43a46228e09ea4904f1",
+      "tasks.md": "9e6b85fbc601b030f49a9201fe6ce4549ee5d5340f1d24081c4ef4e4ed3cb607",
+      "checklist.md": "3a847d9a730387e8bfbf374c8ea1d5d898b484f0fb6edc9831a8a6bbd14c9793",
+      "implementation-summary.md": "7b94b7b744a9ed2a509edff2229d20157c1e19378c08460f2a3eaf30b8cf9021"
     },
     "last_active_child_id": null,
     "last_active_at": null

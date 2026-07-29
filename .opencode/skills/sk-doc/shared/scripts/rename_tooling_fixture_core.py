@@ -27,6 +27,8 @@ from rename_engine_core import (
     DISPOSABLE_MARKER_CONTENT,
 )
 
+from git_env import scrub_git_env
+
 
 # ---------------------------------------------------------------------------
 # 1. CONSTANTS
@@ -153,11 +155,14 @@ def _run_git(
     environment: Mapping[str, str] | None = None,
 ) -> subprocess.CompletedProcess[bytes]:
     """Run Git without a shell so path operands remain distinct argv elements."""
+    # Scrub GIT_DIR/GIT_WORK_TREE/GIT_CONFIG* so `-C <root>` alone selects the repo: a poisoned
+    # parent env (routine inside a git worktree, which shares one .git/config) would otherwise let
+    # a fixture write escape onto the real repository.
     result = subprocess.run(
         ["git", "-C", str(root), *arguments],
         check=False,
         capture_output=True,
-        env=dict(environment) if environment is not None else None,
+        env=scrub_git_env(environment),
     )
     if check and result.returncode != 0:
         detail = result.stderr.decode("utf-8", errors="replace").strip()

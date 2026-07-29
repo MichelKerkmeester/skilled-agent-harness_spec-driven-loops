@@ -71,20 +71,6 @@ vi.mock('../lib/search/intent-classifier.js', () => ({
   emitIntentTelemetry: vi.fn(),
 }));
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  classifyQueryIntent: mocks.classifyQueryIntent,
-  getGraphReadinessSnapshotFromMarker: vi.fn(() => ({
-    readiness: 'unavailable',
-    fresh: false,
-    stale: true,
-    reason: 'test mock',
-  })),
-  callCodeGraphTool: vi.fn(async () => ({
-    status: 'ok',
-    data: mocks.buildContext(),
-  })),
-}));
-
 vi.mock('../handlers/memory-search.js', () => ({
   handleMemorySearch: mocks.handleMemorySearch,
 }));

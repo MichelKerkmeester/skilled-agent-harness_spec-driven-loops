@@ -133,6 +133,5 @@ Expected result: the enrichment suite passes without deadline, recursion, or pat
 
 ## 8. RELATED
 
-- [`../../code_graph/README.md`](../../../../system-code-graph/mcp-server/README.md)
 - [`../response/README.md`](../response/README.md)
 - [`../session/README.md`](../session/README.md)

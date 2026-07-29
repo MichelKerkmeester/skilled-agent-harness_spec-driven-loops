@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.0.0
+version: 1.2.0.0
 hard_rules:
   - id: pi-availability-required
     check: command-v-pi-required
@@ -191,9 +191,8 @@ The pinned contract confirms that headless Pi uses print mode, that JSON mode em
 | Structured events | --mode json | Parse one JSON object per line |
 | Long-lived integration | --mode rpc | Keep stdin/stdout as a JSONL protocol |
 | Read-only review | print mode plus --tools read,grep,find,ls | Treat the tool allowlist as the write boundary |
-| A specific GPT-5.6 tier | `-p --model openai-codex/gpt-5.6-<tier> --thinking <level>` | Provider-qualify the id (bare `gpt-5.6-*` fails on a wrong provider yet exits 0); see [model-dispatch-gpt-5.6.md](./references/model-dispatch-gpt-5.6.md) |
 
-The print, JSON, RPC, and tool flags above are from the live help capture and the pinned contract. The read-only pattern is a caller-selected restriction, not a separate Pi plan mode. The GPT-5.6 row is confirmed by a live authenticated dispatch; full contract in `model-dispatch-gpt-5.6.md`.
+The print, JSON, RPC, and tool flags above are from the live help capture and the pinned contract. The read-only pattern is a caller-selected restriction, not a separate Pi plan mode.
 
 ### Provider Preflight
 
@@ -265,9 +264,8 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 
 ### Core References
 
-- [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, and command examples
+- [cli-reference.md](./references/cli-reference.md) - Confirmed CLI flags, modes, auth failure behavior, model selection, and command examples
 - [pi-tools.md](./references/pi-tools.md) - Pi capabilities with no sibling analog (RPC, native extensions/prompts, tool surface)
-- [model-dispatch-gpt-5.6.md](./references/model-dispatch-gpt-5.6.md) - GPT-5.6 ids and the live-confirmed invocation: provider-qualify as `openai-codex/gpt-5.6-*` and set effort with `--thinking <level>`
 - [integration-patterns.md](./references/integration-patterns.md) - Conductor/executor patterns, cross-validation, and anti-patterns
 - [agent-delegation.md](./references/agent-delegation.md) - Built-in boundary and community subagent package guidance
 - [native-skills-and-extensions.md](./references/native-skills-and-extensions.md) - Pi-native discovery surfaces with confidence labels

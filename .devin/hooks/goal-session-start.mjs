@@ -1,0 +1,1 @@
+../../.opencode/hooks/goal/devin/goal-session-start.mjs

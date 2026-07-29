@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter"
-    last_updated_at: "2026-07-15T23:10:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined the ledger-first Model Benchmark resume boundary"
-    next_safe_action: "Freeze the continuity-ladder and idempotent re-entry contract"
+    last_updated_at: "2026-07-28T05:35:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the Model Benchmark resume adapter"
+    next_safe_action: "Consume the frozen adapter in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the deep-improvement-common backbone) |
 | **Origin** | Phase 005 of the Model Benchmark migration under phase 013; the resume, replay, and model-benchmark findings in the 036/002 registries |
@@ -76,10 +79,11 @@ Plan the Model Benchmark resume adapter for the typed event-ledger substrate. Th
 replay compatibility, reducer projections, matrix-cell evidence, and shared-service status into one deterministic
 continuity ladder. It defines an idempotent re-entry contract in which the same sealed frontier yields the same resume plan,
 duplicate application is a no-op, conflicting duplicates fail closed, and no event or effect is lost or replayed by a crash.
-This phase is planning only. The per-mode 013 migrations land after phase 012 freezes the shared contracts and emits the
-write-set conflict graph; the six sibling concerns and the mode gate integrate the rest of Model Benchmark.
+The adapter is implemented as an additive-dark decision layer. The per-mode 013 migrations still land after phase 012
+freezes the shared contracts and emits the write-set conflict graph; the six sibling concerns and the mode gate integrate
+the rest of Model Benchmark.
 The Model Benchmark schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
-Planned adapter consumes them without moving authority.
+adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

@@ -1,0 +1,42 @@
+{
+  "_template": "Parent-hub command-metadata.json scaffold. The file is a class-H requirement: one entry per slash command the hub owns, or the literal empty array [] when it owns none. Replace every [bracketed] placeholder and delete this wrapper object — the committed file's top level is the ARRAY below, not this object. Core fields shown are all required; hubs may add extension fields after them (the design hub adds register policies and task projections, for example) and the fleet gate ignores unknown fields. Validation: ci-skill-root-metadata.cjs checks command id shape, that ownerMode names a workflowMode in mode-registry.json, that every choreography resource resolves on disk, that .opencode/commands/[family]/[name].md exists, and that command ids and ownedSignals are unique across the file.",
+  "entries": [
+    {
+      "command": "/[family]:[name]",
+      "ownerMode": "[workflowMode-from-mode-registry]",
+      "description": "[One line sourced from the command definition file's frontmatter description.]",
+      "argumentHint": "[Sourced from the command definition file's frontmatter argument-hint.]",
+      "userIntent": {
+        "job": "[One first-person sentence: I want to ...]",
+        "ownedSignals": [
+          "[short phrase a user would actually type]",
+          "[second unique phrase]",
+          "[third unique phrase]"
+        ]
+      },
+      "choreography": [
+        {
+          "order": 1,
+          "skill": "[parent-skill-name]",
+          "resource": ".opencode/skills/[parent-skill-name]/SKILL.md",
+          "action": "load the parent hub routing table"
+        },
+        {
+          "order": 2,
+          "skill": "[owner-mode-packet-name]",
+          "resource": ".opencode/skills/[parent-skill-name]/[owner-mode-packet]/SKILL.md",
+          "action": "load the owning mode contract, then apply the workflow to $ARGUMENTS"
+        }
+      ],
+      "discriminator": {
+        "whenToUse": "[Optional: one sentence naming when THIS command wins.]",
+        "preferSiblingWhen": [
+          {
+            "sibling": "/[family]:[sibling-name]",
+            "when": "[When the sibling should win instead.]"
+          }
+        ]
+      }
+    }
+  ]
+}

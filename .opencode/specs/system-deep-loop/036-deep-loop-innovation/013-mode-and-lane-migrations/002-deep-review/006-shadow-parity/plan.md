@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/006-shadow-parity"
-    last_updated_at: "2026-07-15T20:15:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Specified paired execution, event comparison, and projection parity gates"
-    next_safe_action: "Freeze comparator normalization and assemble Deep Review parity fixtures"
+    last_updated_at: "2026-07-28T05:08:36Z"
+    last_updated_by: "codex"
+    recent_action: "Verified shadow parity gates"
+    next_safe_action: "Consume parity evidence in the mode gate"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,16 +44,16 @@ Deep Review must migrate its existing scope -> dimension passes -> P0/P1/P2 find
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-012 shared review-loop contract, phase-014 shadow framework, typed event envelope, replay fingerprint, and projection contracts are frozen and addressable.
-- [ ] The legacy Deep Review emitter and its scope, dimension, finding, convergence, and report boundaries are inventoried against the pinned baseline.
-- [ ] The paired-run envelope can bind both paths to the same source revision, execution manifest, contract versions, and budget snapshot.
-- [ ] The event normalization allowlist distinguishes non-semantic transport values from identity, ordering, evidence, and decision values.
-- [ ] The parity fixture matrix includes normal, duplicate, update, resume, replay, invalid-transition, and fault-injection cases.
+- [x] The phase-012 shared review-loop contract, phase-014 shadow framework, typed event envelope, replay fingerprint, and projection contracts are frozen and addressable. [File: .opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts]
+- [x] The legacy Deep Review emitter and its scope, dimension, finding, convergence, and report boundaries are inventoried against the pinned baseline. [File: .opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts]
+- [x] The paired-run envelope binds both paths to the same source revision, execution manifest, contract versions, and budget snapshot. [File: .opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/types.ts]
+- [x] The event normalization allowlist distinguishes non-semantic transport values from identity, ordering, evidence, and decision values. [File: .opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts]
+- [x] The parity fixture matrix includes normal, duplicate, update, resume, replay, invalid-transition, and fault-injection cases. [Test: focused Vitest suite, 8/8 passed]
 
 ### Definition of Done
-- [ ] Event-stream, projection, replay/resume, and safety parity are independently green for the required corpus.
-- [ ] The parity certificate is reproducible from its fixture, contract, comparator, and candidate fingerprints.
-- [ ] Any unexplained difference produces `PARITY_BLOCKED` and cannot publish a ledger-backed review report or authorize cutover.
+- [x] Event-stream, projection, replay/resume, and safety parity are independently green for the required corpus. [Test: focused Vitest suite, 8/8 passed]
+- [x] The parity certificate is reproducible from its fixture, contract, comparator, and candidate fingerprints. [Test: focused Vitest suite, 8/8 passed]
+- [x] Any unexplained difference produces `PARITY_BLOCKED` and cannot publish a ledger-backed review report or authorize cutover. [Test: focused Vitest suite, 8/8 passed]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -1,0 +1,11 @@
+{
+  "owner_pid": 61593,
+  "started_at_iso": "2026-07-28T12:28:12.760Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-28T12:28:12.760Z",
+  "packet_id": ".opencode/specs/system-speckit/033-hook-runtime-relocation-review",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-28T12:28:12.760Z",
+  "acquire_nonce": "61593-1785241692760-fb560bc5-6472-4023-b18a-23b727b1fb23"
+}

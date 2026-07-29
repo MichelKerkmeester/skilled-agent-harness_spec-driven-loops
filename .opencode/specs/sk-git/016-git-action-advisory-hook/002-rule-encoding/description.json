@@ -1,20 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
-  "description": "sk-git declares no `hardrules:` frontmatter, so the existing evaluator has nothing to read for git commands",
+  "description": "sk-git declared no `hardrules:`, so the evaluator that already runs on every Bash command had nothing to read for git",
   "keywords": [
     "sk-git",
-    "declares",
+    "declared",
     "hardrules",
-    "frontmatter",
-    "existing",
     "evaluator",
+    "already",
+    "runs",
+    "every",
+    "bash",
+    "command",
     "nothing",
     "read",
-    "git",
-    "commands"
+    "git"
   ],
-  "lastUpdated": "2026-07-27T19:51:09.259Z",
+  "lastUpdated": "2026-07-27T20:18:12.866Z",
   "specId": "002",
   "folderSlug": "rule-encoding",
   "parentChain": [

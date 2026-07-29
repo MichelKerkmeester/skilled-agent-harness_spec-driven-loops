@@ -6,7 +6,7 @@ trigger_phrases:
   - "n-gram extraction"
   - "graph-metadata derived"
   - "deterministic extraction"
-version: 0.8.0.13
+version: 0.8.0.14
 ---
 
 # Deterministic Derived Extraction
@@ -45,6 +45,7 @@ Automatically generate routing-ready derived entries for every skill without han
 
 Related references:
 
+- [Skill-root metadata contract](../../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md)
 - [02-sanitizer.md](./sanitizer.md).
 - [03-provenance-and-trust-lanes.md](../../feature-catalog/auto-indexing/provenance-and-trust-lanes.md).
 - [05-anti-stuffing.md](../../feature-catalog/auto-indexing/anti-stuffing.md).

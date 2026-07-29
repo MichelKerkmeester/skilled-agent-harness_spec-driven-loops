@@ -113,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -143,6 +137,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -155,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Graph",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,13 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The advisor treats the code graph as a first-class routable skill: it is a node in the skill graph with a declared dependency edge and inbound edges from two other skills, it carries a block of intent signals, and it is counted in the total skill population",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-27T16:49:45.454Z",
+    "last_save_at": "2026-07-28T09:42:18.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d11951a8d979bbdfa2b66214ea5e393feafe4e5e0868d6beebed9f2c77f3f27c",
+    "source_fingerprint": "sha256:b07539dcec5e337acba91b3bce2872eb1aa1b04e43212118979b10277c4d9941",
     "source_doc_hashes": {
-      "spec.md": "cdf5f8883acd1a137d02a5864a71284718d423dbd6c98f6a8b6f969f68d68292",
-      "plan.md": "359c0803b2f07f015076efad4abe80a34ecd3faa3f28807728e3ecd78d997614",
-      "tasks.md": "b08ead095daa5ad7e720d462c776c42e3c3cdea5d70417e6191c279fa2221a0b",
-      "implementation-summary.md": "9ae80ef1414b77c031ce01f1acf9ab11aeeca6f77c58fdd0356bc51611a19bc0"
+      "spec.md": "827941c8802c707d9bbd565eb8773dd1d600258244bcde23b2ec051ae66d280b",
+      "plan.md": "ddd68840a473d39108e194bf789d7b1b2fc7ac52a102406aaee74748d46bd858",
+      "tasks.md": "16c0930ccf0ea1ab3583b8e29eecd6208a57e77bd6aeda7cf733c4b84ffb1ea5",
+      "implementation-summary.md": "8841906592abe0a1803857dbb473d4574a3aa49903a95b315dd35d761c312ac2"
     },
     "last_active_child_id": null,
     "last_active_at": null

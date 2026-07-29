@@ -19,7 +19,10 @@
       "Skill Benchmark shadow parity tasks",
       "skill scenario projection parity tasks",
       "Skill Benchmark shadow parity checklist",
-      "skill event projection parity checklist"
+      "skill event projection parity checklist",
+      "Skill Benchmark shadow parity implementation",
+      "skill benchmark parity receipt",
+      "skill benchmark mode gate input"
     ],
     "key_topics": [
       "skill",
@@ -36,12 +39,13 @@
       "tasks"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -169,25 +179,39 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring: run the typed ledger path beside the legacy emitter, compare canonical projections event-for-event, and block authority movement until parity is green.",
     "created_at": "2026-07-16T03:43:42.387Z",
-    "last_save_at": "2026-07-24T07:19:00.401Z",
+    "last_save_at": "2026-07-28T11:52:58.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41425fe2e060b8bc3fd05c2de2c9e1d887c01ca4afdac0be150f66c779ca6ab5",
+    "source_fingerprint": "sha256:26386c30878e35c172665bc6af604b01e848ac2582c59fe870c214772f6f51b5",
     "source_doc_hashes": {
-      "spec.md": "d6a46b9de208bd42a60ce4400275f21b876de00cb00ffecbe2bb23314aee2c2c",
+      "spec.md": "af349ca9238a015da288b737940a56a813765e46f637b6fd03ba21fdec21db51",
       "plan.md": "45bc36bff540dc62ae6f257d72e15045be47e871a5cbad798f08650ea2bb4f0f",
       "tasks.md": "a03c809a4074c1471500fe0e1ae4cbe8311f225cdcc0490178e1af120b65a85b",
-      "checklist.md": "c994945f84385c258bff2f61bd88582d98c4f2535c777c0e05d832c4b5c0ec35"
+      "checklist.md": "c994945f84385c258bff2f61bd88582d98c4f2535c777c0e05d832c4b5c0ec35",
+      "implementation-summary.md": "f038ba04fe285ca88b3f6a30b84632d3c06e72bc4b08344b243e0747b8c28dd2"
     },
     "last_active_child_id": null,
     "last_active_at": null

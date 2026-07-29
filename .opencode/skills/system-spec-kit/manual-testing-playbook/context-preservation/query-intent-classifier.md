@@ -70,12 +70,10 @@ Validate query-intent classifier and confirm intent labels, telemetry envelope, 
 
 ### Failure Triage
 
-Inspect `.opencode/skills/system-code-graph/mcp-server/lib/query-intent-classifier.ts` for the keyword dictionary and confidence scoring. Verify `mcp-server/handlers/memory-context.ts` consumes the classifier output and emits the telemetry envelope. Confirm the paraphraseGroup hashing is deterministic across normalized inputs.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/query-intent-classifier.md](../../feature-catalog/context-preservation/query-intent-classifier.md)
-- Source: `.opencode/skills/system-code-graph/mcp-server/lib/query-intent-classifier.ts`, `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts`
 
 ---
 

@@ -43,12 +43,7 @@ vi.mock('../lib/search/pipeline/index.js', () => ({
   executePipeline: vi.fn(),
 }));
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getGraphReadinessSnapshotFromMarker: vi.fn(),
-}));
-
 import { handleMemorySearch } from '../handlers/memory-search.js';
-import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 
 interface ParsedResponse {

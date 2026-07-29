@@ -1,1 +1,1 @@
-../../.opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs
+../../.opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs

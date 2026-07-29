@@ -78,12 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Roughly",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Retired",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Phased",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Roughly fifty spec-kit test files reference the code graph, and they are not uniform: some exist solely to test the launcher lifecycle and boundary proxy and become meaningless, while others assert on session payloads that survive phase 005 in a changed shape",
     "created_at": "2026-07-27T16:33:56Z",
-    "last_save_at": "2026-07-27T16:49:45.120Z",
+    "last_save_at": "2026-07-28T09:42:18.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04cbd002095c5bd5be6dc5716cafa0e3cf1f976289f080c8cfb88f1ca95bfa13",
+    "source_fingerprint": "sha256:c0570175d5e2069c7b52c41ea3f54de8e62772ccf2de8276713326505659dccd",
     "source_doc_hashes": {
-      "spec.md": "90edb58a26a40aab7d86e6288a2203b01077d8c2f7b5295bcdc52c366754f4fb",
-      "plan.md": "74eed37b33291038ab43334891616fc836ab68093c6c2d89045a453fc897114b",
-      "tasks.md": "d4fc48afe7544c923be78798d8ff7e432766c4b71444864a63d8d44c2015f391",
-      "implementation-summary.md": "7b61ff101e5ed4909d2729af80c91eb71421641854903a21ffb663519f6da6ac"
+      "spec.md": "5647c86cf292944e52bade7e48cb19c7993910f9345e4f3c37704a39aa5621c9",
+      "plan.md": "1c917b2f3905e399c92e9ac4313d6abb9f186212d21f24614d187b99d57e7319",
+      "tasks.md": "452b38c7116191f04dba213807a5801972c2a489b2d910677c98aee77d3ce6e1",
+      "implementation-summary.md": "f78d4e41887927ae1e79a5ba0dac1d01ceb66cf1cf205e6837ff0416b197da13"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit",
+  "description": "The fan-out advertises seven executor kinds, but no single document states which (cli, provider, model, mode) combinations",
+  "keywords": [
+    "fan-out",
+    "advertises",
+    "seven",
+    "executor",
+    "kinds",
+    "single",
+    "document",
+    "states",
+    "cli",
+    "provider",
+    "model",
+    "mode",
+    "combinations"
+  ],
+  "lastUpdated": "2026-07-29T08:29:14.821Z",
+  "specId": "001",
+  "folderSlug": "executor-matrix-audit",
+  "parentChain": [
+    "system-deep-loop",
+    "043-cli-executor-fanout-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

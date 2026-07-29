@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "cli-external-orchestration/023-kimi-k2-7-code-support/003-promote-results",
+  "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/003-promote-results",
   "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/2026-06-15--prompt-framework--kimi-k2-7/`",
   "keywords": [
     "phase",
@@ -13,14 +13,14 @@
     "run",
     "output",
     "benchmarks",
-    "006-kimi-k2",
-    "7-prompt-framework"
+    "2026-06-15-prompt-framework-kimi-k2-7"
   ],
-  "lastUpdated": "2026-07-18T03:48:54.253Z",
+  "lastUpdated": "2026-07-27T08:57:45.833Z",
   "specId": "003",
   "folderSlug": "promote-results",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "023-kimi-k2-7-code-support"
   ],
   "memorySequence": 0,

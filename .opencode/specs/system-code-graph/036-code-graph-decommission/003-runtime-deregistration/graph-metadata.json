@@ -44,8 +44,9 @@
       "spec.md",
       "plan.md",
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".codex/config.toml",
       ".claude/settings.json",
       ".claude/settings.local.json",
       "tasks.md",
@@ -113,12 +114,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -137,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -149,7 +150,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Resolved",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,13 +168,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "The server is registered in `opencode.json`, `.claude/mcp.json`, and `.codex/config.toml`, and reached again through two symlinks — `.mcp.json` and `.cursor/mcp.json` both resolve to `.claude/mcp.json`, which makes Cursor a fifth registered surface that a naive audit misses",
     "created_at": "2026-07-27T16:33:54Z",
-    "last_save_at": "2026-07-27T16:49:44.182Z",
+    "last_save_at": "2026-07-28T09:42:17.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95e4845d501b73221041929f0257722868bc36672e92897830403e67d36d850c",
+    "source_fingerprint": "sha256:a5ec6009c49aa7e861b6e7f296a0d71100fbf388bc74aa3438b8ccdebfca29c7",
     "source_doc_hashes": {
-      "spec.md": "cfb502314e35364208aaebc244cdfcbbe64cdd6f0f83f7615735ba1da85aae1b",
-      "plan.md": "696dafaf2a9a5e9d12a0d1bbea95e417b9e2608be03bffdfa1ff66d909b1897b",
-      "tasks.md": "5e8362f9ae24758c5c76bb79fb21e199cdc6d27a902efb519b4ab50ba7abfa03",
-      "implementation-summary.md": "6d0625adb3eacfc8c158e9743e4addb08b70063673460c23c6ae0b918ffe34da"
+      "spec.md": "6835928bd733dee04b2278879a43ef4a79922afe8fc63aa7790806da77b9d26f",
+      "plan.md": "ee51e18d15f4b761603725c36cbd49cfa7b037960b4e3d8ff3f7d30de8897a6c",
+      "tasks.md": "db35480d72b58390ddfd5ea3e24690a60db407a2e6de1959e6e6dd31994a2b9f",
+      "implementation-summary.md": "2367757fe91966edb546de1cfb24d278716037fb62801f2129757f0f28008452"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,76 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.3.2.0
+version: 1.4.0.0
+hard_rules:
+  - id: commit-scope-drops-untracked
+    check: commit-scope-drops-untracked
+    message: "Untracked files sit inside the scope of this commit and will be silently excluded — exit 0, no warning. Naming an untracked file directly would error; naming its directory does not. Run `git status` first, or check `git show --name-only HEAD` against what you expected."
+    severity: warn
+  - id: commit-pathspec-empty-change
+    check: commit-pathspec-empty-change
+    message: "A named path has nothing staged or modified under it, so it contributes nothing to this commit. Confirm the path is the one you meant."
+    severity: warn
+  - id: add-pathspec-matches-nothing
+    check: add-pathspec-matches-nothing
+    message: "This pathspec matches no files, so nothing will be staged and git will not say so. Check the path and the working directory."
+    severity: warn
+  - id: add-pathspec-only-ignored
+    check: add-pathspec-only-ignored
+    message: "Every file this pathspec matches is ignored, so nothing will be staged. Use `git add -f` if that is genuinely intended."
+    severity: warn
+  - id: add-update-skips-untracked
+    check: add-update-skips-untracked
+    message: "`add -u` stages tracked modifications only, and untracked files are present. If a new file is part of this change, it will be left behind."
+    severity: warn
+  - id: restore-discards-over-staged
+    check: restore-discards-over-staged
+    message: "This path has staged content. Restoring the working tree leaves the index copy in place, so the change appears reverted while a stale version stays staged. Add `--staged` to clear the index too."
+    severity: warn
+  - id: checkout-from-ref-stages-silently
+    check: checkout-from-ref-stages-silently
+    message: "Restoring from a ref writes the index as well as the working tree, so this content is staged without an add. Check `git diff --cached` before committing."
+    severity: warn
+  - id: merge-strategy-resolves-one-sided
+    check: merge-strategy-resolves-one-sided
+    message: "A one-sided strategy option resolves every conflict automatically and reports a clean result, so the discarded side is never shown. Nothing in the output will distinguish this from a merge that had no conflicts."
+    severity: warn
+  - id: case-only-pathspec-folds
+    check: case-only-pathspec-folds
+    message: "This path differs from a tracked file only by case, and the filesystem folds case. Git will resolve it to the existing path, so a case rename will silently not happen."
+    severity: warn
+  - id: staged-path-rewritten-by-filter
+    check: staged-path-rewritten-by-filter
+    message: "A path here passes through a clean filter, so the committed content differs from the file on disk. Reading the working copy will not tell you what you are committing; use `git show HEAD:<path>` to see the committed form."
+    severity: warn
+  - id: reset-hard-discards-changes
+    check: reset-hard-discards-changes
+    message: "The working tree has modifications and `reset --hard` destroys them unrecoverably — the reflog protects commits, never uncommitted work. Stash first, or run `git status` to see what is about to be lost."
+    severity: warn
+  - id: clean-force-deletes-files
+    check: clean-force-deletes-files
+    message: "This clean would actually delete files — with `-x` including everything gitignore protects, such as dependency trees and databases. `git clean -n` with the same flags shows the exact list before it is gone."
+    severity: warn
+  - id: branch-force-delete-unmerged
+    check: branch-force-delete-unmerged
+    message: "This branch holds commits not merged into HEAD, which is exactly the situation `-d` refuses and `-D` bypasses. Note the branch tip SHA first; after deletion the reflog is the only way back."
+    severity: warn
+  - id: stash-clear-drops-entries
+    check: stash-clear-drops-entries
+    message: "Stash entries exist and `stash clear` discards all of them unrecoverably. `git stash list` shows what is about to be dropped; `stash drop` removes one entry by name instead."
+    severity: warn
+  - id: history-expiry-defeats-recovery
+    check: history-expiry-defeats-recovery
+    message: "Immediate expiry deletes the reflog safety net that every other git recovery relies on. After this runs, dropped commits and resets are genuinely gone rather than recoverable."
+    severity: warn
+  - id: push-deletes-remote-ref
+    check: push-deletes-remote-ref
+    message: "This push deletes a ref on the remote — destructive at a distance and invisible locally. Confirm the branch name and that nobody else's work rides on it."
+    severity: warn
+  - id: force-push-without-lease
+    check: force-push-without-lease
+    message: "Plain `--force` overwrites the remote even if someone pushed after you last fetched. `--force-with-lease` fails in that case instead, which is the entire difference between rewriting your own history and destroying someone else's."
+    severity: warn
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, owner-first-branch, skill-scoped-worktree, worktree-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -243,6 +312,27 @@ The remote allowlist is `main`, `skilled/v*` release branches, plus anything the
 Once permission is granted, set `SPECKIT_ALLOW_REMOTE_PUSH=1` for that one `git push` invocation only — never export it for the session or persist it beyond the single command. The [pre-push hook](../../scripts/git-hooks/pre-push) enforces the same allowlist as a technical backstop: it blocks any push (new or update) to a non-allowlisted branch unless that env var is set for the invocation, so a push issued without asking is blocked rather than silently landing on origin. Full contract: [remote-branch-policy.md](references/remote-branch-policy.md).
 
 **Continuous-integration exception**: the launch-wrapper's autosync publish (ALWAYS #16) targets exactly one branch per session — `$SPECKIT_LIVE_BRANCH`, the primary checkout's own branch chosen before the session started — and is exempt from this ask, because `git-sync.sh`'s own contract never blocks mid-hook (see [continuous-integration.md](references/continuous-integration.md)). The exemption is scoped to that one branch; autosync publishing to any OTHER branch still asks.
+
+### Preflight Advisory — the rules reach you at command time
+
+The `hard_rules:` block at the top of this file is not documentation — it is executed. A
+preflight advisory hook evaluates every visible `git` command against those rules using live
+repository state, and prints the matching rule at the moment the command is typed. It advises
+and never blocks: enforcement stays with the pre-commit, commit-msg and pre-push hooks.
+
+Every rule is a state discriminator, never a verb match — a `reset --hard` warns only when the
+working tree holds changes it would destroy; a directory-scoped commit warns only when untracked
+files sit inside that scope. Measured fire rate across ordinary commands is zero.
+
+All six AI runtimes carry the same shared hook: Claude and Codex/Devin via their PreToolUse hook
+configs, Cursor via a Shell-payload proxy, OpenCode via the `mk-git-preflight-advisory` plugin,
+and Pi via a native extension. Registration paths, delivery channels, and the fail-open contract:
+[scripts/hooks/README.md](scripts/hooks/README.md). The rule engine and its tests:
+[scripts/lib/README.md](scripts/lib/README.md). Operator test scenario: the
+`git-preflight-advisory/` feature in [manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md).
+
+Suppression tiers: `SKGIT_ADVISORY=0` (global), `SKGIT_ADVISORY_SKIP=<rule-id>` (one rule), or a
+prefix like `SKGIT_ADVISORY_SKIP=commit` (a family).
 
 ### Git Development Lifecycle Map
 

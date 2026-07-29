@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -66,7 +66,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### What It Is
 
-**Confirmed** (phase 012 of this creation packet): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 6 real extension files bridging this repo's own runtime-neutral guard cores (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. A live `pi --offline --approve` session loaded all 6 without a startup error. The extension API's lifecycle-event surface (32 named events including block-capable `tool_call`) is **type-confirmed** via a direct read of the installed package's `types.d.ts` (phase 008) — a live firing trace (proof a specific event actually dispatches mid-session, not just that the type exists) is not yet captured; see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the current confidence boundary.
+**Confirmed** (phases 012/015 of this creation packet): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
 
 ### Capabilities
 
@@ -172,7 +172,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 
 ### When to Reach for a Custom-Provider Model
 
-- The task specifically needs a GPT-5.6 tier (`gpt-5.6-luna`/`sol`/`terra`) — dispatch through the `openai-codex` custom provider per the operator-confirmed roster in `model-dispatch-gpt-5.6.md`
+- The task specifically needs a GPT-5.6 tier (`gpt-5.6-luna`/`sol`) — dispatch through the `openai-codex` custom provider per the authenticated roster in `cli-reference.md` §13
 - Default to `google` (the confirmed default provider) when the task has no model-specific requirement
 
-**Avoid for:** Any model or provider not named in the operator-confirmed roster — Pi's own documentation-only provider breadth is not a license to guess at an unconfirmed model id.
+**Avoid for:** Any model or provider not named in the authenticated roster — Pi's own documentation-only provider breadth is not a license to guess at an unconfirmed model id.

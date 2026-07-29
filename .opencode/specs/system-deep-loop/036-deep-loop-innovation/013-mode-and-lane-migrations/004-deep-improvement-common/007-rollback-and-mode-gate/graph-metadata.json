@@ -39,14 +39,36 @@
       "promotion"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "decision-record.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,6 +79,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -90,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "This Planned",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,6 +126,12 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -144,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "window ID",
+        "name": "no",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "private",
+        "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -166,37 +194,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority.",
+    "causal_summary": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority.",
     "created_at": "2026-07-16T03:43:37.283Z",
-    "last_save_at": "2026-07-24T07:35:16.489Z",
+    "last_save_at": "2026-07-28T14:11:18.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5903a73ad70d1ec7895153aacca5aef3b588217350b078f78ed332bfd69e892d",
+    "source_fingerprint": "sha256:7b7d1fca01165b0a09ca7fcbfb0c31fe77a974af1a0e17cfa4e435a3819e78f5",
     "source_doc_hashes": {
-      "spec.md": "d87126fa1bc5a3aba4397dfb275bbc357aaea613f0aa8c8acb36d79ba975acf0",
-      "plan.md": "93269005d39221d2757b75a6b5557899d54a9183d3a40ddd59558ab75d08d555",
-      "tasks.md": "a4db9aac8e83eb7c1c2929d16f628ef9c12509a7e8c6096359a274d35c5dd0ae",
-      "checklist.md": "0f6e22674071897175ef40f22ee0f3dfc1e07091013fbe6fea516d918fc84304"
+      "spec.md": "294fd4606eaf439f60eef01876619a9464b6e14fc978991f7f91101ae6d9ed8c",
+      "plan.md": "17bb128010ed5b550eeba023a481bdf6e314230bfe24db2aee55e5dad6264167",
+      "tasks.md": "6322b94b0fcf94feff5e95b3a4fdf18443427c20ceb73959923802481b0bd51a",
+      "checklist.md": "5841f64d8e20c483f4ac94c9998d207b82446cad38466f4706822d6b13ab9382",
+      "decision-record.md": "1a166bfd892a3329855dc8cb1e1ec32c80c19358607d00bafff7ae07d2d3a94d",
+      "implementation-summary.md": "47e9f029c1b7fcee1f58c0c10f071317b19b161514345964ab00bf0238e81c15"
     },
     "last_active_child_id": null,
     "last_active_at": null

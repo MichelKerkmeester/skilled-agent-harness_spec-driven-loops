@@ -43,12 +43,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/code-graph-boundary.ts",
-      ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+      "handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/code-index-cli-fallback.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -66,15 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "code-graph-boundary.ts",
+        "name": "memory-context.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/code-graph-boundary.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-contracts.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+        "path": "handlers/memory-context.ts",
         "source": "derived"
       },
       {
@@ -87,18 +79,6 @@
         "name": "tool-schemas.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-index-cli-fallback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/code-index-cli-fallback.ts",
         "source": "derived"
       },
       {
@@ -115,12 +95,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -150,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -162,7 +142,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Removed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Process",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,13 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow With",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`system-spec-kit` is the deepest consumer",
     "created_at": "2026-07-27T16:33:55Z",
-    "last_save_at": "2026-07-27T16:49:44.693Z",
+    "last_save_at": "2026-07-28T09:42:17.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:044898754024f021a7f8d8bcdf11db5db6c0ba081605a60b5894980b78ed8af2",
+    "source_fingerprint": "sha256:9e0bcc174492405c766bb472be5e0c0c6643f7803502fd5edca1fdeac7287892",
     "source_doc_hashes": {
-      "spec.md": "857956d16823e25a838671756e28083a072b441c8d29dcc602015cd2ef3193ea",
-      "plan.md": "6efa7c19345b62c1b0ea0704a42d5d7d82d241e34785dcc01fe6b7df6f80ffcf",
-      "tasks.md": "df1eebd6ba336780ac778d9a0cff7e5d02435b47ac72a3e5f46cc606f68822ab",
-      "implementation-summary.md": "8df87a90957492447f16d00685a8e2e678b3fd622f8e84043494fea8213fdcfb"
+      "spec.md": "e56bf114e4ea5f4340f531ba5a34f1426acff12ce74606d5efb1c45c69284dc0",
+      "plan.md": "d7594b43ce83bedd619f74aa8b27722d1fe7b7c3e651a5524ba69aa5ebd40dd6",
+      "tasks.md": "d75c5279f2045c47a1d7c4d2841ffd583f0be88235d09beb885ec8ef97cc5e7e",
+      "implementation-summary.md": "88423b6dd59e6fa23b00934a464cc55cea723cac4fdab484089357b5a5f7a395"
     },
     "last_active_child_id": null,
     "last_active_at": null

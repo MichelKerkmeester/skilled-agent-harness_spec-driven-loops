@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/011-doctrine-and-docs"
-    last_updated_at: "2026-07-27T16:34:00Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm AGENTS.md and CLAUDE.md share one inode (edit once) — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Rewrite Mandatory Tools table, Code Search Decision Tree, MCP roster, daemon fallback ladder, Quick Reference in AGENTS.md — evidence: `scratch/closeout-facts.md`
+- [x] T003 Rewrite the `.claude/CLAUDE.md` search-routing directive
+- [x] T004 Remove root README subsystem coverage — evidence: `scratch/closeout-facts.md`
+- [x] T005 Delete `SET-UP - Code Graph.md` and remove its install-guides index entry
+- [x] T006 Update `bin/README.md` and `bin/lib/README.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T007 `rg --hidden --no-ignore` sweep: no instruction file or README references the removed subsystem
+- [x] T008 AGENTS.md and CLAUDE.md remain the same inode with one set of edits — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (sweep + inode check)
 <!-- /ANCHOR:completion -->
 
 ---

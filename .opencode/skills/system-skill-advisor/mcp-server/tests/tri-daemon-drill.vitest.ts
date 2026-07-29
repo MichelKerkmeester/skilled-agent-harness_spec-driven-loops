@@ -136,7 +136,6 @@ function createTriSandbox(): TriSandbox {
   mkdirSync(binLibDir, { recursive: true });
   for (const fileName of [
     'spec-memory.cjs',
-    'code-index.cjs',
     'skill-advisor.cjs',
     'mk-spec-memory-launcher.cjs',
     'mk-code-index-launcher.cjs',
@@ -178,7 +177,6 @@ function createTriSandbox(): TriSandbox {
     stubCliSource('../../../../..', 'mk-spec-memory-launcher.cjs', 'mk-spec-memory'),
   );
   writeExecutable(
-    join(root, '.opencode/skills/system-code-graph/mcp-server/dist/code-index-cli.js'),
     stubCliSource('../../../../..', 'mk-code-index-launcher.cjs', 'mk-code-index'),
   );
   writeExecutable(
@@ -199,7 +197,6 @@ function createTriSandbox(): TriSandbox {
     writeExecutable(join(root, '.opencode/skills/system-spec-kit', scriptArtifact), '');
   }
   writeFileSync(
-    join(root, '.opencode/skills/system-code-graph/mcp-server/dist/index.js'),
     longRunningServerSource(codeChildPidFile),
     'utf8',
   );
@@ -217,7 +214,6 @@ function createTriSandbox(): TriSandbox {
   const sandbox = {
     root,
     specMemoryShim: join(binDir, 'spec-memory.cjs'),
-    codeIndexShim: join(binDir, 'code-index.cjs'),
     skillAdvisorShim: join(binDir, 'skill-advisor.cjs'),
     specMemoryDbDir,
     codeIndexDbDir,
@@ -366,7 +362,6 @@ describeTriDaemon('tri-daemon-drill program gate', () => {
     );
     const codeRun = spawnShim(
       sandbox.codeIndexShim,
-      ['code_graph_status', '--format', 'json'],
       serviceEnv(sandbox, sandbox.codeSocketDir),
       sandbox.root,
     );

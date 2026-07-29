@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the phase parent and all fifteen child specs"
     next_safe_action: "Wire the cli-devin executor, then launch the touchpoint research fan-out into 001"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -81,6 +81,7 @@ Retire the subsystem completely and safely: establish the true touchpoint invent
 - Designing or building a replacement indexing engine.
 - Editing archived spec packets, changelogs, or benchmark reports — they are the historical record.
 - The spec-doc and saved-memory search path, which is a separate subsystem.
+- **Every other graph subsystem in the repo.** Spec Memory's causal and knowledge graphs, the Skill Advisor's skill graph, and the deep-loop coverage and council graphs are unrelated and survive intact. Matching on the word "graph" rather than on the exact retiring identities is the fastest way to break three healthy subsystems while removing one.
 
 ### Files to Change
 Summary of aggregate file scope. Per-phase detail lives in child plans.
@@ -106,27 +107,28 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-touchpoint-research/ | Multi-model research pass producing the cited touchpoint inventory, ordering graph, and per-consumer disposition | Pending |
-| 2 | 002-decommission-decision-record/ | Ratify the capability loss, the replacement routing, the archival boundary, and the rollback procedure | Pending |
-| 3 | 003-runtime-deregistration/ | Remove the MCP registration from all five runtime surfaces and the permission allowlist | Pending |
-| 4 | 004-plugin-and-hook-removal/ | Delete the two plugins; clear freshness hooks, the post-commit hook, session reapers, and worktree rules | Pending |
-| 5 | 005-spec-kit-runtime-decoupling/ | Remove the process boundary, shared contracts, mirrored schemas, and graph state from spec-kit source | Pending |
-| 6 | 006-spec-kit-test-and-harness-cleanup/ | Retire or rewrite the spec-kit tests, stress harnesses, and matrix templates covering that coupling | Pending |
-| 7 | 007-skill-advisor-decoupling/ | Remove the graph node, edges, signals, scorer lanes, and benches; rebuild the advisor | Pending |
-| 8 | 008-deep-loop-and-skill-surface/ | Clear references from deep-loop, mcp-code-mode route guards, sk-doc, sk-code, and the skills index | Pending |
-| 9 | 009-command-surface/ | Delete the doctor route, strip tool grants, and re-render the generated command contracts | Pending |
-| 10 | 010-agent-definitions/ | Strip grants and graph-first prose from eight agents across three runtime mirrors | Pending |
-| 11 | 011-doctrine-and-docs/ | Rewrite the Mandatory Tools table, search decision tree, server roster, READMEs, and install guides | Pending |
-| 12 | 012-ci-and-binaries/ | Delete the launcher, CLI, bridge, their tests, the isolation CI job, and stale ignore rules | Pending |
-| 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Pending |
-| 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Pending |
-| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | Pending |
+| 1 | 001-touchpoint-research/ | Multi-model research pass producing the cited touchpoint inventory, ordering graph, and per-consumer disposition | Complete |
+| 2 | 002-decommission-decision-record/ | Ratify the capability loss, the replacement routing, the archival boundary, and the rollback procedure | Complete |
+| 3 | 003-runtime-deregistration/ | Remove the MCP registration from all five runtime surfaces and the permission allowlist | Complete |
+| 4 | 004-plugin-and-hook-removal/ | Delete the two plugins; clear freshness hooks, the post-commit hook, session reapers, and worktree rules | Complete |
+| 5 | 005-spec-kit-runtime-decoupling/ | Remove the process boundary, shared contracts, mirrored schemas, and graph state from spec-kit source | Complete |
+| 6 | 006-spec-kit-test-and-harness-cleanup/ | Retire or rewrite the spec-kit tests, stress harnesses, and matrix templates covering that coupling | Complete |
+| 7 | 007-skill-advisor-decoupling/ | Remove the graph node, edges, signals, scorer lanes, and benches; rebuild the advisor | Complete |
+| 8 | 008-deep-loop-and-skill-surface/ | Clear references from deep-loop, mcp-code-mode route guards, sk-doc, sk-code, and the skills index | Complete |
+| 9 | 009-command-surface/ | Delete the doctor route, strip tool grants, and re-render the generated command contracts | Complete |
+| 10 | 010-agent-definitions/ | Strip grants and graph-first prose from eight agents across three runtime mirrors | Complete |
+| 11 | 011-doctrine-and-docs/ | Rewrite the Mandatory Tools table, search decision tree, server roster, READMEs, and install guides | Complete |
+| 12 | 012-ci-and-binaries/ | Delete the launcher, CLI, bridge, their tests, the isolation CI job, and stale ignore rules | Complete |
+| 13 | 013-skill-deletion-and-daemon-reap/ | Reap the daemon, release leases and sockets, remove the directory — gated on 003–012 | Complete |
+| 14 | 014-historical-reference-policy/ | Leave archived history intact; add one tombstone at the track root | Complete |
+| 15 | 015-verification-and-closeout/ | No-ignore sweep, suite deltas against baseline, clean starts in every runtime, metadata reconciliation | Complete |
+| 16 | 016-deep-review/ | Two-lane external audit (Grok 4.5 High + DeepSeek v4 Pro, 5 iterations each, forced depth) of every touched surface | Complete |
 
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
 - Phases 003 through 012 are decoupling; phase 013 is the only irreversible step and is gated on all of them
-- Every sweep and verification command MUST use `--no-ignore`, or it silently skips the MCP registration files
+- Every sweep and verification command MUST use both `--hidden` and `--no-ignore`; `--no-ignore` alone still skips every dot-prefixed control file
 - Archived surfaces are never edited, in any phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 

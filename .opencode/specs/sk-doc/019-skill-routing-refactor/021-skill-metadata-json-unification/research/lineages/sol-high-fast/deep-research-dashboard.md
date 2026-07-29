@@ -17,13 +17,14 @@ Reducer-generated observability surface for the active research packet.
 ## 2. STATUS
 - Topic: Root-level skill metadata JSON contract for .opencode/skills/ across all 12 skills
 - Started: 2026-07-27T17:56:03Z
-- Status: INITIALIZED
-- Iteration: 3 of 10
+- Status: COMPLETE
+- Iteration: 5 of 10
 - Session ID: fanout-sol-high-fast-1785174758167-rdrppf
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
 - continuedFromRun: none
+- stopReason: converged
 
 <!-- /ANCHOR:status -->
 <!-- ANCHOR:progress -->
@@ -34,42 +35,41 @@ Reducer-generated observability surface for the active research packet.
 | 1 | Build the exact 12-skill by eight-file root-level presence census and identify producer evidence for each file type. | metadata-census | 1.00 | 5 | complete |
 | 2 | Trace consumers and schemas for description.json, graph-metadata.json, mode-registry.json, and hub-router.json. | hub-metadata-consumers | 1.00 | 5 | complete |
 | 3 | Complete schemas and consumer call sites for leaf-manifest.json, leaf-manifest.config.json, leaf-aliases.json, and command-metadata.json. | leaf-command-contracts | 1.00 | 5 | complete |
+| 4 | Derive the consumer-based skill taxonomy and resolve every exceptional presence case. | skill-class-taxonomy | 0.80 | 5 | complete |
+| 5 | Canonical documentation, safe generation/backfill ownership, and a fleet presence-plus-freshness gate. | contract-and-enforcement | 0.90 | 5 | complete |
 
-- iterationsCompleted: 3
-- keyFindings: 15
-- openQuestions: 3
-- resolvedQuestions: 2
+- iterationsCompleted: 5
+- keyFindings: 25
+- openQuestions: 0
+- resolvedQuestions: 5
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:questions -->
 ## 4. QUESTIONS
-- Answered: 2/5
+- Answered: 5/5
 - [x] What is the complete 12-skill by eight-file root-level census, and who produces each file type?
 - [x] What schema and complete consumer call-site set governs each file type, including advisor, benchmark, doctor, and tests?
-- [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective? [legacy-import]
-- [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks? [legacy-import]
-- [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it? [legacy-import]
+- [x] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
+- [x] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
+- [x] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
 
 <!-- /ANCHOR:questions -->
 <!-- ANCHOR:uncovered-questions -->
 ## Uncovered Questions
-- Count: 3
-- [ ] What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?
-- [ ] How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?
-- [ ] Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?
+- Count: 0
+- None
 
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-- score sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-- Last 3 ratios: 1.00 -> 1.00 -> 1.00
+- newInfoRatio sparkline: ██████████▇▆▄▃▁▂▂▃▄▅
+- score sparkline: ██████████▇▆▄▃▁▂▂▃▄▅
+- Last 3 ratios: 1.00 -> 0.80 -> 0.90
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 1.00
-- coverageBySources: {"code":55,"other":7}
-- WARNING event: novelty_signal_inert metric=newInfoRatio run=3 window=3 sparkline=▄▄▄ — newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and "not exhausted" claims derived from it are untrustworthy.
-- Advisory event: trend_flatline metric=score run=3 window=3 sparkline=▄▄▄
+- convergenceScore: 0.90
+- coverageBySources: {"code":112,"other":9}
+- Advisory events: none
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
@@ -87,6 +87,16 @@ Reducer-generated observability surface for the active research packet.
 - Treating `command-metadata.json` as a generic advisor fleet input: the only multi-hub reader is a test with a fixed four-hub list, while production validation is local to `sk-design`. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 3)
 - Treating `leaf-aliases.json` as equivalent to registry aliases or standalone root config: neither alternative carries the `{workflowMode, leafResourceId, diskPath}` legacy-resolution mapping. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 3)
 - Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91] (iteration 3)
+- Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179] (iteration 4)
+- Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] (iteration 4)
+- Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147] (iteration 4)
+- Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] (iteration 4)
+- Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader] (iteration 4)
+- A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180] (iteration 5)
+- Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15] (iteration 5)
+- Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71] (iteration 5)
+- Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration] (iteration 5)
+- Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126] (iteration 5)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -101,7 +111,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective?
+[All tracked questions are resolved]
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

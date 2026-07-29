@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates",
+  "description": "Close the template gap for the skill-root metadata contract: JSON scaffolds for command-metadata, hub leaf-aliases, standalone graph-metadata, and",
+  "keywords": [
+    "close",
+    "template",
+    "gap",
+    "skill-root",
+    "metadata",
+    "contract",
+    "json",
+    "scaffolds",
+    "command-metadata",
+    "hub",
+    "leaf-aliases",
+    "standalone",
+    "graph-metadata"
+  ],
+  "lastUpdated": "2026-07-28T14:02:48.587Z",
+  "specId": "023",
+  "folderSlug": "skill-metadata-templates",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

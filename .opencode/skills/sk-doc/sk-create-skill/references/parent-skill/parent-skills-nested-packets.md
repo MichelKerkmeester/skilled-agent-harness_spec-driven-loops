@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 2.0.0.0
+version: 2.0.0.1
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -31,6 +31,8 @@ parent-hub/
   hub-router.json
   description.json
   graph-metadata.json
+  command-metadata.json
+  leaf-manifest.json
   changelog/
   manual-testing-playbook/
   benchmark/
@@ -53,7 +55,7 @@ Core rules:
 - **Mode kind**: every mode entry declares `packetKind: "workflow" | "surface" | "transport"`. Workflow and surface are the two primary axes; `transport` is a narrow third kind for packets that bridge to an external tool's CLI/MCP surface (declared via the `transport-axis` extension) and never perform the hub's own judgment.
 - **Workflow packets**: process or lifecycle modes such as implement, quality, review, research, or audit. They may mutate or stay read-only according to their role.
 - **Surface packets**: read-only evidence bases such as `code-webflow` or `code-opencode` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
-- **One advisor identity**: only the hub has `graph-metadata.json` and `description.json` (the advisor-routable metadata pair); packets never carry their own. No mode packet or `shared/` directory holds either file.
+- **One advisor identity**: the hub's `graph-metadata.json` is the advisor identity input. Hub-only `description.json` is doctor metadata; packets never carry either file. No mode packet or `shared/` directory holds them. The full per-class rule for every root-level metadata JSON is canonical in [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md).
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
 - **Named extensions only**: optional behavior is declared in top-level `extensions`; it never changes the physical layout.
 
@@ -224,10 +226,10 @@ Naming policy:
 
 Companion file policy:
 
-- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, authored `command-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
-- A hub MAY carry an optional `command-metadata.json` (the advisor-facing per-command projection: `ownerMode`, `aliases`, `hubKeywordProjection`). When present it is a **declared surface**: every command key must map to a registered mode's `command` field, and its aliases fold into the registry rather than becoming a third free-floating vocabulary. Enforcement is the advisor drift guard — **pending** (it ships with the command-bridge lane); until it lands a hub's `command-metadata.json` may carry advisor-facing phrases the registry does not yet list (sk-design does today), and those must be reconciled into the registry, not left to diverge.
+- Every class-H hub requires authored `command-metadata.json`: one entry per slash command it owns, or the literal `[]` when it owns none. The fleet gate validates the file; see [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) for the complete matrix.
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json` or `description.json`.
 - A single shared workflow doctrine may live once under `shared/` and be **symlinked** into each packet that consumes it (sk-code symlinks its implement → debug → verify doctrine into both surfaces), so packets bundle the doctrine as read-only evidence without forking per-packet copies. The acting agent executes the process; the packet never carries it.
 
@@ -242,3 +244,6 @@ Companion file policy:
 - [validation-and-packaging.md](../shared/validation-and-packaging.md) - validation and packaging gates.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub template.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - registry scaffold.
+- [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) - command-surface scaffold (class-H requirement; `[]` when the hub owns no commands).
+- [parent-skill-leaf-aliases-template.json](../../assets/parent-skill/parent-skill-leaf-aliases-template.json) - authored alias scaffold for the rare hub that relocates a mode resource into `shared/`.
+- [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - the full file matrix with the per-class template map.

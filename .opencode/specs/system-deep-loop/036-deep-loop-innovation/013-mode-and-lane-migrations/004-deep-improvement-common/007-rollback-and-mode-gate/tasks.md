@@ -1,25 +1,28 @@
 ---
 title: "Tasks: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Tasks for planning and verifying the shared Deep Improvement Common Services fail-closed rollback switch, bounded rollback window, independent mode gate, common-service reuse, and phase-014 readiness certificate."
+description: "Completed tasks for the shared Deep Improvement Common Services rollback switch, bounded rollback window, independent gate, and phase-014 readiness certificate."
 trigger_phrases:
   - "deep improvement common rollback and mode gate tasks"
   - "shared evaluator rollback switch tasks"
   - "deep improvement migration gate tasks"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-28T14:07:58Z"
     last_updated_by: "opencode"
-    recent_action: "Defined rollback switch and common-service gate evidence boundary"
-    next_safe_action: "Freeze gate predicates and rollback window evidence against shared contracts"
+    recent_action: "Verified the shared rollback gate"
+    next_safe_action: "Reuse the shared contract in extension lanes"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "All implementation and verification tasks are complete."
 ---
 # Tasks: Deep Improvement Common Services - Rollback & Mode Gate
 
@@ -40,51 +43,51 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase remains planning-only, the legacy path remains authoritative, and the gate has no direct cutover capability
-- [ ] T002 [P] Pin BASE and the shared transition/versioning/rollback policy, including the 14-day and five-successful-authoritative-execution minimum
-- [ ] T003 [P] Record the phase-012 shared mode contract, write-set conflict graph, and phase-014 handoff fingerprints
-- [ ] T004 Inventory common-service sibling outputs `001` through `006`: event, reducer, seal, certificate, receipt, replay, resume, and parity boundaries
-- [ ] T005 [P] Inventory shared evaluator, canary, and promotion logic and classify common ownership, variant adapters, evidence, and legacy projections
-- [ ] T006 Build the gate input manifest and the common-service reuse matrix for `005-agent-improvement`, `006-model-benchmark`, and `007-skill-benchmark`
+- [x] T001 Confirm legacy authority remains unchanged and the gate has no direct cutover capability [evidence: `implementation-summary.md`; additive-dark certificate assertions; focused Vitest 36/36]
+- [x] T002 [P] Pin BASE and the shared transition/versioning/rollback policy, including the 14-day and five-successful-authoritative-execution minimum [evidence: `implementation-summary.md`; mode certificate and window tests]
+- [x] T003 [P] Record the phase-012 shared mode contract, write-set graph, and phase-014 handoff fingerprints [evidence: `implementation-summary.md`; exact certificate bindings]
+- [x] T004 Inventory common-service sibling outputs `001` through `006` [evidence: `implementation-summary.md`; direct runtime imports and whole-runtime tsc]
+- [x] T005 [P] Inventory shared evaluator, canary, and promotion ownership [evidence: `implementation-summary.md`; six-kind artifact closure and common certificate fields]
+- [x] T006 Build the gate input manifest and common-service reuse matrix [evidence: `implementation-summary.md`; public exports]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Define the default-deny switch states, request fields, external authorization decision, epoch rules, fencing token, and stale-writer rejection
-- [ ] T008 Define refusal and trigger taxonomy for missing, malformed, stale, mixed-version, wrong-mode, parity, seal, certificate, replay, receipt, health, budget, canary, and effect failures
-- [ ] T009 Define the rollback window record with window ID, legacy anchor, typed frontier, opening and expiry policy, trigger policy, successful-run count, and close receipt
-- [ ] T010 Define the 14-calendar-day and five-successful-authoritative-execution rule, low-traffic extension, unresolved-obligation extension, and re-arming behavior
-- [ ] T011 Define the non-destructive rollback runbook: freeze admission, fence writers, classify in-flight operations, recover or quarantine effects, restore legacy at a new epoch, preserve evidence, and issue a certificate
-- [ ] T012 Define the independent gate predicates for shadow parity, sealed artifacts, certificates, receipts, replay, resume, lifecycle fixtures, rollback rehearsal, and zero authority writes
-- [ ] T013 Define evaluator evidence rules that retain raw observations separately from normalization, calibration, aggregation, and promotion decisions
-- [ ] T014 Define canary and promotion gate rules for freshness, semantic leakage, evaluator integrity, hard vetoes, uncertainty, pause, abort, restore, and insufficient evidence
-- [ ] T015 Define the common-service reuse contract and reject variant-local copies or weakened evaluator, canary, promotion, receipt, certificate, fingerprint, or rollback semantics
-- [ ] T016 Define the exact-SHA-bound mode-migration certificate, verifier receipt, failed-predicate list, unresolved obligations, rollback anchor, window state, and phase-014 handoff
-- [ ] T017 [P] Define deterministic `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` result semantics without implicit fallback to pass
+- [x] T007 Define default-deny switch and fencing behavior [evidence: `implementation-summary.md`; `DeepImprovementCommonRollbackSwitch`; focused Vitest 36/36]
+- [x] T008 Define the typed refusal taxonomy [evidence: `implementation-summary.md`; closed denial and gate reason unions]
+- [x] T009 Define the rollback-window record [evidence: `implementation-summary.md`; `DeepImprovementCommonRollbackWindowInput` and evaluation]
+- [x] T010 Define both minimums and extension rules [evidence: `implementation-summary.md`; window threshold, dedup, and extension tests]
+- [x] T011 Define non-destructive rollback evidence [evidence: `implementation-summary.md`; rollback certificate keeps deletion and mutation fields false]
+- [x] T012 Define independent gate predicates [evidence: `implementation-summary.md`; five ordered dispositions over real substrates]
+- [x] T013 Preserve raw evaluator evidence separately from normalized scores [evidence: `implementation-summary.md`; required raw-trial artifact and verified certificate closure]
+- [x] T014 Define canary and promotion gate rules [evidence: `implementation-summary.md`; fresh canary and promotion readers plus certificate identity checks]
+- [x] T015 Define the common-service reuse contract [evidence: `implementation-summary.md`; stable public index exports]
+- [x] T016 Define the exact-SHA readiness certificate [evidence: `implementation-summary.md`; complete certificate core and digest]
+- [x] T017 [P] Define deterministic non-green and ready result semantics [evidence: `implementation-summary.md`; typed disposition fold and adversarial tests]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T018 Verify absent, malformed, stale, unauthorized, mixed-version, wrong-mode, and gateway-failed switch requests preserve legacy authority and produce no semantic append or side effect
-- [ ] T019 Verify the shared services cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration
-- [ ] T020 Verify the rollback window cannot close before both 14 calendar days and five successful authoritative executions and extends on low traffic or unresolved obligations
-- [ ] T021 Verify rollback rehearsal freezes admission, fences stale writers, classifies in-flight work, resolves known effects safely, changes the epoch, restores legacy, preserves evidence, and emits a certificate
-- [ ] T022 Verify event and projection parity across candidate generation, raw evaluation, scoring, canary, promotion, abort, restore, resume, duplicate, crash, and incomplete fixtures
-- [ ] T023 Verify seals, dependency closures, evaluator epochs, canary freshness, certificate bodies, receipt chains, replay fingerprints, and artifact references offline
-- [ ] T024 Verify missing observations, changed policies, unknown effects, telemetry gaps, unsupported versions, and nondeterministic replay remain non-green
-- [ ] T025 Verify all three downstream variant adapters consume identical common-service decisions and cannot pass with private service or gate semantics
-- [ ] T026 Verify repeated evaluation of one sealed frontier produces the same gate result and certificate body digest; mutate semantic inputs and require rejection
-- [ ] T027 Verify phase 014 receives readiness evidence only and rejects any certificate claiming authority moved, the window closed, or legacy writers retired
+- [x] T018 Verify fail-closed switch requests preserve legacy authority [evidence: `implementation-summary.md`; malformed, unknown-field, destructive, anchor, resource, and authorization tests]
+- [x] T019 Verify recovery requires external authorization [evidence: `implementation-summary.md`; real gateway policy and bound authorization request]
+- [x] T020 Verify rollback-window minimums and extensions [evidence: `implementation-summary.md`; distinct-identity and below-threshold tests]
+- [x] T021 Verify fenced non-destructive rollback evidence [evidence: `implementation-summary.md`; real coordinator token and high-water tests]
+- [x] T022 Verify complete common lifecycle evidence [evidence: `implementation-summary.md`; thirteen distinct authenticated lifecycle identities]
+- [x] T023 Verify seals, certificates, receipts, and replay offline [evidence: `implementation-summary.md`; real readers, offline verifier, and six-kind replacement tests]
+- [x] T024 Verify uncertainty remains non-green [evidence: `implementation-summary.md`; typed fail-closed dispositions and null certificates]
+- [x] T025 Freeze one shared contract for all three adapters [evidence: `implementation-summary.md`; common public exports with no variant-local policy]
+- [x] T026 Verify deterministic certificate reproduction and semantic invalidation [evidence: `implementation-summary.md`; reverified certificate and tamper tests]
+- [x] T027 Verify phase-014 readiness only [evidence: `implementation-summary.md`; false mutation, window-closed, and cutover fields]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Independent common-service mode gate green and phase-014 handoff certificate emitted
+- [x] All tasks complete
+- [x] All requirements in spec.md met with evidence
+- [x] Independent common-service mode gate green and phase-014 handoff certificate emitted
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

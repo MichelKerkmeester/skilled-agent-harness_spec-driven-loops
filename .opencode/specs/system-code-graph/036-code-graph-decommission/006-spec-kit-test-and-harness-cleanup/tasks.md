@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/006-spec-kit-test-and-harness-cleanup"
-    last_updated_at: "2026-07-27T16:33:56Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm phase 005 removed the production coupling these tests cover — evidence: `scratch/closeout-facts.md`
+- [x] T002 Classify each test file as graph-only, mixed, or graph-subject
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +59,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Delete 4 graph-only test files (launcher lifecycle and boundary proxy)
+- [x] T004 Strip mocks and imports across 10 mixed test files (surviving behavior kept)
+- [x] T005 Delete `session-health.vitest.ts` whole (every case proved graph-subject)
+- [x] T006 Delete `session-bootstrap.vitest.ts` whole (every case proved graph-subject)
+- [x] T007 Remove individual graph cases from `session-resume` and `context-metrics` tests
+- [x] T008 Remove graph tool templates and manifest rows from matrix runners — evidence: `scratch/closeout-facts.md`
+- [x] T009 Remove smoke matrices (commit `fef098b6b2`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T010 Full spec-kit suite passes at 418 tests green (commit `607ba8cdf6`)
+- [x] T011 Confirm no test imports a deleted module — evidence: `scratch/closeout-facts.md`
+- [x] T012 Confirm no test is skipped to make the run pass — evidence: `scratch/closeout-facts.md`
+- [x] T013 Enumerate dropped coverage explicitly — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +84,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (418 tests green, no skipped tests)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -103,4 +106,3 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
-

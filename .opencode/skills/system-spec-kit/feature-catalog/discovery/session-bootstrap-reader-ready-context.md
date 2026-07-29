@@ -16,7 +16,6 @@ version: 3.6.0.3
 
 ## 1. OVERVIEW
 
-`session_bootstrap` is the orchestration surface that makes a non-hook runtime reader-ready in a single tool call. It returns a bounded profile of the active workspace, a graph-readiness status, and a `recommendedNextAction` string that names the follow-on path (`session_resume`, `code_graph_scan`, or direct spec-folder recovery).
 
 The handler fails open. When the graph database is stale, missing, or otherwise degraded, the response still names a recovery action rather than throwing. This keeps the caller out of error-handling code paths during startup and lets operators reach productive context inside one tool invocation.
 

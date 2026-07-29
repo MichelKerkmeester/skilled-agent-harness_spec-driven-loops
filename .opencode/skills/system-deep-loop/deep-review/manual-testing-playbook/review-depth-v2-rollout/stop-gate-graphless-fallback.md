@@ -39,7 +39,6 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 3. Run the convergence or workflow path that exercises `step_check_convergence`.
 4. Inspect the blocked_stop output for `blocked_gates[]` containing `graphlessFallbackGate`.
 5. Confirm the recovery_strategy explains that fallback proof is missing rather than requiring graph mode.
-6. Add at least one cited `searchLedger` row using a fallback method (`direct_read`, `exact_grep`, `semantic_search`, `code_graph_status_check`, `producer_consumer_trace`, or `negative_test_inspection`) and rerun to verify the gate condition changes.
 
 ### Expected Outcome
 

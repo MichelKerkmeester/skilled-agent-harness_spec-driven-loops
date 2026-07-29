@@ -270,7 +270,6 @@ function buildCandidateMap(
 ): Record<SearchQualityChannel, SearchQualityCandidate[]> {
   return {
     memory_search: captures.find((capture) => capture.channel === 'memory_search')?.candidates ?? [],
-    code_graph_query: captures.find((capture) => capture.channel === 'code_graph_query')?.candidates ?? [],
     skill_graph_query: captures.find((capture) => capture.channel === 'skill_graph_query')?.candidates ?? [],
   };
 }

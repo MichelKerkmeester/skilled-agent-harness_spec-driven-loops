@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/010-agent-definitions"
-    last_updated_at: "2026-07-27T16:33:59Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -50,9 +50,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Enumerate the eight agents and confirm the four regular-file mirrors (`.cursor` symlinked)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Remove graph tool grants from all eight agents in `.opencode/agents/*.md`
+- [x] T003 Mirror the change in `.claude/agents/*.md`
+- [x] T004 Mirror the change in `.codex/agents/*.toml`
+- [x] T005 Mirror the change in `.pi/agents/*.md` (8 files carry grants + daemon-fallback prose)
+- [x] T006 Rewrite search-routing prose to name the replacement path — evidence: `scratch/closeout-facts.md`
+- [x] T007 Reduce wedged-daemon fallback prose to the spec-memory daemon only — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Markdown frontmatter and TOML parse cleanly — evidence: `scratch/closeout-facts.md`
+- [x] T009 Mirror parity: equivalent tool grants across the four runtimes — evidence: `scratch/closeout-facts.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (parse + parity diff)
 <!-- /ANCHOR:completion -->
 
 ---

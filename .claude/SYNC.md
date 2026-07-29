@@ -74,7 +74,6 @@ Agent frontmatter is Claude's own dialect:
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement
-tools: Read, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code_index__detect_changes
 ---
 ```
 
@@ -120,5 +119,5 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 |---|---|
 | [`hooks/README.md`](hooks/README.md) | Why `hooks/` is discovery-only and not the execution path |
 | [`agents/README.txt`](agents/README.txt) | Agent roster |
-| [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) | Sibling runtime manifests |
+| [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.devin/SYNC.md`](../.devin/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |
 | `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | The symlink-tree generator |

@@ -11,13 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined ledger-only resume boundaries for the Deep AI Council phase"
-    next_safe_action: "Specify reducer replay order and idempotent re-entry fixtures"
+    last_updated_at: "2026-07-27T22:02:42Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the offline-verified council resume adapter"
+    next_safe_action: "Shadow parity consumes the closed resume decision"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-ai-council |
 | **Origin** | Phase 013 Deep AI Council migration: resume adapter for the typed event-ledger substrate |
@@ -61,7 +64,7 @@ idempotent re-entry decision. The adapter must distinguish completed work, pendi
 history, and blocked recovery without consulting mutable prose, current model output, or an unsealed tail. It plans the
 resume boundary only; it does not move authority, redesign council scoring, or implement the shared ledger substrate.
 The Deep AI Council schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED but additive-dark; this
-Planned adapter consumes them without moving authority.
+implemented adapter consumes them without moving authority.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

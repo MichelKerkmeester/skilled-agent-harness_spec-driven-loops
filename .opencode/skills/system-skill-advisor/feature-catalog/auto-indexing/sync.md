@@ -6,7 +6,7 @@ trigger_phrases:
   - "graph-metadata write"
   - "derived.json write"
   - "sync derived block"
-version: 0.8.0.13
+version: 0.8.0.14
 ---
 
 # Graph-Metadata Derived Sync
@@ -45,6 +45,7 @@ Persist derived extraction so the scorer and rebuild-from-source pipeline can bo
 
 Related references:
 
+- [Skill-root metadata contract](../../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md)
 - [01-derived-extraction.md](../../feature-catalog/auto-indexing/derived-extraction.md).
 - [02-sanitizer.md](./sanitizer.md).
 - [`daemon-and-freshness/rebuild-from-source.md`](../../feature-catalog/daemon-and-freshness/rebuild-from-source.md).

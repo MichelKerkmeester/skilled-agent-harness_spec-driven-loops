@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command metadata standard",
+      "every hub command metadata",
+      "command metadata core schema",
+      "hub command surface validation",
+      "command metadata plan",
+      "hub command surface plan",
+      "command metadata tasks",
+      "command metadata checklist",
+      "command metadata implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "metadata",
+      "standard",
+      "every",
+      "hub",
+      "core",
+      "schema",
+      "surface",
+      "validation",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/command-metadata-schema.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      ".opencode/skills/sk-doc/create-skill/SKILL.md",
+      "scripts/README.md",
+      "scripts/lib/README.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata-schema.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/command-metadata-schema.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-leaf-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Metadata",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Standard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Only sk-design's two commands had machine-checked contracts: argument grammar, routing signals, and load choreography as validated data",
+    "created_at": "2026-07-28T13:01:58.044Z",
+    "last_save_at": "2026-07-28T13:08:48.426Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c4e596f652638a1a7917741e6e03f921b7cc8ca9b7a57e6dda03ca368ff04376",
+    "source_doc_hashes": {
+      "spec.md": "a91c94d55546de0104d32d307225930c9af04173aff0f23d2ae1db4eee4b7d51",
+      "plan.md": "b826e8c6bf162e576ca10ef2a00bfa53cddd702e8054f1019e763158bf0e7e4e",
+      "tasks.md": "d943d54ac63cb0a129c3c189fc49c9c5eae19d9a0164ba328da68eb51740f399",
+      "checklist.md": "918032189b9dd8f3fe325c3e171ae0738c01401a27e81a18aea6446c44d18441",
+      "implementation-summary.md": "1be51c40a9d65834fd88845c53d5690a038f35b97e2a3905399e437f6f98d5c0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

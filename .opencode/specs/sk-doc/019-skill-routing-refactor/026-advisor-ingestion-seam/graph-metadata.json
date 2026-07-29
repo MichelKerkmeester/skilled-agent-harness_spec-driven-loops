@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor ingestion seam",
+      "new skill not discovered by advisor",
+      "watcher does not see new skill root",
+      "skill graph refresh after create",
+      "advisor ingestion seam plan",
+      "advisor ingestion seam tasks",
+      "advisor ingestion seam checklist",
+      "ingestion seam decision",
+      "watcher watches skills root decision",
+      "advisor ingestion seam summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "ingestion",
+      "seam",
+      "new",
+      "skill",
+      "discovered",
+      "watcher",
+      "see",
+      "root",
+      "graph",
+      "refresh",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Ingestion Seam",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "unit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Integration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-safety",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Items",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The creation journey ends at \"gates pass\" — but passing gates does not make a skill routable",
+    "created_at": "2026-07-28T15:16:01.067Z",
+    "last_save_at": "2026-07-28T16:27:36.880Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7fbe477448002b22b7f0bb1d1a347881f95fa15367c8016a5f2f3222032f2da4",
+    "source_doc_hashes": {
+      "spec.md": "eee0d454f5573fb08bc58d58757d597aa23de6ce94b59f1c66d4326a4d4eecc2",
+      "plan.md": "a3edaa72c1ff0e3eaa3bbdeadb93125c3fbe4284993edceea843bb9d71759ff8",
+      "tasks.md": "dabba4e2dc2959696c9c19a51f4107c8d0f6a5eb0b945695e9a75318f5ae2af3",
+      "checklist.md": "8bbc7c99f547be1dccf158f1a062b29f2f00b4154773dd016dd8f961979519bd",
+      "decision-record.md": "fa938a8ae4c9cbc34a13e40ec465773bcf397f5ac129ffae9422c339d39481a2",
+      "implementation-summary.md": "324a8b34b3b701c36e97257f06d75cc0ab9c8c7f64c69a5c741ed5b776e4ba0f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

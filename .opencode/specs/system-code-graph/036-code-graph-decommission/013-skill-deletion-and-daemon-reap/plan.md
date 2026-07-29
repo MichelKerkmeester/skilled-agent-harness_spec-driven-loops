@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 13: skill-deletion-and-daemon-reap"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "The irreversible step: reaped the running daemon process and its /tmp IPC socket in this session, and confirmed the skill directory is absent from both the working tree and the git index after a concurrent session removed it. No pre-deletion backup of ignored SQLite/WAL/lease state was possible because the tree was already gone."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/013-skill-deletion-and-daemon-reap"
-    last_updated_at: "2026-07-27T16:34:01Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Shell (process reap), git (tree removal) |
+| **Framework** | None |
+| **Storage** | SQLite/WAL/lease state (ignored, unrecoverable) |
+| **Testing** | Process check, socket check, `git ls-files` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Reaped the running daemon process and its `/tmp/mk-code-index` IPC socket in this session, and confirmed the skill directory is absent from both the working tree and the git index. The directory was already removed by a concurrent session before this phase ran, so the pre-deletion backup of ignored SQLite/WAL/lease state was impossible and is recorded as a limitation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,16 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Process teardown (daemon reap, socket release) plus tree-absence confirmation.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Daemon process**: reaped in this session; no `mk-code-index` process survives
+- **IPC socket**: `/tmp/mk-code-index` socket removed; no stale socket directory remains
+- **Skill directory**: absent from disk and git index (removed by concurrent session)
+- **Ignored state**: SQLite, WAL, and lease files were never tracked and are unrecoverable
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Process first, then socket, then tree-absence confirmation. The directory was already gone before this phase ran, so the reap was the remaining work.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +95,14 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable as a fix_bug finding. This phase is a process teardown and tree removal, not a bug fix.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Daemon process | Running mk-code-index process | Reaped | Process check finds nothing |
+| IPC socket | `/tmp/mk-code-index` bound socket | Removed | No socket at the path |
+| Skill directory | Subsystem on disk and in git index | Absent (concurrent session) | `git ls-files` shows nothing under the old path |
+| Ignored state | SQLite/WAL/lease files | Unrecoverable (never tracked, tree gone) | Recorded as limitation |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +111,20 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed phases 003-012 complete and verified before this phase
+- [x] Confirmed the repository was quiet (no concurrent session mid-write)
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Reaped the running daemon process (no `mk-code-index` process survives)
+- [x] Removed the `/tmp/mk-code-index` IPC socket and its temporary directory
+- [x] Confirmed the skill directory is absent from the working tree (concurrent session removed it)
+- [x] Confirmed the skill directory is absent from the git index (`git ls-files` clean)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] No `mk-code-index` process running (process check empty)
+- [x] No `/tmp/mk-code-index` socket (socket check empty)
+- [x] 0 tracked files under the old skill path (`git ls-files`)
+- [x] No `mk_code_index` in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +134,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Manual | Process check | `pgrep` / process listing |
+| Manual | Socket check | filesystem check at `/tmp/mk-code-index` |
+| Manual | Tree absence | `git ls-files` under old skill path |
+| Manual | Config sweep | `rg --hidden --no-ignore mk_code_index` across configs |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +147,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phases 003-012 | Internal | Green | A surviving consumer would break on deletion |
+| Quiet repository | Internal | Green | A concurrent session writing during deletion could corrupt the removal |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +156,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The subsystem must be restored (not expected; the decommission is the intended end state).
+- **Procedure**: Restore the skill directory from git history per the phase 002 rollback procedure (ADR-005). Ignored state (SQLite, WAL, lease files) was never tracked and cannot be restored; the daemon would rebuild its database on first run.
 <!-- /ANCHOR:rollback -->
 
 ---

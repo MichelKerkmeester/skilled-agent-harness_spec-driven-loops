@@ -1,0 +1,1 @@
+../../.opencode/hooks/goal/pi/goal-context.ts

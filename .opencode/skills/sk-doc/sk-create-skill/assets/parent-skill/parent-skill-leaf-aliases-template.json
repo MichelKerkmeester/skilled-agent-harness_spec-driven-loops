@@ -1,0 +1,10 @@
+{
+  "_template": "Parent-hub leaf-aliases.json scaffold — AUTHORED and OPTIONAL for hubs. Author a row ONLY when a mode genuinely resolves a resource outside its own packet (usually into shared/); most hubs need no aliases at all, and an absent file means zero aliases. Do NOT author this on a standalone skill: there the file is a GENERATED identity projection written by ci-skill-root-metadata.cjs --fix, and hand edits are overwritten. Replace every [bracketed] placeholder and delete this wrapper object — the committed file's top level is the ARRAY below. Each diskPath must stay inside the hub root; generate-leaf-manifest.cjs merges rows into leaf-manifest.json, so regenerate the manifest after editing.",
+  "entries": [
+    {
+      "workflowMode": "[workflowMode-from-mode-registry]",
+      "leafResourceId": "[packet-root-relative id the router uses, e.g. assets/some-template.md]",
+      "diskPath": "[hub-root-relative real location, e.g. shared/assets/some-template.md]"
+    }
+  ]
+}

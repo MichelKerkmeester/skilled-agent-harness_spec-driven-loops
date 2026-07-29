@@ -1,1 +1,1 @@
-../../.opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
+../../.opencode/skills/system-spec-kit/mcp-server/hooks/claude/spec-gate-enforce.mjs

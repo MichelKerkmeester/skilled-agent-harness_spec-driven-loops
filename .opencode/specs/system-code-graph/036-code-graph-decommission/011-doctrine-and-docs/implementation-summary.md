@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/011-doctrine-and-docs"
-    last_updated_at: "2026-07-27T16:34:00Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 011-doctrine-and-docs |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Project doctrine no longer mandates a removed tool. The Mandatory Tools table, Code Search Decision Tree, MCP roster, and daemon fallback ladder now state the current truth, the dedicated setup guide is gone, and the bin/lib READMEs no longer document the launcher or CLI.
 
-### [Feature Name]
+### Doctrine rewritten
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+AGENTS.md (the same file as `CLAUDE.md` through a symlink, edited once) was rewritten so the Mandatory Tools table lists only surviving tools, the Code Search Decision Tree routes to a Grep-based search tree, the MCP roster states a 4-server count, and the daemon fallback ladder lists only live daemons. The `.claude/CLAUDE.md` search-routing directive was rewritten, the root README's subsystem coverage was removed, and the dedicated `SET-UP - Code Graph.md` guide was deleted along with its install-guides index entry. The bin and lib READMEs were updated to drop launcher, CLI, and bridge documentation. Doctrine stays in the present tense: it states the current state, not the migration narrative.
 
 ### Files Changed
 
@@ -69,7 +68,13 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `AGENTS.md` (= `CLAUDE.md` via symlink) | Modified | Rewrote Mandatory Tools, decision tree, MCP roster, daemon ladder, Quick Reference |
+| `.claude/CLAUDE.md` | Modified | Rewrote the search-routing directive |
+| `README.md` | Modified | Removed subsystem coverage |
+| `.opencode/install-guides/SET-UP - Code Graph.md` | Deleted | Entire guide was about the removed subsystem |
+| `.opencode/install-guides/README.md` | Modified | Removed the index entry |
+| `.opencode/bin/README.md` | Modified | Removed launcher/CLI documentation |
+| `.opencode/bin/lib/README.md` | Modified | Removed bridge documentation |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +88,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The doctrine was largely rewritten by a concurrent session (4-server roster, Grep-based search tree); this session swept the remainder and the bin/lib READMEs. The symlinked instruction file was edited once and verified to share one inode, and a `--no-ignore` sweep confirmed no instruction file or README references the removed subsystem.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +101,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Edit the symlinked AGENTS.md/CLAUDE.md once | Editing both would apply edits to the same file twice and double-count an audit |
+| Keep doctrine in the present tense | Instruction files state the current state; the migration narrative lives in the tombstone (phase 014) |
+| Delete the dedicated setup guide outright | A guide for a removed subsystem has no replacement purpose |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +116,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `rg --hidden --no-ignore` over instruction files/READMEs/guides | PASS — no reference to the removed subsystem |
+| AGENTS.md / CLAUDE.md inode | PASS — same inode, one set of edits |
+| install-guides index resolution | PASS — no dangling entry |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +131,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **None identified.** Doctrine was kept present-tense; the removal narrative is deliberately deferred to the phase 014 tombstone.
 <!-- /ANCHOR:limitations -->
 
 ---

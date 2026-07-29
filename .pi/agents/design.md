@@ -9,7 +9,6 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, external_directory
 ---
 
 # The Design Specialist: sk-design Parent-Skill Agent

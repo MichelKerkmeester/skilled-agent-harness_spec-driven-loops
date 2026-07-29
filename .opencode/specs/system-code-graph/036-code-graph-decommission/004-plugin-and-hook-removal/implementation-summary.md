@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal"
-    last_updated_at: "2026-07-27T16:33:55Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-plugin-and-hook-removal |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Every load-time and lifecycle-time path that reached into the code-graph skill folder is severed. The two OpenCode plugins are gone, the freshness hooks are out of every manifest, the reaper scripts no longer match a daemon that will never exist, and the orphan freshness-state directory is deleted.
 
-### [Feature Name]
+### Plugins and hooks removed
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The transport-bridge plugin (`mk-code-graph.js`) and the freshness plugin (`mk-code-graph-freshness.js`) were deleted along with their tests, because a static ESM import that fails cannot degrade gracefully and would crash the plugin host. The freshness hook entries were removed structurally from the Codex and Devin manifests, and the Cursor chained hook that lives inside `system-spec-kit` (rather than beside its three siblings) was stripped. Post-commit database invalidation, the daemon match patterns in `session-cleanup.sh` and `orphan-mcp-sweeper.sh`, and the worktree copy/exclude rules were all cleaned, and the `.code-graph-freshness-state` directory was deleted.
 
 ### Files Changed
 
@@ -69,7 +68,15 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/plugins/mk-code-graph.js` | Deleted | Transport bridge plugin |
+| `.opencode/plugins/mk-code-graph-freshness.js` | Deleted | Freshness plugin |
+| `.opencode/plugins/tests/mk-code-graph*.test.cjs` | Deleted | Plugin tests |
+| `.codex/hooks.json`, `.devin/hooks.v1.json` | Modified | Freshness hook entries removed |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Modified | Cursor chained hook stripped |
+| `.opencode/scripts/git-hooks/post-commit` | Modified | Database invalidation removed |
+| `.opencode/scripts/session-cleanup.sh`, `orphan-mcp-sweeper.sh` | Modified | Daemon match patterns removed |
+| `.opencode/bin/worktree-session.sh` | Modified | Copy/exclude rules cleaned |
+| `.opencode/skills/.code-graph-freshness-state/` | Deleted | Orphan state directory |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +90,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Plugins were deleted outright rather than guarded, hook entries removed structurally (matcher objects, not just strings), and the session-cleanup test was repointed at a surviving launcher so the suite stayed green at 13/13. The work was partly executed by a concurrent session and completed here.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +103,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Delete plugins outright instead of guarding the import | A static ESM import failure crashes plugin load; guarding leaves a dead code path |
+| Remove the Codex hook matcher object structurally | Dropping only the string would leave a matcher pointing at nothing |
+| Repoint the session-cleanup test at a surviving launcher | Keeps reaper coverage honest without referencing the removed daemon |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +118,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| session-cleanup vitest suite | PASS — 13/13 after repointing to a surviving launcher |
+| Hook manifests parse and omit the entry | PASS |
+| Reaper scripts match nothing | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +133,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The installed `~/.codex/hooks.json` refresh** (outside the repo) is not confirmed green in the facts; the tracked manifest is clean, but drift of the deployed copy is not separately recorded here.
 <!-- /ANCHOR:limitations -->
 
 ---

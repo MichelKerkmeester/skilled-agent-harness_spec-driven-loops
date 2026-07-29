@@ -40,11 +40,6 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Use system-code-graph for structural code search across the repository.',
-    expectedSkill: 'system-code-graph',
-    category: 'today-correct',
-  },
-  {
     prompt: 'Use mcp-code-mode to call an external MCP tool chain through TypeScript execution.',
     expectedSkill: 'mcp-code-mode',
     category: 'today-correct',
@@ -101,7 +96,6 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'I need to locate where this behavior is implemented without knowing the symbol names.',
-    expectedSkill: 'system-code-graph',
     category: 'intent-described',
   },
   {

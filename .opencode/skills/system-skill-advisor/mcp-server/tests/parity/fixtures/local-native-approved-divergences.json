@@ -112,16 +112,6 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter2-016",
-      "corpus": "labeled",
-      "promptHash": "sha256:40cdda6ce8f89f707df2e961a1050f2270e7e5b75d49fb744dbed65adadf535f",
-      "gold": "system-code-graph",
-      "localTop": "system-code-graph",
-      "nativeTop": "system-deep-loop",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=system-deep-loop)",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "rr-iter2-017",
       "corpus": "labeled",
       "promptHash": "sha256:a6d58b2f7cbbb25db486e2eab4c1e33e8b31b380c5e5800693f8242cd9c89584",

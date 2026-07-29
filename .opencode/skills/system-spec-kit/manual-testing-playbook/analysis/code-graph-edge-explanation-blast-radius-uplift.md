@@ -11,7 +11,6 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates `code_graph_query` relationship + blast_radius end-to-end. Covers (1) baseline 010/003 enrichment — `reason`, `step`, `depthGroups`, `riskLevel`, `minConfidence`, `ambiguityCandidates`, `failureFallback`; (2) **exact-limit overflow detection** added in 010/007/T-F (R-007-P2-4); (3) **multi-subject seed preservation** added in 010/007/T-F (R-007-P2-5); (4) **failureFallback.code enumeration** across all 5 codes added in 010/007/T-F (R-007-P2-6); (5) **edge reason/step control-character sanitization** added in 010/007/T-D (R-007-P2-3).
 
 ---
 
@@ -40,20 +39,14 @@ Validate Code Graph edge explanation, blast-radius enrichment, overflow handling
 
 **Block A — Baseline reason/step + blast_radius enrichment (010/003):**
 
-1. `code_graph_scan`
-2. `code_graph_query({ operation: "calls_from", subject: "<known-symbol>" })` — assert each edge row includes `reason` (string|null) and `step` (string|null).
-3. `code_graph_query({ operation: "blast_radius", subject: "<known-file-or-symbol>", maxDepth: 2 })` — assert `depthGroups[]`, `riskLevel ∈ {high, medium, low}`, `minConfidence` echo, `ambiguityCandidates[]` (may be empty).
-4. `code_graph_query({ operation: "blast_radius", subject: "<known-symbol>", maxDepth: 2, minConfidence: 0.75 })` — assert filtered output drops edges below 0.75; compare `affectedFiles` count vs the unfiltered run from step 3.
 
 **Block B — Exact-limit overflow detection (R-007-P2-4, 010/007/T-F):**
 
-5. Pick a `<seed-symbol>` whose blast radius produces exactly N affected files. Confirm N via a high-limit pre-query: `code_graph_query({ operation: "blast_radius", subject: "<seed-symbol>", limit: 1000 })`.
 6. Re-query with `limit: N` (the exact count). Assert response: `affectedFiles.length === N` AND `partialResult: false` (the 010/007/T-F fix requests `limit + 1` from SQL to detect TRUE overflow; previously this case false-positived to `partialResult: true`).
 7. Re-query with `limit: N - 1`. Assert response: `affectedFiles.length === N - 1` AND `partialResult: true` (genuine overflow case — sanity check the limit+1 logic still detects real overflow).
 
 **Block C — Multi-subject seed preservation (R-007-P2-5, 010/007/T-F):**
 
-8. `code_graph_query({ operation: "blast_radius", subjects: ["<resolvable-1>", "<resolvable-2>", "<NONEXISTENT-fqname>"], maxDepth: 1 })` — three subjects, one unresolvable.
 9. Assert response: `partialResult: true`, `failureFallback.code === 'unresolved_subject'`, `preservedSeedNodes[]` contains the two resolved seeds (NOT empty), `nodes[]` reflects the resolved-seed traversal (not wiped to `[]`).
 
 **Block D — failureFallback.code enumeration (R-007-P2-6, 010/007/T-F):**
@@ -62,12 +55,9 @@ Validate Code Graph edge explanation, blast-radius enrichment, overflow handling
 11. **`unresolved_subject`**: query with a non-existent fq name. Assert `failureFallback.code === 'unresolved_subject'` (also covered by step 9 in the multi-subject case).
 12. **`ambiguous_subject`**: query with a fq name that has multiple matching candidates. Assert `failureFallback.code === 'ambiguous_subject'` AND `ambiguityCandidates[]` populated.
 13. **`empty_source`**: query a subject that is structurally valid but has no outbound edges (e.g., a leaf module). Assert `failureFallback.code === 'empty_source'`.
-14. **`compute_error`**: hard to trigger from a clean DB. **MAY BE UNAUTOMATABLE** — if so, cross-reference `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-query-handler.vitest.ts` fault-injection coverage and document the runner SKIP. If reproducible, assert `failureFallback.code === 'compute_error'` AND that the `spec_kit.graph.blast_radius_failure_total{code='compute_error'}` metric incremented.
 
 **Block E — Edge reason/step control-character sanitization (R-007-P2-3, 010/007/T-D):**
 
-15. **Setup (direct DB write):** identify an existing edge row in `code_edges` (use `code_graph_query` to find one) and update its `metadata` JSON to inject a control character into `reason`: `UPDATE code_edges SET metadata = json_set(metadata, '$.reason', 'normal' || char(7) || 'bytes') WHERE id = <edge-id>;` (char(7) = `\x07` BEL).
-16. Re-query the edge via `code_graph_query({ operation: "calls_from", subject: "<symbol>" })` and capture the same edge from output.
 17. Assert: the returned edge's `reason` field is `null` (sanitizer rejected the control-char-containing string per the read-path allowlist) — NOT the raw `'normal\x07bytes'` string. Same assertion for `step` if injected there.
 18. **Teardown:** restore the original `metadata` value OR drop the test edge.
 
@@ -90,11 +80,6 @@ JSON payloads from steps 2, 3, 4, 6, 7, 9, 10, 12, 13, (14 if reproduced), and 1
 
 ### Failure Triage
 
-1. **Block A**: Run `code_graph_scan` and repeat if readiness blocks the first attempt. If no ambiguous symbol exists, create two same-fq-name fixtures in scratch.
-2. **Block B**: If exact-limit case false-positives, inspect `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts:859-897` for the limit+1 SQL request and `totalAffectedBeforeSlice > limit` overflow check (010/007/T-F R-007-P2-4).
-3. **Block C**: If `preservedSeedNodes` is missing, inspect `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts:1048-1058` multi-subject loop — confirm resolved seeds aren't reset to `[]` on a sibling failure (010/007/T-F R-007-P2-5).
-4. **Block D**: If `failureFallback.code` is undefined, inspect `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts:1121-1135` and `BlastRadiusFailureCode` literal union; check all 5 failure-fallback sites set the code (010/007/T-F R-007-P2-6).
-5. **Block E**: If control characters round-trip, inspect read-path sanitizer at `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-db.ts:756-805` (`rowToEdge`), `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts:608-635` (`edgeMetadataOutput`), and `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-context.ts:287-320` (`formatContextEdge`). Allowlist: single-line, length ≤200, no control chars (`\x00-\x1F\x7F`); failures fall through to `null` (010/007/T-D R-007-P2-3).
 
 ---
 
@@ -111,11 +96,6 @@ JSON payloads from steps 2, 3, 4, 6, 7, 9, 10, 12, 13, (14 if reproduced), and 1
 
 | File | Role |
 |------|------|
-| `.opencode/skills/system-code-graph/mcp-server/handlers/query.ts` | Blast-radius and relationship query output |
-| `.opencode/skills/system-code-graph/mcp-server/lib/structural-indexer.ts` | Edge metadata writer |
-| `.opencode/skills/system-code-graph/mcp-server/lib/code-graph-context.ts` | Context propagation |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-query-handler.vitest.ts` | Automated coverage for risk, filtering, ambiguity and fallback |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-graph-indexer.vitest.ts` | Automated coverage for reason and step metadata |
 
 ---
 

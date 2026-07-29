@@ -23,7 +23,6 @@ Each daemon's `mcp-server/lib/ipc/socket-server.ts` is a thin re-export of this 
 
 - `.opencode/skills/system-spec-kit/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/context-server.ts`
 - `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
-- `.opencode/skills/system-code-graph/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/index.ts`
 
 ## 4. VALIDATION
 
@@ -36,4 +35,3 @@ npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/ipc-socket-fres
 ## 5. RELATED
 
 - [`ENV-REFERENCE.md`](../../mcp-server/ENV-REFERENCE.md): documents the IPC bridge's environment-driven configuration.
-- [`system-code-graph/mcp-server/lib/ipc/README.md`](../../../system-code-graph/mcp-server/lib/ipc/README.md): a consuming daemon's local IPC notes.

@@ -30,7 +30,6 @@ import {
   getUnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
-import { buildWarmCodeGraphStatusSection } from '../code-index-cli-fallback.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -119,7 +118,7 @@ function extractTopics(lines: string[]): string[] {
   for (const line of lines) {
     const specMatch = line.match(/specs\/[\w-]+/g);
     if (specMatch) specMatch.forEach(m => topics.add(m));
-    const toolMatch = line.match(/memory_\w+|code_graph_\w+|task_\w+/g);
+    const toolMatch = line.match(/memory_\w+|task_\w+/g);
     if (toolMatch) toolMatch.forEach(m => topics.add(m));
   }
   return [...topics].slice(0, 10);
@@ -342,26 +341,11 @@ export async function buildMergedCompactResult(
   const filePaths = extractFilePaths(sanitizedLines);
   const topics = extractTopics(sanitizedLines);
 
-  // Build codeGraph input: active files + a current warm status read so the
-  // compacted context does not carry a stale structural snapshot forward.
+  // The structural-status half of this slot came from a graph index that no
+  // longer exists; the active-file list is still worth carrying forward.
   const codeGraphParts: string[] = [];
   if (filePaths.length > 0) {
     codeGraphParts.push('Active files:\n' + filePaths.map(p => `- ${p}`).join('\n'));
-  }
-  const codeGraphBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
-  if (codeGraphBudget >= MIN_OPTIONAL_BUDGET_MS) {
-    const statusSection = await withTimeout(
-      buildWarmCodeGraphStatusSection({
-        title: 'Code Index CLI Fallback',
-        timeoutMs: Math.min(codeGraphBudget, 600),
-        includeRetryableStatus: false,
-      }),
-      codeGraphBudget,
-      null,
-    );
-    if (statusSection) {
-      codeGraphParts.push(statusSection.content);
-    }
   }
   const codeGraph = codeGraphParts.join('\n\n');
 

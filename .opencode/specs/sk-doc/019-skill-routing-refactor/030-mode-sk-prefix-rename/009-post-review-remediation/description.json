@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
+  "description": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
+  "keywords": [
+    "every",
+    "remaining",
+    "deep-review",
+    "finding",
+    "route-gold",
+    "refresh",
+    "phase-parent",
+    "status",
+    "rollup",
+    "pre-existing",
+    "repairs",
+    "additive",
+    "advisor",
+    "vocabulary"
+  ],
+  "lastUpdated": "2026-07-29T09:10:36.107Z",
+  "specId": "009",
+  "folderSlug": "post-review-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "030-mode-sk-prefix-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

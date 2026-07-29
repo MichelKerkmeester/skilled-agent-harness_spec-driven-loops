@@ -2,23 +2,15 @@
 // MODULE: Session Resume Handler
 // ───────────────────────────────────────────────────────────────
 // Composite MCP tool that merges memory resume context,
-// and code graph status into a single call.
+// into a single call.
 // Bind public session_resume sessionId input to the
 // MCP transport caller context before cached-session lookups can consume it.
 // Default mode is strict rejection; MCP_SESSION_RESUME_AUTH_MODE=permissive
 // logs mismatches for staged canary rollout instead of rejecting immediately.
 
 import { createHash } from 'node:crypto';
-import { existsSync, statSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import {
-  getCodeGraphStatusViaRpc,
-  getGraphFreshnessFromMarker,
-} from '../lib/code-graph-boundary.js';
-import type { GraphFreshness } from '@spec-kit/shared/code-graph-contracts';
+import { statSync } from 'node:fs';
 import { computeQualityScore, recordMetricEvent, recordBootstrapEvent } from '../lib/session/context-metrics.js';
-import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
-import type { StructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import {
   buildStructuralContextTrust,
   createSharedPayloadEnvelope,
@@ -33,10 +25,6 @@ import {
   buildOpenCodeTransportPlan,
   type OpenCodeTransportPlan,
 } from '../lib/context/opencode-transport.js';
-import {
-  buildCodeGraphOpsContract,
-  type CodeGraphOpsContract,
-} from '@spec-kit/shared/code-graph-contracts';
 import { getCallerContext } from '../lib/context/caller-context.js';
 import { loadMatchingStates, type HookProducerMetadata, type HookState } from '../hooks/claude/hook-state.js';
 import { buildResumeLadder } from '../lib/resume/resume-ladder.js';
@@ -102,46 +90,26 @@ interface SessionResumeArgs {
   minimal?: boolean;
 }
 
-interface CodeGraphStatus {
-  status: 'fresh' | 'stale' | 'empty' | 'error';
-  lastScan: string | null;
-  nodeCount: number;
-  edgeCount: number;
-  fileCount: number;
-  available: boolean;
-  binaryPath: string;
-}
-
 interface SessionResumeResult {
   memory: Record<string, unknown>;
-  codeGraph: CodeGraphStatus;
   cachedSummary?: CachedSessionSummaryDecision;
-  structuralContext?: StructuralBootstrapContract;
   sessionQuality?: 'healthy' | 'degraded' | 'critical' | 'unknown';
   payloadContract?: SharedPayloadEnvelope;
   opencodeTransport?: OpenCodeTransportPlan;
-  graphOps?: CodeGraphOpsContract;
   hints: string[];
 }
 
 interface SessionResumeMinimalResult {
   mode: 'minimal';
-  codeGraph: CodeGraphStatus;
   cachedSummary?: CachedSessionSummaryDecision;
-  structuralContext: StructuralBootstrapContract;
   sessionQuality: 'healthy' | 'degraded' | 'critical' | 'unknown';
   payloadContract: null;
   opencodeTransport: OpenCodeTransportPlan;
-  graphOps: CodeGraphOpsContract;
   hints: string[];
 }
 
 interface SessionResumeTransportState {
   payloadContract?: SharedPayloadEnvelope | null;
-  codeGraph: CodeGraphStatus;
-  structuralContext: StructuralBootstrapContract;
-  structuralTrust: ReturnType<typeof buildStructuralContextTrust>;
-  graphOps: CodeGraphOpsContract;
   specFolder: string | null;
 }
 
@@ -162,59 +130,22 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
   return trimmed.replace(/^\.opencode\//, '');
 }
 
-function resolveCodeGraphBinaryPath(): string {
-  const candidates = [
-    fileURLToPath(new URL('../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
-    fileURLToPath(new URL('../../../../../bin/mk-code-index-launcher.cjs', import.meta.url)),
-  ];
-
-  return candidates.find(candidate => existsSync(candidate)) ?? candidates[0];
-}
-
-function buildCodeGraphStatus(fields: Omit<CodeGraphStatus, 'available' | 'binaryPath'>): CodeGraphStatus {
-  const binaryPath = resolveCodeGraphBinaryPath();
-
-  return {
-    ...fields,
-    available: existsSync(binaryPath),
-    binaryPath,
-  };
-}
-
 function buildMinimalResumePayload(state: SessionResumeTransportState): SharedPayloadEnvelope {
-  const codeGraphCertainty: SharedPayloadCertainty = state.codeGraph.status === 'error' ? 'unknown' : 'exact';
-  const structuralCertainty: SharedPayloadCertainty = 'exact';
 
   return createSharedPayloadEnvelope({
     kind: 'resume',
     sections: [
-      {
-        key: 'code-graph-status',
-        title: 'Code Graph Status',
-        content: `status=${state.codeGraph.status}; files=${state.codeGraph.fileCount}; nodes=${state.codeGraph.nodeCount}; edges=${state.codeGraph.edgeCount}; lastScan=${state.codeGraph.lastScan ?? 'unknown'}`,
-        source: 'code-graph',
-        certainty: codeGraphCertainty,
-      },
-      {
-        key: 'structural-context',
-        title: 'Structural Context',
-        content: state.structuralContext.summary,
-        source: 'code-graph',
-        certainty: structuralCertainty,
-        structuralTrust: state.structuralTrust,
-      },
     ],
     summary: `Minimal resume payload: ${summarizeCertaintyContract([
-      { label: 'graph', certainty: codeGraphCertainty },
-      { label: 'structural', certainty: structuralCertainty },
-    ])}; graph=${state.codeGraph.status}; graphStatus=${state.codeGraph.status}`,
+    ])}`,
     provenance: {
       producer: 'session_resume',
       sourceSurface: 'session_resume',
-      trustState: trustStateFromStructuralStatus(state.structuralContext.status),
+      // No structural index remains to derive trust from.
+      trustState: 'absent',
       generatedAt: new Date().toISOString(),
-      lastUpdated: state.structuralContext.provenance?.lastUpdated ?? state.codeGraph.lastScan,
-      sourceRefs: ['code-graph-db', 'session-snapshot'],
+      lastUpdated: null,
+      sourceRefs: ['session-snapshot'],
     },
   });
 }
@@ -233,7 +164,6 @@ function buildOpencodeTransport(
 
   return buildOpenCodeTransportPlan({
     resumePayload,
-    graphOps: state.graphOps,
     specFolder: state.specFolder,
   });
 }
@@ -589,42 +519,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     logCachedSummaryDecision('session_resume', cachedSummaryDecision);
   }
 
-  // ── Sub-call 1: Code graph status ───────────────────────────
-  let codeGraph: CodeGraphStatus = buildCodeGraphStatus({
-    status: 'error',
-    lastScan: null,
-    nodeCount: 0,
-    edgeCount: 0,
-    fileCount: 0,
-  });
-  try {
-    const snapshot = await getCodeGraphStatusViaRpc();
-    if (snapshot.status !== 'ok' || !snapshot.data) {
-      throw new Error(snapshot.error ?? 'code_graph_status returned no data');
-    }
-    const freshness = snapshot.data.freshness ?? getGraphFreshnessFromMarker();
-    codeGraph = buildCodeGraphStatus({
-      status: freshness,
-      lastScan: snapshot.data.lastScanAt,
-      nodeCount: snapshot.data.totalNodes,
-      edgeCount: snapshot.data.totalEdges,
-      fileCount: snapshot.data.totalFiles,
-    });
-    // Graph status hints deferred to structural contract.
-    // — structural context hints at lines 128-130 provide preferred recovery path
-  } catch {
-    codeGraph = buildCodeGraphStatus({ status: 'error', lastScan: null, nodeCount: 0, edgeCount: 0, fileCount: 0 });
-    hints.push('Code graph unavailable. Run `code_graph_scan` to initialize.');
-  }
-
-  // Structural bootstrap contract for resume surface
-  const structuralContext = buildStructuralBootstrapContract('session_resume');
-  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-    hints.push(`Structural context is ${structuralContext.status}. Call session_bootstrap to refresh.`);
-  }
-
-  const structuralTrust = buildStructuralContextTrust(structuralContext);
-
   let sessionQuality: SessionResumeResult['sessionQuality'] | SessionResumeMinimalResult['sessionQuality'];
   if (args.minimal) {
     try {
@@ -634,29 +528,18 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     }
   }
 
-  const graphOps = buildCodeGraphOpsContract({
-    graphFreshness: codeGraph.status as GraphFreshness,
-    sourceSurface: 'session_resume',
-  });
   const transportStateBase = {
-    codeGraph,
-    structuralContext,
-    structuralTrust,
-    graphOps,
     specFolder: resolvedSpecFolder,
   };
 
   if (args.minimal) {
     const minimalResult: SessionResumeMinimalResult = {
       mode: 'minimal',
-      codeGraph,
-      cachedSummary: cachedSummaryDecision,
-      structuralContext,
-      sessionQuality: sessionQuality ?? 'unknown',
+        cachedSummary: cachedSummaryDecision,
+        sessionQuality: sessionQuality ?? 'unknown',
       payloadContract: null,
       opencodeTransport: buildOpencodeTransport(transportStateBase, { minimal: true }),
-      graphOps,
-      hints: [...new Set(hints)],
+        hints: [...new Set(hints)],
     };
 
     return {
@@ -681,8 +564,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
   const memoryCertainty: SharedPayloadCertainty = memoryResult.source === 'none'
     ? 'defaulted'
     : 'exact';
-  const codeGraphCertainty: SharedPayloadCertainty = codeGraph.status === 'error' ? 'unknown' : 'exact';
-  const structuralCertainty: SharedPayloadCertainty = 'exact';
 
   const payloadSections: SharedPayloadSection[] = [
     {
@@ -693,23 +574,6 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
       certainty: memoryCertainty,
     },
   ];
-  payloadSections.push(
-    {
-      key: 'code-graph-status',
-      title: 'Code Graph Status',
-      content: `status=${codeGraph.status}; files=${codeGraph.fileCount}; nodes=${codeGraph.nodeCount}; edges=${codeGraph.edgeCount}; lastScan=${codeGraph.lastScan ?? 'unknown'}`,
-      source: 'code-graph',
-      certainty: codeGraphCertainty,
-    },
-    {
-      key: 'structural-context',
-      title: 'Structural Context',
-      content: structuralContext.summary,
-      source: 'code-graph',
-      certainty: structuralCertainty,
-      structuralTrust,
-    },
-  );
 
   // ── Build composite result ──────────────────────────────────
   const payloadContract = createSharedPayloadEnvelope({
@@ -717,29 +581,25 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     sections: payloadSections,
     summary: `Resume payload: ${summarizeCertaintyContract([
       { label: 'memory', certainty: memoryCertainty },
-      { label: 'graph', certainty: codeGraphCertainty },
-      { label: 'structural', certainty: structuralCertainty },
-    ])}; resumeSource=${memoryResult.source}; graph=${codeGraph.status}; graphStatus=${codeGraph.status}`,
+    ])}; resumeSource=${memoryResult.source}`,
     provenance: {
       producer: 'session_resume',
       sourceSurface: 'session_resume',
-      trustState: trustStateFromStructuralStatus(structuralContext.status),
+      // No structural index remains to derive trust from.
+      trustState: 'absent',
       generatedAt: new Date().toISOString(),
-      lastUpdated: structuralContext.provenance?.lastUpdated ?? codeGraph.lastScan,
-      sourceRefs: ['resume-ladder', 'code-graph-db', 'session-snapshot'],
+      lastUpdated: null,
+      sourceRefs: ['resume-ladder', 'session-snapshot'],
     },
   });
   const result: SessionResumeResult = {
     memory: memoryResult as unknown as Record<string, unknown>,
-    codeGraph,
     cachedSummary: cachedSummaryDecision,
-    structuralContext,
     payloadContract,
     opencodeTransport: buildOpencodeTransport(
       { ...transportStateBase, payloadContract },
       { minimal: false },
     ),
-    graphOps,
     ...(sessionQuality ? { sessionQuality } : {}),
     hints: [...new Set(hints)],
   };

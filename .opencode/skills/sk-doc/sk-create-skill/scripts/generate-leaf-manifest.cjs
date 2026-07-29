@@ -118,9 +118,17 @@ function readStandaloneConfig(skillDir) {
   if (new Set(canonicalPackageRoots).size !== canonicalPackageRoots.length) {
     throw new contract.ContractError('COEXISTING_LEAF_ROOTS', 'standalone config declares both legacy and canonical forms of one package root');
   }
+  // The packet field is joined onto skillDir and then walked, so an authored
+  // "../.." would make the manifest enumerate files outside the skill. Reject
+  // any packet that escapes its own skill root before it reaches the walker.
+  const packet = typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : '.';
+  const packetRel = path.relative(skillDir, path.resolve(skillDir, packet));
+  if (packetRel === '..' || packetRel.startsWith(`..${path.sep}`) || path.isAbsolute(packetRel)) {
+    throw new contract.ContractError('PACKET_OUT_OF_ROOT', `${cfgPath} packet must stay within the skill root: ${packet}`);
+  }
   return {
     workflowMode: cfg.workflowMode,
-    packet: typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : '.',
+    packet,
     leafRoots,
     excludeIndexFiles: cfg.excludeIndexFiles !== false,
     resourceContractVersion: cfg.resourceContractVersion != null ? cfg.resourceContractVersion : contract.CONTRACT_VERSION,
@@ -166,6 +174,19 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
     const leaves = [...diskLeaves, ...aliasLeaves];
     for (const leaf of leaves) rawPairs.push({ workflowMode: mode.workflowMode, leafResourceId: leaf });
     modeEntries.push({ workflowMode: mode.workflowMode, packet: mode.packet, leaves });
+  }
+  const knownModes = new Set((registryModes || [])
+    .map((mode) => mode && mode.workflowMode)
+    .filter(Boolean));
+  for (const alias of aliasEntries || []) {
+    const workflowMode = alias && alias.workflowMode;
+    if (!knownModes.has(workflowMode)) {
+      const leafResourceId = alias && alias.leafResourceId;
+      throw new contract.ContractError(
+        'ORPHAN_ALIAS_MODE',
+        `alias workflowMode ${JSON.stringify(workflowMode)} has no matching registry mode for leafResourceId ${JSON.stringify(leafResourceId)}`,
+      );
+    }
   }
   return { modeEntries, rawPairs };
 }

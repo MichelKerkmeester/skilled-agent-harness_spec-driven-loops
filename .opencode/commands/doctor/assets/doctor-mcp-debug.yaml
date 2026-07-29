@@ -24,7 +24,6 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
   MCP debug workflows run the mcp-doctor.sh diagnostic script against all
-  supported MCP servers (mk-spec-memory, mk_skill_advisor, mk_code_index,
   code-mode, sequential-thinking), cross-reference each failure with its
   install guide, and apply guided repairs ONLY when --fix is passed AND the
   user approves the proposed repair. No silent mutation: every config edit,
@@ -42,7 +41,6 @@ upstream_assets:
   install_guides:
     mk-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
-    mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
@@ -84,7 +82,6 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking]
     default: null
     effect: "Only diagnose the specified server"
 
@@ -94,7 +91,6 @@ arguments:
 install_guides:
   mk-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
-  mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
@@ -142,19 +138,13 @@ repair_actions:
     db_dir_missing:
       command: "mkdir -p .opencode/skills/system-skill-advisor/mcp-server/database"
       description: "Create database directory"
-  mk_code_index:
     dist_missing:
-      command: "cd .opencode/skills/system-code-graph && npm install && ./node_modules/.bin/tsc --build ./tsconfig.json"
       description: "Install dependencies and rebuild dist/index.js"
     node_modules_missing:
-      command: "cd .opencode/skills/system-code-graph && npm install"
       description: "Install node_modules"
     launcher_missing:
-      command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
-      command: "mkdir -p .opencode/skills/system-code-graph/mcp-server/database"
-      description: "Create canonical code-graph database directory"
   code_mode:
     dist_missing:
       command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install && npm run build"

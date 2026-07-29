@@ -9,6 +9,7 @@ triggerPhrases:
   - /opencode_goal
   - /goal_opencode
   - /goal-opencode
+  - /goal:goal-opencode
   - goal prompt
   - session goal
   - set goal
@@ -24,10 +25,32 @@ triggerPhrases:
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
 session goal, use Claude Code's own **native** `/goal` goal-prompting feature. Do NOT
-route through the OpenCode `mk-goal` plugin command (named `/goal-opencode` since the
-2026-07-17 operator hyphen-naming decision; it was `/goal_opencode` from 2026-07-01 and
-had round-tripped through `/goal` before that; verify the live filename if this note
-predates a future change).
+route through the OpenCode `mk-goal` plugin command (invoked `/goal:goal-opencode` since
+the 2026-07-29 subfolder move to `.opencode/commands/goal/goal-opencode.md`; it was the
+flat `/goal-opencode` from the 2026-07-17 operator hyphen-naming decision, `/goal_opencode`
+from 2026-07-01, and had round-tripped through `/goal` before that; verify the live
+filename if this note predates a future change).
+
+## Cross-runtime routing (Devin / Cursor / Pi)
+
+These three runtimes have neither Claude Code's native `/goal` nor OpenCode's `mk_goal`
+plugin tools. They reach the same passive session-goal behavior through the runtime-neutral
+goal core:
+
+- **Manage surface:** `.opencode/hooks/goal/bin/goal.cjs` — a CLI mirroring the
+  `/goal:goal-opencode` router contract (`set`/`show`/`history`/`doctor`/`health`/`clear`/
+  `complete`/`pause`/`resume`, same `STATUS=`/`ACTION=` envelope and `--budget` parsing).
+- **Injection adapters:** `.opencode/hooks/goal/{devin,cursor,pi}/` wired per each runtime's
+  config, all reading one **shared** state file `.opencode/skills/.goal-state/active-goal.json`
+  (distinct from `mk-goal`'s per-OpenCode-session state files in the same directory).
+- **Honest parity tiers** (from the phase 002 capability probes): Devin = inject +
+  verify/continue (a `Stop` hook can force continuation); Cursor = inject-only at
+  `sessionStart` (prompt-submit never fires, `stop` never fires); Pi = inject
+  (operator-visible in chat) + turn-end verify (no forced continuation). Injection is
+  universal; verify/continue exists only where a real lifecycle event supports it.
+
+Full contract: [`../references/hooks/goal-plugin.md`](../references/hooks/goal-plugin.md)
+and the `cli-external-orchestration/032-goal-hooks-cross-runtime` packet.
 
 ## Why
 
@@ -54,16 +77,21 @@ again shortly after. The operator confirmed on 2026-07-01 that `goal_opencode.md
 correct name at that time; **fourth rename** to `.opencode/commands/goal-opencode.md`
 (`/goal-opencode`), an operator decision on 2026-07-17 aligning the file with the
 repo-wide hyphen naming convention — this file and its referencing surfaces were swept to
-match. Do not hardcode past names, and re-verify the live filename before invoking: it has
+match; **fifth move**, on 2026-07-29 the operator relocated the file into a `goal/`
+subfolder (`.opencode/commands/goal/goal-opencode.md`, invoked `/goal:goal-opencode` under
+the repo's `folder:name` command convention) to make room for the cross-runtime goal-hook
+work. Do not hardcode past names, and re-verify the live filename before invoking: it has
 moved on operator decision before and may again.
 
 ## How to apply
 
 1. In a Claude Code session, use Claude Code's built-in native `/goal` directly.
 2. In an OpenCode session (or when explicitly targeting the OpenCode plugin from any
-   runtime), **check `.opencode/commands/*goal*.md` for the current live filename**
-   before invoking it — it routes to `.opencode/plugins/mk-goal.js` via
-   `mk_goal`/`mk_goal_status`, and only functions inside an actual OpenCode session.
+   runtime), **check `.opencode/commands/goal/*.md` for the current live filename**
+   (the command moved into a `goal/` subfolder on 2026-07-29, so a non-recursive
+   `.opencode/commands/*goal*.md` glob no longer finds it) before invoking it — it routes
+   to `.opencode/plugins/mk-goal.js` via `mk_goal`/`mk_goal_status`, and only functions
+   inside an actual OpenCode session.
 3. Never expect a bare `/goal` invocation to reach the OpenCode plugin, and never assume
    the OpenCode-side command name from a prior memory/session without re-verifying the
    live file — it has changed twice already and phase 009's own work may rename or

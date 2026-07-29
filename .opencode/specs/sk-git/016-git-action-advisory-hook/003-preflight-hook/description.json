@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-git/016-git-action-advisory-hook/003-preflight-hook",
-  "description": "Encoded rules do nothing until something evaluates them against a real command and real repository state",
+  "description": "Encoded rules do nothing until something evaluates them against a real command",
   "keywords": [
     "encoded",
     "rules",
@@ -12,11 +12,9 @@
     "them",
     "against",
     "real",
-    "command",
-    "repository",
-    "state"
+    "command"
   ],
-  "lastUpdated": "2026-07-27T19:51:33.477Z",
+  "lastUpdated": "2026-07-27T20:19:56.250Z",
   "specId": "003",
   "folderSlug": "preflight-hook",
   "parentChain": [

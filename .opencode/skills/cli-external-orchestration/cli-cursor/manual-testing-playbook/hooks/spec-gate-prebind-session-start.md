@@ -12,7 +12,7 @@ This document captures the executable session-start prebind contract for `CU-020
 
 ## 1. OVERVIEW
 
-This scenario executes `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs`. The suite invokes the real startup and enforce adapters in isolated workspaces so it can inspect persisted state without touching this repository's live gate-state directory.
+This scenario executes `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.test.mjs`. The suite invokes the real startup and enforce adapters in isolated workspaces so it can inspect persisted state without touching this repository's live gate-state directory.
 
 ### Why This Matters
 
@@ -45,7 +45,7 @@ Operators run the isolated Node process suite and verify the committed configura
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CU-020 | Session-start spec-gate prebind matrix | Prove startup state and exemption behavior | `Run the Cursor session-start spec-gate prebind matrix and report every state and exemption result.` | 1. `node --test .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` -> 2. parse `.cursor/hooks.json` and locate the prebind under `sessionStart` -> 3. `test -L .cursor/hooks/spec-gate-prebind.mjs && test -e .cursor/hooks/spec-gate-prebind.mjs` | Step 1 reports 9/9; step 2 resolves the tested real path; step 3 proves the mirror resolves | TAP output, parsed hook entry, symlink result | PASS when all three checks succeed; FAIL otherwise | Inspect the first failed matrix row, then compare persisted state with the shared core contract. |
+| CU-020 | Session-start spec-gate prebind matrix | Prove startup state and exemption behavior | `Run the Cursor session-start spec-gate prebind matrix and report every state and exemption result.` | 1. `node --test .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.test.mjs` -> 2. parse `.cursor/hooks.json` and locate the prebind under `sessionStart` -> 3. `test -L .cursor/hooks/spec-gate-prebind.mjs && test -e .cursor/hooks/spec-gate-prebind.mjs` | Step 1 reports 9/9; step 2 resolves the tested real path; step 3 proves the mirror resolves | TAP output, parsed hook entry, symlink result | PASS when all three checks succeed; FAIL otherwise | Inspect the first failed matrix row, then compare persisted state with the shared core contract. |
 
 ### Optional Supplemental Checks
 
@@ -66,9 +66,9 @@ Operators run the isolated Node process suite and verify the committed configura
 
 | File | Role |
 |---|---|
-| `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | Session-start adapter under test. |
-| `../../../../system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | Isolated process matrix. |
-| `../../../../system-spec-kit/runtime/hooks/cursor/README.md` | Runtime status and fail-open boundary. |
+| `../../../../system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | Session-start adapter under test. |
+| `../../../../system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.test.mjs` | Isolated process matrix. |
+| `../../../../system-spec-kit/mcp-server/hooks/cursor/README.md` | Runtime status and fail-open boundary. |
 | `../../../../system-spec-kit/mcp-server/hooks/cursor/README.md` | Cursor event-delivery and shared-configuration reference for the `beforeSubmitPrompt` non-delivery premise |
 
 ---

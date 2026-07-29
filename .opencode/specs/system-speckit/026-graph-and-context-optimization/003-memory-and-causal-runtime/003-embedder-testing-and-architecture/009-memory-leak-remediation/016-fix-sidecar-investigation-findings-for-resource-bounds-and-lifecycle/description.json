@@ -19,7 +19,7 @@
     "rerank",
     "parity"
   ],
-  "lastUpdated": "2026-07-17T17:01:47.850Z",
+  "lastUpdated": "2026-07-21T05:58:28.831Z",
   "specId": "016",
   "folderSlug": "fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
   "parentChain": [

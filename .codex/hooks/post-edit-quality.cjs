@@ -1,1 +1,1 @@
-../../.opencode/skills/sk-code/sk-code-quality/scripts/hooks/codex/post-edit-quality.cjs
+../../.opencode/hooks/post-edit-quality/codex/post-edit-quality.cjs

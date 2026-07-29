@@ -87,7 +87,6 @@ mutation_boundaries:
     - ".opencode/commands/doctor/*.md"
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
     - "mcp-server/database/context-index__*.sqlite*"  # retired per-profile DB path and snapshots
-    - "mcp-server/database/*code-graph*"
     - "mcp-server/database/*deep-loop*"
     - "mcp-server/database/*eval*"
     - "mcp-server/database/*skill*"

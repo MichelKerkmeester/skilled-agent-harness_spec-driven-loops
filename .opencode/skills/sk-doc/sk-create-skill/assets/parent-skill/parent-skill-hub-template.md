@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 2.0.0.0
+version: 2.0.0.1
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -17,7 +17,7 @@ Template for a **parent skill hub**: one advisor-routable identity with a thin `
 
 The core is always the same **2-tier shape**:
 
-1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`.
+1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json`, and generated `leaf-manifest.json`.
 2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
 
 Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`; do not create a third physical tier.
@@ -46,7 +46,7 @@ Model the hub on `sk-code`:
 - `SKILL.md` is thin and routes by mode.
 - `mode-registry.json` is the packet registry and discriminator source.
 - `hub-router.json` owns router policy, signals, vocabulary classes, and bundle outcomes.
-- `description.json` is the advisor-facing summary.
+- `description.json` is hub-doctor metadata.
 - `graph-metadata.json` is the one skill-graph identity node.
 
 ---
@@ -78,8 +78,11 @@ Surface packets have these required properties:
 | Hub | `SKILL.md` | Yes | Thin routing entry point; no packet-local logic |
 | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
-| Hub | `description.json` | Yes | Advisor-facing hub description and triggers |
+| Hub | `description.json` | Yes | Hub-doctor metadata and triggers |
 | Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
+| Hub | `command-metadata.json` | Yes | Class-H command surface; one entry per owned command or `[]` |
+| Hub | `leaf-manifest.json` | Yes (generated) | Generated inventory of the hub's routed leaves |
+| Hub | `leaf-aliases.json` | No (optional) | Authored compatibility aliases for genuine cross-packet resource relocation |
 | Hub | `changelog/` | Yes | Real changelog files for the hub |
 | Hub | `manual-testing-playbook/` | Yes | Baseline manual validation package |
 | Hub | `benchmark/` | Yes | Baseline benchmark or evidence package |
@@ -197,6 +200,8 @@ read hub-router.json
   hub-router.json
   description.json
   graph-metadata.json
+  command-metadata.json
+  leaf-manifest.json
   changelog/
   manual-testing-playbook/
   benchmark/
@@ -216,7 +221,7 @@ read hub-router.json
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
-- `description.json` owns advisor-facing summary fields and optional hub-specific arrays.
+- `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
 - `graph-metadata.json` owns the one skill-graph identity node.
 
 ### Optional Extensions
@@ -265,7 +270,7 @@ These extensions activate in-place fields. They do not move `advisorRouting` dat
 
 - Registry: `mode-registry.json`.
 - Router: `hub-router.json`.
-- Advisor description: `description.json`.
+- Hub-doctor metadata: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `[workflow-packet-a]/SKILL.md`, `[workflow-packet-b]/SKILL.md`.
 - Surface packets: `[surface-name]/SKILL.md`, `[surface-name]/references/`, `[surface-name]/assets/`.
@@ -282,7 +287,7 @@ Before claiming the hub complete:
 - [ ] Every mode has `toolSurface` and `grandfatheredFolderMismatch`.
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
 - [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`) — plus `surfaceBundle` iff surface packets exist — workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
-- [ ] `description.json` has the required advisor-facing fields and a four-part version.
+- [ ] `description.json` has the required hub-doctor fields and a four-part version.
 - [ ] `graph-metadata.json` is the only advisor identity node for the hub.
 - [ ] Changelog directories use real files, not symlinks.
 
@@ -294,5 +299,6 @@ Before claiming the hub complete:
 - `parent-skill-hub-router-template.json` - companion `hub-router.json` scaffold.
 - `parent-skill-description-template.json` - companion `description.json` scaffold.
 - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
+- [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
 - `skill-md-template.md` - packet-level `SKILL.md` template.
 - Canonical example: `sk-code` hub metadata files.

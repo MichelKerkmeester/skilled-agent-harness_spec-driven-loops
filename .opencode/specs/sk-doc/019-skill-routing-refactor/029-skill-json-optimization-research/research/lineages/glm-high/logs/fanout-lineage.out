@@ -1,0 +1,17 @@
+The glm-high deep-research fan-out lineage is complete. All 5 iterations ran to the `max-iterations` stop (convergence treated as telemetry only; angles broadened each pass), and synthesis produced the ranked opportunity map.
+
+**Packet written to** `…/029-skill-json-optimization-research/research/lineages/glm-high/`:
+- `deep-research-config.json`, `deep-research-state.jsonl` (9 records), `deep-research-strategy.md`, `deep-research-dashboard.md`, `findings-registry.json`
+- `iterations/iteration-001.md` … `iteration-005.md` + `deltas/iter-00N.jsonl`
+- `research.md` — the deliverable: 28 findings → 14 ranked opportunities (O1–O14) across 3 tiers, with dimension coverage and cross-dimension clusters
+
+**Tier-1 highest-leverage gaps:**
+1. **O1** — Skill-root `derived` block has no regenerator and no freshness gate (drifts silently); most fields are corpus-derivable. Spans optimization+automation+testing.
+2. **O2** — Advisor compiler (full `derived` schema + path validation) runs only offline, not in CI; malformed derived passes the fleet gate.
+3. **O3** — `command-metadata.json` is gated for schema but NOT ingested by the advisor (command routing uses a hardcoded `COMMAND_BRIDGES` TS array with no drift gate).
+4. **O4** — Intent-signal coverage varies ~20x across the fleet; the advisor's *own* skill has the thinnest signal set.
+5. **O5** — The routing-accuracy corpus (291 prompts) exists but is offline-only, not CI-gated.
+
+All findings cite `file:line`; non-goals respected (no implementation, no scoring redesign, no H/S contract change). Single-lineage view, ready for cross-lineage synthesis with sol-high and grok-high.
+
+FANOUT_LINEAGE_COMPLETE:glm-high

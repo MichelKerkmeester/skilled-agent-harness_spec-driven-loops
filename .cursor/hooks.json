@@ -8,7 +8,7 @@
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs",
         "type": "command",
         "timeout": 10
       },
@@ -31,6 +31,11 @@
         "command": "node .opencode/bin/install-codex-hooks.mjs --check",
         "type": "command",
         "timeout": 10
+      },
+      {
+        "command": "node .opencode/hooks/goal/cursor/goal-inject.mjs",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "sessionEnd": [
@@ -47,14 +52,20 @@
     ],
     "preToolUse": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs",
         "type": "command",
         "timeout": 10
       },
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
+        "command": "node .opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
         "type": "command",
         "matcher": "Task",
+        "timeout": 10
+      },
+      {
+        "command": "node .cursor/hooks/git-preflight-advisory.mjs",
+        "type": "command",
+        "matcher": "Shell",
         "timeout": 10
       }
     ],
@@ -67,7 +78,7 @@
     ],
     "beforeSubmitPrompt": [
       {
-        "command": "node .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs",
         "type": "command",
         "timeout": 10
       },
@@ -86,7 +97,7 @@
     ],
     "beforeMCPExecution": [
       {
-        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "command": "node .opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs",
         "type": "command",
         "timeout": 10
       }

@@ -24,8 +24,6 @@
 #   trigger_phrases:  list   — descriptive routing phrases for this target; not
 #                              currently harvested by advisor (see "Consumed by" above)
 #
-# Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
-# stable code_graph/detect-changes MCP tools are registered through mk-code-index.
 # Skill-advisor recommendation tools are registered through mk-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
@@ -80,29 +78,6 @@ routes:
       - "lineage coverage"
       - "memory_causal_stats"
 
-  - target: code-graph
-    yaml: doctor-code-graph.yaml
-    setup_vars: [execution_mode, scope]
-    allowed_flags:
-      # apply-mode flags (--operation, --confirm) return when the confirm workflow is promoted (phase_b)
-      - "--scope=stale|missed|bloat|all|excludes"
-      - "--dry-run"
-    mutating: add-only
-    gate3_location: "{packet_scratch}/code-graph-diagnostic-{timestamp}.md"
-    mcp_tools:
-      - mcp__mk_code_index__code_graph_status
-      - mcp__mk_code_index__code_graph_query
-      - mcp__mk_code_index__code_graph_context
-      - mcp__mk_code_index__detect_changes
-      - mcp__mk_spec_memory__memory_context
-      - mcp__mk_spec_memory__memory_search
-    script_invocations:
-      - 'Warm-only: probe the existing mk-code-index IPC socket first; only when it answers, run node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
-    trigger_phrases:
-      - "code-graph index drift"
-      - "code-graph rebuild"
-      - "code-graph stale excludes"
-      - "code-graph corruption recover"
 
   - target: deep-loop
     yaml: doctor-deep-loop.yaml
@@ -168,12 +143,18 @@ routes:
     gate3_location: "n/a (read-only structural audit; inspects a parent skill's graph-metadata/registry and reports, no writes)"
     mcp_tools: []   # script-only structural audit; no MCP calls
     script_invocations:
+      # The fleet class gate runs first: it starts from SKILL.md, so it is the only
+      # check that can report a metadata file a root never wrote. The per-hub audit
+      # then goes deep on the one directory the operator named.
+      - 'node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs'
       - 'node .opencode/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
     trigger_phrases:
       - "parent skill structure audit"
       - "nested mode packet check"
       - "mode-registry drift guard"
       - "single graph-metadata identity"
+      - "skill root metadata contract"
+      - "missing skill json files"
 
   - target: skill-graph-freshness
     yaml: doctor-skill-graph-freshness.yaml

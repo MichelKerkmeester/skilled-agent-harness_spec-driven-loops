@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/010-agent-definitions"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded the decommission phase child"
-    next_safe_action: "Populate requirements from the touchpoint research synthesis"
+    recent_action: "Executed the phase and verified it"
+    next_safe_action: "Closeout verification in phase 015"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,11 +42,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 15 |
+| **Phase** | 10 of 16 |
 | **Predecessor** | 009-command-surface |
 | **Successor** | 011-doctrine-and-docs |
 | **Handoff Criteria** | No agent definition in any runtime grants or documents a removed tool, and the three mirrors stay consistent |
@@ -91,9 +91,13 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 ## 3. SCOPE
 
 ### In Scope
-- Tool-grant lists in all eight agent definitions across all three runtimes.
-- Search-routing and structural-discovery prose inside those definitions.
+- Tool-grant lists in all eight agent definitions across all **four** runtime mirrors: `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.pi/agents/`.
+- Search-routing, structural-discovery, and wedged-daemon-fallback prose inside those definitions.
 - Parity between the Markdown and TOML formats.
+
+> The Pi mirror arrived mid-packet with the `cli-pi` executor and is easy to miss: it is a fourth
+> regular-file projection, not a symlink alias, and eight of its agent files carry the tool grants
+> and the daemon-fallback paragraph. `.cursor/agents/` by contrast is symlinked and needs no edit.
 
 ### Out of Scope
 - Agent behaviour unrelated to code search.
@@ -106,6 +110,7 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 | `.opencode/agents/*.md` | Modify | Remove grants and graph-first prose |
 | `.claude/agents/*.md` | Modify | Mirror of the above |
 | `.codex/agents/*.toml` | Modify | Mirror in TOML form |
+| `.pi/agents/*.md` | Modify | Fourth mirror; 8 files carry grants and daemon-fallback prose |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +123,7 @@ Bring all three runtime mirrors to the same post-decommission state: no grant fo
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | No agent grants a removed tool | No definition lists a graph tool id |
-| REQ-002 | All three mirrors are updated together | The same agent has equivalent tool grants in all three runtimes |
+| REQ-002 | All four mirrors are updated together | The same agent has equivalent tool grants in OpenCode, Claude, Codex, and Pi |
 | REQ-003 | Definitions remain parseable | Markdown frontmatter and TOML both parse cleanly |
 
 ### P1 - Required (complete OR user-approved deferral)

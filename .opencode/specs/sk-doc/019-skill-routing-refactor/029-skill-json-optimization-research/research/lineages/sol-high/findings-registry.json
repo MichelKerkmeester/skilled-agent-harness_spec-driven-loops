@@ -1,0 +1,95 @@
+{
+  "sessionId": "fanout-sol-high-1785305275596-oro54j",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "question": "What JSON types exist, which are authored versus generated, where are they present for H and S roots, and what automation covers them?",
+      "iteration": 1,
+      "evidence": "iterations/iteration-001.md"
+    },
+    {
+      "question": "Which fields or files are redundant, unused, duplicated, or drift-prone, and what consolidation has the highest leverage?",
+      "iteration": 2,
+      "evidence": "iterations/iteration-002.md"
+    },
+    {
+      "question": "Which hand-authored JSON and validation steps could be generated, scaffolded, or automatically checked?",
+      "iteration": 3,
+      "evidence": "iterations/iteration-003.md"
+    },
+    {
+      "question": "Which metadata and intent signals actually drive advisor routing, and where does routing effectiveness fall short?",
+      "iteration": 4,
+      "evidence": "iterations/iteration-004.md"
+    },
+    {
+      "question": "Which JSON surfaces lack unit, CI, freshness, scaffold-to-ingest, and end-to-end routing coverage?",
+      "iteration": 5,
+      "evidence": "iterations/iteration-005.md"
+    }
+  ],
+  "keyFindings": [
+    {"id":"iter-001-f1","summary":"Eight governed root JSON filenames split across H and S with class-specific authored/generated status.","iteration":1},
+    {"id":"iter-001-f2","summary":"The current fleet has seven H and four S roots; all 11 pass root-contract and generated-freshness gates.","iteration":1},
+    {"id":"iter-001-f3","summary":"graph-metadata.json is authored identity with a separately generated advisor-maintained derived block.","iteration":1},
+    {"id":"iter-001-f4","summary":"Scaffolds emit authored declarations while the root gate owns derivable manifest and S-alias generation.","iteration":1},
+    {"id":"iter-001-f5","summary":"The root gate has complete adoption discovery while the older freshness scanner sees committed manifests only.","iteration":1},
+    {"id":"iter-001-f6","summary":"Advisor watcher/SQLite and compiled activation manifests are projections over root sources.","iteration":1},
+    {"id":"iter-002-f1","summary":"TypeScript sync and Python compiler define incompatible derived-v2 shapes consumed differently by the scorer.","iteration":2},
+    {"id":"iter-002-f2","summary":"sk-doc routerPolicy.tieBreak is an already-drifted duplicate ignored in favor of routerSignals key order.","iteration":2},
+    {"id":"iter-002-f3","summary":"advisorRouting.packetSkillName duplicates consumed top-level packetSkillName without a verified production reader.","iteration":2},
+    {"id":"iter-002-f4","summary":"Registry aliases and router vocabulary overlap but retain distinct consumers and need explicit ownership.","iteration":2},
+    {"id":"iter-002-f5","summary":"Standalone aliases are generated identity copies while hub relocation aliases remain load-bearing.","iteration":2},
+    {"id":"iter-002-f6","summary":"Five hub description fields lack verified local consumers beyond the enforced four-field identity.","iteration":2},
+    {"id":"iter-003-f1","summary":"Scaffolds stop before producing class-required generated manifests and standalone aliases.","iteration":3},
+    {"id":"iter-003-f2","summary":"Derived graph metadata has conflicting schemas and the sync writer has no production lifecycle trigger.","iteration":3},
+    {"id":"iter-003-f3","summary":"Fleet CI does not validate downstream graph ingestibility, edge/path integrity, or derived freshness.","iteration":3},
+    {"id":"iter-003-f4","summary":"Standalone manifest config is mostly conventional boilerplate suitable for defaults plus overrides.","iteration":3},
+    {"id":"iter-003-f5","summary":"Hub scaffolding repeats derivable identities across five authored JSON surfaces without reconciliation.","iteration":3},
+    {"id":"iter-003-f6","summary":"Compiled-route mint/refresh lacks a fleet source-change-to-refresh owner.","iteration":3},
+    {"id":"iter-004-f1","summary":"Derived key-file watches trigger reindex but unchanged graph metadata prevents candidate projection updates.","iteration":4},
+    {"id":"iter-004-f2","summary":"Normal root selection consumes SKILL and graph projection fields, not hub registry/router or leaf JSON.","iteration":4},
+    {"id":"iter-004-f3","summary":"High-specificity hub vocabulary is invisible until parent selection, producing confirmed natural-language misses.","iteration":4},
+    {"id":"iter-004-f4","summary":"Filesystem fallback retains direct root fields but drops graph edges and doc-trigger projections.","iteration":4},
+    {"id":"iter-004-f5","summary":"Executor delegation consumes hub aliases but memoizes them without source-change invalidation.","iteration":4},
+    {"id":"iter-004-f6","summary":"Compiled sk-doc routing is active while committed evaluation supports moderate version-sensitive root accuracy.","iteration":4},
+    {"id":"iter-005-f1","summary":"Generated artifacts and command metadata have behavior-rich coverage; authored identity lacks one canonical full-schema gate.","iteration":5},
+    {"id":"iter-005-f2","summary":"No test joins scaffold, generated gate, advisor ingest, root selection, and compiled mode selection.","iteration":5},
+    {"id":"iter-005-f3","summary":"Failure handling is deep inside stages but does not propagate failures across lifecycle seams.","iteration":5},
+    {"id":"iter-005-f4","summary":"Filesystem fallback tests prove availability and warnings, not lane or recommendation parity.","iteration":5},
+    {"id":"iter-005-f5","summary":"Compiled invalidation is guarded; watched-key and delegation-cache invalidation are not.","iteration":5},
+    {"id":"iter-005-f6","summary":"Canaries cover all command routes but only two positive natural-language routes and no joined per-mode parent cases.","iteration":5}
+  ],
+  "ruledOutDirections": [
+    {"direction":"Treat spec-folder metadata generators as skill-root producers","iteration":1},
+    {"direction":"Treat output-first leaf-manifest freshness as complete adoption coverage","iteration":1},
+    {"direction":"Delete compiled activation manifests as duplicate route data","iteration":2},
+    {"direction":"Collapse command metadata into mode registries without a projection","iteration":2},
+    {"direction":"Remove grandfatheredFolderMismatch as dead repetition","iteration":2},
+    {"direction":"Generate authored H routing semantics from folder structure","iteration":3},
+    {"direction":"Use spec-folder generators for skill-root identity","iteration":3},
+    {"direction":"Treat hub router vocabulary as normal advisor root-selection input","iteration":4},
+    {"direction":"Treat key-file watch activation as derived-content refresh","iteration":4},
+    {"direction":"Redesign scorer weights for upstream metadata activation gaps","iteration":4},
+    {"direction":"Treat fixture presence as behavioral coverage","iteration":5},
+    {"direction":"Treat isolated discovery parity as complete ingest parity","iteration":5}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 30,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "convergenceScore": 0.082,
+    "coverageBySources": {}
+  },
+  "rejectedPatterns": [],
+  "promotedIdeas": [],
+  "saturatedDirections": [],
+  "pivotLineage": [],
+  "stopReason": "maxIterationsReached",
+  "lastUpdated": "2026-07-29T06:40:00Z"
+}

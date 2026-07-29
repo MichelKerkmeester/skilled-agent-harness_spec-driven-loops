@@ -16,7 +16,6 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`bin/` holds the executable entrypoints that the OpenCode runtime spawns to start each MCP server, plus the daemon-backed CLI shims that reach the same servers from a shell. Three launchers wrap the spec-kit, skill-advisor and code-graph MCP servers. three CLI shims (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) front the same daemons over the IPC socket. one process is the local HuggingFace embedding server that serves `hf-local` vector requests over a Unix domain socket or TCP loopback.
 
 Current state:
 
@@ -28,7 +27,6 @@ Current state:
 - A second family serves and publishes **compiled routing**. `compiled-route.cjs` is the runtime front door a hub calls to ask whether the compiled router is authoritative for it, falling back to legacy routing when it is not. `compiled-route-status.cjs` reports per-hub serving state with a cause code that separates expected drift from breakage. `compiled-route-guard.cjs` is the gate: it fails when a hub's activation manifest no longer matches what its routing inputs compile to, or when the promoted runtime and its authored source disagree. `compiled-route-sync.cjs` publishes a new closure by tracing, staging, verifying, swapping and then finalizing or reverting. `compiled-route-manifest.cjs` is a thin CLI over the activation-manifest library in `lib/`.
 - `check-no-spec-imports.cjs` proves the durable invariant behind that family: nothing under `bin/` reaches into `.opencode/specs/` at runtime, so the serving path cannot break when the authored tree moves.
 - The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, and `install-codex-hooks.mjs` merges the versioned Codex hook set into the user-global config.
-- Launcher reliability knobs, persistent log, lease-probe reap hardening, the mk-code-index reconnecting proxy, the Stop-hook orphan-sweep fallback, and default-on daemon re-election for mk-spec-memory, are operator-tunable via `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION`. see the MCP server's [`ENV-REFERENCE.md`](../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md).
 
 ---
 
@@ -67,9 +65,7 @@ Dependency direction: launchers ───▶ lib/ ───▶ hf-model-server.c
 bin/
 +-- mk-spec-memory-launcher.cjs    # Launches mk-spec-memory MCP, owns shared hf-model-server lease
 +-- mk-skill-advisor-launcher.cjs  # Launches mk-skill-advisor MCP, optional model-server supervision
-+-- mk-code-index-launcher.cjs     # Launches mk-code-index MCP, maintainer-mode INDEX_* override
 +-- spec-memory.cjs                # Daemon-backed CLI shim for mk-spec-memory (41 tools)
-+-- code-index.cjs                 # Daemon-backed CLI shim for mk-code-index (8 tools)
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for mk-skill-advisor (9 tools)
 +-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts (41/8/9), cwd-independent
 +-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
@@ -91,7 +87,6 @@ bin/
 +-- compiled-route-sync.cjs        # Publication tool: trace, stage, verify, swap, finalize or revert
 +-- check-no-spec-imports.cjs      # Proves nothing here reaches into the spec tree at runtime
 +-- compiled-routing-*.vitest.ts   # Routing foundation and flag-propagation suites
-+-- mk-code-index-launcher-*.vitest.ts  # Launcher lease, registry and WAL coverage
 +-- tests/                         # node:test suite for the publication lifecycle
 +-- lib/                           # Shared supervision, IPC bridge, env allowlist, routing library
 `-- README.md
@@ -105,13 +100,10 @@ bin/
 |---|---|
 | `mk-spec-memory-launcher.cjs` | Boots the mk-spec-memory MCP child. Manages the shared hf-model-server lease, respawn locks, and reaping a dead lease child before respawn. |
 | `mk-skill-advisor-launcher.cjs` | Boots the mk-skill-advisor MCP child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
-| `mk-code-index-launcher.cjs` | Boots the mk-code-index MCP child. Applies the maintainer-mode `INDEX_*` override, migrates the code-graph database back to the skill-local path, and sets `SPECKIT_CODE_GRAPH_DB_DIR` for the child. |
 | `spec-memory.cjs` | CLI shim for mk-spec-memory. Checks dist freshness and exits `69` when stale, with `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` as the override, ensures the socket dir, then runs `mcp-server/dist/spec-memory-cli.js` with inherited stdio. |
-| `code-index.cjs` | CLI shim for mk-code-index. Same guard pattern (`SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/code-index-cli.js`. Blocked-read payloads render as actionable answers (exit `0`). `detect_changes` `parse_error` exits `64`. |
 | `skill-advisor.cjs` | CLI shim for mk-skill-advisor. Same guard pattern (`MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/mcp-server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`. calls are sent untrusted by default. |
 | `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
 
-Lifecycle parity note: `mk-spec-memory-launcher.cjs` is the hardened reference for persistent launcher logging, detached daemon re-election/adoption, and owner-release-on-shutdown. `mk-code-index-launcher.cjs` and `mk-skill-advisor-launcher.cjs` currently stop with their child and rely on fresh-session reload plus bridge/respawn paths instead.
 
 ---
 
@@ -164,9 +156,7 @@ Main flow:
 |---|---|---|
 | `node .opencode/bin/mk-spec-memory-launcher.cjs` | CLI | Start the mk-spec-memory MCP server. |
 | `node .opencode/bin/mk-skill-advisor-launcher.cjs` | CLI | Start the mk-skill-advisor MCP server. |
-| `node .opencode/bin/mk-code-index-launcher.cjs` | CLI | Start the mk-code-index MCP server. |
 | `node .opencode/bin/spec-memory.cjs <tool> [flags]` | CLI | Call any of the 41 mk-spec-memory tools from a shell (`list-tools` enumerates them offline). |
-| `node .opencode/bin/code-index.cjs <tool> [flags]` | CLI | Call any of the 8 mk-code-index tools from a shell. |
 | `node .opencode/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 mk-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
 | `node .opencode/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
@@ -204,7 +194,7 @@ Full env-var detail lives in the MCP server's [`ENV-REFERENCE.md`](../skills/sys
 
 **Child suppression.** Orchestrated children must NOT create their own worktree. Two signals make the wrapper exec in place: the env var `AI_SESSION_CHILD=1` (which the wrapper exports for its own descendants, and which cli-* dispatch recipes should set when spawning a child runtime), and a structural backstop (`git --git-dir` differs from `--git-common-dir`, i.e. already inside a linked worktree). An unknown signal defaults to top-level (isolate), the safe failure mode.
 
-**Spec-gate enforce neutralization.** Every `exec_in_place` path (both child signals above) also exports `MK_SPEC_GATE_ENFORCE=0` before handing off to the runtime, so a child cannot inherit an enforced spec-mutation gate from its parent shell. This is belt-and-suspenders: the spec-gate core independently treats `AI_SESSION_CHILD=1` as a complete no-op in both classify and enforce, so a leaked enforce env is harmless even without this wrapper. See the [spec-gate core reference](../skills/system-spec-kit/runtime/lib/spec-gate/README.md) for the shared contract.
+**Spec-gate enforce neutralization.** Every `exec_in_place` path (both child signals above) also exports `MK_SPEC_GATE_ENFORCE=0` before handing off to the runtime, so a child cannot inherit an enforced spec-mutation gate from its parent shell. This is belt-and-suspenders: the spec-gate core independently treats `AI_SESSION_CHILD=1` as a complete no-op in both classify and enforce, so a leaked enforce env is harmless even without this wrapper. See the [spec-gate core reference](../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md) for the shared contract.
 
 To make a runtime isolate by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.opencode/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
 
@@ -220,7 +210,6 @@ Run from the repository root.
 node -e "require('./.opencode/bin/hf-model-server.cjs')"
 node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
 node .opencode/bin/spec-memory.cjs list-tools --format text | head -3
-node .opencode/bin/code-index.cjs list-tools --format text | head -3
 node .opencode/bin/skill-advisor.cjs list-tools --format text | head -3
 node .opencode/bin/cli-offline-smoke.cjs --format text          # daemon-free: list-tools counts 41/8/9, cwd-independent
 node .opencode/bin/cli-exit-taxonomy-smoke.cjs --format text    # daemon-free: CLI failure contract (exit 64/69/75)
@@ -249,4 +238,3 @@ Expected result: each `.cjs` module loads without throwing. each CLI shim lists 
 - [`lib/`](lib/README.md)
 - [`system-spec-kit MCP server`](../skills/system-spec-kit/mcp-server/)
 - [`system-skill-advisor MCP server`](../skills/system-skill-advisor/mcp-server/)
-- [`system-code-graph skill`](../skills/system-code-graph/)

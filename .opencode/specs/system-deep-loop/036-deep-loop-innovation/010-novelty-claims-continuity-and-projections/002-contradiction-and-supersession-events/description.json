@@ -1,22 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
-  "description": "Typed additive-dark contradiction and supersession events with deterministic claim status, immutable audit, and fail-closed replay",
+  "description": "Plan first-class contradiction and supersession ledger events that preserve evidence, history, deterministic claim status, and replayable audit",
   "keywords": [
-    "typed",
-    "additive-dark",
+    "plan",
+    "first-class",
     "contradiction",
     "supersession",
+    "ledger",
     "events",
+    "preserve",
+    "evidence",
+    "history",
     "deterministic",
     "claim",
     "status",
-    "immutable",
-    "audit",
-    "fail-closed",
-    "replay"
+    "replayable",
+    "audit"
   ],
-  "lastUpdated": "2026-07-21T08:28:03.680Z",
+  "lastUpdated": "2026-07-21T11:43:14.459Z",
   "specId": "002",
   "folderSlug": "contradiction-and-supersession-events",
   "parentChain": [

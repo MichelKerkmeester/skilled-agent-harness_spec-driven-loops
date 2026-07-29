@@ -1,0 +1,947 @@
+{
+  "sessionId": "2026-07-28T12:28:12Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Codex multi-file patches check only the first file",
+      "file": ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Prompt text can forge command-owned deep-loop provenance",
+      "file": ".opencode/runtime-hooks/task-dispatch/lib/dispatch-guard.cjs",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P1",
+      "title": "Dispatch audit persists credential formats outside its heuristic allowlist",
+      "file": ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.mjs",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-001",
+      "severity": "P1",
+      "title": "Relocation playbooks retain executable references to removed skill-owned paths",
+      "file": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P1-002",
+      "severity": "P1",
+      "title": "Six-runtime zero-regression claim lacks post-move evidence for four runtimes",
+      "file": ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/implementation-summary.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Relocated adapters retain a hard dependency on system-spec-kit",
+      "file": ".opencode/runtime-hooks/README.md",
+      "line": 20,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Validation command mixes Node and Vitest runners",
+      "file": ".opencode/runtime-hooks/README.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Claude hook table retains removed post-edit path",
+      "file": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      "line": 89,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Plugin architecture prose contradicts relocated core ownership",
+      "file": ".opencode/plugins/README.md",
+      "line": 23,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "Cursor guards depend on Claude adapter executables and response envelopes",
+      "file": ".opencode/runtime-hooks/task-dispatch/cursor/task-dispatch-guard.mjs",
+      "line": 41,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 4
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.32999999999999996,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_evidence_gap",
+      "command_ownership_spoofing",
+      "credential_exposure",
+      "cross_runtime_adapter_coupling",
+      "multi_file_patch",
+      "ownership_traceability",
+      "skill_boundary_dependency",
+      "stale_path",
+      "stale_path_documentation",
+      "validation_runner"
+    ],
+    "ruledOut": [
+      "concern_policy_duplication",
+      "fail_open_contract",
+      "feature_catalog_alignment",
+      "path_escape",
+      "relative_import_depth",
+      "runtime_payload_translation",
+      "runtime_wiring",
+      "shared_core_regression",
+      "shell_execution_injection"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "stale_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "validation_runner": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "ownership_traceability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "relative_import_depth": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "runtime_wiring": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "multi_file_patch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "runtime_payload_translation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "fail_open_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shared_core_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_ownership_spoofing": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "credential_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "path_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "shell_execution_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_path_documentation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "acceptance_evidence_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "feature_catalog_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "skill_boundary_dependency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "cross_runtime_adapter_coupling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "concern_policy_duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "inventory",
+      "targetRefs": [
+        ".opencode/plugins/*.js",
+        ".opencode/runtime-hooks/**/lib"
+      ],
+      "bugClass": "relative_import_depth",
+      "disposition": "ruled_out",
+      "rationale": "Selected high-risk imports and co-located core tests resolved under their intended loaders.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/README.md:113-116",
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs:1-2"
+      ],
+      "reason": "No import-resolution failure was reproduced in the inventory surfaces."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "inventory",
+      "targetRefs": [
+        ".claude/settings.json",
+        ".codex/hooks.json",
+        ".cursor/hooks.json",
+        ".devin/hooks.v1.json",
+        "runtime discovery mirrors"
+      ],
+      "bugClass": "runtime_wiring",
+      "disposition": "ruled_out",
+      "rationale": "No broken live registration or discovery symlink was found.",
+      "evidenceRefs": [
+        ".claude/settings.json:21-61",
+        ".codex/hooks.json:59-106",
+        ".cursor/hooks.json:55-96",
+        ".devin/hooks.v1.json:57-119",
+        ".opencode/runtime-hooks/README.md:93-94"
+      ],
+      "reason": "All inventoried wiring targets and mirrors resolve."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/**/lib",
+        ".opencode/runtime-hooks/**/claude",
+        ".opencode/runtime-hooks/**/codex",
+        ".opencode/runtime-hooks/**/cursor",
+        ".opencode/runtime-hooks/**/devin"
+      ],
+      "bugClass": "relative_import_depth",
+      "disposition": "ruled_out",
+      "rationale": "No import-resolution or parse failure remained after relocation.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:23-24",
+        ".opencode/runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs:25-26",
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:21-29",
+        ".opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:29-30"
+      ],
+      "reason": "Exact import review, loader tests, and syntax checks passed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch",
+        ".opencode/runtime-hooks/mcp-route-guard",
+        ".opencode/runtime-hooks/task-dispatch"
+      ],
+      "bugClass": "runtime_payload_translation",
+      "disposition": "ruled_out",
+      "rationale": "No changed translation branch produced a confirmed mismatch in the reviewed adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:62-99",
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:51-70",
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:59-80"
+      ],
+      "reason": "Direct adapter/config comparison found matching registered tool names and normalized inputs."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch",
+        ".opencode/runtime-hooks/mcp-route-guard",
+        ".opencode/runtime-hooks/post-edit-quality",
+        ".opencode/runtime-hooks/task-dispatch"
+      ],
+      "bugClass": "fail_open_contract",
+      "disposition": "ruled_out",
+      "rationale": "Fail-open exits are preserved across the selected adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:44-64,112",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs:96-107,139-163",
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:30-53,105"
+      ],
+      "reason": "Direct branch inspection and malformed-envelope regression tests passed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch/lib",
+        ".opencode/runtime-hooks/mcp-route-guard/lib",
+        ".opencode/runtime-hooks/post-edit-quality/lib",
+        ".opencode/runtime-hooks/task-dispatch/lib"
+      ],
+      "bugClass": "shared_core_regression",
+      "disposition": "ruled_out",
+      "rationale": "All exercised shared-core and consumer regressions passed under intended runners.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.test.mjs:1",
+        ".opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:1",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:1",
+        ".opencode/plugins/tests/mk-post-edit-quality.test.cjs:1",
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs:1-2"
+      ],
+      "reason": "46 Node tests and 38 Vitest tests passed."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The selected path boundary rejects lexical escapes before checker routing.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:89-98",
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:156-165"
+      ],
+      "reason": "Direct control-flow inspection confirmed the descendant guard precedes dispatch selection."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "shell_execution_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation occurs in the shared checker runner.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:320-379"
+      ],
+      "reason": "The executable and argv are passed separately to spawnSync."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+        ".opencode/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md"
+      ],
+      "bugClass": "feature_catalog_alignment",
+      "disposition": "ruled_out",
+      "rationale": "No stale ownership or capability mismatch was found in these selected maps.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md:44-69",
+        ".opencode/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:24-31,44-113,231-239"
+      ],
+      "reason": "Direct source-table and command review aligned with the relocated tree."
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs"
+      ],
+      "bugClass": "concern_policy_duplication",
+      "disposition": "ruled_out",
+      "rationale": "No duplicated concern policy was confirmed in representative direct adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:21-38,71-105",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs:21,96-150"
+      ],
+      "reason": "Policy calls are centralized in concern-local cores; adapter-specific branches are runtime envelope translation."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "inventory",
+      "targetRefs": [
+        ".opencode/plugins/*.js",
+        ".opencode/runtime-hooks/**/lib"
+      ],
+      "bugClass": "relative_import_depth",
+      "disposition": "ruled_out",
+      "rationale": "Selected high-risk imports and co-located core tests resolved under their intended loaders.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/README.md:113-116",
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs:1-2"
+      ],
+      "proof": "No import-resolution failure was reproduced in the inventory surfaces."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "inventory",
+      "targetRefs": [
+        ".claude/settings.json",
+        ".codex/hooks.json",
+        ".cursor/hooks.json",
+        ".devin/hooks.v1.json",
+        "runtime discovery mirrors"
+      ],
+      "bugClass": "runtime_wiring",
+      "disposition": "ruled_out",
+      "rationale": "No broken live registration or discovery symlink was found.",
+      "evidenceRefs": [
+        ".claude/settings.json:21-61",
+        ".codex/hooks.json:59-106",
+        ".cursor/hooks.json:55-96",
+        ".devin/hooks.v1.json:57-119",
+        ".opencode/runtime-hooks/README.md:93-94"
+      ],
+      "proof": "All inventoried wiring targets and mirrors resolve."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/**/lib",
+        ".opencode/runtime-hooks/**/claude",
+        ".opencode/runtime-hooks/**/codex",
+        ".opencode/runtime-hooks/**/cursor",
+        ".opencode/runtime-hooks/**/devin"
+      ],
+      "bugClass": "relative_import_depth",
+      "disposition": "ruled_out",
+      "rationale": "No import-resolution or parse failure remained after relocation.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:23-24",
+        ".opencode/runtime-hooks/mcp-route-guard/codex/mcp-route-guard.cjs:25-26",
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:21-29",
+        ".opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:29-30"
+      ],
+      "proof": "Exact import review, loader tests, and syntax checks passed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch",
+        ".opencode/runtime-hooks/mcp-route-guard",
+        ".opencode/runtime-hooks/task-dispatch"
+      ],
+      "bugClass": "runtime_payload_translation",
+      "disposition": "ruled_out",
+      "rationale": "No changed translation branch produced a confirmed mismatch in the reviewed adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:62-99",
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:51-70",
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:59-80"
+      ],
+      "proof": "Direct adapter/config comparison found matching registered tool names and normalized inputs."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch",
+        ".opencode/runtime-hooks/mcp-route-guard",
+        ".opencode/runtime-hooks/post-edit-quality",
+        ".opencode/runtime-hooks/task-dispatch"
+      ],
+      "bugClass": "fail_open_contract",
+      "disposition": "ruled_out",
+      "rationale": "Fail-open exits are preserved across the selected adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:44-64,112",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs:96-107,139-163",
+        ".opencode/runtime-hooks/task-dispatch/devin/task-dispatch-guard.cjs:30-53,105"
+      ],
+      "proof": "Direct branch inspection and malformed-envelope regression tests passed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch/lib",
+        ".opencode/runtime-hooks/mcp-route-guard/lib",
+        ".opencode/runtime-hooks/post-edit-quality/lib",
+        ".opencode/runtime-hooks/task-dispatch/lib"
+      ],
+      "bugClass": "shared_core_regression",
+      "disposition": "ruled_out",
+      "rationale": "All exercised shared-core and consumer regressions passed under intended runners.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-rule-checks.test.mjs:1",
+        ".opencode/runtime-hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:1",
+        ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:1",
+        ".opencode/plugins/tests/mk-post-edit-quality.test.cjs:1",
+        ".opencode/runtime-hooks/dispatch/lib/dispatch-audit.test.mjs:1-2"
+      ],
+      "proof": "46 Node tests and 38 Vitest tests passed."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The selected path boundary rejects lexical escapes before checker routing.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:89-98",
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:156-165"
+      ],
+      "proof": "Direct control-flow inspection confirmed the descendant guard precedes dispatch selection."
+    },
+    {
+      "iteration": 3,
+      "id": "SL3-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs"
+      ],
+      "bugClass": "shell_execution_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation occurs in the shared checker runner.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/post-edit-quality/lib/post-edit-router.cjs:320-379"
+      ],
+      "proof": "The executable and argv are passed separately to spawnSync."
+    },
+    {
+      "iteration": 4,
+      "id": "SL4-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+        ".opencode/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md"
+      ],
+      "bugClass": "feature_catalog_alignment",
+      "disposition": "ruled_out",
+      "rationale": "No stale ownership or capability mismatch was found in these selected maps.",
+      "evidenceRefs": [
+        ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md:44-69",
+        ".opencode/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:24-31,44-113,231-239"
+      ],
+      "proof": "Direct source-table and command review aligned with the relocated tree."
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs"
+      ],
+      "bugClass": "concern_policy_duplication",
+      "disposition": "ruled_out",
+      "rationale": "No duplicated concern policy was confirmed in representative direct adapters.",
+      "evidenceRefs": [
+        ".opencode/runtime-hooks/dispatch/codex/dispatch-preflight-lint.mjs:21-38,71-105",
+        ".opencode/runtime-hooks/post-edit-quality/codex/post-edit-quality.cjs:21,96-150"
+      ],
+      "proof": "Policy calls are centralized in concern-local cores; adapter-specific branches are runtime envelope translation."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "skill_boundary_dependency",
+      "cross_runtime_adapter_coupling",
+      "concern_policy_duplication"
+    ],
+    "covered": [
+      "skill_boundary_dependency",
+      "cross_runtime_adapter_coupling"
+    ],
+    "ruledOut": [
+      "concern_policy_duplication"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

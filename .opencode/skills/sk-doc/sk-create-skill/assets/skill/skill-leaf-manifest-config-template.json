@@ -1,0 +1,14 @@
+{
+  "_template": "Standalone-skill leaf-manifest.config.json scaffold — the single authored declaration a class-S root needs beyond identity (init_skill.py writes an equivalent one automatically; use this when authoring or repairing by hand). workflowMode MUST equal the folder name. leafRoots may only name references, assets, feature-catalog, manual-testing-playbook — keep only the ones whose docs the skill's in-SKILL.md router actually routes into. After authoring, run ci-skill-root-metadata.cjs --fix to generate leaf-manifest.json and the derived leaf-aliases.json; never hand-edit those two. Replace every [bracketed] placeholder and keep the _note for future maintainers, adapting the exclusion sentence to this skill.",
+  "workflowMode": "[skill-name]",
+  "packet": ".",
+  "leafRoots": [
+    "references",
+    "assets",
+    "feature-catalog",
+    "manual-testing-playbook"
+  ],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. [Name what is deliberately excluded and why — e.g. scripts/ is runtime, not documentation leaves.] Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json; leaf-aliases.json is the derived identity projection of that manifest, so regenerate both together via ci-skill-root-metadata.cjs --fix."
+}

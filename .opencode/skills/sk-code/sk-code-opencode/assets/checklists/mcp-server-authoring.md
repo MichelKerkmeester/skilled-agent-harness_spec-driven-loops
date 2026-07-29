@@ -23,7 +23,6 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 
 ### Usage
 
-- Use this when authoring a new MCP server under an existing skill-local `mcp-server/` directory, such as `.opencode/skills/system-spec-kit/mcp-server/` or `.opencode/skills/system-code-graph/mcp-server/`.
 - Use this when adding or changing MCP tools, input schemas, registry entries, or response envelopes.
 - Use this when porting a shell or CLI workflow into an MCP-accessible service.
 - Use this when changing Python or TypeScript MCP server startup behavior.
@@ -34,9 +33,7 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 ## 2. PRE-CHECKS
 
 - [ ] Read `opencode.json` before changing MCP registration; it is the native MCP registration surface for this repo.
-- [ ] Read native MCP examples at `.opencode/skills/system-spec-kit/mcp-server/`, `.opencode/skills/system-code-graph/mcp-server/`, `.opencode/skills/system-skill-advisor/mcp-server/`, and `.opencode/skills/mcp-code-mode/mcp-server/`.
 - [ ] Identify the startup pattern in `opencode.json`.
-  - Launcher pattern: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` run through `.opencode/bin/mk-spec-memory-launcher.cjs`, `.opencode/bin/mk-skill-advisor-launcher.cjs`, and `.opencode/bin/mk-code-index-launcher.cjs`.
   - Direct-dist pattern: `code_mode` runs `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node` with `.opencode/skills/mcp-code-mode/mcp-server/dist/index.js` directly.
 - [ ] For launcher-backed services, account for the three-tier assembly: launcher process, daemon/server `dist/` entrypoint, and socket path configured through `SPECKIT_IPC_SOCKET_DIR`.
 - [ ] For Code Mode, keep external MCP tools in `.utcp_config.json` under `manual_call_templates`; do not add those tools as native `opencode.json` MCP servers unless they need native OpenCode tool registration.
@@ -67,9 +64,7 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 ## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the MCP server change is part of a spec folder.
-- [ ] grep verification for native MCP registration: `rg -n "mk-spec-memory|mk_skill_advisor|mk_code_index|code_mode|dist/index\\.js|launcher" opencode.json`.
 - [ ] grep verification for Code Mode external tools: `rg -n "manual_call_templates|call_template_type|mcpServers|chrome_devtools_1|figma|github|open_design" .utcp_config.json`.
-- [ ] Run the owning package build after TypeScript edits. Verified package build scripts include `.opencode/skills/system-spec-kit/mcp-server/package.json`, `.opencode/skills/system-spec-kit/scripts/package.json`, `.opencode/skills/system-code-graph/package.json`, `.opencode/skills/system-skill-advisor/mcp-server/package.json`, and `.opencode/skills/mcp-code-mode/mcp-server/package.json`.
 - [ ] Run the targeted TypeScript or package test command used by the owning MCP server.
 - [ ] Cross-runtime advertisement check if an agent, command, or skill advertises the new MCP capability.
 
@@ -79,7 +74,5 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 
 - Native registration: `opencode.json`
 - Code Mode external-tool registry: `.utcp_config.json`
-- Launcher examples: `.opencode/bin/mk-spec-memory-launcher.cjs`, `.opencode/bin/mk-skill-advisor-launcher.cjs`, `.opencode/bin/mk-code-index-launcher.cjs`
 - Direct-dist example: `.opencode/skills/mcp-code-mode/mcp-server/dist/index.js`
-- MCP server examples: `.opencode/skills/system-spec-kit/mcp-server/`, `.opencode/skills/system-code-graph/mcp-server/`, `.opencode/skills/system-skill-advisor/mcp-server/`, `.opencode/skills/mcp-code-mode/mcp-server/`
 - Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md`, `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/python-checklist.md`

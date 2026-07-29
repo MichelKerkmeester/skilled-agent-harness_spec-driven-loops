@@ -100,8 +100,6 @@ Plugins that correlate `tool.execute.before` with `tool.execute.after` use `call
 ```text
 plugins/
 +-- mk-cli-dispatch-audit.js
-+-- mk-code-graph-freshness.js
-+-- mk-code-graph.js
 +-- mk-completion-sentinel.js
 +-- mk-deep-loop-guard.js
 +-- mk-dist-freshness-guard.js
@@ -124,8 +122,6 @@ plugins/
 | File | Purpose | Hook events and registrations |
 |---|---|---|
 | `mk-cli-dispatch-audit.js` | Records redacted, rotated JSONL telemetry after completed `opencode run` and `claude -p` Bash dispatches. The adapter is observe-only and fail-open. | `tool.execute.after` |
-| `mk-code-graph-freshness.js` | Correlates source edits, debounces edit bursts and requests a warm-only incremental code graph scan when an established graph needs refresh. It also sweeps stale freshness state and clears timers during disposal events. | `tool.execute.before`, `tool.execute.after`, `event` for `session.created`, `server.instance.disposed` and `global.disposed` |
-| `mk-code-graph.js` | Loads transport-backed structural context through a Node bridge, injects system and message context, preserves compaction context and exposes plugin cache status. Session lifecycle events invalidate cached transport plans. | `tool` for `mk_code_graph_status`, `experimental.chat.system.transform`, `experimental.chat.messages.transform`, `experimental.session.compacting`, `event` for `session.created` and `session.deleted` |
 | `mk-completion-sentinel.js` | Detects completion claims at session idle and checks recorded spec evidence without running tests, builds or validation scripts. It logs advisory results and sweeps stale sentinel state. | `event` for `session.created` and `session.idle` |
 | `mk-deep-loop-guard.js` | Checks Task dispatches for deep-loop route mismatches and repeated non-command-driven loop handoffs. It warns by default and supports opt-in rejection. | `tool.execute.before`, `event` for `session.created` |
 | `mk-dist-freshness-guard.js` | Checks watched compiled outputs before risky Bash commands and at session creation. It invalidates cached diagnostics after relevant mutations and injects bounded stale-dist warnings. | `tool.execute.before`, `experimental.chat.system.transform`, `event` for `session.created`, `session.deleted`, `server.instance.disposed` and `global.disposed` |
@@ -159,7 +155,6 @@ Plugins and their shared cores may write runtime state under these skill-owned f
 |---|---|
 | `../skills/.goal-state/` | `mk-goal.js` stores active, archived and diagnostic goal state. |
 | `../skills/.loop-guard-state/` | `mk-deep-loop-guard.js` and its shared dispatch-guard core store session counters and warning logs. |
-| `../skills/.code-graph-freshness-state/` | `mk-code-graph-freshness.js` and its shared freshness core store pending refresh and scan coordination state. |
 | `../skills/.spec-gate-state/` | `mk-spec-gate.js` and its shared gate core store per-session Gate 3 decisions and telemetry. |
 | `../skills/.completion-sentinel-state/` | `mk-completion-sentinel.js` and its shared sentinel core store advisory deduplication state. |
 
@@ -256,10 +251,11 @@ See [`tests/README.md`](./tests/README.md) for the current suite inventory, help
 ## 9. RELATED
 
 - [`tests/README.md`](./tests/README.md): plugin regression suite documentation
-- [`../skills/system-code-graph/`](../skills/system-code-graph/): code graph bridges and freshness policy
 - [`../skills/system-deep-loop/`](../skills/system-deep-loop/): deep-loop dispatch policy
 - [`../skills/system-skill-advisor/`](../skills/system-skill-advisor/): skill advisor bridge and runtime
 - [`../skills/system-spec-kit/`](../skills/system-spec-kit/): continuity, spec gate, completion and dist freshness logic
-- [`../skills/sk-code/sk-code-quality/`](../skills/sk-code/sk-code-quality/): post-edit quality routing
+- [`../skills/sk-code/sk-code-quality/`](../skills/sk-code/sk-code-quality/): post-edit quality routing (the checker scripts `mk-post-edit-quality.js` invokes stay here; the router core it imports moved, see below)
 - [`../skills/mcp-code-mode/`](../skills/mcp-code-mode/): MCP routing policy
-- [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch audit core
+- [`../skills/cli-external-orchestration/cli-opencode/`](../skills/cli-external-orchestration/cli-opencode/): CLI dispatch skill this hub's rule sets belong to (the audit/rule-check cores `mk-cli-dispatch-audit.js`/`mk-git-preflight-advisory.js` import moved, see below)
+- [`../hooks/README.md`](../hooks/README.md): the fully-portable guard cores `mk-mcp-route-guard.js`, `mk-post-edit-quality.js`, `mk-cli-dispatch-audit.js`, `mk-deep-loop-guard.js`, and `mk-git-preflight-advisory.js` import directly
+- [`../skills/system-spec-kit/references/hooks/injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md): what every plugin's `experimental.chat.system.transform` call actually injects, and why none of it is rendered as a visible chat message today (that would need `chat.message`'s mutable `parts` instead)

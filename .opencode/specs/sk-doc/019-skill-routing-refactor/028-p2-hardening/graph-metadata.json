@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/028-p2-hardening",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/028-p2-hardening",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill metadata p2 hardening",
+      "fleet gate silent failure fix",
+      "packet containment out of root",
+      "within-entry duplicate signal",
+      "skill metadata p2 hardening plan",
+      "skill metadata p2 hardening tasks",
+      "skill metadata p2 hardening checklist",
+      "skill metadata p2 hardening outcome",
+      "p2 backlog fixed"
+    ],
+    "key_topics": [
+      "skill",
+      "metadata",
+      "hardening",
+      "fleet",
+      "gate",
+      "silent",
+      "failure",
+      "packet",
+      "containment",
+      "root",
+      "within-entry",
+      "duplicate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/package.json",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one P1",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "byte-identical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the ten P2 findings from the skill-metadata program deep review: fleet-gate silent-failure hardening (exit 2 on bad input), standalone-packet and choreography-path containment, within-entry signal dedup, cross-drive isWithin correctness, watcher-test dependency resolution, template-drift assertion, and documentation of the deliberate skip-and-continue and first-push fallbacks.",
+    "created_at": "2026-07-29T04:49:12.362Z",
+    "last_save_at": "2026-07-29T04:57:16.265Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:87a632be005b3ce62b76a84e87f7d2886b6b2fc8c21b2b2d5317a168e4ef8a26",
+    "source_doc_hashes": {
+      "spec.md": "430325ff69650795e28753aa17821f25e72e607ba0bc1fd77346e51497940957",
+      "plan.md": "2cf2c3671f1557c1977790ec53986ef66d7561bbb9322c99b5432c0f08a8d8fe",
+      "tasks.md": "fa0286ffad5168fd74d7e5c6b0d46d33cb3a24e9e9c2e15f83c4d2b54108387a",
+      "checklist.md": "3c23a6b8c1bd7696614339abc695890f76a43461cff67b27e220c6ceffedb522",
+      "implementation-summary.md": "94a66f8f811e9c0aa1cebc3c7637628aa475140bfa5e6fc2a68f2e2868b5a767"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

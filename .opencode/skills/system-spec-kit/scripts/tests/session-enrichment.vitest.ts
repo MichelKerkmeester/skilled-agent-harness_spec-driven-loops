@@ -21,11 +21,26 @@ function makeTempRoot(prefix: string): string {
   return root;
 }
 
+// git resolves its target repo/config from these env vars IN PREFERENCE to cwd/-C. A poisoned
+// parent env (routine inside a git worktree, which shares one .git/config) would otherwise redirect
+// these fixtures' init/config/commit writes onto the real repository. Strip them so cwd is authoritative.
+const GIT_ENV_REDIRECTORS = [
+  'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE',
+  'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+  'GIT_CONFIG', 'GIT_CONFIG_GLOBAL', 'GIT_CONFIG_SYSTEM', 'GIT_CONFIG_COUNT',
+  'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
+];
+function cleanGitEnv(): NodeJS.ProcessEnv {
+  const env = { ...process.env };
+  for (const key of GIT_ENV_REDIRECTORS) delete env[key];
+  return env;
+}
+
 function initializeGitRepo(repoRoot: string, branchName = 'test-main'): void {
-  execFileSync('git', ['init'], { cwd: repoRoot, stdio: 'ignore' });
-  execFileSync('git', ['checkout', '-b', branchName], { cwd: repoRoot, stdio: 'ignore' });
-  execFileSync('git', ['config', 'user.email', 'test@example.com'], { cwd: repoRoot, stdio: 'ignore' });
-  execFileSync('git', ['config', 'user.name', 'Spec Kit Tests'], { cwd: repoRoot, stdio: 'ignore' });
+  execFileSync('git', ['init'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+  execFileSync('git', ['checkout', '-b', branchName], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+  execFileSync('git', ['config', 'user.email', 'test@example.com'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+  execFileSync('git', ['config', 'user.name', 'Spec Kit Tests'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
 }
 
 function readShortHead(repoRoot: string): string {
@@ -377,8 +392,8 @@ describe('stateless enrichment guardrails', () => {
     fs.writeFileSync(workflowPath, 'export const workflowVersion = 1;\n', 'utf-8');
 
     initializeGitRepo(repoRoot);
-    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore' });
-    execFileSync('git', ['commit', '-m', 'feat: add workflow alignment fix'], { cwd: repoRoot, stdio: 'ignore' });
+    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+    execFileSync('git', ['commit', '-m', 'feat: add workflow alignment fix'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
 
     const gitContext = await extractGitContext(repoRoot, specFolderPath);
     const commitRef = readShortHead(repoRoot);
@@ -480,10 +495,10 @@ describe('stateless enrichment guardrails', () => {
     fs.writeFileSync(trackedFile, 'export const workflowVersion = 1;\n', 'utf-8');
 
     initializeGitRepo(repoRoot);
-    execFileSync('git', ['add', '.'], { cwd: repoRoot, stdio: 'ignore' });
-    execFileSync('git', ['commit', '-m', 'feat: add workflow seed'], { cwd: repoRoot, stdio: 'ignore' });
+    execFileSync('git', ['add', '.'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+    execFileSync('git', ['commit', '-m', 'feat: add workflow seed'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
     const commitRef = readShortHead(repoRoot);
-    execFileSync('git', ['checkout', '--detach'], { cwd: repoRoot, stdio: 'ignore' });
+    execFileSync('git', ['checkout', '--detach'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
 
     const gitContext = await extractGitContext(repoRoot);
 
@@ -510,8 +525,8 @@ describe('stateless enrichment guardrails', () => {
     for (let index = 1; index <= 6; index += 1) {
       const fileName = `note-${index}.md`;
       fs.writeFileSync(path.join(targetSpecFolder, fileName), `Commit ${index}\n`, 'utf-8');
-      execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore' });
-      execFileSync('git', ['commit', '-m', `docs: add note ${index}`], { cwd: repoRoot, stdio: 'ignore' });
+      execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+      execFileSync('git', ['commit', '-m', `docs: add note ${index}`], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
     }
 
     const gitContext = await extractGitContext(repoRoot, targetSpecFolder);
@@ -543,12 +558,12 @@ describe('stateless enrichment guardrails', () => {
     fs.writeFileSync(path.join(targetSpecFolder, 'spec.md'), '# Spec\n', 'utf-8');
 
     initializeGitRepo(repoRoot);
-    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore' });
-    execFileSync('git', ['commit', '-m', 'docs: add target spec shell'], { cwd: repoRoot, stdio: 'ignore' });
+    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+    execFileSync('git', ['commit', '-m', 'docs: add target spec shell'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
 
     fs.writeFileSync(path.join(foreignSpecFolder, 'notes.md'), 'Foreign spec note\n', 'utf-8');
-    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore' });
-    execFileSync('git', ['commit', '-m', 'docs: add foreign spec note'], { cwd: repoRoot, stdio: 'ignore' });
+    execFileSync('git', ['add', '-f', '.'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
+    execFileSync('git', ['commit', '-m', 'docs: add foreign spec note'], { cwd: repoRoot, stdio: 'ignore', env: cleanGitEnv() });
 
     const gitContext = await extractGitContext(repoRoot, targetSpecFolder);
 

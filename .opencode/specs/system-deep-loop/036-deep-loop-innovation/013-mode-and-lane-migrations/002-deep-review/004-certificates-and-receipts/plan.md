@@ -13,14 +13,14 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Defined the Deep Review attestation boundary and verifier inputs"
-    next_safe_action: "Finalize receipt and certificate fields against phases 003 and 009"
+    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which exact phase-007 certificate primitive signs or seals the run certificate?"
-      - "Which phase-012 transition result fields are inherited by each receipt?"
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-certificates.vitest.ts"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The certificate attests recorded process integrity, not semantic truth"
 ---
@@ -48,18 +48,18 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase `003-sealed-artifacts` publishes the receipt primitive, certificate primitive, seal/reference format, and offline verification hooks.
-- [ ] Phase 012 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment.
-- [ ] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references.
-- [ ] The current Deep Review lifecycle is inventoried from its config, state JSONL, iteration, finding, evidence, convergence, adjudication, synthesis, report, and continuity records.
-- [ ] The receipt matrix names one receipt owner for each transition and separates shared primitives, mode extensions, and later resume or gate consumers.
-- [ ] The target remains limited to attestation schemas, fingerprint inputs, offline verification, and fixtures; no reducer, report, resume, rollback, or authority work is scheduled here.
+- [x] Phase `003-sealed-artifacts` publishes the receipt primitive, certificate primitive, seal/reference format, and offline verification hooks.
+- [x] Phase 012 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment.
+- [x] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references.
+- [x] The current Deep Review lifecycle is inventoried from its config, state JSONL, iteration, finding, evidence, convergence, adjudication, synthesis, report, and continuity records.
+- [x] The receipt matrix names one receipt owner for each transition and separates shared primitives, mode extensions, and later resume or gate consumers.
+- [x] The target remains limited to attestation schemas, fingerprint inputs, offline verification, and fixtures; no reducer, report, resume, rollback, or authority work is scheduled here.
 
 ### Definition of Done
-- [ ] The run certificate and transition receipt fields are ratified against phases `003-sealed-artifacts` and 009.
-- [ ] Replay fingerprints cover immutable identity, behavior, artifact, policy, evaluator, and report input classes with typed mismatch outcomes.
-- [ ] Offline verification fixtures prove receipt closure, certificate coverage, append integrity, candidate/adjudication separation, unresolved-state retention, and fail-closed tamper handling.
-- [ ] A handoff packet gives the later resume adapter and mode gate stable certificate and receipt references without prescribing their decision algorithms.
+- [x] The run certificate and transition receipt fields are ratified against phases `003-sealed-artifacts` and 009.
+- [x] Replay fingerprints cover immutable identity, behavior, artifact, policy, evaluator, and report input classes with typed mismatch outcomes.
+- [x] Offline verification fixtures prove receipt closure, certificate coverage, append integrity, candidate/adjudication separation, unresolved-state retention, and fail-closed tamper handling.
+- [x] A handoff packet gives the later resume adapter and mode gate stable certificate and receipt references without prescribing their decision algorithms.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -113,7 +113,7 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 | REQ-008 | Append late, retried, superseding, and unknown-effect receipts; verify raw history and unresolved state remain visible |
 | REQ-009 | Run the verifier on a copied ledger and sealed references with network, model, tool, and mutable workspace access unavailable |
 | REQ-010 | Compare Deep Review and deep-alignment shared transitions and reject mode-local copies of shared review-loop fields |
-| REQ-011 | Scan the phase package for reducer, report, resume, rollback, authority, and mode-gate ownership and require a planning-only result |
+| REQ-011 | Scan the phase package for reducer, report, resume, rollback, authority, and mode-gate ownership and require an additive-dark result |
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:dependencies -->
@@ -127,5 +127,5 @@ The later `005-resume-adapter` consumes receipt and certificate references for r
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase is planning-only until its implementation is separately authorized. If implementation begins, land receipt types, certificate subjects, fingerprint registry, verifier, and fixtures behind the dark ledger path in dependency-closed commits. Reverting those commits restores the prior Deep Review JSONL and report path without deleting historical state or changing authority. Unsupported historical records remain readable through the legacy path or return explicit blocked compatibility outcomes. Any phase `003-sealed-artifacts` or phase 012 contract change invalidates the candidate attestation contract and requires regeneration from the shared definitions before implementation continues.
+The implementation is additive-dark behind the existing ledger path. Reverting the new certificate package and its tests restores the prior Deep Review JSONL and report path without deleting historical state or changing authority. Unsupported historical records remain readable through the legacy path or return explicit blocked compatibility outcomes. Any phase `003-sealed-artifacts` or phase 012 contract change invalidates the attestation contract and requires regeneration from the shared definitions before implementation continues.
 <!-- /ANCHOR:rollback -->

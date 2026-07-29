@@ -1,34 +1,34 @@
 ---
 title: "Feature Specification: Pathspec Integrity"
-description: "A check for the failure class where git reports success while committing less than the operator named."
+description: "Confirming the success-while-doing-less class is covered, and measuring what the rule set actually costs."
 trigger_phrases:
-  - "pathspec-integrity"
-  - "git advisory pathspec-integrity"
-importance_tier: "normal"
+  - "advisory noise audit"
+  - "git advisory fire rate"
+importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/016-git-action-advisory-hook/004-pathspec-integrity"
-    last_updated_at: "2026-07-27T21:20:00Z"
+    last_updated_at: "2026-07-27T23:50:00Z"
     last_updated_by: "claude-opus-5"
-    recent_action: "Authored the phase scope; detail awaits research output"
-    next_safe_action: "Wait for phase 001 research to land"
-    blockers:
-      - "Depends on phase 001 research output"
+    recent_action: "Measured the real fire rate with a control group"
+    next_safe_action: "Operator reviews the packet"
+    blockers: []
     key_files:
       - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-27-sk-git-016-4"
+      session_id: "2026-07-27-sk-git-016-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Pathspec Integrity
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -37,16 +37,16 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
-| **Branch** | `skilled/v4.0.0.0` |
+| **Branch** | `sk-git/0113-016-advisory-hook-build` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
 | **Predecessor** | 003-preflight-hook |
 | **Successor** | None |
-| **Handoff Criteria** | See the parent Phase Documentation Map |
+| **Handoff Criteria** | The success-while-doing-less class is covered and the fire rate is measured |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,11 +56,11 @@ _memory:
 
 This is **Phase 4** of the Git action advisory hook specification.
 
-**Scope Boundary**: A check that compares the paths named on a pathspec commit against the paths the commit actually contains.
+**Scope Boundary**: Confirming the class is covered, and measuring what the rules actually cost.
 
-**Dependencies**: Phase 001 research output. This phase is deliberately thin until that lands — writing the detail now would mean inventing the answers the research exists to find.
+**Dependencies**: Phases 002 and 003.
 
-**Deliverables**: See requirements below.
+**Deliverables**: A noise audit that replays command shapes against a live repository and reports per-rule and aggregate fire rates against the research budget.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -70,11 +70,13 @@ This is **Phase 4** of the Git action advisory hook specification.
 
 ### Problem Statement
 
-`git commit --only <paths>` silently skips paths that are untracked. It reports success, the omission is invisible in a file count, and the dropped fix can then be destroyed by a later restore from HEAD. That happened in this repository and no sk-git rule covers it.
+The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there. What remained unaddressed was the claim the whole design rests on: that these rules stay quiet.
+
+Every fire-rate figure to this point was a projection from reflog prevalence. Reflog counts how often an operation happened, not how often a state-gated rule would have fired on it, so the projections were upper bounds. The design was accepted on numbers nobody had measured.
 
 ### Purpose
 
-Make a commit that did less than it was told say so.
+Measure what the rule set actually costs, and make the measurement incapable of reporting a false pass.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -83,17 +85,20 @@ Make a commit that did less than it was told say so.
 ## 3. SCOPE
 
 ### In Scope
-- A check that compares the paths named on a pathspec commit against the paths the commit actually contains.
+- Replay of representative ordinary command shapes against a live repository.
+- Per-rule and aggregate fire rates against the research budget.
+- A control group of shapes that must fire.
+- Refusal to report a verdict when nothing is loaded or nothing fires.
 
 ### Out of Scope
-- Rewriting how commits are made. The check reports; it does not alter commit behaviour.
-- Blocking behaviour. The pre-commit, commit-msg and pre-push hooks own enforcement; this packet advises.
+- A real invocation log. None exists here; this measures what the rules do against current state.
+- Changing any rule. Measurement only.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| To be determined by phase 001 research | Pending | The research names the surfaces this phase touches |
+| `sk-git/scripts/lib/advisory-noise-audit.mjs` | Create | The audit |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,13 +110,17 @@ Make a commit that did less than it was told say so.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A pathspec commit that drops a named path is reported | Reproduce the original failure and assert the check catches it |
+| REQ-001 | Report per-rule and aggregate fire rates | Both printed against the budget |
+| REQ-002 | A control group proves the rules are alive | Shapes that must fire are exercised and counted |
+| REQ-003 | No verdict when nothing is loaded | Exits non-zero rather than reporting green |
+| REQ-004 | No verdict when no control shape fires | A quiet result with a dead rule set is reported as invalid |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | The check covers the wider class research identifies, not only this one instance | Each additional failure mode research confirms has a corresponding check or a documented reason it has none |
+| REQ-005 | Probes use paths that exist in the target repository | No manufactured noise from hardcoded paths |
+| REQ-006 | The aggregate budget is enforced by exit code | Over budget exits non-zero |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -119,8 +128,8 @@ Make a commit that did less than it was told say so.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The original omission is reproducible and caught
-- **SC-002**: Related success-while-doing-less operations are covered or explicitly deferred
+- **SC-001**: Ordinary commands draw no advisory while control shapes all draw one.
+- **SC-002**: The audit refuses a verdict against a repository with no rules loaded.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -130,8 +139,9 @@ Make a commit that did less than it was told say so.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 001 research | Blocks this phase entirely | Phase 001 is in flight |
-| Risk | Scoping the check so narrowly it catches only the one remembered instance | Med | Named in phase 001 requirements |
+| Risk | A quiet result caused by broken rules reads as success | High | Control group, and an invalid verdict when none fire |
+| Risk | Hardcoded probe paths invent noise | Med | Probes resolve a real tracked path at runtime |
+| Risk | The measurement is mistaken for a real fire rate | Med | Stated as a replay against current state, not an invocation log |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -139,5 +149,5 @@ Make a commit that did less than it was told say so.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Answered by phase 001 research output.
+- A true fire rate needs a Bash-hook invocation log, which does not exist in this repository.
 <!-- /ANCHOR:questions -->

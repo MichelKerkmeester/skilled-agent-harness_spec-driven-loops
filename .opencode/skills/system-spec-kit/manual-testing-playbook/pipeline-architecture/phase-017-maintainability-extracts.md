@@ -106,7 +106,6 @@ mcp-server/handlers/memory-context.ts:231-237
 interface StructuralRoutingNudgeMeta {
   advisory: true;
   advisoryPreset: 'ready';
-  preferredTool: 'code_graph_query';
   message: string;
   preservesAuthority: 'session_bootstrap';
 }
@@ -115,8 +114,6 @@ mcp-server/handlers/memory-context.ts:565-571
 return {
   advisory: true,
   advisoryPreset: 'ready',
-  preferredTool: 'code_graph_query',
-  message: 'Advisory only: this looks like a structural question. Prefer `code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
   preservesAuthority: 'session_bootstrap',
 };
 
@@ -124,7 +121,6 @@ mcp-server/tests/graph-first-routing-nudge.vitest.ts:155-159
 expect(parsed.meta.structuralRoutingNudge).toMatchObject({
   advisory: true,
   advisoryPreset: 'ready',
-  preferredTool: 'code_graph_query',
 });
 ```
 

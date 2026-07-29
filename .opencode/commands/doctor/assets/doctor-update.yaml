@@ -97,8 +97,6 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
-    - ".opencode/skills/system-code-graph/mcp-server/database/code-graph.sqlite.pre-doctor-update.*.bak"
     - "mcp-server/database/context-index.sqlite"  # canonical memory DB
     - "mcp-server/database/context-index.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
@@ -128,7 +126,6 @@ mutation_boundaries:
     - ".opencode/commands/doctor/assets/doctor_*.yaml"
     - "mcp-server/database/migration-manifest.json"
     - "**/migration-manifest.json"
-    - "source files indexed by code graph or Code Graph"
     - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
   validator:
     name: canonical_path_validator
@@ -164,7 +161,7 @@ interactive_prompts:
 # DEPENDENCY ORDER
 # ─────────────────────────────────────────────────────────────────
 dependency:
-  order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+  order: ["context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -379,14 +376,14 @@ workflow:
     council_line: 4
     approval: "prompt after rendering dashboard and before selecting actions"
     cross_subsystem_dashboard:
-      rows: ["code-graph", "context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "eval"]
+      rows: ["context-index", "causal-edges", "skill-graph", "advisor", "deep-loop", "eval"]
       columns: ["status", "age", "coverage", "recommended action"]
       coverage_column_rationale: "context-index row populated by FIX-10 post_run_count_skipped output; other rows show n/a unless their tool surfaces a coverage metric"
 
   phase_5_dependency_order_execute:
     council_line: 4
     approval: "prompt before each dependency step"
-    dependency.order: ["code-graph", "context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
+    dependency.order: ["context-index", "causal-edges-init", "skill-graph", "advisor", "deep-loop-graph", "speckit-eval"]
     test_failure_injection:
       env_var: "SPECKIT_FAIL_STEP"
       scope: "disposable workspace tests only"
@@ -394,7 +391,6 @@ workflow:
       example: "SPECKIT_FAIL_STEP=causal-edges-init"
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
-      code-graph: "code_graph_scan({ incremental: false })"
       context-index:
         action: "memory_index_scan({ incremental: false, force: true })"
         post_run_count_skipped: |
@@ -466,7 +462,6 @@ workflow:
     council_line: 5
     approval: "auto-acknowledge unless --keep-snapshots is set"
     optional: true
-    condition: "any sqlite/db file exists now that did NOT exist when phase_3_snapshot_all_databases ran (typical: code-graph, context-index, etc. on a fresh install)"
     detect_command: |
       comm -13 \
         <(ls mcp-server/database/*.pre-doctor-update.*.bak 2>/dev/null | sed 's/\.pre-doctor-update\..*\.bak$//' | sort -u) \

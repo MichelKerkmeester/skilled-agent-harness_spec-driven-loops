@@ -1,11 +1,8 @@
 ---
 title: "Daemon-backed code-index CLI surface"
-description: "Dual-stack CLI front door over the mk-code-index daemon, with manifest-backed commands, warm-only fallback reads, and blocked maintenance paths for prompt-time usage."
 trigger_phrases:
   - "daemon-backed code-index CLI surface"
   - "code-index cli"
-  - "code_graph_status warm-only cli"
-  - "mk-code-index CLI front door"
 version: 3.6.0.1
 ---
 
@@ -15,7 +12,6 @@ version: 3.6.0.1
 
 ## 1. OVERVIEW
 
-The code graph daemon ships a CLI front door at `node .opencode/bin/code-index.cjs` over the same daemon/IPC transport used by MCP.
 
 The CLI gives hooks, doctor probes, and transport-down recovery a read path when the daemon is already warm. Prompt-time callers use warm-only probing so they do not cold-spawn the daemon.
 
@@ -35,19 +31,12 @@ Runtime integrations call read paths with `--warm-only --timeout-ms`. Maintenanc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/code-index.cjs` | Script | Stable executable shim for the code-index CLI |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts` | CLI entrypoint | IPC command execution, output rendering, and warm-only behavior |
-| `.opencode/skills/system-code-graph/mcp-server/code-index-cli-manifest.ts` | CLI manifest | Command definitions and maintenance/read classification |
 | `.opencode/plugins/mk-code-graph.js` | Plugin bridge | OpenCode bridge using CLI/IPC instead of in-process imports |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-parity.vitest.ts` | Automated test | CLI/MCP parity coverage |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-blocked-read.vitest.ts` | Automated test | Blocked readiness/read behavior coverage |
-| `.opencode/skills/system-code-graph/mcp-server/tests/code-index-cli-dual-client.vitest.ts` | Automated test | MCP and CLI concurrent client coverage |
-| `.opencode/skills/system-code-graph/feature-catalog/mcp-tool-surface/code-index-cli.md` | Catalog | Owning system-code-graph feature entry |
 
 ---
 

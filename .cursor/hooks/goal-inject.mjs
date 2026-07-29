@@ -1,0 +1,1 @@
+../../.opencode/hooks/goal/cursor/goal-inject.mjs

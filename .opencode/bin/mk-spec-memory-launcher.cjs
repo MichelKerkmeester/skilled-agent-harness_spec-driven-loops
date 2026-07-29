@@ -99,7 +99,6 @@ let lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
 const PID_FILE_NAME = '.mk-spec-memory-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.spec-memory-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
-let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp-server', 'database');
 
 const rel = (p) => path.relative(root, p) || '.';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -343,7 +342,6 @@ function refreshPaths() {
   dbDir = path.join(kitDir, 'mcp-server', 'database');
   lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
-  canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp-server', 'database');
 }
 
 function exists(p) {
@@ -1109,7 +1107,7 @@ const hfControl = mss.createModelServerControl({
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 14. LEASE CLEANUP & CODE-GRAPH DB HELPERS
+// 14. LEASE CLEANUP
 // ─────────────────────────────────────────────────────────────────────────────
 
 function clearLeaseFile() {
@@ -1131,25 +1129,6 @@ function clearLeaseFile() {
 function clearAllLeaseFiles() {
   clearLeaseFile();
   clearOwnerLeaseFile();
-}
-
-function isInside(parent, child) {
-  const relative = path.relative(parent, child);
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function enforceStandaloneCodeGraphDb(actions) {
-  const current = process.env.SPECKIT_CODE_GRAPH_DB_DIR;
-  const resolvedCurrent = current ? path.resolve(current) : null;
-  const resolvedCanonical = path.resolve(canonicalCodeGraphDbDir);
-  const specKitRoot = path.resolve(kitDir);
-
-  if (!resolvedCurrent || isInside(specKitRoot, resolvedCurrent)) {
-    process.env.SPECKIT_CODE_GRAPH_DB_DIR = resolvedCanonical;
-    actions.push(
-      `set SPECKIT_CODE_GRAPH_DB_DIR=${rel(resolvedCanonical)} for standalone system-code-graph storage`
-    );
-  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1767,7 +1746,6 @@ async function main() {
 
     ensureLayout(actions);
     refreshPaths();
-    enforceStandaloneCodeGraphDb(actions);
 
     if (strictSingleWriter) {
       const ownerLeaseResult = acquireOwnerLeaseFile();

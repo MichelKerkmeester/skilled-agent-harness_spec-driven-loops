@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "9abfbf849ab4799185401b4f3261ed715e84c1526bcf96b7fe2b6bcc9b1ace44",
+      "sha256": "1d215d9872c40b91122234215e67bb373bd995af1a269d3965c27cc9a2f01aff",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "768f4aed7c285f902c47c7cd507537a4d25cd2297dbcb940303e529735f4a686",
+      "sha256": "a25715fe477afa42413dfe5032c7ecbf7d1b052748d0a2a9426a534b5b75c2f9",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "4b9f784d66139a6421d0596e145e1d8cfe4d2131eac2cead9e730eb418ce4b48"
+  "compiledBodyDigest": "329e81c5117c94ed809d7877cdace5a65a17911035d928f9daf51ec8710813db"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -523,8 +523,6 @@ allowed:
   - "Task"
   - "memory_context"
   - "memory_search"
-  - "code_graph_query"
-  - "code_graph_context"
 permittedByExecutor:
   native:
     - "Read"
@@ -536,8 +534,6 @@ permittedByExecutor:
     - "Task"
     - "memory_context"
     - "memory_search"
-    - "code_graph_query"
-    - "code_graph_context"
   cli-opencode:
     - "headless command execution through YAML-owned audited dispatch only"
   cli-claude-code:

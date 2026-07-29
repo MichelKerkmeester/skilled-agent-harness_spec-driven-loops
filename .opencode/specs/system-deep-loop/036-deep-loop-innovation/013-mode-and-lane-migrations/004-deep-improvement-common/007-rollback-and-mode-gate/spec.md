@@ -1,26 +1,31 @@
 ---
 title: "Feature Specification: Deep Improvement Common Services - Rollback & Mode Gate"
-description: "Plan the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone: evaluator-first candidate generation, scoring, canary analysis, and guarded promotion. The gate consumes shadow parity, sealed artifacts, certificates, receipts, replay, and resume evidence, then emits a mode-bound readiness certificate for the phase-014 handoff without moving authority."
+description: "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority."
 trigger_phrases:
   - "deep improvement common rollback and mode gate"
   - "deep improvement authority rollback switch"
   - "shared evaluator canary promotion migration gate"
   - "deep improvement phase 014 readiness certificate"
 importance_tier: "critical"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-28T14:07:58Z"
     last_updated_by: "opencode"
-    recent_action: "Defined rollback switch and common-service gate evidence boundary"
-    next_safe_action: "Freeze gate predicates and rollback window evidence against shared contracts"
+    recent_action: "Verified the shared rollback gate"
+    next_safe_action: "Reuse the shared contract in extension lanes"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The gate re-derives readiness through authorization audit, replay, and certificate verification."
+      - "The rollback switch remains additive-dark and emits no authority mutation."
+      - "Seven provenance limits remain explicit phase-014 boundaries."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,12 +43,12 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Improvement Common Services) |
 | **Origin** | Final child concern in the phase-013 deep-improvement-common migration |
 | **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
-| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
+| **Consumes** | Landed certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 | **Outcome** | Plan the shared-service rollback switch and independent mode gate for the typed event-ledger migration |
 | **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
@@ -67,7 +72,7 @@ those rules for the shared evaluator, canary, and promotion services. It defines
 gate; it does not execute a cutover, retire a legacy writer, or create a second ledger or verifier.
 
 The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and
-non-authoritative. This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without
+non-authoritative. This implemented leaf consumes their contracts and the later receipt, resume, and parity evidence without
 allowing any predecessor output to become an authority decision.
 
 The 036/002 findings make the evidence boundary load-bearing. Rich evaluator traces and per-case fitness vectors must remain
@@ -267,7 +272,7 @@ soft aggregate score.
 - What exact certificate schema and acceptance endpoint does phase 014 consume for this common-service exit gate while
   preserving the later authority-cutover boundary?
 
-These questions are resolved against the frozen shared contracts before implementation. They do not authorize a local
+These questions were resolved against the frozen shared contracts during implementation. They do not authorize a local
 authority toggle, shortened rollback window, second service primitive, mutable evidence repair, variant-local gate, or
-semantic claim about candidate quality in this Planned phase.
+semantic claim about candidate quality in this implemented phase.
 <!-- /ANCHOR:questions -->

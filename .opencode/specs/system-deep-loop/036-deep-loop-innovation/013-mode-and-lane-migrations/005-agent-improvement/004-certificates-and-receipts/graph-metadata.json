@@ -39,12 +39,13 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -84,7 +91,7 @@
         "source": "derived"
       },
       {
-        "name": "Scoped Agent Improvement",
+        "name": "Implemented Agent Improvement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -96,7 +103,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Plan",
+        "name": "Purpose Provide",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -132,12 +139,6 @@
         "source": "derived"
       },
       {
-        "name": "Inventory Agent Improvement",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -152,6 +153,12 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -178,25 +185,33 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Plan a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, references deep-improvement-common evaluator/canary/promotion services, and can be re-verified offline before the mode gate accepts shadow parity",
+    "causal_summary": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity",
     "created_at": "2026-07-16T03:43:38.290Z",
-    "last_save_at": "2026-07-24T07:18:39.249Z",
+    "last_save_at": "2026-07-27T19:39:05.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1df22998685a02715d76ce8acefad08eb0db39f8fccb8be5cc7ba359c608d639",
+    "source_fingerprint": "sha256:2ebd249854c279e855914515c691a3356db295431ee3c875dd57fa91caec5342",
     "source_doc_hashes": {
-      "spec.md": "93622043edee1f423a0eade7405ac6a935043eae91dcba57886b833b81803a35",
-      "plan.md": "c68db083052cce21f3fe903b7f05809ad93a69af73c60af005d76cabd0a351b0",
-      "tasks.md": "be60ae468d76f46ca8bfd120395dfec90a3f4a5255c6ffea2ef3d09f854017cf",
-      "checklist.md": "5a2d3dcfa9a9e138cb5facbff500fc3eccc51bd809c09ef14cbf2cdf344dc856"
+      "spec.md": "8f3328f819f27efbebc4a1875a21ab9fbbce81ce62d0a337b9d1e10be9e81f14",
+      "plan.md": "41338bd7e832049a2e7f0807f3ba6b9b41d65df9f4f62a865757ea421c4527d5",
+      "tasks.md": "d292c1e3e28928dadb0c3e67f1a9868785565aea5a06d6186f8b7bc599528a96",
+      "checklist.md": "93e2deba48cc7c080cc0651e117a4583b6dc1d6e6fc425360b7c93800c6dc100",
+      "implementation-summary.md": "d9e2baf7680888593e2e1f61adc54124aa844e5efc63cad0c3e1ea256e1411aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -141,14 +141,10 @@ const DIST_PACKAGES = Object.freeze([
     excludedSegments: ['tests', 'stress-test', 'bench', '__tests__'],
   },
   {
-    id: 'system-code-graph/mcp-server',
-    name: '@spec-kit/system-code-graph',
-    root: '.opencode/skills/system-code-graph',
     distEntries: {
       default: 'mcp-server/dist/tsconfig.tsbuildinfo',
       'code-index-cli': 'mcp-server/dist/code-index-cli.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-code-graph && npm run build',
     sourceCandidates: ['package.json', 'tsconfig.json', 'mcp-server'],
     entrySourceCandidates: {
       'code-index-cli': [

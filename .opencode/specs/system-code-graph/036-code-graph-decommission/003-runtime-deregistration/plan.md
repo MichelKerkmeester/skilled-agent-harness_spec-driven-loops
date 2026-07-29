@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: runtime-deregistration"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Removed the mk_code_index MCP server registration from every runtime config surface plus the Claude PostToolUse hook and local Bash allowlist, so no runtime attempts to spawn the launcher."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/003-runtime-deregistration"
-    last_updated_at: "2026-07-27T16:33:54Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | JSON / TOML / Markdown config files |
+| **Framework** | OpenCode / Claude / Codex / Pi runtime configs |
+| **Storage** | None |
+| **Testing** | `rg --hidden --no-ignore` sweep + JSON/TOML parse |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Resolved the `.mcp.json` and `.cursor/mcp.json` symlinks to their real target (`.claude/mcp.json`) so each real file was edited once, then removed the `mk_code_index` server block from every runtime config and stripped the Claude PostToolUse freshness hook plus the local Bash allowlist entry. `.codex/config.toml` was already clean. Verified with a `--no-ignore` sweep returning no `mk_code_index` hit.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,14 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Config-file surgery across five registration surfaces plus two hook/allowlist entries.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Runtime configs**: `opencode.json`, `.claude/mcp.json` (reached also via `.mcp.json` and `.cursor/mcp.json` symlinks), `.codex/config.toml`, `.pi/mcp.json`
+- **Hook/allowlist**: `.claude/settings.json` PostToolUse entry, `.claude/settings.local.json` `code-index.cjs` entry
 
 ### Data Flow
-[Brief description of how data moves through the system]
+With the blocks removed, no runtime resolves a launcher path for `mk_code_index`, so session start no longer attempts to spawn it.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +93,12 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable: this phase is a decommission registration sweep, not a `fix_bug` finding. No producer/helper/policy behavior change; the change is removal of registration entries.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| Runtime configs | Registered the server | Removed | `rg --hidden --no-ignore mk_code_index` clean |
+| PostToolUse hook / allowlist | Pointed into the skill folder | Removed | hook manifest + allowlist omit the entry |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +107,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Resolved symlinks (`.mcp.json`, `.cursor/mcp.json` → `.claude/mcp.json`) and enumerated the real files
+- [x] Confirmed `.codex/config.toml` already clean
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Removed `mk_code_index` block from `opencode.json`
+- [x] Removed block from `.claude/mcp.json` (covers the two symlinks)
+- [x] Removed block from `.pi/mcp.json`
+- [x] Removed PostToolUse freshness hook from `.claude/settings.json`
+- [x] Removed `code-index.cjs` from `.claude/settings.local.json` allowlist
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] `rg --hidden --no-ignore` sweep returns no `mk_code_index` in configs
+- [x] JSON and TOML parse cleanly after edits
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +129,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Manual | Config sweep across all surfaces | `rg --hidden --no-ignore` |
+| Parse | JSON / TOML validity | runtime parsers |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +140,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 002 decision record | Internal | Green | Ratified the removal this phase executes |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +148,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A runtime needs the server back (not expected; the decommission is the intended end state).
+- **Procedure**: Re-add the `mk_code_index` registration block from git history into the relevant config file.
 <!-- /ANCHOR:rollback -->
 
 ---

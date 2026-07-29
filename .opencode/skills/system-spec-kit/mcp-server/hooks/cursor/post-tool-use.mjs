@@ -12,16 +12,15 @@
 //
 // Per tool_name, chains to:
 //   Write -> claude-posttooluse.cjs (post-edit quality checks)
-//         -> code-graph-freshness.cjs (debounced incremental scan trigger)
 //   Shell -> dispatch-audit-posttooluse.mjs (CLI dispatch audit trail)
 //
 // Deliberately NOT a thin proxy through shared.ts's runClaudeHookAdapter():
-// all three targets live outside mcp-server/hooks/claude/ (sk-code,
-// system-code-graph, and cli-external-orchestration respectively), so
+// both targets live outside mcp-server/hooks/claude/ (sk-code and
+// cli-external-orchestration respectively), so
 // runClaudeHookAdapter's `../claude/<filename>` resolution does not reach
 // them. Spawns each directly by its known repo-relative path instead,
 // mirroring spec-gate-enforce.mjs's plain-.mjs style. FAILS OPEN -- a
-// spawn/parse error on any one chained hook must never affect the tool call
+// spawn/parse error on either chained hook must never affect the tool call
 // already completed, and never affects the other chained hook.
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -35,9 +34,8 @@ import { join } from 'node:path';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs';
-const CODE_GRAPH_FRESHNESS_RELATIVE = '.opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs';
-const DISPATCH_AUDIT_RELATIVE = '.opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs';
+const CLAUDE_POST_TOOL_USE_RELATIVE = '.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs';
+const DISPATCH_AUDIT_RELATIVE = '.opencode/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs';
 const CHILD_TIMEOUT_MS = 8_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 
@@ -119,11 +117,6 @@ async function main() {
 
     const findings = runChild(
       join(projectDir, CLAUDE_POST_TOOL_USE_RELATIVE),
-      claudeShapedPayload,
-      projectDir,
-    );
-    runChild(
-      join(projectDir, CODE_GRAPH_FRESHNESS_RELATIVE),
       claudeShapedPayload,
       projectDir,
     );

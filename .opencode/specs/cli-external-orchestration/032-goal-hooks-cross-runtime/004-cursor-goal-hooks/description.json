@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+  "description": "A goal set for the work does not survive into a Cursor session",
+  "keywords": [
+    "goal",
+    "set",
+    "work",
+    "survive",
+    "cursor",
+    "session"
+  ],
+  "lastUpdated": "2026-07-29T04:37:07.118Z",
+  "specId": "004",
+  "folderSlug": "cursor-goal-hooks",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

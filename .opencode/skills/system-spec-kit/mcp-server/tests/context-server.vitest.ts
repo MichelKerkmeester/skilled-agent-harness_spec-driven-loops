@@ -285,24 +285,6 @@ describe('Context Server', () => {
     })
   })
 
-  describe('Structural bootstrap guidance honesty', () => {
-    // The code-graph read handler is false-safe: a stale graph BLOCKS reads
-    // (code_graph_not_ready) until refreshed. The bootstrap guidance must not
-    // claim queries "still work" on a stale graph.
-    it('stale-branch guidance does not claim code_graph_query still works', () => {
-      expect(sourceCode).not.toContain('mcp__mk_code_index__code_graph_query still works')
-    })
-
-    it('stale-branch guidance recommends a session_bootstrap refresh before querying', () => {
-      expect(sourceCode).toContain('"stale": mcp__mk_code_index__code_graph_query will block (code_graph_not_ready) until you run session_bootstrap to refresh')
-    })
-
-    it('routing rule emits the direct structural-query rule only for a fresh graph', () => {
-      expect(sourceCode).toContain("if (snap.graphFreshness === 'fresh') {")
-      expect(sourceCode).toMatch(/snap\.graphFreshness === 'stale'[\s\S]*?run session_bootstrap to refresh first/)
-    })
-  })
-
   // =================================================================
   // GROUP 3: Tool Dispatch Coverage (dispatchTool replaces switch)
   // =================================================================
@@ -353,7 +335,6 @@ describe('Context Server', () => {
     function readDispatchModuleCode(): string {
       const moduleDirs = [
         path.join(SERVER_DIR, 'tools'),
-        path.join(SERVER_DIR, 'code_graph', 'tools'),
       ];
       let allToolModulesCode = '';
       for (const moduleDir of moduleDirs.filter((dir) => fs.existsSync(dir))) {
@@ -456,7 +437,6 @@ describe('Context Server', () => {
       '../lib/errors',
       '../lib/utils/canonical-path',
       '../lib/utils/cleanup-helpers',
-      '../lib/code-graph-boundary',
       '../lib/storage/history',
       '../handlers/memory-index-discovery',
       '../handlers/mutation-hooks',
@@ -656,7 +636,6 @@ describe('Context Server', () => {
           }
         },
       }))
-
       vi.doMock('@modelcontextprotocol/sdk/server/stdio.js', () => ({
         StdioServerTransport: class {
           close(): void {
@@ -671,7 +650,6 @@ describe('Context Server', () => {
           }
         },
       }))
-
       vi.doMock('@modelcontextprotocol/sdk/types.js', () => ({
         ListToolsRequestSchema: listToolsSchema,
         CallToolRequestSchema: callToolSchema,
@@ -680,7 +658,6 @@ describe('Context Server', () => {
         ListToolsRequestSchema: listToolsSchema,
         CallToolRequestSchema: callToolSchema,
       }))
-
       vi.doMock('../core', () => ({
         DATABASE_PATH: databasePath,
         DATABASE_DIR: path.dirname(databasePath),
@@ -700,12 +677,10 @@ describe('Context Server', () => {
         reinitializeDatabase: vi.fn(),
         init: vi.fn(),
       }))
-
       vi.doMock('../tool-schemas', () => ({ TOOL_DEFINITIONS: options?.toolDefinitions ?? [] }))
       vi.doMock('../tool-schemas.js', () => ({ TOOL_DEFINITIONS: options?.toolDefinitions ?? [] }))
       vi.doMock('../tools', () => ({ dispatchTool: dispatchToolMock }))
       vi.doMock('../tools/index.js', () => ({ dispatchTool: dispatchToolMock }))
-
       vi.doMock('../handlers', () => ({
         indexSingleFile: vi.fn(async () => ({ status: 'unchanged' })),
         indexMemoryFile: vi.fn(async () => ({ status: 'unchanged' })),
@@ -716,7 +691,6 @@ describe('Context Server', () => {
         indexMemoryFile: vi.fn(async () => ({ status: 'unchanged' })),
         handleMemoryStats: handleMemoryStatsMock,
       }))
-
       vi.doMock('../utils', () => ({
         validateInputLengths: vi.fn(),
         validateToolInputSchema: vi.fn(),
@@ -727,7 +701,6 @@ describe('Context Server', () => {
         validateToolInputSchema: vi.fn(),
         requireDb: vi.fn(() => databaseMock),
       }))
-
       vi.doMock('../hooks', () => ({
         MEMORY_AWARE_TOOLS: memoryAwareTools,
         extractContextHint: extractContextHintMock,
@@ -767,14 +740,12 @@ describe('Context Server', () => {
       vi.doMock('../hooks/memory-surface.js', () => ({
         primeSessionIfNeeded: vi.fn(async () => null),
       }))
-
       vi.doMock('../lib/architecture/layer-definitions', () => ({
         getTokenBudget: vi.fn(() => 1000),
       }))
       vi.doMock('../lib/architecture/layer-definitions.js', () => ({
         getTokenBudget: vi.fn(() => 1000),
       }))
-
       vi.doMock('../startup-checks', () => ({
         detectNodeVersionMismatch: vi.fn(),
         checkSqliteVersion: vi.fn(),
@@ -813,7 +784,6 @@ describe('Context Server', () => {
           isFileWatcherEnabled: vi.fn(() => options?.fileWatcherEnabled ?? false),
         };
       })
-
       vi.doMock('../lib/search/vector-index', () => ({
         initializeDb: vi.fn(),
         closeDb: vi.fn(),
@@ -898,7 +868,6 @@ describe('Context Server', () => {
           refresh_interference_scores_for_folder: vi.fn(() => 0),
         }
       })
-
       vi.doMock('../lib/providers/embeddings', () => ({
         validateApiKey: vi.fn(async () => ({ valid: true, provider: 'test' })),
         shouldEagerWarmup: vi.fn(() => false),
@@ -917,7 +886,6 @@ describe('Context Server', () => {
         generateEmbedding: vi.fn(async () => [0]),
         generateQueryEmbedding: vi.fn(async () => [0]),
       }))
-
       vi.doMock('../lib/storage/checkpoints', () => ({
         init: vi.fn(),
         repairNeedsRebuildSentinel: vi.fn(() => ({
@@ -1072,12 +1040,6 @@ describe('Context Server', () => {
             console.error(`[context-server] ${label} cleanup failed:`, msg)
           }
         }),
-      }))
-      vi.doMock('../lib/code-graph-boundary.js', () => ({
-        callCodeGraphTool: vi.fn(async () => ({
-          status: 'ok',
-          data: { graphContext: [] },
-        })),
       }))
       vi.doMock('../lib/search/graph-lifecycle.js', () => ({
         registerGlobalRefreshFn: vi.fn(),

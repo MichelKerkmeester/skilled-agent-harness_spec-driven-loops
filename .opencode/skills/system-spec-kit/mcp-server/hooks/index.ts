@@ -14,7 +14,6 @@ export {
   getSessionTimestamps,
   getLastActiveSessionId,
   isSessionPrimed,
-  getCodeGraphStatusSnapshot,
 } from './memory-surface.js';
 export { buildMutationHookFeedback } from './mutation-feedback.js';
 export { runPostMutationHooks } from '../handlers/mutation-hooks.js';

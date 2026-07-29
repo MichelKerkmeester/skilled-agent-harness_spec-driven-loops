@@ -43,6 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".pi/mcp.json",
       "implementation-summary.md",
       "tasks.md"
     ],
@@ -60,6 +63,18 @@
         "source": "derived"
       },
       {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -73,12 +88,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,6 +117,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -120,7 +135,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Verification",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,13 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,6 +177,12 @@
         "source": "derived"
       },
       {
+        "name": "archival",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -172,29 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A decommission of this breadth fails quietly rather than loudly",
     "created_at": "2026-07-27T16:34:02Z",
-    "last_save_at": "2026-07-27T16:49:48.889Z",
+    "last_save_at": "2026-07-28T09:42:20.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c668ae4eb55b5398359c74ae91d79f676533a836c8a527806181146d3154f893",
+    "source_fingerprint": "sha256:6221cf906b47d190e371cfdd711c209fc0ba66270504a9c1ea66ed6e176c2f52",
     "source_doc_hashes": {
-      "spec.md": "798d913703ed5b4b09f3238d4648c83889c9154e2a19a8387e47611dc95d6d4c",
-      "plan.md": "8ec5586de580341c46090d0d361c32d090c696ee5f1ffc65ae3964b80bceb40f",
-      "tasks.md": "3d65814ff3c62db363cdfd2554f269006901b643eeb128c4ffc65b2e8e274ad3",
-      "implementation-summary.md": "f0f50afb46d9682e10c272236494416812b9559bac198e8fe68b55eb4f3cf2d4"
+      "spec.md": "ecfdf6dfd973cfb14f6f039ad95c70ffd1fca5ba0c159879aca9bc47eef1638c",
+      "plan.md": "a0cc812df33b4917a6bddfde6b9367030e979129ef902eca6ad3212f7f69e05b",
+      "tasks.md": "ad967fa6119f05dd6ee8080146c34adc678b63835c1fad451e7e88e101dd4fe3",
+      "implementation-summary.md": "1dcdfa21424b32b9cd3f3616093f141a7218361c7a962b7afb40dd0ba40c98fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

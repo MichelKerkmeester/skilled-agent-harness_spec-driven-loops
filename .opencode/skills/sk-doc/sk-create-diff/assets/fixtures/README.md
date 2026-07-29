@@ -1,8 +1,27 @@
+---
+title: Create Diff Fixtures
+description: Runnable before-and-after fixture files for demonstrating and validating the local create-diff workflow.
+trigger_phrases:
+  - "create diff fixtures"
+  - "before and after diff example"
+  - "onboarding diff fixture"
+  - "run create diff example"
+importance_tier: normal
+contextType: general
+version: 1.0.0.0
+---
+
 # create-diff fixtures
 
-A runnable before/after worked example. `onboarding-before.md` and `onboarding-after.md` are two versions of the same onboarding guide: the "after" edits a sentence, expands two bullets, adds a "First Login" section, and extends the support line.
+A runnable before/after worked example for the local create-diff workflow.
 
-## Run it
+---
+
+## 1. OVERVIEW
+
+`onboarding-before.md` and `onboarding-after.md` are two versions of the same onboarding guide: the "after" edits a sentence, expands two bullets, adds a "First Login" section, and extends the support line.
+
+## 2. RUN IT
 
 From the packet directory (`.opencode/skills/sk-doc/sk-create-diff/`):
 

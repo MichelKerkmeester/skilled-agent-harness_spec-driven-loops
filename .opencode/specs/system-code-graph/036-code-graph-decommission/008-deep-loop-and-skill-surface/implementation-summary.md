@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/008-deep-loop-and-skill-surface"
-    last_updated_at: "2026-07-27T16:33:57Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 008-deep-loop-and-skill-surface |
 | **Completed** | 2026-07-27 |
-| **Level** | 3 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +56,11 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The remaining skills no longer route to, document, or guard the removed code-graph subsystem. The sweep handled prose, routing data, and live route-guard code separately so that nothing live points at a deleted route and the `mcp-code-mode` suite stayed green.
 
-### [Feature Name]
+### Skills swept
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`system-deep-loop` docs and tool grants were cleared of graph tool ids. `mcp-code-mode` route-guard code and its tests were updated together so the guard and the suite agree. `sk-doc` worked examples that used the skill were replaced with equivalents that still teach their original point, and `sk-code` checklists and playbooks lost their graph steps. `cli-external-orchestration` skill roster listings were updated and the skills index table row in `skills/README.md` was removed.
 
 ### Files Changed
 
@@ -69,7 +68,12 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-deep-loop/**` | Modified | Removed graph tool ids from docs and grants |
+| `.opencode/skills/mcp-code-mode/**` | Modified | Updated route-guard code and tests |
+| `.opencode/skills/sk-doc/**` | Modified | Replaced worked examples |
+| `.opencode/skills/sk-code/**` | Modified | Removed graph steps from checklists/playbooks |
+| `.opencode/skills/cli-external-orchestration/**` | Modified | Updated skill roster listings |
+| `.opencode/skills/README.md` | Modified | Removed the index table row |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +87,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The three reference forms were treated differently on purpose: prose rewritten, routing data corrected, and route-guard code updated with its tests so the guard and suite agree. A live-surface sweep of the skills tree confirmed no surviving reference outside the removed folder.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +100,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Replace `sk-doc` examples rather than delete them | Deletion would lose the teaching value; an equivalent keeps the lesson |
+| Update route-guard code and tests together | A guard change without a test change would leave the suite asserting a removed route |
+| Exclude benchmark reports and changelogs from the sweep | They are archival measurements, not live docs |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +115,8 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| mcp-code-mode route-guard suite | PASS — green after the update |
+| Live-surface sweep of skills tree | PASS — no reference outside the removed folder |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +129,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **None identified.** Archival surfaces (benchmark reports, changelogs) were intentionally left untouched per the phase 002 boundary.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -10,15 +10,20 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped AgentIR recovery state to the shared deep-improvement resume boundary"
-    next_safe_action: "Freeze resume request identity and variant re-entry decision fixtures"
+    last_updated_at: "2026-07-28T03:24:46Z"
+    last_updated_by: "codex"
+    recent_action: "Rebuilt the full resume decision layer"
+    next_safe_action: "Consume the closed decision surface in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/agent-improvement-resume-adapter.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Agent Improvement delegates shared resume decisions to the common adapter"
 ---
 # Implementation Plan: Agent Improvement - Resume Adapter
 
@@ -46,19 +51,19 @@ change across retries. Variant code adds no evaluator, canary, certificate, prom
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The common receipts, replay-fingerprint, reducer, and effect-recovery contracts are frozen and available to the adapter
-- [ ] Agent Improvement event, projection, and sealed-reference contracts identify all resume inputs and variant-owned fields
-- [ ] The continuity ladder names every supported proposal, behavior experiment, evaluation, scoring, canary, and promotion state
-- [ ] Resume-request, logical-operation, idempotency, and attempt identity rules are explicit
-- [ ] Changed-manifest and incompatible-checkpoint outcomes are classified before any re-entry is attempted
-- [ ] A crash and duplicate fixture matrix covers branch-local success and incomplete external effects
+- [x] The common receipts, replay-fingerprint, reducer, and effect-recovery contracts are frozen and available to the adapter
+- [x] Agent Improvement event, projection, and sealed-reference contracts identify all resume inputs and variant-owned fields
+- [x] The continuity ladder names every supported proposal, behavior experiment, evaluation, scoring, canary, and promotion state
+- [x] Resume-request, logical-operation, idempotency, and attempt identity rules are explicit
+- [x] Changed-manifest and incompatible-checkpoint outcomes are classified before any re-entry is attempted
+- [x] A crash and duplicate fixture matrix covers branch-local success and incomplete external effects
 
 ### Definition of Done
-- [ ] Ledger-only rebuild is byte-equivalent to a clean full fold
-- [ ] Exact duplicate requests produce no second apply or side effect
-- [ ] AgentIR-specific re-entry decisions reuse the common decision algebra without a local semantic fork
-- [ ] Unknown, stale, leaked, or insufficient evidence remains blocking and non-authoritative
-- [ ] The dark resume path passes the Agent Improvement gate inputs consumed by `006-shadow-parity`
+- [x] Ledger-only rebuild is byte-equivalent to a clean full fold
+- [x] Exact duplicate requests produce no second apply or side effect
+- [x] AgentIR-specific re-entry decisions reuse the common decision algebra without a local semantic fork
+- [x] Unknown, stale, leaked, or insufficient evidence remains blocking and non-authoritative
+- [x] The dark resume path passes the Agent Improvement gate inputs consumed by `006-shadow-parity`
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

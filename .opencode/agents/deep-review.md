@@ -1,6 +1,6 @@
 ---
 name: deep-review
-description: LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state.
+description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
 mode: subagent
 temperature: 0.1
 permission:
@@ -12,8 +12,6 @@ permission:
   glob: allow
   webfetch: deny
   memory: allow
-  code_graph_query: allow
-  code_graph_context: allow
   detect_changes: allow
   chrome_devtools: deny
   task: deny
@@ -170,7 +168,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
-- Use Code Graph structural search only when exposed and exact symbols are unknown; verify hits with direct reads.
+- When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
 - For local diff review, use `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
 - If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 - Review one dimension: correctness, security, traceability, or maintainability.
@@ -263,15 +261,14 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 ### Tools
 
-Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Code Graph only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
 
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
-- `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for file:line evidence.
 - `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
-- `code_graph_query`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front doors are the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

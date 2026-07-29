@@ -34,8 +34,6 @@ import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 import { getStrategyForQuery } from '../lib/search/artifact-routing.js';
 import { routeQuery } from '../lib/search/query-router.js';
 import { createEmptyQueryPlan } from '../lib/query/query-plan.js';
-import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
-import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
   buildSearchDecisionEnvelope,
   type SearchDecisionEnvelope,
@@ -1987,9 +1985,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       extraData.retrievalTrace = pipelineResult.trace;
       extraData.vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
     }
-    const degradedReadiness = mapGraphReadinessToTelemetry(
-      getGraphReadinessSnapshotFromMarker(),
-    );
     searchDecisionEnvelope = buildSearchDecisionEnvelope({
       requestId: searchDecisionRequestId,
       tenantId: normalizedScope.tenantId,
@@ -2002,7 +1997,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           decision: 'memory_search_response',
         },
       },
-      degradedReadiness,
       pipelineTiming: pipelineResult.metadata.timing,
       timestamp: new Date(_searchStartTime).toISOString(),
       latencyMs: Date.now() - _searchStartTime,

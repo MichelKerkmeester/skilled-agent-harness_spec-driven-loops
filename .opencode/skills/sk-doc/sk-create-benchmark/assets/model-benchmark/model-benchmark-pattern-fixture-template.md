@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Model Benchmark Pattern / Capability Fixture Template
+
+This template produces a JSON pattern or capability fixture for a model benchmark.
+
+---
+
 <!--
 Copy-paste scaffold for ONE non-code-task model-benchmark fixture. These fixtures
 live beside their sweep, in the model_benchmark benchmark-fixtures folder:

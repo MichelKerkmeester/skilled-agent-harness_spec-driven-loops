@@ -13,7 +13,6 @@ What do you want to do?
    2) Debug Memory database              (search index, spec-doc indexing)
    3) Debug Embeddings                   (provider choice, hf-local health)
    4) Debug Causal-Graph                 (spec lineage, drift_why)
-   5) Debug Code-Graph                   (structural index, stale/missed/bloat)
    6) Debug Deep-Loop history            (research/review iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
    8) Audit Skill Description budget     (char counts, CI-friendly)
@@ -33,7 +32,6 @@ Accepted answers:
 | `2` | target = `memory` |
 | `3` | target = `embeddings` |
 | `4` | target = `causal-graph` |
-| `5` | target = `code-graph` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
 | `8` | target = `skill-budget` |
@@ -57,8 +55,6 @@ Pick by symptom:
    Model mismatch or hf-local loading state unclear    -> 3  Embeddings
    memory_drift_why returns nothing                    -> 4  Causal-Graph
    "causal coverage <60%" warning                      -> 4  Causal-Graph
-   "code-graph stale/missed/bloat" warning             -> 5  Code-Graph
-   "code_graph_status: unhealthy" or code-graph errors -> 5  Code-Graph
    deep-research/deep-review iteration graph empty     -> 6  Deep-Loop
    Convergence not detected between iterations         -> 6  Deep-Loop
    Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
@@ -69,7 +65,6 @@ Pick by symptom:
    Fable-5 behavioral metric drift                     -> 11 Fable Mode
 
 Quick reference for confusable pairs:
-   Code-Graph (5) is STRUCTURAL - functions, files, dirs, AST
    Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
    Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
 
@@ -80,7 +75,7 @@ Press 1-11, 0, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
+Valid targets: memory, embeddings, causal-graph, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors
 Try: /doctor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -101,7 +96,6 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `memory` | `doctor-memory.yaml` | add-only | Diagnose the memory continuity index; report drift and recommend action |
 | `embeddings` | `doctor-embeddings.yaml` | read-only | Inspect provider selection and hf-local model-server status |
 | `causal-graph` | `doctor-causal-graph.yaml` | add-only | Diagnose causal-edge integrity; sample drift and recommend candidates |
-| `code-graph` | `doctor-code-graph.yaml` | add-only | Diagnose code-graph index; report stale, missed, or bloat findings |
 | `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research and review |
 | `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
 | `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
@@ -124,12 +118,10 @@ Rebuild mode?
 
 Accept `1`, `I`, or Enter as `incremental=true`. Accept `2`, `F`, or `full` as `incremental=false`.
 
-### Code-Graph Scope
 
 Ask this only when `--scope` was not passed and the operation needs a scope.
 
 ```text
-Code-graph scope?
    1) stale     - files indexed but mtime moved
    2) missed    - files in repo but not indexed
    3) bloat     - large dirs hogging the graph

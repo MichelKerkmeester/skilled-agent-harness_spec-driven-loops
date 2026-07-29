@@ -4,7 +4,13 @@
   "lineageMode": "new",
   "generation": 1,
   "continuedFromRun": null,
-  "terminalStop": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-27T18:35:07Z"
+  },
   "keyQuestions": [
     {
       "id": "question-1-what-is-the-complete-12-skill-by-eight-file-root-level-census-and-who-produces-e",
@@ -39,8 +45,8 @@
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
       "addedAtIteration": 0,
-      "resolvedAtIteration": null,
-      "resolved": false
+      "resolvedAtIteration": 4,
+      "resolved": true
     },
     {
       "id": "question-4-how-should-the-five-graph-only-skills-leaf-aliases-json-command-metadata-json-an",
@@ -51,8 +57,8 @@
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
       "addedAtIteration": 0,
-      "resolvedAtIteration": null,
-      "resolved": false
+      "resolvedAtIteration": 5,
+      "resolved": true
     },
     {
       "id": "question-5-where-should-the-canonical-contract-live-in-sk-doc-create-skill-what-can-be-gene",
@@ -63,45 +69,11 @@
       "injectedAtIteration": 0,
       "promotedQuestionId": null,
       "addedAtIteration": 0,
-      "resolvedAtIteration": null,
-      "resolved": false
+      "resolvedAtIteration": 5,
+      "resolved": true
     }
   ],
-  "openQuestions": [
-    {
-      "id": "question-3-what-consumer-derived-skill-class-taxonomy-maps-all-12-skills-and-makes-each-pre",
-      "inboxId": null,
-      "text": "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
-      "origin": "legacy-import",
-      "source": "key-questions",
-      "injectedAtIteration": 0,
-      "promotedQuestionId": null,
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-4-how-should-the-five-graph-only-skills-leaf-aliases-json-command-metadata-json-an",
-      "inboxId": null,
-      "text": "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
-      "origin": "legacy-import",
-      "source": "key-questions",
-      "injectedAtIteration": 0,
-      "promotedQuestionId": null,
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    },
-    {
-      "id": "question-5-where-should-the-canonical-contract-live-in-sk-doc-create-skill-what-can-be-gene",
-      "inboxId": null,
-      "text": "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?",
-      "origin": "legacy-import",
-      "source": "key-questions",
-      "injectedAtIteration": 0,
-      "promotedQuestionId": null,
-      "addedAtIteration": 0,
-      "resolvedAtIteration": null
-    }
-  ],
+  "openQuestions": [],
   "resolvedQuestions": [
     {
       "id": "question-1-what-is-the-complete-12-skill-by-eight-file-root-level-census-and-who-produces-e",
@@ -124,6 +96,39 @@
       "promotedQuestionId": null,
       "addedAtIteration": 0,
       "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-what-consumer-derived-skill-class-taxonomy-maps-all-12-skills-and-makes-each-pre",
+      "inboxId": null,
+      "text": "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-how-should-the-five-graph-only-skills-leaf-aliases-json-command-metadata-json-an",
+      "inboxId": null,
+      "text": "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-5-where-should-the-canonical-contract-live-in-sk-doc-create-skill-what-can-be-gene",
+      "inboxId": null,
+      "text": "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
     }
   ],
   "carriedForwardOpenQuestions": [
@@ -186,13 +191,19 @@
       "text": "Which exceptional graph-only, alias, command, and sparse cases are required, optional, or defective?",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should the canonical two-class contract live, what can be generated/backfilled, and what presence-plus-freshness gate should enforce it?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No key research questions remain. Implementation still must prove the proposed classifier and gate against all 12 live roots and negative fixtures.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
     }
   ],
-  "uncoveredQuestions": [
-    "What consumer-derived skill class taxonomy maps all 12 skills and makes each presence difference either required, optional by class, or defective?",
-    "How should the five graph-only skills, `leaf-aliases.json`, `command-metadata.json`, and sparse `sk-git` be classified after behavior-impact checks?",
-    "Where should the canonical contract live in `sk-doc/create-skill`, what can be generated/backfilled, and what fleet-wide presence-plus-freshness gate should enforce it?"
-  ],
+  "uncoveredQuestions": [],
   "keyFindings": [
     {
       "id": "finding-1-5-command-metadata-json-is-a-singleton-confined-to-sk-design-its-two-entries-descr",
@@ -453,6 +464,211 @@
         "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-65`",
         "Git introduction commit `2aa5fcff4a`"
       ]
+    },
+    {
+      "id": "finding-4-5-command-metadata-json-remains-an-authored-sk-design-extension-command-ownership-",
+      "text": "**`command-metadata.json` remains an authored `sk-design` extension; command ownership is not a class rule.** Generic hub commands already live in registries (`sk-doc`, `system-deep-loop`). The sole multi-hub reader treats command metadata as optional over a fixed four-hub list and excludes registry-less `system-spec-kit`; production validation is path-bound to `sk-design` interface semantics. Generalization would require a new schema/consumer, not copying the singleton. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-doc/mode-registry.json:67-76] [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:35-76] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`iterations/iteration-001.md:15-34`, `iteration-002.md:12-17`, `iteration-003.md:13-18`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1074`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828,946-970,1037-1099`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-208`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-105`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-294`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299`",
+        "`.opencode/skills/sk-git/SKILL.md:42-95`, `graph-metadata.json:143-152`",
+        "Standalone configs/aliases; `sk-doc` aliases; `sk-doc` and `system-deep-loop` registries",
+        "Command binding test and `sk-design` command surface validator"
+      ]
+    },
+    {
+      "id": "finding-4-4-aliases-stay-authored-as-a-capability-overlay-the-resolver-refuses-to-infer-shar",
+      "text": "**Aliases stay authored as a capability overlay.** The resolver refuses to infer shared ownership and accepts legacy/shared paths only through explicit `{workflowMode, leafResourceId, diskPath}` rows. Hubs resolve packet-qualified strings from registries, so `sk-doc` needs aliases only for relocated shared resources; registry-less Class S roots need same-path rows to attach a workflow mode to untyped replay input. This policy mapping is not safe generated inventory. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-260] [SOURCE: .opencode/skills/sk-doc/leaf-aliases.json:1-31] [SOURCE: .opencode/skills/mcp-code-mode/leaf-aliases.json:1-36]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`iterations/iteration-001.md:15-34`, `iteration-002.md:12-17`, `iteration-003.md:13-18`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1074`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828,946-970,1037-1099`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-208`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-105`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-294`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299`",
+        "`.opencode/skills/sk-git/SKILL.md:42-95`, `graph-metadata.json:143-152`",
+        "Standalone configs/aliases; `sk-doc` aliases; `sk-doc` and `system-deep-loop` registries",
+        "Command binding test and `sk-design` command surface validator"
+      ]
+    },
+    {
+      "id": "finding-4-2-class-h-requires-skill-md-graph-description-registry-and-router-all-seven-curren",
+      "text": "**Class H requires `SKILL.md`, graph, description, registry, and router; all seven current hubs also require their generated manifest because they adopted typed leaf routing.** Doctor explicitly requires hub description, but production advisor ingestion reads graph metadata—not root description. Adding description to Class S therefore cannot directly change current advisor scoring/routing. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321] [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1063-1074] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:1037-1099] [INFERENCE: exact production search under `.opencode/skills/system-skill-advisor/mcp-server` found no `description.json` reader]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`iterations/iteration-001.md:15-34`, `iteration-002.md:12-17`, `iteration-003.md:13-18`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1074`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828,946-970,1037-1099`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-208`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-105`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-294`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299`",
+        "`.opencode/skills/sk-git/SKILL.md:42-95`, `graph-metadata.json:143-152`",
+        "Standalone configs/aliases; `sk-doc` aliases; `sk-doc` and `system-deep-loop` registries",
+        "Command binding test and `sk-design` command surface validator"
+      ]
+    },
+    {
+      "id": "finding-4-3-class-s-requires-skill-md-graph-standalone-config-generated-manifest-and-aliases",
+      "text": "**Class S requires `SKILL.md`, graph, standalone config, generated manifest, and aliases when raw strings need the absent workflow mode—which all five current resource routers do.** The four configured roots state the one-mode contract. `sk-git` has the same `RESOURCE_MAP` pattern and routed references/assets/package corpus but lacks config, manifest, and aliases; the freshness gate misses this because it discovers only committed manifests. Thus `sk-git` is the most non-conforming Class S root, not a legitimate sparse class; missing description is not its defect. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147] [SOURCE: .opencode/skills/mcp-code-mode/leaf-manifest.config.json:1-8] [SOURCE: .opencode/skills/system-code-graph/leaf-manifest.config.json:1-8] [SOURCE: .opencode/skills/system-skill-advisor/leaf-manifest.config.json:1-8] [SOURCE: .opencode/skills/system-spec-kit/leaf-manifest.config.json:1-8] [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-git/graph-metadata.json:143-152] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`iterations/iteration-001.md:15-34`, `iteration-002.md:12-17`, `iteration-003.md:13-18`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1074`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828,946-970,1037-1099`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-208`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-105`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-294`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299`",
+        "`.opencode/skills/sk-git/SKILL.md:42-95`, `graph-metadata.json:143-152`",
+        "Standalone configs/aliases; `sk-doc` aliases; `sk-doc` and `system-deep-loop` registries",
+        "Command binding test and `sk-design` command surface validator"
+      ]
+    },
+    {
+      "id": "finding-4-1-two-classes-explain-all-12-roots-no-sparse-third-class-is-needed-class-h-is-a-pa",
+      "text": "**Two classes explain all 12 roots; no sparse third class is needed.** Class H is a packet hub (seven roots); Class S is a registry-less single-mode skill with routed leaves (five roots, including `sk-git`). Graph metadata is universal because advisor nodes and scoring fields come from skill-shaped graph files; standalone config is the one-mode substitute for a registry. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:946-970] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-127] [INFERENCE: these behavior rules reconcile the census at research/lineages/sol-high-fast/iterations/iteration-001.md:15-28]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`iterations/iteration-001.md:15-34`, `iteration-002.md:12-17`, `iteration-003.md:13-18`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1074`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:753-828,946-970,1037-1099`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-208`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-105`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-294`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299`",
+        "`.opencode/skills/sk-git/SKILL.md:42-95`, `graph-metadata.json:143-152`",
+        "Standalone configs/aliases; `sk-doc` aliases; `sk-doc` and `system-deep-loop` registries",
+        "Command binding test and `sk-design` command surface validator"
+      ]
+    },
+    {
+      "id": "finding-5-3-a-class-first-gate-closes-the-missing-manifest-hole-by-discovering-roots-before-",
+      "text": "A class-first gate closes the missing-manifest hole by discovering roots before outputs, classifying H from the complete registry/router pair and S from its absence, and invoking regeneration for every class-required manifest. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-91] [INFERENCE: class rules from research/lineages/sol-high-fast/iterations/iteration-004.md:13-15]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md:70-79,200-218,240-269,304-325`",
+        "`.opencode/skills/sk-doc/create-skill/references/README.md:37-50`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:21-58,94-137,225-231`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:231-289,469-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:46-240`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-143`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-271`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1233`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:180-299`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs:140-220`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:175-272`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64`",
+        "`.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180`",
+        "`research/lineages/sol-high-fast/iterations/iteration-001.md:13-34`",
+        "`research/lineages/sol-high-fast/iterations/iteration-002.md:13-17`",
+        "`research/lineages/sol-high-fast/iterations/iteration-003.md:14-18`",
+        "`research/lineages/sol-high-fast/iterations/iteration-004.md:13-45`"
+      ]
+    },
+    {
+      "id": "finding-5-4-current-doctor-package-validation-freshness-ci-and-benchmark-replay-all-have-pre",
+      "text": "Current doctor, package validation, freshness CI, and benchmark replay all have presence-driven opt-ins that must be replaced or fronted by the shared classifier; otherwise missing or partial metadata remains invisible. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1063-1074] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-247] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:204-238]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md:70-79,200-218,240-269,304-325`",
+        "`.opencode/skills/sk-doc/create-skill/references/README.md:37-50`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:21-58,94-137,225-231`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:231-289,469-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:46-240`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-143`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-271`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1233`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:180-299`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs:140-220`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:175-272`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64`",
+        "`.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180`",
+        "`research/lineages/sol-high-fast/iterations/iteration-001.md:13-34`",
+        "`research/lineages/sol-high-fast/iterations/iteration-002.md:13-17`",
+        "`research/lineages/sol-high-fast/iterations/iteration-003.md:14-18`",
+        "`research/lineages/sol-high-fast/iterations/iteration-004.md:13-45`"
+      ]
+    },
+    {
+      "id": "finding-5-2-of-the-eight-files-only-leaf-manifest-json-is-safely-and-deterministically-backf",
+      "text": "Of the eight files, only `leaf-manifest.json` is safely and deterministically backfillable by current automation; four H files are scaffolded then authored, config/aliases are authored inputs, and command metadata is an authored local extension. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/init_skill.py:537-553] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:173-240]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md:70-79,200-218,240-269,304-325`",
+        "`.opencode/skills/sk-doc/create-skill/references/README.md:37-50`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:21-58,94-137,225-231`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:231-289,469-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:46-240`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-143`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-271`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1233`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:180-299`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs:140-220`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:175-272`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64`",
+        "`.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180`",
+        "`research/lineages/sol-high-fast/iterations/iteration-001.md:13-34`",
+        "`research/lineages/sol-high-fast/iterations/iteration-002.md:13-17`",
+        "`research/lineages/sol-high-fast/iterations/iteration-003.md:14-18`",
+        "`research/lineages/sol-high-fast/iterations/iteration-004.md:13-45`"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-canonical-parent-documentation-overstates-command-metadata-s-fleet-advisor-r",
+      "text": "The canonical parent documentation overstates command metadata's fleet/advisor role; the contract should preserve it as a validated `sk-design` exception until a shared extension and production consumer exist. [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:225-231] [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md:70-79,200-218,240-269,304-325`",
+        "`.opencode/skills/sk-doc/create-skill/references/README.md:37-50`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:21-58,94-137,225-231`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:231-289,469-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:46-240`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-143`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-271`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1233`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:180-299`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs:140-220`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:175-272`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64`",
+        "`.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180`",
+        "`research/lineages/sol-high-fast/iterations/iteration-001.md:13-34`",
+        "`research/lineages/sol-high-fast/iterations/iteration-002.md:13-17`",
+        "`research/lineages/sol-high-fast/iterations/iteration-003.md:14-18`",
+        "`research/lineages/sol-high-fast/iterations/iteration-004.md:13-45`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-canonical-prose-belongs-in-a-new-shared-create-skill-reference-with-links-fr",
+      "text": "The canonical prose belongs in a new shared create-skill reference, with links from both existing shape sections; a pure executable companion is needed so doctor, CI, packaging, and benchmarks share one class matrix instead of reimplementing it. [SOURCE: .opencode/skills/sk-doc/create-skill/references/README.md:37-50] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:200-218] [SOURCE: .opencode/skills/sk-doc/create-skill/SKILL.md:240-269]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/sk-doc/create-skill/SKILL.md:70-79,200-218,240-269,304-325`",
+        "`.opencode/skills/sk-doc/create-skill/references/README.md:37-50`",
+        "`.opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:21-58,94-137,225-231`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/init_skill.py:231-289,469-553`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:46-240`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-143`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py:200-271`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs:252-321,1020-1233`",
+        "`.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:180-299`",
+        "`.opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs:140-220`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs:175-272`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64`",
+        "`.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180`",
+        "`research/lineages/sol-high-fast/iterations/iteration-001.md:13-34`",
+        "`research/lineages/sol-high-fast/iterations/iteration-002.md:13-17`",
+        "`research/lineages/sol-high-fast/iterations/iteration-003.md:14-18`",
+        "`research/lineages/sol-high-fast/iterations/iteration-004.md:13-45`"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -533,6 +749,66 @@
       "text": "Treating `leaf-manifest.json` as authored truth: all enforcement regenerates it from authored source and checks canonical bytes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:74-91]",
       "contentHash": "a17b789c88f6",
       "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3ce36c6fb70d",
+      "text": "Fleet command metadata based only on command ownership: registry commands are already generic, while the singleton validator is interface-specific. [SOURCE: .opencode/skills/sk-doc/mode-registry.json:20-40] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-179]",
+      "contentHash": "3ce36c6fb70d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-45185b2d9b49",
+      "text": "Generating aliases from file presence would erase explicit workflow-mode/shared ownership policy. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:242-299]",
+      "contentHash": "45185b2d9b49",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-27221fb44289",
+      "text": "Legitimate sparse `sk-git` class: its router/corpus triggers the configured standalone contract. [SOURCE: .opencode/skills/sk-git/SKILL.md:42-95] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:95-147]",
+      "contentHash": "27221fb44289",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-705250af2c1a",
+      "text": "Running the current freshness gate cannot classify missing-manifest eligibility because it enumerates only existing manifests. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]",
+      "contentHash": "705250af2c1a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-287d7e8387d0",
+      "text": "Standalone-description class: descriptions are enforced for hubs but absent from advisor scoring ingestion. [SOURCE: .opencode/commands/doctor/scripts/parent-skill-check.cjs:1020-1045] [INFERENCE: exact production advisor search found no reader]",
+      "contentHash": "287d7e8387d0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7092cb3cedb1",
+      "text": "A generic command-metadata backfill remains unjustified because there is no fleet production consumer or shared schema to generate toward. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts:44-64] [SOURCE: .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs:121-180]",
+      "contentHash": "7092cb3cedb1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e18e50b24902",
+      "text": "Creating a third sparse class for `sk-git`: class-first discovery makes it a failing S root and exposes the three missing files. [SOURCE: research/lineages/sol-high-fast/iterations/iteration-004.md:15-15]",
+      "contentHash": "e18e50b24902",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-86e9769822e8",
+      "text": "Extending the current manifest-first scanner alone: it cannot see a required output that does not exist. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/ci-leaf-manifest-freshness.cjs:54-71]",
+      "contentHash": "86e9769822e8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-172cdfd3179e",
+      "text": "Inferring H/S from `graph-metadata.json.family` is not reliable: live families describe domains (`cli`, `mcp`, `sk-hub`, `system`, and others), not the H/S file contract. [INFERENCE: bounded `jq` inventory of `.opencode/skills/*/graph-metadata.json` in this iteration]",
+      "contentHash": "172cdfd3179e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-bbbe792c5601",
+      "text": "Treating all eight files as generated: aliases, registries, routers, graph intent, and command policy contain authored semantics. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:50-68] [SOURCE: .opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md:94-126]",
+      "contentHash": "bbbe792c5601",
+      "addedAtIteration": 5
     }
   ],
   "rejectedPatterns": [],
@@ -563,20 +839,20 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 3,
-    "openQuestions": 3,
-    "resolvedQuestions": 2,
-    "carriedForwardOpenQuestions": 12,
-    "keyFindings": 15,
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 14,
+    "keyFindings": 25,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 1,
+    "convergenceScore": 0.9,
     "coverageBySources": {
-      "code": 55,
-      "other": 7
+      "code": 112,
+      "other": 9
     },
     "completedPivots": 0,
     "failedPivots": 0,
@@ -585,32 +861,6 @@
   "corruptionWarnings": [],
   "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification/research/lineages/sol-high-fast/inbox.jsonl",
   "inboxWarnings": [],
-  "status": "INITIALIZED",
-  "advisoryEvents": [
-    {
-      "type": "event",
-      "event": "novelty_signal_inert",
-      "mode": "research",
-      "severity": "warning",
-      "metric": "newInfoRatio",
-      "run": 3,
-      "window": 3,
-      "value": 1,
-      "sparkline": "▄▄▄",
-      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
-      "timestamp": "2026-07-27T18:12:50Z"
-    },
-    {
-      "type": "event",
-      "event": "trend_flatline",
-      "mode": "research",
-      "severity": "advisory",
-      "metric": "score",
-      "run": 3,
-      "window": 3,
-      "value": 1,
-      "sparkline": "▄▄▄",
-      "timestamp": "2026-07-27T18:12:50Z"
-    }
-  ]
+  "status": "COMPLETE",
+  "advisoryEvents": []
 }

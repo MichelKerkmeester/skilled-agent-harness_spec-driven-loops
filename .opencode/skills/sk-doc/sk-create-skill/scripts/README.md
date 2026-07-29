@@ -9,7 +9,7 @@ description: "Python CLIs that init, package and validate a skill folder, plus N
 
 ## 1. OVERVIEW
 
-`sk-create-skill/scripts/` holds the tooling for the `/create:skill` and `/create:skill-parent` workflows. The Python scripts cover a skill's lifecycle: init, package and validate. The Node scripts cover a parent hub's leaf-manifest generation and its compiled-routing gates. `lib/` holds the pure leaf-resource identity library the manifest generator depends on. `tests/` holds the assert-based coverage for the Node scripts.
+`create-skill/scripts/` holds the tooling for the `/create:skill` and `/create:skill-parent` workflows. The Python scripts cover a skill's lifecycle: init, package and validate. The Node scripts cover a parent hub's leaf-manifest generation and its compiled-routing gates. `lib/` holds the pure leaf-resource identity library the manifest generator depends on. `tests/` holds the assert-based coverage for the Node scripts.
 
 ## 2. CONTENTS
 
@@ -20,6 +20,7 @@ description: "Python CLIs that init, package and validate a skill folder, plus N
 | `validate_skill_package.py` | Runs the completion checks required for a standalone skill or parent hub, including compiled-routing readiness markers in `SKILL.md`. |
 | `generate-leaf-manifest.cjs` | Walks a hub's declared packets, normalizes every leaf resource through `lib/leaf-resource-contract.cjs` and writes or checks `leaf-manifest.json`. |
 | `ci-leaf-manifest-freshness.cjs` | Fleet-wide CI gate that regenerates every committed `leaf-manifest.json` and fails on any byte drift. |
+| `ci-skill-root-metadata.cjs` | Fleet-wide class gate: classifies every skill root, enforces its required/forbidden/overlay metadata files, validates every hub's `command-metadata.json` against the core schema, rejects nested advisor identities and stale generated files. `--fix` writes derivable files only. |
 | `validate-playbook-topology.cjs` | Pre-dispatch gate for a hub's manual testing playbook: schema, manifest resolution and selected-map join checks on typed gold. |
 | `validate-compiled-routing-scenarios.cjs` | Content admission gate for a hub's compiled-routing scenario matrix, hard-rejecting id-only or evidence-incomplete scenarios. |
 
@@ -33,7 +34,12 @@ python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py <path/t
 python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path/to/skill-folder>
 node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>
 node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 ```
+
+> Run the class gate before the freshness gate. Freshness discovers work by walking committed
+> manifests, so it cannot report one that was never written; the class gate starts from `SKILL.md`
+> and turns an unadopted root into a finding.
 
 Expected result: each script exits 0 when the target is valid or already up to date, nonzero with findings printed otherwise.
 
@@ -44,5 +50,7 @@ Expected result: each script exits 0 when the target is valid or already up to d
 ## 5. RELATED
 
 - [`lib/leaf-resource-contract.cjs`](lib/leaf-resource-contract.cjs)
+- [`lib/skill-root-metadata-contract.cjs`](lib/skill-root-metadata-contract.cjs)
+- [`skill-root-metadata-contract.md`](../references/shared/skill-root-metadata-contract.md)
 - [`SKILL.md`](../SKILL.md)
 - [`README.md`](../README.md)

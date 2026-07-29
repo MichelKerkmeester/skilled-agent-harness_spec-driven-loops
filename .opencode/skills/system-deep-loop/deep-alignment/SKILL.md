@@ -1,7 +1,6 @@
 ---
 name: deep-alignment
 description: "Autonomous standard-authority conformance: audit artifacts by lane; verify-first, known-deviation suppression, read-only default."
-allowed-tools: [Read, Grep, Glob, Task, Bash, memory_context, memory_search, code_graph_query]
 version: 1.0.0.2
 ---
 <!-- Note: read-only by default -- no Write/Edit in the default surface. Task/Bash are present but reserved for the gated, opt-in remediation pass; loop-owned state writes route through shared runtime scripts, not direct file edits. No WebFetch: alignment checks local artifacts against local authority standards. -->

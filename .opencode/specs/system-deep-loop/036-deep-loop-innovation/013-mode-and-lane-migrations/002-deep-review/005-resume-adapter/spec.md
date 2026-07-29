@@ -13,11 +13,11 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
     last_updated_at: "2026-07-15T20:00:00Z"
     last_updated_by: "opencode"
-    recent_action: "Framed sealed-ledger recovery around the shared review-loop contract"
-    next_safe_action: "Resolve reducer and frontier bindings against the frozen shared contract"
+    recent_action: "Implemented the sealed-certificate resume decision layer"
+    next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-review mode migration) |
 | **Origin** | Phase 013 deep-review fan-out; resume-adapter concern from the typed ledger migration |

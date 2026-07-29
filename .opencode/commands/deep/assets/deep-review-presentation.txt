@@ -314,7 +314,6 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 - Inject results into strategy.md "Known Context" section
 
 #### Code Context Bootstrap
-- Use Code Graph (`code_graph_query`) to find relevant code examples before starting review
 - Query: 2-5 word concept descriptions related to the review target
 - Inject discovered code patterns into strategy.md "Known Context" section alongside memory findings
 

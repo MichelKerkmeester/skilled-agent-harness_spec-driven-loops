@@ -31,7 +31,6 @@ The fastest way to author a correct playbook is to model it on one that already 
 **Shipped legacy playbook packages** (study the root-vs-feature split and the scenario tables, not their pending root spelling):
 
 - `.opencode/skills/system-spec-kit/manual-testing-playbook/` - multi-category package with orchestration-heavy scenarios
-- `.opencode/skills/system-code-graph/manual-testing-playbook/` - structural and runtime validation package
 
 **Scaffold templates** (copy from these to seed a new package):
 

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+  "spec_folder": "cli-external-orchestration/032-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+  "parent_id": "cli-external-orchestration/032-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode plugin symlinks",
+      "opencode hooks browsability mirror",
+      "hooks tree opencode row",
+      "opencode symlink plan",
+      "hooks tree opencode row plan",
+      "opencode symlink tasks",
+      "opencode symlink summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "plugin",
+      "symlinks",
+      "hooks",
+      "browsability",
+      "mirror",
+      "tree",
+      "row",
+      "symlink",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/hooks/README.md",
+      ".opencode/plugins/mk-cli-dispatch-audit.js",
+      ".opencode/hooks/dispatch/opencode/mk-cli-dispatch-audit.js",
+      ".opencode/hooks/mcp-route-guard/opencode/mk-mcp-route-guard.js",
+      ".opencode/hooks/post-edit-quality/opencode/mk-post-edit-quality.js",
+      ".opencode/hooks/task-dispatch/opencode/mk-deep-loop-guard.js",
+      ".opencode/hooks/goal/opencode/mk-goal.js",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/opencode/mk-spec-gate.js",
+      ".opencode/skills/sk-git/scripts/hooks/opencode/mk-git-preflight-advisory.js",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/mk-spec-gate.js",
+      ".opencode/plugins/mk-git-preflight-advisory.js",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/plugins/mk-mcp-route-guard.js",
+      ".opencode/plugins/mk-post-edit-quality.js",
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/mk-goal.js",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-mcp-route-guard.js",
+        "kind": "code",
+        "path": ".opencode/hooks/mcp-route-guard/opencode/mk-mcp-route-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-post-edit-quality.js",
+        "kind": "code",
+        "path": ".opencode/hooks/post-edit-quality/opencode/mk-post-edit-quality.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/hooks/task-dispatch/opencode/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/opencode/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/opencode/mk-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-git-preflight-advisory.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-git/scripts/hooks/opencode/mk-git-preflight-advisory.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "touches",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reverse Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Control Flow Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add relative, browsability-only symlinks inside .opencode/hooks/ concern folders pointing at the real OpenCode plugin files in .opencode/plugins/, so every AI runtime's adapters are visible from one unified tree without relocating OpenCode's plugin-discovery files.",
+    "created_at": "2026-07-28T17:25:55.157Z",
+    "last_save_at": "2026-07-29T05:23:47.690Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f951c7e88110be6602e899d0fa1c749196d2a526e130112f63862317bdd9d1a5",
+    "source_doc_hashes": {
+      "spec.md": "05174eb5b8ccfb82244abffbf18daa6a9578b3f95a62302ef3df427933f12e52",
+      "plan.md": "1829431cb70b8b8e3a59c80968311860892dcce47ceff89e7760f4349d9a020e",
+      "tasks.md": "6ba5d5587e74ff8c03c18e9fac43732423765af0be87ea432eb441cd0a5da09a",
+      "implementation-summary.md": "5ca88172767394bc1e0e52a14aff8f1cdf14df87ee3077c5cdee5c9dc1d12ce8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

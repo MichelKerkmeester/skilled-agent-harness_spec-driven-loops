@@ -1,0 +1,40 @@
+[
+  {
+    "command": "/prompt:improve",
+    "ownerMode": "prompt-improve",
+    "description": "Improve or create AI prompts via sk-prompt: frameworks, DEPTH, CLEAR scoring. Modes :auto, :confirm.",
+    "argumentHint": "<prompt_or_topic> [:auto|:confirm] [$text|$improve|$refine|$short|$json|$yaml|$raw] [--agent]",
+    "userIntent": {
+      "job": "I want to improve, restructure, or create an AI prompt with framework selection and CLEAR scoring.",
+      "ownedSignals": [
+        "improve this prompt",
+        "rewrite my prompt",
+        "make a better prompt",
+        "prompt framework selection"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-prompt",
+        "resource": ".opencode/skills/sk-prompt/SKILL.md",
+        "action": "load the parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "prompt-improve",
+        "resource": ".opencode/skills/sk-prompt/sk-prompt-improve/SKILL.md",
+        "action": "load the prompt-improvement mode contract, then apply the framework selection, DEPTH thinking, and CLEAR scoring workflow to $ARGUMENTS"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is an improved or newly structured prompt.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "prompt-models (no standalone command; reached via the sk-prompt hub)",
+          "when": "Prefer prompt-models when the request is per-model prompt-craft guidance for dispatching to a small model rather than improving a prompt."
+        }
+      ]
+    }
+  }
+]

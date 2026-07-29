@@ -42,7 +42,6 @@ upstream_assets:
   install_guides:
     mk-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     mk_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
-    mk_code_index: ".opencode/skills/system-code-graph/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
     sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
@@ -80,7 +79,6 @@ arguments:
   server_filter:
     flag: "--server"
     value: "<name>"
-    valid_values: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking]
     default: null
     effect: "Only install the specified server"
   runtime_filter:
@@ -96,7 +94,6 @@ arguments:
 install_guides:
   mk-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   mk_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
-  mk_code_index: .opencode/skills/system-code-graph/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
   sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
@@ -140,18 +137,14 @@ servers:
       - "cd {skill_dir}/mcp-server && npm run build"
     fallback_build: "cd {skill_dir}/mcp-server && npm install && npm run build"
 
-  mk_code_index:
     label: "System Code Graph"
     runtime: node
-    skill_dir: ".opencode/skills/system-code-graph"
     entry_point: "mcp-server/dist/index.js"
     install_script: null
     install_script_mutation_class: none  # no install script; inline install_steps used
     health_checks:
       - { path: "mcp-server/dist/index.js", type: "file_exists" }
-      - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
-      - { path: ".opencode/skills/system-code-graph/mcp-server/database", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"
       - "cd {skill_dir} && npm run clean && npm run build"
@@ -264,8 +257,6 @@ workflow:
       - "If --server flag provided, validate server name"
       - "If --runtime flag provided, validate runtime name"
     prerequisite_matrix:
-      node_20_11: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode, sequential_thinking], check: "node --version" }
-      npm: { required_for: [mk-spec-memory, mk_skill_advisor, mk_code_index, code_mode], check: "npm --version" }
       npx: { required_for: [sequential_thinking], check: "npx --version" }
     on_missing_prereq:
       action: "WARN and skip affected servers, continue with others"

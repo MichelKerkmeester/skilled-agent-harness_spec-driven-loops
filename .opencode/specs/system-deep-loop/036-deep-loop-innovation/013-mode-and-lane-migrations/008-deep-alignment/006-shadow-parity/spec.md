@@ -11,13 +11,17 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity"
-    last_updated_at: "2026-07-15T21:00:00Z"
+    last_updated_at: "2026-07-28T12:31:49Z"
     last_updated_by: "opencode"
-    recent_action: "Defined event-for-event shadow parity before Deep Alignment authority cutover"
-    next_safe_action: "Freeze paired runners and execute the parity fixture matrix"
+    recent_action: "Verified Deep Alignment shadow parity"
+    next_safe_action: "Hand parity evidence to the successor gate"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/types.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Deep Alignment mode migration) |
 | **Origin** | Phase 013 of the Deep Alignment mode migration: shadow parity before authority cutover |
@@ -125,13 +129,15 @@ The parity receipt is manifest-bound evidence, not a standalone forgery-proof au
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
-- Which Deep Alignment event fields are semantically observable versus transport metadata, and what is the initial versioned normalization allowlist?
-- Which public gauges are required in the projection parity set, and which are explicitly diagnostic-only in the phase-014 framework?
-- What minimum fixture count and confidence rule make a green shadow sample representative of every active lane and authority disposition?
-- Which cross-epoch authority changes must be replayed in this phase versus deferred to `007-rollback-and-mode-gate`?
-- What receipt schema and expiry window does the later mode gate require from this phase's parity evidence?
+No open questions remain.
 
-These questions are planning inputs for implementation. They must be resolved in the paired-run contract and fixture matrix before a parity receipt can be considered eligible for the mode gate; unresolved questions cannot be converted into permissive comparator behavior.
+### Resolved Decisions
+
+- All event fields are semantic except the closed transport allowlist of `occurred_at`, `recorded_at`, and `correlation_id`.
+- Public parity gauges cover event, lane, finding, and evidence counts; no diagnostic-only gauge can satisfy a semantic comparison.
+- The manifest requires the exact ten-scenario fixture closure, and every unexplained difference blocks the result.
+- This phase replays the declared authority-change scenario; authority rollback and cutover decisions remain with `007-rollback-and-mode-gate`.
+- The receipt is bound to the trusted manifest, stream and projection fingerprints, comparator configuration, and verified certificate evidence; the successor gate must re-verify those bindings.
 <!-- /ANCHOR:questions -->

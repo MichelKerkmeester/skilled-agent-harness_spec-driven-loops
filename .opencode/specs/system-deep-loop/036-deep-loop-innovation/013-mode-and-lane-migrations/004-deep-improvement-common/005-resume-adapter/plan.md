@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:40:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Outlined sealed-ledger reducers and shared service boundaries"
-    next_safe_action: "Freeze the continuity ladder and resume decision matrix"
+    last_updated_at: "2026-07-27T21:56:30Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the resume adapter and adversarial fixtures"
+    next_safe_action: "Reuse the exported decisions in shadow parity"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-resume-adapter.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,18 +49,18 @@ receipts, and promotion evidence remain immutable inputs; live projections are r
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent phase-013 shared interfaces and write-set conflict graph are frozen and available to this implementation.
-- [ ] The typed event, upcaster, ledger, reducer, receipt, and certificate contracts identify the sealed read boundary.
-- [ ] The continuity ladder names every deep-improvement common state from run start through terminal or blocked outcome.
-- [ ] The per-operation decision algebra and stable logical/idempotency identities are specified before adapter code lands.
-- [ ] Evaluator, canary, and promotion service ownership is explicit; variants consume adapters rather than copy the services.
-- [ ] Crash, duplicate, effect-ambiguous, schema-drift, and changed-manifest fixtures are enumerated.
+- [x] The parent phase-013 shared interfaces and write-set conflict graph are frozen and available to this implementation.
+- [x] The typed event, ledger, reducer, sealed-artifact, receipt, and certificate contracts identify the verified read boundary.
+- [x] The continuity ladder names every deep-improvement common state from run start through terminal or blocked outcome.
+- [x] The component, branch, effect, invalidation, lease, and decision identities are frozen in the exported type surface.
+- [x] Evaluator, canary, and promotion evidence remains owned by the landed common services and is consumed through verified artifacts and receipts.
+- [x] Compatibility, effect ambiguity, fingerprint drift, and certificate-integrity fixtures are executable.
 
 ### Definition of Done
-- [ ] A sealed-ledger fold reconstructs identical common service state and continuity fingerprints across repeated runs.
-- [ ] Resume re-entry is idempotent and preserves branch-local successes without replaying side effects.
-- [ ] Shared evaluator, canary, and guarded-promotion contracts pass their variant-consumer matrix.
-- [ ] Shadow-mode verification proves no live authority or legacy behavior changes.
+- [x] The offline verifier and frozen reducer reconstruct the prior run before any decision is derived.
+- [x] Branch and effect recovery decisions preserve verified prior evidence without invoking side effects.
+- [x] One stable resume-adapter contract is exported for all three variant consumers.
+- [x] Every decision is additive-dark and states that legacy authority is unchanged.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

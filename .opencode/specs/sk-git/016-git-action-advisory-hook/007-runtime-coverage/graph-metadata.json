@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
+  "spec_folder": "sk-git/016-git-action-advisory-hook/007-runtime-coverage",
+  "parent_id": "sk-git/016-git-action-advisory-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git advisory runtime coverage",
+      "007-runtime-coverage docs"
+    ],
+    "key_topics": [
+      "git",
+      "advisory",
+      "runtime",
+      "coverage",
+      "007-runtime-coverage",
+      "docs",
+      "phases",
+      "wired",
+      "shared",
+      "hook",
+      "claude",
+      "bash"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".devin/hooks.v1.json",
+      ".opencode/plugins/mk-git-preflight-advisory.js",
+      ".pi/extensions/git-preflight-advisory.ts",
+      ".cursor/hooks/git-preflight-advisory.mjs",
+      ".cursor/hooks.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-git-preflight-advisory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-git-preflight-advisory.js",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.ts",
+        "kind": "code",
+        "path": ".pi/extensions/git-preflight-advisory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.mjs",
+        "kind": "file",
+        "path": ".cursor/hooks/git-preflight-advisory.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Cover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Cursor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Devin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 003 and 006 wired the shared advisory hook for Claude (`Bash`) and Codex/Devin (`exec`)",
+    "created_at": "2026-07-28T06:05:25.353Z",
+    "last_save_at": "2026-07-28T06:05:25.353Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8a4e1c0da867ba137a6ca6cd5cc45e8c059132ccd4941131f43543d1e14b6ea",
+    "source_doc_hashes": {
+      "spec.md": "08f8e4aa97c6ab2cec62fa27bd21f0b38cc65918258dd53ba87926a72e88edf7",
+      "plan.md": "5a8a8d28d37db3013060b9eaa0089c309fa7e5796d10f555f7ff3d9577a07031",
+      "tasks.md": "cc7b60ad034cfe06f999e95a335d1de44a3d7f37c04c90365e3c4725b9387152",
+      "implementation-summary.md": "76ee6ea370d60a3f4a39848208b6b1ee2b543afb05ab3c7b97a89dfdad08b498"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

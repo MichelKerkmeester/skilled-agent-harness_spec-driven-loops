@@ -1,0 +1,43 @@
+{
+  "sessionId": "fanout-grok-high-1785305275596-oro54j",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Which JSON types exist fleet-wide, and which are authored vs generated per H/S class?",
+    "Which fields are redundant, unused, or drift-prone across skill-root and advisor JSON?",
+    "What still requires hand-authoring that scaffolder/generators could emit or auto-validate?",
+    "Do intent-signals and load-bearing fields actually drive advisor routing quality?",
+    "Where are test/CI and end-to-end scaffold→gate→ingest→routing gaps sharpest?"
+  ],
+  "keyFindings": [
+    {"id": "F22", "severity": "P0", "label": "Live advisor_recommend ranks sk-prompt over sk-doc for parent-hub scaffold prompt"},
+    {"id": "F11", "severity": "P0", "label": "graph-metadata.manual.* orphaned vs ingested edges; live depends_on drift"},
+    {"id": "F15", "severity": "P0", "label": "init_skill does not run class-gate --fix; fresh roots incomplete"},
+    {"id": "F30", "severity": "P0", "label": "No GitHub advisor_recommend acceptance wiring"},
+    {"id": "F9", "severity": "P1", "label": "description.json trigger_examples/opencode_languages/supported_surfaces unread"},
+    {"id": "F18", "severity": "P1", "label": "syncDerivedMetadata exists but not on CI/scaffold path"},
+    {"id": "F29", "severity": "P0", "label": "024 journey proof CHK-005/CHK-009 still open"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Treat generate-description.js as skill-root optimizer", "reason": "Spec-folder continuity schema", "iteration": 1},
+    {"approach": "Delete description.json entirely", "reason": "H class requires it", "iteration": 2},
+    {"approach": "Auto-generate mode-registry/hub-router", "reason": "Would invent authored policy", "iteration": 3},
+    {"approach": "Redesign lane weights / explicit.ts", "reason": "Research non-goal", "iteration": 4},
+    {"approach": "Treat class-gate green as routing-quality proof", "reason": "No golden prompts; live miss", "iteration": 5}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "averageNewInfoRatio": 0.82
+  },
+  "rejectedPatterns": [],
+  "promotedIdeas": [],
+  "saturatedDirections": [],
+  "pivotLineage": [],
+  "stopReason": "max_iterations"
+}

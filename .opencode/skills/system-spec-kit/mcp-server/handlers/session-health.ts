@@ -8,12 +8,9 @@ import {
   isSessionPrimed,
   getSessionTimestamps,
   getLastActiveSessionId,
-  getCodeGraphStatusSnapshot,
 } from '../hooks/memory-surface.js';
 
 import { computeQualityScore, getLastToolCallAt } from '../lib/session/context-metrics.js';
-import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
-import type { StructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import type { QualityScore } from '../lib/session/context-metrics.js';
 import {
   buildStructuralContextTrust,
@@ -23,10 +20,6 @@ import {
   type SharedPayloadSection,
   type SharedPayloadTrustState,
 } from '../lib/context/shared-payload.js';
-import {
-  buildCodeGraphOpsContract,
-  type CodeGraphOpsContract,
-} from '@spec-kit/shared/code-graph-contracts';
 import { getLastSpecMemoryCliFallbackStatus, type LastSpecMemoryCliFallbackStatus } from '../hooks/spec-memory-cli-fallback.js';
 import type { MCPResponse } from '@spec-kit/shared/types';
 
@@ -47,7 +40,6 @@ type SessionHealthSectionTrustState = Extract<
 interface SessionHealthDetails {
   sessionAgeMs: number;
   lastToolCallAgoMs: number;
-  graphFreshness: 'fresh' | 'stale' | 'empty' | 'error';
   specFolder: string | null;
   primingStatus: 'primed' | 'not_primed';
   specMemoryCliFallback: LastSpecMemoryCliFallbackStatus | null;
@@ -71,9 +63,7 @@ interface SessionHealthResult {
   details: SessionHealthDetails;
   qualityScore: QualityScore;
   sections: SessionHealthSection[];
-  structuralContext?: StructuralBootstrapContract;
   payloadContract?: SharedPayloadEnvelope;
-  graphOps?: CodeGraphOpsContract;
   hints: string[];
 }
 
@@ -87,21 +77,6 @@ const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
 function getSessionSectionTrustState(status: SessionStatus): SessionHealthSectionTrustState {
   return status === 'ok' ? 'live' : 'stale';
-}
-
-function getGraphSectionTrustState(
-  graphFreshness: SessionHealthDetails['graphFreshness'],
-): SessionHealthSectionTrustState {
-  if (graphFreshness === 'fresh') {
-    return 'live';
-  }
-  if (graphFreshness === 'stale') {
-    return 'stale';
-  }
-  if (graphFreshness === 'empty') {
-    return 'absent';
-  }
-  return 'unavailable';
 }
 
 function createSectionStructuralTrust(
@@ -130,34 +105,12 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
   const primingSessionId = getLastActiveSessionId();
   const primed = primingSessionId ? isSessionPrimed(primingSessionId) : false;
 
-  // Determine graph freshness
-  let graphFreshness: SessionHealthDetails['graphFreshness'] = 'error';
   // Wire specFolder from context-metrics (fixes P1: dead field)
   let specFolder: string | null = null;
   try {
     const { getSessionMetrics } = await import('../lib/session/context-metrics.js');
     specFolder = getSessionMetrics().currentSpecFolder;
   } catch { /* metrics module may not be loaded */ }
-  try {
-    const snapshot = getCodeGraphStatusSnapshot();
-    if (snapshot.status === 'ok' && snapshot.data) {
-      const totalFiles = snapshot.data.totalFiles ?? 0;
-      const lastScan = snapshot.data.lastScanAt;
-      if (totalFiles === 0) {
-        graphFreshness = 'empty';
-      } else if (!lastScan || (now - new Date(lastScan).getTime() > TWENTY_FOUR_HOURS_MS)) {
-        graphFreshness = 'stale';
-      } else {
-        graphFreshness = 'fresh';
-      }
-    }
-  } catch {
-    graphFreshness = 'error';
-  }
-
-  // Structural bootstrap contract for health surface
-  const structuralContext = buildStructuralBootstrapContract('session_health');
-
   const sessionAgeMs = now - serverStartedAt;
   const lastToolCallAgoMs = now - lastToolCallAt;
   const observedAt = new Date(now).toISOString();
@@ -167,7 +120,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
   let status: SessionStatus;
   if (!primed || lastToolCallAgoMs > SIXTY_MINUTES_MS) {
     status = 'stale';
-  } else if (graphFreshness === 'stale' || graphFreshness === 'empty' || lastToolCallAgoMs > FIFTEEN_MINUTES_MS) {
+  } else if (lastToolCallAgoMs > FIFTEEN_MINUTES_MS) {
     status = 'warning';
   } else {
     status = 'ok';
@@ -178,11 +131,6 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
   if (!primed) {
     hints.push('Session has not been primed yet. Make any tool call to trigger auto-priming.');
   }
-  if (structuralContext.status === 'stale') {
-    hints.push('Structural context is stale. Call session_bootstrap to refresh, or run code_graph_scan for a full rescan.');
-  } else if (structuralContext.status === 'missing') {
-    hints.push('No structural context available. Call session_bootstrap first, then run code_graph_scan.');
-  }
   if (lastToolCallAgoMs > SIXTY_MINUTES_MS) {
     hints.push('No tool calls in >60 min. Consider calling `memory_context` to refresh session state.');
   } else if (lastToolCallAgoMs > FIFTEEN_MINUTES_MS) {
@@ -191,8 +139,7 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
 
   // Compute quality score from context metrics
   const qualityScore = computeQualityScore();
-  const payloadStructuralTrust = buildStructuralContextTrust(structuralContext);
-  const sessionHealthContent = `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; graph=${graphFreshness}; specFolder=${specFolder ?? 'none'}`;
+  const sessionHealthContent = `status=${status}; priming=${primed ? 'primed' : 'not_primed'}; specFolder=${specFolder ?? 'none'}`;
   const fallbackContent = specMemoryCliFallback
     ? `status=${specMemoryCliFallback.status}; reason=${specMemoryCliFallback.reason ?? 'none'}; exit=${specMemoryCliFallback.exitCode ?? 'none'}; retryable=${specMemoryCliFallback.retryable}`
     : 'status=none';
@@ -219,31 +166,19 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
         content: fallbackContent,
         source: 'operational',
       },
-      {
-        key: 'structural-context',
-        title: 'Structural Context',
-        content: structuralContext.summary,
-        source: 'code-graph',
-        structuralTrust: payloadStructuralTrust,
-      },
     ],
-    summary: `Session health is ${status}; graph freshness is ${graphFreshness}; structural status is ${structuralContext.status}`,
+    summary: `Session health is ${status}`,
     provenance: {
       producer: 'session_health',
       sourceSurface: 'session_health',
-      trustState: trustStateFromStructuralStatus(structuralContext.status),
+      // No structural index remains to derive trust from.
+      trustState: 'absent',
       generatedAt: new Date().toISOString(),
-      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
+      lastUpdated: null,
       sourceRefs: ['memory-surface', 'context-metrics', 'session-snapshot'],
     },
   });
-  const graphOps = buildCodeGraphOpsContract({
-    graphFreshness,
-    sourceSurface: 'session_health',
-  });
   const sessionTrustedAt = new Date(lastToolCallAt).toISOString();
-  const graphTrustedAt = structuralContext.provenance?.lastUpdated ?? observedAt;
-  const graphSectionTrustState = getGraphSectionTrustState(graphFreshness);
   const sections: SessionHealthSection[] = [
     {
       key: 'session-health',
@@ -274,28 +209,6 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
         observedAt,
       ),
     },
-    {
-      key: 'structural-context',
-      title: 'Structural Context',
-      content: structuralContext.summary,
-      source: 'code-graph',
-      structuralTrust: createSectionStructuralTrust(
-        graphSectionTrustState,
-        graphTrustedAt,
-        observedAt,
-      ),
-    },
-    {
-      key: 'code-graph-readiness',
-      title: 'Code Graph Readiness',
-      content: `canonical=${graphOps.readiness.canonical}; graphFreshness=${graphOps.readiness.graphFreshness}; summary=${graphOps.readiness.summary}`,
-      source: 'code-graph',
-      structuralTrust: createSectionStructuralTrust(
-        graphSectionTrustState,
-        graphTrustedAt,
-        observedAt,
-      ),
-    },
   ];
 
   const result: SessionHealthResult = {
@@ -303,16 +216,13 @@ export async function handleSessionHealth(): Promise<MCPResponse> {
     details: {
       sessionAgeMs,
       lastToolCallAgoMs,
-      graphFreshness,
       specFolder,
       primingStatus: primed ? 'primed' : 'not_primed',
       specMemoryCliFallback,
     },
     qualityScore,
     sections,
-    structuralContext,
     payloadContract,
-    graphOps,
     hints,
   };
 

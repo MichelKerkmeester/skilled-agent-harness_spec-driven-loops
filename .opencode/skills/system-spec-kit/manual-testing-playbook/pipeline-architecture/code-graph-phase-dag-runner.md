@@ -38,9 +38,6 @@ Validate the Code Graph phase-DAG runner against the documented contract and ret
 
 ### Commands
 
-1. Run the runner unit suite: `vitest run .opencode/skills/system-code-graph/mcp-server/tests/phase-runner.test.ts` — confirm the duplicate-name, missing-dependency, cycle, and dependency-only-output tests all pass.
-2. Run the existing indexer + scan suites: `vitest run .opencode/skills/system-code-graph/mcp-server/tests/code-graph-indexer.vitest.ts .opencode/skills/system-code-graph/mcp-server/tests/code-graph-scan.vitest.ts` — confirm zero regressions.
-3. Run a real scan: `code_graph_scan({ rootDir: <fixture-or-workspace> })` and capture `filesScanned`, `filesIndexed`, `totalNodes`, `totalEdges`.
 4. Compare counts against the pre-wrap baseline (recorded before this sub-phase landed). Counts MUST match exactly because the wrap is purely orchestrational.
 5. Inspect logs for `[structural-indexer] scanned ... files` and `[structural-indexer] refreshed ... specific file(s)` — both messages MUST still appear (now emitted from inside `find-candidates`).
 
@@ -52,37 +49,25 @@ Targeted phase-runner tests pass; existing code-graph indexer + scan suites pass
 
 BLOCKED: the documented commands could not reach the required verification surfaces in the current repo/session state.
 
-Command 1: `vitest run .opencode/skills/system-code-graph/mcp-server/tests/phase-runner.test.ts`
 
 ```text
 zsh:1: command not found: vitest
 ```
 
-Command 2: `vitest run .opencode/skills/system-code-graph/mcp-server/tests/code-graph-indexer.vitest.ts .opencode/skills/system-code-graph/mcp-server/tests/code-graph-scan.vitest.ts`
 
 ```text
 zsh:1: command not found: vitest
 ```
 
-Code Graph CLI tool discovery: `node .opencode/bin/code-index.cjs list-tools --format text`
 
 ```text
-code_graph_scan
-code_graph_query
-code_graph_status
-code_graph_context
-code_graph_classify_query_intent
-code_graph_verify
-code_graph_apply
 detect_changes
 ```
 
-Command 3 scan attempt: `node .opencode/bin/code-index.cjs code_graph_scan --json '{"rootDir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"}' --format json --timeout-ms 120000`
 
 ```json
 {
   "status": "error",
-  "error": "backend unavailable: connect ENOENT /tmp/mk-code-index/daemon-ipc.sock",
   "exitCode": 75
 }
 ```
@@ -99,7 +84,6 @@ messages_transform_mode=schema_aligned
 runtime_ready=false
 node_binary=node
 bridge_timeout_ms=15000
-bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
 last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
 cache_entries=0
 cache=empty
@@ -109,11 +93,9 @@ No `filesScanned`, `filesIndexed`, `totalNodes`, or `totalEdges` values were pro
 
 ### Pass / Fail
 
-- **BLOCKED**: `vitest` is not available on PATH for the documented test commands, and `code_graph_scan` is unavailable because the Code Graph daemon socket `/tmp/mk-code-index/daemon-ipc.sock` is absent.
 
 ### Failure Triage
 
-Inspect `.opencode/skills/system-code-graph/mcp-server/lib/phase-runner.ts` (Kahn-sort + rejection paths), `.opencode/skills/system-code-graph/mcp-server/lib/structural-indexer.ts:buildIndexPhases` (the four declared phases), and `indexFiles()` (must preserve `IndexFilesResult` shape including `preParseSkippedCount`).
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -14,7 +14,6 @@ expected_leaf_resources: []
 
 This scenario validates the passive enrichment pipeline. It exercises the memory-surface hook that injects constitutional memories and trigger-matched records, the response-hints hook that appends them with token estimation, and the mutation-feedback hook that adds save/update/delete context.
 
-Scope note: this pipeline is local to system-spec-kit's own `mcp_server` process (see Source Files below) and enriches only tool calls dispatched through that server's `context-server.ts`. It has no shared code path into other independently-running MCP servers (system-skill-advisor, system-code-graph); a tool call against one of those servers is out of scope for this scenario and is not evidence of a defect in this pipeline.
 
 ---
 
@@ -23,7 +22,6 @@ Scope note: this pipeline is local to system-spec-kit's own `mcp_server` process
 - Objective: Verify constitutional memories, trigger-matched records, and code graph status appear in the response hints of system-spec-kit's own `mcp_server` tools without explicit memory_context calls, and that token estimation prevents oversized payloads.
 - Real user request: `Please validate passive context enrichment: prove that constitutional memories and triggered memories surface in tool response hints automatically and that code graph status is included when available.`
 - Prompt: `Validate passive context enrichment and confirm tool responses carry constitutional memories, triggered memories, and code graph status in hints.`
-- Expected execution process: Call a non-memory tool served by system-spec-kit's own mcp_server (e.g. `memory_stats`) with a prompt that triggers a known memory, inspect the response hints section, check the mutation-feedback path with a save call. Do NOT use a tool from a different MCP server (system-skill-advisor, system-code-graph) as the probe -- this pipeline has no code path into other servers.
 - Expected signals: Constitutional memories surface in the hints section of every response from THIS server's tools; trigger-matched memories appear when the prompt matches known trigger phrases; code graph status is included when available; mutation tools include save/update/delete feedback; token estimation truncates oversized hint payloads rather than exceeding budget.
 - Desired user-visible outcome: Pass/fail verdict with cited hint section contents.
 - Pass/fail: PASS when hints surface the documented categories and token budget is respected, for tools served by system-spec-kit's own mcp_server. FAIL when hints are empty for a known trigger on one of THIS server's tools, mutation feedback is missing, or token budget is exceeded. A cross-server tool call producing no hints is out of scope, not a FAIL.
@@ -96,7 +94,6 @@ Validate passive context enrichment and confirm tool responses carry constitutio
       "Session priming: loaded 10 constitutional memories and code graph status unavailable",
       "primePackage: available in meta.sessionPriming.primePackage",
       "Code graph: empty",
-      "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
       "Session priming trimmed to fit the 1000 token budget; full constitutional content remains retrievable via memory_search",
       "Response exceeds token budget (1156/1000)"
     ],
@@ -124,7 +121,6 @@ Validate passive context enrichment and confirm tool responses carry constitutio
   runtime_ready=false
   node_binary=node
   bridge_timeout_ms=15000
-  bridge_path=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs
   last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
   cache_entries=0
   cache=empty
@@ -193,7 +189,6 @@ Validate passive context enrichment and confirm tool responses carry constitutio
       "Session priming: loaded 10 constitutional memories and code graph status unavailable",
       "primePackage: available in meta.sessionPriming.primePackage",
       "Code graph: empty",
-      "Recommended next calls: code_graph_scan, memory_context({ input: \"resume previous work\", mode: \"resume\", profile: \"resume\" })",
       "Session priming trimmed to fit the 3500 token budget; full constitutional content remains retrievable via memory_search",
       "Response exceeds token budget (4178/3500)"
     ],

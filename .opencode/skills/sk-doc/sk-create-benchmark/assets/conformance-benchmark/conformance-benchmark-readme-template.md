@@ -11,6 +11,12 @@ contextType: "general"
 version: 1.0.0.0
 ---
 
+# Conformance Benchmark README Index Template
+
+This template produces a README index for a conformance-benchmark package.
+
+---
+
 <!--
 Copy-paste scaffold for a conformance-benchmark PACKAGE INDEX:
   <deep-loop-mode>/assets/conformance-benchmark/README.md

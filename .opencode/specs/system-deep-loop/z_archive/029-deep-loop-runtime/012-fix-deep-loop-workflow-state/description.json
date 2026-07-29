@@ -10,7 +10,7 @@
     "state",
     "machine"
   ],
-  "lastUpdated": "2026-07-18T03:48:57.038Z",
+  "lastUpdated": "2026-07-21T05:58:28.009Z",
   "specId": "012",
   "folderSlug": "fix-deep-loop-workflow-state",
   "parentChain": [

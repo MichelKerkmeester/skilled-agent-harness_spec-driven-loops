@@ -39,12 +39,13 @@
       "diff"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -150,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "first-divergence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -159,6 +172,12 @@
         "name": "SHAs",
         "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,43 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Plan the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch. It consumes the phase-014 shadow framework while keeping this phase limited to parity evidence for the council mode.",
+    "causal_summary": "Implemented the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch.",
     "created_at": "2026-07-16T03:43:35.238Z",
-    "last_save_at": "2026-07-24T07:18:59.426Z",
+    "last_save_at": "2026-07-28T05:02:31.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:481c9c3d0f5c40b593f88d69ce8bc54fc8ee4e71ea7d24b7eeddb70390c5633a",
+    "source_fingerprint": "sha256:0e877505b3e262431cf813d265f596b5c8fed54c966ede4053a398b74518dc7f",
     "source_doc_hashes": {
-      "spec.md": "ca9479942ea05a426e389c4057b0b81903e29a7302d5be76c7f4f9e179fca71f",
-      "plan.md": "54970f4027129ebdfe3644f88d8f6c8d3a8b8ccfcc2e813ea387e5a28e0df78f",
-      "tasks.md": "93546d8314cfb637a383bd748f7abb4f416ce53119c78343a4e44bf3116f7d0d",
-      "checklist.md": "2267de83b16c9b98721d2bc6e611bf1c0ff553f8f80f7b911d836d27cbea363e"
+      "spec.md": "28c1e49398d1ed1993acad65e82b47f4b56b0ca4bc24a3f07972a6706dd6c71e",
+      "plan.md": "24464177a716fb12f4bfcb8379d78a17a94043189c90b311d78d20f827b24217",
+      "tasks.md": "2ff15d98a9801e924221882709d962fd8edd6cb860817e6043083a828d586d89",
+      "checklist.md": "25a950becf8a6add3fa77b82ec1c351d40d66ca4d86b257249770d9cc5e2cf53",
+      "implementation-summary.md": "9b7167d8081d96e7b3deb3dff812d5af27e652cd33ab70a2b66951ef18d9d16d"
     },
     "last_active_child_id": null,
     "last_active_at": null

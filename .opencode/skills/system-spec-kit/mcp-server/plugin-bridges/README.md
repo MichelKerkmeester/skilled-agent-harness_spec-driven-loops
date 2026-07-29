@@ -32,7 +32,6 @@ Current state:
 
 - Spec-memory plugin bridge lives here as `mk-spec-memory-bridge.mjs` and routes through the daemon-backed `spec-memory.cjs` CLI.
 - Message-shape helpers for safe synthetic text-part insertion live here.
-- Code-graph bridge lives at `.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs`.
 - The goal plugin `.opencode/plugins/mk-goal.js` is intentionally absent from this directory because it is a standalone local OpenCode plugin, not a daemon bridge. Its operator contract lives in `../../references/hooks/goal-plugin.md`.
 
 ---
@@ -46,7 +45,6 @@ plugin-bridges/
 `-- README.md
 ```
 
-Note: the code-graph bridge now lives at `.opencode/skills/system-code-graph/mcp-server/plugin-bridges/mk-code-graph-bridge.mjs` and was renamed from `spec-kit-compact-code-graph-bridge.mjs`.
 
 ---
 
@@ -86,5 +84,4 @@ Expected result: Plugin bridge smoke tests and related advisor or message-schema
 
 - [`../README.md`](../README.md)
 - [`../skill_advisor/README.md`](../../../system-skill-advisor/mcp-server/README.md)
-- Code-graph bridge: `.opencode/skills/system-code-graph/mcp-server/plugin-bridges/`
 - Goal plugin contract: `../../references/hooks/goal-plugin.md`

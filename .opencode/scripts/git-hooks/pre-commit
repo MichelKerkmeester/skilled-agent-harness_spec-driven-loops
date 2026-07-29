@@ -48,7 +48,7 @@ fi
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
-  HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/pre-commit"
+  HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"
   if [[ -x "$HYGIENE_HOOK" ]]; then
     bash "$HYGIENE_HOOK" || exit $?
   fi

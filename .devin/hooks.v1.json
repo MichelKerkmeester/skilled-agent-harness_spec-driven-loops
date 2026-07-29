@@ -10,6 +10,11 @@
         },
         {
           "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-session-start.mjs'",
+          "timeout": 5
+        },
+        {
+          "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
           "timeout": 3
         },
@@ -42,8 +47,13 @@
         },
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-classify.mjs'",
           "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-inject.mjs'",
+          "timeout": 5
         }
       ]
     }
@@ -54,12 +64,17 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-preflight-lint.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/devin/dispatch-preflight-lint.mjs'",
           "timeout": 5
         },
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs'",
+          "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"\\\"}}\"'",
           "timeout": 5
         }
       ]
@@ -69,7 +84,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs'",
           "timeout": 5
         }
       ]
@@ -79,7 +94,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-deep-loop/runtime/hooks/devin/task-dispatch-guard.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/task-dispatch/devin/task-dispatch-guard.cjs'",
           "timeout": 5
         }
       ]
@@ -89,7 +104,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/devin/mcp-route-guard.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/mcp-route-guard/devin/mcp-route-guard.cjs'",
           "timeout": 5
         }
       ]
@@ -101,7 +116,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/devin/post-edit-quality.cjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/post-edit-quality/devin/post-edit-quality.cjs'",
           "timeout": 10
         }
       ]
@@ -111,7 +126,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external-orchestration/cli-opencode/scripts/hooks/devin/dispatch-audit-posttooluse.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs'",
           "timeout": 5
         }
       ]
@@ -123,7 +138,7 @@
       "hooks": [
         {
           "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs'",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/permission-request-policy.mjs'",
           "timeout": 5
         }
       ]
@@ -142,6 +157,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs'",
           "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-verify.mjs'",
+          "timeout": 5
         }
       ]
     }

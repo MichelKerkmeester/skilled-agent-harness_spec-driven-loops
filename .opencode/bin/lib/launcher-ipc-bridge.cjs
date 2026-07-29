@@ -86,11 +86,6 @@ function defaultDbDirForService(serviceName) {
   if (serviceName === 'mk-spec-memory') {
     return path.join(root, '.opencode', 'skills', 'system-spec-kit', 'mcp-server', 'database');
   }
-  if (serviceName === 'mk-code-index') {
-    return process.env.SPECKIT_CODE_GRAPH_DB_DIR
-      ? path.resolve(process.env.SPECKIT_CODE_GRAPH_DB_DIR)
-      : path.join(root, '.opencode', '.spec-kit', 'code-graph', 'database');
-  }
   if (serviceName === 'mk-skill-advisor') {
     const advisorOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     return advisorOverride

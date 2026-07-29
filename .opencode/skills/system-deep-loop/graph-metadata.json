@@ -30,8 +30,13 @@
     "prerequisite_for": []
   },
   "manual": {
-    "depends_on": ["system-spec-kit"],
-    "related_to": ["system-spec-kit", "system-code-graph", "system-skill-advisor"]
+    "depends_on": [
+      "system-spec-kit"
+    ],
+    "related_to": [
+      "system-spec-kit",
+      "system-skill-advisor"
+    ]
   },
   "domains": [
     "deep-loop",

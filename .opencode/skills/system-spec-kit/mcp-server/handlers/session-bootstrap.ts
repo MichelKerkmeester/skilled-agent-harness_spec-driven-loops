@@ -8,8 +8,6 @@ import { handleSessionResume } from './session-resume.js';
 import type { CachedSessionSummaryDecision } from './session-resume.js';
 import { handleSessionHealth } from './session-health.js';
 import { recordBootstrapEvent } from '../lib/session/context-metrics.js';
-import { buildStructuralBootstrapContract } from '../lib/session/session-snapshot.js';
-import type { StructuralBootstrapContract } from '../lib/session/session-snapshot.js';
 import {
   attachStructuralTrustFields,
   buildStructuralContextTrust,
@@ -28,10 +26,6 @@ import {
   coerceSharedPayloadEnvelope,
   type OpenCodeTransportPlan,
 } from '../lib/context/opencode-transport.js';
-import {
-  buildCodeGraphOpsContract,
-  type CodeGraphOpsContract,
-} from '@spec-kit/shared/code-graph-contracts';
 import type { MCPResponse } from '@spec-kit/shared/types';
 import { createRequire } from 'node:module';
 import { existsSync } from 'node:fs';
@@ -78,17 +72,8 @@ interface SessionBootstrapResult {
   resume: Record<string, unknown>;
   health: Record<string, unknown>;
   cachedSummary?: CachedSessionSummaryDecision;
-  structuralContext?: StructuralBootstrapContract & StructuralTrust;
-  structuralRoutingNudge?: {
-    advisory: true;
-    readiness: 'ready';
-    preferredTool: 'code_graph_query';
-    message: string;
-    preservesAuthority: 'session_bootstrap';
-  };
   payloadContract?: SharedPayloadEnvelope;
   opencodeTransport?: OpenCodeTransportPlan;
-  graphOps?: CodeGraphOpsContract;
   skillGraphTopology?: SkillGraphTopologySummary;
   compiledRouting?: CompiledRoutingSummary;
   hints: string[];
@@ -179,33 +164,9 @@ function extractCachedSummary(
   return null;
 }
 
-function normalizeStructuralRecommendedAction(
-  structuralContext: StructuralBootstrapContract,
-): string | null {
-  const action = structuralContext.recommendedAction?.trim();
-  if (!action) {
-    return null;
-  }
-
-  if (structuralContext.sourceSurface !== 'session_bootstrap' || !action.includes('session_bootstrap')) {
-    return action;
-  }
-
-  if (structuralContext.status === 'missing') {
-    return 'Run `code_graph_scan` to populate structural context, then re-run `session_bootstrap`.';
-  }
-
-  if (structuralContext.status === 'stale') {
-    return 'Run `code_graph_scan` if the graph needs a broader refresh, then re-run `session_bootstrap`.';
-  }
-
-  return action;
-}
-
 function buildNextActions(
   resumeData: Record<string, unknown>,
   healthData: Record<string, unknown>,
-  structuralContext: StructuralBootstrapContract,
 ): string[] {
   const nextActions = new Set<string>();
 
@@ -217,29 +178,10 @@ function buildNextActions(
     nextActions.add('Call `session_health()` directly to inspect the current health-check failure.');
   }
 
-  const normalizedStructuralAction = normalizeStructuralRecommendedAction(structuralContext);
-  if (normalizedStructuralAction) {
-    nextActions.add(normalizedStructuralAction);
-  }
-
   nextActions.add('Use `session_resume({ specFolder })` when you need the fuller merged recovery payload.');
   nextActions.add(RESUME_LADDER_SUMMARY);
 
   return [...nextActions].slice(0, 3);
-}
-
-function extractStructuralTrustFromPayload(
-  payload: SharedPayloadEnvelope | null,
-): StructuralTrust | null {
-  if (!payload) {
-    return null;
-  }
-
-  const structuralSection = payload.sections.find((section) =>
-    section.key === 'structural-context' && section.structuralTrust,
-  );
-
-  return structuralSection?.structuralTrust ?? null;
 }
 
 function describeSkillGraphTopology(topology: Omit<SkillGraphTopologySummary, 'summary'>): string {
@@ -281,22 +223,6 @@ async function buildSkillGraphTopologySummary(): Promise<SkillGraphTopologySumma
   };
 }
 
-function buildStructuralRoutingNudge(
-  structuralContext: StructuralBootstrapContract,
-): SessionBootstrapResult['structuralRoutingNudge'] | null {
-  if (structuralContext.status !== 'ready') {
-    return null;
-  }
-
-  return {
-    advisory: true,
-    readiness: 'ready',
-    preferredTool: 'code_graph_query',
-    message: 'Advisory only: when the next question is about callers, imports, dependencies, or outline, prefer `code_graph_query` before Grep or Glob.',
-    preservesAuthority: 'session_bootstrap',
-  };
-}
-
 /* ───────────────────────────────────────────────────────────────
    3. HANDLER
 ──────────────────────────────────────────────────────────────── */
@@ -332,23 +258,11 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
     allHints.push('session_health failed. Try calling it manually.');
   }
 
-  // Structural bootstrap contract
-  const structuralContext = buildStructuralBootstrapContract('session_bootstrap');
-  if (structuralContext.status === 'stale' || structuralContext.status === 'missing') {
-    allHints.push(
-      `Structural context is ${structuralContext.status}. Run code_graph_scan if needed, then re-run session_bootstrap.`
-    );
-  }
-
   const cachedSummary = extractCachedSummary(resumeData);
-  const structuralRoutingNudge = buildStructuralRoutingNudge(structuralContext);
   const skillGraphTopology = await buildSkillGraphTopologySummary();
   const compiledRouting = readCompiledRoutingSummary();
   if (compiledRouting && compiledRouting.broken > 0) {
     allHints.push(`Compiled routing: ${compiledRouting.broken} hub(s) report engine-throw; run \`compiled-route-status.cjs --all\` to inspect.`);
-  }
-  if (structuralRoutingNudge) {
-    allHints.push(structuralRoutingNudge.message);
   }
   if (skillGraphTopology.status === 'unavailable') {
     allHints.push('Skill graph topology summary is unavailable; call `skill_graph_status` for details.');
@@ -370,30 +284,11 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
   const resumeCertainty: SharedPayloadCertainty = resumeData.error ? 'unknown' : 'estimated';
   const healthCertainty: SharedPayloadCertainty = healthData.error ? 'unknown' : 'estimated';
   const cachedCertainty: SharedPayloadCertainty = cachedSummary?.status === 'accepted' ? 'estimated' : 'defaulted';
-  const structuralCertainty: SharedPayloadCertainty = 'exact';
   const skillGraphCertainty: SharedPayloadCertainty = skillGraphTopology.status === 'unavailable' ? 'unknown' : 'estimated';
   const nextActionsCertainty: SharedPayloadCertainty = 'defaulted';
   const resumePayload = coerceSharedPayloadEnvelope(resumeData.payloadContract);
   const healthPayload = coerceSharedPayloadEnvelope(healthData.payloadContract);
-  const structuralSnapshotTrust = buildStructuralContextTrust(structuralContext);
-  const resumeStructuralTrust = extractStructuralTrustFromPayload(resumePayload);
-  if (!resumeData.error && !resumeStructuralTrust) {
-    throw new StructuralTrustPayloadError(
-      'session_bootstrap expected session_resume to emit structural-context.structuralTrust.',
-    );
-  }
-  const structuralContextWithTrust = attachStructuralTrustFields(
-    structuralContext,
-    structuralSnapshotTrust,
-    { label: 'session_bootstrap structural context payload' },
-  );
-  const resumeWithTrust = resumeData.error
-    ? resumeData
-    : attachStructuralTrustFields(
-      resumeData,
-      resumeStructuralTrust,
-      { label: 'session_bootstrap resume payload' },
-    );
+  const resumeWithTrust = resumeData;
 
   const payloadSections: SharedPayloadSection[] = [
     {
@@ -435,16 +330,6 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
       certainty: healthCertainty,
     },
     {
-      key: 'structural-context',
-      title: 'Structural Context',
-      // This section carries trust derived from the local structural snapshot,
-      // which remains valid even when the remote resume surface fails closed.
-      content: structuralContext.summary,
-      source: 'code-graph',
-      certainty: structuralCertainty,
-      structuralTrust: structuralSnapshotTrust,
-    },
-    {
       key: 'skill-graph-topology',
       title: 'Skill Graph Topology',
       content: skillGraphTopology.summary,
@@ -454,7 +339,7 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
     {
       key: 'next-actions',
       title: 'Next Actions',
-      content: buildNextActions(resumeData, healthData, structuralContext).join(' | '),
+      content: buildNextActions(resumeData, healthData).join(' | '),
       source: 'session',
       certainty: nextActionsCertainty,
     },
@@ -467,48 +352,37 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
       { label: 'resume', certainty: resumeCertainty },
       { label: 'health', certainty: healthCertainty },
       ...(cachedSummary?.status === 'accepted' ? [{ label: 'cached', certainty: cachedCertainty }] : []),
-      { label: 'structural', certainty: structuralCertainty },
       { label: 'nextActions', certainty: nextActionsCertainty },
-    ])}; structuralStatus=${structuralContext.status}`,
+    ])}`,
     provenance: {
       producer: 'session_bootstrap',
       sourceSurface: 'session_bootstrap',
-      trustState: trustStateFromStructuralStatus(structuralContext.status),
+      // No structural index backs this payload any more, so the trust state is
+      // permanently absent rather than derived from an index's freshness.
+      trustState: 'absent',
       generatedAt: new Date().toISOString(),
-      lastUpdated: structuralContext.provenance?.lastUpdated ?? null,
+      lastUpdated: null,
       sourceRefs: ['session-resume', 'session-health', 'session-snapshot'],
     },
-  });
-  const graphOps = buildCodeGraphOpsContract({
-    graphFreshness: structuralContext.status === 'ready'
-      ? 'fresh'
-      : structuralContext.status === 'stale'
-        ? 'stale'
-        : 'empty',
-    sourceSurface: 'session_bootstrap',
   });
 
   const result: SessionBootstrapResult = {
     resume: resumeWithTrust,
     health: healthData,
     ...(cachedSummary ? { cachedSummary } : {}),
-    structuralContext: structuralContextWithTrust,
-    ...(structuralRoutingNudge ? { structuralRoutingNudge } : {}),
     payloadContract,
     opencodeTransport: buildOpenCodeTransportPlan({
       bootstrapPayload: payloadContract,
       resumePayload,
       healthPayload,
-      graphOps,
       specFolder: args.specFolder ?? null,
     }),
-    graphOps,
     skillGraphTopology,
     ...(compiledRouting ? { compiledRouting } : {}),
     hints: uniqueHints,
     // Keep advisory routing guidance out of nextActions so bootstrap and resume
     // remain the authoritative recovery owners for startup and deep resume flows.
-    nextActions: buildNextActions(resumeData, healthData, structuralContext),
+    nextActions: buildNextActions(resumeData, healthData),
   };
 
   return {

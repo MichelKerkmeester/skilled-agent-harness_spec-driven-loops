@@ -139,4 +139,4 @@ A command missing from `devin skills list` while present on disk is almost alway
 | `.opencode/skills/cli-external-orchestration/cli-devin/SKILL.md` | Dispatch contract, roster parity, and the auto-import correction |
 | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/` | 20 executable scenarios covering these surfaces |
 | [`../.cursor/rules/skill-routing.md`](../.cursor/rules/skill-routing.md) | The routing rule Devin inherits |
-| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) | Sibling runtime manifests |
+| [`../.claude/SYNC.md`](../.claude/SYNC.md) · [`../.codex/SYNC.md`](../.codex/SYNC.md) · [`../.cursor/SYNC.md`](../.cursor/SYNC.md) · [`../.pi/SYNC.md`](../.pi/SYNC.md) | Sibling runtime manifests |

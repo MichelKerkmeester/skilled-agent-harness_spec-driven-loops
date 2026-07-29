@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/018-git-subprocess-env-isolation",
+  "description": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C",
+  "keywords": [
+    "three",
+    "git-family",
+    "test",
+    "tool",
+    "helpers",
+    "throwaway",
+    "git",
+    "repositories",
+    "write",
+    "config",
+    "them",
+    "isolating",
+    "writes",
+    "only",
+    "passing",
+    "cwd"
+  ],
+  "lastUpdated": "2026-07-29T06:49:28.698Z",
+  "specId": "018",
+  "folderSlug": "git-subprocess-env-isolation",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -19,12 +19,13 @@ Canonical package artifacts:
 - `recovery-and-edge-cases/`
 - `cross-cli-orchestration/`
 - `owner-first-worktree-tooling/`
+- `git-preflight-advisory/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 41 deterministic scenarios across 7 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 42 deterministic scenarios across 8 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the owner-first worktree tooling safety contract: locked number allocation, owner/slug/branch/pair grammar validation, worktree creation and the wrapper-lane exemption, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only orphan-daemon scanning), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 

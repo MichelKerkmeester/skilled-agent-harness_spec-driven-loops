@@ -39,12 +39,13 @@
       "verifier"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,15 +61,21 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -79,12 +86,6 @@
       },
       {
         "name": "Skill Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scoped Skill Benchmark",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,6 +109,12 @@
         "source": "derived"
       },
       {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -122,6 +129,12 @@
       {
         "name": "The Skill Benchmark",
         "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -144,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "task",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -160,25 +179,39 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
     "created_at": "2026-07-16T03:43:41.856Z",
-    "last_save_at": "2026-07-24T07:18:39.723Z",
+    "last_save_at": "2026-07-27T21:30:36.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:089dcc63b43a1c8d50bbe5943398cfb0fff44f53a2858d3a80dc3429cf0fb373",
+    "source_fingerprint": "sha256:4b6ef2ad29ab07fd6bf24d4ee56c891f35595d4dd3d329196bca8b2aa39a9261",
     "source_doc_hashes": {
-      "spec.md": "4c37d8009acfa607fbfe05c21c73187941754f704233e5cd85e6f7d3ab9aefe1",
-      "plan.md": "ae4ec4d93e3c1adbd789e197dfe93a208f0cbe1433e4faeb897cd5937862c65f",
-      "tasks.md": "fbb26b19b99207254423df15c362ccf8573a7c5c4870aad5f043076bc43db4c7",
-      "checklist.md": "777bbbebdfd779ac1c788cdcf475587ad705b1436d4c56613b89810c7197924d"
+      "spec.md": "70504ee2d74c168e314dc801e32a88fe2c9e881b69bd631a0824fb45cdd59513",
+      "plan.md": "643dc76c27f6c4a3883ebf497787767be0a4d2af41fa919ffb890e0256af0fea",
+      "tasks.md": "b6d0a0623c0fadc604c86dab2408c27e29d375b25fdb631e66ae06f53d409d0c",
+      "checklist.md": "bc94fda36089470d36ab029e3f3164f149c849007309f8039071339d12763ef7",
+      "implementation-summary.md": "bf9aaa9c5e42a3536bb225f51e60b2d8b089da7a8119033e6f7f7c601ee86f9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

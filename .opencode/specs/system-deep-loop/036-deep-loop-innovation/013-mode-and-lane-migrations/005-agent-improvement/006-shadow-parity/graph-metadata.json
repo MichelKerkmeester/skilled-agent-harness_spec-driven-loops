@@ -39,12 +39,13 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,25 +173,45 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Shadow Parity",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Agent Improvement",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
     "created_at": "2026-07-16T03:43:38.788Z",
-    "last_save_at": "2026-07-24T07:18:59.894Z",
+    "last_save_at": "2026-07-28T11:52:51.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6bc3715ab829234f0e7c30b59409b3420535a72037ac1bfdb7563f9eee7c7b0",
+    "source_fingerprint": "sha256:87afd31946eaa3abb4bec6cca24cada0b479db4fd6381165d77a27e6e8221a7b",
     "source_doc_hashes": {
-      "spec.md": "5d18daf2ac9905d65a927e0aebba361b15c55f8b8de8d00b94747a6e82346ec2",
+      "spec.md": "e92b265937e5a9dd7413cc760226d97e79bbbc0496a2fd431c221300b6079e6f",
       "plan.md": "4989cd053ee9b00fe80167a423e3f0f043a0819a9a7d9f350405d567673f1f14",
       "tasks.md": "78442bf551879d798b63dd59bc475aeebe16fed070f7477a3c48f4263fc54da0",
-      "checklist.md": "746bfe8e49e00edb110546c4b4ceea41103bf62adca1330fbd3257b238695beb"
+      "checklist.md": "746bfe8e49e00edb110546c4b4ceea41103bf62adca1330fbd3257b238695beb",
+      "implementation-summary.md": "2ae08e509c4d4f2088aa5219b659a7561541f3b7f2f125fff34150f5b8838914"
     },
     "last_active_child_id": null,
     "last_active_at": null

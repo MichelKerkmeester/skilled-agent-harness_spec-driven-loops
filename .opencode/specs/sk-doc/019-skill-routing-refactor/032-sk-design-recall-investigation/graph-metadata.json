@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design recall investigation",
+      "routed-intra recall"
+    ],
+    "key_topics": [
+      "sk-design",
+      "recall",
+      "investigation",
+      "routed-intra",
+      "take",
+      "pass",
+      "loading",
+      "exactly",
+      "resources",
+      "scenario",
+      "expects",
+      "moving"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "research.md",
+      "luna-raw-findings.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "luna-raw-findings.txt",
+        "kind": "file",
+        "path": "luna-raw-findings.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Close The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Intra Recall Gap",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Take",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Check",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Take sk-design to PASS by loading exactly the resources each scenario expects, moving no other scenario",
+    "created_at": "2026-07-29T06:29:16.120Z",
+    "last_save_at": "2026-07-29T09:11:15.101Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:aeaddd9f2a20104000d370ae3590d70f3de7b67145325e5487fee303fb25c243",
+    "source_doc_hashes": {
+      "spec.md": "6afac738abd6ffcbeeddef0b12a0be70416ffe17184a931c2874a414be20c852",
+      "plan.md": "c0bd733b279c02660ac6908021859d3b9484684ba015312a1dbe9c1d27a8746e",
+      "tasks.md": "fc7b9c14628bff65365ad9d30849f10af7993a73dbfa1a0f0744aed591a92e35",
+      "checklist.md": "b98539139a096694cba17299cdf34edc3186af2cf2a9e832870ff843a155c598",
+      "implementation-summary.md": "747beb6c0f0930daac3b50451b7d61f570b2289aaeaba145cbb65b7bc6f07ee0",
+      "research.md": "cdf7e1751117cab460f6d09d46c632c5096772332d644335f5db59ec15a48ea9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

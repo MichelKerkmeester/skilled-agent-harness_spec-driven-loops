@@ -98,7 +98,6 @@ import { runLineageBackfill, backfillColdOrphanProjection } from './lib/storage/
 import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
-import { callCodeGraphTool } from './lib/code-graph-boundary.js';
 import { detectRuntime } from './lib/runtime-detection.js';
 import {
   ensureMemoryRuntimeInitialized,
@@ -205,18 +204,12 @@ interface ApiKeyValidation {
 interface AutoSurfaceResult {
   constitutional: unknown[];
   triggered: unknown[];
-  codeGraphStatus?: {
-    status: 'ok' | 'error';
-    data?: Record<string, unknown>;
-    error?: string;
-  };
   sessionPrimed?: boolean;
   primedTool?: string;
   /** Structured Prime Package for non-hook CLI auto-priming */
   primePackage?: {
     specFolder: string | null;
     currentTask: string | null;
-    codeGraphStatus: 'fresh' | 'stale' | 'empty';
     recommendedCalls: string[];
   };
   surfaced_at?: string;
@@ -248,14 +241,9 @@ const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 const FTS_CORRUPTION_RUNBOOK =
   '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/012-empty-graph-first-time-auto-scan/bug-report-memory-db-corruption.md';
 
-const GRAPH_ENRICHMENT_TIMEOUT_MS = 250;
 const GRAPH_ENRICHMENT_OUTLINE_LIMIT = 6;
 const GRAPH_ENRICHMENT_NEIGHBOR_LIMIT = 6;
 const GRAPH_ENRICHMENT_SYMBOL_LIMIT = 4;
-const GRAPH_CONTEXT_EXCLUDED_TOOLS = new Set<string>([
-  ...MEMORY_AWARE_TOOLS,
-  // Code-graph MCP tools route through standalone mk-code-index
-]);
 
 const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_context',
@@ -308,48 +296,6 @@ interface GraphContextNeighborSummary {
     relation: string;
   }>;
 }
-
-interface GraphContextFileSummary {
-  filePath: string;
-  outline: Array<{
-    name: string;
-    kind: string;
-    line: number;
-  }>;
-  neighbors: GraphContextNeighborSummary[];
-}
-
-interface DispatchGraphContextMeta {
-  status: 'ok' | 'timeout' | 'unavailable';
-  source: 'tool-dispatch';
-  fileCount: number;
-  filePaths: string[];
-  latencyMs: number;
-  files?: GraphContextFileSummary[];
-  error?: string;
-}
-
-export interface StructuralRoutingNudge {
-  advisory: true;
-  readiness: 'ready';
-  preferredTool: 'mcp__mk_code_index__code_graph_query';
-  secondaryTool: 'mcp__mk_code_index__code_graph_context';
-  message: string;
-  preservesAuthority: 'session_bootstrap';
-  surface: 'response-hints' | 'session-bootstrap' | 'memory-context';
-}
-
-const STRUCTURAL_MISFIRE_PATTERNS = [
-  /\b(?:who|what)\s+calls?\b/i,
-  /\bcallers?\s+of\b/i,
-  /\b(?:who|what)\s+imports?\b/i,
-  /\bimports?\s+of\b/i,
-  /\b(?:show|list)\s+(?:the\s+)?outline\b/i,
-  /\boutline\s+of\b/i,
-  /\bdependenc(?:y|ies)\b/i,
-  /\bdependents?\b/i,
-  /\bwhat\s+extends\b/i,
-];
 
 const NON_STRUCTURAL_SUPPRESS_PATTERNS = [
   /\bfind code\b/i,
@@ -690,61 +636,6 @@ export function resolveEnvelopeTokenBudget(
   return getTokenBudget(name);
 }
 
-export function maybeStructuralNudge(
-  task: string,
-  options: {
-    graphReady: boolean;
-    activationScaffoldReady: boolean;
-    surface?: StructuralRoutingNudge['surface'];
-  },
-): StructuralRoutingNudge | null {
-  const normalizedTask = task.trim();
-  if (!normalizedTask) {
-    return null;
-  }
-
-  if (!options.graphReady || !options.activationScaffoldReady) {
-    return null;
-  }
-
-  if (NON_STRUCTURAL_SUPPRESS_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
-    return null;
-  }
-
-  if (!STRUCTURAL_MISFIRE_PATTERNS.some((pattern) => pattern.test(normalizedTask))) {
-    return null;
-  }
-
-  return {
-    advisory: true,
-    readiness: 'ready',
-    preferredTool: 'mcp__mk_code_index__code_graph_query',
-    secondaryTool: 'mcp__mk_code_index__code_graph_context',
-    message: 'Advisory only: this looks like a structural question. Prefer `mcp__mk_code_index__code_graph_query` before Grep or Glob for callers, imports, outline, and dependency lookups.',
-    preservesAuthority: 'session_bootstrap',
-    surface: options.surface ?? 'response-hints',
-  };
-}
-
-function injectStructuralRoutingNudge(
-  envelope: Record<string, unknown>,
-  nudge: StructuralRoutingNudge,
-): void {
-  const hints = Array.isArray(envelope.hints)
-    ? envelope.hints.filter((hint): hint is string => typeof hint === 'string')
-    : [];
-  envelope.hints = hints;
-  if (!hints.includes(nudge.message)) {
-    hints.push(nudge.message);
-  }
-
-  const meta = typeof envelope.meta === 'object' && envelope.meta !== null && !Array.isArray(envelope.meta)
-    ? envelope.meta as Record<string, unknown>
-    : {};
-  meta.structuralRoutingNudge = nudge;
-  envelope.meta = meta;
-}
-
 function resolveToolCallId(request: { id?: unknown }): string {
   const requestId = request.id;
   if (typeof requestId === 'string' || typeof requestId === 'number') {
@@ -921,134 +812,6 @@ function extractFilePathsFromToolArgs(args: unknown): string[] {
   return Array.from(results).slice(0, GRAPH_ENRICHMENT_NEIGHBOR_LIMIT);
 }
 
-function buildDispatchGraphContext(
-  filePaths: string[],
-  _deadlineMs: number,
-): Promise<Omit<DispatchGraphContextMeta, 'latencyMs'>> {
-  return buildDispatchGraphContextViaRpc(filePaths);
-}
-
-async function buildDispatchGraphContextViaRpc(
-  filePaths: string[],
-): Promise<Omit<DispatchGraphContextMeta, 'latencyMs'>> {
-  const files: GraphContextFileSummary[] = [];
-
-  for (const filePath of filePaths) {
-    const payload = await callCodeGraphTool('code_graph_context', {
-      subject: filePath,
-      queryMode: 'neighborhood',
-      profile: 'quick',
-      budgetTokens: 800,
-    }, GRAPH_ENRICHMENT_TIMEOUT_MS);
-    const data = typeof payload.data === 'object' && payload.data !== null && !Array.isArray(payload.data)
-      ? payload.data as Record<string, unknown>
-      : {};
-    const graphContext = Array.isArray(data.graphContext)
-      ? data.graphContext as Array<Record<string, unknown>>
-      : [];
-    const firstSection = graphContext[0] ?? {};
-    const outline = Array.isArray(firstSection.nodes)
-      ? (firstSection.nodes as Array<Record<string, unknown>>).slice(0, GRAPH_ENRICHMENT_OUTLINE_LIMIT)
-      : [];
-    const edges = Array.isArray(firstSection.edges)
-      ? (firstSection.edges as Array<Record<string, unknown>>).slice(0, GRAPH_ENRICHMENT_NEIGHBOR_LIMIT)
-      : [];
-    files.push({
-      filePath,
-      outline: outline.map((node) => ({
-        name: typeof node.name === 'string' ? node.name : '',
-        kind: typeof node.kind === 'string' ? node.kind : '',
-        line: typeof node.line === 'number' ? node.line : 0,
-      })),
-      neighbors: edges.map((edge) => ({
-        filePath: typeof edge.to === 'string' ? edge.to : filePath,
-        relationTypes: typeof edge.type === 'string' ? [edge.type] : [],
-        symbols: [{
-          name: typeof edge.to === 'string' ? edge.to : '',
-          kind: 'symbol',
-          line: 0,
-          direction: 'outgoing' as const,
-          relation: typeof edge.type === 'string' ? edge.type : 'related',
-        }],
-      })),
-    });
-  }
-
-  return {
-    status: 'ok',
-    source: 'tool-dispatch',
-    fileCount: files.length,
-    filePaths,
-    files,
-  };
-}
-
-async function resolveDispatchGraphContext(
-  toolName: string,
-  args: Record<string, unknown>,
-): Promise<DispatchGraphContextMeta | null> {
-  if (GRAPH_CONTEXT_EXCLUDED_TOOLS.has(toolName)) {
-    return null;
-  }
-
-  const filePaths = extractFilePathsFromToolArgs(args);
-  if (filePaths.length === 0) {
-    return null;
-  }
-
-  const startedAt = Date.now();
-  let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
-
-  let aborted = false;
-
-  const buildPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
-    queueMicrotask(() => {
-      void buildDispatchGraphContext(
-        filePaths,
-        startedAt + GRAPH_ENRICHMENT_TIMEOUT_MS,
-      ).then((resolvedContext) => {
-        if (aborted || Date.now() - startedAt >= GRAPH_ENRICHMENT_TIMEOUT_MS) {
-          return;
-        }
-
-        resolve({
-          ...resolvedContext,
-          latencyMs: Date.now() - startedAt,
-        });
-      }).catch((error: unknown) => {
-        if (aborted) return;
-        resolve({
-          status: 'unavailable',
-          source: 'tool-dispatch',
-          fileCount: filePaths.length,
-          filePaths,
-          latencyMs: Date.now() - startedAt,
-          error: error instanceof Error ? error.message : String(error),
-        });
-      });
-    });
-  });
-
-  const timeoutPromise = new Promise<DispatchGraphContextMeta>((resolve) => {
-    timeoutHandle = registerTimeout(() => {
-      aborted = true;
-      resolve({
-        status: 'timeout',
-        source: 'tool-dispatch',
-        fileCount: filePaths.length,
-        filePaths,
-        latencyMs: Date.now() - startedAt,
-      });
-    }, GRAPH_ENRICHMENT_TIMEOUT_MS, { unref: true });
-  });
-
-  const graphContext = await Promise.race([buildPromise, timeoutPromise]);
-  if (timeoutHandle) {
-    clearRegisteredTimer(timeoutHandle);
-  }
-  return graphContext;
-}
-
 function injectSessionPrimeHints(
   envelope: Record<string, unknown>,
   meta: Record<string, unknown>,
@@ -1062,13 +825,8 @@ function injectSessionPrimeHints(
   const constitutionalCount = Array.isArray(sessionPrimeContext.constitutional)
     ? sessionPrimeContext.constitutional.length
     : 0;
-  const codeGraphStatus = sessionPrimeContext.codeGraphStatus;
-  const codeGraphState = codeGraphStatus?.status === 'ok'
-    ? 'loaded code graph status'
-    : 'code graph status unavailable';
-
   hints.push(
-    `Session priming: loaded ${constitutionalCount} constitutional memories and ${codeGraphState}`
+    `Session priming: loaded ${constitutionalCount} constitutional memories`
   );
 
   // Include Prime Package hints for non-hook CLIs
@@ -1078,7 +836,6 @@ function injectSessionPrimeHints(
     if (pkg.specFolder) {
       hints.push(`Active spec folder: ${pkg.specFolder}`);
     }
-    hints.push(`Code graph: ${pkg.codeGraphStatus}`);
     if (pkg.recommendedCalls.length > 0) {
       hints.push(`Recommended next calls: ${pkg.recommendedCalls.join(', ')}`);
     }
@@ -1152,63 +909,25 @@ async function buildServerInstructions(): Promise<string> {
     staleWarning.trim(),
   ];
 
-  // Session recovery digest from
-  // session-snapshot. 'empty' recommends mcp__mk_code_index__code_graph_scan (graph absent);
-  // 'error' recommends memory_health because structural context is
-  // unavailable, not merely outdated.
+  // Session recovery digest from session-snapshot.
   try {
     const { getSessionSnapshot } = await import('./lib/session/session-snapshot.js');
     const snap = getSessionSnapshot();
-    const hasData = snap.specFolder || snap.graphFreshness !== 'error' || snap.sessionQuality !== 'unknown';
+    const hasData = snap.specFolder || snap.sessionQuality !== 'unknown';
     if (hasData) {
       const recommended = !snap.primed ? 'call session_bootstrap()' :
-        snap.graphFreshness === 'empty' ? 'run mcp__mk_code_index__code_graph_scan' :
-          snap.graphFreshness === 'error' ? 'call memory_health (structural context unavailable)' :
-            snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
+        snap.sessionQuality === 'critical' ? 'call memory_context(resume)' : 'ready';
       lines.push('');
       lines.push('## Session Recovery');
       lines.push(`- Last spec folder: ${snap.specFolder || 'none'}`);
-      lines.push(`- Code graph: ${snap.graphFreshness}`);
       lines.push(`- Session quality: ${snap.sessionQuality}`);
       lines.push(`- Recommended: ${recommended}`);
     }
   } catch { /* session-snapshot not available — skip digest */ }
 
-  // Structural bootstrap guidance for
-  // non-hook runtimes. Readiness vocabulary is aligned across bootstrap,
-  // resume, health, and mcp__mk_code_index__code_graph_query (ready | stale | absent |
-  // unavailable). The read handler is false-safe: only a fresh/ready graph answers
-  // mcp__mk_code_index__code_graph_query — 'stale' blocks (code_graph_not_ready) and
-  // requires a session_bootstrap refresh first; 'absent' and 'unavailable' route to
-  // repair/recovery, not query.
-  lines.push('');
-  lines.push('## Structural Bootstrap');
-  lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
-  lines.push('- If structural context shows "ready": mcp__mk_code_index__code_graph_query is available for structural lookups');
-  lines.push('- If "stale": mcp__mk_code_index__code_graph_query will block (code_graph_not_ready) until you run session_bootstrap to refresh; run it first');
-  lines.push('- If "absent" (empty/missing graph): run mcp__mk_code_index__code_graph_scan first, then session_bootstrap');
-  lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__mk_code_index__code_graph_query');
-  lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__mk_code_index__code_graph_scan');
-
   // Tool routing decision tree.
-  // mcp__mk_code_index__code_graph_query is only surfaced when graph freshness is
-  // 'fresh' (the read handler blocks every non-fresh read with code_graph_not_ready).
-  // 'stale' → recommend session_bootstrap to refresh before querying; 'empty' →
-  // recommend mcp__mk_code_index__code_graph_scan; 'error' → recommend memory_health
-  // because the database probe failed.
   try {
-    const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
-    const snap = getSnap();
     const routingRules: string[] = [];
-    if (snap.graphFreshness === 'fresh') {
-      routingRules.push('Structural queries (callers, imports, deps) → mcp__mk_code_index__code_graph_query');
-    } else if (snap.graphFreshness === 'stale') {
-      routingRules.push('Structural queries → run session_bootstrap to refresh first (stale graph blocks mcp__mk_code_index__code_graph_query with code_graph_not_ready)');
-    } else if (snap.graphFreshness === 'empty') {
-      routingRules.push('Structural queries → unavailable: run mcp__mk_code_index__code_graph_scan first (graph is absent)');
-    } else if (snap.graphFreshness === 'error') {
-      routingRules.push('Structural queries → unavailable: call memory_health to diagnose (graph readiness unavailable)');
-    }
     routingRules.push('Exact text/regex matching → Grep tool');
     if (routingRules.length > 0) {
       lines.push('');
@@ -1305,7 +1024,6 @@ function registerContextServerHandlers(targetServer: Server): void {
     if (name === 'memory_context' && validatedArgs.mode === 'resume') {
       recordMetricEvent({ kind: 'memory_recovery' });
     }
-    // Code-graph MCP metrics now originate from standalone mk-code-index
     if (typeof validatedArgs.specFolder === 'string' && validatedArgs.specFolder) {
       recordMetricEvent({ kind: 'spec_folder_change', specFolder: validatedArgs.specFolder as string });
     }
@@ -1379,11 +1097,6 @@ function registerContextServerHandlers(targetServer: Server): void {
       throw new Error(`Unknown tool: ${name}`);
     }
 
-    let dispatchGraphContext: DispatchGraphContextMeta | null = null;
-    if (!result.isError) {
-      dispatchGraphContext = await resolveDispatchGraphContext(name, validatedArgs);
-    }
-
     runAfterToolCallbacks(name, callId, structuredClone(result));
 
     // Log follow_on_tool_use when a non-search tool is called after a recent search
@@ -1409,7 +1122,7 @@ function registerContextServerHandlers(targetServer: Server): void {
           const envelope = JSON.parse(result.content[0].text) as Record<string, unknown>;
           if (envelope && typeof envelope === 'object' && !Array.isArray(envelope)) {
             const existingHints = Array.isArray(envelope.hints) ? envelope.hints as string[] : [];
-            existingHints.push('Tip: For code search queries, use mcp__mk_code_index__code_graph_query for structural lookups and Grep for exact text or token searches.');
+            existingHints.push('Tip: For code search queries, use Grep for exact text or token searches and Glob to map the surrounding tree.');
             envelope.hints = existingHints;
             result.content[0].text = JSON.stringify(envelope, null, 2);
           }
@@ -1425,16 +1138,7 @@ function registerContextServerHandlers(targetServer: Server): void {
             const meta = typeof envelope.meta === 'object' && envelope.meta !== null && !Array.isArray(envelope.meta)
               ? envelope.meta as Record<string, unknown>
               : {};
-            const snapshot = getSessionSnapshot();
-            const nudge = meta.structuralRoutingNudge
-              ? null
-              : maybeStructuralNudge(queryStr, {
-                graphReady: snapshot.graphFreshness === 'fresh',
-                activationScaffoldReady: snapshot.primed,
-                surface: 'response-hints',
-              });
-            if (nudge) {
-              injectStructuralRoutingNudge(envelope, nudge);
+            {
               result.content[0].text = JSON.stringify(envelope, null, 2);
             }
           }
@@ -1444,8 +1148,8 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // Passive context enrichment pipeline — adds code graph symbols
-    // near mentioned file paths and session continuity warnings.
+    // Passive context enrichment pipeline — adds session continuity warnings
+    // near mentioned file paths.
     if (result && !result.isError && result.content?.[0]?.text) {
       try {
         const { runPassiveEnrichment } = await import('./lib/enrichment/passive-enrichment.js');
@@ -1495,9 +1199,6 @@ function registerContextServerHandlers(targetServer: Server): void {
           }
           if (autoSurfacedContext && !result.isError) {
             meta.autoSurfacedContext = autoSurfacedContext;
-          }
-          if (dispatchGraphContext && !result.isError) {
-            meta.graphContext = dispatchGraphContext;
           }
           const budget = resolveEnvelopeTokenBudget(name, meta);
           meta.tokenBudget = budget;

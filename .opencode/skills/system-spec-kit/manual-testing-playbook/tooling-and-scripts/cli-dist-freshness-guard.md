@@ -11,7 +11,6 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the dist-freshness guard in the CLI shims. All three shims (`spec-memory.cjs`, `code-index.cjs`, `skill-advisor.cjs`) call the shared `checkPackageFreshness()` helper in `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`, the same module that backs `validate.sh`'s compiled-orchestrator backstop (see the companion scenario for that check) and the warn-only Claude Code hook and OpenCode plugin. Staleness is decided by a pure mtime comparison: the newest mtime among the package's watched source files versus the mtime of its compiled dist entry (`newestSourceMtime > distMtime`). When the source is newer, the shim refuses with exit 69 (`EXIT_PROTOCOL`) plus a rebuild instruction, so an operator can never silently exercise an outdated CLI.
 
 A SHA256 content hash over the watched source files is written lazily into a small cache file next to the dist entry (e.g. `dist/.dist-freshness-<package>-<suffix>.json`) purely as a same-session performance short-circuit: if a later check finds the same content hash already cached, it reports fresh without re-checking mtime at all. This cache is not pre-warmed by any build script -- it is written only by the runtime check itself, and only on a fresh pass -- so a clean checkout or the first check against a given source state always falls through to the authoritative mtime comparison. One consequence worth knowing (directly verified): a bare `touch` (mtime bump, no content change) does NOT re-trip the guard once a matching cache entry already exists for that exact content, but the identical `touch` DOES trip the guard when no matching cache entry exists yet, because mtime alone decides staleness in that case.
 
@@ -49,7 +48,6 @@ cp "$BAK" "$SRC"; rm -f "$BAK"                                   # restore exact
 node .opencode/bin/spec-memory.cjs list-tools --format json >/dev/null; echo "restored exit=$?"
 ```
 
-The same recipe applies to `code-index.cjs` (source `.opencode/skills/system-code-graph/mcp-server/code-index-cli.ts`, override `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) and `skill-advisor.cjs` (source `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`, override `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`).
 
 ### Expected
 
@@ -57,7 +55,6 @@ The same recipe applies to `code-index.cjs` (source `.opencode/skills/system-cod
 - `override exit=0`.
 - `restored exit=0` with no rebuild having run.
 
-The same three phases apply with the equivalent messages for `code-index.cjs` (`@spec-kit/system-code-graph dist is stale. Run: cd .opencode/skills/system-code-graph && npm run build`) and `skill-advisor.cjs` (`@spec-kit/system-skill-advisor dist is stale. Run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build`). All three exit 69 tripped / 0 overridden / 0 restored — only the message wording differs per package.
 
 ### Evidence
 
@@ -105,7 +102,6 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 |---|---|
 | `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
 | `.opencode/bin/spec-memory.cjs` | `ensureFreshDist` guard, exit 69, `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` |
-| `.opencode/bin/code-index.cjs` | Same guard for code-index, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE` |
 | `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
 
 ## 5. SOURCE METADATA

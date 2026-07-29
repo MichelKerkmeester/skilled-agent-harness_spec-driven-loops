@@ -1,0 +1,31 @@
+{
+  "sessionId": "fanout-glm-high-1785257671132-a9gil1",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"id":"F001","severity":"P2","category":"correctness","title":"Fleet gate top-level readdir swallows all errors","file":"create-skill/scripts/ci-skill-root-metadata.cjs:81","firstSeen":1,"lastSeen":1,"status":"open"},
+    {"id":"F002","severity":"P2","category":"correctness","title":"Within-entry duplicate owned signals silently allowed","file":"create-skill/scripts/lib/command-metadata-schema.cjs:143-151","firstSeen":1,"lastSeen":1,"status":"open"},
+    {"id":"F003","severity":"P2","category":"correctness","title":"Choreography resource probe resolves repo-root OR skillDir","file":"create-skill/scripts/ci-skill-root-metadata.cjs:291","firstSeen":1,"lastSeen":1,"status":"open"},
+    {"id":"F004","severity":"P2","category":"security","title":"isWithin containment unsound for cross-drive Windows paths","file":"system-skill-advisor/mcp-server/lib/daemon/watcher.ts:166-169","firstSeen":2,"lastSeen":2,"status":"open"},
+    {"id":"F005","severity":"P2","category":"traceability","title":"Exit-code convention not reconciled across sibling fleet gates","file":"create-skill/scripts/ci-leaf-manifest-freshness.cjs:100-103","firstSeen":3,"lastSeen":3,"status":"open"},
+    {"id":"F006","severity":"P2","category":"maintainability","title":"Watcher test hardcodes cross-package chokidar path","file":"system-skill-advisor/mcp-server/tests/daemon-watcher-new-root-ingestion.vitest.ts:216-218","firstSeen":4,"lastSeen":4,"status":"open"},
+    {"id":"F007","severity":"P2","category":"maintainability","title":"Journey proof does not assert scaffold-vs-template equivalence","file":"create-skill/scripts/tests/create-journey-proof.test.cjs:57-75","firstSeen":4,"lastSeen":4,"status":"open"},
+    {"id":"F008","severity":"P2","category":"maintainability","title":"Silent subdir-skip catch undocumented in fleet walkers","file":"create-skill/scripts/ci-leaf-manifest-freshness.cjs:63","firstSeen":4,"lastSeen":4,"status":"open"},
+    {"id":"F009","severity":"P1","category":"maintainability","title":"CI workflow trigger paths omit command-metadata.json","file":".github/workflows/routing-registry-drift.yml:15-32","firstSeen":5,"lastSeen":5,"status":"open","adjudicated":true,"finalSeverity":"P1","confidence":0.88},
+    {"id":"F010","severity":"P2","category":"maintainability","title":"Pre-push HEAD@{push} diff guard subtlety underdocumented","file":".opencode/scripts/git-hooks/pre-push:180","firstSeen":5,"lastSeen":5,"status":"open"}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": { "correctness": true, "security": true, "traceability": true, "maintainability": true },
+  "findingsBySeverity": { "P0": 0, "P1": 1, "P2": 9 },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

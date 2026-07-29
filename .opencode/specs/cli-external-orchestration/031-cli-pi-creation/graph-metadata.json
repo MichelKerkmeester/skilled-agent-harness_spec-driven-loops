@@ -17,7 +17,8 @@
     "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout",
     "cli-external-orchestration/031-cli-pi-creation/012-pi-runtime-compatibility",
     "cli-external-orchestration/031-cli-pi-creation/013-pi-manual-testing-playbook-authoring",
-    "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment"
+    "cli-external-orchestration/031-cli-pi-creation/014-pi-devin-cursor-parity-alignment",
+    "cli-external-orchestration/031-cli-pi-creation/015-pi-hook-coverage-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -54,8 +55,10 @@
       "012-pi-runtime-compatibility/implementation-summary.md",
       "013-pi-manual-testing-playbook-authoring/implementation-summary.md",
       "014-pi-devin-cursor-parity-alignment/implementation-summary.md",
+      "015-pi-hook-coverage-parity/implementation-summary.md",
       ".pi/settings.json",
       ".opencode/agents/context.md",
+      ".pi/extensions/lib/claude-hook-adapter.ts",
       "001-pi-contract-pin/spec.md",
       "014-pi-devin-cursor-parity-alignment/spec.md",
       "spec.md"
@@ -71,6 +74,12 @@
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-hook-adapter.ts",
+        "kind": "code",
+        "path": ".pi/extensions/lib/claude-hook-adapter.ts",
         "source": "derived"
       },
       {
@@ -118,15 +127,15 @@
     ],
     "causal_summary": "This repository already dispatches work to five external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`), each requiring its own contract-pin, deep-loop executor wiring, skill packet, hook/extension bridge, model registry entry, and manual-testing playbook — a pattern proven twice in `029-cli-devin-revival` and `030-cli-cursor-creation`",
     "created_at": "2026-07-27T06:48:17.181Z",
-    "last_save_at": "2026-07-27T19:25:20.241Z",
+    "last_save_at": "2026-07-27T20:44:13.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:05b33d0d27a4d344d1192275d95a9a2a35aeabfdc712fddf56ca7544505b1228",
+    "source_fingerprint": "sha256:008b349e9b8aca313f8fa4fc779a3fa31a2f4f6dba653b2646d903f26663593c",
     "source_doc_hashes": {
-      "spec.md": "f5a7d3b88ebd52ef7c9c44a5aa399750e02bc143332c4cc9a2fd3c4242f1356b"
+      "spec.md": "afb47eb2b1dd2277411247fb4bd7b75e74a356418181ae55a4b881415c55fd2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

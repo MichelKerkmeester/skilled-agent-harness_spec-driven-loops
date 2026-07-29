@@ -7,7 +7,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, code_graph_query, code_graph_context
+# Unmapped OpenCode permission keys: memory
 ---
 
 # The Deep Aligner: Iterative Conformance-Audit Agent
@@ -247,8 +247,7 @@ Use Read, Grep, Glob, Bash, and memory/code-graph MCP tools only within the decl
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
-- `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for path:line evidence.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front doors are the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

@@ -36,26 +36,6 @@ const { loadMostRecentStateMock, loadMatchingStatesMock } = vi.hoisted(() => {
   return { loadMostRecentStateMock, loadMatchingStatesMock };
 });
 
-vi.mock('../lib/code-graph-boundary.js', () => ({
-  getCodeGraphStatusViaRpc: vi.fn(async () => ({
-    status: 'ok',
-    data: {
-      totalFiles: 10,
-      totalNodes: 50,
-      totalEdges: 30,
-      staleFiles: 0,
-      lastScanAt: new Date().toISOString(),
-      dbFileSize: 2048,
-      schemaVersion: 1,
-      nodesByKind: {},
-      edgesByType: {},
-      parseHealth: {},
-      freshness: 'fresh',
-    },
-  })),
-  getGraphFreshnessFromMarker: vi.fn(() => 'fresh'),
-}));
-
 vi.mock('../lib/session/context-metrics.js', () => ({
   computeQualityScore: vi.fn(() => ({
     level: 'degraded',
@@ -72,7 +52,6 @@ vi.mock('../hooks/claude/hook-state.js', () => ({
 }));
 
 import { getCachedSessionSummaryDecision, handleSessionResume } from '../handlers/session-resume.js';
-import * as codeGraphBoundary from '../lib/code-graph-boundary.js';
 import { computeQualityScore, recordBootstrapEvent } from '../lib/session/context-metrics.js';
 
 function createWorkspace(): string {
@@ -165,29 +144,6 @@ afterEach(() => {
 });
 
 describe('session-resume handler', () => {
-  it('returns a resume payload backed by the handover-first ladder', async () => {
-    const workspacePath = createWorkspace();
-    workspacesToRemove.push(workspacePath);
-    const specFolder = 'system-spec-kit/026-root/004-gate-d';
-
-    writeDoc(workspacePath, specFolder, 'handover.md', buildHandover());
-    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
-    process.chdir(workspacePath);
-
-    const result = await handleSessionResume({ specFolder });
-    const parsed = JSON.parse(result.content[0].text);
-
-    expect(parsed.status).toBe('ok');
-    expect(parsed.data.memory.source).toBe('handover');
-    expect(parsed.data.memory.specFolder).toBe(specFolder);
-    expect(parsed.data.codeGraph).toBeDefined();
-    expect(parsed.data.codeGraph.available).toBe(true);
-    expect(parsed.data.codeGraph.binaryPath).toMatch(/\.opencode[\\/]bin[\\/]mk-code-index-launcher\.cjs$/);
-    expect(parsed.data.payloadContract.kind).toBe('resume');
-    expect(parsed.data.payloadContract.provenance.producer).toBe('session_resume');
-    expect(parsed.data.opencodeTransport.transportOnly).toBe(true);
-    expect(parsed.data.graphOps.doctor.surface).toBe('memory_health');
-  });
 
   // Deep-review regression coverage for cached session scope priority.
   it('uses the cached session scope only when specFolder is omitted', async () => {
@@ -272,84 +228,8 @@ describe('session-resume handler', () => {
     });
   });
 
-  it('returns the minimal contract without ladder-backed memory payload', async () => {
-    const workspacePath = createWorkspace();
-    workspacesToRemove.push(workspacePath);
-    const specFolder = 'system-spec-kit/026-root/004-gate-d';
 
-    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
-    process.chdir(workspacePath);
 
-    const result = await handleSessionResume({ specFolder, minimal: true });
-    const parsed = JSON.parse(result.content[0].text);
-
-    expect(parsed.data.mode).toBe('minimal');
-    expect(parsed.data.memory).toBeUndefined();
-    expect(parsed.data.payloadContract).toBeNull();
-    expect(parsed.data.opencodeTransport.transportOnly).toBe(true);
-    expect(parsed.data.opencodeTransport.messagesTransform.length).toBeGreaterThan(0);
-    expect(parsed.data.codeGraph.status).toBe('fresh');
-    expect(parsed.data.codeGraph.available).toBe(true);
-    expect(parsed.data.codeGraph.binaryPath).toMatch(/\.opencode[\\/]bin[\\/]mk-code-index-launcher\.cjs$/);
-    expect(parsed.data.structuralContext.sourceSurface).toBe('session_resume');
-    expect(parsed.data.graphOps.readiness.sourceSurface).toBe('session_resume');
-    expect(parsed.data.sessionQuality).toBe('degraded');
-    expect(computeQualityScore).toHaveBeenCalledTimes(1);
-    expect(recordBootstrapEvent).not.toHaveBeenCalled();
-  });
-
-  it('reports stale graph status in the payload when freshness detection says stale', async () => {
-    const workspacePath = createWorkspace();
-    workspacesToRemove.push(workspacePath);
-    const specFolder = 'system-spec-kit/026-root/004-gate-d';
-
-    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
-    process.chdir(workspacePath);
-    vi.mocked(codeGraphBoundary.getCodeGraphStatusViaRpc).mockResolvedValueOnce({
-      status: 'ok',
-      data: {
-        totalFiles: 10,
-        totalNodes: 50,
-        totalEdges: 30,
-        staleFiles: 0,
-        lastScanAt: new Date().toISOString(),
-        dbFileSize: 2048,
-        schemaVersion: 1,
-        nodesByKind: {},
-        edgesByType: {},
-        parseHealth: {},
-        freshness: 'stale',
-      },
-    });
-
-    const result = await handleSessionResume({ specFolder });
-    const parsed = JSON.parse(result.content[0].text);
-
-    expect(parsed.data.codeGraph.status).toBe('stale');
-    expect(parsed.data.payloadContract.summary).toContain('graph=stale');
-  });
-
-  it('handles code graph errors gracefully and still returns the ladder result', async () => {
-    const workspacePath = createWorkspace();
-    workspacesToRemove.push(workspacePath);
-    const specFolder = 'system-spec-kit/026-root/004-gate-d';
-
-    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary(specFolder));
-    process.chdir(workspacePath);
-    vi.mocked(codeGraphBoundary.getCodeGraphStatusViaRpc).mockResolvedValueOnce({
-      status: 'error',
-      error: 'DB not initialized',
-    });
-
-    const result = await handleSessionResume({ specFolder });
-    const parsed = JSON.parse(result.content[0].text);
-
-    expect(parsed.data.memory.source).toBe('continuity');
-    expect(parsed.data.codeGraph.status).toBe('error');
-    expect(parsed.data.codeGraph.available).toBe(true);
-    expect(parsed.data.codeGraph.binaryPath).toMatch(/\.opencode[\\/]bin[\\/]mk-code-index-launcher\.cjs$/);
-    expect(parsed.data.hints.some((hint: string) => hint.includes('Code graph unavailable'))).toBe(true);
-  });
 
   it('records bootstrap telemetry for full resume requests', async () => {
     const workspacePath = createWorkspace();

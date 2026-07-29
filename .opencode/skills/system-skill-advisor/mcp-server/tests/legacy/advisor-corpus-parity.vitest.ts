@@ -30,7 +30,6 @@ interface ParityRegression {
 // one is a fusion-level or labeling-edge loss that single-lane explicit
 // calibration does not cleanly resolve: sk-code losing a saturated multi-lane tie
 // to sk-doc. The former sk-code/sk-prompt loss rr-iter3-093 resolved (native now
-// preserves it) and was pruned. rr-iter2-060's system-code-graph-vs-deep-loop loss
 // also resolved post system-deep-loop rename (native no longer false-positives on
 // the old skill-name token) and was briefly replaced by rr-iter3-145, which itself
 // resolved once the Stage F lexical/explicit-lane fixes landed; both pruned. Prune

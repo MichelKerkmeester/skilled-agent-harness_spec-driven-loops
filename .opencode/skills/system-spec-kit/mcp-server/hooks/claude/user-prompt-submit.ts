@@ -25,8 +25,6 @@ const MAX_ROOT_WALK_DEPTH = 14;
 // Per-turn code-graph refresh runs on the hot prompt path, so it is warm-only,
 // tightly bounded, and debounced across the separate per-prompt processes via a
 // short filesystem cache (mirrors the OpenCode plugin's 5s transport TTL).
-const CODEGRAPH_DEBOUNCE_MS = 5000;
-const CODEGRAPH_PROBE_TIMEOUT_MS = 250;
 
 // Resolve the advisor target from this module's own location by walking up to
 // the ancestor that owns `.opencode`. Claude may invoke the hook from any
@@ -127,55 +125,6 @@ function runShim(): string {
 // 3. CODE GRAPH WARM CACHE
 // ───────────────────────────────────────────────────────────────────
 
-// Scope the debounce cache by workspace so distinct repos never read each
-// other's code-graph status.
-function codeGraphCachePath(): string {
-  const key = createHash('sha1').update(process.cwd()).digest('hex').slice(0, 16);
-  return join(tmpdir(), `mk-code-graph-prompt-status-${key}.json`);
-}
-
-async function warmCodeGraphSection(): Promise<string | null> {
-  const cachePath = codeGraphCachePath();
-  try {
-    const cached = JSON.parse(readFileSync(cachePath, 'utf8')) as { at?: number; content?: string };
-    if (typeof cached.at === 'number' && Date.now() - cached.at < CODEGRAPH_DEBOUNCE_MS) {
-      return cached.content ? cached.content : null;
-    }
-  } catch {
-    // No fresh cache; fall through to a warm probe.
-  }
-  let content = '';
-  try {
-    const { buildWarmCodeGraphStatusSection } = await import('../code-index-cli-fallback.js');
-    const section = await buildWarmCodeGraphStatusSection({
-      title: 'Code Index CLI Fallback',
-      timeoutMs: CODEGRAPH_PROBE_TIMEOUT_MS,
-      includeRetryableStatus: false,
-    });
-    if (section) {
-      content = `## ${section.title}\n${section.content}`;
-    }
-  } catch {
-    content = '';
-  }
-  try {
-    writeFileSync(cachePath, JSON.stringify({ at: Date.now(), content }), 'utf8');
-  } catch {
-    // Best-effort cache; a write failure just means the next prompt re-probes.
-  }
-  return content ? content : null;
-}
-
-// Hard upper bound so a misbehaving probe can never stall the prompt hook.
-function warmCodeGraphSectionBounded(): Promise<string | null> {
-  return Promise.race([
-    warmCodeGraphSection(),
-    new Promise<null>((resolve) => {
-      setTimeout(() => resolve(null), CODEGRAPH_PROBE_TIMEOUT_MS + 100).unref?.();
-    }),
-  ]);
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 4. OUTPUT MERGING
 // ───────────────────────────────────────────────────────────────────
@@ -204,8 +153,7 @@ function mergeAdditionalContext(advisorJson: string, section: string): string {
 
 async function main(): Promise<void> {
   const advisorJson = runShim();
-  const section = await warmCodeGraphSectionBounded();
-  process.stdout.write(`${section ? mergeAdditionalContext(advisorJson, section) : advisorJson}\n`);
+  process.stdout.write(`${advisorJson}\n`);
   process.exit(0);
 }
 

@@ -24,10 +24,18 @@
     "sk-doc/019-skill-routing-refactor/018-post-019-research",
     "sk-doc/019-skill-routing-refactor/019-routing-drift-remediation",
     "sk-doc/019-skill-routing-refactor/020-compiled-routing-next-move",
-    "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
     "sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification",
-    "sk-doc/019-skill-routing-refactor/022-route-gold-and-signal-remediation",
-    "sk-doc/019-skill-routing-refactor/023-sk-design-recall-investigation"
+    "sk-doc/019-skill-routing-refactor/022-command-metadata-generalization",
+    "sk-doc/019-skill-routing-refactor/023-skill-metadata-templates",
+    "sk-doc/019-skill-routing-refactor/024-create-journey-gate-fixes",
+    "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+    "sk-doc/019-skill-routing-refactor/026-advisor-ingestion-seam",
+    "sk-doc/019-skill-routing-refactor/027-program-deep-review",
+    "sk-doc/019-skill-routing-refactor/028-p2-hardening",
+    "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+    "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+    "sk-doc/019-skill-routing-refactor/031-route-gold-and-signal-remediation",
+    "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation"
   ],
   "manual": {
     "depends_on": [],
@@ -166,7 +174,7 @@
     ],
     "causal_summary": "Routing across the skill fleet was neither uniform nor measurable",
     "created_at": "2026-07-13T12:05:58.654Z",
-    "last_save_at": "2026-07-29T06:29:45.014Z",
+    "last_save_at": "2026-07-29T09:11:15.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,7 +186,7 @@
       "spec.md": "bf96c14e030b4987885a96e89982d099ad7a6e7809c54749a41c91a19f9ab06a",
       "handover.md": "3f9835cd28f6ae607b6c2e20af141b9ae1ff5896e7f03c0c5127d072d89cfcd8"
     },
-    "last_active_child_id": "sk-doc/019-skill-routing-refactor/021-mode-sk-prefix-rename",
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation",
     "last_active_at": null
   }
 }

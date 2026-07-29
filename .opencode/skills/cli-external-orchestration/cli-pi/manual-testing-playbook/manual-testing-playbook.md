@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-pi` skill from a non-Pi runtime. Before composing a dispatch, read `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` §2, **Self-Invocation Guard**. The guard checks whether the parent process command contains `/pi` or ends with ` pi`, and whether the current project contains `.pi`; the project-directory result is a non-conclusive heuristic. The guard does not treat a missing environment variable as proof of safety. If it detects a signal, refuse the dispatch and record that signal.
 
-This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 19 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 20 canonical scenario files.
 
 ---
 
@@ -31,9 +31,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 19 deterministic scenarios across 8 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
+This playbook provides 20 deterministic scenarios across 8 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
 
-Coverage note (2026-07-27): the package covers Pi version/help and settings state, unreliable headless failure exit codes, a negative-control syntax hallucination probe, recursive skill discovery, prompt-template flattening and substitution, the community `pi-subagents` bridge, MCP stdio and streamable HTTP shapes, project/global precedence, native extension loading and lifecycle registration, guard error discipline, the enforced model roster, provider/settings interaction, and CLEAR prompt-quality checks. Successful provider-backed model turns remain an explicit execution boundary when credentials are absent.
+Coverage note (2026-07-27): the package covers Pi version/help and settings state, unreliable headless failure exit codes, a negative-control syntax hallucination probe, recursive skill discovery, prompt-template flattening and substitution, the community `pi-subagents` bridge, MCP stdio and streamable HTTP shapes, project/global precedence, native extension loading and lifecycle registration, guard error discipline, the enforced model roster, provider/settings interaction, and CLEAR prompt-quality checks. Successful provider-backed model turns remain an explicit execution boundary when credentials are absent; `PI-020` (2026-07-28) live-traces the session-lifecycle extension bridges on a machine with authenticated providers.
 
 ### Realistic Test Model
 
@@ -99,7 +99,7 @@ Coverage note (2026-07-27): the package covers Pi version/help and settings stat
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All 19 linked scenario files under the eight category folders
+2. All 20 linked scenario files under the eight category folders
 3. Real command transcripts or cited captured evidence for every executable scenario
 4. The scenario-to-feature coverage map in §17
 5. Triage notes for every FAIL or SKIP result
@@ -130,7 +130,7 @@ Release is `READY` only when:
 
 1. No scenario has an unresolved FAIL.
 2. The critical baseline scenarios `PI-001`, `PI-002`, `PI-007`, `PI-011`, `PI-014`, and `PI-017` have evidence or a still-valid named blocker.
-3. Coverage is 100%: all 19 root-index IDs map to exactly one scenario file.
+3. Coverage is 100%: all 20 root-index IDs map to exactly one scenario file.
 4. Every SKIP carries a specific blocker and a safe re-run condition.
 5. The root document and all scenario files pass the required document and link checks.
 
@@ -162,6 +162,7 @@ This section records safe execution waves for the manual-testing package. It doe
 - Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-009`, `PI-014`, `PI-015`
 - Wave 3, cite-only MCP evidence: `PI-011`, `PI-012`
 - Wave 4, guarded negative and precedence checks: `PI-002`, `PI-016`
+- Wave 5, authenticated live traces (requires a provider credential and a probe fixture): `PI-020`
 
 ### What Belongs In Scenario Files
 
@@ -221,13 +222,14 @@ This category uses the existing captured MCP evidence for native stdio connectio
 
 ---
 
-## 12. HOOK EXTENSION LAYER (`PI-014..PI-016`)
+## 12. HOOK EXTENSION LAYER (`PI-014..PI-016`, `PI-020`)
 
-This category validates project-local extension auto-discovery, registration against the real event names used by the bridges, and the actual fail-open error discipline implemented by those bridges.
+This category validates project-local extension auto-discovery, registration against the real event names used by the bridges, the actual fail-open error discipline implemented by those bridges, and live firing of the session-lifecycle bridges against an authenticated provider.
 
 - `PI-014`: [Extension auto-discovery](hook-extension-layer/extension-auto-discovery.md)
 - `PI-015`: [Lifecycle event registration](hook-extension-layer/lifecycle-event-registration.md)
 - `PI-016`: [Fail-open guard discipline](hook-extension-layer/fail-open-guard-discipline.md)
+- `PI-020`: [Session-lifecycle bridges](hook-extension-layer/session-lifecycle-bridges.md)
 
 ---
 
@@ -264,7 +266,7 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.opencode/skills/cli-external-orchestration/cli-pi/references/cli-reference.md` | Confirmed flags, config-dir override, JSON/RPC distinctions, and output-first failure handling | `PI-001`, `PI-002`, `PI-017` |
 | `.opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs` | Flat prompt generation and drift checking | `PI-007`, `PI-008` |
 | `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
-| `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, and guard-core bridge behavior | `PI-014`, `PI-015`, `PI-016` |
+| `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core and session-lifecycle bridge behavior | `PI-014`, `PI-015`, `PI-016`, `PI-020` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
 | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
 
@@ -307,6 +309,7 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 - PI-014: [Extension auto-discovery](hook-extension-layer/extension-auto-discovery.md)
 - PI-015: [Lifecycle event registration](hook-extension-layer/lifecycle-event-registration.md)
 - PI-016: [Fail-open guard discipline](hook-extension-layer/fail-open-guard-discipline.md)
+- PI-020: [Session-lifecycle bridges](hook-extension-layer/session-lifecycle-bridges.md)
 
 ### MODEL DISPATCH
 

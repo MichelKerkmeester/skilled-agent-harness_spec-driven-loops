@@ -13,7 +13,6 @@ import {
   SHARED_PAYLOAD_TRUST_STATE_VALUES,
 } from './shared-payload.js';
 import type { SharedPayloadEnvelope, SharedPayloadSection } from './shared-payload.js';
-import type { CodeGraphOpsContract } from '@spec-kit/shared/code-graph-contracts';
 
 /** Hook names emitted by the OpenCode transport adapter. */
 export type OpenCodeTransportHook =
@@ -89,30 +88,10 @@ function selectSectionsForTransport(
   ];
 }
 
-function renderStructuralAvailability(graphOps: CodeGraphOpsContract): string {
-  switch (graphOps.readiness.graphFreshness) {
-    case 'fresh':
-      return 'available';
-    case 'stale':
-      return 'stale';
-    case 'empty':
-      return 'absent';
-    case 'error':
-      return 'unavailable';
-  }
-}
-
 function renderSection(
   section: SharedPayloadSection,
-  graphOps?: CodeGraphOpsContract | null,
 ): string {
   const parts = [`### ${section.title}`, section.content];
-
-  if (section.key === 'structural-context' && graphOps) {
-    parts.push(
-      `Structural availability: ${renderStructuralAvailability(graphOps)}; canonical=${graphOps.readiness.canonical}; graphFreshness=${graphOps.readiness.graphFreshness}`,
-    );
-  }
 
   if (section.structuralTrust) {
     parts.push(
@@ -165,22 +144,20 @@ export function coerceSharedPayloadEnvelope(value: unknown): SharedPayloadEnvelo
 function renderSections(
   sections: SharedPayloadSection[],
   maxSections: number = 2,
-  graphOps?: CodeGraphOpsContract | null,
 ): string {
   return selectSectionsForTransport(sections, maxSections)
-    .map((section) => renderSection(section, graphOps))
+    .map((section) => renderSection(section))
     .join('\n\n');
 }
 
 function renderBlockContent(
   payload: SharedPayloadEnvelope,
   prefix?: string,
-  graphOps?: CodeGraphOpsContract | null,
 ): string {
   const parts = [
     prefix ? `${prefix}\n` : null,
     `Summary: ${payload.summary}`,
-    renderSections(payload.sections, 2, graphOps),
+    renderSections(payload.sections, 2),
     `Provenance: producer=${payload.provenance.producer}; trustState=${payload.provenance.trustState}; sourceSurface=${payload.provenance.sourceSurface}`,
   ].filter(Boolean);
   return parts.join('\n\n');
@@ -200,7 +177,6 @@ export function buildOpenCodeTransportPlan(args: {
   resumePayload?: SharedPayloadEnvelope | null;
   healthPayload?: SharedPayloadEnvelope | null;
   compactionPayload?: SharedPayloadEnvelope | null;
-  graphOps?: CodeGraphOpsContract | null;
   specFolder?: string | null;
 }): OpenCodeTransportPlan {
   const trackedPayloadKinds = [
@@ -238,7 +214,6 @@ export function buildOpenCodeTransportPlan(args: {
           content: appendStartupSnapshotNote(renderBlockContent(
             systemPayload,
             'Inject this as the startup digest for hookless OpenCode recovery. Keep it transport-only.',
-            args.graphOps,
           ),
           ),
         },
@@ -252,7 +227,6 @@ export function buildOpenCodeTransportPlan(args: {
       content: renderBlockContent(
         payload,
         'Inject this as bounded current-turn context. Do not treat it as retrieval policy.',
-        payload.kind === 'resume' ? args.graphOps : null,
       ),
     })),
     ...(compactionPayload
@@ -265,7 +239,6 @@ export function buildOpenCodeTransportPlan(args: {
           content: renderBlockContent(
             compactionPayload,
             'Inject this as the continuity note across compaction. Keep it separate from current-turn retrieval.',
-            compactionPayload.kind === 'health' ? null : args.graphOps,
           ),
         },
       }

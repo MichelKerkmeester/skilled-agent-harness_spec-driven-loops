@@ -128,10 +128,10 @@ This mode owns the author-side check and knows the three independent enforcement
 | Gate | Where | Effect |
 | --- | --- | --- |
 | Write-time warning | `scripts/hooks/claude-posttooluse.sh` | Warns during authoring when a comment carries ephemeral artifact labels. |
-| Pre-commit block | `.opencode/hooks/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |
+| Pre-commit block | `.opencode/hooks/git/pre-commit` | Blocks commits with forbidden comment patterns across runtimes. |
 | CI block | `.github/workflows/comment-hygiene.yml` | Blocks pull requests with forbidden comment patterns. |
 
-Note that the `.opencode/hooks/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.opencode/hooks/README.md`.
+Note that the `.opencode/hooks/git/pre-commit` hook additionally enforces a staged agent-mirror-sync drift gate, independent of comment hygiene, documented in `.opencode/hooks/git/README.md`.
 
 Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can contain comments. Zero violations are required before a quality pass.
 

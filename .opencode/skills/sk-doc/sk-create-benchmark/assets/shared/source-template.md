@@ -10,6 +10,12 @@ contextType: "general"
 version: 1.8.0.3
 ---
 
+# Benchmark Source Pointer Template
+
+This template produces a source pointer from a benchmark folder to its authoritative spec packet.
+
+---
+
 <!--
 source.md scaffold for mcp-server/benchmarks/benchmark-<YYYY-MM-DD>/source.md.
 

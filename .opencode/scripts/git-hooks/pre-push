@@ -162,4 +162,65 @@ if [[ "$REJECTED" -ne 0 ]]; then
   exit 1
 fi
 
+# ── Skill-metadata gate (independently bypassable) ───────────────────────────
+#
+# Runs the fleet-wide skill-root metadata class gate before skill changes reach
+# origin. It exists because both live regressions to date were pushes that grew
+# a skill's doc corpus without regenerating its generated files — CI on the
+# release line only catches that after the fact, while this catches it before.
+# The gate is dependency-free and finishes in about a second, so it runs
+# blocking (unlike the report-only test gate below); a stale result is fixed
+# with `ci-skill-root-metadata.cjs --fix`, not bypassed.
+#
+# The gate reads the working tree, which on a normal push from a clean worktree
+# is exactly what is being pushed. A deliberately partial push from a dirty
+# tree can skip with SPECKIT_SKIP_PREPUSH_SKILL_GATE=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
+  SKILL_GATE="$REPO_ROOT/.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
+  # HEAD@{push} is the remote-tracked upstream tip; the diff scopes the gate to
+  # skill changes actually being pushed. On a brand-new branch with no upstream,
+  # HEAD@{push} does not resolve, `git diff` errors, `2>/dev/null` drops it, and
+  # `!` treats the failed (non-zero) diff as "no detected skill change" — so the
+  # gate is skipped for a first push. That is deliberate: a first push runs the
+  # gate anyway via CI, and the alternative (diffing against an empty tree) would
+  # re-run the gate on every unrelated first push. The always-available guard is
+  # the CI workflow; this hook is the fast local pre-filter.
+  if [[ -f "$SKILL_GATE" ]] && ! git -C "$REPO_ROOT" diff --quiet HEAD@{push} HEAD -- .opencode/skills 2>/dev/null; then
+    if ! node "$SKILL_GATE" >&2; then
+      {
+        echo ""
+        echo "BLOCKED: skill-root metadata gate failed for skills being pushed."
+        echo "Fix with:  node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+        echo "Skip (partial push from a dirty tree only): SPECKIT_SKIP_PREPUSH_SKILL_GATE=1 git push ..."
+        echo ""
+      } >&2
+      exit 1
+    fi
+  fi
+fi
+
+# ── Test gate (third gate, independently bypassable) ─────────────────────────
+#
+# Runs the repository's discovered test suites before anything reaches origin.
+# This gate exists because *.test.mjs files here were silently never run by any
+# harness — suites passed by hand and rotted in place, and one live suite was
+# found genuinely broken only when discovery finally happened.
+#
+# Report-only by default: known-failing suites predate this gate, and blocking
+# every session's pushes on another surface's rot would be hostage-taking.
+# Flip to blocking with SPECKIT_PREPUSH_TESTS_ENFORCE=1 once those are green.
+# Skip entirely with SPECKIT_SKIP_PREPUSH_TESTS=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_TESTS:-0}" != "1" ]]; then
+  TEST_RUNNER="$REPO_ROOT/.opencode/scripts/run-node-tests.mjs"
+  if [[ -f "$TEST_RUNNER" ]]; then
+    if ! node "$TEST_RUNNER" >&2; then
+      if [[ "${SPECKIT_PREPUSH_TESTS_ENFORCE:-0}" = "1" ]]; then
+        echo "BLOCKED: test suites failed and SPECKIT_PREPUSH_TESTS_ENFORCE=1 is set." >&2
+        exit 1
+      fi
+      echo "WARNING: test suites failed (report-only; enforce with SPECKIT_PREPUSH_TESTS_ENFORCE=1)." >&2
+    fi
+  fi
+fi
+
 exit 0

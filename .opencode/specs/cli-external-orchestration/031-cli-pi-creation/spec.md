@@ -7,12 +7,12 @@ contextType: implementation
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation"
-    last_updated_at: "2026-07-27T21:50:00Z"
+    last_updated_at: "2026-07-27T20:30:34Z"
     last_updated_by: "claude-code"
-    recent_action: "All 14 phases landed; 012 amended to drop code-graph support; 014 aligned cli-pi to siblings"
+    recent_action: "All 15 phases landed; 015 closed the devin/cursor hook-coverage gap the operator flagged"
     next_safe_action: "None -- packet complete"
     blockers: []
-    key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md", "014-pi-devin-cursor-parity-alignment/implementation-summary.md"]
+    key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md", "014-pi-devin-cursor-parity-alignment/implementation-summary.md", "015-pi-hook-coverage-parity/implementation-summary.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "cli-pi-creation-scaffold"
@@ -39,7 +39,7 @@ _memory:
 |---|---|
 | **Level** | 2 phased packet |
 | **Priority** | P1 |
-| **Status** | Complete — all 14 phases landed (12 Complete, `008` Blocked with real, documented findings, `007` reopened mid-packet and closed Complete with live evidence); 3 phases (`012`, `013`, `014`) added beyond the original 11 at operator request for real `.pi/` runtime compatibility, the manual-testing playbook, and devin/cursor structural alignment |
+| **Status** | Complete — all 15 phases landed (13 Complete, `008` Blocked with real, documented findings, `007` reopened mid-packet and closed Complete with live evidence); 4 phases (`012`, `013`, `014`, `015`) added beyond the original 11 at operator request for real `.pi/` runtime compatibility, the manual-testing playbook, devin/cursor structural alignment, and session-lifecycle hook coverage parity |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `cli-external-orchestration/031-cli-pi-creation` |
@@ -99,6 +99,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | `.opencode/skills/system-spec-kit/scripts/pi/{sync-prompts-pi.cjs,sync-agents-pi.cjs,README.md}`, `.pi/prompts/*.md` (36), `.pi/agents/*.md` (13), `.pi/extensions/*.ts` (7), `.pi/settings.json`, `cli-pi/references/agent-delegation.md` | Created/Modify | 012 | *(post-hoc, operator request)* Build the real prompt/agent/extension artifacts phases 005/006/008 designed but deferred. |
 | `cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md` + 19 `PI-NNN` scenario files across 8 category folders | Created | 013 | *(post-hoc, operator request)* Author the real playbook phase 010 planned but deferred, exercising phase 012's artifacts. |
 | `cli-pi/references/pi-tools.md` (created), `native-skills-and-extensions.md`, `mcp-and-third-party-packages.md`, `integration-patterns.md`, `agent-delegation.md`, `model-dispatch-gpt-5.6.md`, `cli-reference.md`, `assets/prompt-templates.md`, `SKILL.md`, `README.md`, `changelog/v1.1.0.0.md` (created), hub `leaf-manifest.json` | Created/Modify | 014 | *(post-hoc, operator request)* Align `cli-pi`'s references/assets/general setup closer to `cli-devin`/`cli-cursor`. |
+| `.pi/extensions/lib/claude-hook-adapter.ts` (created), `session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `prompt-advisor.ts`, `session-compact-context.ts` (all created), `README.md` | Created/Modify | 015 | *(post-hoc, operator request)* Close the confirmed hook-coverage gap vs. `.devin/hooks/`/`.cursor/hooks/`: 8 buildable session-lifecycle hooks bridged, 2 confirmed non-gaps documented. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,6 +122,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | 12 | `012-pi-runtime-compatibility/` | *(added post-hoc, operator request)* Build the real `.pi/prompts/*.md`, `.pi/agents/*.md`, and `.pi/extensions/*.ts` artifacts phases 005/006/008 designed but deferred. | Complete — 36 prompts + 13 agents + 7 extensions built and live-verified; GLM-5.2 APPROVE WITH MINOR NOTES, all fixed |
 | 13 | `013-pi-manual-testing-playbook-authoring/` | *(added post-hoc, operator request)* Author the real playbook (root + 19 `PI-NNN` scenarios) phase 010 planned but deferred, exercising phase 012's artifacts. | Complete — root + 19 scenarios authored, 9 live-executed with real evidence; GLM-5.2 APPROVE WITH MINOR NOTES, all fixed |
 | 14 | `014-pi-devin-cursor-parity-alignment/` | *(added post-hoc, operator request)* Align `cli-pi`'s references, assets, and general setup closer to `cli-devin`/`cli-cursor`: new `pi-tools.md` reference, confidence upgrades citing phases 007/012/013, cross-validation/anti-patterns/overview sections. | Complete — built directly, GLM-5.2 found 1 blocking + 3 minor factual issues (all about sibling-CLI claims), all fixed |
+| 15 | `015-pi-hook-coverage-parity/` | *(added post-hoc, operator request)* Close the confirmed gap between `.pi/extensions/` (6 files) and `.devin/hooks/`/`.cursor/hooks/` (13 real adapters each): bridge 8 buildable session-lifecycle hooks, document 2 confirmed non-gaps. | Complete — 6 new files (1 shared lib + 5 extensions) built and live-verified; a real output-shape bug caught and fixed during verification; GLM-5.2 reviewed |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh <phase-folder> --strict` independently before the next phase begins.
@@ -146,6 +148,7 @@ Mirror the `029`/`030` phased-decomposition pattern — contract-pin first, then
 | 011 | 012 | Governance/roster closeout lands clean (`validate.sh --strict` Errors:0) before any post-hoc extension phase begins. | Met — phase 011 closed Complete, GLM-5.2 APPROVE, before phases 012/013 were scoped. |
 | 012 | 013 | The real `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` artifacts phase 012 builds exist and are live-verified, so phase 013 can test them rather than describe them abstractly. | Met — all three artifact classes built and independently re-verified by Claude before phase 013's dispatch began. |
 | 013 | 014 | Phases 007/012/013 land real, live-confirmed findings for 014's content upgrades to cite, and the packet's own governance closeout (011) already landed clean. | Met — all three phases Complete with real evidence before 014 began. |
+| 014 | 015 | Phase 008's type-confirmed event API and phase 012's 6-file `.pi/extensions/` build both exist for 015 to extend directly. | Met — both phases Complete before 015 began; 015 re-verified the event API directly from the installed package rather than trusting the phase 008 summary alone. |
 <!-- /ANCHOR:phase-map -->
 
 ---

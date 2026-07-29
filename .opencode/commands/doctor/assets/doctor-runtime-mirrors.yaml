@@ -36,6 +36,8 @@ upstream_assets:
   codex_prompts: ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
   agent_roster: ".opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs"
   codex_hooks_installer: ".opencode/bin/install-codex-hooks.mjs"
+  pi_agents: ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs"
+  pi_prompts: ".opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -53,6 +55,8 @@ execution:
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = canonical dir missing."
     - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .opencode adapter no longer exists on disk. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.pi_prompts with --check. Covers the generated .pi/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Aggregate: report each surface with its own verdict rather than a single pass/fail, so the operator learns which mirror moved."
 
 # ─────────────────────────────────────────────────────────────────
@@ -65,6 +69,8 @@ output: |
     codex agents     -> node .opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs
     codex prompts    -> node .opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs
     codex hooks      -> node .opencode/bin/install-codex-hooks.mjs
+    pi agents        -> node .opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs
+    pi prompts       -> node .opencode/skills/system-spec-kit/scripts/pi/sync-prompts-pi.cjs
   The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.opencode/agents, .codex/agents).
   Hook CONFIG files are deliberately out of scope: the four runtimes use incompatible event vocabularies and

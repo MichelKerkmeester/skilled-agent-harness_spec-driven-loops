@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 10: agent-definitions"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Stripped code-graph tool grants and search-routing prose from the eight agent definitions across all four runtime mirrors (OpenCode, Claude, Codex, Pi), and reduced the wedged-daemon fallback prose to the spec-memory daemon only."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/010-agent-definitions"
-    last_updated_at: "2026-07-27T16:33:59Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -47,13 +47,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown (OpenCode/Claude/Pi) + TOML (Codex) |
+| **Framework** | Agent definitions across four runtime mirrors |
+| **Storage** | None |
+| **Testing** | frontmatter/TOML parse, mirror parity diff |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Removed graph tool grants and graph-first search prose from all eight agent definitions across the four regular-file mirrors (`.opencode`, `.claude`, `.codex`, `.pi`), keeping the three Markdown mirrors and the TOML mirror equivalent in intent. The wedged-daemon fallback prose was reduced to the spec-memory daemon only, matching the already-migrated `.claude` wording. `.cursor/agents/` is symlinked and needed no edit.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +62,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,14 +78,14 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Four-mirror parity edit: each agent is a regular-file projection in `.opencode`, `.claude`, `.codex`, and `.pi`; `.cursor` is symlinked and follows automatically.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **8 agents × 4 mirrors**: tool-grant lists and search-routing prose
+- **Wedged-daemon fallback**: reduced to the spec-memory daemon only
 
 ### Data Flow
-[Brief description of how data moves through the system]
+No agent in any runtime grants or documents a removed tool; the four mirrors carry equivalent intent.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -93,18 +93,13 @@ FAILURE MODES:
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not a `fix_bug` finding; this is a decommission of agent tool grants and routing prose across mirrors.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| agent tool grants | Granted graph tools | Removed in all 4 mirrors | no graph tool id in any definition |
+| search-routing prose | Preferred structural search | Rewritten to name the replacement | prose names the phase 002 path |
+| wedged-daemon fallback | Listed the removed daemon | Reduced to spec-memory daemon | matches migrated `.claude` wording |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -113,19 +108,16 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Enumerated the eight agents and confirmed the four regular-file mirrors (`.cursor` symlinked)
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Removed graph tool grants from all eight agents in `.opencode`, `.claude`, `.codex`, `.pi`
+- [x] Rewrote search-routing prose to name the replacement path
+- [x] Reduced wedged-daemon fallback prose to the spec-memory daemon only
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Markdown frontmatter and TOML parse cleanly
+- [x] Mirror parity: equivalent tool grants across the four runtimes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +127,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Parse | frontmatter (Markdown) + TOML | runtime parsers |
+| Manual | mirror parity diff across 4 runtimes | diff |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +138,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 002 replacement routing | Internal | Green | Supplies the guidance text that replaces graph-first search |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +146,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: An agent must re-grant the tool (not expected).
+- **Procedure**: Restore the grants and prose from git history across all four mirrors.
 <!-- /ANCHOR:rollback -->
 
 ---

@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 # create-skill
@@ -71,7 +71,7 @@ python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .openco
 
 The standalone path starts with concrete examples of what the skill needs to do, then clarifies purpose, trigger phrases, output contract and boundaries before any file gets written. From there each piece of reusable content gets a home: deterministic or repeatedly-rewritten code goes in `scripts/`, domain knowledge and detailed workflow guidance goes in `references/` and templates or output resources go in `assets/`. `scripts/init_skill.py` scaffolds the folder. Generated files get normalized to the repo's section order and trimmed of anything unneeded, then `SKILL.md` gets authored as an executable contract with `WHEN TO USE`, `SMART ROUTING`, `HOW IT WORKS`, `RULES` and `SUCCESS CRITERIA`. Validation runs before any completion claim, and packaging only runs after validation passes.
 
-The parent-hub path starts by confirming the target really is one advisor-routable identity, not several skills that happen to be related. `scripts/init_skill.py --kind parent` then scaffolds the hub root (`SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`) and each nested packet gets its own `SKILL.md`, `README.md` and `changelog/`, with no packet-local `graph-metadata.json` anywhere but the root.
+The parent-hub path starts by confirming the target really is one advisor-routable identity, not several skills that happen to be related. `scripts/init_skill.py --kind parent` then scaffolds the hub root (`SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json`, and generated `leaf-manifest.json`) and each nested packet gets its own `SKILL.md`, `README.md` and `changelog/`, with no packet-local `graph-metadata.json` anywhere but the root.
 
 ### Legacy Versus Ready Is A Choice, Not A Default
 
@@ -124,7 +124,7 @@ A: Legacy leaves the router directive in place with no canonical manifest, which
 
 **Q: Do I need `scripts/`, `references/` and `assets/` for every skill?**
 
-A: No. `SKILL.md` is the only required file. Add the others only when the skill genuinely needs deterministic scripts, deep reference material or template assets.
+A: No. `SKILL.md` is the root marker, while each class has required root metadata in the [skill-root-metadata-contract.md](references/shared/skill-root-metadata-contract.md) matrix. Add content directories only when the skill genuinely needs deterministic scripts, deep reference material or template assets.
 
 ---
 

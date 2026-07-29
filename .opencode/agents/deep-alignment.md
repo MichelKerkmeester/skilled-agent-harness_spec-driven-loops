@@ -1,6 +1,6 @@
 ---
 name: deep-alignment
-description: LEAF deep-alignment iteration agent: per-lane conformance check against a named authority, verify-first findings, JSONL state.
+description: "LEAF deep-alignment iteration agent: per-lane conformance check against a named authority, verify-first findings, JSONL state."
 mode: subagent
 temperature: 0.1
 permission:
@@ -12,8 +12,6 @@ permission:
   glob: allow
   webfetch: deny
   memory: allow
-  code_graph_query: allow
-  code_graph_context: allow
   detect_changes: deny
   chrome_devtools: deny
   task: deny
@@ -258,8 +256,7 @@ Use Read, Grep, Glob, Bash, and memory/code-graph MCP tools only within the decl
 ### MCP + Code Intelligence Tools
 
 - `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
-- `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for path:line evidence.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front doors are the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files, or the lane's own adapter CLI output, is sufficient evidence on its own; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

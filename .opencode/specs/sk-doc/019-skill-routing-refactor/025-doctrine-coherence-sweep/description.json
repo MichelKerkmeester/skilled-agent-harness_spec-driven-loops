@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/025-doctrine-coherence-sweep",
+  "description": "The doc-coherence lens found 22 places where older prose contradicts the metadata contract",
+  "keywords": [
+    "doc-coherence",
+    "lens",
+    "found",
+    "places",
+    "older",
+    "prose",
+    "contradicts",
+    "metadata",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-28T15:14:09.066Z",
+  "specId": "025",
+  "folderSlug": "doctrine-coherence-sweep",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -158,8 +158,6 @@ Found 20 matches
   Line 4:   "skill_id": "deep-loop-runtime",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/graph-metadata.json:
-  Line 3:   "skill_id": "system-code-graph",
 
 
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/sk-code-review/graph-metadata.json:

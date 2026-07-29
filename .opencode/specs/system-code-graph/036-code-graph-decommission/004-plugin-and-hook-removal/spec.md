@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/004-plugin-and-hook-removal"
-    last_updated_at: "2026-07-27T00:00:00Z"
+    last_updated_at: "2026-07-28T04:51:16Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded the decommission phase child"
-    next_safe_action: "Populate requirements from the touchpoint research synthesis"
+    recent_action: "Executed the phase and verified it"
+    next_safe_action: "Closeout verification in phase 015"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,11 +42,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 15 |
+| **Phase** | 4 of 16 |
 | **Predecessor** | 003-runtime-deregistration |
 | **Successor** | 005-spec-kit-runtime-decoupling |
 | **Handoff Criteria** | No plugin, hook, or lifecycle script resolves a path inside the skill folder |
@@ -94,6 +94,8 @@ Sever every load-time and lifecycle-time path into the skill, so that its later 
 ### In Scope
 - Deleting the two plugins and their test files.
 - Removing the Codex and Devin freshness hook registrations.
+- Removing the Cursor freshness hook, which lives inside `system-spec-kit` rather than beside its three siblings.
+- Refreshing the **installed** Codex hooks at `~/.codex/hooks.json` — a deployment surface outside the repository that can resurrect removed behaviour even after every tracked file is clean.
 - Removing post-commit database invalidation.
 - Removing the daemon match patterns from session cleanup and the orphan sweeper.
 - Removing worktree copy and exclude rules for the skill's build artifacts and database.
@@ -116,6 +118,8 @@ Sever every load-time and lifecycle-time path into the skill, so that its later 
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Modify | Remove the daemon match pattern |
 | `.opencode/bin/worktree-session.sh` | Modify | Remove copy, exclude, and database-dir rules |
 | `.opencode/skills/.code-graph-freshness-state/` | Delete | Orphan state directory |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Modify | Cursor freshness hook, housed outside the other three |
+| `~/.codex/hooks.json` (installed, outside the repo) | Refresh | Re-run the installer so the deployed copy loses the hook too |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -139,6 +143,7 @@ Sever every load-time and lifecycle-time path into the skill, so that its later 
 | REQ-005 | Post-commit hook runs clean | A test commit produces no invalidation attempt and no error |
 | REQ-006 | Worktree creation succeeds | A new worktree is created without referencing the skill's artifacts |
 | REQ-007 | Deleted plugins take their tests with them | No orphaned test references a deleted module |
+| REQ-008 | The installed Codex hooks match the repository | `node .opencode/bin/install-codex-hooks.mjs --check` passes after a refresh; it currently reports drift, so a clean tracked tree alone is not evidence |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/001-touchpoint-research"
-    last_updated_at: "2026-07-27T16:33:53Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 001-touchpoint-research |
 | **Completed** | 2026-07-27 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +57,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A forced-depth three-lane deep-research pass produced the complete touchpoint inventory that every later phase executed against. The synthesis proved the sweep rule that made the whole decommission trustworthy: `--hidden --no-ignore` is mandatory, because `--no-ignore` alone drops every dot-prefixed control file.
 
-### [Feature Name]
+### Three-lane synthesis
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Three executors ran to their full iteration counts: cli-codex (gpt-5.6-sol high, 10 iterations), cli-devin (glm-5-2 free, 5 iterations), and cli-cursor (cursor-grok-4.5-high, 5 iterations). The merged synthesis in `research/research.md` carries the cited touchpoint inventory bucketed by consumer and mutation class, the ordering graph stating which decouplings must precede which, and a per-consumer removal-vs-fallback recommendation.
+
+### Refuted-claims ledger
+
+Two claims that looked like touchpoints were refuted during verification and recorded so no later phase reinstates them: `.pi/mcp.json` is not a fourth MCP registration (its servers are `sequential_thinking`, `mk-spec-memory`, `mk_skill_advisor`, and `code_mode`), and no Pi freshness hook exists at `.pi/extensions/` (the hit resolved to a copy inside `.worktrees/`, not the working tree).
 
 ### Files Changed
 
@@ -69,7 +73,8 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `research/research.md` | Created | Canonical synthesis across all three lanes |
+| `research/lineages/**` | Created | Per-lineage loop state, iterations, and deltas |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +88,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Each lane ran with `--stop-policy=max-iterations` to force full depth rather than early convergence. A post-research `rg --hidden --no-ignore` sweep confirmed no live-surface reference was absent from the inventory, and every entry was assigned to exactly one downstream phase.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +101,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Mandate `--hidden --no-ignore` in every sweep | `--no-ignore` alone drops dot-prefixed control files like `opencode.json` and `.claude/settings.local.json`; a sweep missing either reports a false all-clear |
+| Record refuted claims in a ledger | Prevents later phases from chasing archival noise or reinstating disproven touchpoints |
+| Exclude `.worktrees/` from residual counts | Worktrees carry full copies and match any sweep; they are neither the working tree nor an edit target |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +116,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Post-research `--hidden --no-ignore` sweep | PASS — no live-surface reference absent from the inventory |
+| Every entry assigned to one downstream phase 003-014 | PASS |
+| Confirmed touchpoints carry file:line citations | PASS |
+| Refuted-claims ledger bounds archival from live | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +132,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Residual count includes fixture/corpora string literals.** The baseline of 560 live files dropped to 50 after execution, with all remaining hits being string literals in fixtures, corpora, and manifests rather than live imports. This was confirmed in later phases, not at research time.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +142,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-

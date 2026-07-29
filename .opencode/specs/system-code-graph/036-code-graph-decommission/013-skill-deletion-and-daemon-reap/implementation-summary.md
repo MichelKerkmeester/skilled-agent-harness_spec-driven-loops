@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-code-graph/036-code-graph-decommission/013-skill-deletion-and-daemon-reap"
-    last_updated_at: "2026-07-27T16:34:01Z"
+    last_updated_at: "2026-07-28T09:42:16Z"
     last_updated_by: "claude-code"
     recent_action: "Scaffolded the decommission phase child"
     next_safe_action: "Populate requirements from the touchpoint research synthesis"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 013-skill-deletion-and-daemon-reap |
 | **Completed** | 2026-07-27 |
 | **Level** | 3 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,12 +57,15 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The code-graph subsystem is gone from the repository. The daemon process and its IPC socket were reaped in this session, and the skill directory is confirmed absent from both the working tree and the git index. No orphan process or bound socket remains.
 
-### [Feature Name]
+### Daemon and socket reaped
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The running `mk-code-index` daemon process was reaped, and the `/tmp/mk-code-index` IPC socket and its temporary directory were removed. A process check confirms nothing is running, and a socket check confirms nothing is bound at the path.
+
+### Tree absence confirmed
+
+The skill directory was already removed from the working tree and the git index by a concurrent session before this phase ran. This session confirmed the absence: `git ls-files` shows 0 tracked files under the old skill path, and no `mk_code_index` reference survives in any runtime config.
 
 ### Files Changed
 
@@ -69,7 +73,9 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-code-graph/` | Deleted | The subsystem directory, tracked contents and all (concurrent session) |
+| `/tmp/mk-code-index` socket | Removed | IPC socket released |
+| `mk-code-index` process | Reaped | No orphan process survives |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +89,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The daemon was reaped before the socket was removed, so no orphan process held a lease on a dead path. The tree absence was confirmed rather than performed, because a concurrent session had already removed the directory. Process, socket, tree, and config sweeps all came back clean.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +102,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Reap the process before removing the socket | Deleting the socket while the daemon runs would leave an orphan process holding a lease on a path that no longer exists |
+| Confirm tree absence rather than re-perform deletion | The directory was already gone; re-running `git rm` would be a no-op or an error |
+| Record the ignored-state backup as a limitation, not a done item | The tree was already deleted before this phase ran, so no archive was possible; claiming it done would be dishonest |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +117,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| No `mk-code-index` process | PASS — process check empty |
+| No `/tmp/mk-code-index` socket | PASS — socket check empty |
+| 0 tracked files under old skill path | PASS — `git ls-files` clean |
+| No `mk_code_index` in runtime configs | PASS — sweep clean across `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.pi/mcp.json` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +133,7 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **No backup of ignored SQLite/WAL/lease state was taken.** The open operator item at decision time called for archiving the daemon's ignored database state (SQLite, WAL, lease files) before deletion. This was impossible: the skill tree was already deleted by a concurrent session before this phase ran, so the ignored state was already gone. These files were never tracked by git, so they are unrecoverable. The rollback procedure (ADR-005) relies on git history for tracked files; a restored daemon would rebuild its database from scratch on first run.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +143,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-
