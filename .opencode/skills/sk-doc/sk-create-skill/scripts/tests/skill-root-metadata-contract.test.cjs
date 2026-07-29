@@ -294,6 +294,35 @@ function testGateIgnoresSameNamedContinuityMetadata() {
   assert.ok(!codesOf(result).includes('NESTED_IDENTITY'));
 }
 
+function testGateRejectsUnknownGraphMetadataKey() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'unknown-graph-key', {
+    'graph-metadata.json': { skill_id: 'unknown-graph-key', manual: { related_to: [] } },
+    'leaf-manifest.config.json': { workflowMode: 'unknown-graph-key' },
+    'references/a.md': '# a\n',
+  });
+  gate.checkRoot(dir, { fix: true });
+
+  const result = gate.checkRoot(dir);
+  assert.equal(result.status, 'fail');
+  const violation = result.violations.find((v) => v.code === 'GRAPH_METADATA_UNKNOWN_KEY');
+  assert.ok(violation);
+  assert.match(violation.message, /manual/);
+}
+
+function testGateAllowsKnownGraphMetadataExtra() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'known-graph-extra', {
+    'graph-metadata.json': { skill_id: 'known-graph-extra', importance_tier: 'important' },
+    'leaf-manifest.config.json': { workflowMode: 'known-graph-extra' },
+    'references/a.md': '# a\n',
+  });
+
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.equal(result.status, 'pass');
+  assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+}
+
 function testGateDetectsStaleGeneratedManifest() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'stale-manifest', {
@@ -496,6 +525,8 @@ try {
   testGateFlagsUnclassifiableRoot();
   testGateDetectsNestedIdentity();
   testGateIgnoresSameNamedContinuityMetadata();
+  testGateRejectsUnknownGraphMetadataKey();
+  testGateAllowsKnownGraphMetadataExtra();
   testGateDetectsStaleGeneratedManifest();
   testFixNeverWritesAuthoredFiles();
   testFixDoesNotTouchHubAliases();

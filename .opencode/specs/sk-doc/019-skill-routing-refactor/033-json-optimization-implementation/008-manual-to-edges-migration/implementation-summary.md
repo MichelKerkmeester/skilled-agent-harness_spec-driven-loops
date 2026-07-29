@@ -1,6 +1,6 @@
 ---
 title: "Implementation Outcome: Migrate manual.* into Typed Edges (Gated)"
-description: "Planned record of the O5 routing-changing migration of graph-metadata.manual.* into edges.* across 10 fleet roots, gated behind the 006 routing-accuracy CI gate; not yet executed."
+description: "Shipped: manual.* migrated into symmetric typed edges across all 10 carrying roots (drift closed, dangling targets hub-remapped, three reverse-enhances drops justified), unknown-key lint added to the fleet gate, corpus byte-identical in both regimes."
 trigger_phrases:
   - "manual to edges migration outcome"
 importance_tier: "important"
@@ -8,22 +8,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration"
-    last_updated_at: "2026-07-29T12:00:00Z"
+    last_updated_at: "2026-07-29T19:30:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "006 routing-accuracy CI gate not yet landed"
+    recent_action: "Migrated manual.* to symmetric edges + unknown-key lint; SOL-built, LUNA-reviewed, corpus neutral both regimes"
+    next_safe_action: "Phase 009 signal-quality"
+    blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "008-manual-to-edges-migration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Lint placement: CI-gate only (ci-skill-root-metadata.cjs + fixtures); the skill-graph-db.ts fail-closed runtime half deferred as an unguarded live-daemon risk."
+      - "related_to targets already carried by another edge type: skipped, per the no-new-duplicates rule."
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -37,11 +38,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
-| **Delivered** | Not started — gated on the 006 routing-accuracy CI gate |
+| **Status** | Complete |
+| **Delivered** | 2026-07-29 |
 | **Track** | sk-doc |
-| **Roots in scope** | 10 (`cli-external-orchestration`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-spec-kit`) |
-| **Blast radius** | HIGH — routing-changing; `edges.*` feeds the scorer's `graph_causal` lane |
+| **Execution model** | Orchestrator (recon/gates/corpus/commits) + GPT-5.6 SOL high implementer (build + one bounded symmetry fix) + GPT-5.6 LUNA xhigh adversarial reviewer |
+| **Gated by** | 006 routing-accuracy CI gate (landed first, used for the pre/post captures) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase will migrate the dead, orphaned `graph-metadata.manual.{depends_on,related_to}` field — confirmed unread by `parseSkillMetadata` (`system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts:757-829`) — into the typed `edges.{depends_on,siblings}` schema that actually drives the advisor graph, across all 10 fleet roots that still carry `manual`. It will close the one confirmed live drift (`cli-external-orchestration`'s `manual.depends_on: ["system-spec-kit"]` vs. an empty `edges.depends_on`), delete `manual` fleet-wide once migrated, and add an unknown-key lint (mirroring the existing `edges.*` unknown-edge-type rejection at `skill-graph-db.ts:809-813`) so the field cannot silently return. Nothing is built yet — this document records the plan and its gate, not completed work.
+The dead `graph-metadata.manual.*` block is gone from all 10 carrying roots, with its authored relationships preserved in the typed `edges.*` schema the scorer actually reads — as **symmetric** edges, per the compiler's (previously undocumented) bilateral-siblings / depends-prerequisite rule. The confirmed live drift closed: `cli-external-orchestration` now carries `edges.depends_on → system-spec-kit` (0.7) with its `prerequisite_for` counterpart. Two authored targets that are not fleet roots were remapped to their owning hubs (`cli-opencode → cli-external-orchestration`, `mcp-chrome-devtools → mcp-tooling`); three one-way siblings whose relationship the graph already carries via a reverse `enhances` edge were dropped with justification rather than symmetrized into new duplicate pairs. A `GRAPH_METADATA_UNKNOWN_KEY` lint in the fleet gate now fails any root whose `graph-metadata.json` carries a top-level key outside the confirmed allowlist (8 schema keys + `deprecated`/`importance_tier`/`enhance_when`), with malformed JSON surfacing as a violation rather than a crash, and regression fixtures proving both the failure and the no-false-positive cases.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -57,7 +58,7 @@ This phase will migrate the dead, orphaned `graph-metadata.manual.{depends_on,re
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Three phases per `tasks.md`: Setup confirms the 006 routing-accuracy CI gate has landed and captures a pre-migration baseline (per-root `manual`/`edges` content, `skill_edges` row counts, and a routing-accuracy corpus run); Implementation migrates each root's `manual.*` entries into the matching `edges.*` type within the documented `WEIGHT_BANDS`, reconciles the `cli-external-orchestration` drift, removes `manual`, adds the lint, and rebuilds `skill-graph.sqlite`; Verification re-runs the routing-accuracy corpus and diffs it against the baseline, runs the fleet gate and a `skill-graph` scan, confirms the lint's regression fixture fails and the 4 legitimate-extra-key roots still pass, and confirms `lib/cross-skill-edges/` is untouched.
+The orchestrator built the full migration table from live inspection (every `manual` target × existing-edge status across all 10 roots) before any dispatch, so the executor ran a deterministic operation list. SOL (high) executed the 12-file migration; the compiler then failed with 7 symmetry errors — a rule the spec never mentioned — caught because the orchestrator re-checks the compiler **by exit code** (an earlier `tail`-based check had masked exactly this class of failure). One bounded fix dispatch added the 3 symmetric counterparts and executed the 3 justified drops, with the compiler's PASSED verdict required in the executor's own return. LUNA (xhigh) adversarially reviewed the full diff: migration completeness, edge validity, lint, and fixtures all CONFIRMED-CLEAN; its two findings adjudicated as a concurrent session's out-of-scope WIP and the four **pre-existing** multi-type pairs the migration did not introduce.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -65,7 +66,7 @@ Three phases per `tasks.md`: Setup confirms the 006 routing-accuracy CI gate has
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Gate the migration behind the sibling 006 routing-accuracy CI phase rather than shipping it standalone — the touched surface (`edges.*` → `skill_edges` → `graph_causal` lane) has zero pre-existing tests, so a before/after routing-accuracy diff is the only available regression signal for a HIGH BLAST change. Map `manual.depends_on` → `edges.depends_on` and `manual.related_to` → `edges.siblings` (not a new edge type) to stay inside the existing, already-scored taxonomy rather than inventing a new one. Explicitly exclude the unrelated `EdgeSourceKind = 'manual'` provenance tag in `lib/cross-skill-edges/` from this phase's scope, since it is a different concept sharing only a field name. Keep the data migration and the lint addition independently revertible so a lint false-positive does not force reverting the already-verified edge migration.
+**Symmetry via drops, not duplicates.** Where the reverse direction already existed as `enhances`, symmetrizing a new sibling would have introduced a duplicate `(source,target)` pair — so the one-way sibling was dropped and the relationship left to the existing edge. **CI-only lint.** The `skill-graph-db.ts` runtime half of the unknown-key check is deferred: a fail-closed parse in the live daemon's scan path could brick advisor ingest on a shared runtime — the opposite of a guarded rollout. **sqlite rebuild deferred to 012**, whose charter is the daemon-reindex proof; the fallback scorer regime (filesystem projection) already exercises the migrated edges and was corpus-verified.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -73,7 +74,11 @@ Gate the migration behind the sibling 006 routing-accuracy CI phase rather than 
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run — Status is Planned. Verification will follow `checklist.md`: 006 gate landed and runnable (CHK-001), pre-migration baseline captured (CHK-002), all 10 roots migrated with weights inside band and no dropped targets (CHK-005/006), the `cli-external-orchestration` drift closed (CHK-007), `manual` removed fleet-wide (CHK-008), no duplicate edges (CHK-009), the unknown-key lint both catches a reintroduced `manual` and passes the 4 legitimate-extra-key roots (CHK-010/011), a post-migration routing-accuracy diff shows no unapproved regression (CHK-012), and `ci-skill-root-metadata.cjs` plus a fleet-wide `skill-graph` scan report 0 errors (CHK-013/014). `validate.sh --strict` on this folder is expected to pass once execution completes.
+- `skill_graph_compiler.py --validate-only` → exit 0, VALIDATION PASSED, **zero symmetry warnings** (checked by exit code).
+- Fleet gate 11/11 **with the new lint active** (the 4 legitimate-extra roots pass live); derived freshness 11/11; contract test green incl. the two new fixtures.
+- Doctors exit 0 (sk-code, sk-doc, system-deep-loop); four-file routing vitest set 31/31.
+- **Corpus byte-identical pre/post in BOTH regimes**: warm 0.5692/0.9843/TT108-FT3-FF1 (sqlite pre-migration by design); no-sqlite fallback 0.5333/0.9843/TT101-FT3-FF1 (**this regime reads the migrated edges** — the graph-causal lane change moved nothing on the pinned corpus). CI floors unchanged.
+- `manual` key: zero carriers fleet-wide; zero duplicate pairs introduced (grouped scan over the JSON source of truth); no diff under `system-skill-advisor/**`.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -81,5 +86,5 @@ Not yet run — Status is Planned. Verification will follow `checklist.md`: 006 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-This phase cannot start Phase 1 execution until the 006 routing-accuracy CI gate exists — that dependency is a hard blocker, not a soft one, given the confirmed absence of any other test coverage on the edge/graph surface. Out of scope: the routing-neutral half of research finding O5 (`description.json` unread extras, `derived.causal_summary`) is a separate cleanup and is not touched here; the `derived` block's canonical-owner/regenerator work (O1) is a separate prerequisite phase and is not re-litigated. As with all research-derived findings, the underlying claims (the drift, the parser's ignoring of `manual`, the 10-root count) were independently re-confirmed by direct code and JSON inspection during spec authoring, not taken on the research report's word alone.
+The live `skill-graph.sqlite` still reflects pre-migration edges until the daemon reindexes — deliberate, owned by phase 012's daemon-reindex proof (the warm-regime corpus will be re-checked there; if reindexing shifts warm-regime numbers, that phase owns the reconciliation). Four pre-existing multi-type `(source,target)` pairs remain, documented and untouched under scope lock. `validate.sh --strict` remains blocked repo-wide by a concurrent session's in-flight pi-hook build; verified by the direct gates above.
 <!-- /ANCHOR:limitations -->

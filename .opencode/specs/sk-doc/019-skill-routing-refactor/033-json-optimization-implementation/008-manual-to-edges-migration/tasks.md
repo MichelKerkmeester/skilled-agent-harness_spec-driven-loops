@@ -42,11 +42,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Confirm the 006 routing-accuracy CI gate has landed and its corpus runner is runnable; do not proceed past this task until confirmed
-- [ ] T-02 Run the 006 routing-accuracy corpus once as the pre-migration baseline and preserve the output
-- [ ] T-03 Snapshot the current `manual`/`edges` content of all 10 roots (`cli-external-orchestration`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-spec-kit`) plus current `skill_edges` row counts by `edge_type` from `skill-graph.sqlite`
-- [ ] T-04 Read `lib/cross-skill-edges/types.ts` and `apply-graph-metadata-patch.ts` to confirm the unrelated `EdgeSourceKind = 'automated'|'manual'|'trusted'` provenance concept is distinct from `graph-metadata.manual.*` and will not be touched
-- [ ] T-05 Build and record the confirmed top-level-key allowlist for the new lint: `schema_version`, `skill_id`, `family`, `category`, `edges`, `domains`, `intent_signals`, `derived`, plus the 4 confirmed-legitimate extras (`deprecated` on `sk-code`; `importance_tier` on `sk-design`/`system-deep-loop`; `enhance_when` on `system-skill-advisor`)
+- [x] T-01 006 gate confirmed landed + runnable [evidence: 006 Status Complete on origin; its corpus runner used for the pre/post captures]
+- [x] T-02 Pre-migration baseline preserved [evidence: warm 0.5692/0.9843/TT108-FT3-FF1; no-sqlite fallback 0.5333/0.9843/TT101-FT3-FF1]
+- [x] T-03 manual/edges content snapshotted for all 10 roots [evidence: full migration table built from live inspection — every manual target × existing-edge status; sqlite row counts deferred with the reindex (live daemon owns the DB; program phase 012 owns that proof)]
+- [x] T-04 EdgeSourceKind provenance concept confirmed distinct and untouched [evidence: no diff under system-skill-advisor/** at all — the executor was fenced from the entire subtree]
+- [x] T-05 Allowlist built + recorded [evidence: schema_version, skill_id, family, category, edges, domains, intent_signals, derived + deprecated / importance_tier / enhance_when — verified by direct key-set inspection of all 11 roots]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-06 For each of the 10 roots, migrate `manual.depends_on` entries into `edges.depends_on` (weight in `[0.7, 1.0]`, authored `context`), skipping any target already present in `edges.depends_on`
-- [ ] T-07 For each of the 10 roots, migrate `manual.related_to` entries into `edges.siblings` (weight in `[0.4, 0.6]`, default `0.5`, authored `context`), skipping any target already present under any edge type for that source
-- [ ] T-08 Reconcile the confirmed live drift: add `system-spec-kit` to `cli-external-orchestration/graph-metadata.json`'s `edges.depends_on` (closing the gap vs. the pre-existing `manual.depends_on: ["system-spec-kit"]` / empty `edges.depends_on`)
-- [ ] T-09 Remove the top-level `manual` key from all 10 roots once each root's migration is confirmed complete
-- [ ] T-10 Add the unknown-key lint: extend `parseSkillMetadata`'s top-level validation in `skill-graph-db.ts` (mirroring the existing `edges.*` unknown-edge-type check at `:809-813`) and/or `ci-skill-root-metadata.cjs` to fail on `manual` or any key outside the T-05 allowlist
-- [ ] T-11 Rebuild `skill-graph.sqlite` via the `skill-graph` scan so the scorer's `graph_causal` lane reflects the migrated edges
+- [x] T-06 manual.depends_on migrated [evidence: cli-external-orchestration gained depends_on system-spec-kit(0.7); other depends_on targets already carried; symmetric prerequisite_for added on system-spec-kit per the compiler's symmetry rule]
+- [x] T-07 manual.related_to migrated with skip rule honored [evidence: 13 edges added then symmetry-balanced; already-carried targets skipped; two non-root targets remapped to owning hubs (cli-opencode→cli-external-orchestration, mcp-chrome-devtools→mcp-tooling); three siblings dropped-with-justification (relationship already carried by the reverse enhances edge — symmetrizing would introduce duplicate pairs): sk-git→system-spec-kit, sk-code→mcp-tooling, system-deep-loop→system-skill-advisor]
+- [x] T-08 Live drift reconciled [evidence: cli-external-orchestration edges.depends_on now carries system-spec-kit; bilateral counterpart present]
+- [x] T-09 manual removed from all 10 [evidence: fleet grep — zero carriers]
+- [x] T-10 Unknown-key lint added — CI-gate half [evidence: GRAPH_METADATA_UNKNOWN_KEY in ci-skill-root-metadata.cjs with the T-05 allowlist, malformed-JSON-as-violation, class-independent; the skill-graph-db.ts runtime half deliberately deferred — a fail-closed parse on the live daemon's scan path is an unguarded blast, recorded in the spec amendment]
+- [ ] T-11 Rebuild skill-graph.sqlite — **DEFERRED to phase 012** (the live daemon owns the DB; 012's charter is exactly the daemon-reindex proof). The no-sqlite regime — which reads the filesystem projection and therefore already sees the migrated edges — was corpus-verified instead [documented]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,12 +67,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-12 Re-run the 006 routing-accuracy corpus post-migration and diff against the T-02 baseline; confirm no regression, or record an explicit operator-approved delta
-- [ ] T-13 Run `ci-skill-root-metadata.cjs` and a fleet-wide `skill-graph` scan; confirm 0 errors, including on the 10 migrated roots and the 4 legitimate-extra-key roots
-- [ ] T-14 Add/confirm a regression fixture that reintroduces a `manual` key and assert the new lint fails it
-- [ ] T-15 Query `skill_edges` grouped by `(source_id, target_id)` to confirm no duplicate pair was introduced by the migration
-- [ ] T-16 Confirm via `git diff --stat` that no file under `lib/cross-skill-edges/` changed and that only the 10 root JSON files, the lint change, and this packet's docs were touched
-- [ ] T-17 Update packet continuity (`spec.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) and run `validate.sh --strict` on this folder
+- [x] T-12 Post-migration corpus vs baseline [evidence: BOTH regimes byte-identical — warm 0.5692/0.9843/108-3-1 (stale sqlite by design), fallback 0.5333/0.9843/101-3-1 (sees the new edges) — zero regression, zero delta, CI floors unchanged]
+- [x] T-13 Fleet gate + compiler post [evidence: ci-skill-root-metadata 11/11 incl. the 4 legitimate-extra roots under the new lint; skill_graph_compiler --validate-only exit 0, VALIDATION PASSED, zero symmetry warnings]
+- [x] T-14 Regression fixture in place [evidence: synthetic root with `manual` fails GRAPH_METADATA_UNKNOWN_KEY; importance_tier fixture passes; contract test suite green]
+- [x] T-15 No duplicate pair introduced [evidence: python grouped scan over all graph-metadata edges (the source of truth the sqlite is built from) — the migration added zero duplicates; 4 pre-existing multi-type pairs documented, untouched (scope lock); sqlite-side query lands with 012's reindex]
+- [x] T-16 Scope confirmed [evidence: diff = 10 root JSONs + gate + contract test + this packet's docs; nothing under lib/cross-skill-edges/; LUNA angle 7 CONFIRMED-CLEAN]
+- [x] T-17 Continuity updated; validate --strict **BLOCKED** repo-wide (concurrent pi-hook build) — verified by the direct gates above [documented]
 <!-- /ANCHOR:phase-3 -->
 
 ---

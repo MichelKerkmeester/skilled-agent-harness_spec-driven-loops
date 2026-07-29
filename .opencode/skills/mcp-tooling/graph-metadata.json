@@ -33,15 +33,6 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
-  "manual": {
-    "depends_on": [
-      "mcp-code-mode"
-    ],
-    "related_to": [
-      "sk-design",
-      "sk-code"
-    ]
-  },
   "domains": [
     "devtools",
     "browser",

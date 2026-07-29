@@ -29,16 +29,12 @@
         "target": "system-deep-loop",
         "weight": 0.7,
         "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff; provides zod, sqlite, TSX loader, command YAML consumers for consumer deep-loop skills"
+      },
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.7,
+        "context": "provides the spec-gate env contracts, memory tooling, and dispatch continuity the cli-* executors rely on"
       }
-    ]
-  },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "sk-doc",
-      "sk-code",
-      "sk-git",
-      "system-deep-loop"
     ]
   },
   "domains": [

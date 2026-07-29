@@ -11,18 +11,15 @@
         "target": "sk-doc",
         "weight": 0.4,
         "context": "workflow utility peer for completion and handoff documentation"
+      },
+      {
+        "target": "sk-code",
+        "weight": 0.4,
+        "context": "commit hygiene pairs with code standards"
       }
     ],
     "conflicts_with": [],
     "prerequisite_for": []
-  },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "system-spec-kit",
-      "sk-doc",
-      "sk-code"
-    ]
   },
   "domains": [
     "git",

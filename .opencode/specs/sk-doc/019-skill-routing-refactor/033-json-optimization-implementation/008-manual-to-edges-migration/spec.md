@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -83,6 +83,14 @@ This phase migrates the authored relationship data into the schema that actually
 | REQ-006 | No duplicate or conflicting edges introduced | After migration, no `(source_id, target_id)` pair appears more than once across all edge types for a migrated root (verified via a `skill_edges` grouped-count query) |
 | REQ-007 | Land only behind the 006 routing-accuracy gate | The migration is not merged until the 006 phase's routing-accuracy CI harness is runnable; a routing-accuracy corpus run is executed both before (baseline) and after the migration, and the checklist records either zero regression or an explicit operator-approved delta |
 | REQ-008 | Leave the unrelated provenance concept untouched | `git diff` for this phase touches no file under `lib/cross-skill-edges/`; `apply-graph-metadata-patch.ts` and `types.ts` remain byte-identical to their pre-phase state |
+
+### Implementation amendments (recorded deviations)
+
+- **Edge symmetry (undocumented compiler rule).** `skill_graph_compiler.py` fails validation when a sibling edge is unilateral or a `depends_on` lacks the reverse `prerequisite_for` on its target — a constraint the spec never mentioned. The first migration pass produced 7 symmetry errors; the fix added 3 symmetric counterparts (`system-spec-kit prerequisite_for cli-external-orchestration`; `system-deep-loop` and `sk-code` siblings toward `cli-external-orchestration`; `sk-code` sibling toward `sk-git`) and **dropped 3 one-way siblings whose relationship the graph already carries via a reverse `enhances` edge** (`sk-git→system-spec-kit`, `sk-code→mcp-tooling`, `system-deep-loop→system-skill-advisor`) — symmetrizing those would have introduced new duplicate `(source,target)` pairs, trading one violation for another.
+- **Dangling-target remaps.** `cli-opencode` and `mcp-chrome-devtools` are not fleet roots (the compiler rejects unknown targets); their authored relationships migrated to the owning hubs `cli-external-orchestration` and `mcp-tooling`.
+- **Lint placement.** The unknown-key lint ships in `ci-skill-root-metadata.cjs` (CI-enforced, with fixtures) only; the optional `skill-graph-db.ts` runtime half is deferred — a fail-closed parse on the live daemon's scan path is an unguarded blast against a shared runtime, contrary to this program's rollout rules.
+- **Pre-existing multi-type pairs.** Four `(source,target)` pairs already appeared under two edge types before this phase (`mcp-tooling→sk-design`, `system-deep-loop→system-spec-kit`, `sk-design→sk-code`, `sk-design→mcp-tooling`); the migration introduced zero new ones and left these untouched (scope lock).
+- **sqlite rebuild deferred to 012.** The live daemon owns `skill-graph.sqlite`; phase 012's charter is the daemon-reindex proof. The no-sqlite scorer regime (filesystem projection, which already reads the migrated edges) was corpus-verified byte-identical instead.
 <!-- /ANCHOR:requirements -->
 
 ---

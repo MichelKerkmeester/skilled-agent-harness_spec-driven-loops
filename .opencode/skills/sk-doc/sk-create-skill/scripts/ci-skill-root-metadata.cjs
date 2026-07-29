@@ -53,6 +53,22 @@ const leafContract = require('./lib/leaf-resource-contract.cjs');
 const rootContract = require('./lib/skill-root-metadata-contract.cjs');
 const commandSchema = require('./lib/command-metadata-schema.cjs');
 
+// Keep this closed: an ignored top-level block hid authored routing data for
+// months because no consumer rejected unknown keys.
+const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
+  'schema_version',
+  'skill_id',
+  'family',
+  'category',
+  'edges',
+  'domains',
+  'intent_signals',
+  'derived',
+  'deprecated',
+  'importance_tier',
+  'enhance_when',
+]);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -318,6 +334,41 @@ function checkCommandMetadata(skillDir) {
   }));
 }
 
+function checkGraphMetadata(skillDir) {
+  const skillId = path.basename(skillDir);
+  const filePath = path.join(skillDir, 'graph-metadata.json');
+  if (!fs.existsSync(filePath)) return [];
+
+  let metadata;
+  try {
+    metadata = readJson(filePath);
+  } catch (err) {
+    return [{
+      code: 'GRAPH_METADATA_INVALID',
+      file: 'graph-metadata.json',
+      message: `${skillId}: graph-metadata.json is not valid JSON: ${err.message}`,
+    }];
+  }
+
+  if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
+    return [{
+      code: 'GRAPH_METADATA_INVALID',
+      file: 'graph-metadata.json',
+      message: `${skillId}: graph-metadata.json must contain a JSON object`,
+    }];
+  }
+
+  const unknown = Object.keys(metadata)
+    .filter((key) => !GRAPH_METADATA_TOP_LEVEL_KEYS.has(key))
+    .sort();
+  if (!unknown.length) return [];
+  return [{
+    code: 'GRAPH_METADATA_UNKNOWN_KEY',
+    file: 'graph-metadata.json',
+    message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
+  }];
+}
+
 /** Evaluate one root end to end: class, presence, identity, freshness. */
 function checkRoot(skillDir, options = {}) {
   const fix = Boolean(options.fix);
@@ -335,6 +386,8 @@ function checkRoot(skillDir, options = {}) {
       message: `${skillId}: nested advisor identity at ${nested} — a root projects exactly one identity`,
     });
   }
+
+  violations.push(...checkGraphMetadata(skillDir));
 
   const writtenFiles = [];
   if (evaluation.skillClass !== null
@@ -450,6 +503,7 @@ module.exports = {
   buildAliasBytes,
   checkGeneratedManifest,
   checkDerivedAliases,
+  checkGraphMetadata,
   checkCommandMetadata,
   checkRoot,
   run,

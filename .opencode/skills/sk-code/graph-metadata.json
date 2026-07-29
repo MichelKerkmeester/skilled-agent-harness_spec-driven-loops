@@ -18,6 +18,21 @@
         "target": "sk-design",
         "weight": 0.4,
         "context": "design-and-build pair: sk-design owns the look, sk-code owns the implementation"
+      },
+      {
+        "target": "sk-prompt",
+        "weight": 0.4,
+        "context": "prompt-craft pairs with code standards on dispatched work"
+      },
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.4,
+        "context": "dispatched code sessions load sk-code standards"
+      },
+      {
+        "target": "sk-git",
+        "weight": 0.4,
+        "context": "commit hygiene pairs with code standards"
       }
     ],
     "conflicts_with": [],
@@ -32,14 +47,6 @@
         "weight": 0.8,
         "context": "deep-review depends on the sk-code code-review mode baseline"
       }
-    ]
-  },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "system-spec-kit",
-      "mcp-chrome-devtools",
-      "sk-prompt"
     ]
   },
   "domains": [

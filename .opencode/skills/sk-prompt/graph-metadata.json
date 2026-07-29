@@ -17,18 +17,20 @@
         "target": "system-deep-loop",
         "weight": 0.4,
         "context": "improvement utility peer"
+      },
+      {
+        "target": "sk-doc",
+        "weight": 0.4,
+        "context": "prompt docs and documentation authoring hand off to each other"
+      },
+      {
+        "target": "sk-code",
+        "weight": 0.4,
+        "context": "prompt-craft pairs with code standards"
       }
     ],
     "conflicts_with": [],
     "prerequisite_for": []
-  },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "sk-doc",
-      "sk-code",
-      "cli-external-orchestration"
-    ]
   },
   "domains": [
     "prompt",

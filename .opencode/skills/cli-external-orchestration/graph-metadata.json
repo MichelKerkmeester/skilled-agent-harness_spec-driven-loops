@@ -4,7 +4,13 @@
   "family": "cli",
   "category": "cli-orchestrator",
   "edges": {
-    "depends_on": [],
+    "depends_on": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "spec-gate env contracts, memory tooling, and dispatch continuity the cli-* skills rely on"
+      }
+    ],
     "enhances": [
       {
         "target": "sk-prompt",
@@ -12,19 +18,25 @@
         "context": "small-model patterns sentinel (prompt-models packet); folded from cli-opencode's original enhances edge — the advisor co-surfaces sk-prompt/sk-prompt-models alongside the cli-opencode mode for small-model dispatch."
       }
     ],
-    "siblings": [],
+    "siblings": [
+      {
+        "target": "system-deep-loop",
+        "weight": 0.4,
+        "context": "deep-loop iterations dispatch through the cli-* executors"
+      },
+      {
+        "target": "mcp-code-mode",
+        "weight": 0.4,
+        "context": "dispatched sessions reach external tools through code-mode MCP"
+      },
+      {
+        "target": "sk-code",
+        "weight": 0.4,
+        "context": "dispatched code sessions load sk-code standards"
+      }
+    ],
     "conflicts_with": [],
     "prerequisite_for": []
-  },
-  "manual": {
-    "depends_on": [
-      "system-spec-kit"
-    ],
-    "related_to": [
-      "system-deep-loop",
-      "mcp-code-mode",
-      "sk-code"
-    ]
   },
   "domains": [
     "cli",

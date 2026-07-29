@@ -34,13 +34,6 @@
       }
     ]
   },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "sk-code",
-      "mcp-tooling"
-    ]
-  },
   "domains": [
     "design",
     "ui-design",

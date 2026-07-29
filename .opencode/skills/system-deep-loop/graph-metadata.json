@@ -24,19 +24,15 @@
         "target": "sk-prompt",
         "weight": 0.4,
         "context": "improvement utility peer"
+      },
+      {
+        "target": "cli-external-orchestration",
+        "weight": 0.4,
+        "context": "deep-loop iterations dispatch through the cli-* executors"
       }
     ],
     "conflicts_with": [],
     "prerequisite_for": []
-  },
-  "manual": {
-    "depends_on": [
-      "system-spec-kit"
-    ],
-    "related_to": [
-      "system-spec-kit",
-      "system-skill-advisor"
-    ]
   },
   "domains": [
     "deep-loop",

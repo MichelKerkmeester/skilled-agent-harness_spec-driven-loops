@@ -17,18 +17,15 @@
         "target": "sk-git",
         "weight": 0.4,
         "context": "workflow utility peer for completion and handoff documentation"
+      },
+      {
+        "target": "sk-prompt",
+        "weight": 0.4,
+        "context": "documentation and prompt-improvement workflows hand off to each other"
       }
     ],
     "conflicts_with": [],
     "prerequisite_for": []
-  },
-  "manual": {
-    "depends_on": [],
-    "related_to": [
-      "system-spec-kit",
-      "sk-git",
-      "sk-prompt"
-    ]
   },
   "domains": [
     "documentation",
