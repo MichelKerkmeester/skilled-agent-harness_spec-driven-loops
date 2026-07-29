@@ -31,6 +31,13 @@ export function isAuditDisabled(env = process.env) {
 export const DISPATCH_SHAPES = [
   { test: /\bopencode\s+run\b/, skill: 'cli-opencode', packetPath: 'cli-external-orchestration/cli-opencode' },
   { test: /\bclaude\s+(-p|--print)\b/, skill: 'cli-claude-code', packetPath: 'cli-external-orchestration/cli-claude-code' },
+  // Intervening flags (e.g. pi's required `--offline`, devin's `--model`) may sit
+  // between the binary and the print flag, so allow any chars EXCEPT a shell
+  // separator -- a `-p` after `&&`/`;`/`|` belongs to a different command.
+  { test: /\bcodex\s+exec\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-codex', packetPath: 'cli-external-orchestration/cli-codex' },
+  { test: /\bdevin\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-devin', packetPath: 'cli-external-orchestration/cli-devin' },
+  { test: /\bcursor-agent\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-cursor', packetPath: 'cli-external-orchestration/cli-cursor' },
+  { test: /\bpi\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-pi', packetPath: 'cli-external-orchestration/cli-pi' },
 ];
 
 /**

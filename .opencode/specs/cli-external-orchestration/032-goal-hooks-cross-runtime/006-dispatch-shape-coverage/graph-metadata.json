@@ -37,11 +37,12 @@
       "warn"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
       ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+      ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
       ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
       "plan.md",
       "implementation-summary.md",
@@ -49,8 +50,8 @@
       ".codex/hooks.json",
       ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/spec.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
-      ".opencode/hooks/dispatch/README.md",
       "tasks.md",
+      ".opencode/hooks/dispatch/README.md",
       "checklist.md"
     ],
     "entities": [
@@ -70,6 +71,12 @@
         "name": "dispatch-preflight-lint.mjs",
         "kind": "file",
         "path": ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit-posttooluse.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
         "source": "derived"
       },
       {
@@ -109,15 +116,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/dispatch/README.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/dispatch/README.md",
         "source": "derived"
       },
       {
@@ -128,12 +135,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,13 +164,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "In Scope",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Open Questions",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -187,21 +188,21 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Pattern Single",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard, deep-loop-runtime delegation — all `severity: error`), but the shared dispatch-shape registry (`DISPATCHSHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) only recognizes `opencode run` and `claude -p` command shapes",
     "created_at": "2026-07-28T17:27:32.298Z",
-    "last_save_at": "2026-07-28T17:33:56.075Z",
+    "last_save_at": "2026-07-29T05:31:57.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e1df7e25a9cb2241ddcb10ef310b33377efa9d0fc6ba07a7645066591affeb",
+    "source_fingerprint": "sha256:8f3862bd47b8f127f28143e6eb2305635e8bb84854d3cc7dbe9fdf6096374d54",
     "source_doc_hashes": {
-      "spec.md": "620a493087a7041b6bc1653c2ce351ae2d2d17e955ae27a50e627ebab3972ebc",
-      "plan.md": "9d83268eeb9b9beeb4e4d1009036ec9afb2b3092a3281171799ef623a1209a21",
-      "tasks.md": "fe9468fa50c022f02d746ba35f0d0d2e0fe8f7800827fe14143f4f8733a30ed3",
-      "checklist.md": "985cdeca4e5e9faf62115796a28c4bfb950634abcc10379db9360cc1eca970b2",
-      "implementation-summary.md": "57cd8046c0f19bb942e84088077da4181cf1441c38068793ae22d1549e478921"
+      "spec.md": "c8bd34c7c294e380266ce5b6d4e5f61beb092f6d38bf7f2e070ea9a73571d567",
+      "plan.md": "0b3b19cb10994b5cc8907f2acd3f986af4ec36b0b4c5c4cf6c455101109c401f",
+      "tasks.md": "d2b40e4104a468edba3102c6fc74a951f0a6da7dc8885cdbec8187ac9abc8ee1",
+      "checklist.md": "f170b3ce3fa4c850dc692c7029364b254f89fc540e79a2b5bfaf7a559f199f52",
+      "implementation-summary.md": "06f03ceb8a9b26a81cdd285b5ee16df9e65dcdbed2d2df50a9dc69d11ee62e88"
     },
     "last_active_child_id": null,
     "last_active_at": null

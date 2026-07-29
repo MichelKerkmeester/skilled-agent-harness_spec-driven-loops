@@ -29,22 +29,6 @@ import {
 } from '../lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Codex dispatches sub-agents via `codex exec -p <agent>` -- a shape the shared
-// core (opencode run / claude -p) does not know. Extend the recognizer locally so
-// the audit trail covers a Codex sub-dispatch too, without changing the shared
-// dispatch core. The record is composed from the same exported primitives
-// recordDispatch uses internally.
-const CODEX_EXEC_SHAPE = {
-  test: /\bcodex\s+exec\b[^\n]*\s-p\b/,
-  skill: 'cli-codex',
-  packetPath: 'cli-external-orchestration/cli-codex',
-};
-const SHAPES = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE];
-
-// ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -78,7 +62,7 @@ async function main() {
   const command = toolInput?.command;
   if (typeof command !== 'string' || command.length === 0) return done();
 
-  const shape = SHAPES.find((candidate) => candidate.test.test(command));
+  const shape = DISPATCH_SHAPES.find((candidate) => candidate.test.test(command));
   if (!shape) return done();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();

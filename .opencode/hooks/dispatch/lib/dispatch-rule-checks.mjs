@@ -126,9 +126,14 @@ export function evaluate(command, rules, options = {}) {
       passed = true; // a check that throws must never block a dispatch (fail-open)
     }
     if (!passed) {
+      // A rule that declares itself blocking (`block` or the stronger `error`
+      // the availability/self-invocation guards use) denies the dispatch;
+      // everything else is advisory. A skill's own SKILL.md severity is the
+      // source of truth here.
+      const blocking = rule.severity === 'block' || rule.severity === 'error';
       violations.push({
         id: rule.id,
-        severity: rule.severity === 'block' ? 'block' : 'warn',
+        severity: blocking ? 'block' : 'warn',
         message: rule.message || rule.id,
         check: rule.check,
         passed: false,

@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/006-dispatch-shape-coverage"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T05:31:42Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level 2 spec for dispatch-shape coverage phase"
-    next_safe_action: "Trace evaluate() severity handling before writing any shape regex"
+    recent_action: "Shipped 6-shape DISPATCH_SHAPES, codex fold-in, error-to-block severity mapping"
+    next_safe_action: "None — phase complete; missing CHECKS functions are a follow-up phase"
     blockers: []
     key_files:
       - ".opencode/hooks/dispatch/lib/dispatch-audit.mjs"
@@ -24,14 +24,15 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "dispatch-shape-coverage-20260728"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "Whether severity: error should map to block or warn in evaluate(), and how that decision gets recorded and tested."
-      - "Whether implementing the three missing CHECKS entries (command-v-<cli>-required, <cli>-self-invocation-guard, deep-loop-runtime-delegation) belongs in this phase or a follow-up, since shape-matching alone does not make evaluate() find a matching check function for them today."
+      - "Whether implementing the three missing CHECKS entries (command-v-<cli>-required, <cli>-self-invocation-guard, deep-loop-runtime-delegation) belongs in a follow-up phase remains unresolved; deliberately out of scope here (see REQ-006/REQ-007)."
     answered_questions:
       - "This phase is functionally independent of phases 001-005 (goal-hook port); it is a separate dispatch-shape fix, ordered 006 for packet narrative only."
       - "Fold Codex's local CODEX_EXEC_SHAPE into the shared DISPATCH_SHAPES registry rather than leaving it duplicated locally."
       - "Current real path confirmed by direct file read: .opencode/hooks/dispatch/lib/dispatch-audit.mjs (post-relocation; not any older skill-nested path)."
+      - "severity: error resolved to map to 'block' (alongside the pre-existing 'block'), implemented as an explicit branch in evaluate(), not an implicit fallthrough."
+      - "dispatch-audit-posttooluse.mjs (codex) was found mid-pass with its own local CODEX_EXEC_SHAPE duplicate; fixed same session to read DISPATCH_SHAPES directly. rg -n \"CODEX_EXEC_SHAPE\" repo-wide now 0 hits; REQ-002/SC-002 fully met."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in
@@ -47,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per parent packet's operator choice) |
 | **Authority** | `cli-external-orchestration` (dispatch hook concern lives at `.opencode/hooks/dispatch/`, shared across all `cli-*` skills) |
@@ -99,7 +100,7 @@ Make `DISPATCH_SHAPES` the single, complete source of truth for every `cli-*` di
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Add real dispatch-shape regexes for devin, cursor, and pi to the shared `DISPATCH_SHAPES` registry. | `DISPATCH_SHAPES` gains three entries whose `test` regexes match real command strings for `devin -p "..."` / `devin --print "..."`, `cursor-agent ... -p "..."` / `cursor-agent ... --print "..."`, and `pi -p "..."` / `pi --print "..."`, each with `skill` and `packetPath` matching the existing entry shape (e.g. `cli-devin`, `cli-external-orchestration/cli-devin`). |
-| REQ-002 | Fold Codex's shape into the shared registry with zero remaining local duplicate. | `CODEX_EXEC_SHAPE` and the `DISPATCH_SKILLS` composition are removed from `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs`; the adapter reads shapes from `DISPATCH_SHAPES` alone; `rg -n "CODEX_EXEC_SHAPE"` returns 0 hits repo-wide. |
+| REQ-002 | Fold Codex's shape into the shared registry with zero remaining local duplicate. | **MET.** `CODEX_EXEC_SHAPE` and the `DISPATCH_SKILLS`/`SHAPES` compositions are removed from both `.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` (PreToolUse) and `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` (PostToolUse); both adapters read `DISPATCH_SHAPES` directly. `rg -n "CODEX_EXEC_SHAPE"` returns 0 hits repo-wide, confirmed this pass. |
 | REQ-003 | Resolve the `severity: error` mapping in `evaluate()`, verified against its real source. | `evaluate()`'s severity-mapping logic is read and quoted verbatim in `plan.md`/`implementation-summary.md` before any code change; the chosen mapping (`error` → `block`, or `error` → `warn`, or a third explicit branch) is implemented as a deliberate branch, not an implicit `=== 'block' ? 'block' : 'warn'` fallthrough for an unlisted value; a new test asserts the exact resulting `severity` field for a rule declaring `severity: error`. |
 
 ### P1 - Required
@@ -123,7 +124,7 @@ Make `DISPATCH_SHAPES` the single, complete source of truth for every `cli-*` di
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Three new shapes (`devin -p`/`--print`, `cursor-agent … -p`/`--print`, `pi -p`/`--print`) match real dispatch command strings for their respective CLIs and do not false-positive on unrelated commands containing the bare binary name without the flag.
-- **SC-002**: `CODEX_EXEC_SHAPE` exists in exactly one place in the repo (the shared `DISPATCH_SHAPES` registry); zero remaining local duplicate in the Codex adapter.
+- **SC-002**: `CODEX_EXEC_SHAPE` exists in exactly one place in the repo (the shared `DISPATCH_SHAPES` registry); zero remaining local duplicate in the Codex adapter. **MET** — both the PreToolUse `dispatch-preflight-lint.mjs` and PostToolUse `dispatch-audit-posttooluse.mjs` adapters read `DISPATCH_SHAPES` directly; `rg -n "CODEX_EXEC_SHAPE"` returns 0 hits repo-wide.
 - **SC-003**: The `severity: error` → `block`/`warn` mapping decision is implemented as an explicit branch and covered by a passing regression test.
 - **SC-004**: The full dispatch-family test suite (all files exercising `DISPATCH_SHAPES`, `matchDispatchShape`, `evaluate`, `readHardRules`) is green post-change, with the pre-existing `opencode run`/`claude -p` coverage unregressed.
 
@@ -197,8 +198,8 @@ Make `DISPATCH_SHAPES` the single, complete source of truth for every `cli-*` di
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether `severity: error` should map to `block` or `warn` in `evaluate()` — resolve during implementation by reading the function's real current behavior, then implement and test the decision explicitly (REQ-003).
-- Whether implementing the three missing `CHECKS` entries (`command-v-<cli>-required`, `<cli>-self-invocation-guard`, `deep-loop-runtime-delegation`) belongs in this phase or a dedicated follow-up phase — this spec scopes it out (see Out of Scope) but flags it as unresolved for the parent packet's tracking.
+- **RESOLVED**: `severity: error` maps to `block` in `evaluate()` (`.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs`) — `const blocking = rule.severity === 'block' || rule.severity === 'error';` then `severity: blocking ? 'block' : 'warn'`, implemented as an explicit branch and covered by a passing regression test (`dispatch-rule-checks.test.mjs`, "severity maps error and block to a blocking violation; anything else advises").
+- **Still open**: whether implementing the three missing `CHECKS` entries (`command-v-<cli>-required`, `<cli>-self-invocation-guard`, `deep-loop-runtime-delegation`) belongs in a dedicated follow-up phase — this spec scoped it out (see Out of Scope, REQ-006/REQ-007) and it remains unresolved for the parent packet's tracking. Confirmed still absent from `CHECKS` as of this completion pass.
 <!-- /ANCHOR:questions -->
 
 ---

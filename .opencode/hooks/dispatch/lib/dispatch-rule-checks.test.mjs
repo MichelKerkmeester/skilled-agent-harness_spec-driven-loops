@@ -63,3 +63,23 @@ test('parseHardRules returns [] for frontmatter without the key or malformed inp
   assert.deepEqual(parseHardRules(''), []);
   assert.deepEqual(parseHardRules(null), []);
 });
+
+test('severity maps error and block to a blocking violation; anything else advises', () => {
+  const rules = [
+    { id: 'err', check: 'always-fail', message: 'e', severity: 'error' },
+    { id: 'blk', check: 'always-fail', message: 'b', severity: 'block' },
+    { id: 'wrn', check: 'always-fail', message: 'w', severity: 'warn' },
+    { id: 'bare', check: 'always-fail', message: 'n', severity: undefined },
+  ];
+  const saved = CHECKS['always-fail'];
+  CHECKS['always-fail'] = () => false;
+  try {
+    const bySev = Object.fromEntries(evaluate('opencode run "x"', rules).map((v) => [v.id, v.severity]));
+    assert.equal(bySev.err, 'block');
+    assert.equal(bySev.blk, 'block');
+    assert.equal(bySev.wrn, 'warn');
+    assert.equal(bySev.bare, 'warn');
+  } finally {
+    if (saved === undefined) delete CHECKS['always-fail']; else CHECKS['always-fail'] = saved;
+  }
+});

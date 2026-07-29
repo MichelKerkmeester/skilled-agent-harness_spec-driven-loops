@@ -1,20 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
-  "description": "Extend shared DISPATCH_SHAPES for devin/cursor/pi + fold in Codex's local shape + resolve severity mapping",
+  "description": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard,",
   "keywords": [
-    "extend",
-    "shared",
-    "devin",
-    "cursor",
-    "fold",
-    "codex",
-    "local",
-    "shape",
-    "resolve",
-    "severity",
-    "mapping"
+    "cli-devin",
+    "cli-cursor",
+    "cli-pi",
+    "already",
+    "declare",
+    "hardrules",
+    "skill",
+    "frontmatter",
+    "availability",
+    "check",
+    "self-invocation",
+    "guard"
   ],
-  "lastUpdated": "2026-07-28T17:27:29.903Z",
+  "lastUpdated": "2026-07-29T05:23:23.753Z",
   "specId": "006",
   "folderSlug": "dispatch-shape-coverage",
   "parentChain": [
@@ -22,6 +24,5 @@
     "032-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -23,21 +23,6 @@ import { DISPATCH_SHAPES } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Codex dispatches sub-agents via `codex exec -p <agent>` on the exec surface --
-// a shape the shared cross-runtime core (opencode run / claude -p) does not know.
-// Add it here, in the adapter, so cli-codex hard-rules are enforced on a Codex
-// sub-dispatch without changing the shared dispatch core.
-const CODEX_EXEC_SHAPE = {
-  test: /\bcodex\s+exec\b[^\n]*\s-p\b/,
-  skill: 'cli-codex',
-  packetPath: 'cli-external-orchestration/cli-codex',
-};
-const DISPATCH_SKILLS = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE];
-
-// ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -69,7 +54,7 @@ async function main() {
   if (typeof command !== 'string' || command.length === 0) return approve();
 
   // Fast-exit unless the command is a known dispatch shape.
-  const match = DISPATCH_SKILLS.find((d) => d.test.test(command));
+  const match = DISPATCH_SHAPES.find((d) => d.test.test(command));
   if (!match) return approve();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();

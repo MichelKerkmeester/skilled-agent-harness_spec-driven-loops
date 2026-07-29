@@ -48,8 +48,26 @@ describe('matchDispatchShape', () => {
 
 describe('DISPATCH_SHAPES', () => {
   it('exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from', () => {
-    expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual(['cli-opencode', 'cli-claude-code']);
+    expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual([
+      'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi',
+    ]);
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);
+  });
+
+  it('recognizes each external CLI print-mode dispatch and ignores non-dispatch bash', () => {
+    const skillFor = (cmd) => (DISPATCH_SHAPES.find((s) => s.test.test(cmd)) || {}).skill || null;
+    expect(skillFor('opencode run "x" </dev/null')).toBe('cli-opencode');
+    expect(skillFor('claude -p "x"')).toBe('cli-claude-code');
+    expect(skillFor('codex exec --full-auto -p "x"')).toBe('cli-codex');
+    expect(skillFor('devin -p "x" </dev/null')).toBe('cli-devin');
+    expect(skillFor('cursor-agent -p "x" --model composer-2.5')).toBe('cli-cursor');
+    expect(skillFor('pi --offline -p "x" </dev/null')).toBe('cli-pi');
+    // A bare interactive launch (no print flag) or unrelated bash is never a dispatch.
+    expect(skillFor('devin auth status')).toBe(null);
+    expect(skillFor('cursor-agent --help')).toBe(null);
+    expect(skillFor('git status && ls -la')).toBe(null);
+    // A print flag after a shell separator belongs to the second command, not the first.
+    expect(skillFor('pi install && claude -p "x"')).toBe('cli-claude-code');
   });
 });
 
