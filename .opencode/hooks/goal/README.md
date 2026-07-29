@@ -15,11 +15,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`goal/` is the runtime-neutral core for passive session-goal tracking outside OpenCode. OpenCode already has its own goal system — the `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) with per-OpenCode-session state, native token accounting, and an auto-continue loop wired through OpenCode-only lifecycle events. This folder is a **sibling**, not a replacement: it ports mk-goal's template, prompt-injection hardening, and heuristic verifier into a single shared state file that any runtime adapter (Devin, Cursor, Pi hooks, or a plain terminal) can read and write through one manage CLI.
+`goal/` is the runtime-neutral core for passive session-goal tracking outside OpenCode. OpenCode already has its own goal system — the `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) with per-OpenCode-session state, native token accounting, and an auto-continue loop wired through OpenCode-only lifecycle events. This folder is a **sibling**, not a replacement: it ports mk-goal's template, prompt-injection hardening, and heuristic verifier into a single shared state file that any runtime adapter (Cursor, Pi hooks, or a plain terminal) can read and write through one manage CLI.
 
 The two systems coexist by design: mk-goal owns OpenCode's per-session goal; `goal/lib/goal-core.cjs` owns one shared cross-runtime goal. Neither reads nor writes the other's state file.
 
-**Status:** built. Phase 001 delivered the core, state, and manage CLI; phases 003/004/005 added the per-runtime injection adapters, now present under `devin/`, `cursor/`, and `pi/`. Their honest parity tiers (probed live in phase 002): Devin injects on `UserPromptSubmit` + restores on `SessionStart` + verifies on `Stop` (a block can force continuation, though its real payload carries no transcript so the verifier stays dormant); Cursor injects at `sessionStart` only (`beforeSubmitPrompt` never delivers, `stop` never fires); Pi injects on `input` (operator-visible transform) + restores on `session_start` + verifies on `turn_end` (no forced continuation). The `bin/goal.cjs` CLI remains available for any runtime without plugin tools, or a plain terminal.
+**Status:** built. Phase 001 delivered the core, state, and manage CLI; phases 003/004/005 added the per-runtime injection adapters, now present under `cursor/` and `pi/`. Their honest parity tiers (probed live in phase 002): Cursor injects at `sessionStart` only (`beforeSubmitPrompt` never delivers, `stop` never fires); Pi injects on `input` (operator-visible transform) + restores on `session_start` + verifies on `turn_end` (no forced continuation). The `bin/goal.cjs` CLI remains available for any runtime without plugin tools, or a plain terminal.
 
 ---
 
@@ -56,7 +56,7 @@ Falls back to mk-goal's compact shape (`[active_goal:<id>]` / `goal_prompt:` / `
 
 **Deliberate deviation from mk-goal:** the `usage:` line's token count is honestly `n/a` — no runtime outside OpenCode exposes a native per-message token feed to this core, so turn count (`turnsUsed`, incremented by `recordTurn()`) is the accounting primitive instead of tokens. The record's `usageSource` field is always `"turn-count-estimate"`, never silently implying token-level accuracy.
 
-The `devin/`, `cursor/`, and `pi/` adapters inject this block per their runtime's lifecycle (see §1 Status for each runtime's trigger and parity tier); the exact rendered text is `renderGoalBrief()`'s output, which an operator can also preview via `bin/goal.cjs show`'s `injection_preview` field.
+The `cursor/` and `pi/` adapters inject this block per their runtime's lifecycle (see §1 Status for each runtime's trigger and parity tier); the exact rendered text is `renderGoalBrief()`'s output, which an operator can also preview via `bin/goal.cjs show`'s `injection_preview` field.
 
 ---
 
@@ -69,7 +69,6 @@ goal/
 |   `-- goal-core.test.cjs   # node --test
 +-- bin/
 |   `-- goal.cjs             # manage CLI: set/show/history/doctor/health/clear/complete/pause/resume
-+-- devin/    goal-inject.mjs (UserPromptSubmit), goal-session-start.mjs (SessionStart), goal-verify.mjs (Stop)
 +-- cursor/   goal-inject.mjs (sessionStart-only injection)
 +-- pi/       goal-context.ts (input/session_start/turn_end factory; symlinked from .pi/extensions/)
 `-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
@@ -86,7 +85,7 @@ goal/
 
 The shared state file lives at `.opencode/skills/.goal-state/active-goal.json`, beside — never touching — mk-goal's own per-session files and `.archive/` in that same directory.
 
-OpenCode discovers plugins only from `.opencode/plugins/`, so `mk-goal.js` must live there; the `opencode/` folder here holds a browsability-only symlink pointing back into it (nothing loads through the symlink — it keeps this concern's runtimes visible in one tree, the reverse of Pi's `.pi/extensions/` direction). The `devin/`, `cursor/`, and `pi/` adapters are the per-runtime wiring that reads the shared state through the core; their honest parity tiers (injection everywhere, verify/continue only where a real lifecycle event supports it) are recorded in the capability matrix under the `032-goal-hooks-cross-runtime` packet.
+OpenCode discovers plugins only from `.opencode/plugins/`, so `mk-goal.js` must live there; the `opencode/` folder here holds a browsability-only symlink pointing back into it (nothing loads through the symlink — it keeps this concern's runtimes visible in one tree, the reverse of Pi's `.pi/extensions/` direction). The `cursor/` and `pi/` adapters are the per-runtime wiring that reads the shared state through the core; their honest parity tiers (injection everywhere, verify/continue only where a real lifecycle event supports it) are recorded in the capability matrix under the `032-goal-hooks-cross-runtime` packet.
 
 ---
 

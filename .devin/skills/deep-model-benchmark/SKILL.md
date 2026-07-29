@@ -1,1 +1,0 @@
-../../../.opencode/commands/deep/model-benchmark.md

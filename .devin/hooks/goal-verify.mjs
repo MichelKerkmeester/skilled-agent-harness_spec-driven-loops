@@ -1,1 +1,0 @@
-../../.opencode/hooks/goal/devin/goal-verify.mjs

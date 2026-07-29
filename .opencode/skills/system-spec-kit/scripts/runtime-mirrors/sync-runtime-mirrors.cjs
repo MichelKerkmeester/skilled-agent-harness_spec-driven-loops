@@ -116,7 +116,6 @@ function buildExpectedLinks() {
     const source = `${OPENCODE_COMMANDS}/${relativePath}`;
     const flat = toFlatName(relativePath);
     links.push({ tree: 'cursor-commands', mirror: `.cursor/commands/${flat}.md`, source });
-    links.push({ tree: 'devin-skills', mirror: `.devin/skills/${flat}/SKILL.md`, source });
   }
 
   for (const { runtime, config, mirror } of HOOK_CONFIGS) {

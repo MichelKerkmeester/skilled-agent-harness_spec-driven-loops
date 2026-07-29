@@ -1,1 +1,0 @@
-../../../.opencode/commands/deep/ai-council.md

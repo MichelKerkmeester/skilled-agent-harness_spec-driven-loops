@@ -1,1 +1,0 @@
-../../../.opencode/commands/create/command.md

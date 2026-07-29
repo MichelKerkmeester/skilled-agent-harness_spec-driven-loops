@@ -1,6 +1,6 @@
 ---
 title: "Devin CLI — Runtime Sync Manifest"
-description: "How .devin derives from .opencode and .claude: nested symlink shapes for agents and commands, the strict-YAML constraint, inherited rules, and how to detect drift."
+description: "How .devin derives from .opencode and .claude: the nested agent symlink shape, the strict-YAML constraint, inherited rules, and how to detect drift. Devin carries no mirrored command surface."
 ---
 
 # Devin CLI Sync Manifest
@@ -17,8 +17,8 @@ This matters historically: Devin's own docs claim `.claude/agents/*.md` is auto-
 
 Two naming quirks to internalise:
 
-- Devin's **"skills" are its slash-command surface**. `.devin/skills/` mirrors `.opencode/commands/`, *not* `.opencode/skills/`. The repo's actual skill packets are discovered separately and directly.
-- Agents source from `.claude/agents/` (Claude dialect); commands source from `.opencode/commands/`.
+- Devin has **no mirrored command surface** (removed by operator decision). It discovers the repo's `.opencode/skills/` packets on its own — exposed as `/sk-doc`, `/sk-git`, and so on — with no `.devin/skills/` mirror authored.
+- Agents source from `.claude/agents/` (Claude dialect); that is the only symlink mirror tree Devin still carries.
 
 ---
 
@@ -27,14 +27,13 @@ Two naming quirks to internalise:
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/<name>/AGENT.md` (13) | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
-| `skills/<flat>/SKILL.md` (35) | symlink | `.opencode/commands/<path>.md` | `../../../.opencode/commands/<path>.md` |
-| `hooks/*` (19) | symlink | scattered `.opencode/**` | discovery mirror only |
+| `hooks/*` | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
 | `config.local.json` | operator-local | — | gitignored, never synced |
 | `rules/` | **absent by design** | — | see §5 |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
 
-Both mirror trees are **nested one directory per item** — the directory name is the identifier, and the file inside carries the fixed name Devin looks for (`AGENT.md` / `SKILL.md`).
+The agent mirror tree is **nested one directory per item** — the directory name is the identifier, and the file inside carries the fixed name Devin looks for (`AGENT.md`).
 
 Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirror required, exposing them as `/sk-doc`, `/sk-git` and so on.
 
@@ -43,7 +42,6 @@ Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirr
 ## 3. WHEN TO SYNC
 
 - An agent is added or removed in `.claude/agents/` → re-run the mirror generator.
-- A command is added, renamed or removed in `.opencode/commands/` → re-run the mirror generator.
 - A hook is registered in `hooks.v1.json` → re-run the generator; this tree fell six symlinks behind its own config before the generator existed.
 - Skill routing changes → edit `.cursor/rules/skill-routing.md`; Devin reads it (see §5).
 
@@ -52,7 +50,7 @@ Devin also discovers the 12 `.opencode/skills/` packets on its own, with no mirr
 ## 4. SYNC WORKFLOW
 
 ```bash
-# Refresh every symlink tree (devin agents + skills + hooks, and the cursor trees)
+# Refresh every symlink tree (devin agents + hooks, and the cursor trees)
 node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # Verify roster coverage across all five runtime surfaces
@@ -96,8 +94,8 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 
 ## 6. REQUIRED PARITY
 
-- 13 agents and 35 commands, names matching the canonical trees. The command count moves as commands are added or retired; the drift checks below are authoritative, not this number.
-- Every `AGENT.md` / `SKILL.md` is a symlink resolving into the canonical tree; a real file there is a silent fork.
+- 13 agents, names matching the canonical tree. Devin carries no mirrored command surface; the drift checks below are authoritative.
+- Every `AGENT.md` is a symlink resolving into the canonical tree; a real file there is a silent fork.
 - Every `.opencode/**` script `hooks.v1.json` invokes has a matching symlink in `hooks/`.
 - Every mirrored file parses as strict YAML.
 
@@ -114,7 +112,7 @@ Valid `--permission-mode` values are `normal` (alias `auto`, default), `accept-e
 Live confirmation, which file checks cannot give you:
 
 ```bash
-devin skills list                                                   # expect 35 commands + 12 skill packets
+devin skills list                                                   # expect the 12 native skill packets (no mirrored commands)
 devin --permission-mode bypass -p "List ONLY subagent profile names, one per line."   # expect 13 + 2 built-ins
 ```
 

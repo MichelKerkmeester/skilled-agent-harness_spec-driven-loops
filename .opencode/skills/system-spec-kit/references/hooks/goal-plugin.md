@@ -115,16 +115,15 @@ For documentation-only changes under `system-spec-kit`, also run the relevant `s
 
 ## 8. CROSS-RUNTIME RELATIONSHIP
 
-This plugin is the OpenCode-native goal system. Devin, Cursor, and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
+This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
 
-**State model — two distinct files in the same directory.** `mk-goal` (this plugin) keeps **per-OpenCode-session** state, one file per hex session id under `.opencode/skills/.goal-state/`, with native token accounting from OpenCode's `message.updated` feed. The cross-runtime port keeps **one shared** `.opencode/skills/.goal-state/active-goal.json`, read/written by the Devin/Cursor/Pi adapters and the `.opencode/hooks/goal/bin/goal.cjs` manage CLI; it sits beside — never touching — mk-goal's per-session files, and its `usage_source` is honestly `turn-count-estimate` (no native token feed outside OpenCode).
+**State model — two distinct files in the same directory.** `mk-goal` (this plugin) keeps **per-OpenCode-session** state, one file per hex session id under `.opencode/skills/.goal-state/`, with native token accounting from OpenCode's `message.updated` feed. The cross-runtime port keeps **one shared** `.opencode/skills/.goal-state/active-goal.json`, read/written by the Cursor/Pi adapters and the `.opencode/hooks/goal/bin/goal.cjs` manage CLI; it sits beside — never touching — mk-goal's per-session files, and its `usage_source` is honestly `turn-count-estimate` (no native token feed outside OpenCode).
 
 **Capability tiers** (from the packet's phase 002 live probes):
 
 | Runtime | Inject | Verify | Continue | Goal text visible to operator |
 |---------|--------|--------|----------|-------------------------------|
 | OpenCode (mk-goal) | yes | yes (heuristic/LLM) | yes (`session.idle`) | no (`[SYS]`) |
-| Devin | yes | yes | yes (`Stop` block, dormant) | no |
 | Cursor | yes (`sessionStart` only) | no | no | no |
 | Pi | yes (operator-visible) | yes (`turn_end`) | no | yes (`[MSG]`) |
 
@@ -136,10 +135,9 @@ Canonical matrix: `.opencode/specs/cli-external-orchestration/032-goal-hooks-cro
 |---|---|---|---|
 | OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `mk_goal` / `mk_goal_status` plugin tools |
 | Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | `bin/goal.cjs` manage CLI |
-| Devin | `/goal-devin` | `.devin/skills/goal-devin/SKILL.md` | `bin/goal.cjs` manage CLI |
 | Pi | `/goal-pi` | `.pi/prompts/goal-pi.md` | `bin/goal.cjs` manage CLI |
 
-Claude reaches `/goal-opencode` through its whole-directory `.claude/commands` → `.opencode/commands` symlink. Codex has no goal hook and therefore no goal command. These commands are deliberately not cross-mirrored: the runtime-mirror generators skip `goal-opencode` and preserve each runtime's hand-authored native command via `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs`. The non-OpenCode commands are thin routers over `bin/goal.cjs`, which mirrors the `/goal-opencode` action contract 1:1.
+Claude reaches `/goal-opencode` through its whole-directory `.claude/commands` → `.opencode/commands` symlink. Codex and Devin have no goal hook and therefore no goal command. These commands are deliberately not cross-mirrored: the runtime-mirror generators skip `goal-opencode` and preserve each runtime's hand-authored native command via `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs`. The non-OpenCode commands are thin routers over `bin/goal.cjs`, which mirrors the `/goal-opencode` action contract 1:1.
 
 ## 9. RELATED REFERENCES
 

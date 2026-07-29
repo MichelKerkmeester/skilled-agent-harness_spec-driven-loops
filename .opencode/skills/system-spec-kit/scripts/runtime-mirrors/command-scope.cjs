@@ -8,9 +8,8 @@
 // all of them. The goal triggers are the case this exists for: each goal-capable
 // runtime carries only its own. OpenCode reads .opencode/commands/goal-opencode.md
 // natively (and Claude whole-dir-symlinks that tree, so it sees the same file),
-// while Cursor, Devin, and Pi each own a hand-authored, runtime-native command
-// that drives the shared bin/goal.cjs manage CLI. Codex has no goal hook, so it
-// gets no goal command at all.
+// while Cursor and Pi each own a hand-authored, runtime-native command that drives
+// the shared bin/goal.cjs manage CLI. Codex and Devin have no goal command.
 //
 // The mirror generators consult these two lists so they neither cross-copy the
 // OpenCode command outward nor prune a runtime's own native command as drift.
@@ -27,7 +26,6 @@ const CANONICAL_MIRROR_EXCLUDES = new Set(['goal-opencode.md']);
 // for flat trees, a directory name for Devin's nested skill tree).
 const RUNTIME_NATIVE_COMMANDS = {
   '.cursor/commands': new Set(['goal-cursor.md']),
-  '.devin/skills': new Set(['goal-devin']),
   '.pi/prompts': new Set(['goal-pi.md']),
 };
 

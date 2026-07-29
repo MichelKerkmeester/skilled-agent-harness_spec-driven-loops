@@ -8,16 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene"
-    last_updated_at: "2026-07-29T13:58:48Z"
+    last_updated_at: "2026-07-29T14:32:49Z"
     last_updated_by: "claude"
-    recent_action: "Follow-up: goal cmd to top-level + per-CLI goal commands + mirror-scope generators"
-    next_safe_action: "Commit; run mk-goal suite where @opencode-ai/plugin installed"
+    recent_action: "Decommissioned Devin: removed all commands + goal hook (adapter/registration/docs)"
+    next_safe_action: "Commit; optional: reconcile cli-devin COMMANDS scenarios + SYNC §5 narrative"
     blockers: []
     key_files:
-      - ".opencode/commands/goal-opencode.md"
+      - ".devin/hooks.v1.json"
+      - ".devin/SYNC.md"
       - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs"
       - ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md"
-      - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-008-20260728"
@@ -133,3 +133,24 @@ Limitation #3 is now **resolved** — the command lives at the top level and the
 ---
 
 **Note on invocation form:** the earlier "Known Limitations" §3 mentions the `/goal:goal-opencode` form; that form is now superseded by `/goal-opencode` (top-level, filename-derived) as recorded in this follow-up.
+
+---
+
+<!-- ANCHOR:followup-devin -->
+## Follow-up (operator-directed, 2026-07-29): Devin command + goal-hook decommission
+
+Second operator directive: remove **all** commands from the Devin CLI and remove the Devin goal hook entirely. Recorded here per the operator's Gate-3 choice to reuse 008. This reverses the Devin goal-hook phase (032/003) and the `goal-devin` command added earlier the same day.
+
+**What was removed:**
+- **Devin's entire command surface** (35 mirrored `.devin/skills/<cmd>/SKILL.md`): dropped the `devin-skills` link generation in `sync-runtime-mirrors.cjs`, removed the `.devin/skills` exemption from `command-scope.cjs`, and let the mirror's orphan cleanup delete all 35. Devin keeps its 13 agent mirrors and its natively-discovered `.opencode/skills/` packets (`/sk-doc`, `/sk-git`, …).
+- **The Devin goal hook**: deleted the adapter source `.opencode/hooks/goal/devin/` (goal-inject / goal-session-start / goal-verify + test), unregistered its three entries from `.devin/hooks.v1.json` (SessionStart / UserPromptSubmit / Stop), and let the sync remove the orphaned `.devin/hooks/goal-*.mjs` symlinks. The `goal-devin` command is gone.
+- **Docs**: deleted the cli-devin goal-hook playbook + the goal-only cli-devin `benchmark/` tree and de-registered them; removed Devin from the cross-runtime goal docs (`goal-plugin.md` §8 tables, `injection-contract.md`, `hooks/goal/README.md`, `hooks/README.md`, `goal-manage-cli.md`) while preserving Devin's non-goal hook references; updated `.devin/SYNC.md` to drop the mirrored-command surface.
+
+**Preserved (verified):** Cursor and Pi goal hooks plus `/goal-cursor` / `/goal-pi`; OpenCode `/goal-opencode`; Devin's agent roster (`agent-roster-mirror-check` PASS 13/13) and every non-goal Devin hook (spec-gate, advisor, permission, dispatch, mcp-route, post-edit, task-dispatch).
+
+**Evidence:** all three mirror generators PASS `--check` after regen (130 / 34 / 34 in sync); `.devin/skills` emptied and removed; no live reference to the deleted `.opencode/hooks/goal/devin/` remains; `goal-core.test.cjs` PASS.
+
+**Deferred (flagged for operator):** the cli-devin playbook's "COMMANDS AND SKILLS" scenarios (`DV-014..DV-016`) and its "36 slash-command roster" coverage note still describe the removed mirrored-command surface, and `SYNC.md` §5's strict-YAML anecdote references those historical command mirrors. Reconciling them is a broader cli-devin playbook rewrite beyond the "remove commands + goal hook" directive.
+<!-- /ANCHOR:followup-devin -->
+
+**Rollback:** every change here is git-tracked; `git revert` of the decommission commit restores Devin's commands and goal hook wholesale.

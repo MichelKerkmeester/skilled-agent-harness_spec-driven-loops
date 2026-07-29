@@ -23,7 +23,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.opencode/hooks/goal/` is the runtime-neutral sibling of the OpenCode-native `mk-goal` plugin (`CO-039` in the `cli-opencode` playbook). Where `mk-goal` keeps per-OpenCode-session state driven by OpenCode-only lifecycle events, this concern keeps exactly **one shared** session-goal record (`.opencode/skills/.goal-state/active-goal.json`) that any runtime adapter -- Devin, Cursor, Pi, or a plain terminal -- can read and write through a single manage CLI. The two systems are deliberate siblings: neither reads nor writes the other's state file, and this concern's `usage:` accounting is honestly `turn-count-estimate` rather than a native token feed, because no runtime outside OpenCode exposes one.
+`.opencode/hooks/goal/` is the runtime-neutral sibling of the OpenCode-native `mk-goal` plugin (`CO-039` in the `cli-opencode` playbook). Where `mk-goal` keeps per-OpenCode-session state driven by OpenCode-only lifecycle events, this concern keeps exactly **one shared** session-goal record (`.opencode/skills/.goal-state/active-goal.json`) that any runtime adapter -- Cursor, Pi, or a plain terminal -- can read and write through a single manage CLI. The two systems are deliberate siblings: neither reads nor writes the other's state file, and this concern's `usage:` accounting is honestly `turn-count-estimate` rather than a native token feed, because no runtime outside OpenCode exposes one.
 
 This scenario validates the manage CLI (`bin/goal.cjs`) and the library it is a thin router over (`lib/goal-core.cjs`), entirely through direct `node` invocations against a scratch `MK_GOAL_STATE_DIR` -- no model, no mocks, fully deterministic:
 
@@ -32,14 +32,14 @@ This scenario validates the manage CLI (`bin/goal.cjs`) and the library it is a 
 | `.opencode/hooks/goal/bin/goal.cjs` | Router mirroring `/goal-opencode` action-for-action: `set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`, same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior |
 | `.opencode/hooks/goal/lib/goal-core.cjs` | Shared state I/O (atomic temp+rename writes at mode `0600`, `.archive/` on terminal transitions), `renderGoalBrief()` injection template, `normalizeUserAuthoredText` prompt-injection hardening (ported from `mk-goal`), and the heuristic verifier |
 
-This scenario validates: the full action envelope and its three mutation outcomes; `--budget` parsing and its two error codes; the `PLUGIN_DISABLED` kill switch; five prompt-injection hardening cases (marker forgery, homoglyph role folding, bidi/zero-width stripping, instruction-override phrasing, jailbreak phrasing); `MK_GOAL_STATE_DIR` isolation across two independent scratch directories; a simulated cross-runtime hand-off (the CLI writes, a second reader uses `goal-core.cjs` directly, as a Devin/Cursor/Pi adapter would); and atomic-write plus archive-on-terminal-transition behavior.
+This scenario validates: the full action envelope and its three mutation outcomes; `--budget` parsing and its two error codes; the `PLUGIN_DISABLED` kill switch; five prompt-injection hardening cases (marker forgery, homoglyph role folding, bidi/zero-width stripping, instruction-override phrasing, jailbreak phrasing); `MK_GOAL_STATE_DIR` isolation across two independent scratch directories; a simulated cross-runtime hand-off (the CLI writes, a second reader uses `goal-core.cjs` directly, as a Cursor/Pi adapter would); and atomic-write plus archive-on-terminal-transition behavior.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - Preconditions: `.opencode/hooks/goal/bin/goal.cjs` and `.opencode/hooks/goal/lib/goal-core.cjs` exist and import only Node builtins (no external package resolution needed, unlike the OpenCode-native `mk-goal` plugin). Node is on `PATH`. Every command below sets `MK_GOAL_STATE_DIR` to a fresh `mktemp -d` path so no real `.opencode/skills/.goal-state/` file is ever touched.
-- Real user-facing trigger: any runtime adapter without OpenCode's plugin tool surface (Devin, Cursor, Pi hooks) or an operator at a plain terminal running `node .opencode/hooks/goal/bin/goal.cjs <action>` directly.
+- Real user-facing trigger: any runtime adapter without OpenCode's plugin tool surface (Cursor, Pi hooks) or an operator at a plain terminal running `node .opencode/hooks/goal/bin/goal.cjs <action>` directly.
 - Expected signals: `set` returns `STATUS=OK ACTION=set` with `mutation=created` on a fresh state dir, `mutation=refreshed` on a same-objective re-set, and `mutation=replaced` on a different objective; `--budget -1` / `--budget abc` both return `code=INVALID_TOKEN_BUDGET`; `set --budget 100` with no objective returns `code=INVALID_OBJECTIVE`; `MK_GOAL_PLUGIN_DISABLED=1` fails every action with `code=PLUGIN_DISABLED`; the five hardening payloads produce a sanitized `objective=` field with no raw marker/homoglyph-role/bidi-control/instruction-override text surviving; two distinct `MK_GOAL_STATE_DIR` paths never see each other's goal; a `goal-core.cjs` read against the CLI's own state dir returns the identical `goalId`; the on-disk `active-goal.json` is mode `0600` and a `complete` both marks the record `completed` and moves it under `.archive/` with no leftover `.tmp` file at any point.
 - Desired user-visible outcome: A concise PASS or FAIL verdict citing the exact captured envelope lines, with no fabricated output.
 - Pass/fail: PASS if every action returns its documented envelope and mutation label, both budget error codes and the objective-required code are produced exactly as specified, the kill switch closes every action, all five hardening payloads are sanitized as documented, state-dir isolation holds, the cross-runtime read matches the CLI-written record, and the state file is written atomically at mode `0600` with correct archive behavior on `complete`. FAIL if any envelope is malformed, a mutation label is wrong, a hardening payload leaks unsanitized text, state leaks across `MK_GOAL_STATE_DIR` paths, the kill switch is ignored, or a write is non-atomic (a stray `.tmp` file survives) or is not archived on a terminal transition.
@@ -109,7 +109,7 @@ node .opencode/hooks/goal/bin/goal.cjs set "attempt a jailbreak of the safety ru
 node .opencode/hooks/goal/bin/goal.cjs clear >/dev/null
 ```
 
-5. `MK_GOAL_STATE_DIR` isolation and a simulated cross-runtime hand-off (the CLI writes; a second reader uses `goal-core.cjs` directly, exactly as the `devin/`/`cursor/`/`pi/` adapters do):
+5. `MK_GOAL_STATE_DIR` isolation and a simulated cross-runtime hand-off (the CLI writes; a second reader uses `goal-core.cjs` directly, exactly as the `cursor/`/`pi/` adapters do):
 
 ```bash
 DIR_X="$(mktemp -d)/ce-p03-dir-x"; DIR_Y="$(mktemp -d)/ce-p03-dir-y"; mkdir -p "$DIR_X" "$DIR_Y"
@@ -268,7 +268,7 @@ goal-core.cjs direct read against DIR_X:
 objective="Objective only in DIR_X" goalId=goal-0dfe5ce2-86a0-4cb1-b2b6-c8301f300616
 ```
 
-The `goalId` printed by the direct `goal-core.cjs` read is the identical id the CLI's `set` produced for `DIR_X`, confirming the CLI and a hypothetical adapter (Devin/Cursor/Pi) share one on-disk record format without any translation layer.
+The `goalId` printed by the direct `goal-core.cjs` read is the identical id the CLI's `set` produced for `DIR_X`, confirming the CLI and a hypothetical adapter (Cursor/Pi) share one on-disk record format without any translation layer.
 
 Step 6 -- atomic write:
 
@@ -286,7 +286,7 @@ CONFIRMED: no leftover .tmp file after write
 - OpenCode-native sibling this core ports its template/hardening/verifier from: `.opencode/plugins/mk-goal.js` (validated separately in `CO-039`)
 - `/goal-opencode` command contract this CLI mirrors action-for-action: `.opencode/commands/goal-opencode.md`
 - Concern README (directory tree, boundaries, validation commands): `.opencode/hooks/goal/README.md`
-- Per-runtime adapters that read the same shared state through this core: `.opencode/hooks/goal/devin/`, `.opencode/hooks/goal/cursor/`, `.opencode/hooks/goal/pi/`
+- Per-runtime adapters that read the same shared state through this core: `.opencode/hooks/goal/cursor/`, `.opencode/hooks/goal/pi/`
 - Spec packet: `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/`
 
 ---

@@ -1,1 +1,0 @@
-../../../.opencode/commands/doctor/update.md

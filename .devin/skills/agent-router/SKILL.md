@@ -1,1 +1,0 @@
-../../../.opencode/commands/agent-router.md

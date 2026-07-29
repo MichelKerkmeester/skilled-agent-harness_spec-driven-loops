@@ -1,1 +1,0 @@
-../../../.opencode/commands/speckit/implement.md
