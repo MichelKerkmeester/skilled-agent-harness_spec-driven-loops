@@ -21,9 +21,10 @@
  *                               this file's location)
  *        [--format text|json]   default: text
  *
- * Exit codes:
+ * Exit codes (aligned with ci-skill-root-metadata):
  *   0  every committed leaf-manifest.json regenerates byte-identical
  *   1  one or more manifests are stale or failed to regenerate
+ *   2  the gate could not run (skills dir missing or not a directory)
  *
  * To fix a stale manifest, re-run the generator for that skill:
  *   node .../generate-leaf-manifest.cjs --write <skillDir>
@@ -59,6 +60,9 @@ function findManifestDirs(skillsDir) {
   const stack = [skillsDir];
   while (stack.length) {
     const cur = stack.pop();
+    // Skip-and-continue is intentional per nested subtree: an unreadable
+    // packet dir forgoes that branch rather than aborting the fleet walk. The
+    // top-level skills dir is proven a real directory by run() before this.
     let entries;
     try { entries = fs.readdirSync(cur, { withFileTypes: true }); } catch { continue; }
     for (const entry of entries) {
@@ -97,9 +101,19 @@ function checkOne(skillDir) {
 
 function run(args) {
   const skillsDir = path.resolve(args.skillsDir || path.resolve(__dirname, '..', '..', '..'));
-  if (!fs.existsSync(skillsDir)) {
-    process.stderr.write(`ci-leaf-manifest-freshness: skills dir not found: ${skillsDir}\n`);
-    return 1;
+  // Exit 2 == "cannot run" (bad input), aligned with ci-skill-root-metadata;
+  // exit 1 stays reserved for a real stale/failed manifest. An existing
+  // non-directory used to pass the existsSync check and report a false-green
+  // zero-manifest success, so require a real directory here.
+  let skillsStat;
+  try {
+    skillsStat = fs.statSync(skillsDir);
+  } catch {
+    skillsStat = null;
+  }
+  if (!skillsStat || !skillsStat.isDirectory()) {
+    process.stderr.write(`ci-leaf-manifest-freshness: skills dir not found or not a directory: ${skillsDir}\n`);
+    return 2;
   }
   const dirs = findManifestDirs(skillsDir);
   const results = dirs.map(checkOne);

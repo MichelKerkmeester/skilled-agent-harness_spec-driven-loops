@@ -77,8 +77,17 @@ function readJson(filePath) {
  * that has adopted none of the contract yet.
  */
 function findSkillRoots(skillsDir) {
+  // A missing directory is a legitimate empty result (ENOENT); any other
+  // failure — a regular file passed as the root, a permissions error — must
+  // surface, not silently become zero roots and a false-green pass. run()
+  // separately proves the path is a real directory before calling here.
   let entries;
-  try { entries = fs.readdirSync(skillsDir, { withFileTypes: true }); } catch { return []; }
+  try {
+    entries = fs.readdirSync(skillsDir, { withFileTypes: true });
+  } catch (err) {
+    if (err && err.code === 'ENOENT') return [];
+    throw err;
+  }
   return entries
     .filter((entry) => entry.isDirectory() && entry.name !== 'node_modules' && !entry.name.startsWith('.'))
     .map((entry) => path.join(skillsDir, entry.name))
@@ -120,6 +129,10 @@ function findNestedIdentities(skillDir) {
   const stack = [skillDir];
   while (stack.length) {
     const cur = stack.pop();
+    // Skip-and-continue is intentional for a nested subtree: an unreadable
+    // packet directory should not abort the whole one-identity scan, only
+    // forgo that branch. The top-level root itself is already proven readable
+    // by run()/checkRoot before this walk begins.
     let entries;
     try { entries = fs.readdirSync(cur, { withFileTypes: true }); } catch { continue; }
     for (const entry of entries) {
@@ -288,8 +301,11 @@ function checkCommandMetadata(skillDir) {
   const violations = commandSchema.validateCommandMetadata(entries, {
     skillId: path.basename(skillDir),
     registryModes,
-    resourceExists: (rel) => fs.existsSync(path.join(repoRoot, rel))
-      || fs.existsSync(path.join(skillDir, rel)),
+    // Choreography resources are repo-root-relative per the contract, and every
+    // authored entry resolves that way. The former skillDir fallback made a
+    // hub-relative path silently valid too, contradicting the stated contract
+    // and masking a wrong path — resolve against the repo root only.
+    resourceExists: (rel) => fs.existsSync(path.join(repoRoot, rel)),
     commandExists: (commandId) => fs.existsSync(
       path.join(commandsDir, commandSchema.commandDefinitionRelPath(commandId)),
     ),
@@ -371,8 +387,17 @@ function checkRoot(skillDir, options = {}) {
 
 function run(args) {
   const skillsDir = path.resolve(args.skillsDir || path.resolve(__dirname, '..', '..', '..'));
-  if (!fs.existsSync(skillsDir)) {
-    process.stderr.write(`ci-skill-root-metadata: skills dir not found: ${skillsDir}\n`);
+  // An existing non-directory (a regular file passed as --skills-dir) used to
+  // reach the walker, get caught, and report a false-green zero-root pass.
+  // Prove it is a real directory here so "cannot run" exits 2, never 0.
+  let skillsStat;
+  try {
+    skillsStat = fs.statSync(skillsDir);
+  } catch {
+    skillsStat = null;
+  }
+  if (!skillsStat || !skillsStat.isDirectory()) {
+    process.stderr.write(`ci-skill-root-metadata: skills dir not found or not a directory: ${skillsDir}\n`);
     return 2;
   }
   const roots = findSkillRoots(skillsDir);

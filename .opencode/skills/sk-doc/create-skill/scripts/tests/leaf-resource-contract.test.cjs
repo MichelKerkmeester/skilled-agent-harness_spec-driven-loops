@@ -261,6 +261,32 @@ function testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes() {
   assert.equal(Buffer.compare(committed, fresh), 0, 'sk-doc aliases must retain byte-identical manifest generation');
 }
 
+function testStandaloneConfigRejectsPacketEscapingRoot() {
+  // A standalone config whose packet climbs out of the skill root would make
+  // the generator enumerate — and publish leaf ids for — files that belong to
+  // sibling skills. The escape must be rejected before the walker ever runs.
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-packet-escape-'));
+  try {
+    fs.writeFileSync(path.join(tempDir, 'leaf-manifest.config.json'), `${JSON.stringify({
+      resourceContractVersion: 1,
+      workflowMode: 'solo-mode',
+      packet: '../..',
+      leafRoots: ['references'],
+    }, null, 2)}\n`);
+
+    assert.throws(
+      () => generator.buildManifestBytes(tempDir),
+      (error) => {
+        assert.equal(error.code, 'PACKET_OUT_OF_ROOT');
+        assert.match(error.message, /within the skill root/);
+        return true;
+      },
+    );
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. TESTS: QUALIFIED-ID BRIDGE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -325,6 +351,7 @@ testContainmentRejectsTraversalAndAbsolutePaths();
 testDualReadDoesNotGenericallyStripUnrecognizedPrefixes();
 testCanonicalBytesAreDeterministic();
 testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes();
+testStandaloneConfigRejectsPacketEscapingRoot();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();
 testQualifiedIdToLeafParsesAndResolves();

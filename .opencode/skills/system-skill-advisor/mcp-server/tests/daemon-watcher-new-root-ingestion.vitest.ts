@@ -213,9 +213,17 @@ describe('new-root ingestion: the skills root announces newborn skills', () => {
     vi.useRealTimers();
     const root = workspace('skill-graph-real-chokidar');
     writeSkill(root, 'alpha');
-    const chokidarPath = join(
-      process.cwd(), '..', '..', 'system-spec-kit', 'mcp-server', 'node_modules', 'chokidar', 'index.js',
-    );
+    // Resolve chokidar from wherever it is actually installed rather than a
+    // hardcoded sibling path: the advisor's own node_modules first, then the
+    // spec-kit server's (the shared install), matching the production
+    // loadSkillGraphWatchFactory candidate order.
+    const chokidarCandidates = [
+      join(process.cwd(), 'node_modules', 'chokidar', 'index.js'),
+      join(process.cwd(), '..', '..', 'system-spec-kit', 'mcp-server', 'node_modules', 'chokidar', 'index.js'),
+    ];
+    const { existsSync } = await import('node:fs');
+    const chokidarPath = chokidarCandidates.find((candidate) => existsSync(candidate));
+    if (!chokidarPath) throw new Error(`real chokidar unavailable; checked ${chokidarCandidates.join(', ')}`);
     const { pathToFileURL } = await import('node:url');
     const chokidarModule = await import(pathToFileURL(chokidarPath).href) as {
       default?: { watch: (paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher };

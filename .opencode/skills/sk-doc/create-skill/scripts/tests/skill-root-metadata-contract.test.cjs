@@ -452,6 +452,32 @@ function testCommandSchemaUsesInjectedProbes() {
   assert.equal(commandSchema.commandDefinitionRelPath('/doctor'), 'doctor.md');
 }
 
+function testCommandSchemaRejectsWithinEntryDuplicateSignal() {
+  // A command listing the same signal twice is dead weight, not cross-command
+  // ambiguity — it must be flagged under its own code, not silently accepted.
+  const codes = schemaCodes([validEntry({
+    userIntent: { job: 'I want to run the demo.', ownedSignals: ['run the demo', 'Run The Demo'] },
+  })]);
+  assert.deepEqual(codes, ['DUPLICATE_OWNED_SIGNAL_WITHIN_ENTRY']);
+}
+
+function testGateRejectsNonDirectorySkillsDir() {
+  // A regular file passed as --skills-dir used to be swallowed into a
+  // false-green zero-root pass; it must now exit 2 ("cannot run").
+  const skillsDir = makeTmpSkillsDir();
+  const filePath = path.join(skillsDir, 'not-a-dir');
+  fs.writeFileSync(filePath, 'x');
+  const originalWrite = process.stderr.write.bind(process.stderr);
+  process.stderr.write = () => true;
+  let code;
+  try {
+    code = gate.run({ skillsDir: filePath, format: 'json', fix: false });
+  } finally {
+    process.stderr.write = originalWrite;
+  }
+  assert.equal(code, 2);
+}
+
 try {
   testDiscriminatorDecidesClass();
   testClassificationIgnoresGeneratedOutput();
@@ -477,6 +503,8 @@ try {
   testCommandSchemaAcceptsValidAndEmpty();
   testCommandSchemaRejectsCoreViolations();
   testCommandSchemaUsesInjectedProbes();
+  testCommandSchemaRejectsWithinEntryDuplicateSignal();
+  testGateRejectsNonDirectorySkillsDir();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });
 }

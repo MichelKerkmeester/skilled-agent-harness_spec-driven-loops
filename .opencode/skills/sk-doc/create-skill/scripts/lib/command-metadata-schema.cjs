@@ -140,8 +140,18 @@ function validateCommandMetadata(entries, context) {
         violations.push(violation('BAD_USER_INTENT', id,
           `${skillId}: ${id} userIntent must be { job, ownedSignals[] } with at least one signal`));
       } else {
+        const localSignals = new Set();
         for (const signal of intent.ownedSignals) {
           const key = signal.trim().toLowerCase();
+          if (localSignals.has(key)) {
+            // A command repeating its own signal is dead weight, not routing
+            // ambiguity — flag it under its own code so the fix is "dedup the
+            // list", not "rename a colliding sibling".
+            violations.push(violation('DUPLICATE_OWNED_SIGNAL_WITHIN_ENTRY', id,
+              `${skillId}: ${id} lists signal '${signal}' more than once`));
+            continue;
+          }
+          localSignals.add(key);
           if (seenSignals.has(key) && seenSignals.get(key) !== entry.command) {
             violations.push(violation('DUPLICATE_OWNED_SIGNAL', id,
               `${skillId}: signal '${signal}' claimed by both '${seenSignals.get(key)}' and '${entry.command}' — routing is ambiguous`));

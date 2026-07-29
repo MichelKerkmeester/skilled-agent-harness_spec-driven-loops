@@ -4,7 +4,7 @@
 
 import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, dirname, join, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { indexSkillMetadata } from '../skill-graph/skill-graph-db.js';
 import { isDocTriggerHarvestEnabled, listSkillDocFiles } from '../skill-graph/doc-frontmatter.js';
 import { runDaemonStateMutation } from './state-mutation.js';
@@ -165,7 +165,14 @@ function hashFile(filePath: string): string | null {
 
 function isWithin(parent: string, child: string): boolean {
   const relativePath = relative(parent, child);
-  return relativePath === '' || (!relativePath.startsWith(`..${sep}`) && relativePath !== '..' && !relativePath.startsWith('/'));
+  // relative() returns an ABSOLUTE path when parent and child share no root
+  // (different Windows drives, e.g. C:\ vs D:\). The old hardcoded '/' prefix
+  // test missed a backslash drive path, so a cross-drive child read as
+  // contained. isAbsolute() is platform-correct for both separators.
+  return relativePath === ''
+    || (relativePath !== '..'
+      && !relativePath.startsWith(`..${sep}`)
+      && !isAbsolute(relativePath));
 }
 
 function walkSkillDirectories(skillsRoot: string): string[] {

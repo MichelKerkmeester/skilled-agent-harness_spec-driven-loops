@@ -177,6 +177,14 @@ fi
 # tree can skip with SPECKIT_SKIP_PREPUSH_SKILL_GATE=1.
 if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
   SKILL_GATE="$REPO_ROOT/.opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs"
+  # HEAD@{push} is the remote-tracked upstream tip; the diff scopes the gate to
+  # skill changes actually being pushed. On a brand-new branch with no upstream,
+  # HEAD@{push} does not resolve, `git diff` errors, `2>/dev/null` drops it, and
+  # `!` treats the failed (non-zero) diff as "no detected skill change" — so the
+  # gate is skipped for a first push. That is deliberate: a first push runs the
+  # gate anyway via CI, and the alternative (diffing against an empty tree) would
+  # re-run the gate on every unrelated first push. The always-available guard is
+  # the CI workflow; this hook is the fast local pre-filter.
   if [[ -f "$SKILL_GATE" ]] && ! git -C "$REPO_ROOT" diff --quiet HEAD@{push} HEAD -- .opencode/skills 2>/dev/null; then
     if ! node "$SKILL_GATE" >&2; then
       {
