@@ -11,6 +11,141 @@
   },
   {
     "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/clickup-and-chrome-via-cm/chrome-navigate-screenshot.md",
+    "diskPath": "manual-testing-playbook/clickup-and-chrome-via-cm/chrome-navigate-screenshot.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/clickup-and-chrome-via-cm/clickup-create-read-delete.md",
+    "diskPath": "manual-testing-playbook/clickup-and-chrome-via-cm/clickup-create-read-delete.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/clickup-and-chrome-via-cm/sibling-pair-handover.md",
+    "diskPath": "manual-testing-playbook/clickup-and-chrome-via-cm/sibling-pair-handover.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/core-tools/call-tool-chain-execution.md",
+    "diskPath": "manual-testing-playbook/core-tools/call-tool-chain-execution.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/core-tools/list-tools-enumeration.md",
+    "diskPath": "manual-testing-playbook/core-tools/list-tools-enumeration.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/core-tools/search-tools-relevance.md",
+    "diskPath": "manual-testing-playbook/core-tools/search-tools-relevance.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/core-tools/tool-info-schema.md",
+    "diskPath": "manual-testing-playbook/core-tools/tool-info-schema.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/env-var-prefixing/prefixed-env-load.md",
+    "diskPath": "manual-testing-playbook/env-var-prefixing/prefixed-env-load.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/env-var-prefixing/unprefixed-env-not-found.md",
+    "diskPath": "manual-testing-playbook/env-var-prefixing/unprefixed-env-not-found.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/env-var-prefixing/validate-config-script.md",
+    "diskPath": "manual-testing-playbook/env-var-prefixing/validate-config-script.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/manual-namespace-contract/correct-manual-tool-form.md",
+    "diskPath": "manual-testing-playbook/manual-namespace-contract/correct-manual-tool-form.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/manual-namespace-contract/list-tools-dot-vs-underscore.md",
+    "diskPath": "manual-testing-playbook/manual-namespace-contract/list-tools-dot-vs-underscore.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/manual-namespace-contract/wrong-form-error.md",
+    "diskPath": "manual-testing-playbook/manual-namespace-contract/wrong-form-error.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/multi-tool-workflows/promise-all-parallel.md",
+    "diskPath": "manual-testing-playbook/multi-tool-workflows/promise-all-parallel.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/multi-tool-workflows/sequential-chain.md",
+    "diskPath": "manual-testing-playbook/multi-tool-workflows/sequential-chain.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/multi-tool-workflows/try-catch-error-path.md",
+    "diskPath": "manual-testing-playbook/multi-tool-workflows/try-catch-error-path.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+    "diskPath": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/deregister-reregister-cycle.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/deregister-reregister-cycle.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/disabled-server-omitted.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/disabled-server-omitted.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/invalid-config-error.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/invalid-config-error.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/missing-manual-entry.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/missing-manual-entry.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/partial-chain-rollback.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/partial-chain-rollback.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/recovery-and-config/timeout-escalation.md",
+    "diskPath": "manual-testing-playbook/recovery-and-config/timeout-escalation.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/third-party-via-cm/figma-file-metadata.md",
+    "diskPath": "manual-testing-playbook/third-party-via-cm/figma-file-metadata.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/third-party-via-cm/github-list-user-repos.md",
+    "diskPath": "manual-testing-playbook/third-party-via-cm/github-list-user-repos.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/third-party-via-cm/myservice-list-sites.md",
+    "diskPath": "manual-testing-playbook/third-party-via-cm/myservice-list-sites.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/third-party-via-cm/notion-search-workspace.md",
+    "diskPath": "manual-testing-playbook/third-party-via-cm/notion-search-workspace.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
     "leafResourceId": "references/architecture.md",
     "diskPath": "references/architecture.md"
   },
