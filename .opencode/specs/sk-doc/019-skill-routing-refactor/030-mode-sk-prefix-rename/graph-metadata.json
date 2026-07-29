@@ -13,7 +13,8 @@
     "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
     "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/008-verification-and-closeout",
     "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
-    "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation"
+    "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation",
+    "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -43,9 +44,16 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "010-luna-review-remediation/current-state-verification.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "current-state-verification.md",
+        "kind": "doc",
+        "path": "010-luna-review-remediation/current-state-verification.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -91,15 +99,15 @@
     ],
     "causal_summary": "Rename 20 mode packets and 21 workflowMode keys across the four sk- hubs so a mode's directory name and its routing key are the same string, and every consumer follows.",
     "created_at": "2026-07-28T05:26:24.269Z",
-    "last_save_at": "2026-07-29T13:45:04.705Z",
+    "last_save_at": "2026-07-29T16:39:38.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:652f84ce68d51da7446d8e3743d8f55dd430a1dfcf34a1e5243a579c3f3c50f3",
+    "source_fingerprint": "sha256:59193d43c347552a1a6013de6d429cfa7b39014cd32f8f214e4153e55cc17bd6",
     "source_doc_hashes": {
-      "spec.md": "330ce7aac2d18819033218917664c5752b1968911d5da932195ecb4d2f2fc852"
+      "spec.md": "fd6bfa5002099e4aeb1a4e44b7e38e3a6bb23f7f58e96659b0319226b8c3f117"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation",
     "last_active_at": "2026-07-29T12:29:06.905Z"

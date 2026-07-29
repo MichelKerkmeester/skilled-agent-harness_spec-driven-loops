@@ -116,7 +116,7 @@ describe('sk-code router sync — machine block vs filesystem and prose', () => 
 // re-prefixed with its surface folder) plus a fixed parent-owned tier that no
 // single surface child owns. This makes the children the single source of truth
 // and fails closed if the parent projection or a child slice drifts apart.
-const SURFACES = ['code-webflow', 'code-opencode'];
+const SURFACES = ['sk-code-webflow', 'sk-code-opencode'];
 
 // The universal/shared tier the parent surface map owns directly (belongs to no
 // single surface child): the surface-agnostic quality/error/checklist docs, the
@@ -130,7 +130,7 @@ const PARENT_TIER_ALLOWLIST = new Set([
   'references/universal-verification-checklist.md',
   'references/performance-loading-checklist.md',
   'shared/assets/patterns/README.md',
-  'code-review/assets/code-quality-checklist.md',
+  'sk-code-review/assets/code-quality-checklist.md',
 ]);
 
 const norm = (p: string): string => p.replace(/^\.\//, '');
@@ -204,7 +204,7 @@ describe('sk-code surface children own the parent projection', () => {
 const REPO_ROOT = resolve(REPO_SKILLS, '..', '..');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const LEAF_CONTRACT = require(
-  join(REPO_SKILLS, 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
+  join(REPO_SKILLS, 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
 );
 // The committed compiled route-gold is the SOURCE of the destination identities
 // under test. This is a drift-guard test reading a committed artifact read-only,
@@ -242,8 +242,8 @@ function compiledTargetQualifiedIds(): string[] {
 }
 
 function codeOpencodeResourcePaths(): Set<string> {
-  const md = readFileSync(join(SKCODE, 'code-opencode', 'SKILL.md'), 'utf8');
-  const router = parseRouter(md, join(SKCODE, 'code-opencode'));
+  const md = readFileSync(join(SKCODE, 'sk-code-opencode', 'SKILL.md'), 'utf8');
+  const router = parseRouter(md, join(SKCODE, 'sk-code-opencode'));
   const paths = new Set<string>();
   for (const r of router.defaultResource || []) paths.add(norm(r));
   for (const list of Object.values(router.resourceMap) as string[][]) {
@@ -282,7 +282,7 @@ describe('sk-code qualifiedIdToLeaf bijection — compiled destinations <-> leaf
   });
 
   it('every code-opencode RESOURCE_MAP entry matches a manifest leaf (no doc/manifest drift)', () => {
-    const codeOpencode = modeIndex['code-opencode'];
+    const codeOpencode = modeIndex['sk-code-opencode'];
     expect(codeOpencode, 'leaf-manifest.json declares no code-opencode mode').toBeTruthy();
     const orphans = [...codeOpencodeResourcePaths()].filter((p) => !codeOpencode.leaves.has(p));
     expect(orphans).toEqual([]);
