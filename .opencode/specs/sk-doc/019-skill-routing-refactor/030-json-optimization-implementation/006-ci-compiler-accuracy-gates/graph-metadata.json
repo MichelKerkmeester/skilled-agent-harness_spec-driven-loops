@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/006-ci-compiler-accuracy-gates",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/006-ci-compiler-accuracy-gates",
+  "parent_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "wire compiler gate into ci",
+      "routing accuracy ci gate",
+      "skill graph compiler ci validation",
+      "ci compiler accuracy gate plan",
+      "ci compiler accuracy gate tasks",
+      "ci compiler accuracy gate checklist",
+      "ci compiler accuracy gate outcome"
+    ],
+    "key_topics": [
+      "wire",
+      "compiler",
+      "gate",
+      "routing",
+      "accuracy",
+      "skill",
+      "graph",
+      "validation",
+      "plan",
+      "tasks",
+      "checklist",
+      "outcome"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".github/workflows/routing-registry-drift.yml",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Compiler",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Accuracy Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Dry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add skill_graph_compiler.py --validate-only (full derived schema + key_files/source_docs path existence) and score-routing-corpus.py (pinned corpus hash) to routing-registry-drift.yml so a malformed derived block or a routing-accuracy regression fails CI instead of only surfacing at an offline advisor rebuild.",
+    "created_at": "2026-07-29T08:00:19.030Z",
+    "last_save_at": "2026-07-29T08:12:37.122Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:96d51a34cd4366d895a13cd9e5b341dc51400bb8137d3356a318850d0e6a5b47",
+    "source_doc_hashes": {
+      "spec.md": "2cacf320177fb3398b2255e7e10a09dc545b0019d230eebaade6e6ee5434ad3d",
+      "plan.md": "0c7e8f707d5d7f58681adfa30b37f2e5568b1def07d01e9b0f1c1f83ea85b4fe",
+      "tasks.md": "482ef490f74c2aa7157bc9fcb7e370d90a70f52f1d0cf64bf0ff3cbbe639041e",
+      "checklist.md": "52f5638755a7cd5566d22ee5f270da339204a3691d112353b1bba6ad59d7aac0",
+      "implementation-summary.md": "857485bc9d59046a395a1cf1bab392d8c591eb32c3b9ff945ae5810938c03e2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/003-derived-regenerator-migration",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/003-derived-regenerator-migration",
+  "parent_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "derived regenerator migration",
+      "skill root derived freshness gate",
+      "graph-metadata derived fleet migration",
+      "derived regenerator migration plan",
+      "skill root freshness gate plan",
+      "derived regenerator migration tasks",
+      "derived regenerator migration checklist",
+      "derived regenerator migration outcome"
+    ],
+    "key_topics": [
+      "derived",
+      "regenerator",
+      "migration",
+      "skill",
+      "root",
+      "freshness",
+      "gate",
+      "graph-metadata",
+      "fleet",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Derived Regenerator",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Freshness Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Consume",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Outcome",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blast Radius",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build a skill-root analog to the spec-folder backfill-graph-metadata regenerator: derive key_files/source_docs/entities/trigger_phrases/key_topics from each skill's corpus while preserving authored causal_summary and the TS lifecycle/redirect capabilities per the phase-001 canonical-schema decision; migrate all 11 existing skill roots to that shape; add a derived-freshness CI gate.",
+    "created_at": "2026-07-29T08:00:08.862Z",
+    "last_save_at": "2026-07-29T08:12:36.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:40596730c358624863460cf9b5454041e7cd291d3ac2b6bad1cfb84bd8ce29ab",
+    "source_doc_hashes": {
+      "spec.md": "5538c529ed83a9fbe168b3c0ca36021a8e76f2bb7a0dbfa79abb1928c6a38509",
+      "plan.md": "31b5f059fc2f9dbd6e6553601dbb49017e9dd6af4c1453fc23008457f2849b63",
+      "tasks.md": "458862df4a203f32b3eafafa143d0f95c8515b3c545bcbfa3811fbb3bf942b75",
+      "checklist.md": "744dd436f5ed9467c7b94933f571ef07d4036e571630454ae333efc85bffe108",
+      "implementation-summary.md": "c796b8769560ff20a3b7bea529b1c8c1e8d5caaf043fe44138dc1468a0c38aa8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

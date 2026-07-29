@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/004-scaffold-journey",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/004-scaffold-journey",
+  "parent_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scaffold born complete",
+      "init_skill auto fix class gate",
+      "scaffold to route journey test",
+      "scaffold to route journey plan",
+      "scaffold to route journey tasks",
+      "scaffold to route journey checklist",
+      "scaffold to route journey outcome"
+    ],
+    "key_topics": [
+      "scaffold",
+      "born",
+      "complete",
+      "auto",
+      "class",
+      "gate",
+      "route",
+      "journey",
+      "test",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      ".opencode/skills/sk-doc/create-skill/scripts/tests/create-journey-proof.test.cjs",
+      "tasks.md",
+      "tests/README.md",
+      ".opencode/bin/compiled-route-manifest.cjs",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-journey-proof.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/create-journey-proof.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Journey",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "non-empty",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make init_skill.py auto-run the H/S class gate --fix and write a compiler-valid derived block so a new skill is born complete, generate S-class leaf-manifest.config.json defaults from one shared source, and add one joined test proving scaffold -> generated gate -> advisor ingest -> parent selection -> compiled route (O2 + O9, closing the open 024 journey-proof gap).",
+    "created_at": "2026-07-29T08:00:12.368Z",
+    "last_save_at": "2026-07-29T08:12:36.474Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d65ff7381588f7ac85d6eae67c31dead246fc7ef23a2cc4d9e626ea0c5563a47",
+    "source_doc_hashes": {
+      "spec.md": "cd71b6c64220287300a5316d39cb21f826d4e7bac3f6e7bc54e5ca784c26a6c2",
+      "plan.md": "b23f316df1d1c54adf9002d6800514950af2830838c899ba5e8276eb5d66eaf9",
+      "tasks.md": "70be6b60c62e277e7cc394934f146a10f8288110b09006bc736319cccc323df0",
+      "checklist.md": "ef70ab25c1f6343b58e812b2e5da218c64a52b847abd0387651cb934cc01cd82",
+      "implementation-summary.md": "9c1c35177e218e36411823709c91f4a36e4a70cf1379933b8deaa2f636ed2c26"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

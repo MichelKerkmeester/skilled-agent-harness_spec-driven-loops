@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/002-baseline-capture",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/002-baseline-capture",
+  "parent_id": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing baseline capture",
+      "pin routing accuracy corpus hash",
+      "skill graph compiler validate baseline",
+      "routing baseline capture plan",
+      "routing baseline capture tasks",
+      "routing baseline capture checklist",
+      "routing baseline capture summary"
+    ],
+    "key_topics": [
+      "routing",
+      "baseline",
+      "capture",
+      "pin",
+      "accuracy",
+      "corpus",
+      "hash",
+      "skill",
+      "graph",
+      "compiler",
+      "validate",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Baseline Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Capture Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Capture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pin an exact, hash-verified routing-accuracy baseline (top-1 and top-3, corpus + holdout + ambiguity) and confirm all 11 current skill roots pass skill_graph_compiler.py, before any gate/delete/migration/rewire phase in the JSON optimization implementation program touches production files.",
+    "created_at": "2026-07-29T08:00:03.764Z",
+    "last_save_at": "2026-07-29T08:12:35.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8aac32aacca460a8e85ca28c29187295872d3f7f3b6fdca04a02032ffe5cfee",
+    "source_doc_hashes": {
+      "spec.md": "e88f4bca1aafd45b5be540a59930eb9f79200ffb79ca1e81a70ff693be0d4e88",
+      "plan.md": "c099e275c008545c67e75e787baf906357eb82415d583899d581cf4ef2b8b193",
+      "tasks.md": "d769c73c6bee332fa216fc40010bf181321b2cf5d6332b60684993ca39daffc6",
+      "checklist.md": "64f16be939f956abfaa3aadef869fe07ee113e48b29ded2558ad4c705a04ea9f",
+      "implementation-summary.md": "a1b3fa94ba97eb0989a46212c82cd3d1271204558526fee95532ee53f30ba141"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation",
+  "description": "12-phase, dependency-ordered, safety-gated implementation of the 029 ranked opportunity map (O1-O11) — making every skill and advisor JSON across",
+  "keywords": [
+    "12-phase",
+    "dependency-ordered",
+    "safety-gated",
+    "implementation",
+    "ranked",
+    "opportunity",
+    "map",
+    "o1-o11",
+    "every",
+    "skill",
+    "advisor",
+    "json",
+    "across"
+  ],
+  "lastUpdated": "2026-07-29T08:11:34.435Z",
+  "specId": "030",
+  "folderSlug": "json-optimization-implementation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
