@@ -130,7 +130,7 @@ Multi-lineage parallel dispatch is driven by the shared deep-loop runtime (`fano
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Per-model prompt-craft profiles** → `.opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json`
+- **Per-model prompt-craft profiles** → `.opencode/skills/sk-prompt/sk-prompt-models/assets/model-profiles.json`
 - **Fan-out dispatcher** → `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (executor kind `cli-codex`)
 - **Named config profiles** (`luna-impl`, `sol-verify`, `review`, `debug`, …) → `.codex/config.toml` `[profiles.<name>]`; roster and routing in [agent-delegation.md](./agent-delegation.md)
 

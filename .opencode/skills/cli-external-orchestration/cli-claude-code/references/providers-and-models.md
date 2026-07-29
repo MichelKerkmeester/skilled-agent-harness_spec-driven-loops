@@ -112,7 +112,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Per-model prompt-craft profiles** → [model-profiles.json](../../../sk-prompt/prompt-models/assets/model-profiles.json)
+- **Per-model prompt-craft profiles** → [model-profiles.json](../../../sk-prompt/sk-prompt-models/assets/model-profiles.json)
 - **Fan-out dispatcher + model enforcement** → [fanout-run.cjs](../../../system-deep-loop/runtime/scripts/fanout-run.cjs)
 - **Live model availability** → the calling environment's `--model` support on the target install
 

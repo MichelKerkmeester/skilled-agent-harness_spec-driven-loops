@@ -139,7 +139,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
 
-- **Per-model prompt-craft profiles** → `.opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json`
+- **Per-model prompt-craft profiles** → `.opencode/skills/sk-prompt/sk-prompt-models/assets/model-profiles.json`
 - **Fan-out dispatcher + model enforcement** → `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (executor kind `cli-devin`)
 - **Live model ids** → `devin models` on the target install
 

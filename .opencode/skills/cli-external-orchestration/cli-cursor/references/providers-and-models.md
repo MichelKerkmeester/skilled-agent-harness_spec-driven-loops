@@ -127,7 +127,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs` (executor kind `cl
 
 - **Allowlist enforcement (source of truth)** → `CURSOR_SUPPORTED_MODELS` / `isCursorModelAllowed` in [../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts](../../../system-deep-loop/runtime/lib/deep-loop/executor-config.ts). The 10-id list inline in §2 MIRRORS this array; the code ENFORCES it (a hard-rejecting check runs before any command is constructed). If the two ever diverge, the code wins — update §2 to match.
 - **Fan-out dispatcher** → [../../../system-deep-loop/runtime/scripts/fanout-run.cjs](../../../system-deep-loop/runtime/scripts/fanout-run.cjs) (executor kind `cli-cursor`)
-- **Per-model prompt-craft profiles** → [../../../sk-prompt/prompt-models/assets/model-profiles.json](../../../sk-prompt/prompt-models/assets/model-profiles.json)
+- **Per-model prompt-craft profiles** → [../../../sk-prompt/sk-prompt-models/assets/model-profiles.json](../../../sk-prompt/sk-prompt-models/assets/model-profiles.json)
 - **Live full roster** → `cursor-agent --list-models` on the target install (NOT this skill's scope)
 
 ---
