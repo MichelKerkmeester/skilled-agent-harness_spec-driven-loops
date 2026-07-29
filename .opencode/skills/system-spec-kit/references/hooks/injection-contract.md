@@ -87,6 +87,34 @@ B) Create a new spec folder
 - **Owning modules:** `mk-spec-memory.js`, `mk-goal.js`, `mk-dist-freshness-guard.js` (see their own entries in [`../../../../.opencode/plugins/README.md`](../../../../.opencode/plugins/README.md) §5).
 - **Channel:** `[SYS]` only. All three use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
+### Cross-Runtime Active-Goal Brief (Devin / Cursor / Pi)
+
+**Injects:** the passive session-goal steering block, marker- and field-compatible with mk-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. Verbatim shape:
+
+```text
+[active_goal:<goalId>]
+status: active
+objective: <objective>
+goal_prompt:
+Role: Focused <Devin|Cursor|Pi> execution agent operating under the active session goal.
+Objective: <objective summary>
+Context: ...
+Method:
+- ...
+Success Criteria:
+- ...
+Stop Conditions:
+- ...
+last_check: <verdict> ; reason: <reason>
+usage: tokens n/a/<tokenBudget>; time <seconds>s; iteration <turnsUsed> (source: turn-count-estimate)
+directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
+[/active_goal]
+```
+
+- **Trigger per runtime:** Devin `UserPromptSubmit` (every turn) + `SessionStart` (restore); Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
+- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs` plus the per-runtime adapters under `.opencode/hooks/goal/{devin,cursor,pi}/`, all reading one shared `.opencode/skills/.goal-state/active-goal.json`.
+- **Channel per runtime:** Devin `[SYS]` (`goal-inject.mjs` -> `additionalContext`; the `Stop` verifier can emit `[BLOCK]`-shaped `decision:"block"` to force continuation, but its real payload carries no transcript so it stays dormant in practice). Cursor `[SYS]` (`sessionStart` `agent_message`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
+
 ---
 
 ## 3. TOOL-TIME INJECTIONS

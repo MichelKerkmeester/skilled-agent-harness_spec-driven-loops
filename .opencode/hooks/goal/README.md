@@ -19,7 +19,7 @@ trigger_phrases:
 
 The two systems coexist by design: mk-goal owns OpenCode's per-session goal; `goal/lib/goal-core.cjs` owns one shared cross-runtime goal. Neither reads nor writes the other's state file.
 
-**Status:** this is Phase 001 of the cross-runtime goal-hooks program — the core, state, and manage CLI only. Per-runtime injection adapters (Devin `UserPromptSubmit`/`Stop`, Cursor `sessionStart`, Pi `input`/`session_start`) are **planned but not yet built**; today the CLI in `bin/goal.cjs` is the only way to drive the shared goal, and nothing here injects into a runtime's context automatically yet.
+**Status:** built. Phase 001 delivered the core, state, and manage CLI; phases 003/004/005 added the per-runtime injection adapters, now present under `devin/`, `cursor/`, and `pi/`. Their honest parity tiers (probed live in phase 002): Devin injects on `UserPromptSubmit` + restores on `SessionStart` + verifies on `Stop` (a block can force continuation, though its real payload carries no transcript so the verifier stays dormant); Cursor injects at `sessionStart` only (`beforeSubmitPrompt` never delivers, `stop` never fires); Pi injects on `input` (operator-visible transform) + restores on `session_start` + verifies on `turn_end` (no forced continuation). The `bin/goal.cjs` CLI remains available for any runtime without plugin tools, or a plain terminal.
 
 ---
 
@@ -56,7 +56,7 @@ Falls back to mk-goal's compact shape (`[active_goal:<id>]` / `goal_prompt:` / `
 
 **Deliberate deviation from mk-goal:** the `usage:` line's token count is honestly `n/a` — no runtime outside OpenCode exposes a native per-message token feed to this core, so turn count (`turnsUsed`, incremented by `recordTurn()`) is the accounting primitive instead of tokens. The record's `usageSource` field is always `"turn-count-estimate"`, never silently implying token-level accuracy.
 
-Nothing in this folder injects automatically today (no adapter wiring exists yet — see §1 Status). `renderGoalBrief()`'s output is only what a future adapter, or an operator piping `bin/goal.cjs show`'s `injection_preview` field, would inject.
+The `devin/`, `cursor/`, and `pi/` adapters inject this block per their runtime's lifecycle (see §1 Status for each runtime's trigger and parity tier); the exact rendered text is `renderGoalBrief()`'s output, which an operator can also preview via `bin/goal.cjs show`'s `injection_preview` field.
 
 ---
 

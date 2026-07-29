@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime"
-    last_updated_at: "2026-07-28T20:30:00Z"
+    last_updated_at: "2026-07-29T07:06:08Z"
     last_updated_by: "claude"
-    recent_action: "Authored phase-parent packet with 8 phase children"
-    next_safe_action: "Implement 001-goal-core-and-state per its spec"
+    recent_action: "All 8 phase children complete; packet closed out"
+    next_safe_action: "Commit phase 008 + parent metadata on skilled/v4"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-20260728"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Codex excluded from the goal port by operator choice."
@@ -43,8 +43,9 @@ _memory:
 |-------|-------|
 | **Type** | Phase parent |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
+| **Completed** | 2026-07-29 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per operator choice) |
 | **Authority** | `cli-external-orchestration`, with touches in the unified `.opencode/hooks/` tree and per-runtime configs |
 <!-- /ANCHOR:metadata -->
@@ -78,14 +79,14 @@ Out of scope: Codex goal support (operator-excluded), any change to `mk-goal.js`
 
 | Phase | Folder | Status | Delivers |
 |-------|--------|--------|----------|
-| 001 | `001-goal-core-and-state/` | Planned | Runtime-neutral goal core, shared state file, manage CLI, tests |
-| 002 | `002-capability-probes/` | Planned | Live per-runtime probes; the capability matrix that fixes 003-005's scope |
-| 003 | `003-devin-goal-hooks/` | Planned | Devin adapters (UserPromptSubmit inject, SessionStart restore, Stop verify/continue per 002) |
-| 004 | `004-cursor-goal-hooks/` | Planned | Cursor adapters (sessionStart inject, optional preToolUse refresh, sessionEnd verify) |
-| 005 | `005-pi-goal-hooks/` | Planned | Pi extension (input-transform inject, session_start restore, turn-end verify per 002) |
-| 006 | `006-dispatch-shape-coverage/` | Planned | Shared DISPATCH_SHAPES for devin/cursor/pi + Codex fold-in + severity-mapping resolution + tests |
-| 007 | `007-opencode-plugin-symlinks/` | Planned | opencode/ symlink rows in hooks-tree concern folders + README/tree updates |
-| 008 | `008-goal-docs-hygiene/` | Planned | Rename-fallout fixes, injection-contract entries, goal-cross-runtime docs, concern README |
+| 001 | `001-goal-core-and-state/` | Complete | Runtime-neutral goal core, shared state file, manage CLI, tests |
+| 002 | `002-capability-probes/` | Complete | Live per-runtime probes; the capability matrix that fixes 003-005's scope |
+| 003 | `003-devin-goal-hooks/` | Complete | Devin adapters (UserPromptSubmit inject, SessionStart restore, Stop verify/continue per 002) |
+| 004 | `004-cursor-goal-hooks/` | Complete | Cursor adapters (sessionStart inject, optional preToolUse refresh, sessionEnd verify) |
+| 005 | `005-pi-goal-hooks/` | Complete | Pi extension (input-transform inject, session_start restore, turn-end verify per 002) |
+| 006 | `006-dispatch-shape-coverage/` | Complete | Shared DISPATCH_SHAPES for devin/cursor/pi + Codex fold-in + severity-mapping resolution + tests |
+| 007 | `007-opencode-plugin-symlinks/` | Complete | opencode/ symlink rows in hooks-tree concern folders + README/tree updates |
+| 008 | `008-goal-docs-hygiene/` | Complete | Rename-fallout fixes, injection-contract entries, goal-cross-runtime docs, concern README |
 <!-- /ANCHOR:phase-map -->
 
 ---

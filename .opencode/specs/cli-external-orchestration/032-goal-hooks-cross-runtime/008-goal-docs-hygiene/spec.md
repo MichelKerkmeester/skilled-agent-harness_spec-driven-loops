@@ -11,12 +11,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T07:06:08Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level 1 spec-doc set for phase 008"
-    next_safe_action: "Implement after phases 001-007 land, per phase-dependency order"
-    blockers:
-      - "Depends on phases 001-007 (goal core, probes, per-runtime adapters, dispatch coverage, symlinks) landing first."
+    recent_action: "All 6 REQs done; 10 stale refs fixed, 3 docs updated, test repaired"
+    next_safe_action: "Commit phase 008; final packet --recursive validate"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
       - ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md"
@@ -26,11 +25,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-008-20260728"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Scope: docs-only closeout phase, no new hook code."
       - "This phase runs last, after 001-007 land conceptually."
+      - "The rename-fallout sweep found 4 more stale refs beyond the spec's named 4; all fixed to meet REQ-001's zero-live-hits acceptance."
+      - "goal-plugin.md hosts the cross-runtime relationship section (no separate goal-cross-runtime.md sibling was needed)."
 ---
 # Feature Specification: Goal docs hygiene + cross-runtime contracts
 
@@ -46,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per parent packet's operator choice) |
 | **Parent Spec** | ../spec.md |

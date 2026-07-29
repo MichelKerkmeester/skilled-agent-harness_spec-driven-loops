@@ -121,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -149,19 +143,25 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "touches",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant hard_rules for those CLIs in the dispatch hook, and mirror the OpenCode plugins into the unified hooks tree.",
     "created_at": "2026-07-28T17:29:36.478Z",
-    "last_save_at": "2026-07-28T17:29:36.478Z",
+    "last_save_at": "2026-07-29T07:11:26.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6fe58601581d9b10101456b438f4619c65a86dd5980373e2a570168cf45ece1f",
+    "source_fingerprint": "sha256:2ed8edcb10ba041b04134a7b9d575ed94908172d9dbcc5a8dbfcaa42ca6cd0a8",
     "source_doc_hashes": {
-      "spec.md": "ef5022739e4eda4c481c2fe95348c82188c5e09a612cfeefee09dd36c429969e"
+      "spec.md": "f76d6ef20c9107db5b85c9abf0698b199ecd5b6af001d30761315f925fbc2503"
     },
     "last_active_child_id": null,
     "last_active_at": null

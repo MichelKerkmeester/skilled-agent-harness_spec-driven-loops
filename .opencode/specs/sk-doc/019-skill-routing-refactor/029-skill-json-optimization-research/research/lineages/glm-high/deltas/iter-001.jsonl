@@ -1,0 +1,1 @@
+{"type":"delta","iteration":1,"focus":"inventory","findings":["F1.1 fleet composition","F1.2 presence matrix","F1.3 pipeline scripts","F1.4 graph-metadata shape","F1.5 advisor ingestion consumer map","F1.6 automation coverage"],"newInfoRatio":1.0}

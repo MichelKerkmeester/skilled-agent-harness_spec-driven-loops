@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "description": "Three-model, 15-iteration deep-research investigation (SOL-high / GLM-5.2-high / Grok-4.5-high, 5 iters each, all lineages concurrent, no early",
+  "keywords": [
+    "three-model",
+    "15-iteration",
+    "deep-research",
+    "investigation",
+    "sol-high",
+    "glm-5",
+    "2-high",
+    "grok-4",
+    "5-high",
+    "iters",
+    "lineages",
+    "concurrent",
+    "early"
+  ],
+  "lastUpdated": "2026-07-29T07:11:52.020Z",
+  "specId": "029",
+  "folderSlug": "skill-json-optimization-research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

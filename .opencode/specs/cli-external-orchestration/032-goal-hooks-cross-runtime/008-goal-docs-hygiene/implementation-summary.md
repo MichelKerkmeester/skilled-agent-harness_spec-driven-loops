@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Goal docs hygiene + cross-runtime contracts"
-description: "Planned closeout phase for packet 032, not yet built. Records the intended rename-fallout fixes and documentation updates ahead of implementation, which is gated on phases 001-007 landing first."
+description: "Completion record for packet 032's docs closeout: fixed 10 stale rename-fallout references, repaired the goal command-path test, and documented the cross-runtime goal hooks across injection-contract.md, goal-plugin.md, the runtime-routing constitutional rule, and the goal concern README."
 trigger_phrases:
   - "goal docs hygiene summary"
 importance_tier: "normal"
@@ -8,12 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T07:06:08Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level 1 doc set for phase 008; nothing implemented yet"
-    next_safe_action: "Implement after phases 001-007 land, per phase-dependency order"
-    blockers:
-      - "Depends on phases 001-007 landing first."
+    recent_action: "Phase 008 complete: refs fixed, docs updated, test repaired"
+    next_safe_action: "Commit phase 008; final packet --recursive validate"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
       - ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md"
@@ -22,10 +21,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-008-20260728"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Scope: docs-only closeout phase, no new hook code."
+      - "goal-plugin.md hosts the cross-runtime section; no separate sibling doc was created."
 ---
 # Implementation Summary
 
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-goal-docs-hygiene |
-| **Completed** | Not yet built |
+| **Completed** | 2026-07-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,13 +49,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Not yet built. This phase is authored as a Level 1 spec-doc set only, describing what its implementation will do once phases 001-007 land: fix the four known stale rename-fallout references, repair `mk-goal-tool-path.test.cjs`'s broken path, add the new goal hooks to `injection-contract.md`, update `goal-plugin.md` (or a new sibling) with the shared-file state model and capability matrix, update the constitutional runtime-routing rule, and author a behavioral concern README for `.opencode/hooks/goal/`.
+The docs closeout for the cross-runtime goal-hooks packet: the goal command moved into a `commands/goal/` subfolder (invoked `/goal:goal-opencode`), leaving stale references behind, and phases 003/004/005's Devin/Cursor/Pi adapters were undocumented in the hook-injection references. Both are now resolved.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Not yet delivered | Implementation blocked on phases 001-007 landing first |
+| `references/hooks/goal-plugin.md` | Modify | Fixed flat command path (3×) + dead RELATED packet path; added a "Cross-Runtime Relationship" section (shared-file model + capability tiers). |
+| `references/hooks/injection-contract.md` | Modify | Added the cross-runtime active-goal entry: verbatim `[active_goal]` block + per-runtime channel/visibility (Devin/Cursor `[SYS]`, Pi `[MSG]`). |
+| `constitutional/goal-prompting-runtime-specific.md` | Modify | Fixed the `*goal*.md` glob to the subfolder; added the fifth-move history note + a Devin/Cursor/Pi routing section; added `/goal:goal-opencode` trigger. |
+| `feature-catalog/ux-hooks/goal-opencode-plugin.md` | Modify | Fixed stale `goal_opencode.md` paths (2×). |
+| `README.md` | Modify | `README.md:1063` `/goal_opencode` -> `/goal:goal-opencode`. |
+| `plugins/tests/mk-goal-tool-path.test.cjs` | Modify | Test 8 regex -> subfolder path; test 9 -> archived `026-goal-opencode-plugin` graph. |
+| `.opencode/hooks/goal/README.md` | Modify | Corrected the stale "no adapter wiring yet" Status/§2 to the built state (devin/cursor/pi adapters present, per-runtime tiers). |
+| `SKILL.md`, `feature-catalog/feature-catalog.md`, `references/config/hook-system.md`, `manual-testing-playbook/ux-hooks/goal-opencode-plugin.md` | Modify | **Scope expansion:** the REQ-001 verification grep found 4 more files carrying the same stale flat/underscore command path; all fixed to meet the zero-live-hits acceptance. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +70,7 @@ Not yet built. This phase is authored as a Level 1 spec-doc set only, describing
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. Per the parent packet's phase order, this phase must run last: it documents and closes out what phases 001-007 build (goal core, capability probes, per-runtime adapters, dispatch-shape coverage, plugin symlinks), so nothing here can be written accurately before those artifacts exist. This spec/plan/tasks set was authored ahead of implementation to reserve the phase's scope and requirements per the operator-approved plan.
+Ran last in the packet, after phases 001-007 landed, so the docs describe real artifacts. The stale references were located by targeted `grep` (the repo's rg output mangles these specific strings, so `grep -F`-style checks were used). The `commands/{memory,deep,speckit}/*.md -> /namespace:command` convention fixed the correct invocation form as `/goal:goal-opencode`. The verbatim `[active_goal]` block came from the goal concern README's already-authored "WHAT IT DOES AND INJECTS" section.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,9 +80,10 @@ Not yet delivered. Per the parent packet's phase order, this phase must run last
 
 | Decision | Rationale |
 |----------|-----------|
-| Sequence this phase strictly last | It documents/finalizes what phases 001-007 build; writing it earlier would risk describing unbuilt or speculative artifacts |
-| Level 1, not Level 2 | Docs-only closeout with a small, well-bounded file list (~8 files), no code or architecture change |
-| Keep `goal-plugin.md` vs. new `goal-cross-runtime.md` as an open question | Decision depends on how much new content the phase 002 capability matrix and phase 001 manage-CLI contract actually add; deferred to implementation time |
+| Host the cross-runtime content in `goal-plugin.md`, not a new `goal-cross-runtime.md` | The added content (shared-file model + a compact capability table + pointers) fit one section; a separate doc would fragment discovery. The open question is resolved. |
+| Fix the 4 additional stale references beyond the spec's named 4 | REQ-001's acceptance is "zero live hits"; leaving known-stale live refs to honor a literal 4-file scope would make that claim false. Recorded as a documented scope expansion. |
+| Leave the pre-existing "missing overview section" doc-validator warning | It reproduces identically at HEAD on `goal-plugin.md` and the constitutional file (they use "PURPOSE"/"Rule" headings); not introduced here, and renaming those headings is out of scope. |
+| Leave `mk-goal-tool-path.test.cjs` tests 1-6 env-gated | They fail only on the absent `@opencode-ai/plugin` dependency in the main tree, not on any rename fallout; the documented baseline confirms they pass where deps are installed. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -85,9 +93,9 @@ Not yet delivered. Per the parent packet's phase order, this phase must run last
 
 | Test Type | Status | Notes |
 |-----------|--------|-------|
-| Manual | Not yet run | Repo-wide grep sweep for stale references pending implementation |
-| Unit | Not yet run | `mk-goal-tool-path.test.cjs` fix pending implementation |
-| Documentation | Not yet run | `validate_document.py` on touched/new docs pending implementation |
+| Manual (grep sweep) | PASS | Zero live `goal_opencode` / flat `commands/goal-opencode.md` hits outside the intentional constitutional history and `z_archive`. |
+| Unit (`mk-goal-tool-path.test.cjs`) | PASS (rename scope) | The 3 file-read tests (7/8/9) pass after the fixes; tests 1-6 env-gated on the absent `@opencode-ai/plugin` dep (unchanged). |
+| Documentation (`validate_document.py`) | PASS (edits) | `injection-contract.md`, `goal/README.md`, both `ux-hooks` docs = 0 issues; `goal-plugin.md` + constitutional carry a pre-existing "missing overview" warning (identical at HEAD). |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +103,7 @@ Not yet delivered. Per the parent packet's phase order, this phase must run last
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** This packet reserves the phase's scope and requirements; no rename-fallout fix, test repair, or documentation update has been applied yet.
-2. **Hard-gated on phases 001-007.** Any attempt to write the injection-contract entries or the capability-matrix section before those phases land would describe artifacts that do not exist yet.
-3. **Sibling-doc decision deferred.** Whether `goal-plugin.md` is updated in place or a new `goal-cross-runtime.md` is authored is left open until the real content volume from phases 001-002 is known.
+1. **`mk-goal-tool-path.test.cjs` tests 1-6 remain env-gated** on the `@opencode-ai/plugin` dependency, absent from the main tree's `.opencode/node_modules`. They are unrelated to the rename and pass in the documented environment; running them here would require installing the `.opencode` deps.
+2. **Two docs keep a pre-existing "missing overview section" validator warning** (`goal-plugin.md`, the constitutional rule) — present at HEAD, not introduced here; harmonizing their heading convention is a separate cleanup.
+3. **The invocation form `/goal:goal-opencode` follows the repo's `folder:command` convention** and the recent memory index; per the constitutional rule's own guidance, the live command filename should still be re-verified before invoking, as it has moved on operator decision before.
 <!-- /ANCHOR:limitations -->

@@ -32,7 +32,7 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 - `event` to restore goals, record message activity, track prompt blockers, verify on idle, and gate continuation.
 - `mk_goal` and `mk_goal_status` plugin tools for command routing and diagnostics.
 
-`.opencode/commands/goal_opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.goal-state` directly.
+`.opencode/commands/goal/goal-opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.goal-state` directly.
 
 Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `MK_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `MK_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `MK_GOAL_AUTONOMY=active` or smoke-tested with `MK_GOAL_AUTONOMY=smoke`. `MK_GOAL_MAX_AUTO_TURNS` and `MK_GOAL_MAX_WALL_MS` tune the guarded continuation caps; status output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
 
@@ -47,7 +47,7 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/plugins/mk-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
-| `.opencode/commands/goal_opencode.md` | Slash command | Thin `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| `.opencode/commands/goal/goal-opencode.md` | Slash command | Thin `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | `.opencode/skills/.goal-state/` | Runtime state | Per-session JSON goal records and bounded debug logs. |
 | `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
 

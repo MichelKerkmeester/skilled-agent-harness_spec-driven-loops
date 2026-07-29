@@ -8,12 +8,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T07:06:08Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level 1 tasks for phase 008"
-    next_safe_action: "Implement after phases 001-007 land, per phase-dependency order"
-    blockers:
-      - "Depends on phases 001-007 landing first."
+    recent_action: "All tasks complete; docs updated, refs fixed, test repaired"
+    next_safe_action: "Commit phase 008; final packet --recursive validate"
+    blockers: []
     key_files:
       - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
@@ -50,8 +49,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm phases 001-007 have landed; re-read their real artifact paths (goal core, manage CLI, capability matrix, per-runtime adapters).
-- [ ] T002 Grep-confirm the current line numbers/state of the 4 stale rename-fallout references, since they may have shifted since this spec was authored.
+- [x] T001 Confirmed phases 001-007 landed; re-read the real artifact paths (goal core, `bin/goal.cjs`, capability matrix, devin/cursor/pi adapters).
+- [x] T002 Grep-confirmed the stale references — found the 4 named plus 4 more (`SKILL.md`, `feature-catalog.md`, `hook-system.md`, manual-testing playbook) carrying the same form.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,15 +58,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P] Fix the stale `goal_opencode`/flat-path reference in `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md`.
-- [ ] T004 [P] Fix the stale `goal_opencode.md` references in `.opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md`.
-- [ ] T005 [P] Fix the stale `/goal_opencode` reference at `README.md:1063`.
-- [ ] T006 [P] Fix the `*goal*.md` glob instruction in `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` to account for the `commands/goal/` subfolder.
-- [ ] T007 Repoint `.opencode/plugins/tests/mk-goal-tool-path.test.cjs:123` (and its related assertions) to the real current command path.
-- [ ] T008 Add the devin/cursor/pi goal-hook entries to `.opencode/skills/system-spec-kit/references/hooks/injection-contract.md` (verbatim `[active_goal]` block text + per-runtime visibility classification).
-- [ ] T009 Update `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md`, or author `goal-cross-runtime.md`, with the shared-file state model and the phase 002 capability matrix.
-- [ ] T010 Add the new per-runtime routing rows to `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` (devin/cursor/pi -> manage CLI + hook adapter).
-- [ ] T011 Author `.opencode/hooks/goal/README.md` in the behavioral concern-README style (WHAT IT DOES AND INJECTS, verbatim text, visibility classes per runtime).
+- [x] T003 [P] Fixed the stale flat-path reference in `goal-plugin.md` (3 occurrences + the dead RELATED packet path).
+- [x] T004 [P] Fixed the stale `goal_opencode.md` references in `feature-catalog/ux-hooks/goal-opencode-plugin.md`.
+- [x] T005 [P] Fixed `README.md:1063` `/goal_opencode` -> `/goal:goal-opencode`.
+- [x] T006 [P] Fixed the `*goal*.md` glob in `goal-prompting-runtime-specific.md` to the `commands/goal/` subfolder + added the fifth-move history note.
+- [x] T007 Repointed `mk-goal-tool-path.test.cjs` — test 8 regex to the subfolder path, test 9 to the archived `026-goal-opencode-plugin` graph. (Tests 1-6 stay env-gated on the absent `@opencode-ai/plugin` dep; unchanged.)
+- [x] T008 Added the cross-runtime goal-hook entry to `injection-contract.md` (verbatim `[active_goal]` block + per-runtime channel/visibility: Devin/Cursor `[SYS]`, Pi `[MSG]`).
+- [x] T009 Added the "Cross-Runtime Relationship" section to `goal-plugin.md` (shared-file model + capability tiers). No separate sibling doc was needed.
+- [x] T010 Added the Devin/Cursor/Pi routing section to `goal-prompting-runtime-specific.md` (manage CLI + hook adapters + parity tiers).
+- [x] T011 Updated `.opencode/hooks/goal/README.md` (authored earlier) — corrected the stale "no adapter wiring yet" Status/§2 to the built state.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,10 +74,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Run `node --test` on `mk-goal-tool-path.test.cjs`, confirm pass.
-- [ ] T013 Repo-wide grep for `goal_opencode` and the retired flat `commands/goal-opencode.md` form, confirm zero live hits outside git history.
-- [ ] T014 Run `validate_document.py` on every touched/new documentation file, confirm 0 issues.
-- [ ] T015 Update this packet's own `implementation-summary.md` with the real verification evidence.
+- [x] T012 `node --test mk-goal-tool-path.test.cjs`: the 3 file-read tests (7/8/9) now pass; tests 1-6 fail only on the absent `@opencode-ai/plugin` dep (env-gated, unchanged, documented baseline confirms they pass with deps).
+- [x] T013 Repo-wide grep: zero live `goal_opencode` / flat `commands/goal-opencode.md` hits outside the intentional constitutional history narrative and `z_archive`.
+- [x] T014 `validate_document.py` on the substantively-edited docs: `injection-contract.md`, `goal/README.md`, both `ux-hooks` docs = 0 issues; `goal-plugin.md` and the constitutional file carry a PRE-EXISTING "missing overview section" warning (identical at HEAD; not introduced here).
+- [x] T015 Updated `implementation-summary.md` with the real verification evidence.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -86,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (test run, grep sweep, doc validation)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (test run, grep sweep, doc validation)
 <!-- /ANCHOR:completion -->
 
 ---

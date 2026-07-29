@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill json optimization research",
+      "advisor json automation research",
+      "are the skill metadata jsons optimized",
+      "skill json optimization research plan",
+      "skill json optimization research tasks",
+      "skill json optimization research checklist",
+      "skill json optimization research outcome"
+    ],
+    "key_topics": [
+      "skill",
+      "json",
+      "optimization",
+      "research",
+      "advisor",
+      "automation",
+      "metadata",
+      "jsons",
+      "optimized",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/package.json",
+      "research/lineages/sol-high/research.md",
+      "research/lineages/glm-high/research.md",
+      "research/lineages/grok-high/research.md",
+      "research/orchestration-summary.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optimization Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-lineage",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fresh",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Three",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three-model, 15-iteration deep-research investigation (SOL-high / GLM-5.2-high / Grok-4.5-high, 5 iters each, all lineages concurrent, no early convergence) into whether every skill- and skill-advisor-related JSON across .opencode/skills is optimized, automated, effective, tested, and integrated — and where the highest-leverage gaps are.",
+    "created_at": "2026-07-29T06:03:55.087Z",
+    "last_save_at": "2026-07-29T07:12:08.591Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e5de2bebf3f45758e3f89825edf569002db552a0574268a9c851eb1378445aee",
+    "source_doc_hashes": {
+      "spec.md": "7566d4703852aa2bcaa719144096ffb1a1eeeb64cad8b7d3f7b91e0d384e1865",
+      "plan.md": "4e371502718eafa496f4322c7599d12a540d348c6165a7512f76253706050199",
+      "tasks.md": "ec045657c3c2fc195bae2a82100caac2eafe993cd55e8118596bc7b0d1c2af30",
+      "checklist.md": "8ddc238c544910461248bc413ec7fe3c239818c23286abdd87dd34caeb050b55",
+      "implementation-summary.md": "7f83a06874ec89d1e29b42a4324c43d941f4a252116bdf390aeb1bb2c16e877e",
+      "research/research.md": "d7d0a0b5cf24a1696893bdc877a4a3737f3bb4dee1ba963b57b2a64873937924"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

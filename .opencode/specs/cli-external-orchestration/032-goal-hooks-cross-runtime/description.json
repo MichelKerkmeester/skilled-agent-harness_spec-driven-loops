@@ -1,26 +1,30 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime",
-  "description": "Phase-parent: cross-runtime goal hooks (devin/cursor/pi), dispatch-shape coverage, OpenCode plugin symlinks",
+  "description": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant",
   "keywords": [
-    "phase-parent",
-    "cross-runtime",
-    "goal",
-    "hooks",
-    "devin",
-    "cursor",
-    "dispatch-shape",
-    "coverage",
+    "port",
     "opencode",
-    "plugin",
-    "symlinks"
+    "passive",
+    "session-goal",
+    "system",
+    "cli-devin",
+    "cli-cursor",
+    "cli-pi",
+    "via",
+    "runtime-neutral",
+    "goal",
+    "hook",
+    "concern",
+    "activate",
+    "dormant"
   ],
-  "lastUpdated": "2026-07-28T17:29:32.448Z",
+  "lastUpdated": "2026-07-29T07:11:07.706Z",
   "specId": "032",
   "folderSlug": "goal-hooks-cross-runtime",
   "parentChain": [
     "cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

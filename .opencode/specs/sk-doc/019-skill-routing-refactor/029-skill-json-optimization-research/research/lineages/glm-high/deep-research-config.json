@@ -1,0 +1,19 @@
+{
+  "topic": "Investigate whether every skill and skill-advisor related JSON across .opencode/skills is as optimized, automated, effective, tested, and integrated as it can be, and identify the highest-leverage gaps. In-scope: per-skill root metadata (graph-metadata.json, description.json, mode-registry.json, hub-router.json, leaf-manifest.json [generated], leaf-manifest.config.json, leaf-aliases.json, command-metadata.json); advisor-side data (skill-graph DB and index inputs, intent-signal data, compiled-route-manifest, watcher-ingested identity); generation/validation pipeline (init_skill.py, generate-leaf-manifest.cjs, generate-description.js, backfill-graph-metadata.js, ci-skill-root-metadata.cjs, ci-leaf-manifest-freshness.cjs, compiled-route-manifest.cjs). Five dimensions: inventory/current-state, optimization, automation gaps, effectiveness, testing/integration. Non-goals: no implementation, no advisor scoring redesign, no H/S contract change. Deliverable: ranked opportunity map.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": { "minIterations": 3, "convergenceMode": "default", "stopPolicy": "max-iterations" },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 300,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 60,
+  "progressiveSynthesis": true,
+  "specFolder": "sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "createdAt": "2026-07-29T08:10:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-devin", "model": "glm-5-2", "reasoningEffort": "high", "timeoutSeconds": 900 },
+  "lineage": { "sessionId": "fanout-glm-high-1785305275596-oro54j", "parentSessionId": null, "lineageMode": "new", "label": "glm-high", "generation": 1, "continuedFromRun": null },
+  "stopPolicy": "max-iterations",
+  "fileProtection": { "deep-research-config.json": "immutable", "deep-research-state.jsonl": "append-only", "deep-research-strategy.md": "mutable", "deep-research-dashboard.md": "auto-generated", "findings-registry.json": "auto-generated", "iteration-*.md": "write-once", "research.md": "mutable" }
+}

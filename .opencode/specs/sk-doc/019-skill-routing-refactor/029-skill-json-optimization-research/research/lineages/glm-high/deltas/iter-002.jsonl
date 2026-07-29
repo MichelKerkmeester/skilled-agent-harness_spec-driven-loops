@@ -1,0 +1,1 @@
+{"type":"delta","iteration":2,"focus":"optimization","findings":["F2.1 dead: supported_surfaces/peer_resource_categories","F2.2 validated-only: causal_summary","F2.3 authored-unused: manual.*","F2.4 HIGH no skill-root derived regenerator","F2.5 domains∩intent_signals double-counting","F2.6 hub-router consumed","F2.7 dual signal source uneven"],"newInfoRatio":0.85}

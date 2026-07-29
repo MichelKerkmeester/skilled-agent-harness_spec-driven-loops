@@ -1,0 +1,118 @@
+{
+  "run_id": "1785305275596-oro54j",
+  "loop_type": "research",
+  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research/research",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm-high",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research/research/lineages/glm-high/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-29T06:07:55.669Z",
+        "end_at_iso": "2026-07-29T06:24:08.527Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 8,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T08:10:00Z",
+          "deltaMs": 6231473
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T08:25:00Z",
+          "deltaMs": 7131473
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T08:45:00Z",
+          "deltaMs": 8331473
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T09:00:00Z",
+          "deltaMs": 9231473
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T09:15:00Z",
+          "deltaMs": 10131473
+        }
+      ]
+    },
+    {
+      "label": "grok-high",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/019-skill-routing-refactor/029-skill-json-optimization-research/research/lineages/grok-high/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-29T06:07:55.737Z",
+        "end_at_iso": "2026-07-29T06:17:03.906Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:24:00.000Z",
+          "deltaMs": 296094
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:28:00.000Z",
+          "deltaMs": 536094
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:32:00.000Z",
+          "deltaMs": 776094
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:32:30.000Z",
+          "deltaMs": 806094
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-07-29T06:33:00.000Z",
+          "deltaMs": 836094
+        }
+      ]
+    }
+  ]
+}

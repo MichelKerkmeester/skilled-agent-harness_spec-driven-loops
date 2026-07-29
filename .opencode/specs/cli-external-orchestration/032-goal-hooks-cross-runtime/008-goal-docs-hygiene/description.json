@@ -1,17 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene",
-  "description": "Rename-fallout fixes, injection-contract entries, goal-cross-runtime docs, and the goal/ concern README",
+  "description": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still",
   "keywords": [
-    "rename-fallout",
-    "injection-contract",
-    "entries",
-    "goal-cross-runtime",
-    "docs",
     "goal",
-    "concern",
-    "readme"
+    "goal-opencode",
+    "command",
+    "file",
+    "moved",
+    "commands",
+    "subfolder",
+    "earlier",
+    "rename",
+    "four",
+    "references",
+    "across",
+    "repo",
+    "still"
   ],
-  "lastUpdated": "2026-07-28T17:26:45.084Z",
+  "lastUpdated": "2026-07-29T07:08:52.987Z",
   "specId": "008",
   "folderSlug": "goal-docs-hygiene",
   "parentChain": [
@@ -19,6 +26,5 @@
     "032-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

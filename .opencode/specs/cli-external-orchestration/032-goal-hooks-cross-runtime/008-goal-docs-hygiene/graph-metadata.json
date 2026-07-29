@@ -35,16 +35,22 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md",
       ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md",
       ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
       ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      "references/hooks/goal-plugin.md",
+      "references/hooks/injection-contract.md",
+      "constitutional/goal-prompting-runtime-specific.md",
+      "feature-catalog/ux-hooks/goal-opencode-plugin.md",
+      ".opencode/hooks/goal/README.md",
+      "feature-catalog/feature-catalog.md",
+      "references/config/hook-system.md",
+      "manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
       ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
       ".opencode/hooks/goal/bin/goal.cjs",
-      ".opencode/hooks/goal/README.md",
-      "feature-catalog/ux-hooks/goal-opencode-plugin.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -78,19 +84,31 @@
       {
         "name": "goal-opencode-plugin.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal.cjs",
-        "kind": "file",
-        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "path": "feature-catalog/ux-hooks/goal-opencode-plugin.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-system.md",
+        "kind": "doc",
+        "path": "references/config/hook-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
         "source": "derived"
       },
       {
@@ -124,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -149,6 +161,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,23 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still point at the retired flat path or form, and one test resolves a path that no longer exists so it fails",
     "created_at": "2026-07-28T17:26:48.730Z",
-    "last_save_at": "2026-07-28T17:33:56.416Z",
+    "last_save_at": "2026-07-29T07:08:53.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +213,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d15e309f5b3ad89e4ce78ac608d4088c7441670faf4aff960c8f117428c709c",
+    "source_fingerprint": "sha256:d091c2df27b09e1a33555447aa8a5ece445a6877e4007a28ac9b32219175ff9d",
     "source_doc_hashes": {
-      "spec.md": "2be00a6a75046404d7aec052ea9e21f05242c09f23a183b6ed559cba46fe420a",
-      "plan.md": "41438e650c8a63147c48e95e777d290ad424d78fdb9e957655af2920259787e8",
-      "tasks.md": "617e2505621a1174506400e747a8a0ee012a3a3fb061b8906bbe6223401421e5",
-      "implementation-summary.md": "8b05f04f9dedd791370fa21561d810662570b4acda587751218ab58fab4bb0bb"
+      "spec.md": "f02b895923502cb82488950c1470c5cc1fa18d693c39367ecdffdf9ede6f154d",
+      "plan.md": "060afd183d0fe846728210d595e8314bf76c8e0f750625180772f67cbfd2b311",
+      "tasks.md": "768dd59050b6b470dffe5e7574eb873fe89c488339563732f6cc1f614d40befe",
+      "implementation-summary.md": "dc6a9f2a57d4fdae8a00dd55b8067e58fe89877a8c5d1327e0d8ed209eaafcaf"
     },
     "last_active_child_id": null,
     "last_active_at": null
