@@ -11,12 +11,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T06:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored phase spec for Devin goal hook adapters"
-    next_safe_action: "Implement after phase 002 fixes the Stop-hook parity tier"
-    blockers:
-      - "Phase 002 capability-probe matrix must land before adapter code starts."
+    recent_action: "Shipped and live-verified all three Devin goal-hook adapters"
+    next_safe_action: "Hand parity findings to phases 004/005 (Cursor, Pi)"
+    blockers: []
     key_files:
       - ".opencode/hooks/goal/devin/"
       - ".devin/hooks.v1.json"
@@ -25,10 +24,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-003-devin-20260728"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether Devin's Stop hook can block/continue per the phase 002 probe (undetermined)."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Devin's Stop hook decision:block forces genuine continuation (reconfirmed transitively: this phase's script emits the identical envelope phase 002 proved live)."
+      - "Devin's real Stop payload carries neither last_assistant_message nor transcript_path (direct live capture), so the verify step's evidence source is empty in practice today -- a known upstream gap, not an adapter defect."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Devin goal hooks (UserPromptSubmit inject, SessionStart restore, Stop verify/continue)
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per operator choice) |
 | **Authority** | `cli-external-orchestration` (Devin adapter surface); depends on `.opencode/hooks/goal/lib/goal-core.cjs` from phase 001 |

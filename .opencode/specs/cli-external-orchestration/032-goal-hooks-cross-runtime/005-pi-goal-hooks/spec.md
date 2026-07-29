@@ -11,26 +11,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/005-pi-goal-hooks"
-    last_updated_at: "2026-07-28T20:45:00Z"
+    last_updated_at: "2026-07-29T04:40:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored phase spec for the Pi goal extension"
-    next_safe_action: "Await phase 002 capability matrix before adapter implementation"
-    blockers:
-      - "Depends on phase 002 confirming Pi's turn-end/agent-loop event."
+    recent_action: "Shipped and live-verified the Pi goal extension"
+    next_safe_action: "None — phase complete"
+    blockers: []
     key_files:
       - ".opencode/hooks/goal/pi/goal-context.ts"
       - ".pi/extensions/goal-context.ts"
+      - ".opencode/hooks/goal/pi/goal-pi.test.mjs"
       - ".opencode/hooks/goal/lib/goal-core.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "goal-hooks-cross-runtime-005-pi-20260728"
+      session_id: "goal-hooks-cross-runtime-005-pi-20260729"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether Pi's types.d.ts exposes a usable turn-end/agent-loop event (resolved by phase 002)."
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Real file lives in .opencode/hooks/goal/pi/, symlinked from .pi/extensions/ — reverse of the general Pi pattern used elsewhere in this repo."
-      - "Imports are written for the .pi/extensions/ base path per the proven symlink-resolution semantics."
+      - "Imports are written for the .pi/extensions/ base path per the proven symlink-resolution semantics — verified live, zero extension-load errors."
+      - "Turn-end verify observes and records only; void-returning handlers cannot force continuation (live-confirmed: 5 turn_end verdicts recorded, session kept running under its own agency, not the handler's)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per parent packet operator choice) |
 | **Authority** | `cli-external-orchestration`, phase child of `032-goal-hooks-cross-runtime` |
@@ -211,6 +211,7 @@ As an operator, I need the Pi adapter to only claim verify/continue behavior if 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- ~~Whether Pi's typed event surface offers a usable turn-end event for verify/continue~~ — RESOLVED: **CONFIRMED** (`turn_end`/`agent_end`/`agent_settled`, see `002-capability-probes/capability-matrix.md`). Remaining open sub-question this phase must still resolve on its own: since these handlers return no decision value, what mechanism (if any) lets a verifier force continuation — this was explicitly left UNKNOWN by phase 002 and is not answered here.
-- Whether the `input`-transform visibility of the goal brief needs any operator-facing formatting adjustment once seen live, versus reusing mk-goal's template verbatim.
+- ~~Whether Pi's typed event surface offers a usable turn-end event for verify/continue~~ — RESOLVED: **CONFIRMED** (`turn_end`/`agent_end`/`agent_settled`, see `002-capability-probes/capability-matrix.md`).
+- ~~Since `turn_end`/`agent_end`/`agent_settled` return no decision value, what mechanism (if any) lets a verifier force continuation~~ — RESOLVED: **NONE**. The shipped `turn_end` handler only records the turn (`recordTurn`) and, when the heuristic verifier finds the goal not-met, surfaces a non-blocking `pi.sendMessage` nudge. A live smoke run recorded 5 turn-end verdicts (`not-met`/`unclear`) while the agent kept working purely under its own tool-use loop, not because the handler forced it — no continuation mechanism exists or was implemented.
+- ~~Whether the `input`-transform visibility of the goal brief needs any operator-facing formatting adjustment once seen live, versus reusing mk-goal's template verbatim~~ — RESOLVED: no adjustment needed. The live transcript shows the byte-compatible `[active_goal]` block appended to the user turn read cleanly, and the model correctly cited it as its evidence source.
 <!-- /ANCHOR:questions -->

@@ -10,6 +10,11 @@
         },
         {
           "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-session-start.mjs'",
+          "timeout": 5
+        },
+        {
+          "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
           "timeout": 3
         },
@@ -44,6 +49,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-classify.mjs'",
           "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-inject.mjs'",
+          "timeout": 5
         }
       ]
     }
@@ -147,6 +157,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/completion-evidence-stop.cjs'",
           "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-verify.mjs'",
+          "timeout": 5
         }
       ]
     }

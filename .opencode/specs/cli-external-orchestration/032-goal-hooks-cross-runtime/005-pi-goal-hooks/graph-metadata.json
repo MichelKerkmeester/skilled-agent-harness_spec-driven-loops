@@ -36,18 +36,36 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".pi/extensions/goal-context.ts",
+      ".opencode/hooks/goal/pi/goal-pi.test.mjs",
       ".opencode/hooks/goal/lib/goal-core.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/spec.md",
+      ".pi/extensions/README.md",
+      ".opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts",
+      "implementation-summary.md",
       ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md",
-      "implementation-summary.md"
+      ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md",
+      ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/spec.md"
     ],
     "entities": [
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
       {
         "name": "goal-core.cjs",
         "kind": "file",
@@ -79,19 +97,31 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "capability-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md",
         "source": "derived"
       },
       {
-        "name": "Whether Pi",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,6 +146,12 @@
       },
       {
         "name": "User Story",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,41 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Focused Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set goal across turns, but nothing in `.pi/extensions/` currently reads or renders it",
     "created_at": "2026-07-28T17:25:58.782Z",
-    "last_save_at": "2026-07-28T17:56:27.454Z",
+    "last_save_at": "2026-07-29T04:52:52.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f545f998540c2a8c98630a46a6a1c560e9a4f6c8a137b69fb82cc1bf4de0de2",
+    "source_fingerprint": "sha256:4f0161446fc76e01d3064a223640785b69da81ce978e62cd12b2b300e190c2e3",
     "source_doc_hashes": {
-      "spec.md": "06f89aae89f0e969a1e9f0427d0dcd1f1783ee482c0bb51db0eca3c6af891566",
-      "plan.md": "b2f4de59deb5babc26489762bd980d74cab1033333d065603f7effee9e7db5ca",
-      "tasks.md": "aaf95b3a8cfd98fa65ceb25d6c817e3225c4e0cc40171fd9ac8c6df587b1e23d",
-      "checklist.md": "2b261197afd01b10c4c5d3c722d72198312bf7534769e2781dbf0fd3025afe72",
-      "implementation-summary.md": "0fe8b9fc98ce8c125ed09f7a4b12dfe5a0293c5dc20c2e9d96e7cfb7c29705df"
+      "spec.md": "499c9606cfdfc7edaf60943b724415c26fdfb783eb6153db1d0be40c1654ffc0",
+      "plan.md": "d4b3af3bc72419de1be2598a9785631de94826875e77a5177a32206b6fce6fa1",
+      "tasks.md": "1f04b3e74a83a3eac6773c36d6d3748da620fd69d45f00b8a4a260696ebac0b2",
+      "checklist.md": "4d30bd0ca08cca6b35b8a7160e631ee5b5eb039ce1bab196082f9e03d12b8a20",
+      "implementation-summary.md": "3e80fa9bb27f908a7cdcac8afa328a74ad81972cb7d8fddec3efd68af1abaa06"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,24 +9,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/005-pi-goal-hooks"
-    last_updated_at: "2026-07-28T20:45:00Z"
+    last_updated_at: "2026-07-29T04:40:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored implementation plan for the Pi goal extension"
-    next_safe_action: "Await phase 001 and phase 002 completion before implementation"
-    blockers:
-      - "Blocked on phase 001 (goal core) and phase 002 (capability matrix)."
+    recent_action: "Executed the plan and live-verified all three phases"
+    next_safe_action: "None — phase complete"
+    blockers: []
     key_files:
       - ".opencode/hooks/goal/pi/goal-context.ts"
       - ".opencode/hooks/goal/lib/goal-core.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "goal-hooks-cross-runtime-005-pi-20260728"
+      session_id: "goal-hooks-cross-runtime-005-pi-20260729"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether phase 002 confirms a usable Pi turn-end event."
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Symlink direction: real file in .opencode/hooks/goal/pi/, symlink in .pi/extensions/ — reverse of the general Pi pattern used elsewhere in this repo."
+      - "Phase 002 confirmed turn_end/agent_end/agent_settled; all void-returning, no forced continuation."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Pi goal extension (input-transform injection, session_start restore, turn-end verify)
@@ -59,19 +58,19 @@ Author the real extension file at its canonical location, symlink it into Pi's f
 
 ### Definition of Ready
 
-- [ ] Phase 001 goal core merged and its read/write/render API confirmed stable.
-- [ ] Phase 002 capability matrix published with a definitive answer on Pi's turn-end event.
-- [ ] Prior symlink-resolution precedent re-confirmed applicable (`.opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md` T042-T044).
+- [x] Phase 001 goal core merged and its read/write/render API confirmed stable.
+- [x] Phase 002 capability matrix published with a definitive answer on Pi's turn-end event.
+- [x] Prior symlink-resolution precedent re-confirmed applicable (`.opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md` T042-T044).
 
 ### Definition of Done
 
-- [ ] `.opencode/hooks/goal/pi/goal-context.ts` authored, importing phase 001's goal core.
-- [ ] `.pi/extensions/goal-context.ts` symlink created and resolves in a live Pi session with zero import errors.
-- [ ] `input` transform injects the goal brief, visibly present in the chat transcript (live-verified).
-- [ ] `session_start` restore verified with pre-existing state.
-- [ ] Turn-end verify implemented and tested (if 002 confirms an event) or explicitly documented as absent (if not).
-- [ ] Co-located `node --test` suite passes.
-- [ ] `validate.sh --strict` on this folder returns Errors: 0.
+- [x] `.opencode/hooks/goal/pi/goal-context.ts` authored, importing phase 001's goal core.
+- [x] `.pi/extensions/goal-context.ts` symlink created and resolves in a live Pi session with zero import errors.
+- [x] `input` transform injects the goal brief, visibly present in the chat transcript (live-verified).
+- [x] `session_start` restore verified with pre-existing state.
+- [x] Turn-end verify implemented and tested (event confirmed; observe-only, no forced continuation).
+- [x] Co-located `node --test` suite passes.
+- [x] `validate.sh --strict` on this folder returns Errors: 0.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -102,23 +101,23 @@ Confirm phase 001 API + phase 002 matrix -> author `goal-context.ts` at its cano
 
 ### Phase 1: Setup
 
-- [ ] Confirm phase 001's `goal-core.cjs` API surface (read/write/render/hardening/verifier exports).
-- [ ] Confirm phase 002's capability-matrix verdict on Pi's turn-end/agent-loop event.
-- [ ] Re-confirm the symlink-resolution precedent still holds for this repo's current Pi version.
+- [x] Confirm phase 001's `goal-core.cjs` API surface (read/write/render/hardening/verifier exports).
+- [x] Confirm phase 002's capability-matrix verdict on Pi's turn-end/agent-loop event.
+- [x] Re-confirm the symlink-resolution precedent still holds for this repo's current Pi version.
 
 ### Phase 2: Implementation
 
-- [ ] Author `.opencode/hooks/goal/pi/goal-context.ts`: import goal core, implement `input` transform injection with the parameterized "Focused Pi execution agent…" Role line.
-- [ ] Implement `session_start` restore handler.
-- [ ] If 002 confirmed a usable event, implement the gated turn-end verify handler; otherwise add an explicit code comment and doc note recording the honest absence.
-- [ ] Create the relative symlink `.pi/extensions/goal-context.ts` -> the real file.
+- [x] Author `.opencode/hooks/goal/pi/goal-context.ts`: import goal core, implement `input` transform injection with the parameterized "Focused Pi execution agent…" Role line.
+- [x] Implement `session_start` restore handler.
+- [x] 002 confirmed a usable event (`turn_end`); implemented the gated turn-end verify handler, observe-only per its `void` return type.
+- [x] Create the relative symlink `.pi/extensions/goal-context.ts` -> the real file.
 
 ### Phase 3: Verification
 
-- [ ] Co-located `node --test` suite: state read/render, symlink-relative import resolution.
-- [ ] Live smoke proof: `pi --offline -p` (or `pi -p`) with an active goal set, confirming the brief appears in the visible transcript.
-- [ ] Live `session_start` restore check with pre-existing state.
-- [ ] `validate.sh --strict` on this phase folder: Errors 0.
+- [x] Co-located `node --test` suite: state read/render, symlink-relative import resolution, factory export shape, fail-open contract (13 tests).
+- [x] Live smoke proof: `pi --offline -p` with an active goal set, confirming the brief appears in the visible transcript.
+- [x] Live `session_start` restore check with pre-existing state.
+- [x] `validate.sh --strict` on this phase folder: Errors 0.
 <!-- /ANCHOR:phases -->
 
 ---

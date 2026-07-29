@@ -31,6 +31,11 @@
         "command": "node .opencode/bin/install-codex-hooks.mjs --check",
         "type": "command",
         "timeout": 10
+      },
+      {
+        "command": "node .opencode/hooks/goal/cursor/goal-inject.mjs",
+        "type": "command",
+        "timeout": 10
       }
     ],
     "sessionEnd": [

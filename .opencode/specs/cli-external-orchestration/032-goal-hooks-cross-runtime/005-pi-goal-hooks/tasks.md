@@ -8,19 +8,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/005-pi-goal-hooks"
-    last_updated_at: "2026-07-28T20:45:00Z"
+    last_updated_at: "2026-07-29T04:40:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored task list for the Pi goal extension"
-    next_safe_action: "Await phase 001 and phase 002 completion before starting T001"
-    blockers:
-      - "Blocked on phase 001 (goal core) and phase 002 (capability matrix)."
+    recent_action: "Completed T001-T011, all verification evidence live"
+    next_safe_action: "None — phase complete"
+    blockers: []
     key_files:
       - ".opencode/hooks/goal/pi/goal-context.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "goal-hooks-cross-runtime-005-pi-20260728"
+      session_id: "goal-hooks-cross-runtime-005-pi-20260729"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Confirm phase 001's `goal-core.cjs` API surface is stable (read/write/render/hardening/verifier exports). (`.opencode/hooks/goal/lib/goal-core.cjs`)
-- [ ] T002 [B] Confirm phase 002's capability-matrix verdict on Pi's turn-end/agent-loop event. (`.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/`)
-- [ ] T003 Re-confirm the symlink-resolution precedent (real file outside `.pi/extensions/`, imports resolved against the symlink path) still holds for the installed Pi version. [evidence: precedent `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md` T042-T044]
+- [x] T001 Confirmed phase 001's `goal-core.cjs` API surface is stable (read/write/render/hardening/verifier exports). (`.opencode/hooks/goal/lib/goal-core.cjs`)
+- [x] T002 Confirmed phase 002's capability-matrix verdict on Pi's turn-end/agent-loop event: `turn_end`/`agent_end`/`agent_settled` all confirmed, all `void`-returning. (`.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md`)
+- [x] T003 Re-confirmed the symlink-resolution precedent: `../../.opencode/hooks/goal/lib/goal-core.cjs` written for the `.pi/extensions/` base resolves correctly (verified with `os.path.normpath`), and the same depth pattern is already live in `.opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts`. [evidence: precedent `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md` T042-T044]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author `.opencode/hooks/goal/pi/goal-context.ts`: import phase 001's goal core, implement the `input` transform injection handler with the parameterized "Focused Pi execution agent…" Role line.
-- [ ] T005 Implement the `session_start` restore handler in `goal-context.ts`.
-- [ ] T006 [B] If T002 confirmed a usable turn-end event: implement the gated turn-end verify handler wrapping the ported heuristic verifier. If not: add an explicit code comment recording the honest absence and skip to T007.
-- [ ] T007 Create the relative symlink `.pi/extensions/goal-context.ts` -> `../../.opencode/hooks/goal/pi/goal-context.ts`; write all in-file imports for the `.pi/extensions/` base path per T003's confirmed semantics.
+- [x] T004 Authored `.opencode/hooks/goal/pi/goal-context.ts`: imports phase 001's goal core, implements the `input` transform injection handler with the parameterized "Focused Pi execution agent…" Role line.
+- [x] T005 Implemented the `session_start` restore handler in `goal-context.ts`.
+- [x] T006 T002 confirmed a usable turn-end event; implemented the gated `turn_end` verify handler wrapping the ported heuristic verifier — observe/record only (`recordTurn` + optional `pi.sendMessage` nudge), no forced continuation since the handler is `void`-returning.
+- [x] T007 Created the relative symlink `.pi/extensions/goal-context.ts` -> `../../.opencode/hooks/goal/pi/goal-context.ts`; all in-file imports written for the `.pi/extensions/` base path per T003's confirmed semantics.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,10 +69,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Co-located `node --test` suite for `goal-context.ts`: state read/render logic, symlink-relative import resolution.
-- [ ] T009 Live smoke proof: `pi --offline -p` (or `pi -p` if offline mode is unsuitable) with an active goal set, confirming the `[active_goal]` brief appears in the visible chat transcript.
-- [ ] T010 Live `session_start` restore check: start a fresh Pi session with pre-existing active-goal state and confirm the goal is restored without operator re-entry.
-- [ ] T011 Run `validate.sh --strict` on this phase folder; fix any Errors and re-run until Errors: 0.
+- [x] T008 Co-located `node --test` suite for `goal-context.ts` (`goal-pi.test.mjs`): render selection (active/none/paused), `isPluginDisabled`, heuristic verifier verdicts, factory export/registration shape, fail-open contract — 13/13 pass.
+- [x] T009 Live smoke proof: `pi --offline --approve -p "what is my current active goal, if any?"` with an active goal set. Session transcript shows the `[active_goal]` brief appended to the persisted `role:"user"` message and the model's reply explicitly citing "the `[active_goal:...]` block at the top of this turn" as its source.
+- [x] T010 Live `session_start` restore check: the same session's transcript shows a `goal-context-restore` custom message carrying the full `[active_goal]` block, fired automatically at session start before any user turn.
+- [x] T011 Ran `validate.sh --strict` on this phase folder and the parent packet: Errors 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` (T001-T011)
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (live Pi injection + restore smoke tests, `node --test` suite, `validate.sh --strict`)
+- [x] All tasks marked `[x]` (T001-T011)
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (live Pi injection + restore smoke tests, `node --test` suite, `validate.sh --strict`)
 <!-- /ANCHOR:completion -->
 
 ---

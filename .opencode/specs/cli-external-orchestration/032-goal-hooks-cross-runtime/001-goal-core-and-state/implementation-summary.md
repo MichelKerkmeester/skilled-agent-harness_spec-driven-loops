@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Runtime-neutral goal core + shared active-goal state + manage CLI"
-description: "Phase 001 built and verified: goal-core.cjs, the manage CLI, and their co-located test suite are shipped (uncommitted) on the branch."
+description: "Phase 001 built and verified: goal-core.cjs, the manage CLI, and their co-located test suite are shipped and committed (`7fd31049a3`)."
 trigger_phrases:
   - "goal core implementation summary"
 importance_tier: "normal"
@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/001-goal-core-and-state"
-    last_updated_at: "2026-07-28T17:38:00Z"
+    last_updated_at: "2026-07-29T04:54:15Z"
     last_updated_by: "claude"
-    recent_action: "Build goal core, CLI and tests; 27/27 pass"
+    recent_action: "Build goal core, CLI and tests; 29/29 pass"
     next_safe_action: "Run capability probes for phase 002"
     blockers: []
     key_files:
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-goal-core-and-state |
-| **Completed** | 2026-07-28 (uncommitted on `skilled/v4.0.0.0`) |
+| **Completed** | 2026-07-28 (committed `7fd31049a3`) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,11 +48,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A new `.opencode/hooks/goal/` concern, shipped this session (uncommitted on the branch):
+A new `.opencode/hooks/goal/` concern, shipped this session (committed `7fd31049a3`):
 
 - **`lib/goal-core.cjs`** (686 lines): shared-state atomic read/write (temp+rename, `0600`), the `[active_goal]` block renderer (byte-compatible with `mk-goal.js`'s template outside a parameterized Role line), ported `normalizeUserAuthoredText` hardening (NFKC normalization, bidi/zero-width stripping, marker redaction, homoglyph folding, instruction-override redaction, backtick downgrade), a ported heuristic verifier, and turn/wall-clock accounting with an honestly-labeled `usageSource`.
 - **`bin/goal.cjs`** (222 lines): the manage CLI with actions `set/show/history/clear/complete/pause/resume/doctor`, mirroring `/goal:goal-opencode`'s router contract (envelope shape, `--budget` parsing, error codes including `PLUGIN_DISABLED`, and bare-text-falls-to-set behavior).
-- **`lib/goal-core.test.cjs`** (304 lines, 27 tests): co-located `node --test` suite covering state roundtrip/atomicity, mode-0600, archive-on-clear/complete, byte-shape render + parameterized Role line, compact fallback, hardening cases, heuristic verdicts, and CLI envelopes/error codes.
+- **`lib/goal-core.test.cjs`** (304 lines, 29 tests): co-located `node --test` suite covering state roundtrip/atomicity, mode-0600, archive-on-clear/complete, byte-shape render + parameterized Role line, compact fallback, hardening cases, heuristic verdicts, and CLI envelopes/error codes.
 - **`README.md`**: behavioral-style documentation; `validate_document.py` reports 0 issues.
 
 ### Files Built
@@ -61,7 +61,7 @@ A new `.opencode/hooks/goal/` concern, shipped this session (uncommitted on the 
 |------|--------|---------|
 | `.opencode/hooks/goal/lib/goal-core.cjs` | Created (686 lines) | Shared-state I/O, block renderer, hardening, verifier, accounting. |
 | `.opencode/hooks/goal/bin/goal.cjs` | Created (222 lines) | Manage CLI mirroring `/goal:goal-opencode`'s router contract. |
-| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Created (304 lines, 27 tests) | `node --test` coverage for the above. |
+| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Created (304 lines, 29 tests) | `node --test` coverage for the above. |
 | `.opencode/hooks/goal/README.md` | Created | Behavioral documentation; `validate_document.py` 0 issues. |
 | `.opencode/skills/.goal-state/active-goal.json` | Runtime-generated | Shared cross-runtime goal state; created on first `set`, overridable via `MK_GOAL_STATE_DIR` for tests. |
 <!-- /ANCHOR:what-built -->
@@ -71,7 +71,7 @@ A new `.opencode/hooks/goal/` concern, shipped this session (uncommitted on the 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-`mk-goal.js` and `goal-opencode.md` were read in full as the reference implementation and contract target, then `goal-core.cjs` was built with the shared-state I/O, block renderer, ported hardening, ported verifier, and turn/wall-clock accounting, followed by `bin/goal.cjs` wrapping the core with the manage CLI actions. The co-located `goal-core.test.cjs` suite (27 tests) was written alongside and passes 27/27. The coordinating session independently re-ran the suite (27/27 confirmed) and performed a live CLI smoke test — set/show/clear with an isolated `MK_GOAL_STATE_DIR` — producing the correct `STATUS=`/`ACTION=` envelopes. `mk-goal.js` and `/goal:goal-opencode` were left untouched throughout. All deliverables are currently uncommitted on `skilled/v4.0.0.0`.
+`mk-goal.js` and `goal-opencode.md` were read in full as the reference implementation and contract target, then `goal-core.cjs` was built with the shared-state I/O, block renderer, ported hardening, ported verifier, and turn/wall-clock accounting, followed by `bin/goal.cjs` wrapping the core with the manage CLI actions. The co-located `goal-core.test.cjs` suite (29 tests) was written alongside and passes 29/29. The coordinating session independently re-ran the suite (29/29 confirmed) and performed a live CLI smoke test — set/show/clear with an isolated `MK_GOAL_STATE_DIR` — producing the correct `STATUS=`/`ACTION=` envelopes. `mk-goal.js` and `/goal:goal-opencode` were left untouched throughout. Committed in `7fd31049a3`; a follow-up refinement then made renderGoalBrief relabel the Role line per reading runtime (see Known Limitations).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,9 +96,9 @@ A new `.opencode/hooks/goal/` concern, shipped this session (uncommitted on the 
 
 | Check | Result |
 |-------|--------|
-| `goal-core.cjs` `node --test` suite | `node --test .opencode/hooks/goal/lib/goal-core.test.cjs` → 27/27 pass |
-| `goal.cjs` `node --test` suite | Covered within the same 27-test suite (CLI envelopes, error codes, `PLUGIN_DISABLED`, bare-text-falls-to-set) — 27/27 pass |
-| Independent re-run by coordinating session | 27/27 confirmed, plus a live CLI smoke test (set/show/clear with isolated `MK_GOAL_STATE_DIR`) producing correct `STATUS=`/`ACTION=` envelopes |
+| `goal-core.cjs` `node --test` suite | `node --test .opencode/hooks/goal/lib/goal-core.test.cjs` → 29/29 pass |
+| `goal.cjs` `node --test` suite | Covered within the same 27-test suite (CLI envelopes, error codes, `PLUGIN_DISABLED`, bare-text-falls-to-set) — 29/29 pass |
+| Independent re-run by coordinating session | 29/29 confirmed, plus a live CLI smoke test (set/show/clear with isolated `MK_GOAL_STATE_DIR`) producing correct `STATUS=`/`ACTION=` envelopes |
 | Byte-diff test vs. `mk-goal.js` template | Passing — byte-shape render + parameterized Role line test in the 27-test suite |
 | CLI parity test table vs. `/goal:goal-opencode` | Passing — envelope shape and error codes verified via CLI tests and the live smoke test |
 | `git diff` confirms `mk-goal.js`/`goal-opencode.md` unmodified | Confirmed — zero changes under either path |
@@ -115,5 +115,5 @@ A new `.opencode/hooks/goal/` concern, shipped this session (uncommitted on the 
 3. **Hardening pass order (role-fold before instruction-override redaction) is inherited from `mk-goal.js` as-is**, not independently re-derived; noted here for anyone auditing the ordering later.
 4. **Per-runtime adapters are intentionally not built in this phase.** Devin/Cursor/Pi injection, restore, and verify hooks are phases 003-005, gated on phase 002's capability probes.
 5. **Shared single state file, not per-session.** Two concurrent non-OpenCode sessions could clobber each other's goal; atomic writes prevent corruption but not concurrent-session clobbering, a known and documented constraint of the operator-chosen shared-file model (see `spec.md` §6 Risks).
-6. **All deliverables are currently uncommitted** on `skilled/v4.0.0.0`.
+6. **Core shipped in commit `7fd31049a3`.** A follow-up refinement then made `renderGoalBrief` relabel the `Role:` line to the reading runtime rather than the set-time runtime (its `runtimeLabel` argument was previously inert), with a cross-runtime regression test and a hostile-label sanitizer test added — surfaced while building the 003/004/005 adapters, which all pass a `runtimeLabel` matching their own runtime.
 <!-- /ANCHOR:limitations -->

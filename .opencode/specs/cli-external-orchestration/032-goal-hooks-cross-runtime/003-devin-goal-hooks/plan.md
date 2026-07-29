@@ -9,12 +9,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-29T06:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored phase plan for Devin goal hook adapters"
-    next_safe_action: "Implement after phase 002 fixes the Stop-hook parity tier"
-    blockers:
-      - "Phase 002 capability-probe matrix must land before adapter code starts."
+    recent_action: "Implemented, tested, and live-verified all three Devin adapters"
+    next_safe_action: "Hand parity findings to phases 004/005 (Cursor, Pi)"
+    blockers: []
     key_files:
       - ".opencode/hooks/goal/devin/"
       - ".devin/hooks.v1.json"
@@ -22,10 +21,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-003-devin-20260728"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether Devin's Stop hook can block/continue per the phase 002 probe (undetermined)."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Devin's Stop hook parity tier: verify-and-continue shipped, mechanism confirmed, live evidence-source gap documented."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Devin goal hooks
@@ -58,16 +57,16 @@ Build three Devin hook adapters â€” `UserPromptSubmit`, `SessionStart`, `Stop` â
 
 ### Definition of Ready
 
-- [ ] Phase 001 goal core merged and stable (`.opencode/hooks/goal/lib/goal-core.cjs` exists with a documented render/read/write API). [evidence: pending]
-- [ ] Phase 002 capability-probe matrix confirms Devin's `Stop` hook parity tier. [evidence: pending]
-- [ ] Operator confirmed direct-branch workspace (`skilled/v4.0.0.0`, no worktree). [evidence: pending]
+- [x] Phase 001 goal core merged and stable (`.opencode/hooks/goal/lib/goal-core.cjs` exists with a documented render/read/write API). [evidence: `node -e "require('./goal-core.cjs')"` exports confirmed]
+- [x] Phase 002 capability-probe matrix confirms Devin's `Stop` hook parity tier. [evidence: `002-capability-probes/capability-matrix.md`]
+- [x] Operator confirmed direct-branch workspace (`skilled/v4.0.0.0`, no worktree). [evidence: task brief]
 
 ### Definition of Done
 
-- [ ] Three adapters implemented and registered in `.devin/hooks.v1.json`. [evidence: pending]
-- [ ] Co-located adapter test suite green. [evidence: pending]
-- [ ] Live smoke proof recorded (goal brief text confirmed reaching the model in a real `devin -p` session). [evidence: pending]
-- [ ] `Stop` hook's actual parity tier documented honestly in `implementation-summary.md`. [evidence: pending]
+- [x] Three adapters implemented and registered in `.devin/hooks.v1.json`. [evidence: additive-only diff, `python3 -c "import json;json.load(open('.devin/hooks.v1.json'))"` valid]
+- [x] Co-located adapter test suite green. [evidence: `node --test goal-devin.test.mjs` 21/21 pass]
+- [x] Live smoke proof recorded (goal brief text confirmed reaching the model in a real `devin -p` session). [evidence: transcripts `rainbow-poppyseed.json`, `desert-throne.json`]
+- [x] `Stop` hook's actual parity tier documented honestly in `implementation-summary.md`. [evidence: implementation-summary.md Known Limitations]
 <!-- /ANCHOR:quality-gates -->
 
 ---

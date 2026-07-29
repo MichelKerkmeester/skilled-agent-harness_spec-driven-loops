@@ -36,16 +36,19 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".devin/hooks.v1.json",
       ".opencode/hooks/goal/lib/goal-core.cjs",
-      ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      ".opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/goal/devin/goal-inject.mjs",
+      ".opencode/hooks/goal/devin/goal-session-start.mjs",
+      ".opencode/hooks/goal/devin/goal-verify.mjs"
     ],
     "entities": [
       {
@@ -58,12 +61,6 @@
         "name": "goal-core.cjs",
         "kind": "file",
         "path": ".opencode/hooks/goal/lib/goal-core.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -91,13 +88,31 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Whether Devin",
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/devin/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-session-start.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/devin/goal-session-start.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-verify.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/devin/goal-verify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Port",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -140,6 +161,12 @@
       },
       {
         "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,35 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "three",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
     "created_at": "2026-07-28T17:25:01.861Z",
-    "last_save_at": "2026-07-28T17:56:27.188Z",
+    "last_save_at": "2026-07-29T04:38:53.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b1be85b1bfceb7c5d87fca8adc19fc1014c89821098d6c5cf8c896efcd49eef",
+    "source_fingerprint": "sha256:f8636d3216838f5881fad68c9581693f8efb56988bab182a68c505bc4e609018",
     "source_doc_hashes": {
-      "spec.md": "0aa8f3174d8748a9072f88a4fabac15223ce0535b29533b3278fbf17bdb1ce47",
-      "plan.md": "4f42dd9dde074613cb5486aad2d1597844c15c7ca44990473ead6ec5dbab9e6c",
-      "tasks.md": "001637d301e0aacfd0784518c9ef0cdd19a1b658e69e03619f59dd3d3a0a5d59",
-      "checklist.md": "651f747032a727edef975af468770d36c25d6deee80c29bde1a1564d630c77d7",
-      "implementation-summary.md": "62cdf093cc00e3cfa5f41c0df97b52498beaa00015b1cb459110735e962f5823"
+      "spec.md": "bdcc41342e9f513a952c5c2a108ea6f9aa7a5856c5145c5480d4f7452cd33c7d",
+      "plan.md": "4124d4d221a505effaee64ca617714d8b32501802f67b532b5dade23c74d97fd",
+      "tasks.md": "3150a28acfb67bad515f0416c9c42d9a7c9791747b929655b358c9f82781c9cf",
+      "checklist.md": "fc4726300b72c5a81335c3dd7c88d5176d6ddcb4a04cb7e89446b06ce1667d60",
+      "implementation-summary.md": "f87cf6d28155c99b47c62f2ca6131032ffc3143be8746dc12add2db29776bd6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

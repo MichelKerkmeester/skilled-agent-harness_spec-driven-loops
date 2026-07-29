@@ -291,7 +291,15 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
   if (!goal || goal.status !== 'active') return '';
   const objectivePreviewLimit = calculateObjectivePreviewChars(maxChars);
   const objective = sanitizeInlineText(goal.objective, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
-  const goalPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, DEFAULT_MAX_GOAL_PROMPT_CHARS);
+  // The Role line is baked at set time from the runtime that created the goal,
+  // but the brief should name whichever runtime is reading it now. Relabel it
+  // to the caller's runtime so a goal set in one CLI reads correctly in another.
+  const safeRuntimeLabel = String(runtimeLabel).replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 40) || 'cross-runtime';
+  const storedPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, DEFAULT_MAX_GOAL_PROMPT_CHARS);
+  const goalPrompt = storedPrompt.replace(
+    /^Role: Focused .+? execution agent operating under the active session goal\./m,
+    `Role: Focused ${safeRuntimeLabel} execution agent operating under the active session goal.`,
+  );
   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
   const verdict = sanitizeInlineText(goal.lastVerifierVerdict || 'not_evaluated', 80) || 'not_evaluated';
   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
