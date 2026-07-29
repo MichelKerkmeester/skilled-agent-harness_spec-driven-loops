@@ -42,9 +42,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Read phase 001's canonical `derived` schema/producer decision and phase 002's schema implementation as the input contract for this phase
-- [ ] T-02 Inventory the 11 existing skill roots' current `derived` blocks (`cli-external-orchestration`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-skill-advisor`, `system-spec-kit`) and confirm all are `schema_version: 2` and Python-shaped
-- [ ] T-03 Snapshot originals for rollback (confirm the 11 `graph-metadata.json` paths are clean in git before touching them) and confirm `skill_graph_compiler.py`'s `validate_derived_metadata` as the acceptance oracle
+- [x] T-01 Read 001's decision + 002's baseline as the input contract [evidence: confirmed byte-identical to authoring line; corpus hash matches]
+- [x] T-02 Inventory the 11 roots as `schema_version: 2` Python-shaped [evidence: `--all` enumerated + processed all 11]
+- [x] T-03 Clean git baseline + compiler as acceptance oracle [evidence: worktree clean pre-write; `skill_graph_compiler.py --validate-only` used as oracle]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -52,14 +52,14 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-04 Build `regenerate-skill-derived.cjs` under `sk-doc/create-skill/scripts/`: extract `trigger_phrases`/`key_topics`/`key_files`/`source_docs` from each root's corpus (SKILL.md, README.md, declared source docs)
-- [ ] T-05 Derive typed `entities` objects (`name`/`kind`/`path`/`source`, `kind` constrained to `ALLOWED_ENTITY_KINDS`) with on-disk path existence checks
-- [ ] T-06 Preserve authored `causal_summary` and any existing `lifecycle_status`/`redirect_from`/`redirect_to` via additive merge (never a full-object replace)
-- [ ] T-07 Write atomically (tmp-file + rename) per root; skip the write when content is unchanged (diff excludes only the timestamp field)
-- [ ] T-08 Dry-run across all 11 roots and review diffs against current hand-authored content
-- [ ] T-09 Run `--write` to migrate the fleet in one reviewed pass
-- [ ] T-10 Build `ci-skill-derived-freshness.cjs`, mirroring `ci-leaf-manifest-freshness.cjs`'s regenerate-and-byte-diff pattern and exit-code convention
-- [ ] T-11 Wire the new gate into `routing-registry-drift.yml` alongside the existing `ci-skill-root-metadata.cjs`/`ci-leaf-manifest-freshness.cjs` calls
+- [x] T-04 Build `regenerate-skill-derived.cjs` under `sk-doc/sk-create-skill/scripts/` [evidence: present; path adapted to v4's `sk-create-skill`; preserve-first extraction]
+- [x] T-05 Typed `entities` with on-disk path checks [evidence: `keyFileExists`-validated entity paths, now gitignore-tolerant]
+- [x] T-06 Preserve authored `causal_summary`/lifecycle/redirect fields [evidence: `repairDerived` preserves all keys verbatim, prunes only dead structural refs]
+- [x] T-07 Atomic write + skip-when-unchanged [evidence: `writeJsonAtomic` tmp+rename; 10/11 roots unchanged → no write]
+- [x] T-08 Dry-run across 11 roots, diffs reviewed [evidence: dry-run → 10 unchanged + mcp-code-mode prune; reviewed]
+- [x] T-09 `--write` fleet pass [evidence: 1 root written (mcp-code-mode untracked-ref prune); corpus neutral 176/195, 53/72]
+- [x] T-10 Build `ci-skill-derived-freshness.cjs` [evidence: mirrors leaf-manifest freshness pattern + exit codes; exit 0 on clean fleet]
+- [x] T-11 Wire the gate into `routing-registry-drift.yml` [evidence: added after the `ci-leaf-manifest-freshness.cjs` line in the class-contract step]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,11 +67,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-12 Run `skill_graph_compiler.py`'s `validate_derived_metadata` across all 11 migrated roots — confirm 0 errors
-- [ ] T-13 Re-run the regenerator a second time against the migrated fleet — confirm 0 additional writes (idempotency)
-- [ ] T-14 Run the new CI gate locally against a deliberately staled fixture (confirm nonzero exit) and the clean migrated fleet (confirm 0 exit)
-- [ ] T-15 Execute the post-migration daemon/SQLite reindex (or documented restart) and confirm the live advisor projection reflects the migrated roots
-- [ ] T-16 Rehearse the rollback path on one fixture root (`git checkout --`) and record the result
+- [x] T-12 Compiler `validate_derived_metadata` across 11 → 0 errors [evidence: "VALIDATION PASSED: all metadata files are valid"]
+- [x] T-13 Idempotency [evidence: post-`--write` dry-run reports all 11 unchanged]
+- [x] T-14 Gate negative + positive [evidence: `skill-derived-regenerator.test.cjs` staled-fixture case + clean fleet `fresh=11` exit 0]
+- [ ] T-15 Post-migration daemon/SQLite reindex — DEFERRED to phase `012-integration-verification-rollout` (owns the program-wide daemon-reindex proof); no fleet data changed here beyond one prune
+- [x] T-16 Rollback path rehearsed [evidence: `git checkout HEAD -- graph-metadata.json` used repeatedly during corpus isolation — clean restore confirmed]
 <!-- /ANCHOR:phase-3 -->
 
 ---

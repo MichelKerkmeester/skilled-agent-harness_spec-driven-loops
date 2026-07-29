@@ -110,3 +110,4 @@ jobs:
           set -euo pipefail
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+          node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
