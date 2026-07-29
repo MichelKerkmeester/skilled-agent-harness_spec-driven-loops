@@ -1,0 +1,25 @@
+=== Cursor goal-hook: RECORDED-EVIDENCE tier (the documented, correct behavior) ===
+
+Model: composer-2.5 (paid). Canary: GOALCANARY-CU-349522064.
+
+TWO-PART EVIDENCE (both confirmed this run):
+
+1. HOOK FIRES — the sessionStart adapter executed.
+   goal-state turns_used: 0 (before)  ->  1 (after the cursor-agent -p dispatch)
+   => .cursor/hooks.json sessionStart -> goal/cursor/goal-inject.mjs called recordTurn({runtime:'cursor'}).
+
+2. INJECTION IS MODEL-INVISIBLE — the sessionStart agent_message never reaches the model.
+   Cursor transcript grep (~/.cursor/projects/.../agent-transcripts/<sid>/<sid>.jsonl):
+     [active_goal occurrences: 0
+     canary occurrences:      0
+   The model-visible reply did not (could not) cite the goal.
+
+This is the documented PASS condition for Cursor, not a failure: its sessionStart
+agent_message channel is confirmed non-delivering (n=2 in phase 004 capability probes;
+n=3 with this run). preToolUse agent_message is also confirmed non-delivery and `stop`
+never fires, so sessionStart is the only adapter and its evidence is adapter-level
+(turn-counter), never model-visibility.
+
+(The model reply was cut off by the harness command cap before completion; the
+turn-counter increment and the transcript-absence are the load-bearing signals and
+do not depend on the reply completing.)

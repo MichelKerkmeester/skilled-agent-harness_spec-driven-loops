@@ -28,6 +28,7 @@ Canonical package artifacts:
 - `cloud-worker/`
 - `prompt-templates/`
 - `agents-skills-rules/`
+- `goal-hook/`
 
 ---
 
@@ -635,7 +636,15 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. GOAL HOOK (`CU-027`)
+
+This category covers the runtime-neutral cross-runtime goal core (`.opencode/hooks/goal/`, packet `032-goal-hooks-cross-runtime`) for Cursor's single `sessionStart` adapter (`cursor/goal-inject.mjs`), honestly scoped to the recorded-evidence tier this runtime actually supports: the hook fires and forwards `agent_message`, but delivery into the model-visible transcript is confirmed non-occurring, matching the non-delivery pattern already documented for `beforeSubmitPrompt`/`stop` in `CU-014`.
+
+- CU-027: [Cross-runtime goal hook (sessionStart injection, recorded-evidence tier)](goal-hook/goal-hook.md)
+
+---
+
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 ### CLI INVOCATION
 

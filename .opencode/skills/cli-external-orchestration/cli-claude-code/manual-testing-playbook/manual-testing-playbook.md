@@ -1,7 +1,7 @@
 ---
 title: "Claude Code CLI Orchestrator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-claude-code cross-AI delegation skill."
-version: 1.1.0.18
+version: 1.1.0.19
 ---
 
 # Claude Code CLI Orchestrator: Manual Testing Playbook
@@ -24,12 +24,15 @@ Canonical package artifacts:
 - `integration-patterns/`
 - `prompt-templates/`
 - `cost-and-background/`
+- `goal-hook/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 27 deterministic scenarios across 8 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
+This playbook provides 28 deterministic scenarios across 9 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
+
+Coverage note (2026-07-29): `CC-029` documents the deliberate boundary between this skill's cross-AI delegation surface and Claude Code's own native `/goal` session-goal feature -- Claude Code is not, and by design will not be, wired into the runtime-neutral `.opencode/hooks/goal/` cross-runtime port that covers Devin, Cursor, and Pi. `CC-029` is documentation-only: its grounding checks are real and executable, but its live model-turn portion is an explicit `SKIP`, never a `PASS` standing in for one.
 
 Coverage note (2026-04-26): all categories validate the orchestrator-led cross-AI delegation contract where an external AI (OpenCode, Copilot, OpenCode) acts as conductor and dispatches the `claude` binary for supplementary tasks. Scenarios CC-006 (acceptEdits permission mode) and CC-007 (bypassPermissions) are destructive and MUST run only against rebuildable, non-production scratch files.
 
@@ -91,7 +94,7 @@ Coverage note (2026-04-26): all categories validate the orchestrator-led cross-A
 1. `manual-testing-playbook.md`
 2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
 3. Scenario execution evidence including command transcripts and Claude Code output
-4. Feature-to-scenario coverage map (every CC-NNN appears in section 15)
+4. Feature-to-scenario coverage map (every CC-NNN appears in section 17)
 5. Triage notes for all non-pass outcomes including rate-limit, budget-cap and authentication failures
 
 ### Scenario Acceptance Rules
@@ -123,7 +126,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 27`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 28`).
 4. No unresolved blocking triage item remains.
 5. Self-invocation guard has been tested at least once and refused correctly.
 
@@ -151,7 +154,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Recommended Wave Plan
 
-- **Wave 1** (parallel-safe, read-only): CC-001..CC-005, CC-008..CC-016, CC-018..CC-020 - all use `--permission-mode plan` or are inherently read-only.
+- **Wave 1** (parallel-safe, read-only): CC-001..CC-005, CC-008..CC-016, CC-018..CC-020, CC-029 - all use `--permission-mode plan` or are inherently read-only (CC-029 is documentation-only and never dispatches `claude`).
 - **Wave 2** (sandboxed destructive): CC-006 (acceptEdits) and CC-007 (bypassPermissions) against `/tmp/cli-claude-code-playbook/scratch.ts`.
 - **Wave 3** (cost-sensitive): CC-008 (Opus extended thinking) and CC-017 (generate-review-fix cycle requiring multi-call cumulative cost). Apply `--max-budget-usd 1.00` to every scenario in this wave.
 
@@ -630,7 +633,29 @@ Expected signals: `wait` returns exit 0. Captured stdout file is non-empty. Pare
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. GOAL HOOK
+
+This category covers 1 scenario summary while the linked feature file remains the canonical execution contract. Unlike every other category in this playbook, it does not dispatch `claude` -- it validates a documentation boundary: Claude Code's session-goal behavior is its own native `/goal` feature, not the cross-AI delegation surface this skill otherwise tests, and not the runtime-neutral `.opencode/hooks/goal/` port that covers Devin, Cursor, and Pi.
+
+### CC-029 | Goal hook: Claude Code native /goal (documentation-only)
+
+#### Description
+
+Confirm Claude Code's session-goal behavior is its own native `/goal` feature rather than the OpenCode `mk-goal` plugin or the cross-runtime `.opencode/hooks/goal/` port, and confirm that port deliberately ships no Claude Code adapter directory. Live headless validation of native `/goal` output does not apply here by design.
+
+#### Scenario Contract
+
+Prompt: As a goal-hook documentation auditor, confirm Claude Code's native `/goal` framing against the constitutional routing rule and the goal-hook README, then return a documentation-only PASS/SKIP verdict naming the exact reason live validation does not apply here.
+
+Expected signals: The constitutional rule doc instructs native `/goal` use and never routes through `mk-goal`. `.opencode/hooks/goal/` contains no `claude/` adapter directory. The hook's README documents the "sibling, not a replacement" framing and the `devin/`/`cursor/`/`pi/` adapter set. The constitutional doc's failure-mode section names `mk_goal()` as a call with no matching Claude Code tool.
+
+#### Test Execution
+
+> **Feature File:** [CC-029](../manual-testing-playbook/goal-hook/goal-hook.md)
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The cli-claude-code skill is a thin orchestration wrapper around the external Anthropic `claude` binary, so it does not ship its own automated test suite. Coverage is therefore manual-only by design. Adjacent cross-AI skills follow the same pattern:
 
@@ -638,12 +663,13 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 |---|---|---|
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output) |
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (cross-runtime handback) |
+| `.opencode/hooks/goal/README.md` + `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | Documents the Claude Code native `/goal` boundary and the cross-runtime port's deliberate non-coverage | `CC-029` |
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 ### CLI INVOCATION
 
@@ -694,3 +720,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 - CC-026: [Max budget USD cap behavior](../manual-testing-playbook/cost-and-background/max-budget-usd-cap.md)
 - CC-027: [Background execution](../manual-testing-playbook/cost-and-background/background-execution.md)
+
+### GOAL HOOK
+
+- CC-029: [Goal hook: Claude Code native /goal (documentation-only)](../manual-testing-playbook/goal-hook/goal-hook.md)

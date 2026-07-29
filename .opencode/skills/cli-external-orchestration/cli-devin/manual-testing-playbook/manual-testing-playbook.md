@@ -23,6 +23,7 @@ Canonical package artifacts:
 - `mcp-integration/`
 - `session-continuity/`
 - `cloud-handoff/`
+- `goal-hook/`
 
 
 ---
@@ -157,11 +158,17 @@ Devin's `skills` subcommand is the slash-command surface. These scenarios verify
 
 - [DV-020 -- `/handoff` document-and-SKIP surface](cloud-handoff/handoff-surface-skip.md)
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 16. GOAL HOOK (`DV-022`)
+
+This category covers the runtime-neutral cross-runtime goal core (`.opencode/hooks/goal/`, packet `032-goal-hooks-cross-runtime`) under Devin's three adapters (`UserPromptSubmit`, `SessionStart`, `Stop`) plus the shared `bin/goal.cjs` manage CLI, prompt-injection hardening, and `MK_GOAL_STATE_DIR` isolation. `DV-022`'s per-feature file carries a live positive-injection proof against a real `devin -p` dispatch, not only synthetic adapter payloads.
+
+- [DV-022 -- Cross-runtime goal hook (manage CLI, injection, restore, verify)](goal-hook/goal-hook.md)
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The playbook is manual by design. It has no replacement automated suite for the authenticated CLI, hook delivery, interactive slash commands, or cloud handoff. Structural evidence can be checked locally with `rg`, `find`, and the phase's Spec Kit validator; those checks do not replace executing the scenario commands.
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The root index and per-scenario files are the canonical manual-testing catalog for `cli-devin`. The skill packet's source anchors are:
 

@@ -1,7 +1,7 @@
 ---
 title: "cli-pi: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-pi skill."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # cli-pi: Manual Testing Playbook
@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-pi` skill from a non-Pi runtime. Before composing a dispatch, read `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` §2, **Self-Invocation Guard**. The guard checks whether the parent process command contains `/pi` or ends with ` pi`, and whether the current project contains `.pi`; the project-directory result is a non-conclusive heuristic. The guard does not treat a missing environment variable as proof of safety. If it detects a signal, refuse the dispatch and record that signal.
 
-This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 20 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 21 canonical scenario files.
 
 ---
 
@@ -26,14 +26,15 @@ Canonical package artifacts:
 - `hook-extension-layer/`
 - `model-dispatch/`
 - `prompt-quality/`
+- `goal-hook/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 8 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
+This playbook provides 21 deterministic scenarios across 9 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
 
-Coverage note (2026-07-27): the package covers Pi version/help and settings state, unreliable headless failure exit codes, a negative-control syntax hallucination probe, recursive skill discovery, prompt-template flattening and substitution, the community `pi-subagents` bridge, MCP stdio and streamable HTTP shapes, project/global precedence, native extension loading and lifecycle registration, guard error discipline, the enforced model roster, provider/settings interaction, and CLEAR prompt-quality checks. Successful provider-backed model turns remain an explicit execution boundary when credentials are absent; `PI-020` (2026-07-28) live-traces the session-lifecycle extension bridges on a machine with authenticated providers.
+Coverage note (2026-07-27): the package covers Pi version/help and settings state, unreliable headless failure exit codes, a negative-control syntax hallucination probe, recursive skill discovery, prompt-template flattening and substitution, the community `pi-subagents` bridge, MCP stdio and streamable HTTP shapes, project/global precedence, native extension loading and lifecycle registration, guard error discipline, the enforced model roster, provider/settings interaction, and CLEAR prompt-quality checks. Successful provider-backed model turns remain an explicit execution boundary when credentials are absent; `PI-020` (2026-07-28) live-traces the session-lifecycle extension bridges on a machine with authenticated providers. `PI-021` (2026-07-29) live-validates the cross-runtime goal hook's input-transform injection and turn-end verify against the free offline model, needing no provider credential, and honestly records where a single-shot capture did not confirm the documented `session_start` restore.
 
 ### Realistic Test Model
 
@@ -99,7 +100,7 @@ Coverage note (2026-07-27): the package covers Pi version/help and settings stat
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All 20 linked scenario files under the eight category folders
+2. All 21 linked scenario files under the nine category folders
 3. Real command transcripts or cited captured evidence for every executable scenario
 4. The scenario-to-feature coverage map in §17
 5. Triage notes for every FAIL or SKIP result
@@ -130,7 +131,7 @@ Release is `READY` only when:
 
 1. No scenario has an unresolved FAIL.
 2. The critical baseline scenarios `PI-001`, `PI-002`, `PI-007`, `PI-011`, `PI-014`, and `PI-017` have evidence or a still-valid named blocker.
-3. Coverage is 100%: all 20 root-index IDs map to exactly one scenario file.
+3. Coverage is 100%: all 21 root-index IDs map to exactly one scenario file.
 4. Every SKIP carries a specific blocker and a safe re-run condition.
 5. The root document and all scenario files pass the required document and link checks.
 
@@ -159,7 +160,7 @@ This section records safe execution waves for the manual-testing package. It doe
 ### Recommended Wave Layout
 
 - Wave 1, parallel-safe static and filesystem checks: `PI-001`, `PI-003`, `PI-004`, `PI-005`, `PI-006`, `PI-008`, `PI-010`, `PI-013`, `PI-017`, `PI-018`, `PI-019`
-- Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-009`, `PI-014`, `PI-015`
+- Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-009`, `PI-014`, `PI-015`, `PI-021`
 - Wave 3, cite-only MCP evidence: `PI-011`, `PI-012`
 - Wave 4, guarded negative and precedence checks: `PI-002`, `PI-016`
 - Wave 5, authenticated live traces (requires a provider credential and a probe fixture): `PI-020`
@@ -250,13 +251,21 @@ This category applies the canonical CLEAR card before a non-trivial Pi dispatch 
 
 ---
 
-## 15. CURRENT EXECUTION BOUNDARIES
+## 15. GOAL HOOK (`PI-021`)
 
-The current worktree has no provider credential, so a successful model turn cannot be claimed from the captured probes. Pi also attempted to create locks below the real `~/.pi/agent/` path when invoked without isolation; the sandbox denied those writes with `EPERM`. Future operators must use `PI_CODING_AGENT_DIR` pointed at a disposable directory and must not weaken the global-config safety boundary. Static discovery, schema, settings, extension-load, and allowlist checks remain independently executable.
+This category validates the runtime-neutral cross-runtime goal hook (`.opencode/hooks/goal/`) under Pi: the `input`-transform injection onto the operator-visible prompt, `turn_end` heuristic verify and turn recording, the shared `bin/goal.cjs` manage-CLI envelope, prompt-injection hardening, and `MK_GOAL_STATE_DIR` isolation. It needs no provider credential because the offline free model is sufficient, and it honestly records where a single-shot live capture did not confirm the documented `session_start` restore rather than assuming it passed.
+
+- `PI-021`: [Cross-runtime goal hook: input injection, turn-end verify, manage CLI, hardening](goal-hook/goal-hook.md)
 
 ---
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 16. CURRENT EXECUTION BOUNDARIES
+
+The current worktree has no provider credential, so a successful model turn cannot be claimed from the captured probes. Pi also attempted to create locks below the real `~/.pi/agent/` path when invoked without isolation; the sandbox denied those writes with `EPERM`. Future operators must use `PI_CODING_AGENT_DIR` pointed at a disposable directory and must not weaken the global-config safety boundary. Static discovery, schema, settings, extension-load, and allowlist checks remain independently executable. `PI-021`'s primary checks (input injection, turn-end verify, manage CLI, hardening, isolation) do not need a provider credential at all, since the goal hook's live probe uses Pi's free offline model; only its `session_start` restore sub-check remains an open boundary, tracked as a SKIP in that scenario file rather than an assumed PASS.
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community packages; the manual playbook remains the operator-visible validation surface for dispatch behavior.
 
@@ -268,13 +277,15 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core and session-lifecycle bridge behavior | `PI-014`, `PI-015`, `PI-016`, `PI-020` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
+| `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Render selection, heuristic verifier, factory registration shape, fail-open contracts for the Pi goal-hook adapter | `PI-021` |
+| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Shared cross-runtime goal-core state I/O, rendering, and hardening | `PI-021` |
 | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
 
-There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, or a real global/project collision test. Those gaps are explicit in the relevant scenario files.
+There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, a real global/project collision test, or a live `session_start` restore delivery through Pi's real extension loader. Those gaps are explicit in the relevant scenario files.
 
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 ### CLI INVOCATION
 
@@ -319,3 +330,7 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 ### PROMPT QUALITY
 
 - PI-019: [CLEAR prompt-quality card](prompt-quality/clear-prompt-quality-card.md)
+
+### GOAL HOOK
+
+- PI-021: [Cross-runtime goal hook: input injection, turn-end verify, manage CLI, hardening](goal-hook/goal-hook.md)
