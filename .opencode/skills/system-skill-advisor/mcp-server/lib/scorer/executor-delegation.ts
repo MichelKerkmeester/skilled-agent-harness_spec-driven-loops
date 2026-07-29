@@ -21,7 +21,7 @@
 //      come from its archived graph metadata. Adding a new executor, a new
 //      small model, or retiring one needs no change here.
 
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { matchesPhraseBoundary, phraseVariants, skillNameVariants } from './text.js';
@@ -157,12 +157,16 @@ interface FilesystemAliasData {
   readonly hubExecutors: readonly HubExecutorEntry[];
 }
 
+interface FilesystemAliasCacheEntry {
+  readonly data: FilesystemAliasData;
+  readonly sourceMtimes: ReadonlyMap<string, number | null>;
+}
+
 // Reads cli-external-orchestration's mode-registry.json workflow-mode packets as the
 // executor-delegation source of truth. A missing or malformed
 // registry degrades to zero hub executors, never a hard failure — mirrors the
 // model_profiles.json degrade-on-error convention below.
-function loadCliHubExecutors(skillsRoot: string): HubExecutorEntry[] {
-  const registryPath = join(skillsRoot, 'cli-external-orchestration', 'mode-registry.json');
+function loadCliHubExecutors(registryPath: string): HubExecutorEntry[] {
   const executors: HubExecutorEntry[] = [];
   try {
     if (existsSync(registryPath)) {
@@ -184,7 +188,26 @@ function loadCliHubExecutors(skillsRoot: string): HubExecutorEntry[] {
 // projection-derived active aliases are cheap (a handful of cli-family skills)
 // and are recomputed per call so a fixture projection never contaminates the
 // real one under a shared workspace root.
-const filesystemAliasCache = new Map<string, FilesystemAliasData>();
+const filesystemAliasCache = new Map<string, FilesystemAliasCacheEntry>();
+
+function sourceMtime(sourcePath: string): number | null {
+  try {
+    return statSync(sourcePath).mtimeMs;
+  } catch {
+    return null;
+  }
+}
+
+function snapshotSourceMtimes(sourcePaths: Iterable<string>): ReadonlyMap<string, number | null> {
+  return new Map(Array.from(sourcePaths, (sourcePath) => [sourcePath, sourceMtime(sourcePath)]));
+}
+
+function sourceMtimesMatch(snapshot: ReadonlyMap<string, number | null>): boolean {
+  for (const [sourcePath, mtime] of snapshot) {
+    if (sourceMtime(sourcePath) !== mtime) return false;
+  }
+  return true;
+}
 
 function isAliasShaped(alias: string): boolean {
   if (!alias) return false;
@@ -204,17 +227,22 @@ function stringArray(value: unknown): string[] {
 
 function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemAliasData {
   const cacheKey = workspaceRoot ?? '';
-  const cached = filesystemAliasCache.get(cacheKey);
-  if (cached) return cached;
-
   const skillsRoot = join(workspaceRoot ?? process.cwd(), '.opencode', 'skills');
+  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'prompt-models', 'assets', 'model-profiles.json');
+  const archiveRoot = join(skillsRoot, 'z_archive');
+  const cliHubRegistryPath = join(skillsRoot, 'cli-external-orchestration', 'mode-registry.json');
+  const cached = filesystemAliasCache.get(cacheKey);
+  // Long-lived advisor daemons must observe source edits without a restart;
+  // mtimes keep the common cache-hit path stat-only instead of re-reading JSON.
+  if (cached && sourceMtimesMatch(cached.sourceMtimes)) return cached.data;
+
   const modelAliases = new Map<string, string>();
   const suppressedAliases = new Set<string>();
+  const sourcePaths = new Set<string>([modelProfilesPath, archiveRoot, cliHubRegistryPath]);
 
   // Model -> executor aliases from the shared small-model profile registry.
   // Only active executor paths lift; an optional/unverified path is recorded
   // nowhere so a bare model mention never auto-routes to it.
-  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'prompt-models', 'assets', 'model-profiles.json');
   try {
     if (existsSync(modelProfilesPath)) {
       const parsed = JSON.parse(readFileSync(modelProfilesPath, 'utf8')) as { models?: unknown };
@@ -245,12 +273,14 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
   // Retired/archived executor aliases. Any archived cli-family skill's declared
   // triggers become a suppressed set so "use codex …" abstains instead of
   // falling back to the code hub.
-  const archiveRoot = join(skillsRoot, 'z_archive');
   try {
     if (existsSync(archiveRoot)) {
       for (const entry of readdirSync(archiveRoot, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
-        const metadataPath = join(archiveRoot, entry.name, 'graph-metadata.json');
+        const entryPath = join(archiveRoot, entry.name);
+        const metadataPath = join(entryPath, 'graph-metadata.json');
+        sourcePaths.add(entryPath);
+        sourcePaths.add(metadataPath);
         if (!existsSync(metadataPath)) continue;
         let metadata: ArchivedGraphMetadata;
         try {
@@ -277,10 +307,10 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
     // No archive (or unreadable) simply means an empty suppressed set.
   }
 
-  const hubExecutors = loadCliHubExecutors(skillsRoot);
+  const hubExecutors = loadCliHubExecutors(cliHubRegistryPath);
 
   const data: FilesystemAliasData = { modelAliases, suppressedAliases, hubExecutors };
-  filesystemAliasCache.set(cacheKey, data);
+  filesystemAliasCache.set(cacheKey, { data, sourceMtimes: snapshotSourceMtimes(sourcePaths) });
   return data;
 }
 
