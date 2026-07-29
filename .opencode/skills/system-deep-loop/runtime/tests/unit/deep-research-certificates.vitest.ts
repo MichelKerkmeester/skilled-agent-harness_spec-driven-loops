@@ -42,6 +42,7 @@ import {
 import {
   DeepResearchArtifactKinds,
   createDeepResearchSealedArtifactStore,
+  readDeepResearchArtifact,
   sealDeepResearchArtifact,
 } from '../../lib/deep-research-sealed-artifacts/index.js';
 import {
@@ -128,6 +129,8 @@ interface ScenarioOptions {
   readonly claimStatus?: DeepResearchPayloadMap['deep_research.claim_asserted']['claimStatus'];
   readonly unresolvedObligation?: boolean;
   readonly includeDecoyArtifacts?: boolean;
+  readonly includeUnreferencedSynthesisReport?: boolean;
+  readonly synthesisPermutation?: boolean;
   readonly objectiveMaterialDigest?: string;
   readonly initExecutorFingerprint?: string;
   readonly forgeMemoryHandoffDigests?: boolean;
@@ -614,6 +617,8 @@ async function sealedBindings(
     ScenarioOptions,
     | 'additionalGather'
     | 'includeDecoyArtifacts'
+    | 'includeUnreferencedSynthesisReport'
+    | 'synthesisPermutation'
     | 'objectiveMaterialDigest'
     | 'forgeMemoryHandoffDigests'
     | 'convergencePaddingDigest'
@@ -671,12 +676,17 @@ async function sealedBindings(
   const synthesisReport = await sealDeepResearchArtifact(
     artifactStore,
     DeepResearchArtifactKinds.SYNTHESIS_REPORT,
-    options.synthesisPaddingDigest === undefined
-      ? synthesis
-      : {
+    options.synthesisPermutation === true
+      ? {
           ...synthesis,
-          orderedInputDigests: [...synthesis.orderedInputDigests, options.synthesisPaddingDigest],
-        },
+          orderedInputDigests: [digest('claim-1'), digest('evidence-tail')],
+        }
+      : options.synthesisPaddingDigest === undefined
+        ? synthesis
+        : {
+            ...synthesis,
+            orderedInputDigests: [...synthesis.orderedInputDigests, options.synthesisPaddingDigest],
+          },
   );
   const handoff = await sealDeepResearchArtifact(
     artifactStore,
@@ -689,6 +699,17 @@ async function sealedBindings(
         ),
   );
   bindings.push(analysis, convergenceWitness, synthesisReport, handoff);
+  if (options.includeUnreferencedSynthesisReport === true) {
+    bindings.push(await sealDeepResearchArtifact(
+      artifactStore,
+      DeepResearchArtifactKinds.SYNTHESIS_REPORT,
+      {
+        ...synthesis,
+        outputId: 'decoy-report-99',
+        outputRef: 'artifact:decoy-report-99',
+      },
+    ));
+  }
   if (options.includeDecoyArtifacts) {
     bindings.push(
       await sealDeepResearchArtifact(
@@ -1107,6 +1128,19 @@ async function transitionFixture(events: readonly DeepResearchLedgerEvent[]) {
   };
 }
 
+async function certificateArtifactClaim(
+  artifactStore: ReturnType<typeof createDeepResearchSealedArtifactStore>,
+  binding: DeepResearchSealedArtifactBinding,
+) {
+  const verified = await readDeepResearchArtifact(artifactStore, binding);
+  return {
+    binding: verified.binding,
+    descriptorDigest: verified.binding.reference.descriptor_digest,
+    contentDigest: verified.descriptor.content_digest,
+    canonicalizationVersion: verified.descriptor.canonicalization_version,
+  };
+}
+
 function sourceCaptureData(label: string): DeepResearchPayloadMap['deep_research.source_captured'] {
   return {
     sourceIdentityDigest: digest(`source-identity:${label}`),
@@ -1223,6 +1257,182 @@ describe('deep research certificates and receipts', () => {
     expect(result.certificateDigest).toBe(current.bundle.certificate.certificateDigest);
     expect(current.bundle.certificate.body.authority).toBe('dark-evidence-only');
     expect(current.bundle.receipts).toHaveLength(6);
+  });
+
+  it('issues and verifies a correct run with receipt-covered outputs and ordered provenance', async () => {
+    const current = await scenario();
+    const result = await verifyDeepResearchCertificateOffline(current.verification);
+
+    expect(result.verdict).toBe('valid');
+    expect(current.bundle.certificate.body.outputArtifactQualifiedDigests).toEqual([
+      current.bundle.receipts.find((receipt) => (
+        receipt.facts.transitionKind === DeepResearchTransitionKinds.SYNTHESIS
+      ))?.facts.outputArtifactQualifiedDigests[0],
+      current.bundle.receipts.find((receipt) => (
+        receipt.facts.transitionKind === DeepResearchTransitionKinds.MEMORY_SAVE
+      ))?.facts.outputArtifactQualifiedDigests[0],
+    ]);
+  });
+
+  it('rejects an unreferenced synthesis output binding during issuance', async () => {
+    await expect(scenario(undefined, {
+      includeUnreferencedSynthesisReport: true,
+    })).rejects.toMatchObject({
+      code: DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
+      evidenceLocation: 'certificate:outputs',
+    });
+  });
+
+  it('rejects reordered synthesis provenance during issuance', async () => {
+    await expect(scenario(undefined, {
+      synthesisPermutation: true,
+      transformTransitionInputs: (inputs, bindings) => {
+        const convergence = bindings.find((binding) => (
+          binding.artifactKind === DeepResearchArtifactKinds.CONVERGENCE_WITNESS
+        ));
+        const analysis = bindings.find((binding) => (
+          binding.artifactKind === DeepResearchArtifactKinds.ATOMIC_CLAIM
+        ));
+        if (!convergence || !analysis) throw new Error('Expected synthesis input artifacts');
+        return inputs.map((input) => input.transitionKind === DeepResearchTransitionKinds.SYNTHESIS
+          ? {
+              ...input,
+              inputArtifactQualifiedDigests: [
+                convergence.reference.qualified_digest,
+                analysis.reference.qualified_digest,
+              ],
+            }
+          : input);
+      },
+    })).rejects.toMatchObject({
+      code: DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
+      evidenceLocation: 'transition:synthesis:inputs',
+    });
+  });
+
+  it('rejects an offline certificate that carries an unreferenced synthesis output', async () => {
+    const current = await scenario();
+    const decoy = await sealDeepResearchArtifact(
+      current.artifactStore,
+      DeepResearchArtifactKinds.SYNTHESIS_REPORT,
+      {
+        ...synthesisMaterial(),
+        outputId: 'decoy-report-99',
+        outputRef: 'artifact:decoy-report-99',
+      },
+    );
+    const forged = structuredClone(current.bundle) as unknown as {
+      certificate: {
+        body: {
+          artifactClaims: Array<Record<string, unknown>>;
+          artifactSetDigest: string;
+          outputArtifactQualifiedDigests: string[];
+        };
+      };
+    };
+    forged.certificate.body.artifactClaims.push(
+      await certificateArtifactClaim(current.artifactStore, decoy),
+    );
+    forged.certificate.body.artifactSetDigest = digest(
+      forged.certificate.body.artifactClaims,
+    );
+    forged.certificate.body.outputArtifactQualifiedDigests.push(
+      decoy.reference.qualified_digest,
+    );
+
+    const result = await verifyDeepResearchCertificateOffline({
+      ...current.verification,
+      bundle: forged,
+    });
+    expect(result.verdict).toBe('invalid');
+    if (result.verdict === 'valid') throw new Error('Expected offline output coverage rejection');
+    expect(result.code).toBe(DeepResearchCertificateFailureCodes.ARTIFACT_INVALID);
+    expect(result.evidenceLocation).toBe('certificate:outputs');
+  });
+
+  it('rejects offline provenance whose declared input order is permuted', async () => {
+    const current = await scenario();
+    const permuted = await sealDeepResearchArtifact(
+      current.artifactStore,
+      DeepResearchArtifactKinds.SYNTHESIS_REPORT,
+      {
+        ...synthesisMaterial(),
+        orderedInputDigests: [digest('claim-1'), digest('evidence-tail')],
+      },
+    );
+    const forged = structuredClone(current.bundle) as unknown as {
+      certificate: {
+        body: {
+          artifactClaims: Array<{
+            binding: DeepResearchSealedArtifactBinding;
+            descriptorDigest: string;
+            contentDigest: string;
+            canonicalizationVersion: string;
+          }>;
+          artifactSetDigest: string;
+          outputArtifactQualifiedDigests: string[];
+        };
+      };
+      receipts: Array<{
+        facts: {
+          transitionKind: string;
+          inputArtifactQualifiedDigests: string[];
+        };
+      }>;
+    };
+    const synthesisClaimIndex = forged.certificate.body.artifactClaims.findIndex((claim) => (
+      claim.binding.artifactKind === DeepResearchArtifactKinds.SYNTHESIS_REPORT
+    ));
+    const originalSynthesisDigest = forged.certificate.body.artifactClaims[
+      synthesisClaimIndex
+    ]?.binding.reference.qualified_digest;
+    const synthesisReceipt = forged.receipts.find((receipt) => (
+      receipt.facts.transitionKind === DeepResearchTransitionKinds.SYNTHESIS
+    ));
+    const convergenceReceipt = forged.receipts.find((receipt) => (
+      receipt.facts.transitionKind === DeepResearchTransitionKinds.CONVERGENCE
+    ));
+    const analysisReceipt = forged.receipts.find((receipt) => (
+      receipt.facts.transitionKind === DeepResearchTransitionKinds.ANALYZE
+    ));
+    if (
+      synthesisClaimIndex < 0
+      || !originalSynthesisDigest
+      || !synthesisReceipt
+      || !convergenceReceipt
+      || !analysisReceipt
+    ) {
+      throw new Error('Expected synthesis provenance evidence');
+    }
+    forged.certificate.body.artifactClaims[synthesisClaimIndex] = (
+      await certificateArtifactClaim(current.artifactStore, permuted)
+    );
+    forged.certificate.body.artifactSetDigest = digest(
+      forged.certificate.body.artifactClaims,
+    );
+    forged.certificate.body.outputArtifactQualifiedDigests = forged
+      .certificate.body.outputArtifactQualifiedDigests
+      .map((qualifiedDigest) => (
+        qualifiedDigest === originalSynthesisDigest
+          ? permuted.reference.qualified_digest
+          : qualifiedDigest
+      ));
+    synthesisReceipt.facts.outputArtifactQualifiedDigests = [
+      permuted.reference.qualified_digest,
+    ];
+    synthesisReceipt.facts.inputArtifactQualifiedDigests = [
+      convergenceReceipt.facts.outputArtifactQualifiedDigests[0] as string,
+      analysisReceipt.facts.outputArtifactQualifiedDigests[0] as string,
+    ];
+
+    const result = await verifyDeepResearchCertificateOffline({
+      ...current.verification,
+      bundle: forged,
+    });
+    expect(result.verdict).toBe('invalid');
+    if (result.verdict === 'valid') throw new Error('Expected offline provenance-order rejection');
+    expect(result.code).toBe(DeepResearchCertificateFailureCodes.ARTIFACT_INVALID);
+    expect(result.evidenceLocation).toBe('transition:synthesis:inputs');
   });
 
   it('accepts distinct gather receipts for multiple authorized sources', async () => {

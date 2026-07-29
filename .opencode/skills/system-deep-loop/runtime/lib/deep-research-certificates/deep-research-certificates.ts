@@ -962,22 +962,22 @@ function requireArtifactEventCorrespondence(
       const identity = evidence ? primaryArtifactIdentity(evidence) : null;
       return identity === null ? [] : [identity];
     });
-    const outputProvenance = input.outputArtifactQualifiedDigests.flatMap((reference) => {
+    // Each witness carries an ordered reducer input sequence. Compare outputs independently so
+    // multiple outputs cannot flatten provenance across witnesses.
+    for (const reference of input.outputArtifactQualifiedDigests) {
       const evidence = context.artifactEvidenceByQualifiedDigest.get(reference);
       const material = evidence?.material as unknown as Readonly<Record<string, unknown>> | undefined;
-      return stringArray(material?.orderedInputDigests);
-    });
-    const inputIdentitySet = new Set(inputIdentities);
-    const outputProvenanceSet = new Set(outputProvenance);
-    if (
-      inputIdentitySet.size !== outputProvenanceSet.size
-      || ![...inputIdentitySet].every((identity) => outputProvenanceSet.has(identity))
-    ) {
-      throw new DeepResearchCertificateError(
-        DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
-        `transition:${input.transitionKind}:inputs`,
-        'Transition result artifact does not bind every declared input identity',
-      );
+      const outputProvenance = stringArray(material?.orderedInputDigests);
+      if (
+        inputIdentities.length !== outputProvenance.length
+        || !inputIdentities.every((identity, index) => outputProvenance[index] === identity)
+      ) {
+        throw new DeepResearchCertificateError(
+          DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
+          `transition:${input.transitionKind}:inputs`,
+          'Transition result artifact does not bind every declared input identity in order',
+        );
+      }
     }
   }
 }
@@ -1310,6 +1310,49 @@ function outputArtifactQualifiedDigests(
   return Object.freeze(outputs);
 }
 
+function assertOutputArtifactReceiptCoverage(
+  claims: readonly DeepResearchCertificateArtifactClaim[],
+  receipts: readonly DeepResearchTransitionReceipt[],
+  coveredEvents: readonly VerifiedLedgerEvent[],
+): void {
+  const receiptByOutput = new Map<string, DeepResearchTransitionReceipt>();
+  for (const receipt of receipts) {
+    for (const output of receipt.facts.outputArtifactQualifiedDigests) {
+      receiptByOutput.set(output, receipt);
+    }
+  }
+  for (const claim of claims) {
+    const isRunOutput = claim.binding.artifactKind === DeepResearchArtifactKinds.SYNTHESIS_REPORT
+      || claim.binding.artifactKind === DeepResearchArtifactKinds.MEMORY_HANDOFF;
+    if (!isRunOutput) continue;
+    const qualifiedDigest = claim.binding.reference.qualified_digest;
+    const receipt = receiptByOutput.get(qualifiedDigest);
+    if (!receipt) {
+      throw new DeepResearchCertificateError(
+        DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
+        'certificate:outputs',
+        'Run output artifact must be declared by a transition receipt',
+      );
+    }
+    const expectedTransitionKind = claim.binding.artifactKind === DeepResearchArtifactKinds.SYNTHESIS_REPORT
+      ? DeepResearchTransitionKinds.SYNTHESIS
+      : DeepResearchTransitionKinds.MEMORY_SAVE;
+    const resultEvent = findResultEvent(coveredEvents, receipt.facts.resultEventId);
+    if (
+      receipt.facts.transitionKind !== expectedTransitionKind
+      || !TRANSITION_EVENT_TYPES[expectedTransitionKind].has(
+        resultEvent.event.effective.envelope.event_type,
+      )
+    ) {
+      throw new DeepResearchCertificateError(
+        DeepResearchCertificateFailureCodes.ARTIFACT_INVALID,
+        'certificate:outputs',
+        'Run output artifact must be declared by its authorized synthesis or memory-save receipt',
+      );
+    }
+  }
+}
+
 function openObligationIds(projection: DeepResearchProjectionState): readonly string[] {
   return uniqueSorted([
     ...projection.claimLedger.gapObligations.map((obligation) => obligation.obligationId),
@@ -1486,6 +1529,7 @@ export async function issueDeepResearchRunCertificate<TState extends JsonObject>
     priorReceiptDigest = receipt.receiptDigest;
   }
   assertTransitionOrder(receipts);
+  assertOutputArtifactReceiptCoverage(claims, receipts, coveredEvents);
 
   const firstEvent = coveredEvents[0] as VerifiedLedgerEvent;
   const finalEvent = coveredEvents.at(-1) as VerifiedLedgerEvent;
@@ -1949,6 +1993,11 @@ export async function verifyDeepResearchCertificateOffline<TState extends JsonOb
       ledgerEvents,
       verifiedArtifacts.evidenceByQualifiedDigest,
       input.providers,
+    );
+    assertOutputArtifactReceiptCoverage(
+      verifiedArtifacts.claims,
+      bundle.receipts,
+      coveredEvents,
     );
     const recomputedLifecycleResult = lifecycleResult(folded.projection, bundle.receipts);
     if (recomputedLifecycleResult !== certificate.body.lifecycleResult) {
