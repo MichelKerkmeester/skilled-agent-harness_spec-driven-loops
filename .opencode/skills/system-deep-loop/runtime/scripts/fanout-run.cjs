@@ -1699,6 +1699,36 @@ const PI_ALLOWED_MODELS = new Set([
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
+// Pi's `--model` takes a pattern OR a provider/model id. A bare pattern can
+// resolve to a wrong, unauthenticated provider (a live gpt-5.6 dispatch hit
+// azure-openai-responses and failed while still exiting 0), so qualify each id
+// with its confirmed provider: openai-codex for the gpt-5.6 tiers, and the
+// per-model providers for the rest. An already-qualified id passes through.
+const PI_MODEL_PROVIDERS = {
+  'gpt-5.6-luna': 'openai-codex',
+  'gpt-5.6-sol': 'openai-codex',
+  'gpt-5.6-terra': 'openai-codex',
+  'deepseek-v4-pro': 'deepseek-api',
+  'minimax-m3': 'minimax',
+  'mimo-v2.5-pro': 'xiaomi',
+  'mimo-v2.5-pro-ultraspeed': 'xiaomi',
+};
+function qualifyPiModel(model) {
+  if (model.includes('/')) return model;
+  const provider = PI_MODEL_PROVIDERS[model];
+  return provider ? `${provider}/${model}` : model;
+}
+
+// Map a reasoning-effort level onto Pi's own `--thinking` scale
+// (off/minimal/low/medium/high/xhigh/max). Pi has no `none` (use `off`) and no
+// `ultra` (clamp to its `max` ceiling). Null omits the flag so Pi keeps its default.
+function piThinkingLevel(reasoningEffort) {
+  if (!reasoningEffort) return null;
+  if (reasoningEffort === 'none') return 'off';
+  if (reasoningEffort === 'ultra') return 'max';
+  return reasoningEffort;
+}
+
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
@@ -1827,9 +1857,30 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
       `cli-pi model '${model}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
     );
   }
-  // TODO: Build args only after Pi's headless command contract is confirmed.
-  // Do not treat a subprocess exit code alone as proof of a successful dispatch.
-  throw inputError('cli-pi command construction is unavailable until its headless invocation contract is confirmed');
+  // Print mode is one-shot. The lineage writes its own state under the lineage
+  // dir, so --tools stays at Pi's default (write-capable) and the boundary is
+  // prompt-only. Pi's exit code is never an auth or success signal — the run
+  // harness reads the output and lineage state, not the exit code.
+  const args = ['-p', prompt, '--model', qualifyPiModel(model)];
+  const thinking = piThinkingLevel(lineage.reasoningEffort);
+  if (thinking) {
+    args.push('--thinking', thinking);
+  }
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'pi',
+    args,
+    input: undefined,
+    prompt,
+    promptArgIndexes: [1],
+    executableVersion: resolveExecutableVersion('pi', options),
+    model,
+    reasoningEffort: lineage.reasoningEffort || null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
 }
 
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({

@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "description": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
+  "keywords": [
+    "replace",
+    "throwing",
+    "cli-pi",
+    "command-builder",
+    "stub",
+    "real",
+    "print-mode",
+    "dispatch",
+    "runs",
+    "genuine",
+    "deep-loop",
+    "lineage"
+  ],
+  "lastUpdated": "2026-07-29T06:55:51.166Z",
+  "specId": "016",
+  "folderSlug": "fanout-cli-pi-executor",
+  "parentChain": [
+    "cli-external-orchestration",
+    "031-cli-pi-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

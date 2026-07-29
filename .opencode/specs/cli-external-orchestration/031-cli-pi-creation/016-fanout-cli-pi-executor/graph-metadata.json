@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "spec_folder": "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor",
+  "parent_id": "cli-external-orchestration/031-cli-pi-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout cli-pi executor",
+      "cli-pi deep-loop lineage"
+    ],
+    "key_topics": [
+      "fanout",
+      "cli-pi",
+      "executor",
+      "deep-loop",
+      "lineage",
+      "replace",
+      "throwing",
+      "command-builder",
+      "stub",
+      "real",
+      "print-mode",
+      "dispatch"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement The Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "unit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Check",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
+    "created_at": "2026-07-29T06:55:51.972Z",
+    "last_save_at": "2026-07-29T06:55:51.972Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4f7e7dbb29436122cddd1171a71888b270e50645fb473f167ad9ae90795e283f",
+    "source_doc_hashes": {
+      "spec.md": "d64b84c8f97d32e5396103a5e2efd1e7894990d80288c64d66c5ec164ba10534",
+      "plan.md": "d0df2c8ac919d8d67cd529d49ee5caf4fab953c87ce77fcf6bfe7640ef8447ea",
+      "tasks.md": "0c554b543bf3781d63f9a27e21c5d5556580b0ad2eb5eeacfc5d92ee2d77e2cc",
+      "checklist.md": "736472b8c079ebce825ec59795cbe54cb0aed3b44d3c9a07b7bd98e94d699351",
+      "implementation-summary.md": "14d42d0bcca863a4a0dc3465c3f18f1262faf166772fa274d8e610c29f096f8d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

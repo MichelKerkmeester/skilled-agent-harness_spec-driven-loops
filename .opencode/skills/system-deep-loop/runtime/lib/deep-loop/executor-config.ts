@@ -90,7 +90,11 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // (~/.config/devin/config.json), not a home directory, so it does not fit the
   // configDir contract the way CLAUDE_CONFIG_DIR does.
   'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
-  'cli-pi': ['model', 'timeoutSeconds', 'liveTools'],
+  // reasoningEffort maps to Pi's own `--thinking <level>` flag, confirmed by a
+  // live `pi -p` dispatch of the openai-codex gpt-5.6 tiers. No sandboxMode: Pi
+  // exposes no sandbox flag; a print-mode lineage's write boundary is the
+  // --tools allowlist, left at default so the lineage can write its own state.
+  'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
 };
 
 /** Proven web-search policies for every shipped executor kind. */

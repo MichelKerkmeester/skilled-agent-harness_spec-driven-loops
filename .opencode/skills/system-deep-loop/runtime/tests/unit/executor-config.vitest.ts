@@ -35,14 +35,15 @@ describe('executor-config', () => {
     ]);
   });
 
-  it('allows only confirmed-safe cli-pi fields', () => {
-    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'timeoutSeconds', 'liveTools']);
+  it('allows only confirmed-safe cli-pi fields, including reasoningEffort for --thinking', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools']);
     expect(parseExecutorConfig({
       kind: 'cli-pi',
       model: 'candidate-model',
+      reasoningEffort: 'xhigh',
       timeoutSeconds: 120,
       liveTools: { webSearch: 'inherit' },
-    })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', timeoutSeconds: 120 });
+    })).toMatchObject({ kind: 'cli-pi', model: 'candidate-model', reasoningEffort: 'xhigh', timeoutSeconds: 120 });
     expect(() => parseExecutorConfig({ kind: 'cli-pi', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-pi'/);
   });
 
