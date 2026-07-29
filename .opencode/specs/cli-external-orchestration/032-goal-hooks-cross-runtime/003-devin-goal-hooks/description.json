@@ -1,19 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks",
-  "description": "Devin goal hooks: UserPromptSubmit injection, SessionStart restore, Stop verify/continue",
+  "description": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
   "keywords": [
     "devin",
+    "sessions",
+    "repo",
+    "way",
+    "carry",
+    "operator-set",
     "goal",
-    "hooks",
-    "userpromptsubmit",
-    "injection",
-    "sessionstart",
-    "restore",
-    "stop",
-    "verify",
-    "continue"
+    "across",
+    "turns"
   ],
-  "lastUpdated": "2026-07-28T17:24:58.915Z",
+  "lastUpdated": "2026-07-28T17:51:34.796Z",
   "specId": "003",
   "folderSlug": "devin-goal-hooks",
   "parentChain": [
@@ -21,6 +21,5 @@
     "032-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

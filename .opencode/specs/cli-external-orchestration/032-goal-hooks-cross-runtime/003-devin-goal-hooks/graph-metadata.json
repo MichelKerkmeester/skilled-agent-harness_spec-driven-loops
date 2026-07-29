@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
     "created_at": "2026-07-28T17:25:01.861Z",
-    "last_save_at": "2026-07-28T17:33:55.534Z",
+    "last_save_at": "2026-07-28T17:56:27.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de4e7d8e9f38ced52aa17392559f83cdb98d103c6ce2f6fa8937b71206ec07b4",
+    "source_fingerprint": "sha256:2b1be85b1bfceb7c5d87fca8adc19fc1014c89821098d6c5cf8c896efcd49eef",
     "source_doc_hashes": {
-      "spec.md": "e0283f76e66adbe639028ba31d1d37ba020ce6f7867dc1e33addc2f36b0e0535",
+      "spec.md": "0aa8f3174d8748a9072f88a4fabac15223ce0535b29533b3278fbf17bdb1ce47",
       "plan.md": "4f42dd9dde074613cb5486aad2d1597844c15c7ca44990473ead6ec5dbab9e6c",
       "tasks.md": "001637d301e0aacfd0784518c9ef0cdd19a1b658e69e03619f59dd3d3a0a5d59",
       "checklist.md": "651f747032a727edef975af468770d36c25d6deee80c29bde1a1564d630c77d7",

@@ -88,7 +88,7 @@ As an operator, I need the Pi adapter to only claim verify/continue behavior if 
 - A relative symlink `.pi/extensions/goal-context.ts` -> `../../.opencode/hooks/goal/pi/goal-context.ts`, with imports inside the file written against the `.pi/extensions/` base path per the proven symlink-resolution semantics (Pi's loader resolves relative imports against the symlink's directory, not its realpath).
 - `input` transform: renders the `[active_goal]` brief into the prompt, operator-visible in the Pi chat transcript (a UX-relevant difference from Devin's `UserPromptSubmit` and Cursor's `sessionStart` injection, both invisible to the operator).
 - `session_start`: restores active-goal state at the start of a new Pi session.
-- Turn-end verify: implemented only if phase 002's capability matrix confirms Pi's `types.d.ts` exposes a usable turn-end/agent-loop event; otherwise this adapter ships injection + restore only, with the gap documented rather than simulated.
+- Turn-end verify: implemented, per phase 002's fixed tier (`002-capability-probes/capability-matrix.md`) — Pi's `types.d.ts` CONFIRMED exposes `turn_end` (`TurnEndEvent`, `types.d.ts:549-554`), `agent_end` (`types.d.ts:534-537`), and `agent_settled` (`types.d.ts:539-541`), each subscribable via `ExtensionContext.on(...)` (`types.d.ts:867-870`). Note: these handlers have no result type (`Promise<void> | void`), so a verify step can run at turn/agent end but cannot itself force continuation via a handler return value the way Devin's `Stop` can — auto-continue mechanics (if any) are UNKNOWN and must be designed/probed separately, not assumed.
 - Co-located `node --test` suite for the adapter's own logic (state read/render, symlink-relative import resolution).
 - A live smoke proof via `pi --offline -p` (or `pi -p` if offline mode is unsuitable for this check) showing the goal brief actually reaching the model/chat transcript.
 
@@ -211,6 +211,6 @@ As an operator, I need the Pi adapter to only claim verify/continue behavior if 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether Pi's typed event surface offers a usable turn-end event for verify/continue (resolved by phase 002; this phase's REQ-005 branches on the answer).
+- ~~Whether Pi's typed event surface offers a usable turn-end event for verify/continue~~ — RESOLVED: **CONFIRMED** (`turn_end`/`agent_end`/`agent_settled`, see `002-capability-probes/capability-matrix.md`). Remaining open sub-question this phase must still resolve on its own: since these handlers return no decision value, what mechanism (if any) lets a verifier force continuation — this was explicitly left UNKNOWN by phase 002 and is not answered here.
 - Whether the `input`-transform visibility of the goal brief needs any operator-facing formatting adjustment once seen live, versus reusing mk-goal's template verbatim.
 <!-- /ANCHOR:questions -->

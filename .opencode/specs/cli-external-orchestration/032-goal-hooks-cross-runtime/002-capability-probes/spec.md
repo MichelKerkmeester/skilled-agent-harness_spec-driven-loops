@@ -11,21 +11,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes"
-    last_updated_at: "2026-07-28T21:00:00Z"
+    last_updated_at: "2026-07-28T22:15:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored Level 1 planning docs for phase 002 capability probes"
-    next_safe_action: "Run the three live capability probes and record the matrix"
+    recent_action: "Ran three live capability probes and recorded the matrix"
+    next_safe_action: "Hand fixed tiers to phases 003, 004, 005 for adapters"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-hooks-cross-runtime-002-20260728"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether Devin's Stop hook supports a blocking/continue decision (resolved by this phase)."
-      - "Whether Pi's typed event surface offers a usable turn-end event (resolved by this phase)."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Devin Stop decision:block forces continuation (live transcript proof)."
+      - "Pi types.d.ts exposes turn_end/agent_end/agent_settled, all subscribable."
+      - "Cursor preToolUse agent_message does not reach model-visible context."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Cross-runtime goal hook capability probes (devin/cursor/pi)
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per parent packet) |
 | **Parent Spec** | ../spec.md |
@@ -119,13 +120,13 @@ Run three concrete, live capability probes — one per runtime — and record th
 - **SC-001**: All three probes (a, b, c) have been run live or read directly against the real runtime artifact, with results recorded honestly (including "not supported" or "unconfirmed" outcomes).
 - **SC-002**: The capability matrix below is fully populated with no `TBD` cells remaining.
 
-### Capability Matrix (populated once probes run)
+### Capability Matrix (populated — see `capability-matrix.md` for the full evidence table)
 
 | Runtime | Injection Surface | Verify/Continue Support | Source Probe |
 |---------|--------------------|--------------------------|---------------|
-| Devin | `UserPromptSubmit` + `SessionStart` (confirmed live, prior session) | TBD — depends on probe (b): `Stop` hook `decision:"block"` continuation | Probe (b) |
-| Cursor | `sessionStart` (confirmed, fires once) | TBD — `sessionEnd` verify confirmed available; `preToolUse` `agent_message` refresh depends on probe (c) | Probe (c) |
-| Pi | `input` + `session_start` (confirmed live, prior session) | TBD — depends on probe (a): usable turn-end/agent-loop event in `types.d.ts` | Probe (a) |
+| Devin | `UserPromptSubmit` + `SessionStart` (confirmed live, prior session) | **CONFIRMED**: `Stop` hook `decision:"block"`+`reason` forces genuine continuation — live transcript evidence, `stop_hook_active` flips false→true across two firings | Probe (b) |
+| Cursor | `sessionStart` (confirmed, fires once); `preToolUse` `agent_message` **CONFIRMED non-delivery** into model-visible context | **CONFIRMED unsupported** — `sessionEnd` fires but no hook exposes a block/continue decision; `stop` never fires | Probe (c) |
+| Pi | `input` + `session_start` (confirmed live, prior session) | **CONFIRMED** usable events exist: `turn_end`/`agent_end`/`agent_settled` (all subscribable, `types.d.ts:534-554,867-870`); auto-continue mechanism UNKNOWN (handlers return no decision value) | Probe (a) |
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -146,6 +147,7 @@ Run three concrete, live capability probes — one per runtime — and record th
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether Devin's `Stop` hook supports a blocking/continue decision (resolved by this phase's probe (b); determines 003's parity tier).
-- Whether Pi's typed event surface offers a usable turn-end event for verify/continue (resolved by this phase's probe (a); determines 005's parity tier).
+- ~~Whether Devin's `Stop` hook supports a blocking/continue decision~~ — RESOLVED: CONFIRMED, live probe (b). See `capability-matrix.md`.
+- ~~Whether Pi's typed event surface offers a usable turn-end event for verify/continue~~ — RESOLVED: CONFIRMED (`turn_end`/`agent_end`/`agent_settled`), live read, probe (a). See `capability-matrix.md`.
+- ~~Whether Cursor's `preToolUse` can deliver an `agent_message` refresh~~ — RESOLVED: CONFIRMED non-delivery, live probe (c). See `capability-matrix.md`.
 <!-- /ANCHOR:questions -->

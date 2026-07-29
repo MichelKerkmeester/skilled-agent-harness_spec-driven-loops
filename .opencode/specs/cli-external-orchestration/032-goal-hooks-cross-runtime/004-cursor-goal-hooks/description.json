@@ -1,20 +1,16 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/004-cursor-goal-hooks",
-  "description": "Cursor goal hooks: sessionStart injection, optional preToolUse refresh, sessionEnd verify, fail-open",
+  "description": "A goal set for the work does not survive into a Cursor session",
   "keywords": [
-    "cursor",
     "goal",
-    "hooks",
-    "sessionstart",
-    "injection",
-    "optional",
-    "pretooluse",
-    "refresh",
-    "sessionend",
-    "verify",
-    "fail-open"
+    "set",
+    "work",
+    "survive",
+    "cursor",
+    "session"
   ],
-  "lastUpdated": "2026-07-28T17:25:29.354Z",
+  "lastUpdated": "2026-07-28T17:51:53.551Z",
   "specId": "004",
   "folderSlug": "cursor-goal-hooks",
   "parentChain": [
@@ -22,6 +18,5 @@
     "032-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -78,7 +78,7 @@ As an operator working inside a Cursor session (editor or `cursor-agent -p`), I 
 ### In Scope
 
 - `sessionStart` adapter: injects the `[active_goal]` block, prebind-style, built on phase 001's `lib/goal-core.cjs`.
-- Optional `preToolUse` `agent_message` refresh adapter, added conditionally — only if phase 002's matrix confirms Cursor's realistic injection cadence supports a mid-session refresh; otherwise this spec's scope narrows to `sessionStart` + `sessionEnd` only, and that narrowing is documented rather than silently dropped.
+- ~~Optional `preToolUse` `agent_message` refresh adapter~~ — DROPPED per phase 002's fixed tier (`002-capability-probes/capability-matrix.md`): a live probe confirmed `preToolUse`'s `agent_message` is returned in the hook's JSON response but never spliced into the model-visible transcript (zero occurrences of an injected marker token in the raw `~/.cursor/projects/.../agent-transcripts/*.jsonl`, and the model's final reply never referenced it). This spec's scope narrows to `sessionStart` + `sessionEnd` only.
 - `sessionEnd` adapter: runs the ported heuristic verifier against the shared goal state.
 - Registration of all adapters in `.cursor/hooks.json`.
 - Fail-open behavior in every adapter: any goal-core read/write/render error is caught and the hook exits as a no-op success, never a block, never a degraded editor response.
@@ -158,7 +158,7 @@ As an operator working inside a Cursor session (editor or `cursor-agent -p`), I 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether phase 002 confirms `preToolUse` `agent_message` refresh is worth adding, or `sessionStart`-only is the honest tier for this runtime.
+- ~~Whether phase 002 confirms `preToolUse` `agent_message` refresh is worth adding~~ — RESOLVED: **CONFIRMED non-delivery** into model-visible context (live probe, `002-capability-probes/capability-matrix.md`). `sessionStart`-only is the fixed, honest tier for this runtime; REQ-005 ships without the refresh adapter.
 <!-- /ANCHOR:questions -->
 
 ---

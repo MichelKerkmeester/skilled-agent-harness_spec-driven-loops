@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A goal set for the work does not survive into a Cursor session",
     "created_at": "2026-07-28T17:25:31.731Z",
-    "last_save_at": "2026-07-28T17:33:55.719Z",
+    "last_save_at": "2026-07-28T17:56:27.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18023ff8158bb6d05fbbbf493c8eea3762ee2265ca36aa1be689b7fc0d54efc9",
+    "source_fingerprint": "sha256:25221dad702b2ac2de9a453010b0efa152397b31ce5a309320594afbe5815528",
     "source_doc_hashes": {
-      "spec.md": "941c6ded3a64e5afd87fa4a7f1a21b89568dd09ee05f53fa8b9e4144a9fd56db",
+      "spec.md": "ecbe5430addf9d58c783f1e336545dd7ed4a8969053b592cf39ef8767b46e44f",
       "plan.md": "7c2a8abda05c268b40194821d0a4da5876416465f6d78ee029cb3bc354b85dd6",
       "tasks.md": "ca25c09201dad0d9eb95eb0dd9550023588bb6d3fe8a30744bba5d5eb78db440",
       "checklist.md": "27f2a30fc984a44aa045882c77cfeaac18f02f7e4339ed26ab1df21cecb93ea0",

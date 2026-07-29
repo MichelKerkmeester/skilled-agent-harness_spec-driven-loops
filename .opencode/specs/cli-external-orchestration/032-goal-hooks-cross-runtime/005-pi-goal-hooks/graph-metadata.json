@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set goal across turns, but nothing in `.pi/extensions/` currently reads or renders it",
     "created_at": "2026-07-28T17:25:58.782Z",
-    "last_save_at": "2026-07-28T17:33:55.895Z",
+    "last_save_at": "2026-07-28T17:56:27.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03c51cac43bdc0d47d790a26367de2e49e915810e12808ff17b446f055b502a5",
+    "source_fingerprint": "sha256:2f545f998540c2a8c98630a46a6a1c560e9a4f6c8a137b69fb82cc1bf4de0de2",
     "source_doc_hashes": {
-      "spec.md": "ec6576205089c53018006937d5df8ba48c6524f3bedcbde177892d00f69c4479",
+      "spec.md": "06f89aae89f0e969a1e9f0427d0dcd1f1783ee482c0bb51db0eca3c6af891566",
       "plan.md": "b2f4de59deb5babc26489762bd980d74cab1033333d065603f7effee9e7db5ca",
       "tasks.md": "aaf95b3a8cfd98fa65ceb25d6c817e3225c4e0cc40171fd9ac8c6df587b1e23d",
       "checklist.md": "2b261197afd01b10c4c5d3c722d72198312bf7534769e2781dbf0fd3025afe72",

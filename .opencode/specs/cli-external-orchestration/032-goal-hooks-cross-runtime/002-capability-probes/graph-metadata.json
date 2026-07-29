@@ -36,16 +36,29 @@
       "turn"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
+      ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".devin/hooks.v1.json",
-      ".cursor/hooks.json"
+      "mcp-server/hooks/cursor/README.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,21 +78,15 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp-server/hooks/cursor/README.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -89,19 +96,7 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Whether Devin",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Whether Pi",
+        "name": "Devin Stop",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,19 +114,43 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Devin Stop",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,19 +174,19 @@
         "source": "derived"
       },
       {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -175,7 +194,7 @@
     ],
     "causal_summary": "Phases 003-005 of the parent packet each need to build a per-runtime goal-hook adapter (devin, cursor, pi), but two of the three verify/continue mechanisms they would rely on are unproven: Devin's `Stop` hook schema visually mirrors Claude's `decision:\"block\"` continuation contract, but this has never been tested against Devin live; Pi's installed `types.d.ts` event surface has not been read to confirm a usable turn-end/agent-loop event exists at all",
     "created_at": "2026-07-28T17:24:44.734Z",
-    "last_save_at": "2026-07-28T17:33:55.381Z",
+    "last_save_at": "2026-07-28T17:55:14.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e341c398e06c11673a435a497886625e08c0e6474eb32d680473655ab0c515b",
+    "source_fingerprint": "sha256:561852fe0dd8f98b6c5206d7542d9b31ba8914d58bc5530ee72a5e2c6039388b",
     "source_doc_hashes": {
-      "spec.md": "3885b6eb87109fcb33439a74014d4e8a793cdc733b56e339cd6490cbb56a7469",
-      "plan.md": "8e31b3d89fc9d1d9ddf12db9d2073dbe430f3244c5a8a04ebb416ed48bd31a32",
-      "tasks.md": "b06246e01eeb5f5123bf3fc3e89a2ab9c3eace3d96cdba323d38e745b0578ff0",
-      "implementation-summary.md": "0301bf7985ba2405cedf5c27eb6aba6de7fb7f236a005ed196c20e6e7117f59b"
+      "spec.md": "5cba689915b56a4a15debbe57e8018f9e3cd91dbfe5fd23f5d6a36acbc873d40",
+      "plan.md": "5bd5240aad9e3f9211bb024a0b9d44271abd1b2bb1931e9939de84160bcf4926",
+      "tasks.md": "f6f3e27c5dd96ca3543c01c46c09f6b4fa54105f856a276b544108621b97fb6e",
+      "implementation-summary.md": "7f211ea62a94987ba4fa92a87b16d02df84bb7724a5ced05e64d891bb089eb67"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -82,7 +82,7 @@ As an operator running a Devin session against this repo, I need an active goal 
 - `.opencode/hooks/goal/devin/` adapters built on `.opencode/hooks/goal/lib/goal-core.cjs` (phase 001 deliverable): one adapter per wired hook.
 - `UserPromptSubmit` adapter: reads the shared `active-goal.json` state and injects the rendered goal brief as `additionalContext` on every user turn.
 - `SessionStart` adapter: restores the active goal state at the start of a new Devin session (no re-set required if a goal is already active).
-- `Stop` adapter: verify-only by default; upgraded to verify-and-continue (mirroring Claude's `decision:"block"` forcing continuation) only if phase 002's probe confirms Devin's `Stop` hook schema supports it. If unconfirmed or disproved, the adapter ships verify-only and this spec's Success Criteria reflect that honestly.
+- `Stop` adapter: verify-and-continue, per phase 002's fixed tier (`002-capability-probes/capability-matrix.md`) — Devin's `Stop` hook `decision:"block"`+`reason` is CONFIRMED live to force continuation, mirroring Claude's contract.
 - Registration of all three adapters in `.devin/hooks.v1.json`.
 - Co-located `node --test` adapter test suite.
 - A live smoke proof: the goal brief text actually reaching the model in a real `devin -p` session, same evidentiary bar as the Gate-3 proof precedent in this repo (see `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/tasks.md` T044 for the precedent pattern).
@@ -200,5 +200,5 @@ As an operator running a Devin session against this repo, I need an active goal 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether Devin's `Stop` hook supports a blocking/continue decision (resolved by phase 002; determines whether REQ-003 ships as verify-only or verify-and-continue).
+- ~~Whether Devin's `Stop` hook supports a blocking/continue decision~~ — RESOLVED by phase 002's live probe: **CONFIRMED**. A `Stop` hook returning `{"decision":"block","reason":"..."}` forces genuine continuation (live transcript evidence: `/Users/michelkerkmeester/.local/share/devin/cli/transcripts/caring-diver.json`, the block reason was injected as a synthetic `user` turn and the agent produced a new turn in response; `stop_hook_active` flips `false`→`true` across the two Stop firings, mirroring Claude Code's Stop contract). REQ-003 ships verify-and-continue — see `002-capability-probes/capability-matrix.md`.
 <!-- /ANCHOR:questions -->
