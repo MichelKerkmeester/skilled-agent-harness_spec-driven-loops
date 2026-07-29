@@ -5,6 +5,14 @@
 # named + detached worktree creators.
 set -uo pipefail
 
+# git resolves its repository and config from these variables in preference to the working
+# directory. If the caller's environment has any set (routine inside a git worktree), the
+# fixture's git writes and the EXIT trap's `worktree prune` would escape $TMP and hit the real,
+# shared repository. Clear them so `cd "$TMP"` is the only thing that selects the repo.
+unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE GIT_OBJECT_DIRECTORY \
+      GIT_ALTERNATE_OBJECT_DIRECTORIES GIT_CONFIG GIT_CONFIG_GLOBAL GIT_CONFIG_SYSTEM \
+      GIT_CONFIG_COUNT GIT_NAMESPACE GIT_CEILING_DIRECTORIES
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 NAMING="$SCRIPT_DIR/worktree-naming.sh"
 

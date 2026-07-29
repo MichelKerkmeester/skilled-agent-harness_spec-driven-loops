@@ -145,6 +145,25 @@ def _parse_json_output(result: subprocess.CompletedProcess[str], label: str) -> 
 # ---------------------------------------------------------------------------
 
 
+# git resolves its target repository and config from these variables IN PREFERENCE to the working
+# directory. Left in the child environment, they let a fixture's git writes escape the disposable
+# repo and land in whatever the parent process points at — and because worktrees share one
+# .git/config, that can be the real repository. Strip them so `-C <root>` is the only thing that
+# decides which repo is touched.
+_GIT_ENV_REDIRECTORS = frozenset({
+    "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE",
+    "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+    "GIT_CONFIG", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_SYSTEM", "GIT_CONFIG_COUNT",
+    "GIT_NAMESPACE", "GIT_CEILING_DIRECTORIES",
+})
+
+
+def _scrub_git_env(base: Mapping[str, str] | None) -> dict[str, str]:
+    """Copy an environment mapping (default: the process environment) without the git redirectors."""
+    source = os.environ if base is None else base
+    return {key: value for key, value in source.items() if key not in _GIT_ENV_REDIRECTORS}
+
+
 def _run_git(
     root: Path,
     arguments: Sequence[str],
@@ -157,7 +176,7 @@ def _run_git(
         ["git", "-C", str(root), *arguments],
         check=False,
         capture_output=True,
-        env=dict(environment) if environment is not None else None,
+        env=_scrub_git_env(environment),
     )
     if check and result.returncode != 0:
         detail = result.stderr.decode("utf-8", errors="replace").strip()

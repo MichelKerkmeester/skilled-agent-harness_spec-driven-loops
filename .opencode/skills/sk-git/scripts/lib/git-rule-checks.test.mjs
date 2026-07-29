@@ -29,8 +29,31 @@ import { readHardRules, evaluate } from '../../../../hooks/dispatch/lib/dispatch
 
 const SKILL_MD = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../SKILL.md');
 
+// git resolves its target repository and config from these environment variables IN PREFERENCE
+// to the working directory. If any is set in the parent process (routinely true for a process
+// launched inside a git worktree), a bare `cwd` no longer isolates a throwaway repo: writes land
+// in whatever the env points at — and because worktrees share one .git/config, that means the
+// real repository. Strip the redirectors so isolation rests only on the temp path we own.
+const GIT_ENV_REDIRECTORS = [
+  'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE',
+  'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+  'GIT_CONFIG', 'GIT_CONFIG_GLOBAL', 'GIT_CONFIG_SYSTEM', 'GIT_CONFIG_COUNT',
+  'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
+];
+
+function cleanGitEnv() {
+  const env = { ...process.env };
+  for (const key of GIT_ENV_REDIRECTORS) delete env[key];
+  return env;
+}
+
 function git(repo, ...args) {
-  return execFileSync('git', args, { cwd: repo, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+  return execFileSync('git', args, {
+    cwd: repo,
+    env: cleanGitEnv(),
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).trim();
 }
 
 /**
@@ -290,4 +313,35 @@ test('the shared engine still evaluates command-only rules unchanged', () => {
     { id: 'no-bare-agent-general', check: 'no-bare-agent-general', message: 'm', severity: 'warn' },
   ]);
   assert.deepEqual(violations.map((v) => v.id), ['no-bare-agent-general']);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. ENVIRONMENT ISOLATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect a throwaway repo write onto another repo', () => {
+  // Stand-in for the shared worktree config the leak historically corrupted. Without the env
+  // scrub in git(), makeRepo's `git config user.email test@example.invalid` (and the bare flag)
+  // would land here instead of in its own temp repo, because GIT_DIR beats cwd.
+  const standIn = fs.mkdtempSync(path.join(os.tmpdir(), 'git-standin-'));
+  cleanup.push(standIn);
+  git(standIn, 'init', '-q');
+  git(standIn, 'config', 'user.email', 'seed@real.example');
+  git(standIn, 'config', 'user.name', 'SeedReal');
+  git(standIn, 'config', 'core.bare', 'false');
+
+  const saved = { GIT_DIR: process.env.GIT_DIR, GIT_WORK_TREE: process.env.GIT_WORK_TREE };
+  process.env.GIT_DIR = path.join(standIn, '.git');
+  process.env.GIT_WORK_TREE = standIn;
+  try {
+    repo(); // build a throwaway repo while the env points at the stand-in
+    assert.equal(git(standIn, 'config', '--get', 'user.email'), 'seed@real.example');
+    assert.equal(git(standIn, 'config', '--get', 'user.name'), 'SeedReal');
+    assert.equal(git(standIn, 'config', '--get', 'core.bare'), 'false');
+  } finally {
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE']) {
+      if (saved[key] === undefined) delete process.env[key];
+      else process.env[key] = saved[key];
+    }
+  }
 });

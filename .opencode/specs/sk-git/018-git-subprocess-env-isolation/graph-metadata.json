@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/018-git-subprocess-env-isolation",
+  "spec_folder": "sk-git/018-git-subprocess-env-isolation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git env isolation",
+      "git config leak",
+      "GIT_DIR scrub",
+      "git env isolation plan",
+      "git env isolation tasks",
+      "git env isolation checklist",
+      "git env isolation summary"
+    ],
+    "key_topics": [
+      "git",
+      "env",
+      "isolation",
+      "config",
+      "leak",
+      "scrub",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "three",
+      "git-family"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "git-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T008",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C <dir>` to git",
+    "created_at": "2026-07-29T06:06:33.668Z",
+    "last_save_at": "2026-07-29T06:10:06.919Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0817919e96888dd36d98f4566230f90bdae0cc9a288f630143c356a67394a89f",
+    "source_doc_hashes": {
+      "spec.md": "0047041c72d121df56829724dc5646e8a480c695771bcfe737e43305209aa1a2",
+      "plan.md": "9b62886df08d96e5adeacb9c093e287db52cbd74e06ddabda8e33b31859cab38",
+      "tasks.md": "9c17513163fbbb17ebd2a3ef900483fbff83dff2fe01dfc7fd46e82a40926a8a",
+      "checklist.md": "df93d52a0015dad531ef0746886c7d40b7a31428146d2c23c094f9fea9ac1a2f",
+      "implementation-summary.md": "e6ae955c6855ebdcfe9a5c3e77af79e24e24563c2f5bdab835ea63d9f0f8f218"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
