@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.0.0.2
+version: 1.0.0.3
 ---
 
 # cli-external-orchestration Surface Router — per-mode leaf sets
@@ -51,10 +51,10 @@ per-mode references, it is not part of the first slice.
 - **cli-cursor leaves** — the Cursor CLI command reference (`cursor-agent -p`,
   Composer + the enforced model allowlist) and the integration-pattern guide a
   request to dispatch a Cursor-Composer coding session loads.
-- **cli-devin leaves** — the Devin CLI command reference (`devin -p`, the adaptive
-  router + sub-model roster, permission modes) and the integration-pattern guide a
-  request to dispatch a Cognition-backed autonomous SWE session or cloud handoff
-  loads.
+- **cli-devin leaves** — the Devin CLI command reference (`devin -p`, the curated
+  GLM-5.2 / SWE-1.7 / Grok 4.5 / DeepSeek roster, permission modes) and the
+  integration-pattern guide a request to dispatch a Cognition-backed autonomous
+  SWE session or cloud handoff loads.
 - **cli-pi leaves** — the Pi CLI command reference (headless print mode, the
   multi-provider passthrough + `--thinking` lever) and the integration-pattern
   guide a request to dispatch a Pi passthrough session loads.
@@ -85,7 +85,7 @@ INTENT_SIGNALS = {
     "CLAUDE_CODE": {"weight": 4, "keywords": ["claude code", "claude cli", "cli-claude-code", "anthropic cli", "anthropic cli second opinion", "delegate to claude", "extended thinking", "deep reasoning handoff", "deeply-reasoned opinion", "structured claude code output", "claude code review"]},
     "CODEX":       {"weight": 4, "keywords": ["codex", "codex cli", "codex exec", "cli-codex", "openai cli second opinion", "delegate to codex", "openai coding agent", "codex web search", "codex diff review", "codex sandbox", "gpt codex dispatch"]},
     "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch"]},
-    "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "adaptive model dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "swe-1.6 dispatch"]},
+    "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-1.7 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider"]},
 }
 

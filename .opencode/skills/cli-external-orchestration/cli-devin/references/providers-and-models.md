@@ -4,7 +4,7 @@ description: The dedicated per-mode catalog of every model id, alias, default, p
 trigger_phrases:
   - "devin providers and models"
   - "which model for devin dispatch"
-  - "devin adaptive router default"
+  - "devin swe default model"
   - "devin permission mode effort lever"
   - "devin glm swe grok deepseek dispatch"
   - "devin model alias reference"
