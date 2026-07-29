@@ -37,12 +37,15 @@ export type SandboxMode = typeof SANDBOX_MODES[number];
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
 
 /**
- * Cursor's real approval-flag family (live-verified against the installed
- * CLI), not a fabricated permission-mode enum: `ask` is the CLI's own unflagged
- * prompt-and-block default, `auto-review` is `--auto-review` ("Smart Auto"),
- * `force` is `--force`/`--yolo` ("Run Everything").
+ * Cursor's real approval-flag family (live-verified against the installed CLI):
+ * `plan` is Cursor's `--mode plan` read-only/planning mode (reads allowed,
+ * edits/shell blocked), `auto-review` is `--auto-review` ("Smart Auto"), and
+ * `force` is `--force`/`--yolo` ("Run Everything"). The fan-out never selects
+ * `auto-review`: Smart Auto prompts for tool calls it deems unsafe, and a
+ * non-interactive leaf has no stdin to answer, so it could block until the
+ * lineage timeout — both write modes use `force` instead.
  */
-export type CursorApprovalMode = 'ask' | 'auto-review' | 'force';
+export type CursorApprovalMode = 'plan' | 'auto-review' | 'force';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -360,12 +363,11 @@ export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined
 /**
  * Map a generic sandbox mode to Cursor's approval-flag family.
  *
- * `read-only` maps to the CLI's own unflagged default (`ask`) rather than an
- * explicit flag: Cursor exposes no read-only-specific flag, and its unflagged
- * behavior already blocks destructive actions pending approval that an
- * unattended dispatch can never supply — the closest analog it has to a
- * read-only executor policy. `danger-full-access` maps to `force`
- * (`--force`/`--yolo`), never to a Cursor sandbox value.
+ * `read-only` maps to `plan`, Cursor's real read-only mode via `--mode plan`.
+ * Both `workspace-write` and `danger-full-access` map to `force`: a
+ * non-interactive leaf must never stall on an approval prompt, and only
+ * `force` auto-approves every tool. The two write modes differ by OS
+ * confinement (the `--sandbox` value the builder emits), not by approval mode.
  *
  * @param mode - Generic sandbox mode or undefined.
  * @returns Cursor-compatible approval mode.
@@ -373,11 +375,9 @@ export function resolveClaudePermissionMode(mode: SandboxMode | null | undefined
 export function resolveCursorApprovalMode(mode: SandboxMode | null | undefined): CursorApprovalMode {
   switch (normalizeSandboxMode(mode)) {
     case 'read-only':
-      return 'ask';
-    case 'danger-full-access':
-      return 'force';
+      return 'plan';
     default:
-      return 'auto-review';
+      return 'force';
   }
 }
 
