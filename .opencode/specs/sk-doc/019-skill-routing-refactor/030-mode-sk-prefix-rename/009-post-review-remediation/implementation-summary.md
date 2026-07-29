@@ -96,3 +96,5 @@ Clearing the two hubs' BLOCKED verdicts requires real router fixes and new typed
 out of scope here. The advisor daemon indexes the main tree, so the vocabulary additions take
 effect at merge.
 <!-- /ANCHOR:limitations -->
+
+Current executable acceptance state: [`../010-luna-review-remediation/current-state-verification.md`](../010-luna-review-remediation/current-state-verification.md) supersedes earlier acceptance snapshots; the observations above remain historical.

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation",
+  "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "LUNA review remediation",
+      "sk prefix rename findings",
+      "route gold current state",
+      "leaf manifest unreadable subtree",
+      "LUNA review remediation plan",
+      "catalog registry parity",
+      "freshness traversal failure",
+      "current state verification",
+      "LUNA remediation tasks",
+      "catalog parity tasks",
+      "freshness gate regression",
+      "current state verification tasks"
+    ],
+    "key_topics": [
+      "luna",
+      "review",
+      "remediation",
+      "prefix",
+      "rename",
+      "findings",
+      "route",
+      "gold",
+      "current",
+      "state",
+      "leaf",
+      "manifest"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/sk-doc/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+      "spec.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      "checklist.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-authored-registry-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-leaf-manifest-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Findings For The Sk",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation For The Sk",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The live sk-doc feature catalog still publishes pre-rename workflow keys, while closeout documents disagree about the current route-gold and generated-metadata acceptance state",
+    "created_at": "2026-07-29T12:41:32Z",
+    "last_save_at": "2026-07-29T13:44:41.350Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e10108cef63aeb8534a299418b8b961d6b66d276070734ed04d6e610e747f655",
+    "source_doc_hashes": {
+      "spec.md": "6340ff097f9da91fab5444d3a26b88cf9e238a09b4c12d35aad8c0662a8111aa",
+      "plan.md": "11d11e1cefbd585b3a8959bb7d4b3c003fa9d26444b1d5fe2e921a1fa53f14d3",
+      "tasks.md": "4f2b0067f8bee8aca2994bf87b7942f92cf923faee6cab97552ffd6c07297761",
+      "checklist.md": "6539c337c79b8e7136411969327d46aeddfb8620d3c1d905d12fa69da881b4d9",
+      "implementation-summary.md": "f4717aaa69278b0ad626626a822f0acae3fabf6d7b564e81fbf2ebc388a02a51"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

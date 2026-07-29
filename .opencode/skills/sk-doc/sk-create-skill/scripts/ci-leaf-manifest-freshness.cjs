@@ -56,23 +56,34 @@ function parseArgs(argv) {
 // skillsDir. node_modules and .git are skipped so a vendored copy can never
 // enter the gate. Order is stable (sorted) for deterministic reporting.
 function findManifestDirs(skillsDir) {
-  const out = [];
+  const roots = [];
+  const failures = [];
   const stack = [skillsDir];
   while (stack.length) {
     const cur = stack.pop();
-    // Skip-and-continue is intentional per nested subtree: an unreadable
-    // packet dir forgoes that branch rather than aborting the fleet walk. The
-    // top-level skills dir is proven a real directory by run() before this.
     let entries;
-    try { entries = fs.readdirSync(cur, { withFileTypes: true }); } catch { continue; }
+    try {
+      entries = fs.readdirSync(cur, { withFileTypes: true });
+    } catch (err) {
+      // Preserve attempted reads so omitted subtrees cannot produce a clean gate.
+      failures.push({
+        path: cur,
+        code: err && err.code ? err.code : 'ERROR',
+        message: err && err.message ? err.message : String(err),
+      });
+      continue;
+    }
     for (const entry of entries) {
       if (entry.name === 'node_modules' || entry.name === '.git') continue;
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) { stack.push(full); continue; }
-      if (entry.isFile() && entry.name === 'leaf-manifest.json') out.push(cur);
+      if (entry.isFile() && entry.name === 'leaf-manifest.json') roots.push(cur);
     }
   }
-  return [...new Set(out)].sort();
+  return {
+    roots: [...new Set(roots)].sort(),
+    failures: failures.sort((a, b) => a.path.localeCompare(b.path)),
+  };
 }
 
 // Regenerate one skill's manifest and byte-compare against its committed file.
@@ -115,18 +126,24 @@ function run(args) {
     process.stderr.write(`ci-leaf-manifest-freshness: skills dir not found or not a directory: ${skillsDir}\n`);
     return 2;
   }
-  const dirs = findManifestDirs(skillsDir);
-  const results = dirs.map(checkOne);
+  const discovery = findManifestDirs(skillsDir);
+  const results = discovery.roots.map(checkOne);
   const rel = (p) => path.relative(skillsDir, p) || '.';
-  const stale = results.filter((r) => r.status !== 'fresh');
+  const manifestFailures = results.filter((r) => r.status !== 'fresh');
+  const traversalFailures = discovery.failures.map((failure) => ({
+    ...failure,
+    path: rel(failure.path),
+  }));
+  const failed = manifestFailures.length + traversalFailures.length;
 
   if (args.format === 'json') {
     process.stdout.write(`${JSON.stringify({
       skillsDir,
       checked: results.length,
-      fresh: results.length - stale.length,
-      failed: stale.length,
+      fresh: results.length - manifestFailures.length,
+      failed,
       results: results.map((r) => ({ ...r, skill: rel(r.skillDir) })),
+      traversalFailures,
     }, null, 2)}\n`);
   } else {
     for (const r of results) {
@@ -138,12 +155,15 @@ function run(args) {
         process.stdout.write(`ERROR ${rel(r.skillDir)}  ${r.error}\n`);
       }
     }
-    process.stdout.write(`\nchecked=${results.length} fresh=${results.length - stale.length} failed=${stale.length}\n`);
-    if (stale.length) {
+    for (const failure of traversalFailures) {
+      process.stdout.write(`ERROR ${failure.path}  traversal ${failure.code}: ${failure.message}\n`);
+    }
+    process.stdout.write(`\nchecked=${results.length} fresh=${results.length - manifestFailures.length} failed=${failed}\n`);
+    if (manifestFailures.length) {
       process.stdout.write('Re-run `generate-leaf-manifest.cjs --write <skillDir>` for each STALE skill to regenerate.\n');
     }
   }
-  return stale.length ? 1 : 0;
+  return failed ? 1 : 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

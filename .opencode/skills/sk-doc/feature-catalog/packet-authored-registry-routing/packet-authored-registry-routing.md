@@ -25,7 +25,7 @@ The skill advisor routes any documentation- or component-authoring query to the 
 
 ### The Discriminator
 
-`workflowMode` is the public packet key — `create-skill`, `create-skill-parent`, `create-readme`, `create-agent`, `create-command`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, `create-changelog`, `create-diff`, and `create-quality-control`. `create-skill-parent` is a second mode layered over the same `create-skill` packet rather than a distinct one. `packetKind` is `workflow` for every packet — there is no surface axis at this hub; the `create-quality-control` validate/score/optimize pipeline is universal doctrine shared from `shared/`, not orthogonal stack-evidence. `backendKind` is `template-scaffold` for every `create-*` generator and `create-quality-control` for the quality-control mode itself.
+`workflowMode` is the public packet key — `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-flowchart`, `sk-create-changelog`, `sk-create-diff`, and `sk-create-quality-control`. `sk-create-skill-parent` is a second mode layered over the same `sk-create-skill` packet rather than a distinct one. `packetKind` is `workflow` for every packet — there is no surface axis at this hub; the `sk-create-quality-control` validate/score/optimize pipeline is universal doctrine shared from `shared/`, not orthogonal stack-evidence. `backendKind` is `template-scaffold` for every `create-*` generator and `create-quality-control` for the quality-control mode itself.
 
 ### Packet-Authored Vocabulary
 

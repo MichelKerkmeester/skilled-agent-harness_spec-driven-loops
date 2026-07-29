@@ -125,6 +125,7 @@ runtime mirrors under `.claude/`, `.cursor/`, `.devin/` and `.codex/`.
 
 ---
 
+<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 | Phase | Purpose |
@@ -137,3 +138,8 @@ runtime mirrors under `.claude/`, `.cursor/`, `.devin/` and `.codex/`.
 | `006-sk-prompt-rename` | Two packets, two keys |
 | `007-consumer-and-gold-realignment` | Advisor metadata, Lane C gold, command bindings, runtime mirrors |
 | `008-verification-and-closeout` | Behaviour re-baseline and packet closeout |
+| `009-post-review-remediation` | Clear stale route-gold, status-rollup, pre-existing test, and advisor-vocabulary findings |
+| `010-luna-review-remediation` | Align the live catalog, publish authoritative current-state verification, and harden freshness traversal |
+<!-- /ANCHOR:phase-map -->
+
+Current executable acceptance state: [`010-luna-review-remediation/current-state-verification.md`](010-luna-review-remediation/current-state-verification.md) supersedes the phase 008 snapshot; the earlier observations remain historical.

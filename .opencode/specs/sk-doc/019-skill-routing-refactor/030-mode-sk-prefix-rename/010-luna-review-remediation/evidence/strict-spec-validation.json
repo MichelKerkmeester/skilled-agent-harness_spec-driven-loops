@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "gate": "strict packet validation",
+  "capturedAt": "2026-07-29T14:49:59.858Z",
+  "repository": {
+    "head": "ab605d5c0bffcc9e56749538b796fae082d0b512",
+    "worktree": "0114-sk-doc-mode-sk-prefix-rename"
+  },
+  "invocations": [
+    {
+      "label": "strict child-packet validation",
+      "command": "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation --strict",
+      "cwd": ".",
+      "startedAt": "2026-07-29T14:49:59.701Z",
+      "endedAt": "2026-07-29T14:49:59.778Z",
+      "exitCode": 3,
+      "signal": null,
+      "stdout": "",
+      "stderr": "ERROR: validate.sh compiled validation orchestrator is stale.\n@spec-kit/mcp-server dist is stale (source content differs from the attested build). Rebuild with: cd .opencode/skills/system-spec-kit/mcp-server && npm run build\nRun: cd .opencode/skills/system-spec-kit/mcp-server && npm run build\n",
+      "spawnError": null
+    },
+    {
+      "label": "recursive strict parent validation",
+      "command": "bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename --recursive --strict",
+      "cwd": ".",
+      "startedAt": "2026-07-29T14:49:59.778Z",
+      "endedAt": "2026-07-29T14:49:59.858Z",
+      "exitCode": 3,
+      "signal": null,
+      "stdout": "",
+      "stderr": "ERROR: validate.sh compiled validation orchestrator is stale.\n@spec-kit/mcp-server dist is stale (source content differs from the attested build). Rebuild with: cd .opencode/skills/system-spec-kit/mcp-server && npm run build\nRun: cd .opencode/skills/system-spec-kit/mcp-server && npm run build\n",
+      "spawnError": null
+    }
+  ]
+}

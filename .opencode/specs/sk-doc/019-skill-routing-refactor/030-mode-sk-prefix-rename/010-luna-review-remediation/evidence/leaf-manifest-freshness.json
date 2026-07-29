@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "gate": "leaf-manifest freshness",
+  "capturedAt": "2026-07-29T14:49:59.512Z",
+  "repository": {
+    "head": "ab605d5c0bffcc9e56749538b796fae082d0b512",
+    "worktree": "0114-sk-doc-mode-sk-prefix-rename"
+  },
+  "invocations": [
+    {
+      "label": "focused leaf-manifest freshness regression",
+      "command": "node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs",
+      "cwd": ".",
+      "startedAt": "2026-07-29T14:49:59.348Z",
+      "endedAt": "2026-07-29T14:49:59.386Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "[sk-doc] leaf-manifest freshness traversal coverage passed\n",
+      "stderr": "",
+      "spawnError": null
+    },
+    {
+      "label": "fleet leaf-manifest freshness gate",
+      "command": "node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs --format json",
+      "cwd": ".",
+      "startedAt": "2026-07-29T14:49:59.386Z",
+      "endedAt": "2026-07-29T14:49:59.511Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": "{\n  \"skillsDir\": \".opencode/skills\",\n  \"checked\": 11,\n  \"fresh\": 11,\n  \"failed\": 0,\n  \"results\": [\n    {\n      \"skillDir\": \".opencode/skills/cli-external-orchestration\",\n      \"status\": \"fresh\",\n      \"digest\": \"66ad8145d736b80dd37d74d4449d9984a37a4cbeaddb1b739c124e43373b920e\",\n      \"skill\": \"cli-external-orchestration\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/mcp-code-mode\",\n      \"status\": \"fresh\",\n      \"digest\": \"1d798d3f475f8381834008b683b881bb7d2dd88ad0bf5835e16120596d005253\",\n      \"skill\": \"mcp-code-mode\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/mcp-tooling\",\n      \"status\": \"fresh\",\n      \"digest\": \"accce8b494de8bf6e0fb2874fc49e19dd80bba139b9e826c3d1e52f97d147b36\",\n      \"skill\": \"mcp-tooling\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/sk-code\",\n      \"status\": \"fresh\",\n      \"digest\": \"1fb460c31618d39fccd633dd17a94e9d02f0ff63b95db037bc70a1cafc1b6671\",\n      \"skill\": \"sk-code\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/sk-design\",\n      \"status\": \"fresh\",\n      \"digest\": \"f8c0c04d4d945a7a6376a05678fe4fefb3c8b60faa7336c3377157ac93930a24\",\n      \"skill\": \"sk-design\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/sk-doc\",\n      \"status\": \"fresh\",\n      \"digest\": \"47b6f4186399de462e78bc9ae430960a23297855a27bceb02c8d0d0ff6d6c45a\",\n      \"skill\": \"sk-doc\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/sk-git\",\n      \"status\": \"fresh\",\n      \"digest\": \"b4d0e57c4adbdd8d2cb6a68f28b949a02fea01cefd2b361e3ab1199fa3135269\",\n      \"skill\": \"sk-git\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/sk-prompt\",\n      \"status\": \"fresh\",\n      \"digest\": \"ba14036e377cfd9b485f5eba2bd523ec578e5581cec78827f76809c7c7a2582d\",\n      \"skill\": \"sk-prompt\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/system-deep-loop\",\n      \"status\": \"fresh\",\n      \"digest\": \"caf25c390b41edcba112b945ba091f76b97a659eb389b773c738d41d40d13473\",\n      \"skill\": \"system-deep-loop\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/system-skill-advisor\",\n      \"status\": \"fresh\",\n      \"digest\": \"770cef751f021b3681a49fe13a0729dc788f1e29e27ed37820a7ea8e101d4abf\",\n      \"skill\": \"system-skill-advisor\"\n    },\n    {\n      \"skillDir\": \".opencode/skills/system-spec-kit\",\n      \"status\": \"fresh\",\n      \"digest\": \"9aade87a87d51e7ddb582565afc1faf84c6446363d2dd15e4f5b8f381876c050\",\n      \"skill\": \"system-spec-kit\"\n    }\n  ],\n  \"traversalFailures\": []\n}\n",
+      "stderr": "",
+      "spawnError": null
+    }
+  ]
+}

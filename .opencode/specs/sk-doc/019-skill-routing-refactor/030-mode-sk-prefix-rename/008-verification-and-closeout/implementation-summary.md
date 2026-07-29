@@ -79,3 +79,5 @@ sk-prompt PASS 100, sk-design BLOCKED-BY-ROUTE-GOLD 91, sk-code BLOCKED-BY-ROUTE
 
 Historical surfaces (benchmark report archives, changelogs, spec research logs, scorer caches) intentionally retain old names as a record of what ran.
 <!-- /ANCHOR:limitations -->
+
+Current executable acceptance state: [`../010-luna-review-remediation/current-state-verification.md`](../010-luna-review-remediation/current-state-verification.md) supersedes this snapshot; the observations above remain historical.

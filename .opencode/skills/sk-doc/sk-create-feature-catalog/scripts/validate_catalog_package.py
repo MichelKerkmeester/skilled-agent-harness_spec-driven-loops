@@ -5,7 +5,7 @@
 
 """Strict package-level validator for sk-doc feature catalogs.
 
-Proves three things `validate_document.py`'s single-file scope cannot, because each
+Proves four things `validate_document.py`'s single-file scope cannot, because each
 needs cross-file or cross-directory state:
 
   (a) Root<->leaf bijection for the router/advisor-central package plus the mode-hub
@@ -21,6 +21,8 @@ needs cross-file or cross-directory state:
       taxonomy, by re-running `validate_document.py`'s own `validate_feature_catalog_table`
       check (the taxonomy stays single-sourced in `template-rules.json`; this script
       never redefines it).
+  (d) Both live sk-doc workflowMode inventories equal the key set projected by
+      sk-doc/mode-registry.json.
 
 This is a reportable check, not a wired gate: by default every run exits 0 and just
 prints findings, matching the fleet's current reality (most hub root catalogs do not
@@ -55,11 +57,25 @@ ADVISOR_CENTRAL_NAME = 'system-skill-advisor'
 
 CATALOG_DIRNAME = CATALOG_ROOT_NAMES[0]  # 'feature-catalog'
 ROOT_CATALOG_FILENAME = 'feature-catalog.md'
+SK_DOC_NAME = 'sk-doc'
+
+WORKFLOW_MODE_INVENTORY_PATHS = {
+    'root catalog': Path(CATALOG_DIRNAME) / ROOT_CATALOG_FILENAME,
+    'packet-authored registry routing': (
+        Path(CATALOG_DIRNAME)
+        / 'packet-authored-registry-routing'
+        / 'packet-authored-registry-routing.md'
+    ),
+}
 
 DASH_VALUES = {'—', '-', '–', ''}
 
 MD_LINK_RE = re.compile(r'\]\(([^)]+)\)')
 BARE_PATH_HINT_RE = re.compile(r'\.[A-Za-z0-9]{1,8}$')
+WORKFLOW_MODE_INVENTORY_RE = re.compile(
+    r'`workflowMode`\s+(?:spans|is the public packet key\s+—)\s+(.*?)\.',
+    re.DOTALL,
+)
 
 # ───────────────────────────────────────────────────────────────
 # 2. PACKAGE DISCOVERY
@@ -286,12 +302,117 @@ def check_taxonomy(package_name: str, catalog_dir: Path, rules: Dict[str, Any]) 
 
 
 # ───────────────────────────────────────────────────────────────
-# 7. ORCHESTRATION
+# 7. CHECK (d): SK-DOC WORKFLOW-MODE SET PARITY
+# ───────────────────────────────────────────────────────────────
+
+
+def _parse_workflow_mode_inventory(text: str) -> Optional[List[str]]:
+    """Extract inline-code keys from the declared workflowMode inventory sentence."""
+    match = WORKFLOW_MODE_INVENTORY_RE.search(text)
+    if match is None:
+        return None
+    return re.findall(r'`([^`]+)`', match.group(1))
+
+
+def check_workflow_mode_parity(skills_root: Path) -> List[Dict[str, Any]]:
+    """Require both sk-doc catalog inventories to equal the registry workflowMode set."""
+    sk_doc_root = skills_root / SK_DOC_NAME
+    if not sk_doc_root.exists():
+        return []
+
+    registry_path = sk_doc_root / 'mode-registry.json'
+    if not registry_path.exists():
+        return [{
+            'type': 'missing_workflow_mode_registry',
+            'package': SK_DOC_NAME,
+            'path': str(registry_path.relative_to(skills_root)),
+            'message': f'{SK_DOC_NAME}: workflowMode registry does not exist: {registry_path}',
+        }]
+
+    try:
+        registry = json.loads(registry_path.read_text(encoding='utf-8'))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [{
+            'type': 'invalid_workflow_mode_registry',
+            'package': SK_DOC_NAME,
+            'path': str(registry_path.relative_to(skills_root)),
+            'message': f'{SK_DOC_NAME}: cannot read workflowMode registry: {exc}',
+        }]
+
+    registry_keys = {
+        mode['workflowMode']
+        for mode in registry.get('modes', [])
+        if isinstance(mode, dict) and isinstance(mode.get('workflowMode'), str)
+    }
+    if not registry_keys:
+        return [{
+            'type': 'empty_workflow_mode_registry',
+            'package': SK_DOC_NAME,
+            'path': str(registry_path.relative_to(skills_root)),
+            'message': f'{SK_DOC_NAME}: workflowMode registry contains no keys',
+        }]
+
+    violations: List[Dict[str, Any]] = []
+    for inventory_name, relative_path in WORKFLOW_MODE_INVENTORY_PATHS.items():
+        inventory_path = sk_doc_root / relative_path
+        if not inventory_path.exists():
+            violations.append({
+                'type': 'missing_workflow_mode_inventory',
+                'package': SK_DOC_NAME,
+                'path': str(inventory_path.relative_to(skills_root)),
+                'message': f'{SK_DOC_NAME} {inventory_name}: inventory page does not exist: {inventory_path}',
+            })
+            continue
+
+        try:
+            inventory_keys = _parse_workflow_mode_inventory(inventory_path.read_text(encoding='utf-8'))
+        except OSError as exc:
+            violations.append({
+                'type': 'unreadable_workflow_mode_inventory',
+                'package': SK_DOC_NAME,
+                'path': str(inventory_path.relative_to(skills_root)),
+                'message': f'{SK_DOC_NAME} {inventory_name}: cannot read inventory page: {exc}',
+            })
+            continue
+
+        if inventory_keys is None:
+            violations.append({
+                'type': 'unparseable_workflow_mode_inventory',
+                'package': SK_DOC_NAME,
+                'path': str(inventory_path.relative_to(skills_root)),
+                'message': f'{SK_DOC_NAME} {inventory_name}: workflowMode inventory sentence was not found',
+            })
+            continue
+
+        inventory_key_set = set(inventory_keys)
+        if inventory_key_set == registry_keys:
+            continue
+
+        missing_keys = sorted(registry_keys - inventory_key_set)
+        extra_keys = sorted(inventory_key_set - registry_keys)
+        violations.append({
+            'type': 'workflow_mode_inventory_mismatch',
+            'package': SK_DOC_NAME,
+            'path': str(inventory_path.relative_to(skills_root)),
+            'missing': missing_keys,
+            'extra': extra_keys,
+            'message': (
+                f'{SK_DOC_NAME} {inventory_name}: workflowMode inventory differs from mode-registry.json '
+                f'(missing: {missing_keys or "none"}; extra: {extra_keys or "none"})'
+            ),
+        })
+
+    return violations
+
+
+# ───────────────────────────────────────────────────────────────
+# 8. ORCHESTRATION
 # ───────────────────────────────────────────────────────────────
 
 
 def run_all_checks(skills_root: Path, repo_root: Path, rules: Dict[str, Any]) -> List[Dict[str, Any]]:
-    violations = check_root_catalog_bijection(skills_root)
+    violations = check_workflow_mode_parity(skills_root)
+    violations.extend(check_root_catalog_bijection(skills_root))
     for pkg in expected_root_packages(skills_root):
         catalog_dir = skills_root / pkg['name'] / CATALOG_DIRNAME
         if not catalog_dir.exists():
@@ -303,7 +424,7 @@ def run_all_checks(skills_root: Path, repo_root: Path, rules: Dict[str, Any]) ->
 
 def format_report(violations: List[Dict[str, Any]]) -> str:
     if not violations:
-        return 'PASS: 0 violations (bijection, source-path existence, taxonomy).'
+        return 'PASS: 0 violations (workflow-mode parity, bijection, source-path existence, taxonomy).'
     lines = [f'FAIL: {len(violations)} violation(s):']
     for v in violations:
         lines.append(f"  - [{v['type']}] {v['message']}")
@@ -311,7 +432,7 @@ def format_report(violations: List[Dict[str, Any]]) -> str:
 
 
 # ───────────────────────────────────────────────────────────────
-# 8. CLI
+# 9. CLI
 # ───────────────────────────────────────────────────────────────
 
 

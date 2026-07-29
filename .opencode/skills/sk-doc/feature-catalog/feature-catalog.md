@@ -32,7 +32,7 @@ Each of the hub's twelve packets owns a single `Keyword triggers:` line as the s
 
 #### Current Reality
 
-`workflowMode` spans `create-skill`, `create-skill-parent`, `create-readme`, `create-agent`, `create-command`, `create-feature-catalog`, `create-manual-testing-playbook`, `create-benchmark`, `create-flowchart`, `create-changelog`, `create-diff`, and `create-quality-control`. Every packet is `packetKind: "workflow"` — there is no surface axis at this hub.
+`workflowMode` spans `sk-create-skill`, `sk-create-skill-parent`, `sk-create-readme`, `sk-create-agent`, `sk-create-command`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`, `sk-create-benchmark`, `sk-create-flowchart`, `sk-create-changelog`, `sk-create-diff`, and `sk-create-quality-control`. Every packet is `packetKind: "workflow"` — there is no surface axis at this hub.
 
 #### Source Files
 
