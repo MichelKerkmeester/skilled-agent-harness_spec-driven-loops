@@ -15,11 +15,11 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity"
     last_updated_at: "2026-07-29T09:20:00Z"
     last_updated_by: "claude"
-    recent_action: "Created the packet and authored the matrix-audit phase"
-    next_safe_action: "Run the executor matrix audit to freeze the authoritative gap register"
+    recent_action: "All six phases delivered; packet reconciled to Complete"
+    next_safe_action: "Operator ff-merge of the branch to v4 at their discretion"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which deep modes should expose which executor kinds — is full parity required, or are some modes deliberately single-executor?"
       - "How is cli-devin's exec write path made reliable given accept-edits auto-denies exec?"
@@ -42,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/043-cli-executor-fanout-parity |
 | **Level** | phase parent (Level 3) |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Owner skill** | system-deep-loop (owns the fan-out runtime and executor config) |
 | **Origin** | Operator: "analyze all cli modes on v4 (pi, cursor, devin, codex, claude code) and that fan-out executors work for every cli / provider / model combo" |
@@ -135,12 +135,12 @@ result with an end-to-end combination test.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | 001-executor-matrix-audit/ | Authoritative cli×provider×model×mode matrix + gap register | In Progress |
+| 001 | 001-executor-matrix-audit/ | Authoritative cli×provider×model×mode matrix + gap register | Complete |
 | 002 | 002-cli-pi-fanout-wiring/ | Real buildPiLineageCommand + cli-pi flags + tests | Complete |
-| 003 | 003-devin-cursor-exec-hardening/ | devin exec write path + cursor containment | Planned |
-| 004 | 004-per-mode-executor-parity/ | Per-mode executor availability parity | Planned |
-| 005 | 005-combo-test-matrix/ | End-to-end (cli,provider,model) combo test | Planned |
-| 006 | 006-docs-and-closeout/ | Docs + closeout | Planned |
+| 003 | 003-devin-cursor-exec-hardening/ | devin + cursor read-only/workspace flags from live CLI behavior | Complete |
+| 004 | 004-per-mode-executor-parity/ | model-benchmark + ai-council parity; skill-benchmark exempt-by-design | Complete |
+| 005 | 005-combo-test-matrix/ | Construction-coverage matrix (117 combos) + read-only ambient-config isolation | Complete |
+| 006 | 006-docs-and-closeout/ | Docs + closeout; packet reconciled to Complete | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next begins.

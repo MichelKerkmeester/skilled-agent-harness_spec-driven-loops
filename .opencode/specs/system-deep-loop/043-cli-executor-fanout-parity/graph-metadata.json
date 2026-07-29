@@ -5,7 +5,11 @@
   "parent_id": null,
   "children_ids": [
     "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit",
-    "system-deep-loop/043-cli-executor-fanout-parity/002-cli-pi-fanout-wiring"
+    "system-deep-loop/043-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
+    "system-deep-loop/043-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
+    "system-deep-loop/043-cli-executor-fanout-parity/004-per-mode-executor-parity",
+    "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix",
+    "system-deep-loop/043-cli-executor-fanout-parity/006-docs-and-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -59,12 +63,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -81,21 +79,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
     "created_at": "2026-07-29T08:25:06.055Z",
-    "last_save_at": "2026-07-29T09:17:18.799Z",
+    "last_save_at": "2026-07-29T16:52:35.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:04f1457f8cbb4c2e59a9c65169ef822b57a199b33a2bc0f19e19f55849fad792",
+    "source_fingerprint": "sha256:052c9332f42db0c44ba9e2cba9a9b1ecbef2fab4da2010b75689eb940f5297fc",
     "source_doc_hashes": {
-      "spec.md": "086170dd55caddcb99c9359a7f57b9793cf81fd33ced761b9e8909c9307cb285"
+      "spec.md": "caf468aa4c60c5a8902a16fd3d8190533dce85913e8551e9c537a853bc8eaac6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/043-cli-executor-fanout-parity/006-docs-and-closeout",
     "last_active_at": null
   }
 }
