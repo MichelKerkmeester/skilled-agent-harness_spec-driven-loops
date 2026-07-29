@@ -4,7 +4,7 @@ import { EventEmitter } from 'node:events';
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { delimiter, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 const { createSessionState, createRoundState } = require('../../../runtime/lib/council/session-state-hierarchy.cjs') as {
@@ -17,8 +17,19 @@ const { readRoundStateRecords } = require('../../../runtime/lib/council/round-st
 const { parseStateLog } = require('../lib/persist-artifacts.cjs') as {
   parseStateLog: (jsonl: string) => Record<string, unknown>[];
 };
-const { main, sessionStatePath } = require('../orchestrate-session.cjs') as {
+const { buildLineageCommand } = require('../../../runtime/scripts/fanout-run.cjs') as {
+  buildLineageCommand: (
+    lineage: Record<string, unknown>,
+    prompt: string,
+    sandbox: string,
+    permission: string,
+    options?: Record<string, unknown>,
+  ) => { command: string; args: string[] };
+};
+const { dispatchSeat, main, resolveExecutorKind, sessionStatePath } = require('../orchestrate-session.cjs') as {
+  dispatchSeat: (seat: Record<string, unknown>, context: Record<string, unknown>, options: Record<string, unknown>) => Promise<Record<string, unknown>>;
   main: (argv?: string[], options?: Record<string, unknown>) => Promise<number>;
+  resolveExecutorKind: (executorConfig?: Record<string, unknown>, councilConfig?: Record<string, unknown>) => string;
   sessionStatePath: (packetSpecFolder: string) => string;
 };
 
@@ -96,9 +107,37 @@ function killIfAlive(pid: number): void {
   }
 }
 
+function installExecutorStubs(binDir: string, names: string[]): void {
+  for (const name of names) {
+    writeFileSync(join(binDir, name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  }
+}
+
 const posixIt = process.platform === 'win32' ? it.skip : it;
 
 describe('deep-ai-council session CLI runner', () => {
+  it.each([
+    ['native', 'native'],
+    ['cli-opencode', 'cli-opencode'],
+    ['opencode', 'cli-opencode'],
+    ['cli-cursor', 'cli-cursor'],
+    ['cli-devin', 'cli-devin'],
+    ['cli-pi', 'cli-pi'],
+  ])('accepts executor kind %s and resolves it as %s', (kind, resolved) => {
+    expect(resolveExecutorKind({ executor: { kind } }, {})).toBe(resolved);
+  });
+
+  it('deliberately rejects cli-codex seats', () => {
+    expect(() => resolveExecutorKind({ executor: { kind: 'cli-codex' } }, {})).toThrowError(RangeError);
+    expect(() => resolveExecutorKind({ executor: { kind: 'cli-codex' } }, {})).toThrow(
+      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, or pi); use deep-review or deep-research for codex-backed loops',
+    );
+  });
+
+  it('rejects an unknown council executor kind', () => {
+    expect(() => resolveExecutorKind({ executor: { kind: 'cli-unknown' } }, {})).toThrowError(RangeError);
+  });
+
   it('loads inline JSON session state and executor config', async () => {
     await withTempPacket(async (packetSpecFolder) => {
       const stdout = bufferedStream();
@@ -274,6 +313,114 @@ describe('deep-ai-council session CLI runner', () => {
       expect(started).toHaveLength(1);
       expect(completed).toHaveLength(1);
       expect(completed[0]).toMatchObject({ seat_id: 'seat-001', progress_delta: 1 });
+    });
+  });
+
+  posixIt.each([
+    {
+      kind: 'cli-cursor',
+      model: 'composer-2.5',
+      command: 'cursor-agent',
+      expectedArgs: (prompt: string) => ['-p', prompt, '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust'],
+    },
+    {
+      kind: 'cli-devin',
+      model: 'adaptive',
+      command: 'devin',
+      expectedArgs: (prompt: string) => ['-p', prompt, '--model', 'adaptive', '--permission-mode', 'auto'],
+    },
+    {
+      kind: 'cli-pi',
+      model: 'deepseek-v4-pro',
+      command: 'pi',
+      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', prompt],
+    },
+  ])('dispatches read-only %kind seats through the shared builder', async ({ kind, model, command, expectedArgs }) => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const binDir = mkdtempSync(join(tmpdir(), `council-${kind}-bin-`));
+      try {
+        installExecutorStubs(binDir, [command]);
+        const env = { ...process.env, PATH: `${binDir}${delimiter}${process.env.PATH ?? ''}` };
+        const spawns: Array<{ command: string; args: string[] }> = [];
+        const fakeSpawn = vi.fn((spawnedCommand: string, args: string[]) => {
+          spawns.push({ command: spawnedCommand, args });
+          const child = new EventEmitter() as EventEmitter & { stdout: EventEmitter; stderr: EventEmitter; kill: ReturnType<typeof vi.fn> };
+          child.stdout = new EventEmitter();
+          child.stderr = new EventEmitter();
+          child.kill = vi.fn();
+          queueMicrotask(() => {
+            child.stdout.emit('data', Buffer.from('Council seat verdict: SUPPORT\\n'));
+            child.emit('close', 0, null);
+          });
+          return child;
+        });
+
+        const result = await dispatchSeat(
+          { id: 'seat-001', lens: 'Analytical' },
+          { context: { round_number: 1 }, seatIndex: 0 },
+          {
+            packetSpecFolder,
+            executorConfig: { executor: { kind, model } },
+            councilConfig: {},
+            promptTemplate: 'Seat {{seat_name}} deliberation',
+            spawn: fakeSpawn,
+            env,
+            persistSeatStepwise: vi.fn(() => ({ artifactPath: 'test' })),
+          },
+        );
+
+        expect(spawns).toHaveLength(1);
+        const observed = spawns[0];
+        const prompt = kind === 'cli-pi' ? observed.args[observed.args.length - 1] : observed.args[1];
+        expect(observed).toEqual({ command, args: expectedArgs(prompt) });
+        const built = buildLineageCommand({ kind, model }, prompt, 'read-only', 'plan', { env });
+        expect(observed).toEqual({ command: built.command, args: built.args });
+        expect(result.execution_provenance).toMatchObject({
+          requested: { executor_family: kind, primary_agent: 'plan', model },
+          effective: { command, primary_agent: 'plan', model: null },
+        });
+      } finally {
+        rmSync(binDir, { recursive: true, force: true });
+      }
+    });
+  });
+
+  posixIt('rejects a seat whose model is out-of-roster for its executor, attaches provenance, and never spawns', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const binDir = mkdtempSync(join(tmpdir(), 'council-invalid-model-bin-'));
+      try {
+        installExecutorStubs(binDir, ['cursor-agent']);
+        const env = { ...process.env, PATH: `${binDir}${delimiter}${process.env.PATH ?? ''}` };
+        const spawns: Array<{ command: string; args: string[] }> = [];
+        const fakeSpawn = vi.fn((command: string, args: string[]) => {
+          spawns.push({ command, args });
+          throw new Error('spawn must not be reached when command construction fails');
+        });
+        // An opencode-style model id is not in Cursor's roster, so the shared builder
+        // throws during command construction; the seat must fail closed with provenance,
+        // not spawn a wrong-model subprocess.
+        await expect(dispatchSeat(
+          { id: 'seat-001', lens: 'Analytical' },
+          { context: { round_number: 1 }, seatIndex: 0 },
+          {
+            packetSpecFolder,
+            executorConfig: { executor: { kind: 'cli-cursor', model: 'gpt-5.6-sol' } },
+            councilConfig: {},
+            promptTemplate: 'Seat {{seat_name}} deliberation',
+            spawn: fakeSpawn,
+            env,
+            persistSeatStepwise: vi.fn(() => ({ artifactPath: 'test' })),
+          },
+        )).rejects.toMatchObject({
+          execution_provenance: {
+            requested: { executor_family: 'cli-cursor' },
+            effective: { command: 'cursor-agent' },
+          },
+        });
+        expect(spawns).toHaveLength(0);
+      } finally {
+        rmSync(binDir, { recursive: true, force: true });
+      }
     });
   });
 

@@ -79,8 +79,8 @@ Give these three modes cli-cursor/cli-devin/cli-pi parity by delegating command 
 
 ### In Scope
 - **Leaf 1 — model-benchmark:** cli-cursor/cli-devin/cli-pi delegate to `buildLineageCommand`; `cli-devin` added to `KNOWN_EXECUTORS` and the profile validator; the stale local allowlists removed (the shared builder enforces them).
-- **Leaf 2 — skill-benchmark:** extend `executor-dispatch.cjs`/`live-executor.cjs` so cursor/devin/pi (and claude-code) dispatch through the shared builder instead of the opencode-nailed branch.
-- **Leaf 3 — ai-council:** seat spawn for cursor/devin/pi via the shared builder; extend the executor allowlist (keep the deliberate cli-codex exclusion and the opencode/native seats).
+- **Leaf 2 — skill-benchmark: EXEMPT by design (documented, no parity build).** Its live score signal (skill activation + observed resource reads) is extracted from the executor's structured tool-use event stream, which only opencode and codex emit. Text-only executors (cursor/devin/pi) produce no equivalent trace, so routing them here would score every run as "no activation" — false benchmark data. Documented at the dispatch branch; opencode+codex remain the supported live transports. Real parity needs an executor-agnostic observation model (a separate change).
+- **Leaf 3 — ai-council:** seat spawn for cursor/devin/pi via the shared builder (read-only deliberation); extend the executor allowlist (keep the deliberate cli-codex exclusion and the opencode/native seats).
 
 ### Out of Scope
 - Rewiring the shared `fanout-run.cjs` builders (reused as-is, never forked).

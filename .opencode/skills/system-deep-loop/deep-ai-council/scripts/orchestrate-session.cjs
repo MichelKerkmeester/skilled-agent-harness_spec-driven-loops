@@ -13,6 +13,7 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const { spawn } = require('node:child_process');
+const { buildLineageCommand } = require('../../runtime/scripts/fanout-run.cjs');
 const { appendRoundStateRecord } = require('../../runtime/lib/council/round-state-jsonl.cjs');
 const { evaluateCouncilCostGuards, normalizeCostGuards } = require('../../runtime/lib/council/cost-guards.cjs');
 const { validateSessionStateHierarchy } = require('../../runtime/lib/council/session-state-hierarchy.cjs');
@@ -177,15 +178,15 @@ function resolveExecutorKind(executorConfig = {}, councilConfig = {}) {
     throw new TypeError('executor must be an object with separate kind and model fields');
   }
   const kind = executor.kind || executor.cli || 'native';
-  // Council seats only ever spawn opencode/native subprocesses, so accepting cli-codex
-  // here silently ran a codex-labelled seat on opencode. Reject it explicitly and point
-  // callers at the deep-review/deep-research loops, which do route codex end-to-end.
+  // Council seats parse plain-text deliberations by regex, so any executor's text output
+  // works. OpenCode keeps its bespoke seat contract; the other supported CLI seats reuse
+  // the shared read-only command builder instead of carrying divergent flag logic.
   if (kind === 'cli-codex') {
     throw new RangeError(
-      'cli-codex is not a supported AI Council seat executor (council seats run via opencode/native); use deep-review or deep-research for codex-backed loops',
+      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, or pi); use deep-review or deep-research for codex-backed loops',
     );
   }
-  if (!['native', 'cli-opencode', 'opencode'].includes(kind)) {
+  if (!['native', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'opencode'].includes(kind)) {
     throw new RangeError(`unsupported council executor kind: ${kind}`);
   }
   return kind === 'opencode' ? 'cli-opencode' : kind;
@@ -254,8 +255,25 @@ function runSeatSubprocess(seatPrompt, options) {
   const model = options.model;
   const timeoutMs = options.timeoutMs;
   const killGraceMs = options.killGraceMs || DEFAULT_SEAT_KILL_GRACE_MS;
+  let command;
+  let args;
+  if (options.executorKind === 'cli-cursor' || options.executorKind === 'cli-devin' || options.executorKind === 'cli-pi') {
+    // Read-only deliberation seats reuse the shared builder's hardened flags for each CLI.
+    const built = buildLineageCommand(
+      { kind: options.executorKind, model },
+      seatPrompt,
+      'read-only',
+      'plan',
+      { env: options.env || process.env },
+    );
+    command = built.command;
+    args = built.args;
+  } else {
+    command = 'opencode';
+    args = opencodeSeatArgs(model, seatPrompt);
+  }
   return new Promise((resolve, reject) => {
-    const child = spawnFn('opencode', opencodeSeatArgs(model, seatPrompt), {
+    const child = spawnFn(command, args, {
       cwd: options.cwd || process.cwd(),
       env: options.env || process.env,
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -336,7 +354,13 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
       model,
     },
     effective: {
-      command: 'opencode',
+      command: executorKind === 'cli-cursor'
+        ? 'cursor-agent'
+        : executorKind === 'cli-devin'
+          ? 'devin'
+          : executorKind === 'cli-pi'
+            ? 'pi'
+            : 'opencode',
       primary_agent: 'plan',
       model: null,
     },
@@ -353,6 +377,7 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
       spawn: options.spawn,
       cwd: options.cwd,
       env: options.env,
+      executorKind,
       model,
       timeoutMs: seatTimeoutMs(executorConfig),
     });

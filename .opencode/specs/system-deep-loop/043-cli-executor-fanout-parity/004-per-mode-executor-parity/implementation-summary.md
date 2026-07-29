@@ -13,14 +13,14 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity/004-per-mode-executor-parity"
     last_updated_at: "2026-07-29T13:25:00Z"
     last_updated_by: "claude"
-    recent_action: "Fixed the three SOL P1s on the model-benchmark parity leaf"
-    next_safe_action: "Land leaf 1, then skill-benchmark and ai-council leaves"
+    recent_action: "Built ai-council parity leaf; documented skill-benchmark exemption"
+    next_safe_action: "SOL-verify leaf 3, land leaf 2 doc + leaf 3, close 004"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
-      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/profile-validator.cjs"
-      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
-    completion_pct: 35
+      - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs"
+    completion_pct: 80
     open_questions:
       - "Whether model-benchmark/skill-benchmark should also gain native/codex parity or keep cursor/devin/pi scope"
     answered_questions:
@@ -60,6 +60,18 @@ An audit established that deep-research, deep-review, and deep-alignment already
 | `model-benchmark/dispatch-model.cjs` | Modified | Delegate cursor/devin/pi to the shared builder; register cli-devin; drop stale local allowlists |
 | `model-benchmark/lib/profile-validator.cjs` | Modified | Add `cli-devin` so devin profiles validate |
 | `model-benchmark/tests/remediation.vitest.ts` | Modified | Assert the hardened cursor/devin/pi args; add a devin case |
+
+**Leaf 2 — skill-benchmark (exempt by design).** Investigation showed this lane's live score signal — skill activation and observed resource reads — is parsed from the executor's structured tool-use event stream, which only opencode and codex emit. Text-only executors would score as "no activation", i.e. false data. Rather than add a misleading path, the exemption is documented at the dispatch branch (`executor-dispatch.cjs`); opencode+codex remain the live transports. Real parity needs an executor-agnostic observation model — a separate change.
+
+**Leaf 3 — ai-council (built).** Seats are read-only deliberations whose plain-text output is parsed by regex, so any executor's text works. `runSeatSubprocess` now selects the seat command by the resolved executor kind: cursor/devin/pi delegate to `buildLineageCommand` (read-only sandbox, `plan` permission); opencode/native keep the bespoke `opencode run --agent plan` seat args. The executor allowlist gained cursor/devin/pi (cli-codex still deliberately rejected), and `executionProvenance.effective.command` now reflects the real per-kind command instead of a hardcoded `opencode`.
+
+### Files Changed (leaves 2-3)
+
+| File | Action | Purpose |
+|---|---|---|
+| `skill-benchmark/executor-dispatch.cjs` | Modified (comment) | Document the observation-model exemption for text-only executors |
+| `deep-ai-council/scripts/orchestrate-session.cjs` | Modified | Per-kind seat command via the shared builder for cursor/devin/pi; allowlist + provenance |
+| `deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts` | Modified | Assert per-kind seat args; codex-reject + unknown-kind throw |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -101,6 +113,22 @@ SOL found three real P1s — all consequences of enabling the pi path and delega
 - **P1-003 (a command-construction throw aborted the whole sweep) — FIXED.** The shared builder's binary-availability/model-allowlist preflight throws; `dispatchReal` did not catch it, so one unavailable cell aborted every other cell. Wrapped the `buildSpawnSpec` call in a try/catch that returns a normalized failed-dispatch envelope (`ok:false`, `attempts:0`). Test: an out-of-roster cursor model yields a failure envelope, not an uncaught throw.
 - **P1-001 (a pi auth failure with exit 0 was scored as model output) — FIXED.** Pi's exit code is not a reliable success signal; a zero exit carrying an auth/config banner (e.g. "No API key found for provider") is now classified as a failed dispatch via a pi-specific output guard, before the generic `status === 0` success branch. Tests: the banner yields `ok:false`; real model output with exit 0 still yields `ok:true` (no false negative).
 - **P1-002 (the shared delegation dropped the cursor bin-override env) — documented alignment, no fix needed.** `CURSOR_AGENT_BIN`/`DEVIN_BIN`/`PI_BIN` are referenced nowhere in the tree (only the untouched opencode/claude cases keep `OPENCODE_BIN`/`CLAUDE_BIN`); the override was unused. Cursor/devin/pi now resolve via PATH exactly as the fan-out does — a deliberate alignment recorded in a code comment, not an accidental regression.
+
+### Leaf 3 (ai-council) verification
+
+| Gate | Result |
+|---|---|
+| Council vitest (`deep-ai-council/vitest.config.mjs`) | PASS — 10 files, 105 tests |
+| Stash-baseline delta | Baseline 94/94 (zero pre-existing failures); post-change 105/105; zero new failures, +11 new parity tests |
+| Whole-runtime TypeScript | PASS — zero diagnostics |
+| `orchestrate-session.cjs` require smoke test | PASS |
+| Leaf 3 SOL cross-verify (cli-opencode GPT-5.6-SOL, high) | REQUESTED_CHANGES, 0 P0 / 1 P1 / 2 P2 — P2s fixed, P1 tracked (see below); re-gate 106/106, tsc 0 |
+
+### SOL review disposition (leaf 3)
+
+- **P1-001 (read-only flags don't hard-prevent ambient-config writes) — same 005-tracked boundary, verified.** The read-only flags bound each CLI's own model tools, but not the executor's ambient config (cursor `.cursor/hooks.json` hooks, devin config allow-rules, pi auto-loaded `.pi/` extensions). Verified against the real repo: cursor hooks write nothing for a read-only invocation (established in phase 003); `~/.config/devin/config.json` carries no `Write(`/`Exec(` allow-rules (so `auto` is not overridden); pi is the one live residual (it auto-loads `.pi/` and supports `--no-extensions`/`--no-skills`/`--no-prompt-templates`). This is the SAME cross-cutting ambient-config isolation boundary already accepted for the combo-matrix phase in the 003 disposition — SOL broadened it from cursor to cursor+devin+pi. The leaf-3 read-only FLAGS are correct and match the hardened fan-out; the hard "seat never writes via ambient config" isolation (repo hooks off, executor config isolated, pi `--no-extensions`) is tracked there, not forked into this leaf.
+- **P2-001 (no invalid-model provenance test) — FIXED.** Added a test: a cursor seat with an out-of-roster (opencode-style) model fails closed — the builder throws, no subprocess spawns, and the rejection carries `execution_provenance` with the right executor family + command.
+- **P2-002 (stale codex-reject message) — FIXED.** The message said seats "run via opencode/native"; updated to name the now-accepted native/opencode/cursor/devin/pi set (codex still deliberately excluded), with its test assertion.
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->

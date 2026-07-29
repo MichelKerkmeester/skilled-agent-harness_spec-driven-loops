@@ -143,6 +143,15 @@ function dispatchScenario({ scenario, skillRoot, traceMode, executor } = {}) {
   if (traceMode === 'live') {
     // The codex transport dispatches through the runtime-owned helper (cli-codex
     // single-adapter rule); the opencode transport spawns opencode directly.
+    //
+    // Only opencode and codex are supported live transports here — by design, not
+    // omission. This lane's score signal (skill activation and observed resource
+    // reads) is extracted from the executor's STRUCTURED tool-use event stream,
+    // which only opencode and codex emit. Text-only executors (cursor, devin, pi)
+    // produce no equivalent tool-use trace, so routing them through this path
+    // would score every run as "no activation / read nothing" — false benchmark
+    // data. Giving them real parity needs an executor-agnostic observation model,
+    // a separate change; until then they are intentionally excluded here.
     if (executor === 'codex') {
       return runOptionalExecutor('./codex-executor.cjs', 'runCodexScenario',
         { scenario, skillRoot }, { mode: 'live', classKind, executor: 'codex-executor' });
