@@ -4,7 +4,7 @@ argument-hint: "set <objective> [--budget N] | show | history | doctor | health 
 allowed-tools: mk_goal, mk_goal_status
 ---
 
-# /goal
+# /goal-opencode
 
 Thin root router for the session goal plugin.
 
@@ -12,7 +12,7 @@ Thin root router for the session goal plugin.
 
 ## 1. PURPOSE
 
-Manage the passive session goal through the `mk-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `mk_goal` / `mk_goal_status` plugin tools, which own all goal state and session resolution.
+Manage the passive session goal through the `mk-goal` plugin. `/goal-opencode` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `mk_goal` / `mk_goal_status` plugin tools, which own all goal state and session resolution.
 
 ---
 

@@ -82,7 +82,7 @@ goal/
 | File | Responsibility |
 |---|---|
 | `lib/goal-core.cjs` | Runtime-neutral core. Resolves the shared state directory (`MK_GOAL_STATE_DIR` override, else `.opencode/skills/.goal-state/` under the walked-up repo root), does atomic temp+rename writes at mode `0600`, archives terminal records to `.goal-state/.archive/active-goal-<goalId>.json` before clear/complete, ports mk-goal's `normalizeUserAuthoredText` prompt-injection hardening and `defaultHeuristicSupervisorVerifier` heuristic verifier, and renders the `[active_goal]` block. Every exported function fails open — no read/parse error, and no `PLUGIN_DISABLED`-style guard failure, ever throws past a caller boundary except the explicit `GoalError`s mutation actions raise for the CLI to translate into `code=`. |
-| `bin/goal.cjs` | Thin router over the core, mirroring `/goal:goal-opencode`'s command contract: same action set (`set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`), same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` positive-base-10-integer parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` error codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior with `code=PLUGIN_DISABLED`. Bare text (no recognized action token) falls through to `set`, matching the router's "any other non-empty QUERY" rule. |
+| `bin/goal.cjs` | Thin router over the core, mirroring `/goal-opencode`'s command contract: same action set (`set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`), same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` positive-base-10-integer parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` error codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior with `code=PLUGIN_DISABLED`. Bare text (no recognized action token) falls through to `set`, matching the router's "any other non-empty QUERY" rule. |
 
 The shared state file lives at `.opencode/skills/.goal-state/active-goal.json`, beside — never touching — mk-goal's own per-session files and `.archive/` in that same directory.
 
@@ -123,6 +123,6 @@ Expected result: `STATUS=OK ACTION=set` with `mutation=created`, then `STATUS=OK
 ## 7. RELATED
 
 - [`../../plugins/mk-goal.js`](../../plugins/mk-goal.js): the OpenCode goal plugin this core ports its template, hardening, and heuristic verifier from.
-- [`../../commands/goal/goal-opencode.md`](../../commands/goal/goal-opencode.md): the `/goal:goal-opencode` router contract `bin/goal.cjs` mirrors action-for-action.
+- [`../../commands/goal-opencode.md`](../../commands/goal-opencode.md): the `/goal-opencode` router contract `bin/goal.cjs` mirrors action-for-action.
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
 - [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): what each hook injects and its operator visibility (pending an entry for this concern once per-runtime adapters land).

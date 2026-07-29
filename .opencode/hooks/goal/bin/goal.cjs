@@ -3,7 +3,7 @@
 // ║ COMPONENT: goal manage CLI (runtime-neutral)                             ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Thin router over goal-core.cjs for runtimes with no plugin      ║
-// ║          tool surface. Mirrors the `/goal:goal-opencode` command         ║
+// ║          tool surface. Mirrors the `/goal-opencode` command         ║
 // ║          contract exactly: same action names, same STATUS=/ACTION=      ║
 // ║          envelope, same --budget parsing and error codes, so behavior   ║
 // ║          benchmarks can compare the manage CLI against the OpenCode      ║
@@ -30,7 +30,7 @@ function parseArgv(argv) {
 
 /**
  * Parse a trailing `--budget N` off the objective tokens, mirroring the
- * `/goal:goal-opencode` command's Step 3 parsing rules exactly.
+ * `/goal-opencode` command's Step 3 parsing rules exactly.
  */
 function parseSetArgs(rest) {
   const budgetIndex = rest.findIndex((token) => token === '--budget');
@@ -207,7 +207,7 @@ function main(argv) {
     case 'resume': return runResume(runtimeLabel);
     default: {
       // Bare text (no recognized action token) falls through to `set`, mirroring
-      // the /goal:goal-opencode router's "any other non-empty QUERY" rule.
+      // the /goal-opencode router's "any other non-empty QUERY" rule.
       const objective = argv.join(' ').trim();
       if (!objective) return printFail('show', new core.GoalError('INVALID_OBJECTIVE', 'Objective is required'));
       return runSet(argv, runtimeLabel);

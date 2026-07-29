@@ -9,7 +9,7 @@ triggerPhrases:
   - /opencode_goal
   - /goal_opencode
   - /goal-opencode
-  - /goal:goal-opencode
+  - /goal-opencode
   - goal prompt
   - session goal
   - set goal
@@ -25,8 +25,8 @@ triggerPhrases:
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
 session goal, use Claude Code's own **native** `/goal` goal-prompting feature. Do NOT
-route through the OpenCode `mk-goal` plugin command (invoked `/goal:goal-opencode` since
-the 2026-07-29 subfolder move to `.opencode/commands/goal/goal-opencode.md`; it was the
+route through the OpenCode `mk-goal` plugin command (invoked `/goal-opencode` since
+the 2026-07-29 subfolder move to `.opencode/commands/goal-opencode.md`; it was the
 flat `/goal-opencode` from the 2026-07-17 operator hyphen-naming decision, `/goal_opencode`
 from 2026-07-01, and had round-tripped through `/goal` before that; verify the live
 filename if this note predates a future change).
@@ -38,7 +38,7 @@ plugin tools. They reach the same passive session-goal behavior through the runt
 goal core:
 
 - **Manage surface:** `.opencode/hooks/goal/bin/goal.cjs` — a CLI mirroring the
-  `/goal:goal-opencode` router contract (`set`/`show`/`history`/`doctor`/`health`/`clear`/
+  `/goal-opencode` router contract (`set`/`show`/`history`/`doctor`/`health`/`clear`/
   `complete`/`pause`/`resume`, same `STATUS=`/`ACTION=` envelope and `--budget` parsing).
 - **Injection adapters:** `.opencode/hooks/goal/{devin,cursor,pi}/` wired per each runtime's
   config, all reading one **shared** state file `.opencode/skills/.goal-state/active-goal.json`
@@ -78,7 +78,7 @@ correct name at that time; **fourth rename** to `.opencode/commands/goal-opencod
 (`/goal-opencode`), an operator decision on 2026-07-17 aligning the file with the
 repo-wide hyphen naming convention — this file and its referencing surfaces were swept to
 match; **fifth move**, on 2026-07-29 the operator relocated the file into a `goal/`
-subfolder (`.opencode/commands/goal/goal-opencode.md`, invoked `/goal:goal-opencode` under
+subfolder (`.opencode/commands/goal-opencode.md`, invoked `/goal-opencode` under
 the repo's `folder:name` command convention) to make room for the cross-runtime goal-hook
 work. Do not hardcode past names, and re-verify the live filename before invoking: it has
 moved on operator decision before and may again.

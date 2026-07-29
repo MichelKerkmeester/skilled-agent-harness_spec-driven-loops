@@ -6,6 +6,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('../runtime-mirrors/command-scope.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const SOURCE_DIR = path.join(REPO_ROOT, '.opencode', 'commands');
@@ -86,7 +87,9 @@ function renderPrompt(relativePath) {
 }
 
 function buildExpectedOutputs() {
-  const sourceFiles = listCommandFiles(SOURCE_DIR);
+  // Runtime-exclusive commands (the goal triggers) are not mirrored from the
+  // canonical tree; Pi carries its own hand-authored goal-pi.md instead.
+  const sourceFiles = listCommandFiles(SOURCE_DIR).filter((rel) => !isCanonicalMirrorExcluded(rel));
   if (sourceFiles.length === 0) {
     throw new Error(`No canonical commands found in ${SOURCE_DIR}`);
   }
@@ -114,6 +117,8 @@ function checkOutputs(expectedOutputs) {
   }
 
   for (const outputFile of [...actualFiles].sort()) {
+    // Pi's own hand-authored native command is expected to be present, not drift.
+    if (isRuntimeNativeCommand('.pi/prompts', outputFile)) continue;
     drift.push(`EXTRA ${path.relative(REPO_ROOT, path.join(OUTPUT_DIR, outputFile))}`);
   }
 
@@ -134,6 +139,8 @@ function writeOutputs(expectedOutputs) {
   const expectedFiles = new Set(expectedOutputs.keys());
 
   for (const outputFile of listOutputFiles()) {
+    // Leave Pi's own hand-authored native command in place; it is not generated.
+    if (isRuntimeNativeCommand('.pi/prompts', outputFile)) continue;
     if (!expectedFiles.has(outputFile)) {
       fs.unlinkSync(path.join(OUTPUT_DIR, outputFile));
     }

@@ -29,7 +29,7 @@ This scenario validates the manage CLI (`bin/goal.cjs`) and the library it is a 
 
 | Component | Role |
 |---|---|
-| `.opencode/hooks/goal/bin/goal.cjs` | Router mirroring `/goal:goal-opencode` action-for-action: `set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`, same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior |
+| `.opencode/hooks/goal/bin/goal.cjs` | Router mirroring `/goal-opencode` action-for-action: `set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`, same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior |
 | `.opencode/hooks/goal/lib/goal-core.cjs` | Shared state I/O (atomic temp+rename writes at mode `0600`, `.archive/` on terminal transitions), `renderGoalBrief()` injection template, `normalizeUserAuthoredText` prompt-injection hardening (ported from `mk-goal`), and the heuristic verifier |
 
 This scenario validates: the full action envelope and its three mutation outcomes; `--budget` parsing and its two error codes; the `PLUGIN_DISABLED` kill switch; five prompt-injection hardening cases (marker forgery, homoglyph role folding, bidi/zero-width stripping, instruction-override phrasing, jailbreak phrasing); `MK_GOAL_STATE_DIR` isolation across two independent scratch directories; a simulated cross-runtime hand-off (the CLI writes, a second reader uses `goal-core.cjs` directly, as a Devin/Cursor/Pi adapter would); and atomic-write plus archive-on-terminal-transition behavior.
@@ -284,7 +284,7 @@ CONFIRMED: no leftover .tmp file after write
 - Shared core (state I/O, hardening, verifier, render): `.opencode/hooks/goal/lib/goal-core.cjs`
 - Core unit-test suite: `.opencode/hooks/goal/lib/goal-core.test.cjs`
 - OpenCode-native sibling this core ports its template/hardening/verifier from: `.opencode/plugins/mk-goal.js` (validated separately in `CO-039`)
-- `/goal:goal-opencode` command contract this CLI mirrors action-for-action: `.opencode/commands/goal/goal-opencode.md`
+- `/goal-opencode` command contract this CLI mirrors action-for-action: `.opencode/commands/goal-opencode.md`
 - Concern README (directory tree, boundaries, validation commands): `.opencode/hooks/goal/README.md`
 - Per-runtime adapters that read the same shared state through this core: `.opencode/hooks/goal/devin/`, `.opencode/hooks/goal/cursor/`, `.opencode/hooks/goal/pi/`
 - Spec packet: `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/`

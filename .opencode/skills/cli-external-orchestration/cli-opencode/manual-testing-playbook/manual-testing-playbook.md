@@ -786,7 +786,7 @@ Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the
 
 ## 16. GOAL HOOK (`CO-039`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) directly in-process: the `/goal:goal-opencode` command's full action set, `mk_goal`/`mk_goal_status` tool behavior, per-OpenCode-session state isolation, native token accounting, and the `experimental.chat.system.transform` injection. `mk-goal` is a separate system from the runtime-neutral cross-runtime port validated as `CE-P03` in the `cli-external-orchestration` hub playbook.
+This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) directly in-process: the `/goal-opencode` command's full action set, `mk_goal`/`mk_goal_status` tool behavior, per-OpenCode-session state isolation, native token accounting, and the `experimental.chat.system.transform` injection. `mk-goal` is a separate system from the runtime-neutral cross-runtime port validated as `CE-P03` in the `cli-external-orchestration` hub playbook.
 
 ### CO-039 | Goal hook native mk-goal validation
 
@@ -796,7 +796,7 @@ Verify the native `mk-goal` plugin's command-router action set, per-session stat
 
 #### Scenario Contract
 
-Prompt summary: As an OpenCode plugin validator, exercise the mk-goal plugin's tool, event, and experimental.chat.system.transform hooks directly against a scratch session-state directory. Verify the full /goal:goal-opencode action set returns the documented STATUS envelope, per-session goal state stays isolated by session id, native OpenCode token accounting attributes tokens correctly from a message.updated event, and the transform renders a well-formed [active_goal] injection block.
+Prompt summary: As an OpenCode plugin validator, exercise the mk-goal plugin's tool, event, and experimental.chat.system.transform hooks directly against a scratch session-state directory. Verify the full /goal-opencode action set returns the documented STATUS envelope, per-session goal state stays isolated by session id, native OpenCode token accounting attributes tokens correctly from a message.updated event, and the transform renders a well-formed [active_goal] injection block.
 
 Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_prompt`; the transform appends exactly one `[active_goal:<id>]` block; a `message.updated` event with native `tokens.{input,output}` raises `tokens_used` by the exact sum with `usage_source=opencode-native-tokens`; a second session id never sees or disturbs the first session's state; `MK_GOAL_PLUGIN_DISABLED=1` fails every action closed. A live headless `opencode run` attempt at the same surface is documented as a SKIP (structural limitation of the headless-run surface, not a plugin defect), not a FAIL.
 

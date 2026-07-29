@@ -8,13 +8,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/032-goal-hooks-cross-runtime/008-goal-docs-hygiene"
-    last_updated_at: "2026-07-29T07:06:08Z"
+    last_updated_at: "2026-07-29T13:58:48Z"
     last_updated_by: "claude"
-    recent_action: "Phase 008 complete: refs fixed, docs updated, test repaired"
-    next_safe_action: "Commit phase 008; final packet --recursive validate"
+    recent_action: "Follow-up: goal cmd to top-level + per-CLI goal commands + mirror-scope generators"
+    next_safe_action: "Commit; run mk-goal suite where @opencode-ai/plugin installed"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/references/hooks/injection-contract.md"
+      - ".opencode/commands/goal-opencode.md"
+      - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs"
       - ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md"
       - ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
     session_dedup:
@@ -107,3 +108,28 @@ Ran last in the packet, after phases 001-007 landed, so the docs describe real a
 2. **Two docs keep a pre-existing "missing overview section" validator warning** (`goal-plugin.md`, the constitutional rule) — present at HEAD, not introduced here; harmonizing their heading convention is a separate cleanup.
 3. **The invocation form `/goal:goal-opencode` follows the repo's `folder:command` convention** and the recent memory index; per the constitutional rule's own guidance, the live command filename should still be re-verified before invoking, as it has moved on operator decision before.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:followup -->
+## Follow-up (operator-directed, 2026-07-29): per-CLI goal command surface
+
+Limitation #3 above anticipated the goal command filename could move again "on operator decision." It did. Documented here per the operator's Gate-3 choice to reuse 008; this extends 008 beyond its original docs-only scope with a small amount of runtime tooling.
+
+**What changed:**
+- **Relocated the OpenCode command** `.opencode/commands/goal/goal-opencode.md` → `.opencode/commands/goal-opencode.md` (out of the `goal/` subfolder), reversing 008's earlier move-in. The command is now `/goal-opencode` (filename-derived); the H1 and ~19 live path/name references were updated (`commands/goal/goal-opencode` → `commands/goal-opencode`, `/goal:goal-opencode` → `/goal-opencode`). Historical spec records (032 children, sk-doc/020 census) were left intact.
+- **Added one runtime-native goal command per goal-capable runtime**, named for the runtime and driving the runtime-neutral `bin/goal.cjs` manage CLI: `.cursor/commands/goal-cursor.md`, `.devin/skills/goal-devin/SKILL.md`, `.pi/prompts/goal-pi.md`. OpenCode keeps `/goal-opencode` (`mk_goal` tools); Claude reaches it via its whole-directory command symlink; Codex has no goal hook and no goal command.
+- **Taught the three mirror generators runtime-exclusive scope** via a shared `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs`: `goal-opencode` is not cross-mirrored, and each runtime's hand-authored native command is exempt from orphan-pruning. Removed the stale `goal-goal-opencode` (Cursor/Devin) and `goal-opencode` (Codex/Pi) mirrors the move orphaned.
+- **Documented the per-CLI command surface** in `goal-plugin.md` §8.
+
+**Evidence:**
+- All three generators PASS `--check` after regen (167 runtime-mirror / 34 codex / 34 pi in sync).
+- `goal-core.test.cjs` PASS; the `mk-goal` plugin path assertions (`mk-goal-tool-path.test.cjs`, `mk-goal-capabilities.test.cjs`) were repointed to the top-level path — still env-gated on the absent `@opencode-ai/plugin` dependency, an unchanged baseline.
+- Final per-runtime surface verified: OpenCode `goal-opencode` only, Cursor `goal-cursor` only, Devin `goal-devin` only, Pi `goal-pi` only, Codex none, Claude `goal-opencode` (via symlink).
+
+Limitation #3 is now **resolved** — the command lives at the top level and the docs/tests reference it there.
+<!-- /ANCHOR:followup -->
+
+---
+
+**Note on invocation form:** the earlier "Known Limitations" §3 mentions the `/goal:goal-opencode` form; that form is now superseded by `/goal-opencode` (top-level, filename-derived) as recorded in this follow-up.

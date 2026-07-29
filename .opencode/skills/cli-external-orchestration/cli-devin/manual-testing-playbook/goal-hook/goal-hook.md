@@ -49,7 +49,7 @@ A passive steering block is only useful if it actually reaches the model and can
 
 #### Supplemental Check 1: Budget/objective validation errors + PLUGIN_DISABLED fail-closed
 
-Confirms the manage CLI mirrors `/goal:goal-opencode`'s error contract exactly, and that the kill switch fails every action closed.
+Confirms the manage CLI mirrors `/goal-opencode`'s error contract exactly, and that the kill switch fails every action closed.
 
 ```bash
 node .opencode/hooks/goal/bin/goal.cjs set --budget abc "bad budget test"

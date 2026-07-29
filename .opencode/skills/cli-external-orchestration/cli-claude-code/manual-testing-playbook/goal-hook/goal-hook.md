@@ -74,7 +74,7 @@ Operators run the exact prompt and command sequence for `CC-029` and confirm the
 || `../../../../../skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | The constitutional rule: Claude Code native `/goal`, cross-runtime routing for Devin/Cursor/Pi, and the `mk_goal()` failure-mode signal |
 || `../../../../../hooks/goal/README.md` | The cross-runtime goal-hook contract: directory tree, adapter parity tiers, explicit "sibling, not a replacement" framing |
 || `../../../../../hooks/goal/lib/goal-core.cjs` | The runtime-neutral core Devin/Cursor/Pi share; Claude Code is not a caller of this module |
-|| `../../../../../commands/goal/goal-opencode.md` | The OpenCode-only `/goal:goal-opencode` router `mk_goal()` resolves to; not reachable from Claude Code |
+|| `../../../../../commands/goal-opencode.md` | The OpenCode-only `/goal-opencode` router `mk_goal()` resolves to; not reachable from Claude Code |
 
 ---
 

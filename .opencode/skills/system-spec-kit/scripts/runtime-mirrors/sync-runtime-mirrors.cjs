@@ -19,6 +19,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command-scope.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '../../../../..');
 const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
@@ -109,6 +110,9 @@ function buildExpectedLinks() {
   }
 
   for (const relativePath of commands) {
+    // Runtime-exclusive commands (the goal triggers) are not cross-mirrored; each
+    // runtime carries only its own hand-authored native command instead.
+    if (isCanonicalMirrorExcluded(relativePath)) continue;
     const source = `${OPENCODE_COMMANDS}/${relativePath}`;
     const flat = toFlatName(relativePath);
     links.push({ tree: 'cursor-commands', mirror: `.cursor/commands/${flat}.md`, source });
@@ -166,6 +170,8 @@ function findOrphans(expectedLinks) {
       if (entry.name === 'README.md' || entry.name === 'README.txt' || entry.name.startsWith('.')) continue;
       // Nested trees (devin) hold one dir per item; flat trees hold files/symlinks.
       if (entry.isDirectory()) continue;
+      // A runtime's own hand-authored native command is deliberately not a mirror.
+      if (isRuntimeNativeCommand(dir, entry.name)) continue;
       if (!names.has(entry.name)) orphans.push(path.posix.join(dir, entry.name));
     }
   }
@@ -182,6 +188,8 @@ function findOrphans(expectedLinks) {
     );
     for (const entry of fs.readdirSync(absoluteParent, { withFileTypes: true })) {
       if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
+      // Devin's own hand-authored native skill (e.g. goal-devin) is not a mirror.
+      if (isRuntimeNativeCommand(parent, entry.name)) continue;
       if (!wanted.has(entry.name)) orphans.push(`${parent}/${entry.name}/${leaf}`);
     }
   }

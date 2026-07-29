@@ -312,7 +312,7 @@ test('CLI honors MK_GOAL_PLUGIN_DISABLED=1 and fails closed with PLUGIN_DISABLED
   assert.equal(envelopeField(result.stdout, 'code'), 'PLUGIN_DISABLED');
 });
 
-test('CLI bare text falls through to set, mirroring the /goal:goal-opencode router', () => {
+test('CLI bare text falls through to set, mirroring the /goal-opencode router', () => {
   const result = runCli(['Ship', 'the', 'widget']);
   assert.ok(result.stdout.startsWith('STATUS=OK ACTION=set'));
   assert.equal(envelopeField(result.stdout, 'objective'), '"Ship the widget"');
