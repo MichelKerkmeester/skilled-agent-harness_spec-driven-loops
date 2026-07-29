@@ -1,0 +1,53 @@
+{
+  "targetSkill": {
+    "id": "cli-devin",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-devin"
+  },
+  "traceMode": "live",
+  "executor": "claude",
+  "model": "glm-5-2",
+  "variant": "free",
+  "verdict": "PASS",
+  "scenarioRows": [
+    {
+      "scenarioId": "DV-022",
+      "hubId": "cli-devin",
+      "tier": "not recorded",
+      "stage": "live-injection",
+      "classKind": "not recorded",
+      "goldMode": "not recorded",
+      "providerModel": "glm-5-2",
+      "variant": "free",
+      "score": "not-recorded",
+      "verdict": "PASS",
+      "reason": "goal-hook injection reaches the model turn: active_goal block present 2x in the raw transcript; the model quoted the canary objective verbatim",
+      "evidence": [
+        ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/devin-model-reply.txt",
+        ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/devin-injection-excerpt.txt"
+      ]
+    }
+  ],
+  "provenance": {
+    "kind": "manual-testing-playbook-validation",
+    "packetPointer": "cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "specPacketRel": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "playbookScenarioRel": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+    "playbookScenarioId": "DV-022",
+    "capturedDate": "2026-07-29",
+    "canary": "GOALCANARY-DV-1255523564",
+    "goalId": "goal-a95c0004-3560-4086-a3a6-65c9ca46c713"
+  },
+  "executionContext": {
+    "commandShape": "MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Devin AI_SESSION_CHILD=1 devin -p --model glm-5-2 --permission-mode auto -- \"<neutral prompt>\" </dev/null",
+    "tier": "free",
+    "isolatedStateDir": true,
+    "adaptersLiveExercised": [
+      "UserPromptSubmit (devin/goal-inject.mjs)"
+    ],
+    "adaptersDocumentedNotLiveExercised": [
+      "SessionStart restore (devin/goal-session-start.mjs)",
+      "Stop verify (devin/goal-verify.mjs) -- dormant in practice, real Devin Stop payloads carry no transcript"
+    ],
+    "manageCliEnvelope": "model-free, validated separately via node .opencode/hooks/goal/bin/goal.cjs (see DV-022 primary row)"
+  }
+}

@@ -1,0 +1,5 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-039-HEADLESS-TOOL-DEEPSEEK,cli-opencode,live,tool-exposure,not-recorded,not-recorded,deepseek-v4-pro,headless,not-recorded,SKIP,"mk_goal tool not exposed to the default headless run agent; deepseek-v4-pro replied verbatim it is not available in its tool set"
+CO-039-HEADLESS-TOOL-LUNA,cli-opencode,live,tool-exposure,not-recorded,not-recorded,openai/gpt-5.6-luna,headless,not-recorded,SKIP,"mk_goal referenced but never executed a set; no goal persisted"
+CO-039-HEADLESS-TRANSFORM-DEEPSEEK,cli-opencode,live,chat-system-transform,not-recorded,not-recorded,deepseek-v4-pro,headless,not-recorded,SKIP,"experimental.chat.system.transform did not fire against a pre-seeded ACTIVE goal state; zero active_goal occurrences observed"

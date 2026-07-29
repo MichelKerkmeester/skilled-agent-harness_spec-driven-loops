@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "derivedAfterTheFact": true,
+  "harnessRun": false,
+  "targetSkill": {
+    "id": "cli-claude-code",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-claude-code"
+  },
+  "traceMode": "doc",
+  "executor": "claude",
+  "model": "not-recorded",
+  "variant": "native-goal",
+  "verdict": "SKIP",
+  "scenarioRows": [
+    {
+      "scenarioId": "CC-029",
+      "hubId": "cli-claude-code",
+      "tier": "not-recorded",
+      "stage": "documentation",
+      "classKind": "not-recorded",
+      "goldMode": "native-goal",
+      "providerModel": "not-recorded",
+      "variant": "native-goal",
+      "score": "not-recorded",
+      "verdict": "SKIP",
+      "reason": "claude-native-goal-no-cross-runtime-adapter-no-headless-dispatch"
+    }
+  ],
+  "provenance": {
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-claude-code",
+    "authoredAt": "2026-07-29",
+    "specFolderRel": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "sourceScenarioDocRel": ".opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+    "constitutionalRuleRel": ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
+    "note": "Hand-authored after the fact from the CC-029 scenario record. Not written by the deep-improvement Lane C skill-benchmark harness and not a compiled-routing archiver run; no skill-benchmark-report.md renderer (build-report.cjs) was invoked to produce this pair."
+  },
+  "executionContext": {
+    "executor": "claude",
+    "model": "not-recorded",
+    "variant": "native-goal",
+    "traceMode": "doc",
+    "dispatch": "none",
+    "cliVersion": "not-recorded",
+    "scenarioIds": ["CC-029"],
+    "note": "No headless model turn was dispatched. Claude Code's session-goal behavior is its own native /goal feature; the cross-runtime goal-hook port at .opencode/hooks/goal/ deliberately ships no claude/ adapter (see the constitutional routing rule), so there is no live scenario surface to run against."
+  }
+}

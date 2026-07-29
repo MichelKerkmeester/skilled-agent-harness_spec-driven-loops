@@ -1,0 +1,86 @@
+{
+  "targetSkill": {
+    "id": "cli-pi",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-pi"
+  },
+  "traceMode": "live",
+  "executor": "claude",
+  "model": "gpt (offline via openai-codex-responses)",
+  "variant": "offline",
+  "verdict": "PASS",
+  "scenarioRows": [
+    {
+      "scenarioId": "PI-021-INJECT",
+      "hubId": "cli-pi",
+      "tier": "live",
+      "stage": "input-transform",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "gpt (offline via openai-codex-responses)",
+      "variant": "offline",
+      "score": "not-recorded",
+      "verdict": "PASS",
+      "reason": "input-transform injection reaches the model turn: MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Pi pi --offline -p \"What is my active goal?\" appended the [active_goal] block onto the operator-visible prompt; model echoed the canary GOALCANARY-PI-2603128151 and the Pi-labeled Role line",
+      "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt"
+    },
+    {
+      "scenarioId": "PI-021-VERIFY",
+      "hubId": "cli-pi",
+      "tier": "live",
+      "stage": "turn_end",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "gpt (offline via openai-codex-responses)",
+      "variant": "offline",
+      "score": "not-recorded",
+      "verdict": "PASS",
+      "reason": "turn_end fired real goal-verify-nudge events against the live turn-end transcript (observe-only, display:false, never blocks)",
+      "evidence": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md"
+    },
+    {
+      "scenarioId": "PI-021-RESTORE",
+      "hubId": "cli-pi",
+      "tier": "live",
+      "stage": "session_start",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "gpt (offline via openai-codex-responses)",
+      "variant": "offline",
+      "score": "not-recorded",
+      "verdict": "SKIP",
+      "reason": "no goal-context-restore event observed in a single-shot pi --offline -p --mode json capture; needs --continue or a genuine second-turn session-continuation flow to convert to a real PASS/FAIL",
+      "evidence": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md"
+    },
+    {
+      "scenarioId": "PI-021-CLI-HARDENING",
+      "hubId": "cli-pi",
+      "tier": "deterministic",
+      "stage": "manage-cli",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "not-recorded (model-free, node goal.cjs)",
+      "variant": "not-recorded",
+      "score": "not-recorded",
+      "verdict": "PASS",
+      "reason": "manage-CLI STATUS=/ACTION= envelope, --budget validation, and MK_GOAL_PLUGIN_DISABLED kill switch confirmed live; marker-forgery and an isolated homoglyph role token redact correctly; a documented boundary (not a failure) was found -- see findings",
+      "evidence": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md"
+    }
+  ],
+  "provenance": {
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-pi",
+    "capturedAt": "2026-07-29",
+    "sourcePacket": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "sourcePlaybook": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
+    "sourcePlaybookId": "PI-021",
+    "derivationNote": "Derived after the fact from this run's stored evidence record; not written at run time by a Lane C harness or renderer."
+  },
+  "executionContext": {
+    "executor": "claude",
+    "model": "gpt (offline via openai-codex-responses)",
+    "variant": "offline",
+    "traceMode": "live",
+    "scenarioIds": ["PI-021-INJECT", "PI-021-VERIFY", "PI-021-RESTORE", "PI-021-CLI-HARDENING"],
+    "runDate": "2026-07-29",
+    "cliVersion": "not-recorded"
+  }
+}

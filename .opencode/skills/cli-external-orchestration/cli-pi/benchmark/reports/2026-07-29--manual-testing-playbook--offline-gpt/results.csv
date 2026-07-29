@@ -1,0 +1,6 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-021-INJECT,cli-pi,live,input-transform,not-recorded,not-recorded,gpt (offline via openai-codex-responses),offline,not-recorded,PASS,"input-transform injection reaches the model turn; canary and Pi-labeled Role line confirmed in the operator-visible prompt"
+PI-021-VERIFY,cli-pi,live,turn_end,not-recorded,not-recorded,gpt (offline via openai-codex-responses),offline,not-recorded,PASS,"turn_end fired real goal-verify-nudge events against the live transcript; observe-only, never blocks"
+PI-021-RESTORE,cli-pi,live,session_start,not-recorded,not-recorded,gpt (offline via openai-codex-responses),offline,not-recorded,SKIP,"no goal-context-restore event observed in a single-shot capture; needs --continue or a session-continuation re-run"
+PI-021-CLI-HARDENING,cli-pi,deterministic,manage-cli,not-recorded,not-recorded,not-recorded (model-free),not-recorded,not-recorded,PASS,"manage-CLI envelope, budget, and PLUGIN_DISABLED hardening confirmed live; one boundary documented as a finding"

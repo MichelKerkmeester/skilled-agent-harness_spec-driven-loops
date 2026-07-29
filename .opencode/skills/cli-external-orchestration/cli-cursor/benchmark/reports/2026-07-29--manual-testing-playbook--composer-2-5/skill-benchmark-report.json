@@ -1,0 +1,52 @@
+{
+  "targetSkill": {
+    "id": "cli-cursor",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-cursor"
+  },
+  "traceMode": "live",
+  "executor": "claude",
+  "model": "composer-2.5",
+  "variant": "paid",
+  "verdict": "PASS",
+  "scenarioRows": [
+    {
+      "scenarioId": "CU-027",
+      "hubId": "cli-cursor",
+      "tier": "not recorded",
+      "stage": "sessionstart-injection",
+      "classKind": "not recorded",
+      "goldMode": "not recorded",
+      "providerModel": "composer-2.5",
+      "variant": "paid",
+      "score": "not-recorded",
+      "verdict": "PASS",
+      "reason": "sessionStart goal-hook fires (turns_used 0 -> 1) AND injection confirmed absent from the model-visible transcript (0 canary / 0 [active_goal] occurrences); documented recorded-evidence tier for Cursor, not a failure",
+      "evidence": [
+        ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt"
+      ]
+    }
+  ],
+  "provenance": {
+    "kind": "manual-testing-playbook-validation",
+    "packetPointer": "cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "specPacketRel": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "playbookScenarioRel": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md",
+    "playbookScenarioId": "CU-027",
+    "capturedDate": "2026-07-29",
+    "canary": "GOALCANARY-CU-349522064",
+    "nonDeliveryConfirmationCount": "n=3 (2 prior phase-004 capability probes + this run)"
+  },
+  "executionContext": {
+    "commandShape": "MK_GOAL_STATE_DIR=<iso> MK_GOAL_RUNTIME_LABEL=Cursor cursor-agent -p \"<prompt>\" --output-format text --model composer-2.5 --auto-review --sandbox enabled </dev/null",
+    "tier": "paid",
+    "isolatedStateDir": true,
+    "adaptersLiveExercised": [
+      "sessionStart (cursor/goal-inject.mjs)"
+    ],
+    "nonDeliveringChannelsDocumentedNotLiveExercised": [
+      "preToolUse agent_message -- confirmed non-delivering, not re-exercised live this run",
+      "stop -- never fires under the tested Cursor CLI build"
+    ],
+    "note": "the model reply was cut off by the harness command cap before completion; the turn-counter increment and the transcript-absence are the load-bearing signals and do not depend on the reply completing"
+  }
+}

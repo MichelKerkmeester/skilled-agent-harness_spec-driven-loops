@@ -1,0 +1,3 @@
+# derived after the fact from this run's stored record
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-022,cli-devin,not recorded,live-injection,not recorded,not recorded,glm-5-2,free,not-recorded,PASS,goal-hook injection reaches the model turn (active_goal block x2; canary quoted verbatim)

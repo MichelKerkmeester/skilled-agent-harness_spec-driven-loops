@@ -1,0 +1,72 @@
+{
+  "targetSkill": {
+    "id": "cli-opencode",
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-opencode"
+  },
+  "traceMode": "live",
+  "executor": "claude",
+  "model": "deepseek-v4-pro; openai/gpt-5.6-luna",
+  "variant": "headless",
+  "verdict": "SKIP",
+  "scenarioRows": [
+    {
+      "scenarioId": "CO-039-HEADLESS-TOOL-DEEPSEEK",
+      "hubId": "cli-opencode",
+      "tier": "live",
+      "stage": "tool-exposure",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "deepseek-v4-pro",
+      "variant": "headless",
+      "score": "not-recorded",
+      "verdict": "SKIP",
+      "reason": "mk_goal tool is not exposed to the default headless opencode run agent; deepseek-v4-pro replied verbatim 'The mk_goal tool is not available in my tool set. I cannot call tools that don't exist.'; zero tool calls made",
+      "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
+    },
+    {
+      "scenarioId": "CO-039-HEADLESS-TOOL-LUNA",
+      "hubId": "cli-opencode",
+      "tier": "live",
+      "stage": "tool-exposure",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "openai/gpt-5.6-luna",
+      "variant": "headless",
+      "score": "not-recorded",
+      "verdict": "SKIP",
+      "reason": "mk_goal tool is not exposed to the default headless opencode run agent; gpt-5.6-luna referenced mk_goal but never executed a set (no goal persisted)",
+      "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
+    },
+    {
+      "scenarioId": "CO-039-HEADLESS-TRANSFORM-DEEPSEEK",
+      "hubId": "cli-opencode",
+      "tier": "live",
+      "stage": "chat-system-transform",
+      "classKind": "not-recorded",
+      "goldMode": "not-recorded",
+      "providerModel": "deepseek-v4-pro",
+      "variant": "headless",
+      "score": "not-recorded",
+      "verdict": "SKIP",
+      "reason": "experimental.chat.system.transform did not fire in opencode run --session, even against a pre-seeded ACTIVE mk-goal state matching the shipped schema (canary GOALCANARY-CO-1010816640); resumed-session turn 2 showed zero [active_goal] occurrences and the model reported none",
+      "evidence": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
+    }
+  ],
+  "provenance": {
+    "rootRel": ".opencode/skills/cli-external-orchestration/cli-opencode",
+    "capturedAt": "2026-07-29",
+    "sourcePacket": ".opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation",
+    "sourcePlaybook": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+    "sourcePlaybookId": "CO-039",
+    "derivationNote": "Derived after the fact from this run's stored evidence record; not written at run time by a Lane C harness or renderer. Covers only CO-039's live headless opencode run supplemental check -- CO-039's own direct-in-process PASS verdict is recorded in the playbook, not here."
+  },
+  "executionContext": {
+    "executor": "claude",
+    "model": "deepseek-v4-pro; openai/gpt-5.6-luna",
+    "variant": "headless",
+    "traceMode": "live",
+    "scenarioIds": ["CO-039-HEADLESS-TOOL-DEEPSEEK", "CO-039-HEADLESS-TOOL-LUNA", "CO-039-HEADLESS-TRANSFORM-DEEPSEEK"],
+    "runDate": "2026-07-29",
+    "cliVersion": "not-recorded"
+  }
+}
