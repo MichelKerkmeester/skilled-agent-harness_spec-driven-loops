@@ -195,7 +195,7 @@
     ],
     "causal_summary": "An audit of every deep mode's executor coverage found that the fan-out modes (deep-research, deep-review, deep-alignment) already dispatch all seven executor kinds through the shared `fanout-run.cjs` builders, but three modes run their OWN dispatch scripts and cover only a subset:",
     "created_at": "2026-07-29T14:09:11.129Z",
-    "last_save_at": "2026-07-29T15:40:27.914Z",
+    "last_save_at": "2026-07-29T15:45:06.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7a9fcdd25d831f8fb129f591e194bf3cc7819e8436438bd5d548826f801d3c8",
+    "source_fingerprint": "sha256:0dfdd6e4ca13e4561675c37fb678c729033a387dde45dcd77f96abcc6241f9a7",
     "source_doc_hashes": {
       "spec.md": "b09c17dbfa33b9d1ebbd91fe40eb93f863c47bd9d53bdb12c4e38f407605e699",
       "plan.md": "246e2b70a90773eb22a8edab513194246187b851bd79a5e36b51b17e564a4d5b",
       "tasks.md": "704a196e44689d3887756ec781a42625b60e974ddddb46dbfeeb5691598f041d",
       "checklist.md": "046fd93cc89977bce28cba64bdddf584dc473ae8d6d43af6853603949d07ed4e",
-      "implementation-summary.md": "3c570ceee87102d9c84457e81ec9f6b604ef2ff63421ed3bea5b70ef7f5e2511"
+      "implementation-summary.md": "4887004ce9795eb37ff0417b1c326f32f6ec3f24cfb58e958156e664a5c41fcb"
     },
     "last_active_child_id": null,
     "last_active_at": null
