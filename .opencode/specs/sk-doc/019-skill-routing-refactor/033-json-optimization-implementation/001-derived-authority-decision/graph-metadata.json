@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
+  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "derived schema authority decision",
+      "graph-metadata derived canonical schema",
+      "skill derived v2 vs python compiler",
+      "derived schema authority plan",
+      "skill derived v2 field mapping",
+      "derived schema authority tasks",
+      "derived schema authority checklist",
+      "decision",
+      "record",
+      "derived",
+      "schema",
+      "authority"
+    ],
+    "key_topics": [
+      "derived",
+      "schema",
+      "authority",
+      "decision",
+      "graph-metadata",
+      "canonical",
+      "skill",
+      "python",
+      "compiler",
+      "plan",
+      "field",
+      "mapping"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Derived Schema Authority Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape against the TS Zod SkillDerivedV2 schema used by the lifecycle subsystem.",
+    "created_at": "2026-07-29T07:59:56.768Z",
+    "last_save_at": "2026-07-29T08:44:35.953Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5cb28896a848ae450c114310461a88b574c72f26dcdc0b90918dde5c2e1e0548",
+    "source_doc_hashes": {
+      "spec.md": "17639895e244af826f430de92beaec76e999f649b52b79435b96764fbce3e510",
+      "plan.md": "54c47c977d164e77a4a1f2bd3ef79bd953b1f22bc2bee264d2e9a9f7d36d3bec",
+      "tasks.md": "070efa4ed5a8e36a7d52efdca5574da377d805c2db0d63307475cfe1aa8db4ce",
+      "checklist.md": "530ad22f14e721612b0ebb3ff71fcdba91695706cbdd7d49c215047a3599c6c8",
+      "decision-record.md": "f44add413956f20b3b8181a3683acd195332fb0ce8d1b35c1824dd280d9667c2",
+      "implementation-summary.md": "7aa5235fc07e63ded6e2240847d680b5959165407eae163ac921de2e8aeba40e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

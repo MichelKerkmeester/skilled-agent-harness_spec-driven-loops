@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes",
+  "description": "Delete confirmed-orphan skill-metadata fields that do not affect routing (description.json extras, sk-code derived-block orphans, causal_summary",
+  "keywords": [
+    "delete",
+    "confirmed-orphan",
+    "skill-metadata",
+    "fields",
+    "affect",
+    "routing",
+    "description",
+    "json",
+    "extras",
+    "sk-code",
+    "derived-block",
+    "orphans"
+  ],
+  "lastUpdated": "2026-07-29T08:12:19.082Z",
+  "specId": "007",
+  "folderSlug": "dead-field-deletes",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

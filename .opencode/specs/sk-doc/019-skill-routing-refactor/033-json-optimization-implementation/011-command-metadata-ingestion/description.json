@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
+  "description": "Derive both the TS COMMAND_BRIDGES array (projection.ts) and the Python COMMAND_BRIDGES dict (skill_advisor.py) from the fleet's 7",
+  "keywords": [
+    "derive",
+    "array",
+    "projection",
+    "python",
+    "dict",
+    "fleet"
+  ],
+  "lastUpdated": "2026-07-29T08:12:19.082Z",
+  "specId": "011",
+  "folderSlug": "command-metadata-ingestion",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

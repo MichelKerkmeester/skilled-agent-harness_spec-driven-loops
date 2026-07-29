@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture",
+  "description": "Pin an exact, hash-verified routing-accuracy baseline (top-1 and top-3, corpus + holdout + ambiguity) and confirm all 11 current skill roots pass",
+  "keywords": [
+    "pin",
+    "exact",
+    "hash-verified",
+    "routing-accuracy",
+    "baseline",
+    "top-1",
+    "top-3",
+    "corpus",
+    "holdout",
+    "ambiguity",
+    "confirm",
+    "current",
+    "skill",
+    "roots",
+    "pass"
+  ],
+  "lastUpdated": "2026-07-29T08:53:24.009Z",
+  "specId": "002",
+  "folderSlug": "baseline-capture",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

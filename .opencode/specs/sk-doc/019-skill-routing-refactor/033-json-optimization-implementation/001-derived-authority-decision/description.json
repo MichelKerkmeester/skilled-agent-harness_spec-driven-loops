@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision",
+  "description": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape",
+  "keywords": [
+    "decision-only",
+    "phase",
+    "naming",
+    "single",
+    "canonical",
+    "authority",
+    "graph-metadata",
+    "json",
+    "derived",
+    "block",
+    "reconciling",
+    "live",
+    "11-root",
+    "python-compiler",
+    "shape"
+  ],
+  "lastUpdated": "2026-07-29T08:44:35.650Z",
+  "specId": "001",
+  "folderSlug": "derived-authority-decision",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

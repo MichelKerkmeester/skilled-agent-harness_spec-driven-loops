@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
+  "description": "Fix intent-signal quality across the skill fleet (O6): a per-skill intent_signals coverage floor, dedup domains-vs-intent_signals double-counting in",
+  "keywords": [
+    "intent-signal",
+    "quality",
+    "across",
+    "skill",
+    "fleet",
+    "per-skill",
+    "coverage",
+    "floor",
+    "dedup",
+    "domains-vs",
+    "double-counting"
+  ],
+  "lastUpdated": "2026-07-29T08:12:19.082Z",
+  "specId": "009",
+  "folderSlug": "signal-quality",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
