@@ -32,8 +32,6 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 - `references/smart-routing.md`
 - `references/smart-routing.md`
 - `references/universal/code-quality-standards.md`
-- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 - `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
 - `sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md`
 - `sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md`

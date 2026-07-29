@@ -37,9 +37,6 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/smart-routing.md`
 - `references/smart-routing.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- `sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
-- `sk-code-webflow/references/implementation/third-party-integrations/overview-hls-and-lenis.md`
-- `sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md`
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
 - `sk-code-webflow/references/animation/scroll-and-gestures.md`

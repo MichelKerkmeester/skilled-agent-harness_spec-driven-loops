@@ -27,8 +27,6 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 - `sk-code-opencode/references/config/style-guide.md`
 - `sk-code-opencode/references/config/quality-standards.md`
 - `sk-code-opencode/references/config/quick-reference.md`
-- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
 - `sk-code-opencode/assets/checklists/config-checklist.md`

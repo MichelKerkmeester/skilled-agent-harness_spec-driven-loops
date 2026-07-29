@@ -32,7 +32,6 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
 - `sk-code-webflow/references/animation/scroll-and-gestures.md`
-- `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`
 
 **Expected assets loaded**:
 - `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`

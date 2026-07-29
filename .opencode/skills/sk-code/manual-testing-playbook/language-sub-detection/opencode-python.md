@@ -29,8 +29,6 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 - `sk-code-opencode/references/python/style-guide.md`
 - `sk-code-opencode/references/python/quality-standards.md`
 - `sk-code-opencode/references/python/quick-reference.md`
-- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
 - `sk-code-opencode/assets/checklists/python-checklist.md`

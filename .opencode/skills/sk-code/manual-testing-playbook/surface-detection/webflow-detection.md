@@ -36,10 +36,6 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
 - `sk-code-webflow/references/implementation/observer-patterns/mutation-and-intersection.md`
-- `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`
-- `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`
-- `sk-code-webflow/references/css/style-guide.md`
-- `sk-code-webflow/references/shared/cross-language-rules.md`
 
 **Expected assets loaded**:
 - `sk-code-webflow/assets/webflow-verification-checklist.md`

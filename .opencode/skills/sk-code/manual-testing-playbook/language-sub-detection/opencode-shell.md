@@ -27,8 +27,6 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 - `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md`
 - `sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md`
 - `sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md`
-- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
-- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
 - `sk-code-opencode/assets/checklists/shell-checklist.md`
