@@ -67,7 +67,8 @@ dispatch/
 +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 +-- devin/    (same pair)
 +-- codex/    (same pair)
-`-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
++-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
+`-- opencode/ mk-cli-dispatch-audit.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -81,7 +82,7 @@ dispatch/
 | `{claude,devin,codex}/dispatch-preflight-lint.mjs` | PreToolUse adapters. A `block`-severity violation denies with the rule's reason; `warn` attaches an advisory. Fast-exit on non-dispatch commands, fail open on any internal error. |
 | `{claude,devin,codex}/dispatch-audit-posttooluse.mjs` | PostToolUse adapters feeding the audit core after a Bash/exec call completes. Observe-only, never blocks. |
 
-Pi's adapters live in `pi/` here, discovered through relative symlinks in `.pi/extensions/` (Pi resolves their imports against the symlink path). OpenCode (`.opencode/plugins/mk-cli-dispatch-audit.js`, `mk-git-preflight-advisory.js`) imports these cores from its plugin folder. Cursor has no dispatch wiring today; its Shell events reach `dispatch-audit-posttooluse.mjs` through `system-spec-kit`'s cursor `post-tool-use.mjs` proxy.
+Pi's adapters live in `pi/` here, discovered through relative symlinks in `.pi/extensions/` (Pi resolves their imports against the symlink path). OpenCode's adapter (`mk-cli-dispatch-audit.js`) imports this concern's cores, but OpenCode discovers plugins only from `.opencode/plugins/`, so the real file must stay there; the `opencode/` folder here holds a browsability-only symlink pointing back into `.opencode/plugins/` (the reverse of the Pi direction — nothing loads through it, it just keeps the concern's runtimes visible in one tree). The sk-git-owned `mk-git-preflight-advisory.js` reuses this concern's rule engine but mirrors under `sk-git/scripts/hooks/opencode/`. Cursor has no dispatch wiring today; its Shell events reach `dispatch-audit-posttooluse.mjs` through `system-spec-kit`'s cursor `post-tool-use.mjs` proxy.
 
 ---
 

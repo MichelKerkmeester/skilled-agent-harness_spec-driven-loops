@@ -41,7 +41,8 @@ mcp-route-guard/
 +-- codex/    mcp-route-guard.cjs
 +-- devin/    mcp-route-guard.cjs
 +-- cursor/   mcp-route-guard.mjs
-`-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
++-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
+`-- opencode/ mk-mcp-route-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -54,7 +55,7 @@ mcp-route-guard/
 | `{claude,codex,devin}/mcp-route-guard.cjs` | PreToolUse (`mcp__.*` matcher) adapters. Parse stdin via `../../shared/hook-adapter-shared.cjs`, call the core, emit the runtime's advisory envelope. |
 | `cursor/mcp-route-guard.mjs` | `beforeMCPExecution` adapter. Normalizes Cursor's split server/tool payload, then `spawnSync`s the Claude adapter so the two runtimes cannot drift. |
 
-OpenCode reaches the same core through `.opencode/plugins/mk-mcp-route-guard.js`; Pi's adapter lives in `pi/` here, discovered via a relative symlink at `.pi/extensions/mcp-route-guard.ts`.
+OpenCode reaches the same core through `.opencode/plugins/mk-mcp-route-guard.js`; OpenCode discovers plugins only from `.opencode/plugins/`, so that file stays there and the `opencode/` folder here holds a browsability-only symlink back into it (nothing loads through the symlink). Pi's adapter lives in `pi/` here, discovered via a relative symlink at `.pi/extensions/mcp-route-guard.ts` (the reverse direction — Pi loads through its symlink).
 
 ---
 

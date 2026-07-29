@@ -54,7 +54,8 @@ post-edit-quality/
 +-- claude/   claude-posttooluse.cjs
 +-- devin/    post-edit-quality.cjs
 +-- codex/    post-edit-quality.cjs
-`-- pi/       post-edit-quality.ts (symlinked from .pi/extensions/)
++-- pi/       post-edit-quality.ts (symlinked from .pi/extensions/)
+`-- opencode/ mk-post-edit-quality.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -68,7 +69,7 @@ post-edit-quality/
 | `devin/post-edit-quality.cjs` | Devin PostToolUse adapter, same router. |
 | `codex/post-edit-quality.cjs` | Codex PostToolUse (`apply_patch|edit`) adapter. Extracts every `*** Add/Update/Delete File:` target from a multi-file patch so each file gets checked. |
 
-The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills — the router invokes them by project-root-relative path via `spawnSync`, never a static import. OpenCode reaches the router through `.opencode/plugins/mk-post-edit-quality.js`; Pi's adapter lives in `pi/` here (symlinked from `.pi/extensions/post-edit-quality.ts`); Cursor's Write events proxy through `system-spec-kit`'s cursor `post-tool-use.mjs` to the Claude adapter.
+The checker scripts themselves (comment hygiene, dist staleness, flowchart, frontmatter, placeholders, wikilinks) stay in their owning skills — the router invokes them by project-root-relative path via `spawnSync`, never a static import. OpenCode reaches the router through `.opencode/plugins/mk-post-edit-quality.js` — OpenCode discovers plugins only from `.opencode/plugins/`, so that file stays there and the `opencode/` folder here holds a browsability-only symlink back into it (nothing loads through the symlink). Pi's adapter lives in `pi/` here (symlinked from `.pi/extensions/post-edit-quality.ts`, the reverse direction — Pi loads through its symlink); Cursor's Write events proxy through `system-spec-kit`'s cursor `post-tool-use.mjs` to the Claude adapter.
 
 ---
 

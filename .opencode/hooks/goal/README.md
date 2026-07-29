@@ -67,8 +67,12 @@ goal/
 +-- lib/
 |   +-- goal-core.cjs        # state I/O, render, hardening, heuristic verifier
 |   `-- goal-core.test.cjs   # node --test
-`-- bin/
-    `-- goal.cjs             # manage CLI: set/show/history/doctor/health/clear/complete/pause/resume
++-- bin/
+|   `-- goal.cjs             # manage CLI: set/show/history/doctor/health/clear/complete/pause/resume
++-- devin/    goal-inject.mjs (UserPromptSubmit), goal-session-start.mjs (SessionStart), goal-verify.mjs (Stop)
++-- cursor/   goal-inject.mjs (sessionStart-only injection)
++-- pi/       goal-context.ts (input/session_start/turn_end factory; symlinked from .pi/extensions/)
+`-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -81,6 +85,8 @@ goal/
 | `bin/goal.cjs` | Thin router over the core, mirroring `/goal:goal-opencode`'s command contract: same action set (`set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`), same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` positive-base-10-integer parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` error codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior with `code=PLUGIN_DISABLED`. Bare text (no recognized action token) falls through to `set`, matching the router's "any other non-empty QUERY" rule. |
 
 The shared state file lives at `.opencode/skills/.goal-state/active-goal.json`, beside — never touching — mk-goal's own per-session files and `.archive/` in that same directory.
+
+OpenCode discovers plugins only from `.opencode/plugins/`, so `mk-goal.js` must live there; the `opencode/` folder here holds a browsability-only symlink pointing back into it (nothing loads through the symlink — it keeps this concern's runtimes visible in one tree, the reverse of Pi's `.pi/extensions/` direction). The `devin/`, `cursor/`, and `pi/` adapters are the per-runtime wiring that reads the shared state through the core; their honest parity tiers (injection everywhere, verify/continue only where a real lifecycle event supports it) are recorded in the capability matrix under the `032-goal-hooks-cross-runtime` packet.
 
 ---
 

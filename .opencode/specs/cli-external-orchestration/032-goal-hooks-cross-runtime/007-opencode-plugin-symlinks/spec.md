@@ -42,8 +42,9 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-28 |
+| **Completed** | 2026-07-29 |
 | **Branch** | `skilled/v4.0.0.0` (direct, per parent packet operator choice) |
 | **Authority** | `cli-external-orchestration`, with touches in `.opencode/hooks/` concern folders and skill-owned hook trees (`system-spec-kit`, `sk-git`) |
 | **Parent Spec** | ../spec.md |

@@ -60,6 +60,12 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 ```text
 mcp-server/hooks/
 ├── claude/                        # Claude session, prompt, compaction, and transcript hooks
+├── codex/                         # Codex runtime hook scripts
+├── cursor/                        # Cursor runtime hook scripts (incl. post-tool-use proxy)
+├── devin/                         # Devin runtime hook scripts
+├── pi/                            # Pi runtime hook scripts (symlinked from .pi/extensions/)
+├── opencode/                      # Browsability symlink -> ../../../../../plugins/ (mk-spec-gate.js; real file loaded from .opencode/plugins/)
+├── lib/                           # Runtime-neutral spec-gate core and helpers
 ├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
 ├── index.ts                       # Public helper exports
 ├── memory-surface.ts              # Context extraction and constitutional cache helpers
@@ -78,6 +84,10 @@ mcp-server/hooks/
 | File or directory | Responsibility |
 |---|---|
 | `claude/` | Claude runtime hook scripts and README. |
+| `codex/`, `cursor/`, `devin/` | Per-runtime spec-gate adapter scripts translating the shared `lib/` core into each runtime's hook envelope. |
+| `pi/` | Pi spec-gate adapter, discovered through a relative symlink at `.pi/extensions/` (Pi resolves imports against the symlink path). |
+| `opencode/` | Browsability-only symlink to `.opencode/plugins/mk-spec-gate.js`; OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
+| `lib/` | Runtime-neutral spec-gate policy core and helpers the adapters call. |
 | `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |

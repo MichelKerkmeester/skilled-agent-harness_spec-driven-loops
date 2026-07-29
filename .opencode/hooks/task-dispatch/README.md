@@ -53,7 +53,8 @@ task-dispatch/
 |   +-- task-dispatch-guard.cjs   # PreToolUse(Task) adapter
 |   `-- fable-subagent-guard.mjs  # PreToolUse(Task|Agent) Fable-model policy
 +-- devin/    task-dispatch-guard.cjs
-`-- cursor/   task-dispatch-guard.mjs
++-- cursor/   task-dispatch-guard.mjs
+`-- opencode/ mk-deep-loop-guard.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
 ---
@@ -68,7 +69,7 @@ task-dispatch/
 | `devin/task-dispatch-guard.cjs` | Devin adapter over the same core. |
 | `cursor/task-dispatch-guard.mjs` | Cursor `preToolUse` (matcher `Task`) adapter; `spawnSync`s the Claude adapter so policy cannot drift. |
 
-OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js`.
+OpenCode reaches the core through `.opencode/plugins/mk-deep-loop-guard.js` — OpenCode discovers plugins only from `.opencode/plugins/`, so that file stays there and the `opencode/` folder here holds a browsability-only symlink back into it (nothing loads through the symlink).
 
 ---
 

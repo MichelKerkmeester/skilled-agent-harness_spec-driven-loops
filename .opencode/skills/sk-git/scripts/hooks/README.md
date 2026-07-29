@@ -71,6 +71,8 @@ This layer is advisory only. Any malformed payload, missing rule file, non-repos
 
 OpenCode plugins cannot print because stdout or stderr overlays the TUI prompt line. Its adapter therefore buffers at most 20 advisory events and injects each once through the strongest existing legal channel, `experimental.chat.system.transform`. The advisory reaches the agent on the next transform after the command event; the command itself is never delayed or blocked.
 
+OpenCode discovers plugins solely from `.opencode/plugins/`, so `mk-git-preflight-advisory.js` must live there. For cross-runtime browsability, `scripts/hooks/opencode/mk-git-preflight-advisory.js` is a relative symlink pointing back into `.opencode/plugins/` — nothing loads through it (the reverse of Pi's `.pi/extensions/` direction, where the symlink is the load path).
+
 ---
 
 ## 5. SUPPRESSION

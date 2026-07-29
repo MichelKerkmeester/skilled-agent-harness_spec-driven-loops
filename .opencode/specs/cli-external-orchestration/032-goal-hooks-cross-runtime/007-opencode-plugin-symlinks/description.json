@@ -1,18 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
-  "description": "Browsability-only relative symlinks mirroring OpenCode plugins into the .opencode/hooks/ concern folders",
+  "description": "Add relative, browsability-only symlinks inside .opencode/hooks/ concern folders pointing at the real OpenCode plugin files in .opencode/plugins/, so",
   "keywords": [
-    "browsability-only",
     "relative",
+    "browsability-only",
     "symlinks",
-    "mirroring",
+    "inside",
     "opencode",
-    "plugins",
     "hooks",
     "concern",
-    "folders"
+    "folders",
+    "pointing",
+    "real",
+    "plugin",
+    "files",
+    "plugins"
   ],
-  "lastUpdated": "2026-07-28T17:25:52.640Z",
+  "lastUpdated": "2026-07-29T05:19:53.066Z",
   "specId": "007",
   "folderSlug": "opencode-plugin-symlinks",
   "parentChain": [
@@ -20,6 +25,5 @@
     "032-goal-hooks-cross-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
