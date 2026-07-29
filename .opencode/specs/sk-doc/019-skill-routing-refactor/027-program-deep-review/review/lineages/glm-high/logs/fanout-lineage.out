@@ -1,0 +1,5 @@
+Deep-review fan-out lineage `glm-high` complete. Ran `phase_init` → 5 iterations (Correctness, Security, Traceability, Maintainability, CI-wiring broaden) → `phase_synthesis`, all stopPolicy=max-iterations with convergence as telemetry only.
+
+**Verdict: CONDITIONAL** — 0 P0, 1 P1 (F009: `routing-registry-drift.yml` trigger `paths` omit `command-metadata.json`, so a command-metadata-only regression on the release line bypasses the CI validator the workflow runs — adjudicated, finalSeverity P1, conf 0.88), 9 P2 advisories. The program is in a clean, conforming state (live gate run: 11/11 roots pass, 7H/4S, matching doctrine exactly); the doctrine is honest against the code across every verified claim, and the watcher ingestion seam has strong path containment including symlink-aware realpath re-checks. All outputs written under `…/027-program-deep-review/review/lineages/glm-high/`; no path outside it was touched. All 8 canonical state files exist and parse cleanly; the iteration final-line contract holds (4× PASS, iter 5 CONDITIONAL).
+
+FANOUT_LINEAGE_COMPLETE:glm-high

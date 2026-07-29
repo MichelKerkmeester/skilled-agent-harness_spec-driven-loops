@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/027-program-deep-review",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/027-program-deep-review",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill metadata program deep review",
+      "review the metadata contract program",
+      "deep review verdict metadata",
+      "skill metadata program review plan",
+      "skill metadata program review tasks",
+      "skill metadata program review outcome",
+      "deep review verdict metadata program"
+    ],
+    "key_topics": [
+      "skill",
+      "metadata",
+      "program",
+      "deep",
+      "review",
+      "contract",
+      "verdict",
+      "plan",
+      "tasks",
+      "outcome",
+      "two-model",
+      "sol-high"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "review/review-report.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Program Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Merge",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Consolidated",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Outcome",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ran",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Fan",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the complete skill-metadata program landed at a39e6ea716, covering the H/S class contract, fleet gate, command-metadata standard, JSON templates, creation-journey fixes, doctrine sweep, and advisor ingestion-seam watcher.",
+    "created_at": "2026-07-29T04:21:25.552Z",
+    "last_save_at": "2026-07-29T04:24:22.089Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:92e987e1c9da3b758d0c6deb397409afc074277ce0a90b39c1463c0e4d5ce65b",
+    "source_doc_hashes": {
+      "spec.md": "c3a83f8724e04afdb4c2fd05fc393000fefe284b475e7ec140d3946467b1580e",
+      "plan.md": "f5387e6e6ada4d9956178be87f22b47be4294524d2a68104c1643e6fdbf1bde5",
+      "tasks.md": "c67324450ab490fb1795f4d53b6c6eaaeb78a438f7e5f651bd31c741749967db",
+      "implementation-summary.md": "10e7e4abbcc670431afda16e9a05ebca65037fea8c80be553b91c6b95267f693"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

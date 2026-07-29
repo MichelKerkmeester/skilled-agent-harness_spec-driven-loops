@@ -1,0 +1,267 @@
+{
+  "sessionId": "fanout-sol-high-1785257671132-a9gil1",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "The authoritative CI fleet gate is not triggered by command-metadata-only changes",
+      "file": ".github/workflows/routing-registry-drift.yml",
+      "line": 15,
+      "description": "Both path-filter lists omit root command-metadata.json while the job runs the fleet gate at lines 101-110.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Compared both workflow filters with all seven root files and checked the separate local-hook coverage.",
+      "affectedSurfaceHints": [
+        "routing-registry-drift path filters",
+        "seven hub command-metadata roots",
+        "fleet metadata gate",
+        "pre-push parity"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Fleet gate silently passes a non-directory --skills-dir",
+      "file": ".opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs",
+      "line": 79,
+      "description": "findSkillRoots suppresses enumeration errors into an empty list and run treats that list as a successful zero-root fleet; direct read-only execution against an existing spec.md returned checked=0 and exit 0.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The scoped gate has one discovery function and one run path; the scoped tests cover violations but no discovery error or zero-root fail-closed rule.",
+      "affectedSurfaceHints": [
+        "ci-skill-root-metadata.cjs",
+        "routing-registry-drift.yml",
+        "pre-push fleet gate",
+        "gate diagnostics"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Skill-family policy remains duplicated across doctor and advisor compiler",
+      "file": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "line": 56,
+      "description": "The two consumers carry matching but independent seven-value allowlists, and no scoped parity assertion connects them.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Compared both runtime allowlists and scoped contract/journey/watcher tests; current values match but no shared source or parity check exists.",
+      "affectedSurfaceHints": [
+        "parent-skill doctor",
+        "advisor skill-graph ingestion",
+        "graph-metadata templates",
+        "family-extension tests"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.625,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
