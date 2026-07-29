@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.3.0.0
+version: 1.4.0.0
 hard_rules:
   - id: non-interactive-permission-mode-risk
     check: non-interactive-permission-mode-risk

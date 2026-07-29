@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.0.0
+version: 1.1.0.0
 hard_rules:
   - id: devin-availability-required
     check: command-v-devin-required
@@ -28,7 +28,7 @@ hard_rules:
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
-Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (Opus, Sonnet, GPT, SWE, Codex, Gemini, and more), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
+Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
 
 **Core Principle**: Use Devin for what it does best. Delegate, validate, integrate. The calling AI stays the conductor.
 
@@ -41,7 +41,7 @@ Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspe
 - **Cross-AI Validation** — code review second perspective, security audit alternative analysis, bug detection, independent implementation attempts.
 - **Cloud Handoff** — long-running tasks, complex refactors, CI-like validation, browser-dependent workflows offloaded to a cloud Devin session via `/handoff`.
 - **Subagent Delegation** — specialized profile matches (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), parallel task processing through Devin's native subagent system.
-- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (Opus, Sonnet, GPT, SWE-1.6, Codex, Gemini, DeepSeek, Kimi, GLM), including Adaptive model routing.
+- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro), selected per-dispatch with `--model`.
 - **Parallel Code Generation** — offloading generation, simultaneous code generations, background docs/test generation through subagents.
 - **Specialized Generation** — explicit Devin requests, test suite generation, code translation, batch documentation, visual input via clipboard paste or `@` file mentions.
 
@@ -201,11 +201,11 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 ### Default Invocation (Skill Default)
 
-**Default model + permission mode**: Adaptive (model router) · `accept-edits` permission mode. Balances speed, cost, and quality for the typical delegation.
+**Default model + permission mode**: `swe` (alias → `swe-1-7-lightning`) · `accept-edits` permission mode. Balances speed, cost, and quality for the typical delegation.
 
 ```bash
 devin -p \
-  --model adaptive \
+  --model swe \
   --permission-mode accept-edits \
   -- \
   "<prompt>"
@@ -215,22 +215,22 @@ devin -p \
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model adaptive --permission-mode accept-edits` |
-| "Use opus" | `--model opus --permission-mode accept-edits` |
-| "Use sonnet" | `--model sonnet --permission-mode accept-edits` |
-| "Use swe fast" | `--model swe-1-6-fast --permission-mode accept-edits` |
-| "Use gpt" | `--model gpt --permission-mode accept-edits` |
-| "Use codex model" | `--model codex --permission-mode accept-edits` |
-| "Use opus dangerous" | `--model opus --permission-mode dangerous` |
+| (nothing specified) | `--model swe --permission-mode accept-edits` |
+| "Use glm" | `--model glm-5-2 --permission-mode accept-edits` |
+| "Use glm max" | `--model glm-5-2-max --permission-mode accept-edits` |
+| "Use grok high" | `--model grok-4-5-high --permission-mode accept-edits` |
+| "Use deepseek" | `--model deepseek-v4-pro --permission-mode accept-edits` |
+| "Use swe max" | `--model swe-1-7 --permission-mode accept-edits` |
+| "Use glm dangerous" | `--model glm-5-2 --permission-mode dangerous` |
 | "Use autonomous sandbox" | `--sandbox --permission-mode autonomous` |
 
-Honor whichever dimensions the user names. Model stays on `adaptive` and permission mode stays on `accept-edits` unless the user explicitly names a different model or mode.
+Honor whichever dimensions the user names. Model stays on `swe` and permission mode stays on `accept-edits` unless the user explicitly names a different model or mode.
 
 ### Model Selection
 
-Default `adaptive` (the intelligent model router; short names resolve to the latest version in a family). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Alternates: `opus` / `sonnet` / `swe` / `swe-1-6-fast` / `gpt` / `codex` / `gemini` / `deepseek` / `kimi` / `glm-5-2` — full roster (incl. the glm-5-2 suffix family) and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families: GLM-5.2 (`glm-5-2`, `glm-5-2-max`, `glm-5-2-1m`, `glm-5-2-max-1m`, `glm-5-2-none`, `glm-5-2-none-1m`), SWE-1.7 (`swe-1-7`, `swe-1-7-medium`, `swe-1-7-lightning`), Grok 4.5 (`grok-4-5-low`, `grok-4-5-medium`, `grok-4-5-high`), DeepSeek V4 Pro (`deepseek-v4-pro`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
-**Selection Strategy**: default `adaptive`; switch to `opus` for complex refactoring and architecture; use `swe` / `swe-1-6-fast` for quick edits and cost-sensitive work; use `gpt` for OpenAI-model strengths. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `grok-4-5-high` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 
@@ -329,7 +329,7 @@ The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
 6. **Redirect devin stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
-7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model adaptive --permission-mode accept-edits`. Honor user overrides verbatim. Use `opus` for reasoning-heavy tasks (architecture, security, deep planning).
+7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode accept-edits`. Honor user overrides verbatim. Use `grok-4-5-high` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate subagent profile when the task matches a specialization (see Section 3 routing table); use `subagent_explore` for read-only research, `subagent_general` for code changes.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive `-p` mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`:

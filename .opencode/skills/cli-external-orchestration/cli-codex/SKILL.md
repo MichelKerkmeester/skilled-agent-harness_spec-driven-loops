@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.1.0
+version: 1.8.0.0
 hard_rules:
   - id: codex-availability-required
     check: command-v-codex-required

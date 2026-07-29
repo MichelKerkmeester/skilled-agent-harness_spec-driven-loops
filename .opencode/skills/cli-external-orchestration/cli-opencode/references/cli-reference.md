@@ -136,7 +136,7 @@ opencode run \
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `deepseek/deepseek-v4-pro` | Direct DeepSeek is the default provider — elevated reasoning at low cost; operator may override (e.g. `deepseek/deepseek-v4-flash`, `kimi-for-coding/k2p7`, or any live OpenAI GPT-5.6 slug: `openai/gpt-5.6`, `openai/gpt-5.6-fast`, `openai/gpt-5.6-pro`, `openai/gpt-5.6-sol`, `openai/gpt-5.6-sol-fast`, `openai/gpt-5.6-sol-pro`, `openai/gpt-5.6-terra`, `openai/gpt-5.6-terra-fast`, `openai/gpt-5.6-terra-pro`, `openai/gpt-5.6-luna`, `openai/gpt-5.6-luna-fast`, `openai/gpt-5.6-luna-pro`) |
+| `--model` | `deepseek/deepseek-v4-pro` | Direct DeepSeek is the default provider — elevated reasoning at low cost; operator may override (e.g. `deepseek/deepseek-v4-flash`, or any live OpenAI GPT-5.6 slug: `openai/gpt-5.6-sol`, `openai/gpt-5.6-sol-fast`, `openai/gpt-5.6-sol-pro`, `openai/gpt-5.6-terra`, `openai/gpt-5.6-terra-fast`, `openai/gpt-5.6-terra-pro`, `openai/gpt-5.6-luna`, `openai/gpt-5.6-luna-fast`, `openai/gpt-5.6-luna-pro`) |
 | `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
 | `--variant high` | high | Routine cli-opencode dispatches benefit from elevated reasoning effort |
 | `--format json` | json | Structured event stream is what external runtimes parse |
@@ -270,12 +270,6 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 Default model `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API). Reasoning effort is expressed through the `--variant` flag, which maps to a provider-specific effort scale. The model string passed to `--model` is always `provider/model-id`; run `opencode models <provider>` for the live list on a given install.
 
 **Full provider/model roster, the GPT-5.6 slug grid, and the per-provider `--variant` effort map → [providers-and-models.md](./providers-and-models.md).**
-
-### Model-specific operational caveats
-
-- **Kimi K2.7 Code (`kimi-for-coding/k2p7`) over-exploration (observed 2026-06-17):** on broad / large-repo scopes at `--variant high`, k2p7 over-explores (many sequential reads) and can exceed a 600s timeout WITHOUT emitting — opencode flushes only the final assistant message to stdout, so a killed run yields 0 bytes (looks like a hang, but it was working). Mitigate with a hard read-cap in the prompt ("read ≤N files then emit") + a 1200s+ timeout, or omit `--variant`.
-- **GLM-5.2 (`zai-coding-plan/glm-5.2`) latency variance (benchmark 008, n=45):** thinking-on drives latency variance 6–161s (avg ~26s) — budget generous timeouts; expect ~1/45 transient dispatch failures (retry the cell). Empirical prompt framework: COSTAR (benchmark 008).
-- **GLM-5.2 vision (image input):** `glm-5.2` is natively multimodal (vision-to-code), but `opencode run --file <image>` does NOT deliver images to this provider — upstream #20802 for custom OpenAI-compatible providers (confirmed 2026-06-28: `--file` → `NO_IMAGE_RECEIVED`). For image input use the direct Z.AI Coding Plan multimodal API (base64 `image_url` at `https://api.z.ai/api/coding/paas/v4/chat/completions`) — a deviation from this skill's dispatch path justified only by the verified #20802 breakage; see `../../sk-prompt/sk-prompt-models/references/models/glm-5.2.md` §7.
 
 ---
 

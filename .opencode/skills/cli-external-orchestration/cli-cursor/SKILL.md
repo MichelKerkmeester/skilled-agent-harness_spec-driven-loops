@@ -2,7 +2,7 @@
 name: cli-cursor
 description: "Cursor CLI executor for cursor-agent-backed coding, plan/ask read-only modes, native git worktree isolation, and a cloud worker — a shared-editor-config CLI dispatch."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.0.0
+version: 1.1.0.0
 hard_rules:
   - id: cursor-availability-required
     check: command-v-cursor-agent-required

@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 hard_rules:
   - id: pi-availability-required
     check: command-v-pi-required

@@ -23,7 +23,7 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
 
 ### Core Principle
 
-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It supports multiple AI models from Anthropic, OpenAI, Google, Cognition, and leading open-source providers, with an intelligent Adaptive model router that auto-selects the best model per task. The skill dispatches `adaptive` at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates four families in scope — GLM-5.2, SWE-1.7, Grok 4.5, and DeepSeek V4 Pro (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 37-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-1-7-lightning`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
 
 ### Purpose
 
@@ -109,7 +109,7 @@ Credentials:
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | | `<model-name>` | Model to use — `adaptive` (default), `opus`, `sonnet`, `swe`, `gpt`, `codex`, `gemini`, and more |
+| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-1-7-lightning`), plus the curated GLM-5.2 / SWE-1.7 / Grok 4.5 / DeepSeek V4 Pro families (see §5) |
 | `--permission-mode` | | `auto`, `accept-edits`, `smart`, `dangerous` | Permission mode controlling tool auto-approval |
 | `--print` | `-p` | `[<prompt>]` | Non-interactive mode: print response and exit |
 | `--continue` | `-c` | (none) | Continue the most recent session in the current directory |
@@ -152,7 +152,7 @@ devin -p -- "prompt words here"    # Same, using -- separator
 devin
 
 # Non-interactive with model selection
-devin -p --model opus -- "Refactor utils.ts to use async/await"
+devin -p --model grok-4-5-high -- "Refactor utils.ts to use async/await"
 
 # With permission mode for file edits
 devin -p --permission-mode accept-edits -- "Add error handling to auth.ts"
@@ -182,27 +182,27 @@ devin -- add a login page
 
 ### Supported Models
 
-Devin dispatches **`adaptive`** (the intelligent model router) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
+Devin dispatches **`swe`** (alias → `swe-1-7-lightning`) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
-**Full sub-model roster (opus/sonnet/swe/gpt/codex/gemini/deepseek/kimi/glm-5-2 family) → [providers-and-models.md](./providers-and-models.md).**
+**Full curated roster (GLM-5.2 / SWE-1.7 / Grok 4.5 / DeepSeek V4 Pro families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
 
 ### Setting the Model
 
 ```bash
 # Command flag
-devin --model opus -- refactor this module
-devin --model sonnet -- explain this code
+devin --model grok-4-5-high -- refactor this module
+devin --model glm-5-2 -- explain this code
 devin -p --model swe -- "list all TODO comments"
 
 # Slash command (inside REPL)
-/model opus
-/model sonnet
-/model codex
+/model grok-4-5-high
+/model glm-5-2
+/model deepseek-v4-pro
 
 # Config file (~/.config/devin/config.json)
 {
   "agent": {
-    "model": "adaptive"
+    "model": "swe"
   }
 }
 ```
@@ -211,16 +211,16 @@ devin -p --model swe -- "list all TODO comments"
 
 | Task Type | Model | Rationale |
 |-----------|-------|-----------|
-| Architecture decisions | `opus` / `adaptive` | Multi-faceted analysis benefits from deep reasoning |
-| Security audits | `opus` | Catches subtle vulnerability patterns |
-| Complex planning | `opus` / `adaptive` | Multi-strategy evaluation benefits from depth |
-| Code generation | `adaptive` / `sonnet` | Balanced for most generation tasks |
-| Standard code review | `sonnet` / `adaptive` | Efficient for pattern-based review |
-| Implementation | `sonnet` / `adaptive` | Balanced for translating specs to code |
-| Test generation | `gpt` / `adaptive` | Solid test structure output |
-| Documentation | `adaptive` / `sonnet` | Efficient for structured doc generation |
-| Quick edits / lookups | `swe-1-6-fast` | Minimize cost and latency |
-| Cost-sensitive work | `swe` / `adaptive` | Reasonable intelligence at low cost |
+| Architecture decisions | `grok-4-5-high` | Multi-faceted analysis benefits from deep reasoning |
+| Security audits | `grok-4-5-high` | Catches subtle vulnerability patterns |
+| Complex planning | `grok-4-5-high` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
+| Code generation | `glm-5-2` / `glm-5-2-max` | Balanced for most generation tasks |
+| Standard code review | `glm-5-2` / `swe-1-7` | Efficient for pattern-based review |
+| Implementation | `glm-5-2` / `swe-1-7` | Balanced for translating specs to code |
+| Test generation | `swe-1-7` / `glm-5-2` | Solid test structure output |
+| Documentation | `glm-5-2` / `swe` | Efficient for structured doc generation |
+| Quick edits / lookups | `swe` | Minimize cost and latency (lightning tier) |
+| Cost-sensitive work | `swe` / `swe-1-7-medium` | Reasonable intelligence at low cost |
 
 Always specify `--model` explicitly in scripts for predictability; omitting it relies on the CLI default from `~/.config/devin/config.json`, which may differ across machines.
 
@@ -235,19 +235,19 @@ Always specify `--model` explicitly in scripts for predictability; omitting it r
 ```bash
 # Capture to file
 devin -p \
-  --model adaptive \
+  --model swe \
   -- \
   "Generate a TypeScript interface for the User model" > /tmp/user-interface.ts
 
 # Capture to variable
-RESULT=$(devin -p --model adaptive -- "List all exported functions in src/")
+RESULT=$(devin -p --model swe -- "List all exported functions in src/")
 echo "$RESULT"
 
 # Pipe to another command
-devin -p --model adaptive -- "Generate SQL schema for users table" | psql -d mydb -f -
+devin -p --model swe -- "Generate SQL schema for users table" | psql -d mydb -f -
 
 # Redirect stderr separately
-devin -p --model adaptive -- "Analyze auth flow" > /tmp/analysis.txt 2>/tmp/errors.txt
+devin -p --model swe -- "Analyze auth flow" > /tmp/analysis.txt 2>/tmp/errors.txt
 ```
 
 ### Export Format
@@ -372,10 +372,10 @@ Paste images from your clipboard with `Ctrl+V`. Attached images appear in the in
 
 ```bash
 # Pass git diff as context
-git diff HEAD~1 | devin -p --model adaptive -- "Summarize these changes"
+git diff HEAD~1 | devin -p --model swe -- "Summarize these changes"
 
 # Combine file content with prompt
-cat src/auth.ts | devin -p --model adaptive -- "Add input validation to all functions"
+cat src/auth.ts | devin -p --model swe -- "Add input validation to all functions"
 ```
 
 ---
@@ -400,7 +400,7 @@ cat src/auth.ts | devin -p --model adaptive -- "Add input validation to all func
 // .devin/config.json or ~/.config/devin/config.json
 {
   "agent": {
-    "model": "adaptive"
+    "model": "swe"
   },
   "permissions": {
     "allow": [
@@ -469,16 +469,16 @@ Permission modes control what the agent can do without asking for approval. Alwa
 
 ```bash
 # SAFE: Auto mode for analysis
-devin -p --permission-mode auto --model adaptive -- "Map the authentication flow"
+devin -p --permission-mode auto --model swe -- "Map the authentication flow"
 
 # STANDARD: Accept Edits for code changes
-devin -p --permission-mode accept-edits --model adaptive -- "Add error handling to all API routes"
+devin -p --permission-mode accept-edits --model swe -- "Add error handling to all API routes"
 
 # ELEVATED RISK: Dangerous mode — use only with explicit approval
-devin -p --permission-mode dangerous --model opus -- "Migrate database schema"
+devin -p --permission-mode dangerous --model grok-4-5-high -- "Migrate database schema"
 
 # AUTONOMOUS: OS-enforced sandbox
-devin --sandbox -p --model adaptive -- "Run the test suite and fix failures"
+devin --sandbox -p --model swe -- "Run the test suite and fix failures"
 ```
 
 ### Bypass vs Autonomous
@@ -517,10 +517,10 @@ Running `devin` without arguments opens the REPL. Use `/resume` inside the REPL 
 
 ```bash
 # Continue the most recent session non-interactively
-devin -c -p "Continue implementing the rate limiter" --model adaptive
+devin -c -p "Continue implementing the rate limiter" --model swe
 
 # Resume a specific session
-devin -r brisk-otter -p "Continue from where we left off" --model adaptive
+devin -r brisk-otter -p "Continue from where we left off" --model swe
 
 # List sessions as JSON for scripting
 devin list --format json
@@ -571,7 +571,7 @@ devin list --format json
 | `Command not found: devin` | Not installed or not in PATH | Run `devin setup` or `curl -fsSL https://devin.ai/install \| bash`; verify with `which devin` |
 | Task ran but no files changed | `devin -p` defaulted to `auto` (read-only) | Add `--permission-mode accept-edits` or `dangerous` |
 | Session resume fails | Session ID invalid or expired | List sessions via `devin list`; start a new session |
-| Slow response | Large context or complex task | Break task into smaller steps; use `auto` for analysis; use `swe-1-6-fast` for quick lookups |
+| Slow response | Large context or complex task | Break task into smaller steps; use `auto` for analysis; use `swe` (lightning tier) for quick lookups |
 | `--sandbox` fails to start | Platform prerequisites missing | Run `devin sandbox setup` (Linux needs `bwrap` + `socat`; macOS works out of the box) |
 | Cloud handoff fails | Network issue or uncommitted changes blocking | Commit or stash unwanted changes; verify connectivity to `app.devin.ai` |
 | Subagent denied tools | Background subagent cannot prompt for permissions | Resume the subagent in the foreground to approve tools |
@@ -584,7 +584,7 @@ devin list --format json
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `DEVIN_MODEL` | Default model override | `adaptive`, `opus`, `sonnet` |
+| `DEVIN_MODEL` | Default model override | `swe`, `glm-5-2`, `grok-4-5-high` |
 | `DEVIN_PERMISSION_MODE` | Default permission mode | `auto`, `accept-edits`, `smart`, `dangerous` |
 | `DEVIN_SANDBOX` | Enable sandbox | `1` |
 | `DEVIN_PROJECT_DIR` | Project root directory (set automatically by Devin on session start) | `/path/to/project` |
