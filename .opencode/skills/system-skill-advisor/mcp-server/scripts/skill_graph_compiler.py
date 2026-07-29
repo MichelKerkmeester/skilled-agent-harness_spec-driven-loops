@@ -316,6 +316,8 @@ def validate_derived_metadata(folder_name: str, derived: Any, all_skill_ids: Set
             errors.append(f"derived.{field_name} must be a non-empty array")
 
     causal_summary = derived.get("causal_summary")
+    # Authored prose explaining why the skill matters, not a scored routing input;
+    # requiring content ensures no root ships an empty identity.
     if not isinstance(causal_summary, str) or not causal_summary.strip():
         errors.append("derived.causal_summary must be a non-empty string")
 

@@ -18,11 +18,5 @@
     "sk-prompt-improve",
     "sk-prompt-models"
   ],
-  "trigger_examples": [
-    "improve this prompt for clarity",
-    "which framework should I use for this prompt",
-    "what's the recommended prompt scaffold for DeepSeek-v4-pro",
-    "help me write a better prompt"
-  ],
   "lastUpdated": "2026-07-09T15:30:00Z"
 }

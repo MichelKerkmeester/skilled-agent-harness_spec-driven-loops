@@ -25,7 +25,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/prompt:improve",
       "aliases": ["improve prompt", "enhance prompt", "prompt framework", "clear score", "depth thinking", "prompt engineering"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-prompt-improve" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-prompt-models",
@@ -37,7 +37,7 @@
       "grandfatheredFolderMismatch": false,
       "command": null,
       "aliases": ["small model prompt", "per-model profile", "deepseek prompt", "kimi prompt", "minimax prompt", "mimo prompt", "glm prompt", "model dispatch craft"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-prompt-models" }
+      "advisorRouting": { "routingClass": "metadata" }
     }
   ]
 }

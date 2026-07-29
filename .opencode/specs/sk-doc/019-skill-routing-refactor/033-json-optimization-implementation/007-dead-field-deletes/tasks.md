@@ -42,11 +42,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Re-run repo-wide grep for `"trigger_examples"`, `"supported_surfaces"`, `"opencode_languages"` across `.opencode/skills/**/description.json` and confirm the carrying-hub list still matches `spec.md` §3 (7 / 2 / 2 hubs)
-- [ ] T-02 Re-run repo-wide grep for `"supported_surfaces"`, `"peer_resource_categories"`, `"causal_summary"` across `.opencode/skills/**/graph-metadata.json` and confirm `sk-code` is still the sole carrier of the first two
-- [ ] T-03 Re-run repo-wide grep for `packetSkillName` and `tieBreak` across `*.ts`/`*.js`/`*.cjs` (excluding `/specs/`) and reconfirm the production-vs-test-only consumer split from `spec.md` REQ-005/REQ-006
-- [ ] T-04 Capture pre-change baseline: `ci-skill-root-metadata.cjs`, `parent-skill-check.cjs` for `sk-code` and `sk-doc`, `skill_graph_compiler.py` validate mode, `routing-registry-drift-guard.vitest.ts`
-- [ ] T-05 Read phase 003's decision artifact and resolve REQ-004's branch (Python-schema-canonical vs TS-schema-canonical) before touching any `causal_summary` field
+- [x] T-01 Carriers re-verified live [evidence: fresh grep — trigger_examples in exactly the 7 named description.json; supported_surfaces/opencode_languages only sk-code + sk-doc]
+- [x] T-02 graph-metadata carriers re-verified [evidence: sk-code sole carrier of derived.supported_surfaces + derived.peer_resource_categories]
+- [x] T-03 Consumer split re-verified — with one premise correction [evidence: nested advisorRouting.packetSkillName's only reader = drift-guard vitest; BUT system-deep-loop's 7 modes had NO top-level packetSkillName (nested was their sole carrier) — the spec's fleet-wide-duplicate premise was wrong for that hub; amendment recorded in spec.md]
+- [x] T-04 Pre-change baseline captured [evidence: fleet gate 11/11, doctors sk-code/sk-doc exit 0, compiler PASSED, drift-guard 7/7, corpus warm 0.5692/0.9843/108-3-1 + fallback 0.5333/0.9843/101-3-1]
+- [x] T-05 REQ-004 branch resolved from 003's decision [evidence: 003 kept the Python-compiler shape canonical (merged core + TS-additive) → Python-canonical branch: annotate, don't remove]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -54,13 +54,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-06 Delete `trigger_examples` from all 7 carrying `description.json` files (REQ-001)
-- [ ] T-07 Delete `supported_surfaces` and `opencode_languages` from `sk-code/description.json` and `sk-doc/description.json` (REQ-002)
-- [ ] T-08 Delete `derived.supported_surfaces` and `derived.peer_resource_categories` from `sk-code/graph-metadata.json` (REQ-003)
-- [ ] T-09 Execute the REQ-004 `causal_summary` branch fleet-wide per T-05's resolution: either re-document it as descriptive-only prose (Python-canonical branch) or fold the change into phase 003's migration and record the no-op here (TS-canonical branch)
-- [ ] T-10 Reorder `sk-doc/hub-router.json`'s `routerPolicy.tieBreak` to match `scoreTieBreakOrder()`'s derived order; add the exception comment (REQ-005)
-- [ ] T-11 Resolve `mode.advisorRouting.packetSkillName` per the chosen branch: delete fleet-wide + update `routing-registry-drift-guard.vitest.ts` + update `init_skill.py`'s scaffold literal, OR keep it and add the redundant-self-check doc note to `mode-registry.json`'s `advisorRoutingContract` block (REQ-006)
-- [ ] T-12 Add the spec-folder-vs-skill-root script-name-collision note to `skill-root-metadata-contract.md`, adjacent to the existing schema-separation note at line 32 (REQ-007)
+- [x] T-06 trigger_examples deleted from all 7 [evidence: SOL-high executor pass, LUNA-xhigh review angle 1/2 CONFIRMED-CLEAN]
+- [x] T-07 supported_surfaces + opencode_languages deleted from sk-code + sk-doc description.json [evidence: same pass, byte-minimal diffs]
+- [x] T-08 sk-code derived orphans deleted [evidence: compiler still PASSED — neither field in its required list]
+- [x] T-09 Python-canonical branch executed [evidence: two-line durable-why comment above the compiler's causal_summary required check (zero logic change, LUNA angle 6) + prose-not-routing-input note in the contract doc]
+- [x] T-10 tieBreak reordered to the exact derived `Object.keys(routerSignals)` order [evidence: LUNA angle 4 — exact 12-entry permutation match; exception note placed in the contract doc (JSON carries no comments; an unknown routerPolicy key risked the doctor)]
+- [x] T-11 DELETE branch chosen + one amendment [evidence: nested key removed on all 40 modes; deep-loop's 7 modes FIRST gained top-level packetSkillName (= packet; all 3d preconditions pre-verified: frontmatter==leaf, gfm flags correct); vitest asserts top-level === packet fleet-wide; init_skill scaffold literal updated; LUNA angles 3/5/7 CONFIRMED-CLEAN]
+- [x] T-12 Script-name-collision note added to skill-root-metadata-contract.md [evidence: contract doc diff, LUNA angle 1 in-scope]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,12 +68,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-13 Re-run `ci-skill-root-metadata.cjs` fleet-wide and compare against the T-04 baseline
-- [ ] T-14 Re-run `parent-skill-check.cjs` for `sk-code` and `sk-doc` and compare against the T-04 baseline
-- [ ] T-15 Re-run `skill_graph_compiler.py` validate mode fleet-wide and compare against the T-04 baseline
-- [ ] T-16 Re-run `routing-registry-drift-guard.vitest.ts` and confirm it is green under whichever REQ-006 branch was chosen
-- [ ] T-17 Run `git diff --stat` and confirm only the files named in `spec.md` §3 are touched
-- [ ] T-18 Update `checklist.md` and `implementation-summary.md` with the gathered evidence
+- [x] T-13 Fleet gate post [evidence: checked=11 passed=11 failed=0 — matches baseline; leaf + derived freshness also 11/11]
+- [x] T-14 Doctors post [evidence: sk-code, sk-doc AND system-deep-loop (whose modes gained keys) all exit 0]
+- [x] T-15 Compiler post [evidence: VALIDATION PASSED, all 11]
+- [x] T-16 Drift-guard green under the DELETE branch [evidence: 4-file vitest set 31/31, incl. drift-guard + golden suite]
+- [x] T-17 Scope confirmed [evidence: LUNA angle 1 — exactly the 20 in-scope files changed; the 2 out-of-scope dirty files belong to a different live session and are excluded from the commit]
+- [x] T-18 Docs updated with evidence [evidence: this file + checklist.md + implementation-summary.md; corpus BOTH regimes byte-identical pre/post]
 <!-- /ANCHOR:phase-3 -->
 
 ---

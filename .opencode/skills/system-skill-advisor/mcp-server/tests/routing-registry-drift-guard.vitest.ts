@@ -32,11 +32,11 @@ interface AdvisorRouting {
   readonly legacyAdvisorId?: string;
   readonly advisorDefaultMode?: boolean;
   readonly legacyAliases?: readonly string[];
-  readonly packetSkillName: string;
 }
 interface Mode {
   readonly workflowMode: string;
   readonly packet: string;
+  readonly packetSkillName: string;
   readonly advisorRouting: AdvisorRouting;
 }
 interface ProjectionEntry {
@@ -142,13 +142,13 @@ function checkProjectionGenerator(): { readonly status: string; readonly project
 }
 
 describe('routing-registry-drift-guard', () => {
-  it('every mode carries an advisorRouting block with a valid routingClass + packetSkillName', () => {
+  it('every mode carries a valid advisorRouting routingClass and top-level packetSkillName', () => {
     const valid = new Set(['lexical', 'alias-fold', 'metadata', 'command-bridge']);
     for (const mode of registry.modes) {
       expect(mode.advisorRouting, `mode ${mode.workflowMode} missing advisorRouting`).toBeDefined();
       expect(valid.has(mode.advisorRouting.routingClass), `mode ${mode.workflowMode} bad routingClass`).toBe(true);
-      expect(mode.advisorRouting.packetSkillName, `mode ${mode.workflowMode} missing packetSkillName`).toBeTruthy();
-      expect(mode.advisorRouting.packetSkillName, `mode ${mode.workflowMode} packetSkillName drift`).toBe(mode.packet);
+      expect(mode.packetSkillName, `mode ${mode.workflowMode} missing packetSkillName`).toBeTruthy();
+      expect(mode.packetSkillName, `mode ${mode.workflowMode} packetSkillName drift`).toBe(mode.packet);
       // lexical + alias-fold modes must name a legacyAdvisorId (the projection-map key)
       if (mode.advisorRouting.routingClass === 'lexical' || mode.advisorRouting.routingClass === 'alias-fold') {
         expect(mode.advisorRouting.legacyAdvisorId, `mode ${mode.workflowMode} missing legacyAdvisorId`).toBeTruthy();

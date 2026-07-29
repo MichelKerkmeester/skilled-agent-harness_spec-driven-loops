@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Remove Routing-Neutral Dead Fields"
-description: "Planned scope record: what will be deleted, reconciled, and documented once this phase executes — not yet built."
+description: "Shipped: orphan description.json extras and sk-code derived orphans deleted fleet-wide, tieBreak reconciled to the compiler-derived order, packetSkillName unified as a top-level fleet invariant (deep-loop gained the missing keys), causal_summary documented as prose — corpus byte-identical in both regimes."
 trigger_phrases:
   - "dead field deletes implementation summary"
 importance_tier: "normal"
@@ -8,23 +8,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes"
-    last_updated_at: "2026-07-29T09:00:00Z"
+    last_updated_at: "2026-07-29T19:06:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "REQ-004 (causal_summary disposition) needs phase 003's recorded decision before it can execute"
+    recent_action: "Deleted orphan fields + unified packetSkillName; SOL-built, LUNA-reviewed CLEAN; corpus neutral both regimes"
+    next_safe_action: "Phase 008 manual-to-edges-migration"
+    blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "007-dead-field-deletes"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "advisorRouting.packetSkillName: delete outright vs keep-and-document as an intentional redundant self-check"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "advisorRouting.packetSkillName resolved: DELETE fleet-wide, with deep-loop's 7 modes first gaining the missing top-level key so the invariant holds uniformly."
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -38,8 +37,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Complete |
 | **Level** | 2 |
+| **Delivered** | 2026-07-29 |
+| **Execution model** | Orchestrator (gates/corpus/commits) + GPT-5.6 SOL high implementer + GPT-5.6 LUNA xhigh adversarial reviewer |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -47,31 +48,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase turns two findings from the 029 skill/advisor JSON optimization research — the routing-neutral half of O5 and all of O11 — into a scoped, evidence-verified deletion-and-reconciliation packet. Nothing ships yet; this is the plan a future implementation session executes.
+The routing-neutral half of O5 plus all of O11 from the 029 research, shipped as data/doc surgery across 20 files:
 
-### Orphan-field deletion (O5, routing-neutral half)
-
-Three `description.json` extras (`trigger_examples` on 7 hubs, `supported_surfaces`/`opencode_languages` on `sk-code` and `sk-doc`) and two `sk-code`-only `graph-metadata.json` derived-block fields (`supported_surfaces`, `peer_resource_categories`) will be deleted once a fresh repo-wide grep at implementation time reconfirms zero non-JSON readers. A sixth field, `derived.causal_summary` (16 files fleet-wide), is validated as required-non-empty by the Python compiler but absent from the TypeScript `SkillDerivedV2Schema` and never read by the scorer's derived lane — its disposition is deliberately left to whatever phase 003 decides about the canonical `derived` owner, rather than assumed here.
-
-### Duplicate-authority reconciliation (O11)
-
-`sk-doc/hub-router.json`'s authored `routerPolicy.tieBreak` order has drifted from what `sk-doc`'s own compiler actually uses (six of seven hubs copy the authored order verbatim into the runtime router; `sk-doc` alone derives its own order from `routerSignals` key order and silently ignores the authored array, per an inline comment in `registry-compiler.cjs` that already documents the drift). This phase will realign the two. Separately, every mode entry in every hub's `mode-registry.json` carries `packetSkillName` twice — once at the top level, which every production consumer reads, and once nested inside `advisorRouting`, which only a drift-guard test reads — and this phase will resolve that duplication one way or the other, recording the choice.
-
-### Documentation gap (O11)
-
-`skill-root-metadata-contract.md` already distinguishes the skill-root and spec-folder `description.json`/`graph-metadata.json` schemas, but does not name the spec-folder-only `generate-description.ts`/`backfill-graph-metadata.ts` scripts as having no skill-root equivalent. This phase will add that one-line cross-reference.
-
-### Files Changed (planned)
-
-| File | Action | Purpose |
-|------|--------|---------|
-| `sk-prompt/description.json`, `mcp-tooling/description.json`, `system-deep-loop/description.json`, `sk-code/description.json`, `sk-design/description.json`, `sk-doc/description.json`, `cli-external-orchestration/description.json` | Modified | Remove `trigger_examples` (REQ-001) |
-| `sk-code/description.json`, `sk-doc/description.json` | Modified | Remove `supported_surfaces`, `opencode_languages` (REQ-002) |
-| `sk-code/graph-metadata.json` | Modified | Remove `derived.supported_surfaces`, `derived.peer_resource_categories` (REQ-003) |
-| Fleet `graph-metadata.json` files carrying `derived.causal_summary` (16) | Modified or unchanged, per phase 003's decision | REQ-004 |
-| `sk-doc/hub-router.json` | Modified | Reorder `routerPolicy.tieBreak`, add exception comment (REQ-005) |
-| Fleet `mode-registry.json` files, `routing-registry-drift-guard.vitest.ts`, `init_skill.py` | Modified per chosen branch | Resolve `advisorRouting.packetSkillName` duplicate (REQ-006) |
-| `skill-root-metadata-contract.md` | Modified | Script-name-collision note (REQ-007) |
+- `trigger_examples` deleted from all 7 carrying `description.json` files; `supported_surfaces` + `opencode_languages` deleted from sk-code and sk-doc; `derived.supported_surfaces` + `derived.peer_resource_categories` deleted from sk-code's graph-metadata — every deletion re-proven zero-reader at implementation time (the only tolerated hit is `init_skill.py`'s description scaffold literal, per this spec's own acceptance wording).
+- `sk-doc/hub-router.json`'s `routerPolicy.tieBreak` reordered to the exact order sk-doc's registry compiler derives from `routerSignals` key order (the authored array had silently drifted; runtime behavior never read it).
+- `packetSkillName` unified as a fleet invariant: system-deep-loop's 7 modes gained the top-level key they never had (value = each mode's `packet`), the nested `advisorRouting.packetSkillName` was deleted from all 40 modes fleet-wide, the drift-guard now asserts top-level `packetSkillName === packet` everywhere, and the parent-hub scaffold stops writing the nested copy.
+- `causal_summary` documented per phase 003's Python-canonical decision: a durable-why comment above the compiler's required-non-empty check (zero logic change) plus a contract-doc note that it is authored prose, not a routing input.
+- `skill-root-metadata-contract.md` gained the tieBreak derive-not-copy exception and the spec-folder-vs-skill-root regenerator-collision note (`ci-skill-root-metadata.cjs --fix` is the only skill-root regenerator).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -79,7 +62,7 @@ Three `description.json` extras (`trigger_examples` on 7 hubs, `supported_surfac
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. This packet was authored by re-verifying every claim in the 029 research's O5/O11 findings against the live tree with fresh repo-wide greps (rather than trusting the research's citations at face value), confirming exactly which hubs carry which field and exactly which callers read `packetSkillName` versus `tieBreak` at the top level vs. nested. Once phase 003 records its canonical-derived-owner decision, an implementation session will execute the three phases in `tasks.md` and re-run the same greps plus the fleet gate, doctor checks, Python compiler validation, and drift-guard vitest suite before claiming completion.
+Orchestrator re-verified every 029 citation live before dispatch, captured full gate + both-regime corpus baselines, then dispatched GPT-5.6 SOL (high) with hard allowed-write-path fencing. SOL's first run **halted correctly on a real spec-premise error** — deep-loop's modes had no top-level `packetSkillName`, so the planned test rewrite would have gone red — and changed nothing. The orchestrator verified the finding, pre-validated the uniform-fleet fix against every doctor 3d precondition, amended the operation, and re-dispatched. GPT-5.6 LUNA (xhigh) then ran an adversarial read-only review across seven attack angles: **CLEAN on all seven**. The shared-tree hazard (a live concurrent session's WIP, including one target file carrying an unrelated keyword edit) was fenced in both dispatch prompts; the concurrent edit landed in HEAD independently mid-phase, leaving this phase's diff exactly scoped.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,12 +70,7 @@ Not yet delivered. This packet was authored by re-verifying every claim in the 0
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-| Decision | Why |
-|----------|-----|
-| Split O5 into a routing-neutral half (this phase) and left the `graph-metadata.manual.*` field out of scope | `manual.*` needs a schema migration into typed `edges` plus an unknown-key lint, not a plain deletion — bundling a migration into a deletion-only phase would blur its acceptance criteria and its own rollback story |
-| Gated `causal_summary`'s disposition on phase 003 instead of picking a side now | The field's fate depends entirely on which schema (TS or Python) phase 003 names canonical; deciding it here would risk contradicting that decision later |
-| Left `advisorRouting.packetSkillName`'s resolution as an open question rather than picking a default | Deleting it fleet-wide touches scaffold templates and a test assertion in one change; keeping it open lets implementation-time evidence (whether any scaffold silently depends on its presence) decide, rather than a spec-time guess |
-| Treated the `sk-doc` `tieBreak` reorder as data-only, not a compiler-logic change | The compiler already ignores the authored order (confirmed by its own inline comment); reordering the array to match reality is a zero-behavior-change cleanup, not a fix to running code |
+**Uniform fleet over special-case (packetSkillName).** With deep-loop as the sole hub whose packet binding hid in the nested advisory block, the options were a conditional drift-guard or fleet uniformity; uniformity won — the invariant (`packetSkillName === packet`, top-level, every mode) is now unconditional, and deep-loop's compiled routing demonstrably never read the key (it served compiled routes without it). **tieBreak note in the contract doc, not the JSON** — JSON carries no comments and an unknown `routerPolicy` key risks the doctor's shape checks. **Annotate, don't weaken, the causal_summary check** — 003 kept the Python compiler canonical, so its required-non-empty check stands, now explained as an identity floor rather than a routing input.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -100,15 +78,13 @@ Not yet delivered. This packet was authored by re-verifying every claim in the 0
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| Spec-authoring-time repo-wide grep for `trigger_examples`/`supported_surfaces`/`opencode_languages` (description.json) | Confirmed 7/2/2 hub counts, zero non-JSON code readers |
-| Spec-authoring-time repo-wide grep for `supported_surfaces`/`peer_resource_categories` (graph-metadata.json derived) | Confirmed `sk-code` sole carrier; absent from `skill_graph_compiler.py`'s required-field list (line 313) and from `scorer/lanes/derived.ts` |
-| Spec-authoring-time inspection of `skill-derived-v2.ts` vs `skill_graph_compiler.py` | Confirmed `causal_summary` is validated by the Python compiler (lines 318-320) but absent from the TS `SkillDerivedV2Schema` (lines 42-55) and unread by `scorer/lanes/derived.ts` |
-| Spec-authoring-time inspection of all 7 hubs' `registry-compiler.cjs` | Confirmed 6/7 copy `routerPolicy.tieBreak` verbatim into the compiled router; `sk-doc`'s alone derives and ignores it (lines 188-200) |
-| Spec-authoring-time repo-wide grep for `packetSkillName` | Confirmed the top-level field drives `registry-compiler.cjs`, `parent-skill-check.cjs`, `d5-connectivity.cjs`, `executor-delegation.ts`; the nested `advisorRouting.packetSkillName` is read only by `routing-registry-drift-guard.vitest.ts` |
-| `validate.sh --strict` on this spec folder | Not yet run — belongs to the orchestrator's post-authoring pass |
-| Implementation-time fleet gate / doctor checks / compiler validation / drift-guard suite | Not yet run — this phase has not been implemented |
+All gates green post-change, compared against captured pre-change baselines:
+- Fleet class gate `checked=11 passed=11 failed=0`; leaf-manifest freshness 11/11; derived freshness 11/11.
+- Doctors exit 0 for sk-code, sk-doc, **and system-deep-loop** (whose modes gained the new keys — all 3d name/frontmatter checks now active there and passing).
+- `skill_graph_compiler.py --validate-only` → "VALIDATION PASSED" (11 roots).
+- Four-file routing vitest set (drift-guard with the rewritten assertion, both deep parity suites, golden prompts) → **31/31**.
+- **Corpus byte-identical pre/post in BOTH regimes**: warm 0.5692 / 0.9843 / TT108-FT3-FF1; no-sqlite fallback 0.5333 / 0.9843 / TT101-FT3-FF1 — routing-neutral as required.
+- All 16 edited JSON files parse clean; LUNA confirmed byte-minimal diffs, no collateral hunks, no whitespace drift.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,7 +92,5 @@ Not yet delivered. This packet was authored by re-verifying every claim in the 0
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **REQ-004 is not resolvable at spec-authoring time.** `causal_summary`'s disposition depends on phase 003's canonical-derived-owner decision, which had not landed when this spec was written; the requirement is written to branch cleanly on either outcome rather than guess.
-2. **REQ-006's resolution direction is an open question, not a decision.** Whether to delete `advisorRouting.packetSkillName` outright or keep it documented as an intentional redundant check is left for implementation time, when the scaffold-dependency question can be checked directly rather than inferred.
-3. **This packet was authored concurrently with sibling phases under the same parent** (`033-json-optimization-implementation`), so cross-phase references (the `003-*` predecessor, any phases after this one) are structural placeholders by number, not verified slugs — the parent packet's own authoring pass is expected to confirm or correct them.
+`init_skill.py`'s description scaffold still writes `trigger_examples` for newly scaffolded roots — tolerated by this spec's acceptance wording, flagged as a candidate cleanup for the signal-quality phase so new roots stop carrying a fleet-deleted field. `validate.sh --strict` remains blocked repo-wide by a concurrent session's in-flight pi-hook relocation; this phase is verified by the direct gates above (fleet/doctor/compiler/vitest/corpus), with the blocked-deferral recorded here as across the program.
 <!-- /ANCHOR:limitations -->

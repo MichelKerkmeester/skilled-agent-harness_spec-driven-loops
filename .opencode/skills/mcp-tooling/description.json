@@ -28,14 +28,5 @@
     "app design research",
     "screen examples"
   ],
-  "trigger_examples": [
-    "Use Chrome DevTools to capture a HAR for the staging dashboard",
-    "Mark the ClickUp task done with a note",
-    "Render this component in Figma and export the tokens",
-    "Run an agentic Aside browser task and capture REPL evidence",
-    "Route this MCP tool bridge request",
-    "Find real-app screen references for a checkout flow on Refero",
-    "Research onboarding flow patterns from real apps on Mobbin"
-  ],
   "lastUpdated": "2026-07-16T15:55:00Z"
 }

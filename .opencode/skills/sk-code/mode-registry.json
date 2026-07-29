@@ -35,8 +35,7 @@
       "grandfatheredFolderMismatch": false,
       "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys", "quality check", "check before done", "author quality gate", "pre-verification quality check", "p0 p1 p2 review"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-code-quality"
+        "routingClass": "metadata"
       }
     },
     {
@@ -55,8 +54,7 @@
       "grandfatheredFolderMismatch": false,
       "aliases": ["code review", "reviewer", "findings-first review", "security review", "pr review", "review baseline", "correctness review", "test quality review", "review output contract", "pr-state gates"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-code-review"
+        "routingClass": "metadata"
       }
     },
     {
@@ -74,8 +72,7 @@
       "grandfatheredFolderMismatch": false,
       "aliases": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-code-webflow"
+        "routingClass": "metadata"
       }
     },
     {
@@ -93,8 +90,7 @@
       "grandfatheredFolderMismatch": false,
       "aliases": ["opencode system code", "opencode system code workflow", "opencode typescript verification"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-code-opencode"
+        "routingClass": "metadata"
       }
     }
   ]

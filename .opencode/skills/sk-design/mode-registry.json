@@ -49,8 +49,7 @@
       "command": "/interface:design",
       "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter", "motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-design-interface"
+        "routingClass": "metadata"
       }
     },
     {
@@ -70,8 +69,7 @@
       "command": "/interface:design-reference",
       "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "design-to-markdown", "extract design tokens", "validate design.md", "design.md validation", "design fidelity check", "design.md report", "render design preview", "source of truth", "study design.md format"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-design-md-generator"
+        "routingClass": "metadata"
       }
     },
     {
@@ -90,8 +88,7 @@
       "command": null,
       "aliases": ["open design", "open-design", "od mcp", "od cli", "wire open design", "connect open design", "drive open design from the terminal", "design system from open design"],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "sk-design-mcp-open-design"
+        "routingClass": "metadata"
       }
     }
   ]

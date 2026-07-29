@@ -36,21 +36,5 @@
     "pi-json",
     "pi-rpc"
   ],
-  "trigger_examples": [
-    "Delegate this to OpenCode for a full-runtime dispatch",
-    "Use cli-claude-code to get an Anthropic-backed second opinion",
-    "Run this task through opencode run with the deepseek provider",
-    "Use cli-codex for an OpenAI-backed code review and web-research pass",
-    "Use cli-cursor to get Composer's opinion on this diff",
-    "Route this CLI dispatch request",
-    "delegate to devin",
-    "use cli-devin",
-    "devin cloud handoff",
-    "cognition cli second opinion",
-    "Delegate this task to the Pi coding agent",
-    "Use cli-pi for a JSON event-stream dispatch",
-    "Run this through Pi RPC",
-    "Review this task with the Pi CLI"
-  ],
   "lastUpdated": "2026-07-27T00:00:00Z"
 }

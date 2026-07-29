@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -80,6 +80,13 @@ Out of scope — `graph-metadata.manual.*` (a live-drifted field grok-high rated
 | REQ-005 | Reconcile `sk-doc/hub-router.json`'s `routerPolicy.tieBreak` with the order its own compiler derives | `hub-router.json:7`'s `tieBreak` array is reordered to exactly match `Object.keys(routerSignals)` as computed by `scoreTieBreakOrder()` in `bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/registry-compiler.cjs:198-200`; `parent-skill-check.cjs` check 5e (exact-permutation) and 5i (workflow-before-transport ordering) both still pass; a one-line comment is added next to `tieBreak` in `hub-router.json` (or the shared contract doc) noting `sk-doc`'s compiler derives this order and ignores the authored one, so future hand-edits to this array do not assume they change runtime behavior |
 | REQ-006 | Resolve the `mode.advisorRouting.packetSkillName` duplicate against the top-level `mode.packetSkillName` | Confirmed via repo-wide grep that every production consumer (`registry-compiler.cjs:97`, `parent-skill-check.cjs:416-439`, `skill-benchmark/d5-connectivity.cjs:221-230`, `executor-delegation.ts:172-173`) reads the top-level `mode.packetSkillName`, never the nested copy, and that `routing-registry-drift-guard.vitest.ts:150-151` is the only reader of `mode.advisorRouting.packetSkillName` (asserting it merely equals `mode.packet`); either the nested key is removed fleet-wide from every hub's `mode-registry.json` with the vitest assertion updated to check `mode.packet === mode.packetSkillName` directly, or it is kept and `mode-registry.json`'s `advisorRoutingContract` doc block gains a one-line note explaining it is an intentional redundant self-check, not a second source of truth — the open question in this spec's frontmatter records which branch is chosen |
 | REQ-007 | Document the spec-folder-vs-skill-root script-name collision | `skill-root-metadata-contract.md` (already carrying the schema-separation note at line 32) gains a companion note naming `generate-description.ts`/`backfill-graph-metadata.ts` (`system-spec-kit/scripts/spec-folder/` and `system-spec-kit/scripts/graph/`) as spec-folder-only tooling with no skill-root equivalent today, so `--fix` on `ci-skill-root-metadata.cjs` remains the only skill-root regenerator anyone should reach for |
+
+### Implementation amendments (recorded deviations)
+
+- **REQ-006 premise correction + resolution.** The spec assumed the nested `advisorRouting.packetSkillName` duplicated a top-level `mode.packetSkillName` fleet-wide. Re-verification found `system-deep-loop`'s 7 modes carried **no top-level copy** — the nested key was their sole carrier, so a plain fleet-wide deletion would have red the drift-guard (the first implementer dispatch correctly halted on exactly this). Resolution: **uniform fleet** — deep-loop's 7 modes first gained a top-level `packetSkillName` equal to each mode's `packet` (all doctor 3d preconditions pre-verified: packet-SKILL.md frontmatter names equal the packet leaf, `grandfatheredFolderMismatch` flags correct), then the nested copy was deleted on all 40 modes fleet-wide and the drift-guard now asserts the top-level key equals `packet` everywhere. The scaffold literal was updated in the same change.
+- **REQ-005 comment placement.** JSON carries no comments and an unknown key inside `routerPolicy` risks the doctor's shape checks, so the derive-not-copy exception note lives in `skill-root-metadata-contract.md` (the spec's allowed alternate), not inside `hub-router.json`.
+- **REQ-004 branch.** Phase 003 kept the Python-compiler shape canonical, so the Python-canonical branch executed: a durable-why comment above the compiler's required-non-empty check (zero logic change) plus the contract-doc note that `causal_summary` is authored prose, not a routing input.
+- **REQ-001 scaffold literal.** `init_skill.py`'s description scaffold still writes `trigger_examples` for new roots — explicitly tolerated by this spec's own acceptance wording; noted as a candidate cleanup for the signal-quality phase.
 <!-- /ANCHOR:requirements -->
 
 ---

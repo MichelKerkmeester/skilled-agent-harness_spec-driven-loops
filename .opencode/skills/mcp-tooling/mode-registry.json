@@ -61,8 +61,7 @@
         "cdp"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-chrome-devtools"
+        "routingClass": "metadata"
       }
     },
     {
@@ -96,8 +95,7 @@
         "time tracking"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-click-up"
+        "routingClass": "metadata"
       }
     },
     {
@@ -132,8 +130,7 @@
         "agentic browser"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-aside-devtools"
+        "routingClass": "metadata"
       }
     },
     {
@@ -171,8 +168,7 @@
         "figma mcp"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-figma"
+        "routingClass": "metadata"
       }
     },
     {
@@ -208,8 +204,7 @@
         "refero.design"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-refero"
+        "routingClass": "metadata"
       }
     },
     {
@@ -245,8 +240,7 @@
         "mobile design patterns"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "mcp-mobbin"
+        "routingClass": "metadata"
       }
     }
   ]

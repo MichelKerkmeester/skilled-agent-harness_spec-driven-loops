@@ -175,3 +175,11 @@ Every authored file has a scaffold under `create-skill/assets/`; the two generat
 - `scripts/lib/skill-root-metadata-contract.cjs` - The pure library this document describes
 - `scripts/lib/command-metadata-schema.cjs` - The core command-metadata schema validated per hub
 - `scripts/ci-skill-root-metadata.cjs` - The fleet gate
+
+---
+
+## 8. AUTHORING NOTES
+
+- `graph-metadata.json`'s `derived.causal_summary` is authored prose describing why the skill matters, not a routing input. The Python compiler requires it to be non-empty solely so a root's identity is never blank.
+- `sk-doc/hub-router.json`'s `routerPolicy.tieBreak` is derived at compile time from `routerSignals` key order by sk-doc's registry compiler. Hand-editing the authored array does not change runtime tie-break behavior, so keep it aligned with that derived order.
+- `generate-description.ts` and `backfill-graph-metadata.ts` under `system-spec-kit/scripts` are spec-folder-only tooling and have no skill-root analog. `ci-skill-root-metadata.cjs --fix` is the only skill-root regenerator.

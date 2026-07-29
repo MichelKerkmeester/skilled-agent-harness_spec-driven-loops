@@ -41,6 +41,7 @@
         "bashAllowlist": []
       },
       "packet": "deep-research",
+      "packetSkillName": "deep-research",
       "command": "/deep:research",
       "agent": "deep-research",
       "artifactRoot": "research/",
@@ -48,8 +49,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-research",
-        "legacyAliases": ["command-spec-kit-deep-research", "/deep:research", "spec_kit:deep-research", "deep-research", "sk-deep-research"],
-        "packetSkillName": "deep-research"
+        "legacyAliases": ["command-spec-kit-deep-research", "/deep:research", "spec_kit:deep-research", "deep-research", "sk-deep-research"]
       }
     },
     {
@@ -65,6 +65,7 @@
         "bashAllowlist": []
       },
       "packet": "deep-review",
+      "packetSkillName": "deep-review",
       "command": "/deep:review",
       "agent": "deep-review",
       "artifactRoot": "review/",
@@ -72,8 +73,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-review",
-        "legacyAliases": ["command-spec-kit-deep-review", "/deep:review", "spec_kit:deep-review", "deep-review", "sk-deep-review"],
-        "packetSkillName": "deep-review"
+        "legacyAliases": ["command-spec-kit-deep-review", "/deep:review", "spec_kit:deep-review", "deep-review", "sk-deep-review"]
       }
     },
     {
@@ -89,6 +89,7 @@
         "bashAllowlist": []
       },
       "packet": "deep-ai-council",
+      "packetSkillName": "deep-ai-council",
       "command": "/deep:ai-council",
       "agent": "ai-council",
       "artifactRoot": "ai-council/",
@@ -96,8 +97,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-ai-council",
-        "legacyAliases": ["@deep-ai-council", "deep-ai-council", "deep ai council", "ai council", "planning council", "council deliberation", "multi-ai-council"],
-        "packetSkillName": "deep-ai-council"
+        "legacyAliases": ["@deep-ai-council", "deep-ai-council", "deep ai council", "ai council", "planning council", "council deliberation", "multi-ai-council"]
       }
     },
     {
@@ -113,6 +113,7 @@
         "bashAllowlist": []
       },
       "packet": "deep-improvement",
+      "packetSkillName": "deep-improvement",
       "loopHostMode": "agent-improvement",
       "command": "/deep:agent-improvement",
       "agent": "deep-improvement",
@@ -122,8 +123,7 @@
         "routingClass": "alias-fold",
         "legacyAdvisorId": "deep-improvement",
         "advisorDefaultMode": true,
-        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:agent-improvement", "deep-agent-improvement", "sk-deep-agent-improvement"],
-        "packetSkillName": "deep-improvement"
+        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:agent-improvement", "deep-agent-improvement", "sk-deep-agent-improvement"]
       }
     },
     {
@@ -139,14 +139,14 @@
         "bashAllowlist": []
       },
       "packet": "deep-improvement",
+      "packetSkillName": "deep-improvement",
       "loopHostMode": "model-benchmark",
       "command": "/deep:model-benchmark",
       "agent": "deep-improvement",
       "artifactRoot": "improvement/",
       "aliases": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark-harness"],
       "advisorRouting": {
-        "routingClass": "command-bridge",
-        "packetSkillName": "deep-improvement"
+        "routingClass": "command-bridge"
       }
     },
     {
@@ -162,14 +162,14 @@
         "bashAllowlist": []
       },
       "packet": "deep-improvement",
+      "packetSkillName": "deep-improvement",
       "loopHostMode": "skill-benchmark",
       "command": "/deep:skill-benchmark",
       "agent": "deep-improvement",
       "artifactRoot": "improvement/",
       "aliases": ["skill benchmark", "benchmark a skill", "skill routing benchmark"],
       "advisorRouting": {
-        "routingClass": "command-bridge",
-        "packetSkillName": "deep-improvement"
+        "routingClass": "command-bridge"
       }
     },
     {
@@ -185,6 +185,7 @@
         "bashAllowlist": []
       },
       "packet": "deep-alignment",
+      "packetSkillName": "deep-alignment",
       "command": "/deep:alignment",
       "agent": "deep-alignment",
       "artifactRoot": "alignment/",
@@ -192,8 +193,7 @@
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-alignment",
-        "legacyAliases": ["command-spec-kit-deep-alignment", "/deep:alignment", "spec_kit:deep-alignment", "deep-alignment", "sk-deep-alignment"],
-        "packetSkillName": "deep-alignment"
+        "legacyAliases": ["command-spec-kit-deep-alignment", "/deep:alignment", "spec_kit:deep-alignment", "deep-alignment", "sk-deep-alignment"]
       }
     }
   ]

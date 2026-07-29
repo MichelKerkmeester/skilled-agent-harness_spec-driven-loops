@@ -39,18 +39,5 @@
     "runtime-loop",
     "improvement-host"
   ],
-  "trigger_examples": [
-    "run a deep research loop on this topic",
-    "iteratively investigate X across web and code until convergence",
-    "deep review this branch for release readiness",
-    "iterative code audit with P0/P1/P2 findings",
-    "convene the AI council to plan this",
-    "multi-seat planning deliberation",
-    "audit artifacts against a named standard authority",
-    "run a deep alignment conformance audit",
-    "improve and score this agent, then promote or rollback",
-    "benchmark this model across prompt frameworks",
-    "benchmark how well this skill is routed"
-  ],
   "lastUpdated": "2026-07-14T00:00:00Z"
 }

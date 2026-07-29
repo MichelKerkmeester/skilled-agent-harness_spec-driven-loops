@@ -32,22 +32,5 @@
     "human-voice",
     "sk-create-skill-parent"
   ],
-  "trigger_examples": [
-    "create a new skill",
-    "scaffold a parent skill hub",
-    "write a README / install guide for this folder",
-    "create an agent",
-    "make a slash command",
-    "build a feature catalog",
-    "author a manual testing playbook",
-    "promote a benchmark folder",
-    "make an ASCII flowchart",
-    "write a changelog entry",
-    "review before/after changes to this document",
-    "create a document diff report",
-    "validate / score / optimize this document"
-  ],
-  "lastUpdated": "2026-07-14T00:00:00.000Z",
-  "supported_surfaces": [],
-  "opencode_languages": []
+  "lastUpdated": "2026-07-14T00:00:00.000Z"
 }

@@ -25,7 +25,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill",
       "aliases": ["create skill", "new skill", "skill scaffold", "OpenCode skill", "package skill"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-skill" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-skill-parent",
@@ -37,7 +37,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill-parent",
       "aliases": ["parent skill", "parent hub", "mode packet", "nested workflow packet"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-skill" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-readme",
@@ -49,7 +49,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:readme",
       "aliases": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-readme" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-agent",
@@ -61,7 +61,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:agent",
       "aliases": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-agent" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-command",
@@ -73,7 +73,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:command",
       "aliases": ["create command", "slash command", "OpenCode command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "$ARGUMENTS"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-command" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-feature-catalog",
@@ -85,7 +85,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:feature-catalog",
       "aliases": ["feature catalog", "feature inventory", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-feature-catalog" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-manual-testing-playbook",
@@ -97,7 +97,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:manual-testing-playbook",
       "aliases": ["manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-manual-testing-playbook" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-benchmark",
@@ -109,7 +109,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:benchmark",
       "aliases": ["benchmark-report.md", "SOURCE.md", "mcp-server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior-benchmark.md", "scenario contract", "claude-baseline", "conformance benchmark", "conformance_benchmark", "peer adapter benchmark", "deep-alignment benchmark", "lane-config benchmark", "sk-doc-command", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent-improvement", "Lane A agent-improvement", "agent_improvement_authoring_guide", "agent quality dimensions"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-benchmark" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-flowchart",
@@ -121,7 +121,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:flowchart",
       "aliases": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "decision tree", "swimlane", "parallel execution diagram", "approval loop diagram"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-flowchart" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-changelog",
@@ -133,7 +133,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:changelog",
       "aliases": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-changelog" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-diff",
@@ -145,7 +145,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/create:diff",
       "aliases": ["create diff report", "document before after review", "before after document diff", "document change report"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-diff" }
+      "advisorRouting": { "routingClass": "metadata" }
     },
     {
       "workflowMode": "sk-create-quality-control",
@@ -157,7 +157,7 @@
       "grandfatheredFolderMismatch": false,
       "command": "/doc:quality",
       "aliases": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure"],
-      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "sk-create-quality-control" }
+      "advisorRouting": { "routingClass": "metadata" }
     }
   ]
 }

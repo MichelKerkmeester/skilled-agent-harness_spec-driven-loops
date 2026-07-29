@@ -525,7 +525,6 @@ def init_parent_skill(
                 "aliases": [packet_name, f"{skill_name} primary workflow"],
                 "advisorRouting": {
                     "routingClass": "metadata",
-                    "packetSkillName": packet_name,
                 },
             }
         ],

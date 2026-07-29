@@ -42,8 +42,7 @@
         "cli-opencode"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-opencode"
+        "routingClass": "metadata"
       }
     },
     {
@@ -73,8 +72,7 @@
         "cli-claude-code"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-claude-code"
+        "routingClass": "metadata"
       }
     },
     {
@@ -104,8 +102,7 @@
         "cli-codex"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-codex"
+        "routingClass": "metadata"
       }
     },
     {
@@ -135,8 +132,7 @@
         "cli-cursor"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-cursor"
+        "routingClass": "metadata"
       }
     },
     {
@@ -166,8 +162,7 @@
         "cli-devin"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-devin"
+        "routingClass": "metadata"
       }
     },
     {
@@ -197,8 +192,7 @@
         "pi coding agent"
       ],
       "advisorRouting": {
-        "routingClass": "metadata",
-        "packetSkillName": "cli-pi"
+        "routingClass": "metadata"
       }
     }
   ]

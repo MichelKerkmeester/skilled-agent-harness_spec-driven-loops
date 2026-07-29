@@ -59,19 +59,5 @@
     "sk-design-md-generator",
     "sk-design-mcp-open-design"
   ],
-  "trigger_examples": [
-    "make this landing page look less templated",
-    "design a distinctive hero section",
-    "build an OKLCH color token system with dark mode",
-    "set a typographic scale and spacing system",
-    "animate the menu with a reduced-motion fallback",
-    "choreograph a scroll-driven micro-interaction",
-    "audit this UI for accessibility and anti-slop issues",
-    "extract a design system from a live website into DESIGN.md",
-    "capture a site's real CSS tokens as a Style Reference",
-    "wire Open Design's MCP server into opencode so I can drive od cli",
-    "validate this DESIGN.md against its tokens.json for hex accuracy and section completeness",
-    "should it be delight users more, or would that feel gratuitous"
-  ],
   "lastUpdated": "2026-07-27T00:00:00Z"
 }
