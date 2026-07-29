@@ -18,7 +18,7 @@
 ## Phase 2: Implementation
 - [x] Leaf 1 — add `--no-extensions --no-skills --no-prompt-templates` to the read-only branch of the shared pi builder.
 - [x] Leaf 1 — update the exact-arg pi read-only assertions in the fan-out, model-benchmark, and ai-council suites.
-- [ ] Leaf 2 — build the combo coverage matrix (every kind × model × mode; assert construction or log a skip).
+- [x] Leaf 2 — combo coverage matrix (`combo-matrix.vitest.ts`): 117 (kind × model × sandbox) combinations constructed via the real `buildLineageCommand`, exact-argv proven per kind, full allowlist coverage asserted, every live credentialed dispatch logged as an explicit skip; out-of-roster models fail closed.
 - [ ] Leaf 3 — cursor/devin/MCP ambient-config isolation for read-only leaves/seats.
 <!-- /ANCHOR:phase-2 -->
 
@@ -26,7 +26,8 @@
 ## Phase 3: Verification
 - [x] Leaf 1: fan-out 93/93, model-benchmark 35/35, ai-council 106/106; whole-runtime tsc 0.
 - [x] Leaf 1: live pi accepts the new flags (no rejection) and writes nothing (git status unchanged).
-- [ ] Leaf 2-3 built + verified.
+- [x] Leaf 2: combo-matrix vitest 2/2 (117 combos asserted), whole-runtime tsc 0; additive test file, no source touched (zero regression risk).
+- [ ] Leaf 3 built + verified.
 - [ ] `validate.sh --strict` passes for this phase.
 <!-- /ANCHOR:phase-3 -->
 

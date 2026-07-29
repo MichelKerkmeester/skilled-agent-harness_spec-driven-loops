@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix",
   "description": "Two things remain to close the fan-out parity packet",
   "keywords": [
@@ -10,7 +11,7 @@
     "parity",
     "packet"
   ],
-  "lastUpdated": "2026-07-29T15:58:47.290Z",
+  "lastUpdated": "2026-07-29T16:10:42.996Z",
   "specId": "005",
   "folderSlug": "combo-test-matrix",
   "parentChain": [
@@ -18,6 +19,5 @@
     "043-cli-executor-fanout-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

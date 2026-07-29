@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity/005-combo-test-matrix"
     last_updated_at: "2026-07-29T15:45:00Z"
     last_updated_by: "claude"
-    recent_action: "Hardened read-only pi to disable auto-loaded extensions and skills"
-    next_safe_action: "Build the combo coverage matrix and cursor/devin/MCP isolation"
+    recent_action: "Built the combo coverage matrix over the shared builder"
+    next_safe_action: "Build the cursor/devin/MCP ambient-config isolation"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
       - ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts"
-    completion_pct: 25
+    completion_pct: 60
     open_questions:
       - "Least-invasive mechanism to isolate cursor hooks + MCP for a read-only leaf while keeping repo read access"
     answered_questions:
@@ -59,6 +59,12 @@ _memory:
 | `runtime/tests/unit/fanout-run.vitest.ts` | Modified | Lock the new read-only pi arg vector |
 | `model-benchmark/tests/remediation.vitest.ts` | Modified | Lock the new read-only pi arg vector (both read-only cases) |
 | `deep-ai-council/scripts/tests/orchestrate-session-cli.vitest.ts` | Modified | Lock the new read-only pi seat arg vector |
+
+**Leaf 2 — combo coverage matrix (built).** A new additive test (`runtime/tests/unit/combo-matrix.vitest.ts`) iterates every executor kind × its model allowlist (`PI`/`CURSOR`/`DEVIN_SUPPORTED_MODELS` imported, representatives for the pass-through kinds) × the three sandbox modes, calling the REAL `buildLineageCommand` and asserting each constructs a non-empty command + args with the right kind — 117 combinations. It proves the exact argv for a representative combo per kind (anti-vacuous), asserts coverage completeness (exercised kinds equal `EXECUTOR_KINDS`; exercised cursor/devin/pi model sets equal the full allowlists), logs every live credentialed dispatch as an explicit skip (never silent), and asserts out-of-roster models fail closed. It touches no source, so it carries zero regression risk.
+
+| File | Action | Purpose |
+|---|---|---|
+| `runtime/tests/unit/combo-matrix.vitest.ts` | Added | Full construction-coverage matrix over the shared builder; logs every live skip |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
