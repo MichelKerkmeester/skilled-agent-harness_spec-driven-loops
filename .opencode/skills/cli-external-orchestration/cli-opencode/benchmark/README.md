@@ -25,7 +25,7 @@ Every file inside a run-label folder carries the marker `_Derived after the fact
 
 | Run label | Trace mode | Verdict | Scenarios | Source |
 |---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--deepseek-v4-pro/`](./reports/2026-07-29--manual-testing-playbook--deepseek-v4-pro/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `034-goal-hook-playbooks-and-validation` |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `034-goal-hook-playbooks-and-validation` |
 
 ## 3. STRUCTURE
 
@@ -33,7 +33,7 @@ Every file inside a run-label folder carries the marker `_Derived after the fact
 benchmark/
 `-- reports/
     +-- README.md                                                  # run index
-    `-- 2026-07-29--manual-testing-playbook--deepseek-v4-pro/       # this run's 7-file package
+    `-- 2026-07-29--manual-testing-playbook--goal-hook/       # this run's 7-file package
 ```
 
 ## 4. READING THE REPORTS

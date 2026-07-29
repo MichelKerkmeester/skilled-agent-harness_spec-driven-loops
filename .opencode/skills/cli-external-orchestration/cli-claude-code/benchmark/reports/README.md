@@ -22,7 +22,7 @@ Each row below is one run folder. The first row is a hand-authored, derived-afte
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-29 | [`2026-07-29--manual-testing-playbook--native-goal/`](./2026-07-29--manual-testing-playbook--native-goal/) | doc (hand-derived, no dispatch) | not recorded | **SKIP** | `CC-029` goal-hook manual-testing-playbook |
+| 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | doc (hand-derived, no dispatch) | not recorded | **SKIP** | `CC-029` goal-hook manual-testing-playbook |
 
 ## 3. STORAGE RULE
 

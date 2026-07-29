@@ -246,7 +246,7 @@ nothing behind, and the next person has no way to know the playbook was ever exe
 `-- benchmark/
     `-- reports/
         |-- README.md                 # the run index, one row per folder
-        `-- 2026-07-27--manual-testing-playbook--openai-gpt-5-6-luna-high/
+        `-- 2026-07-29--manual-testing-playbook--goal-hook/
             |-- README.md
             |-- skill-benchmark-report.json
             |-- skill-benchmark-report.md
@@ -256,8 +256,12 @@ nothing behind, and the next person has no way to know the playbook was ever exe
             `-- source.md
 ```
 
-Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. `create-benchmark`
-owns that grammar in full; see its storage sections for the field vocabulary and the one carve-out.
+Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. When a run is
+**feature-scoped** — a hand-derived validation of one feature or scenario group rather than a full-corpus
+harness sweep — name the `<variant>` for the feature (e.g. `goal-hook`) and record the model/executor
+inside the report, so the folder stays legible across models. A full-corpus harness run auto-names the
+`<variant>` from the executor identity instead (see below). `create-benchmark` owns the grammar in full;
+see its storage sections for the field vocabulary and the one carve-out.
 
 ### What Writes It
 

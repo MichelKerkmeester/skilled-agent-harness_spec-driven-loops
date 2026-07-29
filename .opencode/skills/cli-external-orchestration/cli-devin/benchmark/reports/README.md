@@ -24,7 +24,7 @@ Each row below is one run folder. Unlike a Lane C skill-benchmark tree, no autom
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-29 | [`2026-07-29--manual-testing-playbook--glm-5-2/`](./2026-07-29--manual-testing-playbook--glm-5-2/) | live (devin, glm-5-2) | 1 PASS | **PASS** | `034-goal-hook-playbooks-and-validation` |
+| 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | live (devin, glm-5-2) | 1 PASS | **PASS** | `034-goal-hook-playbooks-and-validation` |
 
 ## 3. STORAGE RULE
 

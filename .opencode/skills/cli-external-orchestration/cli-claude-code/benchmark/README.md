@@ -25,7 +25,7 @@ The first entry in this tree is **not** a Lane C harness run. It is a hand-autho
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--native-goal/`](./reports/2026-07-29--manual-testing-playbook--native-goal/) | doc | SKIP | derived-after-the-fact (hand-authored, not a harness run) | Claude Code's native `/goal` has no cross-runtime adapter and no headless dispatch surface — see `CC-029` |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | doc | SKIP | derived-after-the-fact (hand-authored, not a harness run) | Claude Code's native `/goal` has no cross-runtime adapter and no headless dispatch surface — see `CC-029` |
 
 ## 3. RE-RUNNING
 

@@ -305,8 +305,13 @@ One grammar governs every benchmark family. A run folder is named:
   the report body, where a reader can see both.
 - `<subject>` names the corpus the run measured: `manual-testing-playbook`, `skill-benchmark`,
   `mcp-retrieval`, `model-eval`, `command-surface`, `behavior`, `conformance`.
-- `<variant>` names the executor identity that produced the run, as `<runtime>-<model>-<effort>`. Use
-  `model-comparison` for a run that compares several, or a short topic slug when no model applies.
+- `<variant>` names what most distinguishes the run. For a **feature-scoped** run — one validating a
+  single feature or scenario group rather than comparing executors — name the feature (e.g. `goal-hook`),
+  not the model; the model/executor is recorded inside the report (`model`/`providerModel` fields, the
+  byline, the command shape), so the folder stays legible when the same feature is later re-validated on
+  another model. For an **executor-scoped** run — one whose point is which model and effort produced it —
+  name the executor identity as `<runtime>-<model>-<effort>`; use `model-comparison` when it compares
+  several, or a short topic slug when no model applies.
 - Model versions flatten their dots: `glm-5.2` becomes `glm-5-2`, `kimi-2.7` becomes `kimi-2-7`. A dot
   is rejected by the run-label validator, so this is a hard requirement rather than a style preference.
 - Two runs of the same subject and variant on one day disambiguate with a trailing topic field.
@@ -314,7 +319,8 @@ One grammar governs every benchmark family. A run folder is named:
 Examples:
 
 ```text
-2026-07-26--manual-testing-playbook--cursor-grok-4-5-high-fast/
+2026-07-29--manual-testing-playbook--goal-hook/                 # feature-scoped: names the feature, model recorded inside
+2026-07-26--manual-testing-playbook--cursor-grok-4-5-high-fast/ # executor-scoped: names the model+effort that ran it
 2026-07-26--manual-testing-playbook--model-comparison/
 2026-05-18--mcp-retrieval--bge-confirmation/
 2026-07-21--skill-benchmark--luna-high/

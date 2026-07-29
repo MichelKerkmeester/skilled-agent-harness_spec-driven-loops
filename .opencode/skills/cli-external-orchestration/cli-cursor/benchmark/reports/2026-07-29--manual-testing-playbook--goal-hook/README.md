@@ -1,4 +1,4 @@
-# 2026-07-29--manual-testing-playbook--composer-2-5
+# 2026-07-29--manual-testing-playbook--goal-hook
 
 _Derived after the fact from this run's stored record, not written at run time._
 

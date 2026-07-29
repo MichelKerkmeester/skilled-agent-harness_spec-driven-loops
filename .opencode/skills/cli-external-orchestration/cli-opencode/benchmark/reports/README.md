@@ -22,7 +22,7 @@ Each row below is one run folder. This run captures the live-headless-dispatch s
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-29 | [`2026-07-29--manual-testing-playbook--deepseek-v4-pro/`](./2026-07-29--manual-testing-playbook--deepseek-v4-pro/) | live | 0 PASS, 3 SKIP | **SKIP** | `034-goal-hook-playbooks-and-validation` |
+| 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | live | 0 PASS, 3 SKIP | **SKIP** | `034-goal-hook-playbooks-and-validation` |
 
 ## 3. STORAGE RULE
 

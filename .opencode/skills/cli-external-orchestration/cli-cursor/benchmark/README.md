@@ -25,7 +25,7 @@ Every file in a run folder that is not the machine record or its render is expli
 
 | Run label | Date | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--composer-2-5/`](./reports/2026-07-29--manual-testing-playbook--composer-2-5/) | 2026-07-29 | live | PASS (recorded-evidence tier) | current | `CU-027` sessionStart-fires + model-invisible-injection proof, `composer-2.5` (paid tier) |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | 2026-07-29 | live | PASS (recorded-evidence tier) | current | `CU-027` sessionStart-fires + model-invisible-injection proof, `composer-2.5` (paid tier) |
 
 ## 3. STRUCTURE
 
@@ -34,7 +34,7 @@ benchmark/
 +-- README.md                                                  # this file
 `-- reports/
     +-- README.md                                              # machine-style run index
-    `-- 2026-07-29--manual-testing-playbook--composer-2-5/     # CU-027 recorded-evidence-tier capture
+    `-- 2026-07-29--manual-testing-playbook--goal-hook/     # CU-027 recorded-evidence-tier capture
 ```
 
 ## 4. HOW TO RE-RUN

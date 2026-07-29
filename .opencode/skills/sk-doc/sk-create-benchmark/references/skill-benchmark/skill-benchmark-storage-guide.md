@@ -115,7 +115,7 @@ run's authoritative parameters live inside its `skill-benchmark-report.json`.
 | --- | --- |
 | `<YYYY-MM-DD>` | Execution date, so a directory listing sorts chronologically. |
 | `<subject>` | The corpus measured: `skill-benchmark`, `manual-testing-playbook`, `mcp-retrieval`, `model-eval`, `command-surface`. |
-| `<variant>` | The executor identity as `<runtime>-<model>-<effort>`, or `model-comparison`, or a topic slug naming the change the run measures. |
+| `<variant>` | What most distinguishes the run: the **feature or scenario group** for a feature-scoped run (e.g. `goal-hook`, with the model recorded inside the report), the **executor identity** `<runtime>-<model>-<effort>` when the point is which model ran it, `model-comparison`, or a topic slug naming the change measured. |
 
 Examples, with the older label each replaces:
 

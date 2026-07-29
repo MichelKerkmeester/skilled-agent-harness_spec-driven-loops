@@ -25,7 +25,7 @@ Every file in a run folder that is not the machine record or its render is expli
 
 | Run label | Date | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--glm-5-2/`](./reports/2026-07-29--manual-testing-playbook--glm-5-2/) | 2026-07-29 | live | PASS | current | `DV-022` live-injection proof, canary quoted verbatim by `glm-5-2` (free tier) |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | 2026-07-29 | live | PASS | current | `DV-022` live-injection proof, canary quoted verbatim by `glm-5-2` (free tier) |
 
 ## 3. STRUCTURE
 
@@ -34,7 +34,7 @@ benchmark/
 +-- README.md                                              # this file
 `-- reports/
     +-- README.md                                          # machine-style run index
-    `-- 2026-07-29--manual-testing-playbook--glm-5-2/       # DV-022 live-injection capture
+    `-- 2026-07-29--manual-testing-playbook--goal-hook/       # DV-022 live-injection capture
 ```
 
 ## 4. HOW TO RE-RUN

@@ -22,7 +22,7 @@ Each row below is one run folder. This run family validates the cross-runtime go
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
-| 2026-07-29 | [`2026-07-29--manual-testing-playbook--offline-gpt/`](./2026-07-29--manual-testing-playbook--offline-gpt/) | live | 3 PASS, 1 SKIP | **PASS** | `034-goal-hook-playbooks-and-validation` |
+| 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | live | 3 PASS, 1 SKIP | **PASS** | `034-goal-hook-playbooks-and-validation` |
 
 ## 3. STORAGE RULE
 
