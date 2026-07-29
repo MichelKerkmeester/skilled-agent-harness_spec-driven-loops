@@ -1236,68 +1236,86 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     )).toThrow(/command -v pi failed/);
   });
 
-  it('builds a provider-qualified print-mode command with --thinking from reasoningEffort', () => {
-    const binDir = makeTempDir('fanout-run-pi-thinking-');
+  it('builds the headless pi command with the provider-prefixed model and --offline for every picker id', () => {
+    const binDir = makeTempDir('fanout-run-pi-allowlist-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const providerByModel: Record<string, string> = {
+      'deepseek-v4-pro': 'deepseek',
+      'minimax-m3': 'minimax',
+      'gpt-5.6-luna': 'openai-codex',
+      'gpt-5.6-sol': 'openai-codex',
+      'gpt-5.6-terra': 'openai-codex',
+      'mimo-v2.5-pro': 'xiaomi',
+      'mimo-v2.5-pro-ultraspeed': 'xiaomi',
+    };
+    for (const [model, provider] of Object.entries(providerByModel)) {
+      const command = buildLineageCommand(
+        { kind: 'cli-pi', model },
+        'bounded prompt',
+        'workspace-write',
+        'default',
+        opts,
+      ) as { command: string; args: string[]; effectiveConfig: { model: string } };
+      expect(command.command).toBe('pi');
+      expect(command.args).toEqual(['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt']);
+      expect(command.effectiveConfig.model).toBe(model);
+    }
+  });
+
+  it('defaults an omitted model to deepseek-v4-pro with its provider prefix', () => {
+    const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const command = buildLineageCommand(
-      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'xhigh' },
+      { kind: 'cli-pi' },
       'bounded prompt',
       'workspace-write',
       'default',
       opts,
-    ) as { command: string; args: string[]; input?: string };
-    expect({ command: command.command, args: command.args, input: command.input }).toEqual({
-      command: 'pi',
-      args: ['-p', 'bounded prompt', '--model', 'openai-codex/gpt-5.6-luna', '--thinking', 'xhigh'],
-      input: undefined,
-    });
+    ) as { args: string[]; effectiveConfig: { model: string } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', 'bounded prompt']);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4-pro');
   });
 
-  it('provider-qualifies every picker id and defaults an omitted model to deepseek-v4-pro', () => {
-    const binDir = makeTempDir('fanout-run-pi-qualify-');
+  it('forwards reasoningEffort as --thinking, mapping the renamed levels none->off and ultra->max', () => {
+    const binDir = makeTempDir('fanout-run-pi-thinking-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    const expected: Record<string, string> = {
-      'deepseek-v4-pro': 'deepseek-api/deepseek-v4-pro',
-      'minimax-m3': 'minimax/minimax-m3',
-      'gpt-5.6-luna': 'openai-codex/gpt-5.6-luna',
-      'gpt-5.6-sol': 'openai-codex/gpt-5.6-sol',
-      'gpt-5.6-terra': 'openai-codex/gpt-5.6-terra',
-      'mimo-v2.5-pro': 'xiaomi/mimo-v2.5-pro',
-      'mimo-v2.5-pro-ultraspeed': 'xiaomi/mimo-v2.5-pro-ultraspeed',
-    };
-    for (const [model, qualified] of Object.entries(expected)) {
-      const command = buildLineageCommand({ kind: 'cli-pi', model }, 'p', 'workspace-write', 'default', opts) as { command: string; args: string[] };
-      expect(command.command).toBe('pi');
-      expect(command.args).toEqual(['-p', 'p', '--model', qualified]);
-    }
-    const defaulted = buildLineageCommand({ kind: 'cli-pi' }, 'p', 'workspace-write', 'default', opts) as { args: string[] };
-    expect(defaulted.args).toEqual(['-p', 'p', '--model', 'deepseek-api/deepseek-v4-pro']);
+    const build = (reasoningEffort: string) => buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null; serviceTier: string | null } };
+    const base = ['-p', '--offline', '--model', 'openai-codex/gpt-5.6-luna', '--thinking'];
+    const xhigh = build('xhigh');
+    expect(xhigh.args).toEqual([...base, 'xhigh', 'p']);
+    expect(xhigh.effectiveConfig.reasoningEffort).toBe('xhigh');
+    expect(xhigh.effectiveConfig.serviceTier).toBeNull();
+    // Every valid reasoningEffort must dispatch: the config's 'none' is pi's 'off',
+    // and the config's 'ultra' caps at pi's top level 'max'.
+    expect(build('none').args).toEqual([...base, 'off', 'p']);
+    expect(build('ultra').args).toEqual([...base, 'max', 'p']);
+    // A value with no pi mapping fails closed (defensive; the config enum normally prevents it).
+    expect(() => buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'ludicrous' },
+      'p', 'workspace-write', 'default', opts,
+    )).toThrow(/no pi --thinking mapping/);
   });
 
-  it('maps reasoningEffort onto Pi\'s --thinking scale and omits the flag when unset', () => {
-    const binDir = makeTempDir('fanout-run-pi-thinking-map-');
+  it('restricts the tool allowlist to reads for a read-only leaf, unrestricted otherwise', () => {
+    const binDir = makeTempDir('fanout-run-pi-readonly-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    const thinkingOf = (reasoningEffort?: string) => {
-      const c = buildLineageCommand({ kind: 'cli-pi', model: 'gpt-5.6-luna', ...(reasoningEffort ? { reasoningEffort } : {}) }, 'p', 'workspace-write', 'default', opts) as { args: string[] };
-      const i = c.args.indexOf('--thinking');
-      return i < 0 ? null : c.args[i + 1];
-    };
-    expect(thinkingOf('none')).toBe('off');   // Pi has no 'none'
-    expect(thinkingOf('ultra')).toBe('max');  // clamped to Pi's ceiling
-    expect(thinkingOf('high')).toBe('high');
-    expect(thinkingOf(undefined)).toBeNull();  // no flag when unset
-  });
-
-  it('passes an already provider-qualified model through unchanged', () => {
-    const binDir = makeTempDir('fanout-run-pi-prequalified-');
-    writeStubBinary(binDir, 'pi');
-    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    // A caller may pin the exact provider route; the allowlist still gates the bare id.
-    const command = buildLineageCommand({ kind: 'cli-pi', model: 'gpt-5.6-luna' }, 'p', 'workspace-write', 'default', opts) as { args: string[] };
-    expect(command.args).toContain('openai-codex/gpt-5.6-luna');
+    const readOnly = buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      'p', 'read-only', 'plan', opts,
+    ) as { args: string[] };
+    expect(readOnly.args).toEqual(['-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--tools', 'read,grep,find,ls', 'p']);
+    const write = buildLineageCommand(
+      { kind: 'cli-pi', model: 'gpt-5.6-sol' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[] };
+    expect(write.args).not.toContain('--tools');
   });
 
   it('rejects an out-of-roster model before command construction', () => {
@@ -1324,6 +1342,46 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'default',
       opts,
     )).toThrow(/not in the enforced allowlist/);
+  });
+
+  it('tolerates a non-zero pi exit when artifacts are present, but still fails a pi run that produced none', async () => {
+    const config = (label: string) => JSON.stringify({
+      executors: [{ label, kind: 'cli-pi', model: 'gpt-5.6-luna', reasoningEffort: 'xhigh', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+    // A pi run that writes its artifacts but exits non-zero (pi's exit code is unreliable) succeeds.
+    const okBin = makeTempDir('fanout-run-pi-exit-ok-');
+    writeFileSync(join(okBin, 'pi'), [
+      '#!/bin/sh',
+      'lineage_dir=$(dirname "$SPECKIT_PI_STATE_DIR")',
+      'mkdir -p "$lineage_dir"',
+      'printf "ok\\n" > "$lineage_dir/research.md"',
+      'printf "ok\\n" > "$lineage_dir/review-report.md"',
+      'echo "pi non-zero exit with artifacts"',
+      'exit 1',
+      '',
+    ].join('\n'), { mode: 0o755 });
+    const okBase = makeTempDir('fanout-run-pi-exit-ok-base-');
+    const { result: okResult } = await spawnFanout('pi-nonzero-tolerated', [
+      '--spec-folder', 'specs/test-fanout-pi-tolerance',
+      '--loop-type', 'research',
+      '--fanout-config-json', config('pi-ok'),
+      '--base-artifact-dir', okBase,
+    ], { env: { PATH: `${okBin}:${process.env.PATH ?? ''}` } });
+    expect(okResult.exitCode).toBe(0);
+
+    // A pi run that exits non-zero and produced no artifact is still a failure.
+    const missBin = makeTempDir('fanout-run-pi-exit-miss-');
+    writeFileSync(join(missBin, 'pi'), '#!/bin/sh\necho "pi failed, no artifact"\nexit 1\n', { mode: 0o755 });
+    const missBase = makeTempDir('fanout-run-pi-exit-miss-base-');
+    const { result: missResult } = await spawnFanout('pi-nonzero-no-artifact', [
+      '--spec-folder', 'specs/test-fanout-pi-tolerance-miss',
+      '--loop-type', 'research',
+      '--fanout-config-json', config('pi-miss'),
+      '--base-artifact-dir', missBase,
+    ], { env: { PATH: `${missBin}:${process.env.PATH ?? ''}` } });
+    expect(missResult.exitCode).not.toBe(0);
   });
 });
 

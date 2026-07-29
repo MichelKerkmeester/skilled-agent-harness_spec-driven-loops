@@ -4,7 +4,8 @@
   "spec_folder": "system-deep-loop/043-cli-executor-fanout-parity",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit"
+    "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit",
+    "system-deep-loop/043-cli-executor-fanout-parity/002-cli-pi-fanout-wiring"
   ],
   "manual": {
     "depends_on": [],
@@ -84,15 +85,15 @@
     ],
     "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
     "created_at": "2026-07-29T08:25:06.055Z",
-    "last_save_at": "2026-07-29T08:29:15.769Z",
+    "last_save_at": "2026-07-29T09:17:18.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5e60eee96368dd25efb503534de3ca4dda462ae1b2e959ae141d022617f17967",
+    "source_fingerprint": "sha256:04f1457f8cbb4c2e59a9c65169ef822b57a199b33a2bc0f19e19f55849fad792",
     "source_doc_hashes": {
-      "spec.md": "3bef39f96f335e10589c7c67b97c2b02a771d4f47ea9983b3f38e8122f4ff2c2"
+      "spec.md": "086170dd55caddcb99c9359a7f57b9793cf81fd33ced761b9e8909c9307cb285"
     },
     "last_active_child_id": null,
     "last_active_at": null

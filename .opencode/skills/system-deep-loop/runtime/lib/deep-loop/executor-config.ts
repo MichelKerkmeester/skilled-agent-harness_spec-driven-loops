@@ -90,10 +90,9 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // (~/.config/devin/config.json), not a home directory, so it does not fit the
   // configDir contract the way CLAUDE_CONFIG_DIR does.
   'cli-devin': ['model', 'sandboxMode', 'timeoutSeconds', 'liveTools'],
-  // reasoningEffort maps to Pi's own `--thinking <level>` flag, confirmed by a
-  // live `pi -p` dispatch of the openai-codex gpt-5.6 tiers. No sandboxMode: Pi
-  // exposes no sandbox flag; a print-mode lineage's write boundary is the
-  // --tools allowlist, left at default so the lineage can write its own state.
+  // Pi exposes reasoning as a first-class `--thinking` flag (off..max), independent
+  // of the model id, so reasoningEffort is forwarded; it has no OS sandbox or
+  // service-tier surface, so neither sandboxMode nor serviceTier is supported.
   'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
 };
 
@@ -505,7 +504,7 @@ const lineageMetadataShape = {
  * - `count`: number of replicas of THIS config to run (e.g. 5x the same model).
  * - `iterations`: per-lineage max-iterations override; null = packet default.
  * - `promptFramework`: optional per-model prompt framing key (e.g. "costar",
- *   "tidd-ec") resolved against sk-prompt/sk-prompt-models when a consumer renders the
+ *   "tidd-ec") resolved against sk-prompt/prompt-models when a consumer renders the
  *   lineage prompt. null = consumer default. Loop-type-agnostic and optional, so
  *   research/review lineages that omit it are unaffected.
  * - `assignment_model`: defaults to the existing flat pool; `wave` is accepted

@@ -35,7 +35,7 @@ describe('executor-config', () => {
     ]);
   });
 
-  it('allows only confirmed-safe cli-pi fields, including reasoningEffort for --thinking', () => {
+  it('allows only confirmed-safe cli-pi fields', () => {
     expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-pi']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools']);
     expect(parseExecutorConfig({
       kind: 'cli-pi',

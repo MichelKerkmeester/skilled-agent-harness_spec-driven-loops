@@ -1699,36 +1699,6 @@ const PI_ALLOWED_MODELS = new Set([
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
-// Pi's `--model` takes a pattern OR a provider/model id. A bare pattern can
-// resolve to a wrong, unauthenticated provider (a live gpt-5.6 dispatch hit
-// azure-openai-responses and failed while still exiting 0), so qualify each id
-// with its confirmed provider: openai-codex for the gpt-5.6 tiers, and the
-// per-model providers for the rest. An already-qualified id passes through.
-const PI_MODEL_PROVIDERS = {
-  'gpt-5.6-luna': 'openai-codex',
-  'gpt-5.6-sol': 'openai-codex',
-  'gpt-5.6-terra': 'openai-codex',
-  'deepseek-v4-pro': 'deepseek-api',
-  'minimax-m3': 'minimax',
-  'mimo-v2.5-pro': 'xiaomi',
-  'mimo-v2.5-pro-ultraspeed': 'xiaomi',
-};
-function qualifyPiModel(model) {
-  if (model.includes('/')) return model;
-  const provider = PI_MODEL_PROVIDERS[model];
-  return provider ? `${provider}/${model}` : model;
-}
-
-// Map a reasoning-effort level onto Pi's own `--thinking` scale
-// (off/minimal/low/medium/high/xhigh/max). Pi has no `none` (use `off`) and no
-// `ultra` (clamp to its `max` ceiling). Null omits the flag so Pi keeps its default.
-function piThinkingLevel(reasoningEffort) {
-  if (!reasoningEffort) return null;
-  if (reasoningEffort === 'none') return 'off';
-  if (reasoningEffort === 'ultra') return 'max';
-  return reasoningEffort;
-}
-
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-cursor executor unavailable: command -v cursor-agent failed');
@@ -1847,6 +1817,36 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
   });
 }
 
+// Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
+// (openai-codex fronts the GPT-5.6 tunes; deepseek, minimax, and xiaomi front
+// their own families). Pi selects a model as `<provider>/<id>`; without the
+// provider prefix it falls back to its default provider and dispatches the wrong
+// model. Hand-duplicated as a plain literal so command construction stays
+// synchronous and unit-testable, matching this file's per-kind convention.
+const PI_MODEL_PROVIDERS = new Map([
+  ['deepseek-v4-pro', 'deepseek'],
+  ['minimax-m3', 'minimax'],
+  ['gpt-5.6-luna', 'openai-codex'],
+  ['gpt-5.6-sol', 'openai-codex'],
+  ['gpt-5.6-terra', 'openai-codex'],
+  ['mimo-v2.5-pro', 'xiaomi'],
+  ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
+]);
+// Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
+// installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'
+// caps at Pi's top level 'max'; every other level is identity. A map (not a plain
+// allowlist) is required so a valid reasoningEffort never fails closed on a naming gap.
+const REASONING_TO_PI_THINKING = new Map([
+  ['none', 'off'],
+  ['minimal', 'minimal'],
+  ['low', 'low'],
+  ['medium', 'medium'],
+  ['high', 'high'],
+  ['xhigh', 'xhigh'],
+  ['max', 'max'],
+  ['ultra', 'max'],
+]);
+
 function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isPiBinaryAvailable(options.env || process.env)) {
     throw inputError('cli-pi executor unavailable: command -v pi failed');
@@ -1857,22 +1857,38 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
       `cli-pi model '${model}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
     );
   }
-  // Print mode is one-shot. The lineage writes its own state under the lineage
-  // dir, so --tools stays at Pi's default (write-capable) and the boundary is
-  // prompt-only. Pi's exit code is never an auth or success signal — the run
-  // harness reads the output and lineage state, not the exit code.
-  const args = ['-p', prompt, '--model', qualifyPiModel(model)];
-  const thinking = piThinkingLevel(lineage.reasoningEffort);
-  if (thinking) {
+  const provider = PI_MODEL_PROVIDERS.get(model);
+  if (!provider) {
+    throw inputError(`cli-pi model '${model}' has no known provider mapping`);
+  }
+  // Pi has no --dir flag (it runs in the spawned working directory) and no
+  // service-tier surface, so neither is forwarded. --offline is mandatory: a
+  // non-interactive dispatch without it can hang for minutes on startup network
+  // probes. The caller must read the OUTPUT TEXT for the result and for
+  // "No API key found" — Pi's exit code is not a reliable success or auth signal.
+  const args = ['-p', '--offline', '--model', `${provider}/${model}`];
+  // Pi enforces no OS-level sandbox (its flag support intentionally omits one);
+  // a read-only leaf is bounded by restricting the tool allowlist to reads.
+  if (resolvedSandbox === 'read-only') {
+    args.push('--tools', 'read,grep,find,ls');
+  }
+  if (lineage.reasoningEffort) {
+    const thinking = REASONING_TO_PI_THINKING.get(lineage.reasoningEffort);
+    if (!thinking) {
+      throw inputError(
+        `cli-pi reasoningEffort '${lineage.reasoningEffort}' has no pi --thinking mapping: ${[...REASONING_TO_PI_THINKING.keys()].join(', ')}`,
+      );
+    }
     args.push('--thinking', thinking);
   }
+  args.push(prompt);
   return finalizeLineageCommand({
     kind: lineage.kind,
     command: 'pi',
     args,
-    input: undefined,
+    input: '',
     prompt,
-    promptArgIndexes: [1],
+    promptArgIndexes: [args.length - 1],
     executableVersion: resolveExecutableVersion('pi', options),
     model,
     reasoningEffort: lineage.reasoningEffort || null,
@@ -2409,7 +2425,14 @@ async function main() {
       // in summary.failed/all_failed, which drives the process exit code. Returning a
       // plain object here would let the pool record any completed worker as fulfilled
       // regardless of the underlying CLI exit, masking failed/timed-out lineages.
-      if (timedOut || killedBySignal || exitCode !== 0) {
+      //
+      // Pi is the exception: it returns a non-zero exit code non-deterministically even
+      // on a successful dispatch (identical unauthenticated runs returned 0 then 1), so
+      // for cli-pi a non-zero exit is not a failure signal. The artifact validation below
+      // is its success gate instead — a genuinely failed pi run produces no artifact and
+      // is rejected there. Timeouts and signal kills remain real failures for every kind.
+      const exitCodeIsFailure = exitCode !== 0 && lineage.kind !== 'cli-pi';
+      if (timedOut || killedBySignal || exitCodeIsFailure) {
         const reason = timedOut
           ? 'timed out'
           : killedBySignal
