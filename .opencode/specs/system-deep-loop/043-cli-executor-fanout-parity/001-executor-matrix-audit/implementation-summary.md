@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep-loop Executor / Provider / Model Matrix Audit"
-description: "Audit in progress: the config and fan-out-builder layer is mapped for all seven executor kinds and the initial gap register is seeded; the per-provider/model and per-mode cross-map and the frozen disposition register remain."
+description: "Frozen support matrix + gap register for the deep-loop fan-out: all seven executor kinds mapped (config, builder, model validation, caveats) and all deep modes cross-mapped for executor coverage, with a disposition for every gap (wire in 002-004, enforce-scope-out for skill-benchmark, or accept). The register is the source of truth the wiring phases and the combo matrix reference; the audit is read-only and changed no runtime code."
 trigger_phrases:
   - "executor matrix audit progress"
   - "fanout executor gap register status"
@@ -12,15 +12,14 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit"
     last_updated_at: "2026-07-29T09:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Mapped the config and fan-out-builder layer for all seven executor kinds"
-    next_safe_action: "Cross-map every provider and model and per-mode availability then freeze the gap register"
+    recent_action: "Froze the support matrix and gap register with every disposition"
+    next_safe_action: "Reference the frozen register from the combo-matrix phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-    completion_pct: 30
-    open_questions:
-      - "Should reachable require a live credentialed dispatch or verified command construction"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "cli-pi buildPiLineageCommand is a hard stub that throws"
       - "codex claude-code opencode are pass-through and pi cursor devin enforce allowlists"
@@ -37,9 +36,9 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 001-executor-matrix-audit |
-| **Completed** | In progress |
+| **Completed** | 2026-07-29 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Posture** | Read-only audit; no runtime code changed |
 <!-- /ANCHOR:metadata -->
 
@@ -97,8 +96,7 @@ pass-through; pi/cursor/devin enforce allowlists. cli-devin's default accept-edi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-The per-provider/model reachability cross-map, the per-mode availability map, and the frozen disposition register are not yet
-complete. Reachability so far reflects command-construction analysis, not live credentialed dispatch.
+The frozen register records reachability from command-construction analysis and per-mode coverage from the shipped dispatch code; live credentialed per-provider/model reachability is proven end-to-end in the combo test matrix (005), which logs every credentials-gated skip. That live proof is 005's deliverable, not this read-only audit's.
 <!-- /ANCHOR:limitations -->
 
 <!-- ANCHOR:deviations -->

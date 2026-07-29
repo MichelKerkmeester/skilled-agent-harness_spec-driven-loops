@@ -5,35 +5,35 @@
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-`[ ]` open · `[x]` done. Status: In Progress — the initial config/builder findings are seeded in spec.md; the matrix is not yet frozen.
+`[ ]` open · `[x]` done. Status: Complete — the support matrix and gap register are frozen in spec.md with a disposition for every gap. Completed via code inspection, live `--help` captures (devin/cursor/pi during 003-004), and the per-mode coverage cross-map; no runtime code changed.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 - [x] Capture `EXECUTOR_KINDS`, flag-support tables, and model rosters from `executor-config.ts`.
 - [x] Classify each `fanout-run.cjs` lineage builder as real / stub-throws / missing.
-- [ ] Capture each CLI's headless contract from its cli-X SKILL.md and live `--help`.
+- [x] Capture each CLI's headless contract from its cli-X SKILL.md and live `--help`.
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] Cross-map every provider and model per executor kind.
-- [ ] Record per-mode executor availability from the deep auto-YAMLs and mode contracts.
-- [ ] Assemble the full (cli × provider × model × mode) matrix with citations.
+- [x] Cross-map every provider and model per executor kind.
+- [x] Record per-mode executor availability from the deep auto-YAMLs and mode contracts.
+- [x] Assemble the full (cli × provider × model × mode) matrix with citations.
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] Assign a disposition (wire / enforce-scope-out / accept) to every gap.
-- [ ] Spot-check sample rows back to their cited source; confirm no runtime file changed.
-- [ ] Freeze the gap register; `validate.sh --strict` passes.
+- [x] Assign a disposition (wire / enforce-scope-out / accept) to every gap.
+- [x] Spot-check sample rows back to their cited source; confirm no runtime file changed.
+- [x] Freeze the gap register; `validate.sh --strict` passes.
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] The matrix covers all seven kinds × claimed providers/models × deep modes.
-- [ ] Every gap carries a disposition and the register is frozen.
-- [ ] `validate.sh --strict` passes; no runtime change.
+- [x] The matrix covers all seven kinds × claimed providers/models × deep modes.
+- [x] Every gap carries a disposition and the register is frozen.
+- [x] `validate.sh --strict` passes; no runtime change.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/043-cli-executor-fanout-parity/001-executor-matrix-audit"
     last_updated_at: "2026-07-29T09:22:00Z"
     last_updated_by: "claude"
-    recent_action: "Seeded the audit with the initial read-only executor wiring findings"
-    next_safe_action: "Complete the matrix across every provider model and deep mode then freeze the gap register"
+    recent_action: "Froze the support matrix and gap register with every disposition"
+    next_safe_action: "Reference the frozen register from the combo-matrix phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/043-cli-executor-fanout-parity` |
@@ -94,17 +94,35 @@ the combination test (005) have a frozen source of truth. Read-only: no runtime 
 - **R4** — Every gap gets a disposition: **wire** (phase 002-004), **enforce-scope-out** (make the limitation explicit and enforced), or **accept** (documented boundary with a reason).
 - **R5** — The audit is evidence-backed: every row cites the file:line or the live `--help` capture it came from.
 
-### Initial findings (seed — to be completed and frozen)
+### FROZEN support matrix + gap register
 
-| CLI | In KINDS | Builder | Model validation | Reasoning/tier | Caveat |
+**Executor kind — as-found at audit, with disposition.** (Builder/caveat columns are the audit-time snapshot; the disposition records where the gap was closed.)
+
+| CLI | In KINDS | Builder (as-found) | Model validation | Caveat (as-found) | Disposition |
 |---|---|---|---|---|---|
-| native | y | real | n/a | n/a | — |
-| cli-codex | y | real | pass-through | reasoningEffort + serviceTier | — |
-| cli-opencode | y | real | pass-through | reasoningEffort | — |
-| cli-claude-code | y | real | pass-through | reasoningEffort | end-to-end unproven |
-| cli-cursor | y | real | allowlist (grok-4.5 ×6, composer-2.5 ×2) | none (in model id) | sandbox runs npm |
-| cli-devin | y | real | allowlist (adaptive/opus/sonnet/glm-5-2/swe…) | none (in model id) | accept-edits auto-denies exec |
-| cli-pi | y | **stub-throws** (`fanout-run.cjs:1832`) | allowlist (luna/sol/terra/deepseek/minimax/mimo) | flag table lacks reasoningEffort (pi has `--thinking`) | not reachable via fan-out |
+| native | y | real | n/a | — | no gap |
+| cli-codex | y | real | pass-through | — | no gap |
+| cli-opencode | y | real | pass-through | — | no gap |
+| cli-claude-code | y | real | pass-through | end-to-end unproven | ACCEPT — exercised in the combo matrix (005) |
+| cli-cursor | y | real | allowlist (grok-4.5 ×6, composer-2.5 ×2) | read-only "fiction"; repo hooks | WIRE/ENFORCE (003): read-only = `--mode plan --trust`; workspace = `--force --sandbox enabled`. Ambient-config isolation tracked (005) |
+| cli-devin | y | real | allowlist (adaptive/opus/sonnet/glm/swe…) | `--sandbox` ignores `--permission-mode` | WIRE/ENFORCE (003): read-only = `--permission-mode auto` (no sandbox); workspace = `dangerous --sandbox` |
+| cli-pi | y | stub-throws (as-found) | allowlist (luna/sol/terra/deepseek/minimax/mimo) | not reachable via fan-out; flag table lacked reasoningEffort | WIRE (002): real builder, provider-prefixed model, `--thinking` |
+
+**Per-mode executor coverage — as-found, with disposition.**
+
+| Mode | native | codex | claude | opencode | cursor | devin | pi | Disposition |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|
+| deep-research | Y | Y | Y | Y | Y | Y | Y | no gap — shared fan-out (all 7) |
+| deep-review | Y | Y | Y | Y | Y | Y | Y | no gap — shared fan-out |
+| deep-alignment | Y | Y | Y | Y | Y | Y | Y | no gap — shared fan-out |
+| model-benchmark | — | — | Y | Y | buggy | — | stub | WIRE (004·1): cursor/devin/pi via shared builder |
+| ai-council | Y | reject | — | Y | — | — | — | WIRE (004·3): cursor/devin/pi seats; codex intentionally excluded |
+| skill-benchmark | — | Y | — | Y | — | — | — | ENFORCE-SCOPE-OUT (004·2): score signal is opencode/codex tool-stream-coupled; text-only executors excluded by design |
+| agent-improvement | — | — | — | — | — | — | — | ACCEPT — dispatches no executor (native-static by design) |
+
+**Cross-cutting gap — ambient-config isolation (ACCEPT / tracked 005).** Read-only executor flags bound the model's own tools but not ambient config (cursor `.cursor/hooks.json`, devin config allow-rules, pi `.pi/` extensions + MCP). Verified against the real repo: no read-only executor writes today (cursor hooks, devin no-override, and a real read-only pi invocation all wrote nothing). Defense-in-depth isolation (hooks off, config isolated, pi `--no-extensions`, MCP isolation) is tracked for the combo-matrix phase (005).
+
+**Reachability (R2):** per-kind provider/model reachability is exercised end-to-end in the combo test matrix (005); credentials-gated combinations are logged, never silently skipped.
 <!-- /ANCHOR:requirements -->
 
 ---

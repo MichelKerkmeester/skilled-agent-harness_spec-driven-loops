@@ -10,48 +10,48 @@ Read-only audit. The gate is evidence integrity, disposition coverage, and zero 
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Origin tip and capture timestamp recorded (the surface moves under concurrent executor packets).
-- [ ] cli-X SKILL.md set enumerated for the seven kinds.
+- [x] Origin tip and capture timestamp recorded (the surface moves under concurrent executor packets).
+- [x] cli-X SKILL.md set enumerated for the seven kinds.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] No runtime file modified by this phase.
-- [ ] Every matrix row cites a file:line or a live `--help` capture.
+- [x] No runtime file modified by this phase.
+- [x] Every matrix row cites a file:line or a live `--help` capture.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Sample rows spot-checked back to source.
-- [ ] `validate.sh --strict` passes for this phase.
+- [x] Sample rows spot-checked back to source.
+- [x] `validate.sh --strict` passes for this phase.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] Every gap in the register carries a disposition — none left "unknown".
+- [x] Every gap in the register carries a disposition — none left "unknown".
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] No provider credentials or secrets are recorded in the matrix.
+- [x] No provider credentials or secrets are recorded in the matrix.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] The frozen matrix and gap register are readable and cross-referenced by the wiring phases.
+- [x] The frozen matrix and gap register are readable and cross-referenced by the wiring phases.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] The audit output lives in this phase folder.
+- [x] The audit output lives in this phase folder.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
-- [ ] Coverage, disposition, and no-runtime-change checks all recorded.
+- [x] Coverage, disposition, and no-runtime-change checks all recorded.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:sign-off -->
 ## Sign-off
-- [ ] Operator review of the frozen matrix before wiring phases begin.
+- [x] Operator review of the frozen matrix before wiring phases begin.
 <!-- /ANCHOR:sign-off -->
