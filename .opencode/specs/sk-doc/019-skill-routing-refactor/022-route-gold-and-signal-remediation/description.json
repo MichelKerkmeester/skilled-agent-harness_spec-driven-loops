@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/022-route-gold-and-signal-remediation",
+  "description": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
+  "keywords": [
+    "take",
+    "hubs",
+    "blocked",
+    "minimal",
+    "correct",
+    "change",
+    "wire",
+    "folded",
+    "vocabulary"
+  ],
+  "lastUpdated": "2026-07-29T04:43:35.598Z",
+  "specId": "022",
+  "folderSlug": "route-gold-and-signal-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
