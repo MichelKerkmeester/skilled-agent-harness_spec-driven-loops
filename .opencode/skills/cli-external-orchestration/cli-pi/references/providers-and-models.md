@@ -43,12 +43,39 @@ Pi is a multi-provider passthrough with **no enforced allowlist** at this layer.
 
 The table below is the machine-local authenticated roster confirmed on 2026-07-28 from `~/.pi/agent/auth.json` and `models-store.json` (four authenticated providers). The roster is machine state, not a contract — re-read `models-store.json` before relying on a specific id.
 
-| Provider | Installed model ids | Notes |
-|----------|---------------------|-------|
-| `openai-codex` | `gpt-5.3-codex-spark`, `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-sol` | Custom provider carrying the GPT-5.6 tiers — see the effort cross-map in §4 |
-| `deepseek` | `deepseek-v4-flash`, `deepseek-v4-pro` | `-pro` reasoning, `-flash` latency-optimized; a live `--provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn |
-| `minimax` | `MiniMax-M2.7`, `MiniMax-M2.7-highspeed`, `MiniMax-M3` | MiniMax Direct API passthrough |
-| `xiaomi` | `mimo-v2-flash`, `mimo-v2-omni`, `mimo-v2-pro`, `mimo-v2.5`, `mimo-v2.5-pro`, `mimo-v2.5-pro-ultraspeed` | MiMo passthrough; `-ultraspeed` is the low-latency tier |
+### openai-codex
+
+Custom provider carrying the GPT-5.6 personas — see the effort cross-map in §4. Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). `gpt-5.6-terra` is in Pi's supported set but may not be authenticated on every machine — confirm via `models-store.json`.
+
+| Model id | Notes |
+|----------|-------|
+| `gpt-5.6-sol` | GPT-5.6 Sol |
+| `gpt-5.6-luna` | GPT-5.6 Luna |
+| `gpt-5.6-terra` | GPT-5.6 Terra |
+
+### deepseek
+
+| Model id | Notes |
+|----------|-------|
+| `deepseek-v4-flash` | Latency-optimized; a live `--provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn |
+| `deepseek-v4-pro` | Reasoning-optimized |
+
+### minimax
+
+MiniMax Direct API passthrough.
+
+| Model id | Notes |
+|----------|-------|
+| `MiniMax-M3` | — |
+
+### xiaomi
+
+MiMo passthrough; `-ultraspeed` is the low-latency tier.
+
+| Model id                   | Notes            |
+| ----------------------------| ------------------|
+| `mimo-v2.5-pro`            | —                |
+| `mimo-v2.5-pro-ultraspeed` | Low-latency tier |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the four authenticated providers above have a confirmed installed catalog.
 
@@ -94,8 +121,9 @@ The GPT-5.6 tiers are reachable through Pi's `openai-codex` provider, but Pi's `
 
 | Model | Codex-documented effort ceiling | Reachable via Pi `--thinking`? |
 |-------|---------------------------------|--------------------------------|
-| `gpt-5.6-luna` | `max` | Yes — `max` is the top of Pi's own scale |
 | `gpt-5.6-sol` | `ultra` | Partially — Pi's `--thinking` scale stops at `max`; `ultra` has no Pi-side value |
+| `gpt-5.6-luna` | `max` | Yes — `max` is the top of Pi's own scale |
+| `gpt-5.6-terra` | `max` | Yes — `max` is the top of Pi's own scale |
 
 Confirm the target model actually honors the requested tier before assuming it changes behavior — the contract pin did not exhaustively test every model/tier pairing.
 

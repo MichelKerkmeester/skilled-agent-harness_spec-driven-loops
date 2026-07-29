@@ -43,12 +43,14 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 cli-codex is backed by a single provider — **OpenAI**, authenticated through ChatGPT OAuth only (`codex login`; no API key). The model string passed to `--model` / `-m` is a bare OpenAI slug. All four models run on the `fast` service tier (`-c service_tier="fast"`); each caps at a different reasoning-effort ceiling.
 
-| Provider | Model id | Default? | Effort ceiling / notes |
-|----------|----------|----------|------------------------|
-| OpenAI | `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
-| OpenAI | `gpt-5.6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
-| OpenAI | `gpt-5.6-terra` | — | Ceiling `max`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
-| OpenAI | `gpt-5.6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh` |
+### OpenAI
+
+| Model id | Default? | Effort ceiling / notes |
+|----------|----------|------------------------|
+| `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
+| `gpt-5.6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
+| `gpt-5.6-terra` | — | Ceiling `max`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
+| `gpt-5.6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning — the only model reaching `ultra`; the `sol-verify` profile pins `xhigh` |
 
 `--oss` (local Ollama models) exists as an escape hatch for local experimentation only — not a production dispatch target. See [cli-reference.md](./cli-reference.md) §4.
 

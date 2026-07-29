@@ -42,6 +42,8 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 cli-cursor has ONE backing provider — **Cursor** — reached through the `cursor-agent` binary. Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families), but **cli-cursor dispatch is scoped to exactly these 10 ids — this is an ENFORCED allowlist, not a reference list.** Dispatching any off-list id HARD-FAILS before a command is built (see §6). `auto` (Cursor's own router) is deliberately EXCLUDED — it can silently resolve to a model outside this set, defeating the point of enforcing one.
 
+### Cursor
+
 | # | Allowed model id | Family | Default? | Notes |
 |---|------------------|--------|----------|-------|
 | 1 | `composer-2.5` | Composer (Cursor-native) | **Default** | Cursor's own house model; the default absent other direction |

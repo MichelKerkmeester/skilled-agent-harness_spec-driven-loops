@@ -6,7 +6,7 @@ trigger_phrases:
   - "which model for devin dispatch"
   - "devin adaptive router default"
   - "devin permission mode effort lever"
-  - "devin opus sonnet swe glm dispatch"
+  - "devin glm swe grok deepseek dispatch"
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
@@ -22,7 +22,7 @@ The single catalog of the models, aliases, defaults, permission-mode lever, and 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which model, which alias, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts an intelligent `adaptive` router plus a multi-provider roster (Anthropic, OpenAI, Google, Cognition, and open-source models) through short-name aliases.
+One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the four families kept in scope for cli-devin: GLM-5.2, SWE-1.7, Grok 4.5, and DeepSeek.
 
 ### When to Use
 - Choosing a `--model <alias>` for a `devin -p` dispatch
@@ -41,31 +41,31 @@ This file enumerates the model/alias/default facts and the dispatch envelope. It
 
 ## 2. PROVIDERS & MODELS
 
-Devin resolves models through a single backing service (Cognition). The value passed to `--model` is always a short **alias**; a short name always resolves to the latest version in that family. `adaptive` enables the intelligent model router that auto-selects the best model per task. Run `devin models` for the live roster on a given install.
+Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the four families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
 
-| Model / alias | Notes (routes to / use case) |
-|---------------|------------------------------|
-| `adaptive` | **Default.** Intelligent model router — auto-selects the best model per task. General delegation. |
-| `opus` | Claude Opus — complex refactoring, architecture changes, deep reasoning, security audits. |
-| `sonnet` | Claude Sonnet — balanced coding, implementation, review. |
-| `swe` | SWE-1.6 (Cognition) — fast, cost-effective edits, bug fixes, questions. |
-| `swe-1-6-fast` | SWE-1.6 Fast — quickest turnaround for straightforward edits and lookups. |
-| `gpt` | OpenAI GPT — multi-file refactors, OpenAI-model strengths, test generation. |
-| `codex` | OpenAI coding-model (Codex) dispatch through Devin. |
-| `gemini` | Google Gemini — Google-model tasks. |
-| `deepseek` | DeepSeek — open-source model tasks. |
-| `kimi` | Kimi — open-source model tasks. |
-| `glm-5-2` | GLM-5.2 — open-source model tasks (base). |
-| `glm-5-2-max` | GLM-5.2 max-reasoning variant. |
-| `glm-5-2-1m` | GLM-5.2 with 1M context. |
-| `glm-5-2-max-1m` | GLM-5.2 max-reasoning + 1M context. |
-| `glm-5-2-none` | GLM-5.2 with reasoning disabled. |
-| `glm-5-2-none-1m` | GLM-5.2 reasoning-disabled + 1M context. |
+### Cognition
+
+| Family | Model uid | Context | Notes |
+|--------|-----------|---------|-------|
+| GLM-5.2 | `glm-5-2` | 200K | High — free tier |
+| GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |
+| GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
+| GLM-5.2 | `glm-5-2-max-1m` | 1M | Max, 1M context |
+| GLM-5.2 | `glm-5-2-none` | 200K | Reasoning disabled |
+| GLM-5.2 | `glm-5-2-none-1m` | 1M | Reasoning disabled, 1M context |
+| SWE-1.7 | `swe-1-7` | 262K | Max effort — free (beta) |
+| SWE-1.7 | `swe-1-7-medium` | 262K | Medium effort — free (beta) |
+| SWE-1.7 | `swe-1-7-lightning` | 203K | Lightning speed tier (beta); the `swe` alias resolves here |
+| Grok 4.5 | `grok-4-5-low` | 500K | Low effort |
+| Grok 4.5 | `grok-4-5-medium` | 500K | Medium effort |
+| Grok 4.5 | `grok-4-5-high` | 500K | High effort |
+| DeepSeek | `deepseek-v4-pro` | 1M | DeepSeek V4 Pro (uid `deepseek-v4`) |
 
 ### Notes on the roster
-- Short aliases (`opus`, `sonnet`, `swe`, `gpt`, `codex`, `gemini`) always resolve to the latest version in that family — pin behavior by always passing `--model` explicitly in scripts.
-- The GLM `-max` / `-1m` / `-none` suffixes stack (e.g. `glm-5-2-max-1m` = max reasoning + 1M context); confirm the live suffix set with `devin models`.
-- Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default (SWE-1.6), `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
+- Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model grok-4-5-high`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
+- GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
+- This is a curated subset. Devin's full 37-family roster (Claude, GPT, Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
+- Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
 
 ---
 
@@ -75,13 +75,13 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `adaptive` |
+| Default model | `swe` (alias → `swe-1-7-lightning`) |
 | Default permission mode | `--permission-mode accept-edits` |
 | Prompt separator | `--` before the print-mode prompt (required) |
 
 ```bash
 devin -p \
-  --model adaptive \
+  --model swe \
   --permission-mode accept-edits \
   -- \
   "<prompt>"
@@ -107,7 +107,7 @@ cli-devin has **no headless reasoning-effort flag** — there is no `--variant` 
 
 > Note: `devin -p` defaults to `auto` (read-only). File-modification dispatches silently prompt or no-op unless you pass `--permission-mode accept-edits` (or higher).
 
-**2. Model thinking level — interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`opus` for deep reasoning, `swe-1-6-fast` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`.
+**2. Model thinking level — interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`grok-4-5-high` for deep reasoning, `swe-1-7-lightning` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`.
 
 ---
 
@@ -118,7 +118,7 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 devin -p \
-  --model adaptive --permission-mode accept-edits \
+  --model swe --permission-mode accept-edits \
   -- "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 

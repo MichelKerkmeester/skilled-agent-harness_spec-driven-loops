@@ -6,7 +6,7 @@ trigger_phrases:
   - "which model for opencode dispatch"
   - "opencode variant reasoning effort"
   - "opencode default model deepseek"
-  - "opencode minimax kimi glm dispatch"
+  - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
@@ -42,33 +42,35 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install.
 
-| Provider | Example model id | Default? | Notes |
-|----------|------------------|----------|-------|
-| `deepseek` | `deepseek/deepseek-v4-pro` | **Default** | Deep reasoning at low cost via direct DeepSeek API |
-| `deepseek` | `deepseek/deepseek-v4-flash` | — | Latency-optimized sibling; non-reasoning (`--variant` ignored) |
-| `kimi-for-coding` | `kimi-for-coding/k2p7` | — | Kimi K2.7 Code, 256k context; subscription plan |
-| `zai-coding-plan` | `zai-coding-plan/glm-5.2` | — | GLM-5.2 flagship, 1M context; subscription; omit `--agent` |
-| `minimax-coding-plan` | `minimax-coding-plan/MiniMax-M3` | Default MiniMax | MiniMax Token Plan (subscription); omit `--agent` |
-| `minimax` | `minimax/MiniMax-M3` | — | MiniMax Direct API (pay-per-token); needs `MINIMAX_API_KEY` |
-| `xiaomi-token-plan-ams` | `xiaomi-token-plan-ams/mimo-v2.5-pro` | — | MiMo-V2.5-Pro Token Plan (Europe); 1M context, strongly agentic; omit `--agent` |
-| `xiaomi` | `xiaomi/mimo-v2.5-pro` (+ `-ultraspeed`) | — | MiMo Direct API (pay-per-token); `-ultraspeed` is the low-latency tier |
-| `openai` | `openai/gpt-5.6` family | — | Full GPT-5.6 catalog — see the persona/tier grid below |
+### deepseek
 
-### OpenAI GPT-5.6 slug grid (via the `openai` provider)
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `deepseek/deepseek-v4-pro` | **Default** | Deep reasoning at low cost via direct DeepSeek API |
+| `deepseek/deepseek-v4-flash` | — | Latency-optimized sibling; non-reasoning (`--variant` ignored) |
 
-Three personas × three tiers = 12 slugs. `gpt-5.6-sol` is the flagship default persona; confirm live slugs via `opencode models openai`.
+### minimax
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `minimax/MiniMax-M3` | — | MiniMax Direct API (pay-per-token); needs `MINIMAX_API_KEY` |
+
+### xiaomi
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `xiaomi/mimo-v2.5-pro` | — | MiMo-V2.5-Pro, Direct API (pay-per-token); 1M context, strongly agentic |
+| `xiaomi/mimo-v2.5-pro-ultraspeed` | — | Low-latency MiMo-V2.5-Pro tier |
+
+### openai
+
+GPT-5.6 via the `openai` provider — three personas (sol/terra/luna) × three speed tiers (base / fast / pro) = 9 slugs. `gpt-5.6-sol` is the flagship default persona; confirm live slugs via `opencode models openai`.
 
 | Persona | Base | Fast (low-latency) | Pro |
 |---------|------|--------------------|-----|
-| (plain) | `openai/gpt-5.6` | `openai/gpt-5.6-fast` | `openai/gpt-5.6-pro` |
 | sol | `openai/gpt-5.6-sol` | `openai/gpt-5.6-sol-fast` | `openai/gpt-5.6-sol-pro` |
 | terra | `openai/gpt-5.6-terra` | `openai/gpt-5.6-terra-fast` | `openai/gpt-5.6-terra-pro` |
 | luna | `openai/gpt-5.6-luna` | `openai/gpt-5.6-luna-fast` | `openai/gpt-5.6-luna-pro` |
-
-### Model-specific operational caveats
-- **Kimi K2.7 Code over-exploration:** on broad scopes at `--variant high`, k2p7 over-explores and can exceed a 600s timeout without emitting (a killed run yields 0 bytes — looks like a hang). Mitigate with a read-cap in the prompt + a 1200s+ timeout, or omit `--variant`.
-- **GLM-5.2 latency variance:** thinking-on drives latency 6–161s (avg ~26s); budget generous timeouts and expect ~1/45 transient failures (retry the cell).
-- **GLM-5.2 vision:** `opencode run --file <image>` does NOT deliver images to this provider (upstream #20802 → `NO_IMAGE_RECEIVED`); use the direct Z.AI multimodal API for image input.
 
 ---
 
@@ -103,9 +105,8 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 |----------|----------------------|
 | `deepseek` (`-v4-pro`) | reasoning effort accepted |
 | `deepseek` (`-v4-flash`) | non-reasoning — `--variant` ignored |
-| `minimax-coding-plan` / `minimax` | behavior unverified — omitted by default; confirm before relying |
-| `xiaomi-token-plan-ams` / `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
-| `zai-coding-plan` (glm-5.2) | GLM has native `reasoning_effort` (high/max); whether `--variant` forwards is unverified |
+| `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
+| `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 
 ---

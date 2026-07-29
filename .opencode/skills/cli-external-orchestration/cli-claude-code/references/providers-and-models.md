@@ -42,6 +42,8 @@ This file enumerates the model/effort facts and the dispatch envelope. It does N
 
 cli-claude-code is single-provider: **Anthropic**. The model string passed to `--model` is always a `claude-*` id. The roster below is complete — pin the exact id the target CLI accepts.
 
+### Anthropic
+
 | Model id | Default? | Notes (tier / use case) |
 |----------|----------|-------------------------|
 | `claude-opus-4-8` | — | Current flagship (Claude 5-era Opus) — deepest reasoning, highest quality; architecture, complex trade-offs, extended thinking |
