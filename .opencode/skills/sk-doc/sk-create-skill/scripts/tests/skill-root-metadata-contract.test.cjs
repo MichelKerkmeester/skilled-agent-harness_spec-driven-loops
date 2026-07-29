@@ -51,6 +51,7 @@ const EXPECTED_CLASSES = {
 };
 
 let tmpRoot = null;
+const HEALTHY_INTENT_SIGNALS = Array.from({ length: 8 }, (_value, index) => `fixture signal ${index + 1}`);
 
 function makeTmpSkillsDir() {
   if (!tmpRoot) tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'skill-root-contract-'));
@@ -65,7 +66,23 @@ function makeRoot(skillsDir, skillId, files) {
   for (const [name, body] of Object.entries(files || {})) {
     const full = path.join(dir, name);
     fs.mkdirSync(path.dirname(full), { recursive: true });
-    fs.writeFileSync(full, typeof body === 'string' ? body : `${JSON.stringify(body, null, 2)}\n`);
+    let content = body;
+    if (name === 'graph-metadata.json' && body && typeof body === 'object' && !Array.isArray(body)) {
+      const rawDerived = body.derived && typeof body.derived === 'object' && !Array.isArray(body.derived)
+        ? body.derived
+        : {};
+      content = {
+        ...body,
+        intent_signals: Object.hasOwn(body, 'intent_signals') ? body.intent_signals : HEALTHY_INTENT_SIGNALS,
+        derived: {
+          ...rawDerived,
+          trigger_phrases: Object.hasOwn(rawDerived, 'trigger_phrases')
+            ? rawDerived.trigger_phrases
+            : HEALTHY_INTENT_SIGNALS,
+        },
+      };
+    }
+    fs.writeFileSync(full, typeof content === 'string' ? content : `${JSON.stringify(content, null, 2)}\n`);
   }
   return dir;
 }
@@ -323,6 +340,50 @@ function testGateAllowsKnownGraphMetadataExtra() {
   assert.ok(!codesOf(result).includes('GRAPH_METADATA_UNKNOWN_KEY'));
 }
 
+function testGateRejectsIntentSignalsBelowFloor() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'thin-intent-signals', {
+    'graph-metadata.json': {
+      skill_id: 'thin-intent-signals',
+      intent_signals: ['one', 'two', 'three'],
+      derived: { trigger_phrases: ['one', 'two', 'three'] },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'thin-intent-signals' },
+    'references/a.md': '# a\n',
+  });
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.ok(codesOf(result).includes('INTENT_SIGNALS_BELOW_FLOOR'));
+}
+
+function testGateRejectsEmptyIntentSignalsAndTriggers() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'empty-routing-signals', {
+    'graph-metadata.json': {
+      skill_id: 'empty-routing-signals',
+      intent_signals: [],
+      derived: { trigger_phrases: [] },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'empty-routing-signals' },
+    'references/a.md': '# a\n',
+  });
+  const result = gate.checkRoot(dir, { fix: true });
+  assert.ok(codesOf(result).includes('INTENT_SIGNALS_AND_TRIGGERS_EMPTY'));
+}
+
+function testGateAcceptsIntentSignalsAtFloor() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'healthy-routing-signals', {
+    'graph-metadata.json': {
+      skill_id: 'healthy-routing-signals',
+      intent_signals: HEALTHY_INTENT_SIGNALS,
+      derived: { trigger_phrases: HEALTHY_INTENT_SIGNALS },
+    },
+    'leaf-manifest.config.json': { workflowMode: 'healthy-routing-signals' },
+    'references/a.md': '# a\n',
+  });
+  assert.equal(gate.checkRoot(dir, { fix: true }).status, 'pass');
+}
+
 function testGateDetectsStaleGeneratedManifest() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'stale-manifest', {
@@ -527,6 +588,9 @@ try {
   testGateIgnoresSameNamedContinuityMetadata();
   testGateRejectsUnknownGraphMetadataKey();
   testGateAllowsKnownGraphMetadataExtra();
+  testGateRejectsIntentSignalsBelowFloor();
+  testGateRejectsEmptyIntentSignalsAndTriggers();
+  testGateAcceptsIntentSignalsAtFloor();
   testGateDetectsStaleGeneratedManifest();
   testFixNeverWritesAuthoredFiles();
   testFixDoesNotTouchHubAliases();

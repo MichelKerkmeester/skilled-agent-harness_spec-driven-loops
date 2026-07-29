@@ -67,7 +67,13 @@
     "skill routing",
     "gate 2",
     "which skill",
-    "route request"
+    "route request",
+    "which skill should i use",
+    "route my request",
+    "skill discovery is wrong",
+    "advisor recommend",
+    "why did the advisor pick",
+    "skill routing confidence"
   ],
   "derived": {
     "trigger_phrases": [

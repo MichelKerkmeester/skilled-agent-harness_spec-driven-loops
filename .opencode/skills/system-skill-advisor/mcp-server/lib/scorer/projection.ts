@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { dirname, isAbsolute, join, resolve } from 'node:path';
+import { basename, dirname, extname, isAbsolute, join, resolve } from 'node:path';
 
 import Database from 'better-sqlite3';
 
@@ -160,6 +160,15 @@ function stringArray(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((entry): entry is string => typeof entry === 'string') : [];
 }
 
+function reduceDerivedPathEntry(value: string): string {
+  if (!value.includes('/')) return value;
+  const fileName = basename(value);
+  const extension = extname(fileName);
+  // Full repo paths create generic assets/patterns/md/js tokens that match
+  // unrelated prompts; the extension-free basename preserves the distinct concept.
+  return extension ? fileName.slice(0, -extension.length) : fileName;
+}
+
 function boundedDemotion(value: unknown): number | undefined {
   return typeof value === 'number' && Number.isFinite(value)
     ? Math.max(0, Math.min(1, value))
@@ -216,8 +225,8 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
   const derivedKeywords = unique([
     ...stringArray(derived.key_topics),
     ...stringArray(derived.entities),
-    ...stringArray(derived.key_files),
-    ...stringArray(derived.source_docs),
+    ...stringArray(derived.key_files).map(reduceDerivedPathEntry),
+    ...stringArray(derived.source_docs).map(reduceDerivedPathEntry),
   ].flatMap((entry) => phraseVariants(entry)));
 
   return {
@@ -664,8 +673,8 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
     const derivedKeywords = unique([
       ...stringArray(derived.key_topics),
       ...stringArray(derived.entities),
-      ...stringArray(derived.key_files),
-      ...stringArray(derived.source_docs),
+      ...stringArray(derived.key_files).map(reduceDerivedPathEntry),
+      ...stringArray(derived.source_docs).map(reduceDerivedPathEntry),
     ].flatMap((item) => phraseVariants(item)));
     skills.push({
       id: skillId,

@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -88,6 +88,13 @@ Out of scope — picking the canonical `derived` producer (O1, a separate phase 
 | REQ-005 | An `intent_signals` <-> `derived.trigger_phrases` reconciliation gate exists | A new check (in `ci-skill-root-metadata.cjs`, following the `checkCommandMetadata`-at-line-372 pattern feeding `checkRoot`'s `violations.push(...)` at line 322) computes the Jaccard similarity between each root's `intent_signals` and `derived.trigger_phrases`, asserts at least one of the two arrays is non-empty, and reports (does not silently pass) any root below a documented low-agreement threshold without a recorded rationale; run against the current fleet, the gate must flag `sk-code`'s pre-fix 0.037 Jaccard as a finding (confirming the gate actually detects the condition it is built for) |
 | REQ-006 | SQLite-vs-filesystem fallback expected-degradation is locked by tests, not left implicit | New or extended vitest coverage (alongside `projection-fallback-049-005.vitest.ts`) constructs a fixture skill with both graph edges and a doc-trigger entry present in a real SQLite fixture DB, then asserts: (a) `source: 'sqlite'` for that fixture returns non-empty `edges` and a populated `docTriggers` for the skill; (b) `source: 'filesystem'` and `source: 'filesystem-fallback'` for the same skill both deterministically return `edges: []` and no `docTriggers` — a locked, asserted contract instead of an untested silent difference; the test fails if either degraded mode ever starts (or stops) dropping this data without the test being updated in the same change |
 | REQ-007 | Every lane/derivedKeywords/JSON change in this phase is measured against the 006-pinned routing-accuracy corpus with no unexplained regression | `score-routing-corpus.py` is run against the 006-pinned corpus (195 labeled + 72 holdout + 24 ambiguity prompts, confirmed present at `mcp-server/scripts/routing-accuracy/{labeled,holdout,ambiguity}-prompts.jsonl`) before and after this phase's REQ-001 through REQ-004 changes; any prompt whose predicted top skill changes is reviewed and either justified (fixes a documented miss) or the change is reverted before this phase is marked complete |
+
+### Implementation amendments (recorded deviations)
+
+- **REQ-002 premise correction (the phase's most important finding).** The cross-reviewer proved `scoreTokenOverlap` already collapses candidate tokens through a Set (`text.ts:84`) — a term listed in both `domains` and `intent_signals` **never double-counted at the token level**, which is why the corpus was byte-identical under the attempted dedup and why the first dedup test passed pre-fix (non-discriminating). The dedup wrapper was reverted (dead complexity); the *real* guard — Set-collapse inside `scoreTokenOverlap` — is now locked by `lexical-candidate-dedup.vitest.ts`, which asserts identical scores for duplicate-vs-single listings and fails if the collapse is ever removed. The 029 research's double-count claim is corrected, not silently papered over.
+- **REQ-003 approach.** Basename-extraction (not full drop) chosen for path reduction: `reduceDerivedPathEntry` in `projection.ts`, one shared helper used by both the SQLite and filesystem assemblies, with direct regression coverage asserting basename concepts survive and generic segment tokens do not, in both sources.
+- **REQ-005 thresholds.** Floor 8 (raises exactly the three sub-8 roots); Jaccard NOTE threshold 0.05 (flags sk-code's 0.037, passes the next-lowest 0.108); the NOTE is report-only by design.
+- **REQ-007 regime coverage.** The Python corpus cannot see TS lane changes, so the TS scorer was additionally measured over the full pinned corpus through its *source* (vitest transform, pinned force-local regime): 176/195 + 53/72, byte-identical to baseline. The dist-based capture tools could not be used — the advisor `npm run build` is broken by the same concurrent in-flight pi-hook relocation blocking `validate.sh` — so the live daemon and dist run pre-phase lanes until the program's rollout phase rebuilds and reloads them.
 <!-- /ANCHOR:requirements -->
 
 ---

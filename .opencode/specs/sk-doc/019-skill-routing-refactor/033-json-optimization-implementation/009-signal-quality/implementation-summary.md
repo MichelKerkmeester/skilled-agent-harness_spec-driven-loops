@@ -1,6 +1,6 @@
 ---
 title: "Implementation Outcome: Intent-Signal Quality + Fallback Parity"
-description: "Planned record for the intent-signal coverage floor, lexical-lane dedup, derivedKeywords path-token cleanup, advisor self-enrichment, the reconciliation gate, and the SQLite-vs-filesystem fallback parity tests. Not yet built."
+description: "Shipped: intent-signal floor + enrichment (3 thin roots raised), basename path-noise reduction in both projection assemblies, reconciliation gate with report-only Jaccard NOTE, fallback-degradation parity locked by tests — and the research double-count premise corrected (Set-collapse already prevented it)."
 trigger_phrases:
   - "intent signal quality outcome"
 importance_tier: "normal"
@@ -8,12 +8,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality"
-    last_updated_at: "2026-07-29T10:00:00Z"
+    last_updated_at: "2026-07-29T20:10:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "Depends on 003 (fleet migration) and 006 (CI compiler + accuracy gates)"
+    recent_action: "Signals enriched + path noise reduced + gates/tests landed; double-count premise corrected; corpus neutral all regimes"
+    next_safe_action: "Phase 010 parent-intent-projection-spike"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -21,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/009-signal-quality"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Exact intent_signals coverage floor (candidate: 8) confirmed at implementation time against the 006-pinned corpus"
       - "Whether path-token stripping drops key_files/source_docs segments entirely or extracts a reduced basename token"
@@ -39,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Complete |
 | **Delivered** | Not yet — implementation has not started |
 | **Track** | sk-doc |
 | **Depends on** | `003-derived-regenerator-migration`, `006-ci-compiler-accuracy-gates` |
@@ -75,7 +74,12 @@ The coverage floor is deliberately left as a confirmed-at-implementation-time ca
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run — Status: Planned. Verification will consist of: (1) unit tests proving the lexical-lane dedup and the `derivedKeywords` path-token reduction each behave as specified; (2) a dry run of the new reconciliation gate confirming it flags the preserved pre-fix `sk-code` 0.037 Jaccard case; (3) new fallback-parity vitest coverage asserting the `sqlite`/`filesystem`/`filesystem-fallback` edges-and-docTriggers contract; (4) a before/after `score-routing-corpus.py` diff against the 006-pinned corpus with no unexplained regression; (5) `validate.sh <folder> --strict` reporting Errors:0. All `checklist.md` items are currently unchecked pending this run.
+All verified against the live tree:
+- **Contract-lock + reducer tests**: `lexical-candidate-dedup.vitest.ts` asserts identical scores for duplicate-vs-single term listings (locking `scoreTokenOverlap`'s Set-collapse — the reviewer-proven *actual* guard, after the attempted dedup was shown to be a behavioral no-op and reverted); `projection-fallback-049-005.vitest.ts` gained direct reducer coverage (basename concepts kept, generic segment tokens absent, both SQLite and filesystem sources). Fix-pass runs 15/15; combined scorer + routing runs 22/22; full 4-file routing suite 31/31.
+- **Reconciliation gate**: live fleet run emits `NOTE [INTENT_SIGNALS_TRIGGER_RECONCILIATION] sk-code: … Jaccard=0.037` — the exact detection case — while staying 11/11; floor and both-empty violations covered by synthetic-root fixtures in the contract test (green).
+- **Fallback-degradation parity**: sqlite source returns edges + docTriggers for a real fixture DB; `filesystem` and `filesystem-fallback` deterministically return `edges: []` and no docTriggers — contract locked.
+- **Corpus, all regimes**: Python scorer warm 0.5692/0.9843/TT108-FT3-FF1 and no-sqlite 0.5333/0.9843/TT101-FT3-FF1 — byte-identical pre/post; TS scorer measured through source over the full pinned corpus: 176/195 + 53/72, identical to baseline. Compiler exit 0; enrichment kept `mcp-code-mode` 8 / `system-skill-advisor` 10 / `system-spec-kit` 9 signals.
+- `validate.sh --strict` remains blocked repo-wide (concurrent pi-hook build — which now also breaks the advisor's own `npm run build`, so dist/daemon run pre-phase lanes until the rollout phase's rebuild/reload proof); verified by the direct gates above.
 <!-- /ANCHOR:verification -->
 
 ---

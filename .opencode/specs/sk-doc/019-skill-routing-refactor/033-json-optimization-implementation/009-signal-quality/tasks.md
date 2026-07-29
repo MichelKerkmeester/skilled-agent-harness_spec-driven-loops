@@ -42,12 +42,12 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Confirm 003 (fleet migration) and 006 (CI compiler + accuracy gates) have landed; re-confirm this phase's `file:line` citations still match the checked-out tree
-- [ ] T-02 Capture the pre-change fleet snapshot: `intent_signals` length per root (current: `mcp-code-mode` 3, `system-skill-advisor` 4, `system-spec-kit` 5, `sk-prompt` 9, `system-deep-loop` 15, `sk-doc` 18, `sk-git` 21, `sk-design` 27, `cli-external-orchestration` 29, `mcp-tooling` 50, `sk-code` 64) and per-root `domains`/`intentSignals` overlap counts
-- [ ] T-03 Capture the `derivedKeywords` set produced today for `sk-code` (20 `key_files`, 15 `source_docs` entries) as the path-token-noise baseline
-- [ ] T-04 Capture per-root `intent_signals`<->`derived.trigger_phrases` Jaccard (current: `sk-code` 0.037, `sk-prompt` 0.11, `system-spec-kit` 0.42) as the reconciliation-gate baseline
-- [ ] T-05 Run `score-routing-corpus.py` against the 006-pinned corpus (195 labeled + 72 holdout + 24 ambiguity prompts) and save the baseline predictions for the Phase 3 diff
-- [ ] T-06 Confirm the coverage floor (candidate 8) and the path-token reduction strategy (drop vs basename-extract) against the T-02/T-03 data
+- [x] T-01 Confirm 003 (fleet migration) and 006 (CI compiler + accuracy gates) have landed; re-confirm this phase's `file:line` citations still match the checked-out tree [evidence: 003+006 Complete on origin; derived v2 fleet-wide, pinned corpus runner used]
+- [x] T-02 Capture the pre-change fleet snapshot: `intent_signals` length per root (current: `mcp-code-mode` 3, `system-skill-advisor` 4, `system-spec-kit` 5, `sk-prompt` 9, `system-deep-loop` 15, `sk-doc` 18, `sk-git` 21, `sk-design` 27, `cli-external-orchestration` 29, `mcp-tooling` 50, `sk-code` 64) and per-root `domains`/`intentSignals` overlap counts [evidence: pre corpus warm 0.5692/0.9843/108-3-1, fallback 0.5333/0.9843/101-3-1; TS-source top3 176/195+53/72]
+- [x] T-03 Capture the `derivedKeywords` set produced today for `sk-code` (20 `key_files`, 15 `source_docs` entries) as the path-token-noise baseline [evidence: sk-code derivedKeywords pre-change carried generic path tokens (assets/patterns/js/md) from 20 key_files+15 source_docs]
+- [x] T-04 Capture per-root `intent_signals`<->`derived.trigger_phrases` Jaccard (current: `sk-code` 0.037, `sk-prompt` 0.11, `system-spec-kit` 0.42) as the reconciliation-gate baseline [evidence: fleet scan: mcp-code-mode 3, system-skill-advisor 4, system-spec-kit 5; sk-code Jaccard 0.037 confirmed live]
+- [x] T-05 Run `score-routing-corpus.py` against the 006-pinned corpus (195 labeled + 72 holdout + 24 ambiguity prompts) and save the baseline predictions for the Phase 3 diff [evidence: score-routing-corpus.py pre-run matches 006 floors exactly]
+- [x] T-06 Confirm the coverage floor (candidate 8) and the path-token reduction strategy (drop vs basename-extract) against the T-02/T-03 data [evidence: floor 8 confirmed: raises exactly the 3 sub-8 roots (next-lowest sk-prompt=9)]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -55,12 +55,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-07 Dedup `domains` vs `intentSignals` in `scoreLexicalLane` (`lexical.ts:64-71`) before the combined `scoreTokenOverlap` call
-- [ ] T-08 Add the scoring-oriented path-token reduction for `key_files`/`source_docs` entries feeding `derivedKeywords`, applied identically in `projectionFromRow` (`projection.ts:216-221`) and `loadFilesystemProjection` (`projection.ts:664-669`)
-- [ ] T-09 Enrich `mcp-code-mode/graph-metadata.json`, `system-skill-advisor/graph-metadata.json`, and `system-spec-kit/graph-metadata.json` `intent_signals` to the confirmed floor with routing-relevant phrases (advisor's own set specifically covers being routed *to*, per REQ-004)
-- [ ] T-10 Add the `intent_signals`<->`derived.trigger_phrases` reconciliation check to `ci-skill-root-metadata.cjs`, following the `checkCommandMetadata`-at-line-372 pattern feeding `checkRoot`'s `violations.push(...)` at line 322
-- [ ] T-11 Add the SQLite-vs-filesystem fallback expected-degradation parity tests (fixture DB with real `skill_edges` rows and a doc-trigger entry; assert `edges`/`docTriggers` present for `source: 'sqlite'` and absent for `source: 'filesystem'`/`'filesystem-fallback'`) in `projection-fallback-049-005.vitest.ts` or a new sibling file
-- [ ] T-12 Add the unit test proving REQ-002 (shared `domains`/`intentSignals` term scores once) and the unit test proving REQ-003 (no generic path-segment tokens survive in `derivedKeywords` for the `sk-code`-mirroring fixture)
+- [x] T-07 Dedup `domains` vs `intentSignals` in `scoreLexicalLane` (`lexical.ts:64-71`) before the combined `scoreTokenOverlap` call [evidence: AMENDED: scoreTokenOverlap already Set-collapses tokens (text.ts:84) — double-count cannot occur; lexical.ts reverted to a cosmetic candidates extraction; contract locked by lexical-candidate-dedup.vitest.ts (identical scores for dup vs single listing)]
+- [x] T-08 Add the scoring-oriented path-token reduction for `key_files`/`source_docs` entries feeding `derivedKeywords`, applied identically in `projectionFromRow` (`projection.ts:216-221`) and `loadFilesystemProjection` (`projection.ts:664-669`) [evidence: reduceDerivedPathEntry basename reducer applied in BOTH projectionFromRow and loadFilesystemProjection; regression coverage asserts basename kept, generic segments absent, both sources]
+- [x] T-09 Enrich `mcp-code-mode/graph-metadata.json`, `system-skill-advisor/graph-metadata.json`, and `system-spec-kit/graph-metadata.json` `intent_signals` to the confirmed floor with routing-relevant phrases (advisor's own set specifically covers being routed *to*, per REQ-004) [evidence: LUNA-authored enrichment: mcp-code-mode 3→8, system-skill-advisor 4→10, system-spec-kit 5→9; additive, lowercase, trigger-disjoint]
+- [x] T-10 Add the `intent_signals`<->`derived.trigger_phrases` reconciliation check to `ci-skill-root-metadata.cjs`, following the `checkCommandMetadata`-at-line-372 pattern feeding `checkRoot`'s `violations.push(...)` at line 322 [evidence: gate: INTENT_SIGNALS_BELOW_FLOOR + INTENT_SIGNALS_AND_TRIGGERS_EMPTY violations + report-only Jaccard NOTE <0.05; sk-code 0.037 NOTE fires; fixtures added]
+- [x] T-11 Add the SQLite-vs-filesystem fallback expected-degradation parity tests (fixture DB with real `skill_edges` rows and a doc-trigger entry; assert `edges`/`docTriggers` present for `source: 'sqlite'` and absent for `source: 'filesystem'`/`'filesystem-fallback'`) in `projection-fallback-049-005.vitest.ts` or a new sibling file [evidence: parity vitest: sqlite source returns edges+docTriggers; filesystem + filesystem-fallback deterministically return edges:[] and no docTriggers]
+- [x] T-12 Add the unit test proving REQ-002 (shared `domains`/`intentSignals` term scores once) and the unit test proving REQ-003 (no generic path-segment tokens survive in `derivedKeywords` for the `sk-code`-mirroring fixture) [evidence: contract-lock test replaces the non-discriminating dedup test (reviewer-proven vacuous)]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -68,11 +68,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-13 Re-run `score-routing-corpus.py` against the 006-pinned corpus and diff against the T-05 baseline; review and justify or revert any changed top-skill prediction
-- [ ] T-14 Run the extended `ci-skill-root-metadata.cjs` against the full fleet; confirm the reconciliation gate flags the preserved pre-fix `sk-code` 0.037 case (fixture or documented before-value)
-- [ ] T-15 Run the new/extended vitest suite (fallback parity, lexical dedup, derivedKeywords path-token) and the existing scorer test suite for regressions
-- [ ] T-16 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`; confirm Errors:0
-- [ ] T-17 Update packet continuity (`implementation-summary.md`, `_memory.continuity`) with the final corpus-diff result and gate output
+- [x] T-13 Re-run `score-routing-corpus.py` against the 006-pinned corpus and diff against the T-05 baseline; review and justify or revert any changed top-skill prediction [evidence: post corpus BOTH python regimes byte-identical; TS-source top3 176/195+53/72 identical (throwaway vitest through fusion.ts, pinned regime)]
+- [x] T-14 Run the extended `ci-skill-root-metadata.cjs` against the full fleet; confirm the reconciliation gate flags the preserved pre-fix `sk-code` 0.037 case (fixture or documented before-value) [evidence: ci-skill-root-metadata 11/11 with NOTE; contract test green]
+- [x] T-15 Run the new/extended vitest suite (fallback parity, lexical dedup, derivedKeywords path-token) and the existing scorer test suite for regressions [evidence: scorer + routing vitest 22/22 (4 files) and fix-pass 15/15 (3 files)]
+- [x] T-16 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict`; confirm Errors:0 [evidence: validate.sh --strict BLOCKED repo-wide (concurrent pi-hook build); direct gates used [documented]]
+- [x] T-17 Update packet continuity (`implementation-summary.md`, `_memory.continuity`) with the final corpus-diff result and gate output [evidence: spec amendment + impl-summary Complete; dist rebuild blocked upstream — live daemon runs pre-change lanes until 012's rebuild/reload proof]
 <!-- /ANCHOR:phase-3 -->
 
 ---

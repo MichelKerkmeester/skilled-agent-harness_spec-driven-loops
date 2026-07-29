@@ -337,36 +337,86 @@ function checkCommandMetadata(skillDir) {
 function checkGraphMetadata(skillDir) {
   const skillId = path.basename(skillDir);
   const filePath = path.join(skillDir, 'graph-metadata.json');
-  if (!fs.existsSync(filePath)) return [];
+  if (!fs.existsSync(filePath)) return { violations: [], notes: [] };
 
   let metadata;
   try {
     metadata = readJson(filePath);
   } catch (err) {
-    return [{
-      code: 'GRAPH_METADATA_INVALID',
-      file: 'graph-metadata.json',
-      message: `${skillId}: graph-metadata.json is not valid JSON: ${err.message}`,
-    }];
+    return {
+      violations: [{
+        code: 'GRAPH_METADATA_INVALID',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json is not valid JSON: ${err.message}`,
+      }],
+      notes: [],
+    };
   }
 
   if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
-    return [{
-      code: 'GRAPH_METADATA_INVALID',
-      file: 'graph-metadata.json',
-      message: `${skillId}: graph-metadata.json must contain a JSON object`,
-    }];
+    return {
+      violations: [{
+        code: 'GRAPH_METADATA_INVALID',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json must contain a JSON object`,
+      }],
+      notes: [],
+    };
   }
 
+  const violations = [];
+  const notes = [];
   const unknown = Object.keys(metadata)
     .filter((key) => !GRAPH_METADATA_TOP_LEVEL_KEYS.has(key))
     .sort();
-  if (!unknown.length) return [];
-  return [{
-    code: 'GRAPH_METADATA_UNKNOWN_KEY',
-    file: 'graph-metadata.json',
-    message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
-  }];
+  if (unknown.length) {
+    violations.push({
+      code: 'GRAPH_METADATA_UNKNOWN_KEY',
+      file: 'graph-metadata.json',
+      message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
+    });
+  }
+
+  const intentSignals = Array.isArray(metadata.intent_signals)
+    ? metadata.intent_signals.filter((entry) => typeof entry === 'string')
+    : [];
+  const derived = metadata.derived && typeof metadata.derived === 'object' && !Array.isArray(metadata.derived)
+    ? metadata.derived
+    : {};
+  const triggerPhrases = Array.isArray(derived.trigger_phrases)
+    ? derived.trigger_phrases.filter((entry) => typeof entry === 'string')
+    : [];
+
+  if (intentSignals.length < 8) {
+    violations.push({
+      code: 'INTENT_SIGNALS_BELOW_FLOOR',
+      file: 'graph-metadata.json',
+      message: `${skillId}: intent_signals has ${intentSignals.length} entries; minimum is 8`,
+    });
+  }
+  if (intentSignals.length === 0 && triggerPhrases.length === 0) {
+    violations.push({
+      code: 'INTENT_SIGNALS_AND_TRIGGERS_EMPTY',
+      file: 'graph-metadata.json',
+      message: `${skillId}: intent_signals and derived.trigger_phrases are both empty`,
+    });
+  }
+
+  const intentSet = new Set(intentSignals.map((entry) => entry.trim().toLowerCase()).filter(Boolean));
+  const triggerSet = new Set(triggerPhrases.map((entry) => entry.trim().toLowerCase()).filter(Boolean));
+  const union = new Set([...intentSet, ...triggerSet]);
+  const intersectionSize = [...intentSet].filter((entry) => triggerSet.has(entry)).length;
+  const similarity = union.size === 0 ? 1 : intersectionSize / union.size;
+  if (similarity < 0.05) {
+    // These authored and derived fields may legitimately diverge, so review is
+    // prompted without turning a useful reconciliation signal into red CI.
+    notes.push({
+      code: 'INTENT_SIGNALS_TRIGGER_RECONCILIATION',
+      message: `${skillId}: intent_signals/derived.trigger_phrases Jaccard=${similarity.toFixed(3)}`,
+    });
+  }
+
+  return { violations, notes };
 }
 
 /** Evaluate one root end to end: class, presence, identity, freshness. */
@@ -376,6 +426,7 @@ function checkRoot(skillDir, options = {}) {
   const presence = readPresence(skillDir);
   const evaluation = rootContract.evaluateRoot(skillId, presence);
   const violations = [...evaluation.violations];
+  const notes = [];
   let fixed = false;
   let digest = null;
 
@@ -387,7 +438,9 @@ function checkRoot(skillDir, options = {}) {
     });
   }
 
-  violations.push(...checkGraphMetadata(skillDir));
+  const graphMetadata = checkGraphMetadata(skillDir);
+  violations.push(...graphMetadata.violations);
+  notes.push(...graphMetadata.notes);
 
   const writtenFiles = [];
   if (evaluation.skillClass !== null
@@ -435,6 +488,7 @@ function checkRoot(skillDir, options = {}) {
     written: writtenFiles,
     digest,
     violations,
+    notes,
   };
 }
 
@@ -481,6 +535,7 @@ function run(args) {
         process.stdout.write(`FAIL [${label}] ${r.skill}\n`);
         for (const v of r.violations) process.stdout.write(`       ${v.code}: ${v.message}\n`);
       }
+      for (const note of r.notes) process.stdout.write(`NOTE [${note.code}] ${note.message}\n`);
     }
     process.stdout.write(`\nchecked=${results.length} passed=${results.length - failed.length} failed=${failed.length} fixed=${fixedCount}\n`);
     if (failed.length && !args.fix) {

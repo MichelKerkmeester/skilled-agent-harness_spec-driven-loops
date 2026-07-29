@@ -50,7 +50,11 @@
     "save context",
     "save memory",
     "spec kit",
-    "memory search"
+    "memory search",
+    "create a spec folder",
+    "save context to memory",
+    "resume previous session",
+    "validate the spec packet"
   ],
   "derived": {
     "trigger_phrases": [

@@ -31,7 +31,12 @@
   "intent_signals": [
     "code mode",
     "mcp tool",
-    "call tool chain"
+    "call tool chain",
+    "call an external tool via code mode",
+    "chain mcp tools",
+    "use the utcp config",
+    "run figma through code mode",
+    "automate chrome with mcp"
   ],
   "derived": {
     "trigger_phrases": [

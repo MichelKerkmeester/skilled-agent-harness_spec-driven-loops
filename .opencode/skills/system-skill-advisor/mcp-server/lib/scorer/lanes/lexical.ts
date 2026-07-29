@@ -61,14 +61,15 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
 
   for (const skill of projection.skills) {
     const evidence: string[] = [];
-    let score = scoreTokenOverlap(tokens, [
+    const candidates = [
       skill.id.replace(/-/g, ' '),
       skill.name,
       skill.description,
       ...skill.domains,
       ...skill.intentSignals,
       ...skill.keywords,
-    ], originalTokenCount);
+    ];
+    let score = scoreTokenOverlap(tokens, candidates, originalTokenCount);
 
     for (const hint of CATEGORY_HINTS[skill.id] ?? []) {
       if (matchesPhraseBoundary(lower, hint)) {
