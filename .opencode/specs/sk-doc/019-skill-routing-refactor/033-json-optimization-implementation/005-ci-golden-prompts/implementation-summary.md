@@ -1,6 +1,6 @@
 ---
 title: "Implementation Outcome: Gate-2 Golden-Prompt Acceptance Suite"
-description: "Planned record of a new CI-wired golden-prompt acceptance suite asserting joined parent-then-mode skill routing, grounded in a live 029 research miss; not yet built."
+description: "A CI-wired golden-prompt suite that runs the real TS scorer in the pinned force-local regime and asserts top-1/top-3 skill selection plus joined compiled-mode (skip-on-legacy) for representative prompts, shipped as a separate CI job."
 trigger_phrases:
   - "gate-2 golden prompt suite outcome"
 importance_tier: "important"
@@ -8,23 +8,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts"
-    last_updated_at: "2026-07-29T09:05:00Z"
+    last_updated_at: "2026-07-29T14:40:05Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "Depends on 002 (routing-accuracy corpus hash pinned) for fixture provenance only"
+    recent_action: "Built + verified golden-prompt gate (10/10, 31/31 combined); wired as a separate CI job"
+    next_safe_action: "Phase 006 ci-compiler-accuracy-gates"
+    blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/005-ci-golden-prompts"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Exact fixture case count and full representative-hub list beyond sk-doc/sk-git/system-deep-loop — left to implementation time"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Which scorer drives the CI gate — the real TS scoreAdvisorPrompt in the 002 pinned force-local regime, run as a separate CI job (operator-approved A')."
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -38,11 +37,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
-| **Delivered** | Not yet — build not started |
+| **Status** | Complete |
+| **Delivered** | 2026-07-29 |
 | **Track** | sk-doc |
-| **Scope** | New fixture + new vitest suite + one-line CI-step edit; no production/scorer/compiled-routing-engine code touched |
-| **Depends on** | `002-baseline-capture` (fixture provenance only) — no dependency on Phase 1's derived-authority decision |
+| **Scope** | New fixture + new vitest + one new CI job; no scorer/engine code touched |
+| **Depends on** | `002-baseline-capture` (pinned force-local regime + provenance) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A new golden-prompt fixture (`mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl`) covering representative multi-hub prompts (at minimum `sk-doc`/create-skill, `sk-git`, `system-deep-loop`/research) plus every existing P0 case from `skill-advisor-regression-cases.jsonl` referenced by id; a new vitest suite (`mcp-server/tests/routing-golden-prompts.vitest.ts`) that calls the real, unmocked `handleAdvisorRecommend` for each case and asserts top-1/top-3 skill selection plus — for compiled-routing-eligible hubs — the joined mode-level outcome via the recommendation's `compiledRoute`; and a one-line extension of `routing-registry-drift.yml`'s existing `routing-drift` job so the new suite runs in CI alongside the three already-wired vitest files. The fixture will include a case that reproduces the 029 research's live miss (`scaffold a new parent skill hub with mode-registry` ranking `sk-prompt` above `sk-doc`) as an explicit top-3 regression floor, not a fix to the ranking itself.
+A golden-prompt fixture (`mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl`, nine cases + a `_schema` line) spanning `sk-doc`, `sk-git`, `system-deep-loop`, `system-spec-kit`, `mcp-tooling`, `sk-prompt`, with reused cases carrying a `sourceCaseId`. A vitest suite (`mcp-server/tests/routing-golden-prompts.vitest.ts`) runs the real, unmocked `scoreAdvisorPrompt` in the same pinned force-local regime the 002 baseline uses, asserts top-1 or top-3 skill selection per case, and — for cases whose hub is in `COMPILED_ROUTING_HUBS` and declares an `expectedMode` — asserts the joined `workflowMode` via the real `compiled-route.cjs`. A separate `golden-prompt-gate` CI job in `routing-registry-drift.yml` installs the scorer + its `@spec-kit/shared` dist and runs the suite; the dependency-light `routing-drift` job is left byte-identical.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -58,7 +57,7 @@ A new golden-prompt fixture (`mcp-server/scripts/fixtures/gate2-golden-prompts.j
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Three phases per `tasks.md`: (1) Setup — read the three already-wired vitest files and existing fixtures to avoid schema duplication, re-confirm the F22 live-miss citation with a fresh probe, and confirm the real `compiledRoute` field path; (2) Implementation — author the fixture, author the vitest suite, extend the CI step's vitest invocation by one file; (3) Verification — run the new suite alone, run it together with the three pre-existing suites, dry-run the CI command from a clean working directory, and run `validate.sh --strict` on this folder. No `paths:` trigger edit to the workflow is needed — both new files already fall under the existing `.opencode/skills/system-skill-advisor/mcp-server/**` glob.
+The suite drives `scoreAdvisorPrompt` (not the full `handleAdvisorRecommend`) because the lean CI job installs only vitest, so the native advisor is `GENERATION_ABSENT` there; the pinned force-local regime is the production scorer core, deterministic, needing no built SQLite graph. The F22 probe (`scaffold a new parent skill hub with mode-registry`) was re-verified against the current v4 tree: `sk-doc` ranks top-1 in this regime, so the case ships as a top-3 floor with a note that the 029 rank-3 miss does not reproduce here. The joined-mode assertion is **skip-on-legacy**: every v4 hub currently serves `{ servingAuthority: "legacy" }` (compiled manifests mid-restructure), so the mode check logs and skips rather than fails, and activates automatically once a hub is re-minted — the top-1/top-3 selection still gates.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +65,7 @@ Three phases per `tasks.md`: (1) Setup — read the three already-wired vitest f
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Assert the reproduced live-miss case at its true current rank (top-3), not top-1 — tightening the ranking itself is 029's O6 (intent-signal quality), a separate phase; this phase's job is a CI-enforced floor against further regression, not a scorer fix. Reuse `002`'s pinned corpus and the existing regression corpus for provenance (`sourceCaseId`) rather than authoring an independent, third definition of "golden," per 029 §4's warning that unpinned baselines are version-sensitive and contradictory across sources. Call `handleAdvisorRecommend` directly and unmocked so the suite proves the real production code path, including the `compiled-route.cjs` subprocess enrichment, rather than a scorer-mocked unit test.
+**Real TS scorer via the pinned regime, as a separate CI job (operator-approved A').** The original "call `handleAdvisorRecommend` in the lean job" could not work — that job has no scorer deps. **F22 as a top-3 floor, calibrated to reality** (sk-doc is top-1 here) rather than asserting an outcome the fleet does not produce. **Joined-mode skip-on-legacy** so the gate passes on the current all-legacy v4 fleet while still asserting mode for any compiled-serving hub and reactivating on re-mint. Provenance by `sourceCaseId`, not a third independent "golden" definition.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -74,7 +73,11 @@ Assert the reproduced live-miss case at its true current rank (top-3), not top-1
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run — Status: Planned. Once built, verification will be: `npx vitest run tests/routing-golden-prompts.vitest.ts` passing for every fixture case against the current fleet; the combined four-file `routing-drift` vitest set passing with no regression to the three pre-existing suites; a CI-command dry-run from a clean working directory; and `validate.sh <folder> --strict` reporting Errors:0. All `checklist.md` items are currently unchecked.
+Confirmed in the worktree (real scorer, pinned regime):
+- `npx vitest run tests/routing-golden-prompts.vitest.ts` → **10 passed (10)** (nine cases + fixture-shape guard), including F22 at its true top-3 rank.
+- Combined four-file `routing-drift` set (`routing-registry-drift-guard`, `routing-parity-deep-skills`, `routing-parity-deep-council`, `routing-golden-prompts`) → **31 passed (31)** — no regression to the three pre-existing suites.
+- Both `expectedMode` cases (deep-loop → research, sk-prompt → prompt-improve) currently log the skip-on-legacy note (`compiled-route.cjs` returns `servingAuthority: legacy` for both hubs on v4); the top-1 selection still passes.
+- Workflow parses (two jobs: `routing-drift`, `golden-prompt-gate`); the lean 3-file step is unchanged.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -82,5 +85,5 @@ Not yet run — Status: Planned. Once built, verification will be: `npx vitest r
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-This phase does not fix the underlying ranking miss (sk-doc landing at rank 3 instead of rank 1 on the reproduced prompt) — it only guards against further regression from the current state; the actual fix is 029's O6 (intent-signal quality), out of scope here. Fixture case count and full hub coverage beyond the three named in scope are left to implementation time. As with any CI-blocking test addition, a miscalibrated assertion could stall unrelated PRs on the routing surface until reverted — mitigated by the single-line rollback documented in `plan.md` §7.
+The joined-mode assertion is **currently exercised by zero cases** because every v4 hub serves legacy compiled routing (a pre-existing mid-restructure state, not this phase's doing); the assertion logic is present and reactivates the moment a hub is re-minted. The gate drives `scoreAdvisorPrompt`, not the full handler, so handler-only behaviours (command-bridge routing, abstain-tier) stay gated by the existing regression corpus, not duplicated here. `validate.sh --strict` could not run (spec-kit orchestrator build broken repo-wide by a concurrent session's incomplete pi-hook relocation); verified by the direct vitest runs above. The `npm ci` legs in the new CI job are confirmable only on first push.
 <!-- /ANCHOR:limitations -->
