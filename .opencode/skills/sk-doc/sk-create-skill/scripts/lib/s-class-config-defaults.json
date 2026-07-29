@@ -1,0 +1,7 @@
+{
+  "_note": "Single source of truth for the S-class leaf-manifest.config.json defaults. Both init_skill.py (what a scaffold writes) and generate-leaf-manifest.cjs readStandaloneConfig (what a hand-authored config falls back to when a field is omitted) read these, so the two can never drift apart. Changing a default here changes both.",
+  "packet": ".",
+  "leafRoots": ["references", "assets", "feature-catalog", "manual-testing-playbook"],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1
+}

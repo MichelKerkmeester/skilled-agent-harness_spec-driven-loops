@@ -3,7 +3,7 @@
   "schema_version": 2,
   "skill_id": "[skill-name]",
   "family": "sk-util",
-  "category": "skill",
+  "category": "utility",
   "deprecated": false,
   "edges": {
     "depends_on": [],
@@ -31,10 +31,22 @@
     "key_topics": [
       "[skill-name]"
     ],
+    "key_files": [
+      ".opencode/skills/[skill-name]/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "[skill-name]",
+        "kind": "skill",
+        "path": ".opencode/skills/[skill-name]/SKILL.md",
+        "source": "derived"
+      }
+    ],
     "source_docs": [
       "SKILL.md",
       "leaf-manifest.config.json"
     ],
+    "causal_summary": "[one-sentence summary of this skill's purpose and its routing/consumer relationships]",
     "created_at": "[ISO-8601 timestamp]",
     "last_updated_at": "[ISO-8601 timestamp]"
   }

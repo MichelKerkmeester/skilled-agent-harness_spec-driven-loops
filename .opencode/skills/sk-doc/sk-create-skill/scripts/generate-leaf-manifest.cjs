@@ -26,6 +26,9 @@
 const fs = require('fs');
 const path = require('path');
 const contract = require('./lib/leaf-resource-contract.cjs');
+// Shared S-class config defaults, also read by init_skill.py, so the scaffold's
+// written config and this fallback can never drift apart.
+const S_DEFAULTS = require('./lib/s-class-config-defaults.json');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -107,7 +110,7 @@ function readStandaloneConfig(skillDir) {
   if (!cfg || typeof cfg.workflowMode !== 'string' || cfg.workflowMode.length === 0) {
     throw new contract.ContractError('MALFORMED_STANDALONE_CONFIG', `${cfgPath} must declare a non-empty "workflowMode"`);
   }
-  const leafRoots = Array.isArray(cfg.leafRoots) && cfg.leafRoots.length ? cfg.leafRoots : ['references', 'assets'];
+  const leafRoots = Array.isArray(cfg.leafRoots) && cfg.leafRoots.length ? cfg.leafRoots : S_DEFAULTS.leafRoots;
   const allowedRoots = new Set(['references', 'assets']);
   for (const root of leafRoots) {
     if (!allowedRoots.has(root) && !contract.canonicalPackageRoot(root)) {
@@ -121,7 +124,7 @@ function readStandaloneConfig(skillDir) {
   // The packet field is joined onto skillDir and then walked, so an authored
   // "../.." would make the manifest enumerate files outside the skill. Reject
   // any packet that escapes its own skill root before it reaches the walker.
-  const packet = typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : '.';
+  const packet = typeof cfg.packet === 'string' && cfg.packet.length ? cfg.packet : S_DEFAULTS.packet;
   const packetRel = path.relative(skillDir, path.resolve(skillDir, packet));
   if (packetRel === '..' || packetRel.startsWith(`..${path.sep}`) || path.isAbsolute(packetRel)) {
     throw new contract.ContractError('PACKET_OUT_OF_ROOT', `${cfgPath} packet must stay within the skill root: ${packet}`);
