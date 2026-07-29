@@ -38,7 +38,8 @@
         "motion-aliases",
         "motion-temporal",
         "motion-runtime",
-        "motion-feel"
+        "motion-feel",
+        "interface-quality"
       ],
       "resources": ["sk-design-interface/SKILL.md"]
     },
@@ -134,6 +135,28 @@
         "ux-quality-checklist",
         "design-variations",
         "redesign the hero"
+      ]
+    },
+    "interface-quality": {
+      "keywords": [
+        "audit",
+        "design-audit",
+        "ux-audit",
+        "design slop",
+        "design-slop",
+        "slop",
+        "anti-slop",
+        "severity-ranked",
+        "severity ranked findings",
+        "wcag",
+        "contrast",
+        "keyboard focus",
+        "keyboard navigation",
+        "accessibility",
+        "accessible",
+        "quality floor",
+        "quality review",
+        "touch target"
       ]
     },
     "foundations-aliases": {
