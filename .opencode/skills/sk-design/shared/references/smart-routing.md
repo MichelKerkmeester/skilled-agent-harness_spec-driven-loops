@@ -81,6 +81,8 @@ INTENT_SIGNALS = {
     "INTERFACE":     {"weight": 4, "keywords": ["less generic", "distinctive visual", "visual direction", "make it look good", "looks templated", "redesign the ui", "redesign the hero", "hero section", "landing page direction", "interface design", "visual identity", "premium ui", "make it beautiful", "design variations", "distinct visual directions", "variation set", "make it", "bolder", "quieter", "distill", "delight", "clarify", "polished", "feel premium", "oklch", "color token", "color system", "color palette", "typography scale", "typography system", "font pairing", "spacing rhythm", "spacing system", "responsive grid", "layout rhythm", "design tokens", "token system", "theme tokens", "hierarchy and spacing", "spacing rhythm review", "design audit", "audit this", "wcag contrast", "wcag", "accessibility audit", "keyboard focus", "design slop", "anti-slop", "ui critique", "design review", "production hardening", "design quality score", "critique this", "polish gate", "micro-interactions", "micro interactions", "reduced-motion", "reduced motion", "hover micro", "hover state", "menu transition", "transition design", "interaction states", "loading state", "exit animation", "morphing", "motion budget", "choreography", "animate the", "feedback states"]},
     "MD_GENERATOR":  {"weight": 4, "keywords": ["extract the design system", "extract design system", "design.md", "design system from", "style reference", "capture website css", "tokens.json", "design tokens from url", "validate design.md", "design fidelity", "fidelity check", "extraction", "generate a design.md", "measured css"]},
     "OPEN_DESIGN":   {"weight": 4, "keywords": ["wire open design", "open design", "open-design", "od cli", "od mcp", "connect open design", "drive od", "start_run", "open design generation", "open design run"]},
+    "PREFLIGHT_OWNERSHIP": {"weight": 4, "keywords": ["pre-delivery quality pass", "pass/fail scoring logic"]},
+    "VARIATION_DIVERSITY": {"weight": 4, "keywords": ["genuinely distinct visual directions", "three genuinely distinct visual directions"]},
 }
 
 RESOURCE_MAP = {
@@ -119,6 +121,13 @@ RESOURCE_MAP = {
         "sk-design-mcp-open-design/references/mcp-wiring.md",
         "sk-design-mcp-open-design/references/od-cli-reference.md",
         "sk-design-mcp-open-design/references/tool-surface.md",
+    ],
+    "PREFLIGHT_OWNERSHIP": [
+        "sk-design-interface/assets/interface-preflight-card.md",
+    ],
+    "VARIATION_DIVERSITY": [
+        "sk-design-interface/references/design-process/variation-diversity.md",
+        "sk-design-interface/references/design-process/brief-to-dials.md",
     ],
 }
 ```
