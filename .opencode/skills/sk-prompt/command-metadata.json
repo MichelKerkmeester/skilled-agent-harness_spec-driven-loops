@@ -1,7 +1,7 @@
 [
   {
     "command": "/prompt:improve",
-    "ownerMode": "prompt-improve",
+    "ownerMode": "sk-prompt-improve",
     "description": "Improve or create AI prompts via sk-prompt: frameworks, DEPTH, CLEAR scoring. Modes :auto, :confirm.",
     "argumentHint": "<prompt_or_topic> [:auto|:confirm] [$text|$improve|$refine|$short|$json|$yaml|$raw] [--agent]",
     "userIntent": {

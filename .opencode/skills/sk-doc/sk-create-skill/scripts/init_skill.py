@@ -24,6 +24,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
+# Shared S-class config defaults, also read by generate-leaf-manifest.cjs's
+# readStandaloneConfig fallback, so a scaffolded config and that fallback stay
+# in lockstep instead of being two hand-kept-equivalent copies.
+_S_CLASS_CONFIG_DEFAULTS = json.loads(
+    (Path(__file__).resolve().parent / "lib" / "s-class-config-defaults.json").read_text()
+)
+
 
 # ───────────────────────────────────────────────────────────────
 # 1. VALIDATION
@@ -228,6 +235,35 @@ def _write_if_absent(target: Path, content: str) -> None:
         target.write_text(content, encoding='utf-8')
 
 
+def _ensure_class_gate_fresh(skill_dir: Path, expect_aliases: bool) -> tuple[bool, str]:
+    """Run the H/S class gate --fix so a scaffolded root is gate-fresh on return.
+
+    A new root otherwise stays non-conforming until someone runs --fix by hand:
+    the generated leaf-manifest.json (both classes) and leaf-aliases.json (S only)
+    never exist until then. This runs the same gate an author would, scoped to the
+    new root's parent, and confirms the required generated files now exist under it.
+    """
+    gate = Path(__file__).resolve().parent / "ci-skill-root-metadata.cjs"
+    try:
+        subprocess.run(
+            ["node", str(gate), "--fix", "--skills-dir", str(skill_dir.parent)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+    except OSError as exc:
+        return False, str(exc)
+
+    required = ["leaf-manifest.json"]
+    if expect_aliases:
+        required.append("leaf-aliases.json")
+    missing = [name for name in required if not (skill_dir / name).is_file()]
+    if missing:
+        return False, f"class gate did not generate: {', '.join(missing)}"
+    return True, ""
+
+
 def init_skill(skill_name: str, path: str) -> Optional[Path]:
     """Initialize a new skill directory with template SKILL.md.
 
@@ -272,7 +308,7 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         "schema_version": 2,
         "skill_id": skill_name,
         "family": "sk-util",
-        "category": "skill",
+        "category": "utility",
         "deprecated": False,
         "edges": {
             "depends_on": [],
@@ -287,17 +323,30 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         "derived": {
             "trigger_phrases": [skill_name],
             "key_topics": [skill_name],
+            "key_files": [f".opencode/skills/{skill_name}/SKILL.md"],
+            "entities": [
+                {
+                    "name": skill_name,
+                    "kind": "skill",
+                    "path": f".opencode/skills/{skill_name}/SKILL.md",
+                    "source": "derived",
+                }
+            ],
             "source_docs": ["SKILL.md", "leaf-manifest.config.json"],
+            "causal_summary": (
+                f"{skill_name} standalone skill. Replace this scaffold summary with the "
+                "skill's real purpose and its routing/consumer relationships."
+            ),
             "created_at": timestamp,
             "last_updated_at": timestamp,
         },
     }
     leaf_manifest_config = {
         "workflowMode": skill_name,
-        "packet": ".",
-        "leafRoots": ["references", "assets", "feature-catalog", "manual-testing-playbook"],
-        "excludeIndexFiles": True,
-        "resourceContractVersion": 1,
+        "packet": _S_CLASS_CONFIG_DEFAULTS["packet"],
+        "leafRoots": _S_CLASS_CONFIG_DEFAULTS["leafRoots"],
+        "excludeIndexFiles": _S_CLASS_CONFIG_DEFAULTS["excludeIndexFiles"],
+        "resourceContractVersion": _S_CLASS_CONFIG_DEFAULTS["resourceContractVersion"],
         "_note": (
             "Standalone single-mode manifest config. Consumed by "
             "generate-leaf-manifest.cjs to emit leaf-manifest.json; "
@@ -331,6 +380,11 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
         print("✅ Created graph-metadata.json and leaf-manifest.config.json")
     except OSError as exc:
         print(f"❌ Error creating SKILL.md: {exc}")
+        return None
+
+    gate_ok, gate_cause = _ensure_class_gate_fresh(skill_dir, expect_aliases=True)
+    if not gate_ok:
+        print(f"❌ Class gate fix failed for '{skill_name}': {gate_cause}")
         return None
 
     print(f"\n✅ Skill '{skill_name}' initialized successfully at {skill_dir}")
@@ -517,7 +571,7 @@ def init_parent_skill(
         "schema_version": 2,
         "skill_id": skill_name,
         "family": "sk-hub",
-        "category": "skill",
+        "category": "workflow",
         "deprecated": False,
         "edges": {
             "depends_on": [],
@@ -547,12 +601,35 @@ def init_parent_skill(
                 "workflowMode",
                 "packetKind",
             ],
+            "key_files": [
+                f".opencode/skills/{skill_name}/SKILL.md",
+                f".opencode/skills/{skill_name}/mode-registry.json",
+                f".opencode/skills/{skill_name}/hub-router.json",
+            ],
+            "entities": [
+                {
+                    "name": skill_name,
+                    "kind": "skill",
+                    "path": f".opencode/skills/{skill_name}/SKILL.md",
+                    "source": "derived",
+                },
+                {
+                    "name": "mode-registry",
+                    "kind": "config",
+                    "path": f".opencode/skills/{skill_name}/mode-registry.json",
+                    "source": "derived",
+                },
+            ],
             "source_docs": [
                 "SKILL.md",
                 "README.md",
                 "mode-registry.json",
                 "hub-router.json",
             ],
+            "causal_summary": (
+                f"{skill_name} parent hub. Replace this scaffold summary with the hub's real "
+                "purpose and the workflow modes it routes to via mode-registry / hub-router."
+            ),
             "created_at": timestamp,
             "last_updated_at": timestamp,
         },
@@ -598,10 +675,10 @@ def init_parent_skill(
         with (skill_dir / 'description.json').open('w', encoding='utf-8') as handle:
             json.dump(description, handle, indent=2)
             handle.write('\n')
-        # The command surface starts empty; each entry is authored when the hub
-        # gains a slash command, and the fleet gate validates entries against
-        # the registry and the disk.
-        (skill_dir / 'command-metadata.json').write_text('[]\n', encoding='utf-8')
+        # A fresh hub owns no slash commands, so it ships no command-metadata.json:
+        # the file is optional and authored only when the hub gains its first
+        # command, at which point the fleet gate validates its entries against the
+        # registry and the disk.
 
         (packet_dir / 'SKILL.md').write_text(packet_content, encoding='utf-8')
         (packet_dir / 'README.md').write_text(
@@ -664,6 +741,11 @@ def init_parent_skill(
             )
             return None
         print("✅ Compiled routing: legacy (no manifest)")
+
+    gate_ok, gate_cause = _ensure_class_gate_fresh(skill_dir, expect_aliases=False)
+    if not gate_ok:
+        print(f"❌ Class gate fix failed for '{skill_name}': {gate_cause}")
+        return None
 
     print(f"\n✅ Parent skill '{skill_name}' initialized successfully at {skill_dir}")
     print("\nNext steps:")

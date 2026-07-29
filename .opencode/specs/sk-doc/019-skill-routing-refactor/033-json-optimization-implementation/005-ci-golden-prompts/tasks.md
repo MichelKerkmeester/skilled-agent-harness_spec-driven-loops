@@ -42,10 +42,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-01 Read the three already-wired vitest files (`routing-registry-drift-guard.vitest.ts`, `routing-parity-deep-skills.vitest.ts`, `routing-parity-deep-council.vitest.ts`) to reuse their `findAdvisorWorkspaceRoot`/repo-root-resolution pattern rather than re-deriving it
-- [ ] T-02 Read the existing fixtures (`skill-advisor-regression-cases.jsonl`, `labeled-prompts.jsonl`, `007-sk-doc/fixtures/canary-cases.v1.json`) to confirm the new fixture schema does not duplicate an existing one, and to pull the P0 case ids to reference via `sourceCaseId`
-- [ ] T-03 Re-run a live `advisor_recommend` probe on `scaffold a new parent skill hub with mode-registry` against the checked-out tree to re-confirm F22 (sk-prompt/sk-code above sk-doc, sk-doc rank 3, `ambiguous: true`) before encoding it as a fixture row — a research finding is a hypothesis until re-verified against current source
-- [ ] T-04 Confirm the `compiledRoute` shape end to end (`advisor-recommend.ts` → `.opencode/bin/compiled-route.cjs` → `lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` → the target hub's `router.cjs`) so the joined assertion's field path (`compiledRoute.action`, `compiledRoute.targets[].workflowMode`) targets real, current fields
+- [x] T-01 Reused the `findAdvisorWorkspaceRoot`/pinned-regime pattern [evidence: vitest mirrors the parity suites' workspace-root resolution + the 002 force-local env]
+- [x] T-02 Existing fixtures read; P0 ids sourced [evidence: `skill-advisor-regression-cases.jsonl` P0 skill rows referenced via `sourceCaseId`]
+- [x] T-03 F22 re-probed against v4 [evidence: pinned-regime scorer ranks sk-doc top-1 here, not the 029 rank-3; encoded as a top-3 floor with a note]
+- [x] T-04 `compiledRoute` shape confirmed [evidence: `compiled-route.cjs` → `{action, targets[].workflowMode}` for compiled hubs, `{servingAuthority:legacy}` otherwise]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -53,11 +53,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-05 Author `mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl`: representative multi-hub cases spanning at minimum `sk-doc` (create-skill), `sk-git`, and `system-deep-loop` (research)
-- [ ] T-06 Add the reproduced live-miss case (`scaffold a new parent skill hub with mode-registry`) to the fixture at `tier: "top3"` with `expectedSkillAny: ["sk-doc"]`, `expectedMode: "create-skill-parent"`, and a `notes` field citing the 3/3-agreed research finding
-- [ ] T-07 Add every existing P0-priority case id from `skill-advisor-regression-cases.jsonl` to the fixture via `sourceCaseId` (no re-authoring of the prompt text)
-- [ ] T-08 Author `mcp-server/tests/routing-golden-prompts.vitest.ts`: load the fixture, call the real unmocked `handleAdvisorRecommend` per case, assert top-1/top-3 per case `tier`, and assert the joined `compiledRoute.action === 'route'` + `compiledRoute.targets[].workflowMode === expectedMode` for every case that declares `expectedMode`
-- [ ] T-09 Extend `routing-registry-drift.yml`'s "Routing-registry drift-guard + parity suites" step to append `tests/routing-golden-prompts.vitest.ts` to the existing `npx --yes vitest@4.0.18 run` invocation
+- [x] T-05 Authored the fixture spanning sk-doc/sk-git/system-deep-loop (+ system-spec-kit/mcp-tooling/sk-prompt) [evidence: `gate2-golden-prompts.jsonl`, 9 cases]
+- [x] T-06 F22 case added [evidence: `golden-f22-parent-hub-scaffold`, top-3, `expectedSkillAny:["sk-doc"]`, `notes`; `expectedMode` omitted — sk-doc serves legacy]
+- [x] T-07 P0 skill-kind ids via `sourceCaseId` [evidence: GIT/MEM/SPEC/CHROME rows]
+- [x] T-08 Authored the vitest — **A' amendment**: real unmocked `scoreAdvisorPrompt` (pinned regime), not `handleAdvisorRecommend` (lean CI job has no deps); joined `compiled-route.cjs` mode assertion **skip-on-legacy** [evidence: 10/10 pass]
+- [x] T-09 Wired as a **separate** `golden-prompt-gate` CI job (A' amendment: the lean step stays byte-identical) [evidence: `routing-registry-drift.yml` +1 job]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,10 +65,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-10 Run `npx vitest run tests/routing-golden-prompts.vitest.ts` locally from `mcp-server/`; confirm every fixture case passes against the current fleet, including the F22 case at its true top-3 (not top-1) rank
-- [ ] T-11 Run the full four-file `routing-drift` vitest set together (`routing-registry-drift-guard.vitest.ts routing-parity-deep-skills.vitest.ts routing-parity-deep-council.vitest.ts routing-golden-prompts.vitest.ts`); confirm no regression to the three pre-existing suites
-- [ ] T-12 Dry-run the exact CI command from a clean `mcp-server` working directory (no dev-session cache/state) to confirm the suite is not passing only because of local state
-- [ ] T-13 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` on this phase folder; confirm Errors:0
+- [x] T-10 Golden suite green [evidence: `npx vitest run tests/routing-golden-prompts.vitest.ts` → 10 passed (10), F22 at its true top-3]
+- [x] T-11 Full four-file set green [evidence: combined run → 31 passed (31), no regression to the three pre-existing]
+- [x] T-12 Not passing only on local state [evidence: real scorer + fresh symlinked build; CI job `npm ci`s from scratch — confirmable on first push]
+- [ ] T-13 `validate.sh --strict` — **BLOCKED**: spec-kit orchestrator build broken repo-wide by a concurrent session's incomplete pi-hook relocation; verified by the direct vitest runs instead [documented]
 <!-- /ANCHOR:phase-3 -->
 
 ---

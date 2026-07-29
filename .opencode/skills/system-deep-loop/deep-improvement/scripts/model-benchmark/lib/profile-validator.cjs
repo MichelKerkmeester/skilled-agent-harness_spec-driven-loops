@@ -36,6 +36,7 @@ const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
   'cli-cursor',
+  'cli-devin',
   'cli-pi',
 ]);
 

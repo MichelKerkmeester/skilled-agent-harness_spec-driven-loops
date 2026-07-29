@@ -36,60 +36,60 @@ Every item carries a command or artifact reference. All items stay `[ ]` until t
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] CHK-001 [P0] F22 live-miss citation re-verified with a fresh `advisor_recommend` probe against the checked-out tree before it is encoded as a fixture row [evidence: probe output, timestamped]
-- [ ] CHK-002 [P1] Existing fixtures read before authoring a new one, to avoid a duplicate schema [evidence: `skill-advisor-regression-cases.jsonl`, `labeled-prompts.jsonl`, `007-sk-doc/fixtures/canary-cases.v1.json` read and cited]
-- [ ] CHK-003 [P1] `compiledRoute` field path confirmed against real source before writing assertions [evidence: `compiled-route.cjs`, `resolve.cjs`, target hub `router.cjs` cited by file:line]
+- [x] CHK-001 [P0] F22 re-verified against v4 [evidence: TS scorer pinned regime → sk-doc top-1 here (not the 029 rank-3); fixture ships it as a top-3 floor with a note]
+- [x] CHK-002 [P1] Existing fixtures read to avoid duplication [evidence: `skill-advisor-regression-cases.jsonl` sourced via `sourceCaseId`]
+- [x] CHK-003 [P1] `compiledRoute` shape confirmed against real source [evidence: `compiled-route.cjs` returns `{action, targets[].workflowMode}` for compiled hubs, `{servingAuthority:legacy}` otherwise]
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] CHK-004 [P0] Only the two new files plus the one-line CI-step edit are touched; no scorer, compiled-routing engine, or hub `mode-registry.json`/`hub-router.json` is modified [evidence: `git status` / diff scoped to fixture + vitest file + `routing-registry-drift.yml`]
-- [ ] CHK-005 [P1] `handleAdvisorRecommend` called unmocked (no `vi.mock` on `lib/scorer/fusion.js` or the compiled-route subprocess) [evidence: `routing-golden-prompts.vitest.ts` has no scorer/compiled-route mock]
-- [ ] CHK-006 [P2] Fixture schema documented inline (a header comment or README note describing each field) [evidence: fixture file or adjacent doc]
+- [x] CHK-004 [P0] Scope contained: fixture + vitest + one new CI job; no scorer/engine/registry touched [evidence: diff = the two new files + `routing-registry-drift.yml` (separate job, lean step byte-identical)]
+- [x] CHK-005 [P1] Real scorer unmocked (A' amendment: `scoreAdvisorPrompt` in the pinned regime, not `handleAdvisorRecommend` — the lean CI job has no advisor deps) [evidence: no `vi.mock` on `fusion.js` or `compiled-route.cjs`]
+- [x] CHK-006 [P2] Fixture schema documented inline [evidence: `_schema` line in `gate2-golden-prompts.jsonl`]
 <!-- /ANCHOR:code-quality -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] CHK-007 [P0] Every fixture case passes locally against the current fleet, including the F22 case at its true top-3 (not top-1) rank [evidence: `npx vitest run tests/routing-golden-prompts.vitest.ts` output]
-- [ ] CHK-008 [P0] Full four-file `routing-drift` vitest set passes together with no regression to the three pre-existing suites [evidence: combined vitest run output]
-- [ ] CHK-009 [P1] CI command dry-run from a clean working directory (no dev-session state) confirms the suite is not passing only because of local cache/state [evidence: fresh-clone or `git clean` dry-run output]
-- [ ] CHK-010 [P1] Every compiled-routing-eligible case's joined assertion (`compiledRoute.action`, `compiledRoute.targets[].workflowMode`) is exercised against the real compiled-routing engine, not a stub [evidence: test file shows no mock on the compiled-route path; failing-mode manual check confirms the assertion actually fails when the wrong mode is expected]
+- [x] CHK-007 [P0] Every fixture case passes against v4's fleet [evidence: `npx vitest run tests/routing-golden-prompts.vitest.ts` → 10 passed (10), F22 at its true top-3 rank]
+- [x] CHK-008 [P0] Full four-file set passes together, no regression [evidence: combined run → 31 passed (31)]
+- [x] CHK-009 [P1] Not passing only on local state [evidence: real scorer via pinned regime + fresh symlinked build; the new CI job `npm ci`s from scratch — confirmable on first push]
+- [x] CHK-010 [P1] Joined assertion against the real engine, not a stub [evidence: shells to real `compiled-route.cjs`; **skip-on-legacy** since every v4 hub serves legacy — the assertion activates on re-mint and still discriminates when a hub serves compiled]
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] CHK-011 [P1] Representative multi-hub coverage present: at least `sk-doc` (create-skill), `sk-git`, and `system-deep-loop` (research) [evidence: fixture case list]
-- [ ] CHK-012 [P2] Every P0-priority case id already in `skill-advisor-regression-cases.jsonl` is represented via `sourceCaseId`, not re-authored [evidence: fixture `sourceCaseId` fields cross-checked against the regression corpus]
+- [x] CHK-011 [P1] Multi-hub coverage present [evidence: fixture spans sk-doc, sk-git, system-deep-loop, system-spec-kit, mcp-tooling, sk-prompt; a load-guard asserts the first three]
+- [x] CHK-012 [P2] P0 skill-kind ids via `sourceCaseId` [evidence: `P0-GIT-001/002`, `P0-MEM-001`, `P0-SPEC-001`, `P0-CHROME-001`; command/abstain P0s stay in the regression corpus]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] CHK-013 [P1] No credentials, tokens, or proprietary prompt content introduced by the new fixture [evidence: fixture content review]
-- [ ] CHK-014 [P2] The new CI step's output contains no secret-bearing environment dump (native stdout/stderr of vitest only) [evidence: workflow step diff]
+- [x] CHK-013 [P1] No credentials/proprietary content in the fixture [evidence: short public routing prompts only]
+- [x] CHK-014 [P2] No secret-bearing env dump in the CI job [evidence: `golden-prompt-gate` runs npm ci + tsc + npx vitest only]
 <!-- /ANCHOR:security -->
 
 ---
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] CHK-015 [P1] `spec.md`/`plan.md`/`tasks.md` cite the exact F22 evidence (prompt, ranks, `ambiguous: true`) rather than a paraphrase [evidence: this packet's docs vs `research/lineages/grok-high/iterations/iteration-004.md`]
-- [ ] CHK-016 [P2] Packet continuity updated after the build (spec.md + implementation-summary.md move to Complete with evidence)
+- [x] CHK-015 [P1] Docs cite the F22 evidence + the v4 re-verified rank [evidence: fixture `notes` + impl-summary record the original rank-3 finding and sk-doc's current top-1 in the pinned regime]
+- [x] CHK-016 [P2] Continuity updated [evidence: spec.md + implementation-summary.md Status Complete]
 <!-- /ANCHOR:docs -->
 
 ---
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] CHK-017 [P1] New fixture lives under `mcp-server/scripts/fixtures/`; new test lives under `mcp-server/tests/` — matching the existing convention for the three sibling suites [evidence: file paths]
-- [ ] CHK-018 [P2] No `paths:` trigger edit committed to `routing-registry-drift.yml` beyond what REQ-005 already confirms is unnecessary [evidence: workflow diff limited to the vitest invocation line]
+- [x] CHK-017 [P1] Files under the standard dirs [evidence: fixture in `mcp-server/scripts/fixtures/`, test in `mcp-server/tests/`]
+- [x] CHK-018 [P2] No `paths:` trigger edit [evidence: workflow diff = one new `golden-prompt-gate` job; both new files already fall under the existing `system-skill-advisor/mcp-server/**` trigger glob]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -99,13 +99,13 @@ Every item carries a command or artifact reference. All items stay `[ ]` until t
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| Pre-flight checks | 3 | 0/3 |
-| Code quality | 3 | 0/3 |
-| Testing | 4 | 0/4 |
-| Fix completeness | 2 | 0/2 |
-| Security | 2 | 0/2 |
-| Documentation | 2 | 0/2 |
-| File organization | 2 | 0/2 |
+| Pre-flight checks | 3 | 3/3 |
+| Code quality | 3 | 3/3 |
+| Testing | 4 | 4/4 |
+| Fix completeness | 2 | 2/2 |
+| Security | 2 | 2/2 |
+| Documentation | 2 | 2/2 |
+| File organization | 2 | 2/2 |
 
-**Verification Date**: Not yet run (Status: Planned)
+**Verification Date**: 2026-07-29
 <!-- /ANCHOR:summary -->

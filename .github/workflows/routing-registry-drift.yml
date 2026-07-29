@@ -110,3 +110,34 @@ jobs:
           set -euo pipefail
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
           node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
+          node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs
+
+  golden-prompt-gate:
+    name: Gate-2 golden prompts — real scorer top-1/top-3 + joined compiled mode
+    # Separate from the dependency-light drift/parity job above: this gate runs
+    # the REAL TS fusion scorer against labelled prompts and asserts top-1/top-3
+    # skill selection plus, for compiled-serving hubs, the concrete workflowMode.
+    # It therefore needs a full advisor install (zod + a native sqlite dep) and
+    # the @spec-kit/shared dist the scorer imports — which the lean job avoids on
+    # purpose. Kept as its own job so the lean gate stays untouched and fast.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install advisor scorer + build the shared projection dependency
+        # tsc for the shared build comes from the spec-kit install; the scorer
+        # runs in a force-local regime at test time so no skill-graph DB is built.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-skill-advisor/mcp-server ci
+      - name: Golden-prompt acceptance suite
+        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        run: |
+          set -euo pipefail
+          npx vitest run tests/routing-golden-prompts.vitest.ts

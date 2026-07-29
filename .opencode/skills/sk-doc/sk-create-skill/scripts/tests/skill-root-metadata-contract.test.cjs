@@ -125,15 +125,16 @@ function testHubRequiresItsFullSet() {
   assert.deepEqual(codesOf(missingDescription), ['MISSING_REQUIRED_FILE']);
   assert.equal(missingDescription.violations[0].file, 'description.json');
 
-  const missingCommands = contract.evaluateRoot('some-hub', {
+  // command-metadata is optional for a hub: a hub that owns no slash commands
+  // carries no command surface, so its absence is conformant, not a violation.
+  const noCommands = contract.evaluateRoot('some-hub', {
     'mode-registry.json': true,
     'hub-router.json': true,
     'graph-metadata.json': true,
     'description.json': true,
     'leaf-manifest.json': true,
   });
-  assert.deepEqual(codesOf(missingCommands), ['MISSING_REQUIRED_FILE']);
-  assert.equal(missingCommands.violations[0].file, 'command-metadata.json');
+  assert.deepEqual(noCommands.violations, []);
 }
 
 function testStandaloneRequiresItsFullSet() {

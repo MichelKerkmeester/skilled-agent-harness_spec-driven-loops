@@ -98,3 +98,20 @@ Consumer-first: the schema library and gate wiring landed before any file widene
 - **The registry/definition mismatch for `/doc:quality` remains open** — deliberately surfaced, not fixed here, since the registry belongs to a different concern.
 - **Choreography depth is minimal-core** for the newly authored entries (hub → mode → workflow asset where the command doc names one); hubs may deepen entries with extension fields as their validators mature.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:amendment-presence-optional -->
+## Amendment (2026-07-29): command-metadata is class-H optional, not required
+
+This supersedes the "H-required" claims in the Verification section above. The original standard required every hub to carry `command-metadata.json` even when it owned no slash commands, which forced the command-less hubs to keep an empty-array placeholder that no consumer reads. Per operator direction ("if there are no related commands, don't have the json for that skill"), the presence rule was reversed:
+
+- **`command-metadata.json` moved from the class-H required set to the class-H optional set** in `skill-root-metadata-contract.cjs`: it is validated against the core schema when present, allowed absent when the hub owns no commands, and still **forbidden on standalone (S) roots** (they have no registry mode to bind a command to). The fleet gate already validated the file present-only (`if (!existsSync) return []`), so no gate-body change was needed once the required-set entry was removed.
+- **The empty `command-metadata.json` files were removed** for the three command-less hubs `sk-code`, `mcp-tooling`, and `cli-external-orchestration`.
+- **`init_skill.py` no longer scaffolds an empty `[]`** for a new hub; the file is authored only when the hub gains its first command.
+- The contract unit test's "missing command-metadata on a hub is a violation" case was flipped to assert the absence is now conformant.
+
+**Independent drift fixed in the same pass:** the `create-skill`→`sk-create-skill` mode rename had left `sk-doc`'s (×11) and `sk-prompt`'s (×1) command-metadata `ownerMode`s pointing at dead mode ids; each was reprefixed to its live registry mode (`create-skill`→`sk-create-skill`, `prompt-improve`→`sk-prompt-improve`, etc.).
+
+**Verification (v4 `a7ae763521`):** fleet class gate `checked=11 passed=11 failed=0`; contract unit test passes; `parent-skill-check.cjs` exits 0 for all hubs; leaf-manifest freshness 11/11. **Out-of-scope pre-existing failure surfaced, not fixed here:** `command-binding-existence.vitest.ts`'s namespace sanity check expects a `design` command namespace that no longer exists (sk-design's commands live under `interface/` after that rename) — a stale test assertion independent of this change.
+<!-- /ANCHOR:amendment-presence-optional -->
