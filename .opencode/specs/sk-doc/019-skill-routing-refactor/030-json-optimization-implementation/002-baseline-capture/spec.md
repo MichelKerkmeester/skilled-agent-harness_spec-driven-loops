@@ -10,10 +10,10 @@ contextType: "specification"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/002-baseline-capture"
-    last_updated_at: "2026-07-29T09:00:00Z"
+    last_updated_at: "2026-07-29T10:51:16Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
+    recent_action: "Captured pinned routing baseline; 11/11 compiler pass"
+    next_safe_action: "Later phases gate against baseline/routing-baseline.json"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "002-baseline-capture"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which of the two contradictory checked-in baseline sources becomes canonical after this capture?"
       - "Does the new top-3 capture script graduate into a permanent routing-accuracy/ addition in a later phase?"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/030-json-optimization-implementation` |

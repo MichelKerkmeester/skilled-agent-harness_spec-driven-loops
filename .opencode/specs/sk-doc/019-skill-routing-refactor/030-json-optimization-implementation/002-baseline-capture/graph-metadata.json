@@ -34,9 +34,11 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "scripts/capture-top3.mjs",
+      "baseline/routing-baseline.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -47,6 +49,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-top3.mjs",
+        "kind": "file",
+        "path": "scripts/capture-top3.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-baseline.json",
+        "kind": "config",
+        "path": "baseline/routing-baseline.json",
         "source": "derived"
       },
       {
@@ -174,23 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pin an exact, hash-verified routing-accuracy baseline (top-1 and top-3, corpus + holdout + ambiguity) and confirm all 11 current skill roots pass skill_graph_compiler.py, before any gate/delete/migration/rewire phase in the JSON optimization implementation program touches production files.",
     "created_at": "2026-07-29T08:00:03.764Z",
-    "last_save_at": "2026-07-29T08:12:35.777Z",
+    "last_save_at": "2026-07-29T08:53:24.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8aac32aacca460a8e85ca28c29187295872d3f7f3b6fdca04a02032ffe5cfee",
+    "source_fingerprint": "sha256:6cb5e69193b709709a43390bd40bad2a1cc4628944813139765b81ff5a22f6ab",
     "source_doc_hashes": {
-      "spec.md": "e88f4bca1aafd45b5be540a59930eb9f79200ffb79ca1e81a70ff693be0d4e88",
-      "plan.md": "c099e275c008545c67e75e787baf906357eb82415d583899d581cf4ef2b8b193",
-      "tasks.md": "d769c73c6bee332fa216fc40010bf181321b2cf5d6332b60684993ca39daffc6",
-      "checklist.md": "64f16be939f956abfaa3aadef869fe07ee113e48b29ded2558ad4c705a04ea9f",
-      "implementation-summary.md": "a1b3fa94ba97eb0989a46212c82cd3d1271204558526fee95532ee53f30ba141"
+      "spec.md": "fa595b5d1f34888b2cc689d5d571a42a2152d224baeea6831da22eaf4e851c2c",
+      "plan.md": "b61866a7a3e2edf18829d6f85e39f2bf2be64566465d7808ac8058280f7e2d1c",
+      "tasks.md": "a6d325adad7945a902a6c5df96da5f29dc2f9bce1b477adbd21af7479e81a4e4",
+      "checklist.md": "ece6e98a9186b70167a87c8d92aa7c42f82f147a5782c6be040e86f138f6af43",
+      "implementation-summary.md": "bd144996cc9988dcff0e423a1be3858251c6463b6fe867de50f272919aaf58ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

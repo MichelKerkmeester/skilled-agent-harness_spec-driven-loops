@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "artifact": "routing-baseline",
+  "purpose": "The single hash-pinned routing-accuracy + compiler baseline every later 030 phase gates against. Supersedes the two contradictory checked-in sources for the purpose of this program.",
+  "capturedAt": "2026-07-29",
+  "capturedAtSha": "1e0ad1d9ba",
+  "captureRegime": {
+    "projectionSource": "filesystem",
+    "env": {
+      "MK_SKILL_ADVISOR_DB_DIR": "<empty tmp dir>",
+      "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
+      "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL": "1",
+      "VITEST": "true"
+    },
+    "note": "Same reproducible regime as routing-accuracy/capture-scorer-eval-baseline.mjs; the top-3 script reuses it verbatim so top-1 and top-3 are comparable."
+  },
+  "corpus": {
+    "labeled-prompts.jsonl": { "rows": 195, "sha256": "9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677" },
+    "holdout-prompts.jsonl": { "rows": 72, "sha256": "88a7f759904eae360cb1f53b4dc32963b357703ac6baa4125e6f9df25abac80a" },
+    "ambiguity-prompts.jsonl": { "rows": 24, "sha256": "07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d" },
+    "note": "A later re-run with any one hash different is a STALE baseline — recapture, do not silently reuse."
+  },
+  "compilerValidateOnly": {
+    "command": "python3 skill_graph_compiler.py --validate-only",
+    "exit": 0,
+    "result": "VALIDATION PASSED: all metadata files are valid",
+    "discoveredRoots": 11,
+    "roster": ["cli-external-orchestration", "mcp-code-mode", "mcp-tooling", "sk-code", "sk-design", "sk-doc", "sk-git", "sk-prompt", "system-deep-loop", "system-skill-advisor", "system-spec-kit"],
+    "note": "Includes derived.key_files / derived.source_docs path-existence checks; 11/11 clean.",
+    "evidence": "compiler-validate-only.txt"
+  },
+  "metrics": {
+    "top1_capture_scorer_eval_baseline": {
+      "source": "routing-accuracy/capture-scorer-eval-baseline.mjs (no --write)",
+      "full_corpus_top1": { "correct": 151, "total": 195, "accuracy": 0.7744 },
+      "holdout_top1": { "correct": 53, "total": 72, "accuracy": 0.7361 },
+      "ambiguity_top1": { "correct": 17, "total": 24, "accuracy": 0.7083, "tau": 0.03 },
+      "buckets": {
+        "review": { "correct": 24, "total": 31, "accuracy": 0.7742 },
+        "memory_save": { "correct": 27, "total": 32, "accuracy": 0.8438 },
+        "delegation": { "correct": 10, "total": 11, "accuracy": 0.9091 }
+      },
+      "evidence": "capture-scorer-eval-baseline.stdout.txt"
+    },
+    "top1_score_routing_corpus": {
+      "source": "routing-accuracy/score-routing-corpus.py --dataset labeled-prompts.jsonl",
+      "note": "A different top-1 definition (advisor accuracy over the 195-row corpus, counting missed/wrong/false fires) — captured verbatim, not reconciled here.",
+      "advisor_accuracy": 0.5692,
+      "missed_skill_fires": 35,
+      "wrong_skill_fires": 44,
+      "false_fires_on_none": 5,
+      "gate3": { "precision": 0.9843, "recall": 0.9843, "f1": 0.9843, "tp": 125, "fp": 2, "fn": 2, "tn": 66 },
+      "joint": { "TT": 108, "TF": 83, "FT": 3, "FF": 1 },
+      "overall_pass": true,
+      "evidence": "score-routing-corpus.json / score-routing-corpus.stdout.txt"
+    },
+    "top3_new": {
+      "source": "scripts/capture-top3.mjs (phase-scoped, never written into mcp-server/) — a metric that did not previously exist anywhere",
+      "full_corpus_top3": { "correct": 176, "total": 195, "accuracy": 0.9026 },
+      "holdout_top3": { "correct": 55, "total": 72, "accuracy": 0.7639 },
+      "definition": "gold skill_top_1 label present among the top 3 ranked recommendations (alias-aware match, same regime as top-1)",
+      "evidence": "capture-top3.json"
+    }
+  },
+  "discrepancyRecord": {
+    "note": "Recorded, not resolved — a later phase (or the operator) decides which source is authoritative.",
+    "staleSources": [
+      {
+        "source": "routing-accuracy/scorer-eval-baseline.json",
+        "capturedAt": "2026-07-17",
+        "capturedAtSha": "37ebd31720",
+        "claim": "full_corpus_top1 155/200 (77.5%), holdout_top1 57/78 (73.08%)",
+        "whyStale": "Captured against 200 labeled / 78 holdout rows; the corpus files were edited 2026-07-27 and now hold 195 / 72 rows with different hashes, so its totals no longer match reality."
+      },
+      {
+        "source": "system-skill-advisor/references/scoring/validation-baselines.md:49-50",
+        "claim": "full-corpus top-1 80.5%, holdout top-1 77.5%",
+        "whyStale": "Cites mcp-server/tests/scorer/corpus.vitest.ts and holdout.vitest.ts as its provenance — both files do NOT exist in the repository. Dangling citation; numbers unreproducible."
+      }
+    ],
+    "freshCanonical": {
+      "capturedAtSha": "1e0ad1d9ba",
+      "full_corpus_top1": "151/195 = 77.44%",
+      "holdout_top1": "53/72 = 73.61%",
+      "full_corpus_top3": "176/195 = 90.26%",
+      "holdout_top3": "55/72 = 76.39%",
+      "delta_vs_scorer_eval_baseline_json": "Fresh full-corpus top-1 77.44% ~= stale 77.5%, but over 195 rows not 200 (different denominator); holdout 73.61% vs stale 73.08%.",
+      "delta_vs_validation_baselines_md": "Fresh full-corpus top-1 77.44% is 3.06pp below the doc's cited 80.5%; the doc's citation is to nonexistent files, so its number cannot be reproduced or trusted."
+    }
+  },
+  "rawEvidenceFiles": [
+    "compiler-validate-only.txt",
+    "score-routing-corpus.json",
+    "score-routing-corpus.stdout.txt",
+    "capture-scorer-eval-baseline.stdout.txt",
+    "capture-top3.json"
+  ]
+}

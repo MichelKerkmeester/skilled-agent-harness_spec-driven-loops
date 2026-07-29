@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-json-optimization-implementation/002-baseline-capture"
-    last_updated_at: "2026-07-29T09:00:00Z"
+    last_updated_at: "2026-07-29T10:51:16Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
+    recent_action: "Captured pinned routing baseline; 11/11 compiler pass"
+    next_safe_action: "Later phases gate against baseline/routing-baseline.json"
     blockers: []
     key_files:
       - "spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "002-baseline-capture"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Which of the two contradictory checked-in baseline sources becomes canonical after this capture?"
       - "Does the new top-3 capture script graduate into a permanent routing-accuracy/ addition in a later phase?"
@@ -38,11 +38,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Level** | 2 |
-| **Completion** | 0% — spec/plan/tasks/checklist authored, capture not yet run |
+| **Completion** | 100% — capture run complete; artifact pinned |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,18 +58,19 @@ The three routing-accuracy corpus files (`labeled-prompts.jsonl`, `holdout-promp
 
 ### Top-1 and top-3 capture
 
-Both existing scorers (`score-routing-corpus.py`, `capture-scorer-eval-baseline.mjs`) will be run and their output captured verbatim for top-1 accuracy. A new metric this codebase does not currently compute anywhere — top-3 accuracy — will be added via a small, additive, read-only script scoped entirely to this phase's own folder, reading the scorer's already-available ranked recommendation list rather than modifying any scoring logic.
+Both existing scorers were run and captured verbatim. `capture-scorer-eval-baseline.mjs` (no `--write`) gave top-1 **151/195 = 77.44%** full-corpus, **53/72 = 73.61%** holdout, 17/24 ambiguity. `score-routing-corpus.py` gave a different top-1 definition (advisor accuracy **56.92%**, gate3 F1 0.9843, joint TT=108) — both recorded, not reconciled. The new top-3 metric (which no existing script computed) came from a phase-scoped `scripts/capture-top3.mjs` reusing the exact scorer regime: **176/195 = 90.26%** full-corpus, **55/72 = 76.39%** holdout.
 
 ### Compiler validation across all roots
 
-`skill_graph_compiler.py --validate-only` will be run once across every currently discovered skill root (11 as of this writing), confirming the `derived.key_files`/`derived.source_docs` path-existence checks (`skill_graph_compiler.py:346-369`) pass cleanly for the whole fleet before any later phase touches `derived` metadata.
+`skill_graph_compiler.py --validate-only` ran across every discovered skill root: **11 discovered, VALIDATION PASSED (exit 0)**, `derived.key_files`/`derived.source_docs` path-existence checks clean fleet-wide. The discovered roster matched the independent enumeration exactly.
 
-### Files Changed (planned)
+### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `002-baseline-capture/baseline/routing-baseline.json` | Created | The single hash-pinned artifact every later 030 phase gates against |
-| `002-baseline-capture/scripts/capture-top3.mjs` (or equivalent) | Created | Phase-scoped, additive top-3 capture; never written into production `routing-accuracy/` |
+| `002-baseline-capture/baseline/*.txt` / `*.json` | Created | Verbatim raw-capture evidence (compiler stdout, both scorers, top-3) |
+| `002-baseline-capture/scripts/capture-top3.mjs` | Created | Phase-scoped, additive top-3 capture; never written into production `routing-accuracy/` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,7 +78,7 @@ Both existing scorers (`score-routing-corpus.py`, `capture-scorer-eval-baseline.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Three sequential phases, all read-only against production code: Setup (enumerate roots, verify the build is current, pin corpus hashes), Baseline capture (run both existing top-1 scorers, add and run the top-3 script, run the compiler validate-only pass), and Assembly/cross-check (combine everything into one artifact, independently re-verify the hashes and row counts, diff against both stale checked-in sources, confirm zero collateral writes via `git status`). No production file, corpus file, or CI workflow changes.
+Three sequential steps, all read-only against production code: Setup (enumerated 11 roots, confirmed `dist/mcp-server` present, pinned corpus hashes), Capture (ran both top-1 scorers, wrote and ran the phase-scoped top-3 script, ran the compiler validate-only pass), and Assembly (combined everything into `baseline/routing-baseline.json`, cross-checked hashes/row-counts, recorded the delta against both stale sources, confirmed via `git status` that `system-skill-advisor` stayed clean). No production file, corpus file, or CI workflow was changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,12 +100,13 @@ Three sequential phases, all read-only against production code: Setup (enumerate
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` | Pending — run once this phase is built |
-| Corpus hash cross-check (independent `shasum -a 256` re-run) | Pending |
-| `skill_graph_compiler.py --validate-only` across all roots | Pending |
-| `git status` shows no collateral writes | Pending |
-
-This packet is Planned; no verification has run yet.
+| `skill_graph_compiler.py --validate-only` across all roots | PASS — 11 discovered, VALIDATION PASSED, exit 0 |
+| Corpus hashes pinned (`shasum -a 256`) | labeled 195/`9f30cc..`, holdout 72/`88a7f7..`, ambiguity 24/`07cd2c..` |
+| top-1 captured (both scorers) | 77.44% / 73.61% (eval-baseline); 56.92% advisor-accuracy (corpus scorer) |
+| top-3 captured (new metric) | 90.26% full-corpus, 76.39% holdout |
+| Discrepancy vs stale sources recorded | `scorer-eval-baseline.json` (@200 rows, 2026-07-17) and `validation-baselines.md` (80.5%/77.5%, nonexistent test files) both recorded |
+| `git status` — no collateral writes | `system-skill-advisor` clean; changes confined to this phase folder |
+| `validate.sh <this-folder> --strict` | Errors:0 (below) |
 <!-- /ANCHOR:verification -->
 
 ---
