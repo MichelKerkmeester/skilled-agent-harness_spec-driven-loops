@@ -1,0 +1,58 @@
+[
+  {
+    "id": "command-spec-kit-plan",
+    "command": "/speckit:plan",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "system-spec-kit owns the live planning command but has no command-metadata.json yet."
+  },
+  {
+    "id": "command-spec-kit-complete",
+    "command": "/speckit:complete",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "system-spec-kit owns the live completion command but has no command-metadata.json yet."
+  },
+  {
+    "id": "command-spec-kit-implement",
+    "command": "/speckit:implement",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "system-spec-kit owns the live implementation command but has no command-metadata.json yet."
+  },
+  {
+    "id": "command-spec-kit-resume",
+    "command": "/speckit:resume",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "system-spec-kit owns the live resume command but has no command-metadata.json yet."
+  },
+  {
+    "id": "command-spec-kit",
+    "command": "/spec_kit",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "The deprecated generic Spec Kit bridge remains live for one-release compatibility and has no JSON command entry."
+  },
+  {
+    "id": "command-memory-save",
+    "command": "/memory:save",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "system-spec-kit owns memory persistence but has no command-metadata.json yet."
+  },
+  {
+    "id": "memory:save",
+    "command": "/memory:save",
+    "skillId": "system-spec-kit",
+    "ownerMode": "system-spec-kit",
+    "reason": "The TypeScript scorer retains this second legacy id for the metadata-free memory save command."
+  },
+  {
+    "id": "command-prompt-improver",
+    "command": "/prompt",
+    "skillId": "sk-prompt",
+    "ownerMode": "sk-prompt-improve",
+    "reason": "The Python compatibility scorer still recognizes legacy /prompt while JSON declares /prompt:improve."
+  }
+]

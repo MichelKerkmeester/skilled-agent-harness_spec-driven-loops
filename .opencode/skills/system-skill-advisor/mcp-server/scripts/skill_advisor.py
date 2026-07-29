@@ -81,6 +81,11 @@ NATIVE_GENERATION_MODULE = os.path.join(
     "generation.js",
 )
 MODE_REGISTRY_PATH = os.path.join(SKILLS_DIR, "system-deep-loop", "mode-registry.json")
+COMMAND_BRIDGES_GENERATED_PATH = os.path.join(
+    SCRIPT_DIR,
+    "command-bridges",
+    "command-bridges.generated.json",
+)
 ALIASES_TS_PATH = os.path.join(
     SKILLS_DIR,
     "system-skill-advisor",
@@ -480,6 +485,123 @@ def emit_routing_projection(check_only: bool = False) -> int:
         "changed": changed,
     }, indent=2))
     return 0
+
+
+def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
+    """Normalize a live Python bridge owner to the generated projection shape."""
+    command_config = COMMAND_BRIDGES.get(command_name, {})
+    owner = COMMAND_BRIDGE_OWNER_NORMALIZATION.get(command_name) or command_config.get("owning_skill")
+    if owner == "system-spec-kit":
+        return {"skillId": "system-spec-kit", "ownerMode": "system-spec-kit"}
+    if isinstance(owner, str) and owner.startswith("deep-"):
+        return {"skillId": "system-deep-loop", "ownerMode": owner.removeprefix("deep-")}
+    if isinstance(owner, str) and owner.startswith("create:"):
+        return {"skillId": "sk-doc", "ownerMode": f"sk-create-{owner.split(':', 1)[1]}"}
+    if command.startswith("/deep:"):
+        mode = command.split(":", 1)[1]
+        return {"skillId": "system-deep-loop", "ownerMode": mode}
+    if command_name.startswith("command-spec-kit") or command == "/memory:save":
+        return {"skillId": "system-spec-kit", "ownerMode": "system-spec-kit"}
+    if command.startswith("/create:"):
+        return {"skillId": "sk-doc", "ownerMode": f"sk-create-{command.split(':', 1)[1]}"}
+    if command == "/prompt":
+        return {"skillId": "sk-prompt", "ownerMode": "sk-prompt-improve"}
+    return {
+        "skillId": str(owner or ""),
+        "ownerMode": "",
+    }
+
+
+def _normalized_live_command_bridges() -> List[Dict[str, str]]:
+    """Return the hand-authored Python command bridges in projection form."""
+    entries: List[Dict[str, str]] = []
+    for command_name, command_config in COMMAND_BRIDGES.items():
+        command = next(
+            (
+                marker
+                for marker in command_config.get("slash_markers", [])
+                if isinstance(marker, str) and marker.startswith("/")
+            ),
+            "",
+        )
+        owner = _command_bridge_owner(command_name, command)
+        entries.append({
+            "id": command_name,
+            "command": command,
+            "skillId": owner["skillId"],
+            "ownerMode": owner["ownerMode"],
+            "source": "scripts/skill_advisor.py#COMMAND_BRIDGES",
+        })
+    return sorted(entries, key=lambda entry: entry["id"])
+
+
+def _generated_command_bridges() -> List[Dict[str, str]]:
+    """Load and validate the shadow command bridge projection artifact."""
+    try:
+        with open(COMMAND_BRIDGES_GENERATED_PATH, "r", encoding="utf-8") as generated_file:
+            payload = json.load(generated_file)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Unable to read generated command bridges: {exc}") from exc
+
+    entries = payload.get("entries") if isinstance(payload, dict) else None
+    if not isinstance(entries, list):
+        raise ValueError("Generated command bridge projection must contain an entries array")
+    normalized: List[Dict[str, str]] = []
+    required = ("id", "command", "skillId", "ownerMode", "source")
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict) or any(not isinstance(entry.get(key), str) for key in required):
+            raise ValueError(f"Generated command bridge entry {index} has an invalid shape")
+        normalized.append({key: entry[key] for key in required})
+    return sorted(normalized, key=lambda entry: entry["id"])
+
+
+def dump_command_bridges(generated: bool = False) -> int:
+    """Print live or generated command bridges as normalized JSON."""
+    try:
+        entries = _generated_command_bridges() if generated else _normalized_live_command_bridges()
+    except ValueError as exc:
+        print(json.dumps({"error": str(exc)}, indent=2))
+        return 2
+    print(json.dumps({"count": len(entries), "entries": entries}, indent=2))
+    return 0
+
+
+def check_command_bridges() -> int:
+    """Report drift between live Python bridges and the generated shadow projection."""
+    try:
+        live = _normalized_live_command_bridges()
+        generated = _generated_command_bridges()
+    except ValueError as exc:
+        print(json.dumps({"error": str(exc)}, indent=2))
+        return 2
+
+    live_by_id = {entry["id"]: entry for entry in live}
+    generated_by_id = {entry["id"]: entry for entry in generated}
+    missing = sorted(set(generated_by_id) - set(live_by_id))
+    extra = sorted(set(live_by_id) - set(generated_by_id))
+    compared_fields = ("command", "skillId", "ownerMode")
+    mismatched = []
+    for bridge_id in sorted(set(live_by_id) & set(generated_by_id)):
+        differences = {
+            field: {
+                "live": live_by_id[bridge_id][field],
+                "generated": generated_by_id[bridge_id][field],
+            }
+            for field in compared_fields
+            if live_by_id[bridge_id][field] != generated_by_id[bridge_id][field]
+        }
+        if differences:
+            mismatched.append({"id": bridge_id, "fields": differences})
+
+    has_drift = bool(missing or extra or mismatched)
+    print(json.dumps({
+        "status": "drift" if has_drift else "agreement",
+        "counts": {"live": len(live), "generated": len(generated)},
+        "missing": missing,
+        "extra": extra,
+        "mismatched": mismatched,
+    }, indent=2))
+    return 1 if has_drift else 0
 
 
 def _file_url(path: str) -> str:
@@ -4299,6 +4421,12 @@ Examples:
                         help='Regenerate embedded advisor routing projection constants from mode-registry.json.')
     parser.add_argument('--check-routing-projection', action='store_true',
                         help='Check embedded advisor routing projection constants without writing files.')
+    parser.add_argument('--dump-command-bridges', action='store_true',
+                        help='Dump the live hand-authored Python command bridges as normalized JSON.')
+    parser.add_argument('--emit-command-bridges', action='store_true',
+                        help='Print the generated shadow command bridge projection as normalized JSON.')
+    parser.add_argument('--check-command-bridges', action='store_true',
+                        help='Compare live Python command bridges with the generated shadow projection.')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
     parser.add_argument('--validate-only', action='store_true',
@@ -4332,11 +4460,31 @@ Examples:
         print(json.dumps({"error": "Use only one of --emit-routing-projection or --check-routing-projection."}, indent=2))
         return 2
 
+    command_bridge_modes = [
+        args.dump_command_bridges,
+        args.emit_command_bridges,
+        args.check_command_bridges,
+    ]
+    if sum(bool(value) for value in command_bridge_modes) > 1:
+        print(json.dumps({
+            "error": "Use only one of --dump-command-bridges, --emit-command-bridges, or --check-command-bridges."
+        }, indent=2))
+        return 2
+
     if args.emit_routing_projection:
         return emit_routing_projection(check_only=False)
 
     if args.check_routing_projection:
         return emit_routing_projection(check_only=True)
+
+    if args.dump_command_bridges:
+        return dump_command_bridges(generated=False)
+
+    if args.emit_command_bridges:
+        return dump_command_bridges(generated=True)
+
+    if args.check_command_bridges:
+        return check_command_bridges()
 
     if args.force_refresh:
         get_skills(force_refresh=True)

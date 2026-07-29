@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
+  "counts": {
+    "commandMetadata": 22,
+    "allowList": 8,
+    "generated": 30
+  },
+  "entries": [
+    {
+      "id": "command-create-agent",
+      "command": "/create:agent",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-agent",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-benchmark",
+      "command": "/create:benchmark",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-benchmark",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-changelog",
+      "command": "/create:changelog",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-changelog",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-command",
+      "command": "/create:command",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-command",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-diff",
+      "command": "/create:diff",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-diff",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-feature-catalog",
+      "command": "/create:feature-catalog",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-feature-catalog",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-flowchart",
+      "command": "/create:flowchart",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-flowchart",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-manual-testing-playbook",
+      "command": "/create:manual-testing-playbook",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-manual-testing-playbook",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-readme",
+      "command": "/create:readme",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-readme",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-skill",
+      "command": "/create:skill",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-skill",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-create-skill-parent",
+      "command": "/create:skill-parent",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-skill-parent",
+      "source": ".opencode/skills/sk-doc/command-metadata.json"
+    },
+    {
+      "id": "command-deep-agent-improvement",
+      "command": "/deep:agent-improvement",
+      "skillId": "system-deep-loop",
+      "ownerMode": "agent-improvement",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-ai-council",
+      "command": "/deep:ai-council",
+      "skillId": "system-deep-loop",
+      "ownerMode": "ai-council",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-alignment",
+      "command": "/deep:alignment",
+      "skillId": "system-deep-loop",
+      "ownerMode": "alignment",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-command-benchmark",
+      "command": "/deep:command-benchmark",
+      "skillId": "system-deep-loop",
+      "ownerMode": "alignment",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-model-benchmark",
+      "command": "/deep:model-benchmark",
+      "skillId": "system-deep-loop",
+      "ownerMode": "model-benchmark",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-research",
+      "command": "/deep:research",
+      "skillId": "system-deep-loop",
+      "ownerMode": "research",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-review",
+      "command": "/deep:review",
+      "skillId": "system-deep-loop",
+      "ownerMode": "review",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-deep-skill-benchmark",
+      "command": "/deep:skill-benchmark",
+      "skillId": "system-deep-loop",
+      "ownerMode": "skill-benchmark",
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+    },
+    {
+      "id": "command-interface-design",
+      "command": "/interface:design",
+      "skillId": "sk-design",
+      "ownerMode": "sk-design-interface",
+      "source": ".opencode/skills/sk-design/command-metadata.json"
+    },
+    {
+      "id": "command-interface-design-reference",
+      "command": "/interface:design-reference",
+      "skillId": "sk-design",
+      "ownerMode": "sk-design-md-generator",
+      "source": ".opencode/skills/sk-design/command-metadata.json"
+    },
+    {
+      "id": "command-memory-save",
+      "command": "/memory:save",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-prompt-improve",
+      "command": "/prompt:improve",
+      "skillId": "sk-prompt",
+      "ownerMode": "sk-prompt-improve",
+      "source": ".opencode/skills/sk-prompt/command-metadata.json"
+    },
+    {
+      "id": "command-prompt-improver",
+      "command": "/prompt",
+      "skillId": "sk-prompt",
+      "ownerMode": "sk-prompt-improve",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-spec-kit",
+      "command": "/spec_kit",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-spec-kit-complete",
+      "command": "/speckit:complete",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-spec-kit-implement",
+      "command": "/speckit:implement",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-spec-kit-plan",
+      "command": "/speckit:plan",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "command-spec-kit-resume",
+      "command": "/speckit:resume",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    },
+    {
+      "id": "memory:save",
+      "command": "/memory:save",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": "scripts/command-bridges/allow-list.json"
+    }
+  ]
+}
