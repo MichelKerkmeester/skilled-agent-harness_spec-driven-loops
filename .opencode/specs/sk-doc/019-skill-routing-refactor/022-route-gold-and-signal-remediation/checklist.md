@@ -26,7 +26,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 Pre-change per-scenario baselines captured for both hubs
+- [x] CHK-001 Pre-change baselines captured (/tmp/rm-baseline-sk-{design,code}) before any edit
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -34,7 +34,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-002 Lane 1 signal edit is minimal and targets only the folded-vocabulary gap
+- [x] CHK-002 Lane 1 added one interface-quality vocab class + one signal wire; nothing else touched — commit 0536eed47e
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -42,8 +42,8 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-003 sk-design per-scenario diff shows exactly SR-002.P3 and AI-001.P4 moving to interface
-- [ ] CHK-004 sk-code per-scenario diff shows exactly the ten named scenarios passing route-gold
+- [x] CHK-003 Exactly SR-002.P3 and AI-001.P4 moved (84→100, route-gold pass); zero other rows — verified per-scenario diff
+- [x] CHK-004 Exactly the ten scenarios moved to pass; route-gold failures now empty — commit ae83eb38be
 <!-- /ANCHOR:testing -->
 
 ---
@@ -51,7 +51,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-005 Both hubs no longer report BLOCKED-BY-ROUTE-GOLD
+- [x] CHK-005 sk-design CONDITIONAL 92, sk-code PASS 96 — neither BLOCKED
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -59,7 +59,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-006 No credentials or unrelated behavior changes in either lane commit
+- [x] CHK-006 Lane 1 = one config file; Lane 2 = deletions-only in playbook gold; no other behavior touched
 <!-- /ANCHOR:security -->
 
 ---
@@ -67,7 +67,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-007 New post-remediation baselines recorded in implementation-summary.md
+- [x] CHK-007 New baselines recorded in implementation-summary.md
 <!-- /ANCHOR:docs -->
 
 ---
@@ -75,7 +75,7 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-008 One commit per lane; no cross-lane bleed
+- [x] CHK-008 0536eed47e (Lane 1) and ae83eb38be (Lane 2), disjoint file sets
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -83,5 +83,5 @@ Check items only with evidence: a gate number, a per-scenario diff, or a commit 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-Pending lane execution.
+Both lanes complete and verified; both target hubs off BLOCKED with only the targeted scenarios moving.
 <!-- /ANCHOR:summary -->

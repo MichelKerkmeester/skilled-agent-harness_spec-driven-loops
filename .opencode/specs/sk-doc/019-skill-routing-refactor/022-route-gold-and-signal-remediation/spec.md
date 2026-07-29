@@ -22,7 +22,7 @@ parent: "sk-doc/019-skill-routing-refactor"
 |-------|-------|
 | **Packet** | sk-doc/019-skill-routing-refactor/022-route-gold-and-signal-remediation |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Owner** | The sk-design and sk-code hub routing surfaces |
 <!-- /ANCHOR:metadata -->
@@ -46,11 +46,14 @@ Both are 014-consolidation fallout: `foundations` and `motion` folded into `inte
 folded vocabulary (static visual-system phrasings and temporal/motion phrasings) is not fully wired
 into `interface`'s `routerSignals` in `sk-design/hub-router.json`, so those prompts route nowhere.
 
-**sk-code — ten surface-detection scenarios with no typed gold.** Ten playbook scenarios
-(`SD-001/002`, `LS-001..004`, `CS-001/003/005/007`) carry no `expected_intent` / `expected_workflow_mode`
-/ `expected_resources` at all. The router observes a real surface route, but with empty expected gold
-the route-gold scorer fails them. These are surface-detection scenarios that either need typed gold
-authored or an explicit no-route-gold exemption if surface detection is out of route-gold scope.
+**sk-code — ten surface-detection scenarios with over-specified resource gold.** Ten playbook
+scenarios (`SD-001/002`, `LS-001..004`, `CS-001/003/005/007`) fail the `shape==='sk-code'` route-gold
+check, which requires `expectedResources.every(file => observed.has(file))`. Investigation
+(recorded in implementation-summary.md) overturned the review's framing: the scenarios are NOT
+missing gold and their paths are NOT stale — each names a small set of files (1–4) that load only
+under a specific intent tier (opencode `IMPLEMENTATION`; webflow `CSS`/`JAVASCRIPT`). A
+surface/language-*detection* prompt correctly fires only the narrow detection intent, so the router
+legitimately omits those files. The replay is correct by design; the gold over-specifies.
 
 ### Purpose
 
@@ -120,7 +123,9 @@ sk-design's interface signals, and resolve the sk-code gold gap — without movi
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-1. Whether sk-code surface-detection scenarios should carry route gold at all, or are legitimately a
-   surface-only concern that the route-gold scorer should exempt. Lane 2's first step settles this
-   from the scorer contract before any gold is authored.
+1. RESOLVED. Investigation confirmed the router is correct by design (detection prompts fire only the
+   narrow detection intent); the fix was to correct the over-specified gold to what a detection prompt
+   actually loads, not to author gold or exempt. A latent follow-up remains: sk-design is now
+   CONDITIONAL (a `routed-intra` recall advisory the route-gold block was masking), which is a
+   non-route-gold dimension outside this packet's scope.
 <!-- /ANCHOR:questions -->

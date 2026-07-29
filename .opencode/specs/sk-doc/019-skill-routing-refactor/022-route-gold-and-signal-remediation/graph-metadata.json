@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
     "created_at": "2026-07-29T04:42:54.262Z",
-    "last_save_at": "2026-07-29T04:43:42.541Z",
+    "last_save_at": "2026-07-29T05:08:33.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c18189aa842b76a7198565066522b786d2598c972e5192d52953a05dfff15655",
+    "source_fingerprint": "sha256:446661aa91982b4aecee87dad8b0aa110047f18338f58fd3bdfc286d16730525",
     "source_doc_hashes": {
-      "spec.md": "471062d40c805e11b6c1d95b80c05d54c794217092acaa328fbe09637c93c1c1",
+      "spec.md": "44e4edb1f4a26aaca10e057dd5cb3d56711e574f23bdebfa8cfd863b6214615c",
       "plan.md": "b9a4c0dbb848d34ce1ee979d80f359bd676bfdb65bd72e824f6fcf966b975a05",
-      "tasks.md": "61369c635908df87d7cfe7e24ba48177f82c9d96814fe1553b22aeec78dc1d72",
-      "checklist.md": "4073f23db72151a6498576f8e3ca220bc9800aa57b3b2db67f8a20d22a04ec25",
-      "implementation-summary.md": "75c8d1d921857eebec4e30cfb80ba8b3080c640f221b53d9ec284b4429700641"
+      "tasks.md": "7c29b28759584e7894b3adc540cdd76fe2fe056d96e1e0424641142d38b6fcef",
+      "checklist.md": "4fad0a58e582d9216bf4def3a2461f360cc8a6c2a61e677c065b23172a10411b",
+      "implementation-summary.md": "bb0ccba5429675b8b0f0ab432881062d1fd89ea0858d39530b59df7931151420"
     },
     "last_active_child_id": null,
     "last_active_at": null
