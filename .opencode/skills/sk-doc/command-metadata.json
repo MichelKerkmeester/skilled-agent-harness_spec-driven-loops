@@ -1,7 +1,7 @@
 [
   {
     "command": "/create:skill",
-    "ownerMode": "create-skill",
+    "ownerMode": "sk-create-skill",
     "description": "Create or update OpenCode skills via one unified command with operation routing. :auto/:confirm.",
     "argumentHint": "<skill-name> [operation] [type] [--path <dir>] [--chained] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -44,7 +44,7 @@
   },
   {
     "command": "/create:skill-parent",
-    "ownerMode": "create-skill-parent",
+    "ownerMode": "sk-create-skill-parent",
     "description": "Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth). Modes :auto, :confirm.",
     "argumentHint": "<skill-name> [create|update] [--modes <mode1,mode2,...>] [--surfaces <s1,s2,...>] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -87,7 +87,7 @@
   },
   {
     "command": "/create:readme",
-    "ownerMode": "create-readme",
+    "ownerMode": "sk-create-readme",
     "description": "Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.",
     "argumentHint": "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -121,7 +121,7 @@
   },
   {
     "command": "/create:agent",
-    "ownerMode": "create-agent",
+    "ownerMode": "sk-create-agent",
     "description": "Create a new OpenCode agent with frontmatter, tool permissions, behavioral rules. Modes :auto, :confirm.",
     "argumentHint": "<agent_name> [agent_description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -155,7 +155,7 @@
   },
   {
     "command": "/create:command",
-    "ownerMode": "create-command",
+    "ownerMode": "sk-create-command",
     "description": "Create or update OpenCode slash command sets with :auto/:confirm workflow assets.",
     "argumentHint": "<command_invocation> [command_request] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -189,7 +189,7 @@
   },
   {
     "command": "/create:feature-catalog",
-    "ownerMode": "create-feature-catalog",
+    "ownerMode": "sk-create-feature-catalog",
     "description": "Create or update feature catalog packages via one unified command. Modes :auto, :confirm.",
     "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -223,7 +223,7 @@
   },
   {
     "command": "/create:manual-testing-playbook",
-    "ownerMode": "create-manual-testing-playbook",
+    "ownerMode": "sk-create-manual-testing-playbook",
     "description": "Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.",
     "argumentHint": "<skill-name> [create|update] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -257,7 +257,7 @@
   },
   {
     "command": "/create:benchmark",
-    "ownerMode": "create-benchmark",
+    "ownerMode": "sk-create-benchmark",
     "description": "Author or update family-keyed benchmark packages. Modes :auto, :confirm.",
     "argumentHint": "<skill-or-mode> <spec-packet> [create|update] --family=<FAMILIES-key> [--benchmark-id <id>] [--date YYYY-MM-DD] [--path <dir>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -291,7 +291,7 @@
   },
   {
     "command": "/create:flowchart",
-    "ownerMode": "create-flowchart",
+    "ownerMode": "sk-create-flowchart",
     "description": "Create an ASCII flowchart markdown file with pattern selection and validation. Modes :auto, :confirm.",
     "argumentHint": "<target-flowchart.md> [source/process description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -325,7 +325,7 @@
   },
   {
     "command": "/create:changelog",
-    "ownerMode": "create-changelog",
+    "ownerMode": "sk-create-changelog",
     "description": "Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.",
     "argumentHint": "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
@@ -359,7 +359,7 @@
   },
   {
     "command": "/create:diff",
-    "ownerMode": "create-diff",
+    "ownerMode": "sk-create-diff",
     "description": "Create a self-contained before/after document diff report via the create-diff engine. Modes :auto, :confirm.",
     "argumentHint": "<target-document | --before old --after new> [--report out.html] [--view unified|side-by-side] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {

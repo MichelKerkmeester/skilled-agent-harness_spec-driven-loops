@@ -77,7 +77,6 @@ const REQUIRED_BY_CLASS = Object.freeze({
     'mode-registry.json',
     'hub-router.json',
     'leaf-manifest.json',
-    'command-metadata.json',
   ]),
   [CLASS_STANDALONE]: Object.freeze([
     'graph-metadata.json',
@@ -113,12 +112,10 @@ const FORBIDDEN_BY_CLASS = Object.freeze({
  * nothing reads. Adding a root here is a deliberate act that must come with a
  * consumer able to find it.
  *
- * Currently empty. `command-metadata.json` graduated from this tier to a
- * class-H requirement once the fleet gate became its root-enumerating
- * consumer: every hub now declares its slash-command surface as checkable
- * data (an empty array when it owns none), validated against the core schema
- * in command-metadata-schema.cjs. The mechanism stays for the next extension
- * that ships before its consumer can enumerate roots.
+ * Currently empty. The mechanism stays for the next extension that ships before
+ * its consumer can enumerate roots. `command-metadata.json` is not here: it is a
+ * class-H optional (see the optional set), legal on every hub and forbidden on
+ * every standalone, so it is uniform class policy rather than a per-root overlay.
  */
 const OVERLAY_FILES = Object.freeze({});
 
@@ -146,9 +143,17 @@ const GENERATED_FILES = Object.freeze(
   [...new Set(Object.values(GENERATED_BY_CLASS).flat())].sort(),
 );
 
-/** A hub may legitimately have no relocated resources to declare. */
+/**
+ * A hub may legitimately have no relocated resources to declare (leaf-aliases),
+ * and it may legitimately own no slash commands (command-metadata). A command
+ * surface exists only for hubs that actually ship commands, so requiring the
+ * file fleet-wide forced command-less hubs to carry an empty-array placeholder
+ * nothing reads; it is optional instead — validated against the core schema when
+ * present, and simply absent when the hub owns no commands. It stays forbidden
+ * on standalone roots, which have no registry mode to bind a command to.
+ */
 const OPTIONAL_BY_CLASS = Object.freeze({
-  [CLASS_HUB]: Object.freeze(['leaf-aliases.json']),
+  [CLASS_HUB]: Object.freeze(['leaf-aliases.json', 'command-metadata.json']),
   [CLASS_STANDALONE]: Object.freeze([]),
 });
 
