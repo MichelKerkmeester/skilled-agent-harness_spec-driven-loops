@@ -11,11 +11,17 @@ import json
 import os
 import stat
 import subprocess
+import sys
 import tempfile
 import unittest
 import unicodedata
 from pathlib import Path
 from typing import Any, Iterable
+
+_SHARED_SCRIPTS = Path(__file__).resolve().parents[2] / "shared" / "scripts"
+if str(_SHARED_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SHARED_SCRIPTS))
+from git_env import scrub_git_env  # noqa: E402
 
 
 # ───────────────────────────────────────────────────────────────
@@ -139,12 +145,15 @@ class FixtureRepository:
         return digest.hexdigest()
 
     def _git(self, *args: str) -> subprocess.CompletedProcess[str]:
+        # env scrub: keep cwd authoritative so a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect
+        # this fixture's writes onto the real, worktree-shared repository.
         return subprocess.run(
             ["git", *args],
             cwd=self.root,
             check=True,
             capture_output=True,
             text=True,
+            env=scrub_git_env(),
         )
 
 

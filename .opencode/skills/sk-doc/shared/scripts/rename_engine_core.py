@@ -36,6 +36,8 @@ from check_no_new_snake_case import (
 )
 from naming_root_resolver import canonical_root
 
+from git_env import scrub_git_env
+
 
 SCHEMA_VERSION = 1
 DISPOSABLE_MARKER = ".rename-engine-disposable"
@@ -109,7 +111,10 @@ def _git(
     check: bool = True,
 ) -> subprocess.CompletedProcess[bytes]:
     command = ["git", "-C", str(repo_root), *arguments]
-    result = subprocess.run(command, check=False, capture_output=True)
+    # Scrub GIT_DIR/GIT_WORK_TREE/GIT_CONFIG* so `-C` is authoritative: `git mv` here mutates the
+    # tree, and a poisoned parent env would otherwise redirect it off the disposable repo onto the
+    # real, worktree-shared repository.
+    result = subprocess.run(command, check=False, capture_output=True, env=scrub_git_env())
     if check and result.returncode != 0:
         detail = result.stderr.decode("utf-8", errors="replace").strip()
         raise PreflightError(detail or f"git exited {result.returncode}: {' '.join(command)}")

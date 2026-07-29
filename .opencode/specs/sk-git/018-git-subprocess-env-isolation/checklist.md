@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/018-git-subprocess-env-isolation"
-    last_updated_at: "2026-07-29T06:03:51Z"
+    last_updated_at: "2026-07-29T06:46:35Z"
     last_updated_by: "claude"
-    recent_action: "All QA items verified with evidence"
-    next_safe_action: "Commit on skilled/v4"
+    recent_action: "Extension verified; all 12 class helpers hardened"
+    next_safe_action: "Commit the extension on skilled/v4"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs"
@@ -103,7 +103,9 @@ Each item is checked only with evidence (a command run, a file:line, or a test c
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-- **Suites**: git-rule-checks 24/24, worktree-naming 47/47, rename fixture 2 pre-existing fails (proven independent).
-- **Poisoned-env checks**: 3/3 helpers leave the stand-in repo untouched.
+- **Suites (core 3)**: git-rule-checks 24/24, worktree-naming 47/47, rename fixture 2 pre-existing fails (proven independent).
+- **Suites (extension 9)**: sk-doc 40/40, write-containment 16/16, pre-push 21/21; session-enrichment 3 pre-existing fails (proven at HEAD); auto-detection dormant.
+- **Poisoned-env checks**: stand-in repo left untouched (JS regression + Python `_run_git`/`scrub_git_env` + shell suite).
+- **Sweep**: 12 vulnerable found + hardened; read-only/no-git files ruled safe.
 - **Packet validation**: `validate.sh --strict` Errors 0.
 <!-- /ANCHOR:summary -->

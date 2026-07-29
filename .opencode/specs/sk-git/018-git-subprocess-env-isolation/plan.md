@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/018-git-subprocess-env-isolation"
-    last_updated_at: "2026-07-29T06:03:51Z"
+    last_updated_at: "2026-07-29T06:46:35Z"
     last_updated_by: "claude"
-    recent_action: "Plan executed; three helpers hardened and verified"
-    next_safe_action: "Commit on skilled/v4"
+    recent_action: "Plan executed + extended to all 12 class helpers"
+    next_safe_action: "Commit the extension on skilled/v4"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs"

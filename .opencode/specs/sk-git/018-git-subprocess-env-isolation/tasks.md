@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/018-git-subprocess-env-isolation"
-    last_updated_at: "2026-07-29T06:03:51Z"
+    last_updated_at: "2026-07-29T06:46:35Z"
     last_updated_by: "claude"
-    recent_action: "All tasks complete; 3 helpers hardened and verified"
-    next_safe_action: "Commit on skilled/v4"
+    recent_action: "Extension complete; all 12 class helpers hardened"
+    next_safe_action: "Commit the extension on skilled/v4"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs"
@@ -71,6 +71,9 @@ _memory:
 - [x] T007 `bash worktree-naming.test.sh` passes 47/47. The sk-doc rename fixture harness has 2 pre-existing failures (deleted `.gitkeep` files, not-mine) proven independent by running the HEAD core; the Python fix is verified via T008's direct poisoned-env check instead.
 - [x] T008 Direct poisoned-env check: run each hardened helper with `GIT_DIR`/`GIT_WORK_TREE` exported at a throwaway repo; assert its identity/bare/hooksPath unchanged.
 - [x] T009 Comment hygiene clean on all three changed files; `validate.sh --strict` Errors 0.
+- [x] T010 Repo-wide sweep (temp-repo + git-write) triaged every candidate; found 9 more vulnerable helpers + ruled `reference_rewrite_core.py` / `fanout-merge.vitest.ts` safe.
+- [x] T011 Hardened all 9: shared `git_env.py` util; `rename_engine_core.py` `_git`; 4 sk-doc test `_git` helpers (+ path bootstrap); 3 JS `cleanGitEnv()`; `pre-push.test.sh` `unset`.
+- [x] T012 Ran every affected suite: sk-doc 40/40, write-containment 16/16, pre-push 21/21; session-enrichment 3 fails + rename harness 2 fails both proven PRE-EXISTING at HEAD (no regression). Comment hygiene clean on all 12.
 <!-- /ANCHOR:phase-3 -->
 
 ---

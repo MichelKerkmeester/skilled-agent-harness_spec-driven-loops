@@ -42,10 +42,25 @@ function writeJson(filePath: string, value: unknown): void {
   writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+// git resolves its target repo/config from these env vars IN PREFERENCE to cwd. A poisoned parent
+// env (routine inside a git worktree, which shares one .git/config) would otherwise redirect these
+// fixture writes onto the real repository. Strip them so cwd is authoritative.
+const GIT_ENV_REDIRECTORS = [
+  'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE',
+  'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+  'GIT_CONFIG', 'GIT_CONFIG_GLOBAL', 'GIT_CONFIG_SYSTEM', 'GIT_CONFIG_COUNT',
+  'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
+];
+function cleanGitEnv(): NodeJS.ProcessEnv {
+  const env = { ...process.env };
+  for (const key of GIT_ENV_REDIRECTORS) delete env[key];
+  return env;
+}
+
 function initGitRepo(root: string): void {
-  execFileSync('git', ['init'], { cwd: root, stdio: 'ignore' });
-  execFileSync('git', ['config', 'user.email', 'spec-kit@example.com'], { cwd: root, stdio: 'ignore' });
-  execFileSync('git', ['config', 'user.name', 'Spec Kit Tests'], { cwd: root, stdio: 'ignore' });
+  execFileSync('git', ['init'], { cwd: root, stdio: 'ignore', env: cleanGitEnv() });
+  execFileSync('git', ['config', 'user.email', 'spec-kit@example.com'], { cwd: root, stdio: 'ignore', env: cleanGitEnv() });
+  execFileSync('git', ['config', 'user.name', 'Spec Kit Tests'], { cwd: root, stdio: 'ignore', env: cleanGitEnv() });
 }
 
 function createDetectorRepo(): {

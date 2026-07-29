@@ -11,6 +11,7 @@ import json
 import os
 import stat
 import subprocess
+import sys
 import tempfile
 import unittest
 import unicodedata
@@ -27,6 +28,9 @@ SK_DOC_ROOT = TEST_ROOT.parents[1]
 SHARED_SCRIPTS = SK_DOC_ROOT / "shared" / "scripts"
 CHECKER = SHARED_SCRIPTS / "reference_checker.py"
 EXECUTOR = SHARED_SCRIPTS / "reference_rewrite_executor.py"
+if str(SHARED_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SHARED_SCRIPTS))
+from git_env import scrub_git_env  # noqa: E402
 DISPOSABLE_MARKER = ".rename-engine-disposable"
 DISPOSABLE_CONTENT = "semantic-rename-engine disposable fixture\n"
 
@@ -172,12 +176,15 @@ class FixtureRepository:
         )
 
     def _git(self, *arguments: str) -> subprocess.CompletedProcess[str]:
+        # env scrub: keep cwd authoritative so a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect
+        # this fixture's writes onto the real, worktree-shared repository.
         return subprocess.run(
             ["git", *arguments],
             cwd=self.root,
             check=True,
             capture_output=True,
             text=True,
+            env=scrub_git_env(),
         )
 
 

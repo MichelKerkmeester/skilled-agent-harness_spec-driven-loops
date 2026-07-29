@@ -6,6 +6,14 @@
 # or the operator's global git config.
 set -uo pipefail
 
+# git resolves its repository from these variables in preference to -C/cwd. Clear them so the
+# REPO_ROOT resolution below and every `git -C "$TMP"` fixture write stay hermetic even when the
+# caller's environment has them set (routine inside a git worktree, which shares one .git/config).
+# GIT_CONFIG_GLOBAL is handled separately below (pinned to /dev/null, not merely cleared).
+unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE GIT_OBJECT_DIRECTORY \
+      GIT_ALTERNATE_OBJECT_DIRECTORIES GIT_CONFIG GIT_CONFIG_SYSTEM \
+      GIT_CONFIG_COUNT GIT_NAMESPACE GIT_CEILING_DIRECTORIES
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 HOOK="$REPO_ROOT/.opencode/scripts/git-hooks/pre-push"

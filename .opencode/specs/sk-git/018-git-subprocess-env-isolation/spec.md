@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/018-git-subprocess-env-isolation"
-    last_updated_at: "2026-07-29T06:03:51Z"
+    last_updated_at: "2026-07-29T06:46:35Z"
     last_updated_by: "claude"
-    recent_action: "Hardened 3 helpers; verified no-leak; ready to commit"
-    next_safe_action: "Commit on skilled/v4; optional git-context read-path follow-up"
+    recent_action: "Extended fix to all 12 class helpers via repo-wide sweep"
+    next_safe_action: "Commit the extension on skilled/v4"
     blockers: []
     key_files:
       - ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs"
@@ -68,21 +68,33 @@ Make the three helpers immune to a poisoned parent environment by scrubbing the 
 ## 3. SCOPE
 
 ### In Scope
-- Scrub the repo/config-redirecting `GIT_*` env vars from every git subprocess in the three write-capable helpers.
+- Scrub the repo/config-redirecting `GIT_*` env vars from every git subprocess in **every** write-capable test/tool helper in the class (a repo-wide sweep found 12 total: the 3 first-identified plus 9 more).
 - Add a regression test proving a git config write cannot escape the temp repo even when `GIT_DIR`/`GIT_WORK_TREE` are set in the parent env.
+- Provide one canonical scrub util per language (`git_env.py` for the sk-doc Python family; the exemplar `cleanGitEnv()` pattern inlined in the independent JS test files across skills).
 
 ### Out of Scope
-- The production `git-context.mjs` read path — it only runs read-only git queries (`rev-parse`, `status`) and never writes config, so it is not a corruption vector. (Left unchanged; a follow-up could harden it for defense-in-depth.)
+- Read-only git helpers (`git-context.mjs`; `reference_rewrite_core.py`) — they only run `rev-parse`/`status`/`ls-files` and never write config, so they are not corruption vectors. (Left unchanged; a follow-up could harden them for defense-in-depth.)
 - Repairing an already-corrupted `.git/config` — handled operationally (config repaired this session); this packet prevents recurrence.
 - Enabling `extensions.worktreeConfig` — a broader git-topology change outside this fix.
+- Pre-existing, unrelated failures in `session-enrichment.vitest.ts` (3) and the rename fixture harness (2) — both fail at HEAD independently of this change (not hermetic against the global commit-msg hook / deleted `.gitkeep` files).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs` | Modify | Scrub `GIT_*` redirectors in the `git()` helper's `execFileSync` env. |
-| `.opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py` | Modify | Build `_run_git`'s child env from a scrubbed base instead of inheriting `os.environ` unfiltered. |
-| `.opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Unset the `GIT_*` redirectors before the fixture's git calls. |
+| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs` | Modify | Scrub `GIT_*` in the `git()` helper's `execFileSync` env + a poisoned-env regression test. |
+| `.opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py` | Modify | Build `_run_git`'s child env from the shared scrub util. |
+| `.opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Unset the `GIT_*` redirectors before the fixture's git calls (incl. the EXIT trap). |
+| `.opencode/skills/sk-doc/shared/scripts/git_env.py` | Create | Canonical Python scrub util (`GIT_ENV_REDIRECTORS` + `scrub_git_env`). |
+| `.opencode/skills/sk-doc/shared/scripts/rename_engine_core.py` | Modify | Scrub `_git()`'s env — production `git mv` was the most severe vector. |
+| `.opencode/skills/sk-doc/scripts/tests/test_reference_checker.py` | Modify | Scrub its own `_git()`; add shared-scripts bootstrap. |
+| `.opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py` | Modify | Scrub its own `_git()`; add shared-scripts bootstrap. |
+| `.opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py` | Modify | Scrub its own `_git()`. |
+| `.opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py` | Modify | Scrub its own `_git()`; add shared-scripts bootstrap. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Replace `env: process.env` with `cleanGitEnv()`. |
+| `.opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts` | Modify | Add `env: cleanGitEnv()` to all git write spawns. |
+| `.opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts` | Modify | Add `env: cleanGitEnv()` to `initGitRepo` (dormant suite). |
+| `.opencode/scripts/git-hooks/tests/pre-push.test.sh` | Modify | Unset the `GIT_*` repo redirectors at the top (alongside the existing `GIT_CONFIG_GLOBAL`). |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,6 +115,7 @@ Make the three helpers immune to a poisoned parent environment by scrubbing the 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | A committed regression test encodes the leak-and-prevention proof for the primary helper. | `node --test` on the new/updated test fails on the pre-fix helper and passes on the fixed one. |
+| REQ-005 | A repo-wide sweep finds every write-capable git test/tool helper in the class, and each is hardened. | Every candidate (temp-repo creation + git write) is triaged; all vulnerable ones scrub `GIT_*`; read-only ones are documented as safe. |
 <!-- /ANCHOR:requirements -->
 
 ---

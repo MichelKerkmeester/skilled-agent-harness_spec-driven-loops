@@ -39,6 +39,16 @@
       ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
       ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
       ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/skills/sk-doc/shared/scripts/git_env.py",
+      ".opencode/skills/sk-doc/shared/scripts/rename_engine_core.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_checker.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -62,6 +72,66 @@
         "name": "worktree-naming.test.sh",
         "kind": "script",
         "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git_env.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/git_env.py",
+        "source": "derived"
+      },
+      {
+        "name": "rename_engine_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_engine_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_reference_checker.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_checker.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_reference_rewrite_executor.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_semantic_rename_engine.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_no_new_snake_case_guard.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-enrichment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-detection-fixes.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts",
         "source": "derived"
       },
       {
@@ -129,71 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "FIX ADDENDUM: AFFECTED SURFACES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "T008",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C <dir>` to git",
     "created_at": "2026-07-29T06:06:33.668Z",
-    "last_save_at": "2026-07-29T06:10:06.919Z",
+    "last_save_at": "2026-07-29T06:50:07.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0817919e96888dd36d98f4566230f90bdae0cc9a288f630143c356a67394a89f",
+    "source_fingerprint": "sha256:a74b3a359c5cd5cca989e0d00670311186fbaf32b7dc25602d0653af0867f94b",
     "source_doc_hashes": {
-      "spec.md": "0047041c72d121df56829724dc5646e8a480c695771bcfe737e43305209aa1a2",
-      "plan.md": "9b62886df08d96e5adeacb9c093e287db52cbd74e06ddabda8e33b31859cab38",
-      "tasks.md": "9c17513163fbbb17ebd2a3ef900483fbff83dff2fe01dfc7fd46e82a40926a8a",
-      "checklist.md": "df93d52a0015dad531ef0746886c7d40b7a31428146d2c23c094f9fea9ac1a2f",
-      "implementation-summary.md": "e6ae955c6855ebdcfe9a5c3e77af79e24e24563c2f5bdab835ea63d9f0f8f218"
+      "spec.md": "20816f6d87aac04c0a8b3fb42dc3afe7ae94caa46dba8cc40609ae41ca603391",
+      "plan.md": "c0226b0f4e762e88c3dafced4676980daacb2a2bd803c21206dfa3201decd18d",
+      "tasks.md": "cfafa14a4e7c315be8b8b4d47b1e18559ed285b0f25d7832479cc347aa8cbbb4",
+      "checklist.md": "5f31e95e475154b6f4a5aba07bdd08f7551a4f8e27893d6e85666f498f8509b7",
+      "implementation-summary.md": "a26f4c16b0c4cd6ee13230734d4dcf8c9c49098f124f65a2b22a1b16f5ca8ac5"
     },
     "last_active_child_id": null,
     "last_active_at": null
