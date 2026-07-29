@@ -39,6 +39,20 @@ const harness = require(path.join(SCRIPTS, 'model-benchmark/scorer/grader/harnes
   clampScore01: (v: unknown) => number;
 };
 
+function installStubExecutors(names: string[]): () => void {
+  const binDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-cli-bin-'));
+  for (const name of names) {
+    fs.writeFileSync(path.join(binDir, name), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  }
+  const previousPath = process.env.PATH;
+  process.env.PATH = `${binDir}${path.delimiter}${previousPath ?? ''}`;
+  return () => {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    fs.rmSync(binDir, { recursive: true, force: true });
+  };
+}
+
 // ───── dispatcher cwd propagation to ALL executors ─────
 describe('F-P1-1: dispatch-model cwd propagation', () => {
   let promptFile: string;
@@ -50,22 +64,27 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
 
   for (const executor of ['cli-claude-code', 'cli-opencode', 'cli-cursor']) {
     it(`passes cwd to the spawn layer for ${executor}`, () => {
-      let capturedCwd: string | undefined;
-      const fakeSpawn = (_bin: string, _args: string[], opts: { cwd?: string }) => {
-        capturedCwd = opts.cwd;
-        return { status: 0, stdout: 'ok', stderr: '' };
-      };
-      const r = dispatchModel.dispatchReal({
-        executor,
-        prompt_file: promptFile,
-        cwd: '/custom/work/dir',
-        model: executor === 'cli-cursor' ? 'composer-2.5' : 'm',
-        agent: 'general',
-        _spawn: fakeSpawn,
-      });
-      expect(r.ok).toBe(true);
-      // Every executor honors the requested cwd, not just cli-opencode.
-      expect(capturedCwd).toBe('/custom/work/dir');
+      const restorePath = executor === 'cli-cursor' ? installStubExecutors(['cursor-agent']) : () => {};
+      try {
+        let capturedCwd: string | undefined;
+        const fakeSpawn = (_bin: string, _args: string[], opts: { cwd?: string }) => {
+          capturedCwd = opts.cwd;
+          return { status: 0, stdout: 'ok', stderr: '' };
+        };
+        const r = dispatchModel.dispatchReal({
+          executor,
+          prompt_file: promptFile,
+          cwd: '/custom/work/dir',
+          model: executor === 'cli-cursor' ? 'composer-2.5' : 'm',
+          agent: 'general',
+          _spawn: fakeSpawn,
+        });
+        expect(r.ok).toBe(true);
+        // Every executor honors the requested cwd, not just cli-opencode.
+        expect(capturedCwd).toBe('/custom/work/dir');
+      } finally {
+        restorePath();
+      }
     });
   }
 });
@@ -189,11 +208,19 @@ describe('F-P2-8: deterministic scoring values', () => {
 // ───── grader dispatch is READ-ONLY by default ─────
 describe('F-P1-1: read-only-by-default executor dispatch', () => {
   const resolved = { model: 'm', agent: 'general', variant: null as string | null, dir: '/work', promptFile: '/tmp/p.md' };
+  let restoreExecutorPath: () => void;
 
-  afterEach(() => { delete process.env.DEEP_AGENT_DISPATCH_WRITE; });
+  beforeEach(() => {
+    restoreExecutorPath = installStubExecutors(['cursor-agent', 'devin', 'pi']);
+  });
+
+  afterEach(() => {
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    restoreExecutorPath();
+  });
 
   it('rejects a retired executor before spawn spec construction', () => {
-    const retiredKind = ['cli', 'opencode'].join('-');
+    const retiredKind = ['cli', 'legacy'].join('-');
     expect(() => dispatchModel.buildSpawnSpec(retiredKind, 'prompt', resolved)).toThrow(/Unknown executor/);
   });
 
@@ -212,16 +239,20 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     expect(claude.args[claude.args.indexOf('--permission-mode') + 1]).toBe('acceptEdits');
   });
 
-  it('cli-cursor omits --auto-review by default (read-only) and adds it under the write opt-in', () => {
+  it('cli-cursor uses the shared fan-out sandbox args for read-only and write-capable dispatch', () => {
     delete process.env.DEEP_AGENT_DISPATCH_WRITE;
     const cursorResolved = { ...resolved, model: 'composer-2.5' };
     const readOnly = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', cursorResolved);
-    expect(readOnly.args).not.toContain('--auto-review');
-    expect(readOnly.args).not.toContain('--force');
+    expect(readOnly.bin).toBe('cursor-agent');
+    expect(readOnly.args).toEqual([
+      '-p', 'prompt', '--output-format', 'text', '--model', 'composer-2.5', '--mode', 'plan', '--trust',
+    ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
     const writeCapable = dispatchModel.buildSpawnSpec('cli-cursor', 'prompt', cursorResolved);
-    expect(writeCapable.args).toContain('--auto-review');
+    expect(writeCapable.args).toEqual([
+      '-p', 'prompt', '--output-format', 'text', '--model', 'composer-2.5', '--force', '--sandbox', 'enabled',
+    ]);
   });
 
   it('cli-cursor never forwards variant as a flag (no --reasoning-effort / model[effort=...] support)', () => {
@@ -238,16 +269,28 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       .toThrow(/not in the enforced allowlist/);
   });
 
-  it('cli-pi passes the allowlist gate for every operator-confirmed picker id before the headless contract guard', () => {
-    for (const model of ['deepseek-v4-pro', 'minimax-m3', 'gpt-5.6-luna', 'gpt-5.6-sol', 'gpt-5.6-terra', 'mimo-v2.5-pro', 'mimo-v2.5-pro-ultraspeed']) {
-      expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model }))
-        .toThrow(/headless invocation contract is confirmed/);
-    }
+  it('cli-pi uses the shared fan-out command for read-only and write-capable dispatch', () => {
+    const piResolved = { ...resolved, model: 'gpt-5.6-sol', variant: 'high' };
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const readOnly = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
+    expect(readOnly.bin).toBe('pi');
+    expect(readOnly.args).toEqual([
+      '-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol',
+      '--tools', 'read,grep,find,ls', '--thinking', 'high', 'prompt',
+    ]);
+
+    process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
+    const writeCapable = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', piResolved);
+    expect(writeCapable.args).toEqual([
+      '-p', '--offline', '--model', 'openai-codex/gpt-5.6-sol', '--thinking', 'high', 'prompt',
+    ]);
   });
 
-  it('cli-pi defaults an omitted model to deepseek-v4-pro before the headless contract guard', () => {
-    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined }))
-      .toThrow(/headless invocation contract is confirmed/);
+  it('cli-pi defaults an omitted model to deepseek-v4-pro', () => {
+    const spec = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined });
+    expect(spec.args).toEqual([
+      '-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', 'prompt',
+    ]);
   });
 
   it('cli-pi rejects an out-of-roster model', () => {
@@ -260,20 +303,92 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       .toThrow(/not in the enforced allowlist/);
   });
 
+  it('cli-devin uses the shared fan-out permission args for read-only and write-capable dispatch', () => {
+    const devinResolved = { ...resolved, model: 'adaptive', variant: 'high' };
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+    const readOnly = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', devinResolved);
+    expect(readOnly.bin).toBe('devin');
+    expect(readOnly.args).toEqual([
+      '-p', 'prompt', '--model', 'adaptive', '--permission-mode', 'auto',
+    ]);
+
+    process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
+    const writeCapable = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', devinResolved);
+    expect(writeCapable.args).toEqual([
+      '-p', 'prompt', '--model', 'adaptive', '--permission-mode', 'dangerous', '--sandbox',
+    ]);
+  });
+
   it('routing is preserved for all active executors (bin resolves)', () => {
-    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor']) {
-      const execResolved = ex === 'cli-cursor' ? { ...resolved, model: 'composer-2.5' } : resolved;
+    for (const ex of ['cli-opencode', 'cli-claude-code', 'cli-cursor', 'cli-devin', 'cli-pi']) {
+      const execResolved = ex === 'cli-cursor'
+        ? { ...resolved, model: 'composer-2.5' }
+        : ex === 'cli-devin'
+          ? { ...resolved, model: 'adaptive' }
+          : ex === 'cli-pi'
+            ? { ...resolved, model: 'deepseek-v4-pro' }
+            : resolved;
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', execResolved);
       expect(typeof spec.bin).toBe('string');
       expect(spec.bin.length).toBeGreaterThan(0);
     }
   });
 
-  it('registers cli-pi in both hand-synced executor registries without live dispatch', () => {
-    expect(dispatchModel.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
-    expect(profileValidator.KNOWN_EXECUTORS.has('cli-pi')).toBe(true);
-    expect(() => dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'deepseek-v4-pro' }))
-      .toThrow(/headless invocation contract is confirmed/);
+  it('registers cli-devin and cli-pi in both hand-synced executor registries', () => {
+    for (const executor of ['cli-devin', 'cli-pi']) {
+      expect(dispatchModel.KNOWN_EXECUTORS.has(executor)).toBe(true);
+      expect(profileValidator.KNOWN_EXECUTORS.has(executor)).toBe(true);
+    }
+    expect(dispatchModel.buildSpawnSpec('cli-devin', 'prompt', { ...resolved, model: 'adaptive' }).args)
+      .toContain('--permission-mode');
+    expect(dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'deepseek-v4-pro' }).args)
+      .toContain('--offline');
+  });
+});
+
+describe('shared-builder dispatch failure classification', () => {
+  let failPromptFile: string;
+  beforeEach(() => {
+    const d = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-fail-'));
+    failPromptFile = path.join(d, 'prompt.md');
+    fs.writeFileSync(failPromptFile, 'bench prompt');
+    delete process.env.DEEP_AGENT_DISPATCH_WRITE;
+  });
+
+  it('cli-pi: a zero exit carrying an auth-failure banner is a failed dispatch, not scorable output', () => {
+    const restore = installStubExecutors(['pi']);
+    try {
+      const fakeSpawn = () => ({ status: 0, stdout: 'No API key found for provider openai-codex', stderr: '' });
+      const r = dispatchModel.dispatchReal({
+        executor: 'cli-pi', model: 'gpt-5.6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
+      });
+      expect(r.ok).toBe(false);
+      expect(String(r.error ?? '')).toMatch(/auth\/config/i);
+    } finally { restore(); }
+  });
+
+  it('cli-pi: a zero exit with real model output is still a success (no false negative)', () => {
+    const restore = installStubExecutors(['pi']);
+    try {
+      const fakeSpawn = () => ({ status: 0, stdout: 'export function formatBytes(n){ return n + " B"; }', stderr: '' });
+      const r = dispatchModel.dispatchReal({
+        executor: 'cli-pi', model: 'gpt-5.6-luna', prompt_file: failPromptFile, _spawn: fakeSpawn,
+      });
+      expect(r.ok).toBe(true);
+    } finally { restore(); }
+  });
+
+  it('a command-construction throw (out-of-roster model) becomes a normalized failure envelope, not an uncaught throw', () => {
+    const restore = installStubExecutors(['cursor-agent']);
+    try {
+      const fakeSpawn = () => ({ status: 0, stdout: 'SHOULD-NOT-REACH-SPAWN', stderr: '' });
+      const r = dispatchModel.dispatchReal({
+        executor: 'cli-cursor', model: 'not-a-real-model', prompt_file: failPromptFile, _spawn: fakeSpawn,
+      });
+      expect(r.ok).toBe(false);
+      expect(r.attempts).toBe(0);
+      expect(String(r.error ?? '')).toMatch(/allowlist|not in the enforced/i);
+    } finally { restore(); }
   });
 });
 

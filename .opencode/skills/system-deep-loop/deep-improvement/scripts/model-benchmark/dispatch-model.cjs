@@ -39,6 +39,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { spawnSync, execSync } = require('child_process');
+const { buildLineageCommand } = require('../../../runtime/scripts/fanout-run.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -56,39 +57,6 @@ const SCRIPTS_ROOT = __dirname;
 // LEGACY_STATE_DIR is the backstop only when no run-scoped dir is supplied.
 const LEGACY_STATE_DIR = path.join(SCRIPTS_ROOT, '..', '..', 'state');
 const PAUSE_SENTINEL_BASENAME = '.benchmark-pause';
-
-// Mirrors CURSOR_SUPPORTED_MODELS in runtime/lib/deep-loop/executor-config.ts.
-// Cursor's live roster spans 150+ hosted-frontier ids with no per-model
-// prompt-craft data for almost all of them — dispatch is scoped to this
-// curated set only; `auto` is deliberately excluded since it can silently
-// resolve outside the allowlist.
-const CURSOR_ALLOWED_MODELS = new Set([
-  'cursor-grok-4.5-low',
-  'cursor-grok-4.5-low-fast',
-  'cursor-grok-4.5-medium',
-  'cursor-grok-4.5-medium-fast',
-  'cursor-grok-4.5-high',
-  'cursor-grok-4.5-high-fast',
-  'composer-2.5',
-  'composer-2.5-fast',
-  'glm-5.2-high',
-  'glm-5.2-max',
-]);
-const CURSOR_DEFAULT_MODEL = 'composer-2.5';
-
-// Mirrors PI_SUPPORTED_MODELS in runtime/lib/deep-loop/executor-config.ts.
-// Pi is a provider pass-through with no house model, so keep this sync gate
-// local and fail closed before any command construction.
-const PI_ALLOWED_MODELS = new Set([
-  'deepseek-v4-pro',
-  'minimax-m3',
-  'gpt-5.6-luna',
-  'gpt-5.6-sol',
-  'gpt-5.6-terra',
-  'mimo-v2.5-pro',
-  'mimo-v2.5-pro-ultraspeed',
-]);
-const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -171,6 +139,7 @@ const KNOWN_EXECUTORS = new Set([
   'cli-opencode',
   'cli-claude-code',
   'cli-cursor',
+  'cli-devin',
   'cli-pi',
 ]);
 
@@ -202,6 +171,20 @@ function repoRoot() {
 
 function detectRateLimit(combinedOutput) {
   return RATE_LIMIT_PATTERNS.some((re) => re.test(combinedOutput));
+}
+
+// Pi's process exit code is not a reliable success signal: it can return 0 while
+// emitting an authentication/configuration failure banner instead of model
+// output. A zero exit carrying one of these banners must be scored as a failed
+// dispatch, never as usable output, so error text cannot leak into the scorer.
+const PI_DISPATCH_FAILURE_PATTERNS = [
+  /No API key found/i,
+  /not authenticated/i,
+  /authentication (?:failed|required)/i,
+  /missing (?:api )?key/i,
+];
+function piDispatchFailed(combinedOutput) {
+  return PI_DISPATCH_FAILURE_PATTERNS.some((re) => re.test(combinedOutput));
 }
 
 // Derive a provider id from a model slug's `provider/model` prefix. cli model
@@ -430,6 +413,24 @@ function buildSpawnSpec(executor, promptText, resolved) {
   const { model, agent, variant, dir } = resolved;
   // Read-only is the default; write-capable is the explicit opt-in.
   const writeCapable = writeCapableOptIn();
+  const buildSharedLineageSpec = () => {
+    // Cursor/devin/pi command construction is delegated to the shared fan-out
+    // builder so the lane inherits the single source of the hardened
+    // sandbox/permission/trust flags. Those CLIs have no lane-specific arg
+    // divergence (unlike opencode/claude), so the builder's output is exactly the
+    // spawn spec. Binary resolution now matches the fan-out (PATH-based); the
+    // lane's former cursor bin-override env is intentionally not carried — it was
+    // unused, and the fan-out resolves these executables from PATH by design.
+    const sandboxMode = writeCapable ? 'workspace-write' : 'read-only';
+    const built = buildLineageCommand(
+      { kind: executor, model: model || undefined, reasoningEffort: variant || undefined },
+      promptText,
+      sandboxMode,
+      'default',
+      { env: process.env },
+    );
+    return { bin: built.command, args: built.args, input: built.input ?? null };
+  };
   switch (executor) {
     case 'cli-opencode': {
       // opencode `run` does not auto-approve arbitrary edits, so no write-grant
@@ -459,36 +460,10 @@ function buildSpawnSpec(executor, promptText, resolved) {
       if (variant) args.push('--effort', variant);
       return { bin: process.env.CLAUDE_BIN || 'claude', args, input: null };
     }
-    case 'cli-cursor': {
-      // Cursor has no --reasoning-effort/--variant flag and rejects the
-      // parameterized model[effort=...] bracket outright (live-verified
-      // 2026-07-24) — effort tiers are baked into the model id itself (e.g.
-      // gpt-5.2-high), so `variant` is not forwarded; callers select an
-      // effort-suffixed id via `model` instead.
-      // Read-only judgment: omitting --auto-review leaves Cursor's own
-      // prompt-and-block default in place, so unattended dispatch cannot write.
-      const resolvedModel = model || CURSOR_DEFAULT_MODEL;
-      if (!CURSOR_ALLOWED_MODELS.has(resolvedModel)) {
-        throw new Error(
-          `cli-cursor model '${resolvedModel}' is not in the enforced allowlist: ${[...CURSOR_ALLOWED_MODELS].join(', ')}`,
-        );
-      }
-      const args = ['-p', promptText, '--model', resolvedModel, '--output-format', 'text'];
-      if (writeCapable) args.push('--auto-review');
-      return { bin: process.env.CURSOR_AGENT_BIN || 'cursor-agent', args, input: null };
-    }
-    case 'cli-pi': {
-      const resolvedModel = model || PI_DEFAULT_MODEL;
-      if (!PI_ALLOWED_MODELS.has(resolvedModel)) {
-        throw new Error(
-          `cli-pi model '${resolvedModel}' is not in the enforced allowlist: ${[...PI_ALLOWED_MODELS].join(', ')}`,
-        );
-      }
-      const piBin = process.env.PI_BIN || 'pi';
-      // TODO: Build args only after Pi's headless command contract is confirmed.
-      // Do not treat a subprocess exit code alone as proof of a successful dispatch.
-      throw new Error(`cli-pi command construction is unavailable for ${piBin} until its headless invocation contract is confirmed`);
-    }
+    case 'cli-cursor':
+    case 'cli-devin':
+    case 'cli-pi':
+      return buildSharedLineageSpec();
     default:
       throw new Error(`Unknown executor: ${executor}`);
   }
@@ -538,7 +513,22 @@ function dispatchReal(opts) {
   let lastStderr = '';
 
   for (let attempt = 0; attempt < backoff.length + 1; attempt++) {
-    const spec = buildSpawnSpec(executor, promptText, resolved);
+    let spec;
+    try {
+      spec = buildSpawnSpec(executor, promptText, resolved);
+    } catch (err) {
+      // Command construction — including the shared builder's binary-availability
+      // preflight and model-allowlist enforcement — can throw for an absent CLI or
+      // an out-of-roster model. Surface it as a normalized failed-dispatch envelope
+      // so one unavailable cell scores null instead of an uncaught throw aborting
+      // the entire sweep.
+      return buildEnvelope(
+        { ok: false, exit_code: -1, stdout: '', stderr: '', attempts: 0, error: err && err.message ? err.message : String(err) },
+        resolved,
+        executor,
+        Date.now() - t0,
+      );
+    }
     const res = spawnFn(spec.bin, spec.args, {
       // Set cwd for every executor so non-opencode CLIs do not silently inherit
       // the host process cwd.
@@ -553,10 +543,16 @@ function dispatchReal(opts) {
     });
     lastStdout = res.stdout || '';
     lastStderr = res.stderr || '';
-    if (res.status === 0) {
+    const combined = lastStdout + lastStderr;
+    // Pi can exit 0 on an auth/config failure, so a zero exit that carries a Pi
+    // failure banner is a failed dispatch, not scorable model output.
+    const piFalseSuccess = executor === 'cli-pi' && res.status === 0 && piDispatchFailed(combined);
+    if (res.status === 0 && !piFalseSuccess) {
       return buildEnvelope({ ok: true, exit_code: 0, stdout: lastStdout, stderr: lastStderr, attempts: attempt + 1 }, resolved, executor, Date.now() - t0);
     }
-    const combined = lastStdout + lastStderr;
+    if (piFalseSuccess) {
+      return { ok: false, exit_code: res.status, stdout: lastStdout, stderr: lastStderr, attempts: attempt + 1, error: 'cli-pi dispatch failed: auth/config error banner despite zero exit' };
+    }
     if (detectRateLimit(combined)) {
       if (attempt < backoff.length) {
         const wait = backoff[attempt];

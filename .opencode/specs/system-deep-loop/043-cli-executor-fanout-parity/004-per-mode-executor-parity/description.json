@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/043-cli-executor-fanout-parity/004-per-mode-executor-parity",
+  "description": "An audit of every deep mode's executor coverage found that the fan-out modes (deep-research, deep-review, deep-alignment) already dispatch all seven",
+  "keywords": [
+    "audit",
+    "every",
+    "deep",
+    "mode",
+    "executor",
+    "coverage",
+    "found",
+    "fan-out",
+    "modes",
+    "deep-research",
+    "deep-review",
+    "deep-alignment",
+    "already",
+    "dispatch",
+    "seven"
+  ],
+  "lastUpdated": "2026-07-29T14:27:17.278Z",
+  "specId": "004",
+  "folderSlug": "per-mode-executor-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "043-cli-executor-fanout-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
