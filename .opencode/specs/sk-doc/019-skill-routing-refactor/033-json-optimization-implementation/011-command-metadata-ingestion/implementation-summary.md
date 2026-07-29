@@ -1,6 +1,6 @@
 ---
 title: "Implementation Outcome: Ingest command-metadata.json into Command Routing"
-description: "Planned record of deriving TS and Python COMMAND_BRIDGES from command-metadata.json behind a shadow-mode-first, corpus-gated rollout, with a 3-way drift-guard and denser command-metadata/leaf-aliases e2e tests. Not yet implemented."
+description: "Shipped shadow machinery (canonical projection, generator, CLI flags, pinned three-way drift-guard, dense e2e); the live cutover was attempted, caught three times by the pinned corpus gate, and reverted — hand-authored bridges remain live, with the full diagnosis trail recorded for the follow-up."
 trigger_phrases:
   - "command bridges generator outcome"
   - "command metadata ingestion outcome"
@@ -9,12 +9,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion"
-    last_updated_at: "2026-07-29T10:00:00Z"
+    last_updated_at: "2026-07-29T22:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "Depends on 006 (skill_graph_compiler.py + score-routing-corpus.py wired into routing-registry-drift.yml)"
+    recent_action: "Shadow landed; cutover corpus-gated 3x and reverted; finding: curation is load-bearing"
+    next_safe_action: "Phase 012 integration-verification-rollout"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/011-command-metadata-ingestion"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Backfill system-spec-kit's missing command-metadata.json as a prerequisite, or ship this phase against the documented allow-list residual?"
     answered_questions: []
@@ -39,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Planned |
+| **Status** | Complete |
 | **Delivered** | Not yet — Planned, blocked on 006 |
 | **Track** | sk-doc |
 | **Opportunities addressed** | O7 (command-metadata ingestion) + O10 (denser command-metadata/leaf-aliases e2e tests), per 029 research §3 |

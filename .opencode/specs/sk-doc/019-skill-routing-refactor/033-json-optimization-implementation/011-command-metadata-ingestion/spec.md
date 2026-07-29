@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -87,6 +87,12 @@ Out of scope — authoring a `command-metadata.json` for `system-spec-kit` itsel
 | REQ-004 | One drift-guard asserts 3-way agreement | A new vitest file asserts `(JSON-derived ids ∪ allow-list) == generated TS COMMAND_BRIDGES ids == generated Python COMMAND_BRIDGES ids`; on any mismatch it fails naming the specific missing/extra ids, not just a boolean |
 | REQ-005 | Command-metadata and leaf-aliases e2e coverage moves from thin to dense | Every one of the 22 JSON-declared `command-metadata.json` entries has at least one e2e test asserting a representative prompt resolves to its declared `ownerMode`; leaf-aliases resolution gets equivalent per-entry e2e coverage; the command/leaf-alias vitest file count grows beyond the current 2 (`command-binding-existence.vitest.ts`, `command-bridge-resolution-guard.vitest.ts`) |
 | REQ-006 | The live cutover is shadow-mode-first and corpus-gated | Generated TS/Python `COMMAND_BRIDGES` run in shadow (dumped and diffed against the pre-change hand-authored dumps) before any live cutover commit; `score-routing-corpus.py` shows zero regression against the pinned corpus hash before and after generation; the shadow-mode landing and the live cutover are two separate, independently revertible commits, per the program parent's REQ-006 guarded-rollout rule |
+
+### Implementation amendments (recorded outcome)
+
+- **Shadow phase delivered in full** (landed and pushed): the canonical 30-entry projection (22 metadata + 8 allow-list residuals), the derive-command-bridges generator, dump/emit/check CLI flags, the pinned three-way drift-guard, and dense per-entry e2e coverage for every command-metadata and leaf-aliases entry. Adversarially reviewed CLEAN on six angles.
+- **Live cutover attempted, corpus-gated out three times, and reverted** per the program's regression-equals-revert rule: (1) generated bridges scored on broad ownedSignals job-language — wrong_skill_fires 44→51; (2) after tightening to slash-literal triggers, the generation normalized away the hand-authored `memory:save` top-level identity — 10 corpus golds lost (row-level dual-version diagnosis); (3) after identity pass-through, neutralizing description false-fires (reviewer probe: a job-language prompt hit a command bridge at 0.95) regressed the corpus a third way. Each catch is exactly what the pinned gate exists for. The live TS/Python bridge sets remain hand-authored and byte-identical to pre-phase behavior; the corpus is byte-identical in all three regimes.
+- **The durable finding:** generation-from-command-metadata cannot yet reproduce curated bridge behavior — bridge identity (pseudo-skill ids like `memory:save`), trigger tightness, and description neutrality are all load-bearing curation invisible to the metadata schema. A future cutover needs corpus rows covering every bridge surface BEFORE regeneration, not after. The shadow machinery + pinned drift-guard are the follow-up's starting point; requirements for generated-not-hand-authored live blocks are deferred to that follow-up.
 <!-- /ANCHOR:requirements -->
 
 ---
