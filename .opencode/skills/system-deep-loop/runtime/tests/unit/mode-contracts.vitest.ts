@@ -447,6 +447,42 @@ describe('shared mode contract conformance', () => {
     }));
   });
 
+  it('rejects artifact and certificate policies whose kind is not a well-formed token', () => {
+    const entries = createEntries();
+    const modeId = modeIds[0];
+    const contract = entries[0].contract;
+
+    const emptyArtifactKind = Object.freeze({
+      ...contract,
+      artifactPolicies: Object.freeze([Object.freeze({
+        ...contract.artifactPolicies[0],
+        artifactKind: '',
+      })]),
+    });
+    const artifactReport = runModeConformance(
+      inputWith(replaceContract(entries, modeId, emptyArtifactKind)),
+    );
+    expect(artifactReport.passed).toBe(false);
+    expect(artifactReport.issues).toContainEqual(expect.objectContaining({
+      code: 'ARTIFACT_POLICY_INVALID', modeId,
+    }));
+
+    const blankCertificateKind = Object.freeze({
+      ...contract,
+      certificatePolicies: Object.freeze([Object.freeze({
+        ...contract.certificatePolicies[0],
+        certificateKind: '   ',
+      })]),
+    });
+    const certificateReport = runModeConformance(
+      inputWith(replaceContract(entries, modeId, blankCertificateKind)),
+    );
+    expect(certificateReport.passed).toBe(false);
+    expect(certificateReport.issues).toContainEqual(expect.objectContaining({
+      code: 'CERTIFICATE_POLICY_INVALID', modeId,
+    }));
+  });
+
   it('rejects direct, unauthorized, and stale event writes while accepting the authorized path', () => {
     const contract = createContract(modeIds[0]);
     const schema = contract.eventTypes()[0];

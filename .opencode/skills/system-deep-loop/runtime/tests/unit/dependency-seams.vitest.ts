@@ -81,6 +81,23 @@ describe('runtime dependency self-containment', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('keeps the cross-mode-closures internal module private to its own directory', () => {
+    // internal.ts holds shared closure helpers deliberately absent from the public index
+    // barrel. Only sibling files in cross-mode-closures/ may import it (via './internal');
+    // an external import through the full path would bypass the module-private ceiling the
+    // barrel exists to enforce. Barrel imports (cross-mode-closures/index) stay allowed.
+    const internalDir = resolve(runtimeRoot, 'lib', 'cross-mode-closures') + sep;
+    const EXTERNAL_INTERNAL_IMPORT = /from\s+['"][^'"]*cross-mode-closures\/internal(?:\.js)?['"]/;
+    const offenders: string[] = [];
+    for (const file of walk(resolve(runtimeRoot, 'lib'))) {
+      if (!/\.(ts|cjs|mjs|js)$/.test(file)) continue;
+      if (file.startsWith(internalDir)) continue;
+      const content = readFileSync(file, 'utf8');
+      if (EXTERNAL_INTERNAL_IMPORT.test(content)) offenders.push(file);
+    }
+    expect(offenders).toEqual([]);
+  });
+
   it('loads the bare imports the lib production code depends on', async () => {
     const { z } = await import('zod');
     expect(typeof z.string).toBe('function');
