@@ -89,6 +89,11 @@ function sourceInputs() {
       'cli-opencode',
       'SKILL.md',
     ),
+    'cli-external-orchestration/cli-pi/SKILL.md': path.join(
+      SKILL_ROOT,
+      'cli-pi',
+      'SKILL.md',
+    ),
     'cli-external-orchestration/hub-router.json': path.join(SKILL_ROOT, 'hub-router.json'),
     'cli-external-orchestration/mode-registry.json': path.join(
       SKILL_ROOT,

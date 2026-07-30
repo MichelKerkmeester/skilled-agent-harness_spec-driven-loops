@@ -220,10 +220,10 @@ function scoreTieBreakOrder(hubRouter) {
 // prompt (e.g. create-quality-control:4 outscoring create-flowchart:3), only
 // on a fixed mode-to-mode priority.
 const SUPPLEMENTAL_BUNDLE_RULES = [
-  { name: 'quality-then-flowchart', whenAll: ['create-quality-control', 'create-flowchart'] },
-  { name: 'feature-catalog-then-playbook', whenAll: ['create-feature-catalog', 'create-manual-testing-playbook'] },
-  { name: 'agent-then-command', whenAll: ['create-agent', 'create-command'] },
-  { name: 'skill-then-quality-then-changelog', whenAll: ['create-skill', 'create-quality-control', 'create-changelog'] },
+  { name: 'quality-then-flowchart', whenAll: ['sk-create-quality-control', 'sk-create-flowchart'] },
+  { name: 'feature-catalog-then-playbook', whenAll: ['sk-create-feature-catalog', 'sk-create-manual-testing-playbook'] },
+  { name: 'agent-then-command', whenAll: ['sk-create-agent', 'sk-create-command'] },
+  { name: 'skill-then-quality-then-changelog', whenAll: ['sk-create-skill', 'sk-create-quality-control', 'sk-create-changelog'] },
 ];
 
 function orderedBundleRules(hubRouter) {

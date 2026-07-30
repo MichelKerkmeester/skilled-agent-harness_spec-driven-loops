@@ -46,8 +46,8 @@ function sourceBytes() {
     'SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'SKILL.md')),
     'hub-router.json': fs.readFileSync(path.join(SKILL_ROOT, 'hub-router.json')),
     'mode-registry.json': fs.readFileSync(path.join(SKILL_ROOT, 'mode-registry.json')),
-    'prompt-improve/SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'prompt-improve', 'SKILL.md')),
-    'prompt-models/SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'prompt-models', 'SKILL.md')),
+    'sk-prompt-improve/SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'sk-prompt-improve', 'SKILL.md')),
+    'sk-prompt-models/SKILL.md': fs.readFileSync(path.join(SKILL_ROOT, 'sk-prompt-models', 'SKILL.md')),
   };
 }
 
