@@ -1790,15 +1790,7 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // literal for the same reason CURSOR_ALLOWED_MODELS is: buildDevinLineageCommand
 // stays synchronous and directly unit-testable.
 const DEVIN_ALLOWED_MODELS = new Set([
-  'adaptive',
-  'opus',
-  'sonnet',
-  'claude',
-  'haiku',
   'swe',
-  'gpt',
-  'gemini',
-  'codex',
   'glm-5-2',
   'glm-5-2-max',
   'glm-5-2-1m',
@@ -1807,11 +1799,12 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'glm-5-2-none-1m',
   'swe-1-7',
   'swe-1-7-medium',
-  'swe-1-6',
   'swe-1-7-lightning',
   'grok-4-5-low',
   'grok-4-5-medium',
   'grok-4-5-high',
+  'deepseek-v4-pro',
+  'deepseek-v4',
 ]);
 const DEVIN_DEFAULT_MODEL = 'swe';
 
@@ -2617,6 +2610,8 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  DEVIN_ALLOWED_MODELS,
+  DEVIN_DEFAULT_MODEL,
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,

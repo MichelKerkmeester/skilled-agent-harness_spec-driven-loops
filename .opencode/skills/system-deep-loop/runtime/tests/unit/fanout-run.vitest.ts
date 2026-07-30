@@ -31,6 +31,10 @@ import {
   type SpawnCjsResult,
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
+import {
+  DEVIN_DEFAULT_MODEL as TS_DEVIN_DEFAULT_MODEL,
+  DEVIN_SUPPORTED_MODELS,
+} from '../../lib/deep-loop/executor-config.js';
 
 const tempDirs: string[] = [];
 const hermeticEnvs: HermeticEnv[] = [];
@@ -1213,11 +1217,12 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
-      'adaptive', 'opus', 'sonnet', 'claude', 'haiku', 'swe', 'gpt', 'gemini', 'codex',
+      'swe',
       'glm-5-2', 'glm-5-2-max', 'glm-5-2-1m',
       'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
-      'swe-1-7', 'swe-1-7-medium', 'swe-1-6', 'swe-1-7-lightning',
+      'swe-1-7', 'swe-1-7-medium', 'swe-1-7-lightning',
       'grok-4-5-low', 'grok-4-5-medium', 'grok-4-5-high',
+      'deepseek-v4-pro', 'deepseek-v4',
     ];
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
@@ -1229,7 +1234,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high', 'adaptive', 'opus']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }
@@ -1245,6 +1250,24 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'default',
       { env },
     )).toThrow(/command -v devin failed/);
+  });
+});
+
+describe('fanout-run.cjs — Devin mirror parity with the TS source', () => {
+  const {
+    DEVIN_ALLOWED_MODELS,
+    DEVIN_DEFAULT_MODEL,
+  } = requireCjs(fanoutRunScript) as {
+    DEVIN_ALLOWED_MODELS: Set<string>;
+    DEVIN_DEFAULT_MODEL: string;
+  };
+
+  it('keeps the CJS allowlist aligned with the TS source', () => {
+    expect([...DEVIN_ALLOWED_MODELS].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());
+  });
+
+  it('keeps the CJS default aligned with the TS source', () => {
+    expect(DEVIN_DEFAULT_MODEL).toBe(TS_DEVIN_DEFAULT_MODEL);
   });
 });
 

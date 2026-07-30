@@ -212,11 +212,9 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
- * is the curated subset: the family aliases Devin itself declares, plus the
- * GLM-5.2 uids, SWE-1.7 tiers, Grok 4.5 uids, and free-tier ids that fan-out
- * research lanes actually use.
- * Every entry was read from `devin models list` (live 2026-07-27, account
- * Michel Kerkmeester) — no id here was inferred from documentation.
+ * is the curated four-family scope: GLM-5.2, SWE-1.7, Grok 4.5, and DeepSeek.
+ * Every entry was read from the live `devin models list` — no id here was
+ * inferred from documentation.
  *
  * Tier naming matters and is easy to get wrong: `glm-5-2` is "GLM-5.2 High" and
  * is the free tier, while `glm-5-2-max` is the separate paid "GLM-5.2 Max"
@@ -224,16 +222,8 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * so read the live list rather than the doc when picking one.
  */
 export const DEVIN_SUPPORTED_MODELS = [
-  // Family aliases declared by `devin models list`.
-  'adaptive',
-  'opus',
-  'sonnet',
-  'claude',
-  'haiku',
+  // SWE-1.7 default alias.
   'swe',
-  'gpt',
-  'gemini',
-  'codex',
   // GLM-5.2 uids. `glm-5-2` = "GLM-5.2 High" [200K, Free].
   'glm-5-2',
   'glm-5-2-max',
@@ -241,15 +231,17 @@ export const DEVIN_SUPPORTED_MODELS = [
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
-  // Free-tier ids beyond GLM.
+  // SWE-1.7 tier uids.
   'swe-1-7',
   'swe-1-7-medium',
-  'swe-1-6',
   'swe-1-7-lightning',
   // Grok 4.5 tier uids read from the live `devin models list`.
   'grok-4-5-low',
   'grok-4-5-medium',
   'grok-4-5-high',
+  // DeepSeek family slug and model uid read from the live `devin models list`.
+  'deepseek-v4-pro',
+  'deepseek-v4',
 ] as const;
 export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
 
