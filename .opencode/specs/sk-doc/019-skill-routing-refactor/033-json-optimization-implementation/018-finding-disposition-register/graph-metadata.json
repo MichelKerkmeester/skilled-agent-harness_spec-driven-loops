@@ -16,7 +16,8 @@
       "why the audit missed the regression",
       "agreement is not severity",
       "disposition register implementation plan",
-      "disposition register task breakdown"
+      "disposition register task breakdown",
+      "finding disposition register summary"
     ],
     "key_topics": [
       "finding",
@@ -33,11 +34,12 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,6 +58,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -89,8 +97,8 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "In Progress",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -141,23 +149,55 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Extract",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Record a per-finding disposition for all 41 audit findings including the nine refuted ones, and capture why four independent legs and 20 iterations missed a live regression that one command would have surfaced.",
     "created_at": "2026-07-30T08:10:27.966Z",
-    "last_save_at": "2026-07-30T08:10:27.966Z",
+    "last_save_at": "2026-07-30T12:05:37.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10ccab64fbed4283ef131d68985096ee6e4716aeca5bc8925f4d24f85770e3a4",
+    "source_fingerprint": "sha256:0820922d7eca0641ed8e723853268b84e5310d5a106ddd76d3f7441066120d20",
     "source_doc_hashes": {
-      "spec.md": "21cdb83005652e7b8e8bb9a815bb53a425f954e3b6c36d4c53903ebd4dcd490a",
-      "plan.md": "d79c9b208138adc5aa70f62ef3e519bca53cbc710dbd30b206c72d065504808b",
-      "tasks.md": "7e0adeaaa9e1347222c6d3f190062c105b481719b9b0acbf909a4efa640a60c0"
+      "spec.md": "1785ecf1d27e0a0b6053c985e66a093514ec6d207f6e161c7ddd91d0331046b4",
+      "plan.md": "10fa5acdd21c0d012890f0c80abeb5eb575416a3914648ef8ac75640f7c91d95",
+      "tasks.md": "b691573dfec817f7f8425b9828fa97fafe5da2caa281f70b657c2ce841645172",
+      "implementation-summary.md": "1c97a22b75e97adf2ccf41d5886bbf0d0172dc80f960f77b24a35ce84693b178"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,19 +13,19 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/018-finding-disposition-register"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Populate the register as sibling phases disposition their findings"
+    recent_action: "Registered dispositions for all 41 findings"
+    next_safe_action: "Operator: decide 011 build, 012 close, and parent status"
     blockers: []
     key_files:
-      - "spec.md"
+      - "finding-disposition-register.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/018-finding-disposition-register"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the deferred pre-program code-style findings warrant their own packet or belong in an existing backlog is undecided"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The deferred code-style findings are parked with the sk-code quality gate / advisor-code owner as a backlog, not a new packet"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -112,5 +112,5 @@ All 41 findings carry exactly one disposition; every refutation cites re-checkab
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the deferred pre-program code-style findings warrant their own packet or belong in an existing backlog is undecided and is an operator call.
+The eight deferred code-style findings (F33–F40) are parked with the sk-code quality gate / advisor-code owner as a backlog rather than a new packet — a lighter destination that keeps them owned without spinning up a phase for cosmetic style. Whether the operator promotes any to a dedicated fix is left open. Two operator decisions remain outside this program: whether to build the never-implemented command-metadata ingestion (011, still Planned) and whether phase 012's re-opened rollout verification and the parent packet's In Progress status should close now that the gate is green.
 <!-- /ANCHOR:questions -->

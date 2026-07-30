@@ -144,10 +144,10 @@ The Status column reflects **execution state** (updated as phases land), not pla
 | 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Complete |
 | 15 | `015-evidence-integrity-repair/` | Per-item checklist evidence; re-open the three false regression items; reconcile contradictory completion fields | Complete |
 | 16 | `016-packet-metadata-regeneration/` | One close-time generator pass for phase map, continuity, derived status and fingerprints | Complete |
-| 17 | `017-authority-path-corrections/` | Dead authority citations, the stale contract doc, and the tracked scratch artifact | Planned |
-| 18 | `018-finding-disposition-register/` | One disposition per audit finding, plus the retrospective on severity inversion and coverage gaps | Planned |
-| 19 | `019-program-surface-leftovers/` | Workflow token permissions, feature-catalog mode-vs-packet framing, deprecated derived-sync writer, requirement wording | Planned |
-| 20 | `020-preprogram-code-conformance/` | The four code findings that predate this program: comment label, strict-mode placement, manifest containment guard, JSDoc | Planned |
+| 17 | `017-authority-path-corrections/` | Dead authority citations, the stale contract doc, and the tracked scratch artifact | Complete |
+| 18 | `018-finding-disposition-register/` | One disposition per audit finding, plus the retrospective on severity inversion and coverage gaps | Complete |
+| 19 | `019-program-surface-leftovers/` | Workflow token permissions, feature-catalog mode-vs-packet framing, deprecated derived-sync writer, requirement wording | Complete |
+| 20 | `020-preprogram-code-conformance/` | The four code findings that predate this program: comment label, strict-mode placement, manifest containment guard, JSDoc | Complete |
 
 ### Phase Transition Rules
 
