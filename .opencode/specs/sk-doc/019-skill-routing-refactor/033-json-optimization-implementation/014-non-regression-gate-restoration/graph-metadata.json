@@ -43,6 +43,7 @@
       "evidence/ratchet-green-baseline.txt",
       "evidence/ratchet-mutation-proof.txt",
       "evidence/ratchet-restored-green.txt",
+      "mcp-server/package.json",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -82,6 +83,12 @@
         "name": "ratchet-restored-green.txt",
         "kind": "file",
         "path": "evidence/ratchet-restored-green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp-server/package.json",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Repair the scorer-eval baseline ratchet — the only test that pins holdout accuracy exactly and enforces the release floors — and wire it into CI, so the hole that let a -2 routing regression ship undetected closes behind this program.",
     "created_at": "2026-07-30T08:10:27.264Z",
-    "last_save_at": "2026-07-30T10:45:06.794Z",
+    "last_save_at": "2026-07-30T13:07:46.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e6b5fbf21df83e5ac61f54dce6aa6f67e7b20ec61eb9eb2cf3bb9e091f48760",
+    "source_fingerprint": "sha256:21a48cae27d9be82671bb377ac652dd239296f74de444f7445873d22097e7677",
     "source_doc_hashes": {
-      "spec.md": "0626a17afdb1c49ccab4d1860245419761574b54f0a63bb56c6523713e5778bc",
+      "spec.md": "10dff411aed8530a13313de736c93363351ef53a71c3bfada056f0f362f9452b",
       "plan.md": "abaa4edd079b7d77274422693a49637edfd07c299fe7baa4413b9e619979b4b5",
       "tasks.md": "5b80476e4332de06ac26ed4a2f428c8bc7645b9859420b128508c3d49aac6c0a",
       "checklist.md": "a943571a5475c24823fa8abfa190417aaa3b87a5934f13c8b76f55f5c7adabbe",
-      "implementation-summary.md": "41785f2940051edd947eaa84bc701d9bcffc48848d315c9e80fd1cdc8cc4b980"
+      "implementation-summary.md": "3757f01474e5e937ec45f7eaaa9bc3566cebcfc307eb22dc2892091704017263"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -118,6 +118,6 @@ Record the failure modes → re-pin the baseline from the upstream disposition �
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The live CI run is operator-gated.** REQ-004/T-09 asks for a real CI run showing the job fail; a GitHub Actions run requires a push this program forbids. The wiring is landed and correct, the suite passes locally by exit code, and the mutation proof shows it failing on cue — but the actual pipeline execution is left for the operator after the branch is pushed. Recorded as spec Amendment A-001.
+1. **The live CI run happened after operator approval — and exposed pre-existing structural breakage.** The first run after the merge failed before any gate executed, as every recorded run of this workflow always had: `mcp-server/package.json` was never committed (so the full-install job's `npm ci` dies and all gates skip) and `vitest.config.ts` imported from the vitest package a bare checkout cannot resolve (so the lean job dies at config load). Both fixed under this phase — package.json tracked, config made import-free — per spec Amendment A-002. The audit's "does CI gate what it claims" coverage gap is thereby confirmed with live evidence.
 2. **The ratchet runs in the no-sqlite fallback regime.** Like the capture it re-scores, it runs with an empty `MK_SKILL_ADVISOR_DB_DIR`, so its numbers are the filesystem-projection baseline, not the graph-boosted live-daemon numbers. This matches the workflow's existing corpus gate and is the correct, reproducible regime for CI.
 <!-- /ANCHOR:limitations -->

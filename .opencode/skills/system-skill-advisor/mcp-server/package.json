@@ -1,0 +1,31 @@
+{
+  "name": "@spec-kit/system-skill-advisor",
+  "private": true,
+  "type": "module",
+  "main": "./dist/mcp-server/advisor-server.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
+    "postbuild": "mkdir -p dist/mcp-server/data && cp data/*.json dist/mcp-server/data/",
+    "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@spec-kit/shared": "file:../../system-spec-kit/shared",
+    "@huggingface/transformers": "^3.8.1",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "better-sqlite3": "^12.6.2",
+    "chokidar": "^4.0.3",
+    "zod": "^4.1.12"
+  },
+  "overrides": {
+    "hono": "^4.12.27",
+    "vite": "^8.1.2",
+    "protobufjs": "^7.6.4",
+    "tar": "^7.5.19",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
+  }
+}
