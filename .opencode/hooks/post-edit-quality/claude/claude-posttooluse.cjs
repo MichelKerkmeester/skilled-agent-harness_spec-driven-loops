@@ -20,11 +20,7 @@
 // Hook entry (settings.json):
 //   { "matcher": "Write|Edit",
 //     "hooks": [{ "type": "command",
-<<<<<<<< HEAD:.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs
-//                 "command": "bash -c 'cd \"...repo...\" && node .opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.cjs'",
-========
 //                 "command": "bash -c 'cd \"...repo...\" && node .opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs'",
->>>>>>>> origin/skilled/v4.0.0.0:.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs
 //                 "timeout": 10 }] }
 'use strict';
 
