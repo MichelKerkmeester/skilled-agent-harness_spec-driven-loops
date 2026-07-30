@@ -1,0 +1,2 @@
+full_corpus_top3: {"correct":176,"total":195}
+holdout_top3    : {"correct":55,"total":72}

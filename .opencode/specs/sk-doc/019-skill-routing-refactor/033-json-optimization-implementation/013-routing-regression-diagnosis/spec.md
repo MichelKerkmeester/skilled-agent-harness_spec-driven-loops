@@ -13,20 +13,21 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 phase spec"
-    next_safe_action: "Run the bisect in plan.md Phase 1; do NOT run any capture with --write"
+    recent_action: "Diagnosed and fixed the routing regression"
+    next_safe_action: "Proceed to phase 014"
     blockers: []
     key_files:
       - "spec.md"
+      - "diagnosis-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/013-routing-regression-diagnosis"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the program caused the first -2 or inherited it from a pre-baseline state is UNKNOWN until the bisect runs against a clean checkout of the baseline sha"
-      - "Whether the correct disposition is fix-the-scorer, fix-the-metadata, or accept-with-recorded-rationale depends on what the bisect attributes and is deliberately not pre-decided here"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Caused, not inherited: the pin was captured at the baseline sha at 53/72 and the in-range rename commit moved it"
+      - "Disposition is fix, not accept: the cause is a stale hardcoded delegation-scorer path, restored by a one-line correction"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -50,7 +51,7 @@ The program closed claiming corpus neutrality, and that claim is false. Running 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -185,7 +186,9 @@ As the operator, I need to know whether routing accuracy actually dropped, by ho
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-Whether the program caused the first -2 or inherited it is unresolved until REQ-004 runs; the audit could establish only that it shipped under a zero-delta claim. Whether the right disposition is fix or accept is deliberately not pre-decided, because that judgement depends on what REQ-003 attributes — a metadata typo and a deliberate scorer trade-off warrant different answers.
+Both questions this phase opened are now answered and closed. The program **caused** the regression rather than inheriting it: the pin was captured directly at the baseline sha and recorded a healthy 53/72 and 10/11, and the in-range rename commit `9efb3fc5612` is what moved the number (REQ-004). The disposition is **fix, not accept**: the attribution (REQ-003) is an unambiguous stale hardcoded path in the delegation scorer, not a deliberate trade-off, so a one-line correction restores every metric to its pin.
+
+**Amendment A-001 (REQ-004 acceptance).** REQ-004's literal criterion — "the baseline sha is checked out and measured" — was satisfied by the *recorded* baseline-sha capture rather than a fresh re-checkout. The mcp-server `package.json` is gitignored and not tracked at `1e0ad1d9ba`, so its build toolchain cannot be reconstructed at that sha; a live rebuild there is infeasible. The pin is itself the baseline-sha measurement (its `capturedAtSha` is `1e0ad1d9ba`), the corpus hashes are byte-identical, and the fix restores the pinned values exactly — which together settle caused-versus-inherited more strongly than a rebuild would. Deviation recorded here per the program's amendment rule.
 <!-- /ANCHOR:questions -->
 
 ---

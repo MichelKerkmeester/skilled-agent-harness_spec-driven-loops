@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored Level 3 phase spec"
-    next_safe_action: "Begin execution per plan.md once upstream dependencies clear"
+    recent_action: "Diagnosed and fixed the routing regression"
+    next_safe_action: "Proceed to phase 014"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/013-routing-regression-diagnosis"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -153,3 +153,45 @@ The downstream gate phase reads this disposition to set its expected values, so 
 Simplicity: one gate on one decision. Systems: the disposition propagates into the ratchet baseline and CI. Bias: effort-driven defaults masquerade as engineering judgement. Sustainability: written rationale survives the people who wrote it. Value: makes the difference between an accepted regression and an unnoticed one.
 <!-- /ANCHOR:adr-003-five-checks -->
 <!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Disposition — fix the stale delegation-scorer path
+
+<!-- ANCHOR:adr-004-context -->
+### Context
+
+Bisecting the two changed surfaces independently attributed the whole `-2` to one scorer source. `loadFilesystemAliasData` in the delegation scorer reads the small-model registry from a hardcoded directory `sk-prompt/prompt-models/...`. A prior program renamed that mode packet to `sk-prompt-models` without updating the scorer, so at HEAD the registry path no longer exists, the model-alias table is empty, and `MiniMax-M3` and `Kimi` stop routing to their `cli-opencode` executor. The eighteen metadata files, left at HEAD state, contributed nothing: reverting only the scorer path closed the entire drop.
+<!-- /ANCHOR:adr-004-context -->
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
+
+Fix, not accept. Correct the path literal to `sk-prompt-models` and add a durable comment coupling it to the on-disk mode-packet directory. Accept was not eligible: ADR-003 permits it only for a deliberate trade-off, and a stale path orphaned by a rename is a plain defect.
+<!-- /ANCHOR:adr-004-decision -->
+
+<!-- ANCHOR:adr-004-alternatives -->
+### Alternatives Considered
+
+Fixing the metadata surface was rejected — it was never the cause; the metadata was correct and the scorer was pointing at the wrong place. Re-pinning the baseline to the drifted figure was forbidden by ADR-001 and would have laundered the regression. Accepting the loss was rejected under ADR-003 because the loss is not a trade-off.
+<!-- /ANCHOR:adr-004-alternatives -->
+
+<!-- ANCHOR:adr-004-consequences -->
+### Consequences
+
+Behind the corpus gate, all three regressed metrics return to their pinned values (`holdout_top1` 53/72, `holdout_top3` 55/72, delegation 10/11) with no other metric regressing, verified on a native worktree build. The downstream gate phase can therefore set its expected values to the restored pins rather than to an accepted shortfall. No baseline artifact was re-pinned.
+<!-- /ANCHOR:adr-004-consequences -->
+
+<!-- ANCHOR:adr-004-impl -->
+### Implementation Notes
+
+The fix is one path literal plus a coupling comment; measurement detail and the per-prompt enumeration live in `diagnosis-results.md`. The comment keeps the durable why (a rename silently empties model aliases) without embedding any artifact label.
+<!-- /ANCHOR:adr-004-impl -->
+
+<!-- ANCHOR:adr-004-five-checks -->
+### Five Checks
+
+Simplicity: a single corrected literal, no new machinery. Systems: the path feeds every bare-model delegation decision through the shared scorer. Bias: the tempting shortcut was to re-pin and move on. Sustainability: the coupling comment makes the next rename fail loudly instead of silently. Value: it restores two mis-routed executor cases rather than accepting them.
+<!-- /ANCHOR:adr-004-five-checks -->
+<!-- /ANCHOR:adr-004 -->

@@ -18,7 +18,8 @@
       "regression diagnosis implementation plan",
       "regression diagnosis task breakdown",
       "013-routing-regression-diagnosis verification checklist",
-      "013-routing-regression-diagnosis decision record"
+      "013-routing-regression-diagnosis decision record",
+      "routing regression diagnosis summary"
     ],
     "key_topics": [
       "routing",
@@ -35,19 +36,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "evidence/capture-before-fix.json",
+      "evidence/capture-after-fix.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -69,9 +79,21 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "capture-before-fix.json",
+        "kind": "config",
+        "path": "evidence/capture-before-fix.json",
+        "source": "derived"
+      },
+      {
+        "name": "capture-after-fix.json",
+        "kind": "config",
+        "path": "evidence/capture-after-fix.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -82,12 +104,6 @@
       },
       {
         "name": "Routing Regression Diagnosis",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,6 +122,12 @@
       },
       {
         "name": "live",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -135,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Breakdown",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -159,39 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Each",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide fix-versus-accept — before any re-pin, status flip, or metadata regeneration is allowed to run.",
     "created_at": "2026-07-30T08:10:27.110Z",
-    "last_save_at": "2026-07-30T08:10:27.110Z",
+    "last_save_at": "2026-07-30T10:33:32.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,15 +203,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82feb14e8092857192a8f48ed4b0d27e01a0f87099994224f4e035dd21d164d1",
+    "source_fingerprint": "sha256:cf8bdaf0e8b29f2c1f9c34375cc118d522f7759277cb08e93a7f99bdf5486da5",
     "source_doc_hashes": {
-      "spec.md": "3fdd1fc42e622e2a9912202d4cfa94d9637b4f65508719a2e366333743f9b9b6",
-      "plan.md": "d0db01f7bb6f96d23ebb3472d0b45dc9dbcfbde75bf6cf531398be2c6585abda",
-      "tasks.md": "66c14201aa2e3a6ad80729939ea7dacdececdc3e77e92fbae31e27cb6ecfd953",
-      "checklist.md": "35b27fcf2b64468f6d092d46952ed215d1a9bc262bd9344889ef976482dec8b8",
-      "decision-record.md": "26beb28e0e5192e1845307779060422312ee870e040c9a677baf2d9b9bb85e7f"
+      "spec.md": "847f3aa6fc0876eee0f34ac570dea505a69eb2ead9ffc0b0cc58d2727a6d503e",
+      "plan.md": "513f3ed56b8225b65c752aa0ebff434ff7349f580138f22929b43f3d51648054",
+      "tasks.md": "bb6fa9cc17b8635becadc5b40595d922924945bc3eb9a7fd92c5bd3dd6d3cac6",
+      "checklist.md": "9478d668eb2831e92af18dbac1441f83303290a905eb8be800e8c34fbde6c4fe",
+      "decision-record.md": "8d65142083eabde2b3efd9fb0c052748b169c6fee4ebad24f0b228f86d93fd89",
+      "implementation-summary.md": "6fa77e28cae71243bfa7cc7b82e549fba6b100b9d1f929d7a2c8c9c17a32538a"
     },
     "last_active_child_id": null,
     "last_active_at": null

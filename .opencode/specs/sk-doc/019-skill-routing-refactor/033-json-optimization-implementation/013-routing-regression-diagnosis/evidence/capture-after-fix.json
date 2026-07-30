@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-30",
+  "capturedAtSha": "ba7e798843",
+  "corpusSha256": "sha256:9f30cc5e5f2d6c4d15e598fe25b922dc371297596295ab79346c881f6a4aa677",
+  "holdoutSha256": "sha256:88a7f759904eae360cb1f53b4dc32963b357703ac6baa4125e6f9df25abac80a",
+  "ambiguitySha256": "sha256:07cd2c76f41070ba74baaa0beb333d07cd6736a473c5ab79921d2ebfb1f8214d",
+  "env": {
+    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
+    "MK_SKILL_ADVISOR_DB_DIR": "<empty-dir>",
+    "projectionSource": "filesystem"
+  },
+  "metrics": {
+    "full_corpus_top1": {
+      "correct": 151,
+      "total": 195,
+      "accuracy": 0.7744
+    },
+    "unknown_count": {
+      "value": 13
+    },
+    "gold_none_false_fire": {
+      "value": 5
+    },
+    "holdout_top1": {
+      "correct": 53,
+      "total": 72,
+      "accuracy": 0.7361
+    },
+    "ambiguity_top1": {
+      "correct": 17,
+      "total": 24,
+      "accuracy": 0.7083,
+      "tau": 0.03
+    },
+    "buckets": {
+      "review": {
+        "correct": 24,
+        "total": 31,
+        "accuracy": 0.7742
+      },
+      "memory_save": {
+        "correct": 27,
+        "total": 32,
+        "accuracy": 0.8438
+      },
+      "delegation": {
+        "correct": 10,
+        "total": 11,
+        "accuracy": 0.9091
+      }
+    }
+  }
+}
+

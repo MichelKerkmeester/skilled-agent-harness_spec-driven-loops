@@ -228,7 +228,10 @@ function stringArray(value: unknown): string[] {
 function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemAliasData {
   const cacheKey = workspaceRoot ?? '';
   const skillsRoot = join(workspaceRoot ?? process.cwd(), '.opencode', 'skills');
-  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'prompt-models', 'assets', 'model-profiles.json');
+  // Path is coupled to the on-disk sk-prompt mode-packet directory name; keep it
+  // in sync with that folder or model aliases silently empty and bare model
+  // mentions (e.g. MiniMax, Kimi) stop routing to their executor.
+  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'sk-prompt-models', 'assets', 'model-profiles.json');
   const archiveRoot = join(skillsRoot, 'z_archive');
   const cliHubRegistryPath = join(skillsRoot, 'cli-external-orchestration', 'mode-registry.json');
   const cached = filesystemAliasCache.get(cacheKey);
