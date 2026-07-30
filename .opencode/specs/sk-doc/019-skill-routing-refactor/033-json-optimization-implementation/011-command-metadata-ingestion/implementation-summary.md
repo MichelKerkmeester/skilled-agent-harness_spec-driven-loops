@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Shipped against the documented allow-list residual; the system-spec-kit command-metadata backfill stays a fast-follow"
+      - "Shipped against the documented allow-list residual; the system-spec-kit backfill was later found structurally illegal (S-class roots forbid command-metadata.json), so the allow-list is the permanent design"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -93,5 +93,5 @@ All run post-cutover, by exit code:
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-This phase does not backfill `system-spec-kit`'s missing `command-metadata.json` — the `/speckit:*` and `/memory:save` bridges stay covered by a documented allow-list, not a JSON source, until a separate fast-follow addresses that hub's own H-class metadata gap. This phase also does not touch the existing choreography-consumption use of `command-metadata.json` (command-authoring tooling reading `choreography[]`) — it adds an advisor-routing consumer alongside it, per the sol-high/glm-high disagreement recorded in `spec.md` §6, rather than claiming the prior consumption path was itself broken. The drift-guard and corpus gate now run in CI for real: the routing workflow was made executable during the remediation program, and its golden-prompt-gate job passed live before this cutover landed.
+This phase does not backfill `system-spec-kit`'s missing `command-metadata.json` — the `/speckit:*` and `/memory:save` bridges stay covered by a documented allow-list, not a JSON source, and that is now the permanent design, not a deferred fast-follow: the follow-up investigation found `system-spec-kit` is an S-class root whose metadata contract forbids a `command-metadata.json`, so the documented allow-list is the structurally legal form of this coverage. This phase also does not touch the existing choreography-consumption use of `command-metadata.json` (command-authoring tooling reading `choreography[]`) — it adds an advisor-routing consumer alongside it, per the sol-high/glm-high disagreement recorded in `spec.md` §6, rather than claiming the prior consumption path was itself broken. The drift-guard and corpus gate now run in CI for real: the routing workflow was made executable during the remediation program, and its golden-prompt-gate job passed live before this cutover landed.
 <!-- /ANCHOR:limitations -->
