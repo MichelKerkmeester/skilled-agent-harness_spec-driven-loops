@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers",
+  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow token permissions implicit",
+      "feature catalog modes versus packets",
+      "deprecated derived sync writer",
+      "requirement wording contradicts phase map",
+      "program leftovers implementation plan",
+      "program leftovers task breakdown",
+      "program leftovers verification checklist"
+    ],
+    "key_topics": [
+      "workflow",
+      "token",
+      "permissions",
+      "implicit",
+      "feature",
+      "catalog",
+      "modes",
+      "versus",
+      "packets",
+      "deprecated",
+      "derived",
+      "sync"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Leftovers",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "packets",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the four in-scope findings no sibling phase owns — implicit workflow token permissions while npm-fetched tools execute, a feature catalog conflating modes with packets, a deprecated derived-sync writer advertising a schema path it no longer serves, and the requirement wording that contradicts the phase map's own ordering.",
+    "created_at": "2026-07-30T08:23:38.802Z",
+    "last_save_at": "2026-07-30T08:23:38.802Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:05ece431b1096e8fb623b484acfd40e32f13454c89d375af0ef071e37f418346",
+    "source_doc_hashes": {
+      "spec.md": "924ef27ba177eb9e1d6b5bd05dd3b40412f9c43ab811a66e9cda8b523714d983",
+      "plan.md": "ac36386efcf7204f5b8ee43ab8d5f9f564b34222da59946e7ca05656ee3fb827",
+      "tasks.md": "be26b5ca26d2a70dc98fe30cf6852dd6d65df8a246b3c544f2e5decf24bd0f49",
+      "checklist.md": "d2c42c2da535fa73e30a6a59a3a55b37c66ae4268780c06ccb0877a2a4cf3677"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

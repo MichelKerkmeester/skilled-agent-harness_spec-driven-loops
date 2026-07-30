@@ -144,12 +144,14 @@ The REQ-001 baseline (corpus hash + CI state) is captured and referenced by ever
 | 16 | `016-packet-metadata-regeneration/` | One close-time generator pass for phase map, continuity, derived status and fingerprints | Planned |
 | 17 | `017-authority-path-corrections/` | Dead authority citations, the stale contract doc, and the tracked scratch artifact | Planned |
 | 18 | `018-finding-disposition-register/` | One disposition per audit finding, plus the retrospective on severity inversion and coverage gaps | Planned |
+| 19 | `019-program-surface-leftovers/` | Workflow token permissions, feature-catalog mode-vs-packet framing, deprecated derived-sync writer, requirement wording | Planned |
+| 20 | `020-preprogram-code-conformance/` | The four code findings that predate this program: comment label, strict-mode placement, manifest containment guard, JSDoc | Planned |
 
 ### Phase Transition Rules
 
 - Phase 1 is the keystone decision and gates 3/7/9/10; it ships as a reviewed decision record before any dependent phase starts.
 - Phase 2 (baseline) precedes every gate, delete, migration, and rewire so regressions are measurable against a pinned hash.
-- Phases 13-18 are the post-audit remediation arc. Phase 13 measures and dispositions the routing regression and blocks 15 and 16; 14 takes its expected values from that disposition. Phase 16 must never run before 13 and 15, because reconciling status over an open regression converts a visible inconsistency into an invisible one. Phase 17 is independent and may run in parallel; phase 18 closes last.
+- Phases 13-18 are the post-audit remediation arc. Phase 13 measures and dispositions the routing regression and blocks 15 and 16; 14 takes its expected values from that disposition. Phase 16 must never run before 13 and 15, because reconciling status over an open regression converts a visible inconsistency into an invisible one. Phase 17 is independent and may run in parallel; phase 18 closes last. Phases 19 and 20 close the coverage gap a finding-by-finding audit found in 13-18: 19 owns four in-scope findings no other phase claimed, and 20 owns the four that blame code this program never touched — scoped here deliberately, with their pre-program provenance recorded, because a backlog with no owner is how findings disappear.
 - Phases 3/4 land before Phase 6 turns on the compiler gate, so a newly scaffolded skill never fails CI.
 - Phase 5 (golden prompts) may proceed early against the current fleet; the Phase 6 compiler gate waits on 3 and 4.
 - Phase 8 (routing-changing `manual.*` migration) and Phase 9 land behind the Phase 6 routing-accuracy gate.

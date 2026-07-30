@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-program code conformance",
+      "ephemeral label in code comment",
+      "strict mode directive placement",
+      "manifest path containment guard",
+      "pre-program conformance implementation plan",
+      "pre-program conformance task breakdown",
+      "pre-program conformance verification checklist"
+    ],
+    "key_topics": [
+      "pre-program",
+      "code",
+      "conformance",
+      "ephemeral",
+      "label",
+      "comment",
+      "strict",
+      "mode",
+      "directive",
+      "placement",
+      "manifest",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Code Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "causing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "behaviour",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced strict-mode directive, a manifest path join without a containment guard, and missing JSDoc on exported functions.",
+    "created_at": "2026-07-30T08:23:44.740Z",
+    "last_save_at": "2026-07-30T08:23:44.740Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:b7e016efe1bfb11b496c2cc18307254265005f0f45fbbed1c343267b5d076fb5",
+    "source_doc_hashes": {
+      "spec.md": "d1dc3e6f9632554a0d2134d5ef632d0f4c8c7de107c164e7453a2dbb93758902",
+      "plan.md": "add7e7938702d6addd70c4859093c960c260eb99439aace87d0cc86c06726726",
+      "tasks.md": "53207c454a3f204bd3181b1e2d078f27cb0dc714407fcc51d059d67da09237f9",
+      "checklist.md": "02de263b51b3ca7ceb32c293e91e206cdc027cf8057d0deea80fc715da723597"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

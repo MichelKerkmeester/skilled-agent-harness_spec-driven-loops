@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance",
+  "description": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced",
+  "keywords": [
+    "four",
+    "code-conformance",
+    "findings",
+    "audit",
+    "raised",
+    "against",
+    "lines",
+    "program",
+    "never",
+    "touched",
+    "ephemeral",
+    "label",
+    "code",
+    "comment",
+    "misplaced"
+  ],
+  "lastUpdated": "2026-07-30T08:23:17.447Z",
+  "specId": "020",
+  "folderSlug": "preprogram-code-conformance",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
