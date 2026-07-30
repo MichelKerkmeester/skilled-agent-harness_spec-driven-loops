@@ -100,7 +100,7 @@
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     ],
     "entities": [
       {
@@ -160,7 +160,7 @@
       {
         "name": "generate-context",
         "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
         "source": "derived"
       }
     ],
