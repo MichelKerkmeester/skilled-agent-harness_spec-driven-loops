@@ -1,0 +1,1 @@
+{"type":"iteration","run":1,"mode":"review","dimension":"inventory","newFindings":["F-001-01","F-001-02","F-001-03"],"newFindingsRatio":1,"coverage":{"filesExamined":41,"groupsExamined":11},"timestamp":"2026-07-30T05:46:53.339Z"}

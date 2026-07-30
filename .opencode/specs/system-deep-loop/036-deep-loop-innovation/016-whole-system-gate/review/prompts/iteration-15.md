@@ -1,0 +1,83 @@
+# Deep-review leaf — iteration 15 of 40 (security)
+
+You are a deep-review LEAF executing exactly ONE iteration of a review loop. The loop
+orchestrator (not you) owns all state files. You are READ-ONLY: do not create, modify,
+or delete ANY file. Your entire output is your final message.
+
+GATE-3 PRE-RESOLVED (A) — write authority is owned by the orchestrator; never ask the
+A-E documentation question. Do not run any state-mutating command.
+
+## Target
+The `system-deep-loop` skill (repo root is CWD). Scope list:
+`.opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/goal-file-manifest.txt`.
+
+## This iteration's dimension: SECURITY
+## Focus
+Evidence forgery: sealed store digest validation, certificate issuance/verification bypasses, decoy or stale artifact acceptance
+
+Go DEEP on the focus surface: read the actual implementation files end to end, trace
+the load-bearing paths, and hunt for genuine defects. Prefer depth on the focus over
+breadth. You may follow references out of the focus when a suspected defect crosses
+module boundaries.
+
+## Already-known open findings (do NOT re-report these; DO deepen/refute if evidence warrants)
+- F-014-03 [P0/security] Policy identity omits captured authorization state @ .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts
+- F-014-02 [P0/security] Caller-controlled identity strings can forge writer authority @ .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts
+- F-014-01 [P0/security] Ledger append can bypass the fencing-token boundary @ .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts
+- F-013-02 [P0/correctness] Standalone rollback switches trust an unbound allow decision @ .opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/rollback-switch.ts
+- F-013-01 [P0/correctness] Standalone readiness gates do not bind sealed artifacts to the verified certificate @ .opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts
+- F-011-03 [P0/correctness] Common offline certificates leave semantic artifact identity fields unchecked @ .opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts
+- F-011-01 [P0/correctness] Public deletion and restoration cutovers trust unverified authorization objects @ .opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts
+- F-010-02 [P0/correctness] Max-iteration completion trusts child-authored synthesis counters @ .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- F-010-01 [P0/correctness] Fan-out fulfills lineages with only a top-level report @ .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- F-009-04 [P0/correctness] Live-render adapter passes without render evidence @ .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs
+- F-009-03 [P0/correctness] Adapter variants collide under the same lane identity @ .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs
+- F-009-02 [P0/correctness] Coverage accepts checked identifiers outside the corpus @ .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs
+- F-009-01 [P0/correctness] Missing or corrupt corpus becomes 100% coverage @ .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs
+- F-013-06 [P1/correctness] Deep-research and deep-review gates throw on malformed top-level input @ .opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts
+- F-013-05 [P1/correctness] Certificate conformance accepts evidence-unbound certificates @ .opencode/skills/system-deep-loop/runtime/lib/mode-contracts/conformance.ts
+- F-013-04 [P1/correctness] Reducer conformance accepts an event-unbound reducer @ .opencode/skills/system-deep-loop/runtime/lib/mode-contracts/conformance.ts
+- F-013-03 [P1/correctness] Closure context is only shallowly immutable @ .opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts
+- F-012-04 [P1/correctness] Deep-review parity converts reducer failure into legacy success @ .opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts
+- F-012-03 [P1/correctness] Skill-benchmark ledger parity discards the reducer projection @ .opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-shadow-parity/harness-adapter.ts
+- F-012-02 [P1/correctness] Model-benchmark ledger parity discards the reducer projection @ .opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/harness-adapter.ts
+- F-012-01 [P1/correctness] Agent-improvement ledger parity returns the legacy projection @ .opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts
+- F-011-04 [P1/correctness] Alignment output provenance accepts lifecycle events without artifact identity binding @ .opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificates.ts
+- F-011-02 [P1/correctness] Verified sealed reads do not enforce the claimed canonicalization profile @ .opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts
+- F-010-04 [P1/correctness] Executor JSONL audits collapse materially different dispatches @ .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+- F-010-03 [P1/correctness] Fan-out discards invocation provenance before spawning @ .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+- F-009-06 [P1/correctness] Interactive scoping discards the selected adapter @ .opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs
+- F-009-05 [P1/correctness] Live-render artifacts have no partition identity @ .opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs
+- F-008-03 [P1/correctness] Direct rollback trusts an unbound backup file @ .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs
+- F-008-02 [P1/correctness] Benchmark sweep scores raw event JSON when assistant text is absent @ .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs
+- F-008-01 [P1/correctness] Non-finite score values bypass promotion gates @ .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+- F-007-03 [P1/correctness] Model score references are not ownership-bound to the target trial @ .opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts
+- F-007-02 [P1/correctness] Artifact origin validation omits scoped identity binding @ .opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts
+- F-007-01 [P1/correctness] Mode certificate receipts fabricate ledger head sequences @ .opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts
+- F-006-04 [P1/correctness] Council certificates do not bind artifact scope to event scope @ .opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificates.ts
+- F-006-03 [P1/correctness] Council source references ignore round identity @ .opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts
+- F-006-02 [P1/correctness] Alignment parity derives both paths from one typed projection @ .opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts
+- F-006-01 [P1/correctness] Council parity discards the real reducer projection @ .opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts
+- F-005-02 [P1/correctness] Rollback-window success count trusts unauthenticated execution claims @ .opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/mode-gate.ts
+- F-005-01 [P1/correctness] Initial research replay silently accepts stream-sequence gaps @ .opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts
+- F-004-04 [P1/correctness] Resume treats a caller assertion as ledger-authoritative result evidence @ .opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts
+
+## Output contract (STRICT)
+Output ONLY a fenced JSON block, nothing after it:
+
+```json
+{
+  "iteration": 15,
+  "dimension": "security",
+  "summary": "<3-6 sentences: what you examined and the risk picture>",
+  "findings": [ { "severity": "P0|P1|P2", "dimension": "security", "title": "<short>", "file": "<repo-relative path>", "line": 0, "evidence": "<what you actually read there — quote or describe the exact code>", "recommendation": "<fix direction>" } ],
+  "refutations": [ { "id": "<known finding id>", "verdict": "confirmed|refuted|deepened", "reason": "<evidence>" } ],
+  "coverage": { "filesExamined": 0, "keyPaths": ["<the main files you read>"] }
+}
+```
+
+Severity bar: P0 = would certify/authorize something false, lose data, or permit
+unauthorized mutation at authority cutover; P1 = real defect with a concrete trigger;
+P2 = quality/maintainability. Every finding MUST cite a file you actually read (line
+where possible). No speculative findings — an empty findings array with honest deep
+coverage beats padded findings.

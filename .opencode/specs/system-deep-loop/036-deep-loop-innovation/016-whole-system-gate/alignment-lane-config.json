@@ -1,0 +1,30 @@
+[
+  {
+    "authority": "sk-code",
+    "artifactClass": "code",
+    "scope": {
+      "type": "paths",
+      "values": [
+        ".opencode/skills/system-deep-loop/runtime/lib",
+        ".opencode/skills/system-deep-loop/runtime/scripts"
+      ]
+    }
+  },
+  {
+    "authority": "sk-doc",
+    "artifactClass": "docs",
+    "scope": {
+      "type": "paths",
+      "values": [
+        ".opencode/skills/system-deep-loop/SKILL.md",
+        ".opencode/skills/system-deep-loop/README.md",
+        ".opencode/skills/system-deep-loop/deep-research",
+        ".opencode/skills/system-deep-loop/deep-review",
+        ".opencode/skills/system-deep-loop/deep-alignment",
+        ".opencode/skills/system-deep-loop/deep-ai-council",
+        ".opencode/skills/system-deep-loop/deep-improvement",
+        ".opencode/skills/system-deep-loop/shared"
+      ]
+    }
+  }
+]
