@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
     "commandMetadata": 22,
     "allowList": 8,
-    "generated": 30
+    "generated": 30,
+    "typescriptActive": 6,
+    "pythonActive": 16
   },
   "entries": [
     {
@@ -12,210 +14,720 @@
       "command": "/create:agent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-agent",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-create-agent",
+          "order": 3,
+          "id": "create:agent",
+          "name": "create:agent",
+          "description": "Create command bridge for /create:agent OpenCode agent scaffolding.",
+          "keywords": [
+            "/create:agent",
+            "create new agent",
+            "create agent",
+            "new agent",
+            "make new agent"
+          ],
+          "domains": [
+            "create",
+            "agent",
+            "command"
+          ],
+          "intentSignals": [
+            "/create:agent",
+            "create new agent",
+            "create agent",
+            "new agent",
+            "make new agent"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-agent",
+          "order": 10,
+          "id": "command-create-agent",
+          "description": "Create a new OpenCode agent using /create:agent.",
+          "slashMarkers": [
+            "/create:agent",
+            "create:agent"
+          ]
+        }
+      }
     },
     {
       "id": "command-create-benchmark",
       "command": "/create:benchmark",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-benchmark",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-create-changelog",
       "command": "/create:changelog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-changelog",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-changelog",
+          "order": 11,
+          "id": "command-create-changelog",
+          "description": "Create a changelog entry using /create:changelog.",
+          "slashMarkers": [
+            "/create:changelog",
+            "create:changelog"
+          ]
+        }
+      }
     },
     {
       "id": "command-create-command",
       "command": "/create:command",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-command",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-create-diff",
       "command": "/create:diff",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-diff",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-create-feature-catalog",
       "command": "/create:feature-catalog",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-feature-catalog",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-feature-catalog",
+          "order": 13,
+          "id": "command-create-feature-catalog",
+          "description": "Create or update a feature catalog using /create:feature-catalog.",
+          "slashMarkers": [
+            "/create:feature-catalog",
+            "create:feature-catalog"
+          ]
+        }
+      }
     },
     {
       "id": "command-create-flowchart",
       "command": "/create:flowchart",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-flowchart",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-create-manual-testing-playbook",
       "command": "/create:manual-testing-playbook",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-manual-testing-playbook",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-create-manual-testing-playbook",
+          "order": 4,
+          "id": "create:manual-testing-playbook",
+          "name": "create:manual-testing-playbook",
+          "description": "Create command bridge for /create:manual-testing-playbook manual testing playbook scaffolding.",
+          "keywords": [
+            "/create:manual-testing-playbook",
+            "create testing playbook",
+            "create test playbook",
+            "testing playbook"
+          ],
+          "domains": [
+            "create",
+            "testing",
+            "playbook",
+            "command"
+          ],
+          "intentSignals": [
+            "/create:manual-testing-playbook",
+            "create testing playbook",
+            "create test playbook",
+            "testing playbook"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-manual-testing-playbook",
+          "order": 14,
+          "id": "command-create-manual-testing-playbook",
+          "description": "Create or update a testing playbook using /create:manual-testing-playbook.",
+          "slashMarkers": [
+            "/create:manual-testing-playbook",
+            "create:manual-testing-playbook"
+          ],
+          "owningSkill": "create:manual-testing-playbook"
+        }
+      }
     },
     {
       "id": "command-create-readme",
       "command": "/create:readme",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-readme",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-readme",
+          "order": 15,
+          "id": "command-create-readme",
+          "description": "Create folder README documentation using /create:readme.",
+          "slashMarkers": [
+            "/create:readme",
+            "create:readme"
+          ]
+        }
+      }
     },
     {
       "id": "command-create-skill",
       "command": "/create:skill",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-create-skill",
+          "order": 12,
+          "id": "command-create-skill",
+          "description": "Create or update an OpenCode skill using /create:skill.",
+          "slashMarkers": [
+            "/create:skill",
+            "create:skill"
+          ]
+        }
+      }
     },
     {
       "id": "command-create-skill-parent",
       "command": "/create:skill-parent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill-parent",
-      "source": ".opencode/skills/sk-doc/command-metadata.json"
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-deep-agent-improvement",
       "command": "/deep:agent-improvement",
       "skillId": "system-deep-loop",
       "ownerMode": "agent-improvement",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-deep-agent-improvement",
+          "order": 8,
+          "id": "command-deep-agent-improvement",
+          "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
+          "slashMarkers": [
+            "/deep:agent-improvement",
+            "deep:agent-improvement"
+          ]
+        }
+      }
     },
     {
       "id": "command-deep-ai-council",
       "command": "/deep:ai-council",
       "skillId": "system-deep-loop",
       "ownerMode": "ai-council",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-deep-alignment",
       "command": "/deep:alignment",
       "skillId": "system-deep-loop",
       "ownerMode": "alignment",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-deep-command-benchmark",
       "command": "/deep:command-benchmark",
       "skillId": "system-deep-loop",
       "ownerMode": "alignment",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-deep-model-benchmark",
       "command": "/deep:model-benchmark",
       "skillId": "system-deep-loop",
       "ownerMode": "model-benchmark",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-deep-model-benchmark",
+          "order": 5,
+          "id": "deep-model-benchmark",
+          "name": "deep-model-benchmark",
+          "description": "Deep command bridge for /deep:model-benchmark model and prompt-framework benchmarking.",
+          "keywords": [
+            "/deep:model-benchmark",
+            "benchmark a model",
+            "benchmark a prompt framework",
+            "optimize a model",
+            "model benchmark loop"
+          ],
+          "domains": [
+            "deep",
+            "benchmark",
+            "model",
+            "command"
+          ],
+          "intentSignals": [
+            "/deep:model-benchmark",
+            "benchmark a model",
+            "benchmark a prompt framework",
+            "optimize a model",
+            "model benchmark loop"
+          ]
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-deep-research",
       "command": "/deep:research",
       "skillId": "system-deep-loop",
       "ownerMode": "research",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-deep-research",
+          "order": 3,
+          "id": "command-spec-kit-deep-research",
+          "description": "Run the autonomous deep-research loop using /deep:research.",
+          "slashMarkers": [
+            "/deep:research",
+            "deep:research"
+          ],
+          "owningSkill": "deep-research"
+        }
+      }
     },
     {
       "id": "command-deep-review",
       "command": "/deep:review",
       "skillId": "system-deep-loop",
       "ownerMode": "review",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-deep-review",
+          "order": 4,
+          "id": "command-spec-kit-deep-review",
+          "description": "Run the autonomous deep-review loop using /deep:review.",
+          "slashMarkers": [
+            "/deep:review",
+            "deep:review"
+          ],
+          "owningSkill": "deep-review"
+        }
+      }
     },
     {
       "id": "command-deep-skill-benchmark",
       "command": "/deep:skill-benchmark",
       "skillId": "system-deep-loop",
       "ownerMode": "skill-benchmark",
-      "source": ".opencode/skills/system-deep-loop/command-metadata.json"
+      "source": ".opencode/skills/system-deep-loop/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-interface-design",
       "command": "/interface:design",
       "skillId": "sk-design",
       "ownerMode": "sk-design-interface",
-      "source": ".opencode/skills/sk-design/command-metadata.json"
+      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-interface-design-reference",
       "command": "/interface:design-reference",
       "skillId": "sk-design",
       "ownerMode": "sk-design-md-generator",
-      "source": ".opencode/skills/sk-design/command-metadata.json"
+      "source": ".opencode/skills/sk-design/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-memory-save",
       "command": "/memory:save",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-memory-save",
+          "order": 2,
+          "id": "command-memory-save",
+          "name": "command-memory-save",
+          "description": "Memory save command bridge for /memory:save context preservation.",
+          "keywords": [
+            "/memory:save",
+            "save context",
+            "save memory"
+          ],
+          "domains": [
+            "memory",
+            "command"
+          ],
+          "intentSignals": [
+            "/memory:save",
+            "save context",
+            "save memory"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-memory-save",
+          "order": 7,
+          "id": "command-memory-save",
+          "description": "Save conversation context to memory using /memory:save.",
+          "slashMarkers": [
+            "/memory:save",
+            "memory:save"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "command-prompt-improve",
       "command": "/prompt:improve",
       "skillId": "sk-prompt",
       "ownerMode": "sk-prompt-improve",
-      "source": ".opencode/skills/sk-prompt/command-metadata.json"
+      "source": ".opencode/skills/sk-prompt/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     },
     {
       "id": "command-prompt-improver",
       "command": "/prompt",
       "skillId": "sk-prompt",
       "ownerMode": "sk-prompt-improve",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-prompt-improver",
+          "order": 9,
+          "id": "command-prompt-improver",
+          "description": "Create or improve AI prompts using /prompt.",
+          "slashMarkers": [
+            "/prompt"
+          ]
+        }
+      }
     },
     {
       "id": "command-spec-kit",
       "command": "/spec_kit",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit",
+          "order": 0,
+          "id": "command-spec-kit",
+          "name": "command-spec-kit",
+          "description": "Spec Kit command bridge for /spec_kit workflows.",
+          "keywords": [
+            "/speckit:plan",
+            "/speckit:resume",
+            "/deep:research",
+            "/deep:review"
+          ],
+          "domains": [
+            "spec-kit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:plan",
+            "/speckit:resume",
+            "/deep:research",
+            "/deep:review"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit",
+          "order": 6,
+          "id": "command-spec-kit",
+          "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
+          "slashMarkers": [
+            "/spec_kit",
+            "spec_kit:"
+          ],
+          "deprecated": true,
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "command-spec-kit-complete",
       "command": "/speckit:complete",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit-complete",
+          "order": 1,
+          "id": "command-spec-kit-complete",
+          "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+          "slashMarkers": [
+            "/speckit:complete",
+            "spec_kit:complete"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "command-spec-kit-implement",
       "command": "/speckit:implement",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit-implement",
+          "order": 2,
+          "id": "command-spec-kit-implement",
+          "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
+          "slashMarkers": [
+            "/speckit:implement",
+            "spec_kit:implement"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "command-spec-kit-plan",
       "command": "/speckit:plan",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit-plan",
+          "order": 0,
+          "id": "command-spec-kit-plan",
+          "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+          "slashMarkers": [
+            "/speckit:plan",
+            "spec_kit:plan"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "command-spec-kit-resume",
       "command": "/speckit:resume",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-spec-kit-resume",
+          "order": 5,
+          "id": "command-spec-kit-resume",
+          "description": "Resume an existing spec folder using /speckit:resume.",
+          "slashMarkers": [
+            "/speckit:resume",
+            "spec_kit:resume"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
     },
     {
       "id": "memory:save",
       "command": "/memory:save",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json"
+      "source": "scripts/command-bridges/allow-list.json",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "memory:save",
+          "order": 1,
+          "id": "memory:save",
+          "name": "memory:save",
+          "description": "Memory save command bridge for /memory:save context preservation.",
+          "keywords": [
+            "/memory:save",
+            "save context",
+            "save memory",
+            "preserve session context"
+          ],
+          "domains": [
+            "memory",
+            "command"
+          ],
+          "intentSignals": [
+            "/memory:save",
+            "save context",
+            "save memory",
+            "preserve session context"
+          ]
+        },
+        "python": {
+          "enabled": false
+        }
+      }
     }
   ]
 }

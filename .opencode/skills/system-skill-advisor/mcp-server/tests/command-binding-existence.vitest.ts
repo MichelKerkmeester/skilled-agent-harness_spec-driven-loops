@@ -87,6 +87,7 @@ describe('command-binding existence', () => {
   it('sanity: the command namespaces the gate resolves against exist', () => {
     const namespaces = new Set(readdirSync(join(R, '.opencode', 'commands'), { withFileTypes: true })
       .filter((e) => e.isDirectory()).map((e) => e.name));
-    for (const ns of ['create', 'deep', 'design']) expect(namespaces.has(ns)).toBe(true);
+    // The design command surface ships under the interface/ namespace.
+    for (const ns of ['create', 'deep', 'interface']) expect(namespaces.has(ns)).toBe(true);
   });
 });

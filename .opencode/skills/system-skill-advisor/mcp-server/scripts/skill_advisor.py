@@ -86,6 +86,11 @@ COMMAND_BRIDGES_GENERATED_PATH = os.path.join(
     "command-bridges",
     "command-bridges.generated.json",
 )
+COMMAND_BRIDGES_DERIVER_PATH = os.path.join(
+    SCRIPT_DIR,
+    "command-bridges",
+    "derive-command-bridges.cjs",
+)
 ALIASES_TS_PATH = os.path.join(
     SKILLS_DIR,
     "system-skill-advisor",
@@ -513,10 +518,11 @@ def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
 
 
 def _normalized_live_command_bridges() -> List[Dict[str, str]]:
-    """Return the hand-authored Python command bridges in projection form."""
+    """Return the selected Python command bridges in inventory projection form."""
     entries: List[Dict[str, str]] = []
     for command_name, command_config in COMMAND_BRIDGES.items():
-        command = next(
+        configured_command = command_config.get("command")
+        command = configured_command if isinstance(configured_command, str) else next(
             (
                 marker
                 for marker in command_config.get("slash_markers", [])
@@ -524,9 +530,19 @@ def _normalized_live_command_bridges() -> List[Dict[str, str]]:
             ),
             "",
         )
-        owner = _command_bridge_owner(command_name, command)
+        configured_skill_id = command_config.get("skill_id")
+        configured_owner_mode = command_config.get("owner_mode")
+        owner = (
+            {
+                "skillId": configured_skill_id,
+                "ownerMode": configured_owner_mode,
+            }
+            if isinstance(configured_skill_id, str) and isinstance(configured_owner_mode, str)
+            else _command_bridge_owner(command_name, command)
+        )
+        inventory_id = command_config.get("inventory_id")
         entries.append({
-            "id": command_name,
+            "id": inventory_id if isinstance(inventory_id, str) else command_name,
             "command": command,
             "skillId": owner["skillId"],
             "ownerMode": owner["ownerMode"],
@@ -567,7 +583,7 @@ def dump_command_bridges(generated: bool = False) -> int:
 
 
 def check_command_bridges() -> int:
-    """Report drift between live Python bridges and the generated shadow projection."""
+    """Report live-selection drift and generated-block freshness."""
     try:
         live = _normalized_live_command_bridges()
         generated = _generated_command_bridges()
@@ -593,9 +609,26 @@ def check_command_bridges() -> int:
         if differences:
             mismatched.append({"id": bridge_id, "fields": differences})
 
-    has_drift = bool(missing or extra or mismatched)
+    block_check = subprocess.run(
+        ["node", COMMAND_BRIDGES_DERIVER_PATH, "--check"],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    try:
+        block_status = json.loads(block_check.stdout)
+    except json.JSONDecodeError:
+        block_status = {
+            "status": "error",
+            "stdout": block_check.stdout.strip(),
+            "stderr": block_check.stderr.strip(),
+        }
+
+    has_drift = bool(missing or extra or mismatched or block_check.returncode != 0)
     print(json.dumps({
         "status": "drift" if has_drift else "agreement",
+        "generatedBlocks": block_status,
         "counts": {"live": len(live), "generated": len(generated)},
         "missing": missing,
         "extra": extra,
@@ -2123,7 +2156,7 @@ PHRASE_INTENT_BOOSTERS = {
 DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
 DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 
-COMMAND_BRIDGES = {
+HAND_AUTHORED_COMMAND_BRIDGES = {
     # ─────────────────────────────────────────────────────────────────
     # Per-subcommand bridges for /spec_kit family.
     # Previously all /speckit:* subcommands collapsed to `command-spec-kit`
@@ -2216,7 +2249,7 @@ COMMAND_BRIDGES = {
     },
 }
 
-COMMAND_BRIDGE_OWNER_NORMALIZATION = {
+HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     # An explicit /X:y slash command routes to the skill that OWNS the workflow,
     # not to a command-bridge alias. The memory-save workflow is owned by
     # system-spec-kit (its toolchain performs the save), so /memory:save
@@ -2228,6 +2261,303 @@ COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     "command-spec-kit-deep-research": "deep-research",
     "command-spec-kit-deep-review": "deep-review",
 }
+
+# BEGIN GENERATED COMMAND BRIDGES
+GENERATED_COMMAND_BRIDGES = {
+    "command-spec-kit-plan": {
+        "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+        "slash_markers": ["/speckit:plan", "spec_kit:plan"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-spec-kit-plan",
+        "command": "/speckit:plan",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-spec-kit-complete": {
+        "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+        "slash_markers": ["/speckit:complete", "spec_kit:complete"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-spec-kit-complete",
+        "command": "/speckit:complete",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-spec-kit-implement": {
+        "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
+        "slash_markers": ["/speckit:implement", "spec_kit:implement"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-spec-kit-implement",
+        "command": "/speckit:implement",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-spec-kit-deep-research": {
+        "description": "Run the autonomous deep-research loop using /deep:research.",
+        "slash_markers": ["/deep:research", "deep:research"],
+        "owning_skill": "deep-research",
+        "inventory_id": "command-deep-research",
+        "command": "/deep:research",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "research",
+        "routing_enabled": True,
+    },
+    "command-spec-kit-deep-review": {
+        "description": "Run the autonomous deep-review loop using /deep:review.",
+        "slash_markers": ["/deep:review", "deep:review"],
+        "owning_skill": "deep-review",
+        "inventory_id": "command-deep-review",
+        "command": "/deep:review",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "review",
+        "routing_enabled": True,
+    },
+    "command-spec-kit-resume": {
+        "description": "Resume an existing spec folder using /speckit:resume.",
+        "slash_markers": ["/speckit:resume", "spec_kit:resume"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-spec-kit-resume",
+        "command": "/speckit:resume",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-spec-kit": {
+        "description": "[DEPRECATED: use per-subcommand bridges] /spec_kit slash-command family; routes generic /spec_kit or spec_kit: prompts without a specific subcommand.",
+        "slash_markers": ["/spec_kit", "spec_kit:"],
+        "deprecated": True,
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-spec-kit",
+        "command": "/spec_kit",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-memory-save": {
+        "description": "Save conversation context to memory using /memory:save.",
+        "slash_markers": ["/memory:save", "memory:save"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-memory-save",
+        "command": "/memory:save",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-deep-agent-improvement": {
+        "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
+        "slash_markers": ["/deep:agent-improvement", "deep:agent-improvement"],
+        "inventory_id": "command-deep-agent-improvement",
+        "command": "/deep:agent-improvement",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "agent-improvement",
+        "routing_enabled": True,
+    },
+    "command-prompt-improver": {
+        "description": "Create or improve AI prompts using /prompt.",
+        "slash_markers": ["/prompt"],
+        "inventory_id": "command-prompt-improver",
+        "command": "/prompt",
+        "skill_id": "sk-prompt",
+        "owner_mode": "sk-prompt-improve",
+        "routing_enabled": True,
+    },
+    "command-create-agent": {
+        "description": "Create a new OpenCode agent using /create:agent.",
+        "slash_markers": ["/create:agent", "create:agent"],
+        "inventory_id": "command-create-agent",
+        "command": "/create:agent",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-agent",
+        "routing_enabled": True,
+    },
+    "command-create-changelog": {
+        "description": "Create a changelog entry using /create:changelog.",
+        "slash_markers": ["/create:changelog", "create:changelog"],
+        "inventory_id": "command-create-changelog",
+        "command": "/create:changelog",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-changelog",
+        "routing_enabled": True,
+    },
+    "command-create-skill": {
+        "description": "Create or update an OpenCode skill using /create:skill.",
+        "slash_markers": ["/create:skill", "create:skill"],
+        "inventory_id": "command-create-skill",
+        "command": "/create:skill",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-skill",
+        "routing_enabled": True,
+    },
+    "command-create-feature-catalog": {
+        "description": "Create or update a feature catalog using /create:feature-catalog.",
+        "slash_markers": ["/create:feature-catalog", "create:feature-catalog"],
+        "inventory_id": "command-create-feature-catalog",
+        "command": "/create:feature-catalog",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-feature-catalog",
+        "routing_enabled": True,
+    },
+    "command-create-manual-testing-playbook": {
+        "description": "Create or update a testing playbook using /create:manual-testing-playbook.",
+        "slash_markers": ["/create:manual-testing-playbook", "create:manual-testing-playbook"],
+        "owning_skill": "create:manual-testing-playbook",
+        "inventory_id": "command-create-manual-testing-playbook",
+        "command": "/create:manual-testing-playbook",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-manual-testing-playbook",
+        "routing_enabled": True,
+    },
+    "command-create-readme": {
+        "description": "Create folder README documentation using /create:readme.",
+        "slash_markers": ["/create:readme", "create:readme"],
+        "inventory_id": "command-create-readme",
+        "command": "/create:readme",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-readme",
+        "routing_enabled": True,
+    },
+    "command-create-benchmark": {
+        "description": "",
+        "slash_markers": ["/create:benchmark"],
+        "inventory_id": "command-create-benchmark",
+        "command": "/create:benchmark",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-benchmark",
+        "routing_enabled": False,
+    },
+    "command-create-command": {
+        "description": "",
+        "slash_markers": ["/create:command"],
+        "inventory_id": "command-create-command",
+        "command": "/create:command",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-command",
+        "routing_enabled": False,
+    },
+    "command-create-diff": {
+        "description": "",
+        "slash_markers": ["/create:diff"],
+        "inventory_id": "command-create-diff",
+        "command": "/create:diff",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-diff",
+        "routing_enabled": False,
+    },
+    "command-create-flowchart": {
+        "description": "",
+        "slash_markers": ["/create:flowchart"],
+        "inventory_id": "command-create-flowchart",
+        "command": "/create:flowchart",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-flowchart",
+        "routing_enabled": False,
+    },
+    "command-create-skill-parent": {
+        "description": "",
+        "slash_markers": ["/create:skill-parent"],
+        "inventory_id": "command-create-skill-parent",
+        "command": "/create:skill-parent",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-skill-parent",
+        "routing_enabled": False,
+    },
+    "command-deep-ai-council": {
+        "description": "",
+        "slash_markers": ["/deep:ai-council"],
+        "inventory_id": "command-deep-ai-council",
+        "command": "/deep:ai-council",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "ai-council",
+        "routing_enabled": False,
+    },
+    "command-deep-alignment": {
+        "description": "",
+        "slash_markers": ["/deep:alignment"],
+        "inventory_id": "command-deep-alignment",
+        "command": "/deep:alignment",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "alignment",
+        "routing_enabled": False,
+    },
+    "command-deep-command-benchmark": {
+        "description": "",
+        "slash_markers": ["/deep:command-benchmark"],
+        "inventory_id": "command-deep-command-benchmark",
+        "command": "/deep:command-benchmark",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "alignment",
+        "routing_enabled": False,
+    },
+    "command-deep-model-benchmark": {
+        "description": "",
+        "slash_markers": ["/deep:model-benchmark"],
+        "inventory_id": "command-deep-model-benchmark",
+        "command": "/deep:model-benchmark",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "model-benchmark",
+        "routing_enabled": False,
+    },
+    "command-deep-skill-benchmark": {
+        "description": "",
+        "slash_markers": ["/deep:skill-benchmark"],
+        "inventory_id": "command-deep-skill-benchmark",
+        "command": "/deep:skill-benchmark",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "skill-benchmark",
+        "routing_enabled": False,
+    },
+    "command-interface-design": {
+        "description": "",
+        "slash_markers": ["/interface:design"],
+        "inventory_id": "command-interface-design",
+        "command": "/interface:design",
+        "skill_id": "sk-design",
+        "owner_mode": "sk-design-interface",
+        "routing_enabled": False,
+    },
+    "command-interface-design-reference": {
+        "description": "",
+        "slash_markers": ["/interface:design-reference"],
+        "inventory_id": "command-interface-design-reference",
+        "command": "/interface:design-reference",
+        "skill_id": "sk-design",
+        "owner_mode": "sk-design-md-generator",
+        "routing_enabled": False,
+    },
+    "command-prompt-improve": {
+        "description": "",
+        "slash_markers": ["/prompt:improve"],
+        "inventory_id": "command-prompt-improve",
+        "command": "/prompt:improve",
+        "skill_id": "sk-prompt",
+        "owner_mode": "sk-prompt-improve",
+        "routing_enabled": False,
+    },
+    "memory:save": {
+        "description": "",
+        "slash_markers": ["/memory:save"],
+        "inventory_id": "memory:save",
+        "command": "/memory:save",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": False,
+    },
+}
+
+GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
+    "command-memory-save": "system-spec-kit",
+    "command-create-agent": "create:agent",
+    "command-create-manual-testing-playbook": "create:manual-testing-playbook",
+    "command-spec-kit-resume": "system-spec-kit",
+    "command-spec-kit-deep-research": "deep-research",
+    "command-spec-kit-deep-review": "deep-review",
+}
+# END GENERATED COMMAND BRIDGES
+
+COMMAND_BRIDGES = HAND_AUTHORED_COMMAND_BRIDGES
+COMMAND_BRIDGE_OWNER_NORMALIZATION = HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION
 
 COMMAND_BRIDGE_EXPLICIT_ALIASES = {
     # The canonical Python regression contract treats /speckit:plan as the
@@ -2424,6 +2754,8 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         },
     )
     for command_name, command_config in COMMAND_BRIDGES.items():
+        if command_config.get("routing_enabled") is False:
+            continue
         markers = set(command_config.get("slash_markers", []))
         skills[command_name] = _build_inline_record(
             name=command_name,
@@ -2449,6 +2781,8 @@ def expand_query(prompt_tokens: List[str]) -> List[str]:
 def detect_explicit_command_intent(prompt_lower: str) -> Optional[str]:
     """Return targeted command bridge when explicit slash markers are present."""
     for command_name, command_config in COMMAND_BRIDGES.items():
+        if command_config.get("routing_enabled") is False:
+            continue
         for marker in command_config.get("slash_markers", []):
             if marker and marker in prompt_lower:
                 return COMMAND_BRIDGE_EXPLICIT_ALIASES.get(command_name, command_name)
