@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/024-playbook-scenario-coverage",
+  "description": "The 11 hub `manual-testing-playbook/` trees are not one corpus",
+  "keywords": [
+    "hub",
+    "manual-testing-playbook",
+    "trees",
+    "one",
+    "corpus"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.241Z",
+  "specId": "024",
+  "folderSlug": "playbook-scenario-coverage",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

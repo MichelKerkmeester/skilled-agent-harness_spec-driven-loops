@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "spec_folder": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "parent_id": "sk-doc/024-playbook-scenario-coverage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "author missing playbook scenarios",
+      "uncovered executor coverage",
+      "end to end loop scenario",
+      "destructive mcp tool scenario",
+      "playbook coverage map worklist",
+      "uncovered workflow authoring implementation plan",
+      "playbook scenario coverage implementation plan",
+      "uncovered workflow authoring task list",
+      "playbook scenario coverage task list",
+      "uncovered workflow authoring verification checklist",
+      "playbook scenario coverage verification checklist",
+      "derived worklist decision"
+    ],
+    "key_topics": [
+      "author",
+      "missing",
+      "playbook",
+      "scenarios",
+      "uncovered",
+      "executor",
+      "coverage",
+      "end",
+      "loop",
+      "scenario",
+      "destructive",
+      "mcp"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Map Proves Are Owed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Coverage",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Coverage gaps in this fleet were previously argued from prose",
+    "created_at": "2026-07-30T19:29:16.012Z",
+    "last_save_at": "2026-07-30T19:29:16.012Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:360468f05b944955dddf277539384ce3fef82db025a80abc73eab9b8c3405b32",
+    "source_doc_hashes": {
+      "spec.md": "be71aa49b605c3ed907f33e739932a68c91487ba85eec1d11e34ddbd2b3fa95c",
+      "plan.md": "cfa0ced5d4ea7b808a28cf1f488d80f97f94ddd1b8c6d965ae5a4da927857948",
+      "tasks.md": "1aa06733e9b62ff78fbf205259784ef4d2f1e3041e7423cf7aabf78359e9598b",
+      "checklist.md": "745fb0bfaa1ee1c86e22534401fb3a07e9f3c05c6907cfc14149fd0c6ef7ca14",
+      "decision-record.md": "2118a8d0883a6df14c55c8f46f76c7ff2dca51a6f376cafb535ffc7d5c12018d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
