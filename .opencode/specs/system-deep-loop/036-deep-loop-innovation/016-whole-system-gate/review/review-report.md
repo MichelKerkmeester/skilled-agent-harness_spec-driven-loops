@@ -22,6 +22,12 @@ Findings by dimension: correctness 62, maintainability 39, traceability 38, secu
 Concentration by module: `runtime/lib` 64, `runtime/scripts` 27, `deep-improvement/scripts`
 10, `deep-alignment/scripts` 10 — matching the inventory pass's own risk ranking.
 
+**All 166 findings, each with its evidence and recommended action, are enumerated in
+`findings-register.md`** — grouped by severity then module, with confirmed findings marked
+and the cutover blockers cross-tagged. This report carries the verdict and the reasoning;
+the register is the remediation worklist. Both render from the findings registry, which
+stays the source of truth.
+
 ## 2. VERDICT
 
 **The authority cutover is blocked.** Not on judgement — on four mechanisms, each
