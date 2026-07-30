@@ -166,6 +166,14 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
   const modeEntries = [];
   for (const mode of registryModes || []) {
     if (!mode || !mode.workflowMode || !mode.packet) continue;
+    // The packet is joined onto skillDir and then walked, so an authored "../.."
+    // would make the manifest enumerate files outside the skill. Reject any
+    // packet that escapes its own skill root before it reaches the walker
+    // (mirrors the standalone-config guard).
+    const packetRel = path.relative(skillDir, path.resolve(skillDir, mode.packet));
+    if (packetRel === '..' || packetRel.startsWith(`..${path.sep}`) || path.isAbsolute(packetRel)) {
+      throw new contract.ContractError('PACKET_OUT_OF_ROOT', `mode ${mode.workflowMode} packet must stay within the skill root: ${mode.packet}`);
+    }
     const packetRoot = path.join(skillDir, mode.packet);
     const diskLeaves = [
       ...walkLeafFiles(packetRoot, 'references'),
@@ -194,6 +202,12 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
   return { modeEntries, rawPairs };
 }
 
+/**
+ * Build the canonical `leaf-manifest.json` bytes for a skill root (hub or
+ * standalone), by walking every declared packet's leaf resources.
+ * @param {string} skillDir Absolute path to the skill root directory.
+ * @returns {Buffer} The serialized, digest-stamped manifest bytes.
+ */
 function buildManifestBytes(skillDir) {
   const registryPath = path.join(skillDir, 'mode-registry.json');
   if (!fs.existsSync(registryPath)) {
@@ -236,6 +250,11 @@ function buildManifestBytes(skillDir) {
 // 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Regenerate and write `leaf-manifest.json` for a skill root.
+ * @param {string} skillDir Absolute path to the skill root directory.
+ * @returns {number} Exit code (0 on success).
+ */
 function runWrite(skillDir) {
   const bytes = buildManifestBytes(skillDir);
   fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), bytes);
@@ -243,6 +262,12 @@ function runWrite(skillDir) {
   return 0;
 }
 
+/**
+ * Check that a skill root's committed `leaf-manifest.json` matches a fresh
+ * regeneration, without writing.
+ * @param {string} skillDir Absolute path to the skill root directory.
+ * @returns {number} Exit code: 0 fresh, non-zero when stale or missing.
+ */
 function runCheck(skillDir) {
   const manifestPath = path.join(skillDir, 'leaf-manifest.json');
   if (!fs.existsSync(manifestPath)) {

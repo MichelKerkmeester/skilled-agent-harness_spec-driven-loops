@@ -17,7 +17,8 @@
       "manifest path containment guard",
       "pre-program conformance implementation plan",
       "pre-program conformance task breakdown",
-      "pre-program conformance verification checklist"
+      "pre-program conformance verification checklist",
+      "pre-program code conformance summary"
     ],
     "key_topics": [
       "pre-program",
@@ -34,9 +35,10 @@
       "path"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -46,6 +48,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -183,21 +191,23 @@
     ],
     "causal_summary": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced strict-mode directive, a manifest path join without a containment guard, and missing JSDoc on exported functions.",
     "created_at": "2026-07-30T08:23:44.740Z",
-    "last_save_at": "2026-07-30T08:23:44.740Z",
+    "last_save_at": "2026-07-30T11:48:46.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7e016efe1bfb11b496c2cc18307254265005f0f45fbbed1c343267b5d076fb5",
+    "source_fingerprint": "sha256:97878251c90d200c18f6bb5f86716788579c46c0c6635c83cac1b4d39407c1dc",
     "source_doc_hashes": {
-      "spec.md": "d1dc3e6f9632554a0d2134d5ef632d0f4c8c7de107c164e7453a2dbb93758902",
-      "plan.md": "add7e7938702d6addd70c4859093c960c260eb99439aace87d0cc86c06726726",
-      "tasks.md": "53207c454a3f204bd3181b1e2d078f27cb0dc714407fcc51d059d67da09237f9",
-      "checklist.md": "02de263b51b3ca7ceb32c293e91e206cdc027cf8057d0deea80fc715da723597"
+      "spec.md": "86741bc50bd342fd399a12eaae17efb2d1f93b795523c2aaee2cf15da9203e94",
+      "plan.md": "00bef20a7d15a387d047aae5c8494e2a785dd9189a7c74811bc6e14a721acc75",
+      "tasks.md": "ccc50b78aef0a90bd97d4396b68ae6e16ae6291d19784be0da6a6f20fb9d6713",
+      "checklist.md": "ca473408ca266e3a1d116eb9699063b6125c524675a16322489985ce7aa8170a",
+      "implementation-summary.md": "128535b8eafe66e61261ce30a077b324b983caa50d349346fc1ff8b2b07fbe15"
     },
     "last_active_child_id": null,
     "last_active_at": null

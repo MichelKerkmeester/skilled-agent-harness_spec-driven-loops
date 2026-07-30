@@ -13,19 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance"
     last_updated_at: "2026-07-30T11:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Begin execution per plan.md"
+    recent_action: "Fixed four pre-program code findings"
+    next_safe_action: "Proceed to phase 019 or 018"
     blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/020-preprogram-code-conformance"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the comment-hygiene gate should be extended to catch bare packet numbers, or whether the doctrine is deliberately broader than the gate, is a policy question for the gate's owner"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The comment-hygiene gate's blindness to bare packet numbers is recorded and referred to the gate owner rather than fixed here"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P3 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -114,5 +115,5 @@ The flagged comment carries its durable reason without the ephemeral label and t
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the comment-hygiene gate should be extended to catch bare packet numbers, or whether the written doctrine is deliberately broader than what the gate mechanically enforces, is a policy question for that gate's owner and is referred rather than decided here.
+The doctrine-versus-gate divergence has been recorded and referred (REQ-006): the comment-hygiene tool at `sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` and `system-spec-kit/scripts/rules/check-comment-hygiene.sh` returns clean on a bare packet number the doctrine forbids. Whether to widen its pattern set or treat the doctrine as deliberately broader than the mechanical gate is a policy decision for that gate's owner and is deliberately left to them.
 <!-- /ANCHOR:questions -->

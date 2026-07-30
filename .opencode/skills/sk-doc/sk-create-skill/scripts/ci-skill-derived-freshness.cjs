@@ -2,12 +2,13 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ ci-skill-derived-freshness — fleet gate: derived block matches disk       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
 //
 // Fails when any skill root's graph-metadata.json `derived` block is stale
 // against what is actually on disk: a key_files / source_docs / entities path
-// that no longer exists, or a required field gone missing. This is the drift
-// the 029 research ranked highest — a `derived` block that was hand-enriched
-// once and then rots as the corpus changes underneath it.
+// that no longer exists, or a required field gone missing. This is the
+// highest-leverage drift in the fleet — a `derived` block that was
+// hand-enriched once and then rots as the corpus changes underneath it.
 //
 // It runs the regenerator's pure repair in-memory (no writes) and reports any
 // root where the repaired block would differ from the committed one. Because the
@@ -18,13 +19,16 @@
 //   1  one or more blocks are stale (a repair would change them)
 //   2  the gate could not run (skills dir missing or not a directory)
 
-'use strict';
-
 const fs = require('node:fs');
 const path = require('node:path');
 
 const regen = require('./regenerate-skill-derived.cjs');
 
+/**
+ * Run the derived-freshness gate across every skill root under the skills dir.
+ * @param {string[]} [argv] CLI args; `--skills-dir <path>` overrides the default root.
+ * @returns {number} Exit code: 0 all fresh, 1 one or more stale, 2 the gate could not run.
+ */
 function run(argv = process.argv.slice(2)) {
   let skillsDir = regen.SKILLS_DIR;
   for (let i = 0; i < argv.length; i += 1) {

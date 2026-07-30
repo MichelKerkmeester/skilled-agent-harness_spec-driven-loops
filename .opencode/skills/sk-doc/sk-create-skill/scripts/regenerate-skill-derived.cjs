@@ -230,6 +230,12 @@ function parseArgs(argv) {
   return args;
 }
 
+/**
+ * Regenerate (or check) the `derived` block of every skill root under the
+ * skills dir, driven by CLI arguments.
+ * @param {string[]} [argv] CLI args; supports `--write` and `--skills-dir <path>`.
+ * @returns {number} Exit code: 0 all fresh/repaired, 1 stale in check mode, 2 could not run.
+ */
 function run(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   let roots;

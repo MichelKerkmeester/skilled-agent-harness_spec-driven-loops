@@ -492,6 +492,12 @@ function checkRoot(skillDir, options = {}) {
   };
 }
 
+/**
+ * Run the fleet-wide skill-root metadata class gate over every discovered root.
+ * @param {{ skillsDir?: string, fix?: boolean }} args Options; `skillsDir`
+ *   overrides the discovery root and `fix` writes generated files in place.
+ * @returns {number} Exit code: 0 clean, 1 violations found, 2 the gate could not run.
+ */
 function run(args) {
   const skillsDir = path.resolve(args.skillsDir || path.resolve(__dirname, '..', '..', '..'));
   // An existing non-directory (a regular file passed as --skills-dir) used to

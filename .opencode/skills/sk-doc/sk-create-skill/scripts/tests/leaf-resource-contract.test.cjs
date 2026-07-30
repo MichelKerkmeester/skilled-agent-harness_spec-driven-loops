@@ -287,6 +287,32 @@ function testStandaloneConfigRejectsPacketEscapingRoot() {
   }
 }
 
+function testHubModeRejectsPacketEscapingRoot() {
+  // A hub mode whose packet climbs out of the skill root would make the
+  // generator enumerate — and publish leaf ids for — files that belong to
+  // sibling skills, exactly as the standalone case would. The escape must be
+  // rejected before the walker runs on the hub path too.
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'leaf-hub-packet-escape-'));
+  try {
+    fs.writeFileSync(path.join(tempDir, 'mode-registry.json'), `${JSON.stringify({
+      resourceContractVersion: 1,
+      modes: [{ workflowMode: 'escape-mode', packet: '../..' }],
+    }, null, 2)}\n`);
+    fs.writeFileSync(path.join(tempDir, 'leaf-aliases.json'), '[]\n');
+
+    assert.throws(
+      () => generator.buildManifestBytes(tempDir),
+      (error) => {
+        assert.equal(error.code, 'PACKET_OUT_OF_ROOT');
+        assert.match(error.message, /within the skill root/);
+        return true;
+      },
+    );
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 9. TESTS: QUALIFIED-ID BRIDGE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -352,6 +378,7 @@ testDualReadDoesNotGenericallyStripUnrecognizedPrefixes();
 testCanonicalBytesAreDeterministic();
 testGeneratorRejectsOrphanAliasModeAndPreservesLiveBytes();
 testStandaloneConfigRejectsPacketEscapingRoot();
+testHubModeRejectsPacketEscapingRoot();
 testDualReadOfRealLegacyFixtureString();
 testDualReadOfSharedAliasRequiresAuthoredEntry();
 testQualifiedIdToLeafParsesAndResolves();
