@@ -534,6 +534,30 @@ function validateFixtureCoverage(
   }
 }
 
+const MAX_EVIDENCE_KIND_LENGTH = 128;
+
+// Artifact and certificate kinds are author-declared identifiers, not free text. Reject empty,
+// edge-whitespace, control-character, or oversized tokens so a typo cannot silently populate a
+// sealed evidence kind that downstream consumers key on. Character codes are checked numerically
+// so no control characters need to be embedded in this source.
+function isWellFormedEvidenceKind(value: unknown): boolean {
+  if (
+    typeof value !== 'string'
+    || value.length === 0
+    || value.length > MAX_EVIDENCE_KIND_LENGTH
+    || value.trim().length !== value.length
+  ) {
+    return false;
+  }
+  for (let index = 0; index < value.length; index += 1) {
+    const code = value.charCodeAt(index);
+    if (code <= 0x1f || code === 0x7f) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function validateEvidencePolicies(
   modeId: string,
   contract: ModeContract,
@@ -554,11 +578,12 @@ function validateEvidencePolicies(
       || policy.requiredInputDigests.length === 0
       || policy.sourceEventTypes.length === 0
       || policy.invalidationConditions.length === 0
+      || !isWellFormedEvidenceKind(policy.artifactKind)
     ) {
       pushIssue(
         issues,
         'ARTIFACT_POLICY_INVALID',
-        'Artifacts must be sealed, digest-bound, invalidatable evidence without authority',
+        'Artifacts must be sealed, digest-bound, invalidatable evidence without authority and carry a well-formed kind',
         modeId,
       );
     }
@@ -569,11 +594,12 @@ function validateEvidencePolicies(
       || policy.legacyAuthority !== 'unchanged'
       || !policy.evidenceReferencesRequired
       || policy.invalidationConditions.length === 0
+      || !isWellFormedEvidenceKind(policy.certificateKind)
     ) {
       pushIssue(
         issues,
         'CERTIFICATE_POLICY_INVALID',
-        'Certificates must remain invalidatable evidence and cannot change authority',
+        'Certificates must remain invalidatable evidence, cannot change authority, and carry a well-formed kind',
         modeId,
       );
     }
