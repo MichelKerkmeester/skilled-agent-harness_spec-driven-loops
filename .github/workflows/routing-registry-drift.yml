@@ -55,6 +55,12 @@ on:
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/**'
       - '.opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/002-baseline-capture/baseline/**'
 
+# Least-privilege default: these jobs only check out and run read-only gates,
+# so they never need write access. Declared explicitly rather than inheriting
+# the repository default token grant.
+permissions:
+  contents: read
+
 jobs:
   routing-drift:
     name: Registry == advisor maps; compiled-routing freshness; parent-skill structure

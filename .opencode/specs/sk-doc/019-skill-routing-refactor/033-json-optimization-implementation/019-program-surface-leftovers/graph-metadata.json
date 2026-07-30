@@ -17,7 +17,8 @@
       "requirement wording contradicts phase map",
       "program leftovers implementation plan",
       "program leftovers task breakdown",
-      "program leftovers verification checklist"
+      "program leftovers verification checklist",
+      "program surface leftovers summary"
     ],
     "key_topics": [
       "workflow",
@@ -34,9 +35,11 @@
       "sync"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
+      ".github/workflows/routing-registry-drift.yml",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -46,6 +49,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
         "source": "derived"
       },
       {
@@ -173,31 +188,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Close the four in-scope findings no sibling phase owns — implicit workflow token permissions while npm-fetched tools execute, a feature catalog conflating modes with packets, a deprecated derived-sync writer advertising a schema path it no longer serves, and the requirement wording that contradicts the phase map's own ordering.",
     "created_at": "2026-07-30T08:23:38.802Z",
-    "last_save_at": "2026-07-30T08:23:38.802Z",
+    "last_save_at": "2026-07-30T11:57:55.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05ece431b1096e8fb623b484acfd40e32f13454c89d375af0ef071e37f418346",
+    "source_fingerprint": "sha256:9ff71435f646381b6c828fa37e7d991b38adf6810e32f9dc8d1cc49d5711e8d1",
     "source_doc_hashes": {
-      "spec.md": "924ef27ba177eb9e1d6b5bd05dd3b40412f9c43ab811a66e9cda8b523714d983",
-      "plan.md": "ac36386efcf7204f5b8ee43ab8d5f9f564b34222da59946e7ca05656ee3fb827",
-      "tasks.md": "be26b5ca26d2a70dc98fe30cf6852dd6d65df8a246b3c544f2e5decf24bd0f49",
-      "checklist.md": "d2c42c2da535fa73e30a6a59a3a55b37c66ae4268780c06ccb0877a2a4cf3677"
+      "spec.md": "617cc6e27dda927a3654f48ae2361dd8ab12ed312b1e020915dd8ab5912e83ad",
+      "plan.md": "66551132d1bd651bc8b7fabd0891f991e6eb056ff3bd6d1e051fd1f8259dbb61",
+      "tasks.md": "fa9a8253ddd726dffc27d20b372805eebc05bb9d20f38475ad9184a595a3f031",
+      "checklist.md": "25bf12e4300fdf31166d29cbd3abdb7e5b82632b4f7f9a32e1b13e7de4c31ef2",
+      "implementation-summary.md": "5d3f2b4805927f4b3646aec42977a885bff32505779426e5200a2510f5d40f32"
     },
     "last_active_child_id": null,
     "last_active_at": null

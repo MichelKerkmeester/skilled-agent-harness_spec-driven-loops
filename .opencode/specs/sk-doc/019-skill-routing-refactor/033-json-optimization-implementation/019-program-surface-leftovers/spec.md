@@ -13,19 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers"
     last_updated_at: "2026-07-30T11:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Begin execution per plan.md"
+    recent_action: "Closed four program-surface leftovers"
+    next_safe_action: "Proceed to phase 018"
     blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/019-program-surface-leftovers"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the deprecated derived-sync writer is deleted or documented as deprecated-but-retained depends on whether any caller still reaches it"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The derived-sync writer has no production caller, so it was documented as deprecated-but-retained rather than deleted"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -114,5 +115,5 @@ The routing workflow declares explicit permissions and still passes CI under the
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the deprecated derived-sync writer should be deleted or retained with accurate documentation depends on the caller search, which has not run.
+Resolved: the caller search found no production importer of the derived-sync writer (only two test files reach it), so it was retained with an accurate `@deprecated` banner rather than deleted — deletion plus rewriting the two dependent tests is a larger, operator-preference change left open. The routing workflow's live CI run under the narrowed permission grant is operator-gated (this program does not push).
 <!-- /ANCHOR:questions -->

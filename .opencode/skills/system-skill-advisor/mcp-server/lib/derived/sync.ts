@@ -89,6 +89,13 @@ function stableDerivedJson(value: unknown): string {
 // 3. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
 
+/**
+ * @deprecated This TS-only writer is NOT the authoritative derived producer and
+ * is off the serving path — the derived block is produced and served elsewhere
+ * in the fleet. It still builds and writes a full `SkillDerivedV2` object, but is
+ * retained only for its existing tests; new callers must not depend on the
+ * full-object schema it writes.
+ */
 export function syncDerivedMetadata(options: SyncDerivedOptions): SyncDerivedResult {
   const workspaceRoot = resolve(options.workspaceRoot);
   const skillDir = resolve(options.skillDir);

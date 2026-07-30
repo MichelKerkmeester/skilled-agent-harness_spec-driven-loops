@@ -77,7 +77,7 @@ Out of scope — a ground-up redesign of the advisor scoring algorithm (only the
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Baseline captured before any gate lands | The pinned routing-accuracy corpus hash and current CI pass/fail state are recorded before Phase 1 begins, per the regression baseline-and-delta discipline |
+| REQ-001 | Baseline captured before any gate lands | The pinned routing-accuracy corpus hash and current CI pass/fail state are recorded by the baseline-capture phase (Phase 2), ahead of every gate, delete, migration, and rewire — Phase 1 is the non-routing derived-authority decision — per the regression baseline-and-delta discipline |
 | REQ-002 | Keystone derived-authority decision resolved first | Phase 1 names the single authoritative `derived` producer (TS sync writer vs Python compiler vs a shared schema package) as a decision record before any phase that trims, generates, or projects `derived` fields (O2, O5, O8) starts |
 | REQ-003 | Phases ordered by routing-blast-radius, low to high | Dead-field, config-default, and test-density phases (O5/O9/O10-class work) land before any phase capable of changing `advisor_recommend` output |
 | REQ-004 | Every routing-changing phase is corpus-gated | No phase that can move advisor scoring or routing output merges unless it passes the pinned routing-accuracy corpus (195 labeled + 72 holdout + 24 ambiguity prompts) with no regression against the REQ-001 baseline |

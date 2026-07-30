@@ -12,13 +12,13 @@ version: 1.0.0.0
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of twelve packets whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of twelve workflow modes — spread across eleven packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `sk-doc` hub. The hub does not author documentation itself — it resolves which of its twelve nested packets a request belongs to and hands off.
+Use this catalog as the current-state inventory for the `sk-doc` hub. The hub does not author documentation itself — it resolves which of its twelve workflow modes (across eleven packets) a request belongs to and hands off.
 
 ---
 
@@ -28,7 +28,7 @@ Use this catalog as the current-state inventory for the `sk-doc` hub. The hub do
 
 #### Description
 
-Each of the hub's twelve packets owns a single `Keyword triggers:` line as the source of truth for its routing vocabulary; `mode-registry.json` and `hub-router.json` are synchronized runtime projections, not an independently-maintained second source.
+Each of the hub's eleven packets owns a single `Keyword triggers:` line as the source of truth for its routing vocabulary. Modes and packets are separately addressable: the `sk-create-skill` packet backs two modes (`sk-create-skill` and `sk-create-skill-parent`), so the twelve workflow modes span eleven packets rather than mapping one-to-one. `mode-registry.json` and `hub-router.json` are synchronized runtime projections, not an independently-maintained second source.
 
 #### Current Reality
 
