@@ -88,6 +88,7 @@ function testCompletedIterationUnsealedThenSealed() {
     laneId,
     artifactsChecked: ['src/a.mjs', 'src/b.mjs'],
     newFindingsRatio: 0,
+    status: 'complete',
   });
 
   const preliminary = reduceAlignmentState(specFolder, { write: false }).registry.overall;
@@ -130,7 +131,7 @@ function testBuildOverallRollupSealFlag() {
 function testCliSealFlag() {
   const { specFolder, alignmentDir } = makeSpecFolder('cli');
   const laneId = seedLane(alignmentDir, [{ path: 'src/a.mjs' }]);
-  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: ['src/a.mjs'], newFindingsRatio: 0 });
+  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: ['src/a.mjs'], newFindingsRatio: 0, status: 'complete' });
   const registryPath = path.join(alignmentDir, 'deep-alignment-findings-registry.json');
 
   const plainOut = JSON.parse(execFileSync('node', [REDUCER, specFolder], { encoding: 'utf8' }));

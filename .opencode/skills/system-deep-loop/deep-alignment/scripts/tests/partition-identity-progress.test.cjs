@@ -59,7 +59,7 @@ const CORPUS = ['docs/a.md', 'docs/b.md', 'docs/c.md', 'docs/d.md', 'docs/e.md']
 function testIdentityProgressReoffersSkipped() {
   const { specFolder, alignmentDir } = makeSpecFolder('identity');
   const laneId = seedLane(alignmentDir, CORPUS);
-  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: ['docs/a.md', 'docs/c.md'], newFindingsRatio: 0 });
+  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: ['docs/a.md', 'docs/c.md'], newFindingsRatio: 0, status: 'complete' });
 
   const slice = partitionCorpus(specFolder, { batchSize: 5 });
   assert.equal(slice.done, false);
@@ -71,7 +71,7 @@ function testIdentityProgressReoffersSkipped() {
 function testCountOnlyFallbackKeepsPrefixCursor() {
   const { specFolder, alignmentDir } = makeSpecFolder('countfallback');
   const laneId = seedLane(alignmentDir, CORPUS);
-  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: 2, newFindingsRatio: 0 });
+  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: 2, newFindingsRatio: 0, status: 'complete' });
 
   const slice = partitionCorpus(specFolder, { batchSize: 5 });
   assert.equal(slice.done, false);

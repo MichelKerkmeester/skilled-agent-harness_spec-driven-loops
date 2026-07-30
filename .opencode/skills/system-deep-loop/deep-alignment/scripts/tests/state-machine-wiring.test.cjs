@@ -82,7 +82,7 @@ function testFullWiringConverges() {
     assert.equal(slice1.artifactsSlice.length, 2);
 
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 2, newFindingsRatio: 1 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md', 'docs/b.md'], newFindingsRatio: 1, status: 'complete' },
     ]);
     appendJsonl(path.join(deltaDir, 'iter-001.jsonl'), [
       { type: 'finding', laneId: laneIds[0], finding: { severity: 'P2', type: 'style', message: 'minor', artifactPath: 'docs/a.md' } },
@@ -101,7 +101,7 @@ function testFullWiringConverges() {
     assert.equal(slice2.artifactsSlice.length, 1);
 
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[1], artifactsChecked: 1, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[1], artifactsChecked: ['CHANGELOG.md'], newFindingsRatio: 0, status: 'complete' },
     ]);
     // No findings this round for lane 1 -- deltas file may legitimately be absent/empty.
     fs.writeFileSync(path.join(deltaDir, 'iter-002.jsonl'), '', 'utf8');
@@ -119,7 +119,7 @@ function testFullWiringConverges() {
 
     // ITERATE round 3: a dry-run re-check of both lanes, zero new findings.
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 2, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md', 'docs/b.md'], newFindingsRatio: 0, status: 'complete' },
     ]);
     fs.writeFileSync(path.join(deltaDir, 'iter-003.jsonl'), '', 'utf8');
 
@@ -177,8 +177,8 @@ function testMaxIterationsIndependentHardStop() {
     // something new -- never converges (coverage 2/3, not stable), and
     // max-iterations (2) forces a stop regardless.
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 1 },
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 1 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md'], newFindingsRatio: 1, status: 'complete' },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/b.md'], newFindingsRatio: 1, status: 'complete' },
     ]);
     appendJsonl(path.join(deltaDir, 'iter-001.jsonl'), [
       { type: 'finding', laneId: laneIds[0], finding: { severity: 'P1', type: 'drift', message: 'iteration 1 finding', artifactPath: 'docs/a.md' } },
@@ -241,8 +241,8 @@ function testZeroArtifactLaneIsNotApplicable() {
 
     const stateLogPath = path.join(alignmentDir, 'deep-alignment-state.jsonl');
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[1], artifactsChecked: 1, newFindingsRatio: 0 },
-      { type: 'iteration', laneId: laneIds[1], artifactsChecked: 1, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[1], artifactsChecked: ['CHANGELOG.md'], newFindingsRatio: 0, status: 'complete' },
+      { type: 'iteration', laneId: laneIds[1], artifactsChecked: ['CHANGELOG.md'], newFindingsRatio: 0, status: 'complete' },
     ]);
 
     // Lane 0 (zero artifacts) is excluded from the coverage ratio entirely;
@@ -283,8 +283,8 @@ function testConvergenceModeOffForcesMaxIterations() {
 
     const stateLogPath = path.join(alignmentDir, 'deep-alignment-state.jsonl');
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md'], newFindingsRatio: 0, status: 'complete' },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md'], newFindingsRatio: 0, status: 'complete' },
     ]);
 
     const beforeMax = checkConvergence(specFolder, {
@@ -298,7 +298,7 @@ function testConvergenceModeOffForcesMaxIterations() {
     assert.equal(beforeMax.convergenceMode, 'off');
 
     appendJsonl(stateLogPath, [
-      { type: 'iteration', laneId: laneIds[0], artifactsChecked: 1, newFindingsRatio: 0 },
+      { type: 'iteration', laneId: laneIds[0], artifactsChecked: ['docs/a.md'], newFindingsRatio: 0, status: 'complete' },
     ]);
     const atMax = checkConvergence(specFolder, {
       maxIterations: 3,

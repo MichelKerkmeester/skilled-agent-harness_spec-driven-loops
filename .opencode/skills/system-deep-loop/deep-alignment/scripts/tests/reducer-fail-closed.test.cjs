@@ -55,7 +55,7 @@ function appendState(alignmentDir, line) {
 function testUncheckedCorpusIsNotPass() {
   const { specFolder, alignmentDir } = makeSpecFolder('unchecked');
   const laneId = seedLane(alignmentDir, [{ path: 'docs/a.md' }, { path: 'docs/b.md' }]);
-  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 0, newFindingsRatio: 0 }));
+  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 0, newFindingsRatio: 0, status: 'complete' }));
 
   const { registry } = reduceAlignmentState(specFolder, { write: false });
   assert.equal(registry.overall.verdict, 'FAIL', 'unchecked non-empty corpus must fail closed, not PASS');
@@ -89,6 +89,7 @@ function testPartialLaneCoverageIsNotPass() {
     laneId: laneIds[0],
     artifactsChecked: ['docs/a.md'],
     newFindingsRatio: 0,
+    status: 'complete',
   }));
 
   const { registry } = reduceAlignmentState(specFolder, { write: false });
@@ -103,7 +104,7 @@ function testPartialLaneCoverageIsNotPass() {
 function testEmptyCorpusIsTrivialPass() {
   const { specFolder, alignmentDir } = makeSpecFolder('empty');
   const laneId = seedLane(alignmentDir, []);
-  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 0, newFindingsRatio: 0 }));
+  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 0, newFindingsRatio: 0, status: 'complete' }));
 
   const { registry } = reduceAlignmentState(specFolder, { write: false });
   assert.equal(registry.overall.nothingToConverge, true);
@@ -114,7 +115,7 @@ function testEmptyCorpusIsTrivialPass() {
 function testCorruptStateFailsClosed() {
   const { specFolder, alignmentDir } = makeSpecFolder('corrupt');
   const laneId = seedLane(alignmentDir, [{ path: 'docs/a.md' }]);
-  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 1, newFindingsRatio: 0 }));
+  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 1, newFindingsRatio: 0, status: 'complete' }));
   appendState(alignmentDir, `{"type":"iteration","laneId":"${laneId}`); // truncated -> unparseable
 
   const { registry } = reduceAlignmentState(specFolder, { write: false });
@@ -127,7 +128,7 @@ function testCorruptStateFailsClosed() {
 function testUnknownSeverityFailsClosed() {
   const { specFolder, alignmentDir } = makeSpecFolder('badsev');
   const laneId = seedLane(alignmentDir, [{ path: 'docs/a.md' }]);
-  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 1, newFindingsRatio: 0 }));
+  appendState(alignmentDir, JSON.stringify({ type: 'iteration', laneId, artifactsChecked: 1, newFindingsRatio: 0, status: 'complete' }));
   fs.appendFileSync(
     path.join(alignmentDir, 'deltas', 'iter-001.jsonl'),
     `${JSON.stringify({ type: 'finding', laneId, finding: { severity: 'P9', type: 'x', message: 'bad', artifactPath: 'docs/a.md' } })}\n`,
@@ -150,6 +151,7 @@ function testEmbeddedFindingDetailsAreReduced() {
     laneId,
     artifactsChecked: ['docs/a.md'],
     newFindingsRatio: 1,
+    status: 'complete',
     findingDetails: [{
       severity: 'P1',
       type: 'reality-drift',

@@ -11,6 +11,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { resolveArtifactRoot } = require('../lib/deep-loop/artifact-root.cjs');
+const { resolveLanesFromConfig } = require('../../deep-alignment/scripts/scoping.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -68,6 +69,10 @@ function normalizeText(value) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
+function normalizeLaneId(value) {
+  return typeof value === 'string' && value.trim().length > 0 ? value : '';
+}
+
 function zeroSeverityMap() {
   return { P0: 0, P1: 0, P2: 0 };
 }
@@ -76,8 +81,21 @@ function isFiniteNumber(value) {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+function isSuccessfulIterationRecord(record) {
+  return Boolean(record && record.status === 'complete');
+}
+
 function normalizeSeverity(value) {
   return SEVERITY_KEYS.includes(value) ? value : null;
+}
+
+function corpusArtifactIdentity(artifact) {
+  // Keep this derivation identical to the partitioner's canonical identity.
+  if (artifact && typeof artifact === 'object') {
+    if (typeof artifact.path === 'string' && artifact.path) return artifact.path;
+    if (typeof artifact.ref === 'string' && artifact.ref) return artifact.ref;
+  }
+  return null;
 }
 
 // Same shape as scripts/scoping.cjs's own summarizeScope() (deep-alignment/
@@ -95,9 +113,9 @@ function summarizeScope(scope) {
 // value (both are closed enums in scoping.cjs), so the key is collision-free
 // without needing a hash.
 function laneKey(lane) {
-  const authority = normalizeText(lane && lane.authority) || 'unknown-authority';
-  const artifactClass = normalizeText(lane && lane.artifactClass) || 'unknown-class';
-  const scopeText = summarizeScope(lane && lane.scope);
+  const authority = normalizeLaneId(lane && lane.authority) || 'unknown-authority';
+  const artifactClass = normalizeLaneId(lane && lane.artifactClass) || 'unknown-class';
+  const scopeText = normalizeLaneId(summarizeScope(lane && lane.scope));
   return `${authority}::${artifactClass}::${scopeText}`;
 }
 
@@ -150,24 +168,126 @@ function loadDeltaPayloads(deltaDir) {
     .flatMap((fileName) => parseJsonl(readUtf8(path.join(deltaDir, fileName))));
 }
 
-// Read discovered artifact counts per lane so partial coverage cannot be hidden
-// by activity in another lane. Absent or malformed input remains an empty
-// corpus, matching the convergence check's tolerant pre-discovery behavior.
-function readCorpusCoverage(corpusPath) {
-  const empty = { totalDiscovered: 0, discoveredByLane: new Map() };
+// Read discovered artifact counts and canonical identities per lane so partial
+// coverage cannot be hidden by activity in another lane.
+function readCorpusCoverage(corpusPath, expectedLaneIds = null) {
+  const empty = {
+    corpusPresent: false,
+    totalDiscovered: 0,
+    discoveredByLane: new Map(),
+    corpusArtifactIdsByLane: new Map(),
+    unidentifiableByLane: new Map(),
+    unidentifiableArtifactCount: 0,
+    corpusIntegrityFault: null,
+  };
   if (!fs.existsSync(corpusPath)) return empty;
   let parsed;
-  try { parsed = JSON.parse(readUtf8(corpusPath)); } catch { return empty; }
-  const lanes = Array.isArray(parsed && parsed.lanes) ? parsed.lanes : [];
-  const discoveredByLane = new Map();
-  let totalDiscovered = 0;
-  for (const lane of lanes) {
-    const discovered = Array.isArray(lane && lane.artifacts) ? lane.artifacts.length : 0;
-    const id = normalizeText(lane && lane.laneId) || laneKey(lane);
-    discoveredByLane.set(id, discovered);
-    totalDiscovered += discovered;
+  try {
+    parsed = JSON.parse(readUtf8(corpusPath));
+  } catch (error) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      corpusIntegrityFault: {
+        code: 'CORPUS_JSON_PARSE_ERROR',
+        path: corpusPath,
+        message: error instanceof Error ? error.message : String(error),
+      },
+    };
   }
-  return { totalDiscovered, discoveredByLane };
+  if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.lanes)
+    || parsed.lanes.some((lane) => (
+      !lane
+      || typeof lane !== 'object'
+      || typeof lane.laneId !== 'string'
+      || !normalizeLaneId(lane.laneId)
+      || !Array.isArray(lane.artifacts)
+    ))) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      corpusIntegrityFault: {
+        code: 'CORPUS_SCHEMA_INVALID',
+        path: corpusPath,
+        message: 'corpus must contain a lanes array',
+      },
+    };
+  }
+  const lanes = parsed.lanes;
+  const configuredLaneIds = expectedLaneIds instanceof Set ? expectedLaneIds : null;
+  const seenLaneIds = new Set();
+  let laneIntegrityFault = null;
+  for (const lane of lanes) {
+    const id = normalizeLaneId(lane.laneId);
+    if (seenLaneIds.has(id)) {
+      laneIntegrityFault = {
+        code: 'CORPUS_DUPLICATE_LANE_ID',
+        path: corpusPath,
+        laneId: id,
+        message: `corpus contains duplicate laneId: ${id}`,
+      };
+      break;
+    }
+    seenLaneIds.add(id);
+    if (configuredLaneIds && !configuredLaneIds.has(id)) {
+      laneIntegrityFault = {
+        code: 'CORPUS_ORPHAN_LANE_ID',
+        path: corpusPath,
+        laneId: id,
+        message: `corpus laneId is not configured: ${id}`,
+      };
+      break;
+    }
+  }
+  if (!laneIntegrityFault && configuredLaneIds) {
+    const missingLaneId = [...configuredLaneIds].find((id) => !seenLaneIds.has(id));
+    if (missingLaneId) {
+      laneIntegrityFault = {
+        code: 'CORPUS_CONFIG_LANE_MISSING',
+        path: corpusPath,
+        laneId: missingLaneId,
+        message: `configured laneId is missing from corpus: ${missingLaneId}`,
+      };
+    }
+  }
+  if (laneIntegrityFault) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      corpusIntegrityFault: laneIntegrityFault,
+    };
+  }
+  const discoveredByLane = new Map();
+  const corpusArtifactIdsByLane = new Map();
+  const unidentifiableByLane = new Map();
+  let totalDiscovered = 0;
+  let unidentifiableArtifactCount = 0;
+  for (const lane of lanes) {
+    const artifacts = lane.artifacts;
+    const discovered = artifacts.length;
+    const id = normalizeLaneId(lane.laneId);
+    const artifactIds = new Set();
+    let unidentifiableCount = 0;
+    for (const artifact of artifacts) {
+      const identity = corpusArtifactIdentity(artifact);
+      if (identity === null) unidentifiableCount += 1;
+      else artifactIds.add(identity);
+    }
+    discoveredByLane.set(id, discovered);
+    corpusArtifactIdsByLane.set(id, artifactIds);
+    unidentifiableByLane.set(id, unidentifiableCount);
+    totalDiscovered += discovered;
+    unidentifiableArtifactCount += unidentifiableCount;
+  }
+  return {
+    corpusPresent: true,
+    totalDiscovered,
+    discoveredByLane,
+    corpusArtifactIdsByLane,
+    unidentifiableByLane,
+    unidentifiableArtifactCount,
+    corpusIntegrityFault: null,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -184,12 +304,39 @@ function readCorpusCoverage(corpusPath) {
  */
 function resolveRequiredLanes(config) {
   const rawLanes = Array.isArray(config && config.lanes) ? config.lanes : [];
-  return rawLanes.map((lane) => ({
+  const validLanes = rawLanes.flatMap((lane) => {
+    try {
+      return resolveLanesFromConfig([lane]);
+    } catch (_) {
+      return [];
+    }
+  });
+  return validLanes.map((lane) => ({
     laneId: laneKey(lane),
     authority: lane.authority,
     artifactClass: lane.artifactClass,
     scope: lane.scope,
   }));
+}
+
+function resolveConfigLanesIntegrityFault(config, configPath) {
+  if (!config || !Array.isArray(config.lanes)) {
+    return {
+      code: 'CONFIG_LANES_INVALID',
+      path: configPath,
+      message: 'config.lanes must be present as an array',
+    };
+  }
+  try {
+    resolveLanesFromConfig(config.lanes);
+    return null;
+  } catch (error) {
+    return {
+      code: 'CONFIG_LANE_INVALID',
+      path: configPath,
+      message: error instanceof Error ? error.message : String(error),
+    };
+  }
 }
 
 /**
@@ -231,14 +378,26 @@ function findingDedupKey(finding) {
  * @param {Array<Object>} deltaRecords - Parsed deltas/iter-*.jsonl records (all lanes).
  * @param {Array<Object>} iterationRecords - Parsed main state-log {type:'iteration'} records (all lanes).
  * @param {number|null} discoveredArtifactCount - Corpus size for this lane.
+ * @param {Set<string>|null} corpusArtifactIds - Canonical corpus identities.
+ * @param {number} unidentifiableArtifactCount - Corpus entries without identity.
+ * @param {Object|null} corpusIntegrityFault - Corpus fault that invalidates the run.
  * @returns {Object} Per-lane registry entry.
  */
-function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discoveredArtifactCount = null) {
+function buildLaneEntry(
+  requiredLane,
+  deltaRecords,
+  iterationRecords,
+  discoveredArtifactCount = null,
+  corpusArtifactIds = null,
+  unidentifiableArtifactCount = 0,
+  corpusIntegrityFault = null,
+) {
   const { laneId } = requiredLane;
 
   const laneIterations = iterationRecords.filter(
     (record) => record && record.type === 'iteration' && record.laneId === laneId,
   );
+  const successfulLaneIterations = laneIterations.filter(isSuccessfulIterationRecord);
   const laneDeltaFindings = deltaRecords
     .filter((record) => record && record.type === 'finding' && record.laneId === laneId)
     .map((record) => record.finding)
@@ -255,11 +414,14 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discovered
   // across iterations so a re-audited artifact counts once -- coverage is the
   // number of UNIQUE artifacts checked, not the sum of per-iteration passes; a
   // loop that keeps re-checking the same slice must not inflate coverage past the
-  // lane's discovered total. Fall back to summing when only counts are provided.
+  // lane's discovered total. Count-only records remain usable for progress, but
+  // their credit stays below the canonical identity set because no artifact can
+  // be proven checked from a number alone.
   const checkedPaths = new Set();
   let checkedCountSum = 0;
   let sawPathArray = false;
-  for (const record of laneIterations) {
+  let sawCount = false;
+  for (const record of successfulLaneIterations) {
     const value = record.artifactsChecked;
     if (Array.isArray(value)) {
       sawPathArray = true;
@@ -267,11 +429,25 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discovered
         if (typeof entry === 'string' && entry.length > 0) checkedPaths.add(entry);
       }
     } else if (isFiniteNumber(value)) {
-      checkedCountSum += value;
+      sawCount = true;
+      checkedCountSum += Math.max(0, value);
     }
   }
-  const artifactsChecked = sawPathArray ? checkedPaths.size : checkedCountSum;
-
+  const reportedCheckedIds = sawPathArray ? [...checkedPaths] : null;
+  const hasCanonicalCorpusIds = corpusArtifactIds instanceof Set;
+  const coverageBasis = sawPathArray && sawCount
+    ? 'mixed'
+    : sawPathArray
+      ? 'identity-verified'
+      : sawCount
+        ? 'count-based'
+        : 'unverified';
+  const checkedArtifactIds = sawPathArray && hasCanonicalCorpusIds
+    ? reportedCheckedIds.filter((id) => corpusArtifactIds.has(id))
+    : reportedCheckedIds;
+  const unknownCheckedIds = sawPathArray && hasCanonicalCorpusIds
+    ? reportedCheckedIds.filter((id) => !corpusArtifactIds.has(id))
+    : [];
   // Dedup across iterations (a re-checked artifact that still fails re-emits
   // the same finding; only the first occurrence counts as "open").
   const byKey = new Map();
@@ -302,16 +478,37 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discovered
 
   const hasKnownDiscovery = Number.isFinite(discoveredArtifactCount);
   const artifactsDiscovered = hasKnownDiscovery ? Math.max(0, discoveredArtifactCount) : null;
-  const coverageChecked = hasKnownDiscovery ? Math.min(artifactsChecked, artifactsDiscovered) : artifactsChecked;
+  const reportedCheckedCount = checkedCountSum + (sawPathArray ? checkedPaths.size : 0);
+  const artifactsChecked = hasKnownDiscovery
+    ? Math.min(reportedCheckedCount, artifactsDiscovered)
+    : reportedCheckedCount;
+  const creditedArtifactsChecked = sawPathArray && hasCanonicalCorpusIds
+    ? checkedArtifactIds.length
+    : 0;
+  const identityVerified = hasKnownDiscovery
+    && sawPathArray
+    && Array.isArray(checkedArtifactIds)
+    && artifactsDiscovered > 0
+    && unidentifiableArtifactCount === 0
+    && corpusArtifactIds.size === artifactsDiscovered
+    && [...corpusArtifactIds].every((id) => checkedArtifactIds.includes(id));
+  const coverageChecked = hasKnownDiscovery
+    ? Math.min(creditedArtifactsChecked, artifactsDiscovered)
+    : creditedArtifactsChecked;
   const zeroArtifacts = hasKnownDiscovery
     ? artifactsDiscovered === 0
     : laneIterations.length > 0 && artifactsChecked === 0 && openFindings.length === 0;
-  const incompleteCoverage = hasKnownDiscovery && artifactsDiscovered > coverageChecked;
+  const incompleteCoverage = hasKnownDiscovery && (
+    artifactsDiscovered > coverageChecked
+    || (laneIterations.length > 0 && !identityVerified)
+  );
 
   // Only a lane whose discovery result is empty is not applicable. A configured
   // non-empty lane that was untouched or only partially checked fails closed.
   let verdict;
-  if (zeroArtifacts || (!hasKnownDiscovery && laneIterations.length === 0)) {
+  if (corpusIntegrityFault) {
+    verdict = 'FAIL';
+  } else if (zeroArtifacts || (!hasKnownDiscovery && laneIterations.length === 0)) {
     verdict = 'NOT_APPLICABLE';
   } else if (incompleteCoverage) {
     verdict = 'FAIL';
@@ -331,14 +528,19 @@ function buildLaneEntry(requiredLane, deltaRecords, iterationRecords, discovered
     iterationsRun: laneIterations.length,
     artifactsDiscovered,
     artifactsChecked,
+    creditedArtifactsChecked,
     coverageChecked,
     incompleteCoverage,
-    // The identity set behind artifactsChecked, when iterations reported artifact
+    coverageBasis,
+    identityVerified,
+    // The identity set behind creditedArtifactsChecked, when iterations reported artifact
     // paths (not bare counts). Progress consumers use this to advance by identity —
     // a set difference against the corpus — instead of trusting artifactsChecked as
     // a prefix cursor, which a duplicate or out-of-order re-check would desync. Null
     // when only bare counts were reported, signalling the count-cursor fallback.
-    checkedArtifactIds: sawPathArray ? [...checkedPaths] : null,
+    checkedArtifactIds: sawPathArray ? checkedArtifactIds : null,
+    unknownCheckedIds,
+    unidentifiableArtifactCount,
     openFindings,
     findingsBySeverity,
     invalidSeverityCount,
@@ -378,10 +580,22 @@ function buildOverallRollup(laneEntries, integrity = {}) {
   const invalidSeverityCount = laneEntries.reduce(
     (sum, entry) => sum + (entry.invalidSeverityCount || 0), 0,
   );
+  const unknownCheckedIds = [...new Set(laneEntries.flatMap((entry) => entry.unknownCheckedIds || []))];
+  const unknownCheckedIdCount = unknownCheckedIds.length;
+  const unidentifiableArtifactCount = laneEntries.reduce(
+    (sum, entry) => sum + (entry.unidentifiableArtifactCount || 0), 0,
+  );
+  const corpusIntegrityFault = integrity.corpusIntegrityFault || null;
+  const configLanesIntegrityFault = integrity.configLanesIntegrityFault || null;
+  const corpusPresent = integrity.corpusPresent === true;
+  const discoveryIncomplete = integrity.discoveryIncomplete === true;
   // A corrupted state log or an unrecognized finding severity means the gate is
   // reasoning over incomplete data; an audit tool must fail closed there rather
   // than emit a clean verdict it cannot stand behind.
-  const integrityFault = Boolean(integrity.hasCorruption) || invalidSeverityCount > 0;
+  const integrityFault = Boolean(integrity.hasCorruption)
+    || Boolean(corpusIntegrityFault)
+    || Boolean(configLanesIntegrityFault)
+    || invalidSeverityCount > 0;
 
   // "Nothing to converge" is a claim about the DISCOVERED corpus, not about
   // whether iterations happened to check anything. A run that discovered a
@@ -390,7 +604,10 @@ function buildOverallRollup(laneEntries, integrity = {}) {
   // keeps that state from being reported as a pass.
   const totalDiscovered = Number.isFinite(integrity.totalDiscovered) ? integrity.totalDiscovered : 0;
   const emptyCorpus = totalDiscovered === 0;
-  const nothingToConverge = emptyCorpus && (laneEntries.length === 0 || applicableLanes.length === 0);
+  const nothingToConverge = !discoveryIncomplete
+    && !integrityFault
+    && emptyCorpus
+    && (laneEntries.length === 0 || applicableLanes.length === 0);
   const totalChecked = laneEntries.reduce(
     (sum, entry) => sum + (Number.isFinite(entry.coverageChecked) ? entry.coverageChecked : 0),
     0,
@@ -399,9 +616,19 @@ function buildOverallRollup(laneEntries, integrity = {}) {
     laneEntries.some((entry) => entry.incompleteCoverage === true)
     || totalChecked < totalDiscovered
   );
+  const coverageEntries = laneEntries.filter((entry) => entry.verdict !== 'NOT_APPLICABLE');
+  const coverageBasis = coverageEntries.some((entry) => entry.coverageBasis === 'mixed')
+    ? 'mixed'
+    : coverageEntries.some((entry) => entry.coverageBasis === 'count-based')
+      ? 'count-based'
+      : coverageEntries.some((entry) => entry.coverageBasis === 'unverified')
+        ? 'unverified'
+        : coverageEntries.length > 0 ? 'identity-verified' : 'unverified';
+  const identityVerified = coverageEntries.length > 0
+    && coverageEntries.every((entry) => entry.identityVerified === true);
 
   let verdict;
-  if (integrityFault || incompleteCoverage) {
+  if (integrityFault || discoveryIncomplete || incompleteCoverage) {
     verdict = 'FAIL';
   } else if (nothingToConverge) {
     verdict = 'PASS';
@@ -416,7 +643,21 @@ function buildOverallRollup(laneEntries, integrity = {}) {
   // non-empty-but-unaudited corpus is FAIL-closed by design; without this flag a
   // consumer cannot tell that intentional placeholder FAIL apart from a
   // completed audit that genuinely failed. Only a sealed rollup is authoritative.
-  const sealed = integrity.sealed === true;
+  const sealed = integrity.sealed === true && !integrityFault && !discoveryIncomplete;
+  const totalReportedChecked = laneEntries.reduce(
+    (sum, entry) => sum + (Number.isFinite(entry.artifactsChecked) ? entry.artifactsChecked : 0),
+    0,
+  );
+  const totalCreditedChecked = laneEntries.reduce(
+    (sum, entry) => sum + (Number.isFinite(entry.creditedArtifactsChecked) ? entry.creditedArtifactsChecked : 0),
+    0,
+  );
+  const reportedChecked = corpusPresent
+    ? Math.min(totalReportedChecked, totalDiscovered)
+    : totalReportedChecked;
+  const creditedChecked = corpusPresent
+    ? Math.min(totalCreditedChecked, totalDiscovered)
+    : totalCreditedChecked;
 
   return {
     laneCount: laneEntries.length,
@@ -428,9 +669,19 @@ function buildOverallRollup(laneEntries, integrity = {}) {
     nothingToConverge,
     incompleteCoverage,
     artifactsDiscovered: totalDiscovered,
-    artifactsChecked: Math.min(totalChecked, totalDiscovered),
+    artifactsChecked: reportedChecked,
+    creditedArtifactsChecked: creditedChecked,
+    coverageBasis,
+    identityVerified,
     integrityFault,
+    corpusIntegrityFault,
+    configLanesIntegrityFault,
+    discoveryIncomplete,
+    discoveryState: discoveryIncomplete ? 'PRE_DISCOVERY' : 'DISCOVERED',
     invalidSeverityCount,
+    unknownCheckedIds,
+    unknownCheckedIdCount,
+    unidentifiableArtifactCount,
   };
 }
 
@@ -458,7 +709,10 @@ function renderAlignmentReport(config, laneEntries, overall) {
     `- Lanes: ${overall.laneCount} (${overall.applicableLaneCount} applicable)`,
     `- Overall verdict: ${overall.verdict}${overall.nothingToConverge ? ' (nothing to converge -- zero applicable lanes)' : ''}`,
     `- Result state: ${overall.sealed ? 'SEALED (authoritative -- the loop reached synthesis)' : 'PRELIMINARY (not sealed -- seed or interrupted run; the verdict above is NOT authoritative)'}`,
-    `- Coverage: ${overall.artifactsChecked} / ${overall.artifactsDiscovered} artifacts${overall.incompleteCoverage ? ' (incomplete)' : ''}`,
+    `- Coverage: ${overall.creditedArtifactsChecked} / ${overall.artifactsDiscovered} artifacts${overall.incompleteCoverage ? ' (incomplete)' : ''}`,
+    `- Reported activity: ${overall.artifactsChecked} / ${overall.artifactsDiscovered} artifacts`,
+    `- Coverage basis: ${overall.coverageBasis}`,
+    `- Integrity: ${overall.integrityFault ? 'FAULT' : 'OK'}${overall.unknownCheckedIdCount > 0 ? `; ${overall.unknownCheckedIdCount} unknown checked identifier(s)` : ''}${overall.unidentifiableArtifactCount > 0 ? `; ${overall.unidentifiableArtifactCount} unidentifiable corpus artifact(s)` : ''}`,
     `- Findings: P0 ${overall.findingsBySeverity.P0} / P1 ${overall.findingsBySeverity.P1} / P2 ${overall.findingsBySeverity.P2}`,
     `- Composite score: ${overall.compositeScore}`,
     '',
@@ -469,6 +723,9 @@ function renderAlignmentReport(config, laneEntries, overall) {
     lines.push(`- Verdict: ${entry.verdict}`);
     lines.push(`- Iterations run: ${entry.iterationsRun}`);
     lines.push(`- Artifacts checked: ${entry.coverageChecked}${entry.artifactsDiscovered === null ? '' : ` / ${entry.artifactsDiscovered}`}`);
+    lines.push(`- Coverage basis: ${entry.coverageBasis}`);
+    lines.push(`- Unknown checked identifiers: ${entry.unknownCheckedIds.length}`);
+    lines.push(`- Unidentifiable corpus artifacts: ${entry.unidentifiableArtifactCount}`);
     lines.push(`- Findings: P0 ${entry.findingsBySeverity.P0} / P1 ${entry.findingsBySeverity.P1} / P2 ${entry.findingsBySeverity.P2}`);
     lines.push(`- Composite score: ${entry.compositeScore}`, '');
 
@@ -519,24 +776,58 @@ function reduceAlignmentState(specFolder, options = {}) {
   const reportPath = path.join(alignmentDir, 'alignment-report.md');
   const deltaDir = path.join(alignmentDir, 'deltas');
 
-  const config = fs.existsSync(configPath) ? readJson(configPath) : { lanes: [] };
+  const parsedConfig = fs.existsSync(configPath) ? readJson(configPath) : null;
+  const config = parsedConfig && typeof parsedConfig === 'object' && !Array.isArray(parsedConfig)
+    ? parsedConfig
+    : {};
   const stateLogContent = fs.existsSync(stateLogPath) ? readUtf8(stateLogPath) : '';
   const { records: iterationRecords, corruptionWarnings } = parseJsonlDetailed(stateLogContent);
   const deltaRecords = loadDeltaPayloads(deltaDir);
 
+  const configLanesIntegrityFault = resolveConfigLanesIntegrityFault(config, configPath);
   const requiredLanes = resolveRequiredLanes(config);
-  const { totalDiscovered, discoveredByLane } = readCorpusCoverage(
+  const configuredLaneIds = new Set(requiredLanes.map((lane) => lane.laneId));
+  const {
+    corpusPresent,
+    totalDiscovered,
+    discoveredByLane,
+    corpusArtifactIdsByLane,
+    unidentifiableByLane,
+    unidentifiableArtifactCount,
+    corpusIntegrityFault,
+  } = readCorpusCoverage(
     path.join(alignmentDir, 'deep-alignment-corpus.json'),
+    configuredLaneIds,
   );
   const laneEntries = requiredLanes.map((lane) => buildLaneEntry(
     lane,
     deltaRecords,
     iterationRecords,
     discoveredByLane.has(lane.laneId) ? discoveredByLane.get(lane.laneId) : null,
+    corpusArtifactIdsByLane.has(lane.laneId) ? corpusArtifactIdsByLane.get(lane.laneId) : null,
+    unidentifiableByLane.get(lane.laneId) || 0,
+    corpusIntegrityFault,
   ));
+  const unknownCheckedIds = [...new Set(laneEntries.flatMap((entry) => entry.unknownCheckedIds || []))];
+  const hasCorruption = corruptionWarnings.length > 0
+    || Boolean(corpusIntegrityFault)
+    || Boolean(configLanesIntegrityFault);
+  const integrity = {
+    corpusIntegrityFault,
+    configLanesIntegrityFault,
+    corpusPresent,
+    discoveryIncomplete: !corpusPresent,
+    unknownCheckedIds,
+    unknownCheckedIdCount: unknownCheckedIds.length,
+    unidentifiableArtifactCount,
+  };
   const overall = buildOverallRollup(laneEntries, {
+    corpusPresent,
+    discoveryIncomplete: !corpusPresent,
     totalDiscovered,
-    hasCorruption: corruptionWarnings.length > 0,
+    hasCorruption,
+    corpusIntegrityFault,
+    configLanesIntegrityFault,
     // Only a terminal synthesis reduce passes seal:true; the pre-dispatch seed
     // and every per-iteration refresh leave the registry unsealed so an
     // interrupted run is never mistaken for an authoritative verdict.
@@ -548,7 +839,8 @@ function reduceAlignmentState(specFolder, options = {}) {
     lanes: laneEntries,
     overall,
     corruptionWarnings,
-    hasCorruption: corruptionWarnings.length > 0,
+    hasCorruption,
+    integrity: { ...integrity, integrityFault: overall.integrityFault },
   };
   const report = renderAlignmentReport(config, laneEntries, overall);
 
@@ -559,7 +851,7 @@ function reduceAlignmentState(specFolder, options = {}) {
 
   return {
     configPath, stateLogPath, registryPath, reportPath,
-    registry, report, corruptionWarnings, hasCorruption: corruptionWarnings.length > 0,
+    registry, report, corruptionWarnings, hasCorruption,
   };
 }
 
@@ -611,13 +903,17 @@ module.exports = {
   VERDICTS,
   VERDICT_SEVERITY_RANK,
   laneKey,
+  normalizeLaneId,
+  isSuccessfulIterationRecord,
   summarizeScope,
   findingDedupKey,
   resolveRequiredLanes,
+  resolveConfigLanesIntegrityFault,
   buildLaneEntry,
   buildOverallRollup,
   renderAlignmentReport,
   reduceAlignmentState,
   parseJsonl,
   parseJsonlDetailed,
+  readCorpusCoverage,
 };

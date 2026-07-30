@@ -42,7 +42,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const { reduceAlignmentState } = require('../../runtime/scripts/reduce-alignment-state.cjs');
+const {
+  reduceAlignmentState,
+  isSuccessfulIterationRecord,
+  normalizeLaneId,
+} = require('../../runtime/scripts/reduce-alignment-state.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,6 +64,8 @@ const DECISIONS = Object.freeze({
   CONTINUE: 'CONTINUE',
   STOP_MAX_ITERATIONS: 'STOP_MAX_ITERATIONS',
   NOTHING_TO_CONVERGE: 'NOTHING_TO_CONVERGE',
+  DISCOVERY_INCOMPLETE: 'DISCOVERY_INCOMPLETE',
+  INTEGRITY_FAILURE: 'INTEGRITY_FAILURE',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -96,53 +102,125 @@ function readJsonlIterationRecords(stateLogPath) {
 
 /**
  * A lane's discovered corpus size, from the DISCOVER-state output
- * (deep-alignment-corpus.json). Absent file or absent lane entry means
- * DISCOVER has not run yet for that lane -- treated as zero, not an error,
- * so a mid-run CONVERGE check on a not-yet-discovered lane degrades to
- * "not yet covered" rather than throwing.
+ * (deep-alignment-corpus.json). The file's presence and lane membership are
+ * part of the coverage contract; they cannot be inferred from zero counts.
  *
  * @param {string} alignmentDir
- * @returns {Record<string, number>} laneId -> discovered artifact count
+ * @param {Set<string>} [expectedLaneIds]
+ * @returns {{sizes: Record<string, number>, corpusPresent: boolean, integrityFault: Object|null}}
  */
-function readCorpusSizes(alignmentDir) {
+function readCorpusSizes(alignmentDir, expectedLaneIds = null) {
   const corpusPath = path.join(alignmentDir, 'deep-alignment-corpus.json');
-  if (!fs.existsSync(corpusPath)) return {};
+  const empty = { sizes: {}, corpusPresent: false, integrityFault: null };
+  if (!fs.existsSync(corpusPath)) return empty;
   let parsed;
   try {
     parsed = JSON.parse(fs.readFileSync(corpusPath, 'utf8'));
-  } catch (_) {
-    return {};
+  } catch (error) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      integrityFault: {
+        code: 'CORPUS_JSON_PARSE_ERROR',
+        path: corpusPath,
+        message: error instanceof Error ? error.message : String(error),
+      },
+    };
   }
-  const sizes = {};
-  for (const lane of Array.isArray(parsed && parsed.lanes) ? parsed.lanes : []) {
-    if (lane && typeof lane.laneId === 'string' && Array.isArray(lane.artifacts)) {
-      sizes[lane.laneId] = lane.artifacts.length;
+  if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.lanes)
+    || parsed.lanes.some((lane) => (
+      !lane
+      || typeof lane !== 'object'
+      || typeof lane.laneId !== 'string'
+      || !normalizeLaneId(lane.laneId)
+      || !Array.isArray(lane.artifacts)
+    ))) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      integrityFault: {
+        code: 'CORPUS_SCHEMA_INVALID',
+        path: corpusPath,
+        message: 'corpus must contain a lanes array',
+      },
+    };
+  }
+  const configuredLaneIds = expectedLaneIds instanceof Set ? expectedLaneIds : null;
+  const seenLaneIds = new Set();
+  let laneIntegrityFault = null;
+  for (const lane of parsed.lanes) {
+    const id = normalizeLaneId(lane.laneId);
+    if (seenLaneIds.has(id)) {
+      laneIntegrityFault = {
+        code: 'CORPUS_DUPLICATE_LANE_ID',
+        path: corpusPath,
+        laneId: id,
+        message: `corpus contains duplicate laneId: ${id}`,
+      };
+      break;
+    }
+    seenLaneIds.add(id);
+    if (configuredLaneIds && !configuredLaneIds.has(id)) {
+      laneIntegrityFault = {
+        code: 'CORPUS_ORPHAN_LANE_ID',
+        path: corpusPath,
+        laneId: id,
+        message: `corpus laneId is not configured: ${id}`,
+      };
+      break;
     }
   }
-  return sizes;
+  if (!laneIntegrityFault && configuredLaneIds) {
+    const missingLaneId = [...configuredLaneIds].find((id) => !seenLaneIds.has(id));
+    if (missingLaneId) {
+      laneIntegrityFault = {
+        code: 'CORPUS_CONFIG_LANE_MISSING',
+        path: corpusPath,
+        laneId: missingLaneId,
+        message: `configured laneId is missing from corpus: ${missingLaneId}`,
+      };
+    }
+  }
+  if (laneIntegrityFault) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      integrityFault: laneIntegrityFault,
+    };
+  }
+  const sizes = {};
+  for (const lane of parsed.lanes) {
+    sizes[normalizeLaneId(lane.laneId)] = lane.artifacts.length;
+  }
+  return { sizes, corpusPresent: true, integrityFault: null };
 }
 
 /**
  * Artifact-coverage percentage across all APPLICABLE lanes (a lane with zero
- * discovered artifacts contributes to neither side of the ratio -- it is
- * vacuously covered, mirroring reduce-alignment-state.cjs's own NOT_APPLICABLE
- * treatment rather than inventing a second convention).
+ * discovered artifacts contributes to neither side of the ratio. If configured
+ * lanes are applicable but discovery has not produced a corpus yet, coverage
+ * is zero rather than vacuously complete.
  *
  * @param {Array<Object>} laneEntries - registry.lanes from reduceAlignmentState()
  * @param {Record<string, number>} corpusSizes - laneId -> discovered count
- * @returns {{coverage: number, checked: number, discovered: number}}
+ * @param {boolean} [integrityFault]
+ * @returns {{coverage: number, checked: number, reportedChecked: number, discovered: number}}
  */
-function computeArtifactCoverage(laneEntries, corpusSizes) {
+function computeArtifactCoverage(laneEntries, corpusSizes, integrityFault = false) {
+  if (integrityFault) return { coverage: 0, checked: 0, reportedChecked: 0, discovered: 0 };
   let checked = 0;
+  let reportedChecked = 0;
   let discovered = 0;
+  const applicableLanes = laneEntries.filter((entry) => entry.verdict !== 'NOT_APPLICABLE');
   for (const entry of laneEntries) {
     const laneDiscovered = corpusSizes[entry.laneId] || 0;
     if (laneDiscovered === 0) continue; // vacuous lane, excluded from both sides
     discovered += laneDiscovered;
-    checked += Math.min(entry.artifactsChecked, laneDiscovered);
+    reportedChecked += Math.min(entry.artifactsChecked, laneDiscovered);
+    checked += Math.min(entry.creditedArtifactsChecked || 0, laneDiscovered);
   }
-  const coverage = discovered > 0 ? checked / discovered : 1.0; // no applicable lane => trivially covered
-  return { coverage, checked, discovered };
+  const coverage = applicableLanes.length === 0 ? 1.0 : discovered > 0 ? checked / discovered : 0;
+  return { coverage, checked, reportedChecked, discovered };
 }
 
 /**
@@ -195,9 +273,89 @@ function checkConvergence(specFolder, options = {}) {
 
   const { registry } = reduceAlignmentState(resolvedSpecFolder, { write: false });
   const iterationRecords = readJsonlIterationRecords(stateLogPath);
-  const corpusSizes = readCorpusSizes(alignmentDir);
+  const configuredLaneIds = new Set(registry.lanes.map((entry) => entry.laneId));
+  const corpusRead = readCorpusSizes(alignmentDir, configuredLaneIds);
+  const corpusSizes = corpusRead.sizes;
+  const corpusIntegrityFault = corpusRead.integrityFault || registry.integrity?.corpusIntegrityFault || null;
+  const configLanesIntegrityFault = registry.integrity?.configLanesIntegrityFault
+    || registry.overall.configLanesIntegrityFault
+    || null;
+  const integrityFault = Boolean(registry.overall.integrityFault)
+    || Boolean(corpusIntegrityFault)
+    || Boolean(configLanesIntegrityFault);
+  const discoveryIncomplete = !corpusRead.corpusPresent
+    || registry.overall.discoveryIncomplete === true
+    || registry.integrity?.discoveryIncomplete === true;
+  const overallVerdict = integrityFault || discoveryIncomplete ? 'FAIL' : registry.overall.verdict;
+  const integrityReason = configLanesIntegrityFault
+    ? `configuration integrity fault (${configLanesIntegrityFault.code})`
+    : corpusIntegrityFault
+    ? `corpus integrity fault (${corpusIntegrityFault.code})`
+    : 'integrity fault';
 
-  if (registry.overall.nothingToConverge) {
+  if (integrityFault) {
+    return {
+      decision: DECISIONS.INTEGRITY_FAILURE,
+      reason: `INTEGRITY_FAILURE: ${integrityReason}; no authoritative coverage is available`,
+      iterationsRun: iterationRecords.length,
+      maxIterations,
+      convergenceMode,
+      coverage: {
+        ratio: 0,
+        checked: 0,
+        reportedChecked: 0,
+        discovered: 0,
+        threshold: coverageThreshold,
+        met: false,
+      },
+      stability: null,
+      overallVerdict,
+      integrityFault,
+      integrity: {
+        corpusIntegrityFault,
+        configLanesIntegrityFault,
+        corpusPresent: corpusRead.corpusPresent,
+        discoveryIncomplete,
+        integrityFault,
+        unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
+        unknownCheckedIdCount: registry.integrity?.unknownCheckedIdCount || 0,
+        unidentifiableArtifactCount: registry.integrity?.unidentifiableArtifactCount || 0,
+      },
+    };
+  }
+
+  if (discoveryIncomplete) {
+    return {
+      decision: DECISIONS.DISCOVERY_INCOMPLETE,
+      reason: 'DISCOVERY_INCOMPLETE: corpus file is absent; discovery has not run',
+      iterationsRun: iterationRecords.length,
+      maxIterations,
+      convergenceMode,
+      coverage: {
+        ratio: 0,
+        checked: 0,
+        reportedChecked: 0,
+        discovered: 0,
+        threshold: coverageThreshold,
+        met: false,
+      },
+      stability: null,
+      overallVerdict,
+      integrityFault,
+      integrity: {
+        corpusIntegrityFault,
+        configLanesIntegrityFault,
+        corpusPresent: false,
+        discoveryIncomplete: true,
+        integrityFault,
+        unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
+        unknownCheckedIdCount: registry.integrity?.unknownCheckedIdCount || 0,
+        unidentifiableArtifactCount: registry.integrity?.unidentifiableArtifactCount || 0,
+      },
+    };
+  }
+
+  if (registry.overall.nothingToConverge && !discoveryIncomplete) {
     return {
       decision: DECISIONS.NOTHING_TO_CONVERGE,
       reason: 'zero applicable lanes (no lanes resolved, or every lane discovered zero artifacts)',
@@ -206,18 +364,49 @@ function checkConvergence(specFolder, options = {}) {
       convergenceMode,
       coverage: null,
       stability: null,
-      overallVerdict: registry.overall.verdict,
+      overallVerdict,
+      integrityFault,
+      integrity: {
+        corpusIntegrityFault,
+        configLanesIntegrityFault,
+        corpusPresent: corpusRead.corpusPresent,
+        discoveryIncomplete,
+        integrityFault,
+        unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
+        unknownCheckedIdCount: registry.integrity?.unknownCheckedIdCount || 0,
+        unidentifiableArtifactCount: registry.integrity?.unidentifiableArtifactCount || 0,
+      },
     };
   }
 
-  const { coverage, checked, discovered } = computeArtifactCoverage(registry.lanes, corpusSizes);
-  const stability = computeDryRunStability(iterationRecords, stabilityWindow);
-  const coverageMet = coverage >= coverageThreshold;
-  const converged = convergenceMode === 'default' && coverageMet && stability.stable; // AND, never OR -- see file header
+  const {
+    coverage,
+    checked,
+    reportedChecked,
+    discovered,
+  } = computeArtifactCoverage(registry.lanes, corpusSizes, integrityFault);
+  const successfulIterationRecords = iterationRecords.filter(isSuccessfulIterationRecord);
+  const stability = computeDryRunStability(successfulIterationRecords, stabilityWindow);
+  const coverageBasis = registry.overall.coverageBasis || 'unverified';
+  const identityVerified = registry.overall.identityVerified === true;
+  // Thresholds below 1 intentionally permit an unaudited remainder; that is
+  // configured behaviour. Integrity faults, zero audited artifacts, and
+  // count-based coverage still cannot produce a passing coverage signal.
+  const coverageMet = !integrityFault
+    && checked > 0
+    && identityVerified
+    && coverage >= coverageThreshold;
+  const converged = convergenceMode === 'default'
+    && !integrityFault
+    && !discoveryIncomplete
+    && coverageMet
+    && stability.stable; // AND, never OR -- see file header
   const maxIterationsHit = iterationRecords.length >= maxIterations;
 
   let decision;
-  if (converged) {
+  if (integrityFault) {
+    decision = DECISIONS.INTEGRITY_FAILURE;
+  } else if (converged) {
     decision = DECISIONS.CONVERGED;
   } else if (maxIterationsHit) {
     decision = DECISIONS.STOP_MAX_ITERATIONS; // independent hard stop regardless of the AND-pair
@@ -227,7 +416,9 @@ function checkConvergence(specFolder, options = {}) {
 
   return {
     decision,
-    reason: convergenceMode === 'off' && maxIterationsHit
+    reason: integrityFault
+      ? `${converged ? '' : 'not converged: '}${integrityReason}; coverage ${(coverage * 100).toFixed(1)}% is not authoritative`
+      : convergenceMode === 'off' && maxIterationsHit
       ? `convergence disabled; max-iterations (${maxIterations}) reached`
       : convergenceMode === 'off'
         ? `convergence disabled; forcing all ${maxIterations} iteration(s) (${iterationRecords.length} recorded)`
@@ -239,9 +430,29 @@ function checkConvergence(specFolder, options = {}) {
     iterationsRun: iterationRecords.length,
     maxIterations,
     convergenceMode,
-    coverage: { ratio: Math.round(coverage * 1000) / 1000, checked, discovered, threshold: coverageThreshold, met: coverageMet },
+    coverage: {
+      ratio: Math.round(coverage * 1000) / 1000,
+      checked,
+      reportedChecked,
+      discovered,
+      threshold: coverageThreshold,
+      met: coverageMet,
+      basis: coverageBasis,
+      identityVerified,
+    },
     stability: { ...stability, window: stabilityWindow },
-    overallVerdict: registry.overall.verdict,
+    overallVerdict,
+    integrityFault,
+    integrity: {
+      corpusIntegrityFault,
+      configLanesIntegrityFault,
+      corpusPresent: corpusRead.corpusPresent,
+      discoveryIncomplete,
+      integrityFault,
+      unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
+      unknownCheckedIdCount: registry.integrity?.unknownCheckedIdCount || 0,
+      unidentifiableArtifactCount: registry.integrity?.unidentifiableArtifactCount || 0,
+    },
   };
 }
 

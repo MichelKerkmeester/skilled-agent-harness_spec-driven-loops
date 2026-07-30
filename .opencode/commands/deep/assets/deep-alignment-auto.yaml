@@ -193,6 +193,12 @@ workflow:
           skip_to: phase_loop
         on_completed_session:
           log: "Prior session already completed. Either archive the completed alignment/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
+          verify:
+            - existing_registry_sealed: "registry.overall.sealed === true"
+          on_fail:
+            halt: true
+            status: "FAIL"
+            message: "COMPLETED_SESSION_UNSEALED: the existing registry is not sealed; refusing to bypass convergence or present completion."
           skip_to: phase_synthesis
         on_invalid_state:
           halt: true
@@ -731,7 +737,7 @@ workflow:
         command: "node .opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs --spec-folder {spec_folder} --max-iterations {max_iterations} --coverage-threshold {coverage_threshold} --stability-window {stability_window} --convergence-mode {convergence_mode} --json"
         append_jsonl: '{"type":"event","event":"convergence_check","mode":"alignment","run":{current_iteration},"decision":"{convergence_decision}","coverage":{convergence_coverage_json},"stability":{convergence_stability_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
         outputs:
-          - convergence_decision: "CONVERGED | CONTINUE | STOP_MAX_ITERATIONS | NOTHING_TO_CONVERGE"
+          - convergence_decision: "CONVERGED | CONTINUE | STOP_MAX_ITERATIONS | NOTHING_TO_CONVERGE | DISCOVERY_INCOMPLETE | INTEGRITY_FAILURE"
           - convergence_reason: "Human-readable reason string"
           - convergence_coverage_json: "coverage object ({ratio, checked, discovered, threshold, met}) or null"
           - convergence_stability_json: "stability object ({stable, sampleSize, reason, window}) or null"
@@ -756,6 +762,8 @@ workflow:
         if_converged: { proceed_to: phase_synthesis }
         if_stop_max_iterations: { log: "Max iterations ({max_iterations}) reached without full convergence; proceeding to synthesis with current coverage/stability as recorded evidence.", proceed_to: phase_synthesis }
         if_nothing_to_converge: { log: "Zero applicable lanes (every lane discovered zero artifacts, or none resolved) -- nothing to converge. Proceeding to synthesis.", proceed_to: phase_synthesis }
+        if_integrity_failure: { halt: true, status: "FAIL", message: "An integrity fault invalidates the alignment evidence. INTEGRITY_FAILURE blocks synthesis, sealing, and completion." }
+        if_discovery_incomplete: { halt: true, status: "FAIL", message: "Discovery has not run; the corpus is absent. DISCOVERY_INCOMPLETE is not converged or a pass, so synthesis and completion are blocked." }
         if_continue: { set: { current_iteration: "{current_iteration + 1}" }, repeat: phase_loop }
 
   # ═══════════════════════════════════════════════════════════════
@@ -775,13 +783,23 @@ workflow:
         command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs {spec_folder} --seal"
         outputs:
           - overall_verdict: "PASS | CONDITIONAL | FAIL, worst-lane rollup (never averaged)"
-          - sealed: "true -- synthesis seals the verdict authoritative"
+          - sealed: "sealed from reducer output; completion requires exactly true"
           - lane_count: "Total resolved lanes"
           - findings_by_severity: "{P0, P1, P2} aggregate counts"
           - corruption_count: "Count of malformed JSONL lines encountered, else 0"
 
+      step_assert_synthesis_sealed:
+        action: "Refuse completion when the terminal reducer did not seal the authoritative registry"
+        verify:
+          - reducer_sealed: "sealed === true"
+        on_fail:
+          halt: true
+          status: "FAIL"
+          message: "UNSEALED_COMPLETION: reducer returned sealed=false; config status and presentation remain incomplete."
+
       step_mark_config_complete:
         action: "Mark the run's status complete in config.json now that synthesis has run"
+        requires: "reducer_sealed === true"
         note: "Config is otherwise immutable per fileProtection; this single status transition at terminal synthesis is the one documented exception, mirroring deep-review's own status:complete transition."
 
       step_release_lock:
@@ -790,6 +808,7 @@ workflow:
         note: "Idempotent -- safe even if already released by an earlier halt path."
 
       step_present_results:
+        requires: "reducer_sealed === true"
         log: |
           Deep Alignment run complete.
           Target: {alignment_target}
