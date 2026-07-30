@@ -60,6 +60,7 @@
     "dist",
     "../shared",
     "../shared/**",
+    "hooks/pi/**",
     "lib/test-helpers/**",
     "scripts/tests/**",
     "tests/fixtures/**/*.ts",
