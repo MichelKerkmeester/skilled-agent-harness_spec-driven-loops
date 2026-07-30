@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
+  "description": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide",
+  "keywords": [
+    "diagnose",
+    "reproduced",
+    "routing",
+    "regression",
+    "holdout",
+    "top-1",
+    "top-3",
+    "delegation",
+    "bucket",
+    "attribute",
+    "commit",
+    "decide"
+  ],
+  "lastUpdated": "2026-07-30T08:08:46.419Z",
+  "specId": "013",
+  "folderSlug": "routing-regression-diagnosis",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

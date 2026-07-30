@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/016-packet-metadata-regeneration",
+  "description": "Close the stale phase map, stale continuity blocks, planned derived status and missing source fingerprints as the single defect they are — the",
+  "keywords": [
+    "close",
+    "stale",
+    "phase",
+    "map",
+    "continuity",
+    "blocks",
+    "planned",
+    "derived",
+    "status",
+    "missing",
+    "source",
+    "fingerprints",
+    "single",
+    "defect"
+  ],
+  "lastUpdated": "2026-07-30T08:09:33.268Z",
+  "specId": "016",
+  "folderSlug": "packet-metadata-regeneration",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

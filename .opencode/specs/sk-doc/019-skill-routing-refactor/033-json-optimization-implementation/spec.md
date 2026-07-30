@@ -138,11 +138,18 @@ The REQ-001 baseline (corpus hash + CI state) is captured and referenced by ever
 | 10 | `010-parent-intent-projection-spike/` | Parent-intent projection design spike (ships only if it beats the corpus) | Planned |
 | 11 | `011-command-metadata-ingestion/` | Ingest `command-metadata.json` into TS + Python command routing + drift-guard | Planned |
 | 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | Planned |
+| 13 | `013-routing-regression-diagnosis/` | Measure, attribute and disposition the reproduced -2 on holdout top-1/top-3 and delegation; no re-pin while open | Planned |
+| 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Planned |
+| 15 | `015-evidence-integrity-repair/` | Per-item checklist evidence; re-open the three false regression items; reconcile contradictory completion fields | Planned |
+| 16 | `016-packet-metadata-regeneration/` | One close-time generator pass for phase map, continuity, derived status and fingerprints | Planned |
+| 17 | `017-authority-path-corrections/` | Dead authority citations, the stale contract doc, and the tracked scratch artifact | Planned |
+| 18 | `018-finding-disposition-register/` | One disposition per audit finding, plus the retrospective on severity inversion and coverage gaps | Planned |
 
 ### Phase Transition Rules
 
 - Phase 1 is the keystone decision and gates 3/7/9/10; it ships as a reviewed decision record before any dependent phase starts.
 - Phase 2 (baseline) precedes every gate, delete, migration, and rewire so regressions are measurable against a pinned hash.
+- Phases 13-18 are the post-audit remediation arc. Phase 13 measures and dispositions the routing regression and blocks 15 and 16; 14 takes its expected values from that disposition. Phase 16 must never run before 13 and 15, because reconciling status over an open regression converts a visible inconsistency into an invisible one. Phase 17 is independent and may run in parallel; phase 18 closes last.
 - Phases 3/4 land before Phase 6 turns on the compiler gate, so a newly scaffolded skill never fails CI.
 - Phase 5 (golden prompts) may proceed early against the current fleet; the Phase 6 compiler gate waits on 3 and 4.
 - Phase 8 (routing-changing `manual.*` migration) and Phase 9 land behind the Phase 6 routing-accuracy gate.

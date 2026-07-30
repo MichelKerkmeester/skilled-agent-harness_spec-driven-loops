@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+  "parent_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-skill path does not exist",
+      "skill root metadata contract stale",
+      "command-metadata no longer required",
+      "tracked scratch derived block",
+      "authority corrections implementation plan",
+      "authority corrections task breakdown"
+    ],
+    "key_topics": [
+      "create-skill",
+      "path",
+      "exist",
+      "skill",
+      "root",
+      "metadata",
+      "contract",
+      "stale",
+      "command-metadata",
+      "longer",
+      "required",
+      "tracked"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authority Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Corrections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria No",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Correct the dead create-skill authority paths, bring the skill-root metadata contract doc in line with the deliberate H-required-to-optional reversal the implementation already made, and label or exclude the tracked scratch artifact.",
+    "created_at": "2026-07-30T08:10:27.710Z",
+    "last_save_at": "2026-07-30T08:10:27.710Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:a328deecabe51642e893fd089caae229fa0408c1408a67cd97e4e780d784ceb3",
+    "source_doc_hashes": {
+      "spec.md": "0d33d40cc9118ca3e07b77bcf1be5deef51f24ec55fa5142d149d7ee7d70e1a2",
+      "plan.md": "e98ad129731e5db4a30ce26a67e9a1088f2c6ecd262228d17543057729b07399",
+      "tasks.md": "f1f2e9628b73559f78f234d46a6a2925327855a5c28778489071d537aad10a20"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

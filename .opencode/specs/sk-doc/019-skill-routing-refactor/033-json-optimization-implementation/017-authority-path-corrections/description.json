@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+  "description": "Correct the dead create-skill authority paths, bring the skill-root metadata contract doc in line with the deliberate H-required-to-optional reversal",
+  "keywords": [
+    "correct",
+    "dead",
+    "create-skill",
+    "authority",
+    "paths",
+    "bring",
+    "skill-root",
+    "metadata",
+    "contract",
+    "doc",
+    "line",
+    "deliberate",
+    "h-required-to-optional",
+    "reversal"
+  ],
+  "lastUpdated": "2026-07-30T08:08:46.418Z",
+  "specId": "017",
+  "folderSlug": "authority-path-corrections",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

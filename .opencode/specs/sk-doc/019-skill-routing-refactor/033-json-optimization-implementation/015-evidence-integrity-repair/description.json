@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
+  "description": "Rewrite the rubber-stamped rollout checklist with per-item evidence, re-open the three items that certify a regression as absent, reconcile the",
+  "keywords": [
+    "rewrite",
+    "rubber-stamped",
+    "rollout",
+    "checklist",
+    "per-item",
+    "evidence",
+    "re-open",
+    "three",
+    "items",
+    "certify",
+    "regression",
+    "absent",
+    "reconcile"
+  ],
+  "lastUpdated": "2026-07-30T08:08:46.417Z",
+  "specId": "015",
+  "folderSlug": "evidence-integrity-repair",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "033-json-optimization-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
