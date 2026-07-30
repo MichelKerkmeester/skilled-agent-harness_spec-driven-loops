@@ -36,7 +36,7 @@
       "executor"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -108,12 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -128,7 +122,7 @@
       {
         "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Final gate for the skill/advisor JSON optimization implementation program: rerun the pinned routing-accuracy corpus end-to-end and report the top-1/top-3 delta, prove the live advisor daemon actually reindexes new derived/edges/command data (shipping a reload/verification step if it does not), add source-change cache invalidation for watched derived files and the executor-delegation alias cache, and record a rollback for every high-blast schema/edges/command-rewire change before the program closes.",
     "created_at": "2026-07-29T08:00:38.637Z",
-    "last_save_at": "2026-07-30T11:32:35.621Z",
+    "last_save_at": "2026-07-30T14:23:17.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7db32ef312c62084922c83c4d3a44a76f7c6de1e56888f61058a72de7dd93b4",
+    "source_fingerprint": "sha256:a9c5fc721a3729235520bc19b937eaedca138d9ddc6b895f964f6c2f35c8cd62",
     "source_doc_hashes": {
-      "spec.md": "812dc5af97461c0becff6519a07cf6d07fabc4bbb1c43a6ca2028f1a9ff70680",
+      "spec.md": "d5730eab9e5b8b24691e4bd586213ddd97b4eb79284f35c477c529313d2d7286",
       "plan.md": "c3f668394119bdce50ea330cdac241b0e3c1ed70232704506a467c8f5ef1debc",
       "tasks.md": "ffc94b7b17f15bb120e26e96fbc268a49dd3f5dd14b23aeae32c7be19e392cf7",
-      "checklist.md": "99c1e84d2d17dc638a94d680da4605ac13c334d83e846c86508f72c717a809fd",
-      "implementation-summary.md": "21ac065f105c54fdb96eaa6cddd0e7e69486f7b63e7591f4c9e7ba4b8e7eae28"
+      "checklist.md": "02fa623741641c5d8f39b5538e4c510ba394ff4a997c1b17176e8e37d5a43e58",
+      "implementation-summary.md": "77fe97ae614bf5d9663ef6e2fd22fb6536c6adfd7950f22d40381544d8ebbd64"
     },
     "last_active_child_id": null,
     "last_active_at": null

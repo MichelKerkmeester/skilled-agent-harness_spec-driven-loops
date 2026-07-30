@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout"
     last_updated_at: "2026-07-29T23:15:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Daemon reindex + zero-delta close across all regimes; program rollup complete"
-    next_safe_action: "Follow-ups tracked in remediation phases"
+    recent_action: "Reopened rows closed; phase complete"
+    next_safe_action: "Program closed; no further action"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "012-integration-verification-rollout"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions:
       - "Does the live-daemon proof find real staleness, or does the existing reindex path already cover it end to end?"
       - "What exact cache (if any) does 003's freshness work introduce beyond the two already-identified ones?"
@@ -40,8 +40,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | In Progress |
-| **Delivered** | Not yet — depends on all prior phases in this program landing |
+| **Status** | Complete |
+| **Delivered** | Yes — every prior phase landed (001–011), the regression was remediated, and the close-gate properties were re-verified locally and in live CI |
 | **Track** | sk-doc |
 | **Depends On** | `002` pinned-corpus baseline, `003` derived schema, `008` edges, `011` command rewire, and every other phase in `033-json-optimization-implementation` |
 | **Gates** | Program close — the parent packet cannot claim Complete until this phase's checklist is green |

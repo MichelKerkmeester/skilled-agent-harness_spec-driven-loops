@@ -99,18 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "Whether Tier",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -118,6 +106,18 @@
       },
       {
         "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Status",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,16 +155,16 @@
     ],
     "causal_summary": "12-phase, dependency-ordered, safety-gated implementation of the 029 ranked opportunity map (O1-O11) — making every skill and advisor JSON across .opencode/skills optimized, automated, effective, tested, and integrated, reviewed and restructured by an independent Opus architect before execution.",
     "created_at": "2026-07-29T08:07:19.065Z",
-    "last_save_at": "2026-07-30T13:47:50.183Z",
+    "last_save_at": "2026-07-30T14:23:18.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a50063e17d9af63ce8165be87f24419dab8f25dc427a42f26ea8c40db3f04049",
+    "source_fingerprint": "sha256:fc30f4cd7e4fa80243cc78b0909e192681146293f1006358f9d8b26d1c955344",
     "source_doc_hashes": {
-      "spec.md": "cae232f90fbc50fcf1a90de185b865abf8e1d6957ccff29795fce2573d8a1068",
+      "spec.md": "139bfc263b82e583d5107481c3e865ad5872b147e8eae60dc6c17493239e3b63",
       "handover.md": "b6ebd1ccc7be5a0c9e17a80912c21725af97531091b07638712e9dcc6f878296"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation"
     last_updated_at: "2026-07-29T09:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase program"
-    next_safe_action: "Schedule phase 001 per plan"
+    recent_action: "All 20 phases complete; gate green"
+    next_safe_action: "Program closed"
     blockers: []
     key_files:
       - "spec.md"
@@ -21,12 +21,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which derived producer (TS sync writer vs Python compiler vs a shared schema package) becomes authoritative — resolved by Phase 1, not pre-empted here"
-      - "Whether Tier-3 items (O9-O11) get dedicated phases or fold into adjacent Tier-1/2 phases — resolved at phase-scoping time"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "The 029 ranked opportunity map (O1-O11) is restructured into a 12-phase, dependency-ordered, safety-gated program by an independent Opus architect review before any implementation starts"
+      - "The ranked opportunity map was restructured into a dependency-ordered program by an independent architect review before implementation"
+      - "The derived-authority decision was resolved by the first phase's decision record"
+      - "Tier-3 items folded into their adjacent phases; every opportunity has an owning phase or recorded deferral"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Type** | Phase parent |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
@@ -139,7 +139,7 @@ The Status column reflects **execution state** (updated as phases land), not pla
 | 9 | `009-signal-quality/` | Intent-signal coverage floor, dedup, path-noise strip; fallback parity tests | Complete |
 | 10 | `010-parent-intent-projection-spike/` | Parent-intent projection design spike (ships only if it beats the corpus) | Complete |
 | 11 | `011-command-metadata-ingestion/` | Ingest `command-metadata.json` into TS + Python command routing + drift-guard | Complete |
-| 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | In Progress |
+| 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | Complete |
 | 13 | `013-routing-regression-diagnosis/` | Measure, attribute and disposition the reproduced -2 on holdout top-1/top-3 and delegation; no re-pin while open | Complete |
 | 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Complete |
 | 15 | `015-evidence-integrity-repair/` | Per-item checklist evidence; re-open the three false regression items; reconcile contradictory completion fields | Complete |
