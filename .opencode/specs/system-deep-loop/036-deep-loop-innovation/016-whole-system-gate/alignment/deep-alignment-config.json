@@ -1,0 +1,57 @@
+{
+  "mode": "alignment",
+  "sessionId": "claude-runner-align-2026-07-30T09-47-39-930Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "lanes": [
+    {
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/system-deep-loop/runtime/lib",
+          ".opencode/skills/system-deep-loop/runtime/scripts"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/system-deep-loop/SKILL.md",
+          ".opencode/skills/system-deep-loop/README.md",
+          ".opencode/skills/system-deep-loop/deep-research",
+          ".opencode/skills/system-deep-loop/deep-review",
+          ".opencode/skills/system-deep-loop/deep-alignment",
+          ".opencode/skills/system-deep-loop/deep-ai-council",
+          ".opencode/skills/system-deep-loop/deep-improvement",
+          ".opencode/skills/system-deep-loop/shared"
+        ]
+      }
+    }
+  ],
+  "maxIterations": 22,
+  "coverageThreshold": 1,
+  "stabilityWindow": 2,
+  "convergenceMode": "off",
+  "batchSize": 60,
+  "specFolder": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate",
+  "createdAt": "2026-07-30T09:47:39.930Z",
+  "status": "initialized",
+  "executor": {
+    "kind": "cli-codex",
+    "orchestrator": "claude-runner",
+    "serviceTier": "fast",
+    "sandbox": "read-only"
+  },
+  "evidenceQualifier": {
+    "purpose": "findings-only",
+    "coverageTrustworthy": false,
+    "reason": "Artifact coverage in this mode is self-attested: corpus membership is enforced but audit execution and dispatched-slice membership are not proven. Treat every coverage, completeness and convergence number from this run as UNVERIFIED. The conformance FINDINGS are usable because each cites a documented rule and a real artifact path.",
+    "operatorDecision": "Run for findings only with coverage explicitly discounted."
+  }
+}

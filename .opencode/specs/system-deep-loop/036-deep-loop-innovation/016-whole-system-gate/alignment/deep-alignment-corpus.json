@@ -1,0 +1,3823 @@
+{
+  "lanes": [
+    {
+      "laneId": "sk-code::code::.opencode/skills/system-deep-loop/runtime/lib, .opencode/skills/system-deep-loop/runtime/scripts",
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/system-deep-loop/runtime/lib",
+          ".opencode/skills/system-deep-loop/runtime/scripts"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-certificates/agent-improvement-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-certificates/agent-improvement-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-certificates/agent-improvement-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-reducers/agent-improvement-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-reducers/agent-improvement-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-reducers/agent-improvement-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/agent-improvement-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/agent-improvement-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/agent-improvement-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/agent-improvement-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorization-decision-event.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorization-replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/dark-ledger-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/deterministic-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/blinding.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/contracts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/event-data.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/event-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/judging.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/mode-adapters.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/service.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/durable-orchestrator.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/event-contract.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/ledger-fold.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/logical-branch-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-continuity-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-continuity-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-frontier.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-matching.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-service.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/claim-shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/compatibility-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/compatibility-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/dual-read-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/event-upcaster-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/state-upcaster-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/budget-continuation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/decision-event.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/decision-view.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/decision.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/disposition.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/reduction.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/shadow-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/sufficiency.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/audit.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/event-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/projection.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/service.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/adjudicator-verdict-scoring.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/convergence.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/multi-seat-dispatch.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/round-state-jsonl.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/adjudication.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/budgets.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/catalog.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/deep-improvement-common.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/evidence.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/internal.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/override-seam.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/parity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/projections.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/receipts-effects.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-detection-policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-detection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-detector.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-health-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-history.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-observation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-progress-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/cycle-shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/cycle-detection/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/deep-ai-council-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-ledger-schema/deep-alignment-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-ledger-schema/deep-alignment-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/deep-alignment-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/deep-alignment-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/deep-alignment-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-resume-adapter/deep-alignment-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/deep-alignment-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/deep-improvement-common-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/deep-improvement-common-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/deep-improvement-common-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/deep-improvement-common-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/deep-improvement-common-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/deep-improvement-common-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-sealed-artifacts/deep-improvement-common-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-sealed-artifacts/deep-improvement-common-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-sealed-artifacts/deep-improvement-common-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/bayesian-scorer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/continuity-frontier.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/continuity-identity-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/continuity-identity-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/continuity-identity-service.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/continuity-identity-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/evidence-contract.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fallback-router.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/lineage-timestamp-window.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/runtime-capabilities.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/sleep.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/deep-research-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/deep-research-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/deep-research-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/deep-research-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/event-contract.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/evidence.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/fingerprint.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/identity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/integrity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/canonical-json.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/event-envelope-boundary.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/event-envelope-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/event-envelope.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/event-type-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-adapters.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-harness-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-observation-projector.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/shadow-adapters.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/frozen-census-policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/inflight-state-classifier.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/inflight-state-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/phase-014-classification-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-engine.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-fold.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/durable-file.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-lease-coordinator.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-shadow-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-state-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/locks-and-fencing-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/locks-and-fencing-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/protected-resource-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/replay-identity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/compatibility-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/fixture-corpus.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/mixed-version-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/reducer-resume-oracle.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/seal-compiler.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/compatibility-policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/conformance.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/mode-contract-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-certificates/model-benchmark-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-certificates/model-benchmark-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-certificates/model-benchmark-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/model-benchmark-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-ledger-schema/model-benchmark-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/model-benchmark-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/model-benchmark-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/model-benchmark-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/model-benchmark-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-candidates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-selection.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/next-focus-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/evaluator.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/failure.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/ledger-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/evaluator.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/profiles.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/universe.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/identity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/authorized-writer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/boundary-receipts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/certification.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-adapters.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-gateway.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/event-contracts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/replay-projection.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/canonical-descriptor.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/derive-replay-fingerprint.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/fingerprint-version-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-component-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-attestation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/verify-replay-fingerprint.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/event-contracts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/identity.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/legacy-shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/recorder.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/resume-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/result-envelopes/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-certificate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-drill-contract.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-drill-ledger.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-drill-runner.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-drill-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/sandbox-authority-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-reference-set.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-registries.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-retention.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/community-projection.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/semantic-community-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/semantic-community-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/semantic-equivalence.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/semantic-novelty.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/parity-case-manifest.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/parity-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/shadow-parity-harness.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/shadow-parity-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-certificates/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-certificates/skill-benchmark-certificate-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-certificates/skill-benchmark-certificate-validation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-certificates/skill-benchmark-certificates.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/legacy-compatibility.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-reducers/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-reducers/skill-benchmark-projection-schema.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-reducers/skill-benchmark-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-reducers/skill-benchmark-reducer.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/skill-benchmark-resume-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-resume-adapter/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-rollback-gate/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-rollback-gate/mode-gate.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-rollback-gate/rollback-switch.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-rollback-gate/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-sealed-artifacts/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-sealed-artifacts/skill-benchmark-artifact-material.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-sealed-artifacts/skill-benchmark-sealed-artifact-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-sealed-artifacts/skill-benchmark-sealed-artifacts.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-shadow-parity/harness-adapter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-shadow-parity/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-shadow-parity/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-adapters.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-arbiter.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-profiles.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-shadow.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/gauge-evidence.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/gauge-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/gauge-replay.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/standard-gauges.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/stream-fold-gauge-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/stream-fold-gauge-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/committed-snapshot-publisher.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/legacy-dark-comparison.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/projection-bundle-registry.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/transactional-projection-engine.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/transactional-projection-errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/transactional-projection-store.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/transactional-projection-types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/allocation.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/assessment.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/decision.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/fan-in-handoff.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/policy.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/errors.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/index.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/stable-digest.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/types.ts"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/query.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/status.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+        }
+      ]
+    },
+    {
+      "laneId": "sk-doc::docs::.opencode/skills/system-deep-loop/SKILL.md, .opencode/skills/system-deep-loop/README.md, .opencode/skills/system-deep-loop/deep-research, .opencode/skills/system-deep-loop/deep-review, .opencode/skills/system-deep-loop/deep-alignment, .opencode/skills/system-deep-loop/deep-ai-council, .opencode/skills/system-deep-loop/deep-improvement, .opencode/skills/system-deep-loop/shared",
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/system-deep-loop/SKILL.md",
+          ".opencode/skills/system-deep-loop/README.md",
+          ".opencode/skills/system-deep-loop/deep-research",
+          ".opencode/skills/system-deep-loop/deep-review",
+          ".opencode/skills/system-deep-loop/deep-alignment",
+          ".opencode/skills/system-deep-loop/deep-ai-council",
+          ".opencode/skills/system-deep-loop/deep-improvement",
+          ".opencode/skills/system-deep-loop/shared"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".opencode/skills/system-deep-loop/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/baselines/claude-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/behavior-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-001-auto-run-specified.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-002-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-003-vague-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-004-concise-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-005-orchestrate-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-006-auto-missing-inputs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-007-delegation-route-proof.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/behavior-benchmark/scenarios/RSB-008-absorption-probe.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.1.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.10.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.11.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.12.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.13.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.14.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.2.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.2.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.2.2.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.3.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.4.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.5.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.6.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.6.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.6.2.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.6.3.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.7.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.8.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.9.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/anti-convergence-floor.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/divergent-convergence-mode.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/graph-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/quality-guards.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/stuck-detection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/convergence/three-signal-model.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/convergence-check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/fanout-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/initialization.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/iteration-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/loop-wide-dry-run.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/resource-map-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/run-now-control.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/synthesis.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/research-output/negative-knowledge.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/research-output/progressive-synthesis.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/config-management.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/dashboard-sparkline-trend.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/ideas-backlog-lifecycle.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/injection-inbox-provenance.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/jsonl-state-log.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/question-conflict-ownership.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/rejected-pattern-cache.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/feature-catalog/state-management/strategy-tracking.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/pause-sentinel-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/resource-map-toggle.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/spec-fence-writeback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/anti-convergence-floor.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/composite-convergence-stop-behavior.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/convergence-passes-guard-fails-override.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/graph-aware-stop-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/graph-convergence-signals.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/insight-status-prevents-false-stuck.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-focus-alignment.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-no-single-weak-source.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/quality-guard-source-diversity.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/stop-on-max-iterations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/stop-when-all-key-questions-are-answered.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/stuck-recovery-widens-focus-and-continues.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/thought-status-convergence-handling.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/auto-mode-deep-research-kickoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-execution.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/loop-wide-dry-run.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-cli-lineages-research.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-native-sequential-research.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-single-executor-parity-research.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/research-charter-validation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-state.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/iteration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/loop-setup.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/recovery.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/resource-map.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/runtime-parity.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/spec-anchoring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/intra-routing-recall/state.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/dashboard-generation-after-iteration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/dashboard-sparkline-trend.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/focus-track-labels-in-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/ideas-backlog-lifecycle.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/injection-inbox-provenance.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-reads-state-before-research.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/question-conflict-ownership.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/rejected-pattern-cache.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/pause-sentinel-halts-between-iterations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/pause-resume-and-fault-tolerance/run-now-control.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/per-iteration-memory-upsert.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence-graph.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-format.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-outputs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-research/scripts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/baselines/claude-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/behavior-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-001-auto-run-specified.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-002-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-003-vague-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-004-concise-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-005-orchestrate-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-006-auto-missing-inputs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-007-delegation-route-proof.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/behavior-benchmark/scenarios/RVB-008-absorption-probe.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.1.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.10.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.10.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.11.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.2.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.3.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.3.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.3.2.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.3.3.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.4.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.5.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.6.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.7.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.8.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.9.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/convergence-check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/executor-selection-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/fanout-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/initialization.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/iteration-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/memory-save.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/resource-map-coverage-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/resource-map-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/loop-lifecycle/synthesis.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/correctness.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/maintainability.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/security.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/traceability.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/adversarial-self-check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/claim-adjudication.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/convergence-signals.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/cross-mode-anti-convergence-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/divergent-convergence-mode.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/quality-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/security-sensitive-fix-overrides.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/severity-classification.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/severity-system/verdicts.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/config-management.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/findings-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/graph-convergence-event.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/jsonl-state-log.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/pause-sentinel.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/feature-catalog/state-management/strategy-tracking.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/resource-map-coverage-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-yaml-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/synthesis-save-boundary.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/three-artifact-iteration-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/write-boundary-reducer-owned-files.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/blocked-stop-reducer-surfacing.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/composite-review-convergence-stop-behavior.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/cross-mode-anti-convergence-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/dimension-coverage-convergence-signal.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/divergent-convergence-mode.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/fail-closed-reducer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/graph-convergence-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/p0-override-blocks-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/review-quality-guards-block-premature-stop.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/stop-on-max-iterations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/convergence-and-recovery/stuck-recovery-widens-dimension-focus.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/auto-mode-deep-review-kickoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-cli-lineages-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-native-sequential-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-single-executor-parity-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-strongest-restriction.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/initialization-and-state-setup/scope-discovery-and-dimension-ordering.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/intra-routing-recall/review-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/intra-routing-recall/review-iteration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/intra-routing-recall/review-report.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/intra-routing-recall/review-setup.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/graph-events-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/severity-classification-in-jsonl.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/graph-vocabulary.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/reducer-search-debt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-candidate-coverage.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/validator-strict-v2.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/review-depth-v2-rollout/validator-warn-rollout.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-format.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-jsonl.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-outputs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/deep-review-strategy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/iterations/iteration-001.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/iterations/iteration-002.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session/review/iterations/iteration-003.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/conformance-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/baselines/claude-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/behavior-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-001-auto-run-lane-config.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-002-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-003-vague-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-004-concise-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-005-verify-first.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-006-known-deviation-suppression.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-007-read-only-default.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-008-per-lane-report.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-009-boundary-vs-deep-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-010-boundary-vs-parent-skill-check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-011-clean-pass-zero-findings.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-012-workflow-router-deep-review.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-015-monolithic-prompt-improve.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-016-workflow-router-create-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-017-workflow-router-design-audit.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-018-subaction-router-doctor-mcp-install.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-019-subaction-router-doctor-mcp-debug.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-020-subaction-router-doctor-mcp-conflict.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-021-direct-tool-router-memory-learn-list.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-022-direct-tool-router-memory-learn-budget.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-023-direct-tool-router-memory-manage-health.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-024-direct-tool-router-memory-checkpoint-list.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-025-direct-tool-router-memory-save-apply.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-026-direct-plugin-router-goal-show.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior-benchmark/scenarios/DAB-027-monolithic-agent-router-bare.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/adapter-sk-code.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/adapter-sk-design-live-render.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/adapter-sk-design.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/adapter-sk-doc.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/adapter-sk-git.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/discover.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/adapter-contract/standard-source.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/alignment-contract/gated-remediation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/alignment-contract/known-deviation-suppression.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/alignment-contract/read-only-default.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/alignment-contract/verify-first.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/lane-resolution/artifact-classes.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/lane-resolution/authority-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/lane-resolution/lane-config.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/lane-resolution/scope-types.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/lane-resolution/scoping-tree.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/loop-lifecycle/alignment-report-reducer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/loop-lifecycle/convergence-check.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/loop-lifecycle/corpus-partitioning.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/feature-catalog/loop-lifecycle/state-machine.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/authority-agnostic-adapter-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-code-hybrid-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-design-static-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-doc-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-git-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/entry-points-and-modes/config-file-only-non-interactive-path.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/entry-points-and-modes/invocation-contract-and-forbidden-patterns.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/entry-points-and-modes/parameter-surface-modes-and-tuning.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/iteration-and-convergence/corpus-partitioning-round-robin.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/iteration-and-convergence/coverage-and-stability-and-semantics.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/iteration-and-convergence/dry-run-stability-fail-closed.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/iteration-and-convergence/max-iterations-hard-stop.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/iteration-and-convergence/nothing-to-converge-and-vacuous-lane.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/authority-artifact-class-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/dual-path-identical-lane-shape.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/empty-lane-config-zero-lanes.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/fail-closed-error-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/multi-authority-single-run.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/lane-resolution-and-scoping/scope-shape-and-repo-root-validation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/read-only-and-gated-remediation/gated-remediation-hook-noop.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/read-only-and-gated-remediation/read-only-default-surface.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/report-emission-per-lane/finding-dedup-and-fail-closed-severity.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/report-emission-per-lane/one-report-per-lane.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/report-emission-per-lane/worst-verdict-overall-rollup.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/state-and-fault-tolerance/alignment-state-file-layout.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/state-and-fault-tolerance/malformed-jsonl-corruption-warnings.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/state-and-fault-tolerance/state-machine-wiring-regression.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/verify-first-and-known-deviations/known-deviation-suppression.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/verify-first-and-known-deviations/sk-git-exempt-precheck-vs-suppression.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/verify-first-and-known-deviations/verify-first-no-finding-without-reprobe.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-code-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-code-known-deviations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-known-deviations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-design-live-render-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-doc-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-doc-command-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-doc-command-known-deviations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-doc-known-deviations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-git-adapter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk-git-known-deviations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/references/state-machine-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/baselines/claude-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/behavior-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-001-auto-run-specified.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-002-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-003-vague-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-004-concise-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-005-orchestrate-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v1.0.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v1.1.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v1.2.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v1.3.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.0.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.1.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.1.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.2.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.3.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/changelog/v2.4.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/cross-mode-anti-convergence-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/convergence-and-rollback/two-of-three-agree-triggers-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-query-hostile-metadata-redaction.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/depth-and-failure-handling/resume-after-interrupted-state.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/scope-boundaries/graph-support-derived-and-scoped.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/writer-library-contract/five-dimension-scoring-rubric-application.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/writer-library-contract/hunter-skeptic-referee-cross-critique.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/writer-library-contract/library-writer-call-sequence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/feature-catalog/writer-library-contract/out-of-scope-write-rejection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/cross-mode-anti-convergence-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/two-of-three-agree-triggers-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/scope-boundaries/graph-support-derived-and-scoped.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/library-writer-call-sequence.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-config-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-strategy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-profiles/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/deep-loop-workflows/routing-precision.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/baselines/claude-baseline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/behavior-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-001-auto-run-specified.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-002-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-003-vague-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-004-concise-natural-ask.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-005-orchestrate-handoff.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-006-common-parent-lane-selection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-007-model-benchmark-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/failed-runs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/findings-and-recommendations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/source.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/failed-runs.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/findings-and-recommendations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/source.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.0.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.0.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.1.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.10.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.11.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.11.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.12.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.13.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.14.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.15.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.16.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.0.1.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.2.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.2.1.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.2.2.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.3.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.4.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.5.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.6.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.7.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.8.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.9.0.0.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/candidate-generation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/initialization.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/plateau-detection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/promotion-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/rollback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/scoring-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/evaluation-loop/two-phase-promotion-and-rollback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/integration-scanning/command-dispatch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/integration-scanning/runtime-mirrors.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/integration-scanning/surface-discovery.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/mode-records-and-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/mode-switch.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/model-dispatcher.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/score-delta-benchmark-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/deterministic-scoring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/dimensional-progress.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/dynamic-profiling.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/five-dimension-rubric.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/contamination-gate-and-fixtures.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/d5-connectivity-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/dual-report-and-remediation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/mode-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/router-replay-and-advisor-probe.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/skill-benchmark/scoring-and-funnel.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/5d-scorer/dimension-details.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/5d-scorer/dynamic-arbitrary.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/5d-scorer/missing-candidate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/active-critic-overfit.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/benchmark-completed-boundary.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/improvement-gate-delta.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/legal-stop-gate-bundle.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/proposal-only-boundary.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/skill-load-not-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/benchmark-integration/with-integration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/benchmark-integration/without-integration.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/any-agent.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/candidate-lineage.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/full-pipeline.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/mutation-coverage-graph-tracking.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/trade-off-detection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/end-to-end-loop/two-phase-promotion-and-rollback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/json-output-file.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-diverse-agent.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-known-agent.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/scan-missing-agent.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/evaluation-policy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/full-setup.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/integration-scan.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/loop-execution.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/model-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/promotion-operations.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/quick-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/skill-benchmark.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/target-onboarding.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/criteria-exec-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/default-pattern-scorer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/mode-switch-routing.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/optin-5dim-scorer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/reviewer-prompt-regression-fixtures.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/score-delta-benchmark-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/unknown-fallback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/file-output.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/inline-rules-fallback.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/output-checks.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/profile-generator/rules-extraction.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/no-dimensions.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/plateau-detection.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/reducer-dimensions/with-dimensions.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/audit-journal-emission.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/benchmark-stability.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/dimension-trajectory.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/insufficient-sample.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/journal-wiring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/legal-stop-gates.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/parallel-candidates-opt-in.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/replay-consumer.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/resume-continuation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/stop-reason-taxonomy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/contamination-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/d5-connectivity-hard-gate.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/dual-report-and-remediation.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/mode-wiring-routing.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/router-replay-mode-a.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/scoring-vs-private-gold.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/candidate-proposal-format.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/integration-scanning.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/mirror-drift-policy.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/profiling-audit-log.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/score-dimensions.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/stress-test-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/agent-improvement/target-onboarding.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/benchmark-operator-guide.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/evaluator-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/lane-b-mechanics.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/mixed-executor-methodology.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/heldout-and-gold-sets.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/loop-protocol.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-gate-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion-rules.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/quick-reference.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/rollback-runbook.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/runtime-truth-contracts.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/operator-guide.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/routing-optimization.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scenario-authoring.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/MODES.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/SWEEP.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/0115576e1e7be786962398431c973dd9.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/22c1faa7c45013e9fdfb6ce5ecf929d1.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/362330146b11be4e9ed0d522cc7b7a9f.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/42840a5b34cdd91b3e2ff2d77184541e.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/4b7b4bbc6313c5e1c67711655e612a98.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/4d1138ca8c23389ecdf84767e8691348.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5036729e69ce24c3ba32d9bf748e6152.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5cecfb73a67e5b6522e5992e8a1958d4.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/5fe47aad8aacf44314f494ab0add2dec.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/720c3c2f773829e2d75f3c4cf1c9cc36.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/75692e98524c987bc724bd15f1268854.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/7fb218c8d070aa9e92bbda2b3bba94de.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8429f8a8a9d13c87e2176d57a49648c5.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8c2c8a1fd00f3af9daaef290f1be57ba.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8e6d3962a346cf59796d3df172c3901b.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/8f1323b05b3fd805dc519983d68b2e9d.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9a38a58ebffba2c0a5e87918261d9afb.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9c562e7eb6d90a65972bc75282b09770.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/9f00e055438f4fb69c5a0bf926d25952.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/a59863e9ad0f70d9bf39a3b3e7d3ec2b.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/aac68b3316e3489dd0c4e9b5e367ddd5.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/c0470150d6f7383f350f17216a2fbb3a.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/cbbeff1caf82bd3a1e002bbd22377b43.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/d0bc23dd3d54f9d0feef1727c1313afe.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/dbd80958bc81ecc2c9c947d3db67f510.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/df404b41b693fd90b7d2b2fb64d46d78.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/e5706bc35dabb7584b4563c9d5b2bd42.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/ea2a6323ff8b607dea081c14ae4fd24b.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/f2f2dd71f2533dd8cb3665d0857b8a02.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/f4b6ea7a34706c73189ac821c6ec177d.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/fc10907e5828f4c8b642f4557d6c0675.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/cache/grader/fc53734e22ef097b18e31f94d61a003d.out.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-skeptic.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/fixtures/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/fixtures/low-sample-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/fixtures/low-sample-benchmark/agent-improvement-dashboard.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/SMOKE-000-fake.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/progress/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/references/smart-routing.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/rollout/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/rollout/tests/README.md"
+        },
+        {
+          "path": ".opencode/skills/system-deep-loop/shared/synthesis/README.md"
+        }
+      ]
+    }
+  ]
+}
