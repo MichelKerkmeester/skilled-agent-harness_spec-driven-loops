@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/022-code-readme-coverage",
+  "description": "Three separate defects share one root cause: nothing mechanically enforces the code-README standard, and the standard itself is ambiguous about what",
+  "keywords": [
+    "three",
+    "separate",
+    "defects",
+    "share",
+    "one",
+    "root",
+    "cause",
+    "nothing",
+    "mechanically",
+    "enforces",
+    "code-readme",
+    "standard",
+    "itself",
+    "ambiguous",
+    "about"
+  ],
+  "lastUpdated": "2026-07-30T18:57:51.508Z",
+  "specId": "022",
+  "folderSlug": "code-readme-coverage",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
