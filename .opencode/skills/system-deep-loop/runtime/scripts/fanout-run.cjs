@@ -2612,6 +2612,10 @@ if (require.main === module && isTsxLoaded) {
 module.exports = {
   DEVIN_ALLOWED_MODELS,
   DEVIN_DEFAULT_MODEL,
+  CURSOR_ALLOWED_MODELS,
+  CURSOR_DEFAULT_MODEL,
+  PI_ALLOWED_MODELS,
+  PI_DEFAULT_MODEL,
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,

@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-07-30T05:51:30.711Z"
+    last_updated_at: "2026-07-30T07:45:39.076Z"
     last_updated_by: "implementer"
     recent_action: "Mark executed tasks with evidence"
     next_safe_action: "Commit the runtime change + packet"
@@ -69,6 +69,7 @@ Dispatched to GPT-5.6 SOL (high, fast) via cli-codex under an exact-target-state
 ## 4. PHASE 3: VERIFICATION
 
 - [x] T008 Orchestrator-run suites: `npx vitest run tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts` — [evidence: Test Files 2 passed, Tests 182 passed (182)]
+- [x] T010 Addendum: extend mirror parity to cursor + pi (exports + 4 assertions; no list content changed) — [evidence: `fanout-run.vitest.ts:1285-1297`; suites re-run 186 passed (186)]
 - [x] T009 Content greps on both devin blocks: 15/15 ids, 0 pruned, deepseek ×2 each, default `swe` in both — [evidence: `executor-config.ts:252`, `fanout-run.cjs:1809`]
 <!-- /ANCHOR:phase-3 -->
 

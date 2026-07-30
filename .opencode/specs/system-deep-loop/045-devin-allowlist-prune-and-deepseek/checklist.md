@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-07-30T05:51:30.711Z"
+    last_updated_at: "2026-07-30T07:45:39.076Z"
     last_updated_by: "implementer"
     recent_action: "Record verification results"
     next_safe_action: "Commit the runtime change + packet"
@@ -63,6 +63,7 @@ Every item verified by the orchestrator against live outputs (test runs, greps, 
 
 - [x] CHK-005 [P0] Both suites pass including the new parity tests — [evidence: orchestrator-run → Test Files 2 passed, Tests 182 passed (182)]
 - [x] CHK-006 [P0] Mirror parity pinned: sorted-set + default equality vs TS exports — [evidence: `fanout-run.vitest.ts:1258-1266`]
+- [x] CHK-014 [P1] Addendum: cursor + pi mirrors parity-pinned the same way; no list content changed — [evidence: `fanout-run.vitest.ts:1285-1297`; suites 186 passed (186)]
 - [x] CHK-007 [P1] Pruned ids fail closed — [evidence: rejection fixtures include `adaptive`/`opus`, suite green]
 <!-- /ANCHOR:testing -->
 
@@ -105,5 +106,5 @@ Every item verified by the orchestrator against live outputs (test runs, greps, 
 <!-- ANCHOR:summary -->
 ## 9. VERIFICATION SUMMARY
 
-All 13 checks pass. The devin dispatch surface now equals the curated catalog exactly, DeepSeek dispatches, pruned aliases fail closed, and mirror drift is CI-caught.
+All 14 checks pass. The devin dispatch surface now equals the curated catalog exactly, DeepSeek dispatches, pruned aliases fail closed, and all three executor mirrors (devin, cursor, pi) are CI-guarded against drift.
 <!-- /ANCHOR:summary -->

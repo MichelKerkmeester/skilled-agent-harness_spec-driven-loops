@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-07-30T05:51:30.711Z"
+    last_updated_at: "2026-07-30T07:45:39.076Z"
     last_updated_by: "implementer"
     recent_action: "Implementation verified; packet docs finalized"
     next_safe_action: "Commit the runtime change + packet to skilled/v4.0.0.0"
@@ -104,6 +104,15 @@ A config sweep gated the prune and a catalog↔runtime re-check caught the DeepS
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cursor's mirror has no parity test yet.** The same drift-risk class exists for `CURSOR_ALLOWED_MODELS` in `fanout-run.cjs`; the devin parity pattern shipped here is directly reusable if wanted.
-2. **Aliases pruned only for the deep-loop runtime.** Manual `devin -p --model opus` still works — the prune governs orchestrated fan-out dispatch, by design.
+1. **Aliases pruned only for the deep-loop runtime.** Manual `devin -p --model opus` still works — the prune governs orchestrated fan-out dispatch, by design.
+
+(The originally-noted cursor-mirror gap was closed by the addendum below.)
+
+---
+
+<!-- ANCHOR:addendum -->
+## Addendum: cursor + pi mirror parity
+
+The parity pattern was extended to the remaining two mirrors in the same session: `CURSOR_ALLOWED_MODELS`/`CURSOR_DEFAULT_MODEL` and `PI_ALLOWED_MODELS`/`PI_DEFAULT_MODEL` are now exposed on the script's export surface and pinned to their TS sources by four new assertions (`fanout-run.vitest.ts:1285-1297`). No allowlist content changed — both mirrors already matched. Orchestrator-run suites: Test Files 2 passed, Tests 186 passed (186). All three executor mirrors are now CI-guarded against drift.
+<!-- /ANCHOR:addendum -->
 <!-- /ANCHOR:limitations -->

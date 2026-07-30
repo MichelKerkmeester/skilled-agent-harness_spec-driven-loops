@@ -32,8 +32,12 @@ import {
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
 import {
+  CURSOR_DEFAULT_MODEL as TS_CURSOR_DEFAULT_MODEL,
+  CURSOR_SUPPORTED_MODELS,
   DEVIN_DEFAULT_MODEL as TS_DEVIN_DEFAULT_MODEL,
   DEVIN_SUPPORTED_MODELS,
+  PI_DEFAULT_MODEL as TS_PI_DEFAULT_MODEL,
+  PI_SUPPORTED_MODELS,
 } from '../../lib/deep-loop/executor-config.js';
 
 const tempDirs: string[] = [];
@@ -1253,21 +1257,45 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
   });
 });
 
-describe('fanout-run.cjs — Devin mirror parity with the TS source', () => {
+describe('fanout-run.cjs — executor model mirror parity with the TS source', () => {
   const {
     DEVIN_ALLOWED_MODELS,
     DEVIN_DEFAULT_MODEL,
+    CURSOR_ALLOWED_MODELS,
+    CURSOR_DEFAULT_MODEL,
+    PI_ALLOWED_MODELS,
+    PI_DEFAULT_MODEL,
   } = requireCjs(fanoutRunScript) as {
     DEVIN_ALLOWED_MODELS: Set<string>;
     DEVIN_DEFAULT_MODEL: string;
+    CURSOR_ALLOWED_MODELS: Set<string>;
+    CURSOR_DEFAULT_MODEL: string;
+    PI_ALLOWED_MODELS: Set<string>;
+    PI_DEFAULT_MODEL: string;
   };
 
-  it('keeps the CJS allowlist aligned with the TS source', () => {
+  it('keeps the Devin CJS allowlist aligned with the TS source', () => {
     expect([...DEVIN_ALLOWED_MODELS].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());
   });
 
-  it('keeps the CJS default aligned with the TS source', () => {
+  it('keeps the Devin CJS default aligned with the TS source', () => {
     expect(DEVIN_DEFAULT_MODEL).toBe(TS_DEVIN_DEFAULT_MODEL);
+  });
+
+  it('keeps the Cursor CJS allowlist aligned with the TS source', () => {
+    expect([...CURSOR_ALLOWED_MODELS].sort()).toEqual([...CURSOR_SUPPORTED_MODELS].sort());
+  });
+
+  it('keeps the Cursor CJS default aligned with the TS source', () => {
+    expect(CURSOR_DEFAULT_MODEL).toBe(TS_CURSOR_DEFAULT_MODEL);
+  });
+
+  it('keeps the Pi CJS allowlist aligned with the TS source', () => {
+    expect([...PI_ALLOWED_MODELS].sort()).toEqual([...PI_SUPPORTED_MODELS].sort());
+  });
+
+  it('keeps the Pi CJS default aligned with the TS source', () => {
+    expect(PI_DEFAULT_MODEL).toBe(TS_PI_DEFAULT_MODEL);
   });
 });
 
