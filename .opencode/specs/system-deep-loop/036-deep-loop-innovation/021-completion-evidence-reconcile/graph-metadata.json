@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion evidence reconcile",
+      "blocker 4 evidence drift",
+      "migration program completion claims",
+      "recursive validation child manifest",
+      "deep loop 021 reconcile"
+    ],
+    "key_topics": [
+      "completion",
+      "evidence",
+      "reconcile",
+      "blocker",
+      "drift",
+      "migration",
+      "program",
+      "claims",
+      "recursive",
+      "validation",
+      "child",
+      "manifest"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts/checklist.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review/005-resume-adapter/checklist.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter/checklist.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity/checklist.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity/implementation-summary.md",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/goal-file-manifest.txt",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/PRE-014-VALIDATION-RUN.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+      ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
+      "spec/validate.sh",
+      ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-file-manifest.txt",
+        "kind": "file",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/goal-file-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "PRE-014-VALIDATION-RUN.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/PRE-014-VALIDATION-RUN.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "command-injection-rollout.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
+        "source": "derived"
+      },
+      {
+        "name": "promotion-rule.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Completion Claims Against",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Suites",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
+    "created_at": "2026-07-30T19:43:41.044Z",
+    "last_save_at": "2026-07-30T19:52:08.170Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:43ee0c7d1e46503c96455bdced809e5cd08324e6fca9fcded154163a58dfff0c",
+    "source_doc_hashes": {
+      "spec.md": "bb1e06a0e8ad6cbcf8f303f6cbca4ee9c669f332da00d643ea1b306d0ea7c04e",
+      "plan.md": "954cafa015ffd483a124460e3a5d11e3145d73a07145b4c3e84d38afb94beacd",
+      "tasks.md": "90b978c38c1337bc2fda0caed266a4e794bbe0fab8a8f2677712583020bfec35",
+      "checklist.md": "239607b1117a7c8558c14ca8c1a9a02ff0b16369d5397bfef86c84a7a9054d53",
+      "decision-record.md": "90f49502f1ad95f88b6770270a366948cfea26b3a3a4b62236f3c3a382993c3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
