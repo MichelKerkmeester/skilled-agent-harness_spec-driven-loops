@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/025-skill-doc-currency",
+  "spec_folder": "sk-doc/025-skill-doc-currency",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+    "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency",
+    "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth",
+    "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill doc currency",
+      "sk-create-skill canon",
+      "executor roster drift",
+      "skill readme drift",
+      "hub surface drift"
+    ],
+    "key_topics": [
+      "skill",
+      "doc",
+      "currency",
+      "sk-create-skill",
+      "canon",
+      "executor",
+      "roster",
+      "drift",
+      "readme",
+      "hub",
+      "surface",
+      "skill-level"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill-level documentation — the `SKILL.md`, `README.md`, `references/` and `assets/` that agents read before acting — has drifted away from the code, registries and installed binaries it describes",
+    "created_at": "2026-07-30T19:29:17.418Z",
+    "last_save_at": "2026-07-30T19:29:17.418Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e67dac86fae8e28e0621af600691208204f647a506e93e2849c30b60065e3e19",
+    "source_doc_hashes": {
+      "spec.md": "5a4f3e85f2170c316275fdb4018d1483edb8fb16fa60c15dc22ef08d68ec2e61"
+    },
+    "last_active_child_id": "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep",
+    "last_active_at": null
+  }
+}
