@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-code/021-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
+  "description": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
+  "keywords": [
+    "three",
+    "enforcement",
+    "mechanisms",
+    "code-opencode",
+    "standard",
+    "failed",
+    "independently",
+    "simultaneously",
+    "nothing",
+    "noticed"
+  ],
+  "lastUpdated": "2026-07-30T19:25:14.062Z",
+  "specId": "001",
+  "folderSlug": "conformance-rulings-and-gate-repair",
+  "parentChain": [
+    "sk-code",
+    "021-code-conformance-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

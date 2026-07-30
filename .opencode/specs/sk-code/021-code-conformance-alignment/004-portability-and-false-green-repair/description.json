@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-code/021-code-conformance-alignment/004-portability-and-false-green-repair",
+  "description": "Four spec-kit audit helpers hard-code the same absolute developer checkout root — seven `/Users/…` literals across four files — so they work on",
+  "keywords": [
+    "four",
+    "spec-kit",
+    "audit",
+    "helpers",
+    "hard-code",
+    "same",
+    "absolute",
+    "developer",
+    "checkout",
+    "root",
+    "seven",
+    "users",
+    "literals",
+    "across",
+    "files",
+    "work"
+  ],
+  "lastUpdated": "2026-07-30T19:25:14.066Z",
+  "specId": "004",
+  "folderSlug": "portability-and-false-green-repair",
+  "parentChain": [
+    "sk-code",
+    "021-code-conformance-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
