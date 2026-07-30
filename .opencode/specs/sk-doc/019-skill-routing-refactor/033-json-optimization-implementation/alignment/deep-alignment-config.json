@@ -1,0 +1,152 @@
+{
+  "alignmentTarget": "033 json-optimization-implementation program (phases 001-012, 14 commits)",
+  "sessionId": "alignment-033-2026-07-30T04:59:56Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "createdAt": "2026-07-30T04:59:56Z",
+  "status": "initialized",
+  "maxIterations": 10,
+  "convergence": {
+    "coverageThreshold": 1.0,
+    "stabilityWindow": 2,
+    "combination": "AND",
+    "mode": "off"
+  },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1800
+  },
+  "mode": "alignment",
+  "lanes": [
+    {
+      "authority": "sk-code",
+      "artifactClass": "code",
+      "adapter": "sk-code",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".github/workflows/routing-registry-drift.yml",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs",
+          ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs",
+          ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/derive-command-bridges.cjs",
+          ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+          ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/command-bridges-drift-guard.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/command-metadata-e2e.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/executor-delegation-cache.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lexical-candidate-dedup.vitest.ts",
+          ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/projection-fallback-049-005.vitest.ts",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/project-router-vocab.cjs"
+        ]
+      }
+    },
+    {
+      "authority": "sk-doc",
+      "artifactClass": "docs",
+      "adapter": "sk-doc",
+      "scope": {
+        "type": "paths",
+        "values": [
+          ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+          ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/shadow-diff.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/022-command-metadata-generalization/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/004-scaffold-journey/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/005-ci-golden-prompts/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/006-ci-compiler-accuracy-gates/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/decision-record.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/DESIGN.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/checklist.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/implementation-summary.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/plan.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/results/final-corpus-capture.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/spec.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout/tasks.md",
+          ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/spec.md"
+        ]
+      }
+    }
+  ],
+  "batchSize": 8,
+  "fileProtection": {
+    "deep-alignment-config.json": "immutable",
+    "deep-alignment-corpus.json": "auto-generated",
+    "deep-alignment-state.jsonl": "append-only",
+    "deep-alignment-findings-registry.json": "auto-generated",
+    "alignment-report.md": "auto-generated",
+    ".deep-alignment.lock": "operator-controlled"
+  },
+  "reducer": {
+    "enabled": true,
+    "scriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+    "inputs": [
+      "latestJSONLDelta",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "alignmentReport"
+    ],
+    "metrics": [
+      "laneCount",
+      "applicableLaneCount",
+      "findingsBySeverity",
+      "compositeScore",
+      "verdict"
+    ]
+  },
+  "convergenceScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+  "partitionScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+  "remediateHookScriptPath": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
+  "laneConfigPath": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/alignment/lane-config.json"
+}

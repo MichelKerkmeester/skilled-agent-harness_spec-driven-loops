@@ -1,0 +1,5 @@
+**SKILL ROUTING:** User directed → `system-deep-loop` / `deep-review`
+
+Lineage `grok-high` finished under `stopPolicy=max-iterations` (3/3). Verdict **CONDITIONAL** — 0 P0, 7 P1, 3 P2. Distinctive findings: top-1 `53/72` mislabeled as top-3 (pin is `55/72`), 012 rubber-stamp checklist evidence, 011 Complete vs Planned contradiction. All writes confined to `review/lineages/grok-high/`.
+
+FANOUT_LINEAGE_COMPLETE:grok-high

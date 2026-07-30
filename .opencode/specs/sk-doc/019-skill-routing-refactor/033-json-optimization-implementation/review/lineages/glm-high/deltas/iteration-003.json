@@ -1,0 +1,52 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "iteration": 3,
+  "sessionId": "fanout-glm-high-1785383373420-qfueyw",
+  "focus": "D4 Maintainability + adversarial P1 replay + breadth sweep",
+  "status": "complete",
+  "finalIteration": true,
+  "dimensionsCovered": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingsRefined": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "severityTransitions": [
+    {
+      "id": "F005",
+      "from": "P1",
+      "to": "P2",
+      "reason": "Adversarial replay: primary resume surface (implementation-summary.md) current across all 12; stale metadata confined to secondary spec.md frontmatter"
+    }
+  ],
+  "findingsSummary": "No new findings. Adversarial replay: F001/F002/F003/F006 survive P1; F005 downgraded P1->P2. Breadth sweep 005/006/007/009/011 clean with documented guards/deferrals. No P0 in 008 or 011. Final: P0=0 P1=4 P2=3.",
+  "traceabilityChecks": {
+    "core": {
+      "spec_code": "partial",
+      "checklist_evidence": "pass"
+    },
+    "overlay": {
+      "feature_catalog_code": "pass",
+      "playbook_capability": "notApplicable"
+    }
+  },
+  "newInfoRatio": 0.0,
+  "verdict": "CONDITIONAL",
+  "executorAudit": {
+    "kind": "cli-devin",
+    "model": "glm-5-2",
+    "dispatchedAt": "2026-07-30T06:00:00Z"
+  },
+  "at": "2026-07-30T06:02:00Z"
+}

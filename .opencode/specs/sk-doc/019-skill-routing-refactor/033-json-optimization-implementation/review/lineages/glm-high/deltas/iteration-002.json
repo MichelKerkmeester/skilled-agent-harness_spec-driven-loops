@@ -1,0 +1,83 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "iteration": 2,
+  "sessionId": "fanout-glm-high-1785383373420-qfueyw",
+  "focus": "D2 Security + D3 Traceability",
+  "status": "complete",
+  "dimensionsCovered": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "findingsRefined": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingsSummary": "F005 systemic stale continuity frontmatter 10/12 child specs; F006 parent Phase Documentation Map stale all 12 Planned vs Complete; F007 committed scratch patched derived block; F002 refined 53/72 propagated to 003/010/012 pin is 55/72",
+  "findings": [
+    {
+      "id": "F005",
+      "severity": "P1",
+      "dimension": "maintainability",
+      "file": "003..012/spec.md frontmatter",
+      "lines": "_memory.continuity",
+      "title": "Systemic stale continuity frontmatter 10/12 (completion_pct 0 vs Status Complete)",
+      "contentHash": "sha256:placeholder-f005",
+      "refines": "F004"
+    },
+    {
+      "id": "F006",
+      "severity": "P1",
+      "dimension": "traceability",
+      "file": "spec.md",
+      "lines": "127-140,151",
+      "title": "Parent Phase Documentation Map stale all 12 Planned vs all 12 Complete",
+      "contentHash": "sha256:placeholder-f006"
+    },
+    {
+      "id": "F007",
+      "severity": "P2",
+      "dimension": "security",
+      "file": "010-parent-intent-projection-spike/scratch/sk-doc-derived-patched.json",
+      "lines": "1",
+      "title": "Committed scratch patched derived block (confusion hazard)",
+      "contentHash": "sha256:placeholder-f007"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "dimension": "correctness",
+      "file": "multi",
+      "lines": "003 CHK-031, 010:113, 012:12",
+      "title": "REFINED: 53/72 pin inconsistency systemic across 003/010/012; actual pin 55/72",
+      "contentHash": "sha256:placeholder-f002-v2",
+      "refines": "F002"
+    }
+  ],
+  "traceabilityChecks": {
+    "core": {
+      "spec_code": "partial",
+      "checklist_evidence": "pass"
+    },
+    "overlay": {
+      "feature_catalog_code": "pass",
+      "playbook_capability": "notApplicable"
+    }
+  },
+  "newInfoRatio": 0.55,
+  "verdict": "CONDITIONAL",
+  "executorAudit": {
+    "kind": "cli-devin",
+    "model": "glm-5-2",
+    "dispatchedAt": "2026-07-30T05:55:00Z"
+  },
+  "at": "2026-07-30T05:57:00Z"
+}

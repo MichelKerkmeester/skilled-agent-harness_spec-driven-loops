@@ -1,0 +1,332 @@
+{
+  "sessionId": "fanout-grok-high-1785383373420-qfueyw",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Parent REQ-001 acceptance criteria contradicts the Phase Documentation Map it governs. `spec.md:80` states the baseline is \"recorded before Phase 1 begins\", but Phase 1 (`001-derived-authority-decision`) is a documentary decision record that lands no gate, and baseline capture is itself Phase 2 (`spec.md:130`, `002-baseline-capture`). The Phase Transition Rules (`spec.md:145`) correctly state \"Phase 2 (baseline) precedes every gate, delete, migration, and rewire\"",
+      "file": "so the actual intent is \"before any corpus-gated phase\", not \"before Phase 1\". As written, REQ-001 acceptance is unsatisfiable (Phase 1 cannot cite a baseline Phase 2 produces). [SOURCE: spec.md:80, spec.md:130, spec.md:145]",
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Holdout top-1 figure (53/72) is systematically mislabeled as holdout top-3 across 010 and 012. The pinned top-3 artifact `002-baseline-capture/baseline/capture-top3.json` records `holdout_top3: { correct: 55, total: 72, accuracy: 0.7639 }`. The same folder's `routing-baseline.json` freshCanonical block distinguishes `holdout_top1: \"53/72 = 73.61%\"` from `holdout_top3: \"55/72 = 76.39%\"`. Yet `012-.../final-corpus-capture.md:12` lists \"TS scorer top-3 holdout | 53/72 = 0.7361\" under \"Pinned baseline\" with delta \"zero\"",
+      "file": null,
+      "line": null,
+      "description": "0.7361 is exactly the top-1 percentage. ADR-002 at `010-.../decision-record.md:113` hardcodes \"holdout top-3 (53/72) must not drop\" and line 121 reports \"holdout top-3: 53→53\". The 012 prose at line 14 acknowledges a 55-vs-53 discrepancy but still labels 53/72 as the top-3 pin. Root cause: top-1 holdout numerator reused under a top-3 label. [SOURCE: 002-baseline-capture/baseline/capture-top3.json:12-16, 002-baseline-capture/baseline/routing-baseline.json:84-86, 012-integration-verification-rollout/results/final-corpus-capture.md:12,14, 010-parent-intent-projection-spike/decision-record.md:113,121]",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Program marked Complete while its own hard validation gate (REQ-007) is documented as unmet. Parent `spec.md:46` Status: Complete and `spec.md:86` (REQ-007) require `validate.sh <folder> --recursive --strict` Errors:0 across parent + all 12 children before Complete. All 12 child specs also report Status: Complete. But `012-.../final-corpus-capture.md:23-25` documents that `npm run build` (dist) and `validate.sh --strict` remain broken repo-wide (concurrent pi-hook relocation) and explicitly defers the re-run. No external-blocker escape clause exists in REQ-007; Status Complete is premature relative to the program's own gate. [SOURCE: spec.md:46, spec.md:86, 012-integration-verification-rollout/results/final-corpus-capture.md:23-25]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Systemic stale continuity frontmatter. Parent `spec.md:24` and 10 of 12 children (`003`–`012`) still carry `completion_pct: 0` (and often planned-phase `recent_action` / open blockers) while every corresponding `**Status** | Complete` cell reports Complete. Only `001` and `002` show `completion_pct: 100`. Resume ladders that trust continuity over Status will mis-route. Generalizes F004 beyond the 010 decision-record. [SOURCE: spec.md:24,46; 003-derived-regenerator-migration/spec.md:25; 004-scaffold-journey/spec.md:24; 005-ci-golden-prompts/spec.md:25; 006-ci-compiler-accuracy-gates/spec.md:27; 007-dead-field-deletes/spec.md:25; 008-manual-to-edges-migration/spec.md:26; 009-signal-quality/spec.md:26; 010-parent-intent-projection-spike/spec.md:27; 011-command-metadata-ingestion/spec.md:25; 012-integration-verification-rollout/spec.md:30; 001-derived-authority-decision/spec.md:25; 002-baseline-capture/spec.md:25]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "Parent Phase Documentation Map is entirely stale. `spec.md:127-140` lists all 12 phases as **Planned**, while every child `spec.md` reports **Status: Complete** (verified for 001–012). The Phase Transition Rules (`spec.md:151`) call this map \"the coordination truth\"",
+      "file": "so the coordination truth contradicts the children's own completion claims. [SOURCE: spec.md",
+      "line": 127,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "title": "012 checklist evidence is a rubber-stamped identical blob. CHK-001 through CHK-017 in `012-integration-verification-rollout/checklist.md` each carry the same multi-claim evidence paragraph (daemon reindex + \"TS-source 176/195+53/72\" + pi-hook deferral), rather than claim-specific evidence. That blob also embeds the F002 mislabel (53/72 as top-3). checklist_evidence protocol requires checked items to have evidence that supports *that* claim; copy-paste does not. [SOURCE: 012-integration-verification-rollout/checklist.md:50-90]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "011 packet self-contradicts Complete vs undelivered. `011-command-metadata-ingestion/implementation-summary.md:41` Status: **Complete**, but line 42 says **Delivered: Not yet",
+      "file": "Planned, blocked on 006**; line 77 Verification: \"Not yet run",
+      "line": null,
+      "description": "this packet is Planned\"; §What Was Built / §How It Was Delivered use future tense (\"will generate\", \"will ship\"); §Known Limitations still says \"Blocked on 006 landing first\". The YAML description (lines 3) claims shadow machinery shipped and live cutover was corpus-gated 3× and reverted — which would be a CONDITIONAL/partial outcome, not an unqualified Complete against REQ-002/REQ-003 (generated live COMMAND_BRIDGES). Parent REQ-005 ownership of O7 is therefore only partially evidenced. [SOURCE: 011-command-metadata-ingestion/implementation-summary.md:3,41-42,53-61,77,85; 011-command-metadata-ingestion/spec.md:85-89]",
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Stale continuity frontmatter in 010 decision-record. `010-parent-intent-projection-spike/decision-record.md` continuity block still carries `completion_pct: 0` and planned-phase blockers, while ADR-002 body records a completed measured NO-SHIP verdict (Status: Accepted) and the phase `spec.md` marks Status: Complete. [SOURCE: 010-parent-intent-projection-spike/decision-record.md:13-30, 010-parent-intent-projection-spike/decision-record.md:117-123]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Committed scratch patched derived block is a confusion / accidental-apply hazard. `010-parent-intent-projection-spike/scratch/sk-doc-derived-patched.json` is a full live-shaped `graph-metadata` document (schema_version 2, skill_id sk-doc, edges, domains, intent_signals, derived.trigger_phrases…). No secrets found. Spike docs say it was trap-restored after measurement, but the committed artifact remains adjacent to production-shaped paths and could be mistaken for an authoritative fleet file. [SOURCE: 010-parent-intent-projection-spike/scratch/sk-doc-derived-patched.json:1-80; 010-parent-intent-projection-spike/decision-record.md:117]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "Parent `graph-metadata.json` still reports `derived.status: \"planned\"` and `last_active_child_id: null` despite all 12 children Status Complete and parent Status Complete. Reinforces F006 coordination-truth staleness at the graph-metadata layer used by memory/resume tooling. [SOURCE: graph-metadata.json:46,113-114; spec.md:46]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 3
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 2,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 3,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 4,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

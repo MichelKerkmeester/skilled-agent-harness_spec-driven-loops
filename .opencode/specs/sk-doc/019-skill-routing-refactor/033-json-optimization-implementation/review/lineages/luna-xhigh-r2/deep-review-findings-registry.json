@@ -1,0 +1,924 @@
+{
+  "sessionId": "fanout-luna-xhigh-r2-1785384990122-crx2xm",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "LXR2-001-P1-001",
+      "severity": "P1",
+      "title": "Parent coordination map is stale against every child phase status",
+      "file": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/spec.md",
+      "line": 129,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-001-P1-002",
+      "severity": "P1",
+      "title": "Command-metadata phase claims Complete while live-generation acceptance remains unmet",
+      "file": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion/implementation-summary.md",
+      "line": 41,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-003-P1-001",
+      "severity": "P1",
+      "title": "Program close is marked Complete while its own close-gate evidence says strict validation remained blocked",
+      "file": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/spec.md",
+      "line": 46,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-001-P2-001",
+      "severity": "P2",
+      "title": "Child spec continuity frontmatter is stale after completion",
+      "file": ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/003-derived-regenerator-migration/spec.md",
+      "line": 25,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-002-P2-001",
+      "severity": "P2",
+      "title": "Workflow leaves token permissions implicit while npm-fetched tools execute",
+      "file": ".github/workflows/routing-registry-drift.yml",
+      "line": 58,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "No explicit permissions block in routing-registry-drift.yml; both jobs run dependency-backed commands.",
+      "affectedSurfaceHints": [
+        "routing-registry-drift workflow",
+        "GITHUB_TOKEN permission boundary",
+        "npm-backed CI tools"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-003-P2-001",
+      "severity": "P2",
+      "title": "Root feature catalog conflates twelve workflow modes with twelve packets",
+      "file": ".opencode/skills/sk-doc/feature-catalog/feature-catalog.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LXR2-004-P2-001",
+      "severity": "P2",
+      "title": "Deprecated TS-only derived sync writer still advertises a full-object schema path",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts",
+      "line": 106,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "derived metadata maintenance",
+        "lifecycle/redirect metadata",
+        "skill-root freshness gate"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 4
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9474,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_criteria_mismatch",
+      "checklist_evidence_mismatch",
+      "ci_token_permission_exposure",
+      "completion_gate_traceability_mismatch",
+      "completion_state_mismatch",
+      "derived_contract_drift",
+      "feature_catalog_code_drift",
+      "live_surface_contract_mismatch"
+    ],
+    "ruledOut": [
+      "feature_catalog_missing_compiled_routing",
+      "generated_projection_drift",
+      "metadata_prompt_injection",
+      "p0_correctness_blocker",
+      "p0_maintainability_blocker",
+      "p0_security_blocker",
+      "p0_traceability_blocker",
+      "path_traversal",
+      "playbook_capability_gap",
+      "review_artifact_noise",
+      "shell_injection"
+    ],
+    "deferred": [],
+    "blocked": [
+      "stale_path_declarations"
+    ],
+    "byBugClass": {
+      "completion_state_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "acceptance_criteria_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "live_surface_contract_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "p0_correctness_blocker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "full_checklist_evidence_audit": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime_corpus_execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "ci_token_permission_exposure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "p0_security_blocker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shell_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "metadata_prompt_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_declared_scope_paths_exact_coverage": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "completion_gate_traceability_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "feature_catalog_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "p0_traceability_blocker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "feature_catalog_missing_compiled_routing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_validation_reexecution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "derived_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "generated_projection_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "review_artifact_noise": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "p0_maintainability_blocker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_path_declarations": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "rendered review scope",
+        "actual sk-create-skill path"
+      ],
+      "bugClass": "stale_path_declarations",
+      "disposition": "blocked",
+      "rationale": "Already recorded in the lineage as declared-scope path ambiguity; not duplicated as a new maintainability finding.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py:288"
+      ],
+      "reason": "Prior security slice covered declared_scope_paths partial; this final slice preserved it as an edge case only."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "review target read-only boundary"
+      ],
+      "bugClass": "p0_correctness_blocker",
+      "disposition": "ruled_out",
+      "rationale": "No P0-class immediate harm was evidenced in this iteration.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "reason": "Reviewed issues affect release/readiness truth, not immediate destructive behavior."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/score-routing-corpus.py"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell-based command construction was evidenced in the reviewed subprocess sites.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:676",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/score-routing-corpus.py:72"
+      ],
+      "reason": "List-form subprocess calls avoid shell interpretation for the reviewed inputs."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed writer enforces workspace containment before choosing the write path.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:71",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:95",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:98"
+      ],
+      "reason": "Resolved skillDir outside workspaceRoot throws before write."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts"
+      ],
+      "bugClass": "metadata_prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed sanitizer rejects the obvious prompt-injection-shaped derived strings before storage.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:28",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:37",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:41",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:48"
+      ],
+      "reason": "Instruction and markup shaped values are filtered before returning a sanitized value."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Playbook capability coverage exists for the sampled compiled-routing surface.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md:34",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:24",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:61"
+      ],
+      "reason": "Root index and scenario pass criteria cover the integration surface."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "traceability slice"
+      ],
+      "bugClass": "p0_traceability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new findings are release-readiness and catalog-truth issues rather than immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "reason": "No immediate destructive or exploitable path was evidenced."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Playbook capability coverage exists for the sampled compiled-routing surface.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md:34",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:24",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:61"
+      ],
+      "reason": "Root index and scenario pass criteria cover the integration surface."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "traceability slice"
+      ],
+      "bugClass": "p0_traceability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new findings are release-readiness and catalog-truth issues rather than immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "reason": "No immediate destructive or exploitable path was evidenced."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py"
+      ],
+      "bugClass": "generated_projection_drift",
+      "disposition": "ruled_out",
+      "rationale": "The sampled projection surfaces have maintainable generated/check boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts:21",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts:23",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:4418",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:4428"
+      ],
+      "reason": "No unbounded generated projection drift found in the sampled maintainability slice."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "spec-folder broad search"
+      ],
+      "bugClass": "review_artifact_noise",
+      "disposition": "ruled_out",
+      "rationale": "No finding relies on prior review artifact prose.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/review/lineages/luna-xhigh-r2/iterations/iteration-004.md:52"
+      ],
+      "reason": "Narrative and JSON evidence cite source/spec lines, not older lineage outputs."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "maintainability slice"
+      ],
+      "bugClass": "p0_maintainability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new finding is an obsolete exported writer contract without evidenced immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "reason": "No immediate destructive or exploitable path was evidenced."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "review target read-only boundary"
+      ],
+      "bugClass": "p0_correctness_blocker",
+      "disposition": "ruled_out",
+      "rationale": "No P0-class immediate harm was evidenced in this iteration.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "proof": "Reviewed issues affect release/readiness truth, not immediate destructive behavior."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/score-routing-corpus.py"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell-based command construction was evidenced in the reviewed subprocess sites.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:676",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/score-routing-corpus.py:72"
+      ],
+      "proof": "List-form subprocess calls avoid shell interpretation for the reviewed inputs."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed writer enforces workspace containment before choosing the write path.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:71",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:95",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts:98"
+      ],
+      "proof": "Resolved skillDir outside workspaceRoot throws before write."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts"
+      ],
+      "bugClass": "metadata_prompt_injection",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed sanitizer rejects the obvious prompt-injection-shaped derived strings before storage.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:28",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:37",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:41",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts:48"
+      ],
+      "proof": "Instruction and markup shaped values are filtered before returning a sanitized value."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Playbook capability coverage exists for the sampled compiled-routing surface.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md:34",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:24",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:61"
+      ],
+      "proof": "Root index and scenario pass criteria cover the integration surface."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "traceability slice"
+      ],
+      "bugClass": "p0_traceability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new findings are release-readiness and catalog-truth issues rather than immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "proof": "No immediate destructive or exploitable path was evidenced."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md"
+      ],
+      "bugClass": "playbook_capability_gap",
+      "disposition": "ruled_out",
+      "rationale": "Playbook capability coverage exists for the sampled compiled-routing surface.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/manual-testing-playbook/manual-testing-playbook.md:34",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:24",
+        ".opencode/skills/sk-doc/manual-testing-playbook/compiled-routing/bundle-rules-compiled-routing.md:61"
+      ],
+      "proof": "Root index and scenario pass criteria cover the integration surface."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        "traceability slice"
+      ],
+      "bugClass": "p0_traceability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new findings are release-readiness and catalog-truth issues rather than immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "proof": "No immediate destructive or exploitable path was evidenced."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py"
+      ],
+      "bugClass": "generated_projection_drift",
+      "disposition": "ruled_out",
+      "rationale": "The sampled projection surfaces have maintainable generated/check boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts:21",
+        ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts:23",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:4418",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:4428"
+      ],
+      "proof": "No unbounded generated projection drift found in the sampled maintainability slice."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "spec-folder broad search"
+      ],
+      "bugClass": "review_artifact_noise",
+      "disposition": "ruled_out",
+      "rationale": "No finding relies on prior review artifact prose.",
+      "evidenceRefs": [
+        ".opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/review/lineages/luna-xhigh-r2/iterations/iteration-004.md:52"
+      ],
+      "proof": "Narrative and JSON evidence cite source/spec lines, not older lineage outputs."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "maintainability slice"
+      ],
+      "bugClass": "p0_maintainability_blocker",
+      "disposition": "ruled_out",
+      "rationale": "The new finding is an obsolete exported writer contract without evidenced immediate P0-class harm.",
+      "evidenceRefs": [
+        ".opencode/skills/sk-code/sk-code-review/references/review-core.md:19"
+      ],
+      "proof": "No immediate destructive or exploitable path was evidenced."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "derived_contract_drift",
+      "generated_projection_drift",
+      "stale_path_declarations",
+      "review_artifact_noise",
+      "p0_maintainability_blocker"
+    ],
+    "covered": [
+      "derived_contract_drift"
+    ],
+    "ruledOut": [
+      "generated_projection_drift",
+      "review_artifact_noise",
+      "p0_maintainability_blocker"
+    ],
+    "deferred": [],
+    "blocked": [
+      "stale_path_declarations"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

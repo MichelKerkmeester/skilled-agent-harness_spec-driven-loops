@@ -1,0 +1,24 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "iteration": 2,
+  "sessionId": "fanout-grok-high-1785383373420-qfueyw",
+  "focus": "D2 Security + D3 Traceability",
+  "status": "complete",
+  "dimensionsCovered": {"correctness": true, "security": true, "traceability": true, "maintainability": false},
+  "findingsNew": {"P0": 0, "P1": 3, "P2": 1},
+  "findingsRefined": {"P0": 0, "P1": 1, "P2": 0},
+  "findingsSummary": "F005 systemic stale continuity 10/12+parent; F006 parent Phase Map all Planned vs Complete; F008 012 rubber-stamp checklist evidence; F007 scratch patched derived advisory; F002 refined systemic 53/72 mislabel into 003/012",
+  "findings": [
+    {"id":"F005","severity":"P1","dimension":"maintainability","category":"maintainability","file":"spec.md","lines":"24,46","title":"Systemic stale continuity completion_pct 0 vs Status Complete","content_hash":"sha256:ed38be4235d96b3c580c24cf9bdba49efd69b13e807f6b68984db077f2ef50aa","refines":"F004"},
+    {"id":"F006","severity":"P1","dimension":"traceability","category":"traceability","file":"spec.md","lines":"127-140,151","title":"Parent Phase Documentation Map stale all 12 Planned vs Complete","content_hash":"sha256:3b96e063dfe4d2ad048842ee9cb202e18949e0d19f42d9bec4702289518dd4cb"},
+    {"id":"F008","severity":"P1","dimension":"traceability","category":"traceability","file":"012-integration-verification-rollout/checklist.md","lines":"50-90","title":"012 checklist rubber-stamp identical evidence blob across CHK-001..017","content_hash":"sha256:57411bf0b0998ce6122aac245e9eed8b609dd3d4577b464ae604547f8ab75a76"},
+    {"id":"F007","severity":"P2","dimension":"security","category":"security","file":"010-parent-intent-projection-spike/scratch/sk-doc-derived-patched.json","lines":"1-80","title":"Committed scratch patched derived block confusion hazard","content_hash":"sha256:e501536bd2c16d6f4d6fa1626c8900c898b7f463bb99580b8c774fcdd0af3f77"},
+    {"id":"F002","severity":"P1","dimension":"correctness","category":"correctness","file":"multi","lines":"003 CHK-031, tasks T-09, impl-summary:82,91; 012 checklist","title":"REFINED: 53/72-as-top-3 mislabel systemic across 003/012 closure artifacts","content_hash":"sha256:a3961e5f5fbb9a691afbbe88171f0300b913f2628ee3740621a421eae103c9a3","refines":"F002"}
+  ],
+  "traceabilityChecks": {"core": {"spec_code": "partial", "checklist_evidence": "partial"}, "overlay": {"feature_catalog_code": "pass", "playbook_capability": "notApplicable"}},
+  "newInfoRatio": 0.58,
+  "verdict": "CONDITIONAL",
+  "executorAudit": {"kind": "cli-cursor", "model": "cursor-grok-4.5-high", "dispatchedAt": "2026-07-30T04:02:00Z"},
+  "at": "2026-07-30T04:04:00Z"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "iteration": 3,
+  "sessionId": "fanout-grok-high-1785383373420-qfueyw",
+  "focus": "D4 Maintainability + adversarial P0 replay",
+  "status": "complete",
+  "dimensionsCovered": {"correctness": true, "security": true, "traceability": true, "maintainability": true},
+  "findingsNew": {"P0": 0, "P1": 1, "P2": 1},
+  "findingsRefined": {"P0": 0, "P1": 0, "P2": 0},
+  "findingsSummary": "F009 011 Complete vs Delivered/Verification Planned contradiction; F010 graph-metadata status planned; adversarial replay keeps F001-F008 as P1/P2 no P0 upgrades; all 4 dimensions covered",
+  "findings": [
+    {"id":"F009","severity":"P1","dimension":"maintainability","category":"maintainability","file":"011-command-metadata-ingestion/implementation-summary.md","lines":"41-42,77","title":"011 Status Complete contradicts Delivered/Verification Planned; live cutover incomplete","content_hash":"sha256:d1a183b5a9fb348a75993827bb67619e3b0209589130d3938deb7cf6b75325b5"},
+    {"id":"F010","severity":"P2","dimension":"maintainability","category":"maintainability","file":"graph-metadata.json","lines":"46,113-114","title":"Parent graph-metadata derived.status planned + null last_active_child_id","content_hash":"sha256:e05a84969cf092ac961dee65e10b1522713acc6350f5b7bd0548c939df181275"}
+  ],
+  "traceabilityChecks": {"core": {"spec_code": "partial", "checklist_evidence": "partial"}, "overlay": {"feature_catalog_code": "pass", "playbook_capability": "notApplicable"}},
+  "newInfoRatio": 0.22,
+  "verdict": "CONDITIONAL",
+  "executorAudit": {"kind": "cli-cursor", "model": "cursor-grok-4.5-high", "dispatchedAt": "2026-07-30T04:06:00Z"},
+  "at": "2026-07-30T04:08:00Z"
+}

@@ -1,0 +1,3 @@
+Lineage summary: 3 iterations executed under `stopPolicy=max-iterations` (convergence treated as telemetry-only, angles broadened per directive). All 4 dimensions covered. Final verdict **CONDITIONAL** — P0=0, P1=4 (F001 REQ-001 wording, F002 53/72-vs-55/72 pin mislabel, F003 premature Complete vs unmet REQ-007, F006 stale parent Phase Map), P2=3 (F004, F005 downgraded from P1 on adversarial replay, F007). Adversarial P0 replay on the two routing-changing phases (008, 011) found no P0. All artifacts written to the glm-high lineage dir; no paths outside it touched.
+
+FANOUT_LINEAGE_COMPLETE:glm-high
