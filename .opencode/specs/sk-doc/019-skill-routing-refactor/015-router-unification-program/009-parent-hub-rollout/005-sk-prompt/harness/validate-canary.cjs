@@ -87,16 +87,16 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '06544150e096a6b7b43b73bae52ce77bd24f3e1fb742e0f5ba9530146616066c',
-  'hub-router.json': 'a32791dc8c4a4fb24ff8f94303621e3cfaf3254746af49745c10a61f98a1dd97',
-  'mode-registry.json': '36deecb3840ae8a5067187e6c5ae8fd40a76cd56034d41a8a3b632f3d6e2fcbe',
-  'prompt-improve/SKILL.md': '129c17f585e229022721158e64554e3c1e00f2e943071828fbb70e46275cae24',
-  'prompt-models/SKILL.md': '93883122e6220646b46252ce5567c5cae220d462aeee5c88cfda95d9c3339cb9',
+  'SKILL.md': '5d7bdc13bb53363557927ea4a14de8beb518ce01efed0ea0a90b50a6af930121',
+  'hub-router.json': '9591886dac2f63abf77a89d8b6ed79b7534d7293163c25a0cbd513a7ab63fa25',
+  'mode-registry.json': 'a96830f197e8cab8d89b8a7ff46f7264f7d2e16e06f29c7bf3a773a4f9bda4fa',
+  'sk-prompt-improve/SKILL.md': 'b3cc8f5e2678472ff9e8ebdff74503481c08d911e61a2b6ffe85d54e3d14fc72',
+  'sk-prompt-models/SKILL.md': '6b6f81f6f5ddf4558d87e9e3066211d85e4ea287e4c1032a2c49320833a6ef9e',
 });
 
 function readJson(filePath) {
@@ -185,15 +185,15 @@ function assertCompiledArtifacts(snapshot) {
   assert.strictEqual(snapshot.policy.destinations.length, 2);
   assert.strictEqual(snapshot.policy.compositionRules.length, 1);
   assert.strictEqual(snapshot.policy.compositionRules[0].kind, 'orderedBundle');
-  assert.deepStrictEqual(snapshot.routingModel.tieBreak, ['prompt-improve', 'prompt-models']);
-  assert.strictEqual(snapshot.routingModel.defaultMode, 'prompt-improve');
+  assert.deepStrictEqual(snapshot.routingModel.tieBreak, ['sk-prompt-improve', 'sk-prompt-models']);
+  assert.strictEqual(snapshot.routingModel.defaultMode, 'sk-prompt-improve');
   assert.deepStrictEqual(
     Object.fromEntries(snapshot.routingModel.modes.map((mode) => [mode.workflowMode, mode.weight])),
-    { 'prompt-improve': 4, 'prompt-models': 6 },
+    { 'sk-prompt-improve': 4, 'sk-prompt-models': 6 },
   );
   assert.deepStrictEqual(
     snapshot.projectionGraph.rows.map((row) => row.resource),
-    ['prompt-improve/SKILL.md', 'prompt-models/SKILL.md'],
+    ['sk-prompt-improve/SKILL.md', 'sk-prompt-models/SKILL.md'],
   );
   assert.strictEqual(snapshot.manifestResources.length, 2);
   assert.strictEqual(snapshot.resourceSelections.length, 2);
@@ -230,7 +230,7 @@ function assertCompiledArtifacts(snapshot) {
     orderedBundleTargets: [...snapshot.routingModel.tieBreak],
     sharedCompilerPath: '004-compiler-n1-shadow/compiler/compiler.cjs',
     sourceIdentityGuard: true,
-    weights: { 'prompt-improve': 4, 'prompt-models': 6 },
+    weights: { 'sk-prompt-improve': 4, 'sk-prompt-models': 6 },
   };
 }
 
@@ -315,7 +315,7 @@ function runRouteCases(snapshot, fixture) {
       assert.strictEqual(result.decision.clarify.question.length > 0, true);
       assert.deepStrictEqual(
         result.decision.clarify.alternatives,
-        ['prompt-improve', 'prompt-models', 'none_of_these'],
+        ['sk-prompt-improve', 'sk-prompt-models', 'none_of_these'],
       );
     }
     const leafPairs = compiledLeafPairsForDecision(snapshot, result.decision);
@@ -344,10 +344,10 @@ function runRouteCases(snapshot, fixture) {
     basis: 'bounded-default',
     id: 'zero-signal-default',
     selectionKind: 'single',
-    targetModes: ['prompt-improve'],
+    targetModes: ['sk-prompt-improve'],
   });
   const bundleRow = rows.find((row) => row.id === 'ordered-bundle-explicit-both');
-  assert.deepStrictEqual(bundleRow.targetModes, ['prompt-improve', 'prompt-models']);
+  assert.deepStrictEqual(bundleRow.targetModes, ['sk-prompt-improve', 'sk-prompt-models']);
   const clarifyRows = rows.filter((row) => row.action === 'clarify');
   assert.deepStrictEqual(clarifyRows.map((row) => row.id), ['ambiguous-one-clarify']);
   return {
@@ -381,7 +381,7 @@ function runDocumentParity(snapshot, fixture) {
   const marker = /## Document-only routing snapshot\n\n```json\n([^\n]+)\n```/m;
   const serialized = marker.exec(card)[1];
   const parsed = JSON.parse(serialized);
-  parsed.routingModel.defaultMode = 'prompt-models';
+  parsed.routingModel.defaultMode = 'sk-prompt-models';
   const divergentCard = card.replace(serialized, canonicalize(parsed));
   const entry = fixture.cases.find((candidate) => candidate.id === 'zero-signal-default');
   const machine = evaluateCanary(snapshot, entry).decision;
@@ -703,10 +703,10 @@ function runCanary() {
     routes,
     stageGate: {
       activationEligibility: 'eligible-shadow-only',
-      defaultModeFallback: 'route(single,[prompt-improve])',
+      defaultModeFallback: 'route(single,[sk-prompt-improve])',
       deliveredArtifactRouteGold: 'real-green',
       documentParity: 'pass',
-      orderedBundle: ['prompt-improve', 'prompt-models'],
+      orderedBundle: ['sk-prompt-improve', 'sk-prompt-models'],
       rollbackDrill: 'pass',
       routeGold: 'real-green',
       routeGoldRealGreenRows: routes.realGreenRows,

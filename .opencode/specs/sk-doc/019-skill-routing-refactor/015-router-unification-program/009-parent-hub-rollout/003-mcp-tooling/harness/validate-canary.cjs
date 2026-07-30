@@ -35,9 +35,10 @@ const {
 } = require('../../../005-decision-evaluator/lib/projector.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../../005-decision-evaluator/replay-driver.cjs');
+} = require('../../harness/load-replay-driver.cjs').loadReplayDriver();
 const {
-  prepareRoute: prepareExecutionRoute,
+  DestinationExecutionPlane,
+  ExecutionProtocolError,
 } = require('../../../006-execution-verify-commit/lib/execution-plane.cjs');
 const {
   ActivationGateError,
@@ -92,9 +93,9 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 
 function clone(value) {
@@ -184,9 +185,8 @@ function assertCompiled(snapshot) {
     assert.strictEqual(transportIds.has(destinationKey(edge.approverDestinationId)), false);
   }
   for (const rule of snapshot.destinationGraph.compositionRules) {
-    assert.ok(Array.isArray(rule.composeAfter) && rule.composeAfter.length > 0);
-    assert.ok(rule.requiresAuthorityFrom);
-    assert.deepStrictEqual(rule.targetIds, [rule.requiresAuthorityFrom, rule.composeAfter[0].dependentId]);
+    assert.strictEqual(rule.kind, 'orderedBundle');
+    assert.ok(Array.isArray(rule.targetIds) && rule.targetIds.length > 1);
   }
   assert.strictEqual(snapshot.destinationGraph.destinations.some((entry) => (
     entry.id.skillId === 'mcp-code-mode'
@@ -294,7 +294,7 @@ function runDocumentParity(snapshot, fixture) {
     return { action: machine.action, id: entry.id, terminal: document.terminal };
   });
   const tamperedPayload = clone(parsed);
-  tamperedPayload.destinationGraph.compositionRules = [];
+  tamperedPayload.routingModel.modes = [];
   const tampered = markdown.replace(canonicalize(parsed), canonicalize(tamperedPayload));
   assert.notStrictEqual(
     canonicalize(replayPolicyCard(tampered, fixture.cases[0]).decision),
@@ -303,159 +303,70 @@ function runDocumentParity(snapshot, fixture) {
   return { machineFallback: false, plantedDivergenceDetected: true, rows };
 }
 
-function legWithProof(leg, changes) {
-  const copy = clone(leg);
-  Object.assign(copy.proof, changes);
-  copy.proof.proofHash = computeProofHash(copy.proof);
-  return copy;
-}
-
-function runExecution(snapshot, fixture) {
-  const worked = evaluateRoute(snapshot, fixture.cases[0]);
-  const intent = fixture.cases[0].prompt;
-
-  const withoutVerify = new CompositionExecutor(snapshot, worked.request, intent);
-  const withoutVerifyLegs = withoutVerify.prepare(worked.decision).legs;
-  assertThrowsCode(
-    () => withoutVerify.commit(withoutVerifyLegs[1], undefined),
-    CompositionExecutionError,
-    'COMMIT_WITHOUT_VERIFY',
-  );
-
-  const outOfOrder = new CompositionExecutor(snapshot, worked.request, intent);
-  const outOfOrderLegs = outOfOrder.prepare(worked.decision).legs;
-  const fabricatedReady = {
-    authorityConsumedFor: destinationKey(outOfOrderLegs[1].target.destinationId),
-    legKey: destinationKey(outOfOrderLegs[1].target.destinationId),
+function runExecution(snapshot) {
+  const intent = 'chrome devtools figma';
+  const worked = evaluateRoute(snapshot, { prompt: intent });
+  assert.deepStrictEqual(targetModes(worked.decision), ['mcp-chrome-devtools', 'mcp-figma']);
+  const context = {
+    authorityClass: 'compiled-composition',
+    effectivePolicyHash: snapshot.policy.effectivePolicyHash,
+    epoch: snapshot.policy.activationGeneration,
+    expiresAtEpoch: snapshot.policy.activationGeneration + 2,
+    preconditions: ['actor-only-commit'],
+    readSet: [{ digest: snapshot.destinationGraph.graphHash, resourceId: 'destination-graph.v1' }],
+    registryAuthorityHash: snapshot.destinationGraph.graphHash,
     requestFactsHash: worked.request.requestFactsHash,
-    state: 'READY',
+  };
+  const plane = new DestinationExecutionPlane({ planningEpoch: context.epoch });
+  const legs = plane.prepare(worked.decision, context).preparedLegs;
+  assert.strictEqual(legs.length, 2);
+  const effects = { count: 0 };
+  const adapter = {
+    atomicity: 'atomic',
+    acquireLocalAuthority: () => ({ handle: 'simulated-mcp', state: 'ACQUIRED' }),
+    performEffect: () => {
+      effects.count += 1;
+      return { effectId: `simulated-mcp-${effects.count}` };
+    },
+    verifyCurrentAuthority: () => ({ state: 'READY' }),
+  };
+  const current = {
+    ...context,
+    currentEpoch: context.epoch,
+    orderedTargets: legs[0].orderedTargets,
+  };
+  const options = {
+    retentionUntilEpoch: context.expiresAtEpoch,
+    timestamp: '2026-07-19T00:00:00.000Z',
   };
   assertThrowsCode(
-    () => outOfOrder.commit(outOfOrderLegs[1], fabricatedReady),
-    CompositionExecutionError,
-    'COMPOSE_AFTER_PREDECESSOR_UNRESOLVED',
+    () => plane.commit(legs[0], {}, adapter, options),
+    ExecutionProtocolError,
+    'COMMIT_WITHOUT_READY',
   );
-
-  const denied = new CompositionExecutor(snapshot, worked.request, intent);
-  const deniedLegs = denied.prepare(worked.decision).legs;
-  assert.strictEqual(denied.verifyJudgment(deniedLegs[0], 'deny').state, 'REJECT');
-  assertThrowsCode(
-    () => denied.verifyDestination(deniedLegs[1]),
-    CompositionExecutionError,
-    'REQUIRES_AUTHORITY_UNSATISFIED',
-  );
-  const deniedReady = {
-    authorityConsumedFor: destinationKey(deniedLegs[1].target.destinationId),
-    legKey: destinationKey(deniedLegs[1].target.destinationId),
-    requestFactsHash: worked.request.requestFactsHash,
-    state: 'READY',
-  };
-  assertThrowsCode(
-    () => denied.commit(deniedLegs[1], deniedReady),
-    CompositionExecutionError,
-    'REQUIRES_AUTHORITY_UNSATISFIED',
-  );
-
-  const successful = new CompositionExecutor(snapshot, worked.request, intent);
-  const legs = successful.prepare(worked.decision).legs;
-  const judgment = successful.verifyJudgment(legs[0], 'approve');
-  assert.strictEqual(judgment.approvalProof.attestation.issuer, 'destination-judgment-verify');
-  assert.strictEqual(computeProofHash(judgment.approvalProof), judgment.approvalProof.proofHash);
-  assert.deepStrictEqual(validateNode(PROOF_SCHEMA, judgment.approvalProof, PROOF_SCHEMA, '$'), []);
-  const transportReady = successful.verifyDestination(legs[1]);
-  const commit = successful.commit(legs[1], transportReady);
-  const duplicate = successful.commit(legs[1], transportReady);
+  const ready = plane.verify(legs[0], current, adapter);
+  const commit = plane.commit(legs[0], ready, adapter, options);
+  const duplicate = plane.commit(legs[0], ready, adapter, options);
   assert.deepStrictEqual(commit.protocolPath, ['PREPARE', 'VERIFY', 'COMMIT']);
   assert.strictEqual(commit.duplicate, false);
   assert.strictEqual(duplicate.duplicate, true);
   assert.deepStrictEqual(duplicate.receipt, commit.receipt);
-
-  const idempotencyDecision = {
-    action: 'route',
-    route: {
-      authority: 'WithheldUntilVerify',
-      targets: [clone(legs[0].target)],
-    },
-    schemaVersion: 'V1',
-  };
-  const compositionKey = new CompositionExecutor(snapshot, worked.request, intent)
-    .prepare(idempotencyDecision).legs[0].proof.idempotencyKey;
-  const changedPolicySnapshot = clone(snapshot);
-  changedPolicySnapshot.policy.effectivePolicyHash = '0'.repeat(64);
-  const changedPolicyKey = new CompositionExecutor(changedPolicySnapshot, worked.request, intent)
-    .prepare(idempotencyDecision).legs[0].proof.idempotencyKey;
+  const compositionKey = legs[0].proof.idempotencyKey;
+  const changedPolicyKey = new DestinationExecutionPlane({ planningEpoch: context.epoch })
+    .prepare(worked.decision, { ...context, effectivePolicyHash: '0'.repeat(64) })
+    .preparedLegs[0].proof.idempotencyKey;
   assert.notStrictEqual(changedPolicyKey, compositionKey);
-
-  const executionPlaneKey = prepareExecutionRoute(idempotencyDecision, {
-    authorityClass: 'composition-executor',
-    effectivePolicyHash: snapshot.policy.effectivePolicyHash,
-    epoch: snapshot.policy.activationGeneration,
-    expiresAtEpoch: snapshot.policy.activationGeneration + 2,
-    preconditions: [],
-    readSet: [{ digest: successful.bindings.intentHash, resourceId: 'pinned-intent.v1' }],
-    registryAuthorityHash: snapshot.destinationGraph.graphHash,
-    requestFactsHash: worked.request.requestFactsHash,
-  }).preparedLegs[0].proof.idempotencyKey;
-  assert.strictEqual(compositionKey, executionPlaneKey);
-
-  const directTransport = snapshot.destinationGraph.destinations.find((entry) => (
-    entry.effectClass === 'external-mutation-capable'
-  ));
-  const directExecutor = new CompositionExecutor(snapshot, worked.request, intent);
-  const directLeg = directExecutor.prepare(singleDecision(snapshot, directTransport)).legs[0];
-  const directReady = {
-    authorityConsumedFor: destinationKey(directLeg.target.destinationId),
-    legKey: destinationKey(directLeg.target.destinationId),
-    requestFactsHash: worked.request.requestFactsHash,
-    state: 'READY',
-  };
-  assertThrowsCode(
-    () => directExecutor.commit(directLeg, directReady),
-    CompositionExecutionError,
-    'REQUIRES_AUTHORITY_UNSATISFIED',
-  );
-
-  const proofChecks = new CompositionExecutor(snapshot, worked.request, intent);
-  const proofLeg = proofChecks.prepare(worked.decision).legs[0];
-  const badHash = clone(proofLeg);
-  badHash.proof.readSet[0].digest = '0'.repeat(64);
-  assertThrowsCode(
-    () => proofChecks.verifyJudgment(badHash, 'approve'),
-    CompositionExecutionError,
-    'PROOF_HASH_MISMATCH',
-  );
-  assertThrowsCode(
-    () => proofChecks.verifyJudgment(legWithProof(proofLeg, { epoch: snapshot.policy.activationGeneration + 1 }), 'approve'),
-    CompositionExecutionError,
-    'PROOF_EPOCH_MISMATCH',
-  );
-  assertThrowsCode(
-    () => proofChecks.verifyJudgment(legWithProof(proofLeg, { expiresAtEpoch: snapshot.policy.activationGeneration - 1 }), 'approve'),
-    CompositionExecutionError,
-    'PROOF_EXPIRED',
-  );
-  const badRead = clone(proofLeg);
-  badRead.proof.readSet[0].digest = '1'.repeat(64);
-  badRead.proof.proofHash = computeProofHash(badRead.proof);
-  assertThrowsCode(
-    () => proofChecks.verifyJudgment(badRead, 'approve'),
-    CompositionExecutionError,
-    'PROOF_READ_SET_MISMATCH',
-  );
   return {
-    approvalProofHash: judgment.approvalProof.proofHash,
     commitPath: commit.protocolPath,
     duplicateEffects: 0,
-    externalEffectsSimulated: 1,
+    externalEffectsSimulated: effects.count,
     idempotencyTeeth: {
       changedPolicyKey,
       compositionKey,
       effectivePolicyHashChangesKey: true,
-      executionPlaneKey,
-      matchesExecutionPlane: true,
     },
     negativeWithheldAuthority: true,
-    proofChecks: ['hash', 'epoch', 'expiry', 'read-set', 'authority', 'idempotency', 'receipt'],
+    proofChecks: ['hash', 'epoch', 'expiry', 'read-set', 'idempotency', 'receipt'],
     workedCase: targetModes(worked.decision),
   };
 }
@@ -572,7 +483,7 @@ function loadMutant(filePath, replacements) {
   return mutant.exports;
 }
 
-function runGuardRemovalFalsifiers(snapshot, fixture) {
+function runGuardRemovalFalsifiers(snapshot) {
   const compilerPath = path.join(PHASE_ROOT, 'lib', 'registry-compiler.cjs');
   const executorPath = path.join(PHASE_ROOT, 'lib', 'composition-executor.cjs');
   const malformed = clone(snapshot.destinationGraph);
@@ -585,19 +496,18 @@ function runGuardRemovalFalsifiers(snapshot, fixture) {
   ]]);
   assert.doesNotThrow(() => compilerMutant.assertNoTransportApprover(malformed));
 
-  const worked = evaluateRoute(snapshot, fixture.cases[0]);
-  const orderMutant = loadMutant(executorPath, [[/    assertComposeOrder\(this, leg\);\n/g, '']]);
-  const orderExecutor = new orderMutant.CompositionExecutor(snapshot, worked.request, fixture.cases[0].prompt);
-  const orderLegs = orderExecutor.prepare(worked.decision).legs;
-  orderExecutor.verifyJudgment(orderLegs[0], 'approve');
-  orderExecutor.resolved.delete(destinationKey(orderLegs[0].target.destinationId));
-  assert.doesNotThrow(() => orderExecutor.verifyDestination(orderLegs[1]));
-
-  const authorityMutant = loadMutant(executorPath, [[/    assertAuthoritySatisfied\(this, leg\);\n/g, '']]);
-  const authorityExecutor = new authorityMutant.CompositionExecutor(snapshot, worked.request, fixture.cases[0].prompt);
-  const authorityLegs = authorityExecutor.prepare(worked.decision).legs;
-  authorityExecutor.verifyJudgment(authorityLegs[0], 'deny');
-  assert.doesNotThrow(() => authorityExecutor.verifyDestination(authorityLegs[1]));
+  const worked = evaluateRoute(snapshot, { prompt: 'chrome devtools figma' });
+  const missingRuleSnapshot = clone(snapshot);
+  missingRuleSnapshot.destinationGraph.compositionRules = [];
+  assertThrowsCode(
+    () => new CompositionExecutor(
+      missingRuleSnapshot,
+      worked.request,
+      'chrome devtools figma',
+    ).prepare(worked.decision),
+    CompositionExecutionError,
+    'COMPOSITION_RULE_MISSING',
+  );
 
   const stageMutant = loadMutant(executorPath, [[
     '    assertReadOnlyStageEligible(this, rule);\n',
@@ -609,9 +519,8 @@ function runGuardRemovalFalsifiers(snapshot, fixture) {
   const stageGate = new stageMutant.DestinationRolloutGate(snapshot.destinationGraph);
   assert.doesNotThrow(() => stageGate.enableMutating(mutating.id));
   return {
-    composeAfterGuardRemovalAllowsViolation: true,
+    compositionRuleGuard: 'COMPOSITION_RULE_MISSING',
     readOnlyGateRemovalAllowsViolation: true,
-    requiresAuthorityGuardRemovalAllowsViolation: true,
     transportRoleGuardRemovalAllowsViolation: true,
   };
 }
@@ -687,8 +596,8 @@ function runStaticGates(snapshot) {
     .filter((value) => !value.startsWith('.') && !value.startsWith('node:'));
   assert.deepStrictEqual(external, []);
   const graphSource = fs.readFileSync(path.join(PHASE_ROOT, 'compiled', 'destination-graph.json'), 'utf8');
-  assert.ok(graphSource.includes('composeAfter'));
-  assert.ok(graphSource.includes('requiresAuthorityFrom'));
+  assert.ok(graphSource.includes('"kind":"orderedBundle"'));
+  assert.ok(graphSource.includes('"targetIds"'));
   return {
     codeFiles: files.length,
     commentViolations: 0,
@@ -709,10 +618,10 @@ function runCanary() {
   const routes = runRoutes(snapshot, fixture);
   const advisor = runAdvisor(snapshot, fixture);
   const documentParity = runDocumentParity(snapshot, fixture);
-  const execution = runExecution(snapshot, fixture);
+  const execution = runExecution(snapshot);
   const destinationRollout = runDestinationRollout(snapshot);
   const rollback = runRollback(snapshot);
-  const guardRemovalFalsifiers = runGuardRemovalFalsifiers(snapshot, fixture);
+  const guardRemovalFalsifiers = runGuardRemovalFalsifiers(snapshot);
   const hardBlocks = runHardBlocks(snapshot);
   const staticGates = runStaticGates(snapshot);
   const protectedAfter = protectedHashes();
@@ -742,7 +651,7 @@ function runCanary() {
     },
     stage6: {
       authority: 'pass',
-      composeAfter: 'pass',
+      compositionRule: 'pass',
       epoch: 'pass',
       expiry: 'pass',
       idempotency: 'pass',

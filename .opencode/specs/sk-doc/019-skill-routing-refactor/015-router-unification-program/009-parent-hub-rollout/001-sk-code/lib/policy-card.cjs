@@ -199,7 +199,7 @@ function documentDecision(card, prompt) {
         authority: 'WithheldUntilVerify',
         basis: { kind: 'signal' },
         evidence: [],
-        selectionKind: 'surfaceBundle',
+        selectionKind: rule.kind,
         targets: rule.targetIds.map((id) => target(destinationByKey.get(destinationKey(id)))),
       },
       schemaVersion: 'V1',

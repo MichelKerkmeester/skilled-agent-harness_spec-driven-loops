@@ -93,9 +93,9 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 
 function readJson(filePath) {
@@ -264,9 +264,15 @@ function runRouteCases(snapshot, fixture) {
   const falsifier = scoreRouteGoldReadOnly([corrupted]).verdicts[0];
   assert.strictEqual(falsifier.pass, false, 'corrupted observation must fail the real scorer');
 
+  // A surface-only signal may route to its evidence surface, but must never
+  // receive actor authority or a mutating destination.
   const surfaceOnly = evaluateCanary(snapshot, { prompt: 'webflow animation' }).decision;
-  assert.strictEqual(surfaceOnly.action, 'defer');
-  assert.strictEqual(surfaceOnly.defer.reason, 'no-match');
+  assert.strictEqual(surfaceOnly.action, 'route');
+  assert.strictEqual(surfaceOnly.route.selectionKind, 'single');
+  assert.strictEqual(surfaceOnly.route.targets[0].destinationId.workflowMode, 'sk-code-webflow');
+  assert.strictEqual(surfaceOnly.route.targets[0].role, 'evidence');
+  assert.strictEqual(surfaceOnly.route.targets[0].mutatesWorkspace, false);
+  assert.strictEqual(surfaceOnly.route.authority, 'WithheldUntilVerify');
   return {
     corruptedObservationPass: falsifier.pass,
     realScorerRows: rows.length,
@@ -276,14 +282,16 @@ function runRouteCases(snapshot, fixture) {
 }
 
 function runCertificateGate(snapshot, fixture) {
+  // The authored router deliberately routes without consulting calibration
+  // certificates (the certificate-gated selective controller under-routed
+  // this hub relative to legacy), so certificate handles must be inert: the
+  // decision is identical across valid, stale, mismatched, and absent
+  // certificates rather than abstaining when one is missing.
   const certifiedInput = canaryInput(fixture, fixture.cases[0]);
   const certified = evaluateCanary(snapshot, certifiedInput);
   assert.strictEqual(certified.decision.action, 'route');
   assert.strictEqual(certified.decision.route.selectionKind, 'surfaceBundle');
   assert.strictEqual(certified.decision.route.basis.kind, 'signal');
-  assert.strictEqual(certified.calibration.status, 'validated');
-  assert.strictEqual(certified.calibration.policyHash, snapshot.policy.effectivePolicyHash);
-  assert.strictEqual(certified.calibration.riskSlice, certifiedInput.riskSlice);
   assert.deepStrictEqual(
     parseRouteDecision(certified.decision, snapshot.policy),
     certified.decision,
@@ -292,13 +300,10 @@ function runCertificateGate(snapshot, fixture) {
   const rows = fixture.certificateCases.map((entry) => {
     const input = canaryInput(fixture, entry);
     const result = evaluateCanary(snapshot, input);
-    assert.strictEqual(result.decision.action, entry.expectedAction, `${entry.id} action`);
-    assert.ok(['clarify', 'defer'].includes(result.decision.action), `${entry.id} abstention`);
-    assert.notStrictEqual(result.decision.route?.basis?.kind, 'signal', `${entry.id} signal route`);
-    assert.strictEqual(
-      result.trace.controller.certificateReason,
-      entry.expectedCertificateReason,
-      `${entry.id} certificate reason`,
+    assert.deepStrictEqual(
+      routeIdentity(result.decision),
+      routeIdentity(certified.decision),
+      `${entry.id} certificate-inert identity`,
     );
     assert.deepStrictEqual(
       parseRouteDecision(result.decision, snapshot.policy),
@@ -306,8 +311,7 @@ function runCertificateGate(snapshot, fixture) {
     );
     return {
       action: result.decision.action,
-      certificateReason: result.trace.controller.certificateReason,
-      externalOraclePass: true,
+      certificateInert: true,
       id: entry.id,
     };
   });
@@ -325,10 +329,7 @@ function runCertificateGate(snapshot, fixture) {
   );
   assert.strictEqual(singular.decision.action, 'route');
   assert.strictEqual(singular.decision.route.selectionKind, 'single');
-  assert.strictEqual(singular.calibration.status, 'unvalidated');
-  assert.strictEqual(singular.trace.controller.branch, 'singular-exact-signal');
-  assert.strictEqual(singular.trace.controller.rankCalls, 0);
-  assert.strictEqual(singular.trace.controller.thresholdCalls, 0);
+  assert.strictEqual(singular.trace.evaluator.rankCalls, 0);
   assert.deepStrictEqual(
     parseRouteDecision(singular.decision, snapshot.policy),
     singular.decision,
@@ -338,7 +339,6 @@ function runCertificateGate(snapshot, fixture) {
     certified: {
       action: certified.decision.action,
       basis: certified.decision.route.basis.kind,
-      certificateId: certified.calibration.certificateId,
       externalOraclePass: true,
       selectionKind: certified.decision.route.selectionKind,
     },
@@ -350,11 +350,9 @@ function runCertificateGate(snapshot, fixture) {
     rows,
     singular: {
       action: singular.decision.action,
-      calibrationStatus: singular.calibration.status,
       externalOraclePass: true,
-      rankCalls: singular.trace.controller.rankCalls,
+      rankCalls: singular.trace.evaluator.rankCalls,
       selectionKind: singular.decision.route.selectionKind,
-      thresholdCalls: singular.trace.controller.thresholdCalls,
     },
   };
 }
@@ -402,8 +400,13 @@ function runAdvisorCases(snapshot, fixture) {
     },
     prompt: 'quality review',
   });
-  assert.strictEqual(ambiguous.decision.action, 'clarify');
-  return { missingCertificateAction: ambiguous.decision.action, rows };
+  // Advisor evidence is non-authoritative: even a max-confidence live advisor
+  // must leave a near-tied prompt's decision identical to the unadvised one.
+  const unadvised = evaluateCanary(snapshot, { prompt: 'quality review' });
+  assert.deepStrictEqual(routeIdentity(ambiguous.decision), routeIdentity(unadvised.decision));
+  assert.strictEqual(ambiguous.decision.action, 'route');
+  assert.strictEqual(ambiguous.decision.route.selectionKind, 'orderedBundle');
+  return { advisorNonAuthorityAction: ambiguous.decision.action, rows };
 }
 
 function assertDocumentParity(machine, document) {
@@ -432,7 +435,7 @@ function runDocumentParity(snapshot, fixture) {
   const marker = /## Document-only routing snapshot\n\n```json\n([^\n]+)\n```/m;
   const parsed = JSON.parse(marker.exec(card)[1]);
   parsed.selectors = parsed.selectors.filter((selector) => (
-    selector.destinationId.workflowMode !== 'code-review'
+    selector.destinationId.workflowMode !== 'sk-code-review'
   ));
   const divergentCard = card.replace(marker, (block) => (
     block.replace(marker.exec(block)[1], canonicalize(parsed))

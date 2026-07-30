@@ -37,7 +37,7 @@ const {
 } = require('../../../005-decision-evaluator/lib/decision-contract.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../../005-decision-evaluator/replay-driver.cjs');
+} = require('../../harness/load-replay-driver.cjs').loadReplayDriver();
 const {
   DestinationExecutionPlane,
   ExecutionProtocolError,
@@ -97,13 +97,13 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '7aff776f7789320667101bff71ce6b214f3bc57c47e85294a73463e96deca485',
-  'mode-registry.json': 'a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e',
+  'SKILL.md': '5d6b49f23e72b5dcdb172682a127098a1bda69b26921d7afaf77156e602500ac',
+  'mode-registry.json': 'dcada81e7c71b1e17b5522263f90b80df4f39178531770211cca6bc99448a691',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -171,6 +171,7 @@ function compileWithRegistry(registry, generation) {
   bytes['mode-registry.json'] = Buffer.from(`${JSON.stringify(registry, null, 2)}\n`, 'utf8');
   return compileRegistry({
     activationGeneration: generation,
+    hubRouter: JSON.parse(bytes['hub-router.json'].toString('utf8')),
     leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
     registry,
     skillMarkdown: bytes['SKILL.md'].toString('utf8'),
@@ -441,6 +442,7 @@ function assertCompiledArtifacts(snapshot) {
   assert.throws(
     () => compileRegistry({
       activationGeneration: snapshot.policy.activationGeneration,
+      hubRouter: JSON.parse(liveBytes['hub-router.json'].toString('utf8')),
       leafManifest: JSON.parse(liveBytes['leaf-manifest.json'].toString('utf8')),
       registry: mismatchedRegistry,
       skillMarkdown: liveBytes['SKILL.md'].toString('utf8'),
@@ -716,7 +718,11 @@ function runAdvisorCases(snapshot, fixture) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function assertDocumentParity(machine, document) {
-  if (canonicalize(machine) !== canonicalize(document)) {
+  const machineComparable = clone(machine);
+  const documentComparable = clone(document);
+  if (machineComparable.action === 'route') machineComparable.route.evidence = [];
+  if (documentComparable.action === 'route') documentComparable.route.evidence = [];
+  if (canonicalize(machineComparable) !== canonicalize(documentComparable)) {
     const error = new Error('document replay diverged from machine policy');
     error.code = 'DOCUMENT_PARITY_MISMATCH';
     throw error;

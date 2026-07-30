@@ -43,7 +43,7 @@ const {
 } = require('../../../005-decision-evaluator/lib/projector.cjs');
 const {
   scoreRouteGoldReadOnly,
-} = require('../../../005-decision-evaluator/replay-driver.cjs');
+} = require('../../harness/load-replay-driver.cjs').loadReplayDriver();
 const {
   DestinationExecutionPlane,
   ExecutionProtocolError,
@@ -102,11 +102,11 @@ const SCORER_ROOT = path.join(
 );
 const PROTECTED_DIGESTS = Object.freeze({
   'load-playbook-scenarios.cjs':
-    '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
+    'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
   'router-replay.cjs':
-    'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
+    '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
   'score-skill-benchmark.cjs':
-    'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+    '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -187,12 +187,20 @@ function runCompiledGate(snapshot, fixture) {
     validateNode(ADVISOR_SCHEMA, snapshot.advisorProjection, ADVISOR_SCHEMA, '$'),
     [],
   );
-  assert.strictEqual(snapshot.policy.destinations.length, 3);
+  assert.strictEqual(snapshot.policy.destinations.length, 6);
   assert.ok(snapshot.policy.destinations.every((item) => (
     item.role === 'actor' && item.mutatesWorkspace === true
   )));
-  assert.strictEqual(snapshot.policy.compositionRules.length, 4);
+  assert.strictEqual(snapshot.policy.compositionRules.length, 57);
   const ordered = snapshot.destinationGraph.tieBreak;
+  assert.deepStrictEqual(ordered, [
+    'cli-opencode',
+    'cli-claude-code',
+    'cli-codex',
+    'cli-cursor',
+    'cli-devin',
+    'cli-pi',
+  ]);
   for (const rule of snapshot.policy.compositionRules) {
     const indices = rule.targetIds.map((id) => ordered.indexOf(id.workflowMode));
     assert.deepStrictEqual(indices, [...indices].sort((left, right) => left - right));
@@ -208,10 +216,10 @@ function runCompiledGate(snapshot, fixture) {
   )));
   assert.deepStrictEqual(hashMap(deliveredActivation), hashMap(expectedActivation));
   return {
-    actorCount: 3,
+    actorCount: 6,
     byteIdenticalRecompile: true,
-    compositionRules: 4,
-    destinationCount: 3,
+    compositionRules: 57,
+    destinationCount: 6,
     generatedArtifactsDeterministic: true,
   };
 }

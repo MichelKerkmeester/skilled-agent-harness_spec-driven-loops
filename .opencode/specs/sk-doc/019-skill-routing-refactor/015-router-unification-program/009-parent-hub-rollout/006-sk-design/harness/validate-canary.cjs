@@ -76,9 +76,9 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 
 function readJson(filePath) {
@@ -178,39 +178,38 @@ function assertCompiled(snapshot) {
     assert.deepStrictEqual(schemaErrors(TYPED_GOLD_SCHEMA, row), []);
     assert.strictEqual(computeProjectionHash('TypedRouteGoldV1', row), row.projectionHash);
   });
-  assert.strictEqual(snapshot.policy.destinations.length, 6);
-  assert.strictEqual(snapshot.projectionGraph.rows.length, 6);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 6);
-  assert.strictEqual(snapshot.routingModel.bundleRules.length, 1);
-  assert.deepStrictEqual(snapshot.routingModel.bundleRules[0].targetWorkflowModes, ['interface', 'foundations']);
-  assert.strictEqual(snapshot.policy.compositionRules.length, 15);
-  assert.strictEqual(snapshot.routingModel.defaultMode, null);
+  assert.strictEqual(snapshot.policy.destinations.length, 3);
+  assert.strictEqual(snapshot.projectionGraph.rows.length, 3);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 3);
+  assert.strictEqual(snapshot.routingModel.bundleRules.length, 0);
+  assert.strictEqual(snapshot.policy.compositionRules.length, 3);
+  assert.strictEqual(snapshot.routingModel.defaultMode, 'sk-design-interface');
   assert.strictEqual(snapshot.routingModel.ambiguityDelta, 1);
-  assert.strictEqual(snapshot.manifestResources.length, 90);
+  assert.strictEqual(snapshot.manifestResources.length, 64);
   const byMode = new Map(snapshot.policy.destinations.map((destination) => [
     destination.id.workflowMode,
     destination,
   ]));
   assert.deepStrictEqual(
-    [byMode.get('md-generator').role, byMode.get('md-generator').mutatesWorkspace],
+    [byMode.get('sk-design-md-generator').role, byMode.get('sk-design-md-generator').mutatesWorkspace],
     ['actor', true],
   );
   assert.deepStrictEqual(
-    [byMode.get('design-mcp-open-design').role, byMode.get('design-mcp-open-design').mutatesWorkspace],
+    [byMode.get('sk-design-mcp-open-design').role, byMode.get('sk-design-mcp-open-design').mutatesWorkspace],
     ['transport', false],
   );
   assert.ok(snapshot.policy.destinations.filter((destination) => (
-    !['md-generator', 'design-mcp-open-design'].includes(destination.id.workflowMode)
+    !['sk-design-md-generator', 'sk-design-mcp-open-design'].includes(destination.id.workflowMode)
   )).every((destination) => destination.role === 'actor' && destination.mutatesWorkspace === false));
   snapshot.manifestResources.forEach((entry) => {
     assert.ok(fs.existsSync(path.join(SKILL_ROOT, entry.resource)), `missing authored leaf ${entry.resource}`);
   });
   return {
     byteIdenticalRecompile: true,
-    compiledPairRules: 15,
-    destinationCount: 6,
-    leafResourceCount: 90,
-    namedBundleRules: 1,
+    compiledPairRules: 3,
+    destinationCount: 3,
+    leafResourceCount: 64,
+    namedBundleRules: 0,
     schemaValidation: 'pass',
   };
 }
@@ -342,11 +341,15 @@ function runAuthoredFalsifiers(snapshot) {
   assert.throws(() => compileWithRouter(snapshot, (router) => {
     router.routerPolicy.tieBreak = router.routerPolicy.tieBreak.slice(1);
   }), (error) => assertCode(error, 'TIE_BREAK_INVALID'));
+  // An empty authored bundleRules list is legal, so the falsifier plants a
+  // rule that references an unregistered mode instead.
   assert.throws(() => compileWithRouter(snapshot, (router) => {
-    router.routerPolicy.bundleRules = [];
+    router.routerPolicy.bundleRules = [
+      { kind: 'orderedBundle', modes: ['sk-design-interface', 'nonexistent-mode'], name: 'bogus' },
+    ];
   }), (error) => assertCode(error, 'BUNDLE_RULE_INVALID'));
   assert.throws(() => compileWithRouter(snapshot, (router) => {
-    router.routerSignals.interface.resources = ['invented/SKILL.md'];
+    router.routerSignals['sk-design-interface'].resources = ['invented/SKILL.md'];
   }), (error) => assertCode(error, 'ROUTER_RESOURCE_MISMATCH'));
   const sources = sourceBytes();
   const parsedRouter = JSON.parse(sources.bytes['hub-router.json'].toString('utf8'));
@@ -362,7 +365,7 @@ function runAuthoredFalsifiers(snapshot) {
     skillMarkdown: sources.bytes['SKILL.md'].toString('utf8'),
     sourceBytes: sources.bytes,
   }), (error) => assertCode(error, 'AUTHORED_SOURCE_IDENTITY_MISMATCH'));
-  const routerMode = 'foundations';
+  const routerMode = 'sk-design-interface';
   const originalRouter = sources.bytes[sources.routerSourceIds[routerMode]].toString('utf8');
   const packetRouterMarkdown = Object.fromEntries(Object.entries(sources.routerSourceIds).map(([mode, id]) => (
     [mode, sources.bytes[id].toString('utf8')]

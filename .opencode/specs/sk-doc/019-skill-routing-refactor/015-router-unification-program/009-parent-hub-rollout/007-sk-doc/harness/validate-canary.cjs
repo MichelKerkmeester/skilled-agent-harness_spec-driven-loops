@@ -78,25 +78,25 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': '5029f22df920418eb0f87859a7146b83656619943a9fe6f010d6d06e96cdd029',
-  'router-replay.cjs': 'd5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47',
-  'score-skill-benchmark.cjs': 'd5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c',
+  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  'router-replay.cjs': '1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954',
+  'score-skill-benchmark.cjs': '673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e',
 });
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': 'e55025662c63a03efb1a19e7bb5f65b19989f95c8d00cab372541f77b5008326',
-  'hub-router.json': '8b9afa6284f58267ee935d45c60073bc5931dea53bdfacdfc018a450c3e42dd5',
-  'mode-registry.json': '73cffcba5f34cd36e0da91441e9ec587cfa8152c54d3a2334f7060c931f9fb83',
-  'packets/create-agent/SKILL.md': 'b0f966cc5de86476e52a4811742a379bdacbff302fa5459848946e8cced5dc10',
-  'packets/create-benchmark/SKILL.md': '5076dc7e384365af61f73e9362d38d2d68fd1d1adde72eac1c621ce76b284182',
-  'packets/create-changelog/SKILL.md': 'e1f5c688f56a1d3b704040d420615ac8fc1c678f3203361849e369ea9b8cdc06',
-  'packets/create-command/SKILL.md': 'c19402ac970fbc6c627c0a7231f69c2dee0381d595bebdbe45a2f7eca7076427',
-  'packets/create-diff/SKILL.md': '10315765c6654537ad3a4c9b7249356c62f57d78e6bd7d45fe3996bd20782e2e',
-  'packets/create-feature-catalog/SKILL.md': '54cf621b8bc9706711ac1bb11b6026e804fd899e566f9f5b8a58a8a236a927cb',
-  'packets/create-flowchart/SKILL.md': 'a6d84d58d8c70c82438b5b5b83266fa3c13565f390abdc0b149eadc54d75cfdf',
-  'packets/create-manual-testing-playbook/SKILL.md': '1e613e102c291e9f32d1c829be474a5aa45dc06d0e27c942aa03a06091c360c7',
-  'packets/create-quality-control/SKILL.md': 'c949849f047f7594e253cfe25ed3faeeb7a0e9944f1fcd3086f51891f799cf50',
-  'packets/create-readme/SKILL.md': 'b263d54480d9733b4fa7dd14e940e3b559a0a012fed11a5a7dcb45568fc24d8e',
-  'packets/create-skill/SKILL.md': 'ac47ee5b6efea4013cecce4d8e1753942c9b64db6dba181452c9acd9f5d43acc',
+  'SKILL.md': '828b2bde31cdf7e040e867cf72c49c47d2d8e02e015da09fd19c7001fa1bd79f',
+  'hub-router.json': '6045796bb186a6a67177a5081b03e851cd04c80274fb6afcf37d7cc2b49cb5d9',
+  'mode-registry.json': '1adbc0e88b35a313f67967f2292f52ae27f1ab6818d0b96fbbe8962b2996753e',
+  'packets/sk-create-agent/SKILL.md': '86a4aa72ae597cd0313a1d0d7e4790ea03f80c02c2999413e112349f511eda7f',
+  'packets/sk-create-benchmark/SKILL.md': 'e2b8f93301bb9d91c3116cb1c2e932cebfa7d980af9563c24b7124f6b1bdeaf8',
+  'packets/sk-create-changelog/SKILL.md': '540813a0323f902628c29e1f3bfabbd5fbd2213292955e1f28d6567ade32bdae',
+  'packets/sk-create-command/SKILL.md': '176c3c62910ef1ef7b19bb260e4b0176c2ea82d975c34da72520ade9f2f57466',
+  'packets/sk-create-diff/SKILL.md': '53bc12941ae0ec52372a2bdcf52be43034c99cb3e722ddcb2de0de1f75e5dcdb',
+  'packets/sk-create-feature-catalog/SKILL.md': 'b61de02bc92f759d9da7af5297793931348f9cd8b5f56173160b95b9a60c28f3',
+  'packets/sk-create-flowchart/SKILL.md': '1b62610643659e6b12d66d3daee715d8995fe7c6277b1038b9a3107fed3ffb45',
+  'packets/sk-create-manual-testing-playbook/SKILL.md': 'fcbc34deb5fd1da548e70df729b27d238c6400a76dd9fe11131a01bc1d9cefff',
+  'packets/sk-create-quality-control/SKILL.md': 'c547aa0e2cf27d0685e8e6af322dfa342bfb19754864b3d2af061d93160c5f63',
+  'packets/sk-create-readme/SKILL.md': '9c4198dfb3870cdf4bbcc40ac4921e3b0044cd9aaa3862cc8824a0141c899cf0',
+  'packets/sk-create-skill/SKILL.md': 'bbf2feafed3dd1a8b3a14261feaaaa1abc0f0d008de8fb731265234f81c47465',
 });
 
 function readJson(filePath) {
@@ -194,10 +194,10 @@ function assertCompiled(snapshot) {
   assert.strictEqual(snapshot.projectionGraph.rows.length, 12);
   assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 12);
   assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => row.packetRef)).size, 11);
-  assert.strictEqual(snapshot.policy.compositionRules.length, 1);
+  assert.strictEqual(snapshot.policy.compositionRules.length, 5);
   assert.deepStrictEqual(snapshot.routingModel.bundleRules[0].targetWorkflowModes, [
-    'create-quality-control',
-    'create-skill',
+    'sk-create-skill',
+    'sk-create-quality-control',
   ]);
   assert.strictEqual(snapshot.routingModel.defaultMode, null);
   assert.strictEqual(snapshot.routingModel.ambiguityDelta, 1);
@@ -208,7 +208,7 @@ function assertCompiled(snapshot) {
     byteIdenticalRecompile: true,
     destinationCount: 12,
     distinctPacketCount: 11,
-    orderedBundleRules: 1,
+    orderedBundleRules: 5,
     schemaValidation: 'pass',
   };
 }
@@ -300,7 +300,7 @@ function runDocumentParity(snapshot, fixture) {
   const card = fs.readFileSync(path.join(CHILD_ROOT, 'compiled', 'PolicyCardV1.md'), 'utf8');
   const cases = [
     ...fixture.cases,
-    { id: 'qualified-explicit', prompt: 'unrelated', explicitMode: 'sk-doc/create-readme' },
+    { id: 'qualified-explicit', prompt: 'unrelated', explicitMode: 'sk-doc/sk-create-readme' },
     { id: 'dependency-defer', prompt: '/create:readme', constraints: ['dependency-failure'] },
   ];
   const rows = cases.map((entry) => {
@@ -338,10 +338,10 @@ function runAdvisorCases(snapshot, fixture) {
 
 function runAuthoredFalsifiers(snapshot, fixture) {
   const defaulted = compileWithRouter(snapshot, (router) => {
-    router.routerPolicy.defaultMode = 'create-readme';
+    router.routerPolicy.defaultMode = 'sk-create-readme';
   });
   assert.deepStrictEqual(targetModes(evaluateCanary(defaulted, { prompt: 'unrelated orchard inventory' }).decision), [
-    'create-readme',
+    'sk-create-readme',
   ]);
   const strictDelta = compileWithRouter(snapshot, (router) => {
     router.routerPolicy.ambiguityDelta = 0;
@@ -356,11 +356,11 @@ function runAuthoredFalsifiers(snapshot, fixture) {
     router.routerPolicy.bundleRules[0].outcome = 'single';
   }), (error) => assertCode(error, 'BUNDLE_RULE_INVALID'));
   assert.throws(() => compileWithRouter(snapshot, (router) => {
-    router.routerSignals['create-readme'].resources = ['invented/SKILL.md'];
+    router.routerSignals['sk-create-readme'].resources = ['invented/SKILL.md'];
   }), (error) => assertCode(error, 'ROUTER_RESOURCE_MISMATCH'));
   const live = sourceBytes();
   const parsedRouter = JSON.parse(live['hub-router.json'].toString('utf8'));
-  parsedRouter.routerPolicy.defaultMode = 'create-readme';
+  parsedRouter.routerPolicy.defaultMode = 'sk-create-readme';
   assert.throws(() => compileRegistry({
     activationGeneration: snapshot.policy.activationGeneration,
     hubRouter: parsedRouter,
