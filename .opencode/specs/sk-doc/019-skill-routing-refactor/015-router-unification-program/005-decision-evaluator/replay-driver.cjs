@@ -27,7 +27,18 @@ const { projectToRouteGold } = require('./lib/projector.cjs');
 // 2. PATHS AND CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
+// A fixed number of parent hops breaks inside git worktrees, where the specs
+// tree sits one directory deeper than in the primary checkout — resolve the
+// repository root by its marker instead.
+const REPO_ROOT = (() => {
+  let current = path.resolve(__dirname);
+  for (;;) {
+    if (fs.existsSync(path.join(current, '.opencode', 'skills'))) return current;
+    const parent = path.dirname(current);
+    if (parent === current) throw new Error('repository root could not be resolved');
+    current = parent;
+  }
+})();
 const CONTRACT_FIXTURES = path.resolve(__dirname, '..', '003-contract-schemas', 'fixtures');
 const FIXTURE_FILE = path.resolve(__dirname, 'fixtures', 'evaluator-cases.v1.json');
 const PROTECTED_DIGESTS_FILE = path.resolve(__dirname, 'harness', 'protected-digests.json');

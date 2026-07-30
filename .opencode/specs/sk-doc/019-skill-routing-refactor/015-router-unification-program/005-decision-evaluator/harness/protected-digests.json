@@ -3,11 +3,11 @@
   "files": [
     {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      "sha256": "d5e13daf3e99469c079e8037c988b31db4d27dfcf5045789d70dceb48de8af47"
+      "sha256": "1883187700c26f2cc6820716766bb16105eff621896cf826c2b1b5dd3f741954"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      "sha256": "d5a9cc72ec7cfcfb6484f0998f78e7ec16160ecdfee9e3c63f3215c72bf8780c"
+      "sha256": "673e233551ae6c62df3ce21558b116ac4651e5e1c14f2e5a6bf9ee6ce15cff2e"
     },
     {
       "path": ".opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas/fixtures/typed-route-gold.negative.json",
