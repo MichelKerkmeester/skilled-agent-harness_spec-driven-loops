@@ -8,10 +8,16 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedBasis": "signal",
-      "expectedModes": ["prompt-improve"],
+      "expectedModes": [
+        "sk-prompt-improve"
+      ],
       "gold": {
-        "expectedIntents": ["prompt-improve"],
-        "expectedResources": ["prompt-improve/SKILL.md"]
+        "expectedIntents": [
+          "sk-prompt-improve"
+        ],
+        "expectedResources": [
+          "sk-prompt-improve/SKILL.md"
+        ]
       }
     },
     {
@@ -20,22 +26,37 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedBasis": "signal",
-      "expectedModes": ["prompt-models"],
+      "expectedModes": [
+        "sk-prompt-models"
+      ],
       "gold": {
-        "expectedIntents": ["prompt-models"],
-        "expectedResources": ["prompt-models/SKILL.md"]
+        "expectedIntents": [
+          "sk-prompt-models"
+        ],
+        "expectedResources": [
+          "sk-prompt-models/SKILL.md"
+        ]
       }
     },
     {
       "id": "ordered-bundle-explicit-both",
-      "prompt": "run prompt-improve then prompt-models",
+      "prompt": "run sk-prompt-improve then sk-prompt-models",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
       "expectedBasis": "signal",
-      "expectedModes": ["prompt-improve", "prompt-models"],
+      "expectedModes": [
+        "sk-prompt-improve",
+        "sk-prompt-models"
+      ],
       "gold": {
-        "expectedIntents": ["prompt-improve", "prompt-models"],
-        "expectedResources": ["prompt-improve/SKILL.md", "prompt-models/SKILL.md"]
+        "expectedIntents": [
+          "sk-prompt-improve",
+          "sk-prompt-models"
+        ],
+        "expectedResources": [
+          "sk-prompt-improve/SKILL.md",
+          "sk-prompt-models/SKILL.md"
+        ]
       }
     },
     {
@@ -43,7 +64,9 @@
       "prompt": "prompt engineering improve prompt small model prompt deepseek",
       "expectedAction": "clarify",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     },
@@ -53,20 +76,30 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedBasis": "bounded-default",
-      "expectedModes": ["prompt-improve"],
+      "expectedModes": [
+        "sk-prompt-improve"
+      ],
       "gold": {
-        "expectedIntents": ["prompt-improve"],
-        "expectedResources": ["prompt-improve/SKILL.md"]
+        "expectedIntents": [
+          "sk-prompt-improve"
+        ],
+        "expectedResources": [
+          "sk-prompt-improve/SKILL.md"
+        ]
       }
     },
     {
       "id": "dependency-defer",
       "prompt": "small model prompt",
-      "constraints": ["dependency-failure"],
+      "constraints": [
+        "dependency-failure"
+      ],
       "expectedAction": "defer",
       "expectedReason": "dependency-failure",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     },
@@ -76,27 +109,54 @@
       "expectedAction": "reject",
       "expectedReason": "forbidden",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     },
     {
       "id": "constraint-forbidden-reject",
       "prompt": "orchard inventory",
-      "constraints": ["forbidden"],
+      "constraints": [
+        "forbidden"
+      ],
       "expectedAction": "reject",
       "expectedReason": "forbidden",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     }
   ],
   "advisorCases": [
-    { "id": "live-match", "trust": "live", "expectedContribution": true },
-    { "id": "stale", "trust": "stale", "expectedContribution": false },
-    { "id": "absent", "trust": "absent", "expectedContribution": false },
-    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
-    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+    {
+      "id": "live-match",
+      "trust": "live",
+      "expectedContribution": true
+    },
+    {
+      "id": "stale",
+      "trust": "stale",
+      "expectedContribution": false
+    },
+    {
+      "id": "absent",
+      "trust": "absent",
+      "expectedContribution": false
+    },
+    {
+      "id": "unavailable",
+      "trust": "unavailable",
+      "expectedContribution": false
+    },
+    {
+      "id": "projection-drift",
+      "trust": "live",
+      "projectionDrift": true,
+      "expectedContribution": false
+    }
   ]
 }

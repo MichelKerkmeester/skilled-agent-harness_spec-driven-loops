@@ -10,6 +10,7 @@ function cardPayload(snapshot) {
     advisorProjection: snapshot.advisorProjection,
     destinationGraph: snapshot.destinationGraph,
     policy: snapshot.policy,
+    routingModel: snapshot.routingModel,
   };
 }
 

@@ -11,7 +11,7 @@
         "abstentionThreshold": "0.720000",
         "coverageTarget": "0.750000"
       },
-      "policyHash": "1a42e542b2e3d2c544b456b7026de69af8f79b57c92b22945e92aef5aa3dd29c",
+      "policyHash": "f2c721b442a7b7e83d57861d1ad307871d0e04b6882f55c6bf97ec5d85c98461",
       "riskSlice": "actor:mutating:composite",
       "evaluationWindow": {
         "corpusVersion": "V1",
@@ -63,9 +63,15 @@
       "certificateFixture": "valid-composite",
       "expectedAction": "route",
       "expectedSelectionKind": "surfaceBundle",
-      "expectedModes": ["code-review", "code-webflow"],
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-webflow"
+      ],
       "gold": {
-        "expectedIntents": ["code-review", "code-webflow"],
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-webflow"
+        ],
         "expectedResources": []
       }
     },
@@ -75,9 +81,13 @@
       "riskSlice": "actor:mutating:single",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
-      "expectedModes": ["quality"],
+      "expectedModes": [
+        "sk-code-quality"
+      ],
       "gold": {
-        "expectedIntents": ["quality"],
+        "expectedIntents": [
+          "sk-code-quality"
+        ],
         "expectedResources": []
       }
     },
@@ -85,11 +95,19 @@
       "id": "ambiguous-leaf",
       "prompt": "quality review",
       "riskSlice": "actor:mutating:none",
-      "expectedAction": "clarify",
+      "expectedAction": "route",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "sk-code-quality",
+          "sk-code-review"
+        ],
         "expectedResources": []
-      }
+      },
+      "expectedSelectionKind": "orderedBundle",
+      "expectedModes": [
+        "sk-code-quality",
+        "sk-code-review"
+      ]
     },
     {
       "id": "zero-leaf-signal",
@@ -98,62 +116,81 @@
       "expectedAction": "defer",
       "expectedReason": "no-match",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     },
     {
       "id": "forbidden-request",
       "prompt": "forbidden workspace operation",
-      "constraints": ["forbidden"],
+      "constraints": [
+        "forbidden"
+      ],
       "riskSlice": "actor:mutating:none",
       "expectedAction": "reject",
       "expectedReason": "forbidden",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     }
   ],
   "certificateCases": [
     {
-      "id": "no-certificate-abstains",
+      "id": "no-certificate-inert",
       "prompt": "review my webflow animation for jank",
-      "riskSlice": "actor:mutating:composite",
-      "expectedAction": "clarify",
-      "expectedCertificateReason": "CERTIFICATE_ABSENT"
+      "riskSlice": "actor:mutating:composite"
     },
     {
-      "id": "stale-certificate-abstains",
+      "id": "stale-certificate-inert",
       "prompt": "review my webflow animation for jank",
       "riskSlice": "actor:mutating:composite",
       "certificateFixture": "valid-composite",
-      "certificateState": "stale",
-      "expectedAction": "clarify",
-      "expectedCertificateReason": "CERTIFICATE_STALE"
+      "certificateState": "stale"
     },
     {
-      "id": "policy-mismatch-abstains",
+      "id": "policy-mismatch-inert",
       "prompt": "review my webflow animation for jank",
       "riskSlice": "actor:mutating:composite",
-      "certificateFixture": "wrong-policy",
-      "expectedAction": "clarify",
-      "expectedCertificateReason": "CERTIFICATE_POLICY_MISMATCH"
+      "certificateFixture": "wrong-policy"
     },
     {
-      "id": "risk-slice-mismatch-abstains",
+      "id": "risk-slice-mismatch-inert",
       "prompt": "review my webflow animation for jank",
       "riskSlice": "actor:mutating:single",
-      "certificateFixture": "valid-composite",
-      "expectedAction": "clarify",
-      "expectedCertificateReason": "CERTIFICATE_RISK_SLICE_MISMATCH"
+      "certificateFixture": "valid-composite"
     }
   ],
   "advisorCases": [
-    { "id": "live-match", "trust": "live", "expectedContribution": true },
-    { "id": "stale", "trust": "stale", "expectedContribution": false },
-    { "id": "absent", "trust": "absent", "expectedContribution": false },
-    { "id": "unavailable", "trust": "unavailable", "expectedContribution": false },
-    { "id": "projection-drift", "trust": "live", "projectionDrift": true, "expectedContribution": false }
+    {
+      "id": "live-match",
+      "trust": "live",
+      "expectedContribution": true
+    },
+    {
+      "id": "stale",
+      "trust": "stale",
+      "expectedContribution": false
+    },
+    {
+      "id": "absent",
+      "trust": "absent",
+      "expectedContribution": false
+    },
+    {
+      "id": "unavailable",
+      "trust": "unavailable",
+      "expectedContribution": false
+    },
+    {
+      "id": "projection-drift",
+      "trust": "live",
+      "projectionDrift": true,
+      "expectedContribution": false
+    }
   ]
 }

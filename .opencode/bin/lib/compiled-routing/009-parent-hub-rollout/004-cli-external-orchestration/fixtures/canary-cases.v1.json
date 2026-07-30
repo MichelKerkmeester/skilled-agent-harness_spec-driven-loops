@@ -7,10 +7,14 @@
       "prompt": "delegate to opencode for full plugin runtime",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
-      "expectedModes": ["cli-opencode"],
+      "expectedModes": [
+        "cli-opencode"
+      ],
       "legacyExact": true,
       "gold": {
-        "expectedIntents": ["cli-opencode"],
+        "expectedIntents": [
+          "cli-opencode"
+        ],
         "expectedResources": []
       }
     },
@@ -19,10 +23,14 @@
       "prompt": "claude code review with extended thinking",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
-      "expectedModes": ["cli-claude-code"],
+      "expectedModes": [
+        "cli-claude-code"
+      ],
       "legacyExact": true,
       "gold": {
-        "expectedIntents": ["cli-claude-code"],
+        "expectedIntents": [
+          "cli-claude-code"
+        ],
         "expectedResources": []
       }
     },
@@ -31,10 +39,29 @@
       "prompt": "codex diff review and codex web search",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
-      "expectedModes": ["cli-codex"],
+      "expectedModes": [
+        "cli-codex"
+      ],
       "legacyExact": true,
       "gold": {
-        "expectedIntents": ["cli-codex"],
+        "expectedIntents": [
+          "cli-codex"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "pi-single",
+      "prompt": "delegate to pi",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-pi"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-pi"
+        ],
         "expectedResources": []
       }
     },
@@ -43,9 +70,15 @@
       "prompt": "delegate to codex and delegate to opencode",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["cli-opencode", "cli-codex"],
+      "expectedModes": [
+        "cli-opencode",
+        "cli-codex"
+      ],
       "gold": {
-        "expectedIntents": ["cli-opencode", "cli-codex"],
+        "expectedIntents": [
+          "cli-opencode",
+          "cli-codex"
+        ],
         "expectedResources": []
       }
     },
@@ -54,9 +87,17 @@
       "prompt": "cli-codex, cli-opencode, and cli-claude-code",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["cli-opencode", "cli-claude-code", "cli-codex"],
+      "expectedModes": [
+        "cli-opencode",
+        "cli-claude-code",
+        "cli-codex"
+      ],
       "gold": {
-        "expectedIntents": ["cli-opencode", "cli-claude-code", "cli-codex"],
+        "expectedIntents": [
+          "cli-opencode",
+          "cli-claude-code",
+          "cli-codex"
+        ],
         "expectedResources": []
       }
     },
@@ -65,7 +106,9 @@
       "prompt": "extended thinking with a codex diff review",
       "expectedAction": "clarify",
       "gold": {
-        "expectedIntents": ["unknown"],
+        "expectedIntents": [
+          "unknown"
+        ],
         "expectedResources": []
       }
     },
@@ -75,7 +118,9 @@
       "expectedAction": "defer",
       "expectedReason": "no-match",
       "gold": {
-        "expectedIntents": ["defer"],
+        "expectedIntents": [
+          "defer"
+        ],
         "expectedResources": []
       }
     },
@@ -85,15 +130,37 @@
       "expectedAction": "reject",
       "expectedReason": "forbidden",
       "gold": {
-        "expectedIntents": ["none"],
+        "expectedIntents": [
+          "none"
+        ],
         "expectedResources": []
       }
     }
   ],
   "advisorCases": [
-    { "id": "live-match", "state": "live", "drift": false, "contributes": true },
-    { "id": "stale", "state": "stale", "drift": false, "contributes": false },
-    { "id": "absent", "state": "absent", "drift": false, "contributes": false },
-    { "id": "projection-drift", "state": "live", "drift": true, "contributes": false }
+    {
+      "id": "live-match",
+      "state": "live",
+      "drift": false,
+      "contributes": true
+    },
+    {
+      "id": "stale",
+      "state": "stale",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "absent",
+      "state": "absent",
+      "drift": false,
+      "contributes": false
+    },
+    {
+      "id": "projection-drift",
+      "state": "live",
+      "drift": true,
+      "contributes": false
+    }
   ]
 }
