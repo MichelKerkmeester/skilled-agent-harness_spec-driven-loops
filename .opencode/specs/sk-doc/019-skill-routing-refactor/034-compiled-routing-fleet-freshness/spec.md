@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
     last_updated_at: "2026-07-30T16:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Three compile fixes landed; ceremony gated"
-    next_safe_action: "Operator: authorize re-activation ceremony"
+    recent_action: "Ceremony blocked: activation layer never committed"
+    next_safe_action: "Reconstruct activation modules in a dedicated phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       parent_session_id: null
     completion_pct: 60
     open_questions:
-      - "Operator decision: authorize the fenced-CAS re-activation of the seven authored manifests so the mirror rebuild can propagate the fixes"
+      - "Reconstruction first: the activation driver's shared governance modules were never committed and are unrecoverable, so the re-activation ceremony is unrunnable until they are rebuilt and the seven canaries re-baselined"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

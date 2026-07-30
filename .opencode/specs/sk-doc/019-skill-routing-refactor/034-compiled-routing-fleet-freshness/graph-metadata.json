@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Restore every activated hub's compiled-routing manifest to fresh: re-mint the four hubs whose manifests went stale, diagnose and fix the three hubs whose routing inputs no longer compile, and turn the one remaining red step in the routing CI workflow green.",
     "created_at": "2026-07-30T15:12:53.950Z",
-    "last_save_at": "2026-07-30T15:13:48.352Z",
+    "last_save_at": "2026-07-30T15:50:54.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb10a0b1d1baff0c0f81d44d07853d3a00a32bae0342b3bb2f7388659a68215f",
+    "source_fingerprint": "sha256:d5d4d92af231d07c15e66bc99888afc81d769a7cc23c7baf44464ca7465d692f",
     "source_doc_hashes": {
-      "spec.md": "281cf3b14c453363c28bd361e03f6999eda7ba107fca920cca448bf36afcb7c2",
+      "spec.md": "2283e9dbe3c06e883c9791d88a2cd4c139b467401deb224d62c4cae51a7a8d2c",
       "plan.md": "35bbf9cedfab76e948d915158226744e60fe2fd664ff2acb69d85035b0234879",
-      "tasks.md": "e59227a5f940b0e54fc8e2d1f20fc2f64caeefe32eccc2a88b8536ea828b004f",
+      "tasks.md": "ab85256a475bfe47d682ac8e126d8739091d85213721450d0d007da19fb297e4",
       "checklist.md": "3c1c7836d582db028a35cec6be3a42ebe0f655776ad110a29c7ce1ca171232a6",
-      "implementation-summary.md": "38794de82dd96b13ff37e8101f05ae2105c71f9664168389d17f8ffe96024af0"
+      "implementation-summary.md": "c100aa37d81870bf978c73f08c74fc17f748c202fa4ff36fcda765375634f48f"
     },
     "last_active_child_id": null,
     "last_active_at": null

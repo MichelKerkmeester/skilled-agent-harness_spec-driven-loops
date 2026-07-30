@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness"
     last_updated_at: "2026-07-30T17:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Three compile fixes landed; ceremony gated"
-    next_safe_action: "Operator: authorize re-activation ceremony"
+    recent_action: "Ceremony blocked: activation layer never committed"
+    next_safe_action: "Reconstruct activation modules in a dedicated phase"
     blockers:
       - "Mirror rebuild gated on re-binding the authored activation manifests (fence-epoch advance) — operator ceremony"
     key_files:
@@ -23,7 +23,7 @@ _memory:
       parent_session_id: null
     completion_pct: 60
     open_questions:
-      - "Operator decision: authorize the fenced-CAS re-activation of the seven authored manifests"
+      - "Dedicated reconstruction phase: rebuild the never-committed activation modules, commit them, re-baseline the seven canaries, then activate, sync, and finalize"
     answered_questions: []
 ---
 <!-- SPECKIT_LEVEL: 2 -->
@@ -70,7 +70,7 @@ After the fixes, **all seven hubs load through the authored engine (7/7 OK)** an
 
 ### The gated remainder
 
-The manifest tooling compiles through the **promoted mirror**, which still carries the pre-fix harness code, so the three repaired hubs cannot re-mint until the mirror rebuild (`compiled-route-sync`) propagates the authored fixes — and that rebuild's closure trace requires the **authored activation manifests** to resolve, which they cannot: they pin superseded policy generations (e.g. sk-code generation 2). Re-binding them is the router-unification program's fenced-CAS ceremony (`activate-hub` driver) — an epoch advance on the live serving authority, deliberately held for the operator rather than run unilaterally.
+The manifest tooling compiles through the **promoted mirror**, which still carries the pre-fix harness code, so the three repaired hubs cannot re-mint until the mirror rebuild (`compiled-route-sync`) propagates the authored fixes — and that rebuild's closure trace requires the **authored activation manifests** to resolve, which they cannot: they pin superseded policy generations (e.g. sk-code generation 2). Re-binding them is the router-unification program's fenced-CAS ceremony (`activate-hub` driver). On operator authorization the ceremony was attempted and stopped by a decisive finding: the driver cannot even load — its shared governance modules (the frozen-scorer digest contract and the per-hub lock) were **never committed**, and they are absent from both working trees, every stash, and all git history. Independently, all seven rollout-child canaries fail against months of accumulated, individually-gated fleet drift and require adjudicated re-baselines (mechanical rename/hash deltas separated from behavioral route changes) before activation could be honest. The last mile is therefore a reconstruction phase, not a button press.
 <!-- /ANCHOR:what-built -->
 
 ---

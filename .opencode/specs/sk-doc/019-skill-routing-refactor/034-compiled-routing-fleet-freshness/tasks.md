@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-07 Confirm `compiled-route-guard.cjs` exits 0 locally with all seven hubs fresh [BLOCKED on T-06 and the authored re-activation: the authored activation manifests pin superseded policy hashes (e.g. sk-code generation 2), so the authored resolver fails closed and the sync closure trace rejects all hubs; re-binding them is the fenced-CAS ceremony in the router-unification program's activate-hub driver — a fence-epoch advance on the serving authority, held for the operator]
+- [ ] T-07 Confirm `compiled-route-guard.cjs` exits 0 locally with all seven hubs fresh [BLOCKED — ceremony attempted on authorization and stopped by a decisive finding: the activation driver cannot load because its shared governance modules (frozen-scorer contract, hub lock) were never committed — absent from both trees, all 22 stashes, and all git history. Additionally, all seven rollout-child canaries fail against months of accumulated fleet drift and would need adjudicated re-baselines. Before any re-activation: reconstruct the two shared modules from their call-site contracts (a digest-freeze check over the scorer surface with a committed pin registry; a per-hub lockfile wrapper), commit them, then re-baseline the canaries hub-by-hub separating mechanical rename/hash deltas from behavioral route changes]
 - [ ] T-08 Re-run the full routing gate set and confirm zero movement against the T-02 baseline
 - [ ] T-09 Push and confirm the previously-red CI step passes on a live run
 - [ ] T-10 Run `validate.sh <folder> --strict` to Errors:0 and close the packet docs
