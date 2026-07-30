@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/019-skill-routing-refactor/034-compiled-routing-fleet-freshness",
   "description": "Restore every activated hub's compiled-routing manifest to fresh: re-mint the four hubs whose manifests went stale, diagnose and fix the three hubs",
   "keywords": [
@@ -19,7 +20,7 @@
     "diagnose",
     "three"
   ],
-  "lastUpdated": "2026-07-30T15:13:39.136Z",
+  "lastUpdated": "2026-07-30T17:28:24.435Z",
   "specId": "034",
   "folderSlug": "compiled-routing-fleet-freshness",
   "parentChain": [
