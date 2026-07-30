@@ -13,20 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Await phase 013 disposition, then rewrite the three false items against real evidence"
-    blockers:
-      - "The three regression-related checklist items cannot be truthfully restated until phase 013 establishes the real numbers"
+    recent_action: "Repaired evidence and withdrew false claims"
+    next_safe_action: "Proceed to phase 016"
+    blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/015-evidence-integrity-repair"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the strict-validation failures are one root cause or several is unknown until the validator is run per-folder and the errors are grouped"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Strict-validation errors reduce to two groups: fingerprint mismatch (assigned to 016) and frontmatter-narrative overflow (fixed here)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -114,5 +114,5 @@ No two checklist items share evidence text; the three regression items are re-op
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the strict-validation failures reduce to a single generator root cause shared with phase 016, or are several independent defects, is unknown until the errors are grouped.
+Resolved: grouping the per-folder validator output shows two causes, not one. Group A — GENERATED_METADATA_INTEGRITY (source-fingerprint mismatch) across the parent and 001–012 (13 folders) — shares phase 016's generator root cause and is assigned there. Group B — FRONTMATTER_MEMORY_BLOCK across 004/007/008/009/012 (5 folders), a narrative continuity field over the 96-char compact limit — is a separate authored-template defect and was fixed here. After Group B's fix, Group A is the sole remaining error group.
 <!-- /ANCHOR:questions -->

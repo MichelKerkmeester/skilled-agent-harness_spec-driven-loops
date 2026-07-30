@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Type** | Phase parent |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |

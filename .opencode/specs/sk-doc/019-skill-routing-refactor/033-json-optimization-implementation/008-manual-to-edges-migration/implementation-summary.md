@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/008-manual-to-edges-migration"
     last_updated_at: "2026-07-29T19:30:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Migrated manual.* to symmetric edges + unknown-key lint; SOL-built, LUNA-reviewed, corpus neutral both regimes"
+    recent_action: "Migrated manual fields to symmetric edges"
     next_safe_action: "Phase 009 signal-quality"
     blockers: []
     key_files:

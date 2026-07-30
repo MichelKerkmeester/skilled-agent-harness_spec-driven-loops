@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-07-29T23:15:00Z"
     last_updated_by: "claude-code"
     recent_action: "Daemon reindex + zero-delta close across all regimes; program rollup complete"
-    next_safe_action: "Program complete; follow-ups: command-bridge cutover (gated), pi-hook build repair (other session)"
+    next_safe_action: "Follow-ups tracked in remediation phases"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "012-integration-verification-rollout"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 80
     open_questions:
       - "Does the live-daemon proof find real staleness, or does the existing reindex path already cover it end to end?"
       - "What exact cache (if any) does 003's freshness work introduce beyond the two already-identified ones?"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Delivered** | Not yet — depends on all prior phases in this program landing |
 | **Track** | sk-doc |
 | **Depends On** | `002` pinned-corpus baseline, `003` derived schema, `008` edges, `011` command rewire, and every other phase in `033-json-optimization-implementation` |

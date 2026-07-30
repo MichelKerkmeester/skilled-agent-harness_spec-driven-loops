@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/007-dead-field-deletes"
     last_updated_at: "2026-07-29T19:06:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Deleted orphan fields + unified packetSkillName; SOL-built, LUNA-reviewed CLEAN; corpus neutral both regimes"
+    recent_action: "Deleted orphan fields; corpus neutral"
     next_safe_action: "Phase 008 manual-to-edges-migration"
     blockers: []
     key_files:

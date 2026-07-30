@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/011-command-metadata-ingestion"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions:
       - "Backfill system-spec-kit's missing command-metadata.json as a prerequisite, or ship this phase against the documented allow-list residual?"
     answered_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Complete |
+| **Status** | Planned |
 | **Delivered** | Not yet — Planned, blocked on 006 |
 | **Track** | sk-doc |
 | **Opportunities addressed** | O7 (command-metadata ingestion) + O10 (denser command-metadata/leaf-aliases e2e tests), per 029 research §3 |

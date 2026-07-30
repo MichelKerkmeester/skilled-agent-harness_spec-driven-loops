@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality"
     last_updated_at: "2026-07-29T20:10:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Signals enriched + path noise reduced + gates/tests landed; double-count premise corrected; corpus neutral all regimes"
+    recent_action: "Signals enriched and path noise reduced"
     next_safe_action: "Phase 010 parent-intent-projection-spike"
     blockers: []
     key_files:
