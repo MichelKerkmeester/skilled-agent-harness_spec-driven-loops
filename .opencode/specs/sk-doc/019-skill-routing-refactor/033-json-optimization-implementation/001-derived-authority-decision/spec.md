@@ -123,7 +123,7 @@ Out of scope — building the regenerator itself (phase 003 per the 029 research
 ## RELATED DOCUMENTS
 
 - **Program predecessor**: `../029-skill-json-optimization-research` (`research/research.md` §2-3, theme #1, 3/3 agreement)
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md`
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
 - **Decision Record**: See `decision-record.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

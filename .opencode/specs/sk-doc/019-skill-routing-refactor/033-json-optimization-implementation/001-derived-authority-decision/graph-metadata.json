@@ -45,6 +45,7 @@
       "decision-record.md",
       "plan.md",
       "checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -71,6 +72,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape against the TS Zod SkillDerivedV2 schema used by the lifecycle subsystem.",
     "created_at": "2026-07-29T07:59:56.768Z",
-    "last_save_at": "2026-07-30T11:11:55.495Z",
+    "last_save_at": "2026-07-30T11:32:35.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +208,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ac8d6fe3d6853918e204e43c2a417ed38d2fdb18c7dc1c7bcde72df84bf1cc2",
+    "source_fingerprint": "sha256:2f4ab2274e4d233b239a4360e869b53a170472ae6a2425feafae7b6818e80845",
     "source_doc_hashes": {
-      "spec.md": "75bde2322b2f1e0deee771b75c05ebcd36f2c191fc307b6c62944541efec8068",
+      "spec.md": "bd5bcd210c5f488ab426a09c3ae5c890add8bab1ca35191df08d28d4395f3160",
       "plan.md": "8934731d08748064cecfe24003aaf52ddb84d99ddbfd02a1f7c9f117a4c8eece",
       "tasks.md": "62d04957aee8005531b4d513e15d522550a107ec832e70d3d1de9335248e7853",
       "checklist.md": "a8ac6b589a7a7f6ffbd6d149d1d1559f4ba906026a52984237af4b0a3011b64a",

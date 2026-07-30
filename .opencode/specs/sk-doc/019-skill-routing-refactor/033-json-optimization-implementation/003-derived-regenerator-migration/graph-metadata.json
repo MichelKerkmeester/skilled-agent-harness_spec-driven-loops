@@ -40,6 +40,7 @@
       "spec.md",
       "mcp-server/package.json",
       "scripts/memory/generate-context.ts",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -62,6 +63,12 @@
         "name": "generate-context.ts",
         "kind": "code",
         "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Blast Radius",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Build a skill-root analog to the spec-folder backfill-graph-metadata regenerator: derive key_files/source_docs/entities/trigger_phrases/key_topics from each skill's corpus while preserving authored causal_summary and the TS lifecycle/redirect capabilities per the phase-001 canonical-schema decision; migrate all 11 existing skill roots to that shape; add a derived-freshness CI gate.",
     "created_at": "2026-07-29T08:00:08.862Z",
-    "last_save_at": "2026-07-30T11:11:55.523Z",
+    "last_save_at": "2026-07-30T11:32:35.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +204,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:033f2c6f93b27dda704389e8e7298f07615097c7628552e3c8e63228a0613b4a",
+    "source_fingerprint": "sha256:8372b8afba7c59c908f82bbc9668727ae364215d877f49dfb5fd36864e583800",
     "source_doc_hashes": {
-      "spec.md": "9a6bed591c48b6d5beed0ce6e5b611d9bb4cb62efd1a84621e5d7456c3432662",
-      "plan.md": "e00460f76c56c6cf49cb0ff60b6345277aa880bf8ccec501c09c298b054c246c",
+      "spec.md": "84220ff423c2d8803da041161910244303a723fd46c65aca4f0cb5bcb9a21f50",
+      "plan.md": "1bdfaadaf0df7408f4943f04ac3fce459b075d1fbf863cf57ab7cbd0b0594ac8",
       "tasks.md": "57bede173e5fda5b462f2ec982f7e6151b50742c06a4cf6d10468e4749388b5c",
       "checklist.md": "8237e5c9aa606818d76bd3d7253f0ce1568b9601e19255adc421dd08c82ac70c",
       "implementation-summary.md": "ee903bf8cbc64985ee75bdc0dd88903b921181fa3c66cef63bac1ecfdcbde84d"

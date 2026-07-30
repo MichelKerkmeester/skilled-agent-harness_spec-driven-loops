@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Add skill_graph_compiler.py --validate-only (full derived schema + key_files/source_docs path existence) and score-routing-corpus.py (pinned corpus hash) to routing-registry-drift.yml so a malformed derived block or a routing-accuracy regression fails CI instead of only surfacing at an offline advisor rebuild.",
     "created_at": "2026-07-29T08:00:19.030Z",
-    "last_save_at": "2026-07-30T11:11:55.559Z",
+    "last_save_at": "2026-07-30T11:32:35.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b32534e74b6bed74063a28f192029a1cf541f4086042574fa1c9654c54b6d2d",
+    "source_fingerprint": "sha256:2bc2c0f7c162a26c80b8f9a4eea98648f6e754d2b2fccff148bf826e2ab6afd7",
     "source_doc_hashes": {
       "spec.md": "33b27e5ee0744b2f9d8e8e7bb91a3c5814f3e852212d076424ca6b81af345a99",
-      "plan.md": "1e27d1d969ddae517cab7ec22753b45b1020a76e8b5638e8a7abe8c807972f89",
+      "plan.md": "72ac0d79cf000d87fbb1ef81715955375d51998265657a371e35da597d5de693",
       "tasks.md": "3729435477f6195ab93d185846eef76476b45e3bdf75b58769c9ace333edbb86",
       "checklist.md": "282c1b6913a7c34e3b6fa035ea4d29d6b4ce9ed51e5da8dae523f8f67f7dd7ff",
       "implementation-summary.md": "3e5488850726fd4d71d5656cfd4af49a884efcd9d79c75054ef66da1e1d25d1a"

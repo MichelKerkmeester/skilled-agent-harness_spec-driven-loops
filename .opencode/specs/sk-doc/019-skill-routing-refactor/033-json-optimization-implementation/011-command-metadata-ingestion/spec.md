@@ -134,7 +134,7 @@ Out of scope — authoring a `command-metadata.json` for `system-spec-kit` itsel
 
 - **Research this program implements**: `../../029-skill-json-optimization-research/research/research.md` §3 O7 (`scorer/projection.ts:58-145`; `routing-registry-drift.yml`), O10 (thin `command-metadata`/`leaf-aliases` e2e coverage), §4 (O7 sol-high/glm-high disagreement)
 - **Program parent**: `../spec.md` (REQ-003 blast-radius ordering, REQ-004 corpus-gate, REQ-006 guarded-rollout rule)
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md` (`command-metadata.json` H-class requirement)
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (`command-metadata.json` H-class requirement)
 - **Existing precedent mirrored by this phase**: `mcp-server/lib/scorer/aliases.ts:21-71` (GENERATED block pattern) and `mcp-server/tests/routing-registry-drift-guard.vitest.ts` (drift-guard pattern)
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

@@ -167,7 +167,7 @@ The Status column reflects **execution state** (updated as phases land), not pla
 ## RELATED DOCUMENTS
 
 - **Research this program implements**: `../029-skill-json-optimization-research/research/research.md` (O1-O11 ranked opportunity map, cross-lineage evidence, §6 recommended next step)
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md`
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
 - **Program predecessors**: packets 021-029 under `../`
 
 ## Structural phase links

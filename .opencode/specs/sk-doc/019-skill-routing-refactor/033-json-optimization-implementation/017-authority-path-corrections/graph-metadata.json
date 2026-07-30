@@ -16,7 +16,8 @@
       "command-metadata no longer required",
       "tracked scratch derived block",
       "authority corrections implementation plan",
-      "authority corrections task breakdown"
+      "authority corrections task breakdown",
+      "authority path corrections summary"
     ],
     "key_topics": [
       "create-skill",
@@ -33,9 +34,10 @@
       "tracked"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md"
     ],
@@ -44,6 +46,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -135,23 +143,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Verify",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Correct the dead create-skill authority paths, bring the skill-root metadata contract doc in line with the deliberate H-required-to-optional reversal the implementation already made, and label or exclude the tracked scratch artifact.",
     "created_at": "2026-07-30T08:10:27.710Z",
-    "last_save_at": "2026-07-30T08:10:27.710Z",
+    "last_save_at": "2026-07-30T11:33:31.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a328deecabe51642e893fd089caae229fa0408c1408a67cd97e4e780d784ceb3",
+    "source_fingerprint": "sha256:f98f822dfe570bfc60a1c99ce03344cda5147b94638acfa6bb5cf70d70cfa8ac",
     "source_doc_hashes": {
-      "spec.md": "0d33d40cc9118ca3e07b77bcf1be5deef51f24ec55fa5142d149d7ee7d70e1a2",
-      "plan.md": "e98ad129731e5db4a30ce26a67e9a1088f2c6ecd262228d17543057729b07399",
-      "tasks.md": "f1f2e9628b73559f78f234d46a6a2925327855a5c28778489071d537aad10a20"
+      "spec.md": "51bdbe706840e7e9fc8134a39cbd89b27d697c7528261700f39fa0e7a3a46990",
+      "plan.md": "2115b0b17e720eb947cf8e6d75ad8010dceae9b102004c0fba341a6fc59637ad",
+      "tasks.md": "a7e6efca8ea644f7601e80a0ee5d084e32b408f8ecf65d184d50de1a8ef5d350",
+      "implementation-summary.md": "4b2cd9563bb0bae7cce9e26216f033fe586f9204d2c03801998f5e39bd79c3d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

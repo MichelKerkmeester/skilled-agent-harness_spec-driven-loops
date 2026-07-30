@@ -38,6 +38,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs",
       "tasks.md",
       "checklist.md",
       "tests/README.md",
@@ -55,6 +57,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-journey-proof.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Make init_skill.py auto-run the H/S class gate --fix and write a compiler-valid derived block so a new skill is born complete, generate S-class leaf-manifest.config.json defaults from one shared source, and add one joined test proving scaffold -> generated gate -> advisor ingest -> parent selection -> compiled route (O2 + O9, closing the open 024 journey-proof gap).",
     "created_at": "2026-07-29T08:00:12.368Z",
-    "last_save_at": "2026-07-30T11:11:55.537Z",
+    "last_save_at": "2026-07-30T11:32:35.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +204,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d50a08a3f35e695de16648e20b506f26b02325fe7432f051493393ada606e17",
+    "source_fingerprint": "sha256:42dc56880a6c5e49f5755a6be831e6b1d2ee8f3f8c0546693ad405faffe919a9",
     "source_doc_hashes": {
-      "spec.md": "8164bcea8f713e08fad69c8e93c3f77320cbc14bf1514ae17fb0f6200c30a9af",
-      "plan.md": "3884d069043e632cb813e9023019118ff102f9886d5225911168771889867c3c",
+      "spec.md": "0ce9066d1faadf6090444a96f7e0b8639a4d3c5c85c20e971bf8b735cc761947",
+      "plan.md": "e5b547aca482715b1f78601ae1f81654d3ec3badf3e0f715897343e8d5829318",
       "tasks.md": "1614ef67d03f4595d5f66d91c7514cf1f33b5088e586dd9e3a1d6b9fe32ca987",
       "checklist.md": "a3015a1a619b737c6e6e6533badf90fe695c51c25e08523d3868d27a090dd8a2",
       "implementation-summary.md": "8bcc63a1aaa176d1b1801fc626a61453c5153738458f1ecd643f55bfc92c9c53"

@@ -13,19 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Can proceed independently of the other phases"
+    recent_action: "Corrected dead citations and stale contract"
+    next_safe_action: "Proceed to phase 019 or 020"
     blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/017-authority-path-corrections"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the tracked scratch artifact should be labelled in place, moved, or removed from version control is an operator preference not settled here"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Scratch artifact labelled in place (least-destructive); relocate-or-untrack stays an open operator preference"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P3 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -110,5 +111,5 @@ No `create-skill` citation remains anywhere in the packet and every corrected pa
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether to label, move or untrack the scratch artifact is an operator preference and is not settled here.
+The scratch artifact was labelled in place with a `scratch/README.md` marking it non-live state — the least-destructive of the three options. Whether to additionally relocate it or remove it from version control remains an operator preference and is deliberately left open; the label makes it unmistakable for live state in the meantime.
 <!-- /ANCHOR:questions -->

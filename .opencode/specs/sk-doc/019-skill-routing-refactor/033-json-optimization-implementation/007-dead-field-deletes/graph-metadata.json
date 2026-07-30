@@ -39,6 +39,7 @@
       "spec.md",
       "implementation-summary.md",
       "plan.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       "tasks.md",
       "checklist.md"
     ],
@@ -59,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Delete confirmed-orphan skill-metadata fields that do not affect routing (description.json extras, sk-code derived-block orphans, causal_summary disposition) and resolve two duplicate-authority fields (routerPolicy.tieBreak, advisorRouting.packetSkillName) found by the 029 skill/advisor JSON optimization research.",
     "created_at": "2026-07-29T08:00:22.136Z",
-    "last_save_at": "2026-07-30T11:11:55.571Z",
+    "last_save_at": "2026-07-30T11:32:35.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +201,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3333a8592a1e846ace71859c4081bd1882479dd1506a8613c50b0be9668aae7",
+    "source_fingerprint": "sha256:1c099d30bd72d96b263ad816cc90baa99fbcbedc6c45606a91590cc5eb7e316f",
     "source_doc_hashes": {
-      "spec.md": "2866426a94f7762727f87d941c9726bc913d2c63dc5639318d312f9344cc36b0",
-      "plan.md": "ba4c697ed93bc899b1479d254657607575cd10bccb831a00718211b9d05d30dd",
+      "spec.md": "62f570b9ed0e946f3ad14fd0a1338a1fc96eaa02b74c30b1999c07f96ceb6d4e",
+      "plan.md": "e76496e8a3cc8093be66358b4a94acb61e6608ea093f6063e57edc6dc78643fd",
       "tasks.md": "e3694bbb24692f84eefb1b39a37828d33aa171bca40d7c74310567ceba9720d3",
       "checklist.md": "2c6ec50d84149acd09b27ba221a8a950b2c8856a8f3d84c873e70006509f6529",
       "implementation-summary.md": "a4003056e0e819c5d1eaba084484ce311eb188e88d2456ab30a0abb895d13a99"

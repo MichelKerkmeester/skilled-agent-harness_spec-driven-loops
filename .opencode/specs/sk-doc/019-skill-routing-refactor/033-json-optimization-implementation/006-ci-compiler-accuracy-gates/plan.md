@@ -67,7 +67,7 @@ No new production code. This phase edits one CI workflow file (`.github/workflow
 
 Both steps run inside the same `working-directory: .opencode/skills/system-skill-advisor/mcp-server` context the existing steps already use, since both scripts live under that tree and both already resolve `REPO_ROOT`/`SKILLS_DIR` relative to their own file location — no new environment setup beyond the `python3` interpreter the workflow already provisions via `actions/setup-python@v5`.
 
-Trigger-path extension: the workflow's `paths:` filters (both `push` and `pull_request` blocks) gain two new globs so an edit to the compiler script or the routing-accuracy corpus fires this job — mirroring how the existing filters already cover `mode-registry.json`, `hub-router.json`, and the `sk-doc/create-skill/scripts/**` tree.
+Trigger-path extension: the workflow's `paths:` filters (both `push` and `pull_request` blocks) gain two new globs so an edit to the compiler script or the routing-accuracy corpus fires this job — mirroring how the existing filters already cover `mode-registry.json`, `hub-router.json`, and the `sk-doc/sk-create-skill/scripts/**` tree.
 <!-- /ANCHOR:architecture -->
 
 ---

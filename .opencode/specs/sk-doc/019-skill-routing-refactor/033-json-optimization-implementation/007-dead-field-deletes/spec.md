@@ -124,7 +124,7 @@ Every field named in REQ-001 through REQ-003 is removed from its confirmed locat
 ## RELATED DOCUMENTS
 
 - **Program predecessor**: `../../029-skill-json-optimization-research` (source research, findings O5 §65-66 and O11 §81)
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md`
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **QA**: See `checklist.md`

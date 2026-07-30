@@ -71,10 +71,10 @@ Purpose: make a scaffolded skill compiler-valid and gate-fresh the moment `init_
 ## 3. SCOPE
 
 **In scope:**
-- `sk-doc/create-skill/scripts/init_skill.py` — `init_skill()` and `init_parent_skill()`: auto-run the H/S class gate `--fix` scoped to the newly scaffolded root after all scaffold files are written, and abort the scaffold (non-zero exit, printed cause) if the fix run fails for that root; extend both `derived` block literals with non-empty `key_files`, `entities`, and `causal_summary` values that reference files the scaffold has already written, satisfying `skill_graph_compiler.py`'s schema-version-2 validator on first ingest with no hand-editing.
-- `sk-doc/create-skill/scripts/generate-leaf-manifest.cjs` — `readStandaloneConfig()`: single-source the S-class boilerplate defaults so `init_skill.py`'s scaffolded config and this function's own fallback values read from one shared definition instead of two hand-kept-equivalent literals.
-- `sk-doc/create-skill/scripts/tests/` — one new joined test proving scaffold -> generated class gate -> advisor ingest -> parent selection -> compiled route, for one S-class and one H-class scaffold, extending the coverage `create-journey-proof.test.cjs` already provides up through the doctor check.
-- `sk-doc/create-skill/assets/skill/skill-leaf-manifest-config-template.json` — keep the hand-authoring template's documented defaults in sync with the single-sourced values from the point above (doc-only follow-through, not a new authored contract).
+- `sk-doc/sk-create-skill/scripts/init_skill.py` — `init_skill()` and `init_parent_skill()`: auto-run the H/S class gate `--fix` scoped to the newly scaffolded root after all scaffold files are written, and abort the scaffold (non-zero exit, printed cause) if the fix run fails for that root; extend both `derived` block literals with non-empty `key_files`, `entities`, and `causal_summary` values that reference files the scaffold has already written, satisfying `skill_graph_compiler.py`'s schema-version-2 validator on first ingest with no hand-editing.
+- `sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` — `readStandaloneConfig()`: single-source the S-class boilerplate defaults so `init_skill.py`'s scaffolded config and this function's own fallback values read from one shared definition instead of two hand-kept-equivalent literals.
+- `sk-doc/sk-create-skill/scripts/tests/` — one new joined test proving scaffold -> generated class gate -> advisor ingest -> parent selection -> compiled route, for one S-class and one H-class scaffold, extending the coverage `create-journey-proof.test.cjs` already provides up through the doctor check.
+- `sk-doc/sk-create-skill/assets/skill/skill-leaf-manifest-config-template.json` — keep the hand-authoring template's documented defaults in sync with the single-sourced values from the point above (doc-only follow-through, not a new authored contract).
 
 **Out of scope:**
 - Naming the canonical `derived` producer among the TS sync writer, the Python compiler, and a shared schema package (O1) — Phase 1's decision record. This phase targets `skill_graph_compiler.py`'s already-enforced schema because that is the consumer a fresh scaffold fails against today; a follow-up alignment pass may be needed once Phase 1 lands.
@@ -96,7 +96,7 @@ Purpose: make a scaffolded skill compiler-valid and gate-fresh the moment `init_
 | REQ-003 | Scaffold `derived` block is compiler-valid | `skill_graph_compiler.py`'s `validate_derived_metadata` returns zero errors for a freshly scaffolded standalone or parent-hub root's `graph-metadata.json`, with `key_files`/`entities[].path` resolving to files the scaffold itself already wrote and `entities[].kind` in `{skill, agent, script, config, reference}` |
 | REQ-004 | Fix failure aborts the scaffold, not silently | If the class-gate fix run fails for the new root (e.g. `MANIFEST_REGENERATION_FAILED`), `init_skill()`/`init_parent_skill()` prints the cause and returns `None` (CLI exit 1) rather than leaving a half-generated root reported as success |
 | REQ-005 | S-class config defaults are single-sourced | `init_skill.py`'s scaffolded `leaf-manifest.config.json` literal and `generate-leaf-manifest.cjs`'s `readStandaloneConfig` fallback values for `packet`/`leafRoots`/`excludeIndexFiles`/`resourceContractVersion` read from one shared definition; changing a default in one place changes both without a second hand-edit |
-| REQ-006 | Joined journey test exists and passes | One new test in `sk-doc/create-skill/scripts/tests/` scaffolds an S-class and an H-class skill, runs the generated class gate, ingests both into an advisor graph, proves at least one prompt resolves to the correct scaffolded skill/hub, and proves the compiled-route mint/freshness path accepts the hub root — all in one pipeline, all passing |
+| REQ-006 | Joined journey test exists and passes | One new test in `sk-doc/sk-create-skill/scripts/tests/` scaffolds an S-class and an H-class skill, runs the generated class gate, ingests both into an advisor graph, proves at least one prompt resolves to the correct scaffolded skill/hub, and proves the compiled-route mint/freshness path accepts the hub root — all in one pipeline, all passing |
 | REQ-007 | Fix run never fails on unrelated fleet violations | The class-gate invocation added to `init_skill.py` scopes its pass/fail signal to the newly scaffolded root only; a pre-existing violation on an unrelated fleet root never fails a scaffold that has nothing to do with it |
 <!-- /ANCHOR:requirements -->
 
@@ -138,8 +138,8 @@ A fresh `python3 init_skill.py <name> --path <dir>` (standalone) or `--kind pare
 ## RELATED DOCUMENTS
 
 - **Research this phase implements**: `../../029-skill-json-optimization-research/research/research.md` §3 (O2, O9)
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md`
-- **Prior journey proof (extended, not replaced)**: `.opencode/skills/sk-doc/create-skill/scripts/tests/create-journey-proof.test.cjs`
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
+- **Prior journey proof (extended, not replaced)**: `.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`
 - **024 checklist item this phase closes**: `../../024-create-journey-gate-fixes/checklist.md` `CHK-005`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

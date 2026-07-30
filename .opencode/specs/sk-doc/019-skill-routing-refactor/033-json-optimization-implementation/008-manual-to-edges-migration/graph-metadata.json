@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Migrate graph-metadata.manual.* (depends_on/related_to) into typed edges.* across the ~10 fleet roots that carry it, reconcile the live cli-external-orchestration drift, and add an unknown-key lint so manual.* cannot silently return. Routing-changing; gated behind the 006 routing-accuracy CI gate.",
     "created_at": "2026-07-29T08:00:25.630Z",
-    "last_save_at": "2026-07-30T11:11:55.580Z",
+    "last_save_at": "2026-07-30T11:32:35.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21be191ee923aa98ecab4e03735be3c10bb3094c36ea5e8c70bbe159e19485ac",
+    "source_fingerprint": "sha256:2895d97a86bc6d62d9586c5a5d08426a6ca878a85a01350c315a05b227b0b103",
     "source_doc_hashes": {
       "spec.md": "c45d97bc1b5501ff3b9c16b79f717d7f0144f31023f78f6b7f7101eb5946b47c",
-      "plan.md": "e834613161ee532ea58331f6c95e82ccb311851145adb2ca815b8d5edc9fd60a",
+      "plan.md": "014d9a073148998b1a7525091cfd65f95c5fa3a5ce3a647d1d32952a9c75a7f7",
       "tasks.md": "5121f865fd141b9f9dc5177fb438364da56c01f7dfcdfe6771fb0907c0b7a86e",
       "checklist.md": "6d530d8fc3e5f976ff36c8c07ddfab06cd7980b2c37f8143e88bfe820cbbffa5",
       "implementation-summary.md": "fcc261ebd9c644b5cd7dad4850a093945457a230a0f2681aec8d0942b74e734d"

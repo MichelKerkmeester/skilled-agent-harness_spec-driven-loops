@@ -57,7 +57,7 @@ Build a skill-root analog to the spec-folder `backfill-graph-metadata` regenerat
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-Two new scripts under `sk-doc/create-skill/scripts/`, matching the existing gate scripts' `.cjs` style in that directory:
+Two new scripts under `sk-doc/sk-create-skill/scripts/`, matching the existing gate scripts' `.cjs` style in that directory:
 
 | Component | Role |
 |-----------|------|

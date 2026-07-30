@@ -38,6 +38,7 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -48,6 +49,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Outcome",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fix intent-signal quality across the skill fleet (O6): a per-skill intent_signals coverage floor, dedup domains-vs-intent_signals double-counting in the lexical lane, strip generic file-path tokens from derivedKeywords, enrich the advisor's own thin signal set, add an intent_signals<->derived.trigger_phrases reconciliation gate, and add SQLite-vs-filesystem fallback expected-degradation parity tests.",
     "created_at": "2026-07-29T08:00:28.924Z",
-    "last_save_at": "2026-07-30T11:11:55.591Z",
+    "last_save_at": "2026-07-30T11:32:35.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +202,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5a894949a9ffb2ad862d5a72cbfe1b54c30f11a5176a2cb3e2139ae22db56b9",
+    "source_fingerprint": "sha256:3f9e99ca6e9681da62f1c95d69723b0218fde46bf9bad8f1dcce01c79eaa4001",
     "source_doc_hashes": {
-      "spec.md": "828947a0b1fa2352ab7d1d3700857fb427f6196a07ae6c1ab59459362d86ebc0",
-      "plan.md": "5c57a9dad67c3f25bdf6e19777d52458b1f2bc6b812144f5bec5907ee4998e99",
+      "spec.md": "a8d165cde2750f5b848dccf8987dbc7d1a6a88c6b18111350f00167e82bb4deb",
+      "plan.md": "42e272d0ccd477012366a8ed033a588299756453f8fad056ffb4b1fda222d2b1",
       "tasks.md": "4b51a8063b4de54716f049969f53127f3e4707bb74cf4fab01bd4ea6f25ad7aa",
       "checklist.md": "469e425a7da04e8b0f4f1d027896001850ed4508564bafbf4e9ae50da3fd199a",
       "implementation-summary.md": "9c95c4d4f7d7242035a778835ba457daf5e7a5c69a3b8906c9d3f89c3b876d35"

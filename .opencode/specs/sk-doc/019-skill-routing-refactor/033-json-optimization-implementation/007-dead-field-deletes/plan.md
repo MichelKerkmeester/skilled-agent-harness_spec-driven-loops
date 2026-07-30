@@ -86,7 +86,7 @@ Re-run every quality gate in §2 and compare against the phase-1 baseline: the f
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Grep verification | Zero-reader proof for every deleted field, re-run at implementation time | `rg -n '"<field>"' --type ts --type js --type py -g '!**/specs/**' -g '!**/node_modules/**'` against `.opencode/` |
-| Structural gate | Fleet-wide skill-root metadata class contract | `node .opencode/skills/sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs` |
+| Structural gate | Fleet-wide skill-root metadata class contract | `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` |
 | Per-hub doctor | Parent-hub canon conformance for the two most-edited hubs | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-code` and `.../sk-doc` |
 | Schema validation | `derived` block still satisfies the Python compiler's required-field checks | `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py` (validate mode, fleet-wide) |
 | Regression suite | `tieBreak`/`packetSkillName` drift-guard assertions | `npx vitest run .opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts` |

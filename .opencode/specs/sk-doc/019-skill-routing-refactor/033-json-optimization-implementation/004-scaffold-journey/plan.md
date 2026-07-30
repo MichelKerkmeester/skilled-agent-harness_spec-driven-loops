@@ -56,7 +56,7 @@ Give `init_skill.py` a completed birth: after a scaffold writes its files, run t
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-Three touch points in `sk-doc/create-skill/scripts/`, plus one new test.
+Three touch points in `sk-doc/sk-create-skill/scripts/`, plus one new test.
 
 **3.1 Auto-fix after scaffold (`init_skill.py`).** Add a small helper mirroring the existing `_run_manifest_command` pattern (`init_skill.py:354-393`), which already shells `init_parent_skill()` out to a Node CLI and parses its JSON reply rather than trusting a bare exit code. The new helper invokes:
 
@@ -75,7 +75,7 @@ Ordering matters: the block must be composed after the referenced files exist on
 
 **3.3 Single-sourced S-class config defaults (`generate-leaf-manifest.cjs` + `init_skill.py`).** `readStandaloneConfig()`'s fallback values for `leafRoots`/`excludeIndexFiles`/`resourceContractVersion` (`generate-leaf-manifest.cjs:110,133-134`) and `init_skill.py`'s scaffolded literal (`init_skill.py:295-308`) currently hardcode the same four values independently. Extract one shared default definition the JS side already owns (since it is the enforcement-side consumer) and have the Python scaffolder either read the same values from a small shared data file, or write only the fields it must (`workflowMode`), leaving the rest to `readStandaloneConfig`'s existing fallback and documenting that in the template. Either direction removes the second hand-kept-equivalent copy; the choice is a task-level implementation decision, not a scope change.
 
-**3.4 Joined journey test (new file under `sk-doc/create-skill/scripts/tests/`).** Extends, not replaces, `create-journey-proof.test.cjs`'s scaffold-and-stage coverage. Two additional legs:
+**3.4 Joined journey test (new file under `sk-doc/sk-create-skill/scripts/tests/`).** Extends, not replaces, `create-journey-proof.test.cjs`'s scaffold-and-stage coverage. Two additional legs:
 - **Advisor ingest + parent selection**: modeled on `discovery-pipeline-parity.vitest.ts`'s proven pattern (`mkdtempSync`, `initDb`, `indexSkillMetadata`, `closeDb`/`rmSync` in `try/finally`) against the temp scaffold's `skills/` tree, then an unmocked call into the scorer's recommend path to prove at least one representative prompt resolves to the scaffolded skill/hub — not the mocked-`scoreAdvisorPrompt` pattern `advisor-recommend.vitest.ts` uses for handler-contract tests, since this test needs a real score against real ingested data.
 - **Compiled route**: reuses the `compiled-route-manifest.cjs` mint/freshness subprocess pattern `init_skill.py::_run_manifest_command` already exercises (`init_skill.py:345-393`), run against the scaffolded hub root, proving the manifest the class gate produced is also compiled-route-clean.
 
@@ -121,7 +121,7 @@ No production advisor DB or live daemon is touched — every ingest/selection as
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-`sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs` (invoked, not modified — its exported `run`/`checkRoot`/JSON output contract is the integration surface); `sk-doc/create-skill/scripts/generate-leaf-manifest.cjs` (touched: `readStandaloneConfig` defaults); `system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts` (`initDb`/`indexSkillMetadata`, read-only test dependency); `system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py` (read-only test dependency — its schema is asserted against, not changed); `.opencode/bin/compiled-route-manifest.cjs` (already a runtime dependency of `init_parent_skill()`). Phase 1's derived-authority decision and Phase 3's fleet migration are informational dependencies (see spec.md §6), not blocking ones.
+`sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` (invoked, not modified — its exported `run`/`checkRoot`/JSON output contract is the integration surface); `sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (touched: `readStandaloneConfig` defaults); `system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts` (`initDb`/`indexSkillMetadata`, read-only test dependency); `system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py` (read-only test dependency — its schema is asserted against, not changed); `.opencode/bin/compiled-route-manifest.cjs` (already a runtime dependency of `init_parent_skill()`). Phase 1's derived-authority decision and Phase 3's fleet migration are informational dependencies (see spec.md §6), not blocking ones.
 <!-- /ANCHOR:dependencies -->
 
 ---

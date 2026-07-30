@@ -65,7 +65,7 @@ No new components. This is a data migration plus one validation addition across 
 |---------|------|---------------------|
 | Root metadata (source of truth) | `.opencode/skills/{root}/graph-metadata.json` (10 roots) | `manual.*` migrated into `edges.*`, then `manual` deleted |
 | Parser / graph builder | `system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts` — `parseSkillMetadata` (`:757-829`), `EDGE_TYPES` (`:158-164`), `WEIGHT_BANDS` (`:166-172`) | Reads `edges.*` into the `skill_edges` SQLite table; unknown-key check extended from `edges.*`-scoped (`:809-813`) to also reject a root-level `manual` key |
-| Fleet CI gate | `sk-doc/create-skill/scripts/ci-skill-root-metadata.cjs` | Optionally carries the same unknown-key check for fast CI/pre-push feedback, independent of a full scorer rebuild |
+| Fleet CI gate | `sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Optionally carries the same unknown-key check for fast CI/pre-push feedback, independent of a full scorer rebuild |
 | Scorer graph lane | `lib/scorer/projection.ts`, `lib/scorer/fusion.ts`, `lib/scorer/lane-registry.ts` (`graph_causal`, weight 0.13 / shadow 0.20), `lib/scorer/lanes/graph-causal.ts` | Downstream consumer that must reflect the migrated edges after a `skill-graph` scan/rebuild — this is what the routing-accuracy verification checks |
 | Unrelated (must stay untouched) | `lib/cross-skill-edges/types.ts` (`EdgeSourceKind = 'automated'\|'manual'\|'trusted'`), `apply-graph-metadata-patch.ts` | Different "manual" concept (per-edge authorship provenance); explicitly out of scope |
 

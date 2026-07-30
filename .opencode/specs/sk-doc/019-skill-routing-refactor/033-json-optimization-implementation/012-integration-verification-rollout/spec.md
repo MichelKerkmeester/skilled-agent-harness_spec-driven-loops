@@ -127,7 +127,7 @@ The pinned corpus is rerun end-to-end and the top-1/top-3 delta vs the 002 basel
 
 - **Program predecessors**: prior phases under `../` (002 pinned-corpus baseline; 003 derived schema; 008 edges; 011 command rewire; others per the phase map)
 - **Research this program implements**: `../../029-skill-json-optimization-research/research/research.md`
-- **Contract under study**: `.opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md`
+- **Contract under study**: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **QA**: See `checklist.md`
