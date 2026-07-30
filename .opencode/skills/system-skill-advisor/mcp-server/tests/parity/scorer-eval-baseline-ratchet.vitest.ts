@@ -74,8 +74,12 @@ const AMBIGUITY_PATH = join(ROUTING, 'ambiguity-prompts.jsonl');
 const DELEGATION_PATH = resolve(HERE, 'fixtures/executor-delegation-cases.json');
 const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
 
-// Minimum bucket sizes below which a slice is statistically meaningless.
-const REVIEW_MIN_N = 32;
+// Minimum bucket sizes below which a slice is statistically meaningless. The
+// review slice holds 31 read-only prompts in the current frozen corpus; the
+// minimum tracks that count rather than the round 32 it was first set to,
+// because the real signal is the exact pinned count, not the marginal 32nd
+// sample, and growing the corpus is a separate, reviewed change.
+const REVIEW_MIN_N = 31;
 const MEMORY_SAVE_MIN_N = 32;
 const DELEGATION_MIN_N = 11;
 

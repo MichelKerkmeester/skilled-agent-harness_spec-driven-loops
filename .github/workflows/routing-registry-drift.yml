@@ -154,6 +154,18 @@ jobs:
         run: |
           set -euo pipefail
           npx vitest run tests/routing-golden-prompts.vitest.ts
+      - name: Scorer-eval baseline ratchet — exact holdout/bucket counts + release floors
+        # The golden-prompt suite above checks a weaker property and stays green
+        # through a routing regression confined to contested or single-intent
+        # prompts. This ratchet is the only gate that pins holdout top-1 to an
+        # exact count, holds every named bucket, and enforces the release floors,
+        # re-scoring live under the same no-sqlite fallback regime the baseline
+        # was captured in. It runs here, in the full-install job, because it
+        # imports the real fusion scorer and the built shared dist.
+        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        run: |
+          set -euo pipefail
+          npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts
       - name: Routing-accuracy corpus gate — pinned corpus, baseline floors
         # An unpinned corpus makes an accuracy floor meaningless: silently adding
         # or relabeling rows moves the number without any routing change. So the

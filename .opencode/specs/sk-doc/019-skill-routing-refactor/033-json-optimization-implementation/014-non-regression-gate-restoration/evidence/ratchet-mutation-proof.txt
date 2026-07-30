@@ -1,0 +1,8 @@
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: holdout_top1.correct: live=51 baseline=53. regression — a scorer or metadata change moved this metric below the last-known-good.: expected 51 to be 53 // Object.is equality
+    251|       ratchetMessage('holdout_top1.correct', LIVE.holdoutCorrect, BASE…
+    252|     ).toBe(BASELINE.metrics.holdout_top1.correct);
+AssertionError: buckets.delegation.correct: live=8 baseline=10. regression — a scorer or metadata change moved this metric below the last-known-good.: expected 8 to be 10 // Object.is equality
+    277|       ratchetMessage('buckets.delegation.correct', LIVE.delegationCorr…
+    278|     ).toBe(BASELINE.metrics.buckets.delegation.correct);
+      Tests  2 failed | 5 passed (7)

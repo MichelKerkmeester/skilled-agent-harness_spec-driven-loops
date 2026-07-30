@@ -17,7 +17,8 @@
       "non-regression gate dead",
       "gate restoration implementation plan",
       "gate restoration task breakdown",
-      "014-non-regression-gate-restoration verification checklist"
+      "014-non-regression-gate-restoration verification checklist",
+      "non-regression gate restoration summary"
     ],
     "key_topics": [
       "scorer",
@@ -34,10 +35,14 @@
       "non-regression"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       ".github/workflows/routing-registry-drift.yml",
+      "evidence/ratchet-green-baseline.txt",
+      "evidence/ratchet-mutation-proof.txt",
+      "evidence/ratchet-restored-green.txt",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -50,9 +55,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ratchet-green-baseline.txt",
+        "kind": "file",
+        "path": "evidence/ratchet-green-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ratchet-mutation-proof.txt",
+        "kind": "file",
+        "path": "evidence/ratchet-mutation-proof.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ratchet-restored-green.txt",
+        "kind": "file",
+        "path": "evidence/ratchet-restored-green.txt",
         "source": "derived"
       },
       {
@@ -98,13 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "phase",
+        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "rationale",
+        "name": "a",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -162,49 +191,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Each",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Repair the scorer-eval baseline ratchet — the only test that pins holdout accuracy exactly and enforces the release floors — and wire it into CI, so the hole that let a -2 routing regression ship undetected closes behind this program.",
     "created_at": "2026-07-30T08:10:27.264Z",
-    "last_save_at": "2026-07-30T08:10:27.264Z",
+    "last_save_at": "2026-07-30T10:45:06.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0fdca9f90e8c5f0d2f7794d46cacbd10a0908de19301dcce4ab6648f9077966",
+    "source_fingerprint": "sha256:9e6b5fbf21df83e5ac61f54dce6aa6f67e7b20ec61eb9eb2cf3bb9e091f48760",
     "source_doc_hashes": {
-      "spec.md": "94015940e47bcc03c47d45bc7d220b26bec620c49502f7941291f574d268ef62",
-      "plan.md": "d7ac2e1b3b2826f90b82df9b5b839eaad00dbea231cfd1eb1a6c4a2958387779",
-      "tasks.md": "4734d007580f9c3b579da0d7d4aee6461be44ead2b57d4849fd567c9b3ada3b1",
-      "checklist.md": "1a618db071978475f88973435eee1cff26db18485a206d62bcfc3f0ea33c7d1f"
+      "spec.md": "0626a17afdb1c49ccab4d1860245419761574b54f0a63bb56c6523713e5778bc",
+      "plan.md": "abaa4edd079b7d77274422693a49637edfd07c299fe7baa4413b9e619979b4b5",
+      "tasks.md": "5b80476e4332de06ac26ed4a2f428c8bc7645b9859420b128508c3d49aac6c0a",
+      "checklist.md": "a943571a5475c24823fa8abfa190417aaa3b87a5934f13c8b76f55f5c7adabbe",
+      "implementation-summary.md": "41785f2940051edd947eaa84bc701d9bcffc48848d315c9e80fd1cdc8cc4b980"
     },
     "last_active_child_id": null,
     "last_active_at": null

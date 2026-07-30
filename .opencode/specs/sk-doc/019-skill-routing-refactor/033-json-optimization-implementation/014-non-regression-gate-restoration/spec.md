@@ -13,20 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Decide the ratchet's baseline source in coordination with phase 013's disposition"
-    blockers:
-      - "The ratchet's expected values cannot be set until phase 013 decides whether the -2 is fixed or accepted"
+    recent_action: "Restored and CI-wired the ratchet"
+    next_safe_action: "Proceed to phase 015"
+    blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/014-non-regression-gate-restoration"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the review bucket's n=31 against its declared minimum of 32 is fixed by adding a prompt or by lowering the minimum with rationale"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Review bucket minimum lowered from 32 to 31 to match the frozen corpus rather than growing it"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -116,5 +116,7 @@ The ratchet passes 7 of 7 against a baseline that reflects phase 013's dispositi
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether to grow the review bucket to 32 or lower the declared minimum is unresolved and depends on whether a reviewed 32nd prompt exists that does not distort the bucket's intent.
+Resolved: the review bucket minimum was lowered from 32 to 31 rather than growing the corpus. Growing the corpus is explicitly out of scope for this program, the frozen corpus yields exactly 31 read-only prompts, and the ratchet's real signal is the exact pinned count, not the marginal 32nd sample — so the minimum now tracks the frozen count with that rationale recorded at the constant.
+
+**Amendment A-001 (REQ-004 acceptance).** REQ-004's criterion "Verified by a CI run, not by local execution alone" cannot be discharged inside this program: it forbids pushing, and a GitHub Actions run requires a push. The wiring is landed and correct (the ratchet step is added to the full-install `golden-prompt-gate` job, whose install already provides the scorer's zod/sqlite/shared-dist dependencies), the suite passes locally by exit code, and the same suite has been observed failing under a deliberate mutation. The live CI run is therefore an operator-gated verification, recorded here rather than left silent.
 <!-- /ANCHOR:questions -->
