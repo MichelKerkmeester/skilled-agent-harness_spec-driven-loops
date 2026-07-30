@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Fix the four code-conformance findings the audit raised against lines this program never touched — an ephemeral label in a code comment, a misplaced strict-mode directive, a manifest path join without a containment guard, and missing JSDoc on exported functions.",
     "created_at": "2026-07-30T08:23:44.740Z",
-    "last_save_at": "2026-07-30T11:48:46.501Z",
+    "last_save_at": "2026-07-30T12:09:34.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97878251c90d200c18f6bb5f86716788579c46c0c6635c83cac1b4d39407c1dc",
+    "source_fingerprint": "sha256:96cbe8f12cfdfc3cadcaa476e392c16a55953573d85ad69e8df8652aac219637",
     "source_doc_hashes": {
       "spec.md": "86741bc50bd342fd399a12eaae17efb2d1f93b795523c2aaee2cf15da9203e94",
-      "plan.md": "00bef20a7d15a387d047aae5c8494e2a785dd9189a7c74811bc6e14a721acc75",
-      "tasks.md": "ccc50b78aef0a90bd97d4396b68ae6e16ae6291d19784be0da6a6f20fb9d6713",
-      "checklist.md": "ca473408ca266e3a1d116eb9699063b6125c524675a16322489985ce7aa8170a",
+      "plan.md": "b29f85c62d6d0c36f6f41e677dcd5cae8732b6013e7453d2f02740532de238ac",
+      "tasks.md": "eebd9ce4b129413f6390f73811f339bf25af3ea7241c2489ab3e0c556c291799",
+      "checklist.md": "57e08d967339acac6dfc4c203c3fb66b981ab6a4187f0dde938cc5a258616815",
       "implementation-summary.md": "128535b8eafe66e61261ce30a077b324b983caa50d349346fc1ff8b2b07fbe15"
     },
     "last_active_child_id": null,

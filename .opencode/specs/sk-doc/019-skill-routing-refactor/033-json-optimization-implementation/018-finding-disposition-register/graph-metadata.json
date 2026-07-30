@@ -183,7 +183,7 @@
     ],
     "causal_summary": "Record a per-finding disposition for all 41 audit findings including the nine refuted ones, and capture why four independent legs and 20 iterations missed a live regression that one command would have surfaced.",
     "created_at": "2026-07-30T08:10:27.966Z",
-    "last_save_at": "2026-07-30T12:05:37.371Z",
+    "last_save_at": "2026-07-30T12:09:34.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,11 +192,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0820922d7eca0641ed8e723853268b84e5310d5a106ddd76d3f7441066120d20",
+    "source_fingerprint": "sha256:a2341c98b1cacfcf8b45a1de867e588dc8a50e6e86dfa2fe0d01980033482713",
     "source_doc_hashes": {
       "spec.md": "1785ecf1d27e0a0b6053c985e66a093514ec6d207f6e161c7ddd91d0331046b4",
-      "plan.md": "10fa5acdd21c0d012890f0c80abeb5eb575416a3914648ef8ac75640f7c91d95",
-      "tasks.md": "b691573dfec817f7f8425b9828fa97fafe5da2caa281f70b657c2ce841645172",
+      "plan.md": "cbb32953801640be8d1171b6605776489612cb2dedc12561ee84b1aab368f2a5",
+      "tasks.md": "451672513099196eb23677f2c8519717baa06ac33c646654560fa3719132bcfc",
       "implementation-summary.md": "1c97a22b75e97adf2ccf41d5886bbf0d0172dc80f960f77b24a35ce84693b178"
     },
     "last_active_child_id": null,
