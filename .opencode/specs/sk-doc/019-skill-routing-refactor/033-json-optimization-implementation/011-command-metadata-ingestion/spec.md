@@ -12,20 +12,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion"
     last_updated_at: "2026-07-29T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored planned phase spec"
-    next_safe_action: "Begin implementation per plan.md"
-    blockers:
-      - "Depends on 006 (skill_graph_compiler.py + score-routing-corpus.py wired into routing-registry-drift.yml) so this phase's drift-guard and corpus-gate run in CI, not only locally"
+    recent_action: "Cutover landed; all routing gates green"
+    next_safe_action: "Operator: push and confirm live CI"
+    blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/011-command-metadata-ingestion"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Should system-spec-kit's missing command-metadata.json (the reason /speckit:*, /memory:save bridges have no JSON source today) be backfilled as a prerequisite of this phase, or documented as a residual allow-list and deferred to a fast-follow?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "system-spec-kit's missing command-metadata.json is documented as the committed allow-list residual and deferred to a fast-follow, not backfilled here"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |

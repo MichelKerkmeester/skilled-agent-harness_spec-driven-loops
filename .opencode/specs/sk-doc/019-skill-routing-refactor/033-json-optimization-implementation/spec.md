@@ -138,7 +138,7 @@ The Status column reflects **execution state** (updated as phases land), not pla
 | 8 | `008-manual-to-edges-migration/` | Migrate `manual.*` → typed edges (behind the routing-accuracy gate) | Complete |
 | 9 | `009-signal-quality/` | Intent-signal coverage floor, dedup, path-noise strip; fallback parity tests | Complete |
 | 10 | `010-parent-intent-projection-spike/` | Parent-intent projection design spike (ships only if it beats the corpus) | Complete |
-| 11 | `011-command-metadata-ingestion/` | Ingest `command-metadata.json` into TS + Python command routing + drift-guard | Planned |
+| 11 | `011-command-metadata-ingestion/` | Ingest `command-metadata.json` into TS + Python command routing + drift-guard | Complete |
 | 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | In Progress |
 | 13 | `013-routing-regression-diagnosis/` | Measure, attribute and disposition the reproduced -2 on holdout top-1/top-3 and delegation; no re-pin while open | Complete |
 | 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Complete |

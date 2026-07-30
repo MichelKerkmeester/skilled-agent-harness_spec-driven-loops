@@ -155,16 +155,16 @@
     ],
     "causal_summary": "12-phase, dependency-ordered, safety-gated implementation of the 029 ranked opportunity map (O1-O11) — making every skill and advisor JSON across .opencode/skills optimized, automated, effective, tested, and integrated, reviewed and restructured by an independent Opus architect before execution.",
     "created_at": "2026-07-29T08:07:19.065Z",
-    "last_save_at": "2026-07-30T12:05:37.556Z",
+    "last_save_at": "2026-07-30T13:47:50.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:db1153a33c3da823c54962d3cc677ce081187e85079abc43df9cee7f15e0b812",
+    "source_fingerprint": "sha256:a50063e17d9af63ce8165be87f24419dab8f25dc427a42f26ea8c40db3f04049",
     "source_doc_hashes": {
-      "spec.md": "58afec383e6f0c06b8d0a28f1b5acd7ddf0fb967fb29566fdc71d6c1756ca58a",
+      "spec.md": "cae232f90fbc50fcf1a90de185b865abf8e1d6957ccff29795fce2573d8a1068",
       "handover.md": "b6ebd1ccc7be5a0c9e17a80912c21725af97531091b07638712e9dcc6f878296"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
