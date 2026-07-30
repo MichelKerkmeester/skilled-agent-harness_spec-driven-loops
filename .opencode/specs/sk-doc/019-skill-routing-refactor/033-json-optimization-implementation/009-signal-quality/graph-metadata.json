@@ -35,14 +35,12 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "checklist.md",
-      ".opencode/skills/sk-code/code-webflow/assets/patterns/wait-patterns.js",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -50,24 +48,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "wait-patterns.js",
-        "kind": "code",
-        "path": ".opencode/skills/sk-code/code-webflow/assets/patterns/wait-patterns.js",
-        "source": "derived"
-      },
-      {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -80,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Outcome",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Fix intent-signal quality across the skill fleet (O6): a per-skill intent_signals coverage floor, dedup domains-vs-intent_signals double-counting in the lexical lane, strip generic file-path tokens from derivedKeywords, enrich the advisor's own thin signal set, add an intent_signals<->derived.trigger_phrases reconciliation gate, and add SQLite-vs-filesystem fallback expected-degradation parity tests.",
     "created_at": "2026-07-29T08:00:28.924Z",
-    "last_save_at": "2026-07-29T08:12:38.074Z",
+    "last_save_at": "2026-07-30T11:11:55.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c12c2d7eba191089e692d21618d3f88aad30e332099122f17eed8922f7e3e6cd",
+    "source_fingerprint": "sha256:a5a894949a9ffb2ad862d5a72cbfe1b54c30f11a5176a2cb3e2139ae22db56b9",
     "source_doc_hashes": {
-      "spec.md": "c64d247f4dd0603967aaf6c8f52a8e0939f196fe168b7c039147d0fd5e110148",
-      "plan.md": "54932c5610f345bb1f3dbc391147b1e33d5456aea166e24d97f6afdf82cb65e1",
-      "tasks.md": "de746c6f70d0d049c48f1b7512e341ce7becbec80d4a5c484722157ba37fddea",
-      "checklist.md": "29d6488570ba7c3a1e67a697fc57afca57de1cdfcf65f2af144f3f220819cd1a",
-      "implementation-summary.md": "2a0d9db71f6c369ba436857cd21f8caf51c3512387c51f943a7ac06cc1c7c69f"
+      "spec.md": "828947a0b1fa2352ab7d1d3700857fb427f6196a07ae6c1ab59459362d86ebc0",
+      "plan.md": "5c57a9dad67c3f25bdf6e19777d52458b1f2bc6b812144f5bec5907ee4998e99",
+      "tasks.md": "4b51a8063b4de54716f049969f53127f3e4707bb74cf4fab01bd4ea6f25ad7aa",
+      "checklist.md": "469e425a7da04e8b0f4f1d027896001850ed4508564bafbf4e9ae50da3fd199a",
+      "implementation-summary.md": "9c95c4d4f7d7242035a778835ba457daf5e7a5c69a3b8906c9d3f89c3b876d35"
     },
     "last_active_child_id": null,
     "last_active_at": null

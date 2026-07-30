@@ -15,7 +15,15 @@
     "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/009-signal-quality",
     "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike",
     "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/011-command-metadata-ingestion",
-    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout"
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/012-integration-verification-rollout",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/013-routing-regression-diagnosis",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/014-non-regression-gate-restoration",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/016-packet-metadata-regeneration",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/017-authority-path-corrections",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/018-finding-disposition-register",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/019-program-surface-leftovers",
+    "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/020-preprogram-code-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -26,7 +34,10 @@
     "trigger_phrases": [
       "skill json optimization implementation",
       "advisor derived block regenerator",
-      "json optimization implementation program"
+      "json optimization implementation program",
+      "resume 033 remediation",
+      "routing regression handover",
+      "remediation phases 013 to 020"
     ],
     "key_topics": [
       "skill",
@@ -38,15 +49,16 @@
       "block",
       "regenerator",
       "program",
-      "12-phase",
-      "dependency-ordered",
-      "safety-gated"
+      "resume",
+      "remediation",
+      "routing"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md"
+      "002-baseline-capture/baseline/capture-top3.json",
+      "handover.md"
     ],
     "entities": [
       {
@@ -56,9 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.md",
+        "name": "capture-top3.json",
+        "kind": "config",
+        "path": "002-baseline-capture/baseline/capture-top3.json",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -80,6 +98,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -92,25 +116,51 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Audit Remediation Program",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. WHERE THINGS STAND",
+        "kind": "heading",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. THE REGRESSION — VERIFIED, REPRODUCE IT FIRST",
+        "kind": "heading",
+        "path": "handover.md",
         "source": "derived"
       }
     ],
     "causal_summary": "12-phase, dependency-ordered, safety-gated implementation of the 029 ranked opportunity map (O1-O11) — making every skill and advisor JSON across .opencode/skills optimized, automated, effective, tested, and integrated, reviewed and restructured by an independent Opus architect before execution.",
     "created_at": "2026-07-29T08:07:19.065Z",
-    "last_save_at": "2026-07-29T08:12:39.247Z",
+    "last_save_at": "2026-07-30T11:16:30.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:ae76cf3a2913025eaf9b032400902a3ea7419dbad0fbc8c936527ccccc04ea79",
+    "source_fingerprint": "sha256:94d67f012b20a3008df80c4c7754236a329a6b13029b4dbb26b791b6472b8a78",
     "source_doc_hashes": {
-      "spec.md": "a47d15019e609ffe19e41f5f7398d6e8f0ffaf4923fb1dcb1bbcfc4e411c5a42"
+      "spec.md": "e362d2337029eec854adc1b686ae91cd1e4837f4538f9781cdcd7085c87d5822",
+      "handover.md": "b6ebd1ccc7be5a0c9e17a80912c21725af97531091b07638712e9dcc6f878296"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/015-evidence-integrity-repair",
     "last_active_at": null
   }
 }

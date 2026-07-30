@@ -45,7 +45,6 @@
       "decision-record.md",
       "plan.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -72,12 +71,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Decision-only phase naming the single canonical authority for graph-metadata.json's derived block, reconciling the live 11-root Python-compiler shape against the TS Zod SkillDerivedV2 schema used by the lifecycle subsystem.",
     "created_at": "2026-07-29T07:59:56.768Z",
-    "last_save_at": "2026-07-29T08:44:35.953Z",
+    "last_save_at": "2026-07-30T11:11:55.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cb28896a848ae450c114310461a88b574c72f26dcdc0b90918dde5c2e1e0548",
+    "source_fingerprint": "sha256:2ac8d6fe3d6853918e204e43c2a417ed38d2fdb18c7dc1c7bcde72df84bf1cc2",
     "source_doc_hashes": {
-      "spec.md": "17639895e244af826f430de92beaec76e999f649b52b79435b96764fbce3e510",
-      "plan.md": "54c47c977d164e77a4a1f2bd3ef79bd953b1f22bc2bee264d2e9a9f7d36d3bec",
-      "tasks.md": "070efa4ed5a8e36a7d52efdca5574da377d805c2db0d63307475cfe1aa8db4ce",
-      "checklist.md": "530ad22f14e721612b0ebb3ff71fcdba91695706cbdd7d49c215047a3599c6c8",
-      "decision-record.md": "f44add413956f20b3b8181a3683acd195332fb0ce8d1b35c1824dd280d9667c2",
-      "implementation-summary.md": "7aa5235fc07e63ded6e2240847d680b5959165407eae163ac921de2e8aeba40e"
+      "spec.md": "75bde2322b2f1e0deee771b75c05ebcd36f2c191fc307b6c62944541efec8068",
+      "plan.md": "8934731d08748064cecfe24003aaf52ddb84d99ddbfd02a1f7c9f117a4c8eece",
+      "tasks.md": "62d04957aee8005531b4d513e15d522550a107ec832e70d3d1de9335248e7853",
+      "checklist.md": "a8ac6b589a7a7f6ffbd6d149d1d1559f4ba906026a52984237af4b0a3011b64a",
+      "decision-record.md": "f84f975eb832053a8245fbe5b2d6a72f578616289ad2f458c8532deece47d871",
+      "implementation-summary.md": "6c9bc323d520864cbb04c9eeccd969eca4d398d0a5787354f3888a936e11540b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,20 +13,20 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/016-packet-metadata-regeneration"
     last_updated_at: "2026-07-30T10:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase spec"
-    next_safe_action: "Hold for 013 and 015"
-    blockers:
-      - "Sequenced strictly after phase 013 (disposition) and phase 015 (completion claims) — see Risks"
+    recent_action: "Regenerated packet metadata; fixed phase map"
+    next_safe_action: "Proceed to phase 017"
+    blockers: []
     key_files:
       - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "033-json-optimization-implementation/016-packet-metadata-regeneration"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "The cause of the frontmatter memory-block errors on five children is unknown and may be independent of the missing generator pass"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The frontmatter memory-block errors were the narrative-overflow cause fixed by phase 015, independent of the missing generator pass"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor/033-json-optimization-implementation` |
@@ -115,5 +115,5 @@ One generator pass resolves the phase map, continuity blocks, derived status and
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the frontmatter memory-block errors share the missing-generator root cause or are independent is unknown until REQ-004 examines them.
+Resolved: the frontmatter memory-block errors were independent of the missing-generator cause. They were narrative `recent_action`/`next_safe_action` fields over the 96-char compact limit on five children (004/007/008/009/012), diagnosed and fixed in phase 015. The generator pass here does not touch those authored fields; it confirms they no longer error and clears the separate source-fingerprint group.
 <!-- /ANCHOR:questions -->

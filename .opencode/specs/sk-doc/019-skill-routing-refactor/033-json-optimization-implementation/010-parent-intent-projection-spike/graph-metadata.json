@@ -38,12 +38,11 @@
       "metadata"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "decision-record.md",
       "plan.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
       ".opencode/skills/system-skill-advisor/mcp-server/schemas/skill-derived-v2.ts",
       "tasks.md",
       "checklist.md",
@@ -67,12 +66,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gated design spike (O8, single-lineage hypothesis): design a way to project high-specificity per-mode vocabulary from hub-router.json/mode-registry.json into an existing parent-selection scorer input, without changing scorer math, and measure it against a pinned corpus before deciding to ship.",
     "created_at": "2026-07-29T08:00:32.153Z",
-    "last_save_at": "2026-07-29T08:12:38.372Z",
+    "last_save_at": "2026-07-30T11:11:55.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2eda89037cb9578020240338b3b444edc755d04fc59a0371ae9e978a009b8391",
+    "source_fingerprint": "sha256:26c64567a29d9a680cfae31dec5abd8f7c17c39d36e0025e1dd4c67a691a2300",
     "source_doc_hashes": {
-      "spec.md": "d1883e365b883d78885abe53e3c66ffcac10fa73b81b4cd5dbe62abf3d8e685f",
-      "plan.md": "0b438473506b93fb5269bf513ccdbcc38e2f55fbc58734881a679bce6cc84747",
-      "tasks.md": "4d9e13ee0dfc7c83ca998fe6ac91bbc9da3803215eb1e964dc153b12e19cb14b",
-      "checklist.md": "7ace9d7b2fc27f2942a3b87ba796825c23cb0b481ca8010da3745859e8b2ec68",
-      "decision-record.md": "2db2cc2d8e49f0e85272a40e6dd2dc5c56e8e33f4733963adbbb5fef4d37b408",
-      "implementation-summary.md": "522c3af0ba585efd65bef48fe64d82f0e07122fae562e45829adcfd1a51879ac"
+      "spec.md": "5e9462cce57b6931a53d72f0658d8e6fde760492e98e36ba7b7b368957f51845",
+      "plan.md": "fb536f2abdb84bf89e408ae480053f14065cfec67c947c7a09ed8c69ff058423",
+      "tasks.md": "cc778313fc62fea9082ba61ae2b1633ecfe3bd38357d98b2e9669b79691e8fd9",
+      "checklist.md": "86b5692baaa437c80894274d94505b828cd2ecba0012236835e57c3585f17ee8",
+      "decision-record.md": "6f4bf6caf67cad863730b7b81dc84c74475f51469801f3ec42b575949bc65579",
+      "implementation-summary.md": "6092df81f2bfbd20684e859beb778141f3361f0d3fb4578188825ff802679ae1"
     },
     "last_active_child_id": null,
     "last_active_at": null

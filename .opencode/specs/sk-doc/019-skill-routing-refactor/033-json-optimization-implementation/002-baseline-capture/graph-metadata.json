@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Pin an exact, hash-verified routing-accuracy baseline (top-1 and top-3, corpus + holdout + ambiguity) and confirm all 11 current skill roots pass skill_graph_compiler.py, before any gate/delete/migration/rewire phase in the JSON optimization implementation program touches production files.",
     "created_at": "2026-07-29T08:00:03.764Z",
-    "last_save_at": "2026-07-29T08:53:24.366Z",
+    "last_save_at": "2026-07-30T11:11:55.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cb5e69193b709709a43390bd40bad2a1cc4628944813139765b81ff5a22f6ab",
+    "source_fingerprint": "sha256:3c9848ec26d29a882658c79fad13dc6686152af30ebddd0f9e8ad1115cf48bf6",
     "source_doc_hashes": {
-      "spec.md": "fa595b5d1f34888b2cc689d5d571a42a2152d224baeea6831da22eaf4e851c2c",
-      "plan.md": "b61866a7a3e2edf18829d6f85e39f2bf2be64566465d7808ac8058280f7e2d1c",
-      "tasks.md": "a6d325adad7945a902a6c5df96da5f29dc2f9bce1b477adbd21af7479e81a4e4",
-      "checklist.md": "ece6e98a9186b70167a87c8d92aa7c42f82f147a5782c6be040e86f138f6af43",
-      "implementation-summary.md": "bd144996cc9988dcff0e423a1be3858251c6463b6fe867de50f272919aaf58ba"
+      "spec.md": "ce48bff48f45397ddf511c227d1784ad31ce80ca6b3e383c36f5041264feb5c1",
+      "plan.md": "6340fd2bdc31e4d62e7ff4b2168396e72b248f4a523c8bd342565c5f80e2b4f4",
+      "tasks.md": "b13ba5b2a2d434dabfe9e2e391f95266d5d4861226552c03deffdaa9cb08c5f0",
+      "checklist.md": "2017df774d69d51c3094478ab4ecd26d338ed17b7fe8a694ed06b455e4b7721e",
+      "implementation-summary.md": "ff6f1d133f9c1e39d027b82b72332378399be73402e5160c336595b57da49f50"
     },
     "last_active_child_id": null,
     "last_active_at": null

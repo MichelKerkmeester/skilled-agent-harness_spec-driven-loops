@@ -124,24 +124,26 @@ The REQ-001 baseline (corpus hash + CI state) is captured and referenced by ever
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
+The Status column reflects **execution state** (updated as phases land), not planning intent. It is the coordination truth; per-phase detail lives in each child.
+
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-derived-authority-decision/` | Name the canonical `derived` authority; reconcile Python shape vs TS lifecycle capabilities (decision record) | Planned |
-| 2 | `002-baseline-capture/` | Pin the routing-accuracy corpus hash; capture top-1/3; confirm all 11 roots pass the compiler | Planned |
-| 3 | `003-derived-regenerator-migration/` | Build the `derived` regenerator; migrate 11 roots; add the freshness gate | Planned |
-| 4 | `004-scaffold-journey/` | `init_skill` auto-`--fix`; S-config defaults; joined scaffold→gate→ingest→route test | Planned |
-| 5 | `005-ci-golden-prompts/` | Gate-2 golden-prompt acceptance suite in CI (top-1/top-3) | Planned |
-| 6 | `006-ci-compiler-accuracy-gates/` | Wire compiler graph-schema + routing-accuracy corpus into CI | Planned |
-| 7 | `007-dead-field-deletes/` | Remove routing-neutral dead fields; resolve duplicate authorities | Planned |
-| 8 | `008-manual-to-edges-migration/` | Migrate `manual.*` → typed edges (behind the routing-accuracy gate) | Planned |
-| 9 | `009-signal-quality/` | Intent-signal coverage floor, dedup, path-noise strip; fallback parity tests | Planned |
-| 10 | `010-parent-intent-projection-spike/` | Parent-intent projection design spike (ships only if it beats the corpus) | Planned |
+| 1 | `001-derived-authority-decision/` | Name the canonical `derived` authority; reconcile Python shape vs TS lifecycle capabilities (decision record) | Complete |
+| 2 | `002-baseline-capture/` | Pin the routing-accuracy corpus hash; capture top-1/3; confirm all 11 roots pass the compiler | Complete |
+| 3 | `003-derived-regenerator-migration/` | Build the `derived` regenerator; migrate 11 roots; add the freshness gate | Complete |
+| 4 | `004-scaffold-journey/` | `init_skill` auto-`--fix`; S-config defaults; joined scaffold→gate→ingest→route test | Complete |
+| 5 | `005-ci-golden-prompts/` | Gate-2 golden-prompt acceptance suite in CI (top-1/top-3) | Complete |
+| 6 | `006-ci-compiler-accuracy-gates/` | Wire compiler graph-schema + routing-accuracy corpus into CI | Complete |
+| 7 | `007-dead-field-deletes/` | Remove routing-neutral dead fields; resolve duplicate authorities | Complete |
+| 8 | `008-manual-to-edges-migration/` | Migrate `manual.*` → typed edges (behind the routing-accuracy gate) | Complete |
+| 9 | `009-signal-quality/` | Intent-signal coverage floor, dedup, path-noise strip; fallback parity tests | Complete |
+| 10 | `010-parent-intent-projection-spike/` | Parent-intent projection design spike (ships only if it beats the corpus) | Complete |
 | 11 | `011-command-metadata-ingestion/` | Ingest `command-metadata.json` into TS + Python command routing + drift-guard | Planned |
-| 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | Planned |
-| 13 | `013-routing-regression-diagnosis/` | Measure, attribute and disposition the reproduced -2 on holdout top-1/top-3 and delegation; no re-pin while open | Planned |
-| 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Planned |
-| 15 | `015-evidence-integrity-repair/` | Per-item checklist evidence; re-open the three false regression items; reconcile contradictory completion fields | Planned |
-| 16 | `016-packet-metadata-regeneration/` | One close-time generator pass for phase map, continuity, derived status and fingerprints | Planned |
+| 12 | `012-integration-verification-rollout/` | Re-measure vs baseline; prove daemon reindex; rollback per high-blast change | In Progress |
+| 13 | `013-routing-regression-diagnosis/` | Measure, attribute and disposition the reproduced -2 on holdout top-1/top-3 and delegation; no re-pin while open | Complete |
+| 14 | `014-non-regression-gate-restoration/` | Repair the scorer-eval ratchet and wire it into CI; prove it fails on a deliberate mutation | Complete |
+| 15 | `015-evidence-integrity-repair/` | Per-item checklist evidence; re-open the three false regression items; reconcile contradictory completion fields | Complete |
+| 16 | `016-packet-metadata-regeneration/` | One close-time generator pass for phase map, continuity, derived status and fingerprints | Complete |
 | 17 | `017-authority-path-corrections/` | Dead authority citations, the stale contract doc, and the tracked scratch artifact | Planned |
 | 18 | `018-finding-disposition-register/` | One disposition per audit finding, plus the retrospective on severity inversion and coverage gaps | Planned |
 | 19 | `019-program-surface-leftovers/` | Workflow token permissions, feature-catalog mode-vs-packet framing, deprecated derived-sync writer, requirement wording | Planned |

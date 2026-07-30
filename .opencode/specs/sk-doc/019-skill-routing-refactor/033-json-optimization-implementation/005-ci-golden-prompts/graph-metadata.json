@@ -34,14 +34,16 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "checklist.md",
       "plan.md",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-parity-deep-skills.vitest.ts",
       ".github/workflows/routing-registry-drift.yml",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
       ".opencode/bin/compiled-route.cjs",
       "implementation-summary.md"
     ],
@@ -50,18 +52,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -80,6 +70,30 @@
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate2-golden-prompts.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "routing-golden-prompts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "mode-registry",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add a joined parent-then-mode golden-prompt acceptance suite to routing-registry-drift.yml, grounded in a live 029 research miss (a parent-hub scaffold prompt ranked sk-prompt above sk-doc); asserts top-1/top-3 skill selection plus compiled-route mode selection for representative prompts (create-skill, git, deep-research), independent of the O1 derived-authority decision.",
     "created_at": "2026-07-29T08:00:15.756Z",
-    "last_save_at": "2026-07-29T08:12:36.800Z",
+    "last_save_at": "2026-07-30T11:11:55.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8256927646b1b443f3319522d8cc18895ef89d8861c44de044aa2dedb649cb1c",
+    "source_fingerprint": "sha256:6f7846d5f28b076e9c2a39fb001bb1e5af9f69db32fb2833737268e52e333427",
     "source_doc_hashes": {
-      "spec.md": "5eeb1351f8d924b60e6c2be44b1c99bc83cecbd29445ffa2f47a120b61634d77",
-      "plan.md": "8e5b8ef04f9988a6f9859b950df0457a9d9b6f3cbb501c906a04cc4fb4544ab9",
-      "tasks.md": "780fcbdf08c9dcbba73bd95ff66c4a2716fadff97229fc1ff4193bd70441e0b9",
-      "checklist.md": "75bbe298d0752284f1b2f829b7b96c55ef6a69a0fe881258d4cad8345f5e6cb9",
-      "implementation-summary.md": "aade92a734393739935dd7237701e93ee500386f38d0416f9e16849d536f162a"
+      "spec.md": "5d0b773e7112d45da103d4d356bd6ec21fe0541afd63b3299650b1e9d30aa8e8",
+      "plan.md": "59363fb2d87a9f7be4eae027e85d701169f00bd2273989219815540f542681cd",
+      "tasks.md": "a8838304d6689904d34307b0712d09e26ea2568180b29b78d4802222f4f8c3d5",
+      "checklist.md": "1c6c4dde2977be5ee0ff7f152c400701fd80a9d7f374cc566c60ea77a8d03446",
+      "implementation-summary.md": "275d24eace52672b02d6df2b306e326aa418fbb2c785f43d7356fbfad2f11e29"
     },
     "last_active_child_id": null,
     "last_active_at": null

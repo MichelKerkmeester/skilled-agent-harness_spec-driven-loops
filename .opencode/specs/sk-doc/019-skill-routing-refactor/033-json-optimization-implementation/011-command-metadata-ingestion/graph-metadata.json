@@ -41,7 +41,6 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,12 +52,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Derive both the TS COMMAND_BRIDGES array (projection.ts) and the Python COMMAND_BRIDGES dict (skill_advisor.py) from the fleet's 7 command-metadata.json files instead of two hand-maintained, already-drifted authorities; add a drift-guard asserting all three sources agree, plus denser command-metadata/leaf-aliases e2e tests. High-blast: live routing rewire on the advisor's hottest file, shipped shadow-mode-first with a documented rollback.",
     "created_at": "2026-07-29T08:00:35.400Z",
-    "last_save_at": "2026-07-29T08:12:38.664Z",
+    "last_save_at": "2026-07-30T11:11:55.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e8cdbc65b48906619c407efb4eb45fda5b30815644e1f258d5fa10ac56ef99b",
+    "source_fingerprint": "sha256:0164b08a43f623e189ab3badd964362c7ab0a82f20bd1c03b17fa30e54cd7cad",
     "source_doc_hashes": {
-      "spec.md": "2010fb949573daeb0d2256360ad6a9099455bfe63390770a57b1437e89ceef75",
-      "plan.md": "f9ffbafc2bfcfc45c280b1006c2b3ab01239f1278edc12dadf130d9ab074ba0c",
-      "tasks.md": "7f1bd7a5a1cda03a6989b5d0fe42ced62ce0a79f1852221ca70855f37260352d",
-      "checklist.md": "b8d090f51d909955799fa3464713c86b66452a0f5f0c14228abed4524245a743",
-      "implementation-summary.md": "22c6342afc3c6808e39d943f7faddab718ddfbfad5cc23ac86c46ff86256018b"
+      "spec.md": "ad8e92b32a4063b80eef1dd034a8f6146d33c073011823d9f6d7280beccb9575",
+      "plan.md": "d14591148caa6deca6999f90c2415103ecdc84ba57214086bb239ba6f1e53705",
+      "tasks.md": "542bcb3a65a1707334a6f5e5f3b31decad89081ea2bce52809a5b70557fed651",
+      "checklist.md": "01a8b0ce15c79b7333ebef971c29a5129cef4dea8540d73087e889fa81073a61",
+      "implementation-summary.md": "56dc4951563e80ad9e1ebe0d335ca36be93f58aa366a002fb11992abd3c61021"
     },
     "last_active_child_id": null,
     "last_active_at": null

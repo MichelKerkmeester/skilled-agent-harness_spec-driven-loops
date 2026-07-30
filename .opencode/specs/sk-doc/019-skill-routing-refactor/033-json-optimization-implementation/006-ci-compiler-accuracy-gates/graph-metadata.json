@@ -34,14 +34,14 @@
       "outcome"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       ".github/workflows/routing-registry-drift.yml",
-      "checklist.md",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +55,6 @@
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -79,6 +73,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -118,9 +118,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Status Complete",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -160,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -178,21 +178,21 @@
         "source": "derived"
       },
       {
-        "name": "Status Complete",
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Implementation Outcome",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Add skill_graph_compiler.py --validate-only (full derived schema + key_files/source_docs path existence) and score-routing-corpus.py (pinned corpus hash) to routing-registry-drift.yml so a malformed derived block or a routing-accuracy regression fails CI instead of only surfacing at an offline advisor rebuild.",
     "created_at": "2026-07-29T08:00:19.030Z",
-    "last_save_at": "2026-07-29T08:12:37.122Z",
+    "last_save_at": "2026-07-30T11:11:55.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96d51a34cd4366d895a13cd9e5b341dc51400bb8137d3356a318850d0e6a5b47",
+    "source_fingerprint": "sha256:4b32534e74b6bed74063a28f192029a1cf541f4086042574fa1c9654c54b6d2d",
     "source_doc_hashes": {
-      "spec.md": "2cacf320177fb3398b2255e7e10a09dc545b0019d230eebaade6e6ee5434ad3d",
-      "plan.md": "0c7e8f707d5d7f58681adfa30b37f2e5568b1def07d01e9b0f1c1f83ea85b4fe",
-      "tasks.md": "482ef490f74c2aa7157bc9fcb7e370d90a70f52f1d0cf64bf0ff3cbbe639041e",
-      "checklist.md": "52f5638755a7cd5566d22ee5f270da339204a3691d112353b1bba6ad59d7aac0",
-      "implementation-summary.md": "857485bc9d59046a395a1cf1bab392d8c591eb32c3b9ff945ae5810938c03e2f"
+      "spec.md": "33b27e5ee0744b2f9d8e8e7bb91a3c5814f3e852212d076424ca6b81af345a99",
+      "plan.md": "1e27d1d969ddae517cab7ec22753b45b1020a76e8b5638e8a7abe8c807972f89",
+      "tasks.md": "3729435477f6195ab93d185846eef76476b45e3bdf75b58769c9ace333edbb86",
+      "checklist.md": "282c1b6913a7c34e3b6fa035ea4d29d6b4ce9ed51e5da8dae523f8f67f7dd7ff",
+      "implementation-summary.md": "3e5488850726fd4d71d5656cfd4af49a884efcd9d79c75054ef66da1e1d25d1a"
     },
     "last_active_child_id": null,
     "last_active_at": null

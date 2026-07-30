@@ -17,7 +17,8 @@
       "run generate-context at close",
       "metadata regeneration implementation plan",
       "metadata regeneration task breakdown",
-      "016-packet-metadata-regeneration verification checklist"
+      "016-packet-metadata-regeneration verification checklist",
+      "packet metadata regeneration summary"
     ],
     "key_topics": [
       "stale",
@@ -34,9 +35,10 @@
       "close"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -46,6 +48,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -145,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria One",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -153,12 +167,6 @@
       {
         "name": "evidence",
         "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -179,31 +187,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Close the stale phase map, stale continuity blocks, planned derived status and missing source fingerprints as the single defect they are — the close-time metadata generator was never run — and do it only after the regression is dispositioned.",
     "created_at": "2026-07-30T08:10:27.570Z",
-    "last_save_at": "2026-07-30T08:10:27.570Z",
+    "last_save_at": "2026-07-30T11:23:36.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91366e4ac7e6d4ceaae66e585461ad3943049aca8440d4c3c5c245b0010e411f",
+    "source_fingerprint": "sha256:76c328022458ab7e296b9127fcff563808258ac2aa4d120d4a6585bd3247b1be",
     "source_doc_hashes": {
-      "spec.md": "6d2234c04e7136b3af488bd16d94d31ab4d0197ba065ae15f24736bf8e6313ab",
-      "plan.md": "df02be593114681100724e1c5976866a1821090a00d8a0d8e51b18705f63e2c5",
-      "tasks.md": "82c6e058be5f6d4fa236f473125401c502aa3c4962203e843c9987d4d7e89c49",
-      "checklist.md": "5d9ae2bee1b3073f724b3ef05bd3a6014a26fd024dbcb4410f6f5a95316e33de"
+      "spec.md": "a474b59241ef0049da2fca81e89758b3d23f2f564616843a18395aff9f325d85",
+      "plan.md": "cc81dc7a0173e12ff7709c87aba0e9c6c642449ccf9856755a617ee0bb110f63",
+      "tasks.md": "f76be9dda94fcf319ecd2421cefd3e9a0d52741d5672c4f8614300961d3ffe06",
+      "checklist.md": "6d450741477b2fe7214c768842b7be253b7a28e5b603f8f70ae1332fab20e486",
+      "implementation-summary.md": "5a5b41595d326d93e13002e71b9de8a903fc94858f01b1971fceb7ddcf9150ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

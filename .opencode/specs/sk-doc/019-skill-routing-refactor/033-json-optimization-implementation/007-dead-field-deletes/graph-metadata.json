@@ -34,13 +34,12 @@
       "dedup"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "tasks.md",
       "implementation-summary.md",
       "plan.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "tasks.md",
       "checklist.md"
     ],
     "entities": [
@@ -48,12 +47,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -69,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Delete confirmed-orphan skill-metadata fields that do not affect routing (description.json extras, sk-code derived-block orphans, causal_summary disposition) and resolve two duplicate-authority fields (routerPolicy.tieBreak, advisorRouting.packetSkillName) found by the 029 skill/advisor JSON optimization research.",
     "created_at": "2026-07-29T08:00:22.136Z",
-    "last_save_at": "2026-07-29T08:12:37.449Z",
+    "last_save_at": "2026-07-30T11:11:55.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5887be7659d2a7a46b0c6874d03c3ee923efa229c3eca1dec48d4b4370ae9ea",
+    "source_fingerprint": "sha256:f3333a8592a1e846ace71859c4081bd1882479dd1506a8613c50b0be9668aae7",
     "source_doc_hashes": {
-      "spec.md": "165a2b2792a24ca3f9448437176fc3162074f4128633046a441ac894d59663c9",
-      "plan.md": "b9cecf39a508a9082333efd30a7de23d25930dc4e02ceaa431d94c7073886bac",
-      "tasks.md": "ae1a674951b1767e90077542a67f06b95b21bd51cbcb34de3bc86816a885eae8",
-      "checklist.md": "d1cff76105e04c913d6afa4a96a327f0ab38fb1d98c3b64f915a040a7274a8e6",
-      "implementation-summary.md": "880b7c81c532e585f5f8c107d21622a66e6be4ec64971bbc00868720424e6a22"
+      "spec.md": "2866426a94f7762727f87d941c9726bc913d2c63dc5639318d312f9344cc36b0",
+      "plan.md": "ba4c697ed93bc899b1479d254657607575cd10bccb831a00718211b9d05d30dd",
+      "tasks.md": "e3694bbb24692f84eefb1b39a37828d33aa171bca40d7c74310567ceba9720d3",
+      "checklist.md": "2c6ec50d84149acd09b27ba221a8a950b2c8856a8f3d84c873e70006509f6529",
+      "implementation-summary.md": "a4003056e0e819c5d1eaba084484ce311eb188e88d2456ab30a0abb895d13a99"
     },
     "last_active_child_id": null,
     "last_active_at": null

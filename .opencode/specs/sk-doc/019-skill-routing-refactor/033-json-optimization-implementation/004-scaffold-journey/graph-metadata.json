@@ -34,14 +34,12 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "checklist.md",
       "plan.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/tests/create-journey-proof.test.cjs",
       "tasks.md",
+      "checklist.md",
       "tests/README.md",
       ".opencode/bin/compiled-route-manifest.cjs",
       "implementation-summary.md"
@@ -54,33 +52,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-journey-proof.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/create-journey-proof.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,15 +172,27 @@
         "source": "derived"
       },
       {
-        "name": "non-empty",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Make init_skill.py auto-run the H/S class gate --fix and write a compiler-valid derived block so a new skill is born complete, generate S-class leaf-manifest.config.json defaults from one shared source, and add one joined test proving scaffold -> generated gate -> advisor ingest -> parent selection -> compiled route (O2 + O9, closing the open 024 journey-proof gap).",
     "created_at": "2026-07-29T08:00:12.368Z",
-    "last_save_at": "2026-07-29T08:12:36.474Z",
+    "last_save_at": "2026-07-30T11:11:55.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d65ff7381588f7ac85d6eae67c31dead246fc7ef23a2cc4d9e626ea0c5563a47",
+    "source_fingerprint": "sha256:7d50a08a3f35e695de16648e20b506f26b02325fe7432f051493393ada606e17",
     "source_doc_hashes": {
-      "spec.md": "cd71b6c64220287300a5316d39cb21f826d4e7bac3f6e7bc54e5ca784c26a6c2",
-      "plan.md": "b23f316df1d1c54adf9002d6800514950af2830838c899ba5e8276eb5d66eaf9",
-      "tasks.md": "70be6b60c62e277e7cc394934f146a10f8288110b09006bc736319cccc323df0",
-      "checklist.md": "ef70ab25c1f6343b58e812b2e5da218c64a52b847abd0387651cb934cc01cd82",
-      "implementation-summary.md": "9c1c35177e218e36411823709c91f4a36e4a70cf1379933b8deaa2f636ed2c26"
+      "spec.md": "8164bcea8f713e08fad69c8e93c3f77320cbc14bf1514ae17fb0f6200c30a9af",
+      "plan.md": "3884d069043e632cb813e9023019118ff102f9886d5225911168771889867c3c",
+      "tasks.md": "1614ef67d03f4595d5f66d91c7514cf1f33b5088e586dd9e3a1d6b9fe32ca987",
+      "checklist.md": "a3015a1a619b737c6e6e6533badf90fe695c51c25e08523d3868d27a090dd8a2",
+      "implementation-summary.md": "8bcc63a1aaa176d1b1801fc626a61453c5153738458f1ecd643f55bfc92c9c53"
     },
     "last_active_child_id": null,
     "last_active_at": null

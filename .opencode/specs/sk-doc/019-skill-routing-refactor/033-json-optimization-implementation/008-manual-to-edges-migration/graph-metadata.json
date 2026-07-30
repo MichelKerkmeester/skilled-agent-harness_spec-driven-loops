@@ -36,12 +36,12 @@
       "rollback"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "plan.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -49,6 +49,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -61,12 +67,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -148,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria All",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -156,12 +162,6 @@
       {
         "name": "References Spec",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Migrate graph-metadata.manual.* (depends_on/related_to) into typed edges.* across the ~10 fleet roots that carry it, reconcile the live cli-external-orchestration drift, and add an unknown-key lint so manual.* cannot silently return. Routing-changing; gated behind the 006 routing-accuracy CI gate.",
     "created_at": "2026-07-29T08:00:25.630Z",
-    "last_save_at": "2026-07-29T08:12:37.779Z",
+    "last_save_at": "2026-07-30T11:11:55.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82d4c8b63738a363554fe2fd08280f9640fbca88a100cc49041a621088d58abf",
+    "source_fingerprint": "sha256:21be191ee923aa98ecab4e03735be3c10bb3094c36ea5e8c70bbe159e19485ac",
     "source_doc_hashes": {
-      "spec.md": "289ce29a5d6d3a7a6323f1ca788de118f4b298c10b7bc5cf4b2dbd345dfbe925",
-      "plan.md": "428fb90834f2cad3dc6477712bd2b9fc7aae076535e381a3c30e732873c0f244",
-      "tasks.md": "c9b422d87ec657c3a931eed5d52b3d72736dca067d4561cf0a9e35940b8eb599",
-      "checklist.md": "20e9352146cf84e952c844cd5628dbe711268b97e84e6df29ce92835c6f9aedb",
-      "implementation-summary.md": "6a8b5b05208d860abd47f6e09be1f17504e6a24a576c641d52f9d281cad2bdf6"
+      "spec.md": "c45d97bc1b5501ff3b9c16b79f717d7f0144f31023f78f6b7f7101eb5946b47c",
+      "plan.md": "e834613161ee532ea58331f6c95e82ccb311851145adb2ca815b8d5edc9fd60a",
+      "tasks.md": "5121f865fd141b9f9dc5177fb438364da56c01f7dfcdfe6771fb0907c0b7a86e",
+      "checklist.md": "6d530d8fc3e5f976ff36c8c07ddfab06cd7980b2c37f8143e88bfe820cbbffa5",
+      "implementation-summary.md": "fcc261ebd9c644b5cd7dad4850a093945457a230a0f2681aec8d0942b74e734d"
     },
     "last_active_child_id": null,
     "last_active_at": null

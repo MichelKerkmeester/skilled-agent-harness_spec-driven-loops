@@ -35,13 +35,14 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+      "mcp-server/package.json",
+      "scripts/memory/generate-context.ts",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -52,15 +53,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp-server/package.json",
         "source": "derived"
       },
       {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/skill-root-metadata-contract.md",
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
@@ -73,6 +74,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,13 +167,13 @@
         "source": "derived"
       },
       {
-        "name": "Planned Level",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -186,7 +193,7 @@
     ],
     "causal_summary": "Build a skill-root analog to the spec-folder backfill-graph-metadata regenerator: derive key_files/source_docs/entities/trigger_phrases/key_topics from each skill's corpus while preserving authored causal_summary and the TS lifecycle/redirect capabilities per the phase-001 canonical-schema decision; migrate all 11 existing skill roots to that shape; add a derived-freshness CI gate.",
     "created_at": "2026-07-29T08:00:08.862Z",
-    "last_save_at": "2026-07-29T08:12:36.111Z",
+    "last_save_at": "2026-07-30T11:11:55.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40596730c358624863460cf9b5454041e7cd291d3ac2b6bad1cfb84bd8ce29ab",
+    "source_fingerprint": "sha256:033f2c6f93b27dda704389e8e7298f07615097c7628552e3c8e63228a0613b4a",
     "source_doc_hashes": {
-      "spec.md": "5538c529ed83a9fbe168b3c0ca36021a8e76f2bb7a0dbfa79abb1928c6a38509",
-      "plan.md": "31b5f059fc2f9dbd6e6553601dbb49017e9dd6af4c1453fc23008457f2849b63",
-      "tasks.md": "458862df4a203f32b3eafafa143d0f95c8515b3c545bcbfa3811fbb3bf942b75",
-      "checklist.md": "744dd436f5ed9467c7b94933f571ef07d4036e571630454ae333efc85bffe108",
-      "implementation-summary.md": "c796b8769560ff20a3b7bea529b1c8c1e8d5caaf043fe44138dc1468a0c38aa8"
+      "spec.md": "9a6bed591c48b6d5beed0ce6e5b611d9bb4cb62efd1a84621e5d7456c3432662",
+      "plan.md": "e00460f76c56c6cf49cb0ff60b6345277aa880bf8ccec501c09c298b054c246c",
+      "tasks.md": "57bede173e5fda5b462f2ec982f7e6151b50742c06a4cf6d10468e4749388b5c",
+      "checklist.md": "8237e5c9aa606818d76bd3d7253f0ce1568b9601e19255adc421dd08c82ac70c",
+      "implementation-summary.md": "ee903bf8cbc64985ee75bdc0dd88903b921181fa3c66cef63bac1ecfdcbde84d"
     },
     "last_active_child_id": null,
     "last_active_at": null
