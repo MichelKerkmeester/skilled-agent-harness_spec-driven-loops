@@ -36,27 +36,6 @@ interface AllowListEntry extends Omit<CommandBridgeEntry, 'source'> {
   readonly reason: string;
 }
 
-const KNOWN_PYTHON_SHADOW_DIFF_IDS = [
-  'command-create-benchmark',
-  'command-create-command',
-  'command-create-diff',
-  'command-create-flowchart',
-  'command-create-skill-parent',
-  'command-deep-ai-council',
-  'command-deep-alignment',
-  'command-deep-command-benchmark',
-  'command-deep-model-benchmark',
-  'command-deep-research',
-  'command-deep-review',
-  'command-deep-skill-benchmark',
-  'command-interface-design',
-  'command-interface-design-reference',
-  'command-prompt-improve',
-  'command-spec-kit-deep-research',
-  'command-spec-kit-deep-review',
-  'memory:save',
-] as const;
-
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const SKILLS_ROOT = join(REPO_ROOT, '.opencode', 'skills');
 const COMMAND_BRIDGES_DIR = join(
@@ -180,7 +159,7 @@ describe('command-bridges drift guard', () => {
     expect(runtime.generatedOwners).toEqual(runtime.handOwners);
   });
 
-  it('live Python differences stay pinned to the explicit shadow expectation', () => {
+  it('live Python bridges match the generated projection exactly', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
     const stdout = execFileSync('python3', [ADVISOR_SCRIPT, '--dump-command-bridges'], {
       cwd: REPO_ROOT,
@@ -199,9 +178,8 @@ describe('command-bridges drift guard', () => {
       );
     }).sort();
 
-    const expectedDiff = live.count === generated.count
-      ? []
-      : [...KNOWN_PYTHON_SHADOW_DIFF_IDS].sort();
-    expect(actualDiff).toEqual(expectedDiff);
+    // The live runtime consumes the generated projection, so any divergence —
+    // a missing id, an extra id, or a field mismatch — is real drift.
+    expect(actualDiff).toEqual([]);
   });
 });

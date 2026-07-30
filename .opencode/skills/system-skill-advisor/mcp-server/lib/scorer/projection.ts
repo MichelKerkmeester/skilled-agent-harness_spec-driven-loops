@@ -668,7 +668,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
 ];
 // END GENERATED COMMAND BRIDGES
 
-export const COMMAND_BRIDGES: readonly CommandBridgeProjection[] = HAND_AUTHORED_COMMAND_BRIDGES;
+export const COMMAND_BRIDGES: readonly CommandBridgeProjection[] = GENERATED_COMMAND_BRIDGES;
 
 function scoringCommandBridges(
   bridges: readonly CommandBridgeProjection[],
