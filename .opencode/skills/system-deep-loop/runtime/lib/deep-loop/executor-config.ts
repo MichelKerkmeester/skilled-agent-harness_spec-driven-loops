@@ -213,7 +213,8 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
  * is the curated subset: the family aliases Devin itself declares, plus the
- * GLM-5.2 uids and the free-tier ids that fan-out research lanes actually use.
+ * GLM-5.2 uids, SWE-1.7 tiers, Grok 4.5 uids, and free-tier ids that fan-out
+ * research lanes actually use.
  * Every entry was read from `devin models list` (live 2026-07-27, account
  * Michel Kerkmeester) — no id here was inferred from documentation.
  *
@@ -237,15 +238,26 @@ export const DEVIN_SUPPORTED_MODELS = [
   'glm-5-2',
   'glm-5-2-max',
   'glm-5-2-1m',
+  'glm-5-2-max-1m',
+  'glm-5-2-none',
+  'glm-5-2-none-1m',
   // Free-tier ids beyond GLM.
   'swe-1-7',
   'swe-1-7-medium',
   'swe-1-6',
+  'swe-1-7-lightning',
+  // Grok 4.5 tier uids read from the live `devin models list`.
+  'grok-4-5-low',
+  'grok-4-5-medium',
+  'grok-4-5-high',
 ] as const;
 export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
 
-/** Default model when a cli-devin dispatch omits one — Devin's own model router. */
-export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'adaptive';
+/**
+ * Follows the skill's curated default: `swe` is the SWE-1.7 Lightning alias,
+ * rather than Devin's model router.
+ */
+export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'swe';
 
 /** True when `model` is in the enforced cli-devin allowlist. */
 export function isDevinModelAllowed(model: string): model is DevinSupportedModel {

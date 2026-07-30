@@ -1194,7 +1194,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     expect(command.effectiveConfig).toMatchObject({ reasoningEffort: null, serviceTier: null });
   });
 
-  it('defaults an omitted model to the adaptive router', () => {
+  it('defaults an omitted model to the swe alias', () => {
     const binDir = makeTempDir('fanout-run-devin-default-model-');
     writeStubBinary(binDir, 'devin');
     const command = buildLineageCommand(
@@ -1204,8 +1204,8 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'default',
       { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } },
     );
-    expect(command.args).toContain('adaptive');
-    expect(command.effectiveConfig.model).toBe('adaptive');
+    expect(command.args).toContain('swe');
+    expect(command.effectiveConfig.model).toBe('swe');
   });
 
   it('accepts every model in the enforced allowlist', () => {
@@ -1215,7 +1215,9 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const allowed = [
       'adaptive', 'opus', 'sonnet', 'claude', 'haiku', 'swe', 'gpt', 'gemini', 'codex',
       'glm-5-2', 'glm-5-2-max', 'glm-5-2-1m',
-      'swe-1-7', 'swe-1-7-medium', 'swe-1-6',
+      'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
+      'swe-1-7', 'swe-1-7-medium', 'swe-1-6', 'swe-1-7-lightning',
+      'grok-4-5-low', 'grok-4-5-medium', 'grok-4-5-high',
     ];
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
@@ -1227,7 +1229,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['grok-4-5-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }

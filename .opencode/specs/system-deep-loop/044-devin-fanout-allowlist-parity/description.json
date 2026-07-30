@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/044-devin-fanout-allowlist-parity",
+  "description": "The cli-devin catalog was curated to four families (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro) with default `swe`, but the deep-loop runtime's",
+  "keywords": [
+    "cli-devin",
+    "catalog",
+    "curated",
+    "four",
+    "families",
+    "glm-5",
+    "swe-1",
+    "grok",
+    "deepseek",
+    "pro",
+    "default",
+    "swe",
+    "deep-loop",
+    "runtime"
+  ],
+  "lastUpdated": "2026-07-30T03:46:59.764Z",
+  "specId": "044",
+  "folderSlug": "devin-fanout-allowlist-parity",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

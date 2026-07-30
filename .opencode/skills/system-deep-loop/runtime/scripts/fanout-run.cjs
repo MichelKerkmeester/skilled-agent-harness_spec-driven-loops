@@ -1786,7 +1786,7 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
-// Mirrors DEVIN_SUPPORTED_MODELS in executor-config.ts, duplicated as a plain JS
+// Must mirror DEVIN_SUPPORTED_MODELS in executor-config.ts; duplicated as plain JS
 // literal for the same reason CURSOR_ALLOWED_MODELS is: buildDevinLineageCommand
 // stays synchronous and directly unit-testable.
 const DEVIN_ALLOWED_MODELS = new Set([
@@ -1802,11 +1802,18 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'glm-5-2',
   'glm-5-2-max',
   'glm-5-2-1m',
+  'glm-5-2-max-1m',
+  'glm-5-2-none',
+  'glm-5-2-none-1m',
   'swe-1-7',
   'swe-1-7-medium',
   'swe-1-6',
+  'swe-1-7-lightning',
+  'grok-4-5-low',
+  'grok-4-5-medium',
+  'grok-4-5-high',
 ]);
-const DEVIN_DEFAULT_MODEL = 'adaptive';
+const DEVIN_DEFAULT_MODEL = 'swe';
 
 function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isDevinBinaryAvailable(options.env || process.env)) {
