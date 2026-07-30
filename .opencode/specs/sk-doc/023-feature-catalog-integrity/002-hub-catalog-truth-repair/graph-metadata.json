@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
+  "spec_folder": "sk-doc/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
+  "parent_id": "sk-doc/023-feature-catalog-integrity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub catalog repair",
+      "retired compiled routing paths catalog",
+      "stale executor roster catalog",
+      "missing catalog leaf shipped feature",
+      "advisor phantom hook row",
+      "hub catalog truth repair implementation plan",
+      "feature catalog integrity implementation plan",
+      "hub catalog truth repair task list",
+      "feature catalog integrity task list",
+      "hub catalog truth repair verification checklist",
+      "feature catalog integrity verification checklist"
+    ],
+    "key_topics": [
+      "hub",
+      "catalog",
+      "repair",
+      "retired",
+      "compiled",
+      "routing",
+      "paths",
+      "stale",
+      "executor",
+      "roster",
+      "missing",
+      "leaf"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
+      ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-flag-governance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Catalog Truth Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement These",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clearing Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Ten",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "For Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Bridge",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Planned",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "These are the catalogs an agent reads to learn what a hub does, and their leaves are indexed in the `leaf-manifest.json`",
+    "created_at": "2026-07-30T19:29:14.798Z",
+    "last_save_at": "2026-07-30T19:29:14.798Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:23868b63ca69fe6e6190e397a21bcfe35e3f2221efd42c948dfed32e407743de",
+    "source_doc_hashes": {
+      "spec.md": "b665519c7bc329a1ae7486a112decc3872ef2682d9b9bcef01013907fc40b8f5",
+      "plan.md": "c9d1705a6d58fdfb31be8a812e75dc3ac3bad397e8826acfd8c9b19aa5c86f82",
+      "tasks.md": "5356936c952d1dfc89b482be8ed0c80ef0daab7a7221fa9c0b7f93820c5aecd3",
+      "checklist.md": "e28660453c2d486cb440b14b227c1a12853689af54f47f1974e815731c3d47da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

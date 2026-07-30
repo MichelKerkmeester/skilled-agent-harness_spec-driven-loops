@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
+  "description": "Both surfaces are structurally outside the validator: `system-spec-kit` because it is a single skill rather than a mode",
+  "keywords": [
+    "surfaces",
+    "structurally",
+    "outside",
+    "validator",
+    "system-spec-kit",
+    "because",
+    "single",
+    "skill",
+    "rather",
+    "mode"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.238Z",
+  "specId": "003",
+  "folderSlug": "large-surface-catalog-reconciliation",
+  "parentChain": [
+    "sk-doc",
+    "023-feature-catalog-integrity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "spec_folder": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "parent_id": "sk-doc/023-feature-catalog-integrity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog validator coverage",
+      "validate_catalog_package discovery",
+      "feature catalog enforcement rulings",
+      "catalog bijection phantom row",
+      "feature leaf definition ruling",
+      "catalog enforcement and coverage implementation plan",
+      "feature catalog integrity implementation plan",
+      "catalog enforcement and coverage task list",
+      "feature catalog integrity task list",
+      "catalog enforcement and coverage verification checklist",
+      "feature catalog integrity verification checklist",
+      "catalog covered set ruling"
+    ],
+    "key_topics": [
+      "catalog",
+      "validator",
+      "coverage",
+      "discovery",
+      "feature",
+      "enforcement",
+      "rulings",
+      "bijection",
+      "phantom",
+      "row",
+      "leaf",
+      "definition"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+      ".opencode/skills/mcp-code-mode/README.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_catalog_package.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalog Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Settle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
+    "created_at": "2026-07-30T19:29:14.546Z",
+    "last_save_at": "2026-07-30T19:29:14.546Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:89d20340139b2a50265c61a61549cbd008eac04fc67c1c9b078a821d4b8e4ede",
+    "source_doc_hashes": {
+      "spec.md": "4a018be311897f22aa6b3a6bb999e911226449287d76df86f50f16ca717d5845",
+      "plan.md": "6e7173c7a93d165c1b29714180585db838ecebecff874f9914f52a45102dd848",
+      "tasks.md": "f40b719fd560145b7606ddf15895cdca57e1db5217231bcf86060a1a39bdd2f0",
+      "checklist.md": "2972fb8f964430b562f28800350e13d90e2150ce4c8a3351eef1f5c6fe096491",
+      "decision-record.md": "78255dfe418281ca94f3dd0a4a86f889998ba31db6e718ef95ef1f3cf9f0d25c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
