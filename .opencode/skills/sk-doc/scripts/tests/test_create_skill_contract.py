@@ -44,11 +44,18 @@ def _temporary_hub_name() -> str:
 
 def _activation_dir(hub_name: str) -> Path:
     opencode_root = Path(__file__).resolve().parents[4]
-    return (
-        opencode_root
-        / "bin/lib/compiled-routing/010-live-activation/activation"
-        / hub_name
-    )
+    compiled_routing_dir = opencode_root / "bin/lib/compiled-routing"
+    candidates = list(compiled_routing_dir.glob("*-live-activation"))
+    if not candidates:
+        raise FileNotFoundError(
+            f"no *-live-activation directory found under {compiled_routing_dir}"
+        )
+    # compiled-route-layout.cjs resolves the highest-numbered generation as
+    # current and keeps exactly one generation materialized per checkout, so
+    # sorting descending and taking the first entry tracks whichever
+    # generation is actually live instead of hardcoding a specific number.
+    live_activation_dir = sorted(candidates, reverse=True)[0]
+    return live_activation_dir / "activation" / hub_name
 
 
 def _write_valid_skill(

@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
-    last_updated_at: "2026-07-31T03:28:14Z"
+    last_updated_at: "2026-07-31T03:57:25Z"
     last_updated_by: "claude-code"
-    recent_action: "A1-A7 implemented and verified; packet Complete"
+    recent_action: "A1-A7 plus gap remediation complete"
     next_safe_action: "validate.sh --strict, then user decides on commit"
     blockers: []
     key_files:
@@ -70,6 +70,7 @@ Implement Track A from research.md Section 6 — the seven dependency-ordered co
 - A5: wire the handoff into every resolved create branch (standalone full-create/full-update, parent create/update, narrow leaf-freshness check for reference/asset-only branches)
 - A6: add the contract tests (shared vocabulary/output-semantics test + doctor route-contract test)
 - A7: state the guardrail (description.json stays descriptive; standalone create never requires parent-hub metadata) in the new shared doc
+- Gap remediation (added after initial Complete, same packet, per operator direction "Fix gaps"): the two deferred research findings this packet's own implementation surfaced (G3 fleet-gate blast radius, G4 missing-vs-stale redirect), plus the three pre-existing test failures discovered during T013 verification and confirmed unrelated at the time — now fixed rather than left as known limitations
 
 ### Out of Scope
 - Track B (Codex-hook/worktree source-selection) — adjacent, independently sequenced, not part of this phase
@@ -90,6 +91,12 @@ Implement Track A from research.md Section 6 — the seven dependency-ordered co
 | `.opencode/commands/create/assets/create-skill-auto.yaml`, `create-skill-confirm.yaml`, `create-skill-presentation.txt`, `create-skill-parent-auto.yaml`, `create-skill-parent-confirm.yaml`, `create-skill-parent-presentation.txt` | Modify | Wire handoff fields into every resolved create branch (A5) |
 | `.opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs`, `.opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs` | Create | Contract tests (A6) |
 | `.opencode/skills/sk-doc/leaf-manifest.json` | Regenerate | Refresh sk-doc's own manifest after adding `advisor-index-handoff.md` |
+| `.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs` | Modify | Add missing `s-class-config-defaults.json` to the fixture-copy list (gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py` | Modify | Remove stray `manual` graph-metadata key, expand `intent_signals` to 8, scope the class gate's `--fix` via `--skill` (G3, gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json`, `assets/parent-skill/parent-skill-graph-metadata-template.json` | Modify | Remove the same stray `manual` key from both hand-authored templates (gap fix) |
+| `.opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py` | Modify | Replace hardcoded `010-live-activation` with dynamic `*-live-activation` discovery (gap fix) |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Point `MISSING_GENERATED_FILE` violations at the scoped generator (G4, gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Modify | Add `--skill <name>` scoping flag (G3, gap fix) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,6 +118,7 @@ Implement Track A from research.md Section 6 — the seven dependency-ordered co
 |----|-------------|---------------------|
 | REQ-004 | A3: leaf-manifest generation uses the scoped generator | `create-skill-parent-auto.yaml` invokes `generate-leaf-manifest.cjs --write <skillDir>`, not the fleet `--fix` gate |
 | REQ-005 | A6: contract tests exist and pass | New/updated test file(s) exercise the shared vocabulary and the doctor route-contract subset check |
+| REQ-006 | Gap remediation: G3/G4 fixed, all 3 pre-existing test failures fixed | `--skill` scoping proven end-to-end (sibling root byte-identical before/after); missing-manifest message includes the redirect; `sk-create-skill` (17/17), `doctor/scripts` (5/5), and `test_create_skill_contract.py` (23/23) all pass with zero pre-existing failures remaining |
 <!-- /ANCHOR:requirements -->
 
 ---

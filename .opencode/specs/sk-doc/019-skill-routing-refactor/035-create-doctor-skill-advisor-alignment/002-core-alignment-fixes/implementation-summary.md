@@ -9,9 +9,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
-    last_updated_at: "2026-07-31T03:28:14Z"
+    last_updated_at: "2026-07-31T03:57:25Z"
     last_updated_by: "claude-code"
-    recent_action: "A1-A7 implemented, verified, and documented; Track A closed"
+    recent_action: "A1-A7 plus gap remediation documented"
     next_safe_action: "validate.sh --strict, then user decides on commit"
     blockers: []
     key_files:
@@ -22,10 +22,10 @@ _memory:
       session_id: "035-002-core-alignment-fixes"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Should init_skill.py's fleet ci-skill-root-metadata.cjs --fix call (G3's actual citation) be narrowed the same way create-skill-parent-auto.yaml's was? Deferred — generate-leaf-manifest.cjs alone does not generate leaf-aliases.json for class-S roots, so a drop-in swap would be incomplete; needs its own scoped design decision."
+    open_questions: []
     answered_questions:
       - "G2 vs G3 disentangled: G2 is create-skill-parent-auto.yaml omitting leaf-manifest generation entirely (fixed here); G3's fleet-blast-radius citation is actually about init_skill.py, the STANDALONE initializer, not the parent workflow (confirmed by direct grep — init_skill is never referenced from create-skill-parent-*.yaml)."
+      - "Should init_skill.py's fleet --fix call be narrowed the same way create-skill-parent-auto.yaml's was? Resolved differently than first assumed: rather than swapping to the scoped generator directly (incomplete for class-S leaf-aliases.json), added a --skill <name> flag to ci-skill-root-metadata.cjs itself so --fix can be scoped without duplicating generation logic."
 ---
 # Implementation Summary: Create/Doctor/Skill-Advisor Core Alignment Fixes
 
@@ -64,6 +64,16 @@ Before this packet, a newly scaffolded skill was structurally valid but silent a
 ### A4/A5 — One shared vocabulary, wired into every resolved create branch
 `advisor-index-handoff.md` is the new canonical contract: metadata ownership, the operator-owned refresh choice (`skill_graph_scan` vs `advisor_rebuild`, presented as one explicit choice, never chained), the `NOT RUN`/`PASSED`/`FAILED`/`UNAVAILABLE (retryable)` verification-state enum, the `fresh`/`stale`/`missing` leaf-manifest enum, and the class-applicability rule (H-only fields never render on a standalone root). All 8 workflow-asset surfaces — standalone `:auto`/`:confirm`/presentation and parent `:auto`/`:confirm`/presentation — render this same vocabulary; reference-only/asset-only branches render only the narrow `Leaf-manifest freshness` signal, never the full block, since those roots forbid every H-only field by construction.
 
+### Gap Remediation — G3, G4, and three pre-existing test failures
+The initial A1-A7 pass closed with three documented limitations and deferred G3/G4; on operator direction ("Fix gaps") all five closed:
+
+- **G3 (fleet-gate blast radius) was resolvable after all.** The blocker recorded at Complete was that `generate-leaf-manifest.cjs --write` alone doesn't generate `leaf-aliases.json` for class-S roots, so swapping `init_skill.py`'s fleet `--fix` call for the scoped generator directly would be incomplete. The actual fix was smaller: add a `--skill <name>` flag to `ci-skill-root-metadata.cjs` itself, filtering discovery to one basename-matched root before `--fix` runs. This reuses the exact same generation logic (nothing duplicated) while eliminating the blast radius — proven end-to-end by scaffolding a real skill next to a sibling root and confirming the sibling's file was byte-identical before and after.
+- **G4 (missing vs stale redirect).** `parent-skill-check.cjs`'s check 11a (the class-contract check, which is what actually catches a genuinely-missing `leaf-manifest.json` — the earlier 10-block treats absence as "not yet opted in" and stays silent) reported a bare `MISSING_GENERATED_FILE` message with no redirect, unlike the byte-drift (10b) check which already prints the exact regenerate command. Added the same redirect, read-only, only when the violation is actually the generated-file case (not a registry-authored defect, where `--write` wouldn't help).
+- **Three pre-existing test failures, all root-caused and fixed, not just reconfirmed as unrelated:**
+  - `parent-skill-check-leaf-manifest.test.cjs` never staged `s-class-config-defaults.json` in its fixture, which `generate-leaf-manifest.cjs` requires at runtime — `create-journey-proof.test.cjs` already had this fix; mirrored it here.
+  - `create-journey-proof.test.cjs` failed because `init_skill.py`'s graph-metadata scaffold (and both its hand-authored templates) carried a stray `manual` top-level key — cross-contamination from the unrelated spec-folder graph-metadata schema, which coincidentally uses the same field name for a completely different purpose — plus only 1-2 `intent_signals` entries against an 8-entry floor. Removed the key from all three sites, expanded `intent_signals`.
+  - `test_create_skill_contract.py` hardcoded `bin/lib/compiled-routing/010-live-activation`, but the real runtime layout selector (`compiled-route-layout.cjs`) treats `010` as legacy and `013` as current, and only `013` exists on disk — a stale path from an unrelated renumbering. Replaced the hardcode with dynamic discovery of the one `*-live-activation` directory present.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -83,6 +93,13 @@ Before this packet, a newly scaffolded skill was structurally valid but silent a
 | `.opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs` | Created | 9 assertions pinning the vocabulary across standalone/parent/doctor (A6a) |
 | `.opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs` | Created | 4 assertions pinning the required tool subset against the live registry, existence-only (A6b) |
 | `.opencode/skills/sk-doc/leaf-manifest.json` | Regenerated | Refreshed after adding `advisor-index-handoff.md` (a new leaf under `sk-doc`'s own tracked corpus) |
+| `.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs` | Modified | Added `s-class-config-defaults.json` to the fixture-copy list (gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py` | Modified | Removed stray `manual` graph-metadata key, expanded `intent_signals` to 8, scoped the class gate's `--fix` via `--skill` (G3, gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json` | Modified | Removed the same stray `manual` key (gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json` | Modified | Removed the same stray `manual` key (gap fix) |
+| `.opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py` | Modified | Replaced hardcoded `010-live-activation` with dynamic `*-live-activation` discovery (gap fix) |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modified | Check 11a now redirects `MISSING_GENERATED_FILE` violations at the scoped generator (G4, gap fix) |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Modified | Added `--skill <name>` scoping flag, fully backward compatible when absent (G3, gap fix) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +107,9 @@ Before this packet, a newly scaffolded skill was structurally valid but silent a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each of A1-A7 was implemented then independently re-verified before the next began: `route-validate.sh` after every doctor-surface edit, `parent-skill-check.cjs` after every create-surface edit, `python3 -c "import yaml; yaml.safe_load(...)"` after every YAML edit. The A6 contract tests were written last, once real behavior existed to pin (per research's own ruled-out direction against test-first pinning). Before closing out, the full verification surface was re-run: `route-validate.sh` (10/10 routes, 0 errors), `parent-skill-check.cjs` across all 7 class-H hubs (7/7, after regenerating `sk-doc`'s own stale leaf-manifest), the fleet `ci-skill-root-metadata.cjs` across all 11 skill roots (11/11), the full `sk-create-skill` and `doctor/scripts` node test suites, and the Python `test_create_skill_contract.py` suite. Three pre-existing failures (unrelated to this packet) were confirmed via `git stash`-based baseline diff against commit `6fbaee057c` before this session's changes — identical failures both before and after, so not a regression.
+Each of A1-A7 was implemented then independently re-verified before the next began: `route-validate.sh` after every doctor-surface edit, `parent-skill-check.cjs` after every create-surface edit, `python3 -c "import yaml; yaml.safe_load(...)"` after every YAML edit. The A6 contract tests were written last, once real behavior existed to pin (per research's own ruled-out direction against test-first pinning). At that point the full verification surface was re-run: `route-validate.sh` (10/10 routes, 0 errors), `parent-skill-check.cjs` across all 7 class-H hubs (7/7, after regenerating `sk-doc`'s own stale leaf-manifest), the fleet `ci-skill-root-metadata.cjs` across all 11 skill roots (11/11), and the full `sk-create-skill`, `doctor/scripts`, and `test_create_skill_contract.py` suites. Three pre-existing failures (unrelated to this packet) were confirmed via `git stash`-based baseline diff against commit `6fbaee057c` — identical failures both before and after, so not a regression at that point.
+
+On operator direction to fix the two deferred findings and the three pre-existing failures, each of the five gap fixes followed the same discipline: read the actual failing code/message first, confirm root cause with a targeted grep or manual repro (e.g. the `--skill` fix was proven live by scaffolding a real skill and diffing a sibling root's file before/after, not just re-running the test suite), then re-run the specific suite that had failed. The full verification surface was re-run one final time after all five fixes: `route-validate.sh` (10/10), `parent-skill-check.cjs` (7/7 hubs), the fleet gate (11/11 roots), `sk-create-skill` (17/17, up from 16/17), `doctor/scripts` (5/5, up from 4/5), and `test_create_skill_contract.py` (23/23, up from 21/23) — zero pre-existing failures remain.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,9 +120,10 @@ Each of A1-A7 was implemented then independently re-verified before the next beg
 | Decision | Why |
 |----------|-----|
 | Mirrored every `:auto`-only edit into the matching `:confirm` workflow (A3, A5a, A5b) | Both variants render the same shared presentation template — fixing only `:auto` would leave `:confirm` promising handoff fields it never generates, a worse state than before this packet |
-| Left `init_skill.py`'s fleet `ci-skill-root-metadata.cjs --fix` call unchanged, despite it being G3's actual cited defect | `generate-leaf-manifest.cjs --write` alone doesn't generate `leaf-aliases.json` for class-S roots (confirmed by reading the generator's own docstring and grep), so swapping the call would be an incomplete substitute — this needs its own scoped design decision, not a drop-in change buried inside this packet |
 | Kept `description.json` and standalone `/create:skill` free of any parent-hub-metadata assertion (A7) | Nine iterations of research converged on this exact boundary being the mistake most likely to get silently reintroduced; stated it explicitly as a guardrail in `advisor-index-handoff.md` rather than leaving it implicit |
 | Used a shared vocabulary doc with per-surface duplicated rendering, not a shared formatter | Research Theme F1/F2: create and doctor have genuinely different result shapes; a byte-identical formatter would flatten real lifecycle differences the research explicitly warned against |
+| Closed G3 with a `--skill <name>` scoping flag on the fleet gate itself, not a new leaf-aliases generator | Building a second alias-derivation code path risked silently diverging from `init_skill.py`'s own logic over time; scoping the existing, already-correct fleet gate to one root reuses the same generation code and eliminates the blast radius with a much smaller, more auditable change |
+| Fixed the two graph-metadata templates as well as `init_skill.py`'s inline literal, not just the scaffolder | `create-journey-proof.test.cjs`'s `assertShapeMatches` check compares scaffold output against the template file's key set — fixing only one side would have traded a real bug for a new shape-mismatch failure |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -118,11 +138,13 @@ Each of A1-A7 was implemented then independently re-verified before the next beg
 | `ci-skill-root-metadata.cjs --format json` (fleet, all 11 roots) | PASS — 11/11, 0 failed |
 | `advisor-index-handoff-contract.test.cjs` (new, A6a) | PASS — 9/9 |
 | `skill-advisor-route-contract.test.cjs` (new, A6b) | PASS — 4/4 |
-| `sk-create-skill` full test suite (`*.test.cjs`) | 16/17 — 1 pre-existing failure (`create-journey-proof.test.cjs`), confirmed unrelated via `git stash` baseline diff |
-| `doctor/scripts` full test suite (`*.test.cjs`) | 4/5 — 1 pre-existing failure (`parent-skill-check-leaf-manifest.test.cjs`, stale fixture-copy list missing `lib/s-class-config-defaults.json`), confirmed unrelated |
-| `test_create_skill_contract.py` (pytest) | 21/23 — 2 pre-existing failures on compiled-routing counter/path state, confirmed unrelated |
+| `sk-create-skill` full test suite (`*.test.cjs`) | PASS — 17/17 (was 16/17; `create-journey-proof.test.cjs` fixed) |
+| `doctor/scripts` full test suite (`*.test.cjs`) | PASS — 5/5 (was 4/5; `parent-skill-check-leaf-manifest.test.cjs` fixed) |
+| `test_create_skill_contract.py` (pytest) | PASS — 23/23 (was 21/23; both compiled-routing-path failures fixed) |
 | `validate_document.py` on `advisor-index-handoff.md` | PASS — 0 issues, document type `reference` |
 | YAML syntax check on every edited asset (11 files) | PASS — all clean immediately after each edit |
+| `--skill` scoping live proof (G3) | PASS — scaffolded a real skill next to a sibling root; sibling's `graph-metadata.json` byte-identical before/after |
+| Missing-manifest redirect message (G4) | PASS — manual fixture with a deleted `leaf-manifest.json` now prints `MISSING_GENERATED_FILE ... Re-run: node ".../generate-leaf-manifest.cjs" --write "..."` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -130,9 +152,13 @@ Each of A1-A7 was implemented then independently re-verified before the next beg
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`init_skill.py`'s fleet-gate blast radius (G3) is unresolved.** The standalone `/create:skill` `full-create` path still calls `ci-skill-root-metadata.cjs --fix --skills-dir <parent>` — a fleet-wide gate that can regenerate unrelated roots' generated files as a side effect of scaffolding one new skill. Narrowing this correctly requires either a scoped `leaf-aliases.json` generator for class-S roots or an explicitly target-scoped class-gate API; out of scope for this packet (not in the original Files-to-Change table, and a drop-in swap would be functionally incomplete).
-2. **Three pre-existing, unrelated test failures remain** (`create-journey-proof.test.cjs`, `parent-skill-check-leaf-manifest.test.cjs`, 2 cases in `test_create_skill_contract.py`) — confirmed via baseline diff to predate this packet. Not fixed here; flagged for whoever owns those surfaces next.
-3. **Doctor's `/doctor:parent-skill` redirect behavior (G4)** — distinguishing "manifest missing" from "manifest stale" and pointing at the scoped generator without attempting repair — was part of research's A3 recommendation but was not in this packet's frozen Files-to-Change table (`doctor-parent-skill.yaml` was never listed). Not built here; a legitimate fast-follow if the operator wants it.
+All three limitations recorded when this packet first reached Complete have since been resolved (see Gap Remediation above):
+
+1. ~~`init_skill.py`'s fleet-gate blast radius (G3)~~ — resolved via a `--skill <name>` scoping flag on `ci-skill-root-metadata.cjs`.
+2. ~~Three pre-existing, unrelated test failures~~ — all three root-caused and fixed.
+3. ~~Doctor's missing-vs-stale redirect (G4)~~ — resolved in `parent-skill-check.cjs` check 11a; `doctor-parent-skill.yaml` needed no change since it already prints the checker's report verbatim.
+
+None identified as of this update.
 <!-- /ANCHOR:limitations -->
 
 ---

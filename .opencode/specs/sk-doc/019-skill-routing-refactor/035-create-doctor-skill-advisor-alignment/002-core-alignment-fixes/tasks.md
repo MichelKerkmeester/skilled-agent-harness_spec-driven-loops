@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
-    last_updated_at: "2026-07-31T03:28:14Z"
+    last_updated_at: "2026-07-31T03:57:25Z"
     last_updated_by: "claude-code"
-    recent_action: "All 14 tasks complete; packet Complete"
+    recent_action: "Gap remediation (T015-T020) closed all 5 flagged gaps; all 20 tasks complete"
     next_safe_action: "None — packet Complete"
     blockers: []
     key_files:
@@ -78,6 +78,19 @@ _memory:
 - [x] T013 Re-run `route-validate.sh`, `parent-skill-check.cjs`, and existing create/doctor test suites; confirm all pass (route-validate.sh 10/10 routes; parent-skill-check.cjs 7/7 hubs after regenerating sk-doc's own leaf-manifest.json for the new advisor-index-handoff.md leaf; fleet ci-skill-root-metadata.cjs 11/11 roots; sk-create-skill test suite 16/17 and doctor scripts test suite 4/5 and Python test_create_skill_contract.py 21/23 — all 3 remaining failures confirmed pre-existing via `git stash` baseline diff, unrelated to this packet's files)
 - [x] T014 Reconcile packet docs (spec/plan/tasks/checklist/implementation-summary) to Complete; `validate.sh --strict` — PASSED, Errors: 0, Warnings: 0
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Gap Remediation
+
+- [x] T015 Fix `parent-skill-check-leaf-manifest.test.cjs`'s fixture-copy list — it never staged `s-class-config-defaults.json`, which `generate-leaf-manifest.cjs` requires at runtime, causing a pre-existing `MODULE_NOT_FOUND` (`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`)
+- [x] T016 Fix `init_skill.py`'s graph-metadata scaffold — remove the stray `manual` top-level key (cross-contamination from the unrelated spec-folder graph-metadata schema, not part of the skill-advisor schema) and expand `intent_signals` from 1-2 entries to 8 in both the standalone and parent-hub scaffold literals, plus their matching hand-authored templates, closing a pre-existing `GRAPH_METADATA_UNKNOWN_KEY`/`INTENT_SIGNALS_BELOW_FLOOR` failure (`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`, `assets/skill/skill-graph-metadata-template.json`, `assets/parent-skill/parent-skill-graph-metadata-template.json`)
+- [x] T017 Fix the hardcoded stale `010-live-activation` path in `test_create_skill_contract.py` — the real runtime layout selector (`compiled-route-layout.cjs`) treats `010` as legacy and `013` as current, and only `013` exists on disk; replaced the hardcoded path with dynamic discovery of the one `*-live-activation` directory present (`.opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py`)
+- [x] T018 G4: point `MISSING_GENERATED_FILE` violations at the scoped generator — `parent-skill-check.cjs` check 11a previously reported a missing `leaf-manifest.json` with no redirect, unlike the byte-drift (10b) check which already prints the exact `generate-leaf-manifest.cjs --write` command; added the same redirect, read-only, distinguishing missing from stale per research Theme G4 (`.opencode/commands/doctor/scripts/parent-skill-check.cjs`)
+- [x] T019 G3: scope the fleet class gate's `--fix` to one named skill — added a `--skill <name>` flag to `ci-skill-root-metadata.cjs` that filters discovery to one basename-matched root (fully backward compatible when absent), then updated `init_skill.py`'s `_ensure_class_gate_fresh()` to pass it, closing the "can also write unrelated roots" blast-radius gap; proven end-to-end with a live scaffold whose sibling root's file was byte-identical before/after (`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`, `init_skill.py`)
+- [x] T020 Re-run the full verification surface after all 5 fixes: `route-validate.sh` (10/10), `parent-skill-check.cjs` (7/7 hubs), fleet gate (11/11 roots), `sk-create-skill` test suite (17/17, 0 pre-existing failures remaining), `doctor/scripts` test suite (5/5), `test_create_skill_contract.py` (23/23) — every previously-documented pre-existing failure now fixed, not just re-confirmed as unrelated
+<!-- /ANCHOR:phase-4 -->
 
 ---
 

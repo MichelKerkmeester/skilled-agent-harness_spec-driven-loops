@@ -35,6 +35,7 @@ const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
 const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
 const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
+const REAL_S_CLASS_DEFAULTS_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
@@ -70,6 +71,9 @@ function installContractLibrary(hubRoot) {
   // fixture that stages only the leaf tooling would fail on a missing library
   // rather than on the leaf-manifest behaviour these cases exist to cover.
   fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
+  // generate-leaf-manifest.cjs reads the shared S-class config defaults, so the
+  // staged copy needs it too or its require fails at runtime.
+  fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {

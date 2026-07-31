@@ -54,9 +54,9 @@
       ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs",
       ".opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
       ".opencode/skills/sk-doc/leaf-manifest.json",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json"
     ],
     "entities": [
       {
@@ -162,21 +162,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "parent-skill-check-leaf-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "skill-graph-metadata-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command proves a newly created skill reached the live advisor index, `/doctor:skill-advisor` omits the live `skillgraphvalidate` tool from its own declared surface, `leaf-manifest.json` generation is inconsistently owned, and three small but real, fully-diagnosed defects sit in the doctor/create surfaces (route-validate parity, a stale template cross-reference, a missing tool declaration)",
     "created_at": "2026-07-31T03:21:54.016Z",
-    "last_save_at": "2026-07-31T03:28:14.964Z",
+    "last_save_at": "2026-07-31T03:57:56.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e90b574d2e69ce2c8a0d9770dbf9bd17c3a87361c99c44336e233ec0a8bbc8a2",
+    "source_fingerprint": "sha256:f35258a7e38a5aa68636b1ce558ec27b7b95b4d961ee865f933625992fb33c35",
     "source_doc_hashes": {
-      "spec.md": "243408d2b311f858357b6b07eac24d2e4769b50a38789c41ee5eb3c9053b6110",
+      "spec.md": "2e240bafdda3d18a4b2c387d1af94da5610e2f60055986c7bc52d4efe876b4dc",
       "plan.md": "7fae8818336b80fcfc5e030388a09d585f701bea68f2e3e3bf623f4c75573b0b",
-      "tasks.md": "04ac20bfde276146534556111f0a2ef2a23169370301569eadbbfd9da0ac465c",
-      "checklist.md": "d18e6879aa06e4392a3e1410624a8d4cd2aa17c92004e0baae4daed92ec30dde",
-      "implementation-summary.md": "cdf450c293c96189800e8b295abc6fe8b1a089126299caeacb2ceaf87351723f"
+      "tasks.md": "898e578edb344dc3dd64c0740d15d1b19a42e8a0d672ce3b69e915cc57c01003",
+      "checklist.md": "1b881ed258ad5ed84b98ec62cdf94c2d56e84021e5c48be2f20474c398cc8eea",
+      "implementation-summary.md": "8b0d17951fcb3e55a9ab18aee4a7c5152578e2b4b0376eed9642da006515f35a"
     },
     "last_active_child_id": null,
     "last_active_at": null

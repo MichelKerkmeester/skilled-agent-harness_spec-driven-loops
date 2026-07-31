@@ -36,10 +36,6 @@
       }
     ]
   },
-  "manual": {
-    "depends_on": ["[dependency-skill]"],
-    "related_to": ["[related-skill]"]
-  },
   "domains": [
     "[parent-skill-name]",
     "mode-registry",

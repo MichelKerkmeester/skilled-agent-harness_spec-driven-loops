@@ -240,13 +240,18 @@ def _ensure_class_gate_fresh(skill_dir: Path, expect_aliases: bool) -> tuple[boo
 
     A new root otherwise stays non-conforming until someone runs --fix by hand:
     the generated leaf-manifest.json (both classes) and leaf-aliases.json (S only)
-    never exist until then. This runs the same gate an author would, scoped to the
-    new root's parent, and confirms the required generated files now exist under it.
+    never exist until then. This runs the same gate an author would, scoped by
+    --skill to just this new root, so the write can never touch an unrelated
+    sibling root under the same parent directory.
     """
     gate = Path(__file__).resolve().parent / "ci-skill-root-metadata.cjs"
     try:
         subprocess.run(
-            ["node", str(gate), "--fix", "--skills-dir", str(skill_dir.parent)],
+            [
+                "node", str(gate), "--fix",
+                "--skills-dir", str(skill_dir.parent),
+                "--skill", skill_dir.name,
+            ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
@@ -317,9 +322,17 @@ def init_skill(skill_name: str, path: str) -> Optional[Path]:
             "conflicts_with": [],
             "prerequisite_for": [],
         },
-        "manual": {"depends_on": [], "related_to": []},
         "domains": [skill_name],
-        "intent_signals": [skill_name],
+        "intent_signals": [
+            skill_name,
+            f"{skill_name} skill",
+            f"{skill_name} workflow",
+            f"how to use {skill_name}",
+            f"use {skill_name}",
+            f"{skill_name} guide",
+            f"{skill_name} reference",
+            f"{skill_name} setup",
+        ],
         "derived": {
             "trigger_phrases": [skill_name],
             "key_topics": [skill_name],
@@ -579,7 +592,6 @@ def init_parent_skill(
             "conflicts_with": [],
             "prerequisite_for": [],
         },
-        "manual": {"depends_on": [], "related_to": []},
         "domains": [
             skill_name,
             "mode-registry",
@@ -590,6 +602,12 @@ def init_parent_skill(
         "intent_signals": [
             f"{skill_name} hub",
             f"{skill_name} primary workflow",
+            f"{skill_name} skill",
+            f"{skill_name} parent skill",
+            f"{skill_name} mode registry",
+            f"{skill_name} hub router",
+            f"use {skill_name}",
+            f"{skill_name} guide",
         ],
         "derived": {
             "trigger_phrases": [skill_name, "primary"],

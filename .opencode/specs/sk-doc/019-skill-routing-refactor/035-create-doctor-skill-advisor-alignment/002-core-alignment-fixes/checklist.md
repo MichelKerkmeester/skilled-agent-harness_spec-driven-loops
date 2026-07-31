@@ -9,9 +9,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
-    last_updated_at: "2026-07-31T03:28:14Z"
+    last_updated_at: "2026-07-31T03:57:25Z"
     last_updated_by: "claude-code"
-    recent_action: "A1-A7 implemented and verified; checklist complete"
+    recent_action: "A1-A7 plus gap remediation (G3, G4, 3 test fixes) implemented and verified; checklist complete"
     next_safe_action: "None — packet Complete"
     blockers: []
     key_files:
@@ -71,6 +71,8 @@ _memory:
 - [x] CHK-021 [P0] Manual testing complete — `route-validate.sh`, `parent-skill-check.cjs` (7/7 hubs), fleet `ci-skill-root-metadata.cjs` (11/11 roots) all re-run and pass after every relevant edit
 - [x] CHK-022 [P1] Edge cases tested — standalone vs parent H-only field omission (A6a test 5/6), full-create vs full-update freshness (write vs read-only `--check`), reference/asset-only narrow-signal-only branch (A6a test 5)
 - [x] CHK-023 [P1] Error scenarios validated — `skill_graph_validate` unavailable/malformed-payload path renders `UNAVAILABLE (retryable)` per Theme E4, distinct from a structural `fail`
+- [x] CHK-024 [P0] Gap remediation acceptance criteria met (REQ-006) — `--skill` scoping proven end-to-end with a live scaffold + sibling-untouched diff; missing-manifest redirect confirmed on a manual fixture; `sk-create-skill` 17/17, `doctor/scripts` 5/5, `test_create_skill_contract.py` 23/23, all up from their pre-fix counts with zero pre-existing failures remaining
+- [x] CHK-025 [P1] Gap fixes did not regress the original A1-A7 surfaces — `route-validate.sh` 10/10, `parent-skill-check.cjs` 7/7 hubs, and the fleet gate 11/11 roots all re-confirmed clean after every gap-fix edit, not only at the end
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,14 +125,14 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 10 | 10/10 |
-| P1 Items | 11 | 11/11 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-07-31
 
-**Known pre-existing, unrelated failures** (confirmed via `git stash` baseline diff against commit `6fbaee057c`, identical failure before and after this packet's changes — not a regression):
-- `create-journey-proof.test.cjs`: `GRAPH_METADATA_UNKNOWN_KEY`/`INTENT_SIGNALS_BELOW_FLOOR` on its own scaffolded fixtures
-- `parent-skill-check-leaf-manifest.test.cjs`: `MODULE_NOT_FOUND` for `./lib/s-class-config-defaults.json` in its fixture-copy list (stale relative to `generate-leaf-manifest.cjs`'s current dependency)
-- `test_create_skill_contract.py`: 2/23 fail on compiled-routing counter/path-ordering state (`test_parent_scaffold_ready_mints_and_verifies_canonical_manifest`, `test_compiled_routing_validator_rejects_malformed_manifest`)
+**Gap remediation (added after initial Complete, per operator direction "Fix gaps"):** the two deferred research findings (G3 fleet-gate blast radius, G4 missing-vs-stale redirect) and the three test failures below — previously confirmed pre-existing and unrelated via `git stash` baseline diff against `6fbaee057c` — are now all fixed, not merely reconfirmed:
+- `create-journey-proof.test.cjs`: was `GRAPH_METADATA_UNKNOWN_KEY`/`INTENT_SIGNALS_BELOW_FLOOR` on its own scaffolded fixtures — fixed by removing the stray `manual` key from `init_skill.py` and both graph-metadata templates, expanding `intent_signals` to 8
+- `parent-skill-check-leaf-manifest.test.cjs`: was `MODULE_NOT_FOUND` for `./lib/s-class-config-defaults.json` — fixed by adding it to the fixture-copy list
+- `test_create_skill_contract.py`: was 2/23 failing on a hardcoded stale `010-live-activation` path — fixed via dynamic `*-live-activation` discovery
 <!-- /ANCHOR:summary -->
