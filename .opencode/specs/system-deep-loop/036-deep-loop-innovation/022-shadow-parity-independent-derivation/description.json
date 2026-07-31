@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation",
+  "description": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
+  "keywords": [
+    "six",
+    "shadow-parity",
+    "harness",
+    "adapters",
+    "compare",
+    "projection",
+    "near-copy",
+    "itself"
+  ],
+  "lastUpdated": "2026-07-31T01:23:30.106Z",
+  "specId": "022",
+  "folderSlug": "shadow-parity-independent-derivation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

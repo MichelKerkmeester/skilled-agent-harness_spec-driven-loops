@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding",
+  "description": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the",
+  "keywords": [
+    "standalone",
+    "readiness",
+    "gates",
+    "verify",
+    "sealed",
+    "bindings",
+    "certificates",
+    "two",
+    "independent",
+    "paths",
+    "never",
+    "compare",
+    "digest",
+    "set"
+  ],
+  "lastUpdated": "2026-07-31T01:23:30.159Z",
+  "specId": "027",
+  "folderSlug": "mode-gate-and-contract-binding",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

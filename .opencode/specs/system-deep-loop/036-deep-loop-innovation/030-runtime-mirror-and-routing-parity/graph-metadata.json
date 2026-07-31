@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime mirror parity",
+      "mirror sync verify ordering",
+      "registry compiler unresolved identity",
+      "codex agent parity coverage",
+      "deep loop 030 parity"
+    ],
+    "key_topics": [
+      "runtime",
+      "mirror",
+      "parity",
+      "sync",
+      "verify",
+      "ordering",
+      "registry",
+      "compiler",
+      "unresolved",
+      "identity",
+      "codex",
+      "agent"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".codex/agents/deep-review.toml",
+      ".codex/agents/ai-council.toml",
+      ".claude/agents/deep-review.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+      ".opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json",
+      ".opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+      ".opencode/skills/system-deep-loop/hub-router.json",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/shared/references/smart-routing.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
+      ".opencode/agents/ai-council.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-capabilities.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-mode-contract.yaml",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Parity Gates Compare What Actually Differs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replace Set",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Codex `ai-council` conversion runs `sandboxmode = \"workspace-write\"` while the source agent denies Bash and promises never to write outside packet-local artifacts; the generated body still says Bash is denied, so the prose contradicts the runtime setting, and `sync-agents.cjs` hardcodes the mode instead of deriving the source deny (`F-028-01`)",
+    "created_at": "2026-07-31T01:25:21.346Z",
+    "last_save_at": "2026-07-31T01:25:21.346Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:e84eb603965f7afeb9956c20e85ed84a4a87225a6301684448e23a683aa758f3",
+    "source_doc_hashes": {
+      "spec.md": "d5a4558d844fceb3183a77b38b2fc225f5bb6779de7a083c024f8a7d08e98252",
+      "plan.md": "f079d904ff810b138254c1883d310c7c2253130a6050c5bb60f545c61778baf4",
+      "tasks.md": "bff4f0bef9a4a48a3563b867d6774f139898dcbe59081657c42ce3452627b1c9",
+      "checklist.md": "d3c42d2e616201282973b5f6b37f109c60a6854e8916543c3698dd23bd0cb752"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

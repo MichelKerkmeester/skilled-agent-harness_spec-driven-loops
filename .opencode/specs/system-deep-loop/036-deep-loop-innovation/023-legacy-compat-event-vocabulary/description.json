@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary",
+  "description": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
+  "keywords": [
+    "five",
+    "per-mode",
+    "upcasters",
+    "plus",
+    "skill-benchmark",
+    "reject",
+    "ordinary",
+    "lifecycle",
+    "records"
+  ],
+  "lastUpdated": "2026-07-31T01:23:30.113Z",
+  "specId": "023",
+  "folderSlug": "legacy-compat-event-vocabulary",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
