@@ -1,0 +1,31 @@
+{
+  "level": 1,
+  "specFolder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+  "description": "It is not currently easy or reliable to create a new skill: the `/create:` command family and `sk-create-skill`'s guides describe authoring, `/doctor`",
+  "keywords": [
+    "currently",
+    "easy",
+    "reliable",
+    "new",
+    "skill",
+    "command",
+    "family",
+    "sk-create-skill",
+    "guides",
+    "describe",
+    "authoring",
+    "doctor"
+  ],
+  "lastUpdated": "2026-07-30T20:41:55.684Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "035-create-doctor-skill-advisor-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-07-26_21-41__completed-a-20-iteration-forced-depth-deep.md"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+  "parent_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create doctor skill advisor alignment research",
+      "skill creation friction research",
+      "doctor skill advisor gap research",
+      "create doctor skill advisor alignment research plan",
+      "create doctor skill advisor alignment research tasks",
+      "create doctor skill advisor alignment research summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill",
+      "advisor",
+      "alignment",
+      "research",
+      "creation",
+      "friction",
+      "gap",
+      "plan",
+      "tasks",
+      "summary",
+      "currently"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-strategy.md",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "research/iterations/iteration-004.md",
+      "research/iterations/iteration-005.md",
+      "research/iterations/iteration-006.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-010.md",
+      "research/iterations/iteration-011.md",
+      "research/iterations/iteration-012.md",
+      "research/iterations/iteration-013.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-006.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-006.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-011.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-011.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-012.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-012.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-013.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-013.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Alignment Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement It",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "It is not currently easy or reliable to create a new skill: the `/create:` command family and `sk-create-skill`'s guides describe authoring, `/doctor` diagnoses and repairs skill-advisor/skill-routing state, and `system-skill-advisor`'s own index (mode-registry, hub-router, advisor rebuild, skill-graph validate) is the live substrate both of those have to satisfy — and these three surfaces may have drifted out of sync with each other and with the current parent-hub canon",
+    "created_at": "2026-07-30T18:20:46.201Z",
+    "last_save_at": "2026-07-30T20:41:15.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a67d08d022dffd05fed3db10e2ff95b1c6099b85025cda6e9b82ae6b1799c709",
+    "source_doc_hashes": {
+      "spec.md": "2403e677cc2b532e671c3d52bf4de069a47acd61ad696a6e698dac162566bfbf",
+      "plan.md": "3fa85df8254190a80e5361d47991a0e978bf5e8abcef75c4398c9c877c81b709",
+      "tasks.md": "687fdda93ee111a597f07cc889e15e713da50aa36146505a580ea2cf39573354",
+      "implementation-summary.md": "6e695e3f164bd1bece368855da7244e7a78d4e4bae3f8a08a399478a2630e2b9",
+      "research/research.md": "178c953d1a16e28bb214f30e39caec411b20ee68599856f7423a468f087f955e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

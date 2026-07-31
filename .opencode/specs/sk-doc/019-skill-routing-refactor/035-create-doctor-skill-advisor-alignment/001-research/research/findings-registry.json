@@ -1,0 +1,1675 @@
+{
+  "sessionId": "dr-20260730-182352-create-doctor-skill-advisor",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-current-end-to-end-path-a-developer-follows-to-create-a-new-skill-vi",
+      "inboxId": null,
+      "text": "What is the current end-to-end path a developer follows to create a new skill via `/create:skill`/`/create:skill-parent` and `sk-create-skill`'s guides, and where does it diverge from the live skill-advisor index reality (mode-registry.json, hub-router.json, description.json/graph-metadata.json dual schemas, leaf-manifest.json)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-doctor-routes-skill-advisor-related-scripts-under-opencode-commands-doctor",
+      "inboxId": null,
+      "text": "Which `/doctor` routes (`skill-advisor`, related scripts under `.opencode/commands/doctor/scripts/`) diagnose or repair skill-advisor/skill-routing state, and are they complete, current, and correctly wired to the skill-creation lifecycle end to end?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-gaps-exist-between-sk-create-skill-s-templates-guides-references-and-the-ac",
+      "inboxId": null,
+      "text": "What gaps exist between `sk-create-skill`'s templates/guides/references and the actual parent-hub canon (skill-root metadata contract, mode-registry + hub-router requirements, leaf-manifest, command-metadata) that a new-skill author must satisfy today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-where-is-skill-advisor-index-setup-advisor-rebuild-skill-graph-scan-validate-hub",
+      "inboxId": null,
+      "text": "Where is skill-advisor index setup (`advisor_rebuild`, `skill_graph_scan`/`validate`, hub-identity metadata) under-automated or under-documented relative to what `/create:*` and `/doctor` actually do or claim to do?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-specific-alignment-automation-opportunities-new-doctor-checks-updated-creat",
+      "inboxId": null,
+      "text": "What specific alignment/automation opportunities (new doctor checks, updated create-skill guides, tighter skill-advisor integration, missing or stale cross-references between the three surfaces) would most reduce friction and drift for creating and maintaining a skill end-to-end?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-is-the-current-end-to-end-path-a-developer-follows-to-create-a-new-skill-vi",
+      "inboxId": null,
+      "text": "What is the current end-to-end path a developer follows to create a new skill via `/create:skill`/`/create:skill-parent` and `sk-create-skill`'s guides, and where does it diverge from the live skill-advisor index reality (mode-registry.json, hub-router.json, description.json/graph-metadata.json dual schemas, leaf-manifest.json)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-doctor-routes-skill-advisor-related-scripts-under-opencode-commands-doctor",
+      "inboxId": null,
+      "text": "Which `/doctor` routes (`skill-advisor`, related scripts under `.opencode/commands/doctor/scripts/`) diagnose or repair skill-advisor/skill-routing state, and are they complete, current, and correctly wired to the skill-creation lifecycle end to end?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-gaps-exist-between-sk-create-skill-s-templates-guides-references-and-the-ac",
+      "inboxId": null,
+      "text": "What gaps exist between `sk-create-skill`'s templates/guides/references and the actual parent-hub canon (skill-root metadata contract, mode-registry + hub-router requirements, leaf-manifest, command-metadata) that a new-skill author must satisfy today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-where-is-skill-advisor-index-setup-advisor-rebuild-skill-graph-scan-validate-hub",
+      "inboxId": null,
+      "text": "Where is skill-advisor index setup (`advisor_rebuild`, `skill_graph_scan`/`validate`, hub-identity metadata) under-automated or under-documented relative to what `/create:*` and `/doctor` actually do or claim to do?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-specific-alignment-automation-opportunities-new-doctor-checks-updated-creat",
+      "inboxId": null,
+      "text": "What specific alignment/automation opportunities (new doctor checks, updated create-skill guides, tighter skill-advisor integration, missing or stale cross-references between the three surfaces) would most reduce friction and drift for creating and maintaining a skill end-to-end?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether `description.json` should remain a descriptive projection or become a generated/validated projection of registry and graph vocabulary.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the intended contract is to auto-run trusted `skill_graph_scan` after `/create:*`, or to keep mutation operator-owned and make the handoff an explicit confirmation step.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the hook drift is expected for this worktree/runtime generation or should be repaired in the separate runtime-mirror workstream.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `description.json` remain a descriptive parent-hub projection, or become a generated/validated projection of registry and graph vocabulary?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the create workflows record a runtime-mirror/index handoff result, or should this remain a separate post-create maintenance diagnostic?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `/doctor:runtime-mirrors` invoke the installer with a read-only worktree-aware mode, or should the installer gain a distinct `--check --allow-worktree` policy documented as safe only for comparison?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should new skill creation auto-run trusted `skill_graph_scan`, or retain operator-owned mutation with an explicit confirmation handoff?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which checkout is the canonical source when a developer has several linked worktrees, and how should the doctor surface that choice before offering a global install?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the installer add a separate `--check --allow-worktree` policy or should the doctor resolve and pass the primary/selected `--repo` explicitly, leaving `--allow-worktree` unavailable to mutation paths?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact operator-facing source-selection syntax should the runtime-mirror route expose while preserving its current read-only default?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "If route-wide source selection is desired later, which shared root option should be added to the runtime-mirror, Codex generator, roster, and Pi checkers without changing their no-argument read-only behavior?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the route auto-select the Git primary checkout for the Codex-hook checker when invoked from a linked worktree, or require the operator to provide --repo after showing the detected primary path?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether post-create skill workflows should emit the same canonical-checkout/index handoff information when they leave advisor rebuild operator-owned.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the same shared `--repo` option should be added to all runtime-mirror checkers or only threaded into the Codex-hook checker first.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether `description.json` should remain a descriptive parent-hub projection or be validated against registry and graph vocabulary.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `/create:skill-parent` and `/doctor:skill-advisor` emit a single post-create handoff showing the three metadata owners and the operator-owned `skill_graph_scan`/`advisor_rebuild` steps?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the doctor add a non-blocking warning for graph-shaped keys such as `domains` or `intent_signals` appearing in `description.json`, while preserving hub-specific descriptive extensions?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the runtime-mirror route should propagate the explicit `--repo` source-selection option beyond the Codex-hook checker remains open from iteration 5.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the default hook check auto-select the Git primary checkout, with an explicit `--repo` override for an operator-selected checkout, while leaving all repair commands operator-owned?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the route’s `--repo` be named as a hook-source selector or eventually become a shared repository-root selector after the checker APIs are unified?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the missing Pi checker invocations be restored before any route-level source-selection work is implemented?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "After Pi invocations are restored, should source selection remain a Codex-hook-only option or be generalized through a common checker API?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should route/asset checker-set parity become a doctor-route validation invariant, a dedicated test, or both?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the route present the linked-worktree primary-checkout path as an explicit source-selection diagnostic before any repair command is offered?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "After Pi parity is restored, should the source-selection contract stay Codex-hook-specific or be generalized across all mirror checkers through a common checker API?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the read-only route automatically select the Git primary checkout for the hook check, or show it and require an explicit `--repo` confirmation? This remains separate from whether repair commands require approval.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the route/asset checker-set mismatch, including the Pi invocations, should be repaired before the source-selection change is implemented; iteration 8 already identified this as an ordering constraint.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the route-level selector should be named `--repo` or a more narrowly scoped `--hook-source` before it is eventually generalized.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How `/create:skill-parent` and `/doctor:skill-advisor` should expose the same canonical-checkout/index handoff while leaving advisor rebuild and graph scan mutations operator-owned.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the shared handoff be implemented as a reusable doctor/create formatter, or as duplicated presentation fields with a contract test?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor warn when `description.json` vocabulary diverges from registry/graph vocabulary, or only report the existing structural checks?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact `skill_graph_validate`/`skill_graph_scan` and `advisor_rebuild` CLI forms should the operator-facing handoff print for a newly created parent?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `doctor:skill-advisor` add `skill_graph_validate` to its route metadata, or should the route keep validation CLI-only while its MCP allowlist remains mutation-focused?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the doctor warn on `description.json` vocabulary divergence from registry/graph vocabulary, or only report the existing structural checks?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the shared handoff be implemented as one reusable formatter consumed by create and doctor, or as duplicated presentation fields guarded by a contract test?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should /doctor:skill-advisor add mcp__mk_skill_advisor__skill_graph_validate to _routes.yaml, or remain CLI-only while the route’s MCP declaration stays focused on its existing workflow?",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the parent-skill doctor emit a non-blocking warning for description.json vocabulary divergence, or keep its current structural-only projection guard?",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the contract test cover /create:skill as well as /create:skill-parent, given the standalone create path has a separate memory/indexing presentation?",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the eventual test should include all four standalone operations or only the full-create/full-update branches; the presentation is unified, but reference-only and asset-only have different validation targets.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether description.json should remain descriptive metadata rather than a vocabulary-validated projection.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the doctor-side route should expose skill_graph_validate through route metadata or retain a CLI-only validation handoff.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should route-contract tests assert tool-set completeness against the live advisor tool registry, or only assert the selected high-value tools and workflow handoff?",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact output fields and failure policy should the doctor presentation use for skill_graph_validate alongside graph_scan_report and advisor test results?",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the route contract test compare the declared doctor tool set against the live advisor tool registry, or pin only the selected graph-validation and refresh tools?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the shared create/doctor handoff vocabulary be extracted into a small static contract fixture, given the two surfaces have separate presentation owners?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `description.json` remain a descriptive parent-hub projection rather than participating in graph-vocabulary validation?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the route contract test should pin the selected graph-validation/refresh tools or compare the declaration with the live advisor tool registry.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether create and doctor should share a small field-vocabulary fixture for their operator-facing index handoff while retaining separate result adapters.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact post-create handoff wording should identify `description.json`, `graph-metadata.json`, `leaf-manifest.json`, and the operator-owned `skill_graph_scan`/`advisor_rebuild` steps.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should parent create invoke the scoped `generate-leaf-manifest.cjs --write <skillDir>` directly, or invoke the fleet root-metadata gate with `--fix` and then select the created hub's result?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the route update and the handoff presentation be covered by one route-contract test or by separate route-tool and output-semantics tests?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where should the shared vocabulary contract live, and which create branches need the handoff: parent full-create/full-update only, or standalone full-create/full-update as well?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact narrow check should doc-only branches use to detect a routed-leaf change without importing the full H/S handoff?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the canonical contract be a Markdown reference plus a small machine-readable fixture, or should one machine-readable fixture be the source and the Markdown explain it?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the doctor route/tool-set test and the shared output-semantics test remain separate? The evidence strongly favors separate tests, but the final implementation can still place them in one test file if ownership remains explicit.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should parent generation invoke the scoped `generate-leaf-manifest.cjs --write <skillDir>` directly or rely on `ci-skill-root-metadata.cjs --fix` and select the created hub's result?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation must choose whether to add a target-scoped class-gate option or to keep the class gate fleet-wide and run it only read-only after direct manifest generation. The evidence favors the latter for the smallest blast radius.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The route update still needs an explicit decision on whether `skill_graph_validate` is exposed through `_routes.yaml`/router frontmatter or retained as a CLI-only handoff. The live tool registry proves the current omission is real.",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What is the current end-to-end path a developer follows to create a new skill via `/create:skill`/`/create:skill-parent` and `sk-create-skill`'s guides, and where does it diverge from the live skill-advisor index reality (mode-registry.json, hub-router.json, description.json/graph-metadata.json dual schemas, leaf-manifest.json)?",
+    "Which `/doctor` routes (`skill-advisor`, related scripts under `.opencode/commands/doctor/scripts/`) diagnose or repair skill-advisor/skill-routing state, and are they complete, current, and correctly wired to the skill-creation lifecycle end to end?",
+    "What gaps exist between `sk-create-skill`'s templates/guides/references and the actual parent-hub canon (skill-root metadata contract, mode-registry + hub-router requirements, leaf-manifest, command-metadata) that a new-skill author must satisfy today?",
+    "Where is skill-advisor index setup (`advisor_rebuild`, `skill_graph_scan`/`validate`, hub-identity metadata) under-automated or under-documented relative to what `/create:*` and `/doctor` actually do or claim to do?",
+    "What specific alignment/automation opportunities (new doctor checks, updated create-skill guides, tighter skill-advisor integration, missing or stale cross-references between the three surfaces) would most reduce friction and drift for creating and maintaining a skill end-to-end?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-001-the-creation-guides-document-advisor-refresh-but-the-create-workflows-do-n",
+      "text": "F-001 — The creation guides document advisor refresh, but the create workflows do not make it a postcondition",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f-002-the-advisor-graph-and-the-parent-hub-routing-contract-have-different-sourc",
+      "text": "F-002 — The advisor graph and the parent-hub routing contract have different sources of truth",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f-003-doctor-coverage-is-split-across-good-diagnostics-but-no-route-owns-the-com",
+      "text": "F-003 — Doctor coverage is split across good diagnostics, but no route owns the complete create-to-index repair loop",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f-004-structural-checks-do-not-prove-semantic-parity-across-all-live-routing-sur",
+      "text": "F-004 — Structural checks do not prove semantic parity across all live routing surfaces",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-005-the-linked-worktree-refusal-is-an-expected-safety-guard-but-the-read-only-",
+      "text": "F-005 — The linked-worktree refusal is an expected safety guard, but the read-only doctor route does not account for it",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-f-006-discovery-mirrors-can-be-green-while-the-codex-runtime-actually-executes-a",
+      "text": "F-006 — Discovery mirrors can be green while the Codex runtime actually executes a stale global hook set",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-f-007-the-repair-guidance-is-underspecified-for-worktrees-and-mixes-check-scope-",
+      "text": "F-007 — The repair guidance is underspecified for worktrees and mixes check scope with install scope",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-008-the-primary-checkout-is-a-safety-anchor-not-a-complete-content-authority-s",
+      "text": "F-008 — The primary checkout is a safety anchor, not a complete content-authority signal",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-f-009-advisor-indexing-is-workspace-root-specific-so-local-creation-and-global-h",
+      "text": "F-009 — Advisor indexing is workspace-root-specific, so local creation and global hook installation are separate decisions",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-f-010-the-runtime-mirrors-doctor-cannot-reach-the-actual-global-drift-report-fro",
+      "text": "F-010 — The runtime-mirrors doctor cannot reach the actual global drift report from a linked worktree",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-f-011-allow-worktree-is-a-broad-override-not-a-check-only-policy",
+      "text": "F-011 — `--allow-worktree` is a broad override, not a check-only policy",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-repo-checkout-select-the-checkout-passed-to-the-codex-installer-as-check-repo-ch",
+      "text": "--repo <checkout>: select the checkout passed to the Codex installer as --check --repo <checkout>; show the selected path in the diagnostic header and keep all checkers in check-only mode.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-do-not-expose-allow-worktree-through-the-doctor-route-it-bypasses-the-installer-",
+      "text": "Do not expose --allow-worktree through the doctor route. It bypasses the installer’s linked-worktree anchor refusal, while the design record explicitly chose refusal-by-default and a deliberate override for testing (.opencode/specs/cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness/decision-record.md:90-110). If testing a worktree intentionally, that should remain an explicit installer command outside the doctor route.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-f-004-001-the-doctor-route-has-no-source-selection-surface",
+      "text": "F-004-001 — The doctor route has no source-selection surface",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-f-004-002-the-installer-already-has-the-right-explicit-selector",
+      "text": "F-004-002 — The installer already has the right explicit selector",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-no-repo-preserve-the-current-read-only-default-run-all-mirror-checks-against-the",
+      "text": "No --repo: preserve the current read-only default. Run all mirror checks against the current checkout and report the resolved current/primary checkout relationship before the Codex hook check.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-allow-worktree-is-not-an-appropriate-doctor-workaround-it-is-a-general-anchor-ov",
+      "text": "**`--allow-worktree` is not an appropriate doctor workaround.** It is a general anchor override used by both check and mutation paths, while the route's invariant is that every checker remains read-only (`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:20-28`). The route should not hide that override behind automatic dispatch or suggest it as the normal repair path.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-recommendation-auto-select-the-primary-checkout-for-the-default-read-only-check-",
+      "text": "**Recommendation: auto-select the primary checkout for the default read-only check, with an explicit override.** When invoked inside a linked worktree, the route should resolve the Git common directory, display the canonical primary checkout, and invoke the Codex checker as `node .opencode/bin/install-codex-hooks.mjs --repo <primary-checkout> --check`. Add an explicit route-level `--repo <path>` override for operators who need another checkout; keep `--check` mandatory and do not expose `--allow-worktree` on this diagnostic route. If Git resolution fails or the selected path is ambiguous, stop with the detected candidates and require `--repo`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-repair-guidance-needs-the-same-source-context-the-route-currently-prints-node-op",
+      "text": "**Repair guidance needs the same source context.** The route currently prints `node .opencode/bin/install-codex-hooks.mjs` as the repair command without a source checkout (`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:66-77`). The diagnostic can remain read-only, but its repair output should carry the resolved primary path and state that the mutation must be run explicitly from that canonical checkout.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-the-bare-doctor-invocation-is-not-worktree-safe-the-installer-check-exited-1-wit",
+      "text": "**The bare doctor invocation is not worktree-safe.** The installer check exited 1 with `Refusing to anchor hooks at linked worktree ... Primary checkout: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public. Pass --allow-worktree to override.` The route manifest declares no inputs, and `doctor-runtime-mirrors.yaml` instructs the runner to call the installer with bare `--check` (`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:43-60`). A linked-worktree invocation therefore fails before it can report hook drift.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-the-installer-already-exposes-the-right-source-selection-primitive-its-cli-accep",
+      "text": "**The installer already exposes the right source-selection primitive.** Its CLI accepts `--repo <path>` and defaults to the repository inferred from the script location (`.opencode/bin/install-codex-hooks.mjs:8-16, 339-343`). `assertSafeRepoAnchor()` compares the selected checkout's Git common directory and refuses linked-worktree anchors unless `--allow-worktree` is supplied (`.opencode/bin/install-codex-hooks.mjs:278-317`). Passing the detected primary checkout as `--repo` preserves that safety guard; passing `--allow-worktree` would weaken it.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-description-json-is-authored-hub-doctor-metadata-not-an-advisor-input-the-skill-",
+      "text": "**`description.json` is authored hub-doctor metadata, not an advisor input.** The skill-root contract marks it required for packet hubs and authored, while explicitly stating that the advisor ingests `graph-metadata.json` for identity, domains, intent signals, and typed edges. The description template reinforces that boundary: it describes the hub’s packets and says the advisor identity input is `graph-metadata.json`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-machine-readable-parity-already-has-owners-elsewhere-mode-registry-json-owns-pac",
+      "text": "**Machine-readable parity already has owners elsewhere.** `mode-registry.json` owns packet and mode vocabulary; `hub-router.json` owns signal-key parity, vocabulary classes, and loadable resources; `leaf-manifest.json` is generated from the declared packet corpus. The live parent check confirmed all seven registry modes, all seven router signals, and byte-fresh manifest data. `description.json` may mention those modes in prose or keywords, but changing it does not change routing or graph indexing.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-the-creation-surface-is-conceptually-aligned-but-still-easy-to-misread-the-descr",
+      "text": "**The creation surface is conceptually aligned but still easy to misread.** The description scaffold calls itself “hub-doctor metadata” and the contract is explicit, yet its keyword placeholders include workflow and surface names while the router and graph contracts use similarly named vocabulary fields. A new author can therefore update `description.json` believing the advisor will learn the new mode. The smallest alignment improvement is an explicit create/doctor handoff note that says “description is descriptive; update graph metadata for advisor signals; update registry/router for mode routing,” not automatic description generation.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-the-current-doctor-check-intentionally-validates-shape-and-source-separation-not",
+      "text": "**The current doctor check intentionally validates shape and source separation, not vocabulary equality.** `parent-skill-check.cjs` requires `name`, `description`, `version`, and an array-valued `keywords` field, then rejects registry-owned duplicate keys `modes` and `backend_kinds`. It does not require `description.keywords` to equal `mode-registry.json` aliases, `hub-router.json` classes, or graph metadata. That is the correct default for free-form descriptive metadata; deriving or exact-mirroring the field would create a second routing source of truth.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-the-requested-hook-check-confirms-the-existing-worktree-boundary-remains-separat",
+      "text": "**The requested hook check confirms the existing worktree boundary remains separate.** From this linked worktree, the installer refuses to anchor global hooks and reports the primary checkout path. This is a read-only diagnostic/source-selection issue; it does not change the description/registry decision and should remain a separate runtime-mirror doctor concern.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-recommendation-do-not-propagate-repo-by-partial-forwarding-keep-the-no-argument-",
+      "text": "**Recommendation: do not propagate `--repo` by partial forwarding.** Keep the no-argument diagnostic read-only and rooted at the current checkout. Add the route-level explicit selector for the Codex-hook check first, with the already-supported `--repo <path>` and the existing linked-worktree safety guard. Only make `--repo` shared after every invoked checker accepts the same contract, the route invokes the same inventory documented by its asset, unknown arguments are rejected consistently, and the diagnostic reports which checkout supplied both canonical and generated files. If cross-checkout mirror parity is later required, invoking the selected checkout’s own checker scripts is safer than passing a path into older scripts that still hard-code their module root.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-the-checker-cli-contract-is-non-uniform-p1-install-codex-hooks-mjs-explicitly-pa",
+      "text": "**The checker CLI contract is non-uniform (P1).** `install-codex-hooks.mjs` explicitly parses `--repo <path>` and uses it to select the source checkout before enforcing linked-worktree anchor safety (`.opencode/bin/install-codex-hooks.mjs:8-14,31-53,360-367`). The runtime-mirror, Codex-agent, Codex-prompt, Pi-agent, and Pi-prompt checkers accept only an optional `--check` and hard-code `REPO_ROOT` from their script location (`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:24,40-47`; `.opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs:10,42-49`; `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs:10,30-37`). `agent-roster-mirror-check.cjs` computes its root from `__dirname` and does not parse arguments at all (`.opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs:17-24`). A route-wide blind pass-through would therefore fail on some checkers and be silently ignored by another.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-the-route-and-its-asset-disagree-about-the-checker-inventory-p1-the-asset-lists-",
+      "text": "**The route and its asset disagree about the checker inventory (P1).** The asset lists seven upstream assets and seven execution steps, including `pi_agents` and `pi_prompts` (`doctor-runtime-mirrors.yaml:33-40,52-60`), while `_routes.yaml` invokes only runtime mirrors, Codex agents, Codex prompts, the roster check, and Codex hooks (`_routes.yaml:196-201`). It also says “five mirror checkers” while enumerating seven in the asset. Source selection cannot be made a reliable route-wide contract until the route’s actual checker set is normalized.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-the-route-currently-exposes-no-source-selection-surface-p1-routes-yaml-declares-",
+      "text": "**The route currently exposes no source-selection surface (P1).** `_routes.yaml` declares `allowed_flags: []` and invokes five commands without a repository argument (`.opencode/commands/doctor/_routes.yaml:189-201`). The route asset separately declares that the diagnostic takes no arguments (`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:43-46`). The only checker for which a selected checkout is materially necessary is the global Codex-hook comparison: its source is repo-local, but its target is `~/.codex/hooks.json`; the other checkers compare files within one repo-relative mirror tree.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-recommendation-restore-pi-checks-first-then-revisit-source-selection-add-the-two",
+      "text": "**Recommendation: restore Pi checks first, then revisit source selection.** Add the two Pi `--check` invocations to the route and align the asset's “five” wording and output inventory with the actual seven checks. Keep the diagnostic read-only. After that, evaluate a selector narrowly for the Codex-hook comparison, or introduce a common root-selection contract across every checker before exposing a shared route flag. Do not blind-forward `--repo` to the current Pi generators.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-source-selection-should-follow-checker-inventory-repair-p1-the-route-declares-al",
+      "text": "**Source selection should follow checker-inventory repair (P1).** The route declares `allowed_flags: []`, and the asset declares no inputs. The Pi generators reject `--repo` and root themselves from their module location. Passing a new route-wide selector before restoring the documented checker set would produce a partial contract: it would have to target the Codex-hook installer specially while the Pi checks remain absent and the other checkers remain fixed-root.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-the-missing-pi-invocations-are-a-real-route-coverage-defect-p1-doctor-runtime-mi",
+      "text": "**The missing Pi invocations are a real route-coverage defect (P1).** `doctor-runtime-mirrors.yaml` claims that Pi agents and prompts are part of the diagnostic, but `_routes.yaml` never invokes either checker. The aggregate runtime-mirror generator cannot compensate because its inventory has no Pi tree. The route therefore cannot report the Pi agent drift observed in this checkout.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-the-omission-has-a-live-symptom-not-just-a-documentation-mismatch-p1-the-indepen",
+      "text": "**The omission has a live symptom, not just a documentation mismatch (P1).** The independently run Pi agent checker found nine stale generated files, while the prompt checker passed 34 files. A `/doctor:runtime-mirrors` execution using the current route would report neither result, so its aggregate status is incomplete even though the Pi scripts and generated surfaces are present.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-the-route-validator-cannot-detect-this-class-of-omission-route-validate-py-verif",
+      "text": "**The route validator cannot detect this class of omission.** `route-validate.py` verifies that paths already present in `script_invocations` exist (`.opencode/commands/doctor/scripts/route-validate.py:338-353`); it does not compare the route invocation set with `doctor-runtime-mirrors.yaml`'s `upstream_assets` or execution steps. Route/asset parity therefore needs an explicit validation rule or test.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-f-009-01-the-hook-check-fails-before-drift-analysis-in-a-linked-worktree",
+      "text": "F-009-01 — The hook check fails before drift analysis in a linked worktree",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-f-009-02-the-doctor-route-has-no-explicit-source-selection-stage",
+      "text": "F-009-02 — The doctor route has no explicit source-selection stage",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-f-009-03-the-primary-checkout-should-be-shown-before-any-repair-handoff",
+      "text": "F-009-03 — The primary checkout should be shown before any repair handoff",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-f-009-04-do-not-use-allow-worktree-as-the-default-route-fix",
+      "text": "F-009-04 — Do not use `--allow-worktree` as the default route fix",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-f-010-01-the-primary-override-changes-a-hard-failure-into-an-actionable-read-onl",
+      "text": "F-010-01 — The primary override changes a hard failure into an actionable read-only result",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-f-010-02-git-already-supplies-a-deterministic-primary-checkout-source",
+      "text": "F-010-02 — Git already supplies a deterministic primary-checkout source",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-f-010-03-the-route-currently-hides-source-selection-behind-a-no-argument-contrac",
+      "text": "F-010-03 — The route currently hides source selection behind a no-argument contract",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-f-010-04-recommendation-auto-select-primary-for-the-default-read-only-check-with",
+      "text": "F-010-04 — Recommendation: auto-select primary for the default read-only check, with an explicit override",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-f-010-05-source-selection-and-repair-authorization-remain-separate-contracts",
+      "text": "F-010-05 — Source selection and repair authorization remain separate contracts",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-f-010-06-discovery-mirror-parity-does-not-validate-the-outbound-global-hook-file",
+      "text": "F-010-06 — Discovery-mirror parity does not validate the outbound global hook file",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-f11-01-parent-creation-validates-the-package-contract-but-stops-before-the-advis",
+      "text": "**F11-01 — Parent creation validates the package contract but stops before the advisor-index handoff (P1).** `/create:skill-parent` explicitly owns the one-hub-identity invariant and describes the generated `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, packet layout, and `advisorRouting` blocks. Its completion surface reports structural validation and identity results, but it has no common result fields for selected repository, derived-metadata freshness, graph-scan status, or advisor-rebuild status. That leaves a newly created parent structurally valid but operationally ambiguous to the live advisor index. [SOURCE: `.opencode/commands/create/skill-parent.md:19-23,65-78`; `.opencode/commands/create/assets/create-skill-parent-presentation.txt:138-148`; `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-11-2-f11-02-the-two-create-commands-expose-different-indexing-contracts-create-skill-",
+      "text": "**F11-02 — The two create commands expose different indexing contracts.** `/create:skill` declares `memory_index_scan` and `memory_save` in its allowed tools and its presentation has `Memory saved`/`Memory indexed` result fields. `/create:skill-parent` has no equivalent memory/index tool grant or post-create index handoff in its router/presentation. A parent skill can therefore finish with the richer registry/graph structure while giving the operator less information about whether advisor discovery has caught up. [SOURCE: `.opencode/commands/create/skill.md:1-4`; `.opencode/commands/create/assets/create-skill-presentation.txt:140-150`; `.opencode/commands/create/skill-parent.md:1-4`; `.opencode/commands/create/assets/create-skill-parent-presentation.txt:138-154`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-11-3-f11-03-a-create-surface-cross-reference-is-stale-the-parent-command-says-its-tem",
+      "text": "**F11-03 — A create-surface cross-reference is stale.** The parent command says its templates live under `sk-create-skill/assets/skill/`, while the checked-in parent templates are under `sk-create-skill/assets/parent-skill/`. The command still names the right template concepts, but the path mismatch makes the authoring guide harder to follow and is exactly the kind of drift that can leave a new parent aligned with an obsolete location. [SOURCE: `.opencode/commands/create/skill-parent.md:65-78`; `.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-11-4-f11-04-doctor-already-has-the-right-separation-point-diagnostics-can-be-shared-r",
+      "text": "**F11-04 — Doctor already has the right separation point: diagnostics can be shared, rebuilds must remain explicit.** The existing `/doctor` skill-advisor route and its validation scripts are the natural read-only consumer of the parent package’s structural metadata. The route should report the same canonical source and index handoff fields as create, then render explicit next commands for `skill_graph_scan`/`skill_graph_validate` and `advisor_rebuild` with their mutation status marked `NOT RUN`. Silently running either mutation from a doctor or create completion would make a read-only diagnostic mutate the advisor corpus and would blur the authority boundary between generated package files and the derived/indexed advisor state. [SOURCE: `.opencode/commands/doctor/_routes.yaml`; `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`; `.opencode/commands/doctor/scripts/parent-skill-check.cjs`; `.opencode/commands/doctor/scripts/skill-graph-freshness.cjs`; `.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-rebuild.md`; `.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-scan.md`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-11-5-f11-05-the-handoff-needs-one-source-selection-vocabulary-not-two-independent-sta",
+      "text": "**F11-05 — The handoff needs one source-selection vocabulary, not two independent status formats.** The hook installer proves that a linked worktree cannot be treated as an implicit global source: the bare check fails before comparison, while an explicit primary checkout reaches actionable drift analysis. The create/doctor handoff should therefore expose `current_checkout`, `linked_worktree`, `primary_checkout`, and `selected_repo` even when the advisor operation is repo-local, then expose separate fields for `structural_validation`, `derived_metadata`, `graph_scan`, and `advisor_rebuild`. The selected source describes what will be inspected; it does not authorize any repair or rebuild. [SOURCE: `.opencode/bin/install-codex-hooks.mjs:286-317`; prior command result; `.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml:20-28,65-77`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-11-6-f11-06-the-smallest-alignment-is-a-report-contract-plus-explicit-handoff-command",
+      "text": "**F11-06 — The smallest alignment is a report contract plus explicit handoff commands.** Both surfaces should emit the same compact block: `source` (current/primary/selected checkout), `identity` (hub path and graph id), `generated` (registry/router/description/graph/leaf-manifest validation), and `index` (`graph_scan`, `advisor_rebuild`, freshness). Create can mark the index actions `PENDING`/`NOT RUN` after scaffolding; doctor can consume the block to diagnose drift and print operator-owned commands. This aligns the lifecycle without coupling scaffolding to a daemon mutation or making `description.json` an auto-generated replacement for registry/graph metadata. [INFERENCE: based on `.opencode/commands/create/skill-parent.md:69-78`, `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`, and `.opencode/skills/system-deep-loop/SKILL.md:84-85`]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/skill.md`",
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/`",
+        "`.opencode/bin/install-codex-hooks.mjs`"
+      ]
+    },
+    {
+      "id": "finding-12-1-f12-01-the-three-commands-have-different-argument-and-trust-contracts-p1-the-exe",
+      "text": "**F12-01 — The three commands have different argument and trust contracts (P1).** The executable forms are:",
+      "addedAtIteration": 12,
+      "sources": [
+        "`.opencode/bin/install-codex-hooks.mjs`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/{skill-graph-scan,skill-graph-validate,advisor-rebuild}.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-12-2-f12-02-the-checkout-change-is-part-of-the-command-contract-p1-the-scan-handler-r",
+      "text": "**F12-02 — The checkout change is part of the command contract (P1).** The scan handler resolves `skillsRoot` relative to its process workspace and rejects a path outside that workspace. Passing the primary checkout's absolute `.opencode/skills` path while still standing in a linked worktree will therefore fail the workspace escape guard. The handoff must show `selected_repo` and start with `cd \"<selected_repo>\"`; `--allow-worktree` is unrelated and remains ruled out as source selection. [SOURCE: `.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts:39-47`; `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts:1235-1258`; prior linked-worktree check result]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`.opencode/bin/install-codex-hooks.mjs`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/{skill-graph-scan,skill-graph-validate,advisor-rebuild}.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-12-3-f12-03-scan-and-rebuild-should-not-be-printed-as-an-unconditional-three-command-",
+      "text": "**F12-03 — Scan and rebuild should not be printed as an unconditional three-command chain (P1).** Both operations index checked-in skill metadata into the live graph, but they are separate maintenance paths: scan also refreshes skill embeddings and publishes a `skill_graph_scan` generation, while rebuild indexes the workspace's `.opencode/skills` tree and publishes an `advisor_rebuild` generation. The handoff should present one explicit refresh choice, followed by `skill_graph_validate`; it should label every mutation `NOT RUN` until the operator invokes it. Use `skill_graph_scan` for a graph-specific refresh, or `advisor_rebuild` for the native advisor freshness repair. [SOURCE: `.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts:49-63`; `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts:70-115`; `.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-rebuild.md`]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`.opencode/bin/install-codex-hooks.mjs`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/{skill-graph-scan,skill-graph-validate,advisor-rebuild}.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-12-4-f12-04-the-current-doctor-route-does-not-expose-skill-graph-validate-in-its-decl",
+      "text": "**F12-04 — The current doctor route does not expose `skill_graph_validate` in its declared MCP surface (P1).** `/doctor:skill-advisor` declares `mutating: mutates`, lists `skill_graph_scan` and `advisor_rebuild`, but omits `skill_graph_validate` from `mcp_tools`. Its Phase 4 rebuild is correctly gated behind the doctor workflow's prior approval and runs `advisor_rebuild({ force: true })` after approved scorer or metadata edits; that is not a general post-create diagnostic. The shared handoff therefore needs either a CLI fallback for `skill_graph_validate` or a later route metadata/allowlist alignment change. [SOURCE: `.opencode/commands/doctor/_routes.yaml:99-116`; `.opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-326`; `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts:688-725`]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`.opencode/bin/install-codex-hooks.mjs`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/{skill-graph-scan,skill-graph-validate,advisor-rebuild}.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-12-5-f12-05-the-minimal-presentation-contract-is-now-precise-p1-both-create-and-docto",
+      "text": "**F12-05 — The minimal presentation contract is now precise (P1).** Both create and doctor should render the same fields: `selected_repo`, `current_checkout`, `primary_checkout`, `hub_identity`, `generated_metadata`, `graph_refresh: NOT RUN`, `advisor_rebuild: NOT RUN`, and `validation: NOT RUN`. The operator handoff should then print the selected-checkout block and the two refresh alternatives, with graph validation after the chosen refresh. This keeps source selection, generated-file validation, graph mutation, and advisor mutation as separate statuses. [INFERENCE: based on findings F12-01 through F12-04 and `.opencode/commands/create/skill-parent.md:65-78`]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`.opencode/bin/install-codex-hooks.mjs`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/{skill-graph-scan,skill-graph-validate,advisor-rebuild}.md`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts`"
+      ]
+    },
+    {
+      "id": "finding-13-1-f13-01-there-is-no-common-formatter-boundary-to-reuse-p1-create-and-doctor-are-p",
+      "text": "**F13-01 — There is no common formatter boundary to reuse (P1).** Create and doctor are prompt-asset workflows, not two callers of a shared rendering module. /create:skill-parent owns a dedicated create-skill-parent-presentation.txt, while /doctor loads the generic doctor-speckit-presentation.txt; advisor-specific approval and verification text remains embedded in doctor-skill-advisor.yaml. A reusable formatter would therefore require a new executable layer plus a change to the current presentation ownership contract. [SOURCE: .opencode/commands/create/skill-parent.md:1-6,31-47; .opencode/commands/doctor/speckit.md:1-4,20-40; .opencode/commands/doctor/assets/doctor-speckit-presentation.txt:1-3,149-177; .opencode/commands/doctor/assets/doctor-skill-advisor.yaml:124-207,318-328]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-f13-02-the-two-consumers-need-different-result-shapes-create-completes-a-scaffol",
+      "text": "**F13-02 — The two consumers need different result shapes.** Create completes a scaffold and reports hub identity, generated metadata, and structural validation. Doctor is a mutating, phase-gated workflow that reports approved files, rollback state, graph scan counts, tests, and an explicit unverified branch. Sharing a whole rendered formatter would either flatten those lifecycle differences or force the formatter to grow workflow-specific conditionals. The stable part is the handoff vocabulary and command snippets, not the full output layout. [SOURCE: .opencode/commands/create/assets/create-skill-parent-presentation.txt:114-154; .opencode/commands/create/assets/create-skill-parent-auto.yaml:426-506; .opencode/commands/doctor/assets/doctor-skill-advisor.yaml:145-207,318-348]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-f13-03-a-static-contract-test-is-an-existing-proportionate-mechanism-for-this-as",
+      "text": "**F13-03 — A static contract test is an existing, proportionate mechanism for this asset boundary (P1).** The repository already tests parallel presentation/workflow assets by enumerating files and asserting required text, allowed tools, and stale-reference absence. The same pattern can assert that create and doctor both expose selected_repo, current_checkout, primary_checkout, hub_identity, generated-metadata status, graph_refresh, advisor_rebuild, and validation, without requiring byte-identical prose. [SOURCE: .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:20-45,70-104]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-f13-04-the-contract-test-must-pin-command-semantics-not-only-labels-the-cli-mani",
+      "text": "**F13-04 — The contract test must pin command semantics, not only labels.** The CLI manifest declares advisor_rebuild with force and workspaceRoot, and skill_graph_validate with an empty input schema; the parser accepts the shared output flags and trusted mutation marker. The exact operator handoff forms remain:",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-f13-05-create-currently-has-the-larger-lifecycle-gap-its-parent-completion-repor",
+      "text": "**F13-05 — Create currently has the larger lifecycle gap.** Its parent completion report includes structural checks and an advisor-map sync note for lexical/alias-fold modes, but no graph refresh, advisor rebuild, or validation status. Doctor does run advisor_rebuild({ force: true }) after approved mutations, yet its route manifest omits skill_graph_validate and its generic result template has no shared parent-handoff fields. This is presentation drift, not evidence that a runtime formatter is missing. [SOURCE: .opencode/commands/create/assets/create-skill-parent-auto.yaml:426-506; .opencode/commands/create/assets/create-skill-parent-presentation.txt:114-154; .opencode/commands/doctor/_routes.yaml:99-122; .opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-328]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-f13-06-source-selection-must-remain-data-in-the-handoff-the-hook-check-reproduce",
+      "text": "**F13-06 — Source selection must remain data in the handoff.** The hook check reproduced the linked-worktree refusal. The shared vocabulary should carry current_checkout, primary_checkout, and selected_repo, but neither create nor a read-only diagnostic should infer that --allow-worktree authorizes a different source or mutation. The contract test should require the selected-checkout block before refresh commands. [SOURCE: node .opencode/bin/install-codex-hooks.mjs --check result; .codex/SYNC.md:108-117]",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-p1-create-skill-is-an-independent-contract-surface-and-should-be-included-in-the",
+      "text": "**P1 — /create:skill is an independent contract surface and should be included in the contract-test matrix.** The router declares its presentation, auto workflow, and confirm workflow as separate owned assets, and the presentation's completion template explicitly reports both Memory saved and Memory indexed. The auto workflow independently defines context save and memory_index_scan outputs. If the test covers only /create:skill-parent, this standalone handoff can drift without detection. [SOURCE: .opencode/commands/create/skill.md:18-56; .opencode/commands/create/assets/create-skill-presentation.txt:129-150; .opencode/commands/create/assets/create-skill-auto.yaml:423-461]",
+      "addedAtIteration": 14,
+      "sources": [
+        ".opencode/commands/create/skill.md:18-56",
+        ".opencode/commands/create/assets/create-skill-presentation.txt:129-150",
+        ".opencode/commands/create/assets/create-skill-auto.yaml:188-217,385-461",
+        ".opencode/commands/create/skill-parent.md:27-33",
+        ".opencode/commands/create/assets/create-skill-parent-presentation.txt:127-154",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:18-47,71-105",
+        "node .opencode/bin/install-codex-hooks.mjs --check"
+      ]
+    },
+    {
+      "id": "finding-14-4-p1-add-create-skill-to-the-same-static-contract-suite-through-route-specific-req",
+      "text": "**P1 — Add /create:skill to the same static contract suite through route-specific requirement sets.** The repository's existing presentation contract test already uses explicit asset lists and checks required text, workflow coverage, allowed tools, and stale references without requiring identical prose. A proportionate extension would enumerate standalone presentation plus auto/confirm assets, parent presentation plus auto/confirm assets, and doctor handoff assets; then assert standalone memory/index fields and parent/doctor selected-repo, hub-identity, refresh, and validation fields separately. [SOURCE: .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:18-47,71-105; .opencode/commands/create/skill.md:20-24; .opencode/commands/create/skill-parent.md:27-33]",
+      "addedAtIteration": 14,
+      "sources": [
+        ".opencode/commands/create/skill.md:18-56",
+        ".opencode/commands/create/assets/create-skill-presentation.txt:129-150",
+        ".opencode/commands/create/assets/create-skill-auto.yaml:188-217,385-461",
+        ".opencode/commands/create/skill-parent.md:27-33",
+        ".opencode/commands/create/assets/create-skill-parent-presentation.txt:127-154",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:18-47,71-105",
+        "node .opencode/bin/install-codex-hooks.mjs --check"
+      ]
+    },
+    {
+      "id": "finding-14-2-p1-standalone-create-skill-does-not-have-the-parent-hub-metadata-contract-its-wo",
+      "text": "**P1 — Standalone /create:skill does not have the parent-hub metadata contract.** Its workflow validates a leaf skill package, synchronizes SKILL.md routing, then saves and indexes context when a spec path exists. Its template sources are the leaf skill, reference, asset, smart-router, and README templates; it does not generate the parent-only mode-registry.json, hub-router.json, description.json, or hub graph-metadata.json set. A test that requires those fields on every create route would encode a false invariant. [SOURCE: .opencode/commands/create/assets/create-skill-auto.yaml:188-217,385-439]",
+      "addedAtIteration": 14,
+      "sources": [
+        ".opencode/commands/create/skill.md:18-56",
+        ".opencode/commands/create/assets/create-skill-presentation.txt:129-150",
+        ".opencode/commands/create/assets/create-skill-auto.yaml:188-217,385-461",
+        ".opencode/commands/create/skill-parent.md:27-33",
+        ".opencode/commands/create/assets/create-skill-parent-presentation.txt:127-154",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:18-47,71-105",
+        "node .opencode/bin/install-codex-hooks.mjs --check"
+      ]
+    },
+    {
+      "id": "finding-14-3-p1-the-common-contract-must-be-vocabulary-level-not-a-shared-result-schema-the-p",
+      "text": "**P1 — The common contract must be vocabulary-level, not a shared result schema.** The parent presentation reports hub identity counts, parent-skill-check, canonical hub structure, per-mode packet shape, and advisorRouting coverage, while standalone reports DQI, operation target, spec path, and memory/index status. The stable test boundary is therefore route identity, target, validation outcome, and the relevant context/index handoff; parent identity and advisor refresh fields remain parent/doctor assertions. [SOURCE: .opencode/commands/create/assets/create-skill-parent-presentation.txt:127-154; .opencode/commands/create/assets/create-skill-presentation.txt:129-150]",
+      "addedAtIteration": 14,
+      "sources": [
+        ".opencode/commands/create/skill.md:18-56",
+        ".opencode/commands/create/assets/create-skill-presentation.txt:129-150",
+        ".opencode/commands/create/assets/create-skill-auto.yaml:188-217,385-461",
+        ".opencode/commands/create/skill-parent.md:27-33",
+        ".opencode/commands/create/assets/create-skill-parent-presentation.txt:127-154",
+        ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:18-47,71-105",
+        "node .opencode/bin/install-codex-hooks.mjs --check"
+      ]
+    },
+    {
+      "id": "finding-15-3-p1-cli-only-validation-is-available-but-it-is-the-wrong-primary-contract-for-doc",
+      "text": "**P1 — CLI-only validation is available, but it is the wrong primary contract for /doctor.** The skill-advisor implementation documents full parity between the daemon-backed CLI and all nine advisor tools, and read tools do not need the trusted mutation flag. However, /doctor's execution contract resolves the route's native mcp_tools and then executes the selected YAML; the route currently declares only a warm-only advisor_status CLI probe. A printed CLI command would be a useful fallback for daemon/MCP transport failure, not a substitute for native route exposure and workflow coverage. [SOURCE: .opencode/skills/system-skill-advisor/README.md:76-83; .opencode/skills/system-skill-advisor/SKILL.md:303-305,323-333; .opencode/commands/doctor/_routes.yaml:105-116; .opencode/commands/doctor/speckit.md:53-62]",
+      "addedAtIteration": 15,
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:99-116",
+        ".opencode/commands/doctor/speckit.md:4,53-62",
+        ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-331",
+        ".opencode/commands/doctor/scripts/route-validate.py:14-20,59-66,285-303,395-406",
+        ".opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:60-63,125-137",
+        ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md:19-25",
+        ".opencode/skills/system-skill-advisor/README.md:76-83,144-154",
+        ".opencode/skills/system-skill-advisor/SKILL.md:303-305,323-333"
+      ]
+    },
+    {
+      "id": "finding-15-1-p1-the-doctor-route-omits-a-live-read-only-graph-validator-from-both-declaration",
+      "text": "**P1 — The doctor route omits a live, read-only graph validator from both declarations that govern native tool reachability.** The skill-advisor route lists advisor_recommend, advisor_status, advisor_validate, advisor_rebuild, skill_graph_scan, skill_graph_query, and skill_graph_status, but not skill_graph_validate. The /doctor router frontmatter repeats the same omission. The router then resolves mcp_tools from _routes.yaml, and route validation only checks that route entries are a subset of the frontmatter union; omission is therefore invisible to the existing contract. [SOURCE: .opencode/commands/doctor/_routes.yaml:99-116; .opencode/commands/doctor/speckit.md:4,58-62; .opencode/commands/doctor/scripts/route-validate.py:14-20,285-303]",
+      "addedAtIteration": 15,
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:99-116",
+        ".opencode/commands/doctor/speckit.md:4,53-62",
+        ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-331",
+        ".opencode/commands/doctor/scripts/route-validate.py:14-20,59-66,285-303,395-406",
+        ".opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:60-63,125-137",
+        ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md:19-25",
+        ".opencode/skills/system-skill-advisor/README.md:76-83,144-154",
+        ".opencode/skills/system-skill-advisor/SKILL.md:303-305,323-333"
+      ]
+    },
+    {
+      "id": "finding-15-2-p1-the-doctor-workflow-rebuilds-the-index-and-runs-advisor-tests-but-does-not-ru",
+      "text": "**P1 — The doctor workflow rebuilds the index and runs advisor tests, but does not run the structural graph validator.** Phase 4 is described as re-indexing and testing; its concrete steps call advisor_rebuild, capture counts, and run the advisor test suite. That verifies freshness and scorer behavior, but it does not exercise the documented checks for schema drift, broken edges, relation-weight bands, reciprocal symmetry, dependency cycles, or derived-freshness warnings. [SOURCE: .opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-331; .opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md:19-25]",
+      "addedAtIteration": 15,
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:99-116",
+        ".opencode/commands/doctor/speckit.md:4,53-62",
+        ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-331",
+        ".opencode/commands/doctor/scripts/route-validate.py:14-20,59-66,285-303,395-406",
+        ".opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:60-63,125-137",
+        ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md:19-25",
+        ".opencode/skills/system-skill-advisor/README.md:76-83,144-154",
+        ".opencode/skills/system-skill-advisor/SKILL.md:303-305,323-333"
+      ]
+    },
+    {
+      "id": "finding-15-4-p2-the-smallest-aligned-change-has-three-coordinated-pieces-not-one-metadata-lin",
+      "text": "**P2 — The smallest aligned change has three coordinated pieces, not one metadata line.** Add mcp__mk_skill_advisor__skill_graph_validate to the /doctor router frontmatter and the skill-advisor route entry, then call it in the doctor verification phase after the rebuild and before final reporting. Keep the CLI form as a warm-only fallback. Because the validator is read-only and the route is already classified as mutates for its scorer/metadata apply path, this does not weaken the route's mutation guard; it closes the diagnostic coverage gap. The route validator's K rule protects only read-only routes from known mutators, while its F rule enforces subset parity, so the new tool needs an explicit route-contract assertion if future completeness is desired. [SOURCE: .opencode/commands/doctor/scripts/route-validate.py:59-66,285-303,395-406; .opencode/commands/doctor/_routes.yaml:99-116; .opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:60-63,125-137]",
+      "addedAtIteration": 15,
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:99-116",
+        ".opencode/commands/doctor/speckit.md:4,53-62",
+        ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml:318-331",
+        ".opencode/commands/doctor/scripts/route-validate.py:14-20,59-66,285-303,395-406",
+        ".opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts:60-63,125-137",
+        ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md:19-25",
+        ".opencode/skills/system-skill-advisor/README.md:76-83,144-154",
+        ".opencode/skills/system-skill-advisor/SKILL.md:303-305,323-333"
+      ]
+    },
+    {
+      "id": "finding-16-1-fail-rebuild-scan-unavailable-graph-validation-fail-advisor-validation-fail-buil",
+      "text": "`fail`: rebuild/scan unavailable, graph validation `fail`, advisor validation `fail`, build failure, or advisor test failures. The post-phase gate remains hard-blocking and offers rollback; `skip_tests` waives only the test-suite check, not graph validation.",
+      "addedAtIteration": 16,
+      "sources": [
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/speckit.md`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`",
+        "`.opencode/commands/doctor/scripts/route-validate.py`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/status.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-dispatch.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-listing.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-validate.md`",
+        "`.opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md`",
+        "`.opencode/bin/install-codex-hooks.mjs --check` output for the linked-worktree source-selection guard"
+      ]
+    },
+    {
+      "id": "finding-16-2-partial-graph-validation-is-warning-only-tests-were-explicitly-skipped-or-a-non-",
+      "text": "`partial`: graph validation is warning-only, tests were explicitly skipped, or a non-blocking diagnostic is unavailable after the required refresh. Show `WARN`, preserve the details, and require an explicit keep-changes decision; do not silently label the run `OK`.",
+      "addedAtIteration": 16,
+      "sources": [
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/speckit.md`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`",
+        "`.opencode/commands/doctor/scripts/route-validate.py`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/status.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-dispatch.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-listing.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-validate.md`",
+        "`.opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md`",
+        "`.opencode/bin/install-codex-hooks.mjs --check` output for the linked-worktree source-selection guard"
+      ]
+    },
+    {
+      "id": "finding-16-3-pass-rebuild-scan-completed-graph-validation-is-pass-and-the-advisor-test-suite-",
+      "text": "`pass`: rebuild/scan completed, graph validation is `pass`, and the advisor test suite plus advisor validation pass.",
+      "addedAtIteration": 16,
+      "sources": [
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/speckit.md`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`",
+        "`.opencode/commands/doctor/scripts/route-validate.py`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/status.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-dispatch.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-listing.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-validate.md`",
+        "`.opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md`",
+        "`.opencode/bin/install-codex-hooks.mjs --check` output for the linked-worktree source-selection guard"
+      ]
+    },
+    {
+      "id": "finding-16-4-skipped-unverified-only-the-literal-pre-phase-4-c-opt-out-all-reports-remain-exp",
+      "text": "`skipped_unverified`: only the literal pre-phase-4 `C` opt-out; all reports remain explicitly skipped/null and no verification claim is made.",
+      "addedAtIteration": 16,
+      "sources": [
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/speckit.md`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`",
+        "`.opencode/commands/doctor/scripts/route-validate.py`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/status.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-dispatch.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/skill-graph-listing.vitest.ts`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md`",
+        "`.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-validate.md`",
+        "`.opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md`",
+        "`.opencode/bin/install-codex-hooks.mjs --check` output for the linked-worktree source-selection guard"
+      ]
+    },
+    {
+      "id": "finding-18-1-description-json-authored-descriptive-hub-doctor-metadata-structural-checks-only",
+      "text": "`description.json`: authored descriptive hub-doctor metadata; structural checks only, not advisor graph input.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-2-graph-metadata-json-the-single-authored-advisor-identity-at-the-hub-root-this-is",
+      "text": "`graph-metadata.json`: the single authored advisor identity at the hub root; this is what graph indexing consumes.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-3-leaf-manifest-json-generated-leaf-resource-projection-derived-from-the-hub-regis",
+      "text": "`leaf-manifest.json`: generated leaf/resource projection derived from the hub registry and packet files; it must be regenerated or byte-checked, never hand-edited.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-11-advisor-status-node-opencode-bin-skill-advisor-cjs-advisor-status-workspace-root",
+      "text": "Advisor status: node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-7-command-metadata-json-present-and-validated-omitted-hub-owns-no-slash-commands",
+      "text": "command-metadata.json: [present and validated|omitted; hub owns no slash commands].",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-4-description-json-authored-descriptive-hub-metadata-not-advisor-graph-input",
+      "text": "description.json: authored descriptive hub metadata; not advisor graph input.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-8-full-advisor-refresh-node-opencode-bin-skill-advisor-cjs-advisor-rebuild-trusted",
+      "text": "Full advisor refresh: node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root \"$PWD\" --format json",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-10-graph-validation-node-opencode-bin-skill-advisor-cjs-skill-graph-validate-format",
+      "text": "Graph validation: node .opencode/bin/skill-advisor.cjs skill_graph_validate --format json",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-5-graph-metadata-json-sole-hub-advisor-identity-source-for-graph-indexing",
+      "text": "graph-metadata.json: sole hub advisor identity; source for graph indexing.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-9-graph-only-refresh-node-opencode-bin-skill-advisor-cjs-skill-graph-scan-trusted-",
+      "text": "Graph-only refresh: node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root \"$PWD/.opencode/skills\" --format json",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-6-leaf-manifest-json-generated-leaf-projection-fresh-stale-missing-do-not-hand-edi",
+      "text": "leaf-manifest.json: generated leaf projection; [fresh|stale|missing]. Do not hand-edit.",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-18-12-refresh-status-not-run-operator-owned-passed-failed",
+      "text": "Refresh status: [NOT RUN — operator-owned|PASSED|FAILED]",
+      "addedAtIteration": 18,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/doctor/_routes.yaml`",
+        "`.opencode/commands/doctor/assets/doctor-skill-advisor.yaml`",
+        "`.opencode/commands/doctor/scripts/parent-skill-check.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs`",
+        "`.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts`",
+        "`node .opencode/bin/skill-advisor.cjs list-tools --format json` and CLI help output",
+        "Read-only `advisor_status`, `skill_graph_status`, and `skill_graph_validate` warm-only probes (exit 75: advisor IPC unavailable)"
+      ]
+    },
+    {
+      "id": "finding-19-8-command-metadata-json-present-and-validated-or-omitted-because-the-hub-owns-no-s",
+      "text": "`command-metadata.json`: present and validated, or omitted because the hub owns no slash commands;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-5-description-json-present-and-structurally-valid-descriptive-only",
+      "text": "`description.json`: present and structurally valid, descriptive only;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-6-graph-metadata-json-exactly-one-hub-identity-zero-nested-identities",
+      "text": "`graph-metadata.json`: exactly one hub identity, zero nested identities;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-7-leaf-manifest-json-generated-and-fresh-stale-missing",
+      "text": "`leaf-manifest.json`: generated and fresh/stale/missing;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-11-a-separate-route-contract-test-that-checks-the-doctor-route-s-selected-tool-subs",
+      "text": "A separate route-contract test that checks the doctor route's selected tool subset against the live advisor tool registry, including `skill_graph_validate` once the route change is made.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-10-a-shared-vocabulary-output-semantics-test-that-checks-required-labels-class-awar",
+      "text": "A shared vocabulary/output-semantics test that checks required labels, class-aware omission, operator-owned refresh status, and retryable-unavailable rendering across create and doctor adapters.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-4-class-applicability-h-only-fields-render-as-omitted-n-a-on-standalone-roots",
+      "text": "class applicability: H-only fields render as omitted/N/A on standalone roots.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-1-metadata-ownership-description-json-h-descriptive-projection-only-graph-metadata",
+      "text": "metadata ownership: `description.json` (H descriptive projection only), `graph-metadata.json` (sole advisor identity), `leaf-manifest.json` (generated projection), and `command-metadata.json` (optional H command surface);",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-9-refresh-and-verification-status-explicit-operator-owned-and-independently-report",
+      "text": "refresh and verification status: explicit, operator-owned, and independently reported.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-2-refresh-ownership-skill-graph-scan-and-advisor-rebuild-are-explicit-operator-cho",
+      "text": "refresh ownership: `skill_graph_scan` and `advisor_rebuild` are explicit operator choices, not create-side effects;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    },
+    {
+      "id": "finding-19-3-verification-state-manifest-freshness-graph-validation-advisor-status-refresh-st",
+      "text": "verification state: manifest freshness, graph validation, advisor status, refresh status, and retryable-unavailable versus failed;",
+      "addedAtIteration": 19,
+      "sources": [
+        "`.opencode/commands/create/assets/create-skill-presentation.txt`",
+        "`.opencode/commands/create/assets/create-skill-auto.yaml` and `create-skill-confirm.yaml`",
+        "`.opencode/commands/create/skill-parent.md`",
+        "`.opencode/commands/create/assets/create-skill-parent-auto.yaml` and `create-skill-parent-confirm.yaml`",
+        "`.opencode/commands/create/assets/create-skill-parent-presentation.txt`",
+        "`.opencode/commands/doctor/_routes.yaml` and `doctor-skill-advisor.yaml`",
+        "`.opencode/skills/sk-doc/sk-create-skill/SKILL.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`",
+        "`.opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs`",
+        "`.opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-9bc6f3f19d5e",
+      "text": "Auto-running `skill_graph_scan` or `advisor_rebuild` as part of create or a read-only doctor route. The operations change derived/index state and should remain explicit operator actions.",
+      "contentHash": "9bc6f3f19d5e",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-6bd9b18e0c21",
+      "text": "Making `description.json` the sole source of advisor truth. The parent-hub contract still assigns authority to the registry, router, graph metadata, and generated leaf/derived checks.",
+      "contentHash": "6bd9b18e0c21",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-45a8e30da3d4",
+      "text": "Treating `--allow-worktree` as canonical-source selection. It only disables the installer’s safety refusal; it does not identify the authoritative checkout.",
+      "contentHash": "45a8e30da3d4",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-ef45d7824eb1",
+      "text": "A single byte-identical formatter/test fixture is not supported by the current ownership model: create and parent-create have distinct presentation assets and distinct result shapes. The useful convergence point is a field vocabulary and command semantics.",
+      "contentHash": "ef45d7824eb1",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-4282d5e121f1",
+      "text": "Requiring mode-registry.json, hub-router.json, description.json, or graph-metadata.json in every /create:skill contract assertion.",
+      "contentHash": "4282d5e121f1",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-7a1f411c324f",
+      "text": "Treating /create:skill as covered indirectly by the parent-skill test.",
+      "contentHash": "7a1f411c324f",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-325fb90ef20e",
+      "text": "Auto-running advisor_rebuild or skill_graph_scan as an implicit side effect of a read-only diagnostic route; this remains ruled out by prior iterations.",
+      "contentHash": "325fb90ef20e",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-f464d4189be0",
+      "text": "Retaining CLI-only validation as the canonical /doctor path; it leaves the route's native tool contract and workflow blind to structural graph failures.",
+      "contentHash": "f464d4189be0",
+      "addedAtIteration": 15
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 58,
+    "keyFindings": 97,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.96,
+    "coverageBySources": {
+      "code": 16,
+      "other": 65
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0128-sk-doc-create-doctor-skill-advisor-alignment/.opencode/specs/sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}
