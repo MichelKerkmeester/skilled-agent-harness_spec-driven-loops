@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-15T16:35:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined the exact-SHA whole-system acceptance gate contract"
-    next_safe_action: "Execute the frozen-SHA gate after phase 015 writer retirement"
+    next_safe_action: "Execute the frozen-SHA gate only after phase 015 writer retirement; phase 015 is currently Planned/unstarted at 0/29 checklist items"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -50,7 +50,8 @@ _memory:
 
 The 006 program changes a live, stateful runtime through additive-dark writes, compatibility adapters, shadow parity,
 staged authority cutover, and gated legacy-writer retirement. A green unit or per-mode result is not enough to prove that
-the complete system still runs consistently after phase `015-legacy-writer-retirement`: shared ledger transitions,
+the complete system still runs consistently after phase `015-legacy-writer-retirement`, which is currently unmet and
+Planned/unstarted at 0/29 checklist items: shared ledger transitions,
 receipts, effect recovery, replay, budgets, health signals, archival readers, and mode-specific behavior can regress at
 their boundaries. The parent specification names this phase as the whole-system gate, and the
 `execution-sequencing-strategy.md` requires every phase gate to be bound to an exact commit and to produce a blocking

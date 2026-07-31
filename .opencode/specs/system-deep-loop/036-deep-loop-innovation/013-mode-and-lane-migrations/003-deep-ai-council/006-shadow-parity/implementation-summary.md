@@ -41,6 +41,7 @@ _memory:
 | **Completed** | 2026-07-28 |
 | **Level** | 2 |
 | **Status** | Implemented |
+| **Evidence reconciliation** | Reinstated by 021 on 2026-07-31 with fresh suite evidence; implementation claim remains supported. |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -72,7 +73,7 @@ The legacy projection folds council behavior directly from the pinned event voca
 <!-- ANCHOR:verification -->
 ## Verification
 
-- `node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/deep-ai-council-shadow-parity.vitest.ts` from `.opencode/skills/system-spec-kit/mcp-server`: 39 tests passed.
+- `cd .opencode/skills/system-deep-loop/runtime && ./node_modules/.bin/vitest run --no-coverage tests/unit/deep-ai-council-shadow-parity.vitest.ts`: 39 tests passed; suite sha256 `a88177197553c65ca58f72821014e1bd11cf99ef8598f8fd890a0aca7b54c79b`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32`.
 - `.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`: exit 0 with zero diagnostics, including zero diagnostics for `deep-ai-council-shadow-parity`.
 - The test surface proves allowlisted volatility with semantic equality, independent raw event IDs, all comparator divergence classes, unexplained-diff blocking, closed council event schemas, real ledger authorization and append behavior, and distinct legacy versus dark executors.
 <!-- /ANCHOR:verification -->

@@ -36,6 +36,8 @@ _memory:
 | `[B]` | Blocked |
 <!-- /ANCHOR:notation -->
 
+**Phase status:** Planned and unstarted; 0/29 checklist items checked and 0/26 implementation tasks started.
+
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 

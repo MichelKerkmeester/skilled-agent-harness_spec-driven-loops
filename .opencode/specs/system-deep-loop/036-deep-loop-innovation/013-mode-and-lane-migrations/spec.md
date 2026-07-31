@@ -37,6 +37,7 @@ _memory:
 | **Level** | phase parent (Level 2) |
 | **Priority** | P0 |
 | **Status** | In Progress |
+| **Evidence reconciliation** | 021 re-evidenced 123 checked lines in four child checklists; the root remains In Progress until the reconciled evidence is accepted. |
 | **Created** | 2026-07-15 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
