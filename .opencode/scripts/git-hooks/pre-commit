@@ -48,9 +48,61 @@ fi
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
-  HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"
-  if [[ -x "$HYGIENE_HOOK" ]]; then
-    bash "$HYGIENE_HOOK" || exit $?
+  COMMENT_CHECKER="${REPO_ROOT}/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+  if [[ ! -x "$COMMENT_CHECKER" ]]; then
+    echo "BLOCKED: comment hygiene checker is missing or not executable." >&2
+    exit 1
+  fi
+
+  VIOLATIONS=0
+  while IFS= read -r file; do
+    full_path="$REPO_ROOT/$file"
+    [[ -f "$full_path" ]] || continue
+    CHECKER_OUTPUT=""
+    CHECKER_RC=0
+    CHECKER_OUTPUT="$("$COMMENT_CHECKER" "$full_path" 2>&1)" || CHECKER_RC=$?
+    case "$CHECKER_RC" in
+      0|2)
+        ;;
+      1)
+        printf '%s\n' "$CHECKER_OUTPUT"
+        VIOLATIONS=$((VIOLATIONS + 1))
+        ;;
+      *)
+        echo "BLOCKED: comment hygiene checker failed for $file (exit $CHECKER_RC)." >&2
+        printf '%s\n' "$CHECKER_OUTPUT" >&2
+        exit 1
+        ;;
+    esac
+  done < <(git diff --cached --name-only --diff-filter=ACM)
+
+  if [[ "$VIOLATIONS" -gt 0 ]]; then
+    echo ""
+    echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
+    echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
+    echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
+    exit 1
+  fi
+fi
+
+# --- Agent mirror-sync gate (blocking) ---
+# Agents are authored in .opencode/agents/ and mirrored to .claude.
+# Block a commit that desyncs the mirrors. Only staged agent files are checked.
+MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+
+STAGED_AGENTS=()
+while IFS= read -r file; do
+  [[ -n "$file" ]] && STAGED_AGENTS+=("$file")
+done < <(git diff --cached --name-only --diff-filter=ACMD | grep -E '^\.(opencode|claude)/agents/' || true)
+
+if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
+  if ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
+    echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
+  elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
+    echo ""
+    echo "BLOCKED: staged agent files desync the .opencode / .claude mirrors."
+    echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
+    exit 1
   fi
 fi
 

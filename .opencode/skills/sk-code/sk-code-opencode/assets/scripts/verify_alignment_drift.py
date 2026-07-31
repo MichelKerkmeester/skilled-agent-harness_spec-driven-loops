@@ -54,6 +54,7 @@ EXCLUDED_DIRS = {
     ".git",
     "node_modules",
     "dist",
+    "external",
     "build",
     "coverage",
     "__pycache__",
@@ -70,6 +71,7 @@ INTEGRITY_RULE_PREFIXES = (
     "SH-STRICT-MODE",
     "PY-SHEBANG",
     "TS-MODULE-HEADER",
+    "EXACT-HEADER",
     "RUST-UNSAFE",
     "ROUTER-",
 )
@@ -137,6 +139,15 @@ def parse_args() -> argparse.Namespace:
             "the default invocation never parses markdown."
         ),
     )
+    parser.add_argument(
+        "--check-exact-headers",
+        action="store_true",
+        help=(
+            "Additionally require a COMPONENT: or MODULE: marker in the first 40 lines. "
+            "This opt-in check skips tests, scratch/research context, plugins, assets, "
+            "examples, fixtures and archived material."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -150,6 +161,13 @@ def iter_code_files(roots: Iterable[str]) -> Iterable[str]:
                 extension = os.path.splitext(filename)[1].lower()
                 if extension in SUPPORTED_EXTENSIONS:
                     candidate = os.path.realpath(os.path.join(current_root, filename))
+                    if not os.path.isfile(candidate):
+                        # Broken symlink targets are not authored files in this root.
+                        # Leave mirror and link-integrity policy to its dedicated gate.
+                        continue
+                    if any(part in EXCLUDED_DIRS for part in candidate.split(os.sep)):
+                        # Resolved generated and external targets stay outside this scan.
+                        continue
                     if candidate in seen_paths:
                         continue
                     seen_paths.add(candidate)
@@ -265,6 +283,33 @@ def is_known_malformed_json_fixture(path: str) -> bool:
 
 def should_skip_ts_module_header(path: str) -> bool:
     return is_test_heavy_path(path) or is_ts_pattern_asset(path)
+
+
+EXACT_HEADER_EXEMPT_SEGMENTS = CONTEXT_ADVISORY_SEGMENTS | {"plugins", "tests"}
+
+
+def is_exact_header_exempt_path(path: str) -> bool:
+    normalized = normalize_path(path)
+    segments = set(part for part in normalized.split("/") if part)
+    return bool(segments & EXACT_HEADER_EXEMPT_SEGMENTS)
+
+
+def check_exact_header(path: str, lines: List[str], extension: str) -> List[Finding]:
+    if extension not in {".ts", ".tsx", ".mts", ".js", ".mjs", ".cjs", ".py", ".sh", ".rs"}:
+        return []
+    if is_exact_header_exempt_path(path):
+        return []
+    if find_line(lines[:40], r"\b(?:COMPONENT|MODULE):"):
+        return []
+    return [
+        Finding(
+            path=path,
+            line=1,
+            rule_id="EXACT-HEADER",
+            message="Missing exact `COMPONENT:` or `MODULE:` header marker near file top.",
+            fix_hint="Add the standard component or module header within the first 40 lines.",
+        )
+    ]
 
 
 def classify_severity(path: str, rule_id: str) -> str:
@@ -471,7 +516,7 @@ def check_common(path: str, content: str) -> List[Finding]:
     return findings
 
 
-def check_file(path: str) -> List[Finding]:
+def check_file(path: str, check_exact_headers: bool = False) -> List[Finding]:
     extension = os.path.splitext(path)[1].lower()
     raw_findings: List[Finding] = []
 
@@ -506,6 +551,9 @@ def check_file(path: str) -> List[Finding]:
         raw_findings.extend(check_json(path, content))
     elif extension == ".jsonc":
         raw_findings.extend(check_jsonc(path, content))
+
+    if check_exact_headers:
+        raw_findings.extend(check_exact_header(path, lines, extension))
 
     findings: List[Finding] = []
     for finding in raw_findings:
@@ -597,7 +645,7 @@ def main() -> int:
 
     for file_path in sorted(iter_code_files(roots)):
         scanned += 1
-        findings.extend(check_file(file_path))
+        findings.extend(check_file(file_path, args.check_exact_headers))
 
     if args.check_router:
         for finding in check_router_paths(roots):

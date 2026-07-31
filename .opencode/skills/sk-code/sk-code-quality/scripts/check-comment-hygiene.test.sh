@@ -42,6 +42,10 @@ run_case 1 "phase_hyphen" "js" "// phase-004 x"
 run_case 1 "council_seat" "js" "// P1-Seat2 x"
 run_case 1 "adr_ref" "js" "// ADR-7 x"
 run_case 1 "inline_req" "js" "const a = 1; // REQ-3"
+run_case 1 "feature_catalog" "js" "// Feature catalog: cache invalidation"
+run_case 1 "phase_path_short" "js" "// phase-19-gate"
+run_case 1 "generic_phase_zero" "js" "// Phase 0 external artifact"
+run_case 1 "generic_spec_zero_padded" "js" "// spec 019 external artifact"
 
 run_case 0 "cwe_allowed" "js" "// CWE-79"
 run_case 0 "rfc_allowed" "js" "// RFC 2616"
@@ -50,6 +54,10 @@ run_case 0 "schema_allowed" "js" "// V16: schema"
 run_case 0 "rc_words_only" "js" "// RC tank"
 run_case 0 "normal_comment" "js" "// a normal comment"
 run_case 0 "hygiene_ok_inline" "js" "code(); // hygiene-ok DR-9"
+run_case 0 "feature_catalog_without_pointer" "js" "// Feature catalog is a durable concept"
+run_case 0 "durable_phase_label" "js" "// Phase 2 protocol stage"
+run_case 0 "string_literal" "js" "const pointer = \"spec 019\";"
+run_case 0 "url_literal" "js" "// See https://example.test/spec 019"
 
 if [[ "$failures" -gt 0 ]]; then
   printf '%s comment hygiene test case(s) failed\n' "$failures" >&2

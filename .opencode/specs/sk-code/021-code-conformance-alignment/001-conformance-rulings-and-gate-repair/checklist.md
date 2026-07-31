@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Conformance Rulings and Gate Repair"
-description: "Verification Date: TBD"
+description: "Verification Date: 2026-07-31; child remains In Progress"
 trigger_phrases:
   - "gate repair checklist"
   - "conformance rulings verification"
@@ -10,14 +10,14 @@ parent: "sk-code/021-code-conformance-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-code/021-code-conformance-alignment/001-conformance-rulings-and-gate-repair"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the verification checklist for gate repair and rulings"
-    next_safe_action: "Leave unchecked until the phase executes"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Checked only items backed by command receipts; left live smoke and failing gates open"
+    next_safe_action: "Run the live Write-tool smoke, then re-evaluate the remaining P0 items"
     blockers: []
     key_files:
       - "checklist.md"
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -50,12 +50,12 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-001 [P0] Requirements documented in spec.md — Evidence: spec.md:150 requirements table.
+- [x] CHK-002 [P0] Technical approach defined in plan.md — Evidence: plan.md:55 architecture and quality-gates sections.
 - [ ] CHK-003 [P1] Dependencies identified and available
-- [ ] CHK-004 [P0] T001 complete: every finding re-confirmed against HEAD, non-reproducing findings struck with evidence
-- [ ] CHK-005 [P0] Operator decisions Q2, Q4 and Q5 answered or explicitly deferred with a recorded fallback
-- [ ] CHK-006 [P0] Program baseline captured against a clean packet-scoped tree
+- [x] CHK-004 [P0] T001 complete: every finding re-confirmed against HEAD, non-reproducing findings struck with evidence — Evidence: implementation-summary.md:59 HEAD anchor + :61 baseline command.
+- [x] CHK-005 [P0] Operator decisions Q2, Q4 and Q5 answered or explicitly deferred with a recorded fallback — Evidence: decision-record.md:140,150,158 ADR-008 through ADR-010.
+- [x] CHK-006 [P0] Program baseline captured against a clean packet-scoped tree — Evidence: implementation-summary.md:61 baseline receipts table.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,10 +63,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks — `bash -n` on every touched shell file, `node --check` on every touched JS file, `python3 -m py_compile` on the verifier
+- [x] CHK-010 [P0] Code passes lint/format checks — `bash -n` on every touched shell file, `node --check` on every touched JS file, `python3 -m py_compile` on the verifier
 - [ ] CHK-011 [P0] No console errors or warnings — the hooks emit no unexpected stderr on a clean edit
 - [ ] CHK-012 [P1] Error handling implemented — a missing or non-executable checker produces a visible stderr signal, never a silent exit 0
-- [ ] CHK-013 [P1] Code follows project patterns — every file touched here satisfies the file-opening contract it is enforcing
+- [x] CHK-013 [P1] Code follows project patterns — every file touched here satisfies the file-opening contract it is enforcing — Evidence: syntax and shellcheck receipts in implementation-summary.md.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -76,9 +76,9 @@ FAILURE MODES:
 
 - [ ] CHK-020 [P0] All acceptance criteria met — REQ-001 through REQ-012 each cite an executed command and its result
 - [ ] CHK-021 [P0] Manual testing complete — the live Write-tool smoke blocks a deliberately violating scratch file
-- [ ] CHK-022 [P1] Edge cases tested — durable-prose negative fixtures stay clean; exception-class files are skipped with a stated reason
-- [ ] CHK-023 [P1] Error scenarios validated — the parse-integrity fixture fails when the adapter is deliberately broken
-- [ ] CHK-024 [P0] Each new checker rule has a recorded pre-change failing fixture run
+- [x] CHK-022 [P1] Edge cases tested — durable-prose negative fixtures stay clean; exception-class files are skipped with a stated reason — Evidence: implementation-summary.md:88 fixture-first delivery + :95 receipts.
+- [x] CHK-023 [P1] Error scenarios validated — the parse-integrity fixture fails when the adapter is deliberately broken — Evidence: implementation-summary.md:96 parse-fixture receipt.
+- [x] CHK-024 [P0] Each new checker rule has a recorded pre-change failing fixture run — Evidence: implementation-summary.md:95 pre-change fixture receipt.
 - [ ] CHK-025 [P1] The discovery canary fails when a test directory is hidden from the runner
 <!-- /ANCHOR:testing -->
 
@@ -116,7 +116,7 @@ FAILURE MODES:
 - [ ] CHK-041 [P1] Code comments adequate — and free of ephemeral-artifact pointers, per the gate this phase repairs
 - [ ] CHK-042 [P2] README updated (if applicable)
 - [ ] CHK-043 [P0] Every hook path named in the standard exists and is installed
-- [ ] CHK-044 [P0] No pattern in the amended test-filename table globs to zero at HEAD
+- [x] CHK-044 [P0] No pattern in the amended test-filename table globs to zero at HEAD — Evidence: implementation-summary.md:113 final test-name census.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -135,11 +135,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 17 | 0/17 |
-| P1 Items | 15 | 0/15 |
+| P0 Items | 17 | 11/17 |
+| P1 Items | 15 | 4/15 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: TBD
+**Verification Date**: 2026-07-31
 <!-- /ANCHOR:summary -->
 
 ---
@@ -151,11 +151,11 @@ FAILURE MODES:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md — Evidence: decision-record.md:40 ADR-001 through ADR-011.
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) — Evidence: decision-record.md:43 every ADR metadata block says Accepted.
 - [ ] CHK-102 [P1] Alternatives documented with rejection rationale
 - [ ] CHK-103 [P2] Migration path documented (if applicable)
-- [ ] CHK-104 [P0] All six binding rulings recorded with evidence and per-child consequence
+- [x] CHK-104 [P0] All six binding rulings recorded with evidence and per-child consequence — Evidence: decision-record.md:40 ADR-001 through ADR-006.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -175,7 +175,7 @@ FAILURE MODES:
 ## L3+: DEPLOYMENT READINESS
 
 - [ ] CHK-120 [P0] Rollback procedure documented and tested — the scan-root revert exercised at least once
-- [ ] CHK-121 [P0] Feature flag configured (if applicable) — the exact-header check ships opt-in
+- [x] CHK-121 [P0] Feature flag configured (if applicable) — the exact-header check ships opt-in — Evidence: decision-record.md:150 ADR-009 and verifier --check-exact-headers receipt.
 - [ ] CHK-122 [P1] Monitoring/alerting configured — N/A; gate output is the signal
 - [ ] CHK-123 [P1] Runbook created — the baseline-capture command set is recorded so later children can reproduce it
 - [ ] CHK-124 [P2] Deployment runbook reviewed

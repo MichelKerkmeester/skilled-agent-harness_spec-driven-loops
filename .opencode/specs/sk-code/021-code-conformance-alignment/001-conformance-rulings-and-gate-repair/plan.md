@@ -12,14 +12,14 @@ parent: "sk-code/021-code-conformance-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-code/021-code-conformance-alignment/001-conformance-rulings-and-gate-repair"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan for gate repair and rulings"
-    next_safe_action: "Execute T001 confirm-against-HEAD before any edit"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Executed the gate-repair plan through evidence capture and documented the remaining blockers"
+    next_safe_action: "Verifier to exercise the live Write smoke and review the repo-wide baseline"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -74,6 +74,41 @@ Three edits make the gate real — one installed hook path per lifecycle event, 
 - [ ] Each new checker rule has a recorded pre-change failing fixture run
 - [ ] The program baseline is captured verbatim and referenced by name
 <!-- /ANCHOR:quality-gates -->
+
+---
+
+<!-- ANCHOR:ai-execution -->
+## L3: AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Read the child contract and every target file before editing.
+- Keep edits inside the named sk-code, shared-runner, checker-fixture, and child-document scope.
+- Capture command output, direct exit codes, and SHA-256 digests for load-bearing claims.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| Scope lock | Do not modify files outside the child contract; do not make git mutations. |
+| Comment hygiene | Durable WHY only in code comments; no packet, task, finding, or spec identifiers. |
+| Gate honesty | Record failing gates and environment blockers; do not convert them to passes. |
+| Documentation | Keep the child In Progress until the live smoke and orchestrator review are complete. |
+
+### Status Reporting Format
+
+```text
+Phase 001 status: [in-progress|blocked|verified]
+Changed files: [scoped paths]
+Gates: [command + verdict + direct rc + SHA]
+Next safe action: [one task id or verifier action]
+```
+
+### Blocked Task Protocol
+
+When a required gate fails or a required tool is unavailable, preserve the full output, record the direct rc, leave the task open when success was not evidenced, and report the exact blocker to the verifier.
+
+<!-- /ANCHOR:ai-execution -->
 
 ---
 

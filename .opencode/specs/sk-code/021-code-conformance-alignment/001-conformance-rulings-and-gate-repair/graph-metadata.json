@@ -38,13 +38,16 @@
       "test",
       "filename"
     ],
-    "importance_tier": "normal",
-    "status": "planned",
+    "importance_tier": "high",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".claude/statusline-command.sh",
       ".opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
       ".opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh",
       ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
@@ -54,8 +57,7 @@
       ".opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
       ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
       ".opencode/scripts/run-node-tests.mjs",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/spec.md",
-      "decision-record.md"
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/spec.md"
     ],
     "entities": [
       {
@@ -80,6 +82,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "statusline-command.sh",
+        "kind": "script",
+        "path": ".claude/statusline-command.sh",
         "source": "derived"
       },
       {
@@ -137,12 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -173,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Three",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Gate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
     "created_at": "2026-07-30T19:25:14.337Z",
-    "last_save_at": "2026-07-30T19:25:14.337Z",
+    "last_save_at": "2026-07-31T04:13:06.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce74b31aecf3aab761a86975aef48b9d5aebdceab6410259ffe0b06837b2c982",
+    "source_fingerprint": "sha256:b83f70ec6d4171dc0c079b0cc4ab439a6ffad2cceebe1d292bbad27ddcfeb825",
     "source_doc_hashes": {
-      "spec.md": "1a85b95bfc25ab719c79ca71fb6dcf5cbeb2ede2286b651bd2d3d1e29afec286",
-      "plan.md": "c58a8d2e8ffe32f98950e897d0fee83d3e619749b524ab1455444d6414777a8f",
-      "tasks.md": "7d6496aef00fceff0397eb67c3ac794fdc466fb2a2f44992e52b76466d97e35b",
-      "checklist.md": "c1dac3cddd4307ac2bdb5e138da4959121c48b5652c63ecf231f621c7ec522f4",
-      "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
+      "spec.md": "5bce1ddebfe4e912cb1cb2a8b7c2396a9584979b1b36520e60eb3e3b69438e51",
+      "plan.md": "4e4945c9fb2c006de302ab17128479069dc8dc75942468406d9d1b27a68031fb",
+      "tasks.md": "86c89cbf0082b0db37f6640db8737496a913d55d8b62beb80c25f617641b7f24",
+      "checklist.md": "1e6337712a5d761fb0233d9c7ebce2c254c160ba9f89df37dea856c0a87d3de8",
+      "decision-record.md": "75084d66ababab42be070dc03d3e55adb9979a58918ba168014798b884d0229e",
+      "implementation-summary.md": "58dad0f9961eca744607269e78aea7a0ff730658a1c20dcdc4e834973e4cd893"
     },
     "last_active_child_id": null,
     "last_active_at": null

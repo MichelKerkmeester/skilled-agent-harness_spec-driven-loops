@@ -13,23 +13,27 @@ parent: "sk-code/021-code-conformance-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-code/021-code-conformance-alignment/001-conformance-rulings-and-gate-repair"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the gate-repair and rulings phase from the track (b) synthesis proposal"
-    next_safe_action: "Run T001; confirm findings against HEAD, then resolve Q4 and Q5"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the scoped gate repairs, formalized rulings, and captured failing/full gate evidence"
+    next_safe_action: "Verifier to attack the remaining live Write smoke and repo-wide gate backlog"
     blockers:
-      - "OPERATOR-DECISION Q4 gates the exact-header check design"
-      - "OPERATOR-DECISION Q5 gates the three-guard scan-root change"
+      - "The live Write-tool smoke was not available to this BUILD leaf"
+      - "The widened alignment and router-sync guards still fail on pre-existing backlog/environment"
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-    completion_pct: 0
-    open_questions:
-      - "Q4 - opt-in exact-header verifier flag, or leave header shape manual?"
-      - "Q5 - widen the three-guard scan root, and with warnings blocking or not?"
-    answered_questions: []
+      - "decision-record.md"
+      - "implementation-summary.md"
+      - "frozen-directory-manifest.md"
+    completion_pct: 50
+    open_questions: []
+    answered_questions:
+      - "Q2 - 020 owns runtime/** only"
+      - "Q4 - exact-header checking is opt-in"
+      - "Q5 - repository-wide scan with --fail-on-warn withheld"
 ---
 # Feature Specification: Conformance Rulings and Gate Repair
 
@@ -61,7 +65,7 @@ Every gate that was supposed to keep this repository conformant to the sk-code `
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-code/021-code-conformance-alignment` |
@@ -140,7 +144,7 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 | RB-003-05 | P1 | Mechanical PASS does not clear manual conformance blockers | Confirmed and reproduced — `PASS`, 12 files, 1 warning, with two header-less `.cjs` unreported |
 | RB-004-24 | P2 | Fixture subjects and benchmark harnesses lack an explicit conformance boundary | Confirmed as a ruling |
 | RB-005-03 | P1 | Existing alignment phase excludes this durable-code slice | Confirmed |
-| RB-005-06 | P2 | Live bin tests use undocumented filename conventions | Unconfirmed by the synthesis author — T001 owns it |
+| RB-005-06 | P2 | Live bin tests use undocumented filename conventions | Confirmed by census; the live convention is covered by the amended table |
 | RB-006-01 | P1 | Canonical Node test runner misses plugin CJS and hook tests | Confirmed — `ROOTS` omits `.opencode/hooks`; discovery is `endsWith('.test.mjs')` only |
 | RB-007-02 | P2 | Comment-hygiene gate does not recognize generic numbered phase or spec pointers | Confirmed |
 | RB-007-09 | P2 | Live test filenames substantially exceed the documented vocabulary | Confirmed by census |
@@ -202,8 +206,8 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 | Risk | Broadening the generic-label matcher flags durable domain prose | Medium — false positives in a hard-block gate are worse than misses | The boundary is written and fixtured before the regex changes; a negative fixture guards durable prose |
 | Risk | Retiring the wrong hook of a duplicated pair silently disables a rule the other file uniquely carried | High | Diff both files rule-by-rule before retiring either; the retained file must demonstrably carry the union |
 | Risk | Amending the standard's test vocabulary conflicts with an in-flight runner change | Low | T001 re-reads both Vitest configs and the runner at HEAD before the amendment is drafted |
-| Dependency | Operator decisions Q4 and Q5 | Red — the gate design and the scan-root change are both blocked | Both have a recommended answer; escalate once with the tradeoff rather than guessing |
-| Dependency | Operator decision Q2 | Yellow — the 020 amendment cannot be written until the border is ruled | The amendment text is pre-authored both ways in `020-amendment.md` |
+| Dependency | Operator decisions Q4 and Q5 | Resolved | Accepted ADR-008 and ADR-009 record the scan-root and exact-header decisions |
+| Dependency | Operator decision Q2 | Resolved | The current 020 spec contains the resolved runtime-only border; no separate amendment artifact exists |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -295,11 +299,7 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 
 ## 12. OPEN QUESTIONS
 
-- **[OPERATOR-DECISION: Q4 — exact-header automated check]** Should exact header shape become a blocking automated check? *Recommendation: yes, as a new opt-in verifier flag, promoted to default only after 003 completes, with documented exceptions for plugins, fixtures, assets and examples.*
-- **[OPERATOR-DECISION: Q5 — three-guard scan scope]** Should the three-guard wrapper scan the repository? *Recommendation: widen now with `--fail-on-warn` off until the sweep lands; the alternatives are widen-and-accept-noise, or keep narrow and add a separate repo-wide CI job.*
-- **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]** Does 020 own the whole `system-deep-loop` skill or only `runtime/**`? This phase writes the amendment either way; the text differs. *Recommendation: `runtime/**` only.*
-- Which of the two pre-commit files carries rules the other does not? Answered by T001's rule-by-rule diff, not assumed.
-- Is the frozen directory manifest that three children's work lists derive from still readable and current? T001 re-freezes it.
+The operator decisions are resolved in ADR-008, ADR-009, and ADR-010. The remaining completion question is procedural: the orchestrator must provide or approve the live Write-tool smoke before this child can claim the P0 manual gate.
 <!-- /ANCHOR:questions -->
 
 ---
