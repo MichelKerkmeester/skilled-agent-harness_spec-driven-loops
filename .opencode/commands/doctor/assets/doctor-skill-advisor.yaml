@@ -316,16 +316,18 @@ workflow:
     gate_after: "pre_phase_4 (Verification)"
 
   phase_4_verify:
-    purpose: Re-index skill graph and run advisor test suite
+    purpose: Re-index skill graph, structurally validate it, and run the advisor test suite
     activities:
-      - "STEP 0 check pre_phase_4 response: if operator chose 'C' (Skip verification, NOT recommended): set verification_status = 'skipped_unverified', graph_scan_report = null, test_report = 'skipped (operator opted out at pre_phase_4 C — NOT recommended)', skip STEP 1-5 below entirely, and go straight to post_phase_4 gate using the skipped_unverified branch (with its NOT-VERIFIED warning banner). This is an explicit unsafe opt-out, never a silent default — STEP 0 only short-circuits when the operator's literal response was 'C'."
+      - "STEP 0 check pre_phase_4 response: if operator chose 'C' (Skip verification, NOT recommended): set verification_status = 'skipped_unverified', graph_scan_report = null, graph_validation_report = null, test_report = 'skipped (operator opted out at pre_phase_4 C — NOT recommended)', skip STEP 1-5 (including 2.5) below entirely, and go straight to post_phase_4 gate using the skipped_unverified branch (with its NOT-VERIFIED warning banner). This is an explicit unsafe opt-out, never a silent default — STEP 0 only short-circuits when the operator's literal response was 'C'."
       - "STEP 1 (skipped when STEP 0 short-circuits): Run advisor_rebuild({ force: true }) to refresh the native advisor skill graph"
-      - "STEP 2 (skipped when STEP 0 short-circuits): Capture scan report: node_count, edge_count, freshness timestamp"
+      - "STEP 2 (skipped when STEP 0 short-circuits): Call skill_graph_status({}) and capture graph_scan_report from its authoritative totals — node_count = totalSkills, edge_count = totalEdges, freshness_ts = lastIndexedAt. Do not read node/edge counts off advisor_rebuild's own payload; it does not return them."
+      - "STEP 2.5 (skipped when STEP 0 short-circuits): Call skill_graph_validate({}) and capture graph_validation_report = { is_valid, error_count, warning_count, checked_nodes, checked_edges }. Derive graph_validation_status from the payload, never from a top-level success flag: 'fail' when is_valid = false (schema-version errors, broken edges, or dependency cycles); 'warn' when is_valid = true and warning_count > 0 (weight-band, reciprocal-symmetry, weight-parity, orphan, or derived-freshness findings — these are warnings, not failures); 'pass' when is_valid = true and warning_count = 0; 'unavailable' when the call throws, returns a non-ok status, or the payload is malformed (render as UNAVAILABLE (retryable), not FAILED — exit 75 on the daemon-backed CLI path is the expected retryable form of this)."
       - "STEP 3 (skipped when STEP 0 short-circuits): If skip_tests = FALSE and user did not choose 'B skip-tests': run advisor test suite"
       - "STEP 4 (skipped when STEP 0 short-circuits): Capture test report: pass/fail counts, regressions"
-      - "STEP 5 (skipped when STEP 0 short-circuits): If tests fail: surface failures, prompt rollback decision via post_phase_4 gate (verified branch). If tests pass: report success with stats, trigger post_phase_4 gate (verified branch)"
+      - "STEP 5 (skipped when STEP 0 short-circuits): Fold graph_validation_status into verification_status alongside the test result: verification_status = 'fail' when graph_validation_status = 'fail' OR tests fail (surface failures, prompt rollback decision via post_phase_4 gate — verified branch); 'partial' when graph_validation_status = 'warn' OR 'unavailable', or skip_tests was chosen (report the warning/unavailable detail alongside test stats, trigger post_phase_4 gate — verified branch, never silently rendered as plain pass); 'pass' only when graph_validation_status = 'pass' AND tests pass (report success with stats, trigger post_phase_4 gate — verified branch)"
     outputs:
       - graph_scan_report: "{ node_count, edge_count, freshness_ts } | null when verification_status == skipped_unverified"
+      - graph_validation_report: "{ is_valid, error_count, warning_count, checked_nodes, checked_edges } | null when verification_status == skipped_unverified"
       - test_report: "{ passed, failed, total } | skipped (skip_tests) | 'skipped (operator opted out at pre_phase_4 C — NOT recommended)' when verification_status == skipped_unverified"
       - verification_status: "pass | fail | partial | skipped_unverified"
     validation: "verify_complete (skipped_unverified counts as a completed, explicitly-unverified terminal state, not a validation failure)"
@@ -353,6 +355,7 @@ quality_gates:
     checks:
       - "build successful"
       - "graph_scan completed (unless verification_status == skipped_unverified — operator explicitly chose pre_phase_4 'C')"
+      - "graph_validation_report.error_count = 0 (unless verification_status == skipped_unverified); a nonzero warning_count alone is 'partial', not a hard fail — see phase_4_verify STEP 2.5"
       - "test_report.failed = 0 (unless skip_tests OR verification_status == skipped_unverified)"
       - "when verification_status == skipped_unverified: post_phase_4 renders the skipped_unverified branch (NOT-VERIFIED warning banner), never the verified branch"
     on_fail: "Trigger post_phase_4 rollback gate"
@@ -383,9 +386,10 @@ error_recovery:
   build_fails: "Surface build error at pre_phase_4 gate, offer rollback option D"
   test_fails: "Surface failing tests at post_phase_4 gate, offer rollback option B"
   graph_scan_unavailable: "STATUS=FAIL with diagnostic; graph scan is required (re-indexing is the point of Phase 4); offer rollback option D at post_phase_4 gate"
+  graph_validation_unavailable: "graph_validation_status = 'unavailable' (skill_graph_validate threw, returned a non-ok status, or the payload was malformed — including the daemon's retryable exit 75); treat as verification_status = 'partial', render UNAVAILABLE (retryable) in the result summary, and do not conflate it with a structural 'fail' (that requires an actual validation error, not a transport failure)"
   token_collision: "Flag in collision_warnings, prompt user to resolve before apply"
   user_rejects_at_gate: "Honor rejection, proceed to next phase or exit STATUS=CANCELLED"
-  verification_skipped_by_operator: "Operator chose pre_phase_4 'C' (Skip verification, NOT recommended): honor as an explicit unsafe opt-out — set verification_status=skipped_unverified, skip phase_4_verify STEP 1-5, and route to post_phase_4's skipped_unverified branch with its warning banner; never silently default to this path when the operator chose A or B"
+  verification_skipped_by_operator: "Operator chose pre_phase_4 'C' (Skip verification, NOT recommended): honor as an explicit unsafe opt-out — set verification_status=skipped_unverified, skip phase_4_verify STEP 1-5 (including 2.5), and route to post_phase_4's skipped_unverified branch with its warning banner; never silently default to this path when the operator chose A or B"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

@@ -108,6 +108,7 @@ routes:
       - mcp__mk_skill_advisor__advisor_validate
       - mcp__mk_skill_advisor__advisor_rebuild
       - mcp__mk_skill_advisor__skill_graph_scan
+      - mcp__mk_skill_advisor__skill_graph_validate
       - mcp__mk_skill_advisor__skill_graph_query
       - mcp__mk_skill_advisor__skill_graph_status
       - mcp__mk_spec_memory__memory_context

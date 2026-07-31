@@ -368,9 +368,11 @@ workflow:
           - Update requested sections only
           - Preserve existing folder and naming conventions
           - Remove stale references in updated sections
+          - "Run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] to report leaf-manifest.json freshness (fresh|stale|missing) for the completion handoff. This is a read-only drift check, not regeneration — full-update never ran the class-metadata gate, so unlike full-create it cannot assume freshness and must measure it"
         outputs:
           - skill_updates_applied
           - resource_updates_applied
+          - leaf_manifest_freshness_checked
 
       reference-only:
         activities:
@@ -378,6 +380,7 @@ workflow:
           - "Determine reference filename from type and topic; filename MUST be kebab-case"
           - "Create or update reference doc seeded from skill_reference template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure content depth matches type profile
+          - "references/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
         type_templates:
           workflow: { filename_pattern: "[topic]-workflow.md" }
           patterns: { filename_pattern: "[topic]-patterns.md" }
@@ -386,6 +389,7 @@ workflow:
           quick_ref: { filename_pattern: "quick-reference.md" }
         outputs:
           - reference_file_written
+          - leaf_manifest_freshness_signal
 
       asset-only:
         activities:
@@ -393,6 +397,7 @@ workflow:
           - "Determine asset filename from type and topic; filename MUST be kebab-case"
           - "Create or update asset doc seeded from skill_asset template; the file MUST ship the full 5-field + version frontmatter (title, description, trigger_phrases 3-8, importance_tier, contextType, version 4-part X.Y.Z.W) per frontmatter_contract.references_and_assets"
           - Ensure examples are practical and immediately reusable
+          - "assets/ is always a leaf root (leaf-resource-contract.cjs LEAF_ROOTS), so this branch always ends with a narrow freshness signal, never the full handoff: run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check [skill_root] (read-only) and report leaf_manifest_freshness_signal = fresh|stale|missing. Do not render description.json/graph-metadata.json ownership lines or a refresh-choice block here"
         type_templates:
           template: { filename_pattern: "[topic]-templates.md" }
           lookup: { filename_pattern: "[topic]-lookup.md" }
@@ -400,6 +405,7 @@ workflow:
           guide: { filename_pattern: "[topic]-guide.md" }
         outputs:
           - asset_file_written
+          - leaf_manifest_freshness_signal
 
     checkpoint:
       question: "Operation execution complete. Review artifacts before validation?"
@@ -505,6 +511,17 @@ workflow:
       - DQI: [dqi_score] ([dqi_band])
       - Hard minimum: 75
       - Operation target: [operation_target]
+
+      [operation == full-create or full-update:]
+      Advisor/Index Handoff (operator-owned; this command did not mutate advisor state; standalone scope — H-only fields omitted):
+      - graph-metadata.json: sole skill advisor identity; source for graph indexing
+      - leaf-manifest.json: [fresh|stale|missing]
+      - Refresh choice - run one when the advisor should include this change:
+        - Full advisor refresh: node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --format json
+        - Graph-only refresh: node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.opencode/skills" --format json
+      - Refresh status: NOT RUN (operator-owned; see .opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md)
+      [operation == reference-only or asset-only:]
+      Leaf-manifest freshness: [fresh|stale|missing] (narrow signal only — see advisor-index-handoff.md § Branch Scope for why this branch does not render the full handoff)
 
       Context:
       - Spec path: [spec_path or none]

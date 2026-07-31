@@ -66,7 +66,8 @@ KNOWN_MUTATING_MCP_TOOLS = {
 }
 
 # Matches the write-activity prose used by target YAMLs ("Write to ...",
-# "Write state log to ...", "Write report to ...") — see research.md DR-02.
+# "Write state log to ...", "Write report to ...") so a read-only route
+# can be flagged for describing a write it isn't allowed to perform.
 WRITE_ACTIVITY_RE = re.compile(r"write\s+(?:state log\s+|report\s+)?to\b", re.IGNORECASE)
 
 # ANSI colors (skip if not a TTY)
@@ -156,7 +157,7 @@ def parse_presentation_targets(presentation_path: Path) -> dict[str, set[str]]:
 
     subsystem_targets = set(
         re.findall(
-            r"^\|\s*`([a-z0-9-]+)`\s*\|\s*`doctor_[a-z0-9_-]+\.yaml`\s*\|",
+            r"^\|\s*`([a-z0-9-]+)`\s*\|\s*`doctor-[a-z0-9-]+\.yaml`\s*\|",
             text,
             re.MULTILINE,
         )

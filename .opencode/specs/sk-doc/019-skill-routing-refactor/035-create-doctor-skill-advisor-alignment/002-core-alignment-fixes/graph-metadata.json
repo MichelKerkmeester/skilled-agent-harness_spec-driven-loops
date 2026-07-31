@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "parent_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create doctor skill advisor core alignment fixes",
+      "advisor index handoff implementation",
+      "core alignment fixes plan",
+      "core alignment fixes tasks",
+      "core alignment fixes checklist",
+      "advisor index handoff verification",
+      "core alignment fixes implementation summary",
+      "advisor index handoff shipped"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill",
+      "advisor",
+      "core",
+      "alignment",
+      "index",
+      "handoff",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/create/skill-parent.md",
+      ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml",
+      ".opencode/commands/create/assets/create-skill-parent-auto.yaml",
+      ".opencode/commands/create/assets/create-skill-parent-confirm.yaml",
+      ".opencode/commands/create/assets/create-skill-parent-presentation.txt",
+      ".opencode/commands/create/assets/create-skill-auto.yaml",
+      ".opencode/commands/create/assets/create-skill-confirm.yaml",
+      ".opencode/commands/create/assets/create-skill-presentation.txt",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs",
+      ".opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-parent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/skill-parent.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-parent-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-parent-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-parent-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create-skill-parent-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create-skill-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-index-handoff.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-index-handoff-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-route-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Core Alignment Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command proves a newly created skill reached the live advisor index, `/doctor:skill-advisor` omits the live `skillgraphvalidate` tool from its own declared surface, `leaf-manifest.json` generation is inconsistently owned, and three small but real, fully-diagnosed defects sit in the doctor/create surfaces (route-validate parity, a stale template cross-reference, a missing tool declaration)",
+    "created_at": "2026-07-31T03:21:54.016Z",
+    "last_save_at": "2026-07-31T03:28:14.964Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e90b574d2e69ce2c8a0d9770dbf9bd17c3a87361c99c44336e233ec0a8bbc8a2",
+    "source_doc_hashes": {
+      "spec.md": "243408d2b311f858357b6b07eac24d2e4769b50a38789c41ee5eb3c9053b6110",
+      "plan.md": "7fae8818336b80fcfc5e030388a09d585f701bea68f2e3e3bf623f4c75573b0b",
+      "tasks.md": "04ac20bfde276146534556111f0a2ef2a23169370301569eadbbfd9da0ac465c",
+      "checklist.md": "d18e6879aa06e4392a3e1410624a8d4cd2aa17c92004e0baae4daed92ec30dde",
+      "implementation-summary.md": "cdf450c293c96189800e8b295abc6fe8b1a089126299caeacb2ceaf87351723f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
