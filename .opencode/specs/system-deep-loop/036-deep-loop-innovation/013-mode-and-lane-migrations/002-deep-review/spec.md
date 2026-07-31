@@ -36,7 +36,8 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/002-deep-review |
 | **Level** | phase parent (Level 2) |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
+| **Evidence reconciliation** | Child `005-resume-adapter` was re-evidenced by 021; this lane remains Planned pending acceptance of the reconciled evidence. |
 | **Created** | 2026-07-15 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../../spec.md` |

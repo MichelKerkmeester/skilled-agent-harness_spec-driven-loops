@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/025-skill-doc-currency",
+  "description": "Skill-level documentation — the `SKILL.md`, `README.md`, `references/` and `assets/` that agents read before acting — has drifted away from the code,",
+  "keywords": [
+    "skill-level",
+    "documentation",
+    "skill",
+    "readme",
+    "references",
+    "assets",
+    "agents",
+    "read",
+    "acting",
+    "drifted",
+    "away",
+    "code"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.261Z",
+  "specId": "025",
+  "folderSlug": "skill-doc-currency",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

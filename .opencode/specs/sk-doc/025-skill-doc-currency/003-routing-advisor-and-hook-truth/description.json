@@ -1,0 +1,17 @@
+{
+  "specFolder": "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth",
+  "description": "Wrong gates",
+  "keywords": [
+    "wrong",
+    "gates"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.278Z",
+  "specId": "003",
+  "folderSlug": "routing-advisor-and-hook-truth",
+  "parentChain": [
+    "sk-doc",
+    "025-skill-doc-currency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

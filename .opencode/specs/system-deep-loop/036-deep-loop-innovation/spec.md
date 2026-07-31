@@ -206,7 +206,7 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Phases 001-002 are the read-only research inputs; phases 003-017 are the implementation program. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children; the architecture ADR + the 178-row rec ledger live in 004.
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Phases 001-002 are the read-only research inputs; phases 003-017 are the implementation program. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children; the architecture ADR + the 178-row rec ledger live in 004. Phases 021-032 are the remediation tree for the 166 findings recorded in `016-whole-system-gate/review/`; they are a bounded acceptance set declared in the parent child manifest that phase 021 introduces.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -230,6 +230,18 @@ Deferred to the phase that owns the decision (per the SOL review):
 | 018 | 018-drift-census-and-plan-revalidation/ | Drift census: revalidate phases 003-017 against current HEAD before execution | In Progress |
 | 019 | 019-runtime-code-readmes/ | Code READMEs for every source folder in the deep-loop runtime (sk-doc create-readme standard) | Planned |
 | 020 | 020-sk-code-opencode-alignment/ | Align the deep-loop runtime code with the sk-code code-opencode surface conventions (behavior-preserving) | Planned |
+| 021 | 021-completion-evidence-reconcile/ | Blocker 4: reconcile migration-program completion claims against the current suites; bound the review manifest and recursive validation | Planned |
+| 022 | 022-shadow-parity-independent-derivation/ | Blocker 1: rebuild six shadow-parity harnesses so both sides derive independently | Planned |
+| 023 | 023-legacy-compat-event-vocabulary/ | Blocker 2: full upcaster coverage for the six live event vocabularies | Planned |
+| 024 | 024-durable-write-boundaries/ | Blocker 3: gateway-only mutation with fencing at the append boundary; the concurrent-write family | Planned |
+| 025 | 025-artifact-certificate-binding/ | Bind sealed artifacts and certificates to the semantic identity they certify | Planned |
+| 026 | 026-alignment-coverage-integrity/ | Make alignment coverage, seal state and lane identity provable, including the three §5 residuals | Planned |
+| 027 | 027-mode-gate-and-contract-binding/ | Close the readiness-gate, rollback-switch and mode-contract conformance boundaries | Planned |
+| 028 | 028-fanout-dispatch-integrity/ | Evidence-derived fan-out fulfillment, durable provenance, uniform containment, safe sink | Planned |
+| 029 | 029-improvement-promotion-authority/ | Bind promotion, rollback and council persistence to authenticated receipts and authorized roots | Planned |
+| 030 | 030-runtime-mirror-and-routing-parity/ | Make runtime-mirror and routing parity gates compare what actually differs | Planned |
+| 031 | 031-silent-failure-and-harness-repair/ | Make invalid input fail loudly; repair the harnesses and playbooks that produce evidence | Planned |
+| 032 | 032-docs-drift-and-p2-batch/ | Documentation and registry drift plus the complete P2 backlog; runs last | Planned |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -252,4 +264,6 @@ Deferred to the phase that owns the decision (per the SOL review):
 | 014 | 015 | Authority flipped per mode behind rollback windows + cutover certificates | Cutover certificate per mode; rollback drill green post-cutover |
 | 015 | 016 | Legacy writers removed after zero-use; archival readers retained | Zero-use telemetry; historical packets still read |
 | 016 | 017 | Whole-system gate green on the pre-integration SHA | `--all` behavior + mode + replay + degeneration parity vs 003 |
+| 021-024 | 014 | The four named cutover blockers are discharged: evidence reconciles (021), shadow parity can fail (022), live vocabularies migrate (023), the append boundary is fenced (024) | Per blocker: reinstated evidence cites test name + suite digest + SHA; a divergence injection fails the rebuilt parity harness; a captured real log replays with zero `blocked:unknown-legacy-record`; a superseded writer with an unexpired proof cannot append |
+| 021-032 | 017 | The whole remediation tree is Complete against the bounded child manifest | `validate.sh --recursive --strict` green over the declared 001-032 manifest; every one of the 166 register findings closed as fixed, REFUTED, ALREADY-FIXED, or dispositioned |
 <!-- /ANCHOR:phase-map -->

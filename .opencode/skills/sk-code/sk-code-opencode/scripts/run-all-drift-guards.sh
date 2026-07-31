@@ -22,6 +22,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CODE_OPENCODE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SK_CODE_DIR="$(cd "${CODE_OPENCODE_DIR}/.." && pwd)"
 SKILLS_DIR="$(cd "${SK_CODE_DIR}/.." && pwd)"
+REPO_ROOT="$(cd "${SKILLS_DIR}/../.." && pwd)"
 
 DRIFT_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_alignment_drift.py"
 STACK_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_stack_folders.py"
@@ -44,7 +45,7 @@ run_guard() {
 }
 
 run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
-  python3 "${DRIFT_VERIFIER}" --root "${SK_CODE_DIR}" --check-router
+  python3 "${DRIFT_VERIFIER}" --root "${REPO_ROOT}" --check-router
 
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"

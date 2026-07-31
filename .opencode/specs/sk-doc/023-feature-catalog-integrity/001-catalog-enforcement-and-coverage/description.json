@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+  "description": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
+  "keywords": [
+    "validatecatalogpackage",
+    "covered",
+    "set",
+    "expectedrootpackages",
+    "returns"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.226Z",
+  "specId": "001",
+  "folderSlug": "catalog-enforcement-and-coverage",
+  "parentChain": [
+    "sk-doc",
+    "023-feature-catalog-integrity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

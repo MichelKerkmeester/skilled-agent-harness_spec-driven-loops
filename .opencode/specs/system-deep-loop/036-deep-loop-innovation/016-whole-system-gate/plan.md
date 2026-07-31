@@ -47,7 +47,7 @@ failure classifies and reopens its owning phase rather than changing the baselin
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `015-legacy-writer-retirement` has passed zero-use telemetry, rollback evidence, and archival-reader checks
+- [ ] `015-legacy-writer-retirement` has passed zero-use telemetry, rollback evidence, and archival-reader checks (currently unmet: Planned/unstarted, 0/29 checklist items checked)
 - [ ] The phase-003 BASE manifest, protected behavior scenarios, replay fixtures, rollback anchors, and digests are available
 - [ ] The phase-008 shadow-parity harness compares scenario IDs and semantics rather than counts alone
 - [ ] Phase-007 effect recovery, receipts, blinded adjudication, and phase-011 health/degeneration contracts are executable
@@ -87,7 +87,7 @@ failure classifies and reopens its owning phase rather than changing the baselin
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Confirm `015-legacy-writer-retirement` evidence and the phase adjacency; do not start from a moving checkout.
+- Confirm `015-legacy-writer-retirement` evidence and the phase adjacency; that prerequisite is currently unmet because phase 015 is Planned/unstarted with 0/29 checklist items checked. Do not start from a moving checkout.
 - Resolve the phase-003 BASE and create the candidate exact-SHA manifest with tree state, toolchain, fixture, and
   artifact digests.
 - Verify the phase-008 parity harness, phase-007 recovery/adjudication services, phase-011 health harness, phase-012

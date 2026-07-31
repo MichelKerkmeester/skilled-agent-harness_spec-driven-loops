@@ -42,6 +42,7 @@ _memory:
 | **Completed** | 2026-07-27 |
 | **Level** | 2 |
 | **Status** | Complete |
+| **Evidence reconciliation** | Reinstated by 021 on 2026-07-31 with fresh suite evidence; completion remains supported. |
 | **Posture** | Additive-dark with unchanged legacy authority |
 <!-- /ANCHOR:metadata -->
 
@@ -114,14 +115,14 @@ production completion.
 
 | Check | Result |
 |-------|--------|
-| Target Vitest suite | PASS with 1 file and 6 tests |
+| Target Vitest suite | PASS with 1 file and 12 tests; suite sha256 `1eec9d35355da517a42385a1960293567b16af19d7ce4e113e1c4bcc0ad33917`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32` |
 | Resume matrix | PASS for exact reuse, compatible, migrate, blocked, and rebuild-required |
 | Forged confirmation | PASS with unknown application state and blocked recovery |
 | Compatibility ownership | PASS for promoted state-bearing migration and rejected unauthenticated registry |
 | Fingerprint recomputation | PASS for tool, model, policy, target, and schema changes |
 | Idempotency and dark posture | PASS with one semantic append and zero default dispatches |
 | New-module TypeScript grep | PASS with zero diagnostics under `runtime/lib/deep-review-resume-adapter/` |
-| Whole-runtime TypeScript | PASS with exit 0 |
+| Whole-runtime TypeScript | Historical claim not rerun here; clean-checkout npm wiring is not reproducible because runtime `package.json` files are ignored |
 | Strict packet validation | Recorded in the delivery handoff |
 <!-- /ANCHOR:verification -->
 

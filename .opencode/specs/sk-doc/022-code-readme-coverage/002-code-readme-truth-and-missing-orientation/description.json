@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+  "description": "These are the only findings in the program with real operator cost",
+  "keywords": [
+    "only",
+    "findings",
+    "program",
+    "real",
+    "operator",
+    "cost"
+  ],
+  "lastUpdated": "2026-07-30T19:16:46.224Z",
+  "specId": "002",
+  "folderSlug": "code-readme-truth-and-missing-orientation",
+  "parentChain": [
+    "sk-doc",
+    "022-code-readme-coverage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

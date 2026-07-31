@@ -39,7 +39,7 @@ warning, or unexplained delta may be accepted as a pass.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] `015-legacy-writer-retirement` has landed zero-use, rollback, and archival-reader evidence on the candidate worktree
+- [ ] CHK-001 [P0] `015-legacy-writer-retirement` has landed zero-use, rollback, and archival-reader evidence on the candidate worktree; prerequisite currently unmet because phase 015 is Planned/unstarted with 0/29 checklist items checked
 - [ ] CHK-002 [P0] The phase-003 BASE SHA, protected behavior corpus, replay fixtures, rollback anchors, and baseline digests are available
 - [ ] CHK-003 [P0] One candidate exact SHA is frozen with clean tree state, ref provenance, toolchain versions, source digests, fixture digests, and manifest hash
 - [ ] CHK-004 [P1] Phase-008 parity, phase-007 effect-recovery/adjudication, phase-011 health, and phase-012 mixed-version harnesses are executable

@@ -38,6 +38,22 @@ function testJsonOverride() {
   });
 }
 
+function testEvidenceBearingJsonEntry() {
+  withConfig({
+    'deep/review': {
+      mode: 'fix',
+      evidence: {
+        captureManifest: { commands: ['deep/review'] },
+        fallbackHash: 'sha256:test-fixture',
+        comparatorRuns: [{ status: 'green' }],
+        baselineDivergence: { unexpected: 0 },
+      },
+    },
+  }, (configPath) => {
+    assert.equal(resolveInjectionMode('deep/review', { configPath, env: {} }), 'fix');
+  });
+}
+
 function testEnvOverridePrecedence() {
   withConfig({ 'deep/review': 'fallback' }, (configPath) => {
     const env = { [OVERRIDE_ENV]: 'deep/review:fix' };
@@ -50,6 +66,7 @@ function testEnvOverridePrecedence() {
 
 testDefaultFallback();
 testJsonOverride();
+testEvidenceBearingJsonEntry();
 testEnvOverridePrecedence();
 
-console.log('[command-injection-rollout] resolve-injection-mode tests passed');
+console.log('[command-injection-rollout] resolve-injection-mode tests passed (9 assertions)');

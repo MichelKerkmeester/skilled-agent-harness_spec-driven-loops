@@ -240,8 +240,10 @@ Comment hygiene is not a soft style preference in OpenCode system code. Ephemera
 
 This is enforced in two real hooks:
 
-- `.opencode/hooks/git/pre-commit` runs the shared checker against staged code files and blocks the commit when violations are found.
-- `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` runs the same checker after Write/Edit tool use and surfaces immediate comment-hygiene warnings for the edited file.
+- `.opencode/scripts/git-hooks/pre-commit` is the installed Git hook selected by the global `core.hooksPath`; it runs the shared checker against staged code files and blocks the commit when violations are found.
+- `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` is the Claude `Write|Edit` adapter wired by `.claude/settings.json`; it runs the shared checker and surfaces immediate comment-hygiene warnings for the edited file.
+
+The older `.opencode/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh` files remain compatibility helpers for direct tests only; neither is an installed runtime hook.
 
 ### Allowed Reference Comments
 
@@ -281,4 +283,3 @@ Apply this gate before finalizing implementation:
 Carry-over from 139: keep rule constants centralized and test imports referencing those constants (avoid duplicate local literals).
 
 ---
-

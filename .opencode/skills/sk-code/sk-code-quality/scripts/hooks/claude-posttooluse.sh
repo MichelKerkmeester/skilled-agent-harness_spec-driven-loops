@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Claude Code PostToolUse hook — source edit warnings.
+Claude Code PostToolUse compatibility adapter — source edit warnings.
+
+The installed Claude adapter is the Node entrypoint under
+.opencode/hooks/post-edit-quality/claude; this script remains for direct
+regression tests and is not wired by the runtime settings.
 
 Reads the hook stdin JSON, extracts tool_input.file_path, runs the shared
 checker, and prints a warning to stdout if violations are found.

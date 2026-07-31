@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/023-feature-catalog-integrity",
+  "spec_folder": "sk-doc/023-feature-catalog-integrity",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
+    "sk-doc/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
+    "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature catalog integrity",
+      "catalog drift remediation",
+      "validate catalog package coverage",
+      "hub catalog truth repair",
+      "feature catalog enforcement"
+    ],
+    "key_topics": [
+      "feature",
+      "catalog",
+      "integrity",
+      "drift",
+      "remediation",
+      "validate",
+      "package",
+      "coverage",
+      "hub",
+      "truth",
+      "repair",
+      "enforcement"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_catalog_package.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalog Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governing Standard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Feature",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
+    "created_at": "2026-07-30T19:29:15.340Z",
+    "last_save_at": "2026-07-30T19:29:15.340Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2d3b8666da6a026e50438919bf45cabfee3363f653d23cf021bf63efb7b78f8f",
+    "source_doc_hashes": {
+      "spec.md": "e656cac18da19e53f65c10891f1b3747bc4a5ec451d4a4473795b0c1c1fc88ea"
+    },
+    "last_active_child_id": "sk-doc/023-feature-catalog-integrity/003-large-surface-catalog-reconciliation",
+    "last_active_at": null
+  }
+}

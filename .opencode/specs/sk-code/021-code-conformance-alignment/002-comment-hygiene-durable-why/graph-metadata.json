@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/021-code-conformance-alignment/002-comment-hygiene-durable-why",
+  "spec_folder": "sk-code/021-code-conformance-alignment/002-comment-hygiene-durable-why",
+  "parent_id": "sk-code/021-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ephemeral artifact pointer in comment",
+      "comment hygiene durable why",
+      "replace requirement id comment",
+      "feature catalog comment",
+      "comment hygiene plan",
+      "durable why replacement",
+      "comment only diff assertion",
+      "comment hygiene tasks",
+      "durable why tasks",
+      "comment hygiene checklist",
+      "durable why verification"
+    ],
+    "key_topics": [
+      "ephemeral",
+      "artifact",
+      "pointer",
+      "comment",
+      "hygiene",
+      "durable",
+      "replace",
+      "requirement",
+      "feature",
+      "catalog",
+      "plan",
+      "replacement"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/scripts/quick_validate.py",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".opencode/skills/sk-code/sk-code-webflow/assets/patterns/performance-patterns.js",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
+      ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "performance-patterns.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/assets/patterns/performance-patterns.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comment Hygiene",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR, requirement, checklist, task, packet and phase identifiers",
+    "created_at": "2026-07-30T19:25:14.577Z",
+    "last_save_at": "2026-07-30T19:25:14.577Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:4e7ac42ef60a4e406b09b25d0889314495e18061a09dacbb5ac3b2a577df53b0",
+    "source_doc_hashes": {
+      "spec.md": "b07f8da26658e995ff8ffd2738d76e7e5ee815f25dc5e04b4254168642be60c4",
+      "plan.md": "0b1a69c8f16c2d759269c8102fd62a3cc18ce9358d7bc898c9c8092cf095c836",
+      "tasks.md": "4fa2e95431a7a1300ac27c92cd9d6c31a1bea6731471398facc549d08f2706d8",
+      "checklist.md": "2c9541056dff78d0f928253445fa27b220e396e5dc4c579dc76f8d328118dd72"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

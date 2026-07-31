@@ -287,12 +287,16 @@ scripts/
 
 ### Test File Naming
 
-| Language   | Pattern                   | Example                    |
-|------------|---------------------------|----------------------------|
-| JavaScript | `*.test.js`               | `memory-search.test.js`    |
-| TypeScript | `*.test.ts`               | `memory-search.test.ts`    |
-| Python     | `test_*.py`               | `test_dual_threshold.py`   |
-| Shell      | `test_*.sh` or `*.test.sh`| `test_validation.sh`       |
+| Language   | Pattern       | Discovery contract | Live count at HEAD |
+|------------|---------------|--------------------|--------------------|
+| TypeScript | `*.vitest.ts` | Vitest configs include `**/*.{vitest,test}.ts` under each package root. | 1,229 |
+| TypeScript | `*.test.ts`   | Same Vitest include contract as `*.vitest.ts`. | 43 |
+| Node.js    | `*.test.cjs`  | `.opencode/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`. | 50 |
+| Node.js    | `*.test.mjs`  | `.opencode/scripts/run-node-tests.mjs` discovers files under its live roots and runs them with `node --test`, unless they import Vitest. | 39 |
+| Shell      | `*.test.sh`   | Run the executable shell test directly with `bash path/to/test.test.sh`. | 6 |
+| Python     | `test_*.py`   | Run the owning package's Python test command; the filename follows pytest discovery vocabulary. | 29 |
+
+`*.test.js` is not a live convention at HEAD and is intentionally not listed.
 
 ### Test File Location
 

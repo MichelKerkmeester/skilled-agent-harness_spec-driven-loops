@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/021-code-conformance-alignment/002-comment-hygiene-durable-why",
+  "description": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR,",
+  "keywords": [
+    "governing",
+    "standard",
+    "states",
+    "verbatim",
+    "ephemeral-artifact",
+    "pointers",
+    "code",
+    "comments",
+    "hard-block",
+    "gate",
+    "naming",
+    "spec",
+    "paths",
+    "adr"
+  ],
+  "lastUpdated": "2026-07-30T19:25:14.046Z",
+  "specId": "002",
+  "folderSlug": "comment-hygiene-durable-why",
+  "parentChain": [
+    "sk-code",
+    "021-code-conformance-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

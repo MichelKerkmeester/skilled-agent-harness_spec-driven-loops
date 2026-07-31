@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 // Discover and run every Node test file in the live codebase.
 //
-// This exists because test files here were silently never run: nothing globbed `*.test.mjs`,
-// so suites passed by hand and rotted in place — three separate instances were found before
-// anyone counted, and the full count was thirty-seven. A test that never runs is worse than no
-// test, because it stands as evidence of coverage that does not exist.
+// This exists because the repository has multiple Node test dialects and a fixed discovery
+// contract is needed to keep live suites from silently falling out of the gate.
 //
 // Scope is the live runtime only. Vendored third-party code and archived fixtures under the
 // spec tree carry their own suites with their own dependencies; running them here would fail
@@ -22,8 +20,13 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 // Live-code roots. The spec tree is excluded wholesale: everything under it that carries tests
 // is either vendored external code or an archived experiment, and both fail for environmental
 // reasons unrelated to the runtime being gated.
-const ROOTS = ['.opencode/skills', '.opencode/scripts', '.opencode/plugins', '.opencode/bin'];
+const ROOTS = ['.opencode/skills', '.opencode/scripts', '.opencode/plugins', '.opencode/bin', '.opencode/hooks'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', 'external', '.worktrees', 'z_archive', 'z_future']);
+const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];
+
+function isNodeTestFile(filePath) {
+  return NODE_TEST_SUFFIXES.some((suffix) => filePath.endsWith(suffix));
+}
 
 function discover(dir, found) {
   let entries;
@@ -36,12 +39,47 @@ function discover(dir, found) {
     if (EXCLUDED_SEGMENTS.has(entry.name)) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) discover(full, found);
-    else if (entry.isFile() && entry.name.endsWith('.test.mjs')) found.push(full);
+    else if (entry.isFile() && isNodeTestFile(entry.name)) found.push(full);
   }
   return found;
 }
 
 const all = ROOTS.flatMap((r) => discover(path.join(REPO_ROOT, r), [])).sort();
+
+function independentGlob() {
+  const output = execFileSync(
+    'find',
+    [
+      ...ROOTS.map((root) => path.join(REPO_ROOT, root)),
+      '-type', 'f',
+      '(', '-name', '*.test.mjs', '-o', '-name', '*.test.cjs', ')',
+    ],
+    { encoding: 'utf8' },
+  );
+  return output
+    .split('\n')
+    .filter(Boolean)
+    .map((filePath) => path.resolve(filePath))
+    .filter((filePath) => {
+      const relative = path.relative(REPO_ROOT, filePath);
+      return !relative.split(path.sep).some((segment) => EXCLUDED_SEGMENTS.has(segment));
+    })
+    .sort();
+}
+
+const globbed = independentGlob();
+const discoveredSet = new Set(all);
+const globbedSet = new Set(globbed);
+const missingFromRunner = globbed.filter((filePath) => !discoveredSet.has(filePath));
+const extraInRunner = all.filter((filePath) => !globbedSet.has(filePath));
+if (missingFromRunner.length > 0 || extraInRunner.length > 0 || all.length !== globbed.length) {
+  console.error(
+    `discovery canary failed: runner=${all.length} independent-glob=${globbed.length}`,
+  );
+  for (const filePath of missingFromRunner) console.error(`missing from runner: ${path.relative(REPO_ROOT, filePath)}`);
+  for (const filePath of extraInRunner) console.error(`extra in runner: ${path.relative(REPO_ROOT, filePath)}`);
+  process.exit(2);
+}
 
 // Two dialects share the extension. A vitest file hosted under `node --test` crashes on import
 // and reads as a test failure, which is a lie in both directions — so partition by what the

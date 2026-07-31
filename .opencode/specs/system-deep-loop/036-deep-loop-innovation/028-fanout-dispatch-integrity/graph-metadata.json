@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/028-fanout-dispatch-integrity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/028-fanout-dispatch-integrity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout dispatch integrity",
+      "fanout fulfillment artifact contract",
+      "write containment dirty path",
+      "executor audit provenance",
+      "deep loop 028 fanout"
+    ],
+    "key_topics": [
+      "fanout",
+      "dispatch",
+      "integrity",
+      "fulfillment",
+      "artifact",
+      "contract",
+      "write",
+      "containment",
+      "dirty",
+      "path",
+      "executor",
+      "audit"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-receipts.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-cli-branch-receipts.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Fulfillment Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Containment Enforced",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
+    "created_at": "2026-07-31T01:25:20.924Z",
+    "last_save_at": "2026-07-31T01:25:20.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:3d173f106e32750ee75fbec76100e4210ab24c61533d99ece7c60ebcdd31fbc4",
+    "source_doc_hashes": {
+      "spec.md": "9fe5b0a0a17cc0c8a030b97574c2ee484659fc40e578045d0524831404bb9ed6",
+      "plan.md": "c3403f79b8d3b68a0da2deefb22c5ae70246f6ce7f09b0fa04b956478b8e70be",
+      "tasks.md": "e11c72b9d00c901bc001d87462d2b283fe6a10002bb8bd973831b42b95532a2e",
+      "checklist.md": "793f6ea259935bce053527ab320120d8cb81737219a4baca5b8465939730d05c",
+      "decision-record.md": "6a565d9394d2b93942b2034fcc20071498d3ee38439da9a21e09156b7e6d5ee7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

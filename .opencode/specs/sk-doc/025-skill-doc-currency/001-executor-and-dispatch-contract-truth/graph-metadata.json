@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+  "spec_folder": "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+  "parent_id": "sk-doc/025-skill-doc-currency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "executor roster drift",
+      "cli reference currency",
+      "dispatch contract truth",
+      "fleet gate baseline",
+      "structured output flags",
+      "executor contract plan",
+      "cli fixture regeneration",
+      "fleet gate repair",
+      "derived roster check",
+      "executor contract tasks",
+      "confirm against head",
+      "fleet gate task"
+    ],
+    "key_topics": [
+      "executor",
+      "roster",
+      "drift",
+      "cli",
+      "reference",
+      "currency",
+      "dispatch",
+      "contract",
+      "truth",
+      "fleet",
+      "gate",
+      "baseline"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "tasks.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
+      ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/lane-b-mechanics.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-diversity-patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-b-mechanics.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/lane-b-mechanics.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
+    "created_at": "2026-07-30T19:29:16.509Z",
+    "last_save_at": "2026-07-30T19:29:16.509Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:f4c90d8de4ebf9ed51ff6f0df3c7b3e57399bfdfa441480f6e5a5d47c376adac",
+    "source_doc_hashes": {
+      "spec.md": "74d5aed276806c8d3c670ec326f46e72578e71acada585a5f4533ad18b56b148",
+      "plan.md": "ce632f4606c6f00bc66219336a1da7b2880db30c1b87c8deeb64f28d1d26c8ab",
+      "tasks.md": "2873c801483e273f44e89720ccd377221e6e30ffc5997297793fdc0f86562e01",
+      "checklist.md": "cb9c62654fd27a7140a653f9b5d5399f8f62145f60bfddc3b0e0fd76e6052b63",
+      "decision-record.md": "b8f18c98b2f2cc9e7ff1d48282ba4ebe12dfb8a739467678ca2206e8b4a4f580"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/024-playbook-scenario-coverage",
+  "spec_folder": "sk-doc/024-playbook-scenario-coverage",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+    "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
+    "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook scenario coverage",
+      "manual testing playbook validator",
+      "playbook census drift",
+      "operator scenario contract gate",
+      "playbook corpus split"
+    ],
+    "key_topics": [
+      "playbook",
+      "scenario",
+      "coverage",
+      "manual",
+      "testing",
+      "validator",
+      "census",
+      "drift",
+      "operator",
+      "contract",
+      "gate",
+      "corpus"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Scenario Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 11 hub `manual-testing-playbook/` trees are not one corpus",
+    "created_at": "2026-07-30T19:29:16.238Z",
+    "last_save_at": "2026-07-30T19:29:16.238Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d6e0d245c4b3d13ba8d8b073e572534de17d3f36bbf206de8cc582cea008aa5b",
+    "source_doc_hashes": {
+      "spec.md": "947dc1dcc5d2c2c9bb007e6e793f5ee5db6f77f838eda047e509e22c68670910"
+    },
+    "last_active_child_id": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+    "last_active_at": null
+  }
+}

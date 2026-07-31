@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/021-code-conformance-alignment/004-portability-and-false-green-repair",
+  "spec_folder": "sk-code/021-code-conformance-alignment/004-portability-and-false-green-repair",
+  "parent_id": "sk-code/021-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hardcoded checkout root",
+      "silent skip false green test",
+      "errexit git coordination scripts",
+      "flowchart validator no verdict",
+      "portability repair",
+      "portability repair plan",
+      "guarded errexit adoption",
+      "silent skip loud failure",
+      "worktree portability verification",
+      "portability repair tasks",
+      "errexit adoption tasks",
+      "false green repair tasks"
+    ],
+    "key_topics": [
+      "hardcoded",
+      "checkout",
+      "root",
+      "silent",
+      "skip",
+      "false",
+      "green",
+      "test",
+      "errexit",
+      "git",
+      "coordination",
+      "scripts"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/git-live-follow.sh",
+      ".opencode/bin/worktree-status.sh",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-status.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-status.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Green Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four spec-kit audit helpers hard-code the same absolute developer checkout root — seven `/Users/…` literals across four files — so they work on exactly one machine and silently produce wrong or empty results anywhere else, including inside a `git worktree` at a different path",
+    "created_at": "2026-07-30T19:25:15.091Z",
+    "last_save_at": "2026-07-30T19:25:15.091Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:7b285b72a72a5d10c78b7c4773a9721ddb4eea18286eb129cf17778cdf9e648a",
+    "source_doc_hashes": {
+      "spec.md": "989a0b1c0b09b8238e57eb6cd27c83216d24c031ddcb6cab4972a7f2b8bc2898",
+      "plan.md": "ed0706d10fca2b5253fb7b9004c1703b99ab56e60e65598a8dfb19bd80990e14",
+      "tasks.md": "db9b61abe5b1f45dcc7ce4a308074973c6e25e021c2899272e55799f850498bd",
+      "checklist.md": "390e494ec4781a6ba8791e4f44a7ab574b9b7e6672f40e8e187f86e85174818c",
+      "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

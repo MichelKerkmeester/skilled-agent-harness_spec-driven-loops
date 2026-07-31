@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Review resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds the shared review-loop history through versioned reducers, maps the continuity ladder from scope through dimension passes, findings, convergence, and review-report, and re-enters idempotently without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:33.197Z",
-    "last_save_at": "2026-07-27T21:58:58.483Z",
+    "last_save_at": "2026-07-31T01:06:46.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85f9b50965ec4fe76f060ca7506c587332030c82c0d8e36a849598fbe10013f3",
+    "source_fingerprint": "sha256:aed999be86f5ba1d5d6f7b0150868103c1e552ec15511d35db823cae1f1d5e7b",
     "source_doc_hashes": {
       "spec.md": "69133028c35f6f75961d23a9b6faf4a484f27f646812fef705cc287572ce31f1",
       "plan.md": "131a318e31ff7836d3a595a5d58dcc218c6de5df76e518139aca58c2220925c7",
       "tasks.md": "9ec06825709d961dcabb6f715d72f19fd256593b92e238c276bd1188a7b16816",
-      "checklist.md": "ac875d8893d3c1dd40a99ae093644b5965880942d4c196be8e6f9aebb0d72ca4",
-      "implementation-summary.md": "702c5ecb57d7ad27fa3f52f035cf3a5fa6bca43deb9f6a76b2a3851049947ebd"
+      "checklist.md": "0e5427609dd3110e8e08250b454bf235c8208aaffebf101389e256cb24035f48",
+      "implementation-summary.md": "2ee7904bbb24d938b6f9da3b8f9cd3f3e0a55144270f4cf3f4f534fd2e588f5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

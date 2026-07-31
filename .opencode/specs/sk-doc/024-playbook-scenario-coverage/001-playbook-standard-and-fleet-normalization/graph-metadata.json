@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "spec_folder": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "parent_id": "sk-doc/024-playbook-scenario-coverage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook package validator",
+      "operator scenario contract gate",
+      "playbook census derivation",
+      "verdict enum migration playbook",
+      "playbook corpus discriminator",
+      "playbook standard and fleet normalization implementation plan",
+      "playbook scenario coverage implementation plan",
+      "playbook standard and fleet normalization task list",
+      "playbook scenario coverage task list",
+      "playbook standard and fleet normalization verification checklist",
+      "playbook scenario coverage verification checklist",
+      "playbook validator ownership decision"
+    ],
+    "key_topics": [
+      "playbook",
+      "package",
+      "validator",
+      "operator",
+      "scenario",
+      "contract",
+      "gate",
+      "census",
+      "derivation",
+      "verdict",
+      "enum",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Standard Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Normalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Checks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two contracts share one directory name, and only one of them is checked",
+    "created_at": "2026-07-30T19:29:15.567Z",
+    "last_save_at": "2026-07-30T19:29:15.567Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:fac398f3db18affe5dae5822c4d9bf329a9cf01f157da04a3ff27b91b12cf5ac",
+    "source_doc_hashes": {
+      "spec.md": "ed3866568bfccde58e4d59d158e7908a21cc236cd0450c580f8edc5e84db07c9",
+      "plan.md": "16593168a7d8c3d5460fc767f09e46d09646cc4bbbf354d409c06bb1ae31d437",
+      "tasks.md": "91f6679b72a3e751fb6d14767ef67c1951751122703dd1aa9faf73cc81077c03",
+      "checklist.md": "7c777dc589aa69caabbd38c38571d75e62b952a4f54043cf744d67f1dbe6eec8",
+      "decision-record.md": "d69b079aef017068dccfbb23d82d0693b1d84c05095b0562ddbe928daf8d4e39"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

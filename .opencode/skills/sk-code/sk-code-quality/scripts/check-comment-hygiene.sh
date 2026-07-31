@@ -153,6 +153,7 @@ def main():
         re.compile(r'\bMOTION\s*:'),                    # MOTION: platform tag
         re.compile(r'\bLENIS\s*:'),                     # LENIS: platform tag
         re.compile(r'\bV\d+\s*:'),                       # V16: schema tag
+        re.compile(r'\bhttps?://\S+', re.IGNORECASE),    # URLs are durable link values
     ]
 
     # --- Violation patterns ---
@@ -169,6 +170,9 @@ def main():
         (re.compile(r'\bpacket\s+\d+\b', re.IGNORECASE),            "packet number reference"),
         (re.compile(r'\b\d{3}\s+packet\b', re.IGNORECASE),          "reversed packet number reference"),
         (re.compile(r'\bphase[\s-]\d{3}\b', re.IGNORECASE),          "3-digit phase reference"),
+        (re.compile(r'\bphase-\d{1,3}(?:-[a-z0-9]+)+\b', re.IGNORECASE), "numeric phase-path reference"),
+        (re.compile(r'\bfeature\s+catalog\s*:', re.IGNORECASE),       "feature-catalog reference"),
+        (re.compile(r'\bphase\s+0+\d*\b|\bspec\s+0\d{2}\b', re.IGNORECASE), "bounded generic artifact label"),
         (re.compile(r'specs/[a-z0-9]+-[a-z0-9-]*/'),               "spec path reference"),
         (re.compile(r'\bWS-\d+-\d+\b'),                             "worktree session reference"),
         (re.compile(r'\bDR-\d+(?:-\d+)?\b'),                        "deep review reference"),
