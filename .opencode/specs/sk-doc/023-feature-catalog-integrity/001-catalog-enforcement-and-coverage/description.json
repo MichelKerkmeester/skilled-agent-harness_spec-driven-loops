@@ -1,14 +1,21 @@
 {
+  "level": 3,
   "specFolder": "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage",
-  "description": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
+  "description": "Catalog integrity now covers all 26 present `feature-catalog/` packages and fails closed for promoted violations",
   "keywords": [
-    "validatecatalogpackage",
-    "covered",
-    "set",
-    "expectedrootpackages",
-    "returns"
+    "catalog",
+    "integrity",
+    "now",
+    "covers",
+    "present",
+    "feature-catalog",
+    "packages",
+    "fails",
+    "closed",
+    "promoted",
+    "violations"
   ],
-  "lastUpdated": "2026-07-30T19:29:14.226Z",
+  "lastUpdated": "2026-07-31T05:02:52.811Z",
   "specId": "001",
   "folderSlug": "catalog-enforcement-and-coverage",
   "parentChain": [

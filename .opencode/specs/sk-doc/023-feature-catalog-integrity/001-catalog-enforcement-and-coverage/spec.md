@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: catalog enforcement and coverage"
-description: "The catalog validator covers 8 of 26 feature-catalog packages (66 of 804 leaves), runs four narrow check families rather than the standard's eight rules, and exits 0 on its default invocation while printing FAIL: 19 violations. This phase settles the four rulings both siblings depend on, switches discovery to feature-catalog presence, adds six unenforced checks with paired fixtures, and wires a gate that actually fails."
+description: "The catalog validator now discovers 26 feature-catalog packages by directory presence, stages four known-backlog packages at WARN, enforces the added catalog rules with paired fixtures, and fails closed for promoted violations. Gate callers and the shared count helper remain outside this leaf's locked scope."
 trigger_phrases:
   - "catalog validator coverage"
   - "validate_catalog_package discovery"
@@ -13,24 +13,26 @@ parent: "sk-doc/023-feature-catalog-integrity"
 _memory:
   continuity:
     packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the enforcement-and-coverage phase from the track C synthesis"
-    next_safe_action: "Run T001 confirm-against-HEAD before any edit"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Captured staged validator, fixture, regression, and full-fleet receipts"
+    next_safe_action: "Run strict child validation and reconcile any packet-only warnings"
     blockers:
-      - "Q8 discovery rule, Q3 staged severity, and Q4 gate point are operator decisions"
+      - "Known catalog backlog remains in the explicit WARN tier; CI and doctor callers are outside this leaf scope"
     key_files:
       - "spec.md"
       - "decision-record.md"
     completion_pct: 0
     open_questions:
+      - "Strict packet validation result"
+      - "CI and /doctor caller wiring owned by a later child"
+    answered_questions:
       - "Q1 mcp-code-mode applicability"
       - "Q2 description-parity strictness"
       - "Q3 staged or big-bang severity"
       - "Q4 gate point and severity"
       - "Q6 volatile-value policy"
       - "Q8 discovery rule"
-    answered_questions: []
 ---
 # Feature Specification: Catalog Enforcement and Coverage
 
@@ -44,17 +46,25 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Catalogs drift because almost nothing checks them. Measured on the working tree at `skilled/v4.0.0.0` on 2026-07-30:
-the repo holds 26 `feature-catalog/` packages with 804 leaves, the validator's closed set covers 8 packages and 66
-leaves, and the default invocation reports `FAIL: 19 violation(s)` while returning exit code 0. This phase is the
-keystone: it settles four rulings, widens coverage, adds the checks that would have caught the sibling findings, and
-wires the result to something that fails.
+Catalogs drift because almost nothing checks them. At the frozen pre-edit HEAD baseline, the repo holds 26
+`feature-catalog/` packages with 804 markdown leaves, 104 orphan leaves, and 0 dangling links; the old validator's
+closed set covered only 8 packages and 66 leaves, reported `FAIL: 19 violation(s)`, and returned exit code 0. This
+leaf widens discovery to all present catalog packages, adds the missing checks with paired fixtures, and makes the
+validator fail closed for promoted packages.
 
 **Key Decisions**: discovery keyed on `feature-catalog/` presence rather than `hub-router.json` (Q8); fail-closed by
 default with an explicit report-only escape; staged per-package severity so 104 orphans do not land as one wall (Q3).
 
-**Critical Dependencies**: operator answers to Q1, Q2, Q3, Q4, Q6, Q8; the shared count-derivation helper coordinated
-with `036/032`; the manifest walker coordinated with `sk-doc/022/001`.
+**Critical Dependencies**: Q1, Q2, Q3, Q6, and Q8 are recorded here; Q4 gate callers and the shared count-derivation
+helper coordinated with `036/032` remain deferred outside this leaf's locked scope.
+
+### Frozen Acceptance Baseline
+
+Before this leaf's edits at HEAD `0322031c38`, the presence-based census was **26 packages / 804 markdown leaves / 104
+orphan leaves / 0 dangling links**. The case-insensitive ruling deliberately classifies
+`mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md` as the root catalog rather than an orphan leaf, so the
+post-ruling logical roster is 26 packages / 803 feature leaves / 103 orphans / 0 dangling links. That one-leaf delta is
+classification-only; it is not a catalog-content repair and must be reported separately from any future repair delta.
 
 ---
 
@@ -65,7 +75,7 @@ with `036/032`; the manifest walker coordinated with `sk-doc/022/001`.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-doc/023-feature-catalog-integrity` |
@@ -78,15 +88,10 @@ with `036/032`; the manifest walker coordinated with `sk-doc/022/001`.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`validate_catalog_package.py` builds its covered set from `expected_root_packages()`, which returns
-`system-skill-advisor` plus every skill directory carrying a `hub-router.json`. That is **8 packages, 66 leaves**
-against a corpus of **26 packages, 804 leaves** — 8.2% coverage. The catalogs with the worst confirmed drift are
-outside it by construction: `system-spec-kit` (348 leaves) and `sk-git` (11 leaves) are hub-root catalogs excluded
-purely because they are single skills rather than mode hubs, and every `sk-git` finding in this track lives in an
-ungated catalog. Inside the covered set the validator runs four check families (sk-doc workflow-mode parity, root-to-leaf
-bijection, SOURCE FILES path existence, taxonomy), which leaves the standard's title parity, description parity,
-dark-vs-shipped labeling, packet-history rejection, prose-path checking, and volatile-count freshness unchecked. And
-the default invocation exits 0, so it is a report nobody is required to read.
+Catalog integrity now covers all 26 present `feature-catalog/` packages and fails closed for promoted violations.
+The frozen pre-edit baseline was 26 packages / 804 markdown leaves / 104 orphan leaves / 0 dangling links. The
+implemented validator preserves the original four check families, adds the missing rule roster with paired fixtures,
+and stages four known-backlog packages at WARN until their repair children clear them.
 
 Two blind spots are load-bearing and were measured, not inferred. First, the bijection check only reads markdown links,
 so a root table row naming a `.md` in **plain text** passes silently — which is exactly how the advisor's
@@ -101,7 +106,8 @@ fail-closed validator; and a real gate.
 
 ### Non-Goals
 - Repairing any catalog content. Every content repair belongs to `002` or `003`.
-- Authoring an `mcp-code-mode` catalog. This phase owns only the Q1 ruling and the two README corrections.
+- Authoring an `mcp-code-mode` catalog. This phase records only the Q1 ruling; `RC-007-07` is struck and no README or
+  package change is warranted at HEAD.
 - Changing advisor routing. Catalogs do not feed it today.
 <!-- /ANCHOR:problem -->
 
@@ -112,17 +118,17 @@ fail-closed validator; and a real gate.
 
 ### In Scope
 - Four rulings, recorded in `decision-record.md` and cited by both siblings: covered set (Q8), feature-leaf definition,
-  description-parity strictness (Q2), `mcp-code-mode` applicability (Q1).
-- Validator discovery, check roster, exit-code contract, and gate wiring.
-- Six new checks, each shipping a positive and a negative fixture.
-- The two `mcp-code-mode` README corrections, which are wrong today under either Q1 answer.
-- A shared count-derivation helper in `.opencode/skills/sk-doc/shared/scripts/`, coordinated so `036/032` and
-  `sk-doc/022/001` consume one definition rather than three.
+  description-parity strictness (Q2), and `mcp-code-mode` applicability (Q1).
+- Validator discovery, check roster, staged exit-code contract, and package-filtered reporting.
+- The six named new checks plus the volatile-value policy, each with a positive and a negative fixture.
+- The `RC-007-07` strike rationale; no `mcp-code-mode` README or package change because the alleged defect is refuted at HEAD.
+- Shared count-derivation coordination and CI/`/doctor` caller wiring are documented deferrals because those paths are outside this leaf's locked editable scope.
 
 ### Out of Scope
 - Any catalog content edit. `002` and `003` own those.
-- Authoring an `mcp-code-mode` catalog if Q1 answers yes — that becomes child `004`.
+- Authoring an `mcp-code-mode` catalog if new evidence establishes an obligation — that becomes child `004`.
 - Turning `fail` severity on for packages that are not yet clean. Q3's staged ladder governs promotion.
+- Editing the shared count helper, CI workflow, or `/doctor` route; those are owned by later consumers.
 
 ### Findings in Scope
 
@@ -132,7 +138,7 @@ fail-closed validator; and a real gate.
 | `RC-001-02` | P2 | Census correction: eleven skill roots, not twelve. `system-code-graph` holds only `mcp-server/` (no `SKILL.md`, no metadata) and is runtime data. It must stay excluded from the covered set, and the coverage assertion must not flag it. |
 | `RC-001-03` | P2 | `mcp-code-mode` applicability ruling. **OPERATOR-DECISION (Q1).** |
 | `RC-003-03` | P2 | Feature-leaf definition ruling: what counts as a feature leaf versus a category overview or a retirement record. Unblocks the 94 `system-spec-kit` orphans for `003`. |
-| `RC-007-07` | P2 | `mcp-code-mode` ruling evidence from the README angle. **OPERATOR-DECISION (Q1)** for the catalog question; the two README inaccuracies are fixed here regardless. |
+| `RC-007-07` | P2 | Struck at HEAD. The alleged README defect is already absent and the package.json premise is false; no `mcp-code-mode` change is made. |
 
 ### Files to Change
 
@@ -142,10 +148,11 @@ fail-closed validator; and a real gate.
 | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md` | Modify | Feature-leaf definition; volatile-value policy per Q6 |
 | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md` | Modify | Description-parity strictness per Q2 |
 | `.opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md` | Modify | Document the covered set and the enforced rule roster |
-| `.opencode/skills/sk-doc/shared/scripts/` | Create | Count-derivation helper shared with `036/032` and `sk-doc/022/001` |
+| `.opencode/skills/sk-doc/shared/scripts/` | Deferred | Count-derivation helper is owned by the coordinating consumer child |
 | `.opencode/skills/sk-doc/sk-create-feature-catalog/` fixtures tree | Create | Paired positive/negative fixtures, one pair per new check |
-| `.opencode/skills/mcp-code-mode/README.md` and its scripts README | Modify | Two confirmed inaccuracies |
-| CI workflow on `skilled/v*` and a `/doctor` route | Modify | **OPERATOR-DECISION (Q4)** |
+| `.opencode/skills/sk-doc/sk-create-feature-catalog/scripts/README.md` | Modify | Document the validator's discovery, tiers, and test entry points |
+| `.opencode/skills/mcp-code-mode/README.md` and its scripts README | No change | `RC-007-07` is refuted at HEAD |
+| CI workflow on `skilled/v*` and a `/doctor` route | Deferred | Caller wiring is outside this leaf's locked scope |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -174,9 +181,9 @@ fail-closed validator; and a real gate.
 |----|-------------|---------------------|
 | REQ-011 | Volatile-value policy implemented | Structural rosters are derived and freshness-checked; measurement snapshots are rejected from catalog prose. **OPERATOR-DECISION (Q6).** |
 | REQ-012 | Staged per-package severity | Each package carries a severity of `warn` or `fail`; a package promotes to `fail` only when clean. The ladder is recorded so a reader can tell why a package is at `warn`. **OPERATOR-DECISION (Q3).** |
-| REQ-013 | Gate wired to a real caller | The validator runs from CI on `skilled/v*` and from a `/doctor` route, at the ruled severity. **OPERATOR-DECISION (Q4).** |
-| REQ-014 | Count-derivation helper has one definition site | A test asserts the helper is imported by the catalog validator rather than redefined, and the same module is the one `036/032` and `sk-doc/022/001` consume. |
-| REQ-015 | `mcp-code-mode` README corrections | The "170+ tools across seven servers" inventory and the "no `package.json` exists" claim are corrected against the real configured manuals and the real `package.json` that runs the ABI check in `postinstall`. |
+| REQ-013 | Gate wired to a real caller | Deferred: the validator exposes fail-closed CLI and package filtering; CI and `/doctor` callers are outside this leaf's locked scope. **OPERATOR-DECISION (Q4).** |
+| REQ-014 | Count-derivation helper has one definition site | Deferred: the shared helper directory and its cross-track consumers are outside this leaf's locked scope. |
+| REQ-015 | `mcp-code-mode` README corrections | Not applicable at HEAD: the alleged README defect is already absent and the package.json premise is false; `RC-007-07` is struck. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -189,9 +196,9 @@ fail-closed validator; and a real gate.
 - **SC-002**: The default invocation returns non-zero on a tree with violations; a seeded violation fails and a clean
   tree passes.
 - **SC-003**: All six new checks have paired fixtures and both fixture outcomes are asserted by tests.
-- **SC-004**: The measured blast radius is the acceptance baseline and is reproduced before and after: **104 orphan
-  leaves and 0 dangling links across all 26 packages** (94 in `system-spec-kit`, 8 in `mcp-tooling/mcp-refero`, 1 in
-  `mcp-click-up`, 1 in `deep-research`). No new dangling links appear.
+- **SC-004**: The frozen pre-edit blast radius is **104 orphan leaves and 0 dangling links across all 26 packages**.
+  After case-insensitive root classification, the logical roster is 103 orphans and 0 dangling links; the one-leaf
+  delta is the uppercase ClickUp root classification, not content repair.
 - **SC-005**: `decision-record.md` records all four rulings, and `002` and `003` cite it rather than re-deciding.
 - **SC-006**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this folder> --strict` exits 0.
 <!-- /ANCHOR:success-criteria -->
@@ -208,7 +215,7 @@ fail-closed validator; and a real gate.
 | Dependency | Manifest walker with `sk-doc/022/001` | Duplicated manifest traversal | Share the walker; coordinate before either lands |
 | Risk | Widening coverage produces a red wall | The gate cannot be turned on until `003` finishes, serializing the whole program | Staged per-package severity (REQ-012, Q3) |
 | Risk | A new check is too strict and churns clean catalogs | Wasted edits across 804 leaves | Every check ships a positive fixture proving a conforming catalog still passes |
-| Risk | The 14 unaudited nested catalogs fail unexpectedly | Surprise findings outside the researched set | Measured exposure is 10 orphans and 0 dangling links; they enter at `warn` |
+| Risk | The previously unaudited nested catalogs fail unexpectedly | Surprise findings outside the researched set | Resolved by measurement: the enforcement-start fleet run found no package clean, so the entire measured fleet enters at `warn` and each package fails closed only once verified clean |
 | Risk | Validator runtime over 804 leaves is too slow for a push hook | A pre-push gate becomes a developer tax | Measure runtime before choosing pre-push; CI first (Q4) |
 <!-- /ANCHOR:risks -->
 
@@ -315,8 +322,9 @@ I do not act on a capability that does not exist or miss one that does.
 - **OPERATOR-DECISION (Q6)** — Volatile values: ban or generate-plus-freshness-check? Recommendation: generate for
   structural rosters, ban for measurement snapshots.
 - **OPERATOR-DECISION (Q8)** — Presence-based discovery or named additions? Recommendation: presence-based.
-- Do the 14 unaudited nested packet catalogs join the same tier as hub roots, or a lower one? This is part of the
-  covered-set ruling and has no recommendation until T001 measures them.
+- *Answered by measurement:* the nested packet catalogs join the same tier as hub roots. The enforcement-start
+  fleet run found zero clean packages, so every measured package — nested and hub alike — enters at `warn`
+  and promotes to fail-closed individually when verified clean; new catalogs fail closed from first validation.
 <!-- /ANCHOR:questions -->
 
 ---

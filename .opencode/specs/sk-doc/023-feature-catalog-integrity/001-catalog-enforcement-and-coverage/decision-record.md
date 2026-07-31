@@ -12,12 +12,12 @@ parent: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-covera
 _memory:
   continuity:
     packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Drafted the four rulings as one proposed decision"
-    next_safe_action: "Re-test the evidence in T001, then take the operator answers to Q1, Q2, Q8"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded operator rulings and the scoped RC-007-07 strike"
+    next_safe_action: "Reconcile packet receipts and strict validation"
     blockers:
-      - "Q1, Q2 and Q8 are operator decisions; status stays Proposed until answered"
+      - "Known catalog backlog remains in the explicit WARN tier"
     key_files: []
     completion_pct: 0
     open_questions:
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted with scoped deferrals |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator, plus the sk-doc feature-catalog standard owner |
 
@@ -61,10 +61,9 @@ description while the second paragraph must not repeat the root verbatim. It doe
 `description` equals the root Description. Five findings assume it does. Adopting that reading is an amendment to the
 standard, not the repair of a breach, and the two must not be confused.
 
-The covered-set question has a measured answer. Discovery keyed on `hub-router.json` produces 8 packages and 66 leaves
-against a corpus of 26 packages and 804 leaves. `sk-git` and `system-spec-kit` are hub-root catalogs excluded only
-because they are single skills rather than mode hubs, and every `sk-git` finding in this track sits in an ungated
-catalog as a result.
+The covered-set question has a measured answer. Discovery keyed on `hub-router.json` produced 8 packages and 66 leaves
+against a corpus of 26 packages and 804 leaves. The implemented presence-based discovery now sees all 26 catalog
+packages, including `sk-git` and `system-spec-kit`; only the explicit runtime-data exclusion remains.
 
 ### Constraints
 
@@ -94,9 +93,10 @@ catalog as a result.
 3. **Description parity.** `title` equality stays literal, because the standard already says so. Frontmatter
    `description` parity is normalized rather than literal, and the snippet template is amended to state the rule
    explicitly. **OPERATOR-DECISION (Q2).**
-4. **`mcp-code-mode` applicability.** The README stays canonical for now and its two confirmed inaccuracies are
-   repaired. Revisit if the surface grows or if the new checks show the README cannot hold feature-to-source parity.
-   **OPERATOR-DECISION (Q1).**
+4. **`mcp-code-mode` applicability.** No catalog obligation is established at this HEAD. The alleged README/package
+   defect is refuted: the README claim is already absent and the package.json premise is false. `RC-007-07` is struck
+   with that rationale; no README or package change is made in this phase. Revisit if new evidence establishes a
+   catalog obligation. **DEFERRED / NOT APPLICABLE AT HEAD (Q1).**
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -110,7 +110,7 @@ catalog as a result.
 | Add `sk-git` and `system-spec-kit` by name | Smallest change, immediate | Naming exceptions is exactly how the current gap was created; the closed set drifts from the corpus again | 4/10 |
 | Literal frontmatter description equality | One rule, trivially checkable | Contradicts the template's own "do not repeat the root verbatim" instruction and churns every catalog | 3/10 |
 | Bulk-link the 94 orphans | Turns bijection green immediately | Satisfies the checker and corrupts the inventory; a category overview is not a feature | 2/10 |
-| Require a catalog for `mcp-code-mode` | Uniformity across skill roots | Invents an obligation the standard does not impose; a roughly 25-leaf authoring project bolted onto a repair phase | 3/10 |
+| Require a catalog for `mcp-code-mode` | Uniformity across skill roots | Invents an obligation the standard does not impose; the current README/package evidence does not establish the premise | 3/10 |
 
 **Why this one**: presence-based discovery makes coverage a tested property instead of a maintained list, and the
 normalized parity reading is what the template actually says rather than what five findings assumed it said.
@@ -125,12 +125,13 @@ normalized parity reading is what the template actually says rather than what fi
 - Coverage goes from 8 packages and 66 leaves to the ruled set, and a test fails if a new catalog appears outside it.
 - `sk-git` and `system-spec-kit` come inside the gate, which is where five and four findings respectively live.
 - Both siblings get a single citable source for four questions instead of re-deciding them per lane.
+- `RC-007-07` is closed by a strike rationale at HEAD, with no `mcp-code-mode` code or README change.
 
 **What it costs**:
 - 104 orphan-leaf violations arrive at once. Mitigation: staged per-package severity, `warn` on entry and `fail` on
   clean.
-- 14 nested packet catalogs nobody audited get checked for the first time. Mitigation: measured exposure is 10 orphans
-  and 0 dangling links, and they enter at `warn`.
+- 14 nested packet catalogs nobody audited get checked for the first time. Their current findings enter the explicit
+  WARN tier only where the package is listed as known backlog; all other packages fail closed.
 
 **Risks**:
 
@@ -165,9 +166,11 @@ normalized parity reading is what the template actually says rather than what fi
 **What changes**:
 - `validate_catalog_package.py`: `expected_root_packages()` becomes presence-based; a severity map is added.
 - `assets/feature-catalog-snippet-template.md`: states the description-parity rule explicitly.
-- `assets/feature-catalog-template.md`: states the feature-leaf definition.
+- `assets/feature-catalog-template.md`: states the feature-leaf definition and roster-derived policy.
 - `sk-create-feature-catalog/SKILL.md`: documents the covered set and the enforced rule roster.
-- `mcp-code-mode` README and its scripts README: two factual corrections.
+- `sk-create-feature-catalog/scripts/fixtures/`: paired positive/negative inputs for the added rules.
+- `sk-create-feature-catalog/scripts/tests/test_validator_fixtures.py`: fixture, coverage, staging, exit, and determinism tests.
+- `mcp-code-mode` README and its scripts README: deliberately unchanged because `RC-007-07` is refuted at HEAD.
 
 **How to roll back**: revert the discovery function to the previous `hub-router.json` form and delete the severity map;
 the checks and fixtures are independent of the rulings and can stay. The template amendments revert as ordinary

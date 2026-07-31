@@ -39,7 +39,7 @@
       "definition"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "decision-record.md",
@@ -47,11 +47,13 @@
       ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/README.md",
       ".opencode/skills/mcp-code-mode/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,7 +95,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/README.md",
+        "path": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/README.md",
         "source": "derived"
       },
       {
@@ -121,6 +123,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,13 +153,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Frozen Acceptance Baseline Before",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,13 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern One Python",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
+        "name": "Task Checklist",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,9 +201,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`validatecatalogpackage.py` builds its covered set from `expectedrootpackages()`, which returns",
+    "causal_summary": "Catalog integrity now covers all 26 present `feature-catalog/` packages and fails closed for promoted violations",
     "created_at": "2026-07-30T19:29:14.546Z",
-    "last_save_at": "2026-07-30T19:29:14.546Z",
+    "last_save_at": "2026-07-31T05:03:10.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +211,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89d20340139b2a50265c61a61549cbd008eac04fc67c1c9b078a821d4b8e4ede",
+    "source_fingerprint": "sha256:696a5e5e4cd3d33c6b1822b72a89a86e582413dfbdb3fc9a02092ae0a468e506",
     "source_doc_hashes": {
-      "spec.md": "4a018be311897f22aa6b3a6bb999e911226449287d76df86f50f16ca717d5845",
-      "plan.md": "6e7173c7a93d165c1b29714180585db838ecebecff874f9914f52a45102dd848",
-      "tasks.md": "f40b719fd560145b7606ddf15895cdca57e1db5217231bcf86060a1a39bdd2f0",
-      "checklist.md": "2972fb8f964430b562f28800350e13d90e2150ce4c8a3351eef1f5c6fe096491",
-      "decision-record.md": "78255dfe418281ca94f3dd0a4a86f889998ba31db6e718ef95ef1f3cf9f0d25c"
+      "spec.md": "dd17fc173c694cdc9b27f71805417251b8164a09d957e3ea631b2224ec44e402",
+      "plan.md": "72afc622b7f8343c14966734c0daf74f16c9b34e4936a7abaca7602b7555c6b3",
+      "tasks.md": "225c776145bf2ac636954687eb9c9c5c3957544b647b66e843f9db06b9cbe93d",
+      "checklist.md": "11996a8b8cf01b213ff7908b36d1d26e4a6816caf85224c296cc47d112d207fd",
+      "decision-record.md": "dbc98a7954e32892bb2720583c4195f2c02536a8d8d80578ed1200467cfb36ee",
+      "implementation-summary.md": "1d2b1eb4329210791c437c69162a08e62ddb63e0c833a499f287ca79ddf7941e"
     },
     "last_active_child_id": null,
     "last_active_at": null

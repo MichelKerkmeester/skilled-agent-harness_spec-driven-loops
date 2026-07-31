@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: catalog enforcement and coverage"
-description: "The catalog validator covers 8 of 26 feature-catalog packages (66 of 804 leaves), runs four narrow check families rather than the standard's eight rules, and exits 0 on its default invocation while printing FAIL: 19 violations. This phase settles the four rulings both siblings depend on, switches discovery to feature-catalog presence, adds six unenforced checks with paired fixtures, and wires a gate that actually fails."
+description: "The catalog validator discovers all 26 present feature-catalog packages, enforces the widened rule roster with paired fixtures, stages four known-backlog packages at WARN, and fails closed for promoted violations; shared helper and caller wiring are deferred."
 trigger_phrases:
   - "catalog enforcement and coverage implementation plan"
   - "feature catalog integrity implementation plan"
@@ -9,10 +9,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from research synthesis"
-    next_safe_action: "Confirm baselines in T001 before any edit begins"
+    last_updated_at: "2026-07-31T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Captured targeted and whole-fleet validator receipts"
+    next_safe_action: "Run strict child validation"
     blockers: []
     key_files:
       - "plan.md"
@@ -29,14 +29,11 @@ _memory:
 ## 1. SUMMARY
 
 ### Technical Context
-The only automated check on feature catalogs is
-`.opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` (471 lines). Its covered set
-comes from `expected_root_packages()`, which returns `system-skill-advisor` plus every skill directory carrying a
-`hub-router.json`: 8 packages, 66 leaves, against 26 packages and 804 leaves in the repo. `run_all_checks()` runs four
-check families — sk-doc workflow-mode parity, root-to-leaf bijection, SOURCE FILES path existence, and taxonomy — which
-covers the standard's bijection and source-path rules but leaves title parity, description parity, dark-vs-shipped
-labeling, packet-history rejection, prose-path checking, and volatile-count freshness unenforced. `--strict` already
-returns exit 1; the defect is that the **default** returns 0 and that no CI job, hook, or doctor route calls it at all.
+The package validator at `.opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` now
+discovers every present `feature-catalog/` directory: 26 packages and a frozen pre-edit corpus of 804 markdown leaves.
+It preserves the original four families and adds phantom-row, prose-path, title parity, normalized description parity,
+packet-history, shipped-label, and volatile-snapshot enforcement. The default now fails closed for promoted packages;
+four known-backlog packages remain WARN until their repair children remove them from the explicit map.
 
 ### Overview
 Settle four rulings, widen and deepen the validator, wire a gate. Nothing in this phase edits catalog content.
@@ -63,23 +60,51 @@ Settle four rulings, widen and deepen the validator, wire a gate. Nothing in thi
 
 ---
 
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm the editable scope remains the validator package and this child packet.
+- Read the child contract before editing and record direct return codes for every required gate.
+- Keep the packet status In Progress while staged backlog or deferred callers remain.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Complete contract and baseline checks before implementation, then fixtures, then whole-fleet verification. |
+| TASK-SCOPE | Do not edit catalog content, shared helpers, CI, doctor routes, or unrelated packages. |
+| TASK-EVIDENCE | Attach command output, digest, file path, or numeric receipt to every completed verification item. |
+
+### Status Reporting Format
+
+`STATUS: IN_PROGRESS | completed=<task IDs> | pending=<task IDs> | blockers=<deferred scope or none>`
+
+### Blocked Task Protocol
+
+Mark work `[B]` when it requires a file outside the locked scope, record the owner and reason, and do not claim the
+deferred behavior is implemented. Re-run strict packet validation after every documentation reconciliation batch.
+
+---
+
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
 ### Pattern
 One Python validator, discovery-driven rather than list-driven, with a per-package severity map and paired fixtures per
-check. Shared derivation logic lives in `.opencode/skills/sk-doc/shared/scripts/` so the catalog validator, the
-`036/032` docs-drift check, and the `sk-doc/022/001` README auditor consume one definition.
+check. Shared derivation logic remains a coordination-child concern because this leaf's editable scope is limited to
+the feature-catalog package and its own docs.
 
 ### Key Components
 - `expected_root_packages()` — replaced by presence-based discovery over `.opencode/skills/**/feature-catalog/`, with a
   ruled include/exclude map and a recorded reason per exclusion. **OPERATOR-DECISION (Q8).**
-- `run_all_checks()` — extended from four check families to ten, the six additions being phantom-row detection,
-  prose-path checking, title parity, description parity, packet-history rejection, and dark-vs-shipped labeling.
+- `run_all_checks()` — extended from four check families to the ten-family roster, with volatile-snapshot rejection
+  included in prose-path checking.
 - `main()` — exit-code contract inverted: non-zero on FAIL by default, `--report-only` for the old advisory behavior.
   `--strict` is retained as an alias so existing invocations keep working.
 - Severity map — per package, `warn` or `fail`, with promotion on clean. **OPERATOR-DECISION (Q3).**
-- Shared helper in `sk-doc/shared/scripts/` — derives counts and rosters from `mode-registry.json` and friends.
+- Shared helper in `sk-doc/shared/scripts/` — deferred outside this leaf's locked editable scope; no duplicate helper
+  is introduced here.
 
 ### Data Flow
 Discovery walks `.opencode/skills` for `feature-catalog/` directories, produces the package list, each package is run
@@ -97,12 +122,13 @@ Confirm every measured figure against HEAD, enumerate existing callers of the va
 cannot break one silently, then settle the four rulings and record them.
 
 ### Phase 2: Core Implementation
-Switch discovery, add the six checks with paired fixtures, invert the exit-code contract, build the shared helper, add
-the coverage assertion, apply the ruled template amendments, and fix the two `mcp-code-mode` README inaccuracies.
+Switch discovery, add the checks with paired fixtures, invert the exit-code contract, add the coverage assertion,
+apply the ruled template amendments, and record the refuted `RC-007-07` finding without touching `mcp-code-mode`.
 
 ### Phase 3: Verification
-Full-corpus dry run at both severities, seeded-violation and clean-tree exit-code tests, fixture assertions, the
-single-definition-site test, then wire the gate and strict-validate the packet.
+Full-corpus dry run at both severities, seeded-violation and clean-tree exit-code tests, fixture assertions, then
+strict-validate the packet. The single-definition-site test and CI/`/doctor` caller wiring remain outside this leaf's
+locked scope.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -110,8 +136,8 @@ single-definition-site test, then wire the gate and strict-validate the packet.
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Fixture-driven. Each of the six new checks gets one conforming fixture that must pass and one defective fixture that
-must fail, and both outcomes are asserted. Three of the negative fixtures are real defects observed in the tree, which
+Fixture-driven. Each of the six new checks plus the volatile-value policy gets one conforming fixture that must pass and
+one defective fixture that must fail, and both outcomes are asserted. Three of the negative fixtures are real defects observed in the tree, which
 makes them regression tests rather than synthetic ones:
 
 - phantom row: the advisor's literal `hooks-and-plugin/opencode-hook.md (not yet authored)` row;

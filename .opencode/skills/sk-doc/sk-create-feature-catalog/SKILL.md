@@ -350,6 +350,27 @@ The validator machine-checks the root-catalog structure and each leaf's Validati
 - Cross-file links resolve.
 - Runtime docs avoid mutable spec or phase packet history.
 
+### Package Validator Enforcement
+
+`scripts/validate_catalog_package.py` is the package-level enforcement surface. Discovery is presence-based: every canonical `feature-catalog/` directory below `.opencode/skills/` is a package, keyed by its path relative to that root. The measured starting corpus is 26 packages and 804 leaves. `system-code-graph` is the only explicit exclusion because it is runtime data and has no `feature-catalog/` directory; the exclusion carries its reason in the validator.
+
+The validator compares root filenames and root-link targets case-insensitively. This preserves the `mcp-click-up` package's uppercase `FEATURE-CATALOG.md` without counting the root itself as an orphan.
+
+The initial enforcement ladder is staged. Promoted packages fail closed immediately. The explicit WARN tier is `system-spec-kit`, `mcp-tooling/mcp-refero`, `mcp-tooling/mcp-click-up`, and `system-deep-loop/deep-research`, the four packages carrying the measured 104-orphan backlog. Repair children remove a package from the map when it is repaired; a clean package reports a promoted PASS. Use `--report-only` for advisory output; `--strict` remains an alias for the default.
+
+The enforced roster is:
+
+- root/leaf bijection and discovery coverage;
+- SOURCE FILES path existence and Validation And Tests taxonomy;
+- sk-doc workflow-mode parity;
+- phantom root-row detection and repo-relative prose-path checking;
+- root-H3-to-leaf-title parity and normalized description parity;
+- packet-history metadata rejection;
+- dark-vs-shipped labeling; and
+- volatile measurement-snapshot rejection.
+
+Catalog prose may describe structural rosters derived from links or source tables, but it must not freeze measured counts or dated snapshots. The validator reports those snapshots so the catalog stays current-state evidence rather than stale census data.
+
 Validator boundary:
 
 - `validate_document.py` checks root-catalog structure and, for per-feature leaves reached by a repo-root path, the Validation And Tests table taxonomy.
