@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-07-31T03:16:25Z"
     last_updated_by: "claude"
-    recent_action: "Authored the phased task breakdown from the WS1 phase-tree proposal"
-    next_safe_action: "Execute T001 before any other task"
+    recent_action: "Closed out 021: ADRs accepted, checklist reconciled, 016 fixed"
+    next_safe_action: "None; monitor 031 Lane B for the alignment RED-anchor re-verify"
     blockers: []
     key_files:
       - "tasks.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,6 +57,39 @@ _memory:
 | M4 | T017-T022 | Unlisted child fails the recursive gate |
 | M5 | T023-T027 | All 9 findings closed; independent pass recorded |
 <!-- /ANCHOR:milestones -->
+
+---
+
+<!-- ANCHOR:ai-exec -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+Before starting any task, verify:
+1. [ ] `spec.md` scope unchanged
+2. [ ] Current phase identified in `plan.md`
+3. [ ] Task dependencies satisfied
+4. [ ] Relevant P0/P1 `checklist.md` items identified
+5. [ ] No blocking issues in `decision-record.md`
+
+### Execution Rules
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Complete tasks in dependency order |
+| TASK-SCOPE | Stay within task boundary, no scope creep |
+| TASK-VERIFY | Verify each task against its acceptance criteria |
+| TASK-DOC | Update status and evidence immediately on completion |
+
+### Status Reporting Format
+```
+- **Task**: T### - [Description]
+- **Status**: [IN_PROGRESS | COMPLETED | BLOCKED]
+- **Evidence**: [test name + suite digest + candidate SHA]
+- **Next**: T### - [Next task]
+```
+
+### Blocked Task Protocol
+A task marked `[B]` records its blocker inline and is not started until the blocker clears. This child's only recorded blocker (OPERATOR-DECISION OD-1) is resolved via `decision-record.md` ADR-003.
+<!-- /ANCHOR:ai-exec -->
 
 ---
 
@@ -102,7 +135,7 @@ No edit may precede T001 and the baseline capture. Every later claim in this chi
 - [x] T018 Add a manifest-vs-`git ls-files` check that fails closed when `git` is unavailable [2h] {deps: T017} [evidence: check-goal-file-manifest.sh; fails closed without git, verified by adversarial review of the code path]
 - [x] T019 Capture a whole-repo recursive-validation baseline before touching `validate.sh` [1h] {deps: T001} [evidence: before/after recursive summaries recorded in implementation-summary.md M4 section; verbatim identical for undeclared parents]
 - [x] T020 Add the hashed child-manifest boundary to recursive strict validation, opt-in per parent (`F-029-03`, CONFIRMED) (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`) [5h] {deps: T019} [evidence: opt-in declaration with sha256 hash verification; independent hash recomputation matches; undeclared-parent behavior byte-identical in control run; declared 036 set = on-disk children 001-021]
-- [x] T021 Negative test: a child folder absent from the manifest must make the recursive gate FAIL, not widen or skip [2h] {deps: T020} [evidence: recursive-child-manifest.vitest.ts 2/2 pass under the canonical config; unlisted child yields status 2 naming the absent folder; independently re-run]
+- [x] T021 Negative test: a child folder absent from the manifest must make the recursive gate FAIL, not widen or skip [2h] {deps: T020} [evidence: recursive-child-manifest.vitest.ts 2/2 pass under the canonical config; unlisted child yields status 2 naming the absent folder; independently re-run; note: the fail-closed test needs --testTimeout=60000 (runs ~23s), the default 5s config times out]
 - [x] T022 Add the rollout `fix`-entry validator and update `promotion-rule.md` (`shared/rollout/`) [3h] {deps: T016} [evidence: validate-rollout.cjs with negative and positive verification plus 21 test assertions across the two rollout suites; promotion-rule.md states the evidence requirement]
 <!-- /ANCHOR:phase-2 -->
 
@@ -113,11 +146,13 @@ No edit may precede T001 and the baseline capture. Every later claim in this chi
 
 ### Disposition, delta and gate [M5]
 
-- [ ] T023 Record the OD-1 `016` disposition (relocate or re-scope) in `PRE-014-VALIDATION-RUN.md` and in `decision-record.md` [2h] {deps: T017}
-- [ ] T024 Record the `F-022-01` re-open trigger enforcement and cross-reference the WS1 disposition bucket [1h] {deps: T023}
-- [ ] T025 Re-run all four runners and the whole-repo recursive validation; report every result as a delta against T002-T005 and T019 [2h] {deps: T020, T022}
-- [ ] T026 Independent adversarial verification pass by an actor other than the builder, targeted at the reopened evidence set [4h] {deps: T025}
-- [ ] T027 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile --strict` exits 0; reconcile completion metadata across spec/plan/tasks/implementation-summary [2h] {deps: T026}
+- [x] T023 Record the OD-1 `016` disposition (relocate or re-scope) in `PRE-014-VALIDATION-RUN.md` and in `decision-record.md` [2h] {deps: T017} [evidence: operator ruled re-scope; recorded as an Accepted decision in decision-record.md, the two-stage structure in the 016 spec, and the disposition line in the boundary notice]
+- [x] T024 Record the `F-022-01` re-open trigger enforcement and cross-reference the WS1 disposition bucket [1h] {deps: T023} [evidence: enforcement statement in implementation-summary.md Phase 3; the parent-level disposition record and this child cross-reference each other]
+- [x] T025 Re-run all four runners and the whole-repo recursive validation; report every result as a delta against T002-T005 and T019 [2h] {deps: T020, T022} [evidence: zero drift — alignment 48/41/5/2, council 106/105/1, improvement 547/478/54/15, all identical to baseline; runtime unit completed 3986/3992; recursive validation accepts the declared 32-entry manifest with the boundary negative test green]
+- [x] T026 Independent adversarial verification pass by an actor other than the builder, targeted at the reopened evidence set [4h] {deps: T025} [evidence: independent verification pass by a second actor over the Phase-3 final state; 5-item spot-verify all exact (alignment counts, manifest 2016, negative test 2/2 with --testTimeout=60000, suite sha256 recomputed, 5-failure post-demotion split); verdict FIX-FIRST produced the closeout change-set this closeout executes]
+- [x] T027 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile --strict` exits 0; reconcile completion metadata across spec/plan/tasks/implementation-summary [2h] {deps: T026} [evidence: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <021> --strict --verbose` -> rc 0, `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`; spec.md/implementation-summary.md/plan.md/tasks.md/checklist.md/decision-record.md Status fields and continuity blocks reconciled to Complete/COMPLETE beforehand]
+
+**Follow-up (CHK-112).** Re-verify the alignment RED anchor (`F-ORC-01`, 48 tests / 41 pass / 5 fail / 2 skip at SHA `dd07cb1f52`) when the `031-silent-failure-and-harness-repair` child lands: `031` Lane B is the child that triages these 5 failures, and its landing is the event that can legitimately change this count.
 <!-- /ANCHOR:phase-3 -->
 
 ---

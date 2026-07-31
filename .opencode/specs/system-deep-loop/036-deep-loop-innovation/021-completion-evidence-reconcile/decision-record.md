@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-07-31T03:16:25Z"
     last_updated_by: "claude"
-    recent_action: "Authored ADR-001 and ADR-002 from the WS1 phase-tree proposal"
-    next_safe_action: "Operator accepts or rejects ADR-001 and ADR-002"
+    recent_action: "Closed out 021: ADRs accepted, checklist reconciled, 016 fixed"
+    next_safe_action: "None; monitor 031 Lane B for the alignment RED-anchor re-verify"
     blockers: []
     key_files:
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner, independent verifier |
+
+Accepted on the strength of the reconciled checklists (123 lines carrying the citation format, digests independently recomputed 4/4 by the adversarial pass).
 
 ---
 
@@ -142,9 +144,11 @@ The migration program marked items complete with evidence strings like a run cou
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner, spec-kit maintainer |
+
+Accepted on the strength of the landed boundary (32-entry declared manifest accepted live, negative test green, undeclared-parent control identical).
 
 ---
 
@@ -238,10 +242,65 @@ The migration program marked items complete with evidence strings like a run cou
 
 ---
 
-## RESERVED DECISIONS
+<!-- ANCHOR:adr-003 -->
+## ADR-003: The pre-cutover validation artifacts stay in place; phase 016 is re-scoped around them
 
-**OD-1 — the `016` pre-cutover artifact disposition is an OPERATOR-DECISION and is deliberately not decided here.**
+### Metadata
 
-The fork is real and evidence-backed on both sides: relocate the borrowed `review/` and `alignment/` trees to their own packet, or formally re-scope `016` around them. `PRE-014-VALIDATION-RUN.md` records that these artifacts are a pre-cutover validation run and not phase-016 execution. Adding children 021-032 makes re-scoping strictly more work, which argues for relocation, but the choice belongs to the operator.
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-07-31 |
+| **Deciders** | Operator (explicit ruling), packet owner |
 
-When OD-1 is answered, scaffold ADR-003 from `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` and record the chosen disposition with its rationale. Do not fabricate the decision by inferring it from the recommendation above.
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+The `016-whole-system-gate` folder holds `review/` and `alignment/` trees produced by an
+operator-requested pre-cutover validation run. `PRE-014-VALIDATION-RUN.md` records that these
+artifacts are not phase-016 execution: the phase's own blocking prerequisite (landed
+legacy-writer-retirement evidence) is unmet, so its gate cannot legitimately have run. The fork
+was relocation (move ~90 landed files to a dedicated sibling) versus re-scoping (own the
+artifacts formally inside 016 as a distinct pre-cutover stage).
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+The operator ruled for re-scoping. Phase 016 gains an explicit two-stage structure: **Stage A —
+pre-cutover validation** owns the existing `review/` and `alignment/` artifacts as landed
+evidence gathered before the cutover; **Stage B — the whole-system gate proper** remains
+unexecuted and keeps its blocking prerequisite on legacy-writer retirement. No files move;
+existing references and history stay intact.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+- **Relocation to a new sibling packet** — cleaner nominal separation, but moves ~90 landed
+  files, breaks the cross-references already landed in the findings register, the remediation
+  children, and the parent handoff criteria, and re-writes history for no behavioral gain.
+- **Deferral to 016's own execution** — leaves the placement ambiguity open through the whole
+  remediation program, letting further references accrete against an undecided layout.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+- `016/spec.md` documents the two stages; the boundary notice stays as the Stage-A provenance
+  record with its disposition line updated.
+- Stage B's prerequisite language is unchanged; nothing about this decision advances the gate.
+- The remediation children keep citing `016-whole-system-gate/review/` paths unchanged.
+
+**How to roll back**: Revert the two doc edits; the fork reopens with both options intact
+because no files moved.
+<!-- /ANCHOR:adr-003-consequences -->
+<!-- /ANCHOR:adr-003 -->
