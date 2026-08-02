@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/008-verification-and-closeout",
+  "description": "After Phase 7 the mode is registered but unproven end-to-end: nothing has confirmed the whole packet validates under `--recursive --strict`, that the",
+  "keywords": [
+    "phase",
+    "mode",
+    "registered",
+    "unproven",
+    "end-to-end",
+    "nothing",
+    "confirmed",
+    "whole",
+    "packet",
+    "validates",
+    "recursive",
+    "strict"
+  ],
+  "lastUpdated": "2026-08-02T06:08:01.030Z",
+  "specId": "008",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

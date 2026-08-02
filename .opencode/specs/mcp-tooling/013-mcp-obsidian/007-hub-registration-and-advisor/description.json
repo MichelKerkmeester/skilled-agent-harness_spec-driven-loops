@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor",
+  "description": "The `mcp-obsidian` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for obsidian prompts (its hub",
+  "keywords": [
+    "mcp-obsidian",
+    "package",
+    "exists",
+    "disk",
+    "invisible",
+    "skill-advisor",
+    "surface",
+    "mcp-tooling",
+    "obsidian",
+    "prompts",
+    "hub"
+  ],
+  "lastUpdated": "2026-08-02T06:06:19.102Z",
+  "specId": "007",
+  "folderSlug": "hub-registration-and-advisor",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

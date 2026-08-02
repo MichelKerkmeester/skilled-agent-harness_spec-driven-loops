@@ -7,6 +7,7 @@
     "tieBreak": [
       "mcp-chrome-devtools",
       "mcp-click-up",
+      "mcp-obsidian",
       "mcp-aside-devtools",
       "mcp-figma",
       "mcp-refero",
@@ -48,6 +49,16 @@
       ],
       "resources": [
         "mcp-click-up/SKILL.md"
+      ]
+    },
+    "mcp-obsidian": {
+      "weight": 4,
+      "classes": [
+        "obsidian-aliases",
+        "note-management"
+      ],
+      "resources": [
+        "mcp-obsidian/SKILL.md"
       ]
     },
     "mcp-aside-devtools": {
@@ -136,6 +147,25 @@
         "mark done",
         "time tracking",
         "project tracker"
+      ]
+    },
+    "obsidian-aliases": {
+      "keywords": [
+        "obsidian",
+        "obsidian vault",
+        "notesmd-cli",
+        "obsidian mcp",
+        "markdown notes"
+      ]
+    },
+    "note-management": {
+      "keywords": [
+        "create note",
+        "vault search",
+        "backlinks",
+        "daily note",
+        "knowledge base",
+        "note crud"
       ]
     },
     "task-management": {

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian hub registration",
+      "mcp-obsidian advisor routing",
+      "mcp-obsidian phase 7",
+      "register obsidian mode",
+      "obsidian hub registration plan",
+      "mcp-obsidian router advisor plan",
+      "mcp-obsidian phase 7 plan",
+      "obsidian hub registration tasks",
+      "mcp-obsidian router advisor tasks",
+      "mcp-obsidian phase 7 tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "hub",
+      "registration",
+      "mcp-obsidian",
+      "advisor",
+      "routing",
+      "phase",
+      "register",
+      "mode",
+      "plan",
+      "router",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/description.json",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/bin/compiled-route-sync.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `mcp-obsidian` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for obsidian prompts (its hub keywords/intentsignals lack obsidian vocabulary), and the in-hub router has no `mcp-obsidian` mode entry, tie-break, or router signals — so even if the hub is chosen, the mode cannot be picked",
+    "created_at": "2026-08-02T05:50:30Z",
+    "last_save_at": "2026-08-02T06:12:33.726Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01fe56cb0275f6d918a08c31f4528bfb1e512cf841f7608e10fac142b0208d44",
+    "source_doc_hashes": {
+      "spec.md": "bfc36bd41facf2e672eed9ff06e6392b3a81552a3eb45f97300322d5a5d67caa",
+      "plan.md": "1d03730274f017c929c9f114ce2370172c411eb1a773bdcd35fdcfe10baf5f47",
+      "tasks.md": "c2511960fb30422759bef6746c9a553d1a1d7916204d58554333fc7553e49067",
+      "implementation-summary.md": "bd679dc987181ad67c21464049c2c05dcb06ab1ec40e716d50e783d385d3f7d5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

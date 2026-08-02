@@ -242,6 +242,40 @@
       "advisorRouting": {
         "routingClass": "metadata"
       }
+    },
+    {
+      "workflowMode": "mcp-obsidian",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-obsidian",
+      "packetSkillName": "mcp-obsidian",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "obsidian",
+        "obsidian vault",
+        "notesmd-cli",
+        "obsidian mcp",
+        "note management",
+        "markdown notes"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     }
   ]
 }

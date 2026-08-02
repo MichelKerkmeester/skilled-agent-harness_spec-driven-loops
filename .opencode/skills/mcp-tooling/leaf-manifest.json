@@ -25,7 +25,6 @@
     },
     {
       "leaves": [
-        "references/INSTALL-GUIDE.md",
         "references/cupt-commands.md",
         "references/mcp-tools.md",
         "references/troubleshooting.md"
@@ -55,6 +54,19 @@
       ],
       "packet": "mcp-mobbin",
       "workflowMode": "mcp-mobbin"
+    },
+    {
+      "leaves": [
+        "references/mcp-tools.md",
+        "references/obsidian-cli-commands.md",
+        "references/plugins/flat-financing.md",
+        "references/plugins/obsidian-tables.md",
+        "references/plugins/obsidian42-brat.md",
+        "references/plugins/plugin-operation-logic.md",
+        "references/troubleshooting.md"
+      ],
+      "packet": "mcp-obsidian",
+      "workflowMode": "mcp-obsidian"
     },
     {
       "leaves": [

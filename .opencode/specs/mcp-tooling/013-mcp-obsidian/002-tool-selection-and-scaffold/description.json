@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/002-tool-selection-and-scaffold",
+  "description": "Phase 1 produced a recommendation, but nothing is committed: there is no locked build-vs-adopt choice per surface and no package to build into",
+  "keywords": [
+    "phase",
+    "produced",
+    "recommendation",
+    "nothing",
+    "committed",
+    "locked",
+    "build-vs-adopt",
+    "choice",
+    "per",
+    "surface",
+    "package"
+  ],
+  "lastUpdated": "2026-08-02T06:03:58.776Z",
+  "specId": "002",
+  "folderSlug": "tool-selection-and-scaffold",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

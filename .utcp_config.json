@@ -195,6 +195,27 @@
           }
         }
       }
+    },
+    {
+      "name": "obsidian",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "obsidian": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "obsidian-mcp-server@latest"
+            ],
+            "env": {
+              "OBSIDIAN_API_KEY": "${obsidian_OBSIDIAN_API_KEY}",
+              "OBSIDIAN_BASE_URL": "${obsidian_OBSIDIAN_BASE_URL}",
+              "OBSIDIAN_VERIFY_SSL": "${obsidian_OBSIDIAN_VERIFY_SSL}"
+            }
+          }
+        }
+      }
     }
   ]
 }

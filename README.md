@@ -799,6 +799,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Parent hub for MCP tool bridges.** One advisor identity routing to `mcp-chrome-devtools` (browser debugging), `mcp-click-up` (ClickUp tasks), and `mcp-figma` (Figma Desktop transport) through `mode-registry.json`
 - **`mcp-chrome-devtools` — drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
 - **`mcp-click-up` — manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
+- **`mcp-obsidian` — manage Obsidian notes from the assistant.** Dual CLI + MCP mode using `notesmd-cli` for headless vault operations, the official `obsidian` CLI for app-backed control, and cyanheads `obsidian-mcp-server` through the Local REST API
 - **`mcp-figma` _(transport)_ — drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own — mandatory cross-hub pairing with `sk-design` for the judgment
 
 &nbsp;
@@ -1145,7 +1146,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `system-deep-loop` | ✅ Codebase-agnostic                        | Parent hub for the unified deep-loop skill (research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking) over nested `runtime/` infrastructure. Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-external-orchestration` | ✅ Codebase-agnostic                        | Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi`. Stack-independent.                                                                                                                                                           |
-| `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
+| `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI, and cyanheads obsidian-mcp-server), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -1318,5 +1319,4 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ HuggingFace](https://huggingface.co/)** - Free local embedding alternative
 
 <!-- /ANCHOR:related-documents -->
-
 

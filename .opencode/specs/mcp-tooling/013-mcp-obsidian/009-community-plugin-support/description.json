@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "description": "The `mcp-obsidian` mode operates a vault at the file layer (read/write/search markdown and data files via CLI/MCP), but it has no knowledge of how",
+  "keywords": [
+    "mcp-obsidian",
+    "mode",
+    "operates",
+    "vault",
+    "file",
+    "layer",
+    "read",
+    "write",
+    "search",
+    "markdown",
+    "data",
+    "files",
+    "via",
+    "cli",
+    "mcp",
+    "knowledge"
+  ],
+  "lastUpdated": "2026-08-02T10:55:59.632Z",
+  "specId": "009",
+  "folderSlug": "community-plugin-support",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "02-08-26_10-51__the-phase-2-6-build-is-now-in-flight-four-agents.md",
+    "02-08-26_11-07__both-cli-codex-builds-are-healthy-and-running-at.md",
+    "02-08-26_11-55__both-phase-7-dispatches-confirmed-running-and.md"
+  ]
+}
