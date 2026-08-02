@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/005-feature-catalog-and-playbook",
+  "description": "Without a catalog, supported features drift out of documentation",
+  "keywords": [
+    "without",
+    "catalog",
+    "supported",
+    "features",
+    "drift",
+    "documentation"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.593Z",
+  "specId": "005",
+  "folderSlug": "feature-catalog-and-playbook",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

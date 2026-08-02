@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/002-architecture-and-safety-contract",
+  "description": "Webflow MCP may read and mutate an external design and content system, while `mcp-tooling` distinguishes workspace-mutating workflows from external",
+  "keywords": [
+    "webflow",
+    "mcp",
+    "read",
+    "mutate",
+    "external",
+    "design",
+    "content",
+    "system",
+    "while",
+    "mcp-tooling",
+    "distinguishes",
+    "workspace-mutating",
+    "workflows"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.593Z",
+  "specId": "002",
+  "folderSlug": "architecture-and-safety-contract",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

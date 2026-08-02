@@ -1,0 +1,23 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/015-mcp-webflow",
+  "description": "The `mcp-tooling` hub has no mode for operating Webflow through Webflow's current MCP surface",
+  "keywords": [
+    "mcp-tooling",
+    "hub",
+    "mode",
+    "operating",
+    "webflow",
+    "current",
+    "mcp",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-02T15:16:51.352Z",
+  "specId": "015",
+  "folderSlug": "mcp-webflow",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
