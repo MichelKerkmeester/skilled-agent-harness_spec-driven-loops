@@ -62,7 +62,7 @@ const tools = await list_tools();            // live discovery per session
 const webflow = tools.filter(t => t.name.startsWith("webflow.webflow."));
 ```
 
-Callable names carry the doubled prefix `webflow.webflow.webflow_<tool>` (manual + server + tool). The research-time inventory (18 modules: pages, cms, sites, workflows, scripts, components, dePages, deElement, deVariable, aiChat, comments, enterprise, rules, webhooks, localDeMCPConnection, …) is the baseline in `tool-surface.md`; **always re-discover per session** — never call from memory.
+Expected callable names follow the Code Mode convention `{manual}.{manual}_{tool}` (registry `webflow.webflow.<tool>` / TypeScript `webflow.webflow_<tool>`) — UNVERIFIED until authenticated discovery (mobbin precedent: `mobbin.mobbin.search_screens` / `mobbin.mobbin_search_screens`). The research-time inventory (18 modules: pages, cms, sites, workflows, scripts, components, dePages, deElement, deVariable, aiChat, comments, enterprise, rules, webhooks, localDeMCPConnection, …) is the baseline in `tool-surface.md`; **always re-discover per session** — never call from memory.
 
 ## 5. REMOTE OAUTH ALTERNATIVE
 

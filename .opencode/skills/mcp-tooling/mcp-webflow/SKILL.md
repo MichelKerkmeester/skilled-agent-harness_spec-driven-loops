@@ -26,7 +26,7 @@ version: 1.0.0.0
 ## Wiring
 
 - Transport: official `webflow-mcp-server` via the `webflow` Code Mode manual (`.utcp_config.json`), `WEBFLOW_TOKEN` from the environment.
-- **Discover first, always**: `list_tools()` per session; callable names carry the `webflow.webflow.webflow_<tool>` prefix.
+- **Discover first, always**: `list_tools()` per session; per the Code Mode convention and the mobbin precedent the expected names are `webflow.webflow.<tool>` (registry) / `webflow.webflow_<tool>` (TypeScript) — UNVERIFIED until authenticated discovery.
 - Docs: `INSTALL-GUIDE.md`, `references/mcp-wiring.md`, `references/tool-surface.md`, `references/troubleshooting.md`.
 
 ## Safety

@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/005-feature-catalog-and-playbook"
-    last_updated_at: "2026-08-02T18:47:10Z"
+    last_updated_at: "2026-08-02T21:10:00Z"
     last_updated_by: "pi"
     recent_action: "Created catalog and playbook tasks"
     next_safe_action: "Wait for Phase 4"
@@ -84,10 +84,10 @@ _memory:
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] Full capability and risk-class coverage exists.
-- [ ] Scenario evidence and failure triage are complete.
-- [ ] Production mutation is absent.
-- [ ] Validators pass.
+- [x] Full capability and risk-class coverage exists. [evidence: `feature-catalog/feature-catalog.md` all operation classes mapped]
+- [x] Scenario evidence and failure triage are complete. [evidence: `manual-testing-playbook/` scenario files + refusal/publish-gate tests]
+- [x] Production mutation is absent. [evidence: scenarios staged-only; `customDomains` forbidden per Phase 2 D5]
+- [x] Validators pass. [evidence: validate.sh --strict exit 0]
 <!-- /ANCHOR:completion -->
 
 ---

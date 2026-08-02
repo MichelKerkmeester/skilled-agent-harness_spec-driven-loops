@@ -17,13 +17,16 @@
     "workspace-mutating",
     "workflows"
   ],
-  "lastUpdated": "2026-08-02T18:40:32.507Z",
+  "lastUpdated": "2026-08-02T19:20:28.576Z",
   "specId": "002",
   "folderSlug": "architecture-and-safety-contract",
   "parentChain": [
     "mcp-tooling",
     "015-mcp-webflow"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-08-26_20-14__phase-2-complete-d1-d8-frozen-transport-remote.md",
+    "02-08-26_20-20__phase-2-complete-d1-d8-frozen-transport-remote.md"
+  ]
 }

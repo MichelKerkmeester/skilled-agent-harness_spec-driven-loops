@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/006-hub-registration-and-advisor"
-    last_updated_at: "2026-08-02T18:50:16Z"
+    last_updated_at: "2026-08-02T21:10:00Z"
     last_updated_by: "pi"
     recent_action: "Created hub registration tasks"
     next_safe_action: "Wait for Phase 5"
@@ -84,10 +84,10 @@ _memory:
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] Webflow intents resolve to `mcp-webflow` across registry, router, and smart-routing.
-- [ ] Generated assets are fresh; all hub validators pass.
-- [ ] No advisor metadata exists inside the leaf packet.
-- [ ] Hub docs and changelog record the mode.
+- [x] Webflow intents resolve to `mcp-webflow` across registry, router, and smart-routing. [evidence: `mode-registry.json` entry + `hub-router.json` signals + `shared/references/smart-routing.md` + benchmark 12/12]
+- [x] Generated assets are fresh; all hub validators pass. [evidence: `leaf-manifest.json` regenerated; parent-skill-check webflow invariants PASS]
+- [x] No advisor metadata exists inside the leaf packet. [evidence: packet inventory — no description.json/graph-metadata.json in `mcp-webflow/`]
+- [x] Hub docs and changelog record the mode. [evidence: hub `README.md` + `changelog/` + `description.json`/`graph-metadata.json` vocabulary]
 <!-- /ANCHOR:completion -->
 
 ---

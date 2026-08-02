@@ -36,7 +36,7 @@
       "without"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,8 +192,8 @@
     ],
     "causal_summary": "Without a catalog, supported features drift out of documentation",
     "created_at": "2026-08-02T13:47:09Z",
-    "last_save_at": "2026-08-02T19:04:24.333Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T19:20:33.228Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6c41bcf69e06359cfd215b3376cab82c7c394b9594c8b28ef8de75208d74359",
+    "source_fingerprint": "sha256:3731a5e3468fa5d638783bd990d94c54fe4c804df27a6a83c7c2523f35fe0773",
     "source_doc_hashes": {
-      "spec.md": "72b4508aa8ca6dd6f9e99919bcb13ef288e9dec78bf47791de16938ac4f79be6",
-      "plan.md": "a7dc70dca54974cfbdf8e68dcbd48941f59b79171f1375799bef11cab22997bc",
-      "tasks.md": "75e7589084a863f817c6aec905029b458c22e5f8ddc4cf36509bf25e5b105d6e",
-      "implementation-summary.md": "80bce990dcce5bfcd8dfba99f8f57dfb5666e1904dc9d19cbec9c5fac477f3cb"
+      "spec.md": "306e0fe911765675468b5e80521be89f12433722ea201d187a43e32fc7685cb8",
+      "plan.md": "38f05d1eaa1fa718cb4096652f7c63bf6415240053b653b70bfd854af3434e25",
+      "tasks.md": "4016b713905c55b2e626b205349fb92aa43ed6079a31ff035c9352f791a7f2a7",
+      "implementation-summary.md": "9f1fc1a3ade6c6fbdfd780ef842800d0ba695613532de44412009c11d670baaa"
     },
     "last_active_child_id": null,
     "last_active_at": null

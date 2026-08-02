@@ -17,13 +17,17 @@
     "compiled",
     "routing"
   ],
-  "lastUpdated": "2026-08-02T19:02:23.943Z",
+  "lastUpdated": "2026-08-02T19:20:34.866Z",
   "specId": "006",
   "folderSlug": "hub-registration-and-advisor",
   "parentChain": [
     "mcp-tooling",
     "015-mcp-webflow"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "02-08-26_20-15__phase-6-complete-mode-registry-mcp-webflow-entry.md",
+    "02-08-26_20-16__phase-6-complete-mode-registry-mcp-webflow-entry.md",
+    "02-08-26_20-20__phase-6-complete-mode-registry-mcp-webflow-entry.md"
+  ]
 }

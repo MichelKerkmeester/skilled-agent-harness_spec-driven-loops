@@ -45,7 +45,7 @@
       "hub"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-deep-research/spec.md",
@@ -155,19 +155,19 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no mode for operating Webflow through Webflow's current MCP surface",
     "created_at": "2026-08-02T13:47:06Z",
-    "last_save_at": "2026-08-02T19:04:25.266Z",
+    "last_save_at": "2026-08-02T19:20:44.036Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fbfd94056288719e86ff6fca412886576b61fcea31d27d925b2211d4453a9725",
+    "source_fingerprint": "sha256:d5c9c303606bd3ecf4d470d1f650787ffb0c982d86d8ae4f8e6074f0e56439c8",
     "source_doc_hashes": {
-      "spec.md": "0122a330e6188887696b10e901457d98fa82b0d3b39cc88928a328611198f03c",
+      "spec.md": "c00b0f97e17948526f3782b0c7add78cbd51efe3099b394566f6d5379497af49",
       "handover.md": "ddf5618551abfaffcf299a385168895967c05403034193be8c3ebb480d5f5e48"
     },
-    "last_active_child_id": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
-    "last_active_at": "2026-08-02T18:43:35.495Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-02T19:20:44.036Z"
   }
 }
