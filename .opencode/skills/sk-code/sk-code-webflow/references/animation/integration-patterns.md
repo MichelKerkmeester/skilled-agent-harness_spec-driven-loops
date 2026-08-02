@@ -38,8 +38,8 @@ This reference centralizes install and initialization patterns so Webflow-specif
 
 - Official: https://motion.dev/docs/quick-start
 - Official: https://motion.dev/docs/animate
-- In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
-- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
 ---
 
@@ -57,7 +57,7 @@ Motion's quick start documents script-tag usage for basic HTML pages and no-code
 </script>
 ```
 
-Local anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` destructures `animate` from `window.Motion || {}` and exits with a warning if it is unavailable.
+External/historical anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` destructures `animate` from `window.Motion || {}` and exits with a warning if it is unavailable.
 
 ## 3. NPM / ES MODULES
 
@@ -71,7 +71,7 @@ npm install motion
 import { animate, inView, motionValue, scroll } from "motion";
 ```
 
-Local anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic import from a pinned CDN ESM URL as a Webflow-friendly fallback, then patches `window.Motion` with `animate`, `inView`, `scroll`, and `motionValue`.
+External/historical anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic import from a pinned CDN ESM URL as a Webflow-friendly fallback, then patches `window.Motion` with `animate`, `inView`, `scroll`, and `motionValue`.
 
 ## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
@@ -87,7 +87,7 @@ Webflow patterns in this repo include:
 - `motion:ready` listener and timeout fallback,
 - guarded `window.Motion || {}` reads.
 
-Source anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`, `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`.
+External/historical anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`, `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`.
 
 ## 5. NON-WEBFLOW STACKS
 
@@ -129,7 +129,7 @@ Use the stack's native client-only lifecycle:
 })();
 ```
 
-This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.opencode/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`).
+This mirrors local Webflow safety patterns and keeps Motion optional for non-critical interactions (External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `.opencode/skills/sk-code/sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`).
 
 ### ESM bootstrap
 
@@ -149,6 +149,6 @@ export function init_motion_component(root = document) {
 - Official install and script-tag guidance: https://motion.dev/docs/quick-start
 - Official mini/hybrid and target guidance: https://motion.dev/docs/animate
 - Official scroll/inView/hover APIs: https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover
-- Local CDN-global dropdown pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
-- Local ESM/dynamic import pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
-- Local Webflow init patterns: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`
+- External/historical CDN-global dropdown pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical ESM/dynamic import pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical Webflow init patterns: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`

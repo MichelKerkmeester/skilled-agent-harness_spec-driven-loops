@@ -694,7 +694,7 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for this skill live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus 41 per-feature scenario files (`GIT-001`..`GIT-041`) across 7 category directories under `manual-testing-playbook/<topic>/<scenario>.md` — worktree setup, commit formation, safety refusals, integration and PR, recovery and edge cases, cross-CLI orchestration, and owner-first worktree tooling. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios for this skill live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus 42 per-feature scenario files (`GIT-001`..`GIT-042`) across 8 category directories under `manual-testing-playbook/<topic>/<scenario>.md` — worktree setup, commit formation, safety refusals, integration and PR, recovery and edge cases, cross-CLI orchestration, owner-first worktree tooling, and Git preflight advisory. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
 
 ### Feature Catalog
 

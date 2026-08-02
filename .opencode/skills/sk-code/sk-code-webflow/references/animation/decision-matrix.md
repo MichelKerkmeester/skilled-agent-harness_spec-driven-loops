@@ -39,7 +39,7 @@ This reference gives sk-code a decision path for choosing CSS, Motion.dev, GSAP,
 - Official: https://motion.dev/docs/quick-start
 - Official: https://motion.dev/docs/gsap-vs-motion
 - Official: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- In-repo: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
+- External/historical: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
 
 ---
 
@@ -86,7 +86,7 @@ Use Motion when:
 - animations need JS state, scroll progress, viewport entry, or motion values,
 - you need sequence arrays, controls, or interruption behavior (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
-Local examples: `link_grid.js` could be CSS in many stacks, but uses Motion because the current Webflow implementation centralizes interactive color animation through JS. `testimonial.js` earns Motion because it uses drag state, inertia, and snap behavior (Repo: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
+External/historical examples: `link_grid.js` could be CSS in many stacks, but uses Motion because the current Webflow implementation centralizes interactive color animation through JS. `testimonial.js` earns Motion because it uses drag state, inertia, and snap behavior (External/historical example: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
 ## 5. MOTION.DEV VS WEB ANIMATIONS API
 
@@ -101,7 +101,7 @@ Recommendation: use WAAPI directly only for tiny isolated effects. Use Motion wh
 Motion is a strong default for sk-code animation references because:
 - official JS docs cover CDN and package-manager usage (Source: https://motion.dev/docs/quick-start),
 - it offers `animate()`, sequences, `scroll()`, `inView()`, `hover()`, `press()`, `spring()`, and motion values across vanilla JS surfaces (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover, https://motion.dev/docs/press, https://motion.dev/docs/spring),
-- current repo code already uses both guarded `window.Motion` and dynamic ESM import patterns (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
+- current repo code already uses both guarded `window.Motion` and dynamic ESM import patterns (External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
 ## 7. CONTRACT REGRESSION EXAMPLES
 
@@ -126,4 +126,4 @@ Expected response shape: give the smallest-tool recommendation first, then name 
 - Motion vs GSAP: https://motion.dev/docs/gsap-vs-motion
 - Motion vs WAAPI / improvements: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
 - Local Webflow animation decision rule: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
-- Local Motion usage anchors: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical Motion usage anchors: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`

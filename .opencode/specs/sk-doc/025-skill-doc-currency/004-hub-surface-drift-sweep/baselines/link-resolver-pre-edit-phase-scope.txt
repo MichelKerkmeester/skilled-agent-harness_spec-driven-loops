@@ -1,0 +1,2 @@
+FAIL .opencode/skills/sk-git/references/finish-workflows.md:427: 'link': path does not exist with exact case
+SUMMARY files_examined=35 entries_examined=253 failures=1 excluded_anchor=1 excluded_external=21

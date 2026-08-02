@@ -19,7 +19,7 @@ A pre-handoff card for catching motion patterns that drop frames or stutter unde
 
 ### Purpose
 
-Check a motion build against this card before handing it off. Each row is a pattern that drops frames, drains battery or stutters under load. This is a build-side card for catching the failure while you write the motion, not a release audit. Severity scoring and findings reports for motion performance belong to the `audit` mode.
+Check a motion build against this card before handing it off. Each row is a pattern that drops frames, drains battery or stutters under load. This is a build-side card for catching the failure while you write the motion, not a release review. Severity scoring and findings reports for motion performance belong to the `sk-design-interface` review lane.
 
 ### Usage
 
@@ -65,4 +65,4 @@ Tick each before handing the build to review.
 - [ ] Blur stays at or below `8px` and is never continuous or on a large surface.
 - [ ] Performance was checked on the lowest target device, not only desktop Chrome.
 
-A build that clears every box is ready for the `audit` mode to score. A box left unchecked is a frame-rate defect to fix before handoff, not a finding to defer.
+A build that clears every box is ready for the `sk-design-interface` review lane to score. A box left unchecked is a frame-rate defect to fix before handoff, not a finding to defer.

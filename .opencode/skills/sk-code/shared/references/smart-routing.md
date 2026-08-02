@@ -103,17 +103,17 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | Universal code quality + error recovery from `references/universal/` |
+| ALWAYS | Every invocation | Universal code quality + error recovery from `.opencode/skills/sk-code/shared/references/universal/` and `.opencode/skills/sk-code/shared/references/phase-detection.md` |
 | SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
-| LANGUAGE | OPENCODE only | JavaScript, TypeScript, Python, Shell, Config standards from the matching `sk-code-opencode/<lang>/*` folder |
+| LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-opencode/references/<lang>/` resources |
 | ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
 
 ---
 
 ## 4. WEBFLOW MAP
 
-WEBFLOW loads from `sk-code-webflow/references/` and `sk-code-webflow/assets/`. The per-language sub-tree (`sk-code-webflow/{javascript,css,html,shared}/`) and topical workflow dirs (`sk-code-webflow/{implementation,debugging,verification,performance,deployment}/`) coexist; the router selects across both.
+WEBFLOW loads from `sk-code-webflow/references/` and `sk-code-webflow/assets/`. The per-language sub-tree (`sk-code-webflow/references/{javascript,css,html,shared}/`) and topical workflow dirs (`sk-code-webflow/references/{implementation,debugging,verification,performance,deployment}/`) coexist; the router selects across both.
 
 | Intent | Resources |
 | --- | --- |
@@ -142,7 +142,7 @@ For the LANGUAGE_STANDARDS intent, load the language overlay matching the change
 | --- | --- |
 | JavaScript (`.js`) | `sk-code-webflow/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-webflow/references/shared/cross-language-rules.md` |
 | CSS (`.css`) | `sk-code-webflow/references/css/{style_guide,quality_standards,quick_reference,patterns}.md`, `sk-code-webflow/references/shared/cross-language-rules.md` |
-| HTML (`.html`) | `sk-code-webflow/html/{style_guide,quality_standards}.md`, `sk-code-webflow/references/shared/cross-language-rules.md` |
+| HTML (`.html`) | `sk-code-webflow/references/html/{style-guide.md,quality-standards.md}`, `sk-code-webflow/references/shared/cross-language-rules.md` |
 | Mixed (CSS + JS in same task) | Both per-language sets above |
 
 ---
@@ -194,7 +194,7 @@ DECISION intent MUST name:
 
 ## 6. OPENCODE MAP
 
-OPENCODE loads from `sk-code-opencode/references/` and `assets/code_opencode/`.
+OPENCODE loads from `sk-code-opencode/references/` and `sk-code-opencode/assets/`.
 
 ### Implementation shared tier
 

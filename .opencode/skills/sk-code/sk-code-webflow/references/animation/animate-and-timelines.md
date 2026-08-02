@@ -38,8 +38,8 @@ This reference captures Motion's core JavaScript animation forms and maps them t
 
 - Official: https://motion.dev/docs/animate
 - Official: https://motion.dev/docs/animate
-- In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
-- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
 ---
 
@@ -86,7 +86,7 @@ animate(
 );
 ```
 
-The current Webflow codebase often uses `easing` in options while official docs use `ease` in current examples. When authoring new generic snippets, prefer the official option name unless a local component pattern proves compatibility constraints (Sources: https://motion.dev/docs/animate; repo examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`).
+The current Webflow codebase often uses `easing` in options while official docs use `ease` in current examples. When authoring new generic snippets, prefer the official option name unless a local component pattern proves compatibility constraints (Sources: https://motion.dev/docs/animate; External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`).
 
 ## 4. TIMELINES (sequence, parallel, with relative/absolute positioning)
 
@@ -120,13 +120,13 @@ animateMini(".toast", { opacity: [0, 1], transform: ["translateY(8px)", "transla
 
 Use the mini import for bundle-sensitive HTML/SVG style animation. Use the hybrid import when you need independent transform axes like `x`, `y`, `rotateZ`, sequence arrays, or non-DOM values (Source: https://motion.dev/docs/animate).
 
-## 6. IN-REPO EXAMPLES
+## 6. EXTERNAL/HISTORICAL EXAMPLES
 
 ### `window.Motion` guarded dropdowns
 
-`a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` reads `const { animate } = window.Motion || {};` and exits if `animate` is missing. It then animates dropdown opacity/height, button color, and icon rotation with measured heights and `onComplete` cleanup.
+External/historical example `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` reads `const { animate } = window.Motion || {};` and exits if `animate` is missing. It then animates dropdown opacity/height, button color, and icon rotation with measured heights and `onComplete` cleanup.
 
-Representative local pattern:
+Representative external/historical pattern:
 
 ```js
 const { animate } = window.Motion || {};
@@ -140,13 +140,13 @@ animate(dropdown, { opacity: [0, 1], height: ["0px", `${natural_height}px`] }, {
 
 ### `motionValue`-driven slider
 
-`a_nobel_en_zn/2_javascript/slider/testimonial.js` ensures `animate` and `motionValue` exist, dynamically imports Motion when needed, and uses a motion value as the draggable loop's position state. The drag release branch uses `type: "inertia"`, `velocity`, and `modifyTarget` to snap to the nearest slide (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion API surface: https://motion.dev/docs/animate).
+`a_nobel_en_zn/2_javascript/slider/testimonial.js` ensures `animate` and `motionValue` exist, dynamically imports Motion when needed, and uses a motion value as the draggable loop's position state. The drag release branch uses `type: "inertia"`, `velocity`, and `modifyTarget` to snap to the nearest slide (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion API surface: https://motion.dev/docs/animate).
 
 ## 7. REFERENCES AND RELATED RESOURCES
 
 - Core `animate()` behavior, import modes, mini/hybrid distinction, options, controls, sequences, and stagger: https://motion.dev/docs/animate
 - Timeline/sequence entry point: https://motion.dev/docs/animate
 - WAAPI improvements and seconds-based duration note: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
-- In-repo dropdown pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
-- In-repo draggable slider pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
-- In-repo hover/card patterns: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`
+- External/historical dropdown pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical draggable slider pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical hover/card patterns: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`

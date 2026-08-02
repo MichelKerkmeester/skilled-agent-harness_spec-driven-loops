@@ -25,20 +25,22 @@ Detection is two-step. First, the surface trigger is work under `.opencode/` (in
 
 ## 2. REFERENCE MAP
 
-Language standards — after `.opencode/` selects this surface, load ONLY the detected language's trio (`style-guide.md`, `quality-standards.md`, `quick-reference.md`):
-- TypeScript — `references/typescript/`
-- Python — `references/python/`
-- Shell — `references/shell/`
-- Rust (napi-rs/WASM/sidecar interop under TypeScript parity) — `references/rust/`
-- Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/`
-- JavaScript (CommonJS/ESM plugins) — `references/javascript/`
+Language standards — after `.opencode/` selects this surface, load the exact split resources for the detected language:
+- TypeScript — `references/typescript/style-guide/overview-strict-and-naming.md`, `references/typescript/style-guide/formatting-imports-and-coexistence.md`, `references/typescript/quality-standards/overview-and-type-system.md`, `references/typescript/quality-standards/tsdoc-errors-and-async.md`, `references/typescript/quality-standards/tsconfig-and-modules.md`, `references/typescript/quick-reference/template-naming-and-types.md`, `references/typescript/quick-reference/imports-errors-and-tsconfig.md`
+- Python — `references/python/style-guide.md`, `references/python/quality-standards.md`, `references/python/quick-reference.md`
+- Shell — `references/shell/style-guide/overview-structure-and-naming.md`, `references/shell/style-guide/variables-functions-and-output.md`, `references/shell/quality-standards/overview-and-priority-blockers.md`, `references/shell/quality-standards/validation-security-and-shellcheck.md`, `references/shell/quick-reference/template-variables-and-loops.md`, `references/shell/quick-reference/functions-strings-and-checklist.md`
+- Rust — `references/rust/style-guide/overview-and-file-header.md`, `references/rust/style-guide/toolchain-and-project-structure.md`, `references/rust/style-guide/naming-conventions.md`, `references/rust/style-guide/formatting-and-imports.md`, `references/rust/style-guide/commenting-and-rustdoc.md`, `references/rust/style-guide/interop-model.md`, `references/rust/style-guide/interop-errors-and-parity.md`, `references/rust/quality-standards/overview-and-data-ownership.md`, `references/rust/quality-standards/modeling-collections-and-api.md`, `references/rust/quality-standards/docs-errors-and-async.md`, `references/rust/quality-standards/build-and-organization.md`, `references/rust/quality-standards/determinism-and-parity.md`, `references/rust/quick-reference/overview-and-boundary-template.md`, `references/rust/quick-reference/naming-ordering-and-signatures.md`, `references/rust/quick-reference/collections-imports-and-errors.md`, `references/rust/quick-reference/rustdoc-and-cargo.md`, `references/rust/quick-reference/determinism-parity-and-related.md`
+- Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/style-guide.md`, `references/config/quality-standards.md`, `references/config/quick-reference.md`, `assets/checklists/config-checklist.md`
+- JavaScript (CommonJS/ESM plugins) — `references/javascript/style-guide.md`, `references/javascript/quality-standards/overview-modules-and-docs.md`, `references/javascript/quality-standards/security-testing-and-exemptions.md`, `references/javascript/quick-reference.md`
 
 Language-agnostic shared tier (`references/shared/`, always kept within OpenCode regardless of language):
-- `universal_patterns.md`, `code_organization.md`
+- `references/shared/universal-patterns/naming-and-commenting.md`, `references/shared/universal-patterns/organization-security-and-examples.md`, `references/shared/code-organization/overview-and-module-organization.md`, `references/shared/code-organization/imports-and-exports.md`, `references/shared/code-organization/directory-and-test-conventions.md`
 - `hooks.md` — runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability; defer to that file for current hook infrastructure instead of duplicating it here
 - `alignment-verification-automation.md` — the alignment-drift verifier
 
-Workflow (`references/`): `workflow-implement.md`, `workflow-debug.md`, `workflow-verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
+Authoring and validation assets: `assets/checklists/agent-authoring.md`, `assets/checklists/command-authoring.md`, `assets/checklists/javascript-checklist.md`, `assets/checklists/mcp-server-authoring.md`, `assets/checklists/python-checklist.md`, `assets/checklists/rust-checklist/overview-and-p0-parity.md`, `assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `assets/checklists/rust-checklist/p1-required.md`, `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `assets/checklists/shell-checklist.md`, `assets/checklists/skill-authoring.md`, `assets/checklists/typescript-checklist.md`, `assets/checklists/universal-checklist.md`, `assets/scripts/README.md`, `references/shared/alignment-verification-automation.md`, `references/shared/hooks.md`
+
+Workflow: the implement -> debug -> verify phases use the split shared, language, hook, and alignment resources above; no root-level `workflow-*.md` trio is assumed.
 
 ## 2b. SMART ROUTING (machine-readable)
 

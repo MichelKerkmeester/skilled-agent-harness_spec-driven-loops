@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep",
   "description": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
   "keywords": [
@@ -13,13 +14,18 @@
     "prose",
     "behind"
   ],
-  "lastUpdated": "2026-07-30T19:29:14.283Z",
+  "lastUpdated": "2026-08-02T14:32:45.517Z",
   "specId": "004",
   "folderSlug": "hub-surface-drift-sweep",
   "parentChain": [
     "sk-doc",
     "025-skill-doc-currency"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "02-08-26_14-55__build-leaf-confirmed-locked-head-and-applied-the.md",
+    "02-08-26_15-03__build-scope-receipts-updated-after-strict.md",
+    "02-08-26_15-06__final-build-receipts-strict-packet-validation.md",
+    "02-08-26_15-32__hub-surface-drift-sweep-repaired-20-items-design.md"
+  ]
 }

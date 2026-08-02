@@ -66,8 +66,8 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 | Surface | Primary tool | Reference |
 |---|---|---|
-| WEBFLOW | Chrome DevTools (Console + Network + Performance) | `references/webflow/debugging/debugging_workflows.md` |
-| OPENCODE | Targeted tests, package typecheck/build, `verify_alignment_drift.py` | `references/opencode/shared/alignment-verification-automation.md` |
+| WEBFLOW | Chrome DevTools (Console + Network + Performance) | `.opencode/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md` |
+| OPENCODE | Targeted tests, package typecheck/build, `verify_alignment_drift.py` | `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` |
 | UNKNOWN | Disambiguation prompt — sk-code does not own Go / React Native / Swift / React/Next.js / generic Node.js | n/a |
 
 ---
@@ -85,8 +85,8 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 ## 5. RELATED RESOURCES
 
-- `references/phase-detection.md` — Phase 2 Debugging position in the sk-code lifecycle.
-- `references/universal/error-recovery.md` — universal recover-in-place / rollback / escalate decision tree.
-- `assets/universal/checklists/verification_checklist.md` — runs after debugging completes, before any "done" claim.
-- `references/webflow/debugging/debugging_workflows.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
-- `references/opencode/shared/alignment-verification-automation.md` — OPENCODE alignment diagnostics.
+- `.opencode/skills/sk-code/shared/references/phase-detection.md` — Phase 2 Debugging position in the sk-code lifecycle.
+- `.opencode/skills/sk-code/shared/references/universal/error-recovery.md` — universal recover-in-place / rollback / escalate decision tree.
+- `.opencode/skills/sk-code/shared/references/universal-verification-checklist.md` — runs after debugging completes, before any completion claim.
+- `.opencode/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/systematic-four-phases.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
+- `.opencode/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` — OPENCODE alignment diagnostics.

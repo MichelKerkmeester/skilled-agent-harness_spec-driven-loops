@@ -11,20 +11,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored implementation plan"
-    next_safe_action: "Execute T001, design-hub group first"
-    blockers:
-      - "Soft-blocked on the canon rulings in the sibling canon phase"
-    key_files: []
+    last_updated_at: "2026-08-02T14:32:45Z"
+    last_updated_by: "skd025-004-build"
+    recent_action: "Executed the planned design, code, git, install, and archive lanes"
+    next_safe_action: "Run and record strict packet validation"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py"
+      - ".opencode/skills/sk-doc/shared/scripts/check_install_entries.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "All locked operator rulings were applied before their governed edits."
 ---
 # Implementation Plan: hub-surface-drift-sweep
 
@@ -65,20 +67,20 @@ Four genuine forks must be answered before the edits they govern. They are not i
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] The four open forks are answered and recorded
-- [ ] **[OPERATOR-DECISION: Q3 — supplementary findings]** answered, because it sets this phase's arithmetic at 20 or 17
-- [ ] **[OPERATOR-DECISION: Q7 — shared tooling ownership]** answered, so this phase builds or consumes the link resolver rather than duplicating it
-- [ ] The canon phase's structure ruling is available, or the conformance-dependent edits are deferred to last
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] The four open forks are answered and recorded
+- [x] **[OPERATOR-DECISION: Q3 — supplementary findings]** answered, because it sets this phase's arithmetic at 20 or 17
+- [x] **[OPERATOR-DECISION: Q7 — shared tooling ownership]** answered, so this phase builds or consumes the link resolver rather than duplicating it
+- [x] The canon phase's structure ruling is available, or the conformance-dependent edits are deferred to last
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing: link resolver delta reported, dangling-entry check at zero, both installer paths run
-- [ ] Docs updated (spec/plan/tasks)
-- [ ] Every count on the touched surfaces derived from disk, not retyped
-- [ ] No symlink repointed at an unverified target
+- [x] All acceptance criteria met
+- [x] Tests passing: link resolver delta reported, dangling-entry check at zero, both installer paths run
+- [x] Docs updated (spec/plan/tasks)
+- [x] Every count on the touched surfaces derived from disk, not retyped
+- [x] No symlink repointed at an unverified target
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -137,25 +139,25 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm all 20 items against HEAD, design-hub group and the three supplementary items first
-- [ ] Build or consume the relative-link resolver; run it before any edit and record the count
-- [ ] Build the dangling-entry check; run it and record the result
-- [ ] Answer and record the four open forks
+- [x] Confirm all 20 items against HEAD, design-hub group and the three supplementary items first
+- [x] Build or consume the relative-link resolver; run it before any edit and record the count
+- [x] Build the dangling-entry check; run it and record the result
+- [x] Answer and record the four open forks
 
 ### Phase 2: Core Implementation
-- [ ] Code-hub lane: human maps matched to machine maps; retired locations repointed; motion anchors, pins and labels resolved per the fork answers
-- [ ] Design-hub lane: lane ownership, cardinality, orphan cards after a reachability check, always-loaded resources
-- [ ] Git-hub lane: allocator recipes across five files, derived counts, integration-document contradiction
-- [ ] Install lane: verify replacement targets, repoint, repair the installer, derive the counts
-- [ ] Benchmark lane: ratify the archive path
+- [x] Code-hub lane: human maps matched to machine maps; retired locations repointed; motion anchors, pins and labels resolved per the fork answers
+- [x] Design-hub lane: lane ownership, cardinality, orphan cards after a reachability check, always-loaded resources
+- [x] Git-hub lane: allocator recipes across five files, derived counts, integration-document contradiction
+- [x] Install lane: verify replacement targets, repoint, repair the installer, derive the counts
+- [x] Benchmark lane: ratify the archive path
 
 ### Phase 3: Verification
-- [ ] Re-run the link resolver; report the delta and the phase-scoped subset separately
-- [ ] Re-run the dangling-entry check: zero
-- [ ] Run the installer's help or dry-run path and the tool-specific path
-- [ ] Run the prose-versus-machine drift check and the cardinality assertion
-- [ ] Confirm every scope item reached a terminal state
-- [ ] `validate.sh --strict` at Errors: 0
+- [x] Re-run the link resolver; report the delta and the phase-scoped subset separately
+- [x] Re-run the dangling-entry check: zero
+- [x] Run the installer's help or dry-run path and the tool-specific path
+- [x] Run the prose-versus-machine drift check and the cardinality assertion
+- [x] Confirm every scope item reached a terminal state
+- [x] `validate.sh --strict` at Errors: 0
 <!-- /ANCHOR:phases -->
 
 ---
@@ -241,10 +243,10 @@ Confirm (design first) ──► Checks built + baseline run ──► Fork answ
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Link-resolver failure count recorded over all skill markdown
-- [ ] Dangling-entry check result recorded
-- [ ] Installer paths exercised and their current behaviour recorded
-- [ ] The fleet-gate re-baseline from the first phase is available and cited
+- [x] Link-resolver failure count recorded over all skill markdown
+- [x] Dangling-entry check result recorded
+- [x] Installer paths exercised and their current behaviour recorded
+- [x] The fleet-gate re-baseline from the first phase is available and cited
 
 ### Rollback Procedure
 1. Revert the phase's commits.

@@ -1,6 +1,6 @@
 ---
 title: Tweakable Design Controls
-description: Private procedure card for the foundations subworkflow's live-adjustable design controls.
+description: Private procedure card for the static-system subworkflow's live-adjustable design controls.
 trigger_phrases:
   - "tweakable design controls"
   - "adjustable design tokens"
@@ -8,27 +8,30 @@ trigger_phrases:
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
+status: quarantined
 ---
 
 # Tweakable Design Controls
 
-Private procedure card for applying the existing foundations-subworkflow tweak-control workflow.
+> Quarantined after reachability review: no active choreography reaches this card. It is retained for historical reference and is not part of the active eight-card interface workflow.
+
+Private procedure card for applying the existing `sk-design-md-generator` tweak-control workflow.
 
 ## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
-| Purpose | Let the `foundations` subworkflow define a small, meaningful set of live-adjustable design controls for a surface or system. |
+| Purpose | Let the `sk-design-md-generator` workflow define a small, meaningful set of live-adjustable design controls for a surface or system. |
 | Owning mode | `design-interface` |
 | Source reference | `make-tweakable.md` |
 | Trigger | Use when the user wants to play with options, compare visual choices, expose adjustable tokens, or make variants controllable. |
 | Output contract | A tweak-control spec naming 3 to 8 controls, control types, token or state targets, defaults, persistence expectations, and hidden-when-off behavior. |
 | Proof gate | Each control changes a meaningful design axis, maps to a token or state, has a default, and excludes nonessential knobs. |
-| Privacy rule | This is private foundations guidance and does not create a public tweakable skill. |
+| Privacy rule | This is private design-system guidance and does not create a public tweakable skill. |
 
 ## 2. READ-ONLY COMPATIBILITY
 
-`foundations` can return the control schema and handoff without writing code or running host protocols. Implementation of controls belongs to a mutating follow-up or `sk-code`.
+`sk-design-md-generator` can return the control schema and handoff without writing code or running host protocols. Implementation of controls belongs to a mutating follow-up or `sk-code`.
 
 ## 3. PROCEDURE
 

@@ -110,7 +110,7 @@ assets/source-of-truth-router-card.md  # fill-in provenance card
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `references/design-md-format.md`, `references/writing-style-guide.md`, `assets/cardinal-rules-card.md` (pre-write fabrication gate) |
+| ALWAYS      | Every invocation                     | `references/design-md-format.md` |
 | CONDITIONAL | EXTRACT_WRITE intent                 | `references/color-role-taxonomy.md`, `references/component-taxonomy.md`, `references/anti-patterns.md` |
 | CONDITIONAL | Guided run or smoke extraction wrapper | `references/guided-run.md`, `references/extraction-workflow.md`, `references/troubleshooting.md` |
 | CONDITIONAL | A value's origin is unclear (brief vs measured), or a brief-only request with no live site | `references/authoring-boundary.md` (the measured / brief-provided / inferred / absent line, where forward-authoring is out of scope) and `assets/source-of-truth-router-card.md` (the fill-in provenance card) |

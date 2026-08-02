@@ -1,6 +1,6 @@
 ---
 title: Hierarchy Rhythm Review
-description: Private procedure card for the foundations subworkflow's hierarchy, rhythm, spacing, and scale review.
+description: Private procedure card for the static-system subworkflow's hierarchy, rhythm, spacing, and scale review.
 trigger_phrases:
   - "hierarchy rhythm review"
   - "spacing rhythm review"
@@ -12,23 +12,23 @@ version: 1.0.0.0
 
 # Hierarchy Rhythm Review
 
-Private procedure card for applying the existing foundations-subworkflow hierarchy and rhythm review workflow.
+Private procedure card for applying the existing `sk-design-md-generator` hierarchy and rhythm review workflow. It is reached from the final-polish orchestrator (`../../shared/procedures/polish-gate-orchestration.md`) as the interface hierarchy and rhythm fix card.
 
 ## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
-| Purpose | Let the `foundations` subworkflow review whether a design's hierarchy and rhythm make scanning, grouping, and emphasis intentional. |
+| Purpose | Let the `sk-design-md-generator` workflow review whether a design's hierarchy and rhythm make scanning, grouping, and emphasis intentional. |
 | Owning mode | `design-interface` |
 | Source reference | `hierarchy-rhythm-review.md` |
 | Trigger | Use when the request mentions hierarchy, rhythm, spacing, type scale, density, visual order, or a design that feels flat or chaotic. |
-| Output contract | A foundations review naming primary/secondary/tertiary elements, spacing scale, type scale, repetition patterns, strategic variation, alignment, and color-discipline findings. |
-| Proof gate | The review identifies scan path and scale discipline, labels confirmed versus inferred evidence, and maps each fix to foundations or implementation handoff. |
-| Privacy rule | This is private foundations review guidance, not a public hierarchy skill. |
+| Output contract | A design-system review naming primary/secondary/tertiary elements, spacing scale, type scale, repetition patterns, strategic variation, alignment, and color-discipline findings. |
+| Proof gate | The review identifies scan path and scale discipline, labels confirmed versus inferred evidence, and maps each fix to static-system or implementation handoff. |
+| Privacy rule | This is private design-system review guidance, not a public hierarchy skill. |
 
 ## 2. READ-ONLY COMPATIBILITY
 
-`foundations` may perform the review using Read, Glob, and Grep evidence plus supplied artifacts. It can report findings and handoff fixes without editing files.
+`sk-design-md-generator` may perform the review using Read, Glob, and Grep evidence plus supplied artifacts. It can report findings and handoff fixes without editing files.
 
 ## 3. PROCEDURE
 

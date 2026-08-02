@@ -14,7 +14,7 @@ importance_tier: "important"
 
 # OpenCode Install Guides
 
-> AI-executable guides for the OpenCode dev environment. Covers 8 MCP guides, native skills, 10 custom agents, and optional CLI tools.
+> AI-executable guides for the OpenCode dev environment. Covers 8 guide entries, native skills, 10 custom agents, and optional CLI tools.
 
 ---
 
@@ -55,8 +55,8 @@ The `install-guides/` directory is the central hub for all OpenCode setup and in
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Guide files | 13 | 6 MCP guides + 2 skill-package install guides, 4 SET-UP guides, 1 index guide (this README) |
-| Install scripts | 8 | 3 real + 5 symlinks in `install-scripts/` |
+| Guide files | 8 | 3 regular files + 5 symlinks in this directory |
+| Install scripts | 7 | 4 regular files + 3 symlinks in `install-scripts/` |
 | Registered MCP servers | 4 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
@@ -70,7 +70,7 @@ This README serves as both the **directory index** (listing all available guides
 <!-- ANCHOR:guides-inventory -->
 ## 2. GUIDES INVENTORY
 
-All `.md` guide files in this directory (5 real + 3 symlinks), grouped by type:
+All 8 `.md` guide entries in this directory (3 regular files + 5 symlinks), grouped by type:
 
 | Guide | Type | Purpose |
 |-------|------|---------|

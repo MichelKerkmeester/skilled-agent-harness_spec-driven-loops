@@ -24,31 +24,33 @@ metadata:
 ## 2. REFERENCE MAP
 
 Language standards (load the detected language's trio; a frontend task legitimately spans all three):
-- CSS — `references/css/style-guide.md`, `references/css/quality-standards/patterns-and-naming-enforcement.md`, `references/css/quick-reference.md`, `references/css/patterns/tokens-state-machine-and-triggers.md`
+- CSS — `references/css/style-guide.md`, `references/css/quality-standards/patterns-and-naming-enforcement.md`, `references/css/quality-standards/typography-autofill-and-color.md`, `references/css/quality-standards/focus-has-print-and-quick-reference.md`, `references/css/quick-reference.md`, `references/css/patterns/tokens-state-machine-and-triggers.md`, `references/css/patterns/data-attributes-and-forms.md`, `references/css/patterns/focus-accessibility-and-mobile.md`, `references/css/patterns/designer-component-and-performance.md`, `references/css/patterns/quick-reference-and-related.md`
 - HTML — `references/html/style-guide.md`, `references/html/quality-standards.md`
-- JavaScript — `references/javascript/style-guide/overview-naming-and-structure.md`, `references/javascript/quality-standards/init-dom-error-and-async.md`, `references/javascript/quick-reference.md`
+- JavaScript — `references/javascript/style-guide/overview-naming-and-structure.md`, `references/javascript/style-guide/formatting.md`, `references/javascript/style-guide/commenting-and-related.md`, `references/javascript/quality-standards/init-dom-error-and-async.md`, `references/javascript/quality-standards/observer-validation-and-performance.md`, `references/javascript/quality-standards/state-and-cleanup.md`, `references/javascript/quality-standards/shared-listener-and-weakmap.md`, `references/javascript/quality-standards/enforcement-and-quick-reference.md`, `references/javascript/quick-reference.md`
 
 Implementation patterns (`references/implementation/`):
-- Core: `implementation_workflows.md`, `webflow_patterns.md`, `animation_workflows.md`
-- Async & observers: `async_patterns.md`, `observer_patterns.md`
-- Forms & focus: `form_upload_workflows.md`, `focus_management.md`
-- Media & vendors: `third_party_integrations.md`, `swiper_patterns.md`
-- Hardening & performance: `security_patterns.md`, `performance_patterns.md`
+- Core: `references/implementation/implementation-workflows/condition-based-waiting.md`, `references/implementation/implementation-workflows/validation-minification-and-cdn.md`, `references/implementation/webflow-patterns/overview-limits-and-collection-lists.md`, `references/implementation/webflow-patterns/development-and-production.md`, `references/implementation/webflow-patterns/finsweet-custom-select-bridge.md`
+- Async & observers: `references/implementation/async-patterns/raf-ric-microtask-and-posttask.md`, `references/implementation/async-patterns/timing-compat-and-webflow.md`, `references/implementation/observer-patterns/mutation-and-intersection.md`, `references/implementation/observer-patterns/resize-best-practices-and-shared.md`
+- Forms & focus: `references/implementation/form-upload-workflows/overview-architecture-and-filepond.md`, `references/implementation/form-upload-workflows/state-machine-worker-and-forms.md`, `references/implementation/form-upload-workflows/mime-troubleshooting-and-deployment.md`, `references/implementation/focus-management/selector-and-focus-trap.md`, `references/implementation/focus-management/restoration-touch-and-anti-patterns.md`
+- Media & vendors: `references/implementation/third-party-integrations/overview-hls-and-lenis.md`, `references/implementation/third-party-integrations/botpoison-and-finsweet.md`, `references/implementation/third-party-integrations/filepond.md`, `references/implementation/third-party-integrations/best-practices-and-summary.md`, `references/implementation/swiper-patterns/overview-timeline-and-marquee.md`, `references/implementation/swiper-patterns/autoplay-accessibility-and-naming.md`, `references/implementation/swiper-patterns/initialization-and-troubleshooting.md`
+- Hardening & performance: `references/implementation/security-patterns/overview-and-checklist.md`, `references/implementation/security-patterns/owasp-prototype-and-safe-access.md`, `references/implementation/performance-patterns/overview-and-checklist.md`, `references/implementation/performance-patterns/budgets-and-anti-patterns.md`
 
-Animation / Motion.dev (`references/animation/`): `animation-principles.md`, `animate-and-timelines.md`, `decision-matrix.md`, `performance-and-pitfalls.md`, `scroll-and-gestures.md`, `integration-patterns.md`, `quick-start.md`
+Animation / Motion.dev (`references/animation/`): `references/animation/animation-principles.md`, `references/animation/animate-and-timelines.md`, `references/animation/decision-matrix.md`, `references/animation/performance-and-pitfalls.md`, `references/animation/scroll-and-gestures.md`, `references/animation/integration-patterns.md`, `references/animation/quick-start.md`
 Use after the Webflow surface resolves when Motion.dev overlays Webflow animation needs: scroll reveals, timelines, gestures; snippets live in `assets/animation/snippets/`.
 
 Performance (`references/performance/`): `cwv-remediation.md`, `resource-loading.md`, `interaction-gated-loading.md`, `third-party.md`, `webflow-constraints.md`
 
-Deployment (`references/deployment/`): `cdn-deployment.md`, `minification_guide.md`, `webflow-staging-production.md`
+Deployment (`references/deployment/`): `references/deployment/cdn-deployment.md`, `references/deployment/minification-guide/overview-terser-and-patterns.md`, `references/deployment/minification-guide/workflow-verification-and-debugging.md`, `references/deployment/minification-guide/batch-rules-and-related.md`, `references/deployment/webflow-staging-production.md`
 
-Browser debugging (`references/debugging/`): `debugging_workflows.md`, `error-recovery.md`
+Browser debugging (`references/debugging/`): `references/debugging/debugging-workflows/systematic-four-phases.md`, `references/debugging/debugging-workflows/rules-and-root-cause.md`, `references/debugging/debugging-workflows/performance-debugging.md`, `references/debugging/debugging-workflows/quick-reference-and-lenis.md`, `references/debugging/debugging-workflows/sub-agent-verification.md`, `references/debugging/debugging-workflows/scroll-interceptor-and-related.md`, `references/debugging/error-recovery.md`
 
-Browser verification (`references/verification/`): `verification_workflows.md`, `performance-checklist.md`
+Browser verification (`references/verification/`): `references/verification/verification-workflows/gate-and-automated-options.md`, `references/verification/verification-workflows/requirements-rules-and-checklist.md`, `references/verification/performance-checklist.md`
 
-Cross-language shared tier (`references/shared/`): `dev_workflow.md`, `cross-language-rules.md`, `enforcement.md`
+Cross-language shared tier (`references/shared/`): `references/shared/dev-workflow/overview-nav-and-logging.md`, `references/shared/dev-workflow/automation-errors-and-compat.md`, `references/shared/dev-workflow/common-commands.md`, `references/shared/dev-workflow/checklists-and-decision-matrix.md`, `references/shared/cross-language-rules.md`, `references/shared/enforcement.md`
 
-Workflow (`references/`): `workflow-implement.md`, `workflow-debug.md`, `workflow-verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
+Supporting assets and performance resources: `assets/animation/install-card.md`, `assets/animation/playbook-entries.md`, `assets/animation/snippets/README.md`, `assets/integrations/README.md`, `assets/patterns/README.md`, `assets/scripts/README.md`, `assets/templates/README.md`, `assets/webflow-debugging-checklist.md`, `assets/webflow-verification-checklist.md`, `references/implementation/animation-workflows/motion-dev-advanced.md`, `references/implementation/animation-workflows/motion-dev-and-performance.md`, `references/implementation/animation-workflows/overview-decision-tree-and-css.md`, `references/implementation/animation-workflows/testing-and-common-issues.md`, `references/performance/cwv-remediation.md`, `references/performance/interaction-gated-loading.md`, `references/performance/resource-loading.md`, `references/performance/third-party.md`, `references/performance/webflow-constraints.md`
+
+Workflow: the implement -> debug -> verify phases are covered by the split implementation, debugging, and verification resources above; no root-level workflow trio is assumed.
 
 ## 2b. SMART ROUTING (machine-readable)
 

@@ -12,26 +12,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored phase spec from the track (e) synthesis proposal"
-    next_safe_action: "Run T001 confirm-against-HEAD, design-hub ownership findings first"
-    blockers:
-      - "Soft-blocked on the canon rulings in the sibling canon phase"
+    last_updated_at: "2026-08-02T14:32:45Z"
+    last_updated_by: "skd025-004-build"
+    recent_action: "Confirmed the locked HEAD state, built both checks, and captured pre-edit baselines"
+    next_safe_action: "Apply the recorded design-hub rulings, ownership repoints, and cardinality repair"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Orphaned procedure cards: canonicalise or quarantine?"
-      - "The odd version pin: current-and-wrong, or a deliberate compatibility fixture?"
-      - "External example anchors: replace with repo-local, or relabel as historical?"
-      - "Archive path: ratify the live writer's location?"
-      - "Q3 — supplementary findings admitted into this child?"
-      - "Q7 — who builds the shared link resolver?"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Orphan cards: quarantine the three cards unreachable from active choreography; retain every reachable card as a first-class interface card."
+      - "Version pin: reconcile the unlabelled 12.15.0 style-guide outlier to the majority 12.38.0 value."
+      - "External examples: relabel the absent a_nobel_en_zn anchors as external/historical; do not add repo-local examples."
+      - "Archive path: ratify benchmark/reports/compiled-routing/ because the live writer and existing archives use it."
+      - "Q3: admit RE-006-03, RE-006-07, and RE-006-08; the quick-reference half of RE-006-03 is deduped to RE-008-01."
+      - "Q7: build the fresh resolver and dangling-entry check in sk-doc/shared/scripts using the existing path-resolution pattern."
 ---
 # Feature Specification: hub-surface-drift-sweep
 
@@ -54,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
@@ -286,14 +285,18 @@ These three iteration-6 entries sit in the registry's `repeated[]` bucket, outsi
 
 ## 10. OPEN QUESTIONS
 
-These four are genuine forks from the research loop, and each must be answered **before** the edits it governs, not during them.
+No open questions remain. The four implementation forks and the two operator rulings were resolved before content edits:
 
-- **Orphaned procedure cards** — canonicalise them as first-class cards of the surviving lane, or quarantine them? Asked twice by the loop. Check reachability first: a card reachable from any choreography is canonicalised, not quarantined.
-- **The odd version pin** — is the outlier current-and-wrong, or a deliberate compatibility fixture? Asked twice by the loop. If it is a fixture it must be labelled as one, never silently bumped to match the majority.
-- **External example anchors** — replace them with repository-local examples, or relabel them as external and historical? Relabelling is cheaper; replacing is more useful. This is a judgment about who reads these files.
-- **The archive path** — the live writer already emits the location the canon does not name, and archives already exist there, so this is ratification rather than repair. It touches most hub benchmark READMEs, which is why it is worth confirming before sweeping.
-- **[OPERATOR-DECISION: Q3 — supplementary findings]** The three `§` items are admitted on the synthesis's recommendation. If the operator declines, the arithmetic returns to 17.
-- **[OPERATOR-DECISION: Q7 — shared tooling ownership]** Does this phase build the link resolver, or consume one another track has already claimed?
+| Fork | Resolution | Evidence |
+|---|---|---|
+| Orphan procedure cards | Quarantine only the three cards unreachable from active choreography; retain all seven reachable cards as interface cards | `SKILL.md:197-203`; reachability sweep recorded in `implementation-summary.md` |
+| Version pin | Reconcile the unlabelled `12.15.0` outlier to the majority `12.38.0` pin | Five majority files versus `references/html/style-guide.md:305` |
+| External examples | Relabel `a_nobel_en_zn/2_javascript/` examples as external/historical | The referenced tree is absent from this repository |
+| Archive path | Ratify `benchmark/reports/compiled-routing/` as the canonical archive path | `render-serving-snapshot.cjs:122`; existing archives in the same directory |
+| Q3 supplementary findings | Admit RE-006-03, RE-006-07, and RE-006-08; dedupe only the quick-reference half of RE-006-03 | Operator ruling in the BUILD brief |
+| Q7 shared tooling | Build both checks in `sk-doc/shared/scripts/` | Operator ruling in the BUILD brief; existing resolver pattern read first |
+
+The first phase's task receipt supplies the fleet-gate baseline as `11/11 clean`; this phase will cite it and will not claim against a remembered number.
 <!-- /ANCHOR:questions -->
 
 ---

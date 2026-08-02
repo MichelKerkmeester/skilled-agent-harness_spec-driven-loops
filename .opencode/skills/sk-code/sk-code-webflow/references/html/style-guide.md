@@ -302,7 +302,7 @@ Every individual `<script>`, `<link>`, or `<meta>` block gets a 1-line `<!-- Lab
 <link rel="preload" href="..." as="font" type="font/woff2" crossorigin>
 
 <!-- Third-party -->
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/motion@12.38.0/+esm" crossorigin>
 
 <!-- Individual Script Preloads -->
 <link rel="preload" href="https://example.r2.dev/nav_dropdown.min.js?v=1.3.1" as="script">

@@ -22,8 +22,8 @@ survive a run, join into one readable artifact, and stay valid off the machine
 that produced it:
 
 1. the **`serving-snapshot.json`** schema — the joined per-hub state artifact;
-2. the durable, fail-closed **`compiled-routing/<run-label>/`** report-path
-   convention — the sibling of `router-final/`/`live-final/`;
+2. the durable, fail-closed **`reports/compiled-routing/<run-label>/`** report-path
+   convention — the compiled-routing sibling of regular `reports/<run-label>/` runs;
 3. **repo-relative portable provenance** replacing the absolute checkout path.
 
 This is a storage-and-schema standard only. The D1-D5 measurement contract,
@@ -44,8 +44,8 @@ single artifact that answers "what is this hub serving right now." The
 Separately, a Lane C compiled-parity run emits the canonical
 `skill-benchmark-report.{json,md}` pair carrying a `report.compiledRouting`
 block (rendered by the non-frozen `build-report.cjs`). Those pairs need a durable
-home beside the hub, the same way `router-final/` and `live-final/` already do
-for non-compiled runs — but fail-closed, and stamped with portable provenance.
+home beside the hub under `benchmark/reports/`, alongside regular non-compiled
+runs — but fail-closed, and stamped with portable provenance.
 
 Two scripts under this packet implement the conventions:
 
@@ -128,13 +128,13 @@ the Lane C report `.md` is renderer-owned (see the storage guide).
 
 ---
 
-## 3. THE `compiled-routing/<run-label>/` REPORT-PATH CONVENTION
+## 3. THE `reports/compiled-routing/<run-label>/` REPORT-PATH CONVENTION
 
 A compiled-parity run's report pair is archived under its hub's own benchmark
 tree, as a sibling of the existing run-label folders:
 
 ```text
-<hub>/benchmark/compiled-routing/
+<hub>/benchmark/reports/compiled-routing/
 ├── router-compiled-parity-baseline/     # immutable parity before-anchor
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md
@@ -152,8 +152,8 @@ tree, as a sibling of the existing run-label folders:
 
 ### New label family
 
-`sk-code/benchmark/` already carries `baseline`, `router-baseline`,
-`router-final`, and `live-final`; `router-compiled-parity-baseline` /
+`sk-code/benchmark/reports/` already carries `baseline` and dated regular runs;
+`router-compiled-parity-baseline` /
 `router-compiled-parity-final` slot into that same family without colliding with
 any existing label. Labels match `^[a-z0-9]+(?:-[a-z0-9]+)*$`, and `baseline` is
 explicitly refused.
