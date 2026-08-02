@@ -196,8 +196,8 @@
     ],
     "causal_summary": "The phrase \"Webflow MCP 2.0\" does not by itself establish the real tool inventory, authentication flow, client support, permission boundary, rate limits, draft-versus-publish semantics, or safe repository integration",
     "created_at": "2026-08-02T13:47:06Z",
-    "last_save_at": "2026-08-02T18:36:58.282Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T18:43:24.327Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +206,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8b305ceb30460ddd6e468f466fbd48b2d867ecafe867d57feb83837e4bec03a8",
+    "source_fingerprint": "sha256:359846f41731435fe7dc3e0fcc167cdad8d9a2e028285b31a24fdc357d6b2f3d",
     "source_doc_hashes": {
-      "spec.md": "c00d575723e1ba2ca88b30617dc0631c052b0a7f4e959cd6a317104ccafd26bf",
-      "plan.md": "eefaf7ae4dee3acc059b7ce26c2db20d5c448477844baab954aa17f2dac556f9",
-      "tasks.md": "523ef840774a1f3fc0ad013799fcd895ed61ea20f5eb65572d18de2428306d07",
-      "implementation-summary.md": "f9abc5a40de53421dd7b41bbdf3c6160a2e38821bdb6d521f32a3246fc84fb60",
-      "research/research.md": "f5e7419be46be649e90435479d94a6567fada6b408da4b6610e9eccd8c0560ce"
+      "spec.md": "9ebab6a60e4d8288291beec0e459dd8640832cd090888541752de88a7922b5fd",
+      "plan.md": "7e02330fb40e7a6cd40eb8048cd83115124939e6c91324a029c28d762b66ee1c",
+      "tasks.md": "5542f1ca2152471a3d8c2674b56b310b8dbe48dce1b9a28cbea253fe2754052e",
+      "implementation-summary.md": "d6ab06bdc77b1122d225e68961724b7454b71844a0c9af975aa268786022bf73",
+      "research/research.md": "2e0f6d79a9e32c52dc3bfbdb19c7ce9797c26a6c07f07e0b09a46fe08d8fd9f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

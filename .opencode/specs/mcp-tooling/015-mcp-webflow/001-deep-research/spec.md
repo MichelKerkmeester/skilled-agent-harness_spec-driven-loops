@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T18:35:05Z"
+    last_updated_at: "2026-08-02T19:10:00Z"
     last_updated_by: "pi"
     recent_action: "Authored the exact two-lineage research contract"
-    next_safe_action: "From a non-Pi conductor, run the command-owned dry-run before live research"
+    next_safe_action: "Execute 002-architecture-and-safety-contract"
     blockers:
       - "A Pi conductor may not self-dispatch the required cli-pi lineage"
       - "The live command must prove cli-pi fan-out acceptance before writes"

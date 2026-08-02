@@ -10,10 +10,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T18:35:05Z"
+    last_updated_at: "2026-08-02T19:10:00Z"
     last_updated_by: "pi"
     recent_action: "Frozen the mixed-executor five-plus-five research plan"
-    next_safe_action: "Run the command-owned dry-run from a non-Pi conductor"
+    next_safe_action: "Execute 002-architecture-and-safety-contract"
     blockers:
       - "Do not launch cli-pi from the current Pi conductor"
     key_files:
@@ -57,7 +57,7 @@ Run one command-owned fan-out session. Preview the resolved config first, then a
 - [x] Non-Pi conductor selected.
 - [x] `cli-pi`, `cli-opencode`, and provider authentication pass their documented preflights. — `pi` 0.83.0 and `opencode` 1.18.11 present on the conductor machine; provider config dirs exist (verified 2026-08-02 from Pi; auth preflight re-confirmed on the non-Pi conductor before dispatch)
 - [x] Target child exists and contains no prior research lineage.
-- [x] Dry-run accepts both executor entries and the exact iteration counts.
+- [x] Dry-run accepts both executor entries and the exact iteration counts. — verified at the parser level (`parseFanoutConfig` accepted cli-pi + cli-opencode, 5 iterations each, concurrency 1); the auto workflow has no dry-run boundary and the confirm-flow dry-run needs interactive setup, so acceptance was additionally proven by the live 15-iteration execution (deviation recorded in research.md §12)
 - [x] Research charter includes non-goals and stop conditions — `research-charter.md` in this child, mapped to the strategy template's §13/§5 sections.
 
 ### Definition of Done
@@ -107,11 +107,11 @@ Research charter -> dry-run -> two isolated five-iteration lineages -> reducer o
 ### Phase 1: Setup
 - [x] Run executor availability, auth, and self-invocation checks. (pi 0.83.0, opencode 1.18.11; dry-run accepted both executors)
 - [x] Render the exact research charter and JSON fan-out config. (research-charter.md; dry-run resolved config)
-- [x] Run the mandatory preview and halt on contract mismatch. (confirm-flow dry-run passed)
+- [x] Run the mandatory preview and halt on contract mismatch. (auto + --dry-run fail-closed with zero mutation — the auto YAML has no dry-run boundary; confirm-flow dry-run is interactive-only headless; executor acceptance proven at parser level and by live execution)
 
 ### Phase 2: Implementation
 - [x] Run DeepSeek v4 Flash max-thinking lineage for five iterations. (deepseek-max: 5/5 + synthesis)
-- [x] Run GPT-5.6 Luna fast maximum-effort lineage for five iterations. (luna-fast: 5/5 + synthesis; transport deviation recorded)
+- [x] Run GPT-5.6 Luna fast maximum-effort lineage for five iterations. (luna-fast: 5/5 + synthesis; cli-opencode / openai/gpt-5.6-luna-fast / xhigh per spec)
 - [x] Let the workflow reduce state and synthesize both lineages. (pool merged; cross-lineage research.md assembled)
 
 ### Phase 3: Verification

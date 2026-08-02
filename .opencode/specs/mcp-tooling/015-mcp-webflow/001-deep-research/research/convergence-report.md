@@ -4,8 +4,8 @@
 
 - Stop policy: `max-iterations` (forced depth, no early convergence)
 - Convergence mode: off (telemetry only)
-- Lineages: `deepseek-max` (cli-pi / deepseek-v4-flash / max) — 5 iterations; `luna-fast` (cli-pi transport / gpt-5.6-luna / max) — 5 iterations
-- Total productive iterations: 10/10 (REQ-002 + REQ-003 satisfied via recorded transport deviation, see `research.md` §12)
+- Lineages: `deepseek-max` (cli-pi / deepseek-v4-flash / max) — 5 iterations; `luna-fast` (cli-opencode / openai/gpt-5.6-luna-fast / xhigh) — 5 iterations; `deepseek-v4-flash-max` (cli-pi / deepseek-v4-flash / max) — 5 iterations
+- Total productive iterations: 15/15 across 3 lineages (REQ-002 and REQ-003 satisfied as specified: one cli-pi deepseek-v4-flash max lineage and one cli-opencode gpt-5.6-luna-fast xhigh lineage, five valid iterations each)
 
 ## Agreement Between Lineages
 

@@ -36,7 +36,7 @@
       "registration"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Registration is not proof of behavior",
     "created_at": "2026-08-02T13:47:10Z",
-    "last_save_at": "2026-08-02T15:13:43.252Z",
+    "last_save_at": "2026-08-02T19:03:58.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3695bb5bf9037b4712f9a2684984a958c04c89c7f4a08bfe314e1e3f1e73780c",
+    "source_fingerprint": "sha256:3993f44ca9527d23e95c1e2315fe2309fd502f5a39b123eee44b90b953814463",
     "source_doc_hashes": {
-      "spec.md": "4a758ce4fc13e564be53c76f0c4a4fae30dbfd85b878ef6b187e5d5b6448f908",
-      "plan.md": "71db6e7bac7bdde518c98a00eafa5df8f660d0da1c92eccfa8b12e731ead4c03",
-      "tasks.md": "502609c5ebc5bd089007b3a4d3a584b12d69265a54bcedc049252009f7a5512a",
-      "implementation-summary.md": "ce2de072c2fbf0ac5d6b26a1b1b051ba55134c3d7b254c6a842cc48b0af9e43d"
+      "spec.md": "31af921773c57235732d2e851ad9ae6d19412acaa5af20fd7dd8eb56a45e8203",
+      "plan.md": "b2c06f4cb88b707d41bf0720c3d3575d9871cc84cf294a865907093992722b7b",
+      "tasks.md": "f6ca03e1406dcb72f23682ba31e57f57e6ebc44f6a07b34ba1038111edafdcf1",
+      "implementation-summary.md": "b57b069f00f2f98a534638639fae66d49875ef89071f2d0c88f7099b2593035c"
     },
     "last_active_child_id": null,
     "last_active_at": null

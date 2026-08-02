@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/003-webflow-mcp-integration"
-    last_updated_at: "2026-08-02T18:44:07Z"
+    last_updated_at: "2026-08-02T19:02:36Z"
     last_updated_by: "pi"
     recent_action: "Created the integration task list"
     next_safe_action: "Wait for accepted architecture"
@@ -60,7 +60,7 @@ _memory:
   - **Evidence**: `webflow_WEBFLOW_TOKEN=` added to `.env.example` (name only)
 - [x] T007 Add install/doctor or connection diagnostics appropriate to the transport.
   - **Evidence**: `INSTALL-GUIDE.md` + `references/troubleshooting.md` + wiring doc (discovery-first contract)
-- [x] T008 Discover live tools and record operation classes.
+- [ ] T008 Discover live tools and record operation classes. (BLOCKED — no token/test site provisioned; research inventory recorded as baseline)
   - **Evidence**: research-time inventory recorded in `references/tool-surface.md`; live discovery pending auth (blocker)
 <!-- /ANCHOR:phase-2 -->
 
@@ -84,7 +84,7 @@ _memory:
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [x] Official transport resolves and tools are discoverable.
+- [ ] Official transport resolves and tools are discoverable. (BLOCKED — live discovery pending credentials)
 - [x] No secret is committed or logged.
 - [x] Safe read smoke passes or is honestly blocked. (blocker: no token/test site provisioned)
 - [x] No external mutation exceeds the accepted contract.

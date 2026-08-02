@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A connected MCP transport is not a safe or discoverable skill",
     "created_at": "2026-08-02T13:47:08Z",
-    "last_save_at": "2026-08-02T18:46:13.168Z",
+    "last_save_at": "2026-08-02T19:04:23.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c002bfdb8df06040a9b463a4a1aa72119437e8b0ac23b02efab32bd4d0401431",
+    "source_fingerprint": "sha256:05ee318c07163f1302c60f91662333a211e4d49d60f328ffd88dc7e22550cb17",
     "source_doc_hashes": {
       "spec.md": "6eb3dc68a4db1b523f336c889ef9073fabe61de3b2906e4616f3af8ed8136e40",
       "plan.md": "6383c552d475c3a89abfd7133a812ce801984d2910ef5e37cb4378e255ad5627",
       "tasks.md": "46f60939f48b65f883a02cc3fc4ca41db486c2f8487c29ee6c91bcb0b0374917",
-      "implementation-summary.md": "5bb1144dc4c431bd4799dcebc960c4ecf4fa5efac50ef09a985ad8a033509e91"
+      "implementation-summary.md": "61951637bc445d599a2ef43a6c334e14d499d2d66b04b47f4c2fd8a5130e2c26"
     },
     "last_active_child_id": null,
     "last_active_at": null

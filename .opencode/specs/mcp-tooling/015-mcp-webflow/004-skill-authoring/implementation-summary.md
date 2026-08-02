@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/004-skill-authoring"
-    last_updated_at: "2026-08-02T18:45:34Z"
+    last_updated_at: "2026-08-02T19:02:23Z"
     last_updated_by: "pi"
     recent_action: "Authored pending skill phase docs"
     next_safe_action: "Wait for integration evidence"
@@ -40,7 +40,7 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-The phase now defines the evidence, routing, safety, setup, reference, and example requirements for the future skill package. No file under `.opencode/skills/mcp-tooling/mcp-webflow/` has been authored by this phase.
+The full skill package was authored under `.opencode/skills/mcp-tooling/mcp-webflow/`: `SKILL.md`, `README.md`, `INSTALL-GUIDE.md`, `references/{mcp-wiring,tool-surface,troubleshooting}.md`, `examples/` (RO/DW/PB scenarios), and `changelog/v1.0.0.0.md`.
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -53,7 +53,7 @@ The phase now defines the evidence, routing, safety, setup, reference, and examp
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-Only phase-local specification documents were populated from templates.
+Delivered in the 015 implementation session; evidence rows in `tasks.md` T001-T0xx and `checklist.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
