@@ -11,7 +11,8 @@
       "mcp-aside-devtools",
       "mcp-figma",
       "mcp-refero",
-      "mcp-mobbin"
+      "mcp-mobbin",
+      "mcp-webflow"
     ],
     "outcomes": {
       "single": "one dominant tool signal routes to one mode",
@@ -99,6 +100,16 @@
       ],
       "resources": [
         "mcp-mobbin/SKILL.md"
+      ]
+    },
+    "mcp-webflow": {
+      "weight": 4,
+      "classes": [
+        "webflow-aliases",
+        "webflow-operations"
+      ],
+      "resources": [
+        "mcp-webflow/SKILL.md"
       ]
     }
   },
@@ -262,6 +273,30 @@
         "design pattern research",
         "ios app examples",
         "phone apps"
+      ]
+    },
+    "webflow-aliases": {
+      "note": "Webflow site/page/CMS/designer operations naming Webflow or its tools.",
+      "keywords": [
+        "webflow",
+        "webflow mcp",
+        "webflow site",
+        "webflow cms",
+        "webflow designer",
+        "webflow publish",
+        "webflow collection",
+        "webflow workflow"
+      ]
+    },
+    "webflow-operations": {
+      "note": "Operation-class phrasing that must route to mcp-webflow.",
+      "keywords": [
+        "publish webflow",
+        "webflow staging publish",
+        "webflow cms item",
+        "webflow page settings",
+        "webflow component",
+        "webflow variable"
       ]
     }
   }

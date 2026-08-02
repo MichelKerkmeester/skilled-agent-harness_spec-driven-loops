@@ -29,6 +29,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 | **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-refero/` |
 | **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-mobbin/` |
+| **mcp-webflow** | transport | Webflow MCP 2.0 operations: sites, pages, CMS, components, variables, assets, scripts, workflows via the official server; publish/destructive/deploy gated; Designer-family pairs with `sk-design` | `mcp-tooling/mcp-webflow/` |
 
 ### When NOT to Use
 
