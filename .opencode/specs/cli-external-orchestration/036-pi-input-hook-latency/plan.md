@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/036-pi-input-hook-latency"
-    last_updated_at: "2026-08-02T14:30:00Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet complete: in-process advisor hook landed; cache fix; benchmark recorded"
     next_safe_action: "Follow-up candidate: daemon fast-path or non-gating injection for the cold advisor tail"
@@ -45,7 +45,7 @@ _memory:
 | **Testing** | Live PI smoke (`pi --offline --approve -p ...`), grep-based static checks, before/after timing |
 
 ### Overview
-The PI `input` hook currently pays two sequential `spawnSync` process hops (adapter → shim → advisor hook) on the main thread, blocking the send for up to ~5.3 s. The compiled advisor hook module is importable in-process: it guards its CLI entrypoint with `IS_CLI_ENTRY`, so importing it from the extension is safe and gives us the exact same lifecycle logic with zero process hops. The module-level prompt cache (5-min TTL) then becomes effective in-process, which the per-process CLI path never had. Fallback if the import misbehaves under Pi's loader: replace `spawnSync` with a single async `spawn` of the existing shim.
+The PI `input` hook previously paid two sequential `spawnSync` process hops (adapter → shim → advisor hook) on the main thread, blocking the send for up to ~5.3 s worst-case. The fix imports the compiled advisor hook module in-process (its CLI entrypoint is guarded by `IS_CLI_ENTRY`), giving the same lifecycle logic with zero process hops; the module-level prompt cache (5-min TTL) then becomes effective in-process, which the per-process CLI path never had. Measured after the fix: ~1.37–1.49 s cold per distinct prompt, 1–2 ms warm repeats; the ~1.3 s cold tail is the advisor's python subprocess and is documented as a follow-up.
 
 <!-- /ANCHOR:summary -->
 ---

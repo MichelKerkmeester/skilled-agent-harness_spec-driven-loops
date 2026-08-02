@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/036-pi-input-hook-latency"
-    last_updated_at: "2026-08-02T14:30:00Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet complete: in-process advisor hook landed; cache fix; benchmark recorded"
     next_safe_action: "Follow-up candidate: daemon fast-path or non-gating injection for the cold advisor tail"
@@ -52,7 +52,7 @@ _memory:
 - [x] CHK-002 [P0] Import-safety of the advisor hook module confirmed
   - **Evidence**: `dist/hooks/claude/user-prompt-submit.js` exports `handleClaudeUserPromptSubmit`, CLI entry guarded by `IS_CLI_ENTRY`
 - [x] CHK-003 [P1] Scope lock recorded
-  - **Evidence**: spec.md lists exactly one rewrite target (`prompt-advisor.ts`) + conditional README touch; shared dist hooks and other runtimes explicitly out of scope
+  - **Evidence**: original scope named `prompt-adapter.ts` only; the delivered change legitimately widened to the shared cache/renderer/bridge parity surfaces (see implementation-summary file inventory) while keeping other runtimes' hooks and the classifier vocabulary out of scope
 <!-- /ANCHOR:pre-impl -->
 
 ---

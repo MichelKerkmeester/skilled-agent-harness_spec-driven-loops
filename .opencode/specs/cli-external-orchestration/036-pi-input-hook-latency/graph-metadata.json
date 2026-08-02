@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The operator observed that PI CLI adds delay before a message is sent, while the opencode plugin, the codex hooks, and the claude hooks do not",
     "created_at": "2026-08-02T10:45:25.735Z",
-    "last_save_at": "2026-08-02T12:25:06.556Z",
+    "last_save_at": "2026-08-02T15:36:43.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a8461bc7deac22bc5f6de85bf907b21c54dc50a43f72b340a9946454788c695",
+    "source_fingerprint": "sha256:d3bac4dc82982bc50fc035635b8478a3dae2f81d7420b90340fedd56338476e1",
     "source_doc_hashes": {
-      "spec.md": "973aae9c1c10bf8448a157a4d05b5d9c2007ebd4f6f85d0dfe26d36aabe5ebbb",
-      "plan.md": "572e9f657cebaab3aca10d2f1cf0765b4ed75f946c299671631b60be7cbcd418",
-      "tasks.md": "3d20f759867b058537f2df46d4d8fd08c48cbc3ad1eea67aace1174a9452d75a",
-      "checklist.md": "b2b6ba84807e22bf71e051853628c60298a2e87aed8cf3b00b97170e2bbab899",
-      "implementation-summary.md": "f32ea20de7f977e8f95560098d01e810902870193537a45cc5970a1fc37818cc"
+      "spec.md": "f6a227f201b70500d353ded05967dc0acfedaeb02b7b6f5973efc8375969334c",
+      "plan.md": "84ed1cc3cfa47942ae108f42b0e511bae513fd0be2b0715dbf3651e6f87af2ce",
+      "tasks.md": "ae29c5d8f9ce68e4920e26089fe94e191de1880204c9c60fbc5fef6285d32f05",
+      "checklist.md": "12d44005b3128fe950339f87bc51b896ef9fc3e08d43aa257f17bf3190b3fe66",
+      "implementation-summary.md": "893abc5894cf68c805a68e9421f621963235706274fb76b4186d06c979c2cc59"
     },
     "last_active_child_id": null,
     "last_active_at": null

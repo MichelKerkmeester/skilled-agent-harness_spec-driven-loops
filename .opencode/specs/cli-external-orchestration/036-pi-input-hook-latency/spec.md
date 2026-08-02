@@ -12,7 +12,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/036-pi-input-hook-latency"
-    last_updated_at: "2026-08-02T14:30:00Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet complete: in-process advisor hook landed; cache fix; benchmark recorded"
     next_safe_action: "Follow-up candidate: daemon fast-path or non-gating injection for the cold advisor tail"
@@ -45,7 +45,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Complete — in-process advisor path landed; measured 1.37–1.49 s per message → 1–2 ms repeats; the ~1.3 s cold advisor tail documented as a follow-up |
 | **Created** | 2026-08-02 |
-| **Branch** | TBD (worktree vs current branch — operator choice at implementation start) |
+| **Branch** | `skilled/v4.0.0.0` (current branch; implementation used the current branch, option B) |
 | **Parent Packet** | `cli-external-orchestration/036-pi-input-hook-latency` |
 | **Predecessor** | `031-cli-pi-creation` (built the pi extension surface this packet optimizes) |
 | **Successor** | None |

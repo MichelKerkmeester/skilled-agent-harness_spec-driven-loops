@@ -42,9 +42,12 @@ const DISABLED_ENV = 'MK_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'MK_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
-const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
-const FALLBACK_DIRECTIVE = HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+// Mirrors the renderer's label + bullets exactly (the renderer is the
+// canonical copy); model names stay out so the capsule never churns with
+// model releases.
+const FALLBACK_DIRECTIVE = 'Directives:' + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
 const pluginRequire = createRequire(import.meta.url);
 
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
