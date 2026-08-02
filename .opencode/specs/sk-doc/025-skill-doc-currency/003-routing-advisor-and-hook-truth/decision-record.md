@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: routing-advisor-and-hook-truth"
-description: "One genuine fork with no synthesis ruling behind it: whether the advisor gate is an absolute floor or a bounded delta from a dated snapshot. Not pre-decided by this record; editing the gate numbers before ruling it would just relocate the inaccuracy."
+description: "DR-6 records the operator's bounded-delta policy for advisor validation against the dated 2026-07-30 snapshot."
 trigger_phrases:
   - "advisor gate absolute floor or bounded delta"
 importance_tier: "normal"
@@ -8,18 +8,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded DR-6 as a genuine unruled policy fork"
-    next_safe_action: "Operator rules DR-6 before any threshold edit lands"
-    blockers:
-      - "DR-6 is a hard predecessor to the threshold edit"
+    last_updated_at: "2026-08-02T13:01:10.000Z"
+    last_updated_by: "skd025-003-build"
+    recent_action: "Recorded the operator's bounded-delta ruling for DR-6"
+    next_safe_action: "Keep the child In Progress until strict validation is evidenced"
+    blockers: []
     key_files:
       - "decision-record.md"
     completion_pct: 0
-    open_questions:
-      - "DR-6 absolute floor or bounded delta"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "DR-6 is a bounded delta from the dated 2026-07-30 snapshot."
+      - "Q3 admits all four supplementary findings into this child."
+      - "Q4 limits installation-drift work to project documentation; user-global repair is deferred to the operator."
 ---
 # Decision Record: Routing-Advisor-and-Hook-Truth
 
@@ -27,7 +28,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
-The entry below is a **genuine fork with no synthesis ruling behind it** — the research loop asked it twice without answering it. Writing a decision now would fabricate a ruling nobody has made. It stays open until the operator rules it.
+The entry below records the operator's ruling. The policy is applied to the reference statement; the dated snapshot and all scoring code remain unchanged.
 
 ---
 
@@ -38,8 +39,8 @@ The entry below is a **genuine fork with no synthesis ruling behind it** — the
 
 | Field | Value |
 |-------|-------|
-| **Status** | Undecided |
-| **Date** | 2026-07-30 |
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
 | **Deciders** | Operator |
 
 ---
@@ -60,7 +61,7 @@ The entry below is a **genuine fork with no synthesis ruling behind it** — the
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**Not yet ruled.** The two live options are: (a) the gate is an absolute floor, and the current baseline is stated as failing until the repository's real numbers clear it; or (b) the gate is a bounded delta from a dated snapshot, and the document is rewritten to state the policy that way, carrying the snapshot's date with the number. This phase does not pick between them.
+**Accepted — bounded delta from a dated snapshot.** The advisor validation gate must state that a run must not regress beyond a bounded delta below the baseline captured on **2026-07-30**. The policy thresholds are therefore derived from that snapshot: full-corpus top-1 must remain at or above `0.7544` (`0.7744` baseline minus `0.0200`, both captured on 2026-07-30); holdout top-1 must remain at or above `0.7261` (`0.7361` baseline minus `0.0100`, captured on 2026-07-30); and UNKNOWN must remain at or below `15` (`13` baseline plus `2`, captured on 2026-07-30). These are policy bounds, not edits to the scorer, snapshot JSON, or threshold-consuming code.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -68,7 +69,7 @@ The entry below is a **genuine fork with no synthesis ruling behind it** — the
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
-Deferred until the operator rules DR-6. Evaluating alternatives before the ruling would pre-judge which option "wins."
+The absolute floors previously published in the reference are rejected for this packet because they are not re-derived from the checked-in measurement. A dated bounded delta preserves regression sensitivity without declaring the repository's own 2026-07-30 snapshot an automatic failure.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -76,15 +77,15 @@ Deferred until the operator rules DR-6. Evaluating alternatives before the rulin
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**What improves**: once ruled, the gate statement and the checked-in baseline stop contradicting each other.
+**What improves**: the gate statement is now comparable to the checked-in 2026-07-30 measurement without treating that measurement as an automatic hard failure.
 
-**What it costs**: deferred until the ruling — the cost differs materially between "hold the floor and improve the baseline" and "rewrite the policy to a bounded delta."
+**What it costs**: the policy must be revisited when a new authoritative baseline is captured; the date and bounded deltas must move together.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| A threshold edit lands before the policy ruling | H | REQ-002 makes the ruling a hard predecessor to any threshold edit; enforced in `tasks.md` and `checklist.md` |
+| A threshold edit lands before the policy ruling | H | The accepted policy is recorded here before the dated gate statement is edited |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -92,9 +93,11 @@ Deferred until the operator rules DR-6. Evaluating alternatives before the rulin
 <!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
-Deferred. The Five Checks framework evaluates a proposed decision; there is no proposed decision to evaluate until DR-6 is ruled.
-
-**Checks Summary**: Not applicable — no decision proposed
+- **Truth**: the policy cites the measured 2026-07-30 snapshot instead of retyping an aspirational floor.
+- **Scope**: only the reference policy statement changes; the snapshot, scorer, and threshold-consuming code remain untouched.
+- **Reversibility**: restore the prior policy paragraph if a later operator ruling replaces this bounded delta.
+- **Observability**: every post-edit validation result is reported as a delta against the 2026-07-30 capture.
+- **Ownership**: the operator owns future re-baselining; this packet owns the documentation statement.
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -102,6 +105,6 @@ Deferred. The Five Checks framework evaluates a proposed decision; there is no p
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-Deferred until DR-6 is ruled. This phase's task T008 populates this section once the ruling lands.
+Update `validation-baselines.md` to use the dated bounded-delta wording and make `lane-weight-tuning.md` link to that policy. Do not modify the baseline snapshot JSON, scorer, or threshold-consuming code.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->

@@ -39,8 +39,10 @@
       "cli"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      ".opencode/bin/cli-offline-smoke.cjs",
+      "decision-record.md",
       ".cursor/hooks.json",
       ".opencode/skills/system-skill-advisor/references/scoring/validation-baselines.md",
       ".opencode/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
@@ -56,12 +58,23 @@
       ".opencode/skills/sk-git/scripts/hooks/pi/README.md",
       ".opencode/skills/sk-git/references/remote-branch-policy.md",
       "tasks.md",
-      "decision-record.md",
       "plan.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "cli-offline-smoke.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/cli-offline-smoke.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "hooks.json",
         "kind": "config",
@@ -135,12 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -153,13 +160,19 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Maintain In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -177,19 +190,13 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose For",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,33 +206,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Wrong gates",
     "created_at": "2026-07-30T19:29:16.978Z",
-    "last_save_at": "2026-07-30T19:29:16.978Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T13:03:47.549Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71bce6b6b6119041f242a2846514d618024630aa9da892365e8c009c1e7e7730",
+    "source_fingerprint": "sha256:b6b810e93742342e6563cf1b09811b78ee6c77e565b686fff4a78ba57612ba91",
     "source_doc_hashes": {
-      "spec.md": "663444bc5dfbbddee46ea922b7b07dd1e4f9eeb615edcc719079be8821bad09e",
-      "plan.md": "1200abca7d267f809bc0085ae48bae9dfbd8a9c690caeaa728694253611707b1",
-      "tasks.md": "ab28969fc847ab27bab3f940230ee1009bcf8631b42ab1c8f217c3fe81214410",
-      "checklist.md": "d43bb940ff7b564d7d4dff9c546e7ccca596a93a0816b5914c1ea8c604fb99fb",
-      "decision-record.md": "e8c6aa4ffdd9a26e468f8bc405a315016f2f7830aab963ce8f20bfad715385f4"
+      "spec.md": "95d1a500978d88261fb37858e090705c90353668100dbee763345375efb01830",
+      "plan.md": "5ed03860e3844c2e3663411c0e7473175bda5d915e08a1bf7b4956e6eb07b790",
+      "tasks.md": "491ea7f7be60ad1c1d1d2bcef40070e058d471534a1dd8003e582c910ff68edb",
+      "checklist.md": "c4948fa3f61187646f97f15ef2ab4e1d5eb6b6aad2cdaf8b55ea5f704674bad7",
+      "decision-record.md": "c5dd35832b4078cc6c54654916a6bcee4b31b077e44a195bc367f33321bbd73a",
+      "implementation-summary.md": "1cda0328939a9badea74810c5f22c773de7c2560223de79af1e6e9cca629646f"
     },
     "last_active_child_id": null,
     "last_active_at": null

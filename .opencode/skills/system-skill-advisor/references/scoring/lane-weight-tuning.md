@@ -45,8 +45,8 @@ Lane weights change only with measured evidence and synchronized documentation u
 
 Tune lane weights only when at least one of these triggers fires:
 
-- A baseline `advisor_validate` run shows top-1 accuracy below 80.5% on the full corpus or below 77.5% on the holdout set.
-- The UNKNOWN count exceeds 10 on a fresh validate run.
+- A baseline `advisor_validate` run crosses the dated bounded-delta gate in [`validation-baselines.md`](./validation-baselines.md); that reference owns the policy and the 2026-07-30 snapshot date.
+- The UNKNOWN count crosses the dated bounded-delta gate in [`validation-baselines.md`](./validation-baselines.md); do not restate an absolute floor here.
 - A new lane is added or an existing lane is decommissioned.
 - A measured ablation shows that the current weights misallocate confidence in a high-traffic intent class.
 - An ADR mandates a change as part of a scorer redesign.
@@ -131,7 +131,7 @@ Lane weight changes are governed work. The checklist:
 Roll back a weight change when ANY of these fires within 24 hours of deploy:
 
 - Production routing accuracy drops below the pre-change baseline by ≥ 2pp.
-- UNKNOWN count exceeds 15.
+- UNKNOWN count crosses the dated bounded-delta gate in [`validation-baselines.md`](./validation-baselines.md).
 - A new lane-dominance pattern emerges where one lane wins > 80% of routes.
 - An operator reports a regression on a previously-correctly-routed prompt.
 

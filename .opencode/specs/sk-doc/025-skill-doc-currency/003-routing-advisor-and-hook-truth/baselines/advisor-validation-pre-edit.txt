@@ -1,0 +1,10 @@
+Capture date: 2026-08-02
+Command:
+node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"workspaceRoot":"<repo-root>"}' --format json --warm-only --timeout-ms 3000
+Exit code: 75
+Verbatim output:
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/mk-skill-advisor/fe39fd80b2b6/daemon-ipc.sock",
+  "exitCode": 75
+}

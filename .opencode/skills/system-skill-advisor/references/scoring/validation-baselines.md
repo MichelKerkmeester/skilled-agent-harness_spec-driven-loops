@@ -42,21 +42,21 @@ Validation baselines are the promotion gate for routing behavior changes, not af
 
 ## 2. CURRENT BASELINES
 
-Baseline numbers as of remediation SHA `97a318d83`:
+The measurement authority is [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured on **2026-07-30**. The values below are that dated snapshot, not a new run:
 
 | Metric | Baseline | Source |
 |---|---:|---|
-| Full-corpus top-1 accuracy | 80.5% | `mcp-server/tests/scorer/corpus.vitest.ts` |
-| Holdout top-1 accuracy | 77.5% | `mcp-server/tests/scorer/holdout.vitest.ts` |
-| UNKNOWN count (full corpus) | <= 10 | `advisor_validate` `slices.corpus.unknown_count.value` |
-| Python regression suite | full pass | `mcp-server/scripts/skill_advisor_regression.py` |
-| Advisor vitest tests | 167 across 23 files | `mcp-server/tests/` |
+| Full-corpus top-1 accuracy | 0.7744 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| Holdout top-1 accuracy | 0.7361 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| UNKNOWN count (full corpus) | 13 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| Python regression suite | measurement unavailable in this packet | `mcp-server/scripts/skill_advisor_regression.py` |
+| Advisor vitest tests | measurement unavailable in this packet | `mcp-server/tests/` |
 | Watcher idle CPU | 0.031% | `mcp-server/lib/daemon/watcher.ts` benchmark |
 | Watcher idle RSS | 5.516 MB | same |
 | Cache-hit p95 latency | ~6.989 ms | `mcp-server/bench/cache-latency.bench.ts` |
 | Uncached p95 latency | ~11.45 ms | same |
 
-Drift threshold: top-1 accuracy below 80.5% on full corpus OR below 77.5% on holdout is a hard regression that blocks ship.
+**Bounded-delta gate (policy accepted 2026-08-02):** do not regress more than the bounded amount below the baseline captured on **2026-07-30**. Full-corpus top-1 must remain at or above `0.7544` (`0.7744` baseline minus `0.0200`, captured 2026-07-30); holdout top-1 must remain at or above `0.7261` (`0.7361` baseline minus `0.0100`, captured 2026-07-30); UNKNOWN must remain at or below `15` (`13` baseline plus `2`, captured 2026-07-30). The former absolute floors are retired as policy statements; the snapshot JSON and scorer are unchanged.
 
 ---
 
@@ -98,13 +98,13 @@ Response fields to retain for baseline tracking:
 
 ### Corpus slice
 
-Runs every skill in the full corpus through the scorer. Top-1 accuracy is the percent of prompts where the correct skill ranks first. Baseline 80.5%.
+Runs every skill in the full corpus through the scorer. Top-1 accuracy is the percent of prompts where the correct skill ranks first. The comparison baseline is `0.7744`, captured 2026-07-30; use the bounded-delta gate above.
 
 Drift signal: a drop of more than 2 percentage points. Likely causes are scorer weight changes, new skills disrupting the lexical lane or stale skill metadata.
 
 ### Holdout slice
 
-Runs a curated subset reserved for measuring generalization. Top-1 accuracy is the percent where the correct skill ranks first. Baseline 77.5%.
+Runs a curated subset reserved for measuring generalization. Top-1 accuracy is the percent where the correct skill ranks first. The comparison baseline is `0.7361`, captured 2026-07-30; use the bounded-delta gate above.
 
 Drift signal: drop > 1pp is a stronger regression signal than the corpus slice because holdout is unseen during weight tuning.
 
@@ -132,9 +132,9 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 
 | Symptom | Likely Cause | Remediation |
 |---|---|---|
-| Corpus top-1 drops > 2pp | Scorer weight change OR new skill metadata regression | Run `advisor_rebuild --force`. If still regressed, inspect `perSkill[]` for the regressed skills. Roll back weights per `lane-weight-tuning.md` §6 |
+| Corpus top-1 crosses the dated bounded-delta gate | Scorer weight change OR new skill metadata regression | Run `advisor_rebuild --force`. If still regressed, inspect `perSkill[]` for the regressed skills. Roll back weights per `lane-weight-tuning.md` §6 |
 | Holdout top-1 drops while corpus stays steady | Overfit to corpus | Inspect which holdout prompts misroute. Add representative cases to corpus. Re-run tuning |
-| UNKNOWN count spikes above 10 | Trust-state went to `absent` OR scorer threshold misconfigured | Check `advisor_status.trustState`. If `absent`, run `advisor_rebuild`. If `live`, inspect lane weights for an over-aggressive threshold |
+| UNKNOWN count crosses the dated bounded-delta gate | Trust-state went to `absent` OR scorer threshold misconfigured | Check `advisor_status.trustState`. If `absent`, run `advisor_rebuild`. If `live`, inspect lane weights for an over-aggressive threshold |
 | Parity slice fails on specific skill | Python shim missing recent token boost added to native scorer | Re-sync `scripts/skill_advisor.py` against `mcp-server/lib/scorer/lanes/` |
 | Safety violations > 0 | Attribution leaks prompt content | Inspect `slices.safety.violations[]` for the leaking field. Patch handler to redact |
 | Cache-hit p95 > 15 ms | SQLite contention | Check `advisor_status.daemon.leaseHolder`. If contested, kill stale processes. Verify `mcp-server/database/skill-graph.sqlite` integrity |

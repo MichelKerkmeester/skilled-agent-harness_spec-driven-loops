@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored phase spec from the track (e) synthesis proposal"
-    next_safe_action: "Run T001 confirm-against-HEAD, hook-topology findings first"
+    last_updated_at: "2026-08-02T13:01:10.000Z"
+    last_updated_by: "skd025-003-build"
+    recent_action: "Recorded confirmed dispositions and scoped verification evidence"
+    next_safe_action: "Maintain In Progress status until final strict validation receipt"
     blockers:
       - "Soft-blocked on the canon rulings in the sibling canon phase"
     key_files: []
@@ -23,12 +23,15 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions:
       - "DR-6 — is the advisor gate an absolute floor or a bounded delta from a dated snapshot?"
       - "Q3 — supplementary findings admitted into this child?"
       - "Q4 — the Codex hook drift is user-global machine state"
-    answered_questions: []
+    answered_questions:
+      - "DR-6 accepted as a bounded delta from the dated 2026-07-30 snapshot."
+      - "Q3 admits all four supplementary findings into this child."
+      - "Q4 limits installation-drift work to project documentation; user-global repair is operator action."
 ---
 # Feature Specification: routing-advisor-and-hook-truth
 
@@ -60,7 +63,7 @@ The repository's constitution makes the skill advisor a hard routing dependency,
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->

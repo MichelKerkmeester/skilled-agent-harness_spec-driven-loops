@@ -15,7 +15,9 @@ version: 0.8.0.7
 
 > This reference was re-homed from cli-devin to prompt-models as part of the cli-devin deprecation. Content is executor-agnostic.
 
-## Overview
+## 1. 📖 OVERVIEW
+
+This reference defines pool-aware fallback decisions for profiled model executors. Fallback is selected by provider and quota-pool boundaries, not by an unverified model preference.
 
 Phase 005 ships a quota-pool-aware fallback contract for the user's small-only model ecosystem.
 

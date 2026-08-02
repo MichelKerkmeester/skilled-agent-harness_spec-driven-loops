@@ -1,0 +1,20 @@
+Capture date: 2026-08-02
+Command per file:
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py --type reference <file>
+
+Verbatim result for each of the six references:
+❌ INVALID <file>
+Total issues: 1
+Blocking errors (1):
+[missing_required_section] Missing required section: overview
+Fix: Add section with name containing "overview"
+
+Files:
+- .opencode/skills/sk-prompt/shared/references/smart-routing.md
+- .opencode/skills/sk-prompt/sk-prompt-models/references/context-budget.md
+- .opencode/skills/sk-prompt/sk-prompt-models/references/models/_index.md
+- .opencode/skills/sk-prompt/sk-prompt-models/references/output-verification.md
+- .opencode/skills/sk-prompt/sk-prompt-models/references/quota-fallback.md
+- .opencode/skills/sk-prompt/sk-prompt-models/references/vision-audit-benchmark.md
+
+Pre-edit blocking count: 6 files × 1 = 6.

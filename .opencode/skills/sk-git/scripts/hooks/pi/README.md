@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 2. WHAT IT DOES AND INJECTS
 
-`git-preflight-advisory.ts` fires on Pi's `tool_call` event for bash commands. It evaluates sk-git's 17 state-gated advisory rules (via the sibling `git-preflight-advisory.mjs` engine and the shared dispatch hard-rule evaluator) against the composed git command and, when a rule fires, attaches the rule's advisory message to the call. Warn-only: it never blocks, and any internal error resolves to silence.
+`git-preflight-advisory.ts` evaluates Pi's `tool_call` event for bash commands and buffers any matching advisory. The visible channel is the matching `tool_result` event: its returned `content` appends the advisory text that the model reads. Warn-only: it never blocks, and any internal error resolves to silence.
 
 Rule set and messages: [`../git-preflight-advisory.mjs`](../git-preflight-advisory.mjs) + [`../../lib/git-rule-checks.mjs`](../../lib/git-rule-checks.mjs); visibility taxonomy: `system-spec-kit/references/hooks/injection-contract.md`.
 

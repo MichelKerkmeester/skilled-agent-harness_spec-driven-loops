@@ -63,7 +63,7 @@
         "timeout": 10
       },
       {
-        "command": "node .cursor/hooks/git-preflight-advisory.mjs",
+        "command": "node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
         "type": "command",
         "matcher": "Shell",
         "timeout": 10

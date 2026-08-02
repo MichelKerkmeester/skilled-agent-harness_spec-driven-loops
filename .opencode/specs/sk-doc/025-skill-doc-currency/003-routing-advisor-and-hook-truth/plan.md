@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored implementation plan"
-    next_safe_action: "Execute T001, hook-topology findings first"
+    last_updated_at: "2026-08-02T13:01:10.000Z"
+    last_updated_by: "skd025-003-build"
+    recent_action: "Applied the scoped corrections and recorded verification receipts"
+    next_safe_action: "Run final metadata refresh and strict validation"
     blockers:
       - "Soft-blocked on the canon rulings in the sibling canon phase"
     key_files: []
@@ -22,9 +22,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 90
+    open_questions:
+      - "Warm advisor validation remains unavailable while its daemon socket is absent."
+    answered_questions:
+      - "DR-6 accepted as a bounded delta from the dated 2026-07-30 snapshot."
+      - "Q3 and Q4 rulings applied within the project-only scope."
 ---
 # Implementation Plan: routing-advisor-and-hook-truth
 
@@ -332,8 +335,36 @@ Confirm (hooks first) ──► Baselines ──► DR-6 ──► Gate lane
 
 ---
 
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Read the child contract documents before editing.
+- Confirm every requested correction against its cited document and live reality anchor.
+- Keep edits inside the named documentation scope.
+
+### Execution Rules
+
+| Rule | Contract |
+|---|---|
+| TASK-SEQ | Confirm hook topology first, then record each disposition before applying its lane edit. |
+| TASK-SCOPE | Do not edit the scorer, baseline snapshot, hook failure mode, or user-global installation. |
+| TASK-VERIFY | Run the path, router, document, smoke, safety and child-packet gates before reporting the result. |
+
+### Status Reporting Format
+
+Report each finding as repaired, stale-finding, already-fixed or deferred-with-reason, with its document path and evidence receipt. Keep the child status In Progress until strict validation passes.
+
+### Blocked Task Protocol
+
+Mark a task [B] only when a required decision or out-of-scope target prevents execution, name the blocker, and leave it unchecked. Do not infer approval from a concurrent edit.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 ## L3: ARCHITECTURE DECISION RECORD
 
-DR-6 (is the advisor gate an absolute floor or a bounded delta from a dated snapshot?) is **not pre-decided by this package.** It is a policy choice with no synthesis ruling behind it, and the research loop asked it twice without answering it. `decision-record.md` is scaffolded from the template at copy time and populated during execution, before the threshold edit it governs.
+DR-6 is **Accepted** as a bounded delta from the baseline captured on **2026-07-30**. `decision-record.md` records the rationale and dated policy bounds before the threshold statement edit it governs.
 
 ---

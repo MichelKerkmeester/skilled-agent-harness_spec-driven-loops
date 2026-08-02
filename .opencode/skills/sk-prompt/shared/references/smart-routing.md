@@ -27,7 +27,11 @@ leaf paths, and this router never re-decides the mode.
 
 ---
 
-## 1. INTENT MODEL
+## 1. 📖 OVERVIEW
+
+This reference maps prompt-craft intent to the leaf resources owned by `sk-prompt`. The model registry at `sk-prompt-models/assets/model-profiles.json` is the authority for profiled model ids and executor paths; this router is CI-verified against that registry.
+
+## 2. 🧭 INTENT MODEL
 
 - **prompt-improve leaves** — the DEPTH/CLEAR prompt engine's own references and
   format guides. A generic "write/improve a prompt" request loads the DEPTH
@@ -35,7 +39,7 @@ leaf paths, and this router never re-decides the mode.
   focused leaf.
 - **prompt-models leaves** — read-only per-model prompt-craft profiles. A request
   that names a specific small model by id (`deepseek-v4-pro`, `kimi-k2.7-code`,
-  `minimax-m3`, `mimo-v2.5-pro`, `glm-5.2`) loads exactly that model's profile.
+  `minimax-m3`, `mimo-v2.5-pro`, `glm-5.2`, `composer-2.5`) loads exactly that model's profile.
   A generic "which small model / compare models" request loads the model index
   and the pattern-index bridge; those two are lifecycle leaves, not a model choice.
 
@@ -44,7 +48,7 @@ fires no `MODEL_*` intent and falls back to the hub default (`prompt-improve`).
 
 ---
 
-## 2. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 The single machine-readable projection of the intent model above. The prose is the
 human-facing contract; this block is the byte-for-byte source the deterministic
@@ -70,6 +74,7 @@ INTENT_SIGNALS = {
     "MODEL_MINIMAX":  {"weight": 4, "keywords": ["minimax", "minimax-m3", "minimax m3"]},
     "MODEL_MIMO":     {"weight": 4, "keywords": ["mimo", "mimo-v2.5-pro", "mimo v2.5"]},
     "MODEL_GLM":      {"weight": 4, "keywords": ["glm-5.2", "glm 5.2", "z.ai", "z.ai coding plan"]},
+    "MODEL_COMPOSER": {"weight": 4, "keywords": ["composer", "composer-2.5", "composer 2.5", "cursor composer"]},
 }
 
 RESOURCE_MAP = {
@@ -110,10 +115,13 @@ RESOURCE_MAP = {
     "MODEL_GLM": [
         "sk-prompt-models/references/models/glm-5.2.md"
     ],
+    "MODEL_COMPOSER": [
+        "sk-prompt-models/references/models/composer-2.5.md"
+    ],
 }
 ```
 
-## 3. HOW TO READ THIS
+## 4. 🛠️ HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the

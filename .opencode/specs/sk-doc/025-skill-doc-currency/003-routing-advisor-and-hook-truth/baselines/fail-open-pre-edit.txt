@@ -1,0 +1,11 @@
+Capture date: 2026-08-02
+Command:
+bash .opencode/scripts/git-hooks/tests/pre-push.test.sh
+Exit code: 0
+Verbatim output:
+pre-push tests: PASS=21 FAIL=0
+
+The test's broken-validator case removes the validator, writes a syntax-error
+replacement, and asserts the pre-push hook exits 0 for a malformed new branch.
+The hook source keeps that behavior at .opencode/scripts/git-hooks/pre-push:34-57
+and :106-107; this phase documents it and does not alter the hook.
