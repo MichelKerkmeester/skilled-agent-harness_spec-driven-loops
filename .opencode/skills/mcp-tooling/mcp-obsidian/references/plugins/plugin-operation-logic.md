@@ -22,7 +22,7 @@ For any plugin, locate its data by checking, in order:
 
 | Plugin | Data the AI edits | Operation |
 |--------|-------------------|-----------|
-| `obsidian-flat-financing` | the configured `*.beancount` ledger | append/patch balanced Beancount directives |
+| `beancount-finance` | the structured `*.beancount` ledger | append/patch balanced Beancount directives |
 | `obsidian-tables` | `*.table.md` (JSON) | edit `columns`/`rows`/`views` JSON (`VERIFY` schema) |
 | `obsidian42-brat` | `.obsidian/plugins/{id}/` + `community-plugins.json` + BRAT `data.json` | install = write plugin assets + enable id + register in BRAT |
 
@@ -44,7 +44,7 @@ For any plugin, locate its data by checking, in order:
 
 1. Fetch the plugin's README + manifest; record repo id, author, data convention.
 2. Generate one real artifact in-app, then **match its on-disk shape** (this removes schema guesswork).
-3. Write a per-plugin reference mirroring `flat-financing.md` / `obsidian-tables.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
+3. Write a per-plugin reference mirroring `beancount-finance.md` / `obsidian-tables.md`: identity → what it does → data model → settings → file-layer recipes → gotchas/VERIFY → sources.
 4. Add a row to §3 above and an example asset.
 
 ## 6. RELATION TO THE MODE

@@ -1,6 +1,6 @@
 ---
 title: "OBS-011 -- Beancount file-layer transaction"
-description: "This scenario validates the flat-financing file-layer tie-in by appending and checking a balanced scratch ledger."
+description: "This scenario validates the beancount-finance file-layer tie-in by appending and checking a balanced scratch ledger."
 stage: routing
 version: 1.0.0.0
 ---
@@ -9,7 +9,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-This scenario validates the `obsidian-flat-financing` integration at the data-file layer. It appends a balanced grocery transaction to a scratch `.beancount` ledger and lets the existing example run `bean-check` when installed.
+This scenario validates the `beancount-finance` integration at the data-file layer. It appends a balanced grocery transaction to a scratch `.beancount` ledger and lets the existing example run `bean-check` when installed.
 
 ### Why This Matters
 
@@ -27,7 +27,7 @@ The mode operates plugin data, not plugin UI. A valid Beancount ledger is the ob
 - Expected Signals: The script initializes/open accounts when needed, appends two postings that balance to zero, exits 0, and either reports successful `bean-check` or explicitly warns that `bean-check` is unavailable.
 - Evidence: Ledger path, script transcript, final ledger tail, and `bean-check` result or absence warning.
 - Pass/Fail Criteria: PASS if the transaction is appended with opened accounts and the script exits 0; FAIL if postings do not balance, the ledger is malformed, or the script exits non-zero for an unexplained reason.
-- Failure Triage: 1. Inspect the ledger tail and account-open directives. 2. Run `bean-check "LEDGER"` when installed. 3. Compare the transaction with the flat-financing data model and correct only the scratch ledger.
+- Failure Triage: 1. Inspect the ledger tail and account-open directives. 2. Run `bean-check "LEDGER"` when installed. 3. Compare the transaction with the beancount-finance data model and correct only the scratch ledger.
 
 ---
 
@@ -62,7 +62,7 @@ Capture the scratch ledger path, full script output, final ledger tail, and vali
 
 1. Inspect the ledger's opening directives and final transaction.
 2. Run `bean-check "LEDGER"` if available.
-3. Compare the file with the flat-financing reference and keep all repairs inside the scratch ledger.
+3. Compare the file with the beancount-finance reference and keep all repairs inside the scratch ledger.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Capture the scratch ledger path, full script output, final ledger tail, and vali
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
-| [`../../references/plugins/flat-financing.md`](../../references/plugins/flat-financing.md) | Plugin data model and file-layer recipe |
+| [`../../references/plugins/beancount-finance/beancount-finance.md`](../../references/plugins/beancount-finance/beancount-finance.md) | Plugin data model and file-layer recipe |
 
 ### Implementation And Test Anchors
 

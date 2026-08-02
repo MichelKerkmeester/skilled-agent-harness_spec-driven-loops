@@ -159,7 +159,7 @@ OBSIDIAN_BASE_URL="http://127.0.0.1:27123" \
 
 ### 3.3 beancount-transaction.sh
 
-**Purpose:** Append a balanced transaction to a Beancount ledger used by the Flat Financing plugin, then validate it when `bean-check` is available.
+**Purpose:** Append a balanced transaction to a Beancount ledger used by the Beancount Ledger plugin, then validate it when `bean-check` is available.
 
 **Usage:**
 
@@ -188,7 +188,7 @@ PAYEE="Book Store" NARRATION="Research books" AMOUNT="24.00" \
 **Use cases:**
 
 - Demonstrating the file-layer plugin model
-- Adding a validated Flat Financing ledger transaction
+- Adding a validated Beancount Ledger transaction
 - Exercising a disposable scratch ledger before targeting a real vault ledger
 
 ---
@@ -323,7 +323,7 @@ The script can still append to its designated ledger, but it cannot confirm Bean
 ### Related References
 
 - [`../references/plugins/plugin-operation-logic.md`](../references/plugins/plugin-operation-logic.md) — Why the mode edits plugin data instead of UI controls
-- [`../references/plugins/flat-financing.md`](../references/plugins/flat-financing.md) — Beancount ledger model and plugin behavior
+- [`../references/plugins/beancount-finance/beancount-finance.md`](../references/plugins/beancount-finance/beancount-finance.md) — Beancount Ledger model and plugin behavior
 - [`../references/troubleshooting.md`](../references/troubleshooting.md) — CLI, Local REST API, and MCP recovery guide
 
 ### External

@@ -1,0 +1,23 @@
+option "title" "Beancount Ledger example"
+option "operating_currency" "USD"
+
+2026-01-01 commodity AAPL
+  name: "Apple Inc."
+  price: "USD:yahoo/AAPL"
+
+2026-01-01 open Assets:Bank:Checking USD
+2026-01-01 open Assets:Brokerage AAPL
+2026-01-01 open Expenses:Food:Groceries USD
+2026-01-01 open Equity:Opening-Balances USD
+
+2026-01-01 * "Opening balance" "Opening cash"
+  Assets:Bank:Checking       1000.00 USD
+  Equity:Opening-Balances   -1000.00 USD
+
+2026-01-10 * "Grocery Store" "Weekly groceries"
+  Expenses:Food:Groceries      42.50 USD
+  Assets:Bank:Checking        -42.50 USD
+
+2026-01-31 balance Assets:Bank:Checking 957.50 USD
+
+2026-01-31 price AAPL 225.00 USD

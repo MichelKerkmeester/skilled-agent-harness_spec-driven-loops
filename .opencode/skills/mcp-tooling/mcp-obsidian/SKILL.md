@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Routes Obsidian between two CLI profiles — headless notesmd-cli (no running app) and the app-backed official obsidian CLI — plus the cyanheads Obsidian MCP for live-app note ops. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api -->
@@ -21,7 +21,7 @@ Obsidian vault and note management via **two CLI profiles** and the **cyanheads 
 - "note", "notes", "markdown note", "daily note", "vault"
 - "create a note", "open a note", "search notes", "search my vault"
 - "add a tag to a note", "manage frontmatter", "delete a note", "move a note"
-- "obsidian plugin", "beancount", "flat financing", "obsidian tables", "brat"
+- "obsidian plugin", "beancount", "beancount finance", "obsidian tables", "brat"
 - "local rest api", "obsidian api key"
 
 ### Automatic Triggers (keyword patterns)
@@ -50,10 +50,23 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official obsidian CLI command details)
            references/mcp-tools.md                      (cyanheads MCP tool catalog + invocation)
            references/troubleshooting.md                (error, auth, REST API, or install issue detected)
-           references/plugins/plugin-operation-logic.md (plugin-driven note automation)
-           references/plugins/flat-financing.md         (Flat Financing / beancount plugin operations)
-           references/plugins/obsidian-tables.md         (Obsidian Tables plugin operations)
-           references/plugins/obsidian42-brat.md         (BRAT beta-plugin install/update operations)
+           Plugin operation logic:
+             references/plugins/plugin-operation-logic.md (plugin-driven note automation)
+           Beancount Finance:
+             references/plugins/beancount-finance/beancount-finance.md      (plugin index)
+             references/plugins/beancount-finance/data-model.md
+             references/plugins/beancount-finance/workflows.md
+             references/plugins/beancount-finance/troubleshooting.md
+           Obsidian Tables:
+             references/plugins/obsidian-tables/obsidian-tables.md         (plugin index)
+             references/plugins/obsidian-tables/data-model.md
+             references/plugins/obsidian-tables/workflows.md
+             references/plugins/obsidian-tables/troubleshooting.md
+           Obsidian42 BRAT:
+             references/plugins/obsidian42-brat/obsidian42-brat.md         (plugin index)
+             references/plugins/obsidian42-brat/data-model.md
+             references/plugins/obsidian42-brat/workflows.md
+             references/plugins/obsidian42-brat/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes
@@ -151,12 +164,26 @@ INTENT_SIGNALS = {
                      "semantic search", "global search", "live app", "rest api note",
                      "structured note", "read note via mcp", "write note via mcp"],
     },
+    "PLUGIN_FINANCE": {
+        "weight": 5,
+        "keywords": ["beancount", "beancount finance", "beancount-finance", "ledger",
+                     "double-entry", "bql", "bean-query", "bean-price", "net worth",
+                     "transaction"],
+    },
+    "PLUGIN_TABLES": {
+        "weight": 5,
+        "keywords": ["obsidian tables", "obsidian-tables", ".table.md", "table plugin",
+                     "agentable", "columns", "rows", "formula column"],
+    },
+    "PLUGIN_BRAT": {
+        "weight": 5,
+        "keywords": ["brat", "obsidian42", "obsidian42-brat", "beta plugin",
+                     "community plugin install", "install plugin from github", "frozen version",
+                     "beta theme"],
+    },
     "PLUGINS": {
         "weight": 5,
-        "keywords": ["plugin", "beancount", "flat financing", "flat-financing",
-                     "obsidian tables", "obsidian-tables", "brat", "obsidian42",
-                     "obsidian42-brat", "beta plugin", "community plugin",
-                     "plugin automation", "ledger", "double-entry"],
+        "keywords": ["plugin", "plugin automation", "community plugin"],
     },
     "INSTALL": {
         "weight": 6,
@@ -178,18 +205,34 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key (the selected `intent` is always one of the five INTENT_SIGNALS keys
-# above). The no-match case is owned by DEFAULT_RESOURCE, whose declared
+# by that key. The selected `intent` is one of the eight INTENT_SIGNALS keys above.
+# Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
+# The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
 # never loaded — so obsidian-cli-commands.md can never leak into the MCP_ADVANCED /
 # PLUGINS / INSTALL / TROUBLESHOOT routes.
 RESOURCE_MAP = {
     "NOTES_CLI":     ["references/obsidian-cli-commands.md"],
     "MCP_ADVANCED":  ["references/mcp-tools.md"],
-    "PLUGINS":       ["references/plugins/plugin-operation-logic.md",
-                      "references/plugins/flat-financing.md",
-                      "references/plugins/obsidian-tables.md",
-                      "references/plugins/obsidian42-brat.md"],
+    "PLUGIN_FINANCE": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/beancount-finance/beancount-finance.md",
+                       "references/plugins/beancount-finance/data-model.md",
+                       "references/plugins/beancount-finance/workflows.md",
+                       "references/plugins/beancount-finance/troubleshooting.md"],
+    "PLUGIN_TABLES":  ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/obsidian-tables/obsidian-tables.md",
+                       "references/plugins/obsidian-tables/data-model.md",
+                       "references/plugins/obsidian-tables/workflows.md",
+                       "references/plugins/obsidian-tables/troubleshooting.md"],
+    "PLUGIN_BRAT":    ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/obsidian42-brat/obsidian42-brat.md",
+                       "references/plugins/obsidian42-brat/data-model.md",
+                       "references/plugins/obsidian42-brat/workflows.md",
+                       "references/plugins/obsidian42-brat/troubleshooting.md"],
+    "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/beancount-finance/beancount-finance.md",
+                       "references/plugins/obsidian-tables/obsidian-tables.md",
+                       "references/plugins/obsidian42-brat/obsidian42-brat.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
@@ -248,7 +291,31 @@ def route_obsidian_resources(request: str) -> dict:
     elif scores.get("INSTALL", 0) > 4:
         intent = "INSTALL"
     else:
-        intent = max(scores, key=scores.get)
+        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT")
+        matched_specific_plugin_intents = [
+            plugin_intent
+            for plugin_intent in specific_plugin_intents
+            if scores.get(plugin_intent, 0) > 0
+        ]
+        if matched_specific_plugin_intents:
+            max_specific_score = max(
+                scores[plugin_intent] for plugin_intent in matched_specific_plugin_intents
+            )
+            top_specific_plugin_intents = [
+                plugin_intent
+                for plugin_intent in matched_specific_plugin_intents
+                if scores[plugin_intent] == max_specific_score
+            ]
+            if len(top_specific_plugin_intents) > 1:
+                return {
+                    "needs_disambiguation": True,
+                    "candidate_intents": top_specific_plugin_intents,
+                    "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+                    "resources": loaded,
+                }
+            intent = top_specific_plugin_intents[0]
+        else:
+            intent = max(scores, key=scores.get)
 
     for resource in RESOURCE_MAP[intent]:
         load_if_available(resource, loaded, seen, inventory)
@@ -488,9 +555,18 @@ await call_tool_chain({
 - `references/mcp-tools.md` — Cyanheads `obsidian-mcp-server` 14-tool catalog, priorities, and `call_tool_chain()` invocation
 - `references/troubleshooting.md` — Install, vault, auth, Local REST API and MCP failures
 - `references/plugins/plugin-operation-logic.md` — How plugin-driven note automation is operated
-- `references/plugins/flat-financing.md` — Flat Financing / beancount plugin operations
-- `references/plugins/obsidian-tables.md` — Obsidian Tables plugin operations
-- `references/plugins/obsidian42-brat.md` — BRAT beta-plugin install/update operations
+- `references/plugins/beancount-finance/beancount-finance.md` — Beancount Ledger / beancount-finance plugin index
+- `references/plugins/beancount-finance/data-model.md` — Beancount Ledger settings, layout, directives, and BQL data model
+- `references/plugins/beancount-finance/workflows.md` — Beancount Ledger file-layer recipes
+- `references/plugins/beancount-finance/troubleshooting.md` — Beancount Ledger failure and recovery recipes
+- `references/plugins/obsidian-tables/obsidian-tables.md` — Obsidian Tables plugin index
+- `references/plugins/obsidian-tables/data-model.md` — `.table.md` envelope, columns, rows, formulas, and views
+- `references/plugins/obsidian-tables/workflows.md` — Obsidian Tables file-layer recipes
+- `references/plugins/obsidian-tables/troubleshooting.md` — Obsidian Tables failure and recovery recipes
+- `references/plugins/obsidian42-brat/obsidian42-brat.md` — BRAT beta-plugin install/update index
+- `references/plugins/obsidian42-brat/data-model.md` — BRAT `data.json` and release-policy data model
+- `references/plugins/obsidian42-brat/workflows.md` — BRAT stage, register, activate, and update recipes
+- `references/plugins/obsidian42-brat/troubleshooting.md` — BRAT release, asset, compatibility, and path recovery recipes
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 

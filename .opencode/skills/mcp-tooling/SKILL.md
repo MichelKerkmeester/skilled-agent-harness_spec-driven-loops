@@ -1,6 +1,6 @@
 ---
 name: mcp-tooling
-description: "Parent hub for MCP tool bridges: routes to three workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
+description: "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
 version: 1.3.0.0
 metadata:
@@ -8,11 +8,11 @@ metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes -->
 
 # MCP Tooling Hub (mcp-tooling)
 
-One skill, three workflow bridges plus three design transports, one shared `family: mcp` identity. `mcp-tooling` is the public, advisor-routable home for every MCP tool bridge in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode`. `mcp-code-mode` is the shared MCP execution substrate all modes reach through the unchanged `code_mode` registration key; it is external infrastructure, not a hub member, and stays a flat standalone skill.
+One skill, four workflow bridges plus three design transports, one shared `family: mcp` identity. `mcp-tooling` is the public, advisor-routable home for every MCP tool bridge in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode`. `mcp-code-mode` is the shared MCP execution substrate all modes reach through the unchanged `code_mode` registration key; it is external infrastructure, not a hub member, and stays a flat standalone skill.
 
 ---
 
@@ -40,7 +40,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 
 ## 2. SMART ROUTING
 
-Routing is registry-driven. `mode-registry.json` lists all six modes (three workflow, three transport) in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
+Routing is registry-driven. `mode-registry.json` lists all seven modes (four workflow, three transport) in one `modes[]` array. `hub-router.json` decides whether the result is a single mode, an ordered bundle, or a deferred disambiguation.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -50,7 +50,7 @@ Routing is registry-driven. `mode-registry.json` lists all six modes (three work
 
 ### Two-Axis Model
 
-- `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).
+- `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).
 - `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), and `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a mandatory cross-hub judgment pairing to `sk-design`.
 
 ### Routing Rule
@@ -97,6 +97,11 @@ mcp-tooling/
     INSTALL-GUIDE.md
     changelog/
   mcp-click-up/
+    SKILL.md
+    README.md
+    INSTALL-GUIDE.md
+    changelog/
+  mcp-obsidian/
     SKILL.md
     README.md
     INSTALL-GUIDE.md

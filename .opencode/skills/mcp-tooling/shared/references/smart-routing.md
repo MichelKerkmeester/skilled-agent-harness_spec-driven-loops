@@ -15,8 +15,8 @@ version: 1.0.0.0
 
 This is mcp-tooling's second-layer (surface) router. The hub selects a workflow
 mode in [`hub-router.json`](../../hub-router.json) (`mcp-chrome-devtools`,
-`mcp-click-up`, `mcp-aside-devtools`, `mcp-figma`, `mcp-refero`, or
-`mcp-mobbin`); this doc maps a request's tool-bridge intent to the exact
+`mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-figma`,
+`mcp-refero`, or `mcp-mobbin`); this doc maps a request's tool-bridge intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
 `mode-registry.json` `packet` field) and converts to the canonical
@@ -39,6 +39,9 @@ emits leaf paths, and this router never re-decides the mode.
 - **mcp-click-up leaves** — the `cupt` CLI command reference and the MCP
   tool-surface guide a request to work a ClickUp queue — mark tasks done, add
   notes, log time, or run bulk task operations — loads.
+- **mcp-obsidian leaves** — the dual CLI command reference and the cyanheads
+  MCP tool catalog a request to manage an Obsidian vault or markdown notes
+  through `notesmd-cli`, the official `obsidian` CLI, or MCP loads.
 - **mcp-aside-devtools leaves** — the Aside CLI command reference and the
   MCP-wiring guide a request to hand a browser task to the agentic Aside runtime
   (sign in, click through a flow autonomously, capture REPL evidence) loads.
@@ -95,7 +98,6 @@ RESOURCE_MAP = {
         "mcp-click-up/references/mcp-tools.md"
     ],
     "OBSIDIAN": [
-        "mcp-obsidian/SKILL.md",
         "mcp-obsidian/references/obsidian-cli-commands.md",
         "mcp-obsidian/references/mcp-tools.md"
     ],

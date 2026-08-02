@@ -52,4 +52,4 @@ The headless CLI can edit the underlying files but cannot invoke command-palette
 
 Related references:
 - [`open-note-or-vault.md`](open-note-or-vault.md) — primary live-app action.
-- [`../../references/plugins/obsidian42-brat.md`](../../references/plugins/obsidian42-brat.md) — plugin installation context; command invocation remains app-only.
+- [`../../references/plugins/obsidian42-brat/obsidian42-brat.md`](../../references/plugins/obsidian42-brat/obsidian42-brat.md) — plugin installation context; command invocation remains app-only.

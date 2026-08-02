@@ -1,0 +1,23 @@
+{
+  "beancountCommand": "/Users/alice/Library/Python/3.12/bin/bean-query",
+  "operatingCurrency": "USD",
+  "maxTransactionResults": 2000,
+  "maxJournalResults": 1000,
+  "dashboardDefaultPeriod": "this-month",
+  "bqlShowTools": true,
+  "bqlShowQuery": false,
+  "debugMode": false,
+  "createBackups": true,
+  "maxBackupFiles": 10,
+  "structuredFolderName": "Finances",
+  "fileOrganization": "yearly",
+  "autoPriceFetch": false,
+  "priceFetchIntervalHours": 24,
+  "lastAutoPriceFetch": 0,
+  "beanPriceCommand": "/Users/alice/Library/Python/3.12/bin/bean-price",
+  "accountAutocomplete": true,
+  "enableUserSnippets": false,
+  "formatOnSave": false,
+  "lintMode": "on-save",
+  "onboardingCompleted": true
+}
