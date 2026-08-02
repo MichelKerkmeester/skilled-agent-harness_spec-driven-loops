@@ -132,10 +132,10 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 - **Read-only disqualifiers:** `review`, `audit`, `inspect`, `analyze`, `explain` — suppress Gate 3 when they appear ALONE (e.g. "review the decomposition phase"). Do NOT suppress when a continuity-write trigger is also present.
 - **Note:** tokens `analyze`, `decompose`, `phase` are NOT positive triggers; they false-positive on read-only review prompts.
 - **Options (stable labels):**
-  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope.
-  - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure.
-  - **C) Update related** - Use another related existing spec when the current packet is not the best scope match.
-  - **D) Extend phased packet** - Add or target a specific child under an existing phase parent, or decompose a related standard packet that now meets both phase-qualification thresholds.
+  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
+  - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure. **Reply with a new folder path.**
+  - **C) Update related** - Use another related existing spec when the current packet is not the best scope match. **Reply with the folder path.**
+  - **D) Extend phased packet** - Add or target a specific child under an existing phase parent, or decompose a related standard packet that now meets both phase-qualification thresholds. **Reply with the child folder path.**
   - **E) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
 - **Recommendation order:** Keep the A-E labels stable. First test the request against the active/related packet's documented purpose, scope, requirements, and Phase Documentation Map. If it is a positive scope match: recommend `A` when the current packet or child already fits; recommend `D` for a distinct related workstream in an existing or qualifying phased packet; recommend `C` when another related packet fits better. Only when it is NOT a scope match, recommend `B` (new/unrelated). Never recommend `E` by default. "Currently open" is never sufficient to recommend A or D. The user still makes the final selection.
 - **Phase-qualification guard:** Creating a new phased packet or converting a standard packet into a phase parent requires BOTH phase complexity score >= 25/50 AND documentation level >= 3. If only one or neither condition is met, use a standard non-phased packet.
