@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:35:53Z"
+    last_updated_at: "2026-08-02T14:38:46Z"
     last_updated_by: "implementer"
     recent_action: "Packet scaffolded: runtime audit done; root causes pinned"
     next_safe_action: "Implement core question semantics change, then pi adapter hardening, then verify"
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Packet** | `037-spec-gate-question-noise` |
 | **Status** | In Progress |
-| **Completion** | 80% (implementation + verification done; agent fanout + packet validation pending) |
+| **Completion** | 98% (implemented, verified, validated, committed `e251617bef`, merged to main `5ed153eaeb`; formal packet close pending operator review) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
