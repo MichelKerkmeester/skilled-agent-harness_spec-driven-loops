@@ -18,8 +18,11 @@
       "mcp-webflow architecture plan",
       "webflow architecture tasks",
       "webflow safety tasks",
-      "webflow architecture summary",
-      "webflow safety status"
+      "webflow contract checklist",
+      "webflow phase 2 verification",
+      "webflow decision record",
+      "mcp-webflow contract",
+      "webflow architecture freeze"
     ],
     "key_topics": [
       "webflow",
@@ -31,17 +34,19 @@
       "phase",
       "plan",
       "tasks",
-      "summary",
-      "status",
-      "read"
+      "checklist",
+      "verification",
+      "decision"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
+      "decision-record.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -57,6 +62,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -66,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,41 +188,33 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Consume Phase",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Webflow MCP may read and mutate an external design and content system, while `mcp-tooling` distinguishes workspace-mutating workflows from external transports",
     "created_at": "2026-08-02T13:47:07Z",
-    "last_save_at": "2026-08-02T15:13:42.475Z",
+    "last_save_at": "2026-08-02T18:40:52.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1111948196233e67003389767c8521107fc45753236f52996f4e612f4c137660",
+    "source_fingerprint": "sha256:16e13a7fc1576f5d530cf8a7307e1637a2b9dbe53f7128196e077396dd33614c",
     "source_doc_hashes": {
-      "spec.md": "03673c4c6f23c4366b91c69f6324aaa0873a0028e96468c4c6c607ca15eda833",
-      "plan.md": "96cb913f68485080b17d6a937baa30e4a85ad127fe8ef983b0bd8827de51c76e",
-      "tasks.md": "b0f27e05a2813c32e5198b5493f16e6d71c6c8dead9105a4c07f953554831674",
-      "implementation-summary.md": "17e45f364fdf406d3f446010ada978d65a2096cdfa4be9dc812ef8d600f5d57d"
+      "spec.md": "e53cfd408b25b1d8be2b89c99700c5ed6eec0a66bea61cafb1721b5f9224fb9a",
+      "plan.md": "7d49484c34fa70b56efc1d1d3b5e98ccecb4e401246be6b6ec7ba1414b43dff3",
+      "tasks.md": "b18efd38c4725dd3523ab9e3b573a25a0840c511d6409c5a58358a5f10b67d57",
+      "checklist.md": "810c04fd3f662d9f889f12f366148c985d5c922247ce98acea8eff2f76754fa4",
+      "decision-record.md": "6154da8242b2e723f145333fb46eab1bb3739b95f36836247b30aafca1b2f6f7",
+      "implementation-summary.md": "218dab2e0d24df5fcffeb9b1dc8b0e9bcc171d3d3067f462df5390d063e3ec1e"
     },
     "last_active_child_id": null,
     "last_active_at": null
