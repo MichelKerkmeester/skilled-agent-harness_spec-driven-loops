@@ -36,11 +36,12 @@
       "connected"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      ".opencode/skills/mcp-tooling/mcp-webflow/SKILL.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-webflow/SKILL.md",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A connected MCP transport is not a safe or discoverable skill",
     "created_at": "2026-08-02T13:47:08Z",
-    "last_save_at": "2026-08-02T15:13:42.796Z",
+    "last_save_at": "2026-08-02T18:46:13.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5eb305040a0215a3a0f91cdfe1de380495753deb7f49dce14971a2e73dbe7d1",
+    "source_fingerprint": "sha256:c002bfdb8df06040a9b463a4a1aa72119437e8b0ac23b02efab32bd4d0401431",
     "source_doc_hashes": {
-      "spec.md": "c3f5d2e6888136401a82d62bc27c3bbc3aad9db62a0e62c044b66682226f0324",
-      "plan.md": "f5f4dbbda74dce17bfeb61d09c344b4e3fd373f1cefc286ffad90fba7c1ff80e",
-      "tasks.md": "7351dbdfaf264589be110cc22767f5bf73a5874c2326b6fd62c0e76b7a32e8c9",
-      "implementation-summary.md": "5e6983658a8bea25942e87e31421fc4db3a165769024d278012c89dd2318e445"
+      "spec.md": "6eb3dc68a4db1b523f336c889ef9073fabe61de3b2906e4616f3af8ed8136e40",
+      "plan.md": "6383c552d475c3a89abfd7133a812ce801984d2910ef5e37cb4378e255ad5627",
+      "tasks.md": "46f60939f48b65f883a02cc3fc4ca41db486c2f8487c29ee6c91bcb0b0374917",
+      "implementation-summary.md": "5bb1144dc4c431bd4799dcebc960c4ecf4fa5efac50ef09a985ad8a033509e91"
     },
     "last_active_child_id": null,
     "last_active_at": null
