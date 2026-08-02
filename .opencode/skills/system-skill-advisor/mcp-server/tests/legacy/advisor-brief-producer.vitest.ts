@@ -25,13 +25,13 @@ const options = {
   workspaceRoot,
   runtime: 'opencode' as const,
 };
-const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// Appended in full after the capped advisor portion (lib/render.ts), so every
-// brief ends with this capsule and it is excluded from the advisor token cap.
-const GOVERNOR_DIRECTIVE = 'Fable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+// Every brief ends with this capsule and it is excluded from the advisor token cap.
+const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+const DIRECTIVES_LABEL = '\nDirectives:';
 
 function expectedBrief(summary: string): string {
-  return `${summary}\n${HYGIENE_DIRECTIVE}\n${GOVERNOR_DIRECTIVE}`;
+  return `${summary}${DIRECTIVES_LABEL}${HYGIENE_DIRECTIVE}${GOVERNOR_DIRECTIVE}`;
 }
 
 function expectedSharedSummary(summary: string): string {
@@ -366,6 +366,36 @@ describe('buildSkillAdvisorBrief', () => {
     expect(runAdvisorSubprocess).toHaveBeenCalledTimes(2);
   });
 
+  it('AS9b mixed graph-backed and command labels do not poison the cache', async () => {
+    vi.mocked(runAdvisorSubprocess).mockResolvedValue({
+      ok: true,
+      recommendations: [
+        { skill: 'sk-code', confidence: 0.91, uncertainty: 0.1, passes_threshold: true },
+        { skill: 'memory:save', confidence: 0.8, uncertainty: 0.15, passes_threshold: true },
+        { skill: 'command-spec-kit', confidence: 0.7, uncertainty: 0.2, passes_threshold: true, kind: 'command' },
+      ],
+      errorCode: null,
+      exitCode: 0,
+      signal: null,
+      stderr: null,
+      durationMs: 5,
+      retriesAttempted: 0,
+    });
+
+    const first = await buildSkillAdvisorBrief('implement feature X', options);
+    expect(first.status).toBe('ok');
+    expect(first.brief).toContain('sk-code');
+
+    vi.mocked(runAdvisorSubprocess).mockClear();
+    const second = await buildSkillAdvisorBrief('implement feature X', options);
+
+    // Command/registry labels never exist in the skill-fingerprint map. If they
+    // were cached as skill labels, every lookup would look like a deleted skill
+    // and the entry would be dropped before it could ever be served.
+    expect(second.metrics.cacheHit).toBe(true);
+    expect(runAdvisorSubprocess).not.toHaveBeenCalled();
+  });
+
   it('AS10 enforces the hard 120 token cap regardless of advisor output', async () => {
     vi.mocked(runAdvisorSubprocess).mockResolvedValue({
       ok: true,
@@ -389,11 +419,11 @@ describe('buildSkillAdvisorBrief', () => {
     });
 
     expect(result.metrics.tokenCap).toBe(120);
-    // The hard cap governs the advisor portion only; the fixed governor capsule
+    // The hard cap governs the advisor portion only; the fixed directives block
     // is appended in full afterward, so strip it before measuring the cap.
-    const governorSuffix = `\n${GOVERNOR_DIRECTIVE}`;
-    const cappedPortion = (result.brief ?? '').endsWith(governorSuffix)
-      ? (result.brief ?? '').slice(0, -governorSuffix.length)
+    const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+    const cappedPortion = (result.brief ?? '').endsWith(directiveSuffix)
+      ? (result.brief ?? '').slice(0, -directiveSuffix.length)
       : (result.brief ?? '');
     expect(Math.ceil(cappedPortion.length / 4)).toBeLessThanOrEqual(120);
   });

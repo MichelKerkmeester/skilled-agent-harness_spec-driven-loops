@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/036-pi-input-hook-latency",
+  "description": "The operator observed that PI CLI adds delay before a message is sent, while the opencode plugin, the codex hooks, and the claude hooks do not",
+  "keywords": [
+    "operator",
+    "observed",
+    "cli",
+    "delay",
+    "message",
+    "sent",
+    "while",
+    "opencode",
+    "plugin",
+    "codex",
+    "hooks",
+    "claude"
+  ],
+  "lastUpdated": "2026-08-02T12:25:05.873Z",
+  "specId": "036",
+  "folderSlug": "pi-input-hook-latency",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

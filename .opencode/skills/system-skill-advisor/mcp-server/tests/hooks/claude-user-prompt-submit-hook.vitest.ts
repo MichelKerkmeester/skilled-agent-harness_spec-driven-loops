@@ -19,7 +19,12 @@ import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
-const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+// When no brief is available (skip, fail-open, timeout) the hook still emits
+// hookSpecificOutput with the fallback directive block, matching
+// renderAdvisorFallbackDirective(): the constitutional capsule is always
+// delivered so directives survive even when the advisor cannot run.
+const EXPECTED_FALLBACK_CONTEXT = 'Directives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -80,7 +85,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostics.records[0]).not.toMatch(/prompt|stdout|stderr|promptFingerprint|promptExcerpt/);
   });
 
-  it('AS2 emits {} for an empty prompt skipped by the producer', async () => {
+  it('AS2 emits the fallback directive block for an empty prompt skipped by the producer', async () => {
     const { output, buildBrief } = await runHook({
       session_id: 's1',
       hook_event_name: 'UserPromptSubmit',
@@ -88,11 +93,11 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, fixture('skipPolicyEmptyPrompt.json'));
 
-    expect(output).toEqual({});
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
     expect(buildBrief).toHaveBeenCalledTimes(1);
   });
 
-  it('AS3 emits {} for /help skipped by the producer', async () => {
+  it('AS3 emits the fallback directive block for /help skipped by the producer', async () => {
     const { output, buildBrief } = await runHook({
       session_id: 's1',
       hook_event_name: 'UserPromptSubmit',
@@ -100,7 +105,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, fixture('skipPolicyCommandOnly.json'));
 
-    expect(output).toEqual({});
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
     expect(buildBrief).toHaveBeenCalledTimes(1);
   });
 
@@ -154,7 +159,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, result);
 
-    expect(output).toEqual({});
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
     expect(JSON.stringify(output)).not.toMatch(/"decision"\s*:\s*"(block|deny)"/);
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');
     expect(diagnostic.status).toBe('fail_open');
@@ -172,7 +177,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
       cwd: '/workspace/project',
     }, result);
 
-    expect(output).toEqual({});
+    expect(output).toEqual({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext: EXPECTED_FALLBACK_CONTEXT } });
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');
     expect(diagnostic.status).toBe('fail_open');
     expect(diagnostic.errorCode).toBe('PYTHON_MISSING');
