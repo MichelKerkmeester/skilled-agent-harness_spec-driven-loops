@@ -36,7 +36,7 @@
       "phases"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -171,7 +171,7 @@
         "source": "derived"
       },
       {
-        "name": "named",
+        "name": "per-task",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -191,8 +191,8 @@
     ],
     "causal_summary": "A packet with passing phases can still fail as a whole: a stale child summary, conflicting statuses, unfresh generated assets, an unvalidated doc, or an untested connection",
     "created_at": "2026-08-02T13:47:11Z",
-    "last_save_at": "2026-08-02T19:05:35.721Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T19:20:38.019Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9552e6fccd21c7a144abb2437d76764aa5ad05e869d6a0445be9ad7e1bd280b1",
+    "source_fingerprint": "sha256:98092520f5f28965b3009d4303040bd01b23bd0c25cc2b8bffc63243d6000869",
     "source_doc_hashes": {
-      "spec.md": "45e5018e6f4ea828a43b2061810be8bb3445cfda358ee3776f2cc7ef320c62e3",
-      "plan.md": "9c45a7d4e9766e37b7e25a1f699aa6e93695248dfd39bd482190de47cda44e9e",
-      "tasks.md": "b87200eee90db80c521876c6192ab5e1e94ba172f132c08c19325b9dd4fd08cf",
-      "implementation-summary.md": "12779715869ee735bedab594717d64187f7c02cbff7cffa6e6bce4c1d2868fa9"
+      "spec.md": "abb22dd580f1f8b2e75d752c2e32f5e53bde4b2d23444878afa8b47f280fc927",
+      "plan.md": "99d1ca5e7a8e27f3be23c9271fec629a751c79e6ebb1305a4d57957e18eafd1f",
+      "tasks.md": "e62b60d7eae02ba4b8a2012fdd20cd6921757e4b898c8cec3e346756dc92137b",
+      "implementation-summary.md": "92b16702a4ab74d43edb63ff0c68021cf0f83a4e2bbef57079da466a25f7210a"
     },
     "last_active_child_id": null,
     "last_active_at": null

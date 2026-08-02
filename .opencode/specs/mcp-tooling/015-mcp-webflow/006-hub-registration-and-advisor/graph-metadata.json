@@ -36,7 +36,7 @@
       "mode"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,8 +197,8 @@
     ],
     "causal_summary": "An authored mode that is not registered is invisible: the hub router never selects it, the advisor cannot recommend it, compiled routing does not cover it, and the leaf manifest stays stale",
     "created_at": "2026-08-02T13:47:10Z",
-    "last_save_at": "2026-08-02T19:04:24.643Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T19:20:34.866Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e915e680ae2662acf12298ebc1b41c654a8afcc315edc159eec5961696545d5e",
+    "source_fingerprint": "sha256:5a3f3aa7abfa50b9ea0153fc1f9eec69570513a8d583bde352e1e250f435af36",
     "source_doc_hashes": {
-      "spec.md": "abd0353c8546b4bed5e5111bf07ef79deaa474e91bad838e7d6aef4ed72feb45",
-      "plan.md": "4e5d3a94ba218ecfbf45c5760d8f2a695c9fe3557ceff0e5a90c373ce66f5f6a",
-      "tasks.md": "c7168c64cf97151a679c7c5e886becce306023dae4e0bd6eac0753c8da04cd78",
-      "implementation-summary.md": "87614675d5b2c6f0e698baabb7750622ae12192d1b6c899ea27339f1d3b389cd"
+      "spec.md": "6c404038f7de18e953a62a6c749136578ff14e544622fdbc49809d0e78e12712",
+      "plan.md": "07273bd61391738cbdbb5b42d39e24cc08ebffc3ef1f51aeda3dce7294b2f268",
+      "tasks.md": "632d92caa3481c89e40031e866ad58fdd5f14183de4dbae330c3dca12d970cf9",
+      "implementation-summary.md": "91a92c4b7e5a231f1c85c69fb512d33f2f5451ac05234085382d161473901008"
     },
     "last_active_child_id": null,
     "last_active_at": null

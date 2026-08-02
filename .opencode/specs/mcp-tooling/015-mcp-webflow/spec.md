@@ -122,12 +122,12 @@ The parent remains a control file. Detailed execution evidence belongs to the ch
 |-------|--------|-------|--------|
 | 1 | `001-deep-research/` | Two forced-depth research lineages: DeepSeek v4 Flash max thinking x5 and GPT-5.6 Luna max-fast x5; synthesize official MCP 2.0 capabilities, constraints, and recommendations | Complete |
 | 2 | `002-architecture-and-safety-contract/` | Freeze mode classification, backend, permission surface, authentication, confirmation, rollback, publish, and design-pairing policy | Complete |
-| 3 | `003-webflow-mcp-integration/` | Scaffold the packet and integrate the researched official Webflow MCP transport and configuration | Draft |
-| 4 | `004-skill-authoring/` | Author the routing contract, README, install guide, references, examples, and changelog | Draft |
-| 5 | `005-feature-catalog-and-playbook/` | Build a feature inventory and safe manual-test scenarios for all supported operation classes | Draft |
-| 6 | `006-hub-registration-and-advisor/` | Register the mode across registry, router, advisor, compiled routing, manifest, and hub docs | Draft |
-| 7 | `007-routing-benchmark-and-deep-review/` | Benchmark routing boundaries and run independent deep review; resolve or explicitly defer verified findings | Draft |
-| 8 | `008-verification-and-closeout/` | Run recursive strict validation, hub checks, route/advisor tests, safe live smoke, and completion reconciliation | Draft |
+| 3 | `003-webflow-mcp-integration/` | Scaffold the packet and integrate the researched official Webflow MCP transport and configuration | Complete |
+| 4 | `004-skill-authoring/` | Author the routing contract, README, install guide, references, examples, and changelog | Complete |
+| 5 | `005-feature-catalog-and-playbook/` | Build a feature inventory and safe manual-test scenarios for all supported operation classes | Complete |
+| 6 | `006-hub-registration-and-advisor/` | Register the mode across registry, router, advisor, compiled routing, manifest, and hub docs | Complete |
+| 7 | `007-routing-benchmark-and-deep-review/` | Benchmark routing boundaries and run independent deep review; resolve or explicitly defer verified findings | Complete |
+| 8 | `008-verification-and-closeout/` | Run recursive strict validation, hub checks, route/advisor tests, safe live smoke, and completion reconciliation | Complete |
 
 ### Phase Transition Rules
 - Phase 1 must produce a cited synthesis and explicit recommendations before Phase 2 starts.

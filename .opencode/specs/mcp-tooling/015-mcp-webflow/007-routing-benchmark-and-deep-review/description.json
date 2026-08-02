@@ -7,13 +7,18 @@
     "proof",
     "behavior"
   ],
-  "lastUpdated": "2026-08-02T19:02:58.420Z",
+  "lastUpdated": "2026-08-02T19:20:36.468Z",
   "specId": "007",
   "folderSlug": "routing-benchmark-and-deep-review",
   "parentChain": [
     "mcp-tooling",
     "015-mcp-webflow"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "02-08-26_20-15__phase-7-complete-routing-benchmark-12-12-pass.md",
+    "02-08-26_20-16__phase-7-complete-routing-benchmark-12-12-pass.md",
+    "02-08-26_20-16__phase-7-complete-routing-benchmark-12-12-pass.md",
+    "02-08-26_20-20__phase-7-complete-routing-benchmark-12-12-pass.md"
+  ]
 }
