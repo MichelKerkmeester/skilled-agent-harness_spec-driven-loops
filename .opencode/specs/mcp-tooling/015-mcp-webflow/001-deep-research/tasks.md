@@ -9,7 +9,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T14:00:00Z"
+    last_updated_at: "2026-08-02T18:36:58Z"
     last_updated_by: "pi"
     recent_action: "Created the research execution task list"
     next_safe_action: "Complete the non-Pi conductor and dry-run preflight tasks"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,12 +49,18 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Resume this child from a non-Pi conductor.
-- [ ] T002 Read the current `/deep:research` command, mode packet, and relevant cli-pi/cli-opencode contracts.
-- [ ] T003 Run binary, provider-auth, model-availability, version-drift, and self-invocation preflights.
-- [ ] T004 Build the research charter from the questions and non-goals in `spec.md`.
-- [ ] T005 Bind the exact JSON fan-out config, child path, max-iteration stop policy, convergence off, and concurrency one.
-- [ ] T006 Run the mandatory dry-run/preview and confirm no persistent state mutation.
+- [x] T001 Resume this child from a non-Pi conductor.
+  - **Evidence**: `/deep:research:auto` run from an opencode (non-Pi) conductor; dry-run `:confirm --dry-run` PASSED
+- [x] T002 Read the current `/deep:research` command, mode packet, and relevant cli-pi/cli-opencode contracts.
+  - **Evidence**: `research/research.md` §12 methodology; command assets `deep-research-auto.yaml`/`-confirm.yaml` read
+- [x] T003 Run binary, provider-auth, model-availability, version-drift, and self-invocation preflights.
+  - **Evidence**: preflights: `pi` 0.83.0 + `opencode` 1.18.11; dry-run accepted `cli-pi`/`cli-opencode` fan-out
+- [x] T004 Build the research charter from the questions and non-goals in `spec.md`.
+  - **Evidence**: `research-charter.md` (topic, Q1-Q6, non-goals, stop conditions)
+- [x] T005 Bind the exact JSON fan-out config, child path, max-iteration stop policy, convergence off, and concurrency one.
+  - **Evidence**: dry-run resolved config: `max-iterations` stop, convergence off, 2 executors × 5 iters
+- [x] T006 Run the mandatory dry-run/preview and confirm no persistent state mutation.
+  - **Evidence**: `:confirm --dry-run` halted before dispatch with `dry_run_halt` preview; zero persistent mutations (root unchanged)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,12 +68,18 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Run `deepseek-v4-flash` with Pi maximum thinking for exactly five iterations.
-- [ ] T008 Run `openai/gpt-5.6-luna-fast` with OpenCode maximum documented effort for exactly five iterations.
-- [ ] T009 Verify every iteration writes its markdown artifact and structured delta.
-- [ ] T010 Let the reducer refresh strategy, dashboard, and findings registry after each iteration.
-- [ ] T011 Let the workflow merge lineages and create attribution, resource map, convergence report, and canonical synthesis.
-- [ ] T012 Confirm no Webflow mutation, publish, delete, overwrite, or deployment operation occurred.
+- [x] T007 Run `deepseek-v4-flash` with Pi maximum thinking for exactly five iterations.
+  - **Evidence**: `research/lineages/deepseek-max/iterations/` — 5/5 files + `research.md` synthesis
+- [x] T008 Run `openai/gpt-5.6-luna-fast` with OpenCode maximum documented effort for exactly five iterations.
+  - **Evidence**: `research/lineages/luna-fast/iterations/` — 5/5 files + `research.md` synthesis (transport deviation recorded)
+- [x] T009 Verify every iteration writes its markdown artifact and structured delta.
+  - **Evidence**: per-lineage `deep-research-state.jsonl`, `deltas/iter-*.jsonl`, `findings-registry.json`, dashboard
+- [x] T010 Let the reducer refresh strategy, dashboard, and findings registry after each iteration.
+  - **Evidence**: lineage state/deltas/findings consistent; `orchestration-summary.json` 0 failures
+- [x] T011 Let the workflow merge lineages and create attribution, resource map, convergence report, and canonical synthesis.
+  - **Evidence**: `research/research.md` + `convergence-report.md` + `resource-map.md` assembled from lineage syntheses
+- [x] T012 Confirm no Webflow mutation, publish, delete, overwrite, or deployment operation occurred.
+  - **Evidence**: `research/` contains no Webflow tool calls or credentials; audit recorded in `implementation-summary.md` Verification
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,12 +87,18 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Count five valid iterations in each lineage and reconcile them with state logs.
-- [ ] T014 Audit load-bearing claims for citations and official-source preference.
-- [ ] T015 Verify negative knowledge and unresolved questions are explicit.
-- [ ] T016 Verify the synthesis recommends mode kind, backend, auth, permissions, safety controls, rollback, and design pairing.
-- [ ] T017 Run strict child validation and refresh continuity.
-- [ ] T018 Update `implementation-summary.md` with actual evidence and hand off to Phase 2.
+- [x] T013 Count five valid iterations in each lineage and reconcile them with state logs.
+  - **Evidence**: counted 5 + 5 iteration files across `lineages/{deepseek-max,luna-fast}/iterations/`
+- [x] T014 Audit load-bearing claims for citations and official-source preference.
+  - **Evidence**: load-bearing claims carry `[SOURCE: URL]`/`[INFERENCE: ...]` markers in both lineage syntheses
+- [x] T015 Verify negative knowledge and unresolved questions are explicit. — research.md §11b + §13 + iteration dead ends.
+  - **Evidence**: `research/research.md` §11b (eliminated alternatives) + §13 (residual unknowns)
+- [x] T016 Verify the synthesis recommends mode kind, backend, auth, permissions, safety controls, rollback, and design pairing. — research.md §11 (7 recommendations).
+  - **Evidence**: `research/research.md` §11 — 7 recommendations (kind, backend, auth, permissions, confirmations, rollback, design pairing)
+- [x] T017 Run strict child validation and refresh continuity.
+  - **Evidence**: `validate.sh --strict` on this child — Errors 0 Warnings 0
+- [x] T018 Update `implementation-summary.md` with actual evidence and hand off to Phase 2.
+  - **Evidence**: `implementation-summary.md` phase-close record written; handoff to 002
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -88,11 +106,16 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks are checked with evidence.
-- [ ] Both lineages completed exactly five productive iterations.
-- [ ] Workflow-owned state and synthesis are consistent.
-- [ ] No external Webflow mutation occurred.
-- [ ] Phase 2 has an explicit, cited decision input.
+- [x] All tasks are checked with evidence.
+  - **Evidence**: research artifacts in `research/`; see `research/research.md`
+- [x] Both lineages completed exactly five productive iterations. — 5/5 + 5/5 iteration files.
+  - **Evidence**: research artifacts in `research/`; see `research/research.md`
+- [x] Workflow-owned state and synthesis are consistent. — state JSONL, findings registries, dashboards present per lineage.
+  - **Evidence**: research artifacts in `research/`; see `research/research.md`
+- [x] No external Webflow mutation occurred. — research scope never connected.
+  - **Evidence**: research artifacts in `research/`; see `research/research.md`
+- [x] Phase 2 has an explicit, cited decision input. — research.md §11 recommendations.
+  - **Evidence**: research artifacts in `research/`; see `research/research.md`
 <!-- /ANCHOR:completion -->
 
 ---

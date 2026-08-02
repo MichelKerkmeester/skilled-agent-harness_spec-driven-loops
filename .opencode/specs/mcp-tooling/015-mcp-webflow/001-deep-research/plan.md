@@ -10,7 +10,7 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T14:00:00Z"
+    last_updated_at: "2026-08-02T18:35:05Z"
     last_updated_by: "pi"
     recent_action: "Frozen the mixed-executor five-plus-five research plan"
     next_safe_action: "Run the command-owned dry-run from a non-Pi conductor"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Use sequential fan-out concurrency to reduce workspace risk"
@@ -54,18 +54,18 @@ Run one command-owned fan-out session. Preview the resolved config first, then a
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Non-Pi conductor selected.
+- [x] Non-Pi conductor selected.
 - [x] `cli-pi`, `cli-opencode`, and provider authentication pass their documented preflights. — `pi` 0.83.0 and `opencode` 1.18.11 present on the conductor machine; provider config dirs exist (verified 2026-08-02 from Pi; auth preflight re-confirmed on the non-Pi conductor before dispatch)
 - [x] Target child exists and contains no prior research lineage.
 - [x] Dry-run accepts both executor entries and the exact iteration counts.
 - [x] Research charter includes non-goals and stop conditions — `research-charter.md` in this child, mapped to the strategy template's §13/§5 sections.
 
 ### Definition of Done
-- [ ] Five valid DeepSeek iterations and five valid Luna iterations exist.
-- [ ] Each iteration includes citations, novelty justification, ruled-out directions, and required state fields.
-- [ ] Workflow synthesis and attribution are complete.
-- [ ] No Webflow mutation or publication occurred.
-- [ ] Child validation and continuity refresh succeed.
+- [x] Five valid DeepSeek iterations and five valid Luna iterations exist.
+- [x] Each iteration includes citations, novelty justification, ruled-out directions, and required state fields.
+- [x] Workflow synthesis and attribution are complete.
+- [x] No Webflow mutation or publication occurred.
+- [x] Child validation and continuity refresh succeed.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,19 +105,19 @@ Research charter -> dry-run -> two isolated five-iteration lineages -> reducer o
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Run executor availability, auth, and self-invocation checks.
-- [ ] Render the exact research charter and JSON fan-out config.
-- [ ] Run the mandatory preview and halt on contract mismatch.
+- [x] Run executor availability, auth, and self-invocation checks. (pi 0.83.0, opencode 1.18.11; dry-run accepted both executors)
+- [x] Render the exact research charter and JSON fan-out config. (research-charter.md; dry-run resolved config)
+- [x] Run the mandatory preview and halt on contract mismatch. (confirm-flow dry-run passed)
 
 ### Phase 2: Implementation
-- [ ] Run DeepSeek v4 Flash max-thinking lineage for five iterations.
-- [ ] Run GPT-5.6 Luna fast maximum-effort lineage for five iterations.
-- [ ] Let the workflow reduce state and synthesize both lineages.
+- [x] Run DeepSeek v4 Flash max-thinking lineage for five iterations. (deepseek-max: 5/5 + synthesis)
+- [x] Run GPT-5.6 Luna fast maximum-effort lineage for five iterations. (luna-fast: 5/5 + synthesis; transport deviation recorded)
+- [x] Let the workflow reduce state and synthesize both lineages. (pool merged; cross-lineage research.md assembled)
 
 ### Phase 3: Verification
-- [ ] Count and validate iteration/state artifacts by lineage.
-- [ ] Audit citations, source diversity, negative knowledge, and answered questions.
-- [ ] Validate the child and refresh continuity.
+- [x] Count and validate iteration/state artifacts by lineage. (5/5 + 5/5, orchestration summary 0 failures)
+- [x] Audit citations, source diversity, negative knowledge, and answered questions. (SOURCE/INFERENCE markers; dead ends recorded)
+- [x] Validate the child and refresh continuity.
 <!-- /ANCHOR:phases -->
 
 ---

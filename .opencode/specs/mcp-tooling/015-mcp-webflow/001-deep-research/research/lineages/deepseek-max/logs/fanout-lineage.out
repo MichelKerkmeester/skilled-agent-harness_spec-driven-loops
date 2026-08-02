@@ -1,0 +1,7 @@
+**phase_main_loop**: read state → 5/5 iterations complete → max-iterations check fires STOP immediately; zero new dispatches (cap satisfied; prior findings preserved — no overwrite).
+
+**phase_synthesis**: canonical `research.md` verified complete (all 6 charter questions answered, 13 sections + Eliminated Alternatives + Sources, official-source citations); config already `status: complete` (untouched); `synthesis_complete` + `convergence_report` events already present (no duplicates appended); resource-map emitted; dashboard 6/6 consistent. SAVE phase skipped per driver scope constraint (write authority is the lineage dir only).
+
+Lineage state: 15 JSONL records, 5 iteration files, deltas 1–5, findings-registry 7 key findings / 6 resolved questions, no pause/lock sentinels. All writes confined to the lineage artifact dir.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max

@@ -1,0 +1,249 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "text": "Which MCP 2.0 actions are read-only, draft-safe, destructive, publish-capable, or deployment-capable?",
+      "status": "resolved",
+      "answer": "Read-only: all GET actions + ask_webflow_ai + webflow_guide_tool + element_snapshot. Draft-safe: CMS/page/component/script/Designer canvas mutations (publish always explicit). Destructive: delete_collection_items, delete_all_site/page_scripts, delete_webhook, delete_301_redirect, delete_robots_txt, remove_well_known_files, delete_variable, remove_element/attribute/style, unregister_component. Publish-capable: publish_site, publish_collection_items, update_page_settings (status field). Deployment-capable: run_workflow."
+    },
+    {
+      "id": "Q2",
+      "text": "Does the official surface use remote OAuth, a local server, an API token, or a client-specific connection flow?",
+      "status": "resolved",
+      "answer": "Remote OAuth (mcp.webflow.com/sse via experimental mcp-remote; per-site/workspace authorization; owner/admin role gate) OR local server with WEBFLOW_TOKEN bearer token (site or workspace token). No client-specific flow."
+    },
+    {
+      "id": "Q4",
+      "text": "What non-production Webflow workspace or site can support live smoke?",
+      "status": "resolved",
+      "answer": "Dedicated test workspace (authz isolation, owner/admin gate) + small Starter test site; read-only scopes baseline; publish smoke limited to publishToWebflowSubdomain (webflow.io staging), single page via pageId, 1/min; production site never authorized."
+    },
+    {
+      "id": "Q3",
+      "text": "Is mcp-webflow a workflow or a transport?",
+      "status": "resolved",
+      "answer": "Transport: mutatesWorkspace:false, mutations land in Webflow cloud via Data API v2 + Designer API; transport-axis leaf with mandatory sk-design pairing; run_workflow executes Webflow-side workflows, not repo-side operations."
+    },
+    {
+      "id": "Q5",
+      "text": "Which Webflow operations require explicit operator confirmation, and which require a named rollback?",
+      "status": "resolved",
+      "answer": "Confirmation: publish-capable (publish_site, publish_collection_items, update_page_settings status flip), destructive (CMS/scripts/webhook/redirect/robots/variable/element deletes), deployment-capable (run_workflow). Rollback: re-PUT/re-create for most; API-level site restore UNKNOWN."
+    },
+    {
+      "id": "Q6",
+      "text": "Which operations must pair with sk-design design judgment?",
+      "status": "resolved",
+      "answer": "Designer family (deElement/deStyle/deVariable/deComponents/deAsset/dePages + update_static_content DOM updates) pairs with sk-design; Data family (CMS content, settings, publish, scripts, webhooks, workflows, comments, enterprise) does not."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1",
+      "run": 1,
+      "finding": "Official server webflow/mcp-server (npm webflow-mcp-server 1.0.1, MIT); MCP SDK 1.25.2 + webflow-api 3.2.1",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/package.json"
+      ]
+    },
+    {
+      "id": "F2",
+      "run": 1,
+      "finding": "Translation-layer architecture wrapping REST Data + Designer APIs into MCP tools",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/docs/ai-tools.md"
+      ]
+    },
+    {
+      "id": "F3",
+      "run": 1,
+      "finding": "Two deployment modes: remote OAuth (mcp.webflow.com/sse, mcp-remote experimental) and local npx webflow-mcp-server with WEBFLOW_TOKEN",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/README.md"
+      ]
+    },
+    {
+      "id": "F4",
+      "run": 1,
+      "finding": "18 tool modules in src/tools/; de* prefix + localDeMCPConnection are Designer/bridge-bound",
+      "sources": [
+        "https://api.github.com/repos/webflow/mcp-server/git/trees/main?recursive=1"
+      ]
+    },
+    {
+      "id": "F5",
+      "run": 1,
+      "finding": "Bridge App optional for most actions; required only for canvas-bound ops (current canvas/selection/page/mode/branch/breakpoints)",
+      "sources": [
+        "https://webflow.com/blog/mcp-2-features"
+      ]
+    },
+    {
+      "id": "F6",
+      "run": 1,
+      "finding": "MCP 2.0 headline: components from screenshot, full CSS variable collection access, per-site Agent Instructions (rules+skills), plain-language analytics",
+      "sources": [
+        "https://webflow.com/blog/mcp-2-features"
+      ]
+    },
+    {
+      "id": "F7",
+      "run": 1,
+      "finding": "Node.js 22.3.0+ required; OAuth reset rm -rf ~/.mcp-auth; docs via llms.txt + .md suffix",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/docs/ai-tools.md"
+      ]
+    },
+    {
+      "id": "F8",
+      "run": 2,
+      "finding": "Combined-tool pattern: one MCP tool per module, per-action schemas with HTTP-method comments; readOnlyHint false on combined tools, true on element_snapshot/webflow_guide/ask_webflow_ai",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/index.ts"
+      ]
+    },
+    {
+      "id": "F9",
+      "run": 2,
+      "finding": "Operation classes: publish_site + publish_collection_items + update_page_settings(status) are publish-capable; run_workflow deployment-capable; CMS/scripts/enterprise deletes destructive",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/sites.ts",
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/cms.ts"
+      ]
+    },
+    {
+      "id": "F10",
+      "run": 2,
+      "finding": "Designer tool family (de_*, element_*, style_, variable_, asset_) is canvas-draft via bridge app; not publish-capable itself",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/deElement.ts"
+      ]
+    },
+    {
+      "id": "F11",
+      "run": 2,
+      "finding": "comments tool fully read-only (3 GET actions); webhooks CRUD; enterprise plan tools for 301 redirects/robots.txt/well-known/activity logs; ask_webflow_ai read-only chat",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/comments.ts",
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/enterprise.ts"
+      ]
+    },
+    {
+      "id": "F12",
+      "run": 3,
+      "finding": "Remote OAuth (mcp.webflow.com/sse, mcp-remote experimental); per-site/workspace browser authorization; token at ~/.mcp-auth; only site owners/admins can authorize",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/docs/ai-tools.md"
+      ]
+    },
+    {
+      "id": "F13",
+      "run": 3,
+      "finding": "Local mode: WEBFLOW_TOKEN bearer; token types Site (single site), Workspace (enterprise, workspace_activity:read only, no site scope), OAuth (multi-site user-specific)",
+      "sources": [
+        "https://developers.webflow.com/data/reference/authentication.md"
+      ]
+    },
+    {
+      "id": "F14",
+      "run": 3,
+      "finding": "Site-level scopes paired read/write: assets, cms, comments, components, custom_code (Data Client apps only), ecommerce, forms, pages, sites, site_config, users, webhooks, workspace; site_activity:read",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/scopes.md"
+      ]
+    },
+    {
+      "id": "F15",
+      "run": 3,
+      "finding": "Rate limits plan-based per API key: 60 rpm Starter/Basic, 120 rpm CMS/eCommerce/Business, Enterprise custom; publish 1/min; 429 + Retry-After; SDK exponential backoff",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/rate-limits.md"
+      ]
+    },
+    {
+      "id": "F16",
+      "run": 4,
+      "finding": "Publish endpoint: site OR page (pageId), customDomains or publishToWebflowSubdomain required, sites:write scope, 202 async, 1 publish/min",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/sites/publish.md"
+      ]
+    },
+    {
+      "id": "F17",
+      "run": 4,
+      "finding": "Staging semantics: page-level staging publishes accumulate; staging->production publishes all staged changes; publishToWebflowSubdomain = webflow.io non-production path",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/sites/publish.md"
+      ]
+    },
+    {
+      "id": "F18",
+      "run": 4,
+      "finding": "update_page_settings can flip page publishing status (draft/published) - publish-capable settings mutation",
+      "sources": [
+        "logs/evidence/tools/pages.ts"
+      ]
+    },
+    {
+      "id": "F19",
+      "run": 4,
+      "finding": "Q4 test target: dedicated test workspace + small Starter test site, read-only scope baseline, publish smoke to webflow.io subdomain single page, never authorize production site",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/scopes.md",
+        "https://developers.webflow.com/data/v2.0.0/reference/sites/publish.md"
+      ]
+    },
+    {
+      "id": "F20",
+      "run": 4,
+      "finding": "Q5 classes: publish/destructive/deploy actions confirmation-gated; rollback via re-PUT/re-create; API-level site restore UNKNOWN in Data API v2",
+      "sources": [
+        "https://raw.githubusercontent.com/webflow/mcp-server/main/src/tools/*.ts"
+      ]
+    },
+    {
+      "id": "F21",
+      "run": 5,
+      "finding": "Q3: mcp-webflow is a TRANSPORT (mutatesWorkspace:false; mutations land in Webflow cloud); transport-axis leaf with sk-design pairing",
+      "sources": [
+        "file:.opencode/skills/mcp-tooling/SKILL.md"
+      ]
+    },
+    {
+      "id": "F22",
+      "run": 5,
+      "finding": "Q6: Designer family (deElement/deStyle/deVariable/deComponents/deAsset/dePages + update_static_content) pairs with sk-design; Data family does not",
+      "sources": [
+        "logs/evidence/tools/deElement.ts",
+        "file:.opencode/skills/mcp-tooling/SKILL.md"
+      ]
+    },
+    {
+      "id": "F23",
+      "run": 5,
+      "finding": "Q5: confirmation-gated = publish-capable + destructive + run_workflow; rollback via re-PUT/re-create; API-level site restore UNKNOWN",
+      "sources": [
+        "https://developers.webflow.com/data/v2.0.0/reference/sites/publish.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Assume Bridge App required for all MCP actions",
+      "reason": "MCP 2.0 announcement removes bridge requirement for non-canvas actions",
+      "run": 1
+    },
+    {
+      "approach": "Classify Designer mutations as publish-capable",
+      "reason": "Designer tools are canvas-draft via bridge; publishing is Data-tool-only",
+      "run": 2
+    },
+    {
+      "approach": "Workspace token as general write credential",
+      "reason": "Enterprise-only, workspace_activity:read scope only, no site scope",
+      "run": 3
+    }
+  ],
+  "blockedStops": []
+}

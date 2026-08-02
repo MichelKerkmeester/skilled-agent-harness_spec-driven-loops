@@ -1,0 +1,51 @@
+{
+  "topic": "Webflow MCP 2.0 features (https://webflow.com/blog/mcp-2-features), followed by official Webflow MCP, developer, API, authentication, and changelog documentation",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/mcp-tooling/015-mcp-webflow/001-deep-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-02T17:36:50Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fanout": {
+    "lineage_label": "luna-fast",
+    "artifact_dir": ".opencode/specs/mcp-tooling/015-mcp-webflow/001-deep-research/research/lineages/luna-fast"
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-luna-fast",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-fast-1785691871087-sqd38y",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  }
+}

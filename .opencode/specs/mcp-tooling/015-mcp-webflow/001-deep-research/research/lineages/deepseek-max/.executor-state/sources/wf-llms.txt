@@ -1,0 +1,77 @@
+# Webflow Developer Documentation
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://developers.webflow.com/_mcp/server
+
+## Products
+
+- [Home](https://developers.webflow.com/home/llms.txt)
+  - [Overview](https://developers.webflow.com/home.md)
+  - [July 29, 2026](https://developers.webflow.com/home/changelog/2026/7/29.md)
+  - [July 27, 2026](https://developers.webflow.com/home/changelog/2026/7/27.md)
+  - [July 21, 2026](https://developers.webflow.com/home/changelog/2026/7/21.md)
+  - [July 21, 2026](https://developers.webflow.com/home/changelog/2026/7/21.md)
+- [Data API](https://developers.webflow.com/data/llms.txt): Integrate with Webflow
+  - [Quick Start](https://developers.webflow.com/data/v2.0.0/reference/rest-introduction/quick-start.md)
+  - [Structure](https://developers.webflow.com/data/v2.0.0/reference/structure-1.md)
+  - [OAuth](https://developers.webflow.com/data/v2.0.0/reference/oauth-app.md)
+  - [Site Token](https://developers.webflow.com/data/v2.0.0/reference/authentication/site-token.md)
+  - [Workspace Token](https://developers.webflow.com/data/v2.0.0/reference/authentication/workspace-token.md)
+- [Designer API](https://developers.webflow.com/designer/llms.txt): Control the Webflow Designer
+  - [Introduction](https://developers.webflow.com/designer/reference/introduction.md)
+  - [Getting Started](https://developers.webflow.com/designer/reference/designer-api/getting-started.md)
+  - [Webflow CLI](https://developers.webflow.com/designer/reference/webflow-cli.md)
+  - [Error Handling](https://developers.webflow.com/designer/reference/error-handling.md)
+  - [App Modes](https://developers.webflow.com/designer/reference/app-modes.md)
+- [Browser API](https://developers.webflow.com/browser/llms.txt): Interact with a visitor's browser
+  - [wf.ready()](https://developers.webflow.com/browser/reference/wf-ready.md)
+  - [Get consent status](https://developers.webflow.com/browser/reference/get-user-tracking-choice.md)
+  - [Allow user tracking](https://developers.webflow.com/browser/reference/allow-user-tracking.md)
+  - [Deny user tracking](https://developers.webflow.com/browser/reference/deny-user-tracking.md)
+  - [Quickstart](https://developers.webflow.com/browser/optimize/quickstart.md)
+- [Code Components](https://developers.webflow.com/code-components/llms.txt): Create or import React-based components for use inside and outside Webflow
+  - [Introduction](https://developers.webflow.com/code-components/introduction.md)
+  - [Component Architecture](https://developers.webflow.com/code-components/component-architecture.md)
+  - [Styling Components](https://developers.webflow.com/code-components/styling-components.md)
+  - [Quick start: Importing code components](https://developers.webflow.com/code-components/importing/quick-start.md)
+  - [Frameworks and libraries](https://developers.webflow.com/code-components/frameworks-and-libraries.md)
+- [Webflow Cloud](https://developers.webflow.com/webflow-cloud/llms.txt): Build complete web experiences
+  - [Getting started](https://developers.webflow.com/webflow-cloud/getting-started.md)
+  - [Getting started with DevLink](https://developers.webflow.com/webflow-cloud/getting-started-with-devlink.md)
+  - [Deploy with one click](https://developers.webflow.com/webflow-cloud/deploy-button.md)
+  - [Bring your own app](https://developers.webflow.com/webflow-cloud/bring-your-own-app.md)
+  - [Add a SQLite database](https://developers.webflow.com/webflow-cloud/add-sqlite.md)
+- [DevLink](https://developers.webflow.com/devlink/llms.txt): The interface between Webflow & external codebases
+  - [DevLink](https://developers.webflow.com/devlink/reference/overview.md)
+  - [Importing components](https://developers.webflow.com/devlink/introduction/getting-started.md)
+  - [Exporting components](https://developers.webflow.com/devlink/docs/quick-start/quick-start-component-export.md)
+  - [Webflow Cloud](https://developers.webflow.com/devlink/getting-started-with-devlink.md)
+  - [Setup](https://developers.webflow.com/devlink/docs/component-export/installation.md)
+- [Flowkit CSS Framework](https://developers.webflow.com/flowkit/llms.txt): Design visually consistent sites
+  - [Introduction](https://developers.webflow.com/flowkit/v2.0.0/getting-started/intro.md)
+  - [Units](https://developers.webflow.com/flowkit/v2.0.0/getting-started/units.md)
+  - [Overview](https://developers.webflow.com/flowkit/v2.0.0/variables/overview.md)
+  - [Colors](https://developers.webflow.com/flowkit/v2.0.0/variables/color.md)
+  - [Border](https://developers.webflow.com/flowkit/v2.0.0/variables/border.md)
+- [Webflow Apps](https://developers.webflow.com/apps/llms.txt)
+  - [Register an App](https://developers.webflow.com/apps/data/docs/register-an-app.md)
+  - [FAQs and Troubleshooting](https://developers.webflow.com/apps/docs/faqs-and-troubleshooting.md)
+  - [Build a Data Client](https://developers.webflow.com/apps/docs/data-clients/build-a-data-client.md)
+  - [Build a Designer Extension](https://developers.webflow.com/apps/docs/designer-extensions/build-a-designer-extension.md)
+  - [Upload your extension](https://developers.webflow.com/apps/docs/publishing-your-app.md)
+- [MCP Server](https://developers.webflow.com/mcp/llms.txt): Use Webflow APIs with AI agents
+  - [Overview](https://developers.webflow.com/mcp/reference/overview.md)
+  - [Claude Desktop](https://developers.webflow.com/mcp/installing/claude-desktop.md)
+  - [Claude Code](https://developers.webflow.com/mcp/installing/claude-code.md)
+  - [Cursor](https://developers.webflow.com/mcp/installing/cursor.md)
+  - [Postman](https://developers.webflow.com/mcp/installing/postman.md)
+- [Webflow CLI](https://developers.webflow.com/cli/llms.txt): Develop and deploy code with the Webflow CLI
+  - [Authentication](https://developers.webflow.com/cli/authentication.md)
+  - [Configuration](https://developers.webflow.com/cli/configuration.md)
+  - [Command reference](https://developers.webflow.com/cli/command-reference.md)
+  - [Migrating to CLI 2.0](https://developers.webflow.com/cli/migration.md)
+- [Reference](https://developers.webflow.com/reference/llms.txt): API and SDK reference
+  - [Overview](https://developers.webflow.com/reference.md)
