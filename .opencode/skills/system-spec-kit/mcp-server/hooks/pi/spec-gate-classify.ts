@@ -9,9 +9,37 @@ export default function specGateClassify(pi: ExtensionAPI): void {
   pi.on("input", async (event, ctx) => {
     try {
       const guard = await import("../../.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs");
+      // Input transforms chain across handlers, so this hook sees sibling
+      // injections (the advisor's directives capsule) and the harness's
+      // embedded conversation history appended to the user's own turn. The
+      // injected prose contains literal trigger words ("write", "move"), and
+      // history text re-opens the gate on read-only turns -- only the user's
+      // own latest words may classify. The directives capsule ends with a
+      // stable label; history turns are bracketed by [user] markers.
+      let prompt = event.text;
+      const directivesAt = prompt.lastIndexOf("\nDirectives:");
+      if (directivesAt >= 0) prompt = prompt.slice(0, directivesAt);
+      const lastUserTurn = prompt.lastIndexOf("[user]");
+      if (lastUserTurn >= 0) {
+        const suffix = prompt.slice(lastUserTurn + "[user]".length);
+        // A marker-only tail (empty suffix) must not discard the turn -- the
+        // whole text stands in as the fallback.
+        if (suffix.trim()) prompt = suffix;
+      }
+      let sessionFile: string | undefined;
+      try {
+        sessionFile = ctx.sessionManager.getSessionFile();
+      } catch {
+        // A session-file lookup failure must not lose the turn -- fall back
+        // to the raw session id (resolveSessionKey handles it).
+        sessionFile = undefined;
+      }
       const result = guard.classifyIntent({
-        prompt: event.text,
-        sessionID: ctx.sessionManager.getSessionId(),
+        prompt,
+        sessionID: guard.resolveSessionKey({
+          sessionId: ctx.sessionManager.getSessionId(),
+          sessionFile,
+        }),
         projectDir: ctx.cwd,
         env: process.env,
       });

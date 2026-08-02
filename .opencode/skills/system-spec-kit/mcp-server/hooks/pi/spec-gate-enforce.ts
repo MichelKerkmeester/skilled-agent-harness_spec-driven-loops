@@ -18,10 +18,24 @@ export default function specGateEnforce(pi: ExtensionAPI): void {
       if (event.toolName !== "bash" && event.toolName !== "write" && event.toolName !== "edit") return;
 
       const guard = await import("../../.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs");
+      // The session file stays stable across invocations of one conversation
+      // while the session id is fresh per process; both hooks must key state
+      // identically or classify's answer never reaches enforce's lookup.
+      let sessionFile: string | undefined;
+      try {
+        sessionFile = ctx.sessionManager.getSessionFile();
+      } catch {
+        // A session-file lookup failure must not lose the mutation check --
+        // fall back to the raw session id (resolveSessionKey handles it).
+        sessionFile = undefined;
+      }
       const result = guard.evaluateMutation({
         tool: event.toolName,
         filePath: projectFilePath(event.input),
-        sessionID: ctx.sessionManager.getSessionId(),
+        sessionID: guard.resolveSessionKey({
+          sessionId: ctx.sessionManager.getSessionId(),
+          sessionFile,
+        }),
         projectDir: ctx.cwd,
         env: process.env,
       });
