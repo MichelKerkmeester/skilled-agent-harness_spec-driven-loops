@@ -1,110 +1,37 @@
 ---
-title: "deep research scripts: Code README"
-description: "Code-facing README for .opencode/skills/system-deep-loop/deep-research/scripts."
+title: "Deep-research scripts"
+description: "Code-facing entrypoints for research pivots, state reduction, runtime capability checks and YAML path validation."
 trigger_phrases:
   - "deep-research scripts"
-  - "code README"
+  - "research script entrypoints"
 ---
 
-# deep research scripts
-
-Operator and maintenance scripts for this skill.
+# Deep-research scripts
 
 ---
 
 ## 1. OVERVIEW
 
-### Purpose
+`.opencode/skills/system-deep-loop/deep-research/scripts/` contains the code entrypoints used by the deep-research workflow. The modules cover divergent research pivots, state reduction and sparkline output, runtime capability reporting and YAML-backed script path checks.
 
-This README documents the code-bearing folder `.opencode/skills/system-deep-loop/deep-research/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+## 2. CONTENTS
 
-### Usage
-
-Use this file to identify the folder boundary, the likely verification path, and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
-
-### Key Statistics
-
-| Metric | Value |
-|---|---:|
-| Code files | 2 |
-| README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
-
----
-
-## 2. QUICK START
-
-**Step 1: Confirm the owner.**
-
-Start with `.opencode/skills/system-deep-loop/deep-research/SKILL.md` for runtime routing and workflow boundaries.
-
-**Step 2: Inspect the local code.**
-
-```bash
-rg --files .opencode/skills/system-deep-loop/deep-research/scripts
-```
-
-Expected result: the command lists the source files summarized below.
-
-**Step 3: Verify changes.**
-
-Run individual scripts from the repository root with the documented arguments.
-
----
-
-## 3. FEATURES
-
-| Feature | What It Does |
+| File | Responsibility |
 |---|---|
-| Folder boundary | Documents direct code files under `scripts`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| `divergent-research-pivot.ts` | Implements the divergent research pivot entrypoint. |
+| `reduce-state-sparkline.test.cjs` | Tests the state-reduction sparkline behavior. |
+| `reduce-state.cjs` | Reduces loop state for compact reporting. |
+| `runtime-capabilities.cjs` | Reports runtime capabilities used by the research workflow. |
+| `verify-yaml-script-paths.sh` | Validates script paths referenced by YAML workflow assets. |
 
----
+## 3. BOUNDARIES
 
-## 4. STRUCTURE
+The folder owns research-specific script entrypoints and their focused test. Workflow routing and loop policy remain in the owning skill documentation.
 
-| Path | Purpose |
-|---|---|
-| `reduce-state.cjs` | CJS source file in this folder. |
-| `runtime-capabilities.cjs` | CJS source file in this folder. |
+## 4. VALIDATION
 
----
+Use the source-specific command documented by the owning deep-research skill. The inventory above is the current navigation surface.
 
-## 5. CONFIGURATION
+## 5. RELATED
 
-| Setting | Default | Purpose |
-|---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
-| README scope | Direct folder | This file documents this folder, not sibling folders. |
-
----
-
-## 6. USAGE EXAMPLES
-
-**Audit this folder**
-
-```text
-User request: Check .opencode/skills/system-deep-loop/deep-research/scripts for sk-code and README coverage.
-Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
-```
-
----
-
-## 7. TROUBLESHOOTING
-
-| What You See | Cause | Fix |
-|---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
-| Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
-
----
-
-## 8. RELATED DOCUMENTS
-
-| Document | Purpose |
-|---|---|
-| [`deep-research/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill-readme-template.md`](../../../sk-doc/sk-create-skill/assets/skill/skill-readme-template.md) | README structure used for this code README. |
+- [`Deep-research skill`](../SKILL.md)

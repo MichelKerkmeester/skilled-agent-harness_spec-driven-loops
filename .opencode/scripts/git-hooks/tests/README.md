@@ -1,67 +1,49 @@
 ---
-title: "tests: Git-hook regression harnesses"
-description: "Shell harnesses that exercise Git-hook installation, memory-drift locking and code-graph invalidation."
+title: "Git-hook regression harnesses"
+description: "Executable shell harnesses for Git-hook installation, memory-drift locking and pre-push branch policy."
 trigger_phrases:
   - "git hook test harnesses"
   - "memory drift lock tests"
-  - "post commit invalidation tests"
-version: 1.0.0.0
+  - "pre-push hook tests"
 ---
 
-# tests: Git-hook regression harnesses
+# Git-hook regression harnesses
 
 ---
 
 ## 1. OVERVIEW
 
-`tests/` contains executable regression harnesses for the repository Git-hook machinery. These files create isolated fixtures, exercise real scripts and report pass or fail results.
+This folder contains executable regression harnesses for the repository Git-hook machinery. Each harness creates its own temporary fixture, exercises a real hook or helper and removes the fixture before exit.
 
-They are tests, not installed Git hooks. Run them directly from the repository root.
+These files are test harnesses, not installed Git hooks. The current source inventory is the authoritative list below.
 
----
+## 2. CONTENTS
 
-## 2. STRUCTURE
-
-| File | Purpose |
+| File | Responsibility |
 |---|---|
-| [`install-git-hooks-worktree-harness.sh`](install-git-hooks-worktree-harness.sh) | Creates a temporary repository and linked worktree, runs the hook installer and verifies hook placement for both Git's resolved hook path and a custom `core.hooksPath`. |
-| [`memory-drift-marker-lock-harness.sh`](memory-drift-marker-lock-harness.sh) | Exercises canonical marker paths, lock ownership, stale-lock recovery, concurrent writers, failed writes and token-checked lock release against real helper processes. |
-| [`post-commit-code-graph-invalidation.sh`](post-commit-code-graph-invalidation.sh) | Tests post-commit code-graph invalidation, dry-run preservation and launcher-side marker consumption under exclusive ownership. |
-| [`pre-push.test.sh`](pre-push.test.sh) | Drives the pre-push owner-first branch-naming gate by piping stdin ref-update lines at the real hook inside a throwaway repo (symlinked `worktree-naming.sh` + fixture `SKILL.md`). |
+| `install-git-hooks-worktree-harness.sh` | Verifies hook placement for a linked worktree and a custom `core.hooksPath`. |
+| `memory-drift-marker-lock-harness.sh` | Exercises marker locking, stale-lock handling, concurrent writers, failed writes and token-checked release. |
+| `pre-push.test.sh` | Exercises the owner-first branch naming gate, migration tolerance, release branches and the explicit bypass. |
 
----
+## 3. VALIDATION
 
-## 3. TEST HARNESSES
-
-| Harness | What It Exercises | Success Signal |
-|---|---|---|
-| `install-git-hooks-worktree-harness.sh` | Installs a fixture `pre-commit` hook from a linked worktree, then repeats installation with `.custom-hooks` configured through `core.hooksPath`. | Prints pass lines for the linked-worktree path and custom hook path. |
-| `memory-drift-marker-lock-harness.sh` | Runs seven producer scenarios covering symlink path parity, live-owner protection, ownerless lock handling, merged concurrent writes, write-failure cleanup and ownership-token safety. | Prints `All 7 memory drift marker producer scenarios passed`. |
-| `post-commit-code-graph-invalidation.sh` | Confirms that the post-commit hook writes an atomic marker without deleting live SQLite files, that dry-run changes no state and that the launcher consumes the marker only after it gains exclusive ownership. | Prints `All 3 post-commit invalidation tests passed`. |
-| `pre-push.test.sh` | Covers a valid new task branch (accepted), a new wrapper ref and a malformed new branch (both rejected), an update to a pre-existing non-conformant branch (allowed — migration tolerance), a `skilled/v*` release push (never blocked) and the `SPECKIT_SKIP_PREPUSH_NAMING=1` bypass. | Prints `pre-push tests: PASS=6 FAIL=0`. |
-
-Each harness removes its temporary fixtures on exit.
-
----
-
-## 4. VALIDATION
-
-Run each harness from the repository root:
+Run the harnesses from the repository root:
 
 ```bash
 bash .opencode/scripts/git-hooks/tests/install-git-hooks-worktree-harness.sh
 bash .opencode/scripts/git-hooks/tests/memory-drift-marker-lock-harness.sh
-bash .opencode/scripts/git-hooks/tests/post-commit-code-graph-invalidation.sh
 bash .opencode/scripts/git-hooks/tests/pre-push.test.sh
 ```
 
-Expected result: every command exits with status `0` and prints its pass summary. A fixture failure or failed assertion exits with status `1`.
+Expected result: each command exits with status `0` and prints its pass summary. The recorded source run passed the linked-worktree installer checks, all memory-drift producer scenarios and all pre-push cases.
 
----
+## 4. BOUNDARIES
+
+- Harness fixtures live in operating-system temporary directories.
+- The harnesses do not install hooks into this checkout.
+- Test failures exit nonzero and leave the source tree unchanged.
 
 ## 5. RELATED
 
-- [Git hooks README](../README.md)
-- [Shared Git-hook libraries](../lib/)
-- [Git-hook installer](../../install-git-hooks.sh)
-- [Post-commit hook](../post-commit)
+- [`Git-hook scripts`](../README.md)
+- [`Git-hook installer`](../../install-git-hooks.sh)

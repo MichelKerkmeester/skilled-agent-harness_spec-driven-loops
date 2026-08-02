@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
   "description": "These are the only findings in the program with real operator cost",
   "keywords": [
@@ -9,13 +10,20 @@
     "operator",
     "cost"
   ],
-  "lastUpdated": "2026-07-30T19:16:46.224Z",
+  "lastUpdated": "2026-08-02T11:47:27.572Z",
   "specId": "002",
   "folderSlug": "code-readme-truth-and-missing-orientation",
   "parentChain": [
     "sk-doc",
     "022-code-readme-coverage"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "02-08-26_12-40__the-doctor-readme-finding-was-refuted-and-left.md",
+    "02-08-26_12-45__checklist-evidence-markers-and-implementation.md",
+    "02-08-26_12-45__the-implementation-summary-now-uses-the-canonical.md",
+    "02-08-26_12-45__implementation-summary-spec-folder-metadata-now.md",
+    "02-08-26_12-47__checklist-sign-off-items-now-use-canonical-chk.md",
+    "02-08-26_12-47__implementation-summary-now-records-strict.md"
+  ]
 }

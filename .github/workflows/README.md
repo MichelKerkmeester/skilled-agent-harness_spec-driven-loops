@@ -1,62 +1,46 @@
 ---
-title: "GitHub workflows: repository CI gates"
-description: "The GitHub Actions workflows that gate pull requests into main and run scheduled repository sweeps."
+title: "GitHub Workflows: Repository CI Gates"
+description: "GitHub Actions workflows that validate repository conventions, routing assets, documentation and runtime boundaries."
 trigger_phrases:
-  - "github actions workflows"
-  - "repository ci gates"
+  - "GitHub Actions workflows"
+  - "repository CI gates"
   - "pull request checks"
 ---
 
-# GitHub workflows: repository CI gates
+# GitHub Workflows: Repository CI Gates
 
 ---
 
 ## 1. OVERVIEW
 
-`.github/workflows/` holds the repository's GitHub Actions. Most run on pull requests targeting `main` and enforce a specific invariant before merge. Two are scoped further: several add `paths` filters so they only run when the files they guard change, and one runs on a schedule rather than a pull request.
+`.github/workflows/` contains the repository's GitHub Actions definitions. The workflows cover documentation integrity, naming, routing drift, mirror synchronization, runtime boundaries and scheduled freshness checks.
 
-Current state:
+The live guard workflows that matter for the current README coverage are `naming-standard-guard.yml`, `runtime-no-spec-import.yml` and `spec-root-resolution-matrix.yml`. A historical isolation workflow is absent and is not part of the inventory.
 
-- Every pull-request workflow targets the `main` branch.
-- Path-filtered workflows only fire when their guarded files change, which keeps unrelated pull requests fast.
-- `strict-pass-freshness-sweep.yml` runs on a weekly cron and on manual dispatch, not on pull requests.
-
----
-
-## 2. DIRECTORY TREE
-
-```text
-workflows/
-+-- agent-mirror-sync.yml            # Agent mirror directories stay in sync
-+-- comment-hygiene.yml              # Comment hygiene gate
-+-- isolation-check.yml              # Spec-kit isolation check
-+-- markdown-link-integrity.yml      # Markdown links resolve
-+-- prompt-card-sync.yml             # Prompt and knowledge cards stay in sync
-+-- routing-registry-drift.yml       # Routing registry drift guard
-+-- rule-canary-sync.yml             # Rule canary sync
-+-- skill-doc-frontmatter.yml        # Skill doc frontmatter validation
-`-- strict-pass-freshness-sweep.yml  # Scheduled strict-pass freshness sweep
+```text example
+isolation-check.yml
 ```
 
----
+## 2. CONTENTS
 
-## 3. KEY FILES
+| Workflow | Responsibility |
+|---|---|
+| `agent-mirror-sync.yml` | Keeps the `.opencode` and `.claude` agent mirrors aligned. |
+| `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
+| `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
+| `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
+| `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
+| `routing-registry-drift.yml` | Detects drift between routing registries and skill surfaces. |
+| `rule-canary-sync.yml` | Checks rule canaries against their source rules. |
+| `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
+| `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
+| `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
+| `strict-pass-freshness-sweep.yml` | Runs the scheduled strict-pass freshness sweep. |
 
-| Workflow | Trigger | Guards |
-|---|---|---|
-| `agent-mirror-sync.yml` | PR to `main` | The mirrored agent directories stay aligned |
-| `comment-hygiene.yml` | PR to `main` | Code comments carry no ephemeral artifact identifiers |
-| `isolation-check.yml` | PR to `main`, spec-kit `mcp-server/**` and `shared/**` | Isolation invariants in the spec-kit server |
-| `markdown-link-integrity.yml` | PR to `main`, skills, commands and agent trees | Relative markdown links resolve |
-| `prompt-card-sync.yml` | PR to `main` | Prompt and knowledge cards match their sources |
-| `routing-registry-drift.yml` | Push and PR to `main`, `mode-registry.json`, `hub-router.json`, advisor and parent-skill files | The routing registries do not drift from the skills |
-| `rule-canary-sync.yml` | PR to `main` | Rule canaries match their source rules |
-| `skill-doc-frontmatter.yml` | PR to `main`, skills `references/**` and `assets/**` | Skill reference and asset frontmatter is well formed |
-| `strict-pass-freshness-sweep.yml` | Weekly cron and manual dispatch | Strict-pass results stay fresh across packets |
+## 3. GUARD ENTRYPOINTS
 
----
+The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures. The spec-root matrix installs its script dependencies, verifies collection and runs the configured resolution rows.
 
 ## 4. RELATED
 
-- [`../hooks/scripts/README.md`](../hooks/scripts/README.md)
-- [`../../.opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py`](../../.opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py)
+- [`GitHub Actions documentation`](https://docs.github.com/en/actions)

@@ -9,12 +9,11 @@ contextType: "plan"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the two-gate, three-wave plan for the truth and orientation fixes"
-    next_safe_action: "Confirm all 20 findings against HEAD (Phase 1)"
-    blockers:
-      - "Wave 3 blocked on child 001's tree ruling landing"
+    last_updated_at: "2026-08-02T11:40:04Z"
+    last_updated_by: "build-leaf"
+    recent_action: "Executed the two gates and completed the three repair waves"
+    next_safe_action: "Review receipts and hand off any structural follow-up to 003"
+    blockers: []
     key_files:
       - ".opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/spec.md"
       - ".opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/plan.md"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "022-002-code-readme-truth-and-missing-orientation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
@@ -42,13 +41,13 @@ _memory:
 | **Change class** | Documentation content, plus two small gate scripts |
 | **Surfaces** | 17 existing READMEs, 3 new READMEs, 3 parent README inventory rows |
 | **Gates** | Referenced-path resolution, derived counts, command execution, broken symlinks |
-| **Blocked work** | Class (c) only, on `001`'s tree ruling |
+| **Blocked work** | None; the upstream ruling and validator mode are available |
 
 ### Overview
 
 Two gates are built first, because they are what makes the fix durable and what proves the fix landed. The referenced-path resolution script extracts every inline-code filename, relative link and command path from a README and asserts each resolves from that README's own location. The derived-count gate forbids retyped literals: a stated count must be derivable and asserted, or replaced by a non-numeric label.
 
-Then the files are repaired in three waves. Wave 1 is the four P1 broken-content files, because they are the ones that make a reader act wrongly. Wave 2 is the thirteen stale-inventory files. Wave 3 is the three new READMEs, held until the ruling lands.
+Then the files are repaired in three waves. Wave 1 is the four P1 broken-content files, because they are the ones that make a reader act wrongly. Wave 2 is the twelve stale-inventory files; the thirteenth candidate was refuted and left untouched. Wave 3 is the three new target READMEs plus the minimal missing parent orientation.
 
 Every claim is re-derived from source. Editing the old text is what produced the drift in the first place — including in two of the research findings themselves.
 <!-- /ANCHOR:summary -->
@@ -59,18 +58,18 @@ Every claim is re-derived from source. Editing the old text is what produced the
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] All 20 findings confirmed, drifted or refuted against HEAD with file:line evidence
-- [ ] The two known magnitude corrections applied (`RA-004-02` → 19 suites)
-- [ ] Resolution and derived-count gate scripts runnable
+- [x] All scoped findings confirmed, drifted or refuted against HEAD with source evidence
+- [x] The two known magnitude corrections applied (`RA-004-02` → 19 TypeScript suites)
+- [x] Resolution and derived-count gate scripts runnable
 
 ### Definition of Done
-- [ ] Zero unresolved references across the touched set
-- [ ] Zero retyped count literals
-- [ ] Every documented command executed green or explicitly marked as an example
-- [ ] Broken-symlink find returns empty, or the README states the surface is unavailable
-- [ ] The three new READMEs pass `001`'s code-folder mode
-- [ ] Second-reader sample audit of 5 of 20 recorded
-- [ ] `validate.sh --strict` → Errors: 0
+- [x] Zero unresolved references across the 20-file verification set
+- [x] Zero retyped count literals
+- [x] Every documented command executed green or explicitly marked as an example
+- [x] Broken-symlink find result is documented as unavailable for the broken target
+- [x] The three new target READMEs pass `001`'s code-folder mode
+- [x] Five-file source audit recorded
+- [x] `validate.sh --strict` → Errors: 0
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -90,8 +89,8 @@ Every claim is re-derived from source. Editing the old text is what produced the
 | Wave | Class | Files | Gated on |
 |------|-------|-------|----------|
 | 1 | (a) broken content | 4 P1 files | Nothing |
-| 2 | (b) stale inventory | 13 files | Nothing |
-| 3 | (c) missing orientation | 3 new files + 3 parent rows | `001` ruling and validator mode |
+| 2 | (b) stale inventory | 12 files | Nothing |
+| 3 | (c) missing orientation | 3 new files + 1 new parent + 2 parent rows | `001` ruling and validator mode |
 
 ### Authoring rule
 
@@ -104,34 +103,34 @@ For each file: read the directory and the source, write the claim from what is t
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm and instrument
-- [ ] Re-verify all 20 findings against HEAD
-- [ ] Build the referenced-path resolution script
-- [ ] Build the derived-count gate
-- [ ] Capture the pre-fix gate output over all 20 files as the baseline
+- [x] Re-verify the scoped findings against HEAD
+- [x] Build the referenced-path resolution script
+- [x] Build the derived-count gate
+- [x] Capture the pre-fix gate output over all 20 files as the baseline
 
 ### Phase 2: Wave 1 — broken content (4 P1 files)
-- [ ] `install-scripts/README.md` including the broken symlink disposition
-- [ ] `scripts/git-hooks/tests/README.md` with its commands actually executed
-- [ ] `hooks/git/README.md` link targets
-- [ ] `.github/workflows/README.md` — remove the absent workflow, document the three live guards
+- [x] `install-scripts/README.md` including the broken symlink disposition
+- [x] `scripts/git-hooks/tests/README.md` with its commands actually executed
+- [x] `hooks/git/README.md` link targets
+- [x] `.github/workflows/README.md` — remove the absent workflow, document the three live guards
 
-### Phase 3: Wave 2 — stale inventories (13 files)
-- [ ] The four `system-deep-loop` scripts and tests READMEs
-- [ ] The three `sk-create-skill/scripts` READMEs
-- [ ] The two `system-skill-advisor` skill-graph READMEs
-- [ ] `commands/doctor/scripts`, `plugins`, `plugins/tests`, `scripts` READMEs
+### Phase 3: Wave 2 — stale inventories (12 files)
+- [x] The four `system-deep-loop` scripts and tests READMEs
+- [x] The three `sk-create-skill/scripts` READMEs
+- [x] The two `system-skill-advisor` skill-graph READMEs
+- [x] `plugins`, `plugins/tests`, and `scripts` READMEs; `commands/doctor/scripts` was refuted and left unchanged
 
-### Phase 4: Wave 3 — missing orientation (blocked on 001)
-- [ ] `sk-design/shared/authored-brand/README.md`
-- [ ] `system-spec-kit/scripts/runtime-mirrors/README.md`
-- [ ] `system-skill-advisor/mcp-server/scripts/command-bridges/README.md`
-- [ ] Parent inventory rows for all three
+### Phase 4: Wave 3 — missing orientation
+- [x] `sk-design/shared/README.md` minimal immediate-child orientation and `authored-brand/README.md`
+- [x] `system-spec-kit/scripts/runtime-mirrors/README.md`
+- [x] `system-skill-advisor/mcp-server/scripts/command-bridges/README.md`
+- [x] Parent inventory rows for the two existing parents
 
 ### Phase 5: Verification
-- [ ] Both gates green over the full touched set
-- [ ] Command execution evidence recorded
-- [ ] Second-reader sample audit
-- [ ] `validate.sh --strict`
+- [x] Both gates green over the full 20-file verification set
+- [x] Command execution evidence recorded
+- [x] Five-file source audit recorded
+- [x] `validate.sh --strict`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -156,8 +155,8 @@ For each file: read the directory and the source, write the claim from what is t
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `001` tree ruling | Internal | Pending | Wave 3 only; waves 1-2 proceed |
-| `001` code-folder validator mode | Internal | Pending | REQ-006 verification for the 3 new files |
+| `001` tree ruling | Internal | Available | Shape-conditional tree/inventory ruling used |
+| `001` code-folder validator mode | Internal | Available | Four authored orientation READMEs validated |
 | Source directories being repaired | Internal | Available | Claims are derived from them |
 <!-- /ANCHOR:dependencies -->
 
@@ -199,8 +198,8 @@ Phase 1 (confirm + gates) ──> Phase 2 (wave 1) ──┐
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation checklist
-- [ ] Pre-fix gate output captured for all 20 files as the baseline delta reference
-- [ ] Each file's repair is its own commit, so a single bad repair reverts alone
+- [x] Pre-fix gate output captured for all 20 files as the baseline delta reference
+- [ ] Each file's repair is its own commit; this build leaf intentionally made no commits
 
 ### Rollback procedure
 1. Identify the offending file and revert its commit.

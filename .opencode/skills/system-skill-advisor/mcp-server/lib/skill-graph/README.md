@@ -1,55 +1,42 @@
 ---
-title: "Skill Graph Library: SQLite Metadata Graph"
-description: "Indexes skill graph metadata into SQLite and exposes relationship query helpers."
+title: "Skill-graph library"
+description: "SQLite schema, indexing and relationship-query helpers for the skill graph."
 trigger_phrases:
   - "skill graph database"
   - "skill graph queries"
 ---
 
-# Skill Graph Library: SQLite Metadata Graph
+# Skill-graph library
+
+---
 
 ## 1. OVERVIEW
 
-This folder owns the SQLite-backed skill graph used to index `.opencode/skills/*/graph-metadata.json` files. It stores skill nodes, typed relationships and graph metadata, then exposes query helpers for MCP tools and diagnostics. The [skill-root metadata contract](../../../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) defines the authoring and generated-file boundary for those inputs.
+`skill-graph/` owns the SQLite-backed skill graph used by skill-advisor handlers and diagnostics. It validates metadata, indexes nodes and edges, maps rows to domain results and exposes relationship queries.
 
-## 2. DIRECTORY TREE
+## 2. CONTENTS
 
-```text
-skill-graph/
-+-- skill-graph-db.ts       # SQLite schema, indexing and stats
-+-- skill-graph-queries.ts  # Prepared graph relationship queries
-`-- README.md               # Folder orientation
-```
-
-## 3. KEY FILES
-
-| File | Role |
+| File | Responsibility |
 |---|---|
-| `skill-graph-db.ts` | Initializes `skill-graph.sqlite`, validates metadata, indexes nodes and edges, handles stats and row mapping. |
-| `skill-graph-queries.ts` | Provides relationship lookups such as dependencies, dependents, family members, hubs, orphans, paths and subgraphs. |
+| `bfs-traversal.ts` | Traverses graph relationships breadth-first. |
+| `doc-frontmatter.ts` | Reads and normalizes skill document frontmatter. |
+| `metadata-sanitizer.ts` | Redacts and normalizes metadata before graph use. |
+| `skill-graph-db.ts` | Owns SQLite schema, indexing, statistics and row mapping. |
+| `skill-graph-queries.ts` | Provides relationship lookups and subgraph queries. |
 
-## 4. ENTRYPOINTS
+## 3. BOUNDARIES
 
-- `indexSkillMetadata(skillDir)` scans skill graph metadata and updates SQLite rows.
-- `getStats()` reports graph counts, families, edge types and database status.
-- `dependsOn()`, `dependents()`, `enhances()`, `enhancedBy()`, `familyMembers()`, `conflicts()`, `transitivePath()`, `hubSkills()`, `orphans()` and `subgraph()` read graph relationships.
+Metadata source files remain in individual skill folders. Handler wrappers call these helpers instead of writing graph tables directly. The runtime graph database is owned here.
 
-## 5. BOUNDARIES
+## 4. VALIDATION
 
-- This folder owns `skill-graph.sqlite` schema and query logic.
-- Metadata source files remain under individual skill folders.
-- Tool wrappers should call these helpers rather than writing graph tables directly.
-
-## 6. VALIDATION
-
-Run from the skill advisor MCP server package directory, or from the repository root with `npm --prefix` because the root package has no `test` script:
+Run the owning MCP server test command from the repository root:
 
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- --no-file-parallelism --maxWorkers=1
 ```
 
-## 7. RELATED
+## 5. RELATED
 
-- `../../tools/skill-graph-tools.ts`
-- `../freshness/sqlite-integrity.ts`
-- `.opencode/skills/*/graph-metadata.json`
+- [`Skill-graph handlers`](../../handlers/skill-graph/README.md)
+- [`Skill-root metadata contract`](../../../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md)

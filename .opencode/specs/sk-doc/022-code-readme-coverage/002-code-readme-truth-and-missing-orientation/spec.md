@@ -12,14 +12,14 @@ parent: "sk-doc/022-code-readme-coverage"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored the phase spec from the track-A research synthesis"
-    next_safe_action: "Run Task T001 — confirm all 20 findings against HEAD"
+    last_updated_at: "2026-08-02T11:40:04Z"
+    last_updated_by: "build-leaf"
+    recent_action: "Re-derived the scoped inventories, repaired the README set, and ran both truth gates"
+    next_safe_action: "Review the In Progress receipts and hand off structural follow-up to 003"
     blockers: []
     key_files:
       - "spec.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Q1 — the three new READMEs need the tree ruling before they can be authored"
     answered_questions:
@@ -42,7 +42,7 @@ _memory:
 | **Packet** | sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-doc/022-code-readme-coverage` |

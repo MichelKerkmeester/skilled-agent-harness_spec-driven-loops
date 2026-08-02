@@ -20,7 +20,9 @@
       "code readme truth tasks",
       "readme missing orientation tasks",
       "code readme truth checklist",
-      "readme missing orientation checklist"
+      "readme missing orientation checklist",
+      "code readme truth implementation",
+      "readme gate receipts"
     ],
     "key_topics": [
       "readme",
@@ -37,9 +39,11 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
       ".github/workflows/README.md",
       ".opencode/install-guides/install-scripts/README.md",
       ".opencode/hooks/git/README.md",
@@ -49,8 +53,12 @@
       ".opencode/plugins/tests/README.md",
       ".opencode/scripts/README.md",
       "scripts/README.md",
+      ".opencode/skills/sk-design/shared/authored-brand/README.md",
+      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/README.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/README.md",
       "plan.md",
       "checklist.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
@@ -58,6 +66,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_readme_references.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_derived_readme_counts.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
         "source": "derived"
       },
       {
@@ -79,6 +99,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -91,7 +117,7 @@
         "source": "derived"
       },
       {
-        "name": "Run Task",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,25 +201,7 @@
         "source": "derived"
       },
       {
-        "name": "Stale Inventories",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -201,21 +209,23 @@
     ],
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.668Z",
-    "last_save_at": "2026-07-30T19:17:00.627Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T11:47:27.572Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8500f24d1c39d51f77c8b0cacc30810e45c4e5406c4d83687c5ef0101bc0381",
+    "source_fingerprint": "sha256:c293081cba8a0c98b8995efb689eb499b810f70a876bf11e28c8ec97a991a50f",
     "source_doc_hashes": {
-      "spec.md": "7eda66dda27bac369fcf3994cc6b2fa6d91d227b208b2c91228253f3822ad691",
-      "plan.md": "8ec7eab898bf60f4fec0cbe4d119b4fb42009db8593c0826fe4804cad5ad2c97",
-      "tasks.md": "113df828728d66e67ddda26f5aad3c6fde8570e6b8b511d81bba2b19bbcfefbe",
-      "checklist.md": "b47c6a1637defae57b74d70b1ce55d73ebc8f4560bf9158d2442223fcba89e2f"
+      "spec.md": "c1ca5a0d31b0ede3ddd2e172a0b7d9d0b74f0eccee101d14b67d161fd256cabd",
+      "plan.md": "de88b77ed91570b5f7e9cd8e2f00c4c02fe6f05d8cf38761bde85771fa2d6edc",
+      "tasks.md": "62f915306464f68418432e555780e35c1d9c1498f9287cea1f8f7148d5848d3a",
+      "checklist.md": "fc94c9c8102ee70588435e25aebb3944f650b5fe347a1e50faf7ab22a9d934d7",
+      "implementation-summary.md": "39549a3f7e9dafc9dca53f7bcb69b7eddfd5630724c2627af6d9602a52e20b4d"
     },
     "last_active_child_id": null,
     "last_active_at": null

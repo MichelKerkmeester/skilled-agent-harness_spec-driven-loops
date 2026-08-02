@@ -1,44 +1,46 @@
 ---
-title: "Create Skill Scripts Tests: routing-contract test suite"
-description: "Self-running assert-based tests covering the leaf-resource contract, playbook topology gate, compiled-routing scenario validator and lockstep directive parity."
+title: "Create-skill scripts tests"
+description: "Self-running Node regression scripts for leaf resources, metadata freshness, compiled routing and scaffold journeys."
+trigger_phrases:
+  - "create-skill script tests"
+  - "leaf-resource tests"
+  - "compiled-routing scenario tests"
 ---
 
-# Create Skill Scripts Tests
+# Create-skill scripts tests
 
 ---
 
 ## 1. OVERVIEW
 
-`create-skill/scripts/tests/` is the test suite for the compiled-routing and playbook contracts that live one directory up. Each file is a self-contained Node script that runs its assertions directly, prints a pass line and throws on the first failed `assert` rather than depending on a test framework.
+`tests/` contains self-running Node scripts. Each script invokes its assertions directly, prints a pass line and exits nonzero on failure.
 
 ## 2. CONTENTS
 
-| File | Purpose |
-|------|---------|
-| `leaf-resource-contract.test.cjs` | Unit coverage for `../lib/leaf-resource-contract.cjs`: typed-pair normalization, composite-key stability, containment rejection and dual-read of a real legacy fixture. |
-| `validate-playbook-topology.test.cjs` | Covers quote-tolerant frontmatter parsing in `../validate-playbook-topology.cjs`, checking that quoted and unquoted scalar forms parse to byte-identical structured output. |
-| `validate-compiled-routing-scenarios.test.cjs` | Fixture sweep for `../validate-compiled-routing-scenarios.cjs`. Rejects an id-only scenario and a scenario missing an evidence field, accepts a fully-formed scenario and flags a route-leaking holdout. |
-| `compiled-routing-lockstep-parity.test.cjs` | Synthetic-fixture coverage for the lockstep directive-surface manifest, plus an informational (non-asserting) live-repo parity report. |
-| `skill-root-metadata-contract.test.cjs` | Covers the H/S class classifier, required/forbidden/overlay sets, fleet conformance against the live skills tree, nested-identity detection, generated-file freshness, and --fix write scoping. |
-| `create-journey-proof.test.cjs` | Runs standalone and parent-hub scaffolds through manifest generation, the root-metadata gate, and the parent-hub doctor. |
+| File | Responsibility |
+|---|---|
+| `advisor-index-handoff-contract.test.cjs` | Checks advisor handoff documentation and verification-state vocabulary. |
+| `ci-leaf-manifest-freshness.test.cjs` | Checks leaf-manifest freshness traversal. |
+| `compiled-routing-lockstep-parity.test.cjs` | Checks compiled-routing lockstep fixtures and reports live parity. |
+| `create-journey-proof.test.cjs` | Checks standalone and parent-hub create journeys. |
+| `leaf-resource-contract.test.cjs` | Tests typed leaf-resource identity behavior. |
+| `skill-derived-regenerator.test.cjs` | Tests derived-data regeneration and freshness behavior. |
+| `skill-root-metadata-contract.test.cjs` | Tests skill-root metadata classification and fleet conformance. |
+| `validate-compiled-routing-scenarios.test.cjs` | Tests compiled-routing scenario admission fixtures. |
+| `validate-playbook-topology.test.cjs` | Tests playbook topology parsing and validation. |
 
 ## 3. VALIDATION
 
-Run any test file directly from the repository root.
+Run the source inventory from the repository root:
 
 ```bash
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs
+cd .opencode/skills/sk-doc/sk-create-skill/scripts/tests
+for test_file in ./*.test.cjs; do node "$test_file"; done
 ```
 
-Expected result: each script prints a `[sk-doc] ... passed` line and exits 0. A failed `assert` throws and exits nonzero.
+Expected result: every script prints its pass line and exits successfully. The recorded source run passed the full current test inventory.
 
 ## 4. RELATED
 
-- [`../lib/leaf-resource-contract.cjs`](../lib/leaf-resource-contract.cjs)
-- [`SKILL.md`](../../SKILL.md)
-- [`README.md`](../../README.md)
+- [`Create-skill scripts`](../README.md)
+- [`Create-skill library`](../lib/README.md)

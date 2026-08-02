@@ -109,6 +109,7 @@ Disallowed direction:
 | `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `config/` | Exposes the script-side config barrel boundary for non-core modules. |
+| `runtime-mirrors/` | Keeps runtime mirror exclusions and native command exceptions aligned with generated mirror trees. |
 | `validation/` | Contains active validators used by validation flow, pre-commit checks and write-time comment hygiene. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |

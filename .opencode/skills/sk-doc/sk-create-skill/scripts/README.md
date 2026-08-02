@@ -1,56 +1,53 @@
 ---
-title: "Create Skill Scripts: skill lifecycle and leaf-manifest tooling"
-description: "Python CLIs that init, package and validate a skill folder, plus Node CLIs that generate and gate a hub's leaf-manifest and compiled-routing scenario/playbook contracts."
+title: "Create-skill scripts"
+description: "Lifecycle, metadata, leaf-manifest and compiled-routing utilities used by the create-skill workflows."
+trigger_phrases:
+  - "create-skill scripts"
+  - "leaf manifest generator"
+  - "skill package validation"
 ---
 
-# Create Skill Scripts
+# Create-skill scripts
 
 ---
 
 ## 1. OVERVIEW
 
-`create-skill/scripts/` holds the tooling for the `/create:skill` and `/create:skill-parent` workflows. The Python scripts cover a skill's lifecycle: init, package and validate. The Node scripts cover a parent hub's leaf-manifest generation and its compiled-routing gates. `lib/` holds the pure leaf-resource identity library the manifest generator depends on. `tests/` holds the assert-based coverage for the Node scripts.
+`scripts/` owns the command-line tooling for initializing, packaging and validating skills, generating leaf manifests, refreshing derived skill data and checking compiled-routing assets. The `lib/` and `tests/` directories are separate source zones with their own READMEs.
 
 ## 2. CONTENTS
 
-| File | Purpose |
-|------|---------|
-| `init_skill.py` | Creates a new skill folder from template at a given path, validating the skill name as hyphen-case. |
-| `package_skill.py` | Validates a skill folder against the skill-creation standards and packages it into a distributable zip. Validates only with `--check`. |
-| `validate_skill_package.py` | Runs the completion checks required for a standalone skill or parent hub, including compiled-routing readiness markers in `SKILL.md`. |
-| `generate-leaf-manifest.cjs` | Walks a hub's declared packets, normalizes every leaf resource through `lib/leaf-resource-contract.cjs` and writes or checks `leaf-manifest.json`. |
-| `ci-leaf-manifest-freshness.cjs` | Fleet-wide CI gate that regenerates every committed `leaf-manifest.json` and fails on any byte drift. |
-| `ci-skill-root-metadata.cjs` | Fleet-wide class gate: classifies every skill root, enforces its required/forbidden/overlay metadata files, validates every hub's `command-metadata.json` against the core schema, rejects nested advisor identities and stale generated files. `--fix` writes derivable files only. |
-| `validate-playbook-topology.cjs` | Pre-dispatch gate for a hub's manual testing playbook: schema, manifest resolution and selected-map join checks on typed gold. |
-| `validate-compiled-routing-scenarios.cjs` | Content admission gate for a hub's compiled-routing scenario matrix, hard-rejecting id-only or evidence-incomplete scenarios. |
+| File | Responsibility |
+|---|---|
+| `ci-leaf-manifest-freshness.cjs` | Checks committed leaf manifests for byte drift. |
+| `ci-skill-derived-freshness.cjs` | Checks generated skill-derived files for freshness. |
+| `ci-skill-root-metadata.cjs` | Enforces skill-root metadata class rules. |
+| `generate-leaf-manifest.cjs` | Generates or checks a hub leaf manifest. |
+| `init_skill.py` | Scaffolds a skill directory. |
+| `package_skill.py` | Validates and packages a skill directory. |
+| `regenerate-skill-derived.cjs` | Regenerates derived skill data. |
+| `validate-compiled-routing-scenarios.cjs` | Validates compiled-routing scenario content. |
+| `validate-playbook-topology.cjs` | Validates manual playbook topology. |
+| `validate_skill_package.py` | Runs skill and parent-hub package validation. |
 
-## 3. VALIDATION
+## 3. BOUNDARIES
 
-Run from the repository root.
+- `lib/` contains pure contracts used by the generators.
+- `tests/` contains self-running Node regression scripts.
+- Generated manifests and derived files are written only by their owning generator commands.
+
+## 4. VALIDATION
+
+Run syntax checks for the Node entrypoints from the repository root:
 
 ```bash
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/init_skill.py <skill-name> --path <path>
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py <path/to/skill-folder> --check
-python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path/to/skill-folder>
-node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs
-node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+for script in .opencode/skills/sk-doc/sk-create-skill/scripts/*.cjs; do node --check "$script"; done
 ```
 
-> Run the class gate before the freshness gate. Freshness discovers work by walking committed
-> manifests, so it cannot report one that was never written; the class gate starts from `SKILL.md`
-> and turns an unadopted root into a finding.
-
-Expected result: each script exits 0 when the target is valid or already up to date, nonzero with findings printed otherwise.
-
-## 4. TESTS
-
-- `.opencode/skills/sk-doc/sk-create-skill/scripts/tests/`
+Use the package-specific commands in the create-skill workflow when validating a skill or hub.
 
 ## 5. RELATED
 
-- [`lib/leaf-resource-contract.cjs`](lib/leaf-resource-contract.cjs)
-- [`lib/skill-root-metadata-contract.cjs`](lib/skill-root-metadata-contract.cjs)
-- [`skill-root-metadata-contract.md`](../references/shared/skill-root-metadata-contract.md)
-- [`SKILL.md`](../SKILL.md)
-- [`README.md`](../README.md)
+- [`Create-skill library`](./lib/README.md)
+- [`Create-skill tests`](./tests/README.md)
+- [`Create-skill workflow`](../SKILL.md)

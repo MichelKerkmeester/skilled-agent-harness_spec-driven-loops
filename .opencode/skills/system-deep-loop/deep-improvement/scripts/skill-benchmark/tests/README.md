@@ -1,64 +1,61 @@
 ---
-title: "skill-benchmark tests: Lane C Vitest suites"
-description: "The three Vitest suites covering the skill-benchmark (Lane C) lane: orchestrator/router-replay/dual-report, playbook mode, and the sk-code router drift guard."
+title: "Skill-benchmark tests: Lane C Vitest suites"
+description: "Vitest suites for skill-benchmark routing, playbook behavior, scoring and router drift."
 trigger_phrases:
   - "skill-benchmark tests"
-  - "lane c vitest"
-  - "playbook-mode tests"
+  - "Lane C Vitest"
   - "sk-code router sync test"
 ---
 
-# skill-benchmark tests: Lane C Vitest suites
+# Skill-benchmark tests: Lane C Vitest suites
 
 ---
 
 ## 1. OVERVIEW
 
-`skill-benchmark/tests/` holds the three Vitest suites that cover the Lane C (skill-benchmark) lane. They exercise the lane's pure modules directly (`require` of each `.cjs`) and drive the end-to-end path through `run-skill-benchmark.cjs`, so the suites stay deterministic with no live dispatch or network.
+This folder contains the current Vitest suites for the skill-benchmark lane. The tests read the lane and sibling skill trees from stable repository paths, use real in-repo routing targets and send generated reports to operating-system temporary directories.
 
-Current state:
-
-- Each suite resolves the lane under test from `SKILL_ROOT` (`resolve(__dirname, '..', '..', '..')`) and reads sibling skills from `REPO_SKILLS` (`resolve(SKILL_ROOT, '..')`), so they are position-stable within this `tests/` dir.
-- `skill-benchmark.vitest.ts` and `playbook-mode.vitest.ts` cover the lane's two modes plus scoring; `sk-code-router-sync.vitest.ts` is a drift guard that reads the live `sk-code` skill on disk.
-- Fixture skills used as routing targets are real in-repo skills (`cli-opencode`, `sk-code`, `deep-improvement`); router-less negative cases are built from a throwaway temp `SKILL.md`.
-- End-to-end cases write reports under OS temp dirs and clean them up in `afterAll`.
-
----
-
-## 2. KEY FILES
+## 2. CONTENTS
 
 | File | Responsibility |
 |---|---|
-| `skill-benchmark.vitest.ts` | Orchestrator and Mode A coverage: `loop-host.cjs` mode wiring (skill-benchmark as a valid mode, single-step plan, fail-closed args, byte-identical Lane A default), `router-replay.cjs` routing including inline vs reference-following routers, `contamination-lint.cjs`, `d5-connectivity.cjs` hard gate, `score-skill-benchmark.cjs` scoring with negative-activation, `build-report.cjs` report render, `advisor-probe.cjs` D1-inter scoring, malformed-fixture degradation, and the dual `skill-benchmark-report.json` / `.md` artifacts via `run-skill-benchmark.cjs`. |
-| `playbook-mode.vitest.ts` | Mode B (playbook corpus) coverage: `load-playbook-scenarios.cjs` parsing the sk-code playbook (24 scenarios, text/browser/advisor split), `executor-dispatch.cjs` router branch + browser routing-out, `score-skill-benchmark.cjs` real-gold scoring, `computeDivergence` A vs B deltas, `live-executor.cjs` (`parseLiveResult`, `extractRoutingJson`, `proseRoutingFallback`), surface-mismatch gating, the asset lane (`assetRecall` separate from D2/D3), `browser-executor.cjs` verdict mapping, `d4-ablation.cjs` D4 and D4-R task-outcome, `playbook-generator.cjs` coverage + gates, `--playbook-dir` threading, and advisory-signal aggregation. |
-| `sk-code-router-sync.vitest.ts` | Drift guard for sk-code's machine-readable router. Via `router-replay.cjs` `parseRouter`, asserts the machine block parses by reference-following, every routed path exists on disk, every routable `references/`/`assets/` `.md` (outside the navigation allowlist) is covered, and every explicit full path named in the `smart-routing.md` prose maps is present. |
-
----
+| `code-opencode-playbook-ids.vitest.ts` | Validates OpenCode playbook identifiers. |
+| `code-surface-path-parse.vitest.ts` | Tests code-surface path parsing. |
+| `compiled-routing-cutover-luna.test.cjs` | Checks the compiled-routing cutover contract. |
+| `compiled-routing-parity.vitest.ts` | Checks compiled and legacy routing parity. |
+| `design-dispatch-boundary-proof.vitest.ts` | Checks design dispatch boundaries. |
+| `design-token-lint.vitest.ts` | Checks design token lint behavior. |
+| `dimension-applicability.vitest.ts` | Checks benchmark dimension applicability. |
+| `live-asset-recall.vitest.ts` | Checks live asset recall behavior. |
+| `load-playbook-typed-derivation.vitest.ts` | Checks typed playbook derivation. |
+| `mcp-figma-router-sync.vitest.ts` | Checks the Figma router synchronization contract. |
+| `parent-hub-vocab-sync.vitest.ts` | Checks parent-hub vocabulary synchronization. |
+| `playbook-mode.vitest.ts` | Covers playbook parsing, execution branches, scoring and divergence. |
+| `route-gold-gate.vitest.ts` | Checks the route-gold admission gate. |
+| `routing-allowlist.vitest.ts` | Checks routing allow-list behavior. |
+| `run-storage-convention.vitest.ts` | Checks benchmark run storage conventions. |
+| `sk-code-router-sync.vitest.ts` | Checks the machine-readable sk-code router against the live skill tree. |
+| `sk-doc-leaf-routing-contract.vitest.ts` | Checks the sk-doc leaf routing contract. |
+| `skill-benchmark-error-taxonomy.vitest.ts` | Checks benchmark error taxonomy. |
+| `skill-benchmark.vitest.ts` | Covers lane orchestration, routing replay, contamination, connectivity, scoring and report generation. |
+| `surface-slice-sync.vitest.ts` | Checks surface-slice synchronization. |
 
 ## 3. BOUNDARIES
 
-| Boundary | Rule |
-|---|---|
-| Imports | Suites `require` lane modules from `skill-benchmark/` and `shared/loop-host.cjs` by absolute join off `SKILL_ROOT`; only Node builtins (`fs`, `os`, `path`, `child_process`) are used otherwise. No production code imports these tests. |
-| Fixtures | Routing targets are real in-repo skills under `REPO_SKILLS` (`cli-opencode`, `sk-code`, `deep-improvement`). Negative router-less cases are synthesized as throwaway temp `SKILL.md` dirs, not committed fixtures. |
-| Write policy | Read-only against the repo. Any writes (reports, malformed fixtures, custom playbook dirs) go to OS temp dirs and are removed in `afterAll`; the `sk-code` and `cli-opencode` skill trees are read but never mutated. |
-| Ownership | These suites are co-located with the Lane C lane they cover. The cross-lane index and shared fixtures live in `../../shared/tests/`. |
-
----
+- Tests import lane modules and Node builtins without mutating production source.
+- Routing fixtures use repository skills or temporary negative fixtures.
+- Reports and malformed fixtures are created under operating-system temporary directories.
 
 ## 4. VALIDATION
 
-Run from the `scripts/` directory.
+Run from the repository root when Vitest is installed in the workspace:
 
-```bash
-npx vitest run skill-benchmark/tests
+```bash example
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests
 ```
 
-Expected result: 3 suites pass (all tests green); the suites print informational `skill-benchmark: ... verdict=...` lines for their end-to-end report artifacts.
-
----
+The command was attempted in this worktree. No local Vitest executable is installed, so `npx --no-install` timed out while package resolution was unavailable. The documented command is marked as an example until the dependency is installed.
 
 ## 5. RELATED
 
-- [`shared/tests/README.md`](../../shared/tests/README.md)
-- [`deep-improvement SKILL.md`](../../../SKILL.md)
+- [`deep-improvement scripts`](../../README.md)

@@ -1,143 +1,43 @@
 ---
 title: "Repository Scripts"
-description: "Developer and operator reference for repository maintenance scripts, Git hooks, session cleanup and scheduled orphan-process checks."
+description: "Repository maintenance scripts for session cleanup, orphan-process review, Git hooks, distribution data and Node test discovery."
 trigger_phrases:
   - "repository scripts"
-  - "git hook scripts"
+  - "Git hook scripts"
   - "session cleanup scripts"
-importance_tier: "important"
 ---
 
 # Repository Scripts
-
-> Repository-level maintenance scripts for local development, runtime cleanup and Git workflow automation.
 
 ---
 
 ## 1. OVERVIEW
 
-`.opencode/scripts/` owns repository-wide shell scripts that support local operators and automated workflows.
+`.opencode/scripts/` owns repository-level scripts for local operators and automated workflows. The direct entrypoints cover session cleanup, orphan-process review, Git-hook installation, Skill Advisor distribution data and Node test discovery.
 
-The folder covers four areas:
+## 2. CONTENTS
 
-- Session-scoped MCP helper cleanup
-- Orphan MCP process review and cleanup
-- Repository Git hook installation and execution
-- Skill Advisor distribution data copying
-
-Review script options and mutation boundaries before running cleanup tools in live mode.
-
----
-
-## 2. DIRECTORY TREE
-
-```text
-.opencode/scripts/
-+-- claude-session-cleanup.sh
-+-- copy-skill-advisor-dist-data.sh
-+-- git-hooks/
-|   +-- README.md
-|   +-- commit-msg
-|   +-- post-commit
-|   +-- post-merge
-|   +-- post-rewrite
-|   +-- lib/
-|   |   +-- README.md
-|   |   +-- autostash-orphan-guard.sh
-|   |   `-- memory-drift-marker.sh
-|   `-- tests/
-|       +-- README.md
-|       +-- install-git-hooks-worktree-harness.sh
-|       +-- memory-drift-marker-lock-harness.sh
-|       `-- post-commit-code-graph-invalidation.sh
-+-- install-git-hooks.sh
-+-- launchagents/
-|   +-- README.md
-|   `-- com.michelkerkmeester.orphan-sweep.plist
-+-- orphan-mcp-sweeper.sh
-+-- session-cleanup.sh
-`-- README.md
-```
-
----
-
-## 3. KEY FILES
-
-| File | Responsibility |
+| Entry | Responsibility |
 |---|---|
-| `session-cleanup.sh` | Cleans up MCP helper descendants associated with the current session. |
-| `claude-session-cleanup.sh` | Preserves the former Claude-specific entrypoint as a compatibility shim. |
-| `orphan-mcp-sweeper.sh` | Finds stale MCP helpers and temporary dispatch artifacts, with dry-run support. |
-| `copy-skill-advisor-dist-data.sh` | Copies required Skill Advisor data into compiled distribution output. |
-| `install-git-hooks.sh` | Installs the repository-managed hooks into the active Git hooks directory. |
-| `git-hooks/` | Contains hook entrypoints, shared hook helpers and test harnesses. |
-| `launchagents/` | Contains the macOS LaunchAgent template for scheduled orphan-process checks. |
+| `claude-session-cleanup.sh` | Compatibility entrypoint for Claude session cleanup. |
+| `copy-skill-advisor-dist-data.sh` | Copies required advisor data into compiled output. |
+| `install-git-hooks.sh` | Installs repository-managed Git hooks. |
+| `orphan-mcp-sweeper.sh` | Reviews or cleans stale MCP helpers with dry-run support. |
+| `run-node-tests.mjs` | Discovers and runs the repository's Node test files. |
+| `session-cleanup.sh` | Cleans session-scoped MCP helper descendants. |
+| `git-hooks/` | Contains hook entrypoints, shared helpers and harnesses. |
+| `launchagents/` | Contains the macOS LaunchAgent template for orphan-process checks. |
 
----
+## 3. BOUNDARIES
 
-## 4. CLEANUP FLOW
+- Prefer session-scoped cleanup over global process selection.
+- Review dry-run output before enabling live orphan cleanup.
+- Change Git-hook behavior in `git-hooks/` and install it through `install-git-hooks.sh`.
+- Use `copy-skill-advisor-dist-data.sh` for generated advisor data.
 
-The session cleanup path uses the current session identity when one is available:
+## 4. VALIDATION
 
-```text
-Stop hook
-   |
-   v
-session-cleanup.sh
-   |
-   +-- session PID available --> inspect descendants --> terminate matching MCP helpers
-   |
-   `-- no session PID --> optional orphan-sweeper fallback
-```
-
-`SPECKIT_STOP_HOOK_ORPHAN_SWEEP` controls the fallback:
-
-| Value | Behavior |
-|---|---|
-| `off` | Skip the global fallback. This is the default. |
-| `dry-run`, `dryrun` or `dry` | Report the orphan-sweeper decisions without mutation. |
-| `1`, `on` or `live` | Run the orphan sweeper in live mode. |
-
-Run the orphan sweeper in dry-run mode before enabling any live cleanup path:
-
-```bash
-bash .opencode/scripts/orphan-mcp-sweeper.sh \
-  --dry-run \
-  --verbose \
-  --log-path /tmp/orphan-sweeper-review.log
-```
-
----
-
-## 5. GIT HOOK FLOW
-
-`install-git-hooks.sh` installs the managed hooks from `git-hooks/` into the active repository hook directory.
-
-The hooks delegate shared behavior to scripts under `git-hooks/lib/`. Test harnesses under `git-hooks/tests/` cover worktree installation, memory drift locking and code-graph invalidation.
-
-Read the folder-level documentation before changing hook behavior:
-
-- [`git-hooks/README.md`](./git-hooks/README.md)
-- [`git-hooks/lib/README.md`](./git-hooks/lib/README.md)
-- [`git-hooks/tests/README.md`](./git-hooks/tests/README.md)
-
----
-
-## 6. BOUNDARIES
-
-| Boundary | Rule |
-|---|---|
-| Cleanup scope | Prefer session-scoped cleanup over global process selection. |
-| Live orphan sweep | Review dry-run output before enabling process termination or file removal. |
-| LaunchAgent template | Keep the repository template in dry-run mode. Apply machine-specific live settings only to an installed copy. |
-| Git hooks | Change hook behavior in `git-hooks/` and use `install-git-hooks.sh` for installation. |
-| Distribution data | Use `copy-skill-advisor-dist-data.sh` instead of copying generated data by hand. |
-
----
-
-## 7. VALIDATION
-
-Run syntax checks from the repository root:
+Run shell syntax and plist checks from the repository root:
 
 ```bash
 bash -n .opencode/scripts/claude-session-cleanup.sh
@@ -148,24 +48,15 @@ bash -n .opencode/scripts/session-cleanup.sh
 plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
 ```
 
-Run cleanup review mode without changing processes or temporary files:
+Review the orphan sweeper without changing processes:
 
 ```bash
-bash .opencode/scripts/orphan-mcp-sweeper.sh \
-  --dry-run \
-  --verbose \
-  --log-path /tmp/orphan-sweeper-review.log
+bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose
 ```
 
-Expected result: shell syntax checks pass, the plist passes validation and the dry run reports decisions without applying them.
+## 5. RELATED
 
----
-
-## 8. RELATED
-
-- [`git-hooks/README.md`](./git-hooks/README.md)
-- [`git-hooks/lib/README.md`](./git-hooks/lib/README.md)
-- [`git-hooks/tests/README.md`](./git-hooks/tests/README.md)
-- [`launchagents/README.md`](./launchagents/README.md)
-- [Spec Kit MCP environment reference](../skills/system-spec-kit/mcp-server/ENV-REFERENCE.md)
-- [Spec Kit MCP runtime README](../skills/system-spec-kit/mcp-server/README.md)
+- [`Git hooks`](./git-hooks/README.md)
+- [`Git-hook libraries`](./git-hooks/lib/README.md)
+- [`Git-hook tests`](./git-hooks/tests/README.md)
+- [`LaunchAgent template`](./launchagents/README.md)
