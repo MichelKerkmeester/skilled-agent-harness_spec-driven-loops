@@ -39,8 +39,9 @@
       "default"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "tasks.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
       ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
@@ -51,13 +52,23 @@
       ".opencode/skills/sk-doc/shared/references/core-standards.md",
       ".opencode/skills/sk-doc/shared/references/smart-routing.md",
       ".opencode/skills/sk-doc/mode-registry.json",
-      "tasks.md",
       "plan.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md"
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py",
+      ".opencode/skills/sk-design/mode-registry.json",
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "parent-skill-check.cjs",
         "kind": "file",
@@ -119,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -143,13 +148,43 @@
         "source": "derived"
       },
       {
+        "name": "skill-root-metadata-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_authored_name_kebab.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,61 +202,33 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement At",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
+    "causal_summary": "At the pre-edit HEAD, the canon had stale statements about companion metadata, frontmatter, resource directories, naming, version examples, and sibling topology",
     "created_at": "2026-07-30T19:29:16.753Z",
-    "last_save_at": "2026-07-30T19:29:16.753Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T08:12:18.942Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cd090131fa0300ca9ccf6257606e6817a67b6e69be15242420c4a0d60bb6d42",
+    "source_fingerprint": "sha256:62aed0b29619b594934b3c5e1d187019f5dfd20707bbc1c1b0111bdb1bed80e2",
     "source_doc_hashes": {
-      "spec.md": "609373a704cd3998ac066b7b3493e9abba7fe8a442aa713603c0c91a93c3775b",
-      "plan.md": "b19862ff491e5acd7b758ad24778167dd61551afde13e0c0c7958c31b6e2360d",
-      "tasks.md": "ddb0d3c21a55cbbfed986dccd0feb6f15c57702cdfcd2c1023e6783f15d3e920",
-      "checklist.md": "dbf1671a27866a84aab53391b188d222d7407438d21ea1fdecfb50f4950d7b7f",
-      "decision-record.md": "3e101aee69d74a62f980f86f1592af764b89432b9ab5c8b310c9eee00eb90ba8"
+      "spec.md": "4751504012136108500ba5f579bae442f78355f0e888d2e97d3517202770e7a3",
+      "plan.md": "de0b8ee3a6c26bf52f9c13e2253e8eeb4ea04a8f77800635aba94689ecb5d5bf",
+      "tasks.md": "242fa96ca00ca55474e0ce71fc4c2c6647200273fa225af007448f1a986203a4",
+      "checklist.md": "52bb96c51f0e309e2fb0650a9c9e1146490719c544426bc89b1b1f0f5f57f616",
+      "decision-record.md": "5e64669d18708535db3ddeeec2248a7ecf6321a78765cc80970ea6cc2b3abb56",
+      "implementation-summary.md": "a24351da8343efa7fb955f68f27274f2c6ba82e00d36ea38e63cdc39fa039ded"
     },
     "last_active_child_id": null,
     "last_active_at": null

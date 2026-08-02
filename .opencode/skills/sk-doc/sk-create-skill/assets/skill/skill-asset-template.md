@@ -381,7 +381,7 @@ def detect_mode(request):
 **Before (Markdown Prose)**:
 ```markdown
 Different document types have different frontmatter requirements:
-- SKILL.md files must have frontmatter with name, description, and allowed-tools
+- SKILL.md files must have frontmatter with name, description, allowed-tools, and version
 - Command files must have frontmatter with description and argument-hint
 - Skill reference/asset files must have the 5-field block
 - Knowledge files outside skill folders should not have frontmatter
@@ -391,7 +391,7 @@ Different document types have different frontmatter requirements:
 **After (Markdown Decision Tree)**:
 ```
 Document type?
-├─> SKILL.md             → MUST have frontmatter (name, description, allowed-tools)
+├─> SKILL.md             → MUST have frontmatter (name, description, allowed-tools, version)
 ├─> Command              → MUST have frontmatter (description, argument-hint, allowed-tools)
 ├─> Skill Reference/Asset → MUST have the 5-field block (title, description,
 │                           trigger_phrases, importance_tier, contextType)

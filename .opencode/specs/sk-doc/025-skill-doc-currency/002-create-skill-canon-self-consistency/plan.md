@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: create-skill-canon-self-consistency"
-description: "Make the executable root-metadata module the single authority for skill-authoring canon, convert the four contradicting prose surfaces into deference, and add a conformance test that reads both sides so the divergence cannot return quietly."
+description: "Docs-only BUILD plan for aligning the sk-create-skill canon to executable authorities and recording bounded deferrals."
 trigger_phrases:
   - "canon consistency plan"
   - "prose versus module test"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored implementation plan"
-    next_safe_action: "Execute T001 confirm-against-HEAD and the authority proof"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Ran the required doc-package, parent-hub, and child validation gates"
+    next_safe_action: "Keep this leaf In Progress for excluded follow-on work"
     blockers: []
     key_files: []
     session_dedup:
@@ -54,6 +54,42 @@ FAILURE MODES:
 
 One rule carries the phase: **the executable module is the authority; prose defers to it and never restates it.** Applying that rule mechanically resolves the companion-metadata contradiction across four surfaces, and applying the same rule to versions, resource directories, naming examples and sibling topology resolves the rest. The durable half is a conformance test that parses the requirement tables out of the prose and the class sets out of the module and fails when they disagree — because the evidence is unambiguous that text edits alone re-rot here: the mechanical gate passed three hubs with zero warnings while these contradictions were live.
 <!-- /ANCHOR:summary -->
+
+## BUILD LEAF EXECUTION OVERRIDE
+
+This leaf executes the named documentation corrections only. The executable contract modules, packaging gate, naming rule, parent-skill-check, scaffold scripts, alias files, and new conformance-test work are authority or out of scope and remain unchanged. The plan therefore optimizes for minimal behavior-preserving edits and evidence, not for the larger original proposal's test or scaffold work.
+
+DR-4 is closed as refuted at HEAD because the canon and validator agree. DR-5 is resolved by labeling topology examples illustrative and directing current claims to the live registry. `RE-006-13` is deferred because alias correction would require renaming files or changing runtime naming behavior.
+
+Required receipts are:
+
+- the sk-create-skill doc-package check;
+- `parent-skill-check.cjs` on the affected hubs; and
+- child `validate.sh --strict` with zero errors and zero warnings.
+
+The child remains In Progress until those receipts are captured. Passing them does not imply completion of excluded work.
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm the requested path and docs-only scope.
+- Read each target document and its governing authority before editing.
+- Keep executable modules and generated runtime artifacts unchanged.
+
+### Task Execution Rules
+
+1. Apply the smallest behavior-preserving documentation edit.
+2. Record doc-before, authority, and doc-after evidence for each finding.
+3. Run the required gates after all edits and preserve their full output.
+
+### Status Reporting Format
+
+Report the current state as `In Progress`, `Fixed`, `Duplicate closed`, `REFUTED`, or `Deferred`, with a path and evidence anchor.
+
+### Blocked Task Protocol
+
+If a target is missing, an authority anchor disagrees, or a required gate fails, stop the affected lane, record the exact blocker, and do not claim completion.
 
 ---
 

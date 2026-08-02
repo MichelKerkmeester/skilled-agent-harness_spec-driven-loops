@@ -17,7 +17,7 @@ Template for a **parent skill hub**: one advisor-routable identity with a thin `
 
 The core is always the same **2-tier shape**:
 
-1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, `command-metadata.json`, and generated `leaf-manifest.json`.
+1. Hub tier: `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, and generated `leaf-manifest.json`; add `command-metadata.json` only when the hub owns slash commands.
 2. Packet tier: workflow packets and optional surface packets listed in one `modes[]` array.
 
 Deep-loop-style runtime machinery is not the core shape. If a hub needs it, declare it under top-level `extensions` in `mode-registry.json`; do not create a third physical tier.
@@ -80,7 +80,7 @@ Surface packets have these required properties:
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
 | Hub | `description.json` | Yes | Hub-doctor metadata and triggers |
 | Hub | `graph-metadata.json` | Yes | One skill-graph identity node for the whole hub |
-| Hub | `command-metadata.json` | Yes | Class-H command surface; one entry per owned command or `[]` |
+| Hub | `command-metadata.json` | Conditional | Add only when the hub owns slash commands; one entry per owned command |
 | Hub | `leaf-manifest.json` | Yes (generated) | Generated inventory of the hub's routed leaves |
 | Hub | `leaf-aliases.json` | No (optional) | Authored compatibility aliases for genuine cross-packet resource relocation |
 | Hub | `changelog/` | Yes | Real changelog files for the hub |
@@ -91,8 +91,8 @@ Surface packets have these required properties:
 | Workflow packet | `changelog/` | Yes | Real changelog files for the packet |
 | Surface packet | `SKILL.md` | Yes | Read-only evidence-base contract |
 | Surface packet | `README.md` | Yes | Human orientation for the evidence base |
-| Surface packet | `references/` | Yes | Read-only source material |
-| Surface packet | `assets/` | Yes | Read-only reusable snippets or examples |
+| Surface packet | `references/` | Conditional | Add when the packet carries read-only source material |
+| Surface packet | `assets/` | Conditional | Add when the packet carries reusable snippets or examples |
 | Surface packet | `changelog/` | Yes | Real changelog files for the packet |
 
 ---
@@ -200,7 +200,7 @@ read hub-router.json
   hub-router.json
   description.json
   graph-metadata.json
-  command-metadata.json
+  command-metadata.json          # optional; only when the hub owns slash commands
   leaf-manifest.json
   changelog/
   manual-testing-playbook/

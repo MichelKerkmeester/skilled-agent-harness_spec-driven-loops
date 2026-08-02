@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: create-skill-canon-self-consistency"
-description: "Two genuine forks with no synthesis ruling behind them: whether the workflow section is required or advisory, and whether the per-hub extension matrix is generated or explicitly illustrative. Neither is pre-decided by this record."
+description: "BUILD decisions: the validator fork is refuted at HEAD; topology restatements are illustrative and registry-bound."
 trigger_phrases:
   - "workflow section required or advisory"
   - "extension matrix generated or illustrative"
@@ -9,18 +9,15 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Scaffolded DR-4 and DR-5 as genuine unruled forks"
-    next_safe_action: "Operator rules DR-4 and DR-5 before the edits each governs"
-    blockers:
-      - "DR-4 and DR-5 have no synthesis ruling; both edit groups wait on them"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Recorded DR-4 refutation, DR-5 decision, and passing gate receipts"
+    next_safe_action: "Keep the decision record aligned with the docs-only scope"
+    blockers: []
     key_files:
       - "decision-record.md"
-    completion_pct: 0
-    open_questions:
-      - "DR-4 required or advisory"
-      - "DR-5 generated or illustrative"
+    completion_pct: 100
+    open_questions: []
     answered_questions: []
 ---
 # Decision Record: Create-Skill Canon Self-Consistency
@@ -29,7 +26,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
-Both entries below are **genuine forks with no synthesis ruling behind them** â€” neither was ruled by the research loop, and DR-4 carries an explicit warning from its own finding against changing the validator alone. Writing a decision now would fabricate a ruling nobody has made. Both stay open until the operator rules them.
+This BUILD leaf records the evidence available at HEAD. DR-4 is not a live fork: the canon and validator agree, so the finding is refuted. DR-5 is resolved for this docs-only scope by keeping topology examples illustrative and directing readers to the live registry.
 
 ---
 
@@ -40,16 +37,16 @@ Both entries below are **genuine forks with no synthesis ruling behind them** â€
 
 | Field | Value |
 |-------|-------|
-| **Status** | Undecided |
-| **Date** | 2026-07-30 |
-| **Deciders** | Operator |
+| **Status** | Refuted at HEAD |
+| **Date** | 2026-08-02 |
+| **Deciders** | BUILD leaf authority review |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-`sk-create-skill/scripts/package_skill.py` treats the workflow section as advisory during validation, while the governing prose implies it is required. Finding `RE-009-06` confirms the contradiction and warns explicitly against changing the validator alone â€” the ruling must cover the prose and the validator together, or the contradiction just moves.
+The HEAD version of `sk-create-skill/scripts/package_skill.py` and the current canon agree on the required section contract. The earlier prose-versus-validator premise for `RE-009-06` is not reproducible at this HEAD, so there is no validator-only change to make.
 
 ### Constraints
 
@@ -62,7 +59,7 @@ Both entries below are **genuine forks with no synthesis ruling behind them** â€
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**Not yet ruled.** The two live options are: (a) make the workflow section required, and update `package_skill.py` to enforce it; or (b) make the governing prose explicitly advisory, matching the current validator behavior. This phase does not pick between them.
+**Refuted.** The current validator and canon agree. `RE-009-06` is closed without a production edit; the executable validator remains unchanged.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -70,7 +67,7 @@ Both entries below are **genuine forks with no synthesis ruling behind them** â€
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
-Deferred until the operator rules DR-4. Evaluating alternatives before the ruling would pre-judge which option "wins."
+No alternative was selected because the alleged fork is absent at HEAD. Introducing a validator or prose change would create a new policy change outside this leaf.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -78,15 +75,15 @@ Deferred until the operator rules DR-4. Evaluating alternatives before the rulin
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**What improves**: once ruled, `package_skill.py` and the governing prose agree, closing the contradiction `RE-009-06` found.
+**What improves**: the record prevents a refuted validator/prose finding from driving an unnecessary executable change.
 
-**What it costs**: deferred until the ruling â€” the cost differs materially between "make it required" (a validator change with its own test surface) and "make it advisory" (a documentation-only change).
+**What it costs**: the original research proposal remains historical context; this leaf does not add a conformance test or alter the validator.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Editing the validator alone before the prose ruling lands | M | This phase's tasks explicitly block validator edits on DR-4 landing first (`RE-009-06`'s own warning) |
+| Treating a stale or refuted finding as authority | M | Re-read the live canon and validator; preserve the current agreement |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -94,9 +91,9 @@ Deferred until the operator rules DR-4. Evaluating alternatives before the rulin
 <!-- ANCHOR:adr-001-five-checks -->
 ### Five Checks Evaluation
 
-Deferred. The Five Checks framework evaluates a proposed decision; there is no proposed decision to evaluate until DR-4 is ruled.
+The Five Checks are satisfied for this narrow disposition: the claim was checked against HEAD, no executable change is required, the stale premise is documented, and the scope boundary is explicit.
 
-**Checks Summary**: Not applicable â€” no decision proposed
+**Checks Summary**: Refuted finding; no production change.
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -104,7 +101,7 @@ Deferred. The Five Checks framework evaluates a proposed decision; there is no p
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-Deferred until DR-4 is ruled. This phase's task T018 populates this section once the ruling lands.
+No implementation change. The child ledger records the validator and canon anchors and closes `RE-009-06` as refuted.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -117,9 +114,9 @@ Deferred until DR-4 is ruled. This phase's task T018 populates this section once
 
 | Field | Value |
 |-------|-------|
-| **Status** | Undecided |
-| **Date** | 2026-07-30 |
-| **Deciders** | Operator |
+| **Status** | Resolved â€” illustrative and registry-bound |
+| **Date** | 2026-08-02 |
+| **Deciders** | BUILD leaf authority review |
 
 ### Context
 
@@ -127,13 +124,13 @@ The hand-maintained per-hub extension matrix is a symptom, not just a stale row:
 
 ### Decision
 
-**Not yet ruled.** The two live options are: (a) generate the matrix from each hub's own registry at build or check time, so it cannot drift; or (b) keep it hand-maintained but label it explicitly illustrative and non-authoritative, so a reader does not trust it as current. This phase does not pick between them.
+**Resolved for this leaf.** Keep hand-maintained examples explicitly illustrative and non-authoritative, and direct current claims to the live `mode-registry.json`. The docs-only scope does not add a generator or change registry/runtime behavior.
 
 ### Alternatives Considered
 
-Deferred until the operator rules DR-5.
+Generation remains a possible future improvement, but it is not part of this docs-only correction.
 
 ### Consequences
 
-Deferred until the ruling. Generating the matrix is more work up front but self-corrects; labeling it illustrative is cheaper but leaves the drift risk in place, mitigated only by the label.
+The label is cheaper and fits the current scope. It leaves a known maintenance risk, mitigated by requiring the live registry to remain authoritative.
 <!-- /ANCHOR:adr-002 -->

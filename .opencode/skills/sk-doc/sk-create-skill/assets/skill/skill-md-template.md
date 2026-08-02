@@ -82,7 +82,7 @@ SKILL.md architecture follows progressive disclosure:
 | `name` | ✅ | hyphen-case | `my-skill-name` |
 | `description` | ✅ | Single line, **≤ 130 chars** for skills (≤ 110 for commands); 1,536-char hard cap | `"Handles X when Y occurs"` |
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
-| `version` | ⭐ | 4-part X.Y.Z.W | `1.0.0.0` |
+| `version` | ✅ | 4-part X.Y.Z.W | `1.0.0.0` |
 
 > **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../shared/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 

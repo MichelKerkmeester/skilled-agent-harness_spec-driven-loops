@@ -1,23 +1,32 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency",
-  "description": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
+  "description": "At the pre-edit HEAD, the canon had stale statements about companion metadata, frontmatter, resource directories, naming, version examples, and",
   "keywords": [
+    "pre-edit",
+    "head",
     "canon",
-    "contradicts",
-    "itself",
-    "cannot",
-    "enforced",
-    "one",
-    "consequential",
-    "place"
+    "stale",
+    "statements",
+    "about",
+    "companion",
+    "metadata",
+    "frontmatter",
+    "resource",
+    "directories",
+    "naming",
+    "version",
+    "examples"
   ],
-  "lastUpdated": "2026-07-30T19:29:14.273Z",
+  "lastUpdated": "2026-08-02T08:12:18.942Z",
   "specId": "002",
   "folderSlug": "create-skill-canon-self-consistency",
   "parentChain": [
     "sk-doc",
     "025-skill-doc-currency"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_09-12__aligned-17-create-skill-canon-docs-to-their.md"
+  ]
 }

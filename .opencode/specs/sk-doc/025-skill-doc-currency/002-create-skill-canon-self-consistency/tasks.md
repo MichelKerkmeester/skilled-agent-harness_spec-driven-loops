@@ -1,6 +1,6 @@
 ---
 title: "Tasks: create-skill-canon-self-consistency"
-description: "Task Format: T### [P?] Description (file path)"
+description: "Docs-only BUILD ledger for canon corrections, finding dispositions, and gate receipts."
 trigger_phrases:
   - "canon consistency tasks"
   - "authority proof task"
@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored task breakdown"
-    next_safe_action: "Execute T001"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Recorded docs-only finding dispositions and passing gate receipts"
+    next_safe_action: "Keep excluded executable work out of this leaf"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---
@@ -43,6 +43,48 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
+
+## BUILD LEAF OVERRIDE
+
+The inherited task proposal includes executable changes, alias normalization, a new conformance test, and a throwaway scaffold rehearsal. Those actions are outside this leaf's frozen docs-only scope. The ledger below is the execution record for this BUILD leaf; the inherited task list remains visible as provenance and is intentionally not marked complete where it requests excluded work.
+
+### Authority proof
+
+- `[x]` Read `.opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs`; `OPTIONAL_BY_CLASS` is the authority for optional companion files, including command metadata for hub class H.
+- `[x]` Read `.opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py`; the required frontmatter fields are `name`, `description`, `allowed-tools`, and `version`, and the required sections are the five sections named by the script.
+- `[x]` Read `.opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py`; authored names use the lowercase kebab-case validator.
+- `[x]` Read `.opencode/commands/doctor/scripts/parent-skill-check.cjs`; the mechanical gate checks structure and metadata invariants, not narrative currency.
+- `[x]` Read `.opencode/skills/sk-design/mode-registry.json`; its live topology is two workflow modes plus one transport mode.
+- `[x]` No executable authority file was edited.
+
+### Finding disposition ledger
+
+| ID | State | Evidence |
+|----|-------|----------|
+| RE-001-01 | Fixed | Before: doctrine required command metadata. Authority: `skill-root-metadata-contract.cjs:155`. After: `references/parent-skill/parent-skills-nested-packets.md:34,232` makes it conditional. |
+| RE-001-02 | Fixed | Before: workflow required the file. Authority: `skill-root-metadata-contract.cjs:155`. After: `sk-create-skill/SKILL.md:260,294` makes it conditional. |
+| RE-001-03 | Fixed | Before: hub template required the file. Authority: `skill-root-metadata-contract.cjs:155`. After: `assets/parent-skill/parent-skill-hub-template.md:20,83,203` makes it conditional. |
+| RE-001-04 | Fixed | Before: scaffold preamble implied a mandatory file. Authority: `skill-root-metadata-contract.cjs:155`. After: `assets/parent-skill/parent-skill-command-metadata-template.json:2` describes when to add it. |
+| RE-001-05 | Fixed | Before: extension matrix described a retired sibling topology. Authority: `sk-design/mode-registry.json:34`. After: `references/parent-skill/parent-skills-nested-packets.md:178` gives an illustrative snapshot and defers to the registry. |
+| RE-001-06 | Fixed | Before: version was optional in the skill template. Authority: `package_skill.py:56`. After: `assets/skill/skill-md-template.md:14` marks version required. |
+| RE-001-07 | Fixed clarification | Before: packet resource directories were presented as unconditional. Authority: packet canon is doc-authoritative; no executable module governs this choice. After: `assets/parent-skill/parent-skill-hub-template.md:94-95,215-216` makes them conditional when evidence material exists. |
+| RE-001-08 | Fixed clarification | Before: the clean mechanical gate had no narrative-currency caveat. Authority: `parent-skill-check.cjs:853-871` validates structure and metadata. After: `references/shared/validation-and-packaging.md` records the gate's boundary. |
+| RE-003-06 | Fixed guardrail | Before: standalone absence was a required invariant. Authority: `skill-root-metadata-contract.cjs:155`. After: no placeholder was added; the guardrail is recorded here and in the checklist. |
+| RE-006-01 | Fixed | Before: fallback named the retired tree. Authority: live `.opencode/skills/sk-doc/` tree and `hub-router.json:13`. After: `shared/references/quick-reference.md` lists the current tree; the README was already current at HEAD. |
+| RE-006-02 | Fixed | Before: shared standards named retired sections and links. Authority: `package_skill.py:56,66-72`. After: `shared/references/core-standards.md` matches the current fields, sections, and resource paths. |
+| RE-006-10 | Fixed | Before: asset template used retired section names and version shape. Authority: `package_skill.py:56,66-72`. After: `assets/skill/skill-asset-template.md` uses the current five-section and four-part-version examples. |
+| RE-006-11 | Fixed | Before: several docs repeated a stale mode topology. Authority: `sk-design/mode-registry.json:34-93` for the sk-design topology surfaces; the `sk-create-quality-control/references/workflows.md` sub-fix retires sk-doc's own stale "Mode 1-5" numbering against `sk-doc/mode-registry.json` (distinct authority). After: each doc describes its owning registry's real snapshot as illustrative and registry-bound. |
+| RE-006-12 | Fixed | Before: version examples used three components. Authority: `package_skill.py:56` and `skill-root-metadata-contract.cjs:119-129`. After: `references/skill/examples-and-maintenance.md:175,184` uses four-part versions. |
+| RE-006-13 | Deferred | Mixed-case aliases remain at HEAD. Fixing them requires renaming alias files or changing runtime naming behavior, both outside this docs-only scope; no alias file or runtime module was edited. |
+| RE-006-14 | Fixed | Before: second-layer router lacked metadata and contradicted workflow-only sk-doc routing. Authority: `hub-router.json:13` and `mode-registry.json`. After: `shared/references/smart-routing.md` has metadata and explicitly scopes the pattern to hubs that declare it. |
+| RE-006-15 | Fixed | Before: validation guidance prescribed hyphen-to-underscore conversion. Authority: `check_authored_name_kebab.py:33,54`. After: `sk-create-quality-control/references/validation-and-enforcement.md:42` describes kebab-case validation without conversion. |
+| RE-009-01 | Duplicate closed | Same surface and correction as RE-001-02; closed against `sk-create-skill/SKILL.md`. |
+| RE-009-02 | Duplicate closed | Same surface and correction as RE-001-01; closed against `parent-skills-nested-packets.md`. |
+| RE-009-03 | Duplicate closed | Same surface and correction as RE-001-03; closed against `parent-skill-hub-template.md`. |
+| RE-009-05 | Fixed | Before: the same filename appeared in valid and invalid naming examples. Authority: `check_authored_name_kebab.py:33`. After: `assets/skill/skill-reference-template.md` uses disjoint examples. |
+| RE-009-06 | REFUTED | The canon and validator already agree at HEAD; no prose-versus-validator fork exists, so no production edit was made. |
+
+The three duplicate witnesses are closed as `RE-009-01 → RE-001-02`, `RE-009-02 → RE-001-01`, and `RE-009-03 → RE-001-03`, matching the equivalences recorded in `spec.md`.
 
 ---
 

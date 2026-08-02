@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: create-skill-canon-self-consistency"
-description: "The skill-authoring canon contradicts its own executable contract module: four documents instruct authors to commit a file the module marks optional, and the same packet mis-states version requirements, resource requirements, naming rules and hub topology. Every skill authored from this template inherits the defect."
+description: "Docs-only BUILD leaf aligning the sk-create-skill canon, templates, examples, and named fallback surfaces to the executable authorities without changing runtime modules."
 trigger_phrases:
   - "create skill canon"
   - "skill root metadata contract"
@@ -12,22 +12,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored phase spec from the track (e) synthesis proposal"
-    next_safe_action: "Run T001 confirm-against-HEAD, re-reading the contract module first"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Applied docs-only canon corrections; all required gates passed"
+    next_safe_action: "Keep this leaf In Progress for the explicitly excluded follow-on work"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "pending-first-save"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "DR-4 — is the success-criteria section required or recommended?"
-      - "DR-5 — is the per-hub extension matrix generated, or labelled illustrative?"
-      - "Q3 — supplementary findings admitted into this child?"
-    answered_questions: []
+    completion_pct: 70
+    open_questions: []
+    answered_questions:
+      - "DR-4 — refuted at HEAD; canon and validator already agree."
+      - "DR-5 — topology prose is illustrative and defers to the live registry."
+      - "Q3 — the 22 requested IDs are retained with explicit terminal dispositions."
 ---
 # Feature Specification: create-skill-canon-self-consistency
 
@@ -45,11 +45,11 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-The skill-authoring packet is the authority every other phase in this program cites when deciding whether a document conforms — and it contradicts itself. Its executable contract module marks a companion metadata file optional for one skill class; its doctrine, its creation workflow, its hub template and the scaffold file's own preamble all four still call that file mandatory and instruct authors to commit an empty placeholder. Two independent research iterations found this separately. The same packet mis-states a required frontmatter field as optional, over-states which resource directories are required, teaches a naming rule with an example that puts the same filename in both the valid and invalid columns, and describes a sibling hub's topology against a registry that disagrees. This phase makes the executable module the authority and turns prose into deference rather than restatement, then adds the conformance test that keeps them aligned.
+The skill-authoring packet had stale prose around companion metadata, frontmatter, resource directories, naming, version examples, and sibling topology. This BUILD leaf aligns the affected documentation to the executable authorities and records the two requested non-fixes: the validator finding is refuted at HEAD, and alias normalization is deferred because it would require runtime or file renames outside this docs-only scope.
 
-**Key Decisions**: whether a workflow section is required or merely recommended; whether the hand-maintained per-hub extension matrix is generated or explicitly labelled non-authoritative.
+**Key Decisions**: the validator prose fork is refuted at HEAD; topology snapshots are explicitly illustrative and defer to each live registry.
 
-**Critical Dependencies**: none to start. This phase **blocks** the two wave-2 phases, softly — both cite this canon when judging conformance.
+**Critical Dependencies**: the named doc-package and parent-hub gates must still be run and recorded. The packet remains In Progress until those receipts are captured.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -59,10 +59,18 @@ The skill-authoring packet is the authority every other phase in this program ci
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
+
+## BUILD LEAF EXECUTION CONTRACT
+
+This execution is deliberately narrower than the inherited proposal above. Editable scope is documentation under the sk-create-skill canon, the explicitly named fallback and related canon surfaces, and this child packet. Executable modules, the packaging gate, naming enforcement, parent-skill-check, scaffold scripts, alias files, and conformance-test creation are not changed.
+
+The authority proof is recorded in `tasks.md`: the metadata contract module, packaging script, naming validator, parent-hub gate, and live sibling registry were read before editing. Every fixed item records doc-before, authority, and doc-after evidence. `RE-009-06` is REFUTED because the canon and validator agree at HEAD. `RE-006-13` is DEFERRED because correcting the mixed-case aliases would require out-of-scope file renames or runtime naming changes. `RE-001-07` is resolved as a doc-authoritative clarification: resource directories are conditional when packets carry source material.
+
+The child status stays **In Progress** by contract. Passing the requested gates verifies the edited docs; it does not claim the excluded conformance test, scaffold rehearsal, alias normalization, or wave-2 notification work.
 
 ---
 
@@ -71,7 +79,7 @@ The skill-authoring packet is the authority every other phase in this program ci
 
 ### Problem Statement
 
-A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place. The authoritative root-metadata contract carries a section explaining that a companion metadata file is optional for hub-class skills and that the empty-array placeholder was deliberately retired; its executable module places that file in the optional set for that class. Meanwhile the parent-hub doctrine, the creation workflow, the hub template and the scaffold file's own preamble all still say the file is mandatory and tell authors to commit an empty array. An author following the doctrine produces a file the contract says should not exist; an author following the contract fails the doctrine's review. The same packet marks a frontmatter field optional in its template while its own packaging script lists it as required, states two resource directories are unconditionally required while its own prose says "when they need evidence material", demonstrates a naming rule with a filename that appears in both the valid and the invalid column, and describes a sibling hub as having five workflow modes plus a transport against a registry holding three.
+At the pre-edit HEAD, the canon had stale statements about companion metadata, frontmatter, resource directories, naming, version examples, and sibling topology. The executable contract and live registries were the authority; this leaf aligned the affected prose and templates to them. The original research narrative remains here as historical problem context, while the BUILD ledger records the current terminal dispositions.
 
 Separately, the hub that owns this canon has the same disease in its own front door: its README and the default fallback resource its router serves for an ambiguous request both describe a directory tree that no longer exists — so the *default* answer to an unclear request is a map of directories that are not there.
 
@@ -108,19 +116,19 @@ The executable module is the authority; prose defers to it and never restates it
 | ID | Sev | Primary surface | Claim | Verification status at authoring |
 |----|-----|-----------------|-------|----------------------------------|
 | RE-001-01 | P1 | `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` | Doctrine requires the companion metadata file; the contract and module say optional for the class | Confirmed by synthesis — a three-way contradiction inside one packet |
-| RE-001-02 | P1 | `sk-create-skill/SKILL.md` | Creation workflow repeats the stale requirement | Unverified — confirm in T001 |
-| RE-001-03 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Hub template encodes the obsolete requirement | Unverified — confirm in T001 |
-| RE-001-04 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-command-metadata-template.json` | The scaffold file's own preamble claims the file is mandatory | Unverified — confirm in T001 |
+| RE-001-02 | P1 | `sk-create-skill/SKILL.md` | Creation workflow repeats the stale requirement | Confirmed before edit; fixed in the BUILD ledger |
+| RE-001-03 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Hub template encodes the obsolete requirement | Confirmed before edit; fixed in the BUILD ledger |
+| RE-001-04 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-command-metadata-template.json` | The scaffold file's own preamble claims the file is mandatory | Confirmed before edit; fixed in the BUILD ledger |
 | RE-001-05 | P1 | `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` | Extension matrix describes a sibling hub's retired mode topology | Confirmed by synthesis against the sibling's registry |
-| RE-001-06 | P1 | `sk-create-skill/assets/skill/skill-md-template.md` | Template marks a required frontmatter field optional | Unverified — confirm in T001 against the packaging script |
-| RE-001-07 | P2 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Over-states which resource directories are required, contradicting the packet's own prose | Unverified — confirm in T001 |
+| RE-001-06 | P1 | `sk-create-skill/assets/skill/skill-md-template.md` | Template marks a required frontmatter field optional | Confirmed against `package_skill.py`; fixed in the BUILD ledger |
+| RE-001-07 | P2 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Over-states which resource directories are required, contradicting the packet's own prose | Doc-authoritative clarification applied; no executable authority exists |
 | RE-001-08 | P2 | `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | The mechanical baseline is clean and still does not prove document currency | Confirmed — this is the evidence for why the conformance test is the real fix |
 | RE-003-06 | P2 | `system-spec-kit/` | A standalone-class skill correctly has no companion metadata file | Confirmed — **guardrail, not a repair**: assert absence after editing |
 | RE-006-01 | P1 | `sk-doc/README.md`, `sk-doc/shared/references/quick-reference.md` | The hub README and the default fallback resource document a retired directory tree | Confirmed by synthesis |
 | RE-009-01 | P1 | `sk-create-skill/SKILL.md` | Workflow still mandates empty command metadata | Confirmed by synthesis (pair with RE-001-01) |
 | RE-009-02 | P1 | `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` | Doctrine contradicts the root metadata contract | Confirmed by synthesis |
-| RE-009-03 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Template encodes the retired requirement | Unverified — confirm in T001 |
-| RE-009-05 | P2 | `sk-create-skill/assets/skill/skill-reference-template.md` | Labels a kebab-case filename as snake_case; the same name appears in both columns | Unverified — confirm in T001 |
+| RE-009-03 | P1 | `sk-create-skill/assets/parent-skill/parent-skill-hub-template.md` | Template encodes the retired requirement | Confirmed before edit; duplicate closed against RE-001-03 |
+| RE-009-05 | P2 | `sk-create-skill/assets/skill/skill-reference-template.md` | Labels a kebab-case filename as snake_case; the same name appears in both columns | Confirmed against the naming validator; fixed in the BUILD ledger |
 | RE-009-06 | P2 | `sk-create-skill/scripts/package_skill.py` | A section is advisory in validation while the governing prose implies it is required | Confirmed — **DR-4**; the finding warns explicitly against changing the validator alone |
 
 **Note on the five ID pairs.** `RE-001-01`/`RE-009-02`, `RE-001-02`/`RE-009-01` and `RE-001-03`/`RE-009-03` are the same defect found by two independent iterations. They keep separate IDs because the registry holds them separately and the arithmetic must reconcile, but they close together in one edit per surface. This is not double-counting — it is two witnesses to one fact, and it is the strongest evidence in the program that this contradiction is real rather than a reading error.
@@ -131,13 +139,13 @@ These 14 iteration-6 entries sit in the registry's `repeated[]` bucket, outside 
 
 | ID | Sev | Primary surface | Claim | Judgment |
 |----|-----|-----------------|-------|----------|
-| RE-006-02 § | P1 | `sk-doc/shared/references/core-standards.md` | Defines a section contract the current templates do not use, and links to obsolete resources | Admitted — genuinely new; no scheduled finding touches this file |
-| RE-006-10 § | P2 | `sk-create-skill/assets/skill/skill-asset-template.md` | Embedded classification example marks retired sections required and uses an outdated version shape | Admitted — same class as `RE-001-06`, different file |
-| RE-006-11 § | P2 | `sk-create-quality-control/references/workflows.md`, `sk-create-skill/assets/skill/skill-procedure-template.md`, `sk-create-skill/references/parent-skill/parent-hub-router-schema.md` | Three documents restate a retired mode topology | Admitted — same class as `RE-001-05`, three further files. **DR-5 governs all four** |
-| RE-006-12 § | P2 | `sk-create-skill/references/skill/examples-and-maintenance.md` | Version examples use a component count the metadata contract does not accept | Admitted — genuinely new |
-| RE-006-13 § | P2 | `sk-doc/mode-registry.json` | Mode aliases use mixed case where the contract requires normalized lowercase | Admitted — genuinely new; the only JSON-conformance item in this phase |
-| RE-006-14 § | P2 | `sk-doc/shared/references/smart-routing.md` | An orphaned second-layer router with no frontmatter, describing a topology the hub's own contract disclaims | Admitted — genuinely new. **Confirmed at authoring: the file exists and begins with a heading, not frontmatter** |
-| RE-006-15 § | P2 | `sk-create-quality-control/references/validation-and-enforcement.md` | Quick validation guidance prescribes converting hyphens to underscores against the current convention | Admitted — genuinely new |
+| RE-006-02 § | P1 | `sk-doc/shared/references/core-standards.md` | Defines a section contract the current templates do not use, and links to obsolete resources | Confirmed before edit; fixed in the BUILD ledger |
+| RE-006-10 § | P2 | `sk-create-skill/assets/skill/skill-asset-template.md` | Embedded classification example marks retired sections required and uses an outdated version shape | Confirmed before edit; fixed in the BUILD ledger |
+| RE-006-11 § | P2 | `sk-create-quality-control/references/workflows.md`, `sk-create-skill/assets/skill/skill-procedure-template.md`, `sk-create-skill/references/parent-skill/parent-hub-router-schema.md` | Three documents restate a retired mode topology | Confirmed before edit; all four named surfaces follow DR-5 |
+| RE-006-12 § | P2 | `sk-create-skill/references/skill/examples-and-maintenance.md` | Version examples use a component count the metadata contract does not accept | Confirmed before edit; fixed in the BUILD ledger |
+| RE-006-13 § | P2 | `sk-doc/mode-registry.json` | Mode aliases use mixed case where the contract requires normalized lowercase | Confirmed; deferred because file/runtime renames are out of scope |
+| RE-006-14 § | P2 | `sk-doc/shared/references/smart-routing.md` | An orphaned second-layer router with no frontmatter, describing a topology the hub's own contract disclaims | Confirmed before edit; fixed in the BUILD ledger |
+| RE-006-15 § | P2 | `sk-create-quality-control/references/validation-and-enforcement.md` | Quick validation guidance prescribes converting hyphens to underscores against the current convention | Confirmed before edit; fixed in the BUILD ledger |
 
 **Scope-table total for this phase: 15 + 7 = 22 items.**
 
@@ -160,8 +168,8 @@ This phase assumes the executable module and its markdown contract are the corre
 | `.opencode/skills/sk-doc/shared/references/core-standards.md` | Modify | Section contract and resource links realigned to the current templates |
 | `.opencode/skills/sk-doc/shared/references/smart-routing.md` | Modify or Delete | Orphaned router: rewritten with metadata and an owner, or removed |
 | `.opencode/skills/sk-doc/{README.md,shared/references/quick-reference.md}` | Modify | Directory map matched to the tree that exists |
-| `.opencode/skills/sk-doc/mode-registry.json` | Modify | Alias normalization, with router tests and generated indexes updated together |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/` | Create | The prose-versus-module conformance test |
+| `.opencode/skills/sk-doc/mode-registry.json` | Not changed | Alias normalization deferred because file/runtime renames are outside this docs-only leaf |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/` | Not changed | Conformance-test creation is outside this docs-only leaf; executable modules remain authority |
 <!-- /ANCHOR:scope -->
 
 ---

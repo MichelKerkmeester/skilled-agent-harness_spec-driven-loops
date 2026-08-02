@@ -165,49 +165,34 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ```
 .opencode/skills/sk-doc/
-├── SKILL.md (overview + smart routing)
-├── references/
-│   ├── global/
-│   │   ├── core-standards.md (filename conventions, document types, violations)
-│   │   ├── hvr-rules.md (Human Voice Rules for documentation style)
-│   │   ├── optimization.md (content optimization patterns)
-│   │   ├── validation.md (quality assessment, gates, interpretation)
-│   │   ├── workflows.md (execution modes, validation patterns, troubleshooting)
-│   │   └── quick-reference.md (this file)
-│   └── specific/
-│       ├── references/README.md (agent authority, permissions, and workflow)
-│       ├── references/README.md (install guide standards and workflow)
-│       ├── skill-creation.md (skill creation workflow)
-│       ├── references/README.md (feature catalog standards and workflow)
-│       └── references/README.md (playbook standards and workflow)
-├── assets/
-│   ├── agent-template.md (agent definition template)
-│   ├── command/
-│   │   ├── command-template.md (slash command template)
-│   │   └── command-presentation-template.md (command presentation/contract template)
-│   ├── feature-catalog/ (feature catalog template bundle)
-│   ├── testing_playbook/ (manual testing playbook template bundle)
-│   ├── changelog-template.md (changelog/release-notes template)
-│   ├── frontmatter-templates.md (YAML frontmatter examples)
-│   ├── llmstxt-templates.md (llms.txt generation examples)
-│   ├── readme/
-│   │   ├── install-guide-template.md (install guide template)
-│   │   ├── readme-code-template.md (README for code repos/projects)
-│   │   └── readme-template.md (README structure and patterns)
-│   ├── skill/
-│   │   ├── skill-md-template.md (SKILL.md file template)
-│   │   ├── skill-asset-template.md (skill asset template)
-│   │   └── skill-reference-template.md (skill reference template)
-│   ├── flowcharts/ (ASCII flowchart examples)
-│   └── template-rules.json (validation rule definitions)
-└── scripts/
-    ├── extract_structure.py (document parsing → JSON for AI)
-    ├── validate_document.py (full document validation)
-    ├── quick_validate.py (fast skill validation)
-    ├── init_skill.py (skill scaffolding)
-    ├── package_skill.py (skill packaging)
-    └── validate-flowchart.sh (flowchart validation)
+├── SKILL.md               # routing hub
+├── mode-registry.json     # workflow packet registry
+├── hub-router.json        # router signals and fallback resource
+├── description.json       # hub descriptor
+├── graph-metadata.json    # single advisor identity
+├── changelog/
+├── feature-catalog/
+├── manual-testing-playbook/
+├── benchmark/
+├── sk-create-skill/       # nested workflow packet
+├── sk-create-readme/
+├── sk-create-agent/
+├── sk-create-command/
+├── sk-create-feature-catalog/
+├── sk-create-manual-testing-playbook/
+├── sk-create-benchmark/
+├── sk-create-flowchart/
+├── sk-create-changelog/
+├── sk-create-diff/
+├── sk-create-quality-control/
+├── scripts/               # facade paths into shared and packet tooling
+└── shared/                # shared quality-control backbone
+    ├── assets/
+    ├── references/
+    └── scripts/
 ```
+
+The hub has no hub-root `references/` or `assets/` aggregation directories. Those resources live inside their owning packet or under `shared/`; consult `mode-registry.json` and the selected packet's `SKILL.md` for the active resource map.
 
 ---
 

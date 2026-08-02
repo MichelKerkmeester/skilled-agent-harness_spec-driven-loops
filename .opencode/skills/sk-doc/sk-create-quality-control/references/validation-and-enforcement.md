@@ -39,7 +39,7 @@ This file covers how a create-quality-control run validates and enforces standar
 **Post-Write Validation Pattern** (manual):
 - **When**: After Write/Edit operations on `.md` files
 - **Script**: `python ../shared/scripts/quick_validate.py <path>`
-- **Action**: Filename corrections (ALL CAPS → lowercase, hyphens → underscores)
+- **Action**: Validate authored names against lowercase kebab-case; do not convert hyphens to underscores
 - **Blocking**: No (logs only)
 
 **Pre-Submit Quality Pattern** (manual):

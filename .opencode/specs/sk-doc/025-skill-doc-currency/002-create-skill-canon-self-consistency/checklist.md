@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: create-skill-canon-self-consistency"
-description: "Verification Date: pending"
+description: "Verification Date: 2026-08-02; docs-only BUILD evidence and required gate receipts."
 trigger_phrases:
   - "canon consistency checklist"
   - "placeholder absence guardrail"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored verification checklist"
-    next_safe_action: "Verify items as tasks complete"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Marked evidence-backed docs-only checks; required gates passed"
+    next_safe_action: "Keep excluded work visibly unchecked"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,18 +48,22 @@ FAILURE MODES:
 | **[P2]** | Optional | Can defer with documented reason |
 <!-- /ANCHOR:protocol -->
 
+## BUILD LEAF SCOPE NOTE
+
+This checklist is retained at Level 3, but the conformance-test, scaffold-rehearsal, alias-normalization, and baseline-delta checks are not claimed by this docs-only leaf. They remain unchecked. The evidence-backed documentation, authority, disposition, and scope-guard checks below are the only boxes marked during this execution.
+
 ---
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
-- [ ] CHK-004 [P0] Every one of the 22 scope items has a confirm-against-HEAD disposition before any edit
-- [ ] CHK-005 [P0] The seven registry-supplementary items each carry their own evidence line; none was batch-edited
-- [ ] CHK-006 [P0] The authority proof is recorded: the contract and module were read in full and confirmed authoritative, or the phase escalated
-- [ ] CHK-007 [P0] DR-4 and DR-5 are ruled before the edits they govern
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: spec.md BUILD LEAF EXECUTION CONTRACT]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: plan.md BUILD LEAF EXECUTION OVERRIDE]
+- [x] CHK-003 [P1] Dependencies identified and available [evidence: `plan.md:required-receipts`]
+- [x] CHK-004 [P0] Every one of the 22 scope items has a confirm-against-HEAD disposition before any edit [evidence: `tasks.md:disposition-ledger`]
+- [x] CHK-005 [P0] The seven registry-supplementary items each carry their own evidence line; none was batch-edited [evidence: `tasks.md:RE-006-02-to-15`]
+- [x] CHK-006 [P0] The authority proof is recorded: the contract and module were read in full and confirmed authoritative, or the phase escalated [evidence: `tasks.md:authority-proof`]
+- [x] CHK-007 [P0] DR-4 and DR-5 are ruled before the edits they govern [evidence: `decision-record.md:ADR-001-ADR-002`]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -84,7 +88,7 @@ FAILURE MODES:
 - [ ] CHK-022 [P0] The conformance test was proven to fail on a deliberately introduced mismatch
 - [ ] CHK-023 [P1] The test reports which documents it parsed, so a vacuous pass is visible
 - [ ] CHK-024 [P1] Code follows project patterns
-- [ ] CHK-025 [P1] No introduced comment embeds a spec path, packet id, phase id, requirement id or checklist id; the durable reason is kept instead
+- [x] CHK-025 [P1] No introduced comment embeds a spec path, packet id, phase id, requirement id or checklist id; the durable reason is kept instead [evidence: git diff review]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -98,7 +102,7 @@ FAILURE MODES:
 - [ ] CHK-033 [P1] The packaging script produces no new failures against the recorded baseline
 - [ ] CHK-034 [P1] Router tests green after alias normalization, with consumers updated in the same change
 - [ ] CHK-035 [P1] Every directory named by the hub README and the default fallback resource exists
-- [ ] CHK-036 [P1] The naming-rule table's valid and invalid columns are disjoint
+- [x] CHK-036 [P1] The naming-rule table's valid and invalid columns are disjoint [evidence: `skill-reference-template.md:naming-table`]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -122,8 +126,8 @@ FAILURE MODES:
 
 - [ ] CHK-040 [P0] No companion-metadata placeholder file exists that was absent from the pre-edit inventory
 - [ ] CHK-041 [P0] The standalone-class skill still has no companion metadata file
-- [ ] CHK-042 [P0] Neither the contract module nor its markdown contract was edited to make prose true
-- [ ] CHK-043 [P0] The section-requirement validation was not changed alone; the ruling covered prose and validator together
+- [x] CHK-042 [P0] Neither the contract module nor its markdown contract was edited to make prose true [evidence: `git-diff:authority-files-excluded`]
+- [x] CHK-043 [P0] The section-requirement validation was not changed alone; the ruling covered prose and validator together [evidence: `decision-record.md:ADR-001`]
 <!-- /ANCHOR:guardrails -->
 
 ---
@@ -131,10 +135,10 @@ FAILURE MODES:
 <!-- ANCHOR:coverage -->
 ## Coverage
 
-- [ ] CHK-050 [P0] All 15 registry findings in scope reached a terminal state
-- [ ] CHK-051 [P0] All 7 registry-supplementary findings reached a terminal state
-- [ ] CHK-052 [P0] The arithmetic holds: 15 + 7 = 22 items, each in exactly one state
-- [ ] CHK-053 [P1] The three ID pairs were closed as three surfaces, not six edits
+- [x] CHK-050 [P0] All 15 registry findings in scope reached a terminal state [evidence: `tasks.md:registry-findings`]
+- [x] CHK-051 [P0] All 7 registry-supplementary findings reached a terminal state [evidence: `tasks.md:supplementary-findings`]
+- [x] CHK-052 [P0] The arithmetic holds: 15 + 7 = 22 items, each in exactly one state [evidence: `tasks.md:22-item-ledger`]
+- [x] CHK-053 [P1] The three ID pairs were closed as three surfaces, not six edits [evidence: `tasks.md:duplicate-witnesses`]
 <!-- /ANCHOR:coverage -->
 
 ---
@@ -152,9 +156,9 @@ FAILURE MODES:
 ## Documentation
 
 - [ ] CHK-060 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-061 [P1] The decision record carries DR-4 and DR-5 with a real status and rationale
+- [x] CHK-061 [P1] The decision record carries DR-4 and DR-5 with a real status and rationale [evidence: `decision-record.md:ADR-001-ADR-002`]
 - [ ] CHK-062 [P1] The two wave-2 phases were notified that the rulings are signed
-- [ ] CHK-063 [P2] Any deferral recorded with an owner and a reason
+- [x] CHK-063 [P2] Any deferral recorded with an owner and a reason [evidence: tasks.md RE-006-13 row]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -172,8 +176,8 @@ FAILURE MODES:
 <!-- ANCHOR:arch-verify -->
 ## L3: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] DR-4 and DR-5 recorded in `decision-record.md` with status, updated once ruled.
-- [ ] CHK-101 [P1] The DR-4 finding's own warning against a validator-only change is honored in whichever way it rules.
+- [x] CHK-100 [P0] DR-4 and DR-5 recorded in `decision-record.md` with status, updated once ruled. [evidence: decision-record.md ADR metadata]
+- [x] CHK-101 [P1] The DR-4 finding's own warning against a validator-only change is honored in whichever way it rules. [evidence: `decision-record.md:ADR-001-decision`]
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -190,7 +194,7 @@ FAILURE MODES:
 ## L3: DEPLOYMENT READINESS
 
 - [ ] CHK-120 [P0] Rollback procedure documented for the DR-4 and DR-5 edit groups independently.
-- [ ] CHK-121 [P1] Neither edit group starts before its ruling lands (DR-4, DR-5).
+- [x] CHK-121 [P1] Neither edit group starts before its ruling lands (DR-4, DR-5). [evidence: `decision-record.md:2026-08-02`]
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -199,7 +203,7 @@ FAILURE MODES:
 ## L3: COMPLIANCE VERIFICATION
 
 - [ ] CHK-130 [P1] Fleet-gate check `10b`/`10c` invariants still pass across all 11 hub roots after every edit.
-- [ ] CHK-131 [P2] No repaired document or fixture embeds a spec path, packet id, or finding id in a code comment.
+- [x] CHK-131 [P2] No repaired document or fixture embeds a spec path, packet id, or finding id in a code comment. [evidence: git diff comment review]
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -207,8 +211,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs-verify -->
 ## L3: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] `decision-record.md` is updated the moment each ruling lands, not left scaffolded past that point.
-- [ ] CHK-141 [P2] The four documents governed by DR-5 (`RE-006-11` plus the scheduled finding) are treated identically per the ruling.
+- [x] CHK-140 [P1] `decision-record.md` is updated the moment each ruling lands, not left scaffolded past that point. [evidence: decision-record.md updated 2026-08-02]
+- [x] CHK-141 [P2] The four documents governed by DR-5 (`RE-006-11` plus the scheduled finding) are treated identically per the ruling. [evidence: tasks.md RE-001-05 and RE-006-11 rows]
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -218,11 +222,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 29 | 0/29 |
-| P1 Items | 27 | 0/27 |
-| P2 Items | 5 | 0/5 |
+| P0 Items | 29 | 12/29 |
+| P1 Items | 27 | 8/27 |
+| P2 Items | 5 | 3/5 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-08-02; required gate receipts passed and recorded in the BUILD handoff
 <!-- /ANCHOR:summary -->
 
 ---
