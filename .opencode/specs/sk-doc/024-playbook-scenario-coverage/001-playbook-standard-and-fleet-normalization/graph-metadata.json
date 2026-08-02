@@ -39,17 +39,20 @@
       "migration"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/tests/fixtures/README.md"
     ],
     "entities": [
       {
@@ -74,6 +77,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
         "source": "derived"
       },
       {
@@ -104,6 +113,18 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/tests/fixtures/README.md",
         "source": "derived"
       },
       {
@@ -177,29 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-07-30T19:29:15.567Z",
+    "last_save_at": "2026-08-02T05:59:41.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +210,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fac398f3db18affe5dae5822c4d9bf329a9cf01f157da04a3ff27b91b12cf5ac",
+    "source_fingerprint": "sha256:dcc47450e0ed721dd2aaf32a923ec4a8e25d1ebdbf8213f3c17584a15d77e5be",
     "source_doc_hashes": {
-      "spec.md": "ed3866568bfccde58e4d59d158e7908a21cc236cd0450c580f8edc5e84db07c9",
-      "plan.md": "16593168a7d8c3d5460fc767f09e46d09646cc4bbbf354d409c06bb1ae31d437",
-      "tasks.md": "91f6679b72a3e751fb6d14767ef67c1951751122703dd1aa9faf73cc81077c03",
-      "checklist.md": "7c777dc589aa69caabbd38c38571d75e62b952a4f54043cf744d67f1dbe6eec8",
-      "decision-record.md": "d69b079aef017068dccfbb23d82d0693b1d84c05095b0562ddbe928daf8d4e39"
+      "spec.md": "bcd35e4db2185bf43d0738e48d0bbde89f20609524ef5e52f0eae00bdf4ea11f",
+      "plan.md": "a0dd8cfb6db0abe1ae4f2af4550e27b05cffc540e71007ded2b4d77e9f4dab64",
+      "tasks.md": "6d477d3aa5e9ae9f89c4164a6bfe0b347fe6337329e27f448b56b77c54f195b0",
+      "checklist.md": "d81882cabc09c9ec2412e365ca8bf6b2a1b49192a981a436c497e1dde1c965af",
+      "decision-record.md": "91b4e4b1ab3e91ef50e4c6db0efb7b5b134edc0bad916f77335eb3d4c9cbe0cf",
+      "implementation-summary.md": "d88c3cd7107cf22008a9324143bcf0b79e1c30be19bbaaf038d36de76c7f05d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

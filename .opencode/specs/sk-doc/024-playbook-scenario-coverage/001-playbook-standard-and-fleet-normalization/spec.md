@@ -68,7 +68,7 @@ change or a cutover.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-doc/024-playbook-scenario-coverage` |
@@ -154,12 +154,13 @@ repaired by child `002` — **OPERATOR-DECISION Q7** owns whether that is stated
 - Nested playbooks under `system-deep-loop/**` — owned by the WS1 register.
 - Fixing the feature catalog itself — owned by the catalog integrity track.
 
-### Findings in Scope (19)
+### Findings in Scope (21)
 
 | ID | Sev | Kind | Subject | Lane |
 |----|-----|------|---------|------|
 | `RD-001-02` | P2 | nonconformance | Template defines `PARTIAL`, contradicting the governing verdict contract | A |
 | `RD-001-03` | P2 | nonconformance | `mcp-tooling` hub-routing corpus is benchmark gold, not operator scenarios | A |
+| `RD-001-04` | P0 | nonconformance | `sk-design` routing-gold siblings in mixed folders are audited as operator scenarios | A |
 | `RD-001-05` | P2 | census-error | `sk-code` root claims 31 files / 10 dirs; tree has 32 / 11 | D |
 | `RD-001-06` | P2 | census-error | `sk-design` root claims 35 / 9; tree has 36 / 10 | D |
 | `RD-001-07` | P2 | census-error | `system-deep-loop` root claims 20 / 5; tree has 21 / 6 | D |
@@ -169,6 +170,7 @@ repaired by child `002` — **OPERATOR-DECISION Q7** owns whether that is stated
 | `RD-003-01` | P1 | nonconformance | `system-spec-kit` release census glob matches nothing; verdict `UNAUTOMATABLE` used | B + D |
 | `RD-003-06` | P1 | nonconformance | Recorded contrary evidence blocks a truthful READY claim | D |
 | `RD-004-02` | P1 | nonconformance | `system-deep-loop` root accepts `PARTIAL` | A |
+| `RD-004-05` | P0 | nonconformance | `system-deep-loop` routing-gold siblings in mixed folders are audited as operator scenarios | A |
 | `RD-004-03` | P1 | nonconformance | Retired placeholder file counted as an executable scenario | D |
 | `RD-004-04` | P2 | nonconformance | Playbook version drift against `mode-registry.json` | D |
 | `RD-005-01` | P2 | census-error | CLI root omits 3 shipped scenario files from its index | D |
@@ -394,6 +396,27 @@ verdict is caught at authoring time rather than by a reviewer's eye or not at al
 - Does the CI flip land in the same commit as the Lane D sweep, or staged behind it?
 <!-- /ANCHOR:questions -->
 
+<!-- ANCHOR:build-leaf-addendum -->
+## BUILD LEAF ADDENDUM — 2026-08-02
+
+This leaf is limited to the operator-contract validator, paired fixtures, the explicit whole-tree manifest overrides,
+per-file typed-gold classification, packet
+doctrine/template updates, and this child packet's evidence documents. Scenario content, fleet census repairs,
+filename migrations, topology-gate changes, Lane-C loader changes, CI wiring, and the shared helper remain outside
+this leaf.
+
+The locked corpus ruling is additive: the manifest retains explicit routing-gold whole-tree overrides, then the
+validator applies the topology gate's per-file signature — non-empty `expected_workflow_mode` plus at least one
+`expected_leaf_resources` pair — to every other scenario file. The validator derives counts at runtime and warns on
+hand-typed census claims. The existing measured package set enters WARN at enforcement start; clean and new packages
+fail closed, and promotion is removal from the WARN set after a clean run.
+
+The supplied HEAD baseline is `9d932f660d5091ca8816335f2061da81af3df3d`: 21 scoped findings confirmed, 38 playbook
+directories, 1,481 scenario files, 689 non-root files across 93 hub categories, no operator validator at baseline,
+and the recorded routing-gold topology summary. The follow-up fix changes only classifier/fixture/docs state; no
+scenario file is edited by this leaf.
+<!-- /ANCHOR:build-leaf-addendum -->
+
 ---
 
 ## RELATED DOCUMENTS
@@ -401,7 +424,7 @@ verdict is caught at authoring time rather than by a reviewer's eye or not at al
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Decision Records**: See `decision-record.md` (to be created — records the corpus-split ruling that both
-  siblings and the WS1 harness packet cite)
+- **Decision Records**: See `decision-record.md` (records the corpus-split ruling that both siblings and the WS1
+  harness packet cite)
 - **Parent**: `sk-doc/024-playbook-scenario-coverage`
 - **Governing standard**: `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`

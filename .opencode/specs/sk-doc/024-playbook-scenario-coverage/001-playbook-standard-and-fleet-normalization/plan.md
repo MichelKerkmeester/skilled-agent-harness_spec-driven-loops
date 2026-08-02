@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the implementation plan from research synthesis"
-    next_safe_action: "Confirm baselines in T001 before any edit begins"
+    next_safe_action: "Run the fixture and fleet gates, then reconcile child evidence"
     blockers: []
     key_files:
       - "plan.md"
@@ -48,6 +48,14 @@ sequential lanes: settle the rulings, build the gate, derive the map, normalize 
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
+
+### BUILD LEAF EXECUTION NOTE
+
+The operator supplied the fresh HEAD baseline and locked rulings in the build brief. This leaf is limited to the
+operator-contract validator, paired fixtures, explicit whole-tree manifest overrides, per-file typed-gold
+classification, packet doctrine/templates, and child evidence documents. Fleet scenario repair, topology-gate
+changes, Lane-C loader changes, CI wiring, and the shared helper are out of scope and remain pending for their owning
+workstreams.
 
 ### Definition of Ready
 - [ ] The HEAD baseline in `spec.md` SC-001 is re-run and recorded **before any edit**.
@@ -137,6 +145,8 @@ Required inventories:
 
 ### Phase 2: Build the validator (Lane B)
 - [ ] Implement each P0 check with its paired fixtures, in requirement order.
+- [x] Correct mixed-hub corpus classification with the topology gate's per-file typed-gold signature and add a
+      fixture proving the signature-bearing file is skipped from operator auditing.
 - [ ] Implement the exit-code contract and `--help` contract-naming output.
 - [ ] Land the shared count-derivation helper with its single-definition-site test.
 - [ ] Flip the topology gate to strict-default.
@@ -347,3 +357,32 @@ indistinguishable from no gate.
 
 **Alternatives Rejected**:
 - Matching the sibling's opt-in strictness for consistency: consistency with a known defect is not a reason.
+
+---
+
+<!-- ANCHOR:ai-execution -->
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm the scoped packet and read its current spec, plan, tasks, and checklist before editing.
+- Keep scenario content, sibling gates, consumers, CI, and shared helpers outside this leaf.
+- Run the fixture suite before live package gates and preserve direct exit codes.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SCOPE | Edit only the validator packet and this child packet. |
+| TASK-SEQ | Read first, implement, run fixtures, run package/fleet gates, refresh metadata, then run strict packet validation. |
+| NO-MASS-EDIT | Do not rewrite or mass-edit scenario files. |
+
+### Status Reporting Format
+
+Report each gate as `command`, `result`, and direct `rc`; distinguish confirmed receipts from deferred work.
+
+### Blocked Task Protocol
+
+If a required file is missing, a scope boundary is unclear, or a gate fails, stop the affected workstream, record the
+exact command and output, and leave the packet In Progress. Do not silently substitute another workflow.
+<!-- /ANCHOR:ai-execution -->

@@ -174,6 +174,19 @@ Package invariants:
 - Benchmark tier is owned by the per-feature file's optional `stage:` frontmatter field (`routing` default, or `holdout`/`negative`), not by a filename token.
 - Every feature ID maps to exactly one per-feature file.
 
+Contract boundary:
+
+- The operator-scenario contract is the five-section, execution-evidence contract
+  defined here and checked by `scripts/validate-playbook-package.cjs`.
+- The routing-gold contract is the compact typed-routing schema checked by
+  `sk-create-skill/scripts/validate-playbook-topology.cjs`.
+- `playbook-corpus-manifest.json` is an explicit whole-tree override map consumed only
+  by the operator validator. A listed routing-gold tree is excluded from operator
+  checks; for every other file, a non-empty `expected_workflow_mode` plus at least one
+  `expected_leaf_resources` pair in frontmatter classifies that file as routing gold.
+  Files without that signature are operator-scenario files. The topology gate and the
+  Lane-C loader do not read this manifest and keep their existing boundary.
+
 Do not create:
 
 - A `snippets/` subtree for canonical per-feature files.
@@ -303,7 +316,7 @@ Follow this sequence:
 7. Create one per-feature file for each feature ID from `assets/manual-testing-playbook-snippet-template.md`.
 8. Write root package policy before writing scenario-specific exceptions.
 9. Write each per-feature prompt and execution truth before polishing root summary prose.
-10. Fill each scenario contract with the required 9 fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage.
+10. Fill each scenario contract with the nine display fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria, Failure Triage. The operator validator's eight unconditional checks cover Feature ID plus the seven execution/link fields; realistic user request, table prompt, and feature-catalog link are conditional checks.
 11. Write root category summaries and link every per-feature file.
 12. Add automated-test anchors when they exist.
 13. Add feature-catalog cross-references when a catalog exists.
@@ -334,7 +347,7 @@ Execution status is limited to:
 - `FAIL`
 - `SKIP` with a specific sandbox blocker
 
-Do not classify scenarios as `UNAUTOMATABLE`.
+Do not classify scenarios outside the `PASS` / `FAIL` / `SKIP` enum. A `SKIP` must name a specific sandbox or runtime blocker.
 
 ### Prompt Quality
 
@@ -418,22 +431,35 @@ Also check:
 - Automated-test links, when referenced.
 - Feature-catalog links, when referenced.
 
-### Manual Checks
+### Automated Checks
 
-The current validator is root-document focused. It does not recurse into category folders and does not prove every cross-file playbook link by itself. Cross-file markdown links are covered separately by the `check-markdown-links.cjs` CI guard, which verifies every markdown link across skills, commands, and agents and fails the PR on a broken link; per-feature file structure inside the category folders still needs manual review.
+Run the operator-contract validator from the repository root:
 
-Manually verify:
+```bash
+node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs \
+  --package .opencode/skills/<skill-id>/manual-testing-playbook
+```
 
-- Per-feature files have frontmatter.
-- Per-feature files use numbered section headers.
-- Divider lines appear between numbered sections.
-- Prompts are synchronized between summary fields and execution tables.
-- Destructive scenarios are clearly marked and isolated.
-- Review and readiness rules in the root still match the package contract.
-- Every feature ID maps to exactly one per-feature file.
-- Local links resolve.
+The command validates the operator-scenario contract, not the routing-gold contract. It walks every non-excluded
+scenario tree and checks, per feature: five-section ordering; `title`, `description`, and four-part `version`
+frontmatter; Feature ID; operator/orchestrator prompt; exact command sequence; expected signals; evidence;
+pass/fail criteria; failure triage; root-playbook link; allowed verdicts; filename/category shape; unique IDs;
+root-index bijection; local links; evergreen truth; and placeholder exclusion. Conditional checks cover a realistic
+user request when user intent is explicitly being clarified, an exact prompt when a scenario table is present,
+and a feature-catalog link when catalog applicability is declared.
 
-Document any remaining manual scope honestly in the generated playbook docs.
+The validator derives scenario and category counts at run time. A root's hand-typed census is reported as a warning,
+including a mismatch, so documentation repair remains separate from enforcement. Existing measured packages are
+listed in the validator's staged warning set for the first fleet run; clean packages and new playbooks fail closed.
+Promotion removes a package from that warning set only after a clean run.
+
+Exit codes are direct: `0` means conforming or staged warning, `1` means a fail-closed contract violation, and `2`
+means a usage or boundary error. Strict mode is on by default; `--no-strict` is local triage only and must not be
+used by CI.
+
+The existing `validate-playbook-topology.cjs` remains the routing-gold consumer and is intentionally unchanged.
+The Lane-C loader also remains unchanged. Both consumers continue reading their current playbook paths without
+consulting the additive corpus manifest.
 
 ---
 

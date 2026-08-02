@@ -26,7 +26,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
 
-Both decisions below are **Proposed**. Neither may be marked Accepted by the executing agent — that is the operator's signature.
+The operator's locked rulings settle the validator ownership, corpus boundary, strict-default behavior, and staged
+rollout for this build leaf. Fleet scenario repair, topology-gate changes, and CI wiring remain outside this leaf.
 
 ---
 
@@ -37,7 +38,7 @@ Both decisions below are **Proposed**. Neither may be marked Accepted by the exe
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted by operator |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator |
 
@@ -134,7 +135,7 @@ The only playbook gate today is owned by the packet that defines the routing-gol
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted by operator |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator |
 
@@ -144,7 +145,7 @@ This repository already carries two fail-open validators. A gate that prints a f
 
 ### Decision
 
-**We chose**: strict on by default; `--no-strict` for local triage only, never in CI, asserted by a test.
+**We chose**: strict on by default; `--no-strict` for local triage only, never in CI, asserted by the fixture suite.
 
 ### Alternatives Considered
 
@@ -152,5 +153,41 @@ This repository already carries two fail-open validators. A gate that prints a f
 
 ### Consequences
 
-- Four hubs currently reporting `FAIL` under the sibling gate will red CI the moment the flip lands, so the flip is sequenced after the Lane D fleet sweep in this same phase.
+- The sibling topology gate remains unchanged in this leaf. Its existing fail-open posture and the later CI sequencing
+  decision remain visible to the repair/normalization workstream.
 <!-- /ANCHOR:adr-002 -->
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Split the two corpora with per-file typed-gold classification
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted by operator |
+| **Date** | 2026-08-02 |
+| **Deciders** | Operator |
+
+### Decision
+
+The validator first honors repository-relative whole-tree roots in `playbook-corpus-manifest.json` as explicit overrides.
+For every other scenario file, it reads frontmatter and excludes the file from operator auditing when
+`expected_workflow_mode` is non-empty and `expected_leaf_resources` contains at least one typed pair. All other files
+remain operator scenarios. No scenario frontmatter changes are required, and the existing topology gate and Lane-C
+loader continue reading their current paths without consulting the manifest.
+
+### Consequences
+
+- Mixed roots follow the same typed-gold signature as the topology gate without manual sub-folder enumeration.
+- Homogeneous routing-oracle hubs retain explicit whole-tree overrides as a belt-and-suspenders boundary.
+- The manifest remains additive and validator-owned; it is not a second source of truth for routing-gold consumers.
+<!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:rollout -->
+## Staged rollout: warn existing fleet, fail closed for new packages
+
+Every package measured in the first fleet run is explicitly listed in the validator's warning set. Existing violations
+produce a `WARN` package verdict and exit 0 while the repair workstream closes the backlog. A clean package or a new
+playbook is absent from that set and fails closed on a contract violation. Promotion is removal from the warning set
+after a clean validator run.
+<!-- /ANCHOR:rollout -->

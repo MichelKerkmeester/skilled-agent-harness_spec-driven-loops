@@ -37,7 +37,8 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Status: **Planned** — no task is started.
+Status: **In Progress** — the BUILD leaf has completed the scoped validator, manifest, fixtures, doctrine, template,
+and decision-record work; fleet repair and consumer changes remain pending.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -66,16 +67,23 @@ they are written into a decision record.
       the enum is already ruled and only the template and roots are stale.
 - [ ] T008 Confirm `sk-create-manual-testing-playbook/` still has no `scripts/` directory — the single fact this
       whole child rests on.
-- [ ] T009 **Enumerate the per-feature required-content field set** against the standard's §3, distinguishing
+- [x] T009 **Enumerate the per-feature required-content field set** against the standard's §3, distinguishing
       unconditional from conditional fields, and pin the number. Record the enumeration; do not carry the
       synthesis's "nine-field" shorthand forward unverified.
-- [ ] T010 [B] Take the corpus-split ruling (**OPERATOR-DECISION Q2**) and record it in `decision-record.md`,
-      including the secondary cross-hub-coverage ruling.
+      Evidence: `SKILL.md` and `validate-playbook-package.cjs` implement the pinned field set.
+- [x] T010 Take the corpus-split ruling (**OPERATOR-DECISION Q2**) and record it in `decision-record.md`,
+      including the secondary cross-hub-coverage ruling. The accepted mechanism retains explicit whole-tree
+      overrides and classifies all other files by the typed routing-gold signature.
 - [ ] T011 [B] Take the shared-helper location ruling (**OPERATOR-DECISION Q1**) and record it.
-- [ ] T012 Amend `assets/manual-testing-playbook-template.md`: remove scenario- and feature-level `PARTIAL`;
+- [x] T012 Amend `assets/manual-testing-playbook-template.md`: remove legacy scenario- and feature-level verdict
       replace hand-typed census language with derived-census language.
-- [ ] T013 [P] Amend `assets/manual-testing-playbook-snippet-template.md` to match the pinned field set from T009.
+- [x] T013 [P] Amend `assets/manual-testing-playbook-snippet-template.md` to match the pinned field set from T009.
+- [x] T014 [P0] Correct mixed-hub corpus classification to use the per-file typed routing-gold signature, retain
+      homogeneous whole-tree overrides in `playbook-corpus-manifest.json`, and add a fixture proving signature-bearing
+      files are skipped from the operator audit. Evidence: fixture suite passed with 33 assertions and the fleet run
+      reduced the sk-design and system-deep-loop operator backlogs.
 <!-- /ANCHOR:phase-1 -->
+
 
 ---
 
@@ -87,23 +95,26 @@ they are written into a decision record.
 Each check lands with its paired positive and negative fixture in the same commit. A check without a negative
 fixture is not done.
 
-- [ ] T020 Scaffold `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`
+- [x] T020 Scaffold `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`
       with the exit-code contract (0 conforming / 1 violations / 2 usage or boundary) and strict-by-default.
-- [ ] T021 Implement `--help` output that names both contracts and states which one this validator enforces (REQ-002).
-- [ ] T022 Implement the five-section structure check (REQ-003) + fixtures.
-- [ ] T023 [P] Implement the frontmatter and 4-part `version` check (REQ-004) + fixtures.
-- [ ] T024 Implement the required-content check against the T009 field set (REQ-005) + one negative fixture per
+- [x] T021 Implement `--help` output that names both contracts and states which one this validator enforces (REQ-002).
+- [x] T022 Implement the five-section structure check (REQ-003) + fixtures. Evidence: `validate-playbook-package.test.cjs` passed the paired structure assertions.
+- [x] T023 [P] Implement the frontmatter and 4-part `version` check (REQ-004) + fixtures.
+- [x] T024 Implement the required-content check against the T009 field set (REQ-005) + one negative fixture per
       unconditional field and one conditional-trigger fixture per conditional field.
-- [ ] T025 [P] Implement the verdict-enum check (REQ-006) + fixtures; the negative fixture is a frozen copy of the
-      live worktree-setup scenario that permits `PARTIAL`.
-- [ ] T026 [P] Implement the filename, category-name, and one-file-per-ID checks (REQ-007) + fixtures.
-- [ ] T027 Implement the root-index ↔ file bijection check (REQ-008) + orphan and phantom-row fixtures.
-- [ ] T028 Implement the derived-census check (REQ-009) + fixtures.
-- [ ] T029 [P] Implement local link and cited-path resolution (REQ-010) + fixtures. This is the backstop child `002` consumes.
-- [ ] T030 [P] Implement the evergreen-truth check — no developer-absolute paths, no baked run transcripts
+      Evidence: `validate-playbook-package.test.cjs` passed the required-content assertions.
+- [x] T025 [P] Implement the verdict-enum check (REQ-006) + fixture; the negative fixture seeds a legacy verdict
+      without editing any live scenario file.
+      Evidence: `validate-playbook-package.test.cjs` passed the seeded legacy-verdict assertion.
+- [x] T026 [P] Implement the filename, category-name, and one-file-per-ID checks (REQ-007) + fixtures. Evidence: `validate-playbook-package.test.cjs` passed naming and duplicate-ID assertions.
+- [x] T027 Implement the root-index ↔ file bijection check (REQ-008) + orphan and phantom-row fixtures. Evidence: `validate-playbook-package.test.cjs` passed orphan and phantom-row assertions.
+- [x] T028 Implement the derived-census check (REQ-009) + fixtures. Evidence: `validate-playbook-package.test.cjs` passed derived-count and hand-typed-warning assertions.
+- [x] T029 [P] Implement local link and cited-path resolution (REQ-010) + fixtures. This is the backstop child `002` consumes. Evidence: `validate-playbook-package.test.cjs` passed local-link assertions.
+- [x] T030 [P] Implement the evergreen-truth check — no developer-absolute paths, no baked run transcripts
       (REQ-011) + fixtures; the report names file and line, never the matched string.
-- [ ] T031 Implement placeholder detection (REQ-012) + fixtures; the negative fixture is a frozen copy of the live
-      retired runtime-and-backend placeholder.
+      Evidence: `validate-playbook-package.test.cjs` passed evergreen-path and dated-transcript assertions.
+- [x] T031 Implement placeholder detection (REQ-012) + fixtures; the negative fixture exercises a retired
+      runtime-and-backend placeholder. Evidence: `validate-playbook-package.test.cjs` passed placeholder assertion.
 - [ ] T032 Land the shared count-derivation helper at the Q1-ruled location, with the single-definition-site test (REQ-020).
 - [ ] T033 Flip `validate-playbook-topology.cjs` to strict-by-default (REQ-021); assert non-zero exit without an
       explicit `--strict` on a hub with blocked fixtures.
@@ -179,3 +190,19 @@ fixture is not done.
 - **Parent**: `sk-doc/024-playbook-scenario-coverage`
 - **Successors**: `002-scenario-accuracy-repair-risk-first`, `003-uncovered-workflow-authoring`
 <!-- /ANCHOR:cross-refs -->
+
+<!-- ANCHOR:build-leaf-override -->
+## BUILD LEAF EXECUTION OVERRIDE
+
+The operator supplied the fresh HEAD baseline and locked rulings in the build brief. This leaf records and executes
+only the scoped work below; the broader phase tasks remain open unless they are explicitly listed as completed.
+
+Completed in this leaf: T009 (eight unconditional checks plus three conditional checks enumerated), T010 (explicit
+whole-tree override plus per-file signature ruling recorded), T012-T014, and T020-T031 (validator checks with paired
+fixture assertions). T011 and T032
+remain deferred because the shared-helper location is not part of this leaf. T033-T065 remain deferred because they
+would modify a sibling gate, consumers, scenario content, fleet files, CI, or the coverage-map workstream.
+
+Evidence is maintained in `implementation-summary.md`; status remains In Progress until the scoped gates and packet
+validation are complete.
+<!-- /ANCHOR:build-leaf-override -->
