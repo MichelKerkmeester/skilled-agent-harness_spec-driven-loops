@@ -38,10 +38,14 @@
       "manifest",
       "plan"
     ],
-    "importance_tier": "normal",
-    "status": "planned",
+    "importance_tier": "high",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
+      ".pi/extensions/README.md",
+      ".github/workflows/README.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
       "decision-record.md",
       ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
@@ -50,9 +54,8 @@
       ".opencode/skills/sk-doc/shared/assets/template-rules.json",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
-      ".pi/extensions/README.md",
-      ".github/workflows/README.md",
       "tasks.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
       "plan.md",
       "checklist.md"
     ],
@@ -61,6 +64,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
         "source": "derived"
       },
       {
@@ -112,15 +133,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".pi/extensions/README.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
         "source": "derived"
       },
       {
@@ -137,12 +158,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Run Task",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -172,6 +187,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -182,45 +203,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-07-30T19:14:39.704Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-02T11:07:37.100Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d01a901e4d18c7b324898dc41c5e4e3da7fceb3c6e02ac87789850995edf376f",
+    "source_fingerprint": "sha256:0a9e62b0b7df5012ee7bf27e90b60eb4104e753a2f7ffb80602e43276bd88400",
     "source_doc_hashes": {
-      "spec.md": "8f97e0e9fe242e3efa8b65197f03d80e46321ced9cc07e6b95971f7930f3d4c2",
-      "plan.md": "2aa6bd4302feeabb1bd7ccea5b04200c25e5c61c8dfc88ebc8fdd69ffca32108",
-      "tasks.md": "da8b617201d99f97a97559ccf9a88a3ccbd91d751ae8540801525ec306d6961e",
-      "checklist.md": "19dfae536faa42adddc8d0280ef3bc9844d2f383739a66c4f646b77c036b823a",
-      "decision-record.md": "44d0059289b8e5634de493c56ecc6084153959ace7d34a4fb2c6f46dab3f933d"
+      "spec.md": "7a65a004c4f32a0d92cd6a3021a503c79eab7b56445bbd1703a18762080739aa",
+      "plan.md": "4c6599acfc2f17c79518be45fb82b1682e3b160acdca662aee909cc4497d7316",
+      "tasks.md": "b2f0fb37e5723d88d3032e0fb2c5007279630e60df0307b3f0b4a9ddb234853c",
+      "checklist.md": "2215ef9f3fe8c951d438c212f83632a6ff9a423ed7c0f520fa4960e761dae24e",
+      "decision-record.md": "e1553ae9f9d43591d95b331538fb764d07af5efa631527bddda914a5e299178a",
+      "implementation-summary.md": "f6fa8afe778d1eff1d05963426748a01e5994b8d220e98ed813f9473f2bee352"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,10 +1,35 @@
+---
+title: "Decision Record: Code README Standard And Enforcement"
+description: "Accepted decisions governing the code-folder README standard, validator mode, and equivalent orientation handling."
+trigger_phrases:
+  - "code readme ADR"
+  - "directory tree equivalence decision"
+  - "code folder validator decision"
+importance_tier: "high"
+contextType: "decision"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"
+    last_updated_at: "2026-08-02T12:20:00Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded ADR-001 through ADR-005 as Accepted"
+    next_safe_action: "Consume accepted decisions in downstream phases"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Operator rulings Q1, Q2, and Q3 are accepted and applied."
+---
+
 # Decision Record: Code README Standard And Enforcement
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
-> All four ADRs are **Proposed**. ADR-001 to ADR-003 are operator rulings and cannot be marked Accepted by an implementer. The recommendation rows carry the track-A research position; a different answer flips the dependent scope in `002` class (c), `003`, and `036/019`.
+> ADR-001 through ADR-005 are **Accepted**. ADR-001 to ADR-003 record the operator rulings. ADR-004 records the implementer-accepted opt-in boundary and the required parity proof. ADR-005 records the deliberate durability floor for manifest candidacy.
 
 ---
 
@@ -15,7 +40,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed — **[OPERATOR-DECISION: Q1 — tree vs table]** |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator |
 
@@ -38,11 +63,13 @@ The content model at `readme-code-template.md:47-58` requires a Directory Tree i
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: to be recorded at ruling time.
+**We chose**: a shape-conditional Directory Tree rule. A fenced tree is mandatory when the target folder's immediate subdirectory count is greater than zero. When that count is zero, a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README satisfies the requirement.
 
 **Research recommendation**: require the fenced tree only where it carries information a table cannot — mandatory when the folder has subdirectories or layering, satisfied by a complete file table when the folder is flat.
 
 **How it works**: the validator's tree check reads the folder shape, then applies the tree requirement or the complete-table requirement accordingly. Both branches emit a named rule id.
+
+**Why**: the tree carries nesting information only when subdirectories exist. A complete table is equivalent navigation for a flat folder, and the subdirectory count makes the decision mechanical rather than reviewer-dependent.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -56,7 +83,7 @@ The content model at `readme-code-template.md:47-58` requires a Directory Tree i
 | Fenced tree always mandatory | One rule, trivially checkable | All 76 findings stand; repaints ~85 files for no navigational gain; the two refutations return |
 | Table always sufficient | Smallest backlog; 26 findings dissolve | Loses nesting information in deep trees; contradicts the template's own content model |
 
-**Why**: to be recorded with the ruling.
+**Why**: the shape-conditional option preserves the information value of a tree while accepting the ruled flat-folder equivalent.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -83,13 +110,13 @@ The content model at `readme-code-template.md:47-58` requires a Directory Tree i
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Pending | 76 of 88 sweep findings depend on it |
-| 2 | **Beyond Local Maxima?** | Pending | Three options weighed above |
-| 3 | **Sufficient?** | Pending | Decides the whole class without further rulings |
-| 4 | **Fits Goal?** | Pending | On the critical path for `003` and `019` |
-| 5 | **Open Horizons?** | Pending | Codified rule survives future authors |
+| 1 | **Necessary?** | PASS | It decides the tree/table finding class and removes the ambiguity recorded in the content model. |
+| 2 | **Beyond Local Maxima?** | PASS | Shape-conditional, tree-always and table-always options are weighed above. |
+| 3 | **Sufficient?** | PASS | Immediate subdirectory count selects exactly one validator branch. |
+| 4 | **Fits Goal?** | PASS | It gives `002`, `003` and `036/019` a stable, scriptable rule. |
+| 5 | **Open Horizons?** | PASS | Future authors can apply the same count without reviewer taste. |
 
-**Checks Summary**: pending the ruling
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -112,7 +139,7 @@ The content model at `readme-code-template.md:47-58` requires a Directory Tree i
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed — **[OPERATOR-DECISION: Q2 — format-rule applicability]** |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator |
 
@@ -134,9 +161,11 @@ The format block at `sk-create-readme/SKILL.md:217-229` is titled "General READM
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: to be recorded at ruling time.
+**We chose**: to bind code-folder READMEs to the General README format rules for numbered H2 headings, ALL-CAPS H2 casing, `---` separators, language-tagged fences, no Table of Contents and no anchor-comment navigation. The blockquote tagline is explicitly excluded.
 
 **Research recommendation**: yes for numbering, casing, separators, fences and no-TOC; no for the blockquote tagline. State it explicitly in §6 rather than leaving §6 silent.
+
+**Why**: these rules are already the general authoring contract and the shipped README rule requires uppercase H2 headings. Excluding only the tagline makes the code scaffold and the executable contract agree without duplicating the rule list.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -150,7 +179,7 @@ The format block at `sk-create-readme/SKILL.md:217-229` is titled "General READM
 | Bind everything including the tagline | Simplest statement | Contradicts the scaffold; makes every code README non-conformant on day one |
 | Bind nothing; §6 is self-contained | Honest to the current text | Discards ~45 findings and the existing `h2UppercaseRequired` rule |
 
-**Why**: to be recorded with the ruling.
+**Why**: binding the structural rules closes the inference gap, while excluding the tagline follows the code-folder scaffold and avoids making every existing code README invalid by default.
 <!-- /ANCHOR:adr-002-alternatives -->
 
 ---
@@ -176,13 +205,13 @@ The format block at `sk-create-readme/SKILL.md:217-229` is titled "General READM
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Pending | ~45 findings plus `RA-001-04` depend on it |
-| 2 | **Beyond Local Maxima?** | Pending | Three options weighed |
-| 3 | **Sufficient?** | Pending | Settles the class in one statement |
-| 4 | **Fits Goal?** | Pending | Required before the validator can encode heading rules |
-| 5 | **Open Horizons?** | Pending | Removes a standing ambiguity |
+| 1 | **Necessary?** | PASS | The heading, separator, fence and navigation classes depend on this applicability decision. |
+| 2 | **Beyond Local Maxima?** | PASS | Bind-all, bind-none and bind-all-but-tagline options are weighed above. |
+| 3 | **Sufficient?** | PASS | The cross-reference names every binding and the one exception. |
+| 4 | **Fits Goal?** | PASS | The validator and code template can implement the same contract. |
+| 5 | **Open Horizons?** | PASS | The authoritative general block remains reusable without drift from duplicated prose. |
 
-**Checks Summary**: pending the ruling
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-002-five-checks -->
 
 ---
@@ -205,7 +234,7 @@ The format block at `sk-create-readme/SKILL.md:217-229` is titled "General READM
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed — **[OPERATOR-DECISION: Q3 — equivalent orientation]** |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Operator |
 
@@ -227,9 +256,11 @@ Two disposition findings exempt a folder because orientation is supplied under a
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: to be recorded at ruling time.
+**We chose**: to accept a designated orientation file with any filename when it supplies the same Overview plus inventory content required of `README.md`. The manifest records the designation and the auditor records the exemption explicitly.
 
 **Research recommendation**: yes, content-defined. A landing point owes orientation, not a filename. The auditor accepts a designated orientation file that supplies Overview plus inventory, and records the exemption explicitly.
+
+**Why**: orientation is the requirement, while a filename is only one convention. Requiring manifest designation and the same content check prevents the exemption from becoming an unreviewable suppression path.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -243,7 +274,7 @@ Two disposition findings exempt a folder because orientation is supplied under a
 | `README.md` filename required, no exceptions | Trivially checkable | Forces a duplicate of `SYNC.md`; two known false gaps |
 | Case-by-case reviewer exemption | Flexible | Unauditable; drifts into suppression |
 
-**Why**: to be recorded with the ruling.
+**Why**: this avoids false gaps for established orientation files while keeping the exception deterministic and auditable.
 <!-- /ANCHOR:adr-003-alternatives -->
 
 ---
@@ -269,13 +300,13 @@ Two disposition findings exempt a folder because orientation is supplied under a
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | Pending | Decides two disposition findings and the auditor's pass condition |
-| 2 | **Beyond Local Maxima?** | Pending | Three options weighed |
-| 3 | **Sufficient?** | Pending | One rule covers the class |
-| 4 | **Fits Goal?** | Pending | Required for REQ-006 to report zero false gaps |
-| 5 | **Open Horizons?** | Pending | Content-defined rules outlive filename conventions |
+| 1 | **Necessary?** | PASS | It resolves the equivalent-orientation dispositions and the auditor's no-false-gap condition. |
+| 2 | **Beyond Local Maxima?** | PASS | Designation, filename-only and reviewer-exemption options are weighed above. |
+| 3 | **Sufficient?** | PASS | A designated file plus the Overview-and-inventory check defines the full exemption. |
+| 4 | **Fits Goal?** | PASS | The manifest walk can report an explicit exemption instead of a missing README. |
+| 5 | **Open Horizons?** | PASS | The content rule survives future filename conventions. |
 
-**Checks Summary**: pending the ruling
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-003-five-checks -->
 
 ---
@@ -298,7 +329,7 @@ Two disposition findings exempt a folder because orientation is supplied under a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Phase implementer |
 
@@ -381,3 +412,97 @@ Two disposition findings exempt a folder because orientation is supplied under a
 **How to roll back**: revert both commits and re-run the verdict dump; it must match the stored baseline exactly.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: The Durability Floor Is a Discovery Aid, Not an Exhaustive Oracle
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
+| **Deciders** | Phase implementer |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+The durable-directory manifest admits a directory when it has at least five durable files or already has a README. That floor keeps the manifest aligned with the need-based applicability rule instead of surfacing the roughly 1,432 sub-floor folders that a low file-count threshold would add, most of which are exempt under the need-based rule.
+
+The three research-confirmed missing-README folders below the floor therefore do not enter the manifest candidate set:
+
+- `.opencode/skills/sk-design/shared/authored-brand`
+- `.opencode/skills/system-spec-kit/scripts/runtime-mirrors`
+- `.opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges`
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: retain the `>= 5 durable files OR has_readme` candidacy rule as a deliberate mechanical proxy for the need-based applicability rule. The manifest is a discovery aid, not an exhaustive missing-README oracle, and it intentionally does not surface sub-floor folders.
+
+**Why**: lowering the floor would flood the audit with folders that do not need standalone orientation, while the current floor preserves a deterministic and reviewable candidate set. The three named sub-floor folders are accepted known exceptions and must be carried from the research specification by downstream phases.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons |
+|--------|------|------|
+| Keep the five-file-or-README floor (chosen) | Preserves the need-based candidate set and avoids broad noise | Does not enumerate sub-floor gaps automatically |
+| Lower the floor to include every durable folder | Exhaustive mechanical census | Surfaces roughly 1,432 folders, most exempt under the need-based rule |
+| Treat the manifest as exhaustive despite the floor | Simplest handoff language | Overclaims coverage and hides the three known sub-floor folders |
+
+**Why this one**: the floor is a deliberate precision trade-off, so the handoff must name its blind spots rather than imply completeness.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**: the manifest's scope and coverage claim are explicit, and downstream owners have a named source for the three sub-floor folders.
+
+**What it costs**: a manifest-only consumer cannot discover those three folders. Mitigation: phases `002` class (c) and `036/019` must take them from `002`'s specification and must not infer "no gap" from manifest absence.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A downstream consumer treats the manifest as exhaustive | H | Handoff language names the floor, the three known exceptions, and the required specification source |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The three research-confirmed folders are below the candidacy floor and otherwise disappear from the handoff. |
+| 2 | **Beyond Local Maxima?** | PASS | Retaining the floor, lowering it, and claiming exhaustiveness are weighed above. |
+| 3 | **Sufficient?** | PASS | The rule names the proxy, its intentional blind spot, and the three accepted known exceptions. |
+| 4 | **Fits Goal?** | PASS | It preserves need-based applicability without overstating manifest coverage. |
+| 5 | **Open Horizons?** | PASS | Future sub-floor findings can be added to the explicit specification source without changing the floor. |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**: the manifest handoff language and downstream phase inputs. The candidacy threshold remains unchanged.
+
+**How to roll back**: revert this ADR and the corresponding handoff wording. No auditor threshold change is involved.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->

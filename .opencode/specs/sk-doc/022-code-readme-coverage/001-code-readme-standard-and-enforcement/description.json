@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement",
   "description": "Three defects in the governing surface, each independently confirmed against source:",
   "keywords": [
@@ -11,13 +12,16 @@
     "against",
     "source"
   ],
-  "lastUpdated": "2026-07-30T19:14:29.675Z",
+  "lastUpdated": "2026-08-02T11:07:37.100Z",
   "specId": "001",
   "folderSlug": "code-readme-standard-and-enforcement",
   "parentChain": [
     "sk-doc",
     "022-code-readme-coverage"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-08-26_11-57__added-content-validation-before-equivalent.md",
+    "02-08-26_12-07__built-the-code-readme-oracle-recorded-5-adrs.md"
+  ]
 }

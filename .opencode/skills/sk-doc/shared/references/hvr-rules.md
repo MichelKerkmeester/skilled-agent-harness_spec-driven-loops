@@ -448,10 +448,10 @@ pre_publish_checklist:
     - "No asterisks for emphasis. Max 1 ellipsis."
 
   structure:
-    - "H2 sections numbered ALL CAPS with anchors"
+    - "H2 sections numbered ALL CAPS with anchors (general documents; code-folder READMEs use numbered ALL-CAPS H2 headings but explicitly prohibit anchor-comment navigation)"
     - "Numbered H3/H4 subsections use ALL CAPS"
     - "Unnumbered H3/H4 use Title Case"
-    - "TOC entries match H2 headings with correct anchors"
+    - "TOC entries match H2 headings with correct anchors (general documents; code-folder READMEs explicitly prohibit a Table of Contents)"
     - "--- dividers between H2 sections"
     - "Blockquote tagline after H1 (if applicable)"
     - "No 'not just X, but also Y' patterns"

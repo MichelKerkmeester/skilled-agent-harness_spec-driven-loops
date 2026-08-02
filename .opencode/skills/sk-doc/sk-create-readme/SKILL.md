@@ -274,6 +274,16 @@ Use this section model:
 | Validation | Tests or checks exist | Use commands that work from repo root |
 | Related | Nearby docs exist | Link parent, sibling and architecture docs |
 
+The general README format rules at `General README format rules:` above bind code-folder READMEs for numbered H2 headings, ALL-CAPS H2 casing, `---` separators, language-tagged fences, no Table of Contents and no anchor-comment navigation. The blockquote tagline is the exception. It does not bind code-folder READMEs. This is a cross-reference to the single authoritative rule block, not a second list.
+
+The Directory Tree rule is shape-conditional and script-implementable:
+
+1. Count the target folder's immediate subdirectories.
+2. When that count is greater than zero, include a fenced Directory Tree because the folder has nesting or layering. The validator emits `code_folder_directory_tree` when it is missing.
+3. When that count is zero, a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README satisfies the navigation requirement. The validator emits `code_folder_flat_inventory` when that table is absent or incomplete.
+
+Both branches are named rules. A reviewer must not replace the subdirectory-count condition with a judgement about whether a tree feels useful.
+
 Code-folder README rules:
 
 - Document current behavior only.
@@ -282,6 +292,7 @@ Code-folder README rules:
 - Keep diagrams small enough to read in a terminal.
 - State allowed dependency direction when the folder has layers.
 - Do not force Quick Start, Features, FAQ or Troubleshooting unless the directory has runnable commands, meaningful capabilities or known reader problems.
+- The code-folder scaffold omits the general blockquote tagline by design. Frontmatter remains optional, and when present it stays before the H1.
 
 ---
 

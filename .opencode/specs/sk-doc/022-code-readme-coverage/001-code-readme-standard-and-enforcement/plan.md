@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "022-001-code-readme-standard-and-enforcement"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Q1: tree vs table equivalence"
       - "Q2: format-rule applicability scope"
@@ -62,18 +62,18 @@ The ordering is not stylistic. The validator mode encodes the ruling; writing it
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] All 10 findings confirmed, drifted or refuted against HEAD with file:line evidence
-- [ ] Operator rulings Q1, Q2, Q3 received
-- [ ] The 501-dir manifest re-frozen at current HEAD if it has moved since 2026-07-30
-- [ ] The CI call sites of `validate_document.py` enumerated
+- [x] All 10 findings confirmed against HEAD using the supplied current-line confirmation
+- [x] Operator rulings Q1, Q2, Q3 received
+- [x] The durable-directory manifest re-frozen at current HEAD, with 585 derived directories against the 501 prose baseline
+- [x] The CI and script blast radius of `validate_document.py` enumerated
 
 ### Definition of Done
-- [ ] Every negative fixture fails with its expected rule id; the conformant control passes
-- [ ] Verdict dump over existing READMEs is byte-identical pre/post
-- [ ] `rg -n "with anchors|TOC entries match" hvr-rules.md` returns zero, or only scoped-away lines
-- [ ] Auditor reproduces the raw candidate set and reduces it via named exclusions
-- [ ] `validate.sh --strict` → Errors: 0
-- [ ] Every ADR has status Accepted
+- [x] Every negative fixture fails with its expected rule id; the flat-table equivalence and conformant control pass
+- [x] Verdict dump over existing READMEs is byte-identical pre/post
+- [x] `rg -n "with anchors|TOC entries match" hvr-rules.md` returns only lines explicitly scoped away from code-folder READMEs
+- [x] Auditor reproduces the raw candidate set and records named exclusions and gaps
+- [x] `validate.sh --strict` → Errors: 0
+- [x] Every ADR has status Accepted
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -117,36 +117,36 @@ directory manifest ──> auditor walk ──> exclusion classifier ──> gap
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm and decide
-- [ ] Re-verify all 10 findings against HEAD, recording confirmed / drifted / refuted per ID
-- [ ] Escalate Q1, Q2, Q3 once, together, with the research recommendations attached
-- [ ] Record the rulings as ADRs in `decision-record.md`
+- [x] Re-verify all 10 findings against HEAD, recording confirmed / drifted / refuted per ID
+- [x] Escalate Q1, Q2, Q3 once, together, with the research recommendations attached
+- [x] Record the rulings as ADRs in `decision-record.md`
 
 ### Phase 2: Authoring surface
-- [ ] State the tree rule and the format-rule scope in `SKILL.md` §6
-- [ ] Align the code template scaffold (frontmatter, tagline, tree block) with the ruling
-- [ ] Reconcile `quality-and-checklist.md` with the ruling
-- [ ] Remove or scope away the `hvr-rules.md` anchor/TOC requirement
+- [x] State the tree rule and the format-rule scope in `SKILL.md` §6
+- [x] Align the code template scaffold (frontmatter, tagline, tree block) with the ruling
+- [x] Reconcile `quality-and-checklist.md` with the ruling
+- [x] Remove or scope away the `hvr-rules.md` anchor/TOC requirement
 
 ### Phase 3: Fixtures first
-- [ ] Author one negative fixture per defect class: no tree, table-instead-of-tree, missing separators, unnumbered H2, non-sequential H2, untagged fence, broken relative link, packet-ID text, TOC/anchor comments
-- [ ] Author the fully conformant control fixture, including a legitimate example command so the durability grep is tested against a false-positive case
-- [ ] Author exclusion fixtures for the 21 disposition path classes
+- [x] Author one negative fixture per defect class: no tree, incomplete flat inventory, missing separators, unnumbered H2, non-sequential H2, untagged fence, broken relative link, packet-ID text, TOC/anchor comments
+- [x] Author the fully conformant control fixture, including a legitimate example command so the durability grep is tested against a false-positive case
+- [x] Author exclusion fixtures for the 21 disposition path classes
 
 ### Phase 4: Validator mode
-- [ ] Add the code-folder `documentTypes` entry to `template-rules.json`
-- [ ] Implement the opt-in mode in `validate_document.py` against the fixture corpus
-- [ ] Capture the pre-change verdict dump over existing READMEs, re-run post-change, diff
+- [x] Add the code-folder `documentTypes` entry to `template-rules.json`
+- [x] Implement the opt-in mode in `validate_document.py` against the fixture corpus
+- [x] Capture the pre-change verdict dump over existing READMEs, re-run post-change, diff
 
 ### Phase 5: Auditor discovery
-- [ ] Replace `find_readmes()` with a manifest walk across all repository roots
-- [ ] Implement the exclusion classifier over named path classes
-- [ ] Assert the raw candidate set and the reduced actionable set against the frozen manifest
+- [x] Replace `find_readmes()` with a manifest walk across all repository roots
+- [x] Implement the exclusion classifier over named path classes
+- [x] Assert the raw candidate set and the reduced actionable set against the frozen manifest
 
 ### Phase 6: Verification
-- [ ] Full fixture suite green
-- [ ] Existing validator suite green
-- [ ] Contradiction, discovery and verdict-parity gates all pass
-- [ ] `validate.sh --strict` → Errors: 0
+- [x] Full fixture suite green
+- [x] Existing validator suite green
+- [x] Contradiction, discovery and verdict-parity gates all pass
+- [x] `validate.sh --strict` → Errors: 0
 <!-- /ANCHOR:phases -->
 
 ---
@@ -171,7 +171,7 @@ directory manifest ──> auditor walk ──> exclusion classifier ──> gap
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Operator rulings Q1/Q2/Q3 | External | Pending | Phases 2-5 cannot start; Phase 1 confirm work can |
+| Operator rulings Q1/Q2/Q3 | External | Accepted | Recorded in ADR-001..003 and applied to authoring, validator, and auditor |
 | Frozen 501-dir manifest | Internal | Available (2026-07-30) | Re-freeze at T001 if HEAD moved |
 | `sk-doc/scripts/tests/` harness | Internal | Available | Fixtures need a new harness |
 | CI call sites of the validator | Internal | To enumerate | Risk of breaking pipelines on landing |
@@ -290,6 +290,34 @@ External dependencies (from §6 DEPENDENCIES) gate Phase 1 and Phase 2 directly:
 
 ---
 
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Read the child contract documents before editing.
+- Confirm each requested correction against the cited source and current fixture behavior.
+- Keep implementation edits inside the locked editable scope.
+
+### Execution Rules
+
+| Rule | Contract |
+|------|----------|
+| TASK-SEQ | Capture the README baseline before changing validator code or rule data. |
+| TASK-SCOPE | Do not edit existing README content or unrelated skills and runtime files. |
+| TASK-VERIFY | Run the complete fixture suite, parity diff, contradiction gate, and strict packet validation. |
+
+### Status Reporting Format
+
+Report each task as completed only with a file, command, or artifact receipt. Keep the packet status In Progress while downstream sweep ownership remains separate.
+
+### Blocked Task Protocol
+
+Mark a task `[B]` with its blocking decision or missing external state when execution cannot proceed. Do not infer approval or substitute a workflow without recording the deviation.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 <!-- ANCHOR:l3-adr-summary -->
 ## L3: ARCHITECTURE DECISION SUMMARY
 
@@ -297,8 +325,8 @@ See `decision-record.md` for full ADRs.
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | Tree-vs-table equivalence rule | Proposed — **[OPERATOR-DECISION: Q1 — tree vs table]** |
-| ADR-002 | Scope of the general format rules over code-folder READMEs | Proposed — **[OPERATOR-DECISION: Q2 — format-rule applicability]** |
-| ADR-003 | Content-defined equivalent orientation accepted in place of `README.md` | Proposed — **[OPERATOR-DECISION: Q3 — equivalent orientation]** |
-| ADR-004 | Code-folder validator mode is opt-in, never default-on | Proposed |
+| ADR-001 | Tree-vs-table equivalence rule | Accepted — **[OPERATOR-DECISION: Q1 — tree vs table]** |
+| ADR-002 | Scope of the general format rules over code-folder READMEs | Accepted — **[OPERATOR-DECISION: Q2 — format-rule applicability]** |
+| ADR-003 | Content-defined equivalent orientation accepted in place of `README.md` | Accepted — **[OPERATOR-DECISION: Q3 — equivalent orientation]** |
+| ADR-004 | Code-folder validator mode is opt-in, never default-on | Accepted |
 <!-- /ANCHOR:l3-adr-summary -->

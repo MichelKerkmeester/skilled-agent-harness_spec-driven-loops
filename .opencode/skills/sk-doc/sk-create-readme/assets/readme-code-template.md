@@ -49,7 +49,7 @@ Use the broader `ARCHITECTURE.md` pattern only when the folder needs system-leve
 | Overview | Always | One or two paragraphs about current responsibility |
 | Architecture Diagram | Helpful for dispatch, pipelines, adapters or layered flows | Unicode box diagram preferred |
 | Package Topology | The folder has layers, zones or import rules | Show dependency direction clearly |
-| Directory Tree | Always for multi-file folders | Show only important files |
+| Directory Tree | Mandatory when the target folder's immediate subdirectory count is greater than zero | Use a fenced tree and show only important files. When the count is zero, a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README is sufficient |
 | Key Files | Always when responsibilities are split | Table with file and role |
 | Boundaries | Relevant for import rules or ownership | State allowed and disallowed edges |
 | Data or Control Flow | Relevant for handlers, pipelines or runtime paths | Keep to the main path |
@@ -178,6 +178,8 @@ tests/ → private fixtures outside this folder without a reason
 
 Copy this scaffold, then remove sections that do not apply.
 
+The scaffold follows the code-folder shape rule. It keeps optional frontmatter before the H1 and does not add the general README tagline because that tagline does not bind this document type. Use a fenced tree when the target folder has immediate subdirectories. For a flat folder, replace the tree with a complete file table.
+
 ````markdown
 ---
 title: "[Folder Name]: [Responsibility]"
@@ -276,6 +278,13 @@ private modules → public API barrels when this creates a cycle
 +-- [subfolder]/         # [Responsibility]
 `-- README.md
 ```
+
+For a flat folder, use this equivalent inventory instead:
+
+| File | Responsibility |
+|---|---|
+| `[file-a.ts]` | [What it owns] |
+| `[file-b.ts]` | [What it owns] |
 
 
 ---

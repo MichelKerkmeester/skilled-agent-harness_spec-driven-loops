@@ -12,21 +12,21 @@ parent: "sk-doc/022-code-readme-coverage"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored the phase spec from the track-A research synthesis"
-    next_safe_action: "Run Task T001 — confirm all 10 findings against HEAD"
-    blockers:
-      - "Q1 and Q2 operator rulings are inputs to this phase, not outputs of it"
+    last_updated_at: "2026-08-02T12:20:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the accepted authoring, validator, auditor, and fixture contracts"
+    next_safe_action: "Downstream phases consume the frozen manifest and opt-in code-folder mode"
+    blockers: []
     key_files:
       - "spec.md"
-    completion_pct: 0
-    open_questions:
-      - "Q1 — fenced tree mandatory, or is a complete file table equivalent navigation?"
-      - "Q2 — do the General README format rules bind code-folder READMEs?"
-      - "Q3 — is content-defined equivalent orientation acceptable in place of README.md?"
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Applicability is need-based, not census-based"
+      - "Q1 — tree is mandatory only when immediate subdirectory count is greater than zero; a complete flat-folder inventory table is equivalent"
+      - "Q2 — general README format rules bind code-folder READMEs except the tagline"
+      - "Q3 — a designated orientation file may replace README.md when it passes the same Overview and inventory check"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -52,7 +52,7 @@ One unresolved sentence in the create-readme standard — whether a complete fil
 | **Packet** | sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement |
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-doc/022-code-readme-coverage` |
@@ -147,8 +147,8 @@ Produce the oracle: a standard with no self-contradiction and no inferred requir
 | REQ-002 | The applicability of the general format rules to code-folder READMEs is stated, not inferred | `SKILL.md` §6 explicitly lists which of numbering, casing, separators, fences, no-TOC and tagline bind code READMEs. `rg -n "General README format rules" SKILL.md` shows the block cross-referenced from §6. **[OPERATOR-DECISION: Q2 — format-rule applicability]** |
 | REQ-003 | The `hvr-rules.md` contradiction no longer applies to code-folder READMEs | `rg -n "with anchors\|TOC entries match" .opencode/skills/sk-doc/shared/references/hvr-rules.md` returns zero lines, or returns only lines explicitly scoped away from code-folder READMEs |
 | REQ-004 | `validate_document.py` gains an opt-in code-folder mode that flags every defect class in the fixture corpus and passes the conformant control | Each negative fixture exits non-zero with the expected rule id; the positive fixture exits zero |
-| REQ-005 | Existing non-code-folder README verdicts are byte-identical before and after | Verdict dump over the 379 existing READMEs diffed pre/post: empty diff |
-| REQ-006 | `audit_readmes.py` discovers missing READMEs from a durable-directory manifest across all repository roots | Run against the frozen 501-dir manifest reproduces the 122-candidate raw set; codified exclusions reduce it to the agreed actionable set; `.pi/extensions/README.md` and `.github/workflows/README.md` appear in the audited set |
+| REQ-005 | Existing non-code-folder README verdicts are byte-identical before and after | Verdict dump over the 759 existing READMEs diffed pre/post: empty diff |
+| REQ-006 | `audit_readmes.py` discovers missing READMEs from a durable-directory manifest across all repository roots | Run against the frozen 585-dir manifest reproduces the derived candidate set; codified exclusions leave seven raw gaps; `.pi/extensions/README.md` and `.github/workflows/README.md` appear in the audited set |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -257,9 +257,15 @@ Produce the oracle: a standard with no self-contradiction and no inferred requir
 
 ## 12. OPEN QUESTIONS
 
-- **Q1** — Does a complete `CONTENTS`/`FILES`/`Key Files` table satisfy the multi-file Directory Tree requirement, or is fenced tree syntax mandatory? *Recommendation carried from research: require the fenced tree only where the folder has subdirectories or layering; accept a complete table for flat folders.*
-- **Q2** — Do the General README format rules bind code-folder READMEs? *Recommendation: yes for numbering, casing, separators, fences, no-TOC; no for the blockquote tagline.*
-- **Q3** — Is content-defined equivalent orientation acceptable in place of a `README.md`? *Recommendation: yes; the auditor accepts a designated orientation file and records the exemption.*
+- **Q1** — Accepted. A fenced tree is mandatory when the target folder's immediate subdirectory count is greater than zero. A complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README satisfies the flat-folder branch.
+- **Q2** — Accepted. Numbering, ALL-CAPS H2 casing, `---` separators, language-tagged fences, no-TOC and no-anchor rules bind code-folder READMEs. The blockquote tagline does not.
+- **Q3** — Accepted. A manifest-designated orientation file with the same Overview plus inventory content is an explicit exemption from the `README.md` filename requirement.
+
+### Implementation Evidence
+
+- Frozen manifest: `.opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`, with 585 derived directories against the parent prose baseline of 501, a delta of +84, and reproducible output.
+- Parity baseline: `.opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json`, containing 759 existing README verdicts with an empty post-change diff.
+- Mode invocation: `--type code_folder` or `--type code-folder`. The narrow `--type readme` caller path remains unchanged.
 <!-- /ANCHOR:questions -->
 
 ---

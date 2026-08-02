@@ -10,7 +10,7 @@ Validates markdown documentation against template rules to ensure
 consistent formatting with proper TOC, H2 emojis, and section structure.
 
 Usage:
-    python validate_document.py <document.md> [--type readme|skill|reference|asset|agent|command|install_guide|spec|changelog]
+    python validate_document.py <document.md> [--type readme|code_folder|skill|reference|asset|agent|command|install_guide|spec|changelog]
     python validate_document.py <document.md> --json
     python validate_document.py <document.md> --fix [--dry-run]
     python validate_document.py <document.md> --blocking-only
@@ -780,7 +780,271 @@ def apply_fixes(content: str, errors: List[Dict[str, Any]]) -> Tuple[str, List[D
 
 
 # ───────────────────────────────────────────────────────────────
-# 7. MAIN VALIDATION
+# 7. CODE-FOLDER VALIDATION
+# ───────────────────────────────────────────────────────────────
+
+_CODE_FOLDER_LINK_RE = re.compile(r'\[[^\]]+\]\(([^)]+)\)')
+_CODE_FOLDER_INLINE_RE = re.compile(r'`([^`]+)`')
+_CODE_FOLDER_PATH_EXTENSIONS = {
+    '.cjs', '.css', '.html', '.js', '.json', '.md', '.mjs', '.py', '.sh',
+    '.sql', '.toml', '.ts', '.tsx', '.txt', '.yaml', '.yml',
+}
+_CODE_FOLDER_TREE_GLYPHS = ('├', '└', '│', '──', '+--', '`--', '|--')
+
+
+def _code_folder_fence_lines(content: str) -> Tuple[set, List[Dict[str, Any]]]:
+    """Return fenced lines and errors for untagged fenced blocks."""
+    fenced: set = set()
+    errors: List[Dict[str, Any]] = []
+    opening_line: Optional[int] = None
+    opening_ticks = 0
+    opening_info = ''
+
+    for line_number, line in enumerate(content.splitlines(), start=1):
+        match = re.match(r'^\s*(`{3,})(.*)$', line)
+        if not match:
+            if opening_line is not None:
+                fenced.add(line_number)
+            continue
+
+        ticks = len(match.group(1))
+        info = match.group(2).strip()
+        fenced.add(line_number)
+        if opening_line is None:
+            opening_line = line_number
+            opening_ticks = ticks
+            opening_info = info
+            if not info:
+                errors.append({
+                    'type': 'code_folder_fence_language',
+                    'rule_id': 'code_folder_fence_language',
+                    'severity': 'blocking',
+                    'message': 'Fenced code block is missing a language tag.',
+                    'line': line,
+                    'line_number': line_number,
+                    'fix_hint': 'Add a language tag after the opening fence.',
+                })
+        elif ticks >= opening_ticks and not info:
+            opening_line = None
+            opening_ticks = 0
+            opening_info = ''
+
+    if opening_line is not None:
+        errors.append({
+            'type': 'code_folder_fence_language',
+            'rule_id': 'code_folder_fence_language',
+            'severity': 'blocking',
+            'message': 'Fenced code block is not closed.',
+            'line_number': opening_line,
+            'fix_hint': 'Close the fenced code block.',
+        })
+
+    return fenced, errors
+
+
+def _code_folder_error(rule_id: str, message: str, line_number: Optional[int] = None) -> Dict[str, Any]:
+    error: Dict[str, Any] = {
+        'type': rule_id,
+        'rule_id': rule_id,
+        'severity': 'blocking',
+        'message': message,
+    }
+    if line_number is not None:
+        error['line_number'] = line_number
+    return error
+
+
+def _code_folder_has_tree(content: str, fenced: set) -> bool:
+    lines = content.splitlines()
+    for line_number, line in enumerate(lines, start=1):
+        if line_number not in fenced or not any(glyph in line for glyph in _CODE_FOLDER_TREE_GLYPHS):
+            continue
+        return True
+    return False
+
+
+def _code_folder_has_flat_inventory(content: str, fenced: set, folder: Path) -> bool:
+    lines = content.splitlines()
+    body = '\n'.join(line for number, line in enumerate(lines, start=1) if number not in fenced)
+    has_inventory_heading = bool(re.search(
+        r'(?im)^\s*(?:#{1,6}\s+)?(?:\d+\.\s+)?(?:CONTENTS|FILES|KEY FILES)\b',
+        body,
+    ))
+    if not has_inventory_heading:
+        return False
+
+    expected_files = [
+        child.name for child in folder.iterdir()
+        if child.is_file() and child.name.lower() != 'readme.md'
+    ]
+    return all(re.search(rf'(?<![A-Za-z0-9_.-]){re.escape(name)}(?![A-Za-z0-9_.-])', body) for name in expected_files)
+
+
+def _code_folder_heading_errors(content: str, fenced: set) -> List[Dict[str, Any]]:
+    errors: List[Dict[str, Any]] = []
+    headings: List[Tuple[int, int, str]] = []
+    lines = content.splitlines()
+    for line_number, line in enumerate(lines, start=1):
+        if line_number in fenced:
+            continue
+        match = re.match(r'^##(?!#)\s+(.+?)\s*$', line)
+        if match:
+            headings.append((line_number, line_number, match.group(1)))
+
+    expected_number = 1
+    for line_number, _unused, title in headings:
+        numbered = re.match(r'^(\d+)\.\s+(.+)$', title)
+        if not numbered:
+            errors.append(_code_folder_error(
+                'code_folder_h2_numbering',
+                f'H2 heading is not numbered: "## {title}".',
+                line_number,
+            ))
+            continue
+
+        number = int(numbered.group(1))
+        heading_title = numbered.group(2).strip()
+        if number != expected_number:
+            errors.append(_code_folder_error(
+                'code_folder_h2_sequence',
+                f'H2 section numbering is not sequential: expected {expected_number}, found {number}.',
+                line_number,
+            ))
+        expected_number = number + 1
+
+        if heading_title != heading_title.upper():
+            errors.append(_code_folder_error(
+                'code_folder_h2_casing',
+                f'H2 heading is not ALL CAPS: "## {title}".',
+                line_number,
+            ))
+
+        previous = line_number - 1
+        while previous > 0 and not lines[previous - 1].strip():
+            previous -= 1
+        if len(headings) > 1 and line_number != headings[0][0] and (previous == 0 or lines[previous - 1].strip() != '---'):
+            errors.append(_code_folder_error(
+                'code_folder_h2_separator',
+                'Numbered H2 sections must be separated by `---`.',
+                line_number,
+            ))
+
+    return errors
+
+
+def _code_folder_reference_candidates(folder: Path, raw: str) -> List[Path]:
+    target = raw.strip().strip('<>"\'`')
+    target = target.split('#', 1)[0].split('?', 1)[0].rstrip('.,;:)')
+    if not target or target.startswith(('#', '/', '~')):
+        return []
+    if re.match(r'^[A-Za-z][A-Za-z0-9+.-]*:', target):
+        return []
+    candidate = (folder / target).resolve()
+    candidates = [candidate]
+    if target.endswith('/') or candidate.is_dir():
+        candidates.extend(candidate / index for index in ('README.md', 'index.ts', 'index.js', 'index.py'))
+    if not candidate.suffix:
+        candidates.extend(Path(f'{candidate}{extension}') for extension in _CODE_FOLDER_PATH_EXTENSIONS)
+    return candidates
+
+
+def _code_folder_reference_errors(content: str, file_path: Path, fenced: set) -> List[Dict[str, Any]]:
+    errors: List[Dict[str, Any]] = []
+    folder = file_path.parent.resolve()
+    for line_number, line in enumerate(content.splitlines(), start=1):
+        if line_number in fenced:
+            continue
+        for raw in _CODE_FOLDER_LINK_RE.findall(line):
+            if not raw.strip().startswith(('./', '../')):
+                continue
+            candidates = _code_folder_reference_candidates(folder, raw)
+            if candidates and not any(candidate.exists() for candidate in candidates):
+                errors.append(_code_folder_error(
+                    'code_folder_relative_link',
+                    f'Relative link does not resolve from the README directory: {raw.strip()}.',
+                    line_number,
+                ))
+        for inline in _CODE_FOLDER_INLINE_RE.findall(line):
+            for raw in inline.split():
+                token = raw.rstrip('.,;:()[]{}<>"\'')
+                if not (
+                    token.startswith(('./', '../'))
+                    or (Path(token).suffix.lower() in _CODE_FOLDER_PATH_EXTENSIONS and '/' in token)
+                ):
+                    continue
+                candidates = _code_folder_reference_candidates(folder, token)
+                if candidates and not any(candidate.exists() for candidate in candidates):
+                    errors.append(_code_folder_error(
+                        'code_folder_inline_path',
+                        f'Inline-code path does not resolve from the README directory: {token}.',
+                        line_number,
+                    ))
+    return errors
+
+
+def _code_folder_durability_errors(content: str, fenced: set) -> List[Dict[str, Any]]:
+    patterns = (
+        ('code_folder_packet_id', re.compile(r'\b(?:sk-[a-z0-9-]+/)?\d{3}/\d{3}\b', re.IGNORECASE)),
+        ('code_folder_phase_id', re.compile(r'\b\d{3}-\d{3}\b')),
+        ('code_folder_adr_id', re.compile(r'\bADR[- ]?\d+\b', re.IGNORECASE)),
+        ('code_folder_commit_hash', re.compile(r'(?<![A-Za-z0-9])[0-9a-f]{7,40}(?![A-Za-z0-9])', re.IGNORECASE)),
+        ('code_folder_specs_path', re.compile(r'(?<![A-Za-z0-9_])\.opencode/specs(?:/|$)', re.IGNORECASE)),
+    )
+    errors: List[Dict[str, Any]] = []
+    for line_number, line in enumerate(content.splitlines(), start=1):
+        if line_number in fenced:
+            continue
+        for rule_id, pattern in patterns:
+            if pattern.search(line):
+                errors.append(_code_folder_error(
+                    rule_id,
+                    'Durability rule rejected packet, phase, ADR, commit or mutable spec-path text.',
+                    line_number,
+                ))
+    return errors
+
+
+def validate_code_folder(content: str, file_path: str) -> List[Dict[str, Any]]:
+    """Validate the opt-in code-folder README contract."""
+    path = Path(file_path)
+    fenced, errors = _code_folder_fence_lines(content)
+    lines = content.splitlines()
+    outside_body = '\n'.join(line for number, line in enumerate(lines, start=1) if number not in fenced)
+
+    headings = re.findall(r'(?im)^##\s+(.+?)\s*$', outside_body)
+    if not any(re.match(r'^\d+\.\s+OVERVIEW\b', heading) for heading in headings):
+        errors.append(_code_folder_error('code_folder_required_overview', 'Code-folder README must contain a numbered OVERVIEW section.'))
+
+    errors.extend(_code_folder_heading_errors(content, fenced))
+
+    if re.search(r'(?im)^\s*(?:#+\s+)?TABLE OF CONTENTS\b', outside_body):
+        errors.append(_code_folder_error('code_folder_no_toc', 'Code-folder README must not contain a Table of Contents.'))
+    if re.search(r'<!--\s*/?ANCHOR\b', outside_body, re.IGNORECASE):
+        errors.append(_code_folder_error('code_folder_no_anchor', 'Code-folder README must not contain anchor-comment navigation.'))
+
+    try:
+        direct_subdirectories = [child for child in path.parent.iterdir() if child.is_dir()]
+    except OSError:
+        direct_subdirectories = []
+    if direct_subdirectories:
+        if not _code_folder_has_tree(content, fenced):
+            errors.append(_code_folder_error(
+                'code_folder_directory_tree',
+                'Folders with subdirectories require a fenced Directory Tree.',
+            ))
+    elif not _code_folder_has_flat_inventory(content, fenced, path.parent):
+        errors.append(_code_folder_error(
+            'code_folder_flat_inventory',
+            'Flat folders require a complete CONTENTS, FILES or KEY FILES table naming every file.',
+        ))
+
+    errors.extend(_code_folder_reference_errors(content, path, fenced))
+    errors.extend(_code_folder_durability_errors(content, fenced))
+    return errors
+
+
+# ───────────────────────────────────────────────────────────────
+# 8. MAIN VALIDATION
 # ───────────────────────────────────────────────────────────────
 
 def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -1117,6 +1381,8 @@ def validate_document(
 
     if doc_type is None:
         doc_type = detect_document_type(file_path, content, rules)
+    elif doc_type == 'code-folder':
+        doc_type = 'code_folder'
 
     doc_type_rules = rules.get('documentTypes', {}).get(doc_type, {})
 
@@ -1137,6 +1403,8 @@ def validate_document(
         all_errors.extend(validate_agent_frontmatter(content, file_path))
     if doc_type == 'command':
         all_errors.extend(validate_command_frontmatter(content, file_path, doc_type_rules))
+    if doc_type == 'code_folder':
+        all_errors.extend(validate_code_folder(content, file_path))
 
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']
@@ -1169,7 +1437,7 @@ def main() -> None:
         epilog=__doc__
     )
     parser.add_argument('file', help='Markdown file to validate')
-    parser.add_argument('--type', choices=['readme', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog'],
+    parser.add_argument('--type', choices=['readme', 'code_folder', 'code-folder', 'skill', 'reference', 'asset', 'agent', 'command', 'install_guide', 'spec', 'changelog', 'playbook', 'playbook_feature', 'feature_catalog'],
                         help='Document type (auto-detected if not specified)')
     parser.add_argument('--json', action='store_true', help='Output results as JSON')
     parser.add_argument('--blocking-only', action='store_true', help='Show only blocking errors')

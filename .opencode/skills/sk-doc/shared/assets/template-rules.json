@@ -59,6 +59,28 @@
       "firstSectionName": "overview",
       "lastSectionPattern": "related"
     },
+    "code_folder": {
+      "description": "Opt-in README contract for code-bearing folders",
+      "requiredSections": [
+        "overview"
+      ],
+      "tocRequired": false,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": false,
+      "directoryTreeRule": "subdirectory_count_gt_zero_requires_fenced_tree_else_complete_flat_inventory",
+      "flatInventoryHeadings": [
+        "CONTENTS",
+        "FILES",
+        "KEY FILES"
+      ],
+      "durabilityChecks": [
+        "packet_id",
+        "phase_id",
+        "adr_id",
+        "commit_hash",
+        "mutable_specs_path"
+      ]
+    },
     "skill": {
       "description": "SKILL.md files for OpenCode skills",
       "requiredSections": [

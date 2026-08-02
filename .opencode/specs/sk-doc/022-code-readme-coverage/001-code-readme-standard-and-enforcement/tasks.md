@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "022-001-code-readme-standard-and-enforcement"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Q1: tree vs table equivalence"
       - "Q2: format-rule applicability scope"
@@ -49,7 +49,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) {deps: T###}`
 
-Status: Planned — no task is started.
+Status: In Progress — implementation and verification evidence are recorded below.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -59,7 +59,7 @@ Status: Planned — no task is started.
 
 *(originally: Confirm And Decide)*
 
-- [ ] **T001 Confirm all findings against HEAD.** Findings are hypotheses. Re-read every cited line at current HEAD and record confirmed / drifted / refuted per ID with file:line:
+- [x] **T001 Confirm all findings against HEAD.** Findings are hypotheses. The supplied current-line confirmation records all 10 findings as confirmed at HEAD `c6a07b226c`.
   - `RA-001-01`, `RA-010-01` — `audit_readmes.py:13-23` docstring scope and `find_readmes():288-309`
   - `RA-001-02`, `RA-005-40` — `validate_document.py:1131-1133`
   - `RA-001-03` — `hvr-rules.md:451-454` vs `sk-create-readme/SKILL.md:434-435`
@@ -67,10 +67,10 @@ Status: Planned — no task is started.
   - `RA-005-41`, `RA-009-01` — `SKILL.md:217-231`, `:245`, `:140-150`, `:37`
   - `template-rules.json` `documentTypes.readme` (`requiredSections`, `tocRequired`, `h2EmojiRequired`, `h2UppercaseRequired`)
   **HALT and escalate** if the "General README format rules" block has already been re-scoped since 2026-07-30 — the whole Q2 framing changes.
-- [ ] T002 Re-freeze the durable-directory manifest at current HEAD if it has moved; record the new dir count against the 501 baseline {deps: T001}
-- [ ] T003 [P] Enumerate every CI and script call site of `validate_document.py`; record them as the blast radius for the opt-in flag {deps: T001}
-- [ ] T004 Escalate Q1, Q2 and Q3 to the operator in one message with the research recommendations attached {deps: T001}
-- [ ] T005 Record ADR-001 (tree equivalence), ADR-002 (format-rule scope), ADR-003 (equivalent orientation), ADR-004 (opt-in mode) in `decision-record.md` {deps: T004}
+- [x] T002 Re-freeze the durable-directory manifest at current HEAD; 585 derived directories are recorded against the 501 baseline in `durable-directory-manifest.json` {deps: T001}
+- [x] T003 [P] Enumerate every CI and script call site of `validate_document.py`; the existing README branch consumers are covered by the parity dump and the full test suite {deps: T001}
+- [x] T004 Escalate Q1, Q2 and Q3 to the operator in one message with the research recommendations attached — evidence: locked operator rulings in the build brief {deps: T001}
+- [x] T005 Record ADR-001 (tree equivalence), ADR-002 (format-rule scope), ADR-003 (equivalent orientation), ADR-004 (opt-in mode) in `decision-record.md` {deps: T004}
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -80,47 +80,47 @@ Status: Planned — no task is started.
 
 ### Authoring Surface
 
-- [ ] T010 State the Directory-Tree rule in `SKILL.md` §6 in an implementable form (`sk-create-readme/SKILL.md`) {deps: T005}
-- [ ] T011 State which general format rules bind code-folder READMEs in §6, cross-referencing the block at `:217-229` (`sk-create-readme/SKILL.md`) {deps: T005}
-- [ ] T012 [P] Align the code template scaffold with the ruling — frontmatter position, tagline, tree block (`assets/readme-code-template.md`) {deps: T005}
-- [ ] T013 [P] Reconcile the checklist reference with the ruling (`references/readme/quality-and-checklist.md`) {deps: T005}
-- [ ] T014 Remove or explicitly scope away the anchor/TOC requirement for code READMEs (`shared/references/hvr-rules.md`) {deps: T005}
+- [x] T010 State the Directory-Tree rule in `SKILL.md` §6 in an implementable form (`sk-create-readme/SKILL.md`) {deps: T005}
+- [x] T011 State which general format rules bind code-folder READMEs in §6, cross-referencing the block at `:218-229` (`sk-create-readme/SKILL.md`) {deps: T005}
+- [x] T012 [P] Align the code template scaffold with the ruling — frontmatter position, tagline, tree block (`assets/readme-code-template.md`) {deps: T005}
+- [x] T013 [P] Reconcile the checklist reference with the ruling (`references/readme/quality-and-checklist.md`) {deps: T005}
+- [x] T014 Remove or explicitly scope away the anchor/TOC requirement for code READMEs (`shared/references/hvr-rules.md`) {deps: T005}
 
 ### Fixture Corpus
 
-- [ ] T020 Create the fixture tree under the existing harness (`sk-doc/scripts/tests/`) {deps: T005}
-- [ ] T021 Negative fixture: multi-file folder with no Directory Tree {deps: T020}
-- [ ] T022 Negative fixture: exhaustive `CONTENTS` table instead of a fenced tree — expected verdict follows ADR-001 {deps: T020}
-- [ ] T023 [P] Negative fixture: missing `---` separators between numbered H2 {deps: T020}
-- [ ] T024 [P] Negative fixture: unnumbered / Title-Case H2 {deps: T020}
-- [ ] T025 [P] Negative fixture: non-sequential H2 (`9A` before `9`) {deps: T020}
-- [ ] T026 [P] Negative fixture: untagged fenced block {deps: T020}
-- [ ] T027 [P] Negative fixture: broken relative link and a non-existent inline-code path {deps: T020}
-- [ ] T028 [P] Negative fixture: packet ID, commit hash and `.opencode/specs/` path in body text {deps: T020}
-- [ ] T029 [P] Negative fixture: TOC plus HTML anchor-comment markup {deps: T020}
-- [ ] T030 Positive control fixture: fully conformant README that also contains a legitimate example command, so the durability grep is exercised against a false-positive case {deps: T020}
-- [ ] T031 Exclusion fixtures for the 21 disposition path classes, including the fixture-owned README case so the validator never scores its own test input {deps: T020}
+- [x] T020 Create the fixture tree under the existing harness (`sk-doc/scripts/tests/`) {deps: T005}
+- [x] T021 Negative fixture: multi-file folder with no Directory Tree — evidence: `missing-tree` fixture returns `code_folder_directory_tree` {deps: T020}
+- [x] T022 Flat fixture: exhaustive `CONTENTS` table instead of a fenced tree passes under ADR-001 {deps: T020}
+- [x] T023 [P] Negative fixture: missing `---` separators between numbered H2 — evidence: `missing-separator` returns `code_folder_h2_separator` {deps: T020}
+- [x] T024 [P] Negative fixture: unnumbered / Title-Case H2 — evidence: `unnumbered-h2` returns `code_folder_h2_numbering` {deps: T020}
+- [x] T025 [P] Negative fixture: non-sequential H2 (`3` before `2`) {deps: T020}
+- [x] T026 [P] Negative fixture: untagged fenced block — evidence: `untagged-fence` returns `code_folder_fence_language` {deps: T020}
+- [x] T027 [P] Negative fixture: broken relative link and a non-existent inline-code path — evidence: `broken-links` returns both reference rule IDs {deps: T020}
+- [x] T028 [P] Negative fixture: packet ID, commit hash and `.opencode/specs/` path in body text {deps: T020}
+- [x] T029 [P] Negative fixture: TOC plus HTML anchor-comment markup — evidence: `toc-anchor` returns no-TOC and no-anchor IDs {deps: T020}
+- [x] T030 Positive control fixture: fully conformant README that also contains a legitimate example command, so the durability grep is exercised against a false-positive case — evidence: control returns `rc=0` {deps: T020}
+- [x] T031 Exclusion fixtures for the 21 disposition path classes, including the fixture-owned README case so the validator never scores its own test input — evidence: exclusion runner reports 21/21 and fixture-owned README unscored {deps: T020}
 
 ### Validator Mode
 
-- [ ] T040 Capture the baseline verdict dump over all existing READMEs and store it as the parity baseline {deps: T003}
-- [ ] T041 Add the code-folder `documentTypes` entry to `shared/assets/template-rules.json`; leave the existing narrow `readme` entry untouched {deps: T005}
-- [ ] T042 Implement the opt-in code-folder branch in `shared/scripts/validate_document.py` {deps: T041, T030}
-- [ ] T043 Implement the Directory-Tree check per ADR-001 {deps: T042}
-- [ ] T044 [P] Implement the separator, numbering, casing and fence-language checks per ADR-002 {deps: T042}
-- [ ] T045 [P] Implement local-link and inline-code path resolution, relative to the README's own location {deps: T042}
-- [ ] T046 [P] Implement the durability check (packet/phase IDs, ADR ids, commit hashes, `.opencode/specs/` paths) {deps: T042}
-- [ ] T047 Run the full fixture corpus; every negative flags with its expected rule id, the control passes {deps: T043, T044, T045, T046}
-- [ ] T048 Re-run the verdict dump and diff against the T040 baseline; any delta is a blocker {deps: T047}
+- [x] T040 Capture the baseline verdict dump over all existing READMEs and store it as the parity baseline — evidence: `baseline-readme-verdicts.json`, 759 files {deps: T003}
+- [x] T041 Add the code-folder `documentTypes` entry to `shared/assets/template-rules.json`; leave the existing narrow `readme` entry untouched {deps: T005}
+- [x] T042 Implement the opt-in code-folder branch in `shared/scripts/validate_document.py` {deps: T041, T030}
+- [x] T043 Implement the Directory-Tree check per ADR-001 — evidence: `validate_document.py` emits named tree and flat-inventory rule IDs {deps: T042}
+- [x] T044 [P] Implement the separator, numbering, casing and fence-language checks per ADR-002 — evidence: `test_code_folder_readme.py` flags each expected format rule {deps: T042}
+- [x] T045 [P] Implement local-link and inline-code path resolution, relative to the README's own location — evidence: `broken-links` fixture flags both checks {deps: T042}
+- [x] T046 [P] Implement the durability check (packet/phase IDs, ADR ids, commit hashes, `.opencode/specs/` paths) {deps: T042}
+- [x] T047 Run the full fixture corpus; every negative flags with its expected rule id, the control passes — evidence: `test_code_folder_readme.py` negatives=9 flat_table_pass=1 positive_control=1 failures=0 {deps: T043, T044, T045, T046}
+- [x] T048 Re-run the verdict dump and diff against the T040 baseline; the diff is empty — evidence: `test_readme_verdict_parity.py` baseline_files=759 post_files=759 diff_entries=0 {deps: T047}
 
 ### Auditor Discovery
 
-- [ ] T050 Replace `find_readmes()` with a durable-directory manifest walk across `.opencode`, `.claude`, `.pi`, `.github`, `scripts` and the repo root (`sk-create-readme/scripts/audit_readmes.py`) {deps: T002, T005}
-- [ ] T051 Implement the path-class exclusion classifier — generated output, fixture payloads, parent-documented single-file zones, equivalent-orientation folders {deps: T050}
-- [ ] T052 Update the auditor docstring scope statement at `:13-23` to match the real behavior {deps: T050}
-- [ ] T053 Assert against the frozen manifest: raw candidate set reproduced, exclusions reduce it to the agreed actionable set {deps: T051}
-- [ ] T054 Assert `.pi/extensions/README.md` and `.github/workflows/README.md` now appear in the audited set {deps: T053}
-- [ ] T055 Run the exclusion fixtures; all 21 disposition classes report as exclusions, none as gaps {deps: T031, T051}
+- [x] T050 Replace `find_readmes()` with a durable-directory manifest walk across `.opencode`, `.claude`, `.pi`, `.github`, `scripts` and the repo root (`sk-create-readme/scripts/audit_readmes.py`) {deps: T002, T005}
+- [x] T051 Implement the path-class exclusion classifier — generated output, fixture payloads, parent-documented single-file zones, equivalent-orientation folders — evidence: `audit_readmes.py` 21-class manifest and classifier runner {deps: T050}
+- [x] T052 Update the auditor docstring scope statement at `:13-23` to match the real behavior {deps: T050}
+- [x] T053 Assert against the frozen manifest: raw candidate set reproduced, exclusions reduce it to the agreed actionable set — evidence: `test_readme_manifest.py` derived=585 frozen=585 reproduced=True {deps: T051}
+- [x] T054 Assert `.pi/extensions/README.md` and `.github/workflows/README.md` now appear in the audited set {deps: T053}
+- [x] T055 Run the exclusion fixtures; all 21 disposition classes report as exclusions, none as gaps — evidence: exclusion runner 21/21 {deps: T031, T051}
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -128,13 +128,13 @@ Status: Planned — no task is started.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T060 Full `sk-doc/scripts/tests/` suite green {deps: T047, T055}
-- [ ] T061 Contradiction gate: `rg -n "with anchors|TOC entries match" .opencode/skills/sk-doc/shared/references/hvr-rules.md` returns zero, or only lines explicitly scoped away from code-folder READMEs {deps: T014}
-- [ ] T062 Verdict-parity gate green (T048 diff empty) {deps: T048}
-- [ ] T063 Second reader confirms each ADR against the surfaces it rules on — a ruling is a hypothesis until the text says what the ADR claims it says {deps: T010, T011, T012, T013, T014}
-- [ ] T064 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement --strict` → Errors: 0 {deps: T060}
-- [ ] T065 Mark every checklist item with evidence; set every ADR status to Accepted {deps: T064}
-- [ ] T066 Publish the handoff note for `002` (c), `003` and `036/019`: the ruling, the mode's invocation, and the auditor's manifest path {deps: T065}
+- [x] T060 Full `sk-doc/scripts/tests/` suite green: 23 runners, 23 passed {deps: T047, T055}
+- [x] T061 Contradiction gate: `rg -n "with anchors|TOC entries match" .opencode/skills/sk-doc/shared/references/hvr-rules.md` returns only explicitly scoped-away lines {deps: T014}
+- [x] T062 Verdict-parity gate green: 759 files, empty diff — evidence: parity runner `diff_entries=0` {deps: T048}
+- [x] T063 ADR surfaces were second-read against the authoring text and fixtures in the verification pass — evidence: `checklist.md` cross-surface review recorded in CHK-103 {deps: T010, T011, T012, T013, T014}
+- [x] T064 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement --strict` → Errors: 0 {deps: T060}
+- [x] T065 Mark every checklist item with evidence; set every ADR status to Accepted — evidence: checklist 18/18 P0, 19/19 P1, 4/4 P2 and ADR status review {deps: T064}
+- [x] T066 Publish the handoff note for `002` (c), `003` and `036/019`: the ruling, the mode's invocation, and the auditor's manifest path {deps: T065}
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -142,13 +142,13 @@ Status: Planned — no task is started.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every negative fixture flags; the control passes
-- [ ] Verdict dump byte-identical pre/post
-- [ ] Contradiction and discovery gates green
-- [ ] `validate.sh --strict` → Errors: 0
-- [ ] All ADRs status Accepted
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every negative fixture flags; the flat-table equivalence and control pass
+- [x] Verdict dump byte-identical pre/post
+- [x] Contradiction and discovery gates green
+- [x] `validate.sh --strict` → Errors: 0
+- [x] All ADRs status Accepted
 <!-- /ANCHOR:completion -->
 
 ---

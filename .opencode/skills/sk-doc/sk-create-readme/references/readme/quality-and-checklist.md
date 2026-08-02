@@ -63,11 +63,12 @@ Apply these checks only to sections that fit the README audience and purpose.
 
 ### Structure
 
-- [ ] Title with one-line blockquote tagline
+- [ ] Title with one-line blockquote tagline for normal READMEs. Code-folder READMEs use the code-folder scaffold and do not require the tagline.
 - [ ] No Table of Contents and no `<!-- ANCHOR -->` navigation comments
 - [ ] All included sections have content (no empty sections)
-- [ ] Section numbers are sequential
+- [ ] Section numbers are sequential and H2 headings are ALL CAPS. These general format rules bind code-folder READMEs through the cross-reference in `SKILL.md` §6.
 - [ ] Horizontal rules between H2 sections
+- [ ] A fenced Directory Tree is present when the target folder has immediate subdirectories. A flat folder instead has a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README.
 
 ### Content
 

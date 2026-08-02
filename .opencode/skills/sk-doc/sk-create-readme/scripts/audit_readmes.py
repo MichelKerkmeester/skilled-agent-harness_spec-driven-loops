@@ -13,19 +13,25 @@ Implements a deterministic README audit for:
 Scope rules:
 - Include:
     - repo-root README.md
-    - .opencode/**/README.md
-    - .opencode/**/readme.md
+    - README files below .opencode, .claude, .pi, .github and scripts
 - Exclude any path containing:
     - /z_archive/
     - /context/
     - /vendored/
     - /node_modules/
+    - generated output, fixture payloads, parent-documented single-file zones
+      and designated equivalent-orientation folders
+
+Durable-directory discovery walks the same roots without following symlinks. A
+manifest records the derived directories and the auditor compares a supplied
+frozen manifest with a fresh derivation before reporting gaps.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 from dataclasses import dataclass
@@ -37,6 +43,39 @@ from urllib.parse import unquote
 
 EXCLUDE_SEGMENTS = {"z_archive", "context", "vendored", "node_modules"}
 SKIP_COVERAGE_SEGMENTS = {"templates", "examples"}
+DURABLE_ROOT_NAMES = (".", ".opencode", ".claude", ".pi", ".github", "scripts")
+DURABLE_FILE_EXTENSIONS = {
+    ".bash", ".cjs", ".css", ".go", ".html", ".js", ".json", ".mjs", ".ps1",
+    ".py", ".rs", ".scss", ".sh", ".sql", ".swift", ".toml", ".ts", ".tsx",
+    ".txt", ".yaml", ".yml",
+}
+MANIFEST_BASELINE_COUNT = 501
+MANIFEST_SCHEMA = 1
+
+DISPOSITION_PATH_CLASSES = (
+    "fixture_payload",
+    "fixture_payload_positive",
+    "benchmark_fixture",
+    "equivalent_orientation",
+    "parent_documented_tests",
+    "parent_documented_single_file",
+    "parent_documented_workspace",
+    "parent_documented_hooks_lib",
+    "parent_documented_hooks_pi_lib",
+    "parent_documented_workspace_lib",
+    "fixture_owned_readme",
+    "generated_output",
+    "generated_compiled_routing",
+    "generated_archive",
+    "self_documenting_script",
+    "single_file_zone",
+    "test_fixture_readme",
+    "benchmark_seed",
+    "benchmark_seed_src",
+    "benchmark_seed_utils",
+    "equivalent_sync_orientation",
+)
+MANIFEST_EXCLUDED_SEGMENTS = {".git", ".opencode/specs"}
 
 KEY_ARTIFACTS_FILES = ("package.json", "SKILL.md")
 KEY_ARTIFACTS_DIRS = ("scripts", "lib", "src", "handlers", "tools", "tests", "configs", "templates")
@@ -79,6 +118,251 @@ def path_contains_excluded_segment(path: Path) -> bool:
 def in_skip_coverage_bucket(path: Path) -> bool:
     parts = {part.lower() for part in path.parts}
     return bool(parts & SKIP_COVERAGE_SEGMENTS)
+
+
+def _relative_path(repo_root: Path, path: Path) -> Path:
+    try:
+        return path.resolve().relative_to(repo_root.resolve())
+    except ValueError:
+        return path
+
+
+def _path_text(path: Path) -> str:
+    return str(path).replace('\\', '/').strip('/').lower()
+
+
+def _orientation_has_overview_and_inventory(path: Path) -> bool:
+    """Require an Overview and non-empty follow-on orientation section."""
+    try:
+        content = path.read_text(encoding='utf-8', errors='replace')
+    except OSError:
+        return False
+
+    headings = list(re.finditer(r'(?im)^(#{1,2})\s+(.+?)\s*$', content))
+    overview_index = next(
+        (
+            index
+            for index, heading in enumerate(headings)
+            if re.match(r'(?i)^(?:\d+[.)]\s*)?overview\b', heading.group(2).strip())
+        ),
+        None,
+    )
+    if overview_index is None:
+        return False
+
+    following_heading = next(iter(headings[overview_index + 1:]), None)
+    if following_heading is None:
+        return False
+    body_start = following_heading.end()
+    body_end = len(content)
+    for following in headings:
+        if following.start() > following_heading.start() and len(following.group(1)) <= len(following_heading.group(1)):
+            body_end = following.start()
+            break
+    return bool(content[body_start:body_end].strip())
+
+
+def classify_path(repo_root: Path, path: Path) -> Optional[str]:
+    """Return a named exclusion class for a durable path, if one applies."""
+    relative = _relative_path(repo_root, path)
+    text = _path_text(relative)
+    parts = set(relative.parts)
+
+    if text.startswith('.opencode/specs') or '.opencode/specs/' in text:
+        return 'generated_output'
+    if any(segment in parts for segment in EXCLUDE_SEGMENTS):
+        return 'excluded_path_segment'
+
+    marker_classes = {
+        'fixture-payload-positive': 'fixture_payload_positive',
+        'fixture-payload': 'fixture_payload',
+        'benchmark-fixture': 'benchmark_fixture',
+        'benchmark-seed-src': 'benchmark_seed_src',
+        'benchmark-seed-utils': 'benchmark_seed_utils',
+        'benchmark-seed': 'benchmark_seed',
+        'fixture-owned-readme': 'fixture_owned_readme',
+        'generated-compiled-routing': 'generated_compiled_routing',
+        'generated-archive': 'generated_archive',
+        'generated-output': 'generated_output',
+        'equivalent-sync-orientation': 'equivalent_sync_orientation',
+        'equivalent-orientation': 'equivalent_orientation',
+        'parent-documented-tests': 'parent_documented_tests',
+        'parent-documented-hooks-lib': 'parent_documented_hooks_lib',
+        'parent-documented-hooks-pi-lib': 'parent_documented_hooks_pi_lib',
+        'parent-documented-workspace-lib': 'parent_documented_workspace_lib',
+        'parent-documented-workspace': 'parent_documented_workspace',
+        'single-file-zone': 'single_file_zone',
+        'self-documenting-script': 'self_documenting_script',
+        'test-fixture-readme': 'test_fixture_readme',
+    }
+    for marker, class_name in marker_classes.items():
+        if marker in text:
+            return class_name
+
+    if 'compiled-routing' in text:
+        return 'generated_compiled_routing'
+    if 'runs-archive' in text:
+        return 'generated_archive'
+    if 'fixtures' in parts or 'fixture' in parts:
+        return 'fixture_payload'
+    if 'seed' in parts:
+        return 'benchmark_seed'
+    if 'benchmarks' in parts and ('eval' in parts or 'fixtures' in parts):
+        return 'benchmark_fixture'
+    if relative.name.lower() == 'sync.md' and '.claude' in parts:
+        if _orientation_has_overview_and_inventory(path):
+            return 'equivalent_orientation'
+        return None
+    if relative.name.lower() == 'readme.md' and 'fix-006-adversarial-path-traversal' in parts:
+        return 'fixture_owned_readme'
+    if any(relative.parts[index:index + 2] == ('scripts', 'tests') for index in range(max(0, len(relative.parts) - 5), len(relative.parts) - 1)):
+        return 'parent_documented_tests'
+    if relative.parts[-2:] == ('hooks', 'lib'):
+        return 'parent_documented_hooks_lib'
+    if relative.parts[-3:] == ('hooks', 'pi', 'lib'):
+        return 'parent_documented_hooks_pi_lib'
+    return None
+
+
+def _is_durable_file(name: str) -> bool:
+    path = Path(name)
+    return path.name not in {'README.md', 'readme.md'} and (
+        path.suffix.lower() in DURABLE_FILE_EXTENSIONS
+        or path.name in {'Dockerfile', 'Makefile', 'SKILL.md'}
+    )
+
+
+def _walk_roots(repo_root: Path) -> Iterable[Tuple[Path, List[str], List[str]]]:
+    roots = [repo_root]
+    roots.extend(repo_root / name for name in DURABLE_ROOT_NAMES)
+    seen: Set[str] = set()
+    for root in roots:
+        if not root.exists() or not root.is_dir():
+            continue
+        if root == repo_root:
+            real = str(root.resolve()).lower()
+            if real in seen:
+                continue
+            seen.add(real)
+            filenames = [item.name for item in root.iterdir() if item.is_file() and not item.is_symlink()]
+            yield root, [], filenames
+            continue
+        for directory, dirnames, filenames in os.walk(root, topdown=True, followlinks=False):
+            directory_path = Path(directory)
+            real = str(directory_path.resolve()).lower()
+            if real in seen:
+                dirnames[:] = []
+                continue
+            seen.add(real)
+            dirnames[:] = [
+                name for name in dirnames
+                if not (directory_path / name).is_symlink()
+                and name not in {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'dist', 'build'}
+            ]
+            yield directory_path, dirnames, filenames
+
+
+def build_durable_manifest(repo_root: Path) -> Dict[str, Any]:
+    """Derive the durable-directory set from the current repository tree."""
+    directories: Set[str] = set()
+    for directory, _dirnames, filenames in _walk_roots(repo_root):
+        relative = _relative_path(repo_root, directory)
+        if classify_path(repo_root, directory):
+            continue
+        if relative.parts and relative.parts[0] == '.opencode' and len(relative.parts) > 1 and relative.parts[1] == 'specs':
+            continue
+        durable_files = [name for name in filenames if _is_durable_file(name)]
+        has_readme = any(name.lower() == 'readme.md' for name in filenames)
+        if len(durable_files) >= 5 or has_readme:
+            directories.add('.' if str(relative) == '.' else relative.as_posix())
+
+    ordered = sorted(directories)
+    orientation_files = []
+    sync_path = repo_root / '.claude' / 'SYNC.md'
+    if sync_path.is_file() and _orientation_has_overview_and_inventory(sync_path):
+        orientation_files.append({
+            'directory': '.claude',
+            'file': '.claude/SYNC.md',
+            'class': 'equivalent_orientation',
+        })
+    return {
+        'schema': MANIFEST_SCHEMA,
+        'baseline_prose_count': MANIFEST_BASELINE_COUNT,
+        'derived_count': len(ordered),
+        'roots': list(DURABLE_ROOT_NAMES),
+        'directories': ordered,
+        'equivalent_orientations': orientation_files,
+    }
+
+
+def load_manifest(path: Path) -> Dict[str, Any]:
+    data = json.loads(path.read_text(encoding='utf-8'))
+    directories = data.get('directories') if isinstance(data, dict) else data
+    if not isinstance(directories, list) or not all(isinstance(item, str) for item in directories):
+        raise ValueError(f'Invalid durable-directory manifest: {path}')
+    if isinstance(data, list):
+        data = {'schema': MANIFEST_SCHEMA, 'directories': directories}
+    data['directories'] = sorted(set(directories))
+    return data
+
+
+def manifest_reproduction(repo_root: Path, manifest_path: Optional[Path] = None) -> Dict[str, Any]:
+    derived = build_durable_manifest(repo_root)
+    if manifest_path is None:
+        return {
+            'manifest_path': None,
+            'derived_count': derived['derived_count'],
+            'baseline_prose_count': MANIFEST_BASELINE_COUNT,
+            'raw_candidate_set_reproduced': True,
+            'delta_from_baseline': derived['derived_count'] - MANIFEST_BASELINE_COUNT,
+            'directories': derived['directories'],
+            'exclusions': [],
+            'gaps': [],
+        }
+
+    frozen = load_manifest(manifest_path)
+    frozen_set = set(frozen['directories'])
+    derived_set = set(derived['directories'])
+    raw_candidate_set_reproduced = frozen_set == derived_set
+    exclusions: List[Dict[str, str]] = []
+    gaps: List[str] = []
+    for orientation in frozen.get('equivalent_orientations', []):
+        orientation_file = repo_root / str(orientation.get('file', ''))
+        if _orientation_has_overview_and_inventory(orientation_file):
+            exclusions.append({
+                'directory': str(orientation.get('directory', '')),
+                'class': str(orientation.get('class', 'equivalent_orientation')),
+                'orientation_file': str(orientation.get('file', '')),
+            })
+    for directory in sorted(frozen_set):
+        directory_path = repo_root / directory
+        readme_exists = any((directory_path / name).is_file() for name in ('README.md', 'readme.md'))
+        if readme_exists:
+            continue
+        exclusion = classify_path(repo_root, directory_path)
+        if exclusion:
+            exclusions.append({'directory': directory, 'class': exclusion})
+        elif (
+            (directory_path / 'SYNC.md').is_file()
+            and _orientation_has_overview_and_inventory(directory_path / 'SYNC.md')
+        ):
+            exclusions.append({'directory': directory, 'class': 'equivalent_orientation'})
+        else:
+            gaps.append(directory)
+    return {
+        'manifest_path': str(manifest_path),
+        'derived_count': derived['derived_count'],
+        'frozen_count': len(frozen_set),
+        'baseline_prose_count': frozen.get('baseline_prose_count', MANIFEST_BASELINE_COUNT),
+        'delta_from_baseline': len(frozen_set) - MANIFEST_BASELINE_COUNT,
+        'raw_candidate_set_reproduced': raw_candidate_set_reproduced,
+        'directories': sorted(frozen_set),
+        'exclusions': exclusions,
+        'gaps': gaps,
+        'equivalent_orientations': frozen.get('equivalent_orientations', []),
+        'added_since_frozen': sorted(derived_set - frozen_set),
+        'removed_since_frozen': sorted(frozen_set - derived_set),
+    }
 
 
 def normalize_reference_token(raw: str, source: str) -> Optional[str]:
@@ -286,31 +570,29 @@ def classify_reference_status(readme_path: Path, repo_root: Path, ref: str) -> T
 
 
 def find_readmes(repo_root: Path) -> List[Path]:
+    """Find README files below every durable root without following symlinks."""
     readmes_by_realpath: Dict[str, Path] = {}
-    root_readme = repo_root / "README.md"
-    if root_readme.exists():
-        resolved = root_readme.resolve()
-        readmes_by_realpath[str(resolved).lower()] = resolved
-
-    opencode_root = repo_root / ".opencode"
-    if opencode_root.exists():
-        for pattern in ("**/README.md", "**/readme.md"):
-            for path in opencode_root.glob(pattern):
-                if path.is_file():
-                    real = path.resolve()
-                    key = str(real).lower()
-                    if key not in readmes_by_realpath:
-                        readmes_by_realpath[key] = real
-
-    filtered = [
-        p for p in readmes_by_realpath.values()
-        if not path_contains_excluded_segment(p.relative_to(repo_root))
-    ]
-    return sorted(filtered, key=lambda p: str(p).lower())
+    for directory, _dirnames, filenames in _walk_roots(repo_root):
+        relative = _relative_path(repo_root, directory)
+        if relative.parts and relative.parts[0] == '.opencode' and len(relative.parts) > 1 and relative.parts[1] == 'specs':
+            continue
+        if classify_path(repo_root, directory):
+            continue
+        for filename in filenames:
+            if filename.lower() != 'readme.md':
+                continue
+            path = directory / filename
+            if not path.is_file() or path.is_symlink():
+                continue
+            real = path.resolve()
+            key = str(real).lower()
+            if key not in readmes_by_realpath:
+                readmes_by_realpath[key] = real
+    return sorted(readmes_by_realpath.values(), key=lambda p: str(_relative_path(repo_root, p)).lower())
 
 
-def run_template_validation(validator: Path, repo_root: Path, readme: Path) -> Dict[str, Any]:
-    cmd = ["python3", str(validator), str(readme), "--type", "readme", "--json"]
+def run_template_validation(validator: Path, repo_root: Path, readme: Path, document_type: str = 'readme') -> Dict[str, Any]:
+    cmd = ["python3", str(validator), str(readme), "--type", document_type, "--json"]
     proc = subprocess.run(cmd, cwd=repo_root, capture_output=True, text=True, check=False)
     out = (proc.stdout or "").strip()
     if not out:
@@ -574,7 +856,7 @@ def render_markdown_report(
     return "\n".join(lines) + "\n"
 
 
-def audit_readme_file(repo_root: Path, readme: Path, validator: Path) -> Dict[str, Any]:
+def audit_readme_file(repo_root: Path, readme: Path, validator: Path, document_type: str = 'readme') -> Dict[str, Any]:
     content = readme.read_text(encoding="utf-8", errors="replace")
     references = sorted(extract_references(content))
 
@@ -594,10 +876,11 @@ def audit_readme_file(repo_root: Path, readme: Path, validator: Path) -> Dict[st
     else:
         presence = artifact_presence(readme.parent)
 
-    template = run_template_validation(validator, repo_root, readme)
+    template = run_template_validation(validator, repo_root, readme, document_type)
 
     return {
         "file": str(readme.relative_to(repo_root)),
+        "document_type": document_type,
         "template_status": "valid" if template["valid"] else "invalid",
         "blocking_errors": template["blocking_errors"],
         "warnings": template["warnings"],
@@ -632,6 +915,16 @@ def parse_args() -> argparse.Namespace:
         "--markdown-out",
         help="Optional Markdown report output path.",
     )
+    parser.add_argument(
+        "--manifest",
+        help="Optional frozen durable-directory manifest to reproduce and assert.",
+    )
+    parser.add_argument(
+        "--document-type",
+        choices=("readme", "code_folder", "code-folder"),
+        default="readme",
+        help="Validator document type. The code-folder mode is opt-in.",
+    )
     return parser.parse_args()
 
 
@@ -654,10 +947,18 @@ def main() -> int:
     if not readmes:
         raise RuntimeError("No README files found in scope.")
 
+    manifest_path = Path(args.manifest).resolve() if args.manifest else None
+    manifest = manifest_reproduction(repo_root, manifest_path)
+    if manifest_path and not manifest['raw_candidate_set_reproduced']:
+        raise RuntimeError(
+            'Frozen durable-directory manifest does not reproduce the current walk: '
+            f"added={len(manifest['added_since_frozen'])} removed={len(manifest['removed_since_frozen'])}"
+        )
+
     if args.inventory_out:
         write_lines(Path(args.inventory_out).resolve(), [str(p.relative_to(repo_root)) for p in readmes])
 
-    per_file = [audit_readme_file(repo_root, readme, validator) for readme in readmes]
+    per_file = [audit_readme_file(repo_root, readme, validator, args.document_type) for readme in readmes]
     findings = generate_findings(repo_root, per_file)
 
     summary = {
@@ -670,6 +971,11 @@ def main() -> int:
         "missing_key_artifacts": sum(len(x["missing_key_artifacts"]) for x in per_file),
         "findings_p1": sum(1 for f in findings if f.priority == "P1"),
         "findings_p2": sum(1 for f in findings if f.priority == "P2"),
+        "manifest_derived_count": manifest["derived_count"],
+        "manifest_frozen_count": manifest.get("frozen_count", manifest["derived_count"]),
+        "manifest_raw_candidate_set_reproduced": manifest["raw_candidate_set_reproduced"],
+        "manifest_exclusions": len(manifest["exclusions"]),
+        "manifest_gaps": len(manifest["gaps"]),
     }
 
     report = {
@@ -679,11 +985,18 @@ def main() -> int:
             "include": [
                 "README.md (repo root)",
                 ".opencode/**/README.md",
-                ".opencode/**/readme.md",
+                ".claude/**/README.md",
+                ".pi/**/README.md",
+                ".github/**/README.md",
+                "scripts/**/README.md",
             ],
+            "durable_roots": list(DURABLE_ROOT_NAMES),
             "exclude_path_segments": sorted(EXCLUDE_SEGMENTS),
             "skip_coverage_path_segments": sorted(SKIP_COVERAGE_SEGMENTS),
+            "disposition_path_classes": list(DISPOSITION_PATH_CLASSES),
+            "document_type": args.document_type,
         },
+        "manifest": manifest,
         "summary": summary,
         "files": per_file,
         "findings": [

@@ -21,7 +21,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'create-feature-catalog' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'sk-create-feature-catalog' / 'scripts'))
 from validate_catalog_package import check_root_catalog_bijection, run_all_checks  # type: ignore  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'shared' / 'scripts'))
