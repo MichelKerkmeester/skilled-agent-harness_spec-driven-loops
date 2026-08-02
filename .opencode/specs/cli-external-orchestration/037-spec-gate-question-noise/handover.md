@@ -14,10 +14,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:35:53Z"
+    last_updated_at: "2026-08-02T14:38:41Z"
     last_updated_by: "implementer"
     recent_action: "037 implemented, verified, validated; 036 committed"
-    next_safe_action: "Commit 037 on the worktree branch; merge to main; decide 038"
+    next_safe_action: "Decide packet 038 (fresh-session startup latency); push main branch when approved"
     blockers:
       - "skill-advisor daemon down: chokidar missing, IPC socket path over sun_path limit"
       - "main checkout hostile: concurrent git restore/clean wiped 036+037 work twice"
@@ -36,7 +36,7 @@ _memory:
 ---
 # Session Handover Document
 
-Handover for 2026-08-02 late-evening state. Three threads: **036 (committed fdd295981a)**, **037 (implemented, verified, validated; commit pending)**, **038 (proposed, not started)**.
+Handover for 2026-08-02 late-evening state. Three threads: **036 (committed fdd295981a)**, **037 (implemented, verified, validated, committed e251617bef, merged to main 5ed153eaeb)**, **038 (proposed, not started)**.
 
 ---
 
