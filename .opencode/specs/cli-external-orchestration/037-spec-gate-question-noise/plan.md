@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:35:53Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet scaffolded: runtime audit done; root causes pinned"
     next_safe_action: "Implement core question semantics change, then pi adapter hardening, then verify"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-037-spec-gate-question-noise"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 98
     open_questions: []
     answered_questions:
       - "Git workspace: operator chose a git worktree (branch system-spec-kit/0130-spec-gate-question-noise)"
@@ -77,19 +77,29 @@ The pi classify adapter additionally strips embedded harness history (`## Post-C
 
 ### Phase 2: Implementation (~45 min)
 
-- [ ] T003: Core semantics — `classifyIntent` final branch + `isAnswerAttempt` helper.
-- [ ] T004: `resolveSessionKey` helper (session-file-based key with UUID fallback).
-- [ ] T005: `GATE_3_QUESTION` text alignment + AGENTS.md static copy parity.
-- [ ] T006: pi classify adapter — history stripping + `resolveSessionKey`.
-- [ ] T007: pi enforce adapter — same `resolveSessionKey` derivation.
+- [x] T003: Core semantics — `classifyIntent` final branch + `isAnswerAttempt` helper.
+  - **Evidence**: `spec-gate-core.mjs` final branch + exported helpers; tests in tasks.md T003.
+- [x] T004: `resolveSessionKey` helper (session-file-based key with UUID fallback).
+  - **Evidence**: exported; unit test + live state files keyed `file:<basename>`.
+- [x] T005: `GATE_3_QUESTION` text alignment + AGENTS.md static copy parity.
+  - **Evidence**: A-E options instruct path replies; AGENTS.md options A-D updated.
+- [x] T006: pi classify adapter — history stripping + `resolveSessionKey`.
+  - **Evidence**: `hooks/pi/spec-gate-classify.ts`; smoke silent on read-only.
+- [x] T007: pi enforce adapter — same `resolveSessionKey` derivation.
+  - **Evidence**: `hooks/pi/spec-gate-enforce.ts`; both read/write the same key.
 
 ### Phase 3: Verification (~60 min)
 
-- [ ] T008: Core suite updates/additions (read-only turn, answer attempt, unchanged trigger/skip/binding).
-- [ ] T009: Runtime co-located suites (codex/cursor/devin) — update only stale assertions.
-- [ ] T010: Live pi smoke (read-only → no question; mutating → question).
-- [ ] T011: Dispatch 3 parallel GPT 5.6 LUNA MAX FAST read-only validation agents (core / pi / other runtimes); fix accepted findings.
-- [ ] T012: Metadata regeneration + `validate.sh --strict`.
+- [x] T008: Core suite updates/additions (read-only turn, answer attempt, unchanged trigger/skip/binding).
+  - **Evidence**: `node --test` → 72 pass, 0 fail (3 pre-existing skips).
+- [x] T009: Runtime co-located suites (codex/cursor/devin) — update only stale assertions.
+  - **Evidence**: 47/47 pass; no stale assertions found.
+- [x] T010: Live pi smoke (read-only → no question; mutating → question).
+  - **Evidence**: sessions `14-06-04-133Z` (silent) / `14-06-14-434Z` (open + asks).
+- [x] T011: Dispatch 3 parallel GPT 5.6 LUNA MAX FAST read-only validation agents (core / pi / other runtimes); fix accepted findings.
+  - **Evidence**: final verdicts all `APPROVED_WITH_NOTES`; 5 accepted findings fixed across two rounds.
+- [x] T012: Metadata regeneration + `validate.sh --strict`.
+  - **Evidence**: Errors 0 Warnings 0.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->

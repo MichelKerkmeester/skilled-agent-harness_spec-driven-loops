@@ -14,18 +14,10 @@ export default function specGateClassify(pi: ExtensionAPI): void {
       // embedded conversation history appended to the user's own turn. The
       // injected prose contains literal trigger words ("write", "move"), and
       // history text re-opens the gate on read-only turns -- only the user's
-      // own latest words may classify. The directives capsule ends with a
-      // stable label; history turns are bracketed by [user] markers.
-      let prompt = event.text;
-      const directivesAt = prompt.lastIndexOf("\nDirectives:");
-      if (directivesAt >= 0) prompt = prompt.slice(0, directivesAt);
-      const lastUserTurn = prompt.lastIndexOf("[user]");
-      if (lastUserTurn >= 0) {
-        const suffix = prompt.slice(lastUserTurn + "[user]".length);
-        // A marker-only tail (empty suffix) must not discard the turn -- the
-        // whole text stands in as the fallback.
-        if (suffix.trim()) prompt = suffix;
-      }
+      // own latest words may classify. The shared sanitizer owns the strip
+      // contract (and its tests).
+      const prompt = guard.sanitizePromptForClassify(event.text);
+      let sessionFile: string | undefined;
       let sessionFile: string | undefined;
       try {
         sessionFile = ctx.sessionManager.getSessionFile();

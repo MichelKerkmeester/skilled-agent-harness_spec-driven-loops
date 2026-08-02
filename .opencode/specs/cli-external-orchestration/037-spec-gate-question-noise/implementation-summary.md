@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:38:46Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet scaffolded: runtime audit done; root causes pinned"
     next_safe_action: "Implement core question semantics change, then pi adapter hardening, then verify"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-037-spec-gate-question-noise"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 98
     open_questions: []
     answered_questions:
       - "Git workspace: operator chose a git worktree (branch system-spec-kit/0130-spec-gate-question-noise)"
@@ -60,7 +60,8 @@ Implemented in worktree 0130 (branch `system-spec-kit/0130-spec-gate-question-no
 ## How It Was Delivered
 
 - **T003–T007 (implementation):** all five files changed in the worktree; core change is the final non-trigger branch of `classifyIntent` plus two exported helpers; pi adapters share one key derivation; question text + AGENTS.md parity.
-- **T008–T010 (verification):** core suite 69 pass / 0 fail; codex/cursor/devin suites 47/47; live pi smoke read-only silent + mutating asks. The two handover-flagged core tests needed no assertion change — their prompts still trigger classification, so the question legitimately re-surfaces.
+- **T008–T010 (verification):** core suite 72 pass / 0 fail; codex/cursor/devin suites 47/47; live pi smoke read-only silent + mutating asks. The two handover-flagged core tests needed no assertion change — their prompts still trigger classification, so the question legitimately re-surfaces.
+- **Post-push refinement round (fresh GPT 5.6 SOL FAST review):** three accepted code findings fixed — (a) skip-letter grammar aligned with the menu (`E` is now the skip letter; pathless `D` re-asks instead of silently closing the gate; corpus + tests updated); (b) the OpenCode plugin + bridge fallback directives updated to the canonical labeled, model-agnostic format (`Directives:` + bullets, no Fable-5); (c) pi input sanitization extracted into the tested, exported `sanitizePromptForClassify()` in the core (adapter + core tests). Two doc findings fixed: resume-prompt/handover continuity refreshed; completion state reconciled across all five docs + metadata.
 - **T011 (agent fanout):** pending — three parallel read-only GPT 5.6 LUNA MAX FAST validators.
 - **T012 (packet validation):** pending — metadata regeneration + `validate.sh --strict`.
 <!-- /ANCHOR:how-delivered -->
@@ -80,7 +81,7 @@ Implemented in worktree 0130 (branch `system-spec-kit/0130-spec-gate-question-no
 |-------|--------|----------|
 | Root-cause trace | PASS | `classifyIntent` final branch; `answerParse` null-on-bare-letter; state-file↔session-file mapping; live classifier run matched `create,fix` from summary text |
 | Runtime inventory | PASS | 6 surfaces traced (see checklist CHK-002) |
-| Core suite | PASS | `node --test` → 69 pass, 0 fail (3 pre-existing skips) |
+| Core suite | PASS | `node --test` → 72 pass, 0 fail (3 pre-existing skips) |
 | Runtime suites | PASS | codex/cursor/devin → 47/47 |
 | Live pi smoke | PASS | read-only run silent (no state file, session `14-06-04-133Z`); mutating run opens gate + asks (session `14-06-14-434Z`) |
 | Agent fanout | PASS | 3 × GPT 5.6 LUNA MAX FAST read-only validators → core `APPROVED_WITH_NOTES`, pi `APPROVED_WITH_NOTES`, runtimes `APPROVED_WITH_NOTES`. Accepted findings fixed across two rounds: letter-led prose false attempt (tightened letter grammar + menu-vocabulary distinction), D-with-path parsed as skip (path outranks the skip default), separator-only/whitespace sessionFile (safe fallback), unguarded `getSessionFile()` (try/catch in both adapters), marker-only tail (whole-text fallback), hygiene (pre-existing literal path comment removed). Rejected: example placeholders not bindable (illustrative, by design), env-suppressed test runs (`AI_SESSION_CHILD=1` inherited by dispatched workers). Open P2 note: no dedicated pi-adapter unit tests (no pi-extension test harness exists repo-wide; live smoke covers the integration). |

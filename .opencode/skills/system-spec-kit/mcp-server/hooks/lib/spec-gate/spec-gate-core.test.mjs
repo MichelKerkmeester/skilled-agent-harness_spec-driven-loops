@@ -118,13 +118,13 @@ test('enforce-env unset returns advise, not deny', () => {
   }
 });
 
-test('D / skip closes the gate without a binding', () => {
+test('E / skip closes the gate without a binding', () => {
   const { root } = makeWorkspace();
   try {
     const sessionID = nextSessionID();
     core.classifyIntent({ prompt: 'refactor the parser module', sessionID, projectDir: root });
 
-    const skipped = core.classifyIntent({ prompt: 'D, no spec folder needed', sessionID, projectDir: root });
+    const skipped = core.classifyIntent({ prompt: 'E, no spec folder needed', sessionID, projectDir: root });
     assert.equal(skipped.status, 'skipped');
 
     const allowed = core.evaluateMutation({
@@ -271,6 +271,7 @@ test('isAnswerAttempt: answer-shaped turns are attempts, ordinary prose is not',
   assert.equal(core.isAnswerAttempt('B create a new folder'), true);
   assert.equal(core.isAnswerAttempt('option C'), true);
   assert.equal(core.isAnswerAttempt('skip'), true);
+  assert.equal(core.isAnswerAttempt('E, no spec folder needed'), true);
   assert.equal(core.isAnswerAttempt('D, no spec folder needed'), true);
   // Ordinary prose that merely starts with a letter must not read as an
   // answer attempt on an open gate.
@@ -290,6 +291,36 @@ test('resolveSessionKey: session file wins, id and unknown token are fallbacks',
   assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1', sessionFile: '   ' }), 'uuid-1');
   assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1' }), 'uuid-1');
   assert.equal(core.resolveSessionKey({}), core.UNKNOWN_SESSION_ID);
+});
+
+test('sanitizePromptForClassify: strips injected advisor tail and history, keeps the user turn', () => {
+  const advisorTail = '\n\nAdvisor: live; use sk-code 0.9/0.2 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR- ids in code comments\n- Governor: move on; write the durable WHY';
+  // Clean user turn with the injected advisor capsule appended: the bullet
+  // block (which carries trigger words) is cut; the one-line advisor
+  // summary before the label may remain -- it cannot carry trigger words.
+  const withInjection = 'review the auth module' + advisorTail;
+  assert.equal(
+    core.sanitizePromptForClassify(withInjection),
+    'review the auth module\n\nAdvisor: live; use sk-code 0.9/0.2 pass.',
+  );
+  // No injected layers: unchanged.
+  assert.equal(core.sanitizePromptForClassify('fix the login bug'), 'fix the login bug');
+  // Embedded history with [user] markers: only the last turn survives.
+  assert.equal(
+    core.sanitizePromptForClassify('[user] create a spec folder [assistant] ok [user] review the auth module'),
+    ' review the auth module',
+  );
+  // Marker-only tail: falls back to the whole text rather than dropping it.
+  assert.equal(core.sanitizePromptForClassify('review the auth module [user]'), 'review the auth module [user]');
+  // Realistic combined shape: embedded history, then the current turn, then
+  // the injected advisor tail -- both layers stripped in one pass (the
+  // one-line advisor summary before the label may ride along).
+  assert.equal(
+    core.sanitizePromptForClassify('[user] create a spec folder [assistant] ok [user] review the auth module' + advisorTail),
+    ' review the auth module\n\nAdvisor: live; use sk-code 0.9/0.2 pass.',
+  );
+  // Non-string input degrades to empty, never throws.
+  assert.equal(core.sanitizePromptForClassify(undefined), '');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -672,28 +703,33 @@ const POSITIVE_ANSWER_CORPUS = [
   { prompt: 'B, use .opencode/specs/059-login', expect: 'binding' },
   { prompt: 'C, .opencode/specs/track/042-foo', expect: 'binding' },
   { prompt: 'E - .opencode/specs/parent/003-phase', expect: 'binding' },
-  { prompt: 'D', expect: 'skip' },
-  { prompt: 'd', expect: 'skip' },
+  // E is the question menu's Skip letter: standalone E (and punctuation
+  // forms) closes the gate without a binding.
+  { prompt: 'E', expect: 'skip' },
+  { prompt: 'e', expect: 'skip' },
   { prompt: 'skip', expect: 'skip' },
   { prompt: 'Skip - handled elsewhere', expect: 'skip' },
   { prompt: 'A, 059-login-fix', expect: 'binding' },
   { prompt: 'C: specs/legacy-042-bar', expect: 'binding' },
-  // WS5: standalone-D immediately followed by punctuation still skips.
-  { prompt: 'D, no spec folder needed', expect: 'skip' },
-  { prompt: 'D) no spec folder needed', expect: 'skip' },
+  // standalone-E immediately followed by punctuation still skips.
+  { prompt: 'E, no spec folder needed', expect: 'skip' },
+  { prompt: 'E) no spec folder needed', expect: 'skip' },
   // WS5: "skip it" natural form, separated cleanly from any trailing aside.
   { prompt: 'skip it, no folder needed', expect: 'skip' },
   // WS5: closed-set natural lead-ins register the letter for a bare-token bind.
   { prompt: 'option B, 042-foo', expect: 'binding' },
   { prompt: 'go with C, 099-bar-baz', expect: 'binding' },
-  // fix 5: a natural-lead-in letter D is ALWAYS the skip choice, never a
+  // A natural-lead-in letter E is ALWAYS the skip choice, never a
   // stalled/no-folder-named binding attempt -- even with a trailing
-  // folder-shaped token, D wins as skip.
-  { prompt: 'option D', expect: 'skip' },
-  { prompt: 'option D, 999-valid', expect: 'skip' },
+  // folder-shaped token, E wins as skip.
+  { prompt: 'option E', expect: 'skip' },
+  { prompt: 'option E, 999-valid', expect: 'skip' },
+  // D is a folder option in the menu, so a D answer with a folder token
+  // binds; without one it stays open (see the negative corpus).
+  { prompt: 'option D, 999-valid', expect: 'binding' },
   // A full named path always binds, even when the turn also carries a skip
-  // shape (standalone D, skip word) -- naming a real folder outranks the
-  // default skip reading.
+  // shape (standalone letter, skip word) -- naming a real folder outranks
+  // the default skip reading.
   { prompt: 'D, .opencode/specs/parent/003-phase', expect: 'binding' },
   { prompt: 'skip, use .opencode/specs/059-login', expect: 'binding' },
 ];
@@ -716,6 +752,15 @@ const NEGATIVE_PROMPT_CORPUS = [
   'skip the lint errors for now, just fix the parser bug',
   // WS5: a bare "D" running into ordinary prose about option D, not a chosen skip.
   'D is the wrong option, use A instead',
+  // D is a folder option in the menu, not the skip letter: pathless D
+  // answers stay open (re-ask) rather than closing the gate.
+  'D',
+  'd',
+  'D, no spec folder needed',
+  'D) no spec folder needed',
+  'option D',
+  // E-prose is not a chosen skip either.
+  'E is the wrong option, use A instead',
   // fix 5: "D-danger" is a compound word fused directly onto the letter (no
   // separating whitespace before the hyphen) -- prose ABOUT danger, not a
   // chosen skip. Must never false-close the gate.
@@ -1045,11 +1090,12 @@ test('symlink sanity: an in-repo symlink whose real target stays in-repo is stil
 
 test('answerParse() never parses an answer when isOpen is explicitly false', () => {
   assert.equal(core.answerParse('B, .opencode/specs/059-login', false), null);
-  assert.equal(core.answerParse('D', false), null);
+  assert.equal(core.answerParse('E', false), null);
   assert.equal(core.answerParse('skip', false), null);
   // Omitting isOpen preserves the raw-parser contract the answerParse()
   // corpus tests above rely on (default true).
-  assert.notEqual(core.answerParse('D'), null);
+  assert.notEqual(core.answerParse('E'), null);
+  assert.equal(core.answerParse('D'), null);
   assert.notEqual(core.answerParse('B, .opencode/specs/059-login', true), null);
 });
 
@@ -1129,7 +1175,7 @@ test('HIGHEST BLAST proof: with MK_SPEC_GATE_ENFORCE unset, no tool/target/gate-
       (sessionID) => { core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root }); }, // -> open
       (sessionID) => {
         core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
-        core.classifyIntent({ prompt: 'D', sessionID, projectDir: root });
+        core.classifyIntent({ prompt: 'E', sessionID, projectDir: root });
       }, // -> skipped
       (sessionID) => {
         core.classifyIntent({ prompt: 'fix the login bug', sessionID, projectDir: root });
