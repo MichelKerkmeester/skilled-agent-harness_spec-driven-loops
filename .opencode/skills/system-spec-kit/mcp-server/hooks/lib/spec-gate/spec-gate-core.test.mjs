@@ -173,6 +173,126 @@ test('an invalid/nonexistent folder answer stays open and re-asks', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Open-gate silence & answer-attempt re-ask (question surface semantics)
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('an open gate stays open but silent on a read-only turn (no question re-injection)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    const opened = core.classifyIntent({ prompt: 'refactor the parser module', sessionID, projectDir: root });
+    assert.equal(opened.status, 'open');
+    assert.ok(opened.question);
+
+    const quiet = core.classifyIntent({ prompt: 'review the auth module', sessionID, projectDir: root });
+    assert.equal(quiet.status, 'open');
+    assert.equal(quiet.question, null);
+
+    // The gate is still enforced even while the question is withheld: the
+    // very next mutation is denied until the user actually answers.
+    const mutation = core.evaluateMutation({
+      tool: 'Edit',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: root,
+      env: { [core.ENFORCE_ENV]: '1' },
+    });
+    assert.equal(mutation.decision, 'deny');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('an answer attempt without a named folder re-surfaces the question', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'update the config loader', sessionID, projectDir: root });
+
+    const reAsk = core.classifyIntent({ prompt: 'option C', sessionID, projectDir: root });
+    assert.equal(reAsk.status, 'open');
+    assert.ok(reAsk.question);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('a self-contradicting skip attempt re-surfaces the question', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'build the export pipeline', sessionID, projectDir: root });
+
+    const reAsk = core.classifyIntent({ prompt: 'skip, use A instead', sessionID, projectDir: root });
+    assert.equal(reAsk.status, 'open');
+    assert.ok(reAsk.question);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('letter-led ordinary prose stays silent on an open gate (no false answer attempt)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'build the export pipeline', sessionID, projectDir: root });
+
+    const quiet = core.classifyIntent({ prompt: 'A pretty big problem needs a plan', sessionID, projectDir: root });
+    assert.equal(quiet.status, 'open');
+    assert.equal(quiet.question, null);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('a D answer naming a real folder binds and satisfies (path outranks the skip default)', () => {
+  const { root } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'build the export pipeline', sessionID, projectDir: root });
+
+    const satisfied = core.classifyIntent({
+      prompt: 'D, .opencode/specs/999-test-folder',
+      sessionID,
+      projectDir: root,
+    });
+    assert.equal(satisfied.status, 'satisfied');
+    assert.equal(satisfied.question, null);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('isAnswerAttempt: answer-shaped turns are attempts, ordinary prose is not', () => {
+  assert.equal(core.isAnswerAttempt('A'), true);
+  assert.equal(core.isAnswerAttempt('A) Use an existing spec folder'), true);
+  assert.equal(core.isAnswerAttempt('A - the auth folder'), true);
+  assert.equal(core.isAnswerAttempt('A use an existing folder'), true);
+  assert.equal(core.isAnswerAttempt('B create a new folder'), true);
+  assert.equal(core.isAnswerAttempt('option C'), true);
+  assert.equal(core.isAnswerAttempt('skip'), true);
+  assert.equal(core.isAnswerAttempt('D, no spec folder needed'), true);
+  // Ordinary prose that merely starts with a letter must not read as an
+  // answer attempt on an open gate.
+  assert.equal(core.isAnswerAttempt('A pretty big problem'), false);
+  assert.equal(core.isAnswerAttempt('D is the wrong option, use A instead'), false);
+  assert.equal(core.isAnswerAttempt('review the auth module'), false);
+  assert.equal(core.isAnswerAttempt(''), false);
+});
+
+test('resolveSessionKey: session file wins, id and unknown token are fallbacks', () => {
+  assert.equal(
+    core.resolveSessionKey({ sessionId: 'uuid-1', sessionFile: '/tmp/sessions/--proj--/2026-08-02T00-00-00.sess.jsonl' }),
+    'file:2026-08-02T00-00-00.sess.jsonl',
+  );
+  assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1', sessionFile: '' }), 'uuid-1');
+  assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1', sessionFile: '/' }), 'uuid-1');
+  assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1', sessionFile: '   ' }), 'uuid-1');
+  assert.equal(core.resolveSessionKey({ sessionId: 'uuid-1' }), 'uuid-1');
+  assert.equal(core.resolveSessionKey({}), core.UNKNOWN_SESSION_ID);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Read-only guard
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -571,6 +691,11 @@ const POSITIVE_ANSWER_CORPUS = [
   // folder-shaped token, D wins as skip.
   { prompt: 'option D', expect: 'skip' },
   { prompt: 'option D, 999-valid', expect: 'skip' },
+  // A full named path always binds, even when the turn also carries a skip
+  // shape (standalone D, skip word) -- naming a real folder outranks the
+  // default skip reading.
+  { prompt: 'D, .opencode/specs/parent/003-phase', expect: 'binding' },
+  { prompt: 'skip, use .opencode/specs/059-login', expect: 'binding' },
 ];
 
 const NEGATIVE_PROMPT_CORPUS = [

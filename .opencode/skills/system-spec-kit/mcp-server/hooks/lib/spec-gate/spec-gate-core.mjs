@@ -104,10 +104,10 @@ export const DENY_CAPABLE_TOOLS = new Set(['write', 'edit']);
 // arrays into the TUI or injected context (see NFR-S01).
 export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
-  'A) Use an existing spec folder (name it)',
-  'B) Create a new spec folder',
-  'C) Update a related spec folder (name it)',
-  'D) Use a phase folder (e.g. .opencode/specs/<parent>/<NNN-phase>, name it)',
+  'A) Use an existing spec folder (reply with its path, e.g. .opencode/specs/<track>/<NNN-name>)',
+  'B) Create a new spec folder (reply with a new path, e.g. .opencode/specs/<track>/<NNN-name>)',
+  'C) Update a related spec folder (reply with its path, e.g. .opencode/specs/<track>/<NNN-name>)',
+  'D) Use a phase folder (reply with the child path, e.g. .opencode/specs/<parent>/<NNN-phase>)',
   'E) Skip (no spec folder needed for this change)',
 ].join('\n');
 
@@ -124,6 +124,24 @@ export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec fo
 
 export function sessionStateKey(sessionID) {
   return Buffer.from(String(sessionID ?? UNKNOWN_SESSION_ID), 'utf8').toString('hex');
+}
+
+/**
+ * Resolve the session identity a runtime should key gate state on. Some
+ * hosts hand out a fresh session id per invocation while the session FILE
+ * stays stable for one conversation, so the file wins when present;
+ * otherwise the raw id (or the canonical unknown token) keeps classify and
+ * enforce on the same key.
+ *
+ * @param {{ sessionId?: string, sessionFile?: string }} identity
+ * @returns {string}
+ */
+export function resolveSessionKey({ sessionId, sessionFile } = {}) {
+  if (typeof sessionFile === 'string' && sessionFile.trim()) {
+    const base = sessionFile.split(/[\\/]/).pop();
+    if (base && base.trim()) return `file:${base.trim()}`;
+  }
+  return String(sessionId ?? UNKNOWN_SESSION_ID);
 }
 
 export function resolveGuardPaths(projectDir) {
@@ -431,8 +449,9 @@ const ANSWER_LETTER_PREFIX_REGEX = /^\s*([a-eA-E])(?=[\s,.:)\-]|$)/;
 // A closed set of natural lead-ins ("option B", "go with C", ...) so the
 // letter still registers when the bare-token bind below needs it, without
 // opening the grammar to arbitrary prose that happens to contain a letter.
-// D is special-cased in answerParse() below: even through this lead-in
-// grammar it is always the SKIP option, never a folder-binding target.
+// D is special-cased in answerParse() below: through this lead-in grammar it
+// is the SKIP option unless the turn names a full spec-folder path, which
+// binds instead.
 const NATURAL_LEAD_IN_LETTER_REGEX = /^\s*(?:option|choice|answer|go with|use option)\s+([a-eA-E])(?=[\s,.:)\-]|$)/i;
 // A skip answer must be a COMPLETE, unambiguous standalone reply. A trailing
 // clause that either negates the skip itself ("do not skip", "not a skip",
@@ -447,8 +466,41 @@ const SPEC_PATH_REGEX = /(?:\.opencode\/specs|specs)\/[a-zA-Z0-9][\w./-]*/;
 const BARE_FOLDER_TOKEN_REGEX = /\b\d{3}-[a-z0-9][a-z0-9-]*\b/i;
 const TRAILING_PUNCTUATION_REGEX = /[.,;:)]+$/;
 
+// Menu letters are a strict answer shape: letter + punctuation, letter + the
+// whitespace-dash convention, or letter alone at end of text. A bare space
+// running into more words is ordinary prose ("A pretty big problem"), not an
+// answer attempt -- answerParse keeps the space case because it also accepts
+// "A <slug>" bindings.
+const ANSWER_LETTER_ATTEMPT_REGEX = /^\s*[a-eA-E](?=[,.:)]|\s+-|$)/;
+// A letter followed by menu vocabulary ("A use an existing folder") is an
+// answer echo of the question menu, not prose -- letter + whitespace is
+// ambiguous, only the vocabulary distinguishes the two.
+const ANSWER_LETTER_VOCAB_REGEX = /^\s*[a-eA-E]\s+(?:use|create|update|extend|skip|pick|choose|go with|existing|new|related|phase|folder|spec|option|child|path|packet)\b/i;
+
 function hasSkipContradiction(text) {
   return SKIP_NEGATION_REGEX.test(text) || SKIP_ALTERNATIVE_OPTION_REGEX.test(text);
+}
+
+/**
+ * True when a turn has the SHAPE of an answer to an open gate -- a lettered
+ * choice, a natural lead-in, a skip word, or a standalone D -- even when it
+ * failed to bind (letter without a folder, self-contradicting skip).
+ * classifyIntent() re-surfaces the question for such turns so an incomplete
+ * answer is asked again, while ordinary read-only prose stays quiet.
+ *
+ * @param {string} promptText
+ * @returns {boolean}
+ */
+export function isAnswerAttempt(promptText) {
+  const text = typeof promptText === 'string' ? promptText.trim() : '';
+  if (!text) return false;
+  return (
+    ANSWER_LETTER_ATTEMPT_REGEX.test(text) ||
+    ANSWER_LETTER_VOCAB_REGEX.test(text) ||
+    NATURAL_LEAD_IN_LETTER_REGEX.test(text) ||
+    SKIP_WORD_REGEX.test(text) ||
+    STANDALONE_LETTER_D_REGEX.test(text)
+  );
 }
 
 /**
@@ -476,22 +528,22 @@ export function answerParse(promptText, isOpen = true) {
   if (!text) return null;
 
   // Computed once and reused below (natural-lead-in letters are never
-  // re-derived) -- D is special-cased HERE, not just in the bare-letter
-  // regex, so "option D" / "answer D" reads as the skip choice rather than
-  // falling into the folder-binding letter grammar below.
+  // re-derived) -- a full named spec-folder path always binds, even when the
+  // turn also carries a skip shape; only WITHOUT a path does D read as the
+  // skip choice ("option D" / "answer D" / "D, no spec folder needed").
   const naturalLeadInMatch = NATURAL_LEAD_IN_LETTER_REGEX.exec(text);
   const naturalLeadInIsSkipLetter = naturalLeadInMatch !== null && /^[dD]$/.test(naturalLeadInMatch[1]);
+
+  const pathMatch = SPEC_PATH_REGEX.exec(text);
+  if (pathMatch) {
+    return { type: 'binding', path: pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '') };
+  }
 
   if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_D_REGEX.test(text) || naturalLeadInIsSkipLetter) {
     // A COMPLETE, unambiguous standalone answer only -- reject (return null,
     // stay open) when the rest of the turn contradicts the skip itself. See
     // hasSkipContradiction() / SKIP_NEGATION_REGEX / SKIP_ALTERNATIVE_OPTION_REGEX above.
     return hasSkipContradiction(text) ? null : { type: 'skip' };
-  }
-
-  const pathMatch = SPEC_PATH_REGEX.exec(text);
-  if (pathMatch) {
-    return { type: 'binding', path: pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '') };
   }
 
   const letterMatch = ANSWER_LETTER_PREFIX_REGEX.exec(text) || naturalLeadInMatch;
@@ -869,10 +921,10 @@ export function classifyIntent(request) {
       }
 
       // Trigger-turn self-binding: the SAME prompt that just opened the gate
-      // may also already name a folder ("fix the login bug, use
-      // .opencode/specs/999-valid") -- validate it before falling back to
-      // asking again, rather than opening the gate and denying the very next
-      // Write for a turn that already answered its own question.
+      // may also already name a folder ("fix the login bug, use the auth
+      // folder") -- validate it before falling back to asking again, rather
+      // than opening the gate and denying the very next Write for a turn
+      // that already answered its own question.
       const candidatePath = extractSpecFolderCandidate(prompt);
       if (candidatePath) {
         const accepted = acceptPriorAnswerBinding(candidatePath, dir);
@@ -893,7 +945,14 @@ export function classifyIntent(request) {
       return { status: 'open', question: GATE_3_QUESTION };
     }
 
-    return { status: state.status === 'open' ? 'open' : 'closed', question: state.status === 'open' ? GATE_3_QUESTION : null };
+    // Gate open and the turn is an answer attempt that did not bind (no
+    // folder named, or a self-contradicting skip): keep asking. Every other
+    // non-trigger turn keeps the gate open for enforcement but stays silent,
+    // so read-only turns never re-inject the question.
+    if (state.status === 'open' && isAnswerAttempt(prompt)) {
+      return { status: 'open', question: GATE_3_QUESTION };
+    }
+    return { status: state.status === 'open' ? 'open' : 'closed', question: null };
   } catch (_) {
     // Fail open on any unexpected internal error: no question, no NEW state
     // write. But a classifier/binding-validation throw can happen AFTER a

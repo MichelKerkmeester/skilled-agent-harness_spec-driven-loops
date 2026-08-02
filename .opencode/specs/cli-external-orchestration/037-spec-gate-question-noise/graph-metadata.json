@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/037-spec-gate-question-noise",
+  "spec_folder": "cli-external-orchestration/037-spec-gate-question-noise",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec folder question noise",
+      "gate 3 re-ask",
+      "spec-gate question every turn",
+      "spec folder question every query",
+      "gate question injection",
+      "spec-gate question noise plan",
+      "gate question fix plan",
+      "spec-gate question noise tasks",
+      "gate question fix tasks",
+      "spec-gate question noise checklist",
+      "gate question verification",
+      "spec-gate question noise summary"
+    ],
+    "key_topics": [
+      "spec",
+      "folder",
+      "question",
+      "noise",
+      "gate",
+      "re-ask",
+      "spec-gate",
+      "every",
+      "turn",
+      "query",
+      "injection",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-classify.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts",
+      "hooks/lib/spec-gate/spec-gate-core.mjs",
+      "hooks/pi/spec-gate-classify.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".opencode/plugins/mk-spec-gate.js",
+      "hooks/pi/spec-gate-enforce.ts",
+      ".opencode/specs/cli-external-orchestration/037-spec-gate-question-noise/spec.md",
+      "hooks/claude/spec-gate-classify.mjs",
+      "hooks/codex/spec-gate-classify.mjs",
+      "hooks/cursor/spec-gate-classify.mjs",
+      "hooks/devin/spec-gate-classify.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-classify.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-enforce.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/cli-external-orchestration/037-spec-gate-question-noise/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": "hooks/claude/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compaction Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipts",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
+    "created_at": "2026-08-02T13:16:09.194Z",
+    "last_save_at": "2026-08-02T14:37:14.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:94178392a647e8a8b67f3f9d38f09a52d61e63b300fc53ed3a2aa07b90f36b1b",
+    "source_doc_hashes": {
+      "spec.md": "d48d295ee97f521834d6323194b5fc8f62bfbe4d2e392a0fd3f0f5b46073dff4",
+      "plan.md": "e982b1194df2a3e56ff3b4991a1ff8c88ba7f0e48dc721327298b01cb1bcc83f",
+      "tasks.md": "254c033727b08167dabaf4c55883d84bf89467548a7078079b634e0c2cf58d4c",
+      "checklist.md": "943f4641f6e149e313d677d91b4204a76a99733fd90a347a27dd81fe95a91f9e",
+      "implementation-summary.md": "1e31a3304db5a0c180da67f37f4bee1cf0619fb2c571cfe61011963452cff218",
+      "handover.md": "cafd283bfd47037db429ae21deba6391337151347e9a8126e0fde4605003aa23"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
