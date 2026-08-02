@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T18:35:00Z"
+    last_updated_at: "2026-08-02T19:10:00Z"
     last_updated_by: "pi"
     recent_action: "Completed both research lineages and the cross-lineage synthesis"
-    next_safe_action: "Freeze the architecture and safety contract in phase 002 using research.md recommendations"
+    next_safe_action: "Execute 002-architecture-and-safety-contract"
     blockers: []
     key_files:
       - "research/research.md"
@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Does the live command accept cli-pi in fan-out JSON? Yes — dry-run and live run both accepted it (allowlisted)."
+      - "Does the live command accept cli-pi in fan-out JSON? Yes — verified at the parser level (parseFanoutConfig) and by the live fan-out execution."
       - "Which transport modes does Webflow MCP 2.0 offer? Remote OAuth (experimental mcp-remote) and local bearer token; see research.md section 5."
       - "Is mcp-webflow a workflow or a transport? Transport — both lineages converged (research.md section 9)."
 ---
@@ -56,7 +56,8 @@ Two forced-depth research lineages plus the cross-lineage deliverables, all unde
 | Artifact | Content |
 |----------|---------|
 | `research/lineages/deepseek-max/` | 5/5 iterations (cli-pi transport / deepseek-v4-flash / max) + lineage synthesis: per-module tool inventory with operation classes, auth model, scopes, rate limits, publish semantics, smoke target, confirmation/rollback policy, transport classification evidence, sk-design pairing, eliminated alternatives |
-| `research/lineages/luna-fast/` | 5/5 iterations (cli-pi transport / gpt-5.6-luna / max) + lineage synthesis: announcement-vs-docs verification, remote-vs-local version-surface contradiction, fail-closed integration posture, Agent Instructions confirmation |
+| `research/lineages/luna-fast/` | 5/5 iterations (cli-opencode / openai/gpt-5.6-luna-fast / xhigh, route-proof records 5/5) + lineage synthesis: announcement-vs-docs verification, remote-vs-local version-surface contradiction, fail-closed integration posture, Agent Instructions confirmation |
+| `research/lineages/deepseek-v4-flash-max/` | 5/5 iterations (cli-pi / deepseek-v4-flash / max) — workflow re-spawn under the plan-frozen label; merged into the cross-lineage synthesis |
 | `research/research.md` | Cross-lineage synthesis: merged capability map, all six charter questions answered, recommendations for the Phase 2 freeze, deviation record, infrastructure finding, attribution |
 | `research/convergence-report.md` | Lineage agreement/divergence table; stop-policy compliance |
 | `research/resource-map.md` | Primary sources with lineage attribution; dead ends recorded |
@@ -69,9 +70,10 @@ All six charter questions (Q1–Q6) are answered; every load-bearing claim carri
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-1. **Dry-run gate (REQ-005): passed** — `confirm` flow with `--dry-run` accepted both executors (`cli-pi`/`deepseek-v4-flash`/max/5 and `cli-opencode`/`openai/gpt-5.6-luna-fast`/xhigh/5), resolved the artifact root, and halted before any dispatch or persistent mutation.
-2. **Live run** — `/deep:research:auto` with `--stop-policy=max-iterations --convergence-mode=off --max-iterations=5`, run from a non-Pi (opencode) conductor with the parallel-detached authorization for the opencode lineage.
-3. **Synthesis** — the workflow's own lineage syntheses were produced by the pool; the cross-lineage `research.md`, convergence report, and resource map were assembled from those lineage artifacts after the conductor session aborted before its own `phase_synthesis` step.
+1. **Dry-run gate (REQ-005)** — the auto workflow has no dry-run boundary: the first command-owned attempt (auto + `--dry-run`) fail-closed with zero persistent mutation, proving the preview halt. The confirm-flow dry-run requires interactive setup and cannot complete headless; executor acceptance was proven at the parser level (`parseFanoutConfig` accepted the exact executor JSON: cli-pi + cli-opencode, 5 iterations each, concurrency 1) and by the live execution. Deviation documented in `research.md` §12.
+2. **Live run** — `/deep:research:auto` from a non-Pi (opencode, gpt-5.6-sol) conductor; fan-out executed by the workflow-owned `fanout-run.cjs`. Two environment-level interruptions were recovered: (a) the initial fan-out was SIGTERMed when the conductor session's teardown reaped its children (16:58Z); (b) one early luna-fast child was externally SIGKILLed mid-iteration (547s, no timeout/lag-abort/OOM record). Recovery: direct detached `fanout-run.cjs` relaunch; the single-lineage relaunch completed 5/5.
+3. **Execution record** — three complete lineages (15 iterations): `deepseek-max` (cli-pi/deepseek-v4-flash/max), `luna-fast` (cli-opencode/openai/gpt-5.6-luna-fast/xhigh), `deepseek-v4-flash-max` (cli-pi/deepseek-v4-flash/max, workflow re-spawn). Merged registry: 57 findings; `fanout-merge.cjs` assembled `research.md`, `convergence-report.md`, `resource-map.md`; lineage syntheses at `research/lineages/{label}/research.md`.
+4. **Synthesis corrections** — the merged synthesis's initial methodology section misattributed the luna-fast executor (claimed cli-pi) and mis-explained the stall warnings as a pool abort; corrected to the documented execution record (this summary + `research.md` §12).
 <!-- /ANCHOR:how-delivered -->
 
 ---

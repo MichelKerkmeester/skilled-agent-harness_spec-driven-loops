@@ -16,7 +16,7 @@
   },
   "extensions": {
     "transport-axis": {
-      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never perform design judgment themselves and carry a mandatory cross-hub pairing to sk-design (a DIFFERENT hub) for design decisions \u2014 licensed by ADR-002 as a legitimate cross-hub judgment partner, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply design judgment. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
+      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never perform design judgment themselves and carry a mandatory cross-hub pairing to sk-design (a DIFFERENT hub) for design decisions \u2014 licensed by ADR-002 as a legitimate cross-hub judgment partner, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply design judgment. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode); code-mode-stdio-mcp (mcp-webflow via the registered webflow manual \u2014 official webflow-mcp-server as a local stdio server with WEBFLOW_TOKEN). mcp-webflow\u2019s sk-design pairing is conditional: Designer-family operations must pair, Data-family operations run transport-only.",
       "transports": [
         "mcp-figma",
         "mcp-refero",
@@ -26,7 +26,8 @@
       "crossHubPairing": {
         "mcp-figma": "sk-design",
         "mcp-refero": "sk-design",
-        "mcp-mobbin": "sk-design"
+        "mcp-mobbin": "sk-design",
+        "mcp-webflow": "sk-design (Designer-family only)"
       }
     }
   },

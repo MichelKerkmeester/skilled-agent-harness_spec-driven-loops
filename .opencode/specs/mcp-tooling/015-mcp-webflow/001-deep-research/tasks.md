@@ -9,10 +9,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T18:36:58Z"
+    last_updated_at: "2026-08-02T19:10:00Z"
     last_updated_by: "pi"
     recent_action: "Created the research execution task list"
-    next_safe_action: "Complete the non-Pi conductor and dry-run preflight tasks"
+    next_safe_action: "Execute 002-architecture-and-safety-contract"
     blockers:
       - "Current Pi conductor cannot launch the cli-pi lineage"
     key_files:
@@ -50,7 +50,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Resume this child from a non-Pi conductor.
-  - **Evidence**: `/deep:research:auto` run from an opencode (non-Pi) conductor; dry-run `:confirm --dry-run` PASSED
+  - **Evidence**: `/deep:research:auto` executed from an opencode (non-Pi) conductor (`opencode run --command deep/research`, gpt-5.6-sol); fan-out lineages executed via the workflow-owned `fanout-run.cjs`
 - [x] T002 Read the current `/deep:research` command, mode packet, and relevant cli-pi/cli-opencode contracts.
   - **Evidence**: `research/research.md` §12 methodology; command assets `deep-research-auto.yaml`/`-confirm.yaml` read
 - [x] T003 Run binary, provider-auth, model-availability, version-drift, and self-invocation preflights.
@@ -60,7 +60,7 @@ _memory:
 - [x] T005 Bind the exact JSON fan-out config, child path, max-iteration stop policy, convergence off, and concurrency one.
   - **Evidence**: dry-run resolved config: `max-iterations` stop, convergence off, 2 executors × 5 iters
 - [x] T006 Run the mandatory dry-run/preview and confirm no persistent state mutation.
-  - **Evidence**: `:confirm --dry-run` halted before dispatch with `dry_run_halt` preview; zero persistent mutations (root unchanged)
+  - **Evidence**: the auto workflow has no dry-run boundary — the first command-owned attempt fail-closed with zero persistent mutations (git status clean; opencode conductor verified the YAMLs and halted). The confirm-flow dry-run requires interactive setup and cannot complete headless; executor acceptance was proven instead at the parser level (`parseFanoutConfig` accepted the exact executor JSON) and by the live 15-iteration run. Deviation recorded in `research.md` §12
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,7 +71,7 @@ _memory:
 - [x] T007 Run `deepseek-v4-flash` with Pi maximum thinking for exactly five iterations.
   - **Evidence**: `research/lineages/deepseek-max/iterations/` — 5/5 files + `research.md` synthesis
 - [x] T008 Run `openai/gpt-5.6-luna-fast` with OpenCode maximum documented effort for exactly five iterations.
-  - **Evidence**: `research/lineages/luna-fast/iterations/` — 5/5 files + `research.md` synthesis (transport deviation recorded)
+  - **Evidence**: `research/lineages/luna-fast/iterations/` — 5/5 files + lineage `research.md`; lineage config records executor cli-opencode / openai/gpt-5.6-luna-fast / xhigh; iteration records carry the route-proof fields (5/5)
 - [x] T009 Verify every iteration writes its markdown artifact and structured delta.
   - **Evidence**: per-lineage `deep-research-state.jsonl`, `deltas/iter-*.jsonl`, `findings-registry.json`, dashboard
 - [x] T010 Let the reducer refresh strategy, dashboard, and findings registry after each iteration.
@@ -88,7 +88,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T013 Count five valid iterations in each lineage and reconcile them with state logs.
-  - **Evidence**: counted 5 + 5 iteration files across `lineages/{deepseek-max,luna-fast}/iterations/`
+  - **Evidence**: counted 15 iteration files across three complete lineages — `deepseek-max` 5/5, `luna-fast` 5/5, `deepseek-v4-flash-max` 5/5 (workflow re-spawn under the plan-frozen label); state logs and deltas reconcile per lineage
 - [x] T014 Audit load-bearing claims for citations and official-source preference.
   - **Evidence**: load-bearing claims carry `[SOURCE: URL]`/`[INFERENCE: ...]` markers in both lineage syntheses
 - [x] T015 Verify negative knowledge and unresolved questions are explicit. — research.md §11b + §13 + iteration dead ends.

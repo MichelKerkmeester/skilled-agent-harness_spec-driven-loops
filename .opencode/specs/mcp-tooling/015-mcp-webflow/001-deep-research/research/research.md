@@ -99,13 +99,20 @@ Dedicated test workspace + dedicated test site (free Starter plan suffices). Bas
 | API-based site duplication/backup for test scaffolding | Not part of Data API v2 surface | scopes/endpoint index |
 | Classifying `mcp-webflow` as a workflow because of `run_workflow` | Transport executes Webflow-side managed workflows; hub orchestrates | workflows module + hub leaf layout |
 | Treating CMS mutations as implicitly draft-safe | Official FAQ: items can be created/deleted directly in the live site | ai-tools FAQ |
-| cli-opencode fan-out lineage for this research | Workflow pool's 5-minute lag ceiling aborts lineages whose first iteration exceeds 5 minutes (observed 9+ min); substituted cli-pi transport with the same model tier | fanout-pool stall records, this research's orchestration logs |
+| cli-opencode fan-out lineage for this research | NOT eliminated — the cli-opencode lineage (`luna-fast`, openai/gpt-5.6-luna-fast, xhigh) ran to 5/5 iterations with route-proof records. An early attempt was externally SIGKILLed mid-iteration; recovery was a direct detached fan-out relaunch (see §12) | lineage config + state logs + fan-out orchestration logs |
 
-## 12. Methodology, Transport Deviation, and Attribution
+## 12. Methodology, Execution Record, and Attribution
 
-- **Lineages**: `deepseek-max` (cli-pi / deepseek-v4-flash / max, 5 iterations, source-level inventory) and `luna-fast` (cli-pi transport / gpt-5.6-luna / max, 5 iterations, announcement-vs-docs verification + fail-closed posture). Both lineage syntheses are complete at `research/lineages/{deepseek-max,luna-fast}/research.md`.
-- **Deviation (recorded)**: the packet specified the `luna-fast` lineage on `cli-opencode` (openai/gpt-5.6-luna-fast, xhigh). The workflow's fan-out pool aborts any lineage whose first artifact exceeds the 5-minute lag ceiling (non-disableable, capped at 300000 ms), and the cli-opencode/native dispatch paths were rejected by the workflow's own router in automated contexts. The lineage was therefore run through the pool's `cli-pi` transport with the `gpt-5.6-luna` model tier (the same GPT-5.6 Luna research tier) — same workflow, same state machine, same iteration contract. The dry-run (`confirm` flow) passed before the live run.
-- **Infrastructure finding (negative knowledge, for the deep-loop team)**: `fanout-pool.cjs`'s stall detector (lag ceiling, default/cap 5 min) false-fires on lineages whose first iteration legitimately takes longer than 5 minutes; recommend a configurable ceiling or first-iteration grace in a future deep-loop packet.
+- **Lineages (all complete, 15 iterations total)**:
+  - `deepseek-max` — cli-pi / deepseek-v4-flash / reasoning max / 5 iterations (source-level tool inventory; executed 2026-08-02T16:38–16:52Z).
+  - `luna-fast` — cli-opencode / openai/gpt-5.6-luna-fast / xhigh / 5 iterations (announcement-vs-docs verification + fail-closed posture; executed 17:31–18:22Z; iteration records carry the route-proof fields).
+  - `deepseek-v4-flash-max` — cli-pi / deepseek-v4-flash / max / 5 iterations (the workflow's own re-spawn under the plan-frozen label; executed ~18:40–19:00Z).
+  - Lineage syntheses complete at `research/lineages/{label}/research.md`; merged registry: 57 findings.
+- **Execution deviations (recorded, with evidence)**:
+  1. The initial command-owned run (auto flow) lost its fan-out when the conductor session ended and its teardown SIGTERMed the fan-out child (orchestration log `stopped signal:SIGTERM`, 16:58Z). Recovered by relaunching the workflow's own `fanout-run.cjs` fully detached.
+  2. One early luna-fast attempt was externally SIGKILLed mid-iteration at 547s (no timeout flag, no lag-ceiling abort event, no jetsam/OOM record; `timed_out:false`). The single-lineage detached relaunch completed 5/5. Environment finding for the deep-loop team: long-lived opencode sessions (>~12 min) were externally killed in this environment; per-iteration sessions (~10 min) complete. Recommend a configurable lag ceiling with first-iteration grace and explicit kill attribution.
+  3. The dry-run requirement could not be exercised through the auto workflow (no dry-run boundary in `deep-research-auto.yaml`; the confirm-flow dry-run requires interactive setup). Executor acceptance was proven instead at the parser level (`parseFanoutConfig` accepted the exact executor JSON) and by the live 15-iteration execution. This deviation is documented in the phase tasks.
+  4. cli-pi lineage records do not carry the route-proof fields (record-format gap of the cli-pi executor); cli-opencode records carry them 5/5. Not a delegation failure: the fan-out is the workflow-owned dispatch path.
 - **Attribution**: all load-bearing claims carry `[SOURCE: URL]` or `[INFERENCE: ...]` markers inside the lineage iterations. Official sources lead (webflow.com, developers.webflow.com, github.com/webflow/mcp-server); the seed article is `https://webflow.com/blog/mcp-2-features`.
 - **No Webflow mutation** was performed at any point (REQ-006 honored; enforced by research scope).
 

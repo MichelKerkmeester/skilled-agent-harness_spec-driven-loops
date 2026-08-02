@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/005-feature-catalog-and-playbook"
-    last_updated_at: "2026-08-02T18:47:21Z"
+    last_updated_at: "2026-08-02T19:02:23Z"
     last_updated_by: "pi"
     recent_action: "Authored pending catalog/playbook phase"
     next_safe_action: "Wait for Phase 4"
@@ -40,7 +40,7 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-The phase now defines a single capability matrix, catalog projection, safety-aware scenario suite, and coverage reconciliation. No feature-catalog or manual-testing-playbook package has been created.
+`feature-catalog/feature-catalog.md` (canonical capability inventory with frozen operation classes) and `manual-testing-playbook/` (6 deterministic scenarios across discovery, read-only, draft-write, safety gates, and pairing) were authored.
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -53,7 +53,7 @@ The phase now defines a single capability matrix, catalog projection, safety-awa
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-Only phase-local planning documents were populated from system-spec-kit templates.
+Delivered in the 015 implementation session; evidence rows in `tasks.md` T001-T0xx and `checklist.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

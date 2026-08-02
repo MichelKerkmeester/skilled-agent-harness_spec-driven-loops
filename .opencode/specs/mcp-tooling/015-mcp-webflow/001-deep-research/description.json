@@ -19,13 +19,15 @@
     "boundary",
     "rate"
   ],
-  "lastUpdated": "2026-08-02T18:36:58.131Z",
+  "lastUpdated": "2026-08-02T18:43:24.327Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
     "mcp-tooling",
     "015-mcp-webflow"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_19-43__15-iterations-across-3-complete-lineages-merged.md"
+  ]
 }

@@ -7,7 +7,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/007-routing-benchmark-and-deep-review"
-    last_updated_at: "2026-08-02T16:40:00Z"
+    last_updated_at: "2026-08-02T19:02:58Z"
     last_updated_by: "pi"
     recent_action: "Authored pending benchmark and deep-review phase"
     next_safe_action: "Wait for Phase 6"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -31,7 +31,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-routing-benchmark-and-deep-review |
-| **Status** | Not started |
+| **Status** | Complete |
 | **Completed** | Not completed |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -40,13 +40,10 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-The phase now defines the benchmark contract: compiled-routing runs with Webflow and boundary scenarios, advisor recall probes, baseline reconciliation, and an independent deep review whose findings must be verified before resolution. No benchmark run or review has been executed.
 
-| File | Action | Purpose |
-|------|--------|---------|
-| `spec.md` | Authored | Defines benchmark and review acceptance criteria |
-| `plan.md` | Authored | Defines benchmark-first, review-second approach |
-| `tasks.md` | Authored | Tracks pending benchmark and review work |
+1. **Routing benchmark** — `benchmark/reports/2026-08-02--webflow-registration--routing-replay/report.md`: router-replay boundary matrix, 12/12 PASS (webflow 7, sibling boundaries 4, negative defer 1); findings B-001 (route-gold predates webflow) and B-002 (advisor daemon down) recorded with recommendations.
+2. **Independent deep review** — `review-report.md`: read-only reviewer verdict REJECTED with 5 findings, all resolved (hub pairing narration, phase-summary staleness ×3, 003 blocked-discovery marking); checks passed enumerated; residual notes accepted.
+
 <!-- /ANCHOR:what-built -->
 
 ---

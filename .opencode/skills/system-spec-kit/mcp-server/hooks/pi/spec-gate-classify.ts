@@ -18,7 +18,6 @@ export default function specGateClassify(pi: ExtensionAPI): void {
       // contract (and its tests).
       const prompt = guard.sanitizePromptForClassify(event.text);
       let sessionFile: string | undefined;
-      let sessionFile: string | undefined;
       try {
         sessionFile = ctx.sessionManager.getSessionFile();
       } catch {

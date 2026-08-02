@@ -52,7 +52,7 @@ Routing is registry-driven. `mode-registry.json` lists all seven modes (four wor
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).
-- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), and `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a mandatory cross-hub judgment pairing to `sk-design`.
+- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode), and `mcp-webflow` (official Webflow MCP server via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub judgment pairing to `sk-design` (mandatory for the design transports; conditional — Designer-family only — for `mcp-webflow`).
 
 ### Routing Rule
 
