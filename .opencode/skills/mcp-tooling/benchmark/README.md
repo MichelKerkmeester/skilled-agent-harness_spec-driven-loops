@@ -10,11 +10,11 @@ version: 1.0.0.0
 
 # mcp-tooling — Skill Benchmark Runs
 
-> Lane C run storage for the six-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer — never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md`.
+> Lane C run storage for the seven-mode hub. Report pairs (`skill-benchmark-report.json` + `.md`) are written by the `/deep:skill-benchmark` harness renderer — never hand-edited. Scoring contract: `system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md`.
 
 ## 1. OVERVIEW
 
-The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling` — a six-mode hub (three workflow modes plus three transports) — across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
+The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling` — a seven-mode hub (four workflow modes, including mcp-obsidian, plus three transports) — across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
 
 ## 2. VERDICT (LATEST)
 
@@ -23,7 +23,7 @@ The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling` —
 | `after-routing-remediation/` | 2026-07-16 | Mode A router-replay | **PASS** | 98 | 13 | ENFORCED (auto) — 13 rows, 13 matches, 0 violations |
 | `baseline/` | 2026-07-16 | Mode A router-replay | **PASS** | 95 | 13 | not scored (pre-gate harness; routeGoldRows 0) |
 
-Baseline captured with all six modes registered (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998).
+Baseline captured before mcp-obsidian was registered: six modes (three workflow + three transports), 6/6 hub_routing holdout coverage, and the post-expansion advisor index (generation 11998). The current hub has seven modes: four workflows plus three transports.
 
 `after-routing-remediation/` is the first run under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills): every scenario's `expected_intent` and `expected_resources` scored as hard gold under the fallback-only `defaultResource` contract, 13/13 conformant.
 

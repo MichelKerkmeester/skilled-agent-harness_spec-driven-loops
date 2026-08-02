@@ -1,6 +1,6 @@
 ---
 title: "mcp-obsidian: Manual Testing Playbook"
-description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and the flat-financing Beancount file-layer tie-in."
+description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and three community-plugin file-layer tie-ins."
 version: 1.0.0.0
 ---
 
@@ -8,7 +8,7 @@ version: 1.0.0.0
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and the file-layer operation used by the Obsidian Flat Financing plugin.
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for the Beancount Ledger (`beancount-finance`), Obsidian Tables (`tables`), and BRAT (`obsidian42-brat`) plugins.
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -25,7 +25,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This package provides 17 deterministic scenarios across 6 categories:
+This package provides 19 deterministic scenarios across 6 categories:
 
 | Surface | Scenario IDs | Runtime requirement |
 |---|---|---|
@@ -34,7 +34,7 @@ This package provides 17 deterministic scenarios across 6 categories:
 | Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
-| Flat Financing tie-in | `OBS-011` | Bash; `bean-check` optional; no app required for the file-layer operation |
+| Community-plugin tie-ins | `OBS-011..OBS-013` | File-layer fixtures; app reload is required only for the render/activation check |
 
 The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the Local REST API + token setup, which may still be pending in an operator environment; those scenarios must be recorded as `SKIP` with that blocker rather than treated as an MCP failure.
 
@@ -58,6 +58,8 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 6. MCP scenarios require a running Obsidian app with the target vault open, Local REST API plugin v4.0.0+ enabled, a bearer token in `OBSIDIAN_API_KEY`, the correct `OBSIDIAN_BASE_URL` (default `http://127.0.0.1:27123`), and the `obsidian` Code Mode manual registered. Local REST API + token setup may be pending.
 7. `MCP-H004` deletes only the throwaway note created by `MCP-H001`. The operator must capture the exact path before execution.
 8. `OBS-011` uses a scratch `.beancount` ledger. The `bean-check` validator is optional; an explicit warning that it is unavailable is an acceptable signal.
+9. `OBS-012` uses a non-production vault and the Tables plugin; preserve the original `.table.md` asset and capture the app reload/render boundary.
+10. `OBS-013` uses a throwaway vault, `curl`, `jq`, a release fixture or GitHub access, and backups of BRAT `data.json` and `community-plugins.json`; close Obsidian before the file-layer writes.
 
 ---
 
@@ -142,7 +144,7 @@ Reserve one coordinator to own the vault fixture, evidence ledger, and final ver
 | 4 | `OBS-009..OBS-010` | Live Obsidian desktop app; capture visible app state |
 | 5 | `MCP-M001..MCP-M002` | Live app/token inventory, plus the no-app fallback boundary |
 | 6 | `MCP-H001..MCP-H004` | Live app and throwaway note; delete last |
-| 7 | `OBS-011` | Scratch ledger; no app needed |
+| 7 | `OBS-011..OBS-013` | Scratch ledger/table and throwaway BRAT fixture; reload only after file-layer evidence |
 
 After each wave, save the transcript and evidence path, then reconcile the root index with the executed scenario files. Run the destructive MCP delete only after the round-trip evidence identifies the disposable note.
 
@@ -226,7 +228,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 ---
 
-## 12. BEANCOUNT / FLAT-FINANCING TIE-IN (`OBS-011`)
+## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-013`)
 
 ### OBS-011 | Beancount file-layer transaction
 
@@ -241,18 +243,50 @@ Prompt: `Append a balanced grocery transaction to a scratch Beancount ledger and
 #### Test Execution
 
 > **Feature File:** [`plugin-tie-ins/beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md)
-> **Catalog:** No dedicated catalog entry. This is a file-layer recipe; the scenario links to the canonical flat-financing plugin reference.
+> **Catalog:** [`../feature-catalog/plugins/beancount-finance.md`](../feature-catalog/plugins/beancount-finance.md) — the scenario links to the canonical beancount-finance plugin reference.
+
+### OBS-012 | Obsidian Tables file-layer round-trip
+
+#### Description
+
+Create or edit a scratch `.table.md` through the file layer, validate its Agentable JSON payload, and verify that the changed table renders after opening or reloading the note in Obsidian.
+
+#### Scenario Contract
+
+Prompt: `Create or update a scratch Obsidian Tables .table.md at the file layer, then verify the edited table renders in Obsidian.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/obsidian-tables-roundtrip.md`](plugin-tie-ins/obsidian-tables-roundtrip.md)
+> **Catalog:** [`../feature-catalog/plugins/obsidian-tables.md`](../feature-catalog/plugins/obsidian-tables.md) — the scenario validates the `.table.md` file-layer recipe and visible render boundary.
+
+### OBS-013 | BRAT headless beta-plugin install
+
+#### Description
+
+Stage a tagged beta-plugin release, register its repository and release policy in BRAT, activate the manifest ID through `community-plugins.json`, and verify each file-layer stage.
+
+#### Scenario Contract
+
+Prompt: `Install a tagged beta plugin headlessly through BRAT by staging its release assets, registering the repository, activating the manifest ID, and reporting every verified stage.`
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md)
+> **Catalog:** [`../feature-catalog/plugins/obsidian42-brat.md`](../feature-catalog/plugins/obsidian42-brat.md) — the scenario validates BRAT's stage → register → activate file-layer sequence.
 
 ---
 
 ## 13. AUTOMATED TEST CROSS-REFERENCE
 
-The current mode package has no dedicated automated test suite for these external CLI/MCP surfaces. The executable anchors are the existing reference scripts and read-only diagnostics:
+The current mode package has no dedicated automated test suite for these external CLI/MCP surfaces. The executable anchors are the existing reference scripts and read-only diagnostics; the plugin workflows provide the file-layer verification contracts:
 
 | Anchor | Coverage | Playbook overlap |
 |---|---|---|
 | [`../examples/headless-notes-workflow.sh`](../examples/headless-notes-workflow.sh) | Headless vault preflight, search, create, and read-back | `OBS-001`, `OBS-003`, `OBS-004` |
 | [`../examples/beancount-transaction.sh`](../examples/beancount-transaction.sh) | Balanced file-layer transaction and optional `bean-check` | `OBS-011` |
+| [`../references/plugins/obsidian-tables/workflows.md`](../references/plugins/obsidian-tables/workflows.md) | `.table.md` create/edit, parse, and reload contract | `OBS-012` |
+| [`../references/plugins/obsidian42-brat/workflows.md`](../references/plugins/obsidian42-brat/workflows.md) | Stage, register, activate, and verify beta-plugin files | `OBS-013` |
 | [`../examples/mcp-roundtrip.sh`](../examples/mcp-roundtrip.sh) | MCP prerequisite probe and Code Mode round-trip reference | `MCP-H001`, `MCP-M002` |
 | [`../scripts/doctor.sh`](../scripts/doctor.sh) | Read-only binary, manual, REST API, and token diagnostics | `OBS-009`, `MCP-M001`, `MCP-M002` |
 
@@ -279,3 +313,5 @@ The current mode package has no dedicated automated test suite for these externa
 | `MCP-M001` | Tool inventory | [`additional-tools-verify`](../feature-catalog/mcp-low-priority/additional-tools-verify.md) |
 | `MCP-M002` | App/token boundary | [`additional-tools-verify`](../feature-catalog/mcp-low-priority/additional-tools-verify.md) |
 | `OBS-011` | Beancount file-layer transaction | Dedicated plugin reference in [`beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md) |
+| `OBS-012` | Obsidian Tables file-layer round-trip | Dedicated plugin reference in [`obsidian-tables-roundtrip.md`](plugin-tie-ins/obsidian-tables-roundtrip.md) |
+| `OBS-013` | BRAT headless beta-plugin install | Dedicated plugin reference in [`brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md) |

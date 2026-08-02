@@ -5,6 +5,7 @@ trigger_phrases:
   - "mcp-obsidian feature catalog"
   - "notesmd-cli features"
   - "obsidian MCP tools"
+  - "Obsidian plugin file-layer operations"
 last_updated: "2026-08-02"
 version: 1.0.0.0
 ---
@@ -19,7 +20,9 @@ The inventory records current behavior only. Exact `notesmd-cli` flags for `crea
 
 ## 1. OVERVIEW
 
-The mode has 20 catalog entries: 11 headless CLI operations, 3 official app-backed CLI capabilities, 5 confirmed cyanheads MCP core tools, and 1 explicit inventory boundary for the remaining 9 MCP tools whose names were not captured. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
+The mode has 23 catalog entries: 11 headless CLI operations, 3 official app-backed CLI capabilities, 5 confirmed cyanheads MCP core tools, 1 explicit inventory boundary for the remaining 9 MCP tools whose names were not captured, and 3 plugin file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
+
+Category inventory includes `mcp-high-priority/` (4), `mcp-medium-priority/` (1), `mcp-low-priority/` (1), the `notesmd-cli-*` and `obsidian-cli-*` operation folders (14), and the new `plugins/` category (3).
 
 ---
 
@@ -190,3 +193,27 @@ See [`mcp-medium-priority/manage-tags.md`](mcp-medium-priority/manage-tags.md).
 The server reports 14 `obsidian_*` tools in total, while the current reference enumerates only 5 confirmed core names. The remaining 9 names, signatures, and capability groupings are not asserted here; enumerate them with `list_tools()` before adding a narrower feature claim.
 
 See [`mcp-low-priority/additional-tools-verify.md`](mcp-low-priority/additional-tools-verify.md).
+
+---
+
+## 14. PLUGINS
+
+The plugin category records file-layer operations for the three community plugins covered by the mode. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
+
+### Beancount Ledger
+
+Append, query, price, and validate the `beancount-finance` plugin's structured Beancount files.
+
+See [`plugins/beancount-finance.md`](plugins/beancount-finance.md).
+
+### Obsidian Tables
+
+Create and edit the Tables plugin's `.table.md` Agentable JSON payload, then verify the rendered table.
+
+See [`plugins/obsidian-tables.md`](plugins/obsidian-tables.md).
+
+### BRAT
+
+Stage GitHub beta-plugin assets, register the repository and release policy, and activate the manifest ID through the vault files.
+
+See [`plugins/obsidian42-brat.md`](plugins/obsidian42-brat.md).

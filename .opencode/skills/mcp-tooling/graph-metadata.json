@@ -8,7 +8,7 @@
       {
         "target": "mcp-code-mode",
         "weight": 0.7,
-        "context": "External cross-skill dependency (ADR-005): the shared MCP execution substrate all six modes reach through the unchanged code_mode MCP registration key — the three workflow bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) as their MCP fallback lane, and the three transports (mcp-figma via the optional Framelink manual, mcp-refero and mcp-mobbin as remote MCP through Code Mode). mcp-code-mode is infrastructure serving consumers beyond this hub, not a hub member."
+        "context": "External cross-skill dependency (ADR-005): the shared MCP execution substrate all seven modes reach through the unchanged code_mode MCP registration key — the four workflow bridges (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for dual CLI+MCP Obsidian vault and note management, and mcp-aside-devtools) as their MCP fallback lane, and the three transports (mcp-figma via the optional Framelink manual, mcp-refero and mcp-mobbin as remote MCP through Code Mode). mcp-code-mode is infrastructure serving consumers beyond this hub, not a hub member."
       },
       {
         "target": "sk-design",
@@ -20,7 +20,7 @@
       {
         "target": "sk-code",
         "weight": 0.5,
-        "context": "Union of all six modes' contributions to sk-code implementation: browser debugging for the WEB stack route (mcp-chrome-devtools), task-management context for development workflows (mcp-click-up), agentic-browser task evidence and REPL captures (mcp-aside-devtools), Figma exports/DESIGN.md/variables/screenshots feeding implementation (mcp-figma), and real-app UI reference research grounding what gets built (mcp-refero for web products, mcp-mobbin for mobile app patterns)."
+        "context": "Union of all seven modes contributions to sk-code implementation: browser debugging for the WEB stack route (mcp-chrome-devtools), task-management context for development workflows (mcp-click-up), Obsidian vault and markdown-note management through dual CLI plus MCP (mcp-obsidian), agentic-browser task evidence and REPL captures (mcp-aside-devtools), Figma exports/DESIGN.md/variables/screenshots feeding implementation (mcp-figma), and real-app UI reference research grounding what gets built (mcp-refero for web products, mcp-mobbin for mobile app patterns)."
       }
     ],
     "siblings": [
@@ -53,7 +53,10 @@
     "design-reference-research",
     "ui-research",
     "app-design-research",
-    "mobile-ux"
+    "mobile-ux",
+    "note-management",
+    "knowledge-base",
+    "markdown-notes"
   ],
   "intent_signals": [
     "chrome devtools",
@@ -105,7 +108,16 @@
     "mobbin mcp",
     "app design research",
     "screen examples",
-    "ux flow references"
+    "ux flow references",
+    "obsidian",
+    "obsidian vault",
+    "notesmd-cli",
+    "obsidian mcp",
+    "note management",
+    "markdown notes",
+    "vault search",
+    "daily note",
+    "knowledge base"
   ],
   "derived": {
     "trigger_phrases": [
@@ -230,7 +242,16 @@
       "mobbin",
       "app design research",
       "mobile design patterns",
-      "ux flow references"
+      "ux flow references",
+      "obsidian",
+      "obsidian vault",
+      "notesmd-cli",
+      "obsidian mcp",
+      "note management",
+      "markdown notes",
+      "vault search",
+      "daily note",
+      "knowledge base"
     ],
     "key_files": [
       ".opencode/skills/mcp-tooling/SKILL.md",
@@ -297,7 +318,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "mcp-tooling is the single public advisor identity for six MCP tool bridges: three workflow modes and three design transports, folded into one parent hub (packet 126-mcp-tooling-parent, extended to six modes by the aside/refero/mobbin additions). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-aside-devtools drives the agentic Aside browser (natural-language tasks and the deterministic repl evidence lane) for autonomous browser work that developer-driven CDP inspection does not cover. mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive. mcp-refero searches real shipped web-product UI references and mcp-mobbin researches real mobile app/screen/flow patterns, both read-only remote MCP through Code Mode. All three transports carry the mandatory sk-design cross-hub pairing for design judgment before any design-affecting operation -- no transport decides taste itself. It matters because it gives six previously-flat or independently-added MCP bridges one coherent advisor identity while preserving each mode's own contract, and mcp-code-mode -- the shared execution substrate all six reach through Code Mode -- stays external infrastructure rather than a dissolved hub member.",
+    "causal_summary": "mcp-tooling is the single public advisor identity for seven MCP tool bridges: four workflow modes and three design transports, folded into one parent hub (packet 126-mcp-tooling-parent, extended to seven modes by the aside/refero/mobbin/obsidian additions). mcp-chrome-devtools routes browser-debugging work between the bdg CLI and Code Mode MCP, prioritizing the cheapest effective interface. mcp-click-up routes ClickUp task management between the cupt CLI (daily ops) and the official ClickUp MCP (documents, goals, bulk operations), with agent-safety invariants (dry-run before batch completion, per-list status resolution). mcp-obsidian routes Obsidian vault and markdown-note management across headless notesmd-cli, the official app-backed obsidian CLI, and the cyanheads MCP. mcp-aside-devtools drives the agentic Aside browser (natural-language tasks and the deterministic repl evidence lane) for autonomous browser work that developer-driven CDP inspection does not cover. mcp-figma drives Figma Desktop from the terminal through figma-ds-cli, gated read-only/mutating/destructive. mcp-refero searches real shipped web-product UI references and mcp-mobbin researches real mobile app/screen/flow patterns, both read-only remote MCP through Code Mode. All three transports carry the mandatory sk-design cross-hub pairing for design judgment before any design-affecting operation — no transport decides taste itself. It matters because it gives seven previously-flat or independently-added MCP bridges one coherent advisor identity while preserving the contract owned by each mode, and mcp-code-mode — the shared execution substrate all seven reach through Code Mode — stays external infrastructure rather than a dissolved hub member.",
     "source_docs": [
       "SKILL.md",
       "mode-registry.json",

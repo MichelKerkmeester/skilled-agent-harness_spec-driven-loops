@@ -1,7 +1,7 @@
 {
   "name": "mcp-tooling",
-  "description": "Parent hub for MCP tool bridges: routes to three workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-aside-devtools for AI-browser automation via the Aside browser) plus three design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI design references via the Refero MCP, mcp-mobbin researching app/screen/flow design patterns via the Mobbin MCP) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all modes reach through the unchanged code_mode registration key \u2014 it is external infrastructure, not a hub member, and stays a flat standalone skill.",
-  "version": "1.4.0.0",
+  "description": "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-obsidian for Obsidian vault and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, and mcp-aside-devtools for AI-browser automation via the Aside browser) plus three design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI design references via the Refero MCP, and mcp-mobbin researching app/screen/flow design patterns via the Mobbin MCP) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all modes reach through the unchanged code_mode registration key — it is external infrastructure, not a hub member, and stays a flat standalone skill.",
+  "version": "1.4.0.1",
   "importance_tier": "high",
   "keywords": [
     "mcp-tooling",
@@ -33,5 +33,5 @@
     "note management",
     "markdown notes"
   ],
-  "lastUpdated": "2026-07-16T15:55:00Z"
+  "lastUpdated": "2026-08-02T00:00:00Z"
 }

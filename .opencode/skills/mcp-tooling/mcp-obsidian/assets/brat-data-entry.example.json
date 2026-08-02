@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "pluginList": [
+    "mkshp-dev/obsidian-finance-plugin",
+    "aztekgold/obsidian-tables"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "mkshp-dev/obsidian-finance-plugin",
+      "version": "2.3.1"
+    },
+    {
+      "repo": "aztekgold/obsidian-tables",
+      "version": "latest"
+    }
+  ],
+  "themesList": [
+    {
+      "repo": "kepano/obsidian-minimal",
+      "lastUpdate": "css-content-checksum"
+    }
+  ],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "enableAfterInstall": true,
+  "loggingEnabled": false,
+  "loggingPath": "BRAT-log",
+  "loggingVerboseEnabled": false,
+  "debuggingMode": false,
+  "notificationsEnabled": true,
+  "globalTokenName": "",
+  "personalAccessToken": "",
+  "selectLatestPluginVersionByDefault": false,
+  "allowIncompatiblePlugins": false
+}

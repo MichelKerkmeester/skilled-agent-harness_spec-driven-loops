@@ -12,13 +12,13 @@ version: 1.0.0.0
 
 # mcp-tooling: Feature Catalog
 
-This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches six MCP-bridge packets across a workspace-mutating workflow axis (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`) and a non-mutating transport axis (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
+This catalog inventories the live `mcp-tooling` hub surface. The hub scores and dispatches seven MCP-bridge packets across a workspace-mutating workflow axis (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`) and a non-mutating transport axis (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not itself call any external tool — it scores intent, resolves one of its six packets (or an ordered bundle), and hands off to the resolved packet.
+Use this catalog as the current-state inventory for the `mcp-tooling` hub. The hub does not itself call any external tool — it scores intent, resolves one of its seven packets (or an ordered bundle), and hands off to the resolved packet.
 
 ---
 
@@ -28,7 +28,7 @@ Use this catalog as the current-state inventory for the `mcp-tooling` hub. The h
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single mode, an ordered bundle, or a deferred disambiguation across the hub's six packets.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single mode, an ordered bundle, or a deferred disambiguation across the hub's seven packets.
 
 #### Current Reality
 

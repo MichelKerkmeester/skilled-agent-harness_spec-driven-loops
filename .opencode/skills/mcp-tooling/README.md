@@ -1,9 +1,11 @@
 ---
 title: mcp-tooling
-description: Parent hub for MCP tool bridges — routes to six registered transport/workflow modes through the hub manifest and mode registry.
+description: Parent hub for MCP tool bridges — routes to seven registered transport/workflow modes through the hub manifest and mode registry.
 trigger_phrases:
   - "chrome devtools"
   - "clickup task"
+  - "obsidian vault"
+  - "notesmd-cli"
   - "figma cli"
   - "mcp tool bridge"
 version: 1.0.0.0
@@ -11,7 +13,7 @@ version: 1.0.0.0
 
 # mcp-tooling
 
-> One advisor identity across six registered modes: Aside, Chrome DevTools, ClickUp, Figma, Mobbin, and Refero.
+> One advisor identity across seven registered modes: Aside, Chrome DevTools, ClickUp, Figma, Mobbin, Obsidian, and Refero.
 
 ---
 
@@ -19,25 +21,26 @@ version: 1.0.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging, ClickUp task operations, Figma transport, and design-research retrieval through the registered MCP bridges |
+| **Use it for** | Browser debugging, ClickUp task operations, Obsidian vault and markdown-note management, Figma transport, and design-research retrieval through the registered MCP bridges |
 | **Invoke with** | Keyword routing through Gate 2; `/doctor:mcp` covers install/debug separately |
-| **Routes to** | `mcp-aside-devtools/`, `mcp-chrome-devtools/`, `mcp-click-up/`, `mcp-figma/`, `mcp-mobbin/`, or `mcp-refero/` via `leaf-manifest.json` and `mode-registry.json` |
+| **Routes to** | `mcp-aside-devtools/`, `mcp-chrome-devtools/`, `mcp-click-up/`, `mcp-figma/`, `mcp-mobbin/`, `mcp-obsidian/`, or `mcp-refero/` via `leaf-manifest.json` and `mode-registry.json` |
 | **Produces** | Browser captures/automation, ClickUp task state changes, Figma transport output, or design-research evidence (never a design decision — pairs with `sk-design` for that) |
 
 ---
 
 ## 2. OVERVIEW
 
-`mcp-tooling` is a parent hub: it holds no packet-local logic and routes every request to one of six registered modes. The authoritative current list is the hub's `leaf-manifest.json`.
+`mcp-tooling` is a parent hub: it holds no packet-local logic and routes every request to one of seven registered modes. The authoritative current list is the hub's `leaf-manifest.json`.
 
 - **`mcp-aside-devtools/`** — Aside DevTools transport.
 - **`mcp-chrome-devtools/`** — browser debugging and automation.
 - **`mcp-click-up/`** — ClickUp task management.
 - **`mcp-figma/`** — Figma transport; pair with `sk-design` for design judgment.
 - **`mcp-mobbin/`** — Mobbin design-research transport.
+- **`mcp-obsidian/`** — Obsidian vault and markdown-note management via a headless CLI and MCP.
 - **`mcp-refero/`** — Refero design-research transport.
 
-Each mode owns its packet-local contract and resources. `mcp-code-mode` — the shared MCP execution substrate the modes reach through — is excluded and stays a flat standalone skill; it is not a hub member. The six-mode topology is anchored by `.opencode/skills/mcp-tooling/leaf-manifest.json:2`.
+Each mode owns its packet-local contract and resources. `mcp-code-mode` — the shared MCP execution substrate the modes reach through — is excluded and stays a flat standalone skill; it is not a hub member. The seven-mode topology is anchored by `.opencode/skills/mcp-tooling/leaf-manifest.json:2`.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "mcp-tooling: Manual Testing Playbook"
-description: "Operator-facing index for mcp-tooling hub-routing validation across all six modes: does the hub resolve mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools, mcp-figma, mcp-refero, and mcp-mobbin correctly through mode-registry.json and hub-router.json, including six blind holdouts and the chrome-vs-aside boundary."
+description: "Operator-facing index for mcp-tooling hub-routing validation across all seven modes: does the hub resolve mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-figma, mcp-refero, and mcp-mobbin correctly through mode-registry.json and hub-router.json, including seven blind holdouts and the chrome-vs-aside and obsidian-vs-click-up boundaries."
 version: 1.1.0.0
 ---
 
@@ -8,7 +8,7 @@ version: 1.1.0.0
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against the live `mcp-tooling` hub — no mocks, no stubs. Scenarios verify the AI's actual routing behavior: which `workflowMode` the hub router picks (per `hub-router.json` `routerSignals`/`vocabularyClasses`), which packet it loads, and how it behaves under ambiguous input. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
 
-This document is the hub-level operator directory for `mcp-tooling`'s routing behavior across its SIX modes — three workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`) and three design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). It covers hub-level mode resolution only, not the internal behavior of any packet, which each packet's own testing material already covers (`<packet>/manual-testing-playbook/`, unchanged by the hub corpus).
+This document is the hub-level operator directory for `mcp-tooling`'s routing behavior across its SEVEN modes — four workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`) and three design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`). It covers hub-level mode resolution only, not the internal behavior of any packet, which each packet's own testing material already covers (`<packet>/manual-testing-playbook/`, unchanged by the hub corpus).
 
 Source of truth for routing behavior: `.opencode/skills/mcp-tooling/SKILL.md` §2 Smart Routing, `.opencode/skills/mcp-tooling/hub-router.json` (including `routerPolicy.defaultResourceSemantics: "fallback-only"` and the discovery-only `routerPolicy.discoveryClasses`).
 
@@ -16,9 +16,9 @@ Source of truth for routing behavior: `.opencode/skills/mcp-tooling/SKILL.md` §
 
 ## 1. OVERVIEW
 
-The `mcp-tooling` hub routes any MCP tool-bridge request to exactly one advisor identity, then resolves `workflowMode` to one of six packets via `hub-router.json`. This playbook validates that resolution, not any packet's internal pipeline.
+The `mcp-tooling` hub routes any MCP tool-bridge request to exactly one advisor identity, then resolves `workflowMode` to one of seven packets via `hub-router.json`. This playbook validates that resolution, not any packet's internal pipeline.
 
-The scored corpus holds **13 scenario files** under `hub-routing/`: 7 primary routing scenarios (one per mode plus the ambiguous-defer contract) and 6 blind holdouts (one per mode, `blindToRouterKeywords: true`, with any remediation-era vocabulary bindings recorded honestly as `blindExceptions`).
+The scored corpus holds **15 scenario files** under `hub-routing/`: 8 primary routing scenarios (one per mode plus the ambiguous-defer contract) and 7 blind holdouts (one per mode, `blindToRouterKeywords: true`, with any remediation-era vocabulary bindings recorded honestly as `blindExceptions`).
 
 ---
 
@@ -26,7 +26,7 @@ The scored corpus holds **13 scenario files** under `hub-routing/`: 7 primary ro
 
 Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads).
 
-### Primary routing (7)
+### Primary routing (8)
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
@@ -37,6 +37,7 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 | MT-007 | [`hub-routing/aside-browser-automation.md`](../manual-testing-playbook/hub-routing/aside-browser-automation.md) | `mcp-aside-devtools` (Aside/agentic-browser/REPL-evidence signal) |
 | MT-008 | [`hub-routing/refero-design-reference.md`](../manual-testing-playbook/hub-routing/refero-design-reference.md) | `mcp-refero` (Refero/real-app style-reference signal) |
 | MT-009 | [`hub-routing/mobbin-app-research.md`](../manual-testing-playbook/hub-routing/mobbin-app-research.md) | `mcp-mobbin` (Mobbin/app-design-research signal) |
+| MT-010 | [`hub-routing/obsidian-note-management.md`](../manual-testing-playbook/hub-routing/obsidian-note-management.md) | `mcp-obsidian` (Obsidian/daily-note/vault signal) |
 
 ### Design-transport bundle (Figma + Refero) — primary evidence
 
@@ -46,7 +47,7 @@ The two design-reference transports (`mcp-figma`, `mcp-refero`) are the hub's or
 |----|------|--------------------------|
 | MT-CR-001 | [`compiled-routing/ordered-bundle-figma-refero-compiled-routing.md`](../manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md) | `mcp-refero` (design-transport bundle; Figma leg covered by MT-003) |
 
-### Blind holdouts (6 — one per mode, coverage 6/6)
+### Blind holdouts (6 → 7 — one per mode, coverage 6/6 → 7/7)
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
@@ -56,23 +57,28 @@ The two design-reference transports (`mcp-figma`, `mcp-refero`) are the hub's or
 | MT-H04 | [`hub-routing/holdout-agentic-browser.md`](../manual-testing-playbook/hub-routing/holdout-agentic-browser.md) | `mcp-aside-devtools` (natural-language autonomous browser task) |
 | MT-H05 | [`hub-routing/holdout-web-design-reference.md`](../manual-testing-playbook/hub-routing/holdout-web-design-reference.md) | `mcp-refero` (natural-language shipped-web-product UI references) |
 | MT-H06 | [`hub-routing/holdout-mobile-pattern-research.md`](../manual-testing-playbook/hub-routing/holdout-mobile-pattern-research.md) | `mcp-mobbin` (natural-language mobile app pattern research) |
+| MT-H07 | [`hub-routing/holdout-knowledge-base.md`](../manual-testing-playbook/hub-routing/holdout-knowledge-base.md) | `mcp-obsidian` (natural-language knowledge-base note management) |
 
 ### The MT-H01 boundary (chrome vs aside)
 
-MT-H01 is the certified chrome-vs-aside boundary case for the six-mode hub: developer-driven inspection primitives (network requests, live DOM) with no agentic vocabulary must STILL resolve `mcp-chrome-devtools`; `mcp-aside-devtools` wins only when the prompt asks the browser to act autonomously (MT-H04 is the inverse). An `mcp-aside-devtools` or `defer` result on MT-H01 is a routing regression.
+MT-H01 is the certified chrome-vs-aside boundary case for the seven-mode hub: developer-driven inspection primitives (network requests, live DOM) with no agentic vocabulary must STILL resolve `mcp-chrome-devtools`; `mcp-aside-devtools` wins only when the prompt asks the browser to act autonomously (MT-H04 is the inverse). An `mcp-aside-devtools` or `defer` result on MT-H01 is a routing regression.
+
+### The MT-H07 boundary (obsidian vs click-up)
+
+Both modes carry management-shaped vocabulary: note/vault/knowledge-base/markdown-linking intent resolves `mcp-obsidian`, while task/project/ticket tracking resolves `mcp-click-up`; an `mcp-click-up` or `defer` result on MT-H07 is a routing regression.
 
 ---
 
 ## 3. SUCCESS CRITERIA
 
-- All 13 scenarios resolve to their expected `workflowMode` (or `defer` for MT-004) and assemble exactly the expected packet resources — no more (fallback-only: `defaultResource` is never unioned into a scored route).
+- All 15 scenarios resolve to their expected `workflowMode` (or `defer` for MT-004) and assemble exactly the expected packet resources — no more (fallback-only: `defaultResource` is never unioned into a scored route).
 - No scenario silently loads the wrong packet or falls through to a stale flat-skill path.
 - The genuinely ambiguous scenario (MT-004) defers: zero modes score, no packet resources are assembled, and the Chrome default is at most a defer-time suggestion.
-- The MT-H01 chrome-vs-aside boundary holds (see above), and each of the six modes has a passing blind holdout (coverage 6/6).
+- The MT-H01 chrome-vs-aside and MT-H07 obsidian-vs-click-up boundaries hold (see above), and each of the seven modes has a passing blind holdout (coverage 7/7).
 
 ---
 
 ## 4. RELATED
 
-- Packet-level playbooks: `mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-click-up/manual-testing-playbook/manual-testing-playbook.md`, `mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-figma/manual-testing-playbook/manual-testing-playbook.md`, `mcp-refero/manual-testing-playbook/manual-testing-playbook.md`, `mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` (each covers its packet's internal behavior and intra-packet routing recall).
+- Packet-level playbooks: `mcp-chrome-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-click-up/manual-testing-playbook/manual-testing-playbook.md`, `mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md`, `mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md`, `mcp-figma/manual-testing-playbook/manual-testing-playbook.md`, `mcp-refero/manual-testing-playbook/manual-testing-playbook.md`, `mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md` (each covers its packet's internal behavior and intra-packet routing recall).
 - Lane-C automated benchmark: `benchmark/` — frozen pre-remediation run under `benchmark/baseline/` (PASS 95), enforced route-gold re-run under `benchmark/2026-07-16--after-routing-remediation--router/` (PASS 98, routeGold 13/13); see `benchmark/README.md` for the run table.

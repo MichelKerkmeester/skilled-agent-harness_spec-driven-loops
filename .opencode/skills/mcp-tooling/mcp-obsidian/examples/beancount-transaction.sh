@@ -2,10 +2,10 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # mcp-obsidian :: Beancount Transaction (file-layer plugin operation)
 # Appends a balanced transaction to a .beancount ledger, then validates with
-# bean-check. Demonstrates the file-layer model: operate the obsidian-flat-
-# financing plugin by editing the DATA it renders, not by driving its UI.
+# bean-check. Demonstrates the file-layer model: operate the beancount-finance
+# plugin by editing the DATA it renders, not by driving its UI.
 #
-# See references/plugins/flat-financing.md for the data model.
+# See ../references/plugins/beancount-finance/beancount-finance.md for the data model.
 # ─────────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
@@ -97,7 +97,7 @@ main() {
 
   echo ""
   echo "══════════════════════════════════════════"
-  echo " Done. The obsidian-flat-financing plugin re-renders this ledger"
+  echo " Done. The Beancount Ledger plugin re-renders this ledger"
   echo " when its dashboard is opened/reloaded in the app."
   echo "══════════════════════════════════════════"
 }
