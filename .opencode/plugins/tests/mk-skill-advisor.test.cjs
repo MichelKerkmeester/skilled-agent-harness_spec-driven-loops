@@ -45,7 +45,7 @@ const CLAUDE_HOOK_PATH = path.join(
   'user-prompt-submit.ts',
 );
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]:';
-const GOVERNOR_DIRECTIVE = 'Fable-5 governor:';
+const GOVERNOR_DIRECTIVE = 'Governor:';
 
 const MODULE_STUBS = new Map([
   ['@opencode-ai/plugin/tool', 'export const tool = (definition) => definition;'],
@@ -204,7 +204,7 @@ test('missing prompts retain constitutional context while disabled mode stays si
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
   const missing = await runPrompt(hooks, { prompt: undefined, sessionID: '__global__' });
   assert.match(missing.system[0], /Comment hygiene \[HARD BLOCK\]:/);
-  assert.match(missing.system[0], /Fable-5 governor:/);
+  assert.match(missing.system[0], /Governor:/);
 
   const disabledHooks = await makePlugin({ enabled: false, spawnOverride: spawnSequence([child]) });
   const disabled = await runPrompt(disabledHooks);
@@ -234,7 +234,7 @@ test('termination grace stays inside the configured timeout budget', async () =>
 
   assert.ok(elapsedMs < 200, `expected bounded timeout, got ${elapsedMs}ms`);
   assert.deepEqual(child.kills, ['SIGTERM', 'SIGKILL']);
-  assert.match(output.system[0], /Fable-5 governor:/);
+  assert.match(output.system[0], /Governor:/);
   assert.match(await status(hooks), /last_error_code=TIMEOUT/);
 
   const defaultHooks = await makePlugin({ enabled: false });
@@ -370,7 +370,7 @@ test('bridge rendering includes governor context and retains canonical renderer 
   const source = fs.readFileSync(BRIDGE_PATH, 'utf8');
 
   assert.match(rendered, /Comment hygiene \[HARD BLOCK\]:/);
-  assert.match(rendered, /Fable-5 governor:/);
+  assert.match(rendered, /Governor:/);
   assert.match(source, /compat\.renderAdvisorBrief/);
   assert.match(source, /loadCanonicalRenderer/);
 });
