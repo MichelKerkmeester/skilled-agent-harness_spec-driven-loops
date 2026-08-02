@@ -1690,6 +1690,7 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
   'deepseek-v4-pro',
+  'deepseek-v4-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
@@ -1872,6 +1873,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4-pro', 'deepseek'],
+  ['deepseek-v4-flash', 'deepseek'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
