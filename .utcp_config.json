@@ -216,6 +216,43 @@
           }
         }
       }
+    },
+    {
+      "name": "magnific",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "magnific": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "mcp-remote",
+              "https://mcp.magnific.com"
+            ],
+            "env": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "webflow",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "webflow": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "webflow-mcp-server@latest"
+            ],
+            "env": {
+              "WEBFLOW_TOKEN": "${WEBFLOW_TOKEN}"
+            }
+          }
+        }
+      }
     }
   ]
 }
