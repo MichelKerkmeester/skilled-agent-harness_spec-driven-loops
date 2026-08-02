@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
+  "description": "A packet with passing phases can still fail as a whole: a stale child summary, conflicting statuses, unfresh generated assets, an unvalidated doc, or",
+  "keywords": [
+    "packet",
+    "passing",
+    "phases",
+    "still",
+    "fail",
+    "whole",
+    "stale",
+    "child",
+    "summary",
+    "conflicting",
+    "statuses",
+    "unfresh",
+    "assets",
+    "unvalidated",
+    "doc"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.594Z",
+  "specId": "008",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

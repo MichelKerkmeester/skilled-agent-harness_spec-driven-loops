@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/001-deep-research",
+  "description": "The phrase \"Webflow MCP 2.0\" does not by itself establish the real tool inventory, authentication flow, client support, permission boundary, rate",
+  "keywords": [
+    "phrase",
+    "webflow",
+    "mcp",
+    "itself",
+    "establish",
+    "real",
+    "tool",
+    "inventory",
+    "authentication",
+    "flow",
+    "client",
+    "support",
+    "permission",
+    "boundary",
+    "rate"
+  ],
+  "lastUpdated": "2026-08-02T16:03:49.799Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
+  "parent_id": "mcp-tooling/015-mcp-webflow",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow verification",
+      "mcp-webflow phase 8",
+      "webflow closeout",
+      "webflow verification plan",
+      "webflow closeout plan",
+      "webflow verification tasks",
+      "webflow closeout tasks",
+      "webflow verification summary",
+      "webflow closeout status"
+    ],
+    "key_topics": [
+      "webflow",
+      "verification",
+      "mcp-webflow",
+      "phase",
+      "closeout",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "packet",
+      "passing",
+      "phases"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Validate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Static Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "named",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet with passing phases can still fail as a whole: a stale child summary, conflicting statuses, unfresh generated assets, an unvalidated doc, or an untested connection",
+    "created_at": "2026-08-02T13:47:11Z",
+    "last_save_at": "2026-08-02T15:13:43.407Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:62499e1111eb6a8bbe782423c8c341a3753bb4283d794cb12c90d7bbe95491a5",
+    "source_doc_hashes": {
+      "spec.md": "d615c2369ed0dd273805b6215870e14a5c4d46f91a75acdce99ce890683eef5d",
+      "plan.md": "552888eb2a9a155175c593a7696680111a1677acdefbae1049ba58d4fa325e5e",
+      "tasks.md": "b28090120b740b84b1729682c7b2afaf056910a9932058e85d46807f03e43291",
+      "implementation-summary.md": "8ca7f4d89a934bcf7542bb803f288c8b800663ec8297fc3efd5031f49e52964a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

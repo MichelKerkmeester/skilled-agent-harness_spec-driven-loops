@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-mcp-webflow/004-skill-authoring",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/004-skill-authoring",
+  "parent_id": "mcp-tooling/015-mcp-webflow",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-webflow skill authoring",
+      "webflow mode docs",
+      "mcp-webflow phase 4",
+      "mcp-webflow authoring plan",
+      "webflow skill docs plan",
+      "mcp-webflow authoring tasks",
+      "webflow skill tasks",
+      "mcp-webflow authoring summary",
+      "webflow skill status"
+    ],
+    "key_topics": [
+      "mcp-webflow",
+      "skill",
+      "authoring",
+      "webflow",
+      "mode",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "connected"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A connected MCP transport is not a safe or discoverable skill",
+    "created_at": "2026-08-02T13:47:08Z",
+    "last_save_at": "2026-08-02T15:13:42.796Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5eb305040a0215a3a0f91cdfe1de380495753deb7f49dce14971a2e73dbe7d1",
+    "source_doc_hashes": {
+      "spec.md": "c3f5d2e6888136401a82d62bc27c3bbc3aad9db62a0e62c044b66682226f0324",
+      "plan.md": "f5f4dbbda74dce17bfeb61d09c344b4e3fd373f1cefc286ffad90fba7c1ff80e",
+      "tasks.md": "7351dbdfaf264589be110cc22767f5bf73a5874c2326b6fd62c0e76b7a32e8c9",
+      "implementation-summary.md": "5e6983658a8bea25942e87e31421fc4db3a165769024d278012c89dd2318e445"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

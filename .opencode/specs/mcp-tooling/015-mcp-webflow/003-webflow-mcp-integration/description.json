@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/003-webflow-mcp-integration",
+  "description": "A researched architecture is not usable until the official Webflow MCP transport can be configured, authenticated, discovered, and exercised through",
+  "keywords": [
+    "researched",
+    "architecture",
+    "usable",
+    "until",
+    "official",
+    "webflow",
+    "mcp",
+    "transport",
+    "configured",
+    "authenticated",
+    "discovered",
+    "exercised"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.593Z",
+  "specId": "003",
+  "folderSlug": "webflow-mcp-integration",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

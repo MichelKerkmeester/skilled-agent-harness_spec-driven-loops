@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-mcp-webflow/007-routing-benchmark-and-deep-review",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/007-routing-benchmark-and-deep-review",
+  "parent_id": "mcp-tooling/015-mcp-webflow",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow routing benchmark",
+      "mcp-webflow phase 7",
+      "webflow deep review",
+      "webflow benchmark plan",
+      "webflow deep review plan",
+      "webflow benchmark tasks",
+      "webflow deep review tasks",
+      "webflow benchmark summary",
+      "webflow deep review status"
+    ],
+    "key_topics": [
+      "webflow",
+      "routing",
+      "benchmark",
+      "mcp-webflow",
+      "phase",
+      "deep",
+      "review",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "registration"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Registration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Generate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Suite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Webflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Webflow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registration Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Registration is not proof of behavior",
+    "created_at": "2026-08-02T13:47:10Z",
+    "last_save_at": "2026-08-02T15:13:43.252Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3695bb5bf9037b4712f9a2684984a958c04c89c7f4a08bfe314e1e3f1e73780c",
+    "source_doc_hashes": {
+      "spec.md": "4a758ce4fc13e564be53c76f0c4a4fae30dbfd85b878ef6b187e5d5b6448f908",
+      "plan.md": "71db6e7bac7bdde518c98a00eafa5df8f660d0da1c92eccfa8b12e731ead4c03",
+      "tasks.md": "502609c5ebc5bd089007b3a4d3a584b12d69265a54bcedc049252009f7a5512a",
+      "implementation-summary.md": "ce2de072c2fbf0ac5d6b26a1b1b051ba55134c3d7b254c6a842cc48b0af9e43d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

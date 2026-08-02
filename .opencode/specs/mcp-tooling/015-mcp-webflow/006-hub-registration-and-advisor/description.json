@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/006-hub-registration-and-advisor",
+  "description": "An authored mode that is not registered is invisible: the hub router never selects it, the advisor cannot recommend it, compiled routing does not",
+  "keywords": [
+    "authored",
+    "mode",
+    "registered",
+    "invisible",
+    "hub",
+    "router",
+    "never",
+    "selects",
+    "advisor",
+    "cannot",
+    "recommend",
+    "compiled",
+    "routing"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.593Z",
+  "specId": "006",
+  "folderSlug": "hub-registration-and-advisor",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

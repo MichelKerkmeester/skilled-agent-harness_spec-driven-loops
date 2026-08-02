@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/015-mcp-webflow/004-skill-authoring",
+  "description": "A connected MCP transport is not a safe or discoverable skill",
+  "keywords": [
+    "connected",
+    "mcp",
+    "transport",
+    "safe",
+    "discoverable",
+    "skill"
+  ],
+  "lastUpdated": "2026-08-02T15:13:33.593Z",
+  "specId": "004",
+  "folderSlug": "skill-authoring",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

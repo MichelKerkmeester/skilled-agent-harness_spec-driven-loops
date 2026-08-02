@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-mcp-webflow/003-webflow-mcp-integration",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/003-webflow-mcp-integration",
+  "parent_id": "mcp-tooling/015-mcp-webflow",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow mcp integration",
+      "mcp-webflow scaffold",
+      "mcp-webflow phase 3",
+      "webflow mcp integration plan",
+      "mcp-webflow scaffold plan",
+      "webflow integration tasks",
+      "mcp-webflow integration tasks",
+      "webflow integration summary",
+      "mcp-webflow integration status"
+    ],
+    "key_topics": [
+      "webflow",
+      "mcp",
+      "integration",
+      "mcp-webflow",
+      "scaffold",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "researched",
+      "architecture"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integrate Webflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Safety Contract",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Only",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A researched architecture is not usable until the official Webflow MCP transport can be configured, authenticated, discovered, and exercised through the repository's Code Mode/MCP conventions",
+    "created_at": "2026-08-02T13:47:07Z",
+    "last_save_at": "2026-08-02T15:13:42.633Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34a05447fc5ea409fef0057281c5b6fdfaee72a9d380ea726b99a802c9a82e76",
+    "source_doc_hashes": {
+      "spec.md": "750fd2ce71867d8cf7621abb82438aabdf11e93a5cbe01f06e62e33458eb6f43",
+      "plan.md": "4afd80aeec88f09ae4a7d878a2b6a97d866500678f45993f655d0c29eb587a56",
+      "tasks.md": "30ae0f6be8c8e012397efb7447fa06cb2a3fd21a4e6f76e0d707e361c0b0d864",
+      "implementation-summary.md": "62c1663fb748103f9b9bbf26345a55c02bac19e0f286b6b84430c8ba7564e520"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

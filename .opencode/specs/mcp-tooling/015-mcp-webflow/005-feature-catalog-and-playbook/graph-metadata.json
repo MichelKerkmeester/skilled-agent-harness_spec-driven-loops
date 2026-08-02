@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/015-mcp-webflow/005-feature-catalog-and-playbook",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/005-feature-catalog-and-playbook",
+  "parent_id": "mcp-tooling/015-mcp-webflow",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow feature catalog",
+      "webflow mcp playbook",
+      "mcp-webflow phase 5",
+      "webflow catalog plan",
+      "webflow playbook plan",
+      "webflow catalog tasks",
+      "webflow playbook tasks",
+      "webflow catalog summary",
+      "webflow playbook status"
+    ],
+    "key_topics": [
+      "webflow",
+      "feature",
+      "catalog",
+      "mcp",
+      "playbook",
+      "mcp-webflow",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "without"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Without",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Tool",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Package Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Without a catalog, supported features drift out of documentation",
+    "created_at": "2026-08-02T13:47:09Z",
+    "last_save_at": "2026-08-02T15:13:42.948Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89e0ad8194b4e8b518de47ff3ee9b1a735a66522404397eaa684794bea53ef21",
+    "source_doc_hashes": {
+      "spec.md": "82058f8afeda048bc58dbdeb86a9ebf62b67b1779d189ca9a7597dd2f29dcc83",
+      "plan.md": "1c3952e4bd9304cc316f5040efad43eca935abee50d37ed3a5f79fe744bb3f97",
+      "tasks.md": "b113ef4e1cfbd2c37e4775c262871dac61ea257f6fb18f17cb580f1f3d1ce113",
+      "implementation-summary.md": "c5b5f69337a43ca556d05eede2bebd11b84d147491f779155df2f1f52f753ed0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
