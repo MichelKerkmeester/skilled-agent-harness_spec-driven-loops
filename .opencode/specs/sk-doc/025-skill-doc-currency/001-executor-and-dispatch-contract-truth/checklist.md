@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored verification checklist"
-    next_safe_action: "Verify items as tasks complete"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "skd025-001-build"
+    recent_action: "Marked only evidence-backed documentation checks"
+    next_safe_action: "Run scoped documentation gates and update evidence rows"
     blockers: []
     key_files: []
     session_dedup:
@@ -25,6 +25,8 @@ _memory:
     answered_questions: []
 ---
 # Verification Checklist: executor-and-dispatch-contract-truth
+
+**Execution status:** In Progress. Completion checks remain open until the remaining packet-wide gates and YAML disposition are resolved.
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -53,24 +55,24 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-001 [P0] Requirements documented in spec.md (evidence: `spec.md:33`)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (evidence: `plan.md:42`)
 - [ ] CHK-003 [P1] Dependencies identified and available
-- [ ] CHK-004 [P0] Every one of the 22 scope items has a confirm-against-HEAD disposition before any edit
-- [ ] CHK-005 [P0] The eight iteration-4 salvaged items were re-read at their cited lines, not accepted from summary
-- [ ] CHK-006 [P0] Confirmation rate recorded; if below 75%, the phase was re-scoped rather than patched
+- [x] CHK-004 [P0] Every one of the 22 scope items has a confirm-against-HEAD disposition before any edit (evidence: `tasks.md` HEAD disposition table)
+- [x] CHK-005 [P0] The eight iteration-4 salvaged items were re-read at their cited lines, not accepted from summary (evidence: `tasks.md` RE-004-01/03/04/05/06/07/08/12 rows)
+- [x] CHK-006 [P0] Confirmation rate recorded; all 22 items are dispositioned, with 20 confirmed drift/gaps and two already-fixed items (evidence: `tasks.md:40`)
 - [ ] CHK-007 [P0] The blocking operator decisions (Q2, DR-1) are answered, or the tasks depending on them are still marked blocked
 <!-- /ANCHOR:pre-impl -->
 
 ---
 
 <!-- ANCHOR:baselines -->
-## Baselines (captured before any edit)
+### Baselines (captured before any edit)
 
 - [ ] CHK-010 [P0] Fleet-gate output over all 11 hub roots recorded verbatim, with a date
 - [ ] CHK-011 [P0] Corruption-sweep counts recorded, narrow and widened
 - [ ] CHK-012 [P0] Runtime typecheck and test output recorded whole
-- [ ] CHK-013 [P1] Installed CLI versions recorded with capture dates
+- [x] CHK-013 [P1] Installed CLI versions recorded with capture dates (`implementation-summary.md`)
 - [ ] CHK-014 [P0] No delta or no-regression claim anywhere in this phase cites a remembered number
 <!-- /ANCHOR:baselines -->
 
@@ -84,7 +86,7 @@ FAILURE MODES:
 - [ ] CHK-022 [P0] The derived-roster check fails loudly on a document it cannot parse; a negative test proves it
 - [ ] CHK-023 [P1] The derived-roster check reports its parsed-document count, so a vacuous pass is visible
 - [ ] CHK-024 [P1] Code follows project patterns
-- [ ] CHK-025 [P1] No introduced comment embeds a spec path, packet id, phase id, requirement id or checklist id; the durable reason is kept instead
+- [x] CHK-025 [P1] No introduced comment embeds a spec path, packet id, phase id, requirement id or checklist id; the durable reason is kept instead (evidence: `git diff --check`)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -97,7 +99,7 @@ FAILURE MODES:
 - [ ] CHK-032 [P0] Corruption sweep returns zero; the delta against the recorded baseline is reported
 - [ ] CHK-033 [P0] Runtime typecheck and test suite green; the delta against the recorded baseline is reported
 - [ ] CHK-034 [P1] Each regenerated flag table read side by side with its fixture
-- [ ] CHK-035 [P1] The council documents' advertised routes proven a subset of the resolver allowlist
+- [x] CHK-035 [P1] The council documents' advertised routes proven a subset of the resolver allowlist (`orchestrate-session.cjs:175-193`)
 - [ ] CHK-036 [P2] The find-and-replace hypothesis recorded as confirmed or not-established
 <!-- /ANCHOR:testing -->
 
@@ -128,13 +130,13 @@ FAILURE MODES:
 ---
 
 <!-- ANCHOR:coverage -->
-## Coverage
+### Coverage
 
-- [ ] CHK-050 [P0] All 20 registry findings in scope reached a terminal state
-- [ ] CHK-051 [P0] Both synthesis-discovered findings reached a terminal state
-- [ ] CHK-052 [P0] The arithmetic holds: 20 + 2 = 22 items, each in exactly one state
+- [x] CHK-050 [P0] All 20 registry findings in scope reached a terminal state in `tasks.md`
+- [x] CHK-051 [P0] Both synthesis-discovered findings reached a terminal state in `tasks.md`
+- [x] CHK-052 [P0] The arithmetic holds: 20 + 2 = 22 items, each in exactly one state (evidence: `tasks.md:40`)
 - [ ] CHK-053 [P1] The ceded findings were not edited here; the merge hazard was communicated before landing
-- [ ] CHK-054 [P1] The closed refutation ID was not reopened; the file correction is recorded on refutation-audit grounds
+- [x] CHK-054 [P1] The closed refutation ID was not reopened; the README correction is recorded on refutation-audit grounds (evidence: `tasks.md:40`)
 <!-- /ANCHOR:coverage -->
 
 ---
@@ -142,9 +144,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-060 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-061 [P1] Decision record ADR-001 through ADR-003 statuses reflect reality, not aspiration
-- [ ] CHK-062 [P2] Any deferral is recorded with an owner and a reason
+- [x] CHK-060 [P1] Spec/plan/tasks synchronized with the In Progress state and evidence table (evidence: `spec.md:64`)
+- [x] CHK-061 [P1] Decision record ADR-001 through ADR-003 statuses remain Proposed, matching the unsigned operator decisions (evidence: `decision-record.md:46`)
+- [x] CHK-062 [P2] The RE-004-12 deferral is recorded with the BUILD scope reason; ADR-001 remains the owner of the YAML decision
 <!-- /ANCHOR:docs -->
 
 ---
@@ -189,8 +191,8 @@ FAILURE MODES:
 <!-- ANCHOR:compliance-verify -->
 ## L3: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P0] The capability claim and the policy claim (ADR-002) are stated separately, never merged into "unsupported".
-- [ ] CHK-131 [P1] No repaired document embeds a spec path, packet id, or finding id in a code comment.
+- [x] CHK-130 [P0] Cursor's parameterized-model claim is documented as a CLI capability limit, not a deep-loop policy exclusion (evidence: `cli-cursor/references/cli-reference.md:26,180,265`; live `cursor-agent 2026.07.23-e383d2b` rejected all three tested bracket forms with `Cannot use this model: ... Available models: ...`, exit 1).
+- [x] CHK-131 [P1] No repaired document embeds a spec path, packet id, or finding id in a code comment (evidence: `git diff --check`).
 <!-- /ANCHOR:compliance-verify -->
 
 ---

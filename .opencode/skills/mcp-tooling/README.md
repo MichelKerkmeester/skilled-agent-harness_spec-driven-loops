@@ -1,6 +1,6 @@
 ---
 title: mcp-tooling
-description: Parent hub for MCP tool bridges — routes to mcp-chrome-devtools (browser inspection), mcp-click-up (ClickUp task management), and the mcp-figma transport (Figma Desktop) through mode-registry.json.
+description: Parent hub for MCP tool bridges — routes to six registered transport/workflow modes through the hub manifest and mode registry.
 trigger_phrases:
   - "chrome devtools"
   - "clickup task"
@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # mcp-tooling
 
-> One advisor identity, two workflow packets plus one figma transport: browser debugging, ClickUp task management, and a read-only bridge to Figma Desktop.
+> One advisor identity across six registered modes: Aside, Chrome DevTools, ClickUp, Figma, Mobbin, and Refero.
 
 ---
 
@@ -19,22 +19,25 @@ version: 1.0.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Browser debugging/automation, ClickUp task operations, and driving Figma Desktop from the terminal |
-| **Invoke with** | Keyword routing through Gate 2 — none of the three modes has a bound slash command; `/doctor:mcp` covers install/debug separately |
-| **Routes to** | `mcp-chrome-devtools/` or `mcp-click-up/` (both mutating workflow packets) or `mcp-figma/` (read-only transport) via `mode-registry.json` |
-| **Produces** | Browser captures/automation, ClickUp task state changes, or Figma Desktop reads/exports (never a design decision — pairs with `sk-design` for that) |
+| **Use it for** | Browser debugging, ClickUp task operations, Figma transport, and design-research retrieval through the registered MCP bridges |
+| **Invoke with** | Keyword routing through Gate 2; `/doctor:mcp` covers install/debug separately |
+| **Routes to** | `mcp-aside-devtools/`, `mcp-chrome-devtools/`, `mcp-click-up/`, `mcp-figma/`, `mcp-mobbin/`, or `mcp-refero/` via `leaf-manifest.json` and `mode-registry.json` |
+| **Produces** | Browser captures/automation, ClickUp task state changes, Figma transport output, or design-research evidence (never a design decision — pairs with `sk-design` for that) |
 
 ---
 
 ## 2. OVERVIEW
 
-`mcp-tooling` is a parent hub: it holds no packet-local logic and routes every request to exactly one of three nested packets through `mode-registry.json` and `hub-router.json`.
+`mcp-tooling` is a parent hub: it holds no packet-local logic and routes every request to one of six registered modes. The authoritative current list is the hub's `leaf-manifest.json`.
 
-- **`mcp-chrome-devtools/`** — browser debugging and automation via the `bdg` CLI (fast, token-efficient) with an MCP fallback through Code Mode. See `mcp-chrome-devtools/README.md`.
-- **`mcp-click-up/`** — ClickUp task management: `cupt` CLI for daily ops, the official ClickUp MCP for documents/goals/bulk operations. See `mcp-click-up/README.md`.
-- **`mcp-figma/`** _(transport)_ — drives Figma Desktop from the terminal via `figma-ds-cli`. Read-only in this workspace (`mutatesWorkspace:false`); writes land only in Figma Desktop. Mandatory cross-hub pairing with `sk-design` before any design-affecting operation — the transport never decides taste. See `mcp-figma/README.md`.
+- **`mcp-aside-devtools/`** — Aside DevTools transport.
+- **`mcp-chrome-devtools/`** — browser debugging and automation.
+- **`mcp-click-up/`** — ClickUp task management.
+- **`mcp-figma/`** — Figma transport; pair with `sk-design` for design judgment.
+- **`mcp-mobbin/`** — Mobbin design-research transport.
+- **`mcp-refero/`** — Refero design-research transport.
 
-All three packets keep their own `SKILL.md`, `README.md`, `INSTALL-GUIDE.md`, and `changelog/`. The hub carries the single `graph-metadata.json` advisor identity for all three. `mcp-code-mode` — the shared MCP execution substrate all three reach through — is excluded and stays a flat standalone skill; it is not a hub member.
+Each mode owns its packet-local contract and resources. `mcp-code-mode` — the shared MCP execution substrate the modes reach through — is excluded and stays a flat standalone skill; it is not a hub member. The six-mode topology is anchored by `.opencode/skills/mcp-tooling/leaf-manifest.json:2`.
 
 ---
 

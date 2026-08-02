@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
 
 | Aspect | What you get |
 |---|---|

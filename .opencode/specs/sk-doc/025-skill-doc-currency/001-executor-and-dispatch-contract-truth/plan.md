@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored implementation plan"
-    next_safe_action: "Execute T001 confirm-against-HEAD"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "skd025-001-build"
+    recent_action: "Recorded scoped documentation edits and remaining deferred YAML work"
+    next_safe_action: "Run scoped documentation gates"
     blockers: []
     key_files: []
     session_dedup:
@@ -26,6 +26,8 @@ _memory:
     answered_questions: []
 ---
 # Implementation Plan: executor-and-dispatch-contract-truth
+
+**Execution status:** In Progress. Documentation corrections are applied within the BUILD leaf boundary; YAML disposition and full packet verification remain open.
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -314,6 +316,34 @@ Confirm-against-HEAD ──┬──► Fleet-gate repair ──► Baselines �
 | M4 | Tables reproducible | Every changed flag table traceable to a versioned fixture | End of Phase 2 |
 | M5 | Phase closed | Sweep at zero; deltas reported; `validate.sh --strict` Errors: 0 | End of Phase 3 |
 <!-- /ANCHOR:milestones -->
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+
+- Read the child contract documents before editing.
+- Confirm every requested correction against its cited document and live reality anchor.
+- Keep edits inside the named documentation scope.
+
+### Execution Rules
+
+| Rule | Contract |
+|------|----------|
+| TASK-SEQ | Preserve the finding disposition order and record doc-before, reality, and doc-after evidence. |
+| TASK-SCOPE | Do not edit implementation logic or command YAML from this documentation-only leaf. |
+| TASK-VERIFY | Run the scoped skill checks and child-packet validation before reporting the result. |
+
+### Status Reporting Format
+
+Report each finding as fixed, already fixed, or deferred, with its document path and reality anchor. Keep the child status In Progress until all required gates and operator decisions are evidenced.
+
+### Blocked Task Protocol
+
+Mark a task `[B]` when the required decision or out-of-scope target prevents execution, name the blocking decision, and leave the task unchecked. Do not infer approval from a concurrent edit.
+<!-- /ANCHOR:ai-execution-protocol -->
 
 ---
 

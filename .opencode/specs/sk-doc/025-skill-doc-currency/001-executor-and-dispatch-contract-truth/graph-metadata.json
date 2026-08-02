@@ -39,7 +39,7 @@
       "baseline"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "tasks.md",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
@@ -56,7 +56,8 @@
       "decision-record.md",
       "spec.md",
       "plan.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -144,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -162,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Every",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -169,12 +182,6 @@
       },
       {
         "name": "The Code Mode",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose No",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
     "created_at": "2026-07-30T19:29:16.509Z",
-    "last_save_at": "2026-07-30T19:29:16.509Z",
+    "last_save_at": "2026-08-02T07:26:47.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4c90d8de4ebf9ed51ff6f0df3c7b3e57399bfdfa441480f6e5a5d47c376adac",
+    "source_fingerprint": "sha256:61cfe13f6686f7cd5e33245e050311984d93bfe943b2ab664f1038120ff542e4",
     "source_doc_hashes": {
-      "spec.md": "74d5aed276806c8d3c670ec326f46e72578e71acada585a5f4533ad18b56b148",
-      "plan.md": "ce632f4606c6f00bc66219336a1da7b2880db30c1b87c8deeb64f28d1d26c8ab",
-      "tasks.md": "2873c801483e273f44e89720ccd377221e6e30ffc5997297793fdc0f86562e01",
-      "checklist.md": "cb9c62654fd27a7140a653f9b5d5399f8f62145f60bfddc3b0e0fd76e6052b63",
-      "decision-record.md": "b8f18c98b2f2cc9e7ff1d48282ba4ebe12dfb8a739467678ca2206e8b4a4f580"
+      "spec.md": "25da6756f97e7199618eac031cdcd72b654ebc775c17ae37661ee3d2506c85f8",
+      "plan.md": "7a3e48a0292753ed7389b4e7337235c03ceb26133bdb83237acbec2e736a026d",
+      "tasks.md": "4cf8d17c7789cef9b139c8d2a73a3a825f315e102ea053ce4cc4288a84ba425f",
+      "checklist.md": "f011382c0184070fd2a4c0b01102854e22665471b138559c435cb7e92c1b48ae",
+      "decision-record.md": "bd836ccfe32474b53132667399e30a0ba6c99325489132ea2d1a10a7e2aacd85",
+      "implementation-summary.md": "29ea89026da8af6a4cbeb622b4164d3411a1da60463df3c0960442e6e623fa54"
     },
     "last_active_child_id": null,
     "last_active_at": null

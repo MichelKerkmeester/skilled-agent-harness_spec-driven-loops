@@ -59,10 +59,13 @@ Vantage = the CLI whose model bench supplies the round's seats. Each row below i
 
 | Vantage Target | Mode | Same-CLI Seat Diversity Options | Role in the Council | Typical Strategy Pairing |
 | --- | --- | --- | --- | --- |
-| `cli-claude-code` | in-CLI when active runtime is Claude Code; otherwise external | model: Opus / Sonnet / Haiku; reasoning: high / xhigh | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
-| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | model: gpt-5.5 / gpt-5.5-pro / gpt-5.5-fast; reasoning: medium / high / xhigh | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
-| `cli-opencode` | in-CLI when active runtime is OpenCode; otherwise external | direct provider models such as `deepseek/deepseek-v4-pro`, `xiaomi/mimo-v2.5-pro`, or `openai/gpt-5.5-pro`; `--variant low/medium/high` where supported | Full plugin/skill/MCP runtime, direct-provider coverage, broad model bench within one CLI | Holistic, Research, or Creative |
-| native `@deep-research` | always in-CLI (active runtime's research agent) | n/a (single-seat round) | Evidence-first investigation and citation discipline | Research or Critical |
+| `native` | always in-CLI (active runtime) | runtime-native model bench | Evidence-first investigation and citation discipline | Research or Critical |
+| `cli-opencode` | external or active OpenCode runtime | OpenCode models and direct-provider models | Implementation realism and provider coverage | Analytical or Pragmatic |
+| `cli-cursor` | external Cursor runtime | Cursor's allowlisted model ids | Alternate implementation and UI-agent perspective | Holistic or Pragmatic |
+| `cli-devin` | external Devin runtime | Devin's curated model ids | Autonomous implementation and validation | Pragmatic or Critical |
+| `cli-pi` | external Pi runtime | Pi's allowlisted model ids | Lightweight alternate reasoning path | Analytical or Research |
+
+The resolver source is `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:175`; do not add `cli-codex` or `cli-claude-code` to this table because the resolver rejects them.
 
 The default council run is an in-CLI round on the active runtime. External-CLI rounds are dispatched only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested by the caller.
 

@@ -26,6 +26,8 @@ _memory:
 ---
 # Decision Record: executor-and-dispatch-contract-truth
 
+**Execution status:** In Progress. ADR-001 through ADR-003 remain Proposed; the BUILD leaf does not sign operator decisions.
+
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
@@ -149,12 +151,14 @@ Two exits are available, and they land in different packets.
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-One CLI packet declares a parameterized-model surface "rejected outright" while the installed CLI documents that surface. Two readings are possible and they are not the same claim: either the packet is wrong about what the CLI can do, or the packet is right about what this repository allows and has phrased an allowlist policy as a capability fact. The research could not distinguish them from the document alone, because the document merges them.
+The prior correction incorrectly reframed Cursor's parameterized-model rejection as a deep-loop policy exclusion. Live tests against installed `cursor-agent 2026.07.23-e383d2b` rejected all three forms at the CLI boundary: `composer-2.5[effort=high]`, Cursor's own `--help` example `claude-opus-4-8[context=1m,effort=high,fast=false]`, and `cursor-grok-4.5[effort=high]`. Each returned `Cannot use this model: ... Available models: ...` and exited 1 before repository dispatch code ran.
+
+The bracket syntax is therefore a real CLI capability limit. The deep-loop model allowlist is a separate policy constraint for exact supported ids, but it is not the reason the bracket forms fail.
 
 ### Constraints
 
 - A capability claim is falsifiable against the binary; a policy claim is not.
-- Merging them means a correct policy looks like a factual error, and a factual error hides behind a policy.
+- The live CLI rejection establishes the bracket limitation independently of the repository allowlist.
 <!-- /ANCHOR:adr-002-context -->
 
 ---
@@ -162,9 +166,9 @@ One CLI packet declares a parameterized-model surface "rejected outright" while 
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: state both, separately, and never phrase either as "unsupported".
+**We chose**: restore the bracket-model rejection as a CLI capability limit, while keeping the exact-id allowlist as a separate packet-policy statement.
 
-**How it works**: the packet carries a capability statement traced to the help fixture ("the CLI accepts this form") and, where a restriction is intended, a distinct policy statement with its reason ("this packet does not dispatch that form because…"). A reader can then tell a stale fact from a live rule.
+**How it works**: the packet states that the installed CLI itself rejects parameterized model strings with `Cannot use this model`, and separately states that deep-loop dispatch is limited to the exact allowlisted ids. The docs must not claim that policy alone excludes a bracket form the CLI cannot parse.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -172,13 +176,13 @@ One CLI packet declares a parameterized-model surface "rejected outright" while 
 <!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 
-- **Delete the rejection and document the capability only.** Rejected: it would silently drop a restriction that may be deliberate.
-- **Keep the merged sentence and add a footnote.** Rejected: the merged sentence is the defect.
+- **Treat the bracket syntax as policy-only.** Rejected: three live CLI tests show the failure occurs before repository dispatch code runs.
+- **Treat the CLI help example as proof that the bracket syntax works.** Rejected: the CLI advertises the example but rejects it with `Cannot use this model`.
 
 ### Consequences
 
-- Positive: the capability half becomes fixture-verifiable; the policy half becomes reviewable on its own merits.
-- Negative: slightly longer prose in each affected reference. Accepted.
+- Positive: the capability limitation is documented from live CLI behavior, and the separate allowlist policy remains reviewable on its own merits.
+- Negative: the references retain both a capability warning and an allowlist statement. Accepted.
 
 ### Blocks
 

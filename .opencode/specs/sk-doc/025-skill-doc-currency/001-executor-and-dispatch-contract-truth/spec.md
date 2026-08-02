@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "track-e-spec-author"
-    recent_action: "Authored phase spec from the track (e) synthesis proposal"
-    next_safe_action: "Run T001 confirm-against-HEAD before any edit"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "skd025-001-build"
+    recent_action: "Applied behavior-preserving executor and dispatch-contract documentation corrections"
+    next_safe_action: "Run scoped documentation gates and reconcile remaining deferred YAML work"
     blockers: []
     key_files: []
     session_dedup:
@@ -61,10 +61,14 @@ Documents across five CLI packets, five deep-loop packets and two MCP packets pu
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
+
+### Current execution state
+
+The 22 frozen scope items are dispositioned against the supplied HEAD confirmation: 20 were confirmed as documentation drift, two were already fixed concurrently, and the two cli-pi gaps were added. The fleet gate is recorded as **11/11 clean** from the concurrent manifest regeneration. `RE-004-12` remains deferred because its targets are command YAML branches and this BUILD leaf is restricted to documentation edits; the decision record remains Proposed and no YAML or code change is made here.
 
 ---
 

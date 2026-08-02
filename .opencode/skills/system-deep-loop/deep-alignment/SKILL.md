@@ -1,6 +1,7 @@
 ---
 name: deep-alignment
 description: "Autonomous standard-authority conformance: audit artifacts by lane; verify-first, known-deviation suppression, read-only default."
+allowed-tools: [Read, Grep, Glob, Task, Bash]
 version: 1.0.0.2
 ---
 <!-- Note: read-only by default -- no Write/Edit in the default surface. Task/Bash are present but reserved for the gated, opt-in remediation pass; loop-owned state writes route through shared runtime scripts, not direct file edits. No WebFetch: alignment checks local artifacts against local authority standards. -->
@@ -243,7 +244,7 @@ def route_alignment_resources(task, dispatch_context):
 | DISCOVER | Config frozen, corpus not yet built | `discover-contract.md`, the active lane's selected adapter spec |
 | ITERATE | Corpus exists, `deep-alignment-state.jsonl` advancing | the active lane's adapter + known-deviations pair |
 | CONVERGE | `check-convergence.cjs` dispatch context | `state-machine-wiring.md` (convergence formula) |
-| REPORT | Convergence returned `CONVERGED`/`STOP_MAX_ITERATIONS`/`NOTHING_TO_CONVERGE` | `state-machine-wiring.md` (reducer wiring) |
+| REPORT | Convergence returned `CONVERGED`, `CONTINUE`, `STOP_MAX_ITERATIONS`, `NOTHING_TO_CONVERGE`, `DISCOVERY_INCOMPLETE`, or `INTEGRITY_FAILURE` | `state-machine-wiring.md` (reducer wiring) |
 
 ---
 
@@ -324,7 +325,7 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 
 **A run is complete when**:
 - ✅ Every resolved lane has been discovered and checked at least once
-- ✅ Convergence reached `CONVERGED` (coverage AND stability), or a documented `STOP_MAX_ITERATIONS`/`NOTHING_TO_CONVERGE` outcome
+- ✅ Convergence reached `CONVERGED` (coverage AND stability), or a documented `CONTINUE`, `STOP_MAX_ITERATIONS`, `NOTHING_TO_CONVERGE`, `DISCOVERY_INCOMPLETE`, or `INTEGRITY_FAILURE` outcome
 - ✅ Every finding was re-verified against live ground truth before being recorded (verify-first)
 - ✅ Every finding was checked against its lane's known-deviation list before being asserted as drift
 - ✅ `alignment-report.md` carries one section per lane plus an overall worst-verdict rollup
