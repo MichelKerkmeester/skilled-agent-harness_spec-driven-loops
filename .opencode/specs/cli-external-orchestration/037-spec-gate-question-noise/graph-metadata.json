@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
     "created_at": "2026-08-02T13:16:09.194Z",
-    "last_save_at": "2026-08-02T14:37:14.709Z",
+    "last_save_at": "2026-08-02T14:38:46.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:94178392a647e8a8b67f3f9d38f09a52d61e63b300fc53ed3a2aa07b90f36b1b",
+    "source_fingerprint": "sha256:ccf785c220a1064a00c33a0764cddb3dc9404e89b43e08a25ce55ff6ad566311",
     "source_doc_hashes": {
       "spec.md": "d48d295ee97f521834d6323194b5fc8f62bfbe4d2e392a0fd3f0f5b46073dff4",
       "plan.md": "e982b1194df2a3e56ff3b4991a1ff8c88ba7f0e48dc721327298b01cb1bcc83f",
       "tasks.md": "254c033727b08167dabaf4c55883d84bf89467548a7078079b634e0c2cf58d4c",
       "checklist.md": "943f4641f6e149e313d677d91b4204a76a99733fd90a347a27dd81fe95a91f9e",
-      "implementation-summary.md": "1e31a3304db5a0c180da67f37f4bee1cf0619fb2c571cfe61011963452cff218",
-      "handover.md": "cafd283bfd47037db429ae21deba6391337151347e9a8126e0fde4605003aa23"
+      "implementation-summary.md": "d8b142c3ef4744f2ebaf639105b24e227c7d16946500fa1a63dbb13835236885",
+      "handover.md": "e1d49dc2511bff70167a4d2c8cce8d98b526f56babdca84421b34063044ce492"
     },
     "last_active_child_id": null,
     "last_active_at": null
