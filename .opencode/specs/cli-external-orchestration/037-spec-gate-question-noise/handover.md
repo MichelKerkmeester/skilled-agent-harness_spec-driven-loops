@@ -14,7 +14,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:38:41Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "037 implemented, verified, validated; 036 committed"
     next_safe_action: "Decide packet 038 (fresh-session startup latency); push main branch when approved"
@@ -91,32 +91,35 @@ Written because: session compaction occurred; two data-loss incidents hit the ma
 ### 2.3 Files Modified
 **Key files**: see per-thread tables below.
 
-**Thread A - 036 (RESTORED, all uncommitted on main branch):**
+**Thread A - 036 (COMPLETE — committed `fdd295981a` on `skilled/v4.0.0.0`, pushed):**
 
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
-| `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | in-process `handleClaudeUserPromptSubmit` import; no blocking-spawn bridge; fail-open | restored+verified |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts` | cache-set stores only fingerprint-backed labels | restored+verified |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Fable-5 removed; `Directives:` label; hygiene/governor bullets always ship | restored+verified |
-| `.opencode/skills/system-skill-advisor/mcp-server/tsconfig.build.json` | `../hooks/pi/**` excluded from build (pi loader runs .ts at runtime; package only in global install) | restored+verified |
-| `mcp-server/tests/legacy/advisor-brief-producer.vitest.ts` | AS9b mixed-label cache regression test | restored+verified |
-| `mcp-server/tests/legacy/advisor-renderer.vitest.ts` | new directive-format consts | restored+verified |
-| `mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | EXPECTED_FALLBACK_CONTEXT for AS2/AS3/AS6/CHK-021 | restored+verified |
-| `manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md` | transcript sample updated to new format | restored+verified |
-| `.pi/extensions/README.md` + `.pi/extensions/lib/README.md` | in-process advisor wiring docs | present (survived revert) |
-| `.opencode/specs/cli-external-orchestration/036-pi-input-hook-latency/` | all 7 packet files, validate --strict 0/0 | intact |
+| `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | in-process `handleClaudeUserPromptSubmit` import; no blocking-spawn bridge; fail-open | committed |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts` | cache-set stores only fingerprint-backed labels | committed |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Fable-5 removed; `Directives:` label; hygiene/governor bullets always ship | committed |
+| `.opencode/skills/system-skill-advisor/mcp-server/tsconfig.build.json` | `../hooks/pi/**` excluded from build (pi loader runs .ts at runtime; package only in global install) | committed |
+| `mcp-server/tests/legacy/advisor-brief-producer.vitest.ts` | AS9b mixed-label cache regression test | committed |
+| `mcp-server/tests/legacy/advisor-renderer.vitest.ts` | new directive-format consts | committed |
+| `mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | EXPECTED_FALLBACK_CONTEXT for AS2/AS3/AS6/CHK-021 | committed |
+| `manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md` | transcript sample updated to new format | committed |
+| `.pi/extensions/README.md` + `.pi/extensions/lib/README.md` | in-process advisor wiring docs | committed |
+| `.opencode/specs/cli-external-orchestration/036-pi-input-hook-latency/` | all 7 packet files, validate --strict 0/0 | committed |
 
-Verification performed: `npm run build` green; `npx vitest run` on the 3 suites = **28/28 pass**; `pi --offline --approve -p "Reply with exactly: OK"` → OK; `grep Fable-5` in dist = 0; dist rebuilt (new format confirmed).
+Verification performed at commit time: `npm run build` green; `npx vitest run` on the 3 suites = **41/41 pass**; `pi --offline --approve -p "Reply with exactly: OK"` → OK; `grep Fable-5` in dist = 0; dist rebuilt (new format confirmed).
 
-**Thread B - 037 (scaffolded in worktree 0130, implementation NOT started):**
+Post-push refinement (SOL FAST review): `.opencode/plugins/mk-skill-advisor.js`, `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, `.opencode/plugins/tests/mk-skill-advisor.test.cjs` — fallback directives aligned to the canonical labeled format (Fable-5 removed everywhere; 14/14 plugin tests + 45/45 related vitest green). Awaiting commit at refresh time.
+
+**Thread B - 037 (IMPLEMENTED + MERGED + PUSHED; refinement round awaiting commit):**
 
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
-| `.worktrees/0130-system-spec-kit-spec-gate-question-noise/.opencode/specs/cli-external-orchestration/037-spec-gate-question-noise/` (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json) | scaffolded Level 2 packet, validate --strict 0/0 | complete |
-| `lib/spec-gate/spec-gate-core.mjs` | F1 fix pending (final branch question-surface semantics + `isAnswerAttempt`) | pending |
-| `lib/spec-gate/spec-gate-core.test.mjs` | lines 151/169 assert old always-question behavior → must be updated | pending |
-| `hooks/pi/spec-gate-classify.ts` + `hooks/pi/spec-gate-enforce.ts` | F2 history-strip + F3 stable session key pending | pending |
-| `AGENTS.md` | F4 question-text parity update pending | pending |
+| `hooks/lib/spec-gate/spec-gate-core.mjs` | question semantics (silent read-only, answer-attempt, path-over-skip, E=skip letter, `resolveSessionKey`, `sanitizePromptForClassify`) | committed `e251617bef`, merged, pushed; refinement edits applied on top |
+| `hooks/lib/spec-gate/spec-gate-core.test.mjs` | corpus + semantics tests (72 pass) | same |
+| `hooks/pi/spec-gate-classify.ts` | history/advisor strip via shared sanitizer + stable session key | same |
+| `hooks/pi/spec-gate-enforce.ts` | same key derivation + session-file guard | same |
+| `AGENTS.md` | Gate 3 options A-D instruct path replies | same |
+| `.opencode/specs/cli-external-orchestration/037-spec-gate-question-noise/` | 8 packet files, validate --strict 0/0 | same; docs refreshed in refinement round |
 
 **Thread C - 038 (proposed, nothing written):**
 

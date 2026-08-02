@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/037-spec-gate-question-noise"
-    last_updated_at: "2026-08-02T14:35:53Z"
+    last_updated_at: "2026-08-02T15:36:37Z"
     last_updated_by: "implementer"
     recent_action: "Packet scaffolded: runtime audit done; root causes pinned"
     next_safe_action: "Implement core question semantics change, then pi adapter hardening, then verify"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-037-spec-gate-question-noise"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 98
     open_questions: []
     answered_questions: []
 ---

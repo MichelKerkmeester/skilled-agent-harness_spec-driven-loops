@@ -54,8 +54,8 @@
       ".codex/hooks.json",
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
-      ".opencode/plugins/mk-spec-gate.js",
       "hooks/pi/spec-gate-enforce.ts",
+      ".opencode/plugins/mk-spec-gate.js",
       ".opencode/specs/cli-external-orchestration/037-spec-gate-question-noise/spec.md",
       "hooks/claude/spec-gate-classify.mjs",
       "hooks/codex/spec-gate-classify.mjs",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
     "created_at": "2026-08-02T13:16:09.194Z",
-    "last_save_at": "2026-08-02T14:38:46.211Z",
+    "last_save_at": "2026-08-02T15:36:43.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:ccf785c220a1064a00c33a0764cddb3dc9404e89b43e08a25ce55ff6ad566311",
+    "source_fingerprint": "sha256:8dfcb301eda2e4d77f7f5457aba82b6a84c85d3f024b2c48c30b0bb426429a48",
     "source_doc_hashes": {
-      "spec.md": "d48d295ee97f521834d6323194b5fc8f62bfbe4d2e392a0fd3f0f5b46073dff4",
-      "plan.md": "e982b1194df2a3e56ff3b4991a1ff8c88ba7f0e48dc721327298b01cb1bcc83f",
-      "tasks.md": "254c033727b08167dabaf4c55883d84bf89467548a7078079b634e0c2cf58d4c",
-      "checklist.md": "943f4641f6e149e313d677d91b4204a76a99733fd90a347a27dd81fe95a91f9e",
-      "implementation-summary.md": "d8b142c3ef4744f2ebaf639105b24e227c7d16946500fa1a63dbb13835236885",
-      "handover.md": "e1d49dc2511bff70167a4d2c8cce8d98b526f56babdca84421b34063044ce492"
+      "spec.md": "2808e4d3cb8bf0f7ff7261bc7c6150a01c1a223b8ed2a1db3ede2b610b77af0b",
+      "plan.md": "44c0cda47991525929aa0be0f492fa505281d1e13e9038ba785acdf19b512b92",
+      "tasks.md": "e319eb2a3601a9fdd58134a25981042914c4f98c414c716bc6e3ad3562eadc0f",
+      "checklist.md": "2c4cd5c5d963536f592df1ca5b743fbbb1e5b51451e0566586a26dd3fc2cd275",
+      "implementation-summary.md": "b66c96521762430dd561c20fb6b286cdeb910d263f48e1a519e4dccdf81613d9",
+      "handover.md": "9cd84a3bf0dc789f0b6dfd3e4050b0d96d19ff0ebb3fc712ed2fe1bbf005867c"
     },
     "last_active_child_id": null,
     "last_active_at": null
