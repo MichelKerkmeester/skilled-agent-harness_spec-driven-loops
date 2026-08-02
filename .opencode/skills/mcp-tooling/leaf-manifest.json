@@ -92,6 +92,15 @@
       ],
       "packet": "mcp-refero",
       "workflowMode": "mcp-refero"
+    },
+    {
+      "leaves": [
+        "references/mcp-wiring.md",
+        "references/tool-surface.md",
+        "references/troubleshooting.md"
+      ],
+      "packet": "mcp-webflow",
+      "workflowMode": "mcp-webflow"
     }
   ],
   "resourceContractVersion": 1

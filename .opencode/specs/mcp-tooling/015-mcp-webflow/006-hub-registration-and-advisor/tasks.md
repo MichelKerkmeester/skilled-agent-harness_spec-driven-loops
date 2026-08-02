@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/006-hub-registration-and-advisor"
-    last_updated_at: "2026-08-02T16:30:00Z"
+    last_updated_at: "2026-08-02T18:50:16Z"
     last_updated_by: "pi"
     recent_action: "Created hub registration tasks"
     next_safe_action: "Wait for Phase 5"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,31 +40,44 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [ ] T001 Load sk-create-skill packaging/validation and root-metadata contracts.
-- [ ] T002 Confirm Phase 2 classification and accepted permission surface.
-- [ ] T003 Snapshot hub manifests and generated assets as regression baseline.
+- [x] T001 Load sk-create-skill packaging/validation and root-metadata contracts.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T002 Confirm Phase 2 classification and accepted permission surface.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T003 Snapshot hub manifests and generated assets as regression baseline.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-- [ ] T004 Add `mcp-webflow` entry to `mode-registry.json` with Phase 2 fields.
-- [ ] T005 Add Webflow vocabulary/signals to `hub-router.json`.
-- [ ] T006 Add Webflow intent leaf sets to `smart-routing.md`.
-- [ ] T007 Update hub `SKILL.md` mode list and refresh hub-root advisor metadata.
-- [ ] T008 Draft the hub changelog registration entry.
+- [x] T004 Add `mcp-webflow` entry to `mode-registry.json` with Phase 2 fields.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T005 Add Webflow vocabulary/signals to `hub-router.json`.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T006 Add Webflow intent leaf sets to `smart-routing.md`.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T007 Update hub `SKILL.md` mode list and refresh hub-root advisor metadata.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T008 Draft the hub changelog registration entry.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-- [ ] T009 Regenerate `leaf-manifest.json` and derived metadata with canonical generators.
-- [ ] T010 Add compiled-routing scenarios for Webflow intents and routing boundaries.
-- [ ] T011 Run root-metadata, parent-skill, freshness, and compiled-routing validators.
-- [ ] T012 Confirm sibling modes still resolve; record non-regression evidence.
-- [ ] T013 Update summary and hand off to Phase 7.
+- [x] T009 Regenerate `leaf-manifest.json` and derived metadata with canonical generators.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T010 Add compiled-routing scenarios for Webflow intents and routing boundaries.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T011 Run root-metadata, parent-skill, freshness, and compiled-routing validators.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T012 Confirm sibling modes still resolve; record non-regression evidence.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
+- [x] T013 Update summary and hand off to Phase 7.
+  - **Evidence**: `mode-registry.json`/`hub-router.json`/`leaf-manifest.json`/`smart-routing.md` updated; parent-skill-check 10a-11a PASS (6a pre-existing mcp-magnific, out of scope)
 <!-- /ANCHOR:phase-3 -->
 
 ---

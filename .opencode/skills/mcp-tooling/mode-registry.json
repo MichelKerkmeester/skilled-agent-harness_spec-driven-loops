@@ -20,7 +20,8 @@
       "transports": [
         "mcp-figma",
         "mcp-refero",
-        "mcp-mobbin"
+        "mcp-mobbin",
+        "mcp-webflow"
       ],
       "crossHubPairing": {
         "mcp-figma": "sk-design",
@@ -272,6 +273,42 @@
         "obsidian mcp",
         "note management",
         "markdown notes"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-webflow",
+      "packetKind": "transport",
+      "backendKind": "code-mode-stdio-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-webflow",
+      "packetSkillName": "mcp-webflow",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "webflow",
+        "webflow mcp",
+        "webflow site",
+        "webflow cms",
+        "webflow designer",
+        "webflow publish"
       ],
       "advisorRouting": {
         "routingClass": "metadata"
