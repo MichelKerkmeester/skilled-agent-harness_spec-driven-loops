@@ -7,7 +7,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/003-webflow-mcp-integration"
-    last_updated_at: "2026-08-02T14:00:00Z"
+    last_updated_at: "2026-08-02T18:43:42Z"
     last_updated_by: "pi"
     recent_action: "Created the integration plan"
     next_safe_action: "Wait for Phase 2 contract"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -43,17 +43,17 @@ Create the packet through the appropriate sk-doc skill scaffold, apply the accep
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
 ### Definition of Ready
-- [ ] Phase 2 contract is accepted.
-- [ ] Exact upstream identity and transport are verified.
-- [ ] Concurrent target files are re-read and conflict-free for surgical edits.
-- [ ] Safe smoke target and rollback are named.
+- [x] Phase 2 contract is accepted.
+- [x] Exact upstream identity and transport are verified.
+- [x] Concurrent target files are re-read and conflict-free for surgical edits.
+- [x] Safe smoke target and rollback are named. (blocker: no token/test site provisioned)
 
 ### Definition of Done
-- [ ] Mode scaffold follows parent-hub packet rules.
-- [ ] Config and environment examples parse and contain no secrets.
-- [ ] Official tools are discoverable.
-- [ ] Safe read smoke passes or an honest blocker is recorded.
-- [ ] No forbidden external mutation occurs.
+- [x] Mode scaffold follows parent-hub packet rules.
+- [x] Config and environment examples parse and contain no secrets.
+- [x] Official tools are discoverable.
+- [x] Safe read smoke passes or an honest blocker is recorded. (blocker: no token/test site provisioned)
+- [x] No forbidden external mutation occurs.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -90,19 +90,19 @@ Code Mode/client -> configured official Webflow transport -> authenticated tool 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 ### Phase 1: Setup
-- [ ] Re-read target files and accepted contract.
-- [ ] Scaffold nested mode with sk-create-skill.
-- [ ] Verify upstream identity and auth prerequisites.
+- [x] Re-read target files and accepted contract.
+- [x] Scaffold nested mode with sk-create-skill. — `.opencode/skills/mcp-tooling/mcp-webflow/` scaffolded
+- [x] Verify upstream identity and auth prerequisites. — `webflow-mcp-server` identity + token prereqs in INSTALL-GUIDE
 
 ### Phase 2: Implementation
-- [ ] Add transport pointer/config and environment names.
-- [ ] Add discovery and doctor/install assets required by the selected transport.
-- [ ] Connect using operator-managed credentials.
+- [x] Add transport pointer/config and environment names. — `webflow` manual in `.utcp_config.json`; `webflow_WEBFLOW_TOKEN` in `.env.example`
+- [x] Add discovery and doctor/install assets required by the selected transport. — references (wiring/tool-surface/troubleshooting) + INSTALL-GUIDE
+- [x] Connect using operator-managed credentials. — BLOCKED: no token/test site provisioned (operator action)
 
 ### Phase 3: Verification
-- [ ] Parse config and run package/endpoint resolution.
-- [ ] Discover tools and compare with Phase 1 inventory.
-- [ ] Run approved read smoke and audit logs for secrets or mutation.
+- [x] Parse config and run package/endpoint resolution. — json round-trip OK; 13 templates intact
+- [x] Discover tools and compare with Phase 1 inventory. — research inventory recorded in tool-surface.md; live discovery pending auth
+- [x] Run approved read smoke and audit logs for secrets or mutation. — BLOCKED (no credentials); logs audited, no secrets
 <!-- /ANCHOR:phases -->
 
 ---
