@@ -20,7 +20,8 @@
       "webflow research tasks",
       "mcp-webflow phase 1 tasks",
       "webflow research summary",
-      "mcp-webflow phase 1 status"
+      "mcp-webflow phase 1 status",
+      "webflow mcp research complete"
     ],
     "key_topics": [
       "webflow",
@@ -37,11 +38,14 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "research/research.md",
+      "research/convergence-report.md",
+      "research/resource-map.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -61,6 +65,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-report.md",
+        "kind": "doc",
+        "path": "research/convergence-report.md",
         "source": "derived"
       },
       {
@@ -120,7 +136,7 @@
       {
         "name": "No Webflow",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -176,37 +192,27 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The phrase \"Webflow MCP 2.0\" does not by itself establish the real tool inventory, authentication flow, client support, permission boundary, rate limits, draft-versus-publish semantics, or safe repository integration",
     "created_at": "2026-08-02T13:47:06Z",
-    "last_save_at": "2026-08-02T16:03:54.711Z",
+    "last_save_at": "2026-08-02T18:36:58.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:1fd17508bbe64336b46fe6887a0755df47b6b97fb6650c92665bdabeada84fee",
+    "source_fingerprint": "sha256:8b305ceb30460ddd6e468f466fbd48b2d867ecafe867d57feb83837e4bec03a8",
     "source_doc_hashes": {
-      "spec.md": "288b44ed903ab77ebd10134c9af4894aff85b101c6d87b8ea8084ef5bac4f9ec",
-      "plan.md": "0afc7d753f510e17cbf0f821374abda19f2ddd22d4b1355a9a18fd5eca2e0602",
-      "tasks.md": "f059858f60a228f305778944c07344df4dce95134ae8916f503b1611e9e92a2c",
-      "implementation-summary.md": "554ddcd4bf8fd57bbf2329b48a2cc2aa6ccf187a7880fef6575efa454617bdb6"
+      "spec.md": "c00d575723e1ba2ca88b30617dc0631c052b0a7f4e959cd6a317104ccafd26bf",
+      "plan.md": "eefaf7ae4dee3acc059b7ce26c2db20d5c448477844baab954aa17f2dac556f9",
+      "tasks.md": "523ef840774a1f3fc0ad013799fcd895ed61ea20f5eb65572d18de2428306d07",
+      "implementation-summary.md": "f9abc5a40de53421dd7b41bbdf3c6160a2e38821bdb6d521f32a3246fc84fb60",
+      "research/research.md": "f5e7419be46be649e90435479d94a6567fada6b408da4b6610e9eccd8c0560ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

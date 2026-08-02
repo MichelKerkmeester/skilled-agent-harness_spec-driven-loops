@@ -1,0 +1,106 @@
+{
+ "src-pages.ts": [
+  "list_pages",
+  "get_page_metadata",
+  "update_page_settings",
+  "get_page_content",
+  "update_static_content"
+ ],
+ "src-cms.ts": [
+  "get_collection_list",
+  "get_collection_details",
+  "create_collection",
+  "create_collection_static_field",
+  "create_collection_option_field",
+  "create_collection_reference_field",
+  "update_collection_field",
+  "list_collection_items",
+  "request",
+  "create_collection_items",
+  "update_collection_items",
+  "publish_collection_items",
+  "delete_collection_items",
+  "items"
+ ],
+ "src-workflows.ts": [
+  "list_workflows",
+  "run_workflow",
+  "list_workflow_runs",
+  "get_workflow_run"
+ ],
+ "src-scripts.ts": [
+  "list_registered_scripts",
+  "list_applied_scripts",
+  "add_inline_site_script",
+  "delete_all_site_scripts",
+  "get_page_script",
+  "upsert_page_script",
+  "scripts",
+  "delete_all_page_scripts"
+ ],
+ "src-dePages.ts": [
+  "create_page",
+  "create_page_folder",
+  "switch_page"
+ ],
+ "src-sites.ts": [
+  "list_sites",
+  "get_site",
+  "publish_site"
+ ],
+ "src-components.ts": [
+  "list_components",
+  "get_component_content",
+  "update_component_content",
+  "get_component_properties",
+  "update_component_properties"
+ ],
+ "src-deElement.ts": [
+  "parent_element_id",
+  "children",
+  "get_selected_element",
+  "select_element",
+  "remove_element",
+  "add_or_update_attribute",
+  "attributes",
+  "remove_attribute",
+  "attribute_names",
+  "update_id_attribute",
+  "set_text",
+  "set_style",
+  "style_names",
+  "set_link",
+  "set_heading_level",
+  "set_image_asset",
+  "query_elements",
+  "queries",
+  "element_id",
+  "element_filter",
+  "component_filter",
+  "scope_element_id"
+ ],
+ "src-deVariable.ts": [
+  "create_variable_collection",
+  "create_variable_mode",
+  "get_variable_collections",
+  "filter_collections_by_ids",
+  "get_variables",
+  "filter_variables_by_ids",
+  "create_color_variable",
+  "value",
+  "create_size_variable",
+  "static_value",
+  "create_number_variable",
+  "create_percentage_variable",
+  "create_font_family_variable",
+  "update_color_variable",
+  "update_size_variable",
+  "update_number_variable",
+  "update_percentage_variable",
+  "update_font_family_variable",
+  "rename_variable",
+  "delete_variable",
+  "query_variables",
+  "queries"
+ ]
+}

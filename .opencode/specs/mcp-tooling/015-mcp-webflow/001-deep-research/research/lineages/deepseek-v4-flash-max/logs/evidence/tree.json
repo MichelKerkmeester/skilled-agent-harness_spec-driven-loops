@@ -1,0 +1,567 @@
+{
+  "sha": "c4fa339cd9ba7a93d771e710db89302fc443c447",
+  "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/c4fa339cd9ba7a93d771e710db89302fc443c447",
+  "tree": [
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0517cb2e3b9db178276103900f5b7cc0cd6194b4",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/0517cb2e3b9db178276103900f5b7cc0cd6194b4"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28a05803d213bc0a952b4169c93126156befc8f9",
+      "size": 92,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/28a05803d213bc0a952b4169c93126156befc8f9"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1f7a2b89131199115cf2ef3b04468f1df8c60725",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/1f7a2b89131199115cf2ef3b04468f1df8c60725"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1262d0d81d2a8331b92a5dfa2102d85e7bbaf8cf",
+      "size": 1093,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/1262d0d81d2a8331b92a5dfa2102d85e7bbaf8cf"
+    },
+    {
+      "path": ".github/workflows/publish-oss.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6f108ace5d6a991b4ac082eec1f7336a30786ec",
+      "size": 887,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/b6f108ace5d6a991b4ac082eec1f7336a30786ec"
+    },
+    {
+      "path": ".github/workflows/socket_reachability.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72834c1bb199fa0864ab99ae6c3ba1ead7ba5c0e",
+      "size": 2197,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/72834c1bb199fa0864ab99ae6c3ba1ead7ba5c0e"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc7310fc6f79adedfa1ac5191720287233d96200",
+      "size": 148,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/fc7310fc6f79adedfa1ac5191720287233d96200"
+    },
+    {
+      "path": "LICENCE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d6fcf29b1dea65fb0838e4e9c1406d0ed6bf59d",
+      "size": 1064,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/0d6fcf29b1dea65fb0838e4e9c1406d0ed6bf59d"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cdce7f30e52f35d9973a0f0095976c46c9a6260",
+      "size": 9484,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/2cdce7f30e52f35d9973a0f0095976c46c9a6260"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb21fcee7b817d5ce90578fdb7191d4511c8501a",
+      "size": 175212,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/eb21fcee7b817d5ce90578fdb7191d4511c8501a"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14fd4097c4fe178e787562ddb1ac46b0c7dbe77d",
+      "size": 888,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/14fd4097c4fe178e787562ddb1ac46b0c7dbe77d"
+    },
+    {
+      "path": "server.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53789dc82b21e312c363299ee087ea4a555ab328",
+      "size": 423,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/53789dc82b21e312c363299ee087ea4a555ab328"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f937b393918276bd714f765d1e870416d2354cc3",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/f937b393918276bd714f765d1e870416d2354cc3"
+    },
+    {
+      "path": "src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad89e016aa35c65889eb1b365a8f51a84fa9fa39",
+      "size": 1409,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/ad89e016aa35c65889eb1b365a8f51a84fa9fa39"
+    },
+    {
+      "path": "src/mcp.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3edd3acb25b5127239b69d40e77b63e62cc2db05",
+      "size": 2474,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/3edd3acb25b5127239b69d40e77b63e62cc2db05"
+    },
+    {
+      "path": "src/modules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "228450f31889fb63e4710e46b9f4f621b4c5ccb5",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/228450f31889fb63e4710e46b9f4f621b4c5ccb5"
+    },
+    {
+      "path": "src/modules/designerAppBridge.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94fbb5d4a133bd205a8452619befdad071ca509a",
+      "size": 4941,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/94fbb5d4a133bd205a8452619befdad071ca509a"
+    },
+    {
+      "path": "src/schemas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "edd131a4f8b7e15c6080ca53a6538451f472ee25",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/edd131a4f8b7e15c6080ca53a6538451f472ee25"
+    },
+    {
+      "path": "src/schemas/CollectionItemPostSingleSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af637625427325e0a2d2cea73a692c15402d334d",
+      "size": 455,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/af637625427325e0a2d2cea73a692c15402d334d"
+    },
+    {
+      "path": "src/schemas/CollectionItemWithIdInputSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90d9fc999c92e911c51c9a9f0d74de06a0b9ea56",
+      "size": 1238,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/90d9fc999c92e911c51c9a9f0d74de06a0b9ea56"
+    },
+    {
+      "path": "src/schemas/ComponentDomWriteNodesItemSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07e112540950e4b5be599944b24d357428ae58e8",
+      "size": 994,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/07e112540950e4b5be599944b24d357428ae58e8"
+    },
+    {
+      "path": "src/schemas/ComponentPropertyUpdateSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "253fef33f400ebb5e7bd59b16689c29b435fe916",
+      "size": 335,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/253fef33f400ebb5e7bd59b16689c29b435fe916"
+    },
+    {
+      "path": "src/schemas/DEElementIDSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4621d2710b1cf6c5b9e3f3586906031313b80277",
+      "size": 470,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/4621d2710b1cf6c5b9e3f3586906031313b80277"
+    },
+    {
+      "path": "src/schemas/DEElementSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21322fb483bb73e7e9beb0f6d724f65ca9ec0be9",
+      "size": 2767,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/21322fb483bb73e7e9beb0f6d724f65ca9ec0be9"
+    },
+    {
+      "path": "src/schemas/OptionFieldSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "786315c254f38f921d8221277758d9eee928462f",
+      "size": 901,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/786315c254f38f921d8221277758d9eee928462f"
+    },
+    {
+      "path": "src/schemas/ReferenceFieldSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6fec1590a9c7739cb0e5f07cd3dd695445e43c3",
+      "size": 825,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/d6fec1590a9c7739cb0e5f07cd3dd695445e43c3"
+    },
+    {
+      "path": "src/schemas/RegisterInlineSiteScriptSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "380c77d7733f9d4da3ac9157b1c6d454ebe5b9aa",
+      "size": 1124,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/380c77d7733f9d4da3ac9157b1c6d454ebe5b9aa"
+    },
+    {
+      "path": "src/schemas/SiteIdSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a49341965afb975c6a25a81bdf8bcc728282db2",
+      "size": 303,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/5a49341965afb975c6a25a81bdf8bcc728282db2"
+    },
+    {
+      "path": "src/schemas/StaticFieldSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b256ad8d3f72ca67513d6e8a859398a7eff5c05",
+      "size": 944,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/0b256ad8d3f72ca67513d6e8a859398a7eff5c05"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsCreateRequestSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "809f5b8081c5db853a805fc6367e7a483d923557",
+      "size": 519,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/809f5b8081c5db853a805fc6367e7a483d923557"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsFieldUpdateSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0048aab9e45a0bff630cf75d0cf0891434d6d7d4",
+      "size": 433,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/0048aab9e45a0bff630cf75d0cf0891434d6d7d4"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsCreateItemLiveRequestSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "451c09e1dec2140dafc531851a8b9de81d9c627a",
+      "size": 1391,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/451c09e1dec2140dafc531851a8b9de81d9c627a"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsCreateItemRequestSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba18d807d35623f89b10cb13642636a1d27c11b5",
+      "size": 352,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/ba18d807d35623f89b10cb13642636a1d27c11b5"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsListItemsRequestSortBySchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1805019d59fcad35480c22928b399a5bb75fbfc4",
+      "size": 250,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/1805019d59fcad35480c22928b399a5bb75fbfc4"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsListItemsRequestSortOrderSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b005bf363b2c08734f9b8a086fbf13cfddeca3",
+      "size": 211,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/47b005bf363b2c08734f9b8a086fbf13cfddeca3"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsUpdateItemsLiveRequestSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "426339877a2246f9fb197f9547350ebc9e716f19",
+      "size": 1548,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/426339877a2246f9fb197f9547350ebc9e716f19"
+    },
+    {
+      "path": "src/schemas/WebflowCollectionsItemsUpdateItemsRequestSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cce46adf8b4aecb1cefbefc385342f38e3bee0b",
+      "size": 254,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/4cce46adf8b4aecb1cefbefc385342f38e3bee0b"
+    },
+    {
+      "path": "src/schemas/WebflowPageDomWriteNodesItemSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "118a22b97a118c376a33eeae3e009c4ecd908b93",
+      "size": 1188,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/118a22b97a118c376a33eeae3e009c4ecd908b93"
+    },
+    {
+      "path": "src/schemas/WebflowPageSchema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3988a3653a369a2b79a5cab4e0e1dc8241198146",
+      "size": 2621,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/3988a3653a369a2b79a5cab4e0e1dc8241198146"
+    },
+    {
+      "path": "src/schemas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "568263d39642e642c8b5395ea62c8e095b041b32",
+      "size": 1827,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/568263d39642e642c8b5395ea62c8e095b041b32"
+    },
+    {
+      "path": "src/tools",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2194b2be74c381253a61ae0af0d747a26ca9ee61",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/2194b2be74c381253a61ae0af0d747a26ca9ee61"
+    },
+    {
+      "path": "src/tools/aiChat.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78178097fd13c97647d0402dff2e347283f0ba95",
+      "size": 1702,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/78178097fd13c97647d0402dff2e347283f0ba95"
+    },
+    {
+      "path": "src/tools/cms.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ff1ab1ca5d7b7298720076f0f4d7397c44c154a",
+      "size": 22363,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/0ff1ab1ca5d7b7298720076f0f4d7397c44c154a"
+    },
+    {
+      "path": "src/tools/comments.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fd0c1e999f01564770e3702ae0e37ea7fbd4e36",
+      "size": 10088,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/4fd0c1e999f01564770e3702ae0e37ea7fbd4e36"
+    },
+    {
+      "path": "src/tools/components.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b8b1a54551ffbb7a4db3eaaad02d35d4e2fde1b",
+      "size": 10309,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/3b8b1a54551ffbb7a4db3eaaad02d35d4e2fde1b"
+    },
+    {
+      "path": "src/tools/deAsset.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "758a2c753cacf309b071fd47100aff4f5c2c2a8c",
+      "size": 4928,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/758a2c753cacf309b071fd47100aff4f5c2c2a8c"
+    },
+    {
+      "path": "src/tools/deComponents.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c37301495f641075ca951ca8d0981a77e281d5",
+      "size": 12328,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/e0c37301495f641075ca951ca8d0981a77e281d5"
+    },
+    {
+      "path": "src/tools/deElement.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d28e78857ed929e89d10e2ac6d230dbca68e173",
+      "size": 21161,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/4d28e78857ed929e89d10e2ac6d230dbca68e173"
+    },
+    {
+      "path": "src/tools/dePages.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b90e94e03a13e705fc4b6a0d63db38ed29367e74",
+      "size": 3433,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/b90e94e03a13e705fc4b6a0d63db38ed29367e74"
+    },
+    {
+      "path": "src/tools/deStyle.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d76aa0263ef92fc6dcb6ddf4045dafc0b218a826",
+      "size": 9643,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/d76aa0263ef92fc6dcb6ddf4045dafc0b218a826"
+    },
+    {
+      "path": "src/tools/deVariable.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f275df585268a9b735ea29ea3c8a2f0931dbda",
+      "size": 14024,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/f9f275df585268a9b735ea29ea3c8a2f0931dbda"
+    },
+    {
+      "path": "src/tools/enterprise.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fd904e73da6f03e96f3ff0f8d7d9a9b8294f707",
+      "size": 20192,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/5fd904e73da6f03e96f3ff0f8d7d9a9b8294f707"
+    },
+    {
+      "path": "src/tools/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ada44d614c3276d479868e055b6d0ef12a19a2",
+      "size": 1061,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/e2ada44d614c3276d479868e055b6d0ef12a19a2"
+    },
+    {
+      "path": "src/tools/localDeMCPConnection.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a6dda12045a77d7acd31e4db9214f5376466489",
+      "size": 968,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/7a6dda12045a77d7acd31e4db9214f5376466489"
+    },
+    {
+      "path": "src/tools/pages.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65fd1a52b0948bb01a717d7ef24f723f9e2dcfab",
+      "size": 9163,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/65fd1a52b0948bb01a717d7ef24f723f9e2dcfab"
+    },
+    {
+      "path": "src/tools/rules.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de367e743cd99c79ba98fcd921264687782d7196",
+      "size": 16609,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/de367e743cd99c79ba98fcd921264687782d7196"
+    },
+    {
+      "path": "src/tools/scripts.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "775dc979e791d321dd2f4b79c40f96e45434ec24",
+      "size": 11246,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/775dc979e791d321dd2f4b79c40f96e45434ec24"
+    },
+    {
+      "path": "src/tools/sites.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b562d28dbfad459b473ba16c27a236bb7032abf",
+      "size": 4239,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/0b562d28dbfad459b473ba16c27a236bb7032abf"
+    },
+    {
+      "path": "src/tools/webhooks.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e88007556dfb81b508ffa897853cb4abfdfd9882",
+      "size": 7041,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/e88007556dfb81b508ffa897853cb4abfdfd9882"
+    },
+    {
+      "path": "src/tools/workflows.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9b1b374d457a4f8447c833806c32a6df0c20cd1",
+      "size": 6112,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/e9b1b374d457a4f8447c833806c32a6df0c20cd1"
+    },
+    {
+      "path": "src/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "31602c41ec05332a9bc5618bc8a3e9e57a6f6f6c",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/31602c41ec05332a9bc5618bc8a3e9e57a6f6f6c"
+    },
+    {
+      "path": "src/types/RPCType.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9084a3338a7cbb6592cdeb710ce4ab6871a7d8c2",
+      "size": 199,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/9084a3338a7cbb6592cdeb710ce4ab6871a7d8c2"
+    },
+    {
+      "path": "src/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "24776d0b0c2ec12d69b10b6c7496d1fae021950b",
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/trees/24776d0b0c2ec12d69b10b6c7496d1fae021950b"
+    },
+    {
+      "path": "src/utils/appPort.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "227824e9fee48fd845792d20c71d6516407490fd",
+      "size": 1584,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/227824e9fee48fd845792d20c71d6516407490fd"
+    },
+    {
+      "path": "src/utils/formatResponse.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39037349bc1fa64be6b7b609175494b28fa7c670",
+      "size": 1166,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/39037349bc1fa64be6b7b609175494b28fa7c670"
+    },
+    {
+      "path": "src/utils/generateUUIDv4.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14f414f2254d3946ac2ca678577c5a04789e8091",
+      "size": 357,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/14f414f2254d3946ac2ca678577c5a04789e8091"
+    },
+    {
+      "path": "src/utils/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31ab322b5b3f45d1bfa38a11261897ca8edfe462",
+      "size": 158,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/31ab322b5b3f45d1bfa38a11261897ca8edfe462"
+    },
+    {
+      "path": "src/utils/supportStyles.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ddbbb0c47dc8050937a48d4c1e1774c355509a7",
+      "size": 28573,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/1ddbbb0c47dc8050937a48d4c1e1774c355509a7"
+    },
+    {
+      "path": "src/utils/typeGuards.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b853eb9d7b5393a038856d5c838c3597502dd344",
+      "size": 203,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/b853eb9d7b5393a038856d5c838c3597502dd344"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c3654a3d42c4f78e8ad0fd745fd51d6d4891982",
+      "size": 376,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/3c3654a3d42c4f78e8ad0fd745fd51d6d4891982"
+    },
+    {
+      "path": "webflow_logo.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f2fbff7df05db42e5f6a4b6f8f4d0342e75b78b",
+      "size": 27669,
+      "url": "https://api.github.com/repos/webflow/mcp-server/git/blobs/4f2fbff7df05db42e5f6a4b6f8f4d0342e75b78b"
+    }
+  ],
+  "truncated": false
+}

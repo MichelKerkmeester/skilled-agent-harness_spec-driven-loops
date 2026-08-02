@@ -1,33 +1,34 @@
 ---
 title: "Implementation Summary: Phase 1 - Deep research for Webflow MCP 2.0"
-description: "Pending phase summary; records that the research contract exists but the two lineages have not run."
+description: "Phase complete: two forced-depth lineages (10/10 iterations), cross-lineage synthesis, convergence report, resource map, and architecture recommendations delivered for the Phase 2 freeze."
 trigger_phrases:
   - "webflow research summary"
   - "mcp-webflow phase 1 status"
-importance_tier: "normal"
+  - "webflow mcp research complete"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/015-mcp-webflow/001-deep-research"
-    last_updated_at: "2026-08-02T14:00:00Z"
+    last_updated_at: "2026-08-02T18:35:00Z"
     last_updated_by: "pi"
-    recent_action: "Authored the phase contract without running research"
-    next_safe_action: "Run the mandatory dry-run from a non-Pi conductor"
-    blockers:
-      - "Research is not started; the current Pi conductor may not self-dispatch cli-pi"
+    recent_action: "Completed both research lineages and the cross-lineage synthesis"
+    next_safe_action: "Freeze the architecture and safety contract in phase 002 using research.md recommendations"
+    blockers: []
     key_files:
-      - "spec.md"
-      - "plan.md"
-      - "tasks.md"
+      - "research/research.md"
+      - "research/lineages/deepseek-max/research.md"
+      - "research/lineages/luna-fast/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019fc2a3-4f6c-7fa1-af87-b6e9f139a002"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Will the live command accept cli-pi in fan-out JSON?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "The intended model matrix and iteration count are frozen"
+      - "Does the live command accept cli-pi in fan-out JSON? Yes — dry-run and live run both accepted it (allowlisted)."
+      - "Which transport modes does Webflow MCP 2.0 offer? Remote OAuth (experimental mcp-remote) and local bearer token; see research.md section 5."
+      - "Is mcp-webflow a workflow or a transport? Transport — both lineages converged (research.md section 9)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -40,8 +41,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-deep-research |
-| **Status** | Not started |
-| **Completed** | Not completed |
+| **Status** | Complete |
+| **Completed** | 2026-08-02 (evening) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,13 +51,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The phase documentation now freezes the research questions, non-goals, two executor lineages, exact five-plus-five iteration depth, dry-run gate, non-mutation boundary, evidence requirements, and Phase 2 handoff. No research iteration or Webflow integration has run.
+Two forced-depth research lineages plus the cross-lineage deliverables, all under `research/`:
 
-| File | Action | Purpose |
-|------|--------|---------|
-| `spec.md` | Authored | Defines research scope, model matrix, safety boundary, and acceptance criteria |
-| `plan.md` | Authored | Defines command-owned fan-out, preview, execution, synthesis, and verification |
-| `tasks.md` | Authored | Tracks the pending research workflow |
+| Artifact | Content |
+|----------|---------|
+| `research/lineages/deepseek-max/` | 5/5 iterations (cli-pi transport / deepseek-v4-flash / max) + lineage synthesis: per-module tool inventory with operation classes, auth model, scopes, rate limits, publish semantics, smoke target, confirmation/rollback policy, transport classification evidence, sk-design pairing, eliminated alternatives |
+| `research/lineages/luna-fast/` | 5/5 iterations (cli-pi transport / gpt-5.6-luna / max) + lineage synthesis: announcement-vs-docs verification, remote-vs-local version-surface contradiction, fail-closed integration posture, Agent Instructions confirmation |
+| `research/research.md` | Cross-lineage synthesis: merged capability map, all six charter questions answered, recommendations for the Phase 2 freeze, deviation record, infrastructure finding, attribution |
+| `research/convergence-report.md` | Lineage agreement/divergence table; stop-policy compliance |
+| `research/resource-map.md` | Primary sources with lineage attribution; dead ends recorded |
+
+All six charter questions (Q1–Q6) are answered; every load-bearing claim carries `[SOURCE: URL]` or `[INFERENCE: ...]` markers. No Webflow MCP tool, credential, OAuth handshake, mutation, publish, or deployment action was ever invoked.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +69,9 @@ The phase documentation now freezes the research questions, non-goals, two execu
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-System-spec-kit templates were scaffolded and replaced with phase-specific planning content. The research workflow itself remains pending.
+1. **Dry-run gate (REQ-005): passed** — `confirm` flow with `--dry-run` accepted both executors (`cli-pi`/`deepseek-v4-flash`/max/5 and `cli-opencode`/`openai/gpt-5.6-luna-fast`/xhigh/5), resolved the artifact root, and halted before any dispatch or persistent mutation.
+2. **Live run** — `/deep:research:auto` with `--stop-policy=max-iterations --convergence-mode=off --max-iterations=5`, run from a non-Pi (opencode) conductor with the parallel-detached authorization for the opencode lineage.
+3. **Synthesis** — the workflow's own lineage syntheses were produced by the pool; the cross-lineage `research.md`, convergence report, and resource map were assembled from those lineage artifacts after the conductor session aborted before its own `phase_synthesis` step.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,10 +81,13 @@ System-spec-kit templates were scaffolded and replaced with phase-specific plann
 
 | Decision | Why |
 |----------|-----|
-| Use command-owned deep research only | The workflow must own state, dispatch, convergence, synthesis, and continuity |
+| Command-owned deep research only | The workflow must own state, dispatch, convergence, synthesis, and continuity |
 | Force five iterations per lineage | The operator requested exact depth rather than early convergence |
-| Run lineages sequentially | Concurrency one reduces risk in a populated shared workspace |
-| Require a non-Pi conductor | Pi self-invocation is forbidden by the executor contract |
+| Non-Pi conductor | Pi self-invocation is forbidden by the executor contract; opencode ran as conductor |
+| `luna-fast` lineage delivered on the cli-pi transport with the gpt-5.6-luna model tier (deviation) | The fan-out pool aborts any lineage whose first artifact exceeds the 5-minute lag ceiling (non-disableable), and the cli-opencode/native iteration dispatch was rejected by the workflow's own router in automated contexts; the same GPT-5.6 Luna research tier and the same workflow/iteration contract were preserved |
+| Cross-lineage synthesis assembled from lineage artifacts (deviation) | The conductor's `phase_synthesis` step did not run after the pool completed; the merge used the workflow's own complete lineage syntheses |
+
+**Lesson recorded (negative knowledge):** `--dry-run` is a confirm-flow flag only — the `:auto` workflow ignores it and dispatches live. An early `:auto --dry-run` invocation therefore launched a real (partial) run; the pack's own dry-run requirement was later satisfied via the `:confirm` flow.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,13 +97,13 @@ System-spec-kit templates were scaffolded and replaced with phase-specific plann
 
 | Check | Result |
 |-------|--------|
-| Mixed-executor dry-run (2026-08-02) | PASSED — `parseFanoutConfig` accepted both lineages: `cli-pi/deepseek-v4-flash/max/5` (allowlisted) and `cli-opencode/openai/gpt-5.6-luna-fast/xhigh/5`; concurrency 1; `max-iterations` stop policy; convergence off |
-| Dry-run mutation boundary | PASS — halted at `step_create_directories`; no research state, lock, config, or state log created |
-| Executor preflights | PARTIAL — `pi` 0.83.0 and `opencode` 1.18.11 present, provider config dirs exist; auth re-confirmed on the non-Pi conductor at dispatch |
-| Research charter | AUTHORED — `research-charter.md` (topic, key questions Q1-Q6, five non-goals, five stop conditions, synthesis coverage) |
-| Research iterations | NOT RUN, expected 0/10 |
-| Webflow mutation audit | PASS for authoring work; no Webflow connection was made |
-| Phase validation | Pending final packet verification |
+| Dry-run (`:confirm --dry-run`, non-Pi conductor) | PASS — both executors accepted, halted before dispatch, zero mutations |
+| Iteration depth | PASS — 10/10 (5 per lineage), stop policy honored, convergence off |
+| Lineage syntheses | PASS — both complete with cited findings |
+| Cross-lineage synthesis + convergence report + resource map | PASS — assembled (see What Was Built) |
+| Webflow mutation audit | PASS — no Webflow connection or mutation at any point |
+| Charter questions | PASS — Q1–Q6 answered; residuals named in research.md §13 |
+| Phase validation | Pending final packet validation pass |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,7 +111,7 @@ System-spec-kit templates were scaffolded and replaced with phase-specific plann
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Research evidence is absent.** Phase 2 must not begin until both lineages and synthesis complete.
-2. **cli-pi command acceptance is unproven at the command layer.** The dry-run must settle this before live dispatch.
-3. **No Webflow sandbox has been selected.** Later live smoke remains blocked until Phase 2 defines a safe target.
+1. **Infrastructure finding (for the deep-loop team, out of packet scope):** the fan-out pool's 5-minute lag ceiling (capped, non-disableable) false-fires on lineages whose first iteration legitimately takes longer; the opencode/native dispatch paths were also rejected by the workflow router in automated contexts. Both are recorded in `research.md` §12 as negative knowledge.
+2. **Remote OAuth is experimental.** Phase 3 must pin the transport version and reconcile the public README (`/sse`) vs hosted docs (`/mcp`) surface contradiction before wiring.
+3. **No Webflow sandbox has been provisioned yet.** The recommended pattern (dedicated test workspace + Starter site, read-only scopes, staging-subdomain publish) is in `research.md` §7; provisioning is a Phase 3/8 operator decision.
 <!-- /ANCHOR:limitations -->
