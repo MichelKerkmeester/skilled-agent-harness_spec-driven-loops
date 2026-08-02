@@ -156,6 +156,7 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  */
 export const PI_SUPPORTED_MODELS = [
   'deepseek-v4-pro',
+  'deepseek-v4-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',

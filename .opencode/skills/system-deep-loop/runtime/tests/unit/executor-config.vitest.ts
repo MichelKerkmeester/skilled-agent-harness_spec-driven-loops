@@ -759,8 +759,9 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the seven operator-confirmed picker ids', () => {
+  it('contains exactly the eight operator-confirmed picker ids', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
+      'deepseek-v4-flash',
       'deepseek-v4-pro',
       'gpt-5.6-luna',
       'gpt-5.6-sol',
