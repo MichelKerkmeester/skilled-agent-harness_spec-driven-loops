@@ -49,7 +49,7 @@ lib/
 Main flow:
 
 ```text
-Session-lifecycle extension (../session-*.ts, ../prompt-advisor.ts)
+Session-lifecycle extensions (../session-*.ts)
         |
         v
 runClaudeHookAdapter(projectDir, filename, payload, timeoutMs)
@@ -60,6 +60,10 @@ spawnSync(node, <dist hook>, payload on stdin, bounded stdio)
         v
 Raw stdout text back to the caller (or extractAdditionalContext()
 for the one JSON-envelope hook), or null on any failure
+
+Note: ../prompt-advisor.ts no longer routes through this module -- it
+imports the compiled advisor hook and calls it in-process (see the
+extensions README). This module serves the session-start/stop bridges.
 ```
 
 ---

@@ -3,9 +3,21 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { extractAdditionalContext, runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
 
-const TIMEOUT_MS = 2_800;
+// The shared advisor lifecycle module the claude/codex/cursor runtimes execute
+// as a subprocess. Its CLI entrypoint is guarded, so importing it in-process is
+// safe. Pi awaits input handlers before agent processing begins, so the old
+// two-process blocking-spawn bridge stalled every send; calling the same
+// lifecycle code directly removes that stall and lets its module-level prompt
+// cache work.
+const ADVISOR_HOOK_MODULE =
+  "../../.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js";
+
+interface AdvisorEnvelope {
+  hookSpecificOutput?: {
+    additionalContext?: string;
+  };
+}
 
 /** Bridges the skill-advisor's UserPromptSubmit recommendation into Pi's input event. Distinct from spec-gate-classify.ts, which only appends the Gate-3 documentation question. */
 export default function promptAdvisor(pi: ExtensionAPI): void {
@@ -13,14 +25,29 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     try {
       if (!event.text.trim()) return;
 
-      const stdout = runClaudeHookAdapter(
-        ctx.cwd,
-        "user-prompt-submit.js",
-        { prompt: event.text, cwd: ctx.cwd, hook_event_name: "UserPromptSubmit" },
-        TIMEOUT_MS,
-      );
-      const context = extractAdditionalContext(stdout);
-      if (!context) return;
+      const { handleClaudeUserPromptSubmit } = (await import(
+        ADVISOR_HOOK_MODULE
+      )) as {
+        handleClaudeUserPromptSubmit?: (
+          input: {
+            prompt?: string;
+            cwd?: string;
+            hook_event_name?: string;
+          },
+        ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
+      };
+      if (typeof handleClaudeUserPromptSubmit !== "function") {
+        return undefined;
+      }
+
+      const output = await handleClaudeUserPromptSubmit({
+        prompt: event.text,
+        cwd: ctx.cwd,
+        hook_event_name: "UserPromptSubmit",
+      });
+      const context = (output as AdvisorEnvelope).hookSpecificOutput
+        ?.additionalContext;
+      if (!context) return undefined;
 
       return { action: "transform", text: `${event.text}\n\n${context}` };
     } catch {

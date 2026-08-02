@@ -536,7 +536,13 @@ export async function buildSkillAdvisorBrief(
         key: cacheKey,
         sourceSignature: freshness.sourceSignature,
         value: okResult,
-        skillLabels: okResult.recommendations.map((recommendation) => recommendation.skill),
+        // Only graph-backed labels may invalidate the entry later: a label that
+        // is not in the fingerprint map now (command ids, registry entries) was
+        // never a deletable graph entity, so caching it would poison every
+        // future lookup with a false "deleted skill" miss.
+        skillLabels: okResult.recommendations
+          .filter((recommendation) => freshness.skillFingerprints.has(recommendation.skill))
+          .map((recommendation) => recommendation.skill),
       });
     }
 

@@ -32,6 +32,7 @@
     "**/*.test.ts",
     "**/*.test-d.ts",
     "**/*.vitest.ts",
-    "**/__tests__"
+    "**/__tests__",
+    "../hooks/pi/**"
   ]
 }

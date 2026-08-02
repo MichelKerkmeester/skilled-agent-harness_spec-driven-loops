@@ -25,7 +25,7 @@ trigger_phrases:
 | `prompt-advisor.ts` | `.opencode/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/` |
 
-Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. The 5 session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `prompt-advisor.ts`, `session-compact-context.ts`) instead proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. No guard or lifecycle logic is reimplemented here. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
+Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. No guard or lifecycle logic is reimplemented here. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
 
 ---
 
@@ -42,7 +42,7 @@ extensions/
 +-- session-start-context.ts    # Bridges session-prime's SessionStart context into the session
 +-- session-start-advisories.ts # Runs the 4 warn-only SessionStart CLI checks devin/cursor wire in
 +-- session-stop-context.ts     # Bridges session-stop's autosave/state-cleanup on quit
-+-- prompt-advisor.ts           # Bridges the skill-advisor's UserPromptSubmit recommendation
++-- prompt-advisor.ts           # Bridges the skill-advisor's UserPromptSubmit recommendation (in-process)
 +-- session-compact-context.ts  # Rehydrates spec-folder continuity after a compaction
 +-- git-preflight-advisory.ts   # Warn-only git-outcome advisories on bash git commands
 +-- lib/
@@ -65,7 +65,7 @@ extensions/
 | `session-start-context.ts` | `session_start` | `system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`) |
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
-| `prompt-advisor.ts` | `input` | `system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js` -> `system-skill-advisor` (via `lib/claude-hook-adapter.ts`) |
+| `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file + `spec-memory.cjs` CLI fallback) |
 
 Paths without a leading `.opencode/` are relative to `.opencode/skills/`. The four `.opencode/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.opencode/hooks/README.md`](../../.opencode/hooks/README.md) for why those four moved and the rest did not.
@@ -93,7 +93,7 @@ Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does 
 | Exports | Exactly one default-exported `ExtensionFactory` per file. No named exports. |
 | Ownership | Guard decisions belong to the shared `.mjs`/`.cjs` core modules under `.opencode/`. Session-lifecycle decisions belong to the Claude hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/`. These files own only event registration, payload construction, and the fail-open wrapper. |
 | Fail-open | Every handler body is wrapped in try/catch. A caught error returns `undefined` (`prompt-advisor.ts`, all others) or `{ action: "continue" }` (`spec-gate-classify.ts` only) for `input` handlers, never a block. |
-| Output shape | `session-prime.js` writes plain text to stdout. `session-stop.js` writes nothing (side effects only, no top-level stdout emission). `user-prompt-submit.js` writes a `{ hookSpecificOutput: { additionalContext } }` JSON envelope. `lib/claude-hook-adapter.ts`'s `extractAdditionalContext()` only applies to the last one. `session-start-context.ts` uses `session-prime.js`'s raw stdout text directly. |
+| Output shape | `session-prime.js` writes plain text to stdout. `session-stop.js` writes nothing (side effects only, no top-level stdout emission). `user-prompt-submit.js` writes a `{ hookSpecificOutput: { additionalContext } }` JSON envelope. `lib/claude-hook-adapter.ts`'s `extractAdditionalContext()` only applies to the last one. `session-start-context.ts` uses `session-prime.js`'s raw stdout text directly. `prompt-advisor.ts` reads the same envelope from the in-process return value instead of spawned stdout. |
 
 Two main flows:
 
@@ -103,11 +103,17 @@ Pi lifecycle event -> pi.on(event, handler) -> dynamic import() of the shared gu
   module -> guard-core decision (allow / block / warn) -> handler returns the decision,
   or undefined on any error (fail open)
 
-Session-lifecycle adapters (session_start / session_shutdown / session_compact / input):
+Session-lifecycle adapters (session_start / session_shutdown / session_compact; input is the exception):
 Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns the
   matching Claude hook dist file with a synthesized payload on stdin -> raw text or
   JSON envelope read back -> pi.sendMessage() (or ctx.exec()/ctx.ui.notify() for the
   plain CLI checks), or undefined on any error (fail open)
+
+In-process advisor (input, the exception):
+Pi input event -> pi.on("input", handler) -> dynamic import of the compiled advisor
+  hook module -> handleClaudeUserPromptSubmit(payload) -> envelope read from the
+  return value -> { action: "transform" } with the additionalContext appended, or
+  undefined on any error (fail open). No adapter/shim subprocess on this path — the advisor's own bounded python subprocess still runs on cache misses.
 ```
 
 
@@ -128,7 +134,7 @@ Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns
 | `sessionStopContext` | Default export | Registers the `session_shutdown` autosave/state-cleanup bridge. |
 | `promptAdvisor` | Default export | Registers the `input` skill-advisor recommendation bridge. |
 | `sessionCompactContext` | Default export | Registers the `session_compact` spec-folder continuity rehydration. |
-| `runClaudeHookAdapter`, `extractAdditionalContext` | Named exports | `lib/claude-hook-adapter.ts`'s spawnSync proxy and JSON-envelope parser, imported by the session-lifecycle adapters. |
+| `runClaudeHookAdapter`, `extractAdditionalContext` | Named exports | `lib/claude-hook-adapter.ts`'s spawnSync proxy and JSON-envelope parser, imported by the session-lifecycle adapters (session-start/stop); `prompt-advisor.ts` no longer uses it. |
 
 ---
 
