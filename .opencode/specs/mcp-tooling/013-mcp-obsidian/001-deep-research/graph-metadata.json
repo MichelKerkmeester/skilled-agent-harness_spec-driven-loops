@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian deep research",
+      "obsidian cli mcp landscape",
+      "obsidian build vs adopt",
+      "mcp-obsidian phase 1",
+      "obsidian research plan",
+      "deep research obsidian",
+      "mcp-obsidian phase 1 plan",
+      "obsidian research tasks",
+      "mcp-obsidian phase 1 tasks",
+      "deep research tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "deep",
+      "research",
+      "cli",
+      "mcp",
+      "landscape",
+      "adopt",
+      "mcp-obsidian",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Drive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Batch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and are maintained, which MCP servers exist and how they authenticate (Local REST API token vs direct vault filesystem), and whether any of it works headlessly without the desktop app running",
+    "created_at": "2026-08-02T05:50:26Z",
+    "last_save_at": "2026-08-02T06:11:53.539Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9cccd27d79e97b914bdc51ced245c2eeb8bd6fe1ce8be47f382826b10bf2e04c",
+    "source_doc_hashes": {
+      "spec.md": "34e2ba1f979493063062ab4117246b54ce561189c9f3474640f5e4e3132136a1",
+      "plan.md": "99ea2e1c51226f1e93085561b36fc766918c2d753ac706033ade4d8c2b0bfd95",
+      "tasks.md": "e3d87a888491927942e523115f189c3958765fc1cc54bd36e36af013423f5807",
+      "implementation-summary.md": "9523fb698c9a61fbb2c39b90dce2616e5cb172319d42c8d3ff5488ebdf2d76b4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

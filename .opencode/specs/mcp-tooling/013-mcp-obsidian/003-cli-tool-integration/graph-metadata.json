@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian cli integration",
+      "obsidian-cli install pointer",
+      "mcp-obsidian cli surface",
+      "mcp-obsidian phase 3",
+      "obsidian cli integration plan",
+      "obsidian-cli setup plan",
+      "mcp-obsidian phase 3 plan",
+      "obsidian cli integration tasks",
+      "obsidian-cli install tasks",
+      "mcp-obsidian phase 3 tasks",
+      "implementation",
+      "summary"
+    ],
+    "key_topics": [
+      "obsidian",
+      "cli",
+      "integration",
+      "obsidian-cli",
+      "install",
+      "pointer",
+      "mcp-obsidian",
+      "surface",
+      "phase",
+      "plan",
+      "setup",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "scripts/doctor.sh",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Install",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it, or look up its commands",
+    "created_at": "2026-08-02T05:50:27Z",
+    "last_save_at": "2026-08-02T06:12:32.227Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cfab84ea341bc51ce6d34d2bc188fb947ecf069baa66fb4acc95bdf6362e3488",
+    "source_doc_hashes": {
+      "spec.md": "0506d0cbee7bf2d5072b907a813d07a868895d571dd9d2afaeb8c72b01266ea8",
+      "plan.md": "f7f34da799d607bc78ec1a8efef1a03d7a6fdb7baf8f3efeb6737367a2e7c211",
+      "tasks.md": "e0cae1527824bcb002136ad192179dc3369689aafedaa96458fb625e6a15cde5",
+      "implementation-summary.md": "6600e6f580cc1970bad72e12eb2b876dd41fe2afdbf157c3115df716499c40fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

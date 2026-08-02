@@ -8,7 +8,7 @@ metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian -->
 
 # MCP Tooling Hub (mcp-tooling)
 
@@ -24,6 +24,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 |------|------|-----------|--------|
 | **mcp-chrome-devtools** | workflow | Browser debugging and automation: screenshots, DOM inspection, console/network capture, Lighthouse, via CLI (`bdg`) with an MCP fallback | `mcp-tooling/mcp-chrome-devtools/` |
 | **mcp-click-up** | workflow | ClickUp task management: daily ops via `cupt` CLI, documents/goals/bulk ops via the official MCP | `mcp-tooling/mcp-click-up/` |
+| **mcp-obsidian** | workflow | Obsidian vault and note management: headless `notesmd-cli`, app-backed `obsidian` CLI, and the cyanheads MCP | `mcp-tooling/mcp-obsidian/` |
 | **mcp-aside-devtools** | workflow | AI-browser automation via the Aside browser: agentic `aside` CLI tasks, deterministic `aside repl` evidence capture, `aside mcp` via Code Mode fallback | `mcp-tooling/mcp-aside-devtools/` |
 | **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-refero/` |
@@ -168,7 +169,7 @@ mcp-tooling/
 - Router: `hub-router.json`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
-- Workflow packets: `mcp-chrome-devtools/SKILL.md`, `mcp-click-up/SKILL.md`, `mcp-aside-devtools/SKILL.md`.
+- Workflow packets: `mcp-chrome-devtools/SKILL.md`, `mcp-click-up/SKILL.md`, `mcp-obsidian/SKILL.md`, `mcp-aside-devtools/SKILL.md`.
 - Transport packets: `mcp-figma/SKILL.md`, `mcp-refero/SKILL.md`, `mcp-mobbin/SKILL.md`.
 - Judgment partner for the transports: `../sk-design/SKILL.md`.
 - Shared MCP execution substrate (external, not a hub member): `../mcp-code-mode/SKILL.md`.

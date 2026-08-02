@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "description": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and",
+  "keywords": [
+    "obsidian",
+    "mode",
+    "know",
+    "real",
+    "automation",
+    "surface",
+    "whether",
+    "first-party",
+    "cli",
+    "community",
+    "clis",
+    "exist"
+  ],
+  "lastUpdated": "2026-08-02T05:56:25.478Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

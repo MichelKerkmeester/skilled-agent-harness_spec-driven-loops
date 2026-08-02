@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook",
+  "description": "After Phase 5 the `mcp-obsidian` mode has a routing contract but no single inventory of what its CLI + MCP tools actually do, and no reproducible way",
+  "keywords": [
+    "phase",
+    "mcp-obsidian",
+    "mode",
+    "routing",
+    "contract",
+    "single",
+    "inventory",
+    "cli",
+    "mcp",
+    "tools",
+    "actually",
+    "reproducible",
+    "way"
+  ],
+  "lastUpdated": "2026-08-02T06:10:54.605Z",
+  "specId": "006",
+  "folderSlug": "feature-catalog-and-playbook",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

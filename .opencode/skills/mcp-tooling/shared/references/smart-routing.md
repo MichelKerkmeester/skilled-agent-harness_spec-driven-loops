@@ -78,6 +78,7 @@ DEFAULT_RESOURCE = []
 INTENT_SIGNALS = {
     "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "dom inspect", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace"]},
     "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks"]},
+    "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud"]},
     "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through"]},
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design tokens", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
@@ -92,6 +93,11 @@ RESOURCE_MAP = {
     "CLICK_UP": [
         "mcp-click-up/references/cupt-commands.md",
         "mcp-click-up/references/mcp-tools.md"
+    ],
+    "OBSIDIAN": [
+        "mcp-obsidian/SKILL.md",
+        "mcp-obsidian/references/obsidian-cli-commands.md",
+        "mcp-obsidian/references/mcp-tools.md"
     ],
     "ASIDE_DEVTOOLS": [
         "mcp-aside-devtools/references/aside-cli-reference.md",

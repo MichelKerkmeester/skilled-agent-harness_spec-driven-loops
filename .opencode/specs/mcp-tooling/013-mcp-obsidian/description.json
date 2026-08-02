@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/013-mcp-obsidian",
+  "description": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
+  "keywords": [
+    "drive",
+    "clickup",
+    "terminal",
+    "cli",
+    "mcp",
+    "tool",
+    "mcp-click-up",
+    "mode",
+    "mcp-tooling",
+    "hub"
+  ],
+  "lastUpdated": "2026-08-02T11:17:14.252Z",
+  "specId": "013",
+  "folderSlug": "mcp-obsidian",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_12-17__mcp-obsidian-shipped-to-registered-advisor.md"
+  ]
+}

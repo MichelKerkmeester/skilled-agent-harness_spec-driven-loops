@@ -1,0 +1,10 @@
+{
+  "_note": "REPRESENTATIVE shape of .obsidian/plugins/obsidian42-brat/data.json (v2.2.0). VERIFY exact keys against a real install; `pluginList` holds the registered beta repo paths.",
+  "pluginList": [
+    "pranjulsingh/obsidian-flat-financing"
+  ],
+  "pluginSubListFrozenVersion": [],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "noticesEnabled": true
+}
