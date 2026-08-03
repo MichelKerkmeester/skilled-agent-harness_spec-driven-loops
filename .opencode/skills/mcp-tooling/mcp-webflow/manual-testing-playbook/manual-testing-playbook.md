@@ -16,13 +16,13 @@ version: 1.1.0.0
 
 | Category | Scenarios | IDs |
 |---|---|---|
-| Discovery and Setup | 2 | DISCOVER-001, DISCOVER-DRIFT-001 |
-| Read-Only | 2 | READCMS-001, READPAGES-001 |
-| Draft-Write | 1 | DRAFTSET-001 |
-| Safety Gate | 4 | PUBGATE-001, REFUSE-001, RATELIMIT-001, DEPLOYGATE-001 |
+| Discovery and Setup | 3 | DISCOVER-001, DISCOVER-DRIFT-001, REMOTE-SURFACE-001 |
+| Read-Only | 3 | READCMS-001, READPAGES-001, ANALYZE-001 |
+| Draft-Write | 2 | DRAFTSET-001, INSTRUCTIONS-001 |
+| Safety Gate | 5 | PUBGATE-001, REFUSE-001, RATELIMIT-001, DEPLOYGATE-001, BULKGATE-001 |
 | Judgment Pairing | 2 | PAIR-001, PAIR-DATA-001 |
 | Negative | 1 | NONWEBFLOW-001 |
-| **TOTAL** | **12** | **12 scenarios** |
+| **TOTAL** | **16** | **16 scenarios** |
 
 ### Realistic Test Model
 
@@ -58,13 +58,17 @@ version: 1.1.0.0
 
 - `discovery-setup/discover-001.md`
 - `discovery-setup/discover-drift-001.md`
+- `discovery-setup/remote-surface-001.md`
 - `read-only/readcms-001.md`
 - `read-only/readpages-001.md`
+- `read-only/analyze-001.md`
 - `draft-write/draftset-001.md`
+- `draft-write/instructions-001.md`
 - `safety-gate/pubgate-001.md`
 - `safety-gate/refuse-001.md`
 - `safety-gate/rate-limit-001.md`
 - `safety-gate/deploygate-001.md`
+- `safety-gate/bulkgate-001.md`
 - `pairing/pair-001.md`
 - `pairing/pair-data-001.md`
 - `negative/non-webflow-001.md`

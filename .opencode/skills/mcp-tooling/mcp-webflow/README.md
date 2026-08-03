@@ -36,11 +36,12 @@ Webflow MCP 2.0 transport mode for the `mcp-tooling` hub: operate Webflow sites,
 | `SKILL.md` | Mode entry contract and operation classes |
 | `INSTALL-GUIDE.md` | Operator setup: token, scopes, verification, version pinning |
 | `references/mcp-wiring.md` | Code Mode wiring, auth, discovery-first contract, remote OAuth alternative |
-| `references/tool-surface.md` | Research-time 18-module tool inventory with risk classes (re-discover live) |
+| `references/action-reference.md` | Complete remote-surface action reference (31 tools / 216 actions with params) |
+| `references/tool-surface.md` | Local OSS 18-module tool inventory with risk classes (re-discover live) |
 | `references/mcp-wiring.md` | Code Mode wiring, auth, scope model, rate limits, Bridge App boundary |
 | `references/troubleshooting.md` | Failure modes and never-list |
-| `feature-catalog/` | Capability cards: cms, publish-deploy, designer, site-pages-scripts |
-| `manual-testing-playbook/` | 12 scenarios across discovery, read, draft, safety gates, pairing, negative |
+| `feature-catalog/` | Capability cards: cms, publish-deploy, designer, site-pages-scripts, agent-instructions, analyze, localization-fonts-forms, sitemap-scripts-assets-whtml |
+| `manual-testing-playbook/` | 16 scenarios across discovery, read, draft, safety gates, pairing, negative |
 | `scripts/` | `doctor.sh` (verify-only) + `install.sh` |
 | `assets/utcp-webflow-manual.md` | Registered manual reference shape |
 | `examples/` | Worked scenarios per operation class |
