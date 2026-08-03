@@ -249,6 +249,7 @@ _sandbox
 /a_nobel_en_zn
 /ai_systems
 /barter
+.pi-subagents
 
 # ───────────────────────────────────────────
 # Provider-specific local files
@@ -263,6 +264,7 @@ _sandbox
 .opencode/specs/ai-systems
 .opencode/specs/anobel.com
 .opencode/specs/barter
+.opencode/specs/z-future
 
 .claude/specs/ai-systems
 .claude/specs/anobel.com
