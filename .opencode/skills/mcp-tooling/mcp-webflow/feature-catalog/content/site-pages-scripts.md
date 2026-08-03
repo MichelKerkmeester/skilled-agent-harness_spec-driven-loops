@@ -71,4 +71,4 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 Related references:
 - [`cms.md`](cms.md) — related capability
 - [`publish-deploy.md`](publish-deploy.md) — related capability
-- [`sitemap-scripts-assets-whtml.md`](sitemap-scripts-assets-whtml.md) — related capability
+- [`sitemap-scripts-assets-whtml.md`](../operations/sitemap-scripts-assets-whtml.md) — related capability

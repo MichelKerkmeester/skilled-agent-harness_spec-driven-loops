@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 9 of 9 |
 | **Predecessor** | `008-verification-and-closeout` |
-| **Successor** | None |
+| **Successor** | `010-designer-capabilities` |
 | **Handoff Criteria** | Every packet file conforms to its canonical template; fresh DeepSeek v4 Flash sub-agents report zero P0/P1 deviations; validators pass. |
 <!-- /ANCHOR:metadata -->
 

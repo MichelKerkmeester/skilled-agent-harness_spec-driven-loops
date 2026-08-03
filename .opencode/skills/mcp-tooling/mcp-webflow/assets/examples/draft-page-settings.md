@@ -44,4 +44,4 @@ Use for any draft-scoped content write. Review the payload before sending; never
 ## 3. RELATED RESOURCES
 
 - [`../../references/action-reference.md`](../../references/action-reference.md) — pages group
-- [`../../feature-catalog/site-pages-scripts.md`](../../feature-catalog/site-pages-scripts.md)
+- [`../../feature-catalog/content/site-pages-scripts.md`](../../feature-catalog/content/site-pages-scripts.md)

@@ -85,4 +85,4 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 - Feature file path: `operations/sitemap-scripts-assets-whtml.md`
 
 Related references:
-- [`site-pages-scripts.md`](site-pages-scripts.md) — related capability
+- [`site-pages-scripts.md`](../content/site-pages-scripts.md) — related capability

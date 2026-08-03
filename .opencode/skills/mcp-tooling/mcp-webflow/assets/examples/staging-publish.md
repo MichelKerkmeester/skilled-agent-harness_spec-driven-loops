@@ -43,5 +43,5 @@ Use when a publish is genuinely required. Confirmation must precede the call; th
 
 ## 3. RELATED RESOURCES
 
-- [`../../feature-catalog/publish-deploy.md`](../../feature-catalog/publish-deploy.md)
+- [`../../feature-catalog/content/publish-deploy.md`](../../feature-catalog/content/publish-deploy.md)
 - [`../../manual-testing-playbook/safety-gate/pubgate.md`](../../manual-testing-playbook/safety-gate/pubgate.md)

@@ -90,7 +90,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`publish-deploy.md`](publish-deploy.md) for the full capability card.
+See [`content/publish-deploy.md`](content/publish-deploy.md) for the full capability card.
 
 ---
 ### Designer-family
@@ -101,12 +101,16 @@ Elements, styles, variables, components, assets, pages — always paired with sk
 
 #### Current Reality
 
-Documented from the official remote action reference (2026-08-03); live discovery of the pinned
-version remains the authoritative inventory.
+Full operational logic in [`references/designer-capabilities.md`](../references/designer-capabilities.md):
+canvas model and Bridge App boundary, selection-driven edit loop (snapshot → discover → focus →
+mutate → verify), element-tree semantics, styles bound to variable modes, components with
+props/slots/variants, breakpoints, and worked flows. All edits draft-only until the separate
+publish gate. Documented from the official remote action reference (2026-08-03); live discovery of
+the pinned version remains the authoritative inventory.
 
 #### Source Files
 
-See [`designer.md`](designer.md) for the full capability card.
+See [`design/designer.md`](design/designer.md) for the full capability card.
 
 ---
 ### Site, pages, scripts, webhooks, enterprise, AI
@@ -122,7 +126,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`site-pages-scripts.md`](site-pages-scripts.md) for the full capability card.
+See [`content/site-pages-scripts.md`](content/site-pages-scripts.md) for the full capability card.
 
 ---
 ### Agent Instructions
@@ -138,7 +142,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`agent-instructions.md`](agent-instructions.md) for the full capability card.
+See [`intelligence/agent-instructions.md`](intelligence/agent-instructions.md) for the full capability card.
 
 ---
 ### Analyze add-on
@@ -154,7 +158,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`analyze.md`](analyze.md) for the full capability card.
+See [`intelligence/analyze.md`](intelligence/analyze.md) for the full capability card.
 
 ---
 ### Localization, fonts, forms
@@ -170,7 +174,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`localization-fonts-forms.md`](localization-fonts-forms.md) for the full capability card.
+See [`content/localization-fonts-forms.md`](content/localization-fonts-forms.md) for the full capability card.
 
 ---
 ### Sitemap, scripts, assets, WHTML
@@ -186,7 +190,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`sitemap-scripts-assets-whtml.md`](sitemap-scripts-assets-whtml.md) for the full capability card.
+See [`operations/sitemap-scripts-assets-whtml.md`](operations/sitemap-scripts-assets-whtml.md) for the full capability card.
 
 ---
 ### Component variants
@@ -202,7 +206,7 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`component-variants.md`](component-variants.md) for the full capability card.
+See [`design/component-variants.md`](design/component-variants.md) for the full capability card.
 
 ---
 ## 4. LOCAL OSS BASELINE (18 modules)

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-mcp-webflow/009-template-alignment",
-  "spec_folder": "mcp-tooling/015-mcp-webflow/009-template-alignment",
+  "packet_id": "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
   "parent_id": "mcp-tooling/015-mcp-webflow",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "mcp-webflow template alignment",
-      "webflow asset template",
-      "webflow playbook naming",
-      "template conformance",
-      "webflow template plan",
-      "mcp-webflow template alignment plan",
-      "name",
-      "template",
-      "plan core",
-      "webflow template tasks",
-      "tasks core",
-      "implementation"
+      "webflow designer capabilities",
+      "designer card",
+      "designer logic",
+      "canvas model",
+      "designer guide",
+      "designer plan",
+      "DRAFT-003",
+      "designer tasks",
+      "designer verification",
+      "designer checklist",
+      "designer summary",
+      "designer implementation"
     ],
     "key_topics": [
-      "mcp-webflow",
-      "template",
-      "alignment",
       "webflow",
-      "asset",
-      "playbook",
-      "naming",
-      "conformance",
+      "designer",
+      "capabilities",
+      "card",
+      "logic",
+      "canvas",
+      "model",
+      "guide",
       "plan",
-      "name",
-      "core",
-      "tasks"
+      "draft-003",
+      "tasks",
+      "verification"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,15 +67,33 @@
         "source": "derived"
       },
       {
-        "name": "manual-testing-playbook.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Designer Capability Deepening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Designer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,31 +115,7 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,9 +139,9 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Task Format",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -157,7 +151,7 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Current Reality",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,21 +163,27 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Purpose",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "resolving",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,23 +193,25 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-08-03T06:16:12.356Z",
-    "last_save_at": "2026-08-03T08:47:41.004Z",
+    "causal_summary": "The Designer surface — canvas state, element tree, design tokens, component props/variants,",
+    "created_at": "2026-08-03T07:50:18Z",
+    "last_save_at": "2026-08-03T09:03:23.467Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a8b535e1d27b2819d1f7c6be3f3d59dfc93b94cb1e77b789f70fdad3633850e",
+    "source_fingerprint": "sha256:c34271d548385b0500d19dddad5385e94a6f2c58e51645d3280f48756f941113",
     "source_doc_hashes": {
-      "spec.md": "60c81d55840005207a4fbe590c4c460a0849091b6817f71a78ef853c4c406928",
-      "plan.md": "3649a64c94735739954a4c2ded4add9d21605d8051d066bc45ee72e29ffa84c2",
-      "tasks.md": "216e73163b6d1a9c205ad1bf75ae64bd9efc373a438f03f40877b029d49b8ff8",
-      "implementation-summary.md": "9e5d95b407759909962e32b4d12b163108b0ec83bbce67ff496791ddf7791101"
+      "spec.md": "7af9b83a07b70c21861cae7e7bf125477a35a8fc2e4c6934b0c080e3a97ab26d",
+      "plan.md": "77136fb2950135a795b2bbe2f4911e29dd67d117404ad8dc37f83c07399bf341",
+      "tasks.md": "e2d88582f0fb38c2b413e2e1620ea61a8e6d6b3777e3d4a1716c613c8151347c",
+      "checklist.md": "00f5b51e5b544f8c6c98bdc266af61b68b03b14094110d4dc742695db7c8bf61",
+      "implementation-summary.md": "677e0e76b2610058a229ce77fac98f43726c86b1e9c67b60675883d3514aed93"
     },
     "last_active_child_id": null,
     "last_active_at": null

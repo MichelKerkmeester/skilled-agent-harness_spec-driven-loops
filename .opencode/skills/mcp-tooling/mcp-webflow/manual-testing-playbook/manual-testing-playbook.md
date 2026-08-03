@@ -1,6 +1,6 @@
 ---
 title: "mcp-webflow: Manual Testing Playbook"
-description: "Deterministic manual scenarios for the mcp-webflow transport: discovery and surface reconciliation, read-only, draft-write, safety gates (DS/PB/DP), sk-design pairing, and negative classes — 16 scenarios."
+description: "Deterministic manual scenarios for the mcp-webflow transport: discovery and surface reconciliation, read-only, draft-write (incl. Designer edit loop), safety gates (DS/PB/DP), sk-design pairing, and negative classes — 17 scenarios."
 trigger_phrases:
   - "webflow playbook"
   - "webflow manual testing"
@@ -24,11 +24,11 @@ boundary held.
 |---|---|---|
 | discovery-setup | 3 | DISCOVER-001, DISCOVER-002, DISCOVER-003 |
 | read-only | 3 | READ-001, READ-002, READ-003 |
-| draft-write | 2 | DRAFT-001, DRAFT-002 |
+| draft-write | 3 | DRAFT-001, DRAFT-002, DRAFT-003 |
 | safety-gate | 5 | SAFE-001, SAFE-002, SAFE-003, SAFE-004, SAFE-005 |
 | pairing | 2 | PAIR-001, PAIR-002 |
 | negative | 1 | NEG-001 |
-| **TOTAL** | **16** | **16 scenarios** |
+| **TOTAL** | **17** | **17 scenarios** |
 
 ### Realistic Test Model
 
@@ -88,7 +88,7 @@ and failure triage against the frozen contract and the action reference.
 
 - Wave 1 — discovery + surface reconciliation (DISCOVER-*, DISCOVER-003).
 - Wave 2 — read-only (READ-001, READ-002, READ-003).
-- Wave 3 — draft-write (DRAFT-001, DRAFT-002).
+- Wave 3 — draft-write (DRAFT-001, DRAFT-002, DRAFT-003).
 - Wave 4 — pairing (PAIR-001, PAIR-002).
 - Wave 5 — safety gates, isolated (SAFE-001, SAFE-002, SAFE-003, SAFE-004,
   SAFE-005).
@@ -108,6 +108,7 @@ and failure triage against the frozen contract and the action reference.
 | READ-003 | Analyze reports read-only | read-only | [`read-only/analyze.md`](read-only/analyze.md) |
 | DRAFT-001 | Draft page settings update | draft-write | [`draft-write/draftset.md`](draft-write/draftset.md) |
 | DRAFT-002 | Agent Instructions draft-write | draft-write | [`draft-write/instructions.md`](draft-write/instructions.md) |
+| DRAFT-003 | Designer edit loop is draft-only and sk-design-paired | draft-write | [`designer-edit/designer-edit.md`](designer-edit/designer-edit.md) |
 | SAFE-001 | Staging-only single-page publish | safety-gate | [`safety-gate/pubgate.md`](safety-gate/pubgate.md) |
 | SAFE-002 | Destructive action without confirmation | safety-gate | [`safety-gate/refuse.md`](safety-gate/refuse.md) |
 | SAFE-003 | 429 backoff and Retry-After | safety-gate | [`safety-gate/rate-limit.md`](safety-gate/rate-limit.md) |
@@ -119,7 +120,7 @@ and failure triage against the frozen contract and the action reference.
 ---
 ## 8. AUTOMATED TEST CROSS-REFERENCE
 
-- Hub routing benchmark: [`../benchmark/reports/2026-08-02--webflow-registration--routing-replay/`](../benchmark/reports/2026-08-02--webflow-registration--routing-replay/)
+- Hub routing benchmark: [`../../benchmark/reports/2026-08-02--webflow-registration--routing-replay/`](../../benchmark/reports/2026-08-02--webflow-registration--routing-replay/)
   (12/12) — covers the routing boundaries re-checked by NEG-001.
 - Skill package validation: [`../../../sk-doc/sk-create-skill/scripts/validate_skill_package.py`](../../../sk-doc/sk-create-skill/scripts/validate_skill_package.py).
 
@@ -133,6 +134,7 @@ and failure triage against the frozen contract and the action reference.
 | READ-003 | Analyze reports read-only | Read-Only | `../feature-catalog/intelligence/analyze.md` |
 | DRAFT-001 | Draft page settings update | Draft-Write | `../feature-catalog/content/site-pages-scripts.md` |
 | DRAFT-002 | Agent Instructions draft-write | Draft-Write | `../feature-catalog/intelligence/agent-instructions.md` |
+| DRAFT-003 | Designer edit loop is draft-only and sk-design-paired | Draft-Write | `../feature-catalog/design/designer.md` |
 | SAFE-001 | Staging-only single-page publish | Safety Gate | `../feature-catalog/content/publish-deploy.md` |
 | SAFE-002 | Destructive action without confirmation | Safety Gate | `../feature-catalog/content/publish-deploy.md` |
 | SAFE-003 | 429 backoff and Retry-After | Safety Gate | `../feature-catalog/content/site-pages-scripts.md` |
