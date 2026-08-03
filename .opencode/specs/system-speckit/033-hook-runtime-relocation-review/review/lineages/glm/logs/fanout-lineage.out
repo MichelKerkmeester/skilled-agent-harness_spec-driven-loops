@@ -1,5 +1,0 @@
-All phases complete. The GLM fan-out lineage executed `phase_init` → `phase_main_loop` (3 iterations, `stop_policy=max-iterations` honored — convergence treated as telemetry-only) → `phase_synthesis`. All artifacts written to `.opencode/specs/system-speckit/033-hook-runtime-relocation-review/review/lineages/glm/`.
-
-**Verdict: FAIL** — P0=4, P1=4, P2=1. The 6 original P1s from the prior review are correctly fixed (all verified PASS), but a repo-wide stale-path sweep discovered 4 P0 broken live imports in `system-spec-kit` and `sk-git` skill trees that the relocation commit and the Phase 6 remediation both missed. CHK-011 [P0]'s "no stale path survives" claim is overstated (again).
-
-FANOUT_LINEAGE_COMPLETE:glm
