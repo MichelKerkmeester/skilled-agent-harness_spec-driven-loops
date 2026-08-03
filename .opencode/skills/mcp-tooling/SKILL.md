@@ -2,13 +2,13 @@
 name: mcp-tooling
 description: "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.3.0.0
+version: 1.3.2.0
 metadata:
   author: OpenCode
   family: mcp
 ---
 
-<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes -->
+<!-- Keywords: mcp-tooling, mode-registry, hub-router, workflowMode, packetKind, transport-axis, mcp-chrome-devtools, chrome-devtools, cdp, browser-debugger-cli, bdg, mcp-click-up, clickup, cupt, task-management, mcp-aside-devtools, aside, aside-browser, agentic-browser, aside-mcp, mcp-refero, refero, design-reference, mcp-mobbin, mobbin, app-design-research, mcp-figma, figma-cli, figma-ds-cli, figma-desktop, mcp-code-mode, mcp-obsidian, obsidian, obsidian-vault, notesmd-cli, obsidian-mcp, note-management, markdown-notes, iconic, iconic-rulebook, icon-rules, icon-automation, file-icons, folder-icons -->
 
 # MCP Tooling Hub (mcp-tooling)
 
@@ -24,12 +24,11 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 |------|------|-----------|--------|
 | **mcp-chrome-devtools** | workflow | Browser debugging and automation: screenshots, DOM inspection, console/network capture, Lighthouse, via CLI (`bdg`) with an MCP fallback | `mcp-tooling/mcp-chrome-devtools/` |
 | **mcp-click-up** | workflow | ClickUp task management: daily ops via `cupt` CLI, documents/goals/bulk ops via the official MCP | `mcp-tooling/mcp-click-up/` |
-| **mcp-obsidian** | workflow | Obsidian vault and note management: headless `notesmd-cli`, app-backed `obsidian` CLI, and the cyanheads MCP | `mcp-tooling/mcp-obsidian/` |
+| **mcp-obsidian** | workflow | Obsidian vault and note management plus Iconic `data.json` rulebook automation: headless `notesmd-cli`, app-backed `obsidian` CLI, and the cyanheads MCP | `mcp-tooling/mcp-obsidian/` |
 | **mcp-aside-devtools** | workflow | AI-browser automation via the Aside browser: agentic `aside` CLI tasks, deterministic `aside repl` evidence capture, `aside mcp` via Code Mode fallback | `mcp-tooling/mcp-aside-devtools/` |
 | **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design` for design judgment | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-refero/` |
 | **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design` for design judgment | `mcp-tooling/mcp-mobbin/` |
-| **mcp-webflow** | transport | Webflow MCP 2.0 operations: sites, pages, CMS, components, variables, assets, scripts, workflows via the official server; publish/destructive/deploy gated; Designer-family pairs with `sk-design` | `mcp-tooling/mcp-webflow/` |
 
 ### When NOT to Use
 
@@ -52,7 +51,7 @@ Routing is registry-driven. `mode-registry.json` lists all seven modes (four wor
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools` mutate this repo's workspace (`mutatesWorkspace:true`).
-- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode), and `mcp-webflow` (official Webflow MCP server via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub judgment pairing to `sk-design` (mandatory for the design transports; conditional — Designer-family only — for `mcp-webflow`).
+- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub judgment pairing to `sk-design` (mandatory for the design transports).
 
 ### Routing Rule
 

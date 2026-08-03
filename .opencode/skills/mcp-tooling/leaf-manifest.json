@@ -63,6 +63,8 @@
         "assets/plugins/health-md/health-viz-blocks.example.md",
         "assets/plugins/health-md/healthmd-export.example.json",
         "assets/plugins/iconic/iconic-rules.example.json",
+        "assets/plugins/iconic/iconic-rules.full.json",
+        "assets/plugins/iconic/iconic-rules.full.md",
         "assets/plugins/obsidian-tables/example.table.md",
         "assets/workflows.md",
         "references/mcp-tools.md",
@@ -103,27 +105,6 @@
       ],
       "packet": "mcp-refero",
       "workflowMode": "mcp-refero"
-    },
-    {
-      "leaves": [
-        "assets/example-payloads.md",
-        "assets/examples/destructive-refused.md",
-        "assets/examples/draft-page-settings.md",
-        "assets/examples/first-session-discovery.md",
-        "assets/examples/read-cms-content.md",
-        "assets/examples/staging-publish.md",
-        "assets/payload-examples.md",
-        "assets/utcp-manual-reference.md",
-        "assets/utcp-webflow-manual.md",
-        "references/action-reference.md",
-        "references/designer-capabilities.md",
-        "references/mcp-wiring.md",
-        "references/tool-surface.md",
-        "references/troubleshooting.md",
-        "references/version-fixture.md"
-      ],
-      "packet": "mcp-webflow",
-      "workflowMode": "mcp-webflow"
     }
   ],
   "resourceContractVersion": 1

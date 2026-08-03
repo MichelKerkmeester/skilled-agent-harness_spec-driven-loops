@@ -86,7 +86,6 @@ INTENT_SIGNALS = {
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design tokens", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},
-    "WEBFLOW":         {"weight": 4, "keywords": ["webflow", "webflow mcp", "webflow site", "webflow cms", "webflow designer", "webflow publish", "webflow collection", "webflow workflow", "webflow page settings", "webflow component", "webflow variable", "webflow asset"]},
 }
 
 RESOURCE_MAP = {
@@ -117,10 +116,6 @@ RESOURCE_MAP = {
     "MOBBIN": [
         "mcp-mobbin/references/tool-surface.md",
         "mcp-mobbin/references/mcp-wiring.md"
-    ],
-    "WEBFLOW": [
-        "mcp-webflow/references/tool-surface.md",
-        "mcp-webflow/references/mcp-wiring.md"
     ],
 }
 ```

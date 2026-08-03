@@ -1,7 +1,7 @@
 {
   "name": "mcp-tooling",
-  "description": "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-obsidian for Obsidian vault and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, and mcp-aside-devtools for AI-browser automation via the Aside browser) plus three design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI design references via the Refero MCP, and mcp-mobbin researching app/screen/flow design patterns via the Mobbin MCP, and mcp-webflow operating Webflow sites/pages/CMS/components/variables/scripts/workflows via the official Webflow MCP server) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all modes reach through the unchanged code_mode registration key \u2014 it is external infrastructure, not a hub member, and stays a flat standalone skill.",
-  "version": "1.4.0.1",
+  "description": "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management, mcp-obsidian for Obsidian vault, markdown-note, and Iconic data.json rulebook management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, and mcp-aside-devtools for AI-browser automation via the Aside browser) plus three design transports (mcp-figma bridging to Figma Desktop, mcp-refero searching real-app UI design references via the Refero MCP, and mcp-mobbin researching app/screen/flow design patterns via the Mobbin MCP) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all modes reach through the unchanged code_mode registration key \u2014 it is external infrastructure, not a hub member, and stays a flat standalone skill.",
+  "version": "1.4.2.0",
   "importance_tier": "high",
   "keywords": [
     "mcp-tooling",
@@ -32,11 +32,12 @@
     "obsidian vault",
     "note management",
     "markdown notes",
-    "mcp-webflow",
-    "webflow",
-    "webflow mcp",
-    "webflow cms",
-    "webflow publish"
+    "iconic",
+    "iconic rulebook",
+    "icon rules",
+    "icon automation",
+    "file icons",
+    "folder icons"
   ],
-  "lastUpdated": "2026-08-02T00:00:00Z"
+  "lastUpdated": "2026-08-03T00:00:00Z"
 }

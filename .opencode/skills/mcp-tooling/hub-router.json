@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.1.0.0",
+ "version": "1.1.2.0",
  "routerPolicy": {
   "defaultMode": null,
   "ambiguityDelta": 1,
@@ -11,8 +11,7 @@
    "mcp-aside-devtools",
    "mcp-figma",
    "mcp-refero",
-   "mcp-mobbin",
-   "mcp-webflow"
+   "mcp-mobbin"
   ],
   "outcomes": {
    "single": "one dominant tool signal routes to one mode",
@@ -57,7 +56,8 @@
    "classes": [
     "obsidian-aliases",
     "note-management",
-    "health-md-data"
+    "health-md-data",
+    "iconic-rulebook"
    ],
    "resources": [
     "mcp-obsidian/SKILL.md"
@@ -101,16 +101,6 @@
    ],
    "resources": [
     "mcp-mobbin/SKILL.md"
-   ]
-  },
-  "mcp-webflow": {
-   "weight": 4,
-   "classes": [
-    "webflow-aliases",
-    "webflow-operations"
-   ],
-   "resources": [
-    "mcp-webflow/SKILL.md"
    ]
   }
  },
@@ -276,30 +266,6 @@
     "phone apps"
    ]
   },
-  "webflow-aliases": {
-   "note": "Webflow site/page/CMS/designer operations naming Webflow or its tools.",
-   "keywords": [
-    "webflow",
-    "webflow mcp",
-    "webflow site",
-    "webflow cms",
-    "webflow designer",
-    "webflow publish",
-    "webflow collection",
-    "webflow workflow"
-   ]
-  },
-  "webflow-operations": {
-   "note": "Operation-class phrasing that must route to mcp-webflow.",
-   "keywords": [
-    "publish webflow",
-    "webflow staging publish",
-    "webflow cms item",
-    "webflow page settings",
-    "webflow component",
-    "webflow variable"
-   ]
-  },
   "health-md-data": {
    "keywords": [
     "health md",
@@ -308,6 +274,19 @@
     "apple health",
     "health chart",
     "health visualization"
+   ]
+  },
+  "iconic-rulebook": {
+   "keywords": [
+    "iconic",
+    "iconic rulebook",
+    "icon rules",
+    "icon automation",
+    "file icons",
+    "folder icons",
+    "icon color",
+    "iconic data json",
+    "iconic ruleset"
    ]
   }
  }
