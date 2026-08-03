@@ -17,8 +17,8 @@ say "------------------"
 # 1. Runtime
 say "[1] Runtime"
 if command -v node >/dev/null 2>&1; then
-  NODE_MAJOR="$(node -e 'console.log(process.versions.node.split(".")[0])' 2>/dev/null || echo 0)"
-  if [ "$NODE_MAJOR" -ge 22 ]; then ok "node $(node --version) (>= 22.3 required)";
+  NODE_OK="$(node -e 'const [maj,min,pat]=process.versions.node.split(".").map(Number); console.log(maj>22||(maj===22&&(min>3||(min===3&&pat>=0)))?"ok":"old")' 2>/dev/null || echo old)"
+  if [ "$NODE_OK" = "ok" ]; then ok "node $(node --version) (>= 22.3.0 required)";
   else warn "node $(node --version) — webflow-mcp-server requires Node 22.3.0+"; fi
 else warn "node not found"; fi
 command -v npx >/dev/null 2>&1 && ok "npx present" || warn "npx not found"

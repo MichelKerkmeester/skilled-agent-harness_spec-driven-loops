@@ -7,13 +7,16 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# CMS content (collections + items)
+# Capability: CMS content (read, draft-write, publish, delete)
 
-## What it does
+## 1. OVERVIEW
 
 Read, create, update, publish, and delete Webflow CMS collections and items through the `cms`
 module of the official MCP server (Data API v2).
 
+## 2. HOW IT WORKS
+
+# CMS content (collections + items)
 ## Capabilities
 
 | Action | Class | Gate |
@@ -21,13 +24,14 @@ module of the official MCP server (Data API v2).
 | `get_collection_list`, `get_collection_details`, `list_collection_items` | RO | none (scope check) |
 | `create_collection`, `create_collection_*_field`, `update_collection_field` | DW | scope check; target id present |
 | `create_collection_items`, `update_collection_items` | DW | scope check; **choose draft vs live target explicitly** |
-| `publish_collection_items` | PB | operator confirmation; staging-first; 1 publish/min queue |
-| `delete_collection_items` | DS | operator confirmation; before/after listing; rollback = re-publish prior content |
+| `publish_collection_items` / `unpublish_collection_items` | PB | operator confirmation; live publish (no staging-domain target — staging policy applies at the site level); 1 publish/min queue |
+| `delete_collection_items`, `delete_collection_field` | DS | operator confirmation; before/after listing; rollback = re-publish prior content |
 
 ## Safety-critical semantics
 
-- CMS items can be created/deleted **directly in the live site** OR queued as drafts to publish
-  later — CMS mutations are NOT implicitly draft-safe; the client must choose.
+- On the **remote surface**, create/update item actions create **drafts**; publishing is a separate
+  explicit action (`publish_collection_items`). The local OSS surface additionally allows direct
+  live-site writes — never assume draft-safety across surfaces.
 - Publishing is a separate explicit action; nothing auto-publishes.
 - Delete is permanent via the MCP surface (no trash/revert endpoint); rollback is re-publishing
   prior content — confirm before/after state.
@@ -39,3 +43,23 @@ module of the official MCP server (Data API v2).
   draft target"
 - PB: "publish the 'Blog' collection draft items to the staging subdomain"
 - DS (refused without confirmation): "delete all items in the 'Drafts' collection"
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `CMS`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |

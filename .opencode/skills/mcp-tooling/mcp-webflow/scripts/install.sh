@@ -13,7 +13,7 @@ say "--------------------------"
 
 # 1. Prerequisites
 command -v node >/dev/null 2>&1 || { say "ERROR: node not found (Node 22.3.0+ required)"; exit 1; }
-NODE_MAJOR="$(node -e 'console.log(process.versions.node.split(".")[0])' 2>/dev/null || echo 0)"
+NODE_OK="$(node -e 'const [maj,min,pat]=process.versions.node.split(".").map(Number); console.log(maj>22||(maj===22&&(min>3||(min===3&&pat>=0)))?"ok":"old")' 2>/dev/null || echo old)"
 if [ "$NODE_MAJOR" -lt 22 ]; then say "ERROR: node $(node --version) — webflow-mcp-server requires Node 22.3.0+"; exit 1; fi
 say "[ok] node $(node --version)"
 

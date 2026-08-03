@@ -7,13 +7,16 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# Site, pages, scripts, webhooks, enterprise, AI
+# Capability: Site, pages, scripts, webhooks, enterprise, AI
 
-## What it does
+## 1. OVERVIEW
 
 The remaining Data-API modules: site-level reads/publish, page settings and static content,
 custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and AI Q&A.
 
+## 2. HOW IT WORKS
+
+# Site, pages, scripts, webhooks, enterprise, AI
 ## Capabilities
 
 | Module | Actions | Class |
@@ -22,9 +25,10 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | sites | `publish_site` | PB (see publish-deploy card) |
 | pages | `list_pages`, `get_page_metadata`, `get_page_content` | RO |
 | pages | `update_page_settings` (SEO/OG/slug/title — schema also carries publishing status) | DW; PB when flipping status |
-| pages | `update_static_content` (secondary-locale DOM nodes) | DW |
+| pages | `update_static_content` (secondary-locale DOM nodes), page branches (create/update) | DW |
+| pages | `delete_branch` (remote) | DS |
 | scripts | `list_registered_scripts`, `list_applied_scripts`, `get_page_script` | RO |
-| scripts | `add_inline_site_script`, `upsert_page_script` | DW (ships with publish) |
+| scripts | `add_page_script`, `add_site_script`, `set_page_scripts`, `set_site_scripts`, freeform code upserts, `update_registered_script` | DW (ships with publish) |
 | scripts | `delete_all_site_scripts`, `delete_all_page_scripts` | DS |
 | webhooks | `list_webhooks`, `get_webhook` | RO |
 | webhooks | `create_webhook`, `delete_webhook` | DW / DS (integration config) |
@@ -32,6 +36,7 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | enterprise | redirects/robots/well-known create-update / delete | DW / DS (Enterprise plan) |
 | aiChat | `ask_webflow_ai` | RO |
 | comments | `list_comment_threads`, `get_comment_thread`, `list_comment_replies` | RO |
+| comments | `create_reply` (remote) | DW |
 | rules | `webflow_guide_tool` | RO |
 
 ## Notes
@@ -39,3 +44,23 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 - `custom_code` scopes are Data-Client-app-only (site tokens cannot call custom-code endpoints).
 - Enterprise module is gated to Enterprise plans; capability varies by workspace tier.
 - `update_page_settings` can flip publishing status — review the payload before sending.
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Pages`, `Scripts`, `Sites`, `Webhooks`, `Enterprise`, `Utility`, `Comments`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |

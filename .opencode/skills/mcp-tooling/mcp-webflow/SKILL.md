@@ -3,7 +3,7 @@ name: mcp-webflow
 description: "Webflow MCP 2.0 transport: Data/Designer API via Code Mode; frozen safety classes, least-privilege auth, sk-design pairing."
 compatibility: "Requires the official webflow-mcp-server (Node 22.3.0+ for local mode), a WEBFLOW_TOKEN (site token for automation; workspace tokens read-only) or the remote OAuth flow (https://mcp.webflow.com/mcp), and Code Mode."
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.3.0.0
 user-invocable: true
 ---
 
@@ -20,7 +20,7 @@ The transport executes; the hub orchestrates; `sk-design` owns taste.
 > `.utcp_config.json` (stdio `npx -y webflow-mcp-server@latest`, `WEBFLOW_TOKEN` env). Live tool
 > discovery and calls are **BLOCKED pending an operator-provided token and a dedicated non-production
 > test site**. The documented inventory is dual-surface: the **remote deployed surface** — **31 tools /
-> 216 actions** from the official docs (2026-08-03, `references/action-reference.md`) — and the
+> 220 actions** from the official docs (2026-08-03, `references/action-reference.md`) — and the
 > **local OSS server** — 18 modules (`references/tool-surface.md`). The frozen safety contract applies
 > to both. Per-session `list_tools()`
 > re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on
@@ -83,17 +83,53 @@ Designer-family operations.
 ### Smart-Router Pseudocode
 
 ```text
-inventory = discover_markdown_resources()          # SKILL.md + references + feature-catalog + action-reference
-for resource in resources:
-    guarded = _guard_in_skill(resource)            # only packet-owned resources route here
-    if webflow_signal in user_intent and guarded:
-        route = mcp-webflow
-    elif design_intent (element/style/variable/component) and guarded:
-        route = mcp-webflow + sk-design
-    elif sibling tool signal (figma/refero/mobbin/clickup/chrome):
-        route = sibling mode
-    else:
-        load_level = UNKNOWN_FALLBACK              # defer + disambiguation checklist
+RESOURCE_BASES = ["SKILL.md", "references", "feature-catalog", "assets"]
+
+def discover_markdown_resources():
+    # recursively collect *.md under each base; returns relative paths
+    inventory = set()
+    for base in RESOURCE_BASES:
+        for path in walk(base):                    # recursive traversal
+            if path.endswith(".md"):
+                inventory.add(relative_path(path))
+    return inventory
+
+def _guard_in_skill(relative_path):
+    # only packet-owned resources may carry this mode's routing semantics
+    return relative_path not in {"../", "shared/", "node_modules/"}
+
+def load_if_available(resource):
+    # load a resource only when it exists on disk and is guarded; never fabricate
+    if exists(resource) and _guard_in_skill(resource):
+        return read(resource)
+    return None
+
+def score_intent(intent):
+    # weighted signal scoring: webflow aliases, design verbs, sibling tool names
+    signals = {"webflow": 0.0, "design": 0.0, "sibling_tool": None}
+    for alias in WEBFLOW_ALIASES:                  # webflow, webflow mcp, webflow cms, ...
+        if alias in intent: signals["webflow"] += 1.0
+    for verb in DESIGN_VERBS:                      # change/design/set + element/style/variable/...
+        if verb in intent: signals["design"] += 1.0
+    for mode, names in SIBLING_MODES.items():      # figma/refero/mobbin/clickup/chrome
+        if any(n in intent for n in names): signals["sibling_tool"] = mode
+    return signals
+
+def route(intent):
+    inventory = discover_markdown_resources()      # recursive, guarded
+    signals = score_intent(intent)
+    if signals["sibling_tool"] and signals["webflow"] == 0:
+        return signals["sibling_tool"]
+    if signals["webflow"] >= TIEBREAK:
+        return "mcp-webflow" + (" + sk-design" if signals["design"] else "")
+    return UNKNOWN_FALLBACK                        # defer + disambiguation checklist
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Restate the request and the tool signals you found.",
+    "Offer the candidate modes (webflow / sibling modes) explicitly.",
+    "Ask which mode the user intends; never default to mcp-webflow on ambiguity.",
+    "If webflow is chosen, run discovery-first before any call.",
+]
 ```
 
 ### Guarded Intent Router
@@ -123,19 +159,22 @@ Every Webflow operation maps to exactly one class; the gate applies at the agent
 | **DW** draft-write | CMS draft items, page settings, static content, scripts, redirects, webhooks, Designer canvas edits | none (scope check; target id present) | revert content / discard draft |
 | **DS** destructive | `delete_collection_items`, `delete_all_site_scripts`, `delete_all_page_scripts`, `delete_webhook`, `delete_301_redirect`, `delete_robots_txt`, `remove_element`, `remove_attribute`, `remove_style`, `remove_properties`, `delete_variable`, `unregister_component` | **operator confirmation** (idempotency guard; before/after listing) | re-publish prior content; Designer version-history snapshot; API-level site restore UNKNOWN → treated as unsupported |
 | **PB** publish | `publish_site`, `publish_collection_items`, `update_page_settings` with publishing-status change | **operator confirmation**; staging-first (`publishToWebflowSubdomain` only, never `customDomains`); optional single `pageId`; 1 publish/min queue | re-publish prior content/snapshot |
-| **DP** deploy | `run_workflow`, script registration (ships with publish) | **operator confirmation**; named target environment | Webflow-side workflow controls; script removal is DS |
+| **DP** deploy | `run_workflow` (local OSS surface only — the remote surface has no workflow tool) | **operator confirmation**; named target environment | Webflow-side workflow controls; script removal is DS |
+| **UNKNOWN** | any tool/action not in the researched inventory (either surface) | **prohibited until classified** from the live schema — never inferred as DW | n/a — do not execute |
 
 ### 3.2 Critical Semantics
 
-- **CMS mutations are NOT implicitly draft-safe** — items can be created/deleted directly in the
-  live site, or queued as drafts; the client must choose.
+- **CMS semantics are surface-specific**: on the remote surface, create/update item actions create
+  **drafts**; `publish_collection_items`/`unpublish_collection_items` publish/unpublish live (PB,
+  no staging-domain target). On the local OSS surface, items can be created/deleted directly in the
+  live site or queued — the client must choose. Never assume draft-safety across surfaces.
 - **Nothing auto-publishes**; publishing is always a separate explicit action.
 - **One publish per minute** queue; plan-based general limits (60/120 rpm) with `Retry-After` on
   429 — honor it, never blind-replay ambiguous non-idempotent writes.
 - **Staging vs production is structural**: `publishToWebflowSubdomain` (`*.webflow.io`) is the only
   publish target allowed from smoke/test flows; a single `pageId` limits blast radius.
-- **Unknown modules fail closed**: anything not in the researched inventory is treated RO/DW until
-  discovery proves otherwise — never DS/PB/DP by default.
+- **Unknown tools fail closed**: anything not in the researched inventory is class **UNKNOWN** and
+  PROHIBITED until the live schema classifies it — never inferred as DW, and never DS/PB/DP by default.
 
 ### 3.3 Execution Protocol
 
@@ -144,6 +183,14 @@ Every Webflow operation maps to exactly one class; the gate applies at the agent
 2. **Classify** the target tool against the frozen matrix.
 3. **Apply the gate** (confirmation for DS/PB/DP with expected output + rollback statement).
 4. **Execute**; capture evidence; redact token-bearing output.
+
+### 3.4b Surface Applicability
+
+Every tool reference in this packet is labeled by surface: **remote** (31 tools / 220 actions,
+`references/action-reference.md`), **local OSS** (18 modules, `references/tool-surface.md`), or
+**both**. Actions named only in one surface (e.g., `run_workflow` — local; `insert_whtml` — remote)
+must not be called against the other. Discovery compares the live `list_tools` result against the
+surface the pinned manual actually resolves.
 
 ### 3.4 Wiring
 
@@ -209,7 +256,7 @@ lands; the local stdio server is the deterministic baseline for automation.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Every Webflow operation is classified and gated before execution; no un-gated
-  destructive/publish/deploy call.
+  destructive/publish/deploy call; UNKNOWN actions are never executed.
 - **SC-002**: Discovery runs per session and drift is recorded; no tool is called from memory.
 - **SC-003**: Designer-family operations always pair with `sk-design`.
 - **SC-004**: Smoke/test flows never touch production (`customDomains`); staging subdomain only.
@@ -250,7 +297,7 @@ Docs: `INSTALL-GUIDE.md` · `references/mcp-wiring.md` · `references/tool-surfa
 - `INSTALL-GUIDE.md` — operator setup: token, scopes, verification, version pinning.
 - `references/mcp-wiring.md` — Code Mode wiring, auth, scope model, rate limits, Bridge App
   boundary, version-surface table.
-- `references/action-reference.md` — complete remote-surface action reference (31 tools, 216 actions, required parameters).
+- `references/action-reference.md` — complete remote-surface action reference (31 tools, 220 actions, required parameters).
 - `references/tool-surface.md` — local OSS 18-module tool inventory with risk classes.
 - `references/troubleshooting.md` — failure modes and never-list.
 - `feature-catalog/` — capability cards (cms, publish-deploy, designer, site-pages-scripts).

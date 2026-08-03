@@ -7,13 +7,16 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# Publish and deploy
+# Capability: Publish and deploy (site, collection items, workflows)
 
-## What it does
+## 1. OVERVIEW
 
 Explicitly deploys Webflow content to live or staging: site publish, CMS item publish, and
 workflow execution.
 
+## 2. HOW IT WORKS
+
+# Publish and deploy
 ## Capabilities
 
 | Action | Class | Gate |
@@ -38,3 +41,23 @@ workflow execution.
 - "publish the 'About' page to the staging subdomain" → confirmation + `publishToWebflowSubdomain` + `pageId`
 - "run the 'Weekly report' workflow" → confirmation + named inputs + blast-radius note
 - Production publish from any automated flow → REFUSED (fail closed)
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Sites`, `CMS`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |
