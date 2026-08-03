@@ -95,7 +95,9 @@
     },
     {
       "leaves": [
+        "assets/example-payloads.md",
         "assets/utcp-webflow-manual.md",
+        "references/action-reference.md",
         "references/mcp-wiring.md",
         "references/tool-surface.md",
         "references/troubleshooting.md"

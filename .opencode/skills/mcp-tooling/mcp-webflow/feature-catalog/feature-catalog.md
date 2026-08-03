@@ -6,7 +6,7 @@ trigger_phrases:
   - "webflow feature catalog"
   - "webflow capabilities"
 last_updated: "2026-08-02"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # mcp-webflow: Feature Catalog
@@ -17,7 +17,43 @@ Canonical capability inventory for the `mcp-webflow` skill. The transport reache
 
 ## 1. OVERVIEW
 
-Webflow MCP 2.0 exposes the Data API v2 and Designer API as bounded combined tools (one MCP tool per module, `actions` array inside). The transport never mutates this workspace (`mutatesWorkspace: false`; Write/Edit/Task forbidden); all mutations land in Webflow's cloud under the frozen gates. Designer-family modules require `sk-design` pairing.
+Webflow MCP 2.0 exposes the Data API v2 and Designer API as bounded combined tools. The **remote
+deployed surface** (`com.webflow/mcp` 2.0.0, official docs 2026-08-03) exposes **31 tools and 216
+actions** across 22 capability groups — the complete list of everything an AI can do; the local OSS
+server exposes the smaller 18-module baseline (`references/tool-surface.md`). Per-action required
+parameters live in `references/action-reference.md`. The transport never mutates this workspace
+(`mutatesWorkspace: false`; Write/Edit/Task forbidden); all mutations land in Webflow's cloud under
+the frozen gates. Designer-family modules require `sk-design` pairing.
+
+## 1b. Complete surface at a glance (remote, 31 tools / 216 actions)
+
+| Capability group | Tools | Actions | Read/Write |
+|---|---|---|---|
+| Agent Instructions | 1 | 6 | read, write |
+| Analyze (add-on) | 1 | 7 | read |
+| Assets | 3 | 14 | read, write |
+| CMS | 1 | 14 | read, write |
+| Comments | 1 | 5 | read, write |
+| Components | 4 | 27 | read, write |
+| Elements | 3 | 21 | read, write |
+| Enterprise | 1 | 7 | read, write |
+| Fonts | 1 | 7 | read, write |
+| Forms | 1 | 7 | read, write |
+| Localization | 1 | 7 | read, write |
+| Pages | 1 | 11 | read, write |
+| Scripts | 1 | 20 | read, write |
+| Sitemap | 1 | 8 | read, write |
+| Sites | 1 | 3 | read, write |
+| Style | 1 | 10 | read, write |
+| Variables | 1 | 18 | read, write |
+| Webhooks | 1 | 4 | read, write |
+| WHTML | 1 | 1 | write |
+| Designer canvas | 2 | 16 | read, write |
+| Utility | 3 | 3 | read |
+
+Every action with its required parameters: `references/action-reference.md`. Operation classes are
+applied by action semantics per the frozen matrix (read-only getters/listers/search → RO; deletes/
+removes/clears → DS; publishes → PB; workflow runs → DP; the rest → DW).
 
 ## 2. Capability inventory by module
 

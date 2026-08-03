@@ -1,9 +1,9 @@
 ---
 name: mcp-webflow
-description: "Webflow MCP 2.0 transport mode: official Webflow Data/Designer API via the webflow Code Mode manual, with frozen safety classes (read-only, draft-write, destructive, publish, deploy), least-privilege auth, and sk-design pairing for Designer-family operations."
+description: "Webflow MCP 2.0 transport: Data/Designer API via Code Mode; frozen safety classes, least-privilege auth, sk-design pairing."
 compatibility: "Requires the official webflow-mcp-server (Node 22.3.0+ for local mode), a WEBFLOW_TOKEN (site token for automation; workspace tokens read-only) or the remote OAuth flow (https://mcp.webflow.com/mcp), and Code Mode."
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.0.0
+version: 1.2.0.0
 user-invocable: true
 ---
 
@@ -19,8 +19,10 @@ The transport executes; the hub orchestrates; `sk-design` owns taste.
 > **Discovery status (read first).** The `webflow` Code Mode manual **IS REGISTERED** in this repo's
 > `.utcp_config.json` (stdio `npx -y webflow-mcp-server@latest`, `WEBFLOW_TOKEN` env). Live tool
 > discovery and calls are **BLOCKED pending an operator-provided token and a dedicated non-production
-> test site** — the callable inventory below is the **research-time baseline** (18 tool modules,
-> 2026-08-02, from official sources) and the frozen safety contract. Per-session `list_tools()`
+> test site**. The documented inventory is dual-surface: the **remote deployed surface** — **31 tools /
+> 216 actions** from the official docs (2026-08-03, `references/action-reference.md`) — and the
+> **local OSS server** — 18 modules (`references/tool-surface.md`). The frozen safety contract applies
+> to both. Per-session `list_tools()`
 > re-confirmation stays MANDATORY before relying on any name: confirm, then call, and fail closed on
 > drift. Callable names follow the Code Mode convention (`webflow.webflow.<tool>` registry /
 > `webflow.webflow_<tool>` TypeScript) — **UNVERIFIED** until authenticated discovery.
@@ -43,18 +45,76 @@ The transport executes; the hub orchestrates; `sk-design` owns taste.
 - Wire, verify, or troubleshoot the registered `webflow` Code Mode manual, its auth, scopes,
   rate limits, or the Designer Bridge App boundary.
 
+### Use Cases
+
+- CMS content operations on a dedicated test site (read, draft-write, staged publish).
+- Page metadata and static-content edits with explicit draft vs publish intent.
+- Designer canvas changes (elements, styles, variables, components) — with `sk-design`.
+- Workflow and script operations under the deploy gate.
+- Webhook, redirect, robots.txt, and AI Q&A surface (Enterprise-gated where noted).
+
 ### When NOT to Use
 
 - Design judgment itself — load `sk-design` (this transport never decides taste).
 - Workspace-level administration outside the documented scope model.
 - Anything that must touch a **production site from a smoke/test flow** — that is structurally
   forbidden (staging subdomain only).
+- Unverified tool names — never call from memory (discovery first).
 
 ---
 
-## 2. OPERATION CLASSES AND GATES (FROZEN)
+## 2. SMART ROUTING
 
-Every Webflow operation maps to exactly one class. The gate applies at the agent level before any
+Routing is registry-driven via the `mcp-tooling` hub (`hub-router.json` → `mode-registry.json`).
+`mcp-webflow` is a `transport` mode (`backendKind: code-mode-stdio-mcp`, `mutatesWorkspace: false`)
+resolved on Webflow signals; `sk-design` is the mandatory cross-hub judgment partner for
+Designer-family operations.
+
+### Signal Detection
+
+| Signal | Route | Action |
+|--------|-------|--------|
+| "webflow", "webflow mcp", "webflow cms/site/page" | mcp-webflow | load this packet, discover first |
+| "change/design/set ... in webflow" (element/style/variable/component) | mcp-webflow + `sk-design` | load both; design judgment first |
+| "publish/deploy webflow" | mcp-webflow (PB/DP gates) | confirmation flow |
+| "figma/refero/mobbin/clickup/chrome ..." | sibling modes | never route to webflow |
+| no tool signal | DEFER (no-mode-scored) | ask for disambiguation |
+
+### Smart-Router Pseudocode
+
+```text
+inventory = discover_markdown_resources()          # SKILL.md + references + feature-catalog + action-reference
+for resource in resources:
+    guarded = _guard_in_skill(resource)            # only packet-owned resources route here
+    if webflow_signal in user_intent and guarded:
+        route = mcp-webflow
+    elif design_intent (element/style/variable/component) and guarded:
+        route = mcp-webflow + sk-design
+    elif sibling tool signal (figma/refero/mobbin/clickup/chrome):
+        route = sibling mode
+    else:
+        load_level = UNKNOWN_FALLBACK              # defer + disambiguation checklist
+```
+
+### Guarded Intent Router
+
+| User intent pattern | Route | Notes |
+|---------------------|-------|-------|
+| "read/list/get webflow ..." (pages, cms, sites, scripts, workflows, components, webhooks) | RO | scope check only |
+| "create/update webflow ..." (draft intent, no publish verb) | DW | confirm target + draft vs live choice for CMS |
+| "delete/remove webflow ..." | DS | **confirmation** + rollback statement + before/after listing |
+| "publish webflow ..." | PB | **confirmation**; staging-first; single page when possible |
+| "run a webflow workflow" | DP | **confirmation**; name the workflow + inputs; blast-radius note |
+| "change the hero heading / style / variable / component in webflow" | DW + `sk-design` | Designer-family: load `sk-design` before execution |
+| "webflow" alone | discover-first | enumerate safe read inventory; never auto-execute |
+
+---
+
+## 3. HOW IT WORKS
+
+### 3.1 Operation Classes and Gates (FROZEN)
+
+Every Webflow operation maps to exactly one class; the gate applies at the agent level before any
 `tools/call` reaches the bridge.
 
 | Class | Meaning | Gate | Rollback |
@@ -65,54 +125,40 @@ Every Webflow operation maps to exactly one class. The gate applies at the agent
 | **PB** publish | `publish_site`, `publish_collection_items`, `update_page_settings` with publishing-status change | **operator confirmation**; staging-first (`publishToWebflowSubdomain` only, never `customDomains`); optional single `pageId`; 1 publish/min queue | re-publish prior content/snapshot |
 | **DP** deploy | `run_workflow`, script registration (ships with publish) | **operator confirmation**; named target environment | Webflow-side workflow controls; script removal is DS |
 
-### Critical semantics (from official sources)
+### 3.2 Critical Semantics
 
-- **CMS mutations are NOT implicitly draft-safe.** Collection items can be created/deleted
-  directly in the live site, or queued as drafts to publish later — the client must choose.
-- **Nothing auto-publishes.** Publishing is always a separate explicit action.
-- **One publish per minute** queue on site publish; plan-based general limits (60/120 rpm) with
-  `Retry-After` on 429 — honor it, never blind-replay ambiguous non-idempotent writes.
-- **Staging vs production is structural**: publish body must carry `customDomains` (production)
-  OR `publishToWebflowSubdomain` (`*.webflow.io`). A single `pageId` limits blast radius.
+- **CMS mutations are NOT implicitly draft-safe** — items can be created/deleted directly in the
+  live site, or queued as drafts; the client must choose.
+- **Nothing auto-publishes**; publishing is always a separate explicit action.
+- **One publish per minute** queue; plan-based general limits (60/120 rpm) with `Retry-After` on
+  429 — honor it, never blind-replay ambiguous non-idempotent writes.
+- **Staging vs production is structural**: `publishToWebflowSubdomain` (`*.webflow.io`) is the only
+  publish target allowed from smoke/test flows; a single `pageId` limits blast radius.
 - **Unknown modules fail closed**: anything not in the researched inventory is treated RO/DW until
   discovery proves otherwise — never DS/PB/DP by default.
 
----
+### 3.3 Execution Protocol
 
-## 3. EXECUTION PROTOCOL
+1. **Discover first (mandatory)**: `list_tools()` in the session; compare names against
+   `references/tool-surface.md`; on drift record it and fail closed for mismatched tools.
+2. **Classify** the target tool against the frozen matrix.
+3. **Apply the gate** (confirmation for DS/PB/DP with expected output + rollback statement).
+4. **Execute**; capture evidence; redact token-bearing output.
 
-### 3.1 Discovery first (mandatory)
+### 3.4 Wiring
 
-1. `list_tools()` (or Code Mode `tool_info`) in the session before any call.
-2. Compare names against `references/tool-surface.md`; on drift, record it and fail closed for
-   mismatched tools (never call from memory).
-3. Confirm the operation class of the target tool against the frozen matrix.
+| Concern | Value |
+|---------|-------|
+| Manual | `webflow` in `.utcp_config.json` (stdio `npx -y webflow-mcp-server@latest`, `WEBFLOW_TOKEN` env) |
+| Env name | `webflow_WEBFLOW_TOKEN` in `.env.example` (name only) |
+| Local server | `webflow-mcp-server` npm, Node 22.3.0+ |
+| Remote endpoint | `https://mcp.webflow.com/mcp` (hosted docs) / `/sse` (README) — reconcile per session |
+| Bridge App | Required only for Designer (`de*`) tools; auto-installs on OAuth authorization |
 
-### 3.2 Intent routing (guarded)
+### 3.5 Authentication Posture
 
-| User intent pattern | Route | Notes |
-|---------------------|-------|-------|
-| "read/list/get webflow ..." (pages, cms, sites, scripts, workflows, components, webhooks) | RO | scope check only |
-| "create/update webflow ..." (draft intent, no publish verb) | DW | confirm target + draft vs live choice for CMS |
-| "delete/remove webflow ..." | DS | **confirmation** + rollback statement + before/after listing |
-| "publish webflow ..." | PB | **confirmation**; staging-first; single page when possible |
-| "run a webflow workflow" | DP | **confirmation**; name the workflow + inputs; blast-radius note |
-| "change the hero heading / style / variable / component in webflow" | DW + `sk-design` | Designer-family: load `sk-design` before execution |
-| "webflow" alone | discover-first: enumerate what the user can safely do (balance-free read inventory) | never auto-execute |
-
-### 3.3 sk-design pairing
-
-- **MUST pair with `sk-design`**: deElement, deStyle, deVariable, deComponents, deAsset tools,
-  `update_page_settings` (SEO/OG metadata), component content/properties updates.
-- **Transport-only** (no design judgment): CMS CRUD, analytics, scripts registration, workflow
-  runs, webhooks, comments, enterprise rules/redirects.
-- The transport may execute an already-approved transformation without re-deciding taste.
-
-### 3.4 Authentication posture
-
-- **Remote mode** (primary for humans): OAuth per-site/per-workspace consent against the Webflow
-  MCP service; zero local secrets; only site owners/admins can authorize. Transport is
-  experimental (`mcp-remote`) — pin the version.
+- **Remote mode** (primary for humans): OAuth per-site/per-workspace consent; zero local secrets;
+  only site owners/admins can authorize; `mcp-remote` is experimental — pin the version.
 - **Local mode** (deterministic for automation): `WEBFLOW_TOKEN` site token with least-privilege
   scopes (read-only baseline: `cms:read`, `pages:read`, `sites:read`, `assets:read`,
   `components:read`, `forms:read`, `authorized_user:read`); escalate to `sites:write` only for the
@@ -120,7 +166,7 @@ Every Webflow operation maps to exactly one class. The gate applies at the agent
   are Data-Client-app-only.
 - Token values live only in the operator environment; the repo carries names and placeholders.
 
-### 3.5 Version-surface contradiction (must reconcile per session)
+### 3.6 Version-Surface Reconciliation
 
 The public `webflow/mcp-server` README documents `/sse` + no resources, while current hosted docs
 describe the remote Streamable HTTP surface at `https://mcp.webflow.com/mcp` (registry
@@ -130,7 +176,7 @@ lands; the local stdio server is the deterministic baseline for automation.
 
 ---
 
-## 4. SAFETY RULES
+## 4. RULES
 
 ### ✅ ALWAYS
 - Discover first; fail closed on drift.
@@ -142,6 +188,14 @@ lands; the local stdio server is the deterministic baseline for automation.
 - Route Designer-family operations through `sk-design`.
 - Keep token values out of the repository, logs, and transcripts (redact tool output).
 
+### ⚠️ ESCALATE
+
+- Escalate to the operator (and, for design work, `sk-design`) when: an operation's class is
+  ambiguous from the live surface, a bulk write's blast radius cannot be enumerated, discovery
+  drift affects the target tool, a publish target is unclear (production vs staging), or a
+  confirmation was given for a different operation than the one about to execute.
+- Escalation means: stop, state the facts, and ask — never guess the class or the gate.
+
 ### ⛔ NEVER
 - Never call an unverified tool name from memory.
 - Never publish to production `customDomains` from any automated or test flow.
@@ -152,23 +206,59 @@ lands; the local stdio server is the deterministic baseline for automation.
 
 ---
 
-## 5. WIRING
+## 5. SUCCESS CRITERIA
 
-| Concern | Value |
-|---------|-------|
-| Manual | `webflow` in `.utcp_config.json` (stdio `npx -y webflow-mcp-server@latest`, `WEBFLOW_TOKEN` env) |
-| Env name | `webflow_WEBFLOW_TOKEN` in `.env.example` (name only) |
-| Local server | `webflow-mcp-server` npm, Node 22.3.0+ |
-| Remote endpoint | `https://mcp.webflow.com/mcp` (hosted docs) / `/sse` (README) — reconcile per session |
-| Bridge App | Required only for Designer (`de*`) tools; auto-installs on OAuth authorization |
-| Docs | `INSTALL-GUIDE.md`, `references/mcp-wiring.md`, `references/tool-surface.md`, `references/troubleshooting.md` |
+- **SC-001**: Every Webflow operation is classified and gated before execution; no un-gated
+  destructive/publish/deploy call.
+- **SC-002**: Discovery runs per session and drift is recorded; no tool is called from memory.
+- **SC-003**: Designer-family operations always pair with `sk-design`.
+- **SC-004**: Smoke/test flows never touch production (`customDomains`); staging subdomain only.
+- **SC-005**: No token value or account identifier enters the repository, logs, or transcripts.
 
 ---
 
-## 6. NEGATIVE KNOWLEDGE (ELIMINATED APPROACHES)
+## 6. INTEGRATION POINTS
 
-- `npm webflow-mcp` (third-party) — not the official server; official is `webflow-mcp-server` v1.0.1.
-- Workspace token as a general write credential — no `site` scope; read-only by design.
-- API-based site duplication/backup for test scaffolding — not part of Data API v2.
-- Treating CMS mutations as draft-safe by default — official FAQ says live-site writes are possible.
-- API-level site restore as a rollback path — UNKNOWN; treated as unsupported (strongest confirmations on DS).
+| Surface | Role | Status |
+|---------|------|--------|
+| `mcp-tooling` hub | registry (`mode-registry.json`), router (`hub-router.json`), smart-routing, leaf-manifest, advisor metadata | registered (2026-08-02) |
+| `sk-design` | cross-hub judgment partner for Designer-family operations | mandatory pairing |
+| `.utcp_config.json` | `webflow` stdio manual | registered; token env from operator |
+| `.env.example` | `webflow_WEBFLOW_TOKEN` name only | added |
+| `mcp-servers/webflow-mcp/` | server pointer + pinned-version fixture slot | present; pin after first verified session |
+
+---
+
+## 7. QUICK REFERENCE
+
+| Class | Gate | Example tools |
+|-------|------|---------------|
+| RO | none (scope check) | `list_sites`, `list_pages`, `list_collection_items`, `ask_webflow_ai` |
+| DW | none (scope check) | `update_page_settings`, `create_collection_items`, `add_inline_site_script` |
+| DS | confirmation + rollback | `delete_collection_items`, `delete_all_site_scripts`, `remove_element` |
+| PB | confirmation + staging-first | `publish_site`, `publish_collection_items` |
+| DP | confirmation | `run_workflow` |
+
+Docs: `INSTALL-GUIDE.md` · `references/mcp-wiring.md` · `references/tool-surface.md` ·
+`references/troubleshooting.md` · `feature-catalog/` · `manual-testing-playbook/` ·
+`scripts/doctor.sh` · `assets/utcp-webflow-manual.md`
+
+---
+
+## 8. REFERENCES AND RELATED RESOURCES
+
+- `INSTALL-GUIDE.md` — operator setup: token, scopes, verification, version pinning.
+- `references/mcp-wiring.md` — Code Mode wiring, auth, scope model, rate limits, Bridge App
+  boundary, version-surface table.
+- `references/action-reference.md` — complete remote-surface action reference (31 tools, 216 actions, required parameters).
+- `references/tool-surface.md` — local OSS 18-module tool inventory with risk classes.
+- `references/troubleshooting.md` — failure modes and never-list.
+- `feature-catalog/` — capability cards (cms, publish-deploy, designer, site-pages-scripts).
+- `manual-testing-playbook/` — 12 scenarios across discovery, read, draft, safety gates,
+  pairing, and negative classes.
+- `scripts/` — `doctor.sh` (verify-only) and `install.sh`.
+- `assets/utcp-webflow-manual.md` — registered-manual reference shape.
+- `mcp-servers/webflow-mcp/README.md` — server pointer and pinned-version fixture slot.
+- `changelog/` — release notes (v1.0.0.0 scaffold, v1.1.0.0 depth upgrade, v1.2.0.0 template
+  alignment).
+- Research base: `../../specs/mcp-tooling/015-mcp-webflow/001-deep-research/research/research.md`.

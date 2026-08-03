@@ -1,3 +1,14 @@
+---
+title: "Registered webflow manual reference shape"
+description: "Reference shape of the registered webflow Code Mode manual in .utcp_config.json (verify, never re-add, never edit)."
+trigger_phrases:
+  - "webflow manual shape"
+  - "webflow utcp manual"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
+
 # Registered `webflow` manual — reference shape
 
 The entry below is the **reference shape** of the registered `webflow` manual in

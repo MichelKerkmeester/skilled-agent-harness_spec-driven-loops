@@ -13,7 +13,9 @@ version: 1.1.0.0
 
 # Webflow MCP Tool Surface (Research Baseline)
 
-> Research-time inventory (2026-08-02, deepseek-max lineage, official sources). **Baseline only**:
+> **Two surfaces.** The remote deployed surface (`com.webflow/mcp` 2.0.0) is documented at **31
+> tools / 216 actions** in `action-reference.md` (official docs, 2026-08-03). This file is the
+> **local OSS server baseline** (18 modules, research-time 2026-08-02). **Baseline only**:
 > live discovery (`list_tools`) per session is the only trustworthy inventory; the pinned server
 > version's actual surface must be recorded here after the first authenticated session
 > (`../mcp-servers/webflow-mcp/README.md` §3). Class = frozen Phase-2 risk class
