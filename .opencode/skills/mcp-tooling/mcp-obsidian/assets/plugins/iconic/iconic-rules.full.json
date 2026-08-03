@@ -1,0 +1,1126 @@
+{
+  "fileRules": [
+    {
+      "id": "e71lH",
+      "name": "Markdown notes",
+      "icon": "lucide-file-text",
+      "color": "#3b82f6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "md"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "FE8l6",
+      "name": "Canvas boards",
+      "icon": "lucide-layout-template",
+      "color": "#8b5cf6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "canvas"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "hlvY5",
+      "name": "PDF documents",
+      "icon": "lucide-file-type",
+      "color": "#ef4444",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "pdf"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "bR215",
+      "name": "Plain text",
+      "icon": "lucide-scroll-text",
+      "color": "#9ca3af",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "txt"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "log"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "text"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "DEWc1",
+      "name": "Images",
+      "icon": "lucide-file-image",
+      "color": "#22c55e",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "png"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "jpg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "jpeg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "gif"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "svg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "webp"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "bmp"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "avif"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "heic"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ZCjfi",
+      "name": "Audio",
+      "icon": "lucide-file-audio",
+      "color": "#f59e0b",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "mp3"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "wav"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ogg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "m4a"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "flac"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "aac"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "opus"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "wma"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "aiff"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "YQESb",
+      "name": "Video",
+      "icon": "lucide-file-video",
+      "color": "#ef4444",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "mp4"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "mov"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "avi"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "mkv"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "webm"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "m4v"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "wmv"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "flv"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "Hpt0m",
+      "name": "Archives",
+      "icon": "lucide-file-archive",
+      "color": "#f97316",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "zip"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "rar"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "7z"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "tar"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "gz"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "bz2"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "xz"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "zst"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "iso"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "pAiRL",
+      "name": "Word documents",
+      "icon": "lucide-file-pen",
+      "color": "#2563eb",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "doc"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "docx"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "odt"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "rtf"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "H9Dzm",
+      "name": "Spreadsheets",
+      "icon": "lucide-file-spreadsheet",
+      "color": "#10b981",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "xls"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "xlsx"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ods"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "csv"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "tsv"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "L65O6",
+      "name": "Presentations",
+      "icon": "lucide-presentation",
+      "color": "#f43f5e",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ppt"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "pptx"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "odp"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "MsMcG",
+      "name": "Code",
+      "icon": "lucide-file-code-2",
+      "color": "#06b6d4",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "js"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "jsx"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ts"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "tsx"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "py"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "rb"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "php"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "go"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "rs"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "java"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "c"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "h"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "cpp"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "hpp"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "cs"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "sh"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "bash"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "zsh"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ps1"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "swift"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "kt"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "lua"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "pl"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "r"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "scala"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "dart"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "p2kTY",
+      "name": "Web files",
+      "icon": "lucide-file-code",
+      "color": "#f97316",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "html"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "htm"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "css"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "scss"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "sass"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "less"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "vue"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "svelte"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "7xO5Z",
+      "name": "JSON data",
+      "icon": "lucide-file-json",
+      "color": "#eab308",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "json"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "jsonc"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "Iredu",
+      "name": "Config files",
+      "icon": "lucide-file-cog",
+      "color": "#94a3b8",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "yaml"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "yml"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "toml"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ini"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "cfg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "conf"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "env"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "tNaCj",
+      "name": "Databases",
+      "icon": "lucide-database",
+      "color": "#0ea5e9",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "db"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "sqlite"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "sqlite3"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "sql"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "42gEn",
+      "name": "Installers",
+      "icon": "lucide-package",
+      "color": "#64748b",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "exe"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "msi"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "dmg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "pkg"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "deb"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "rpm"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "apk"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ipa"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "appimage"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "I5sEt",
+      "name": "Fonts",
+      "icon": "lucide-type",
+      "color": "#a855f7",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ttf"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "otf"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "woff"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "woff2"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "6OHTe",
+      "name": "Ebooks",
+      "icon": "lucide-book-open",
+      "color": "#f97316",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "epub"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "mobi"
+        },
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "azw3"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "rNANM",
+      "name": "Jupyter notebooks",
+      "icon": "lucide-notebook-text",
+      "color": "#22c55e",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": "ipynb"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "DgHix",
+      "name": "Other files",
+      "icon": "lucide-file",
+      "color": "#6b7280",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "extension",
+          "operator": "is",
+          "value": ""
+        }
+      ],
+      "enabled": true
+    }
+  ],
+  "folderRules": [
+    {
+      "id": "hf4ce",
+      "name": "Attachment folders",
+      "icon": "lucide-paperclip",
+      "color": "#64748b",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "attachments"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "attachment"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "assets"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "media"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "AYkFA",
+      "name": "Image folders",
+      "icon": "lucide-image",
+      "color": "#22c55e",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "images"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "image"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "img"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "pictures"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "photos"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "TOHxe",
+      "name": "Template folders",
+      "icon": "lucide-folder-cog",
+      "color": "#94a3b8",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "templates"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "template"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "_templates"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "iZEhK",
+      "name": "Archive folders",
+      "icon": "lucide-folder-archive",
+      "color": "#f97316",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "archives"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "archive"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "backups"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "backup"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "rnn3E",
+      "name": "Project folders",
+      "icon": "lucide-folder-kanban",
+      "color": "#8b5cf6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "projects"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "project"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "q2pKP",
+      "name": "Research folders",
+      "icon": "lucide-folder-search",
+      "color": "#3b82f6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "research"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "sources"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "reading"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "literature"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "H4Dwy",
+      "name": "Code folders",
+      "icon": "lucide-folder-code",
+      "color": "#06b6d4",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "code"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "dev"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "scripts"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "src"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "source"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "aujKD",
+      "name": "Daily notes folders",
+      "icon": "lucide-calendar",
+      "color": "#f59e0b",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "daily"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "dailies"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "daily-notes"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "journal"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "journals"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "journaling"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "fVPuw",
+      "name": "Inbox folder",
+      "icon": "lucide-inbox",
+      "color": "#3b82f6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "inbox"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "fT9G8",
+      "name": "Knowledge folders",
+      "icon": "lucide-book-open",
+      "color": "#3b82f6",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "docs"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "documentation"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "notes"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "knowledge"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "wiki"
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "id": "FlZYG",
+      "name": "Zettelkasten folders",
+      "icon": "lucide-folder-tree",
+      "color": "#a855f7",
+      "match": "any",
+      "conditions": [
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "zettelkasten"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "zk"
+        },
+        {
+          "source": "name",
+          "operator": "is",
+          "value": "slip-box"
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}

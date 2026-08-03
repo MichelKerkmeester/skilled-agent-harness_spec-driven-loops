@@ -18,7 +18,7 @@
       "iconic integration plan",
       "phase 13 tasks",
       "phase 13 results",
-      "mcp-obsidian v1.3.0.0",
+      "mcp-obsidian v1.3.1.0",
       "iconic support shipped"
     ],
     "key_topics": [
@@ -43,7 +43,6 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/iconic.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/iconic-rules.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.3.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -78,12 +77,6 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.3.0.0.md",
         "source": "derived"
       },
       {
@@ -153,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "Bare Iconic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "file-layer",
         "kind": "key_phrase",
         "path": "plan.md",
@@ -171,12 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -189,6 +182,12 @@
         "source": "derived"
       },
       {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "iconic",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags, properties, ribbon) with a pre-built auto-icon rulebook (21 file rules by extension + 11 folder rules by name) already applied and enabled in all three vaults",
     "created_at": "2026-08-03T11:57:50.451Z",
-    "last_save_at": "2026-08-03T11:57:50.451Z",
+    "last_save_at": "2026-08-03T15:19:03.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f26dc3edd6667d0cf16b688ff21e0054032f7cea52c58ee1edfeae9e37c80dfc",
+    "source_fingerprint": "sha256:f3b7c86d1e4ff80707ee8e4159a3c1a972777c883b403580b6de5324d4746478",
     "source_doc_hashes": {
-      "spec.md": "36115a413d4495b0d768aa545a77ea82e5d85cebc594a66777e4b5c7ec91b3ab",
-      "plan.md": "766e499625bdd2bac901cbe251fb733c615d5c6eca59dc4134b09f36d7600dc5",
-      "tasks.md": "7fc57ad580b7ae71d35ed41b8d67b57025b3816bf9c8d86a42dcab5191b56714",
-      "implementation-summary.md": "92ae04bc084cab28d488e7e856cbd317ab411f5455b3319dfefebf6937da9a6f"
+      "spec.md": "5ab4469207ee7875c28846965941ec84a89578ee9aac4bf6c50af5bc6027ca6f",
+      "plan.md": "a71a3a16a24eec3d00236ba0b3b4f4afba73b2940c6ef3689d2d3e455e141ef8",
+      "tasks.md": "6d9c6e66e2290c383d2f065ed749920c0fa8c71ad9322082abe0d9be76770358",
+      "implementation-summary.md": "562035142827ef6afe8409a3097d476946578604a5fabe84cefe755cef07e6b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

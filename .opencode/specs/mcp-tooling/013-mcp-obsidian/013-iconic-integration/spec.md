@@ -57,7 +57,7 @@ The user's vaults run the **Iconic** plugin (repo `gfxholo/iconic`, v1.1.10 — 
 ### Purpose
 Integrate Iconic into the `mcp-obsidian` mode as the fifth plugin reference set: where it keeps its state, the exact rulebook schema, safe-merge discipline (the bundle's `merge_rules.py` pattern), and what must be left to the app. Ships as references, router updates, a feature-catalog + playbook entry, an asset, and a changelog entry.
 
-**End goal:** `mcp-obsidian` at v1.3.0.0 answers icon/rulebook requests with correct `data.json` operations — with backup-before-merge discipline — mirroring the quality of the existing plugin references.
+**End goal:** `mcp-obsidian` at v1.3.1.0 answers icon/rulebook requests with correct `data.json` operations — with backup-before-merge discipline, the canonical complete 32-rule merge payload, and direct Iconic routing — mirroring the quality of the existing plugin references.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -71,8 +71,9 @@ Integrate Iconic into the `mcp-obsidian` mode as the fifth plugin reference set:
 - `SKILL.md`: activation triggers, on-demand resource list, version bump to 1.3.0.0.
 - `feature-catalog/plugins/iconic.md`.
 - `manual-testing-playbook/plugin-tie-ins/iconic-rules.md` (OBS-015) + playbook index update.
-- `assets/plugins/iconic/` example rulebook excerpt.
-- `changelog/v1.3.0.0.md`.
+- `assets/plugins/iconic/` compact schema example plus the canonical complete 32-rule merge payload.
+- `changelog/v1.3.0.0.md` and `changelog/v1.3.1.0.md`.
+- Parent-hub routing metadata so bare Iconic terms reach `mcp-obsidian`.
 
 ### Out of Scope
 - Installing/enabling Iconic in vaults (already present in all 3 vaults at v1.1.10 with the rulebook applied — verified; no-op).
@@ -89,8 +90,9 @@ Integrate Iconic into the `mcp-obsidian` mode as the fifth plugin reference set:
 | `.opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/iconic.md` | Create | Feature catalog card |
 | `.opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/iconic-rules.md` | Create | Playbook scenario (OBS-015) |
 | `.opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md` | Modify | Index new scenario |
-| `.opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/iconic/**` | Create | Example rulebook excerpt |
-| `.opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.3.0.0.md` | Create | Changelog entry |
+| `.opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/iconic/**` | Create | Compact schema sample plus canonical complete 21-file/11-folder rule payload |
+| `.opencode/skills/mcp-tooling/mcp-obsidian/changelog/{v1.3.0.0,v1.3.1.0}.md` | Create | Changelog entries |
+| `.opencode/skills/mcp-tooling/{SKILL.md,hub-router.json,mode-registry.json,description.json,graph-metadata.json}` | Modify | Direct Iconic vocabulary routing and advisor discovery |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,9 +105,9 @@ Integrate Iconic into the `mcp-obsidian` mode as the fifth plugin reference set:
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Iconic reference set authored | `references/plugins/iconic/` has index + data-model + workflows + troubleshooting; data-model documents `data.json` (visibility toggles, color pickers, per-item icon maps, `fileRules`/`folderRules` schema, backup settings) and the safe-merge rule (backup before write, preserve unrelated settings, never downgrade) |
-| REQ-002 | Router + skill doc updated | SKILL.md lists the Iconic reference set on demand, adds activation trigger phrases, and bumps to v1.3.0.0; plugin-operation-logic data map covers all 5 plugins |
+| REQ-002 | Router + skill doc updated | mcp-obsidian SKILL.md maps direct Iconic requests to the exact four-reference set; mcp-tooling aliases, vocabulary class, and advisor metadata route bare Iconic terms to mcp-obsidian; plugin-operation-logic data map covers all 5 plugins |
 | REQ-003 | Catalog + playbook entries exist | feature-catalog card + playbook scenario (OBS-015), indexed in the playbook root doc |
-| REQ-004 | Example + changelog shipped | `assets/plugins/iconic/` carries a valid example rulebook excerpt; `changelog/v1.3.0.0.md` written |
+| REQ-004 | Full ruleset + changelog shipped | `assets/plugins/iconic/iconic-rules.full.json` carries all 21 fileRules + 11 folderRules without settings/overrides; the compact schema example remains; `changelog/v1.3.1.0.md` written |
 
 ### P1 - Required (complete OR user-approved deferral)
 

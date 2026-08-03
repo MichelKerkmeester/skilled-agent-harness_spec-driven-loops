@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Extend the `mcp-obsidian` mode to v1.3.0.0 with file-layer knowledge for the Iconic plugin: a per-plugin reference set (index, data-model, workflows, troubleshooting), router updates, a feature-catalog + playbook entry (OBS-015), an example asset, and a changelog. The vaults already run Iconic v1.1.10 with the rulebook applied, so this phase is documentation-only. Reversible: delete the new files/entries; no existing behavior changes.
+Extend the `mcp-obsidian` mode to v1.3.1.0 with file-layer knowledge for the Iconic plugin: a per-plugin reference set, direct in-mode and parent-hub routing, catalog + playbook entry, compact schema example, canonical complete 32-rule merge payload, and changelog. The vaults already run Iconic v1.1.10 with the rulebook applied, so this phase is documentation-only. Reversible: revert the asset, routing metadata, and documentation; no vault configuration changes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -45,7 +45,9 @@ Extend the `mcp-obsidian` mode to v1.3.0.0 with file-layer knowledge for the Ico
 | Facts | Data-model claims verified against the ACTUAL vault `data.json` (3 vaults, v1.1.10) + the bundle rulebook | python3 json diff |
 | Honesty | Install state recorded as already-applied (no reinstall claims) | — |
 | Shape | New reference set mirrors the validated obsidian-tables layout (index/data-model/workflows/troubleshooting) | file listing |
-| Versioning | SKILL.md 1.3.0.0 + changelog entry + `version:` in every new frontmatter doc | frontmatter gate |
+| Full rule asset | Canonical payload contains exactly 21 `fileRules` + 11 `folderRules`, equals the normalized rule arrays from all three live vaults, and excludes settings/overrides | python3 JSON parity check |
+| Direct routing | Bare Iconic phrases select mcp-obsidian and the in-mode router loads all four Iconic references | embedded router + hub vocabulary check |
+| Versioning | SKILL.md 1.3.1.0 + changelog entry + `version:` in every changed frontmatter doc | frontmatter gate |
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -59,8 +61,10 @@ No code changes — documentation and routing metadata only.
 - `references/plugins/plugin-operation-logic.md` — data map 4 → 5 rows.
 - `SKILL.md` — triggers, load-on-demand list, version.
 - `feature-catalog/`, `manual-testing-playbook/` — 1 card + 1 scenario (OBS-015) + index updates.
-- `assets/plugins/iconic/` — example rulebook excerpt (not vendored code).
-- `changelog/v1.3.0.0.md`.
+- `assets/plugins/iconic/iconic-rules.example.json` — compact schema sample (not vendored code).
+- `assets/plugins/iconic/iconic-rules.full.json` — canonical complete merge-only automation payload (21 file + 11 folder rules; no settings or overrides).
+- `changelog/v1.3.0.0.md` + `changelog/v1.3.1.0.md`.
+- `mcp-tooling/{hub-router.json,mode-registry.json,description.json,graph-metadata.json}` — direct Iconic routing and advisor discovery.
 
 ### Context
 
@@ -81,7 +85,7 @@ No code changes — documentation and routing metadata only.
 | Implementation | Author 4 reference files; update operation-logic map; SKILL.md; catalog + playbook; asset; changelog |
 | Verification | Example JSON parses; SKILL.md pointers resolve; validate.sh |
 
-Sequenced in tasks.md (T001–T007).
+Sequenced in tasks.md (T001–T009).
 <!-- /ANCHOR:phases -->
 
 ---
@@ -89,7 +93,7 @@ Sequenced in tasks.md (T001–T007).
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-File-layer verification only: the example rulebook excerpt JSON-parses, the data-model claims round-trip against the live vault `data.json`, all `references/plugins/*` pointers in SKILL.md resolve to existing files, and the phase-level `validate.sh` runs clean. In-app icon rendering stays out of scope (mode posture).
+File-layer verification only: the compact example and full rule payload JSON-parse; the full asset equals all three live vault rule arrays; direct Iconic terms select mcp-obsidian and its in-mode router returns the exact four-reference set; all pointers resolve; and phase-level `validate.sh` runs clean. In-app icon rendering stays out of scope (mode posture).
 <!-- /ANCHOR:testing -->
 
 ---

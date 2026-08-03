@@ -4,9 +4,10 @@ description: "Add, edit, and disable Iconic icon rules and visibility toggles in
 trigger_phrases:
   - "iconic file layer"
   - "icon rulebook"
+  - "iconic ruleset"
   - "icon color rules"
   - "folder icons"
-version: 1.3.0.0
+version: 1.3.1.1
 ---
 
 # Iconic rulebook file-layer operations (`iconic`)
@@ -30,7 +31,9 @@ Read `data.json` fresh → back up (`.bak` copy) → merge only the requested ke
 
 ### Assets
 
-- `assets/plugins/iconic/iconic-rules.example.json` — example rulebook excerpt (2 file rules + 1 folder rule)
+- `assets/plugins/iconic/iconic-rules.full.json` — canonical complete automatic-rule payload: all 21 `fileRules` + 11 `folderRules` (normalized objects verified identical across the Obsidian, iCloud, and Barter vaults); the exact copy/merge payload
+- `assets/plugins/iconic/iconic-rules.full.md` — template-conformant usage companion (rule-class coverage + merge contract); the full JSON remains the exact copy/merge payload
+- `assets/plugins/iconic/iconic-rules.example.json` — compact schema sample (2 file rules + 1 folder rule)
 
 ### Verification
 
@@ -39,5 +42,6 @@ Read `data.json` fresh → back up (`.bak` copy) → merge only the requested ke
 ## 4. GUARDRAILS
 
 - Backup before EVERY write; merge, never replace; preserve user-customized rules.
+- The full rule asset is merge-only: apply it by stable rule `id` into a freshly-read vault `data.json` (update matching ids, append missing ids) — never as a whole-file replacement; it deliberately excludes settings, `dialogState`, and per-item overrides.
 - Never downgrade the plugin binary; the rulebook is the only thing (re)applied.
 - Do not fabricate `lucide-*` icon names or `dialogState` keys.

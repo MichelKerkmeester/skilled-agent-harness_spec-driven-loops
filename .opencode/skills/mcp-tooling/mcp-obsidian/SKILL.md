@@ -2,10 +2,10 @@
 name: mcp-obsidian
 description: Routes Obsidian between two CLI profiles — headless notesmd-cli (no running app) and the app-backed official obsidian CLI — plus the cyanheads Obsidian MCP for live-app note ops. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.3.0.0
+version: 1.3.1.1
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, data.json -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json -->
 
 # mcp-obsidian Skill
 
@@ -23,7 +23,7 @@ Obsidian vault and note management via **two CLI profiles** and the **cyanheads 
 - "add a tag to a note", "manage frontmatter", "delete a note", "move a note"
 - "obsidian plugin", "beancount", "beancount finance", "obsidian tables", "brat"
 - "health", "health data", "apple health", "health chart", "health-md", "health.md"
-- "iconic", "icons", "icon color", "file icons", "folder icons", "icon rules", "iconic rulebook"
+- "iconic", "icons", "icon color", "file icons", "folder icons", "icon rules", "iconic rulebook", "iconic ruleset", "iconic data json", "icon automation"
 - "local rest api", "obsidian api key"
 
 ### Automatic Triggers (keyword patterns)
@@ -193,6 +193,12 @@ INTENT_SIGNALS = {
                      "community plugin install", "install plugin from github", "frozen version",
                      "beta theme"],
     },
+    "PLUGIN_ICONIC": {
+        "weight": 5,
+        "keywords": ["iconic", "iconic rulebook", "icon rules", "icon automation",
+                     "file icons", "folder icons", "icon color", "iconic data json",
+                     "iconic ruleset"],
+    },
     "PLUGINS": {
         "weight": 5,
         "keywords": ["plugin", "plugin automation", "community plugin"],
@@ -217,7 +223,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the eight INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the nine INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -241,10 +247,16 @@ RESOURCE_MAP = {
                        "references/plugins/obsidian42-brat/data-model.md",
                        "references/plugins/obsidian42-brat/workflows.md",
                        "references/plugins/obsidian42-brat/troubleshooting.md"],
+    "PLUGIN_ICONIC":  ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/iconic/iconic.md",
+                       "references/plugins/iconic/data-model.md",
+                       "references/plugins/iconic/workflows.md",
+                       "references/plugins/iconic/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
-                       "references/plugins/obsidian42-brat/obsidian42-brat.md"],
+                       "references/plugins/obsidian42-brat/obsidian42-brat.md",
+                       "references/plugins/iconic/iconic.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
@@ -303,7 +315,7 @@ def route_obsidian_resources(request: str) -> dict:
     elif scores.get("INSTALL", 0) > 4:
         intent = "INSTALL"
     else:
-        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT")
+        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents
@@ -579,6 +591,10 @@ await call_tool_chain({
 - `references/plugins/obsidian42-brat/data-model.md` — BRAT `data.json` and release-policy data model
 - `references/plugins/obsidian42-brat/workflows.md` — BRAT stage, register, activate, and update recipes
 - `references/plugins/obsidian42-brat/troubleshooting.md` — BRAT release, asset, compatibility, and path recovery recipes
+- `references/plugins/iconic/iconic.md` — Iconic icon/color rulebook plugin index (usage companion: `assets/plugins/iconic/iconic-rules.full.md`; canonical full rule payload: `assets/plugins/iconic/iconic-rules.full.json`, 21 file + 11 folder rules)
+- `references/plugins/iconic/data-model.md` — Iconic `data.json` keys, rule schema, and the merge-only rulebook contract
+- `references/plugins/iconic/workflows.md` — Iconic file-layer recipes: add/edit/disable rules, flip toggles, apply the canonical rulebook
+- `references/plugins/iconic/troubleshooting.md` — Iconic failure and recovery recipes
 
 Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc for both CLI profiles and the MCP; `references/troubleshooting.md` is the router's INSTALL/TROUBLESHOOT-intent target.
 

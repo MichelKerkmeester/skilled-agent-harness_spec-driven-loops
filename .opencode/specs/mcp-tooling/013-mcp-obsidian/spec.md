@@ -131,11 +131,11 @@ Aggregate file scope. Per-phase detail lives in each child plan.
 | 10 | 010-playbook-validation/ | Live validation run of the manual-testing-playbook against a real throwaway vault (headless CLI, MCP, plugins) plus the mcp-tooling routing benchmark, across five phase children. | In Progress |
 | 11 | 011-plugin-installation/ | Install health-md (true community plugin) file-layer into all three vaults. | In Progress |
 | 12 | 012-skill-support-extension/ | Deep research on health-md (**cli-codex GPT-5.6 SOL HIGH FAST**) → extend the mode's plugin knowledge: per-plugin references, router updates, feature-catalog + playbook entries (OBS-014, live-run), asset, changelog → mode v1.2.0.0. | In Progress |
-| 13 | 013-iconic-integration/ | Integrate the Iconic icon plugin (v1.1.10, rulebook already in all vaults) into the mode: per-plugin references, router updates, catalog + playbook entries (OBS-015), asset, changelog → mode v1.3.0.0. | In Progress |
-| 14 | 014-health-md-reference-remediation/ | Implement the deep-research remediation order in the four health-md reference docs: real `health-viz` fence contract, mock-fallback trap, Apple/Android model, narrowed write authority, file-layer separation, privacy contract. | In Progress |
-| 15 | 015-health-md-fixtures-and-blocks/ | Replace the example fixture with a schema-true v7 artifact and add tested `health-viz` render-block examples; changelog v1.4.0.0. | In Progress |
-| 16 | 016-health-md-catalog-and-playbook/ | Rework OBS-014 (health-viz contract, mock-fallback guard, authentic-source verification) + the health-md feature-catalog card. | In Progress |
-| 17 | 017-health-md-live-validation-closeout/ | Execute the remediated OBS-014 live (mock-fallback guard + authentic verification), validate phases 014-017, close out. | In Progress |
+| 13 | 013-iconic-integration/ | Integrate Iconic (v1.1.10) into the mode: per-plugin references, full canonical 21-file/11-folder rule payload, direct hub + in-mode routing, catalog + playbook entries (OBS-015), changelog → mode v1.3.1.0. | In Progress |
+| 14 | 014-health-md-reference-remediation/ | Implement the deep-research remediation order in the four health-md reference docs: real `health-viz` fence contract, mock-fallback trap, Apple/Android model, narrowed write authority, file-layer separation, privacy contract. | Completed |
+| 15 | 015-health-md-fixtures-and-blocks/ | Replace the example fixture with a schema-true v7 artifact and add tested `health-viz` render-block examples; changelog v1.4.0.0. | Completed |
+| 16 | 016-health-md-catalog-and-playbook/ | Rework OBS-014 (health-viz contract, mock-fallback guard, authentic-source verification) + the health-md feature-catalog card. | Completed |
+| 17 | 017-health-md-live-validation-closeout/ | Execute the remediated OBS-014 live (mock-fallback guard + authentic verification), validate phases 014-017, close out. | Completed |
 
 ### Phase Transition Rules
 

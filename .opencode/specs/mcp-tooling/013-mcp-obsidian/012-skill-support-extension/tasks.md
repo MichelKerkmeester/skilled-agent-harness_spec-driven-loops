@@ -63,9 +63,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Execute OBS-014 live against a vault and record the verdict + evidence in the scenario file
-- [ ] T011 Re-run `validate.sh` on the phase + mode docs; refresh metadata fingerprints
-- [ ] T012 Update the implementation summary with research + live-run results
+- ~~T010 Execute OBS-014 live against a vault and record the verdict + evidence in the scenario file~~ **SUPERSEDED by phase 017** — live run executed against throwaway vault `/tmp/_pbtest-obs014` (GUARD fired; fixture shape/block/round-trip/cleanup verified; real vault untouched); verdict + evidence recorded in OBS-014 scenario `health-md-data.md` §4 Live Run Record
+- ~~T011 Re-run `validate.sh` on the phase + mode docs; refresh metadata fingerprints~~ **SUPERSEDED by phase 017** — `validate.sh` on phases 014-017: Errors: 0 (1 advisory COMPLEXITY_MATCH warning each); fingerprint refresh deferred (spec-memory daemon down)
+- ~~T012 Update the implementation summary with research + live-run results~~ **SUPERSEDED by phases 014-017** — implementation summaries authored in `014-health-md-reference-remediation` → `017-health-md-live-validation-closeout`
 <!-- /ANCHOR:phase-3 -->
 
 ---

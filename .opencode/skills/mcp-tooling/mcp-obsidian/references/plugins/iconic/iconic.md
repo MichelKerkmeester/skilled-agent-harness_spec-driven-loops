@@ -4,11 +4,13 @@ description: "Lean entry point for operating the Iconic Obsidian plugin (gfxholo
 trigger_phrases:
   - "iconic obsidian plugin"
   - "iconic data json"
+  - "iconic ruleset"
+  - "full icon ruleset"
   - "icon rules file layer"
   - "folder icon colors"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.3.0.0
+version: 1.3.1.1
 ---
 
 # Iconic Plugin Index (`iconic`)
@@ -37,6 +39,17 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 | Enablement | `.obsidian/community-plugins.json` | Yes (already enabled in all vaults) |
 | In-app icon picking | — | **No** — out of reach headlessly; edit rules instead |
 
+### Rulebook assets
+
+| Asset | Contents | Use |
+| --- | --- | --- |
+| `assets/plugins/iconic/iconic-rules.full.json` | **Complete** automatic-rule payload: all 21 `fileRules` + 11 `folderRules` | Canonical copy/merge payload — the only authoritative full rule content |
+| `assets/plugins/iconic/iconic-rules.full.md` | Template-conformant usage guide: rule-class coverage + merge contract | Usage companion for the payload; never a copy/merge source |
+| `assets/plugins/iconic/iconic-rules.example.json` | Compact schema sample (2 file + 1 folder rules) | Schema reference only |
+
+- The full asset contains **only the two mergeable rule arrays** — no `data.json` settings, no `dialogState`, no per-item override maps.
+- It is **never a whole-`data.json` replacement**: merge it by stable rule `id` into a freshly-read vault `data.json` (update matching ids, append missing ids), preserving unrelated settings and user overrides.
+
 ## 4. RULE SHAPE (one rule)
 
 ```json
@@ -62,6 +75,7 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 
 - **Backup before every write.** Take a `.bak` copy of `data.json` before merging (the bundle's `merge_rules.py` pattern: backup → merge → write).
 - **Merge, never replace.** Preserve every setting and rule not being changed; user-customized rules stay untouched.
+- **Full asset ≠ full `data.json`.** The canonical rule asset carries only the two rule arrays; applying it never touches settings, `dialogState`, or per-item overrides.
 - **Never downgrade the plugin.** Only the rulebook is (re)applied.
 - **Re-read `data.json` before operating** — the user may have changed icons in-app since the last read.
 - Render confirmation needs an in-app reload; the file-layer claim is verified by JSON round-trip only.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic backup merge"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.3.0.0
+version: 1.3.1.1
 ---
 
 # Iconic File-Layer Data Model
@@ -89,11 +89,19 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 - `fileRules`: 21 rules by extension — markdown (`lucide-file-text`, blue), canvas (`lucide-layout-template`, purple), plus images, PDF, code, data, docs, audio, video, archives, etc.
 - `folderRules`: 11 rules by name — attachments/assets/media, images/img/pictures/photos, documents, code, templates, notes, archives, etc.; folder rules carry multiple `name is` conditions with `match: any`.
 
+### Canonical rulebook asset
+
+- `assets/plugins/iconic/iconic-rules.full.json` — the canonical complete automatic-rule payload: all 21 file rules + 11 folder rules, normalized identical across the Obsidian, iCloud, and Barter vaults.
+- It deliberately contains **ONLY the two mergeable rule arrays** — no `data.json` settings, no `dialogState`, no per-item override maps — so it can never act as a whole-`data.json` replacement.
+- Merge it by stable rule `id` into a freshly-read vault `data.json`: update rules whose ids already exist, append rules with missing ids, preserve everything else.
+- `assets/plugins/iconic/iconic-rules.full.md` is the template-conformant usage companion: rule-class coverage and the safe-merge contract, with the full JSON as the exact source.
+- `assets/plugins/iconic/iconic-rules.example.json` remains the compact schema sample (2 file + 1 folder rules).
+
 ## 4. SAFE-MERGE DISCIPLINE (mandatory)
 
 1. **Read** `data.json` fresh.
 2. **Back up**: copy to `data.json.bak-<timestamp>` (or follow `maxBackups` rotation).
-3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable.
+3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable. When applying the canonical asset, update matching ids and append missing ids only.
 4. **Write** valid JSON; re-parse to verify.
 5. **Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
 

@@ -32,7 +32,7 @@ _memory:
 ## Task Notation
 
 - `[x]` = done; every completed item carries its evidence inline.
-- Task IDs: T001–T007; P-tagged items are blockers.
+- Task IDs: T001–T009; P-tagged items are blockers.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -48,11 +48,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Author `references/plugins/iconic/` (index, data-model, workflows, troubleshooting) [Evidence: 4 files present, v1.3.0.0]
+- [x] T002 Author `references/plugins/iconic/` (index, data-model, workflows, troubleshooting) [Evidence: 4 files present; the index/data-model/workflows were refreshed to v1.3.1.0 with canonical full-asset guidance]
 - [x] T003 Extend `references/plugins/plugin-operation-logic.md` data map to 5 plugins [Evidence: 5-row data map with iconic row]
-- [x] T004 Update `SKILL.md` (triggers, resource list, version 1.3.0.0) [Evidence: version bumped; iconic set in load-on-demand]
+- [x] T004 Update `SKILL.md` (triggers, resource list, exact Iconic resource route, version 1.3.1.0) [Evidence: PLUGIN_ICONIC maps to plugin-operation logic + all 4 Iconic references]
 - [x] T005 Add `feature-catalog/plugins/iconic.md` + `manual-testing-playbook/plugin-tie-ins/iconic-rules.md` + index updates [Evidence: 1 card, OBS-015 authored, indexes updated]
-- [x] T006 Add `assets/plugins/iconic/` example + `changelog/v1.3.0.0.md` [Evidence: excerpt JSON parses + changelog]
+- [x] T006 Add `assets/plugins/iconic/` schema example + `changelog/v1.3.0.0.md` [Evidence: excerpt JSON parses + changelog]
+- [x] T008 Publish `iconic-rules.full.json` and direct parent-hub Iconic routing [Evidence: 21 fileRules + 11 folderRules equal all three live-vault normalized rule arrays; hub vocabulary + aliases select mcp-obsidian]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -60,7 +61,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 Validate mode docs and write the implementation summary [Evidence: validate.sh ran on the folder; summary written]
+- [x] T007 Validate initial mode docs and write the implementation summary [Evidence: initial validate.sh run completed; summary written]
+- [ ] T009 Re-run full-asset, in-mode-router, hub-router, manifest, and phase validation gates
 <!-- /ANCHOR:phase-3 -->
 
 ---

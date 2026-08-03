@@ -201,16 +201,16 @@
     ],
     "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
     "created_at": "2026-08-02T05:50:25Z",
-    "last_save_at": "2026-08-03T14:18:05.515Z",
+    "last_save_at": "2026-08-03T15:19:04.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:748d5b1adbff96d2a87b530aa9b7cf78abecb2551fc27c563f2d69026d2039e9",
+    "source_fingerprint": "sha256:44fb5d895e33265d833a1f6c53c2e96442375ce0dcf995adf27b942f6162fca6",
     "source_doc_hashes": {
-      "spec.md": "c0a4425949f3f428f08424bd9fe7c3efa53e230a1199d56349a653e221753347",
+      "spec.md": "1792c64aa56b0c5f23fe3493dd94feda2cc8c444a7b53318c33847e1c472c695",
       "handover.md": "0c761e5604752140ffd2afc8471f9b8ab160b10e579eb25101b4b70d627b6fad"
     },
     "last_active_child_id": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",

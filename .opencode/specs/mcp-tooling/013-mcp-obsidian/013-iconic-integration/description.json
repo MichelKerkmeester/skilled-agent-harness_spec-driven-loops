@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/013-mcp-obsidian/013-iconic-integration",
   "description": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags,",
   "keywords": [
@@ -18,7 +19,7 @@
     "bookmarks",
     "tags"
   ],
-  "lastUpdated": "2026-08-03T11:57:35.533Z",
+  "lastUpdated": "2026-08-03T15:18:33.555Z",
   "specId": "013",
   "folderSlug": "iconic-integration",
   "parentChain": [
@@ -26,6 +27,5 @@
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

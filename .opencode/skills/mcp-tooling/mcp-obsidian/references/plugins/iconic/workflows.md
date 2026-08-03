@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic backup"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.3.0.0
+version: 1.3.1.1
 ---
 
 # Iconic File-Layer Workflows
@@ -52,9 +52,11 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 
 - e.g. `showAllFolderIcons` → `true` / `false`, or `showTagPillIcons`. Single-key merge.
 
-### 2.5 Apply a rulebook (bundle pattern)
+### 2.5 Apply the canonical rulebook (bundle pattern)
 
-- Same as the Iconic-Setup `merge_rules.py`: back up, then merge ONLY the `fileRules`/`folderRules` arrays (and any explicitly requested keys) into the existing file, preserving user settings.
+- Same as the Iconic-Setup `merge_rules.py`: back up, then merge the canonical asset `assets/plugins/iconic/iconic-rules.full.json` into the freshly-read vault `data.json` — ONLY its `fileRules`/`folderRules` arrays (plus any explicitly requested keys).
+- Merge by stable rule `id`: **update rules whose ids already exist, append rules with missing ids.** Preserve unrelated settings and user overrides (including per-item icon maps).
+- The full asset contains only the two rule arrays — it is never a whole-`data.json` replacement. The compact `assets/plugins/iconic/iconic-rules.example.json` is schema reference only. Rule-class coverage and the merge contract are summarized in the usage companion `assets/plugins/iconic/iconic-rules.full.md`.
 
 ### 2.6 Add a folder rule
 
