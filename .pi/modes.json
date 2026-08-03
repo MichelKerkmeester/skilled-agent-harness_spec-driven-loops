@@ -1,0 +1,9 @@
+{
+  "modes": {
+    "advisor": {
+      "provider": "deepseek",
+      "modelId": "deepseek-v4-flash",
+      "thinkingLevel": "max"
+    }
+  }
+}
