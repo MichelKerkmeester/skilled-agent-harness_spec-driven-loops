@@ -23,7 +23,6 @@
   ],
   "packages": [
     "npm:pi-blackhole",
-    "npm:pi-compaction-model",
     "npm:pi-gpt-fast-mode",
     "npm:pi-omplike-advisor",
     "npm:pi-plan",
@@ -37,9 +36,5 @@
   "statusLine": {
     "type": "command",
     "command": ".pi/statusline.sh"
-  },
-  "compactionModel": {
-    "model": "deepseek/deepseek-v4-flash",
-    "thinkingLevel": "max"
   }
 }
