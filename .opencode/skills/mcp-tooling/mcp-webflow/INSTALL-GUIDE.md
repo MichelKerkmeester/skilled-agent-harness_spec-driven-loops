@@ -47,7 +47,15 @@ If empty, see `references/troubleshooting.md`.
 
 The registration uses `webflow-mcp-server@latest`; **pin the exact version** after the first verified session and record the discovered tool set in `references/tool-surface.md` (the README and hosted docs disagree on the surface — live discovery is authoritative).
 
-## 5. Remote OAuth alternative (operator preference)
+## 5. Verify with the doctor
+
+Run `scripts/doctor.sh` after setup: it checks node/npx versions, confirms the `webflow` manual exists in `.utcp_config.json` (verify-only, never re-adds), checks token presence **as a boolean only** (never prints values), and parses the config. See `scripts/README.md`.
+
+## 6. Designer tools (Bridge App)
+
+Designer-family tools (`de*`) need the Bridge App open in the Designer: remote OAuth auto-installs it to authorized sites; local mode requires a registered/published MCP Bridge App Designer extension. Data API tools work with Webflow closed. All Designer-family work pairs with `sk-design`.
+
+## 7. Remote OAuth alternative (operator preference)
 
 `npx -y mcp-remote https://mcp.webflow.com/sse` with browser OAuth per site/workspace; interactive consent, auth state under `~/.mcp-auth`. See `references/mcp-wiring.md` §5.
 

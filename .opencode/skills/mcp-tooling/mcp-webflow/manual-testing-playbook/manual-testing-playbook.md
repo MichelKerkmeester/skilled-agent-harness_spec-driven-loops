@@ -5,7 +5,7 @@ trigger_phrases:
   - "webflow playbook"
   - "webflow manual testing"
   - "webflow scenarios"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # mcp-webflow: Manual Testing Playbook
@@ -16,12 +16,13 @@ version: 1.0.0.0
 
 | Category | Scenarios | IDs |
 |---|---|---|
-| Discovery and Setup | 1 | DISCOVER-001 |
-| Read-Only | 1 | READCMS-001 |
+| Discovery and Setup | 2 | DISCOVER-001, DISCOVER-DRIFT-001 |
+| Read-Only | 2 | READCMS-001, READPAGES-001 |
 | Draft-Write | 1 | DRAFTSET-001 |
-| Safety Gate | 2 | PUBGATE-001, REFUSE-001 |
-| Judgment Pairing | 1 | PAIR-001 |
-| **TOTAL** | **6** | **6 scenarios** |
+| Safety Gate | 4 | PUBGATE-001, REFUSE-001, RATELIMIT-001, DEPLOYGATE-001 |
+| Judgment Pairing | 2 | PAIR-001, PAIR-DATA-001 |
+| Negative | 1 | NONWEBFLOW-001 |
+| **TOTAL** | **12** | **12 scenarios** |
 
 ### Realistic Test Model
 
@@ -41,17 +42,29 @@ version: 1.0.0.0
 | ID | Name | Verifies |
 |---|---|---|
 | DISCOVER-001 | Discovery and prefix contract | `list_tools` shows `webflow.webflow.*`; callables documented in `tool-surface.md` |
+| DISCOVER-DRIFT-001 | Tool-surface drift fails closed | Live discovery is authoritative; drift recorded; no calls from memory |
 | READCMS-001 | Read CMS collection | RO class passes without confirmation; scope check holds |
+| READPAGES-001 | Page reads pass ungated | RO pages ops without confirmation |
 | DRAFTSET-001 | Draft page settings update | DW class; no publish-status change; before-state captured |
 | PUBGATE-001 | Staging-only single-page publish | Operator confirmation required; `publishToWebflowSubdomain` only; publish receipt + rollback plan |
 | REFUSE-001 | Destructive action without confirmation | Delete/`customDomains` publish refused; fail-closed holds |
+| RATELIMIT-001 | 429 backoff and Retry-After | Rate-limit discipline; no blind replay of non-idempotent writes |
+| DEPLOYGATE-001 | run_workflow requires confirmation | Deploy class gated; named inputs + blast-radius note |
 | PAIR-001 | Designer-family change pairs with sk-design | deElement/deVariable change routed through `sk-design` first |
+| PAIR-DATA-001 | Data-family runs transport-only | Negative pairing check — no forced sk-design on data ops |
+| NONWEBFLOW-001 | Non-Webflow intent defers | Off-topic requests never route to webflow tools |
 
 ## 11. Cross-reference index
 
 - `discovery-setup/discover-001.md`
+- `discovery-setup/discover-drift-001.md`
 - `read-only/readcms-001.md`
+- `read-only/readpages-001.md`
 - `draft-write/draftset-001.md`
 - `safety-gate/pubgate-001.md`
 - `safety-gate/refuse-001.md`
+- `safety-gate/rate-limit-001.md`
+- `safety-gate/deploygate-001.md`
 - `pairing/pair-001.md`
+- `pairing/pair-data-001.md`
+- `negative/non-webflow-001.md`
