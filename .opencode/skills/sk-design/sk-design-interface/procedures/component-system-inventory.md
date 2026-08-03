@@ -1,6 +1,6 @@
 ---
 title: Component System Inventory
-description: Private procedure card for the foundations subworkflow's component inventory and system-gap review.
+description: Private procedure card for the static-system subworkflow's component inventory and system-gap review.
 trigger_phrases:
   - "component system inventory"
   - "component library extraction"
@@ -8,27 +8,30 @@ trigger_phrases:
 importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
+status: quarantined
 ---
 
 # Component System Inventory
 
-Private procedure card for applying the existing foundations-subworkflow component inventory workflow.
+> Quarantined after reachability review: no active choreography reaches this card. It is retained for historical reference and is not part of the active eight-card interface workflow.
+
+Private procedure card for applying the existing `sk-design-md-generator` component inventory workflow.
 
 ## 1. REQUIRED FIELDS
 
 | Field | Value |
 |---|---|
-| Purpose | Help the `foundations` subworkflow identify reusable components and system gaps in a finished or near-finished design. |
+| Purpose | Help the `sk-design-md-generator` workflow identify reusable components and system gaps in a finished or near-finished design. |
 | Owning mode | `design-interface` |
 | Source reference | `component-extract.md` |
 | Trigger | Use when a user wants to turn a design into a component library, extract reusable parts, or make an interface maintainable as a system. |
 | Output contract | A component inventory grouped into foundations, atoms, molecules, organisms, and templates, with variants, states, tokens, composition, accessibility notes, and gaps. |
 | Proof gate | The inventory distinguishes repeated patterns from one-offs, names missing variants or states, and traces component styling back to tokens when available. |
-| Privacy rule | This is private foundations guidance and does not add a public component-extract skill. |
+| Privacy rule | This is private design-system guidance and does not add a public component-extract skill. |
 
 ## 2. READ-ONLY COMPATIBILITY
 
-The foundations mode can return the inventory as advisory content or handoff. It must not require file output, code generation, or command execution.
+The `sk-design-md-generator` mode can return the inventory as advisory content or handoff. It must not require file output, code generation, or command execution.
 
 ## 3. PROCEDURE
 

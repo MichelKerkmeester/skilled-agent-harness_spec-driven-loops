@@ -1,12 +1,21 @@
-# sk-doc Surface Router — per-intent leaf sets
+---
+title: Second-Layer Surface Router Pattern
+description: Reusable second-layer leaf-routing pattern for hubs that explicitly declare packet-local surface routing.
+trigger_phrases:
+  - "second-layer surface router"
+  - "packet leaf resource routing"
+  - "hub leaf resource map"
+  - "surface router pattern"
+importance_tier: normal
+contextType: implementation
+version: 1.0.0.0
+---
 
-This is sk-doc's second-layer (surface) router. The hub selects a workflow mode in
-`hub-router.json`; this doc maps a request's intent to the exact packet-local leaf
-resources that mode should load. Every path is either packet-qualified
-(`<packet>/references|assets/…`) or a shared-alias disk path (`shared/…`); both
-convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract
-boundary. `FULL_INVENTORY` is the single explicit full-toolkit intent — no other
-intent enumerates the whole hub.
+# Second-Layer Surface Router Pattern
+
+This is a reusable pattern for a parent hub that explicitly declares second-layer leaf routing. It is not sk-doc's active router: sk-doc is workflow-only, routes through `hub-router.json`, and uses `shared/references/quick-reference.md` for its fallback.
+
+The block below is illustrative. Adopt it only when the owning hub's registry and router contract declare packet-local leaf routing; otherwise load the selected packet's own `SKILL.md` and resources directly. Every path is either packet-qualified (`<packet>/references|assets/…`) or an authored shared-alias disk path (`shared/…`), and both convert to the canonical `(workflowMode, leafResourceId)` pair at the contract boundary. `FULL_INVENTORY` is the single explicit full-toolkit intent — no other intent enumerates the whole hub.
 
 ```python
 INTENT_SIGNALS = {

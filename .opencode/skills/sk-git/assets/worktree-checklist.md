@@ -31,10 +31,10 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 3. Run post-creation verification
 4. Report status to user using the template
 
-Any new branch must be created by `git worktree add -b ...`, never by `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
+Any new branch must be created through the naming allocator, never by `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
 
 > **Scope**: this checklist covers *named feature worktrees*, which use the numbered
-> `wt/{NNNN}-{name}` branch + `.worktrees/{NNNN}-{name}` directory convention. It does
+> `{OWNER}/{NNNN}-{slug}` branch + `.worktrees/{NNNN}-{OWNER}-{slug}` directory convention. It does
 > not cover the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}`
 > + `.worktrees/{runtime}-{slug}`), which are auto-allocated and auto-reaped, and are
 > intentionally not numbered.
@@ -47,9 +47,9 @@ Any new branch must be created by `git worktree add -b ...`, never by `git branc
 
 - [ ] **Task/feature description** - What will you work on?
 - [ ] **Lifecycle decided** - fast-merge, long-running, or detached experiment?
-- [ ] **Kebab `{name}` chosen** (if a branch is needed) - short description for `wt/{NNNN}-{name}`?
+- [ ] **Kebab `{slug}` chosen** (if a branch is needed) - short description for `{OWNER}/{NNNN}-{slug}`?
 
-**Decision guide** (named feature worktrees all use the `wt/{NNNN}-{name}` namespace):
+**Decision guide** (named feature worktrees all use the owner-first `{OWNER}/{NNNN}-{slug}` namespace):
 - **Fast-merge**: 80% of work (merge back to main immediately)
 - **Long-running**: features needing PR review across multiple days
 - **Detached experiment**: throwaway work, no branch (so no number assigned)
@@ -108,35 +108,30 @@ Any new branch must be created by `git worktree add -b ...`, never by `git branc
 
 ### Step 4: Create Worktree
 
-First compute the global number, then choose a lifecycle. Named branches always use
-`wt/{NNNN}-{name}` — only how the branch merges differs between fast-merge and long-running.
-
-- [ ] **Compute the global `{NNNN}`** (max existing + 1, zero-padded, first is `0001`)
-  ```bash
-  n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
-  ```
+Choose a lifecycle, then let the allocator reserve the global number. Named branches use
+`{OWNER}/{NNNN}-{slug}` — only how the branch merges differs between fast-merge and long-running.
 
 **Option A: Fast-merge** (default) — named branch off main
 - [ ] Create worktree
   ```bash
-  git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git <slug> main
   ```
 
-**Option B: Long-running** — same `wt/{NNNN}-{name}` branch, kept for PR review
+**Option B: Long-running** — same owner-first branch, kept for PR review
 - [ ] Create worktree
   ```bash
-  git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git <slug> main
   ```
 
-**Option C: Detached experiment** — no branch, so no number assigned
+**Option C: Detached experiment** — no branch, allocator-managed directory
 - [ ] Create detached HEAD worktree
   ```bash
-  git worktree add --detach .worktrees/experiment main
+  bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> main
   ```
 
 - [ ] **Navigate to worktree**
   ```bash
-  cd ".worktrees/${n}-${name}"   # (or .worktrees/experiment for detached)
+  cd ".worktrees/<NNNN>-sk-git-<slug>"   # (or .worktrees/<NNNN>-detached-<slug>)
   ```
 
 - [ ] **Verify creation**
@@ -277,8 +272,8 @@ Provide this information to user:
 
 Example:
 ```
-✓ Worktree ready at /Users/user/project/.worktrees/0002-user-auth
-✓ Branch: wt/0002-user-auth (long-running)
+✓ Worktree ready at /Users/user/project/.worktrees/0002-sk-git-user-auth
+✓ Branch: sk-git/0002-user-auth (long-running)
 ✓ Tests passing (152 tests, 0 failures)
 ✓ Ready to implement user authentication
 ```
@@ -318,7 +313,7 @@ git worktree remove ".worktrees/${n}-${name}"
 git worktree prune
 
 # Try again
-git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git <slug> main
 ```
 
 ### Issue: Tests Fail in New Worktree

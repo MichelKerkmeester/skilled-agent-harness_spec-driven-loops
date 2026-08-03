@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create doctor skill advisor alignment",
+      "make skill creation easy",
+      "align create and doctor commands with skill advisor"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill",
+      "advisor",
+      "alignment",
+      "creation",
+      "easy",
+      "align",
+      "commands",
+      "authoring",
+      "diagnostics",
+      "skill-advisor",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill authoring, skill diagnostics, and skill-advisor routing are three surfaces that evolved somewhat independently: the `/create:` commands and `sk-create-skill` guides describe how to author a skill, the `/doctor` command surface diagnoses and repairs skill-advisor/skill-routing state, and `system-skill-advisor`'s own index (mode-registry, hub-router, advisor rebuild/validate, skill-graph scan/validate) is the live routing substrate all of that authoring eventually has to satisfy",
+    "created_at": "2026-07-30T18:20:46.580Z",
+    "last_save_at": "2026-07-30T20:41:57.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a60dcc50613468106d2a2329a8cb02a1425660d8bef78440cf090bda7d3a9799",
+    "source_doc_hashes": {
+      "spec.md": "32488699e63968303c4c86b83331d01636b7cf2ebf684e816e844ffd993d8482"
+    },
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+    "last_active_at": "2026-07-30T20:41:57.709Z"
+  }
+}

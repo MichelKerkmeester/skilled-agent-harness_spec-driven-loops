@@ -28,7 +28,7 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
-Launcher supervision is not uniform by design. The spec-memory launcher supervises the backend with crash-loop backoff, relaunch, and RSS-watchdog support. The code-index and skill-advisor launchers mirror child exit or signal state and expect the owning runtime or operator to restart them after a child crash.
+Launcher supervision is not uniform by design. The spec-memory launcher supervises the backend with crash-loop backoff, relaunch, and RSS-watchdog support. The skill-advisor launcher mirrors child exit or signal state and expects the owning runtime or operator to restart it after a child crash.
 
 ## CLI vs MCP — when to use which
 
@@ -53,7 +53,7 @@ node .opencode/bin/<cli>.cjs <tool_name> --help
 
 `completion bash|zsh` emits generated shell completion for the selected CLI and shell.
 
-Tool names accept the aliases exposed by the CLI. The memory and code-index CLIs expose snake_case, kebab-case, and camelCase aliases from the tool name; the advisor CLI exposes aliases from its manifest.
+Tool names accept the aliases exposed by the CLI. Both CLIs expose snake_case, kebab-case, and camelCase aliases from their tool manifests.
 
 Use `--json` for one complete JSON object argument when a tool has structured input:
 
@@ -64,7 +64,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implem
 
 ## 3. OUTPUT FORMATS
 
-All three CLIs accept `--format json|text|jsonl`.
+Both CLIs accept `--format json|text|jsonl`.
 
 | Format | Behavior |
 | --- | --- |
@@ -78,9 +78,9 @@ All three CLIs accept `--format json|text|jsonl`.
 
 | Exit | Meaning | Notes |
 | ---: | --- | --- |
-| `0` | Success | Includes actionable code-index `status:"blocked"` readiness refusals; blocked reads are valid answers with `requiredAction`. |
+| `0` | Success | The requested tool or discovery operation completed. |
 | `1` | Runtime error | Tool returned an error payload or an unclassified runtime failure occurred. |
-| `64` | Usage or schema error | Bad flags, invalid `--json`, schema validation failure, advisor trusted-mutation refusal, or code-index `detect_changes` `parse_error`. |
+| `64` | Usage or schema error | Bad flags, invalid `--json`, schema validation failure, or advisor trusted-mutation refusal. |
 | `69` | Protocol mismatch or stale/missing dist | The shim or CLI refused an unsafe build/protocol state. Rebuild the matching package before retrying. |
 | `75` | Retryable daemon/IPC error | Warm-only daemon unavailable, connection refused/reset, timeout, busy database, spawn failure, or retryable backend state. |
 
@@ -110,7 +110,7 @@ The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild befor
 | `spec-memory.cjs` | `Run npm run build --workspace=@spec-kit/mcp-server.` | `npm run build --workspace=@spec-kit/mcp-server` |
 | `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
 
-Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
+Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
 ## 7. HELP AND DISCOVERY
 
@@ -123,7 +123,7 @@ node .opencode/bin/spec-memory.cjs list-tools --compact
 node .opencode/bin/skill-advisor.cjs completion zsh
 ```
 
-Expected counts are `37`, `8`, and `9` respectively. Compact and names-only output preserve those counts while returning zero `inputSchema` fields.
+Expected counts are `41` for spec-memory and `9` for skill-advisor. Compact and names-only output preserve those counts while returning zero `inputSchema` fields. The counts come from the live `TOOL_DEFINITIONS` manifests and the parity test; this reference does not maintain a second tool inventory.
 
 Per-command help is available and prints the command description, aliases, and input schema:
 
@@ -132,19 +132,19 @@ node .opencode/bin/spec-memory.cjs memory_stats --help
 node .opencode/bin/skill-advisor.cjs advisor_status --help
 ```
 
-Run the host-safe offline smoke check to verify all three shims without daemon contact:
+Run the host-safe offline smoke check to verify both shims without daemon contact:
 
 ```bash
 node .opencode/bin/cli-offline-smoke.cjs --format json
 ```
 
-The smoke check expects `spec-memory=37`, `code-index=8`, `skill-advisor=9`, and `daemonFree:true` for each result.
+The smoke check expects `spec-memory=41`, `skill-advisor=9`, and `daemonFree:true` for each result. It is the executable parity check for the live manifests, not a separate tool inventory.
 
 ## 8. SAFETY RULES
 
 - Keep MCP as the primary in-session transport today; use the CLIs as additive fallbacks and operator surfaces.
 - We may consider making the CLIs the primary or sole transport later, but account for the spec-memory CLI/MCP surface-count difference and do not treat that as a decided plan.
-- Prefer read-only recovery commands when transport fails: memory context/status, code graph status/query reads, advisor recommend/status.
+- Prefer read-only recovery commands when transport fails: memory context/status and advisor recommend/status.
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
 - Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.

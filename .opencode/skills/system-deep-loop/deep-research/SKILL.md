@@ -264,7 +264,7 @@ This skill is invoked exclusively through `/deep:research:auto` or `/deep:resear
 
 ### Executor Selection Contract
 
-The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. Per-kind dispatch branches (`native`, `cli-opencode`, `cli-claude-code`) and flag-compatibility rules are in [loop-protocol.md §3](references/protocol/loop-protocol.md).
+The YAML workflow owns executor selection (native `@deep-research` by default, or a routed CLI executor -- never ad hoc shell loops). Cross-CLI delegation inside an executor sandbox is possible but discouraged: do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs. The seven executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`; the inline research YAML currently carries branches for `native`, `cli-claude-code`, `cli-opencode`, and `cli-codex`, while `cli-cursor`, `cli-devin`, and `cli-pi` are handled by the shared fan-out adapters. Flag compatibility remains in [loop-protocol.md §3](references/protocol/loop-protocol.md).
 
 Executor invariants:
 

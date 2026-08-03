@@ -28,7 +28,7 @@ Core standards define the structural foundation for all OpenCode skill documenta
 - **Type-specific rules** - Tailored requirements for SKILL, Knowledge, Command, Spec, README files
 - **Quality gates** - Filename, frontmatter, and heading standards
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
 
@@ -84,7 +84,7 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 
 | Type | Enforcement | Frontmatter | H1 Subtitle | TOC Policy | Blocks |
 |------|-------------|-------------|-------------|------------|--------|
-| README | Flexible | None | Optional | ❌ Never | No |
+| README | Flexible | Optional; the current README template includes it | Optional | ❌ Never | No |
 | SKILL | Strict | Required | Required | ❌ Never | Yes |
 | llms.txt | Strict | Forbidden | N/A | ❌ Never | Yes |
 | Knowledge | Moderate | Forbidden | Required | ❌ Never | Yes |
@@ -114,9 +114,9 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 
 **SKILL type**:
 - Missing YAML frontmatter
-- Missing required fields: `name`, `description`
+- Missing required fields: `name`, `description`, `allowed-tools`, `version`
 - H1 missing subtitle
-- Missing required sections: WHEN TO USE, HOW IT WORKS, RULES
+- Missing required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
 - Wrong section order
 
 **Knowledge type**:
@@ -137,25 +137,21 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 ---
 name: skill-name
 description: Brief description
-allowed-tools: Read, Write, Edit
+allowed-tools: [Read, Write, Edit]
+version: 1.0.0.0
 ---
 ```
 
 **Fix template** (section order for SKILL):
 ```markdown
-## 1. CAPABILITIES OVERVIEW
+## 1. WHEN TO USE
 ## 2. SMART ROUTING
-## 3. REFERENCES
-## 4. WHEN TO USE
-## 5. HOW TO USE
-## 6. RULES
-## 7. SUCCESS CRITERIA
-## 8. INTEGRATION POINTS
-## 9. ADDITIONAL RESOURCES
-## 10. QUICK START
+## 3. HOW IT WORKS
+## 4. RULES
+## 5. REFERENCES
 ```
 
-**Note**: Not all sections are required. Minimum required sections: WHEN TO USE, HOW TO USE, RULES.
+**Note**: The package gate requires WHEN TO USE, SMART ROUTING, HOW IT WORKS (or HOW TO USE), RULES, and REFERENCES (or the approved combined SMART ROUTING & REFERENCES heading).
 
 ---
 
@@ -234,8 +230,8 @@ Content...
 
 **SKILL.md**:
 ```yaml
-Required frontmatter: name, description, allowed-tools
-Required sections: WHEN TO USE, HOW TO USE, RULES
+Required frontmatter: name, description, allowed-tools, version
+Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
 H1 format: "# Name - Subtitle"
 Quality target: Production-ready (no critical gaps)
 ```
@@ -316,20 +312,20 @@ Format: Plain text navigation file for LLMs
 ## 8. RELATED RESOURCES
 
 ### Reference Files
-- [workflows.md](./workflows.md) - Execution modes and workflow details
-- [optimization.md](./optimization.md) - Content transformation patterns
+- [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution modes and workflow details
+- [optimization.md](../../sk-create-quality-control/references/optimization.md) - Content transformation patterns
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](./quick-reference.md) - Quick command reference
-- [skill-creation.md](skill-creation.md) - Skill creation workflow
+- [skill-creation.md](../../sk-create-skill/references/README.md) - Skill creation workflow
 - [install-guide standards](../../sk-create-readme/references/README.md) - Install guide standards and workflow
 
 ### Templates
-- [skill-md-template.md](../assets/skill/skill-md-template.md) - SKILL.md file templates
-- [skill-asset-template.md](../assets/skill/skill-asset-template.md) - Bundled asset structure
-- [skill-reference-template.md](../assets/skill/skill-reference-template.md) - Reference doc structure
-- [readme-template.md](../assets/readme/readme-template.md) - Comprehensive README guide (13 sections)
-- [command-template.md](../assets/command/command-template.md) - Command creation guide (19 sections)
-- [install-guide-template.md](../assets/readme/install-guide-template.md) - Install guide template (14 sections)
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+- [skill-asset-template.md](../../sk-create-skill/assets/skill/skill-asset-template.md) - Bundled asset structure
+- [skill-reference-template.md](../../sk-create-skill/assets/skill/skill-reference-template.md) - Reference doc structure
+- [readme-template.md](../../sk-create-readme/assets/readme-template.md) - Comprehensive README guide
+- [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide
+- [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
 - [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter by document type
 

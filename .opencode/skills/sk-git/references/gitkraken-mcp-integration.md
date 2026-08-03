@@ -20,7 +20,7 @@ Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Regi
 
 ## 1. OVERVIEW
 
-The GitKraken MCP server (`@gitkraken/gk`) exposes 31 tools spanning local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
+The GitKraken MCP server (`@gitkraken/gk`) exposes local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Verify the current tool surface with `gk mcp --list-tools` before relying on this reference; the locally checked surface was verified on 2026-08-02. Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
 
 **Prerequisites**: The `gk` CLI must be authenticated (`gk auth login` / `gk whoami`) with the relevant provider(s) connected (`gk provider`). No `.utcp_config.json` env vars are required — auth is handled entirely by the CLI's own local auth state.
 
@@ -60,7 +60,7 @@ The GitKraken MCP server (`@gitkraken/gk`) exposes 31 tools spanning local git o
 
 **Access Pattern:** `gitkraken.gitkraken_{tool_name}({...})`
 
-**Verified 2026-07-10 via `gk mcp --list-tools` against the locally installed, authenticated CLI (31 tools total).** The upstream README under-documents this list — treat this table, not the README, as the reference; re-run `gk mcp --list-tools` if it looks stale.
+**Verified 2026-08-02 via `gk mcp --list-tools` against the locally installed, authenticated CLI.** Re-run `gk mcp --list-tools` and compare the tool names with this table before relying on it; the command is the reproducible source of the current surface.
 
 | Category | Tools | Description |
 | :------- | :---- | :----------- |
@@ -160,9 +160,9 @@ call_tool_chain({
 })
 ```
 
-### Worktree-creating tools
+### Tools with workspace side effects
 
-`gitlens_start_review` and `gitlens_start_work` create a worktree as a side effect. If the call fails partway, check `git worktree list` locally and clean up with `git worktree remove` before retrying — do not leave orphaned worktrees per sk-git's §4 RULES cleanup requirement.
+`gitlens_start_review` creates a dedicated worktree as a side effect; `gitlens_start_work` creates and links a branch without claiming a worktree. If either call fails partway, inspect `git worktree list` locally and clean up any orphaned worktree with `git worktree remove` before retrying — do not leave orphaned worktrees per sk-git's §4 RULES cleanup requirement.
 
 ---
 

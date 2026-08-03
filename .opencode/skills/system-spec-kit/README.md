@@ -698,7 +698,7 @@ For generic MCP clients that use `mcpServers` syntax (for example Claude Desktop
 }
 ```
 
-OpenCode, Claude Code, OpenCode and VS Code / Copilot use checked-in repo-specific config shapes, so use [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
+Claude Code, Codex, Cursor, Devin, and the OpenCode plugin bridge use checked-in repo-specific config shapes, so use [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) for the runtime-specific examples instead of pasting the generic block above into every client.
 
 ### Feature Flags
 

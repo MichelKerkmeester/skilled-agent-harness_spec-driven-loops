@@ -27,7 +27,7 @@ This packet separates three headless contracts:
 
 | Contract | Invocation | Output |
 |---|---|---|
-| Print | pi -p or pi --print | One-shot response |
+| Print | pi -p or pi --print | Final assistant message only |
 | JSON | pi --mode json | JSONL event stream |
 | RPC | pi --mode rpc | Persistent JSONL protocol over stdin/stdout |
 
@@ -166,6 +166,10 @@ The first unauthenticated print attempt returned exit 0. Later equivalent attemp
 
 The pin confirmed JSON mode as a JSONL event stream. The first record is a session header, followed by agent, turn, message, and tool execution events. Consumers should read one line at a time and preserve event order.
 
+Print mode surfaces only the final assistant message. Any leaf that needs structured output, intermediate messages, or tool events must use `--mode json`, never `-p`/`--print`.
+
+For `cli-pi`, captured stdout is hard-capped at 20 MB and truncated or killed beyond that limit by the fanout runner (`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2390`). A structured-output leaf must keep its output bounded; do not dump large tool output into the captured stream. Consume JSONL incrementally, extracting records line by line.
+
 ~~~bash
 pi --mode json "Summarize the work"
 ~~~
@@ -201,4 +205,3 @@ Pi is a multi-provider passthrough with no enforced allowlist at this layer and 
 Reasoning effort is a first-class flag independent of the model id: `--thinking off|minimal|low|medium|high|xhigh|max` (installed help, confirmed live). Unlike `cli-cursor`/`cli-devin`, no effort tier is baked into any model id. Codex's config-level `-c model_reasoning_effort=...` and `-c service_tier=...` forms are Codex-specific syntax and must NOT be copied into a Pi invocation; Pi has no confirmed service-tier control surface.
 
 **Full authenticated provider/model roster, the `--thinking` scale, and the GPT-5.6 ceiling cross-map → [providers-and-models.md](./providers-and-models.md).**
-

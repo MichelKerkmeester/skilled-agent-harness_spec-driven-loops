@@ -17,7 +17,9 @@ version: 0.8.0.8
 
 ---
 
-## Overview
+## 1. 📖 OVERVIEW
+
+This reference defines the output-verification pipeline used after prompt dispatch. It separates compile, execution, smoke-test, and lint evidence so callers can report a validated result.
 
 An opt-in verification pattern for deep-loop post-dispatch validation.
 

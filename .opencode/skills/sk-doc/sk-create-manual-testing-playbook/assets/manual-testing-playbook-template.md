@@ -173,7 +173,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides {SCENARIO_COUNT} deterministic scenarios across {CATEGORY_COUNT} categories validating the `{SKILL_SLUG}` skill surface. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
+This playbook provides a derived census of deterministic scenarios across categories validating the `{SKILL_SLUG}` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note ({PLAYBOOK_DATE}): {COVERAGE_NOTE}.
 
@@ -246,21 +246,21 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
-- `FAIL`: expected behavior missing, contradictory output, or critical check failed
+- `FAIL`: expected behavior missing, contradictory output, or a critical check failed
+- `SKIP`: a specific sandbox or runtime blocker prevents execution
 
 ### Feature Verdict Rules
 
 - `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
 - `FAIL`: any mapped scenario is `FAIL`
+- `SKIP`: every mapped scenario is blocked by a named sandbox or runtime blocker
 
 Hard rule:
 - Any critical-path scenario `FAIL` forces feature verdict to `FAIL`.
 
 ### Release Readiness Rule
 
-Release is `READY` only when:
+Release is releasable only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
@@ -444,7 +444,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Feature file path: `{CATEGORY_DIR}/{FEATURE_SLUG}.md`
 ```
 
-Validator note: the current validator does not recurse into the category folders, so per-feature file completeness must be checked manually. Cross-file link resolution is now guarded in CI by `check-markdown-links.cjs` (broken markdown links fail the PR); per-feature completeness and source-anchor quality remain manual.
+The operator validator recurses into category folders, derives the census, and checks per-feature structure and local links. Cross-file link resolution remains additionally guarded in CI by `check-markdown-links.cjs`.
 
 ---
 

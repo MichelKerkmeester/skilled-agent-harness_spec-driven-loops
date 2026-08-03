@@ -32,11 +32,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
-- Mode 2 (Skill Creation): [skill-creation.md](../../sk-create-skill/references/README.md)
-- Mode 3 (Flowcharts): [sk-create-flowchart/assets/](../../sk-create-flowchart/assets/)
-- Mode 4 (Install Guides): [create-readme references](../../sk-create-readme/references/README.md)
-- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../sk-create-manual-testing-playbook/references/README.md), [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md), and [manual-testing-playbook-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md)
-- Companion catalog workflow: [create-feature-catalog references](../../sk-create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../sk-create-feature-catalog/assets/)
+Other documentation workflows are separate `sk-doc` packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [flowcharts](../../sk-create-flowchart/references/README.md), [README and install guides](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 

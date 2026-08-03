@@ -172,7 +172,7 @@ The `route_cursor_resources(task)` function body lives in [`shared-smart-router.
 
 ### Prerequisites
 
-Install with `curl https://cursor.com/install -fsS | bash` (Windows: `irm 'https://cursor.com/install?win32=true' | iex`). cli-cursor authenticates through **Cursor account OAuth** — run `cursor-agent login` and complete the browser flow (`NO_OPEN_BROWSER` disables browser opening for headless hosts). Headless/CI auth uses `CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN` env vars or `--api-key`/`--auth-token` flags. Full install, auth, flag, hook, and unique-surface tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
+Install with `curl https://cursor.com/install -fsS | bash` (Windows: `irm 'https://cursor.com/install?win32=true' | iex`). cli-cursor authenticates through **Cursor account OAuth** — run `cursor-agent login` and complete the browser flow (`NO_OPEN_BROWSER` disables browser opening for headless hosts). Headless/CI auth uses `CURSOR_API_KEY` or `--api-key`. Full install, auth, flag, hook, and unique-surface tables live in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md) — this section keeps only the routing decisions and dispatch-critical gotchas.
 
 ### Execution Ownership
 
@@ -201,7 +201,7 @@ echo "$CURSOR_ABOUT" | grep -qi "not logged in" && CURSOR_AUTH_OK=0 || CURSOR_AU
 
 ```
 Cursor CLI is not authenticated on this machine. cli-cursor uses Cursor account OAuth
-(or CURSOR_API_KEY/CURSOR_AUTH_TOKEN for headless auth). Run `cursor-agent login`
+(or CURSOR_API_KEY for headless auth). Run `cursor-agent login`
 (browser flow), then confirm when login finishes — the skill will retry the original dispatch.
 ```
 
@@ -236,7 +236,7 @@ Honor whichever dimensions the user names (approval level, mode). Model stays on
 
 ### Model Selection — Enforced Allowlist
 
-**cli-cursor dispatch is scoped to exactly 10 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Grok 4.5 / GLM 5.2 tier only when the task or user explicitly names that family. Effort tiers are baked into the model id suffix — Cursor has no `--reasoning-effort` flag and rejects the parameterized `model[effort=...]` bracket outright.
+**cli-cursor dispatch is scoped to exactly 10 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Grok 4.5 / GLM 5.2 tier only when the task or user explicitly names that family. Cursor has no `--reasoning-effort` flag and rejects parameterized model brackets outright — effort tiers must be selected through exact enumerated ids.
 
 The enforced allowlist (10 ids) and the per-task rationale table live inline in [references/cli-reference.md](./references/cli-reference.md) §5 and [references/providers-and-models.md](./references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
 

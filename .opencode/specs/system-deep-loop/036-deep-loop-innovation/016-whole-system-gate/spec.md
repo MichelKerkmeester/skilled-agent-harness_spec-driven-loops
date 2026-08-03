@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-15T16:35:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined the exact-SHA whole-system acceptance gate contract"
-    next_safe_action: "Execute the frozen-SHA gate after phase 015 writer retirement"
+    next_safe_action: "Execute the frozen-SHA gate only after 015 writer retirement lands (0/29 now)"
     blockers: []
     key_files: []
     completion_pct: 0
@@ -50,7 +50,8 @@ _memory:
 
 The 006 program changes a live, stateful runtime through additive-dark writes, compatibility adapters, shadow parity,
 staged authority cutover, and gated legacy-writer retirement. A green unit or per-mode result is not enough to prove that
-the complete system still runs consistently after phase `015-legacy-writer-retirement`: shared ledger transitions,
+the complete system still runs consistently after phase `015-legacy-writer-retirement`, which is currently unmet and
+Planned/unstarted at 0/29 checklist items: shared ledger transitions,
 receipts, effect recovery, replay, budgets, health signals, archival readers, and mode-specific behavior can regress at
 their boundaries. The parent specification names this phase as the whole-system gate, and the
 `execution-sequencing-strategy.md` requires every phase gate to be bound to an exact commit and to produce a blocking
@@ -67,6 +68,17 @@ This is an acceptance gate, not a late implementation pass. Verification mutates
 failure blocks phase 017 and reopens the phase that owns the failed contract; the gate may not be made green by changing
 the phase-003 baseline, suppressing a fixture, accepting an unexplained parity delta, or waiving a strict-validation
 error.
+
+### Stage structure (operator-ruled disposition)
+
+This phase runs in two stages. **Stage A — pre-cutover validation (landed)**: the `review/` and
+`alignment/` trees under this folder are the evidence of an operator-requested pre-cutover
+validation run (40 review iterations, the findings register, and the stopped alignment sample);
+they were gathered before the cutover to decide whether it could proceed, and this phase
+formally owns them as that stage's record. `PRE-014-VALIDATION-RUN.md` is Stage A's provenance
+notice. **Stage B — the whole-system gate proper (unexecuted)**: everything below describes
+Stage B; its blocking prerequisite on landed legacy-writer-retirement evidence is unmet and
+nothing in Stage A discharges it.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

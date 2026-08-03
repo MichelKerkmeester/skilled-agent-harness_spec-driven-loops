@@ -16,10 +16,6 @@ version: 3.6.0.7
 
 This reference module defines the single canonical `:auto` setup-resolution contract used by every user-invokable `/command:*:auto` surface in spec-kit (`/spec_kit:*`, `/create:*`, `/deep:*`). Each command's §0 cites this contract and supplies only its own per-field Default Resolution Table + `PRE-BOUND SETUP ANSWERS:` field list. The contract semantics, marker grammar, error format, and verification protocol live here.
 
-Origin: shipped from the deep-review prototype and generalized in `.../002-auto-mode-contract-generalization-to-all-commands/` (12-command rollout).
-
-Related memory: `feedback_auto_mode_ask_only_when_ambiguous.md`, `feedback_opencode_spawnagent_allowlist.md`, `feedback_gate3_no_tmp_exemption.md`.
-
 ---
 
 ## §1. Three-Tier Flow
@@ -193,3 +189,9 @@ Commands that have adopted this contract:
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
 - Cross-command `:auto` integration (e.g. `/spec_kit:plan:auto` chained into `/spec_kit:implement:auto`) — separate contract concern.
+
+## §9. PROVENANCE
+
+Origin: shipped from the deep-review prototype and generalized in the 12-command rollout.
+
+Related memory: feedback_auto_mode_ask_only_when_ambiguous.md, feedback_opencode_spawnagent_allowlist.md, feedback_gate3_no_tmp_exemption.md.

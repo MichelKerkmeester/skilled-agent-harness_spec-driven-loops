@@ -367,12 +367,14 @@ workflow:
       - Create the non-discoverable shared/ dir with a shared/README.md
       - Never write a graph-metadata.json inside any packet or inside shared/
       - "When any mode is routingClass lexical or alias-fold, run advisor_projection_emit to emit/update the advisor routing projection from the finalized mode-registry.json and refresh the embedded projection hash"
+      - "After mode-registry.json and all packet directories are finalized, run node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write [skill_root] to generate or refresh this hub's leaf-manifest.json. This is the scoped, hub-only generator; never invoke the fleet ci-skill-root-metadata.cjs --fix from this workflow, since --fix regenerates generated files across all scanned roots and would hide unrelated-root blast radius behind this create operation"
     outputs:
       - generated_hub
       - generated_registry
       - generated_packets
       - generated_shared
       - advisor_projection_emitted
+      - generated_leaf_manifest
 
   step_5_validation:
     purpose: Validate the generated package against the canonical structural gate (success gate == the /doctor parent-skill-check gate)
@@ -387,6 +389,7 @@ workflow:
       - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; workflow folder == [hub-prefix]-<mode> and surface folder == bare noun are recommended, grandfathered mismatches allowed via grandfatheredFolderMismatch"
       - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
       - "If any mode is routingClass lexical or alias-fold, run the advisor projection drift guard from system-skill-advisor and require a pass"
+      - "Assert [skill_root]/leaf-manifest.json exists and is valid JSON (step_4 generates it via the scoped generator); parent_skill_check_passed already covers its class-H structural requirement, so a missing/stale file here means step_4's generation activity was skipped, not a separate defect to fix in this step"
     outputs:
       - hub_validation_passed
       - parent_skill_check_passed
@@ -396,6 +399,7 @@ workflow:
       - packet_structure_passed
       - one_identity_passed
       - advisor_projection_guard_passed
+      - leaf_manifest_present
 
   step_5b_save_context:
     purpose: Preserve spec-folder documentation and index the implementation summary for this parent-skill work
@@ -429,10 +433,12 @@ workflow:
       - Summarize operation, mode list, and generated paths
       - Report identity counts and validation results
       - "Report advisor projection emission when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note)"
+      - "Render the Advisor/Index Handoff block per .opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md: description.json/graph-metadata.json ownership lines are static text; leaf-manifest.json state is fresh when step_4's generate-leaf-manifest.cjs --write ran cleanly and leaf_manifest_present held in step_5, missing when the file is absent, stale is not reachable here since this command just generated it; command-metadata.json reports present-and-validated or omitted per whether the hub declares one; refresh status is always NOT RUN — this command never calls skill_graph_scan or advisor_rebuild itself"
       - "Report spec-folder tracking status: [spec_path] ([created|existing|skipped])"
       - Return STATUS=OK PATH=[skill_root]
     outputs:
       - completion_report
+      - advisor_index_handoff_report
       - spec_folder_status
 
   advisor_map_sync_note:

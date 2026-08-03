@@ -107,5 +107,5 @@ console.log(animate);
 - Install modes and version-pin recommendation: https://motion.dev/docs/quick-start
 - Mini/hybrid import distinction: https://motion.dev/docs/animate
 - Latest-version authoring cross-check: https://motion.dev/
-- Local ESM import pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
-- Local `window.Motion` pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical ESM import pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical `window.Motion` pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`

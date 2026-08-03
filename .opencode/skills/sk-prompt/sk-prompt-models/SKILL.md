@@ -1,11 +1,11 @@
 ---
 name: sk-prompt-models
-description: Small-model dispatch prompt-craft profiles for DeepSeek, Kimi, MiniMax, MiMo, and GLM via cli-opencode; mechanics stay there.
+description: Small-model dispatch prompt-craft profiles for DeepSeek, Kimi, MiniMax, MiMo, GLM, and Composer via their maintained CLI executors.
 allowed-tools: [Read, Grep, Glob]
 version: 0.9.0.1
 ---
 
-<!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, glm-5.2, zai-coding-plan, z.ai-coding-plan, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, mimo-v2.5-pro, glm-5.2, composer-2.5, cli-pi, cli-cursor, zai-coding-plan, z.ai-coding-plan, haiku, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # Small-Model Prompt-Craft (prompt-models packet)
 
@@ -18,10 +18,13 @@ The model-knowledge hub for small-model dispatch: per-model prompt-craft profile
 ### Activation Triggers
 
 **Use when** — before dispatching any active small model, to look up its prompt-craft profile:
-- DeepSeek-v4-pro, Kimi-k2.7-code (via `cli-opencode`)
-- MiniMax-M3 (via `cli-opencode`)
-- MiMo-V2.5-Pro (via `cli-opencode`)
+- DeepSeek-v4-pro (via `cli-opencode` and `cli-pi`)
+- Kimi-k2.7-code (via `cli-opencode`)
+- MiniMax-M3 (via `cli-opencode` and `cli-pi`)
+- MiMo-V2.5-Pro (via `cli-opencode` and `cli-pi`)
 - GLM-5.2 (via `cli-opencode`)
+- Composer-2.5 (via `cli-cursor`)
+- MiMo-V2.5-Pro-ultraspeed is optional-unverified via `cli-pi`; it has no independent prompt profile.
 - Optional future target: Claude Haiku
 - Asking "what framework / scaffold does small-model X want?" or "where is the small-model X pattern?"
 
@@ -29,8 +32,8 @@ The exact provider, quota pool, and dispatch flags for each path live in the §3
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `kimi-k2.7-code`, `deepseek-v4-pro`, `minimax-m3`, `mimo-v2.5-pro`, `glm-5.2`, `haiku`
-- Provider names: `opencode-go`, `deepseek-api`, `kimi-for-coding` (Kimi For Coding plan), `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe) / `xiaomi` (Xiaomi Direct API), `zai-coding-plan` (Z.AI GLM Coding Plan)
+- Model names: `kimi-k2.7-code`, `deepseek-v4-pro`, `minimax-m3`, `mimo-v2.5-pro`, `glm-5.2`, `composer-2.5`, `haiku`
+- Provider names: `deepseek-api`, `kimi-for-coding` (Kimi For Coding plan), `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe) / `xiaomi` (Xiaomi Direct API), `zai-coding-plan` (Z.AI GLM Coding Plan), `cursor` (Cursor subscription)
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
 ### Use Cases
@@ -68,6 +71,7 @@ MODEL_ALIASES = {
     "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3",
     "mimo": "mimo-v2.5-pro", "mimo-v2.5-pro": "mimo-v2.5-pro", "mimo pro": "mimo-v2.5-pro",
     "glm": "glm-5.2", "glm-5.2": "glm-5.2", "glm5.2": "glm-5.2", "zai": "glm-5.2", "zai-coding-plan": "glm-5.2",
+    "composer": "composer-2.5", "composer-2.5": "composer-2.5", "composer 2.5": "composer-2.5", "cursor composer": "composer-2.5",
 }
 ```
 
@@ -128,7 +132,7 @@ MODEL_PROFILE_PREFIX = "references/models/"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Name the target small model (slug, alias, or provider)",
-    "Confirm the executor (cli-opencode)",
+    "Confirm the executor (cli-opencode, cli-pi, or cli-cursor)",
     "Provide the task intent plus one concrete input",
     "Confirm the verification command set before completion",
 ]
@@ -202,11 +206,13 @@ the router above is how the resolved invocation loads the right profile once the
 
 | Model | Executor → Provider (quota pool) | Status |
 | --- | --- | --- |
-| DeepSeek-v4-pro | `cli-opencode` → deepseek-api (deepseek-api) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
+| DeepSeek-v4-pro | `cli-opencode` → deepseek-api (deepseek-api) · `cli-pi` → deepseek-api (deepseek-api) | active (2 paths) |
 | Kimi-k2.7-code | `cli-opencode` → kimi-for-coding (kimi-for-coding) | active (single path; Kimi For Coding plan) |
-| MiniMax-M3 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active — Token Plan (default) + Direct API (pay-per-token) |
-| MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) · `cli-opencode` → xiaomi (xiaomi-direct-api) | active — Token Plan (default) + Direct API (pay-per-token) |
+| MiniMax-M3 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) · `cli-pi` → minimax (minimax-token-plan) | active — Token Plan (default) + Direct API (pay-per-token) + Pi pass-through |
+| MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) · `cli-opencode` → xiaomi (xiaomi-direct-api) · `cli-pi` → xiaomi (xiaomi-token-plan) | active — Token Plan (default) + Direct API (pay-per-token) + Pi pass-through |
 | GLM-5.2 | `cli-opencode` → zai-coding-plan (zai-coding-plan) | active (single path; Z.AI GLM Coding Plan) |
+| Composer-2.5 | `cli-cursor` → cursor (cursor-subscription) | active (Cursor-native) |
+| MiMo-V2.5-Pro-ultraspeed | `cli-pi` → xiaomi (xiaomi-token-plan) | optional-unverified; no independent prompt profile |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 
 Canonical source: `prompt-models/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
@@ -229,7 +235,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `prompt-models/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
-5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2 active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
+5. **Honor the in-scope model set** — DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2, and Composer-2.5 active; MiMo-V2.5-Pro-ultraspeed and Haiku optional-unverified. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### ⛔ NEVER
 

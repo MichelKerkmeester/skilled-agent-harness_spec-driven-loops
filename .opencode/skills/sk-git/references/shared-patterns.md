@@ -29,17 +29,17 @@ This reference consolidates common patterns, commands, and conventions used acro
 
 ### Named Feature Branches — Merge Back Fast
 
-**Pattern**: `wt/{NNNN}-{name}` (directory `.worktrees/{NNNN}-{name}`)
+**Pattern**: `{OWNER}/{NNNN}-{slug}` (directory `.worktrees/{NNNN}-{OWNER}-{slug}`)
 
-`{NNNN}` is a 4-digit zero-padded global counter: `max(existing NNNN under .worktrees/) + 1`.
+`{NNNN}` is allocated by `worktree-naming.sh`, which holds the clone-wide lock.
 
 **Purpose**: Short-lived branches that merge back to main immediately
 
 **Examples**:
 ```bash
-wt/0001-modal-fix
-wt/0002-auth-bug
-wt/0003-quick-refactor
+sk-git/0001-modal-fix
+sk-git/0002-auth-bug
+sk-git/0003-quick-refactor
 ```
 
 **Lifecycle**:
@@ -54,15 +54,15 @@ wt/0003-quick-refactor
 
 ### Named Feature Branches — Long-Running Work
 
-**Pattern**: `wt/{NNNN}-{name}` (same unified scheme; the next global number)
+**Pattern**: `{OWNER}/{NNNN}-{slug}` (same allocator; the next global number)
 
 **Purpose**: Long-running features requiring PR review
 
 **Examples**:
 ```bash
-wt/0004-user-auth
-wt/0005-payment-integration
-wt/0006-dashboard-redesign
+sk-git/0004-user-auth
+sk-git/0005-payment-integration
+sk-git/0006-dashboard-redesign
 ```
 
 **Lifecycle**:
@@ -82,13 +82,12 @@ wt/0006-dashboard-redesign
 
 **Purpose**: Quick experiments without branch pollution
 
-Detached experiments create no branch, so there is no counter to assign. The
-directory may use the numbered `.worktrees/{NNNN}-{name}` form or a descriptive
-throwaway dir.
+Detached experiments create no branch but still use the allocator for a numbered
+`.worktrees/{NNNN}-detached-{slug}` directory.
 
 **Command**:
 ```bash
-git worktree add --detach .worktrees/0001-experiment main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 ```
 
 **Lifecycle**:
@@ -113,7 +112,7 @@ git worktree list
 
 **Create worktree with branch**:
 ```bash
-git worktree add <path> -b <branch-name>
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create <owner> <slug> [base]
 ```
 
 **Create worktree from existing branch**:
@@ -123,7 +122,7 @@ git worktree add <path> <existing-branch>
 
 **Create detached HEAD worktree**:
 ```bash
-git worktree add --detach <path> <commit>
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached <slug> [base]
 ```
 
 **Remove worktree**:
@@ -179,7 +178,7 @@ git commit --amend --no-edit       # Keep message, add changes
 
 ### Branch Operations
 
-**Policy note**: Never create new branches directly with `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`. When a new branch is needed, create it through `git worktree add -b ...`.
+**Policy note**: Never create new branches directly with `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`. When a new branch is needed, create it through the naming allocator.
 
 **List branches**:
 ```bash
@@ -350,11 +349,11 @@ Clients must update to handle JSON responses.
 ### Pattern 1: Quick Fix Workflow
 
 ```bash
-# 1. Create named feature worktree (0001 = next global counter)
-git worktree add -b wt/0001-quick-fix .worktrees/0001-quick-fix main
+# 1. Create named feature worktree through the allocator
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git quick-fix main
 
 # 2. Navigate and fix
-cd .worktrees/0001-quick-fix
+cd .worktrees/<NNNN>-sk-git-quick-fix
 # ... make changes ...
 
 # 3. Commit
@@ -367,21 +366,21 @@ npm test  # or appropriate test command
 # 5. Merge back to main
 cd ../..
 git checkout main
-git merge wt/0001-quick-fix
+git merge sk-git/<NNNN>-quick-fix
 
 # 6. Cleanup
-git branch -d wt/0001-quick-fix
-git worktree remove .worktrees/0001-quick-fix
+git branch -d sk-git/<NNNN>-quick-fix
+git worktree remove .worktrees/<NNNN>-sk-git-quick-fix
 ```
 
 ### Pattern 2: Feature Branch with PR
 
 ```bash
-# 1. Create named feature worktree (0002 = next global counter)
-git worktree add -b wt/0002-new-feature .worktrees/0002-new-feature main
+# 1. Create named feature worktree through the allocator
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git new-feature main
 
 # 2. Navigate and develop
-cd .worktrees/0002-new-feature
+cd .worktrees/<NNNN>-sk-git-new-feature
 # ... develop feature (multiple commits) ...
 
 # 3. Commit changes
@@ -392,33 +391,33 @@ git commit -m "feat(scope): description"
 npm test
 
 # 5. Push and create PR
-git push -u origin wt/0002-new-feature
+git push -u origin sk-git/<NNNN>-new-feature
 gh pr create --title "feat(scope): description" --body "..."
 
 # 6. Cleanup worktree (keep branch for PR)
 cd ../..
-git worktree remove .worktrees/0002-new-feature
+git worktree remove .worktrees/<NNNN>-sk-git-new-feature
 ```
 
 ### Pattern 3: Experimental Work
 
 ```bash
-# 1. Create detached HEAD worktree (no branch → no number)
-git worktree add --detach .worktrees/0003-experiment main
+# 1. Create detached HEAD worktree through the allocator
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create-detached experiment main
 
 # 2. Experiment
-cd .worktrees/0003-experiment
+cd .worktrees/<NNNN>-detached-experiment
 # ... try different approach ...
 
-# 3a. If keeping: Create a new named worktree and branch (0004 = next counter)
-git worktree add -b wt/0004-new-approach .worktrees/0004-new-approach HEAD
-cd ../0004-new-approach
+# 3a. If keeping: Create a new named worktree and branch through the allocator
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git new-approach HEAD
+cd ../<NNNN>-sk-git-new-approach
 git add .
 git commit -m "feat(scope): experimental approach"
 
 # 3b. If discarding: Just remove
 cd ../..
-git worktree remove .worktrees/0003-experiment
+git worktree remove .worktrees/<NNNN>-detached-experiment
 ```
 
 ---
@@ -451,7 +450,7 @@ npm test
 
 ```bash
 # 1. Attempt merge
-git merge wt/0001-feature
+git merge sk-git/<NNNN>-feature
 # CONFLICT detected
 
 # 2. View conflicts
@@ -497,10 +496,10 @@ git status
 git stash
 
 # 3. Create a recovery worktree and branch to save work
-git worktree add ../recovery -b recovery-branch HEAD
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git recovery HEAD
 
 # 4. Restore stashed changes in the recovery worktree (if any)
-cd ../recovery
+cd .worktrees/<NNNN>-sk-git-recovery
 git stash pop
 
 # 5. Return to main branch
@@ -508,28 +507,26 @@ cd -
 git checkout main
 
 # 6. Merge recovery branch if needed
-git merge recovery-branch
-git branch -d recovery-branch
+git merge sk-git/<NNNN>-recovery
+git branch -d sk-git/<NNNN>-recovery
 ```
 
 ### Pattern: Worktree Branch Already Exists
 
-**Symptom**: `fatal: 'wt/0007-feature' is already checked out`
+**Symptom**: `fatal: 'sk-git/0007-feature' is already checked out`
 
 ```bash
 # 1. List existing worktrees
 git worktree list
 
 # 2. Option A: Use the next global number for a fresh worktree
-git worktree add -b wt/0008-feature .worktrees/0008-feature main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git feature main
 
 # 3. Option B: Remove existing worktree first, then reuse the name
-git worktree remove .worktrees/0007-feature
-git branch -d wt/0007-feature
-git worktree add -b wt/0007-feature .worktrees/0007-feature main
+bash .opencode/skills/sk-git/scripts/worktree-naming.sh create sk-git feature main
 
 # 4. Option C: Continue work in existing worktree
-cd .worktrees/0007-feature  # Navigate to existing
+cd .worktrees/0007-sk-git-feature  # Navigate to existing
 ```
 
 ### Pattern: Failed Push (Remote Rejected)

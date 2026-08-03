@@ -26,6 +26,8 @@ description: "Python and Node utilities shared across every /create:* command: t
 | `check_no_hyphenated_catalog_content.py` | Enforces kebab-case for catalog/playbook category folders and feature markdown files below the root. |
 | `check_no_numbered_categories.py` | Rejects numbered category folders (`06--foo`) under `feature-catalog/` and `manual-testing-playbook/`. |
 | `check_no_numbered_snippet_files.py` | Rejects numbered scenario files (`001-foo.md`) under the same catalog and playbook roots. |
+| `resolve_skill_markdown_links.py` | Resolves exact-case relative Markdown links across skill docs, excluding anchor-only and external URLs, and fails closed on unreadable inputs. |
+| `check_install_entries.py` | Checks immediate install-guide and install-script entries for dangling or outside-repository symlink targets. |
 | `skill_contract.py` / `skill-contract.cjs` | Python and Node loaders for the shared `create-skill` contract JSON, with cached, degrade-on-error accessors. |
 | `reference_checker.py` | CLI that builds a read-only disposition ledger from an explicit semantic rename map. Never writes into the scanned repository. |
 | `reference_checker_core.py` | Read-only Git manifest scanning, semantic-map reconciliation and ledger assembly used by `reference_checker.py`. |

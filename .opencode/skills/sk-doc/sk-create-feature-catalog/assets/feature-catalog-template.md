@@ -31,6 +31,8 @@ Templates for creating feature catalogs that combine top-level capability invent
 - **Reference-rich**: Per-feature files carry source-file tables, implementation anchors, and metadata.
 - **Stable naming**: Category directory names and feature file slugs should remain stable after publication.
 - **Packet-history free**: Catalogs cite current source files and validation anchors, not spec or phase packet numbers.
+- **Feature-leaf scoped**: A leaf documents one capability with its own SOURCE FILES table; category overviews and retirement records are classified separately during bijection repair.
+- **Roster-derived**: Structural counts and inventories are derived from links and source tables. Do not publish dated measurement snapshots in catalog prose.
 
 **Location Convention**: `{SKILL_PATH}/feature-catalog/`
 

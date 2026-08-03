@@ -15,6 +15,12 @@ So this phase cannot legitimately be executed yet, and nothing here should be re
 its gate result. The validation run borrowed this folder for artifact storage; that was
 a placement mistake, surfaced by the run's own audit of its setup.
 
+**Disposition (operator-ruled, recorded in the completion-evidence-reconcile child's
+decision record):** re-scope, not relocate. This phase now formally owns `review/` and
+`alignment/` as its **Stage A — pre-cutover validation** record (see the Stage structure
+section in `spec.md`); the gate proper is Stage B and remains unexecuted with its
+prerequisite unmet. This notice stays as Stage A's provenance record.
+
 ## Known limitations of the run itself
 
 - **Scope manifest is imperfect and deliberately frozen.** `goal-file-manifest.txt`
@@ -32,6 +38,9 @@ a placement mistake, surfaced by the run's own audit of its setup.
 
 ## Disposition
 
-At closeout, either relocate these artifacts to their own packet or formally re-scope
-this phase to cover the current child set. Until then this notice is the boundary
-between "a validation run happened" and "this phase passed."
+**Resolved.** The operator ruled re-scope, not relocate. This phase now formally owns
+`review/` and `alignment/` as its **Stage A — pre-cutover validation** record; the Stage
+structure is recorded in this folder's `spec.md`, and the Accepted decision lives in
+`ADR-003` of the `completion-evidence-reconcile` child's `decision-record.md`. No files
+moved. This notice remains Stage A's provenance boundary: it distinguishes "a validation
+run happened" from "the Stage B gate passed," which is still unexecuted.

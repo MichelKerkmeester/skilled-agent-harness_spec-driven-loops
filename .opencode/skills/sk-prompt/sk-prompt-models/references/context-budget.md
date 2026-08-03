@@ -17,7 +17,9 @@ version: 0.8.0.4
 
 ---
 
-## Overview
+## 1. 📖 OVERVIEW
+
+This reference defines the context-budget allocation, truncation, and eviction contract for the model profiles. The per-model defaults remain sourced from the registry and budget asset named below.
 
 This reference documents the small-model budget pattern for bounded CLI dispatches.
 

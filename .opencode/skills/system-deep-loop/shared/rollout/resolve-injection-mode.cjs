@@ -54,6 +54,14 @@ function loadModeMap(configPath) {
   }
 }
 
+function getConfiguredMode(entry) {
+  if (entry && typeof entry === 'object' && !Array.isArray(entry)) {
+    return entry.mode;
+  }
+
+  return entry;
+}
+
 function resolveInjectionMode(command, options = {}) {
   const canonicalCommand = canonicalizeCommand(command);
   const env = options.env || process.env;
@@ -62,7 +70,7 @@ function resolveInjectionMode(command, options = {}) {
   if (override && override.command === canonicalCommand) return override.mode;
 
   const modeMap = loadModeMap(options.configPath || DEFAULT_CONFIG_PATH);
-  const configuredMode = modeMap[canonicalCommand];
+  const configuredMode = getConfiguredMode(modeMap[canonicalCommand]);
 
   return isValidMode(configuredMode) ? configuredMode : DEFAULT_MODE;
 }
@@ -73,6 +81,7 @@ module.exports = {
   OVERRIDE_ENV,
   VALID_MODES: Array.from(VALID_MODES),
   canonicalizeCommand,
+  getConfiguredMode,
   parseEnvOverride,
   resolveInjectionMode,
 };

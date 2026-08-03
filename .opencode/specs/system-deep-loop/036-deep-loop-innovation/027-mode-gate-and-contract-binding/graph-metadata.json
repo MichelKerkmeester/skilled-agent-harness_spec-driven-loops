@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode gate contract binding",
+      "readiness gate sealed digest binding",
+      "rollback switch certificate binding",
+      "conformance event unbound reducer",
+      "deep loop 027 gates"
+    ],
+    "key_topics": [
+      "mode",
+      "gate",
+      "contract",
+      "binding",
+      "readiness",
+      "sealed",
+      "digest",
+      "rollback",
+      "switch",
+      "certificate",
+      "conformance",
+      "event"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/rollback-switch.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/mode-gate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-rollback-gate/mode-gate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/mode-gate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/conformance.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-rollback-gate.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-rollback-gate.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-switch.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/rollback-switch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "conformance.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/conformance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "agent-improvement-rollback-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-rollback-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Conformance Boundaries",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Standalone",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Diff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the certificate's `artifactClaims`/`artifactSetDigest` (`F-013-01`)",
+    "created_at": "2026-07-31T01:25:20.717Z",
+    "last_save_at": "2026-07-31T01:25:20.717Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:0fad7036e37308a58fb6a0b6e597211eb384248d4e0eb2f620d11bfc63aa5add",
+    "source_doc_hashes": {
+      "spec.md": "8b15533f44bdd02ae8cbfad430367d87143f86abc0615d3557589b62930d4d32",
+      "plan.md": "572db92b3ed7c5f643828113547e65bd06f109e091ba0f1c03faa934d3627d83",
+      "tasks.md": "e7a647c2cacb273a31312264a88cf485eb849ad853bd8d1779d58be90ee8436d",
+      "checklist.md": "5338d9ed63bbab37447d14fd200d04254b921f6091d1a5e68735d577e5bfb74a",
+      "decision-record.md": "28b31afabfbc85e2658128d899fe0be61d21d7dbc8289789eeea9312050ac3cb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

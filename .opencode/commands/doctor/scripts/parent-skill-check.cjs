@@ -1269,8 +1269,18 @@ function main() {
       } else if (evaluation.violations.length === 0) {
         pass(`11a-class: root metadata conforms to class ${evaluation.skillClass} (${evaluation.reason})`);
       } else {
+        // A missing generated file (leaf-manifest.json/leaf-aliases.json) is
+        // fixed by running the scoped generator, never by hand-authoring it —
+        // point there directly instead of leaving the operator to rediscover
+        // the command (this checker itself stays read-only either way).
+        const classGeneratorPath = path.join(
+          path.dirname(target), 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs',
+        );
         for (const violation of evaluation.violations) {
-          softFail(`11a-class: ${violation.code} — ${violation.message}`);
+          const redirect = violation.code === 'MISSING_GENERATED_FILE' && fs.existsSync(classGeneratorPath)
+            ? ` Re-run: node "${classGeneratorPath}" --write "${target}"`
+            : '';
+          softFail(`11a-class: ${violation.code} — ${violation.message}.${redirect}`);
         }
       }
     }

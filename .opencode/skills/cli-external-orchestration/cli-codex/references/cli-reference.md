@@ -258,15 +258,15 @@ codex exec "Analyze auth flow" --model gpt-5.5 > /tmp/analysis.txt 2>/tmp/errors
 
 ### Requesting JSON Output
 
-Codex does not have a native `--output json` flag. Instead, instruct the model to output JSON in the prompt:
+Codex provides native structured output. Use `--json` for the JSONL event stream and `--output-schema <FILE>` to validate the final response against a JSON Schema:
 
 ```bash
-# Request JSON explicitly in the prompt
-codex exec "Analyze src/auth.ts. Return JSON: {functions: [{name, lines, complexity}], issues: [{line, severity, description}]}" \
-  --model gpt-5.5 > /tmp/analysis.json
+# Emit JSONL events and validate the final response
+codex exec --json --output-schema /tmp/analysis-schema.json \
+  "Analyze src/auth.ts" --model gpt-5.5 > /tmp/analysis.jsonl
 
 # Parse with jq
-jq '.issues[] | select(.severity == "high")' /tmp/analysis.json
+jq 'select(.type == "turn.completed")' /tmp/analysis.jsonl
 ```
 
 ### Exit Codes
@@ -506,12 +506,12 @@ Running `codex` without arguments opens the full-screen TUI with a session picke
 
 ```bash
 # Resume a known session ID non-interactively
-codex exec --session-id abc123 "Continue implementing the rate limiter" \
+codex exec resume abc123 "Continue implementing the rate limiter" \
   --model gpt-5.5
 
 # Fork a session before a risky operation
 FORK_ID=$(codex fork abc123)
-codex exec --session-id "$FORK_ID" "Attempt the migration" \
+codex exec resume "$FORK_ID" "Attempt the migration" \
   --sandbox workspace-write --model gpt-5.5
 ```
 

@@ -31,7 +31,7 @@ version: 1.0.0.0
 `sk-prompt` is a parent hub: it holds no packet-local logic and routes every request to exactly one of two nested workflow packets through `mode-registry.json` and `hub-router.json`.
 
 - **`prompt-improve/`** — the active prompt-engineering engine. Seven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), a five-phase DEPTH thinking pass, and CLEAR quality scoring. See `prompt-improve/README.md`.
-- **`prompt-models/`** — read-only per-model prompt-craft profiles for small-model dispatch (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2 via `cli-opencode`). No slash command — reached via advisor routing or direct cross-skill reference. See `prompt-models/README.md`.
+- **`prompt-models/`** — read-only per-model prompt-craft profiles for small-model dispatch (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2, and Composer-2.5 via their maintained CLI executors; MiMo-V2.5-Pro-ultraspeed is optional-unverified). No slash command — reached via advisor routing or direct cross-skill reference. See `prompt-models/README.md`.
 
 Both packets keep their own `SKILL.md`, `README.md`, and `changelog/`. The hub carries the single `graph-metadata.json` advisor identity for both.
 

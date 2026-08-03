@@ -7,7 +7,7 @@ trigger_phrases:
   - "conventional commits worktree"
   - "git workspace commit finish"
   - "pull request commit hygiene"
-version: 1.3.2.0
+version: 1.4.0.0
 ---
 
 # sk-git
@@ -40,11 +40,11 @@ It does not write code or manage spec folders. `sk-code` owns the code that gets
 | Metric | Value |
 |---|---|
 | Status | Active |
-| Version | 1.3.2.0 |
+| Version | 1.4.0.0 |
 | Main audience | AI sessions and operators sharing one repository |
 | Phases | Setup, commit, finish |
 | Allocator subcommands | `create`, `create-detached`, `allocate`, `next`, `scan-max`, plus four validators |
-| Verification | 41 manual scenarios across 7 categories, plus a feature catalog |
+| Verification | 42 manual scenarios across 8 categories, plus a feature catalog |
 
 ### How This Compares
 
@@ -120,7 +120,7 @@ RESERVED     := "main"
 WRAPPER      := "work/" RUNTIME "/" SLUG        (launch-wrapper lane, exempt)
 ```
 
-The owner prefix groups every feature branch under its skill in a Git UI instead of a flat pile, so a reviewer can read who owns what at a glance. Two other lanes stay distinct from owner-first task branches: `work/{runtime}/{slug}` is the launch wrapper's ephemeral, auto-reaped, unnumbered lane, and the older `wt/{NNNN}-{slug}` form predates this convention, so it is permitted but non-conformant and is migrated into the owner-first form by renaming the branch and directory, never by rewriting history.
+The owner prefix groups every feature branch under its skill in a Git UI instead of a flat pile, so a reviewer can read who owns what at a glance. Two other lanes stay distinct from owner-first task branches: `work/{runtime}/{slug}` is the launch wrapper's ephemeral, auto-reaped, unnumbered lane, and the legacy `wt/{NNNN}-{slug}` form predates this convention, so it is permitted but non-conformant and is migrated into the owner-first form by renaming the branch and directory, never by rewriting history.
 
 ### The Number Allocator And Its Lock
 
@@ -156,7 +156,7 @@ sk-git/
 +-- references/                    # Phase workflows loaded by the router
 +-- assets/                        # PR template, commit template, worktree checklist
 +-- feature-catalog/               # Capability catalog by category
-+-- manual-testing-playbook/       # 41 manual scenarios across 7 categories
++-- manual-testing-playbook/       # 42 manual scenarios across 8 categories
 `-- changelog/                     # Versioned change history
 ```
 
@@ -221,7 +221,7 @@ A: Run `git worktree list` to find the stale one, remove it with `git worktree r
 
 ## 10. VERIFICATION
 
-The skill ships a manual testing playbook (41 scenarios across 7 categories) and a feature catalog covering worktree, commit, finish and the owner-first worktree tooling.
+The skill ships a manual testing playbook (42 scenarios across 8 categories) and a feature catalog covering worktree, commit, finish, GitKraken and the owner-first worktree tooling.
 
 | Check | How to run it |
 |---|---|
@@ -247,11 +247,12 @@ The skill ships a manual testing playbook (41 scenarios across 7 categories) and
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`scripts/README.md`](./scripts/README.md) | The allocator and validator surface |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Catalog of every capability and its entry point |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 7 categories |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenarios across 8 categories |
 | [`references/worktree-workflows.md`](./references/worktree-workflows.md) | Workspace creation, directory and branch strategy |
 | [`references/commit-workflows.md`](./references/commit-workflows.md) | Commit flow with artifact filtering and scoped staging |
 | [`references/finish-workflows.md`](./references/finish-workflows.md) | Completion: PR, merge, cleanup and release-note handling |
 | [`references/large-reorg-playbook.md`](./references/large-reorg-playbook.md) | Worktree-only renames with the toolchain on main after merge |
 | [`references/shared-patterns.md`](./references/shared-patterns.md) | Error recovery, conflict resolution and merge verification |
 | [`references/github-mcp-integration.md`](./references/github-mcp-integration.md) | Remote PR, issue and CI operations through Code Mode |
+| [`references/gitkraken-mcp-integration.md`](./references/gitkraken-mcp-integration.md) | GitKraken MCP GitLens AI and cross-provider operations |
 | [`assets/pr-template.md`](./assets/pr-template.md) | The structure every PR description follows |

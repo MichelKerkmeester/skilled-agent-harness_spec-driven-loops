@@ -1,6 +1,6 @@
 ---
 title: Purposeful Motion Plan Scenario
-description: Manual scenario verifying that motion is planned around purpose, timing, easing, and one focal choreography.
+description: Manual scenario verifying that temporal interaction is planned around purpose, timing, easing, and one focal choreography.
 trigger_phrases:
   - "test motion strategy"
   - "purposeful motion scenario"
@@ -30,7 +30,7 @@ Design the motion for a product landing hero and pricing cards; make it feel pre
 
 ## 1. OVERVIEW
 
-This scenario validates that motion is planned around purpose, timing, and easing with exactly one focal choreography, in `interface`'s temporal/motion task lane. It confirms restraint is the default and that a reduced-motion path is planned rather than retrofitted.
+This scenario validates that motion is planned around purpose, timing, and easing with exactly one focal choreography, in `interface`'s temporal interaction lane. It confirms restraint is the default and that a reduced-motion path is planned rather than retrofitted.
 
 ### Why This Matters
 
@@ -40,10 +40,10 @@ This scenario validates that motion is planned around purpose, timing, and easin
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm a landing-page motion request resolves in the motion lane with a named purpose per animated element, reference-sourced timing and easing, one focal choreography, and an explicit reduced-motion path.
+- Objective: Confirm a landing-page motion request resolves in the temporal interaction lane with a named purpose per animated element, reference-sourced timing and easing, one focal choreography, and an explicit reduced-motion path.
 - Real user request: `We want the motion on our landing hero and pricing cards to feel premium, but not have everything moving at once.`
 - Prompt: `Design the motion for a product landing hero and pricing cards; make it feel premium without animating everything.`
-- Expected execution process: Route to `interface` (the temporal/motion task lane); load `../../references/motion/motion-strategy.md`; pick one focal choreography and local feedback only where it clarifies state.
+- Expected execution process: Route to `interface` (the temporal interaction lane); load `../../references/motion/motion-strategy.md`; pick one focal choreography and local feedback only where it clarifies state.
 - Expected signals: Each animated element carries a named purpose; duration and easing tokens map to the reference timing bands and easing curves; exactly one focal choreography is nominated; a global reduced-motion override and explicit no-motion cases are named; gesture-driven interactions carry a non-gesture alternative.
 - Desired user-visible outcome: A motion plan that reads as deliberate and premium because a few things move with purpose, with an accessible path for users who reduce motion.
 - Pass/fail: PASS if every animated element has a named purpose, timing and easing come from the reference, one focal choreography is chosen, and reduced-motion behavior is explicit; FAIL if motion is scattershot, timing or easing values are invented, reduced-motion is omitted, or a gesture-driven interaction has no accessible alternative.
@@ -54,7 +54,7 @@ This scenario validates that motion is planned around purpose, timing, and easin
 
 ### Recommended Orchestration Process
 
-1. Route to `interface` (the temporal/motion task lane).
+1. Route to `interface` (the temporal interaction lane).
 2. Load `references/motion/motion-strategy.md`.
 3. Pick one focal choreography and local feedback only where it clarifies state.
 

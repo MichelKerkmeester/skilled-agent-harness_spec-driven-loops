@@ -103,9 +103,10 @@ cli-devin has **no headless reasoning-effort flag** — there is no `--variant` 
 | Accept Edits | `--permission-mode accept-edits` | Auto-approves workspace edits + read-only; prompts for shell | Code generation, refactoring (**skill default**) |
 | Smart | `--permission-mode smart` | Auto-runs actions a fast model judges safe | Trusted workflows with judgment calls |
 | Dangerous | `--permission-mode dangerous` | Auto-approves all tools without prompting | Full trust — **requires explicit user approval** |
-| Autonomous | `--sandbox` (selects `autonomous`) | OS-sandbox-enforced auto-approval | Unattended execution with OS limits |
 
 > Note: `devin -p` defaults to `auto` (read-only). File-modification dispatches silently prompt or no-op unless you pass `--permission-mode accept-edits` (or higher).
+
+`--sandbox` is orthogonal containment, not a fifth permission mode. It enables Devin's OS sandboxing and does not select an additional `--permission-mode` value; combine it with one of the four modes above when containment is required. This separation matches the live `devin --help` surface.
 
 **2. Model thinking level — interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`grok-4-5-high` for deep reasoning, `swe-1-7-lightning` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`.
 

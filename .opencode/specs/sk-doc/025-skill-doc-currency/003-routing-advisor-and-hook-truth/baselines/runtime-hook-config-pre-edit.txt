@@ -1,0 +1,15 @@
+Capture date: 2026-08-02
+Source: git show HEAD:.cursor/hooks.json
+Relevant pre-edit registration:
+{
+  "command": "node .cursor/hooks/git-preflight-advisory.mjs",
+  "type": "command",
+  "matcher": "Shell",
+  "timeout": 10
+}
+
+The pre-edit hook topology was also checked against HEAD: Codex was registered at
+.codex/hooks.json:33-40, while the documentation omitted it; the maintained
+native source adapters were claude, codex, cursor and devin under
+.opencode/skills/system-spec-kit/mcp-server/hooks/ with dist twins. OpenCode
+was represented by the plugin bridge, not a source-hook tree.

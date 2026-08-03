@@ -15,7 +15,7 @@ version: 1.8.0.11
 
 Per-feature scenario files for split manual testing playbooks. Use this template for the one-file-per-feature contract described in the main playbook template.
 
-> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
+> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP with a specific sandbox or runtime blocker documented.
 
 ---
 
@@ -36,7 +36,7 @@ Each feature file is the canonical home for full scenario execution detail. The 
 - Replacing root-level review/release-readiness or orchestration guidance
 - Spreading one feature across multiple primary files without a clear reason
 
-**Validator note**: The current validator checks markdown structure on the root playbook and does not recurse into category folders, so per-feature file structure needs manual review. Cross-file markdown links are verified separately by the `check-markdown-links.cjs` CI guard (fails the PR on any broken markdown link).
+**Validator note**: `scripts/validate-playbook-package.cjs` recurses into category folders and checks per-feature structure, required execution content, verdicts, local links, and root-index bijection. Cross-file markdown links are verified separately by the `check-markdown-links.cjs` CI guard.
 
 ---
 

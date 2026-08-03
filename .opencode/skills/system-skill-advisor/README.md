@@ -12,7 +12,7 @@ version: 0.8.0.34
 
 # system-skill-advisor
 
-> Pick the right skill for any prompt with a calibrated score you can trust, and refuse to answer when the routing index goes stale rather than fabricate a recommendation.
+> Pick the right skill for any prompt with a calibrated score and an explicit trust state.
 
 ---
 
@@ -31,9 +31,9 @@ version: 0.8.0.34
 
 ### Why This Skill Exists
 
-When a runtime meets an ambiguous prompt, guessing which skill to dispatch silently misroutes work. A routing index that answers while stale is worse than no answer. The runtime trusts the recommendation while the underlying metadata has changed, and no signal warns the caller. Hook code that echoes the user prompt into logs creates a privacy problem that scales with every invocation.
+When a runtime meets an ambiguous prompt, guessing which skill to dispatch silently misroutes work. The advisor returns a trust state so callers can distinguish a live result from a result that needs a caveat. Hook code that echoes the user prompt into logs creates a privacy problem that scales with every invocation.
 
-The advisor answers the "which skill" question with a calibrated score and an explicit trust state. It redacts raw prompt content from every response. When the index is stale or absent it refuses to answer rather than fabricate a recommendation the runtime would trust.
+The advisor answers the "which skill" question with a calibrated score and an explicit trust state. It redacts raw prompt content from every response.
 
 ### What It Does
 
@@ -61,13 +61,13 @@ mcp__mk_skill_advisor__advisor_recommend({ "prompt": "create a new agent" })
 
 Expected result: a `recommendations[]` array of skill candidates ranked by score, with `freshness`, `trustState` and prompt-safe attribution metadata. Public responses never echo raw prompt content.
 
-**Step 3: Rebuild when status reports stale or absent.**
+**Step 3: Rebuild when status reports a non-live state.**
 
 ```
 mcp__mk_skill_advisor__advisor_rebuild({ "force": true })
 ```
 
-Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and diagnostics. Run only when `advisor_status` reports `stale` or `absent`.
+Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and diagnostics. Run when `advisor_status` reports a non-live or unavailable index.
 
 ### Gate 2 Caller Guidance
 
@@ -76,6 +76,10 @@ Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is register
 Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. The CLI has full parity with the MCP surface: all 9 tools are reachable this way over the same daemon the MCP registration uses (dual-stack; the MCP registration is unchanged), and `list-tools` enumerates them offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error.
 
 Two guardrails apply. First, prompt-time callers must probe the advisor IPC socket first (or pass `--warm-only`) and call the CLI only when the daemon is already warm; a cold daemon under warm-only exits `75` instead of cold-starting, and hooks fail open on that. Second, CLI calls are sent untrusted by default: the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. Because the CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan.
+
+### Runtime environment ownership
+
+`SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` is owned by this hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. Its default is `3000` ms; a timeout yields prompt-safe degraded context with a timeout marker. The system-spec-kit environment reference points here rather than defining a second contract.
 
 ```bash
 node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
@@ -121,7 +125,7 @@ Every response carries a trust state so the caller knows what to do next.
 | Trust State | Meaning | Caller Action |
 |---|---|---|
 | `live` | Index is fresh and queryable | Use the recommendation directly |
-| `stale` | Index is queryable but a source changed since the last build | Use with caveat, then call `advisor_rebuild` |
+| `stale` | Index is queryable but a source changed since the last build | Use scored recommendations with a caveat, then call `advisor_rebuild` |
 | `absent` | The SQLite database is missing | Call `advisor_rebuild`. Do not act on an empty result |
 | `unavailable` | The subsystem cannot be reached | Fall back to `skill_advisor.py` or keyword matching against frontmatter `trigger_phrases` |
 
@@ -177,11 +181,10 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 
 | What you see | Why | Fix |
 |---|---|---|
-| `trustState: "stale"` | A watched source changed since the last index build | Call `advisor_rebuild` with `force: true` |
 | `trustState: "absent"` | The advisor SQLite database is missing or empty | Call `advisor_rebuild`. If that fails, check `MK_SKILL_ADVISOR_DB_DIR` and disk permissions |
 | `trustState: "unavailable"` | The native MCP path cannot be reached | Verify `mk_skill_advisor` is registered in `opencode.json`. Fall back to `skill_advisor.py` |
 | Top-2 candidates within 0.1 of each other | Ambiguous prompt. Two skills are equally plausible | Surface both candidates instead of routing silently |
-| `advisor_validate` corpus top-1 below 75% | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]` and `slices.corpus` |
+| `advisor_validate` reports outside the dated bounded-delta gate | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]`, `slices.corpus`, and [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
 | CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `MK_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
 | A native MCP mutation is rejected as untrusted | The daemon fails closed when transport `_meta` is absent | Verify `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the MCP registration env block (it cannot be forged by callers) |
@@ -208,7 +211,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract across Claude, OpenCode and the OpenCode plugin bridge. Per-runtime hook files live under `hooks/claude/` and `hooks/opencode/`.
+A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract across Claude, Codex, Cursor, Devin, and the OpenCode plugin bridge. The source adapters live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`.
 
 ---
 
@@ -219,7 +222,7 @@ A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/README.md --type readme` reports zero issues |
 | TypeScript build | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run typecheck && npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` exits 0 |
 | Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
-| Validation battery | `mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })` reports corpus top-1 at or above 75% and holdout top-1 at or above 72.5% |
+| Validation battery | `mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
 
 ---
 

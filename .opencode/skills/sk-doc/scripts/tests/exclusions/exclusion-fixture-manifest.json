@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "classes": [
+    "fixture_payload",
+    "fixture_payload_positive",
+    "benchmark_fixture",
+    "equivalent_orientation",
+    "parent_documented_tests",
+    "parent_documented_single_file",
+    "parent_documented_workspace",
+    "parent_documented_hooks_lib",
+    "parent_documented_hooks_pi_lib",
+    "parent_documented_workspace_lib",
+    "fixture_owned_readme",
+    "generated_output",
+    "generated_compiled_routing",
+    "generated_archive",
+    "self_documenting_script",
+    "single_file_zone",
+    "test_fixture_readme",
+    "benchmark_seed",
+    "benchmark_seed_src",
+    "benchmark_seed_utils",
+    "equivalent_sync_orientation"
+  ]
+}

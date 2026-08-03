@@ -150,8 +150,8 @@ claude "Start by reviewing the auth module"
 | Flag | Purpose | Example |
 |------|---------|---------|
 | `--continue` | Continue most recent conversation | `claude -p "Now fix it" --continue` |
-| `--resume` | Resume specific session by ID | `claude -p "Continue" --resume abc123` |
-| `--fork-session` | Fork from a specific session | `claude --fork-session abc123` |
+| `--resume [value]` | Resume the most recent session, or a specific session when a value is supplied | `claude -p "Continue" --resume abc123` |
+| `--fork-session` | Fork the session selected by `--resume` | `claude --resume abc123 --fork-session` |
 
 ### Output Format Flags
 
@@ -397,4 +397,3 @@ claude -p "prompt" --max-budget-usd 1.00 --output-format text 2>&1
 # Background execution
 claude -p "prompt" --output-format text 2>&1 &
 ```
-

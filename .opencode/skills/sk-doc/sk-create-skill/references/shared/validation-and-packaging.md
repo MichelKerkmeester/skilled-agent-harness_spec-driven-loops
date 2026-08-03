@@ -65,6 +65,8 @@ It reports non-kebab generated package paths as advisory findings so existing re
 
 ### Fleet Class Gate (ci-skill-root-metadata.cjs)
 
+The fleet and parent-hub gates validate structure, metadata classes, registry/router parity, and on-disk paths. A passing mechanical gate does not prove that narrative canon agrees with an executable authority; re-read the governing module when maintaining doctrine, templates, or examples.
+
 Run the fleet-wide class gate before release to check metadata presence, forbidden files, and generated-file freshness. `--fix` regenerates derivable files only. The canonical contract is [skill-root-metadata-contract.md](skill-root-metadata-contract.md).
 
 ```bash

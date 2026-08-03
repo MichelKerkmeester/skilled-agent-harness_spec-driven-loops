@@ -97,17 +97,17 @@
     ],
     "causal_summary": "The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent — typed schema, reducers, sealed artifacts, certificates, resume adapter, shadow parity, and a rollback-guarded mode gate — with deep-improvement-common landing before its three benchmark variants and deep-alignment reusing the review loop.",
     "created_at": "2026-07-16T03:44:00.418Z",
-    "last_save_at": "2026-07-19T18:10:01.079Z",
+    "last_save_at": "2026-07-31T01:06:45.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6f6e3cdb2cd1055ae8b0a82496743e488e5658b99e47a38e88f4af2f0102711c",
+    "source_fingerprint": "sha256:0a049b11bd228622f1106447da6ba1f805b031365cf50a215c32a2ec3e501db0",
     "source_doc_hashes": {
-      "spec.md": "1febdeee9f54e2417894b288117d2b840e98c2ece32de016183c75cf985b7ec1"
+      "spec.md": "c59c95a9e8e69cf605492dd95bce667b26edf24a0ff5204f2870903b9a324d76"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/001-deep-research",
     "last_active_at": null
   }
 }

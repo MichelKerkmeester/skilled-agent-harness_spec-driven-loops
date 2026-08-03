@@ -201,6 +201,7 @@ After the hub selects the public `interface` mode, choose at most one primary pr
 | Prototype, demo, or stateful interaction brief | `procedures/prototype-flow-spec.md` | Screens, state model, interaction matrix, feedback states, and handoff constraints. |
 | Slide deck or presentation design | `procedures/deck-direction-spec.md` | Slide system, layout types, contrast/body-size expectations, and implementation handoff. |
 | Hover, active, focus, disabled, loading, selected, navigation, forms, custom widgets, or missing feedback | `procedures/interaction-states-pass.md` | Interaction-state matrix, visible focus, feedback coverage, transition timing, and reduced-motion behavior. |
+| Hierarchy, rhythm, spacing, or scale review of a static system | `procedures/hierarchy-rhythm-review.md` | Hierarchy and rhythm findings, spacing/scale adjustments, and the applied static-system fixes. |
 | Final polish across dimensions | `../shared/procedures/polish-gate-orchestration.md` | Consolidated blockers, quality issues, polish notes, and owner mapping. |
 
 If no procedure card matches, state `Procedure applied: none - baseline interface workflow` and continue with the core register, dials, two-pass process, and pre-flight card. Do not load all cards by default; select from request triggers and available context.

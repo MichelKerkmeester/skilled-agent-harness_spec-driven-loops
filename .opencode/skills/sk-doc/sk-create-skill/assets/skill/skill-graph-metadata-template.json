@@ -12,10 +12,6 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
-  "manual": {
-    "depends_on": [],
-    "related_to": []
-  },
   "domains": [
     "[skill-name]",
     "[domain-keyword]"

@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.1.0.7
+version: 1.4.0.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -136,7 +136,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ### Purpose
 
-This section records wave planning and capacity guidance for running the 41-scenario battery. It is an execution plan, not a separate sidecar ledger.
+This section records wave planning and capacity guidance for running the 42-scenario battery. It is an execution plan, not a separate sidecar ledger.
 
 ### Operational Rules
 
@@ -155,6 +155,7 @@ This section records wave planning and capacity guidance for running the 41-scen
 | 3 | Integration + Recovery | GIT-012..GIT-019 | Requires scratch repos and branch-state evidence |
 | 4 | Cross-CLI | GIT-020..GIT-022 | Advisory handback validation after policy baseline is trusted |
 | 5 | Owner-First Worktree Tooling | GIT-023..GIT-041 | Hermetic fixture repos per script; run after the core lifecycle baseline is trusted, since the allocator/session/reaper/pre-push scripts sit underneath every other worktree scenario |
+| 6 | Git Preflight Advisory | GIT-042 | Disposable repository with tracked and untracked files; verify advisory, ordinary-commit silence and suppression |
 
 ---
 
@@ -856,7 +857,27 @@ Expected signals: exit 1 with the wrapper-specific `BLOCKED` message naming it a
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. GIT PREFLIGHT ADVISORY (`GIT-042`)
+
+This category covers 1 scenario. The linked per-feature file remains the canonical execution contract. It validates that the preflight advisory warns about directory-scoped commits that would silently omit untracked files without blocking the command.
+
+### GIT-042 | Advisory fires on silent scope drop
+
+#### Description
+
+Prove the advisory names `commit-scope-drops-untracked`, stays silent for an ordinary commit, and can be suppressed.
+
+#### Scenario Contract
+
+Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, the command still runs, and suppression silences it. Return the advisory text and a PASS/FAIL verdict.`
+
+#### Test Execution
+
+> **Feature File:** [GIT-042](git-preflight-advisory/advisory-fires-on-silent-scope-drop.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 The current sk-doc validator checks this root document's markdown structure. It does not recurse into category folders or verify prompt synchronization, so operators must run the structural sweep described in the spec packet.
 
@@ -874,7 +895,7 @@ The current sk-doc validator checks this root document's markdown structure. It 
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 `sk-git` ships a dedicated `feature-catalog/` package (see [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md)); these scenarios validate the behaviors it catalogs. Each scenario anchors to `SKILL.md`, `README.md`, `references/`, and `assets/` as the executable source of truth.
 
@@ -921,3 +942,4 @@ The current sk-doc validator checks this root document's markdown structure. It 
 | Owner-First Worktree Tooling | GIT-039 | `owner-first-worktree-tooling/prepush-never-blocks-release-branches.md` | Yes |
 | Owner-First Worktree Tooling | GIT-040 | `owner-first-worktree-tooling/prepush-skip-env-bypass.md` | No |
 | Owner-First Worktree Tooling | GIT-041 | `owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md` | Yes |
+| Git Preflight Advisory | GIT-042 | `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Yes |

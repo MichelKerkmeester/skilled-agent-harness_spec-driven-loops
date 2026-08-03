@@ -60,6 +60,7 @@
         "assets/brat-data-entry.example.json",
         "assets/plugins/beancount-finance/example.beancount",
         "assets/plugins/beancount-finance/example.data.json",
+        "assets/plugins/health-md/health-viz-blocks.example.md",
         "assets/plugins/health-md/healthmd-export.example.json",
         "assets/plugins/iconic/iconic-rules.example.json",
         "assets/plugins/obsidian-tables/example.table.md",
@@ -105,6 +106,7 @@
     },
     {
       "leaves": [
+        "assets/example-payloads.md",
         "assets/examples/destructive-refused.md",
         "assets/examples/draft-page-settings.md",
         "assets/examples/first-session-discovery.md",
@@ -112,6 +114,7 @@
         "assets/examples/staging-publish.md",
         "assets/payload-examples.md",
         "assets/utcp-manual-reference.md",
+        "assets/utcp-webflow-manual.md",
         "references/action-reference.md",
         "references/designer-capabilities.md",
         "references/mcp-wiring.md",

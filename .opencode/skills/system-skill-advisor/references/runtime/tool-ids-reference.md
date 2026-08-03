@@ -1,6 +1,6 @@
 ---
 title: "Tool IDs Reference"
-description: "Reference for all 9 public and 1 internal system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals."
+description: "Reference for the 9 unique system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals."
 trigger_phrases:
   - "advisor tool ids"
   - "skill graph tool ids"
@@ -13,7 +13,7 @@ version: 0.8.0.6
 
 # Tool IDs Reference
 
-Reference for all 9 public and 1 internal system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals.
+Reference for the 9 unique system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals.
 
 ---
 
@@ -21,7 +21,7 @@ Reference for all 9 public and 1 internal system-skill-advisor MCP tool IDs with
 
 ### Purpose
 
-Lists the stable public and internal `system-skill-advisor` MCP tool IDs with namespaces, purposes and schema signals.
+Lists the 9 unique `system-skill-advisor` MCP tool IDs with namespaces, purposes and schema signals. The count is the live ListTools/parity result; the trust-gated propagation helper is already included in Section 3.
 
 ### When to Use
 
@@ -64,13 +64,13 @@ The standalone server namespace may frame calls, but the per-tool ids are the co
 
 ---
 
-## 4. INTERNAL TOOLS
+## 4. TRUST GATES
 
 | Tool | Purpose | Access Gate |
 |---|---|---|
-| `skill_graph_propagate_enhances` | Internal authoring helper for missing `enhances` edges. See [propagate-enhances.md](../graph/propagate-enhances.md). | `requireTrustedCaller` plus workspace-escape guard |
+`skill_graph_propagate_enhances` is an authoring helper with a trusted-caller gate, but it is already counted once in Section 3. See [propagate-enhances.md](../graph/propagate-enhances.md) for its access contract.
 
-The tool ships in the skill-graph tool set and appears in Section 3 for completeness. Section 4 documents its access gates. Untrusted callers are rejected before detection runs.
+Untrusted callers are rejected before detection runs. No separate internal-tool count is published.
 
 ---
 

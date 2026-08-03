@@ -1,7 +1,12 @@
 {
   "schema_version": 1,
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
   "packet_id": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
   "spec_folder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+========
+  "packet_id": "sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep",
+  "spec_folder": "sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
   "parent_id": "sk-doc/022-code-readme-coverage",
   "children_ids": [],
   "manual": {
@@ -11,6 +16,7 @@
   },
   "derived": {
     "trigger_phrases": [
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
       "readme false claims",
       "stale readme inventory",
       "missing code readme",
@@ -35,11 +41,38 @@
       "gate",
       "truth",
       "plan"
+========
+      "code readme structural sweep",
+      "readme durability grep gate",
+      "readme separator heading conformance",
+      "code readme lane sweep",
+      "code readme structure sweep plan",
+      "readme durability sweep plan",
+      "code readme structure sweep tasks",
+      "readme durability sweep tasks",
+      "code readme structure sweep checklist",
+      "readme durability sweep checklist"
+    ],
+    "key_topics": [
+      "code",
+      "readme",
+      "structural",
+      "sweep",
+      "durability",
+      "grep",
+      "gate",
+      "separator",
+      "heading",
+      "conformance",
+      "lane",
+      "structure"
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
       "spec.md",
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
       ".github/workflows/README.md",
       ".opencode/install-guides/install-scripts/README.md",
       ".opencode/hooks/git/README.md",
@@ -52,10 +85,20 @@
       "plan.md",
       "checklist.md",
       "tasks.md"
+========
+      ".opencode/bin/README.md",
+      ".opencode/scripts/git-hooks/lib/README.md",
+      ".pi/extensions/README.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md"
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
     ],
     "entities": [
       {
         "name": "spec.md",
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
@@ -68,20 +111,49 @@
       },
       {
         "name": "plan.md",
+========
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/bin/README.md",
+        "source": "derived"
+      },
+      {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
+========
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+========
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "source": "derived"
       },
       {
@@ -91,31 +163,51 @@
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Run Task",
+========
+        "name": "Directory Tree",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Truth And Missing Orientation",
+========
+        "name": "Structure And Durability Sweep",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Problem Statement These",
+========
+        "name": "Key Decisions",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Purpose Make",
+========
+        "name": "Critical Dependencies",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "In Scope Three",
+========
+        "name": "Problem Statement Four",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,19 +225,26 @@
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Overview Two",
+========
+        "name": "Overview The",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Test Type",
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Depends On",
+========
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,19 +262,31 @@
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Confirm And Instrument",
+========
+        "name": "Confirm And Re",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Broken Content",
+========
+        "name": "Hard Gate",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
         "name": "Stale Inventories",
+========
+        "name": "Gate Construction",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,15 +310,22 @@
         "source": "derived"
       }
     ],
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.668Z",
     "last_save_at": "2026-07-30T19:17:00.627Z",
+========
+    "causal_summary": "Four shapes repeat, and their counts overlap because most files carry more than one:",
+    "created_at": "2026-07-30T18:58:50.819Z",
+    "last_save_at": "2026-07-30T19:19:36.507Z",
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+<<<<<<<< HEAD:.opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation/graph-metadata.json
       "checklist.md"
     ],
     "source_fingerprint": "sha256:c8500f24d1c39d51f77c8b0cacc30810e45c4e5406c4d83687c5ef0101bc0381",
@@ -216,6 +334,18 @@
       "plan.md": "8ec7eab898bf60f4fec0cbe4d119b4fb42009db8593c0826fe4804cad5ad2c97",
       "tasks.md": "113df828728d66e67ddda26f5aad3c6fde8570e6b8b511d81bba2b19bbcfefbe",
       "checklist.md": "b47c6a1637defae57b74d70b1ce55d73ebc8f4560bf9158d2442223fcba89e2f"
+========
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:c18750d744a54dd8b1502318f9a1666d4681c5502dc2be5d017b0b239f97357d",
+    "source_doc_hashes": {
+      "spec.md": "a4b0ed63068406a8dc9395f1616a0ba7dd8254cf33c34e28018e5fcaf3cb7126",
+      "plan.md": "b872a6750e67d0892fb5c5f33c26e0982ee5a9ccf0449a690e32e9f3674a69a1",
+      "tasks.md": "7dcaaea40568a8f030ac969ae4ff03c43b456cc719947501e0f96245775bad49",
+      "checklist.md": "60f242806f4ad8f7bcec7c65348f38b43f25b6c196452374776842bcc39658f7",
+      "decision-record.md": "5f85acdcef3bd59fd2b994a3b566d28e3030a0dc0bb1d62a2fe74ca5924094f0"
+>>>>>>>> origin/skilled/v4.0.0.0:.opencode/specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/graph-metadata.json
     },
     "last_active_child_id": null,
     "last_active_at": null

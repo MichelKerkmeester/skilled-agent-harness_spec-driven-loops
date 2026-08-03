@@ -66,21 +66,17 @@ skills:
 
 ## 2. THE HUB BENCHMARK/ TREE
 
-A hub `benchmark/` tree holds an optional index plus one folder per run:
+A hub `benchmark/reports/` tree holds one folder per run:
 
 ```text
-<skill-or-hub>/benchmark/
-├── README.md                     # optional hub index (verdict, structure, how to re-run)
+<skill-or-hub>/benchmark/reports/
 ├── baseline/                     # FROZEN anchor — the before-snapshot, never regenerated
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md
-├── router-final/                 # a run-label folder (one Lane C run)
+├── <run-label>/                  # a regular run-label folder (one Lane C run)
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md
-├── live-final/                   # another run-label folder
-│   ├── skill-benchmark-report.json
-│   └── skill-benchmark-report.md
-└── fixtures/                     # optional INPUT corpus — not a run, holds no report
+└── compiled-routing/             # fail-closed compiled-routing archive lane
 ```
 
 | Entry | What it is |
@@ -121,7 +117,7 @@ Examples, with the older label each replaces:
 
 | Run folder | Replaces |
 | --- | --- |
-| `2026-07-21--skill-benchmark--router-final/` | `router-final/` |
+| `2026-07-21--skill-benchmark--router-final/` | legacy `router-final/` label |
 | `2026-07-21--skill-benchmark--live-mode-b/` | `live-mode-b/` |
 | `2026-07-21--skill-benchmark--luna-high/` | `luna-high-verify-20260721-120348/` |
 | `2026-07-26--manual-testing-playbook--devin-glm-5-2/` | had no home before |
@@ -192,7 +188,7 @@ hub's live serving state. The full schema and archiver contract live in
 belong in this storage standard:
 
 ```text
-<hub>/benchmark/compiled-routing/
+<hub>/benchmark/reports/compiled-routing/
 ├── router-compiled-parity-baseline/     # immutable parity before-anchor
 │   ├── skill-benchmark-report.json
 │   └── skill-benchmark-report.md

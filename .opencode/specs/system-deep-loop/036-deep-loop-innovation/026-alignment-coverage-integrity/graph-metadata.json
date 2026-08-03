@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment coverage integrity",
+      "coverage fails open corpus",
+      "lane identity injective normalizer",
+      "unearned coverage credit alignment",
+      "deep loop 026 alignment"
+    ],
+    "key_topics": [
+      "alignment",
+      "coverage",
+      "integrity",
+      "fails",
+      "open",
+      "corpus",
+      "lane",
+      "identity",
+      "injective",
+      "normalizer",
+      "unearned",
+      "credit"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/coverage-integrity.test.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/partition-identity-progress.test.cjs",
+      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/reducer-seal-state.test.cjs",
+      ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/check-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "scoping.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "partition-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design-live-render.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-alignment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-artifact-writer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-integrity.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/coverage-integrity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "partition-identity-progress.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/partition-identity-progress.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reducer-seal-state.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/reducer-seal-state.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Alignment Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seal State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Identity Provable",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three mechanisms invalidate alignment coverage",
+    "created_at": "2026-07-31T01:25:20.480Z",
+    "last_save_at": "2026-07-31T01:25:20.480Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:f44d2274310c9bf0fbc80cf0267544caac43decfc0ae5b084cdb881d106d76ed",
+    "source_doc_hashes": {
+      "spec.md": "b617aa81030923af4d6aa4b20732df517f5a05773a713dda8f0bed79444e5e92",
+      "plan.md": "c49096f86c45d8bab81275019e7894d7af0469df657780335c031153397a9819",
+      "tasks.md": "32c61dd8d5d5ea9e60325315c6a3b0b04d201608d67fa683bc2a02b027bb26d3",
+      "checklist.md": "f7e5e9a2a2cb0305e7a4bd83b62ef0415bec9d1c27485ed2135a3c8c475c524c",
+      "decision-record.md": "b19b10e4e400b32b2d95b81acda88e1a4b9ff4d60cfa9e5b7471516a03b32af1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

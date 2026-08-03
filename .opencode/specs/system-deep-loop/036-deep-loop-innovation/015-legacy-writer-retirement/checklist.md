@@ -34,6 +34,8 @@ Every item remains unchecked while status is Planned. Each evidence record binds
 telemetry observation window, mode and authority epoch, delete/retain manifest, and command or verifier result. The gate
 fails on incomplete telemetry, missing positive controls, any live-use event, an unknown path, an open rollback window,
 wrong retire order, a deleted archival reader, lost rollback evidence, candidate drift, or unexpected tracked mutation.
+
+**Phase status:** Planned and unstarted; 0/29 checklist items checked.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

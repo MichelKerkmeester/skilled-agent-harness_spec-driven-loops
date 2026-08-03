@@ -1,6 +1,6 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the native-first Skill Advisor hooks across Claude Code, Copilot CLI, OpenCode, and the OpenCode plugin bridge.
+description: Operator contract for the maintained Skill Advisor adapters across Claude, Codex, Cursor, Devin, and the OpenCode plugin bridge.
 trigger_phrases:
   - "skill advisor hook reference"
   - "native-first advisor hooks"
@@ -9,12 +9,14 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.30
+version: 3.6.0.31
 ---
 
 # Skill Advisor Hook Reference
 
-This reference describes the current prompt-time Skill Advisor integrations. The primary routing implementation is the native TypeScript package at `.opencode/skills/system-skill-advisor/mcp-server/`; Python remains as a compatibility fallback through `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`.
+This reference describes the current prompt-time Skill Advisor integrations. The maintained source adapters live in `.opencode/skills/system-spec-kit/mcp-server/hooks/`; OpenCode is integrated through the plugin bridge under `system-skill-advisor`.
+
+Paths beginning with `mcp-server/` in the package-local tables resolve from `.opencode/skills/system-spec-kit/`; paths beginning with `.opencode/` are repository-root relative.
 
 ---
 
@@ -22,230 +24,141 @@ This reference describes the current prompt-time Skill Advisor integrations. The
 
 ### Purpose
 
-Define the prompt-time Skill Advisor hook contract across Claude Code, Copilot CLI, OpenCode, and the OpenCode plugin bridge.
+Define the prompt-time Skill Advisor contract across the four registered source-adapter runtimes and the OpenCode plugin bridge.
 
 ### When to Use
 
-Load this reference when wiring runtime hooks, smoke-testing advisor brief output, checking threshold behavior, or diagnosing freshness and fail-open states.
+Load this reference when wiring runtime hooks, smoke-testing advisor output, checking threshold behavior, or diagnosing freshness and fail-open states.
 
 ### Core Principle
 
-Hooks only surface prompt-safe routing context. They do not replace explicit skill loading, persist raw prompt text, or block the user prompt on advisor failures.
-
-### Default Flow
-
-The hook layer injects a compact advisor brief before the model responds. It does not replace skill loading; it only surfaces the likely skill route and the freshness state.
-
-Default flow:
-
-1. Runtime receives a prompt.
-2. Hook adapter parses the prompt payload.
-3. Adapter calls `buildSkillAdvisorBrief(prompt, { runtime, workspaceRoot })`.
-4. Native advisor is used when live or stale.
-5. Compatibility fallback is used when native routing is unavailable.
-6. Renderer returns a short `Advisor: ...` brief or an empty fail-open result.
-7. Diagnostics are written without raw prompt text.
-
-When the prompt resumes a phase-parent target and `graph-metadata.json` has a fresh `derived.last_active_child_id` pointer (non-null and `derived.last_active_at` within 24 hours), the brief surfaces that active child as the next-action target instead of the parent's child listing. Missing, null, stale, or invalid pointers fall back to the parent control file/listing behavior.
-
-Native tool baseline:
-
-| Tool | Purpose |
-| --- | --- |
-| `advisor_recommend` | Prompt-safe skill recommendations with explicit `workspaceRoot`, lane attribution, lifecycle metadata, and effective thresholds. |
-| `advisor_status` | Diagnostic-only freshness, generation, trust state, `skillCount`, `lastScanAt`, and lane weights. It does not rebuild. |
-| `advisor_rebuild` | Explicit repair command for stale, absent, or unavailable advisor state; pass `force:true` to rebuild even when status is live. |
-| `advisor_validate` | Corpus, holdout, parity, safety, latency, threshold semantics, and prompt-safe telemetry rollups. |
+Hooks surface prompt-safe routing context. They do not replace explicit skill loading, persist raw prompt text, or block the user prompt on advisor failures.
 
 ---
 
 ## 2. RUNTIME MATRIX
 
-| Runtime | Source Hook | Output Shape | Notes |
-| --- | --- | --- | --- |
-| Claude Code | `mcp-server/hooks/claude/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt` and `cwd`. |
-| OpenCode | `mcp-server/hooks/opencode/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
-| OpenCode fallback | `mcp-server/hooks/opencode/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when OpenCode hook policy reports hooks unavailable. |
-| OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js` and applies the same effective threshold on native and fallback paths. When native is unavailable it falls back to the warm-only skill-advisor CLI (`.opencode/bin/skill-advisor.cjs`; daemon socket probe, never a cold spawn, exit `75` retryable, `metadata.route: "cli"`); the Python route remains only as a force-local fail-open stub that yields no brief. |
+| Runtime | Source Hook | Compiled Hook | Registration | Output |
+| --- | --- | --- | --- | --- |
+| Claude Code | `mcp-server/hooks/claude/user-prompt-submit.ts` | `mcp-server/dist/hooks/claude/user-prompt-submit.js` | `.claude/settings.json` | `hookSpecificOutput.additionalContext` |
+| Codex | `mcp-server/hooks/codex/user-prompt-submit.ts` | `mcp-server/dist/hooks/codex/user-prompt-submit.js` | `.codex/hooks.json` | `hookSpecificOutput.additionalContext` |
+| Cursor | `mcp-server/hooks/cursor/user-prompt-submit.ts` | `mcp-server/dist/hooks/cursor/user-prompt-submit.js` | `.cursor/hooks.json` | `hookSpecificOutput.additionalContext` |
+| Devin | `mcp-server/hooks/devin/user-prompt-submit.ts` | `mcp-server/dist/hooks/devin/user-prompt-submit.js` | `.devin/hooks.v1.json` | `hookSpecificOutput.additionalContext` |
+| OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | OpenCode plugin discovery | `experimental.chat.system.transform` |
 
-Build all runtime adapters (both steps required):
+OpenCode has no source-hook adapter in this repository. Its prompt-time integration is the plugin bridge, which uses the maintained advisor package and a warm-only CLI fallback.
+
+---
+
+## 3. BUILD AND SMOKE TESTS
+
+Build both maintained packages:
 
 ```bash
-# 1. Builds the system-spec-kit hook shims.
 npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
-# 2. Builds the real adapter targets that those shims spawn.
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 
----
-
-## 3. SHARED BEHAVIOR
-
-All hook adapters:
-
-- fail open with `{}` or no context when parsing, native status, scoring, or rendering fails
-- honor `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`
-- avoid persisting raw prompts in diagnostics, cache metadata, status, or attribution
-- use the same freshness vocabulary: `live`, `stale`, `absent`, `unavailable`
-- use the same status vocabulary: `ok`, `skipped`, `degraded`, `fail_open`
-- render a compact `Advisor: ...` brief only when a route passes threshold
-- use `0.8 / 0.35` as the default prompt-time confidence/uncertainty routing thresholds unless a caller explicitly overrides the confidence threshold
-- persist prompt-safe hook diagnostics across hook processes and exclude raw prompt text from the durable sink
-
-Native `advisor_recommend` returns prompt-safe lane contribution metadata when `includeAttribution` is true. It does not return prompt-derived evidence snippets.
-
----
-
-## 4. SETUP AND SMOKE TESTS
-
-### Claude Code
+Every native smoke command below targets an existing compiled file:
 
 ```bash
-printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_name":"UserPromptSubmit"}' | \
+printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
   node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js
+
+printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
+  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js
+
+printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
+  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js
+
+printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
+  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js
 ```
 
 Expected: `{}` or `hookSpecificOutput.additionalContext` beginning with `Advisor:`.
 
-### OpenCode
-
-```bash
-printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/opencode/user-prompt-submit.js
-```
-
-Prompt wrapper fallback:
-
-```bash
-printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/opencode/prompt-wrapper.js
-```
-
-### OpenCode Plugin Bridge
+OpenCode uses the maintained bridge entrypoint:
 
 ```bash
 printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | \
   node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs
 ```
 
-Expected: `status: "ok"` with `metadata.route: "native"` when native is available, `metadata.workspaceRoot` matching the supplied repo root, and `metadata.effectiveThresholds` showing the active confidence/uncertainty pair.
+---
+
+## 4. SHARED BEHAVIOR
+
+All adapters:
+
+- fail open with `{}` or no context when parsing, status, scoring, or rendering fails
+- honor `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`
+- avoid persisting raw prompts in diagnostics, cache metadata, status, or attribution
+- use freshness states `live`, `stale`, `absent`, and `unavailable`
+- use status values `ok`, `skipped`, `degraded`, and `fail_open`
+- use `0.8 / 0.35` as the default prompt-time confidence/uncertainty pair unless overridden
 
 ---
 
-## 5. CONTROL FLAGS
+## 5. RUNTIME LIFECYCLE
+
+The native adapters are registered per runtime and compiled from the same source tree:
+
+| Runtime | Prompt | Session start | Compaction | Stop |
+| --- | --- | --- | --- | --- |
+| Claude | `dist/hooks/claude/user-prompt-submit.js` | `dist/hooks/claude/session-prime.js` | `dist/hooks/claude/compact-inject.js` | `dist/hooks/claude/session-stop.js` |
+| Codex | `dist/hooks/codex/user-prompt-submit.js` | `dist/hooks/codex/session-start.js` | `dist/hooks/codex/compact-inject.js` | `dist/hooks/codex/session-stop.js` |
+| Cursor | `dist/hooks/cursor/user-prompt-submit.js` | `dist/hooks/cursor/session-start.js` | `dist/hooks/cursor/precompact.js` | `dist/hooks/cursor/session-end.js` |
+| Devin | `dist/hooks/devin/user-prompt-submit.js` | `dist/hooks/devin/session-start.js` | runtime-specific lifecycle path | `dist/hooks/devin/session-stop.js` |
+
+OpenCode prompt-time delivery remains the plugin bridge. It is not represented as a source or compiled hook under `system-spec-kit/mcp-server/hooks/`.
+
+---
+
+## 6. CONTROL FLAGS
 
 | Control | Applies To | Behavior |
 | --- | --- | --- |
-| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | native MCP recommendation path, runtime hooks, plugin bridge, Python shim | Disables prompt-time advisor work and returns empty/skipped prompt-safe output. |
-| `SPECKIT_COPILOT_INSTRUCTIONS_PATH` | Copilot CLI | Overrides the local custom-instructions target path; useful for tests and sandboxes. |
-| `SPECKIT_COPILOT_INSTRUCTIONS_DISABLED=1` | Copilot CLI | Skips writing the Spec Kit managed custom-instructions block while leaving the hook fail-open. |
-| `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Python shim and OpenCode bridge diagnostics | Forces local Python fallback where supported. |
+| `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Native adapters, plugin bridge, and Python shim | Disables prompt-time advisor work and returns empty/skipped prompt-safe output. |
+| `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Python shim and bridge diagnostics | Forces local Python fallback where supported. |
 | `--force-native` | Python shim | Requires native `advisor_recommend`; exits nonzero if unavailable. |
 | `--force-local` | Python shim | Bypasses native routing and uses local Python scoring. |
 | `--threshold` | Python shim | Sets confidence threshold; default is `0.8`. |
 | `--stdin` | Python shim | Reads one prompt from stdin. |
 
-Examples:
-
-```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this context"
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this context"
-printf '%s' "save this context" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin
-```
-
 ---
 
-## 6. OPERATOR STATES
-
-Use `advisor_status` for prompt-safe state:
-
-```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
-```
-
-Freshness states (the canonical caller-trust axis returned by `advisor_status`):
+## 7. OPERATOR STATES
 
 | State | Meaning | Operator Action |
 | --- | --- | --- |
 | `live` | Current graph generation is trusted. | No action. |
-| `stale` | Sources are newer than graph state. | Run `advisor_rebuild({})`, then recheck with `advisor_status`. |
-| `absent` | Required graph state is missing. | Run `advisor_rebuild({})`. `advisor_recommend` should fail open with empty recommendations until repaired. |
-| `unavailable` | Status cannot be read. | Inspect daemon logs and SQLite state, then run `advisor_rebuild({"force":true})` when source metadata is intact. |
-
-Hook statuses (the diagnostic axis on the rendered brief, distinct from freshness):
-
-| Status | Meaning | Operator Action |
-| --- | --- | --- |
-| `ok` | Brief produced or native call succeeded. | No action. |
-| `skipped` | Prompt policy, disable flag, or no matching route skipped advisor output. | No action. |
-| `degraded` | Hook or daemon can only provide limited trust. | Follow OP-001 in the playbook. |
-| `fail_open` | Error path returned safe empty output and let the prompt continue. | Inspect diagnostics if recurring. |
-
-H5 operator scenarios:
-
-- OP-001 degraded daemon detection, log inspection, remediation
-- OP-002 quarantined daemon malformed SKILL.md identify, fix, revert
-- OP-003 unavailable daemon corrupted SQLite rebuild-from-source trigger
-
-See `.opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md`.
+| `stale` | Sources are newer than graph state. | Use scored recommendations with a caveat, then rebuild. |
+| `absent` | Required graph state is missing. | Rebuild; empty recommendations are expected until repaired. |
+| `unavailable` | Status cannot be read. | Inspect daemon logs and use a supported fallback. |
 
 ---
 
-## 7. PRIVACY AND DIAGNOSTICS
+## 8. INSTALLATION DRIFT CHECK
 
-Prompt-safety rules:
+Run the project-scoped check from a linked worktree with the required worktree flag:
 
-- Raw prompt text is never persisted in status output.
-- Prompt cache keys are HMAC/hash based.
-- Diagnostics use runtime, status, freshness, duration, cache, skill label, generation, and normalized error codes.
-- `sanitizeSkillLabel` guards labels and lifecycle redirect fields before public output.
-- `includeAttribution` returns numeric lane contribution metadata only.
-
-Diagnostic status values:
-
-| Status | Meaning |
-| --- | --- |
-| `ok` | Brief produced or native call succeeded. |
-| `skipped` | Prompt policy, disable flag, or no matching route skipped advisor output. |
-| `degraded` | Native or fallback path could not provide full trust. |
-| `fail_open` | Error path returned safe empty output and let the prompt continue. |
-
----
-
-## 8. VALIDATION
-
-Native validation:
-
-```text
-advisor_validate({"confirmHeavyRun":true,"workspaceRoot":"/absolute/path/to/repo","skillSlug":null})
+```bash
+node .opencode/bin/install-codex-hooks.mjs --check --allow-worktree
 ```
 
-Package checks:
+This check compares the repository's maintained Codex registration and adapter paths. A report about the user-global installation is workstation state, not a repository defect: this packet documents the check and the distinction but does not repair user-global files. Any user-global repair is a separate operator action.
+
+---
+
+## 9. TIMEOUT OWNERSHIP
+
+`SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` is owned by the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. The default is `3000` ms; on timeout, the OpenCode bridge serves prompt-safe stale context with a timeout marker. The sibling environment reference points here for the ownership contract.
+
+---
+
+## 10. VALIDATION
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/mcp-server run typecheck
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- --reporter=default
 ```
-
-Python compatibility:
-
-```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl
-```
-
-Current baseline:
-
-- 80.5% full corpus.
-- 77.5% holdout.
-- UNKNOWN <= 10.
-- 0 regressions on Python-correct prompts.
-- 50/50 Python regression suite passed.
-
-Manual scenarios live in the Skill Advisor playbook:
-
-```text
-.opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
-```
-
----

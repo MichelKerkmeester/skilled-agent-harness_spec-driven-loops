@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
     completion_pct: 0
     open_questions:
-      - "Is the alignment scoped to the 036 clone-column output, or the whole runtime including pre-036 modules?"
+      - "Which specific code-opencode conventions does the runtime audit enumerate?"
     answered_questions:
       - "Placement = an additive planned phase child 020 under 036"
       - "Method = the sk-code smart router resolves the code-opencode surface and its conventions"
@@ -86,6 +86,10 @@ consistency-and-structure pass, not a functional rewrite.
 - Code outside the `system-deep-loop` runtime.
 <!-- /ANCHOR:scope -->
 
+### Resolved Border
+
+This phase owns `.opencode/skills/system-deep-loop/runtime/**` only, including runtime modules from earlier waves and the 036 clone-column output. Non-runtime trees such as `shared/**` and `deep-improvement/scripts/**` remain in the sk-code conformance program at `sk-code/021-code-conformance-alignment`; this phase does not claim them.
+
 ---
 
 <!-- ANCHOR:requirements -->
@@ -125,5 +129,4 @@ consistency-and-structure pass, not a functional rewrite.
 ## 7. OPEN QUESTIONS
 
 - Which specific code-opencode conventions does the runtime diverge from — enumerated by the sk-code audit, not assumed?
-- Is the alignment scoped to the 036 clone-column output, or the whole runtime including earlier-wave and pre-036 modules?
 <!-- /ANCHOR:questions -->

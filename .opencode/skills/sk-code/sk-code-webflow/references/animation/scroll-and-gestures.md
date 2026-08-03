@@ -39,7 +39,7 @@ This reference separates Motion's scroll, viewport, and gesture APIs from local 
 - Official: https://motion.dev/docs/inview
 - Official: https://motion.dev/docs/hover
 - Official: https://motion.dev/docs/press
-- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
 ---
 
@@ -98,13 +98,13 @@ press("button", (element) => {
 });
 ```
 
-Drag behavior in the current repo is implemented manually with Pointer Events plus `motionValue()` and `animate(..., { type: "inertia" })`, not via a vanilla `drag` helper. Cite the local implementation before copying that pattern (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion animation options: https://motion.dev/docs/animate).
+Drag behavior in the current repo is implemented manually with Pointer Events plus `motionValue()` and `animate(..., { type: "inertia" })`, not via a vanilla `drag` helper. Cite the local implementation before copying that pattern (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion animation options: https://motion.dev/docs/animate).
 
-## 5. IN-REPO EXAMPLES
+## 5. EXTERNAL/HISTORICAL EXAMPLES
 
 ### Testimonial drag inertia
 
-`a_nobel_en_zn/2_javascript/slider/testimonial.js`:
+External/historical example `a_nobel_en_zn/2_javascript/slider/testimonial.js`:
 - dynamically imports Motion from a pinned jsDelivr ESM URL when `window.Motion.animate` or `window.Motion.motionValue` is missing,
 - uses `motionValue(0)` for loop position,
 - tracks pointer samples for velocity,
@@ -113,11 +113,11 @@ Drag behavior in the current repo is implemented manually with Pointer Events pl
 
 ### Play-on-scroll and scroll-linked video
 
-`a_nobel_en_zn/2_javascript/hero/hero_video_scroll.js` uses `window.Motion.scroll` when available and falls back when Motion is missing. This is the local anchor for scroll-linked behavior in Webflow-style runtime code.
+External/historical example `a_nobel_en_zn/2_javascript/hero/hero_video_scroll.js` uses `window.Motion.scroll` when available and falls back when Motion is missing.
 
 ### Play-on-hover and hover patterns
 
-`a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js` uses pointer/hover and reduced-motion/mobile guards for video hover behavior without depending on Motion gesture helpers. `a_nobel_en_zn/2_javascript/molecules/link_grid.js` and `a_nobel_en_zn/2_javascript/molecules/link_hero.js` use native pointer/mouse events plus `window.Motion.animate` for hover animations.
+External/historical examples `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`, `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, and `a_nobel_en_zn/2_javascript/molecules/link_hero.js` use pointer/hover guards and native events plus `window.Motion.animate` for hover animations.
 
 ## 6. REFERENCES AND RELATED RESOURCES
 
@@ -126,7 +126,7 @@ Drag behavior in the current repo is implemented manually with Pointer Events pl
 - Hover helper: https://motion.dev/docs/hover
 - Press helper: https://motion.dev/docs/press
 - Core animation controls/options used by local drag inertia: https://motion.dev/docs/animate
-- Local drag inertia implementation: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
-- Local scroll-linked/video anchor: `a_nobel_en_zn/2_javascript/hero/hero_video_scroll.js`
-- Local hover/video anchor: `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
-- Local hover animation anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`
+- External/historical drag inertia implementation: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical scroll-linked/video anchor: `a_nobel_en_zn/2_javascript/hero/hero_video_scroll.js`
+- External/historical hover/video anchor: `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
+- External/historical hover animation anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`

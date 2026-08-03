@@ -28,7 +28,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 | ✅ Valid Names | ❌ Invalid Names |
 |---------------|-----------------|
 | `implementation-workflows.md` | `ImplementationWorkflows.md` (PascalCase) |
-| `tool-catalog.md` | `tool-catalog.md` (snake_case) |
+| `tool-catalog.md` | `tool_catalog.md` (snake_case) |
 | `debugging-guide.md` | `DebuggingGuide.MD` (wrong case) |
 | `quick-reference.md` | `quickReference.md` (camelCase) |
 | `code-quality-standards.md` | `code quality standards.md` (spaces) |

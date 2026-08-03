@@ -51,7 +51,7 @@ version: 1.0.0.0
 **Field notes:**
 - `trigger_phrases` must match the H3 feature heading used in the root `feature-catalog.md` (plus natural language alternates)
 - `importance_tier: "important"` is reserved for features that should rank as high-signal in skill-advisor routing — omit for standard entries
-- `title` and `description` should mirror the root catalog entry for this feature (same wording, same scope)
+- `title` must equal the matching root H3 literally. `description` must match the root H3 Description after case, whitespace, and Markdown-punctuation normalization; harmless punctuation differences are allowed, but a different claim is not.
 
 ---
 
@@ -146,6 +146,7 @@ Related references:
 **OVERVIEW**
 - First paragraph: one-liner summary matching the root catalog description.
 - Second paragraph: additional detail — typical caller, failure modes, or non-obvious scope. Do not repeat the root catalog verbatim.
+- Keep frontmatter `description` in normalized parity with the root H3 Description; it is the machine-readable one-line summary, not a measurement snapshot.
 
 **HOW IT WORKS**
 - Describe behavior from the caller/operator perspective, not from the implementation.
@@ -158,6 +159,7 @@ Related references:
 - Type column valid values (canonical taxonomy, `{TEST_TYPE}` placeholder above): `Automated test`, `Unit`, `Integration`, `Fixture`, `Benchmark`, `Schema`, `Manual playbook`, `Reference`, `Vitest`, `Node test`, `MCP integration test`, `Test harness`.
 - List only stable public-facing paths. Omit transient build artifacts or generated files.
 - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
+- Do not freeze measured counts or dated census snapshots in prose. Derive structural rosters from the root links and SOURCE FILES tables instead.
 
 **SOURCE METADATA**
 - Preserve the feature file path after publication — other docs link to this path. Category folders and per-feature files use descriptive kebab-case names without numeric prefixes.

@@ -26,7 +26,7 @@ This is the interface-side landing lane for transform verbs. It applies a reques
 
 ### When to Use
 
-Whenever a `make it ...` transform prompt has already routed to interface (Section 2 breaks the audit/interface tie). It does not decide whether the change is warranted; that is an audit question.
+Whenever a `make it ...` transform prompt has already routed to interface (Section 2 breaks the evaluation/application tie). It does not decide whether the change is warranted; that is a pre-delivery review question.
 
 ### Core Principle
 
@@ -36,14 +36,14 @@ Read this with `design-principles.md` and `brief-to-dials.md`. The transform sti
 
 ## 2. ROUTING RULE
 
-Use the framing to break the audit/interface tie.
+Use the framing to break the evaluation/application tie.
 
 | Framing | Route | Meaning |
 |---|---|---|
 | `make it ...` | interface | Apply the transform with restraint and prove what changed. |
-| `should it be ...` | audit | Judge whether the transform is the right remedy before changing direction. |
+| `should it be ...` | `sk-design-interface` | Judge whether the transform is the right remedy before changing direction. |
 
-`clarify` is an interface alias only. It has no command-surface projection yet. `typeset` and `colorize` stay foundations-owned, while `harden` and `polish` stay audit-owned.
+`clarify` is an interface alias only. It has no command-surface projection yet. `typeset` and `colorize` use `sk-design-md-generator`; `harden` and `polish` stay in `sk-design-interface`.
 
 ---
 
@@ -58,7 +58,7 @@ Every transform uses the same proof shape.
 | Before/after | State the current read and the intended read in one sentence each. |
 | Earned moment | Add or preserve one memorable move only when it helps the surface's job. |
 | Reduced motion | Any new motion has a reduced-motion path; decorative motion can be removed entirely. |
-| Opt-out | If the transform would harm comprehension, accessibility, brand constraints or product trust, say so and route to audit or foundations instead. |
+| Opt-out | If the transform would harm comprehension, accessibility, brand constraints or product trust, say so and route to `sk-design-interface` review or `sk-design-md-generator` static-system work instead. |
 
 Do not expose sliders, vibe controls or style presets. The verb is a work request, not a user-facing dial.
 
@@ -135,7 +135,7 @@ Do not expose sliders, vibe controls or style presets. The verb is a work reques
 
 These are the fillable proof artifacts for applied `distill`, `clarify` and `delight` transforms. Fill one card for the real surface being changed. The lane named on the card supplies the guidance; the Shared Application Contract supplies the field meanings.
 
-Shape check only: a filled card has a keep-ledger row, a remove-ledger row, a before line and an after line. Whether the choices and earned moment are right remains an audit judgment.
+Shape check only: a filled card has a keep-ledger row, a remove-ledger row, a before line and an after line. Whether the choices and earned moment are right remains a review judgment.
 
 #### Proof Card - Distill
 
@@ -194,14 +194,14 @@ These prompts anchor the hub route.
 | Prompt | Expected route |
 |---|---|
 | `make it bolder` | interface |
-| `should it be bolder` | audit |
+| `should it be bolder` | `sk-design-interface` |
 | `make it quieter` | interface |
-| `should it be quieter` | audit |
+| `should it be quieter` | `sk-design-interface` |
 | `make it distill` | interface |
-| `should it be distill` | audit |
+| `should it be distill` | `sk-design-interface` |
 | `make it clarify` | interface |
-| `should it be clarify` | audit |
+| `should it be clarify` | `sk-design-interface` |
 | `make it delight` | interface |
-| `should it be delight` | audit |
+| `should it be delight` | `sk-design-interface` |
 
-The interface arm proves the alias. The audit arm proves the frame: a question about whether the transform is appropriate belongs to audit before any application work begins.
+The interface arm proves the alias. The review arm proves the frame: a question about whether the transform is appropriate stays in `sk-design-interface` before any application work begins.

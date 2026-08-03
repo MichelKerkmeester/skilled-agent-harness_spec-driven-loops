@@ -93,8 +93,8 @@ Evidence:
 
 API context:
 - `references/animation/performance-and-pitfalls.md`
-- `a_nobel_en_zn/2_javascript/slider/testimonial.js`
-- `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
+- External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical example: `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
 
 ### MR-004 - Animation Regression Baseline
 
@@ -147,5 +147,5 @@ Expected response shape: name the exact snippet asset, include the relevant Moti
 - Motion install/API smoke: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate, https://motion.dev/docs/inview, https://motion.dev/docs/spring
 - Motion scroll/gesture context: https://motion.dev/docs/scroll, https://motion.dev/docs/hover, https://motion.dev/docs/press
 - Motion accessibility context: https://motion.dev/docs/react-accessibility, https://motion.dev/docs/react-use-reduced-motion
-- Local dropdown anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
-- Local slider anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- External/historical dropdown anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- External/historical slider anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js`

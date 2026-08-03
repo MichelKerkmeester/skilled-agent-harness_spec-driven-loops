@@ -57,6 +57,7 @@ scripts/
 | `skill_advisor_regression.py` | Runs regression scenarios for advisor recommendations. |
 | `skill_advisor_bench.py` | Runs benchmark scenarios and reports timing or quality metrics. |
 | `skill_graph_compiler.py` | Validates graph metadata and exports diagnostic JSON. Runtime routing reads SQLite, not this export. |
+| `command-bridges/` | Holds authored bridge inputs, compatibility evidence and the generated command-bridge projection. |
 | `check-skill-doc-frontmatter.mjs` | Checks skill document frontmatter coverage. |
 | `check-skill-doc-frontmatter.sh` | Shell wrapper for skill document frontmatter checks. |
 | `check-prompt-quality-card-sync.sh` | Checks prompt quality-card sync state. |

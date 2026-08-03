@@ -115,7 +115,7 @@ A taste read does not catch a four-line hero, a button the same color as its lab
 
 ### Private Procedure Cards
 
-The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local context and proof selection after the public `interface` mode is chosen. The six cards are `aesthetic_direction.md`, `deck_direction_spec.md`, `discovery_question_round.md`, `prototype_flow_spec.md`, `variation_set.md` and `wireframe_exploration.md`. They are not user-selectable routes.
+The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local context and proof selection after the public `interface` mode is chosen. The eight cards are `aesthetic_direction.md`, `deck_direction_spec.md`, `discovery_question_round.md`, `hierarchy_rhythm_review.md`, `interaction_states_pass.md`, `prototype_flow_spec.md`, `variation_set.md` and `wireframe_exploration.md`. They are not user-selectable routes. Two retained cards carry `status: quarantined` because no active choreography reaches them.
 
 ---
 
@@ -190,7 +190,7 @@ A: The design guidance is original to this skill. It lives in `references/design
 | [`references/design-process/copy-and-mock-data.md`](./references/design-process/copy-and-mock-data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
 | [`assets/interface-preflight-card.md`](./assets/interface-preflight-card.md) | The binary fill-in PASS or FAIL pre-flight card: the checkable form of the layout gate, content gate, and dials, run as the last filter before delivery |
 | [`corpus/`](./corpus/README.md) | Maintainer-only relational-exemplar adapter and positive/no-fit/rejected-default falsification fixtures |
-| [`procedures/`](./procedures/) | Six maintainer-facing procedure cards for aesthetic direction, deck direction, discovery questions, prototype flow, variation sets and wireframe exploration |
+| [`procedures/`](./procedures/) | Eight active maintainer-facing procedure cards for aesthetic direction, deck direction, discovery questions, hierarchy/rhythm review, interaction states, prototype flow, variation sets and wireframe exploration; two unreachable cards are quarantined |
 | [`references/design-process/ux-quality-reference.md`](./references/design-process/ux-quality-reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
 | [`references/design-process/real-ui-loop.md`](./references/design-process/real-ui-loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design-process/variation-diversity.md`](./references/design-process/variation-diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |

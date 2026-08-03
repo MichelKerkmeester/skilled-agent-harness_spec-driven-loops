@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/025-artifact-certificate-binding",
+  "description": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
+  "keywords": [
+    "evidence",
+    "accepted",
+    "partial",
+    "metadata-only",
+    "correspondence",
+    "twelve",
+    "places"
+  ],
+  "lastUpdated": "2026-07-31T01:23:30.141Z",
+  "specId": "025",
+  "folderSlug": "artifact-certificate-binding",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

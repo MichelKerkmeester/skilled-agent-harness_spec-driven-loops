@@ -46,6 +46,7 @@ JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false
 LEGACY_GRANDFATHERED=false
 ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
 PHASE_RESULTS="" PHASE_COUNT=0
+CHILD_MANIFEST_ACTIVE=false CHILD_MANIFEST_HASH="" CHILD_MANIFEST_ENTRIES=() PHASE_DIRS=()
 
 # Rule execution order (empty = alphabetical)
 RULE_ORDER=()
@@ -151,6 +152,144 @@ has_phase_children() {
         fi
     done
     return 1
+}
+
+child_manifest_hash() {
+    local serialized="$1"
+    local hash_output=""
+
+    if command -v sha256sum >/dev/null 2>&1; then
+        hash_output=$(printf '%s' "$serialized" | sha256sum 2>/dev/null) || return 1
+    elif command -v shasum >/dev/null 2>&1; then
+        hash_output=$(printf '%s' "$serialized" | shasum -a 256 2>/dev/null) || return 1
+    else
+        return 1
+    fi
+
+    printf '%s\n' "${hash_output%% *}"
+}
+
+child_manifest_contains() {
+    local candidate="$1"
+    local entry
+    for entry in "${CHILD_MANIFEST_ENTRIES[@]-}"; do
+        [[ -z "$entry" ]] && continue
+        [[ "$entry" == "$candidate" ]] && return 0
+    done
+    return 1
+}
+
+load_child_manifest() {
+    local parent_folder="$1"
+    local canonical_parent=""
+    local manifest_text=""
+    local expected_hash=""
+    local line=""
+    local serialized=""
+    local actual_hash=""
+    local phase_dir=""
+    local phase_name=""
+    local manifest_error=""
+    local manifest_file="${SPECKIT_CHILD_MANIFEST_FILE:-}"
+    local -a on_disk_phase_dirs=()
+
+    CHILD_MANIFEST_ACTIVE=false
+    CHILD_MANIFEST_HASH=""
+    CHILD_MANIFEST_ENTRIES=()
+
+    if [[ -n "$manifest_file" ]]; then
+        [[ -f "$manifest_file" ]] || { echo "ERROR: declared child manifest not found: $manifest_file" >&2; return 2; }
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            case "$line" in
+                "# sha256:"*) expected_hash="${line#\# sha256:}"; expected_hash="${expected_hash# }"; continue ;;
+                "#"*|"") continue ;;
+            esac
+            manifest_text+="$line"$'\n'
+        done < "$manifest_file"
+        expected_hash="${SPECKIT_CHILD_MANIFEST_SHA256:-$expected_hash}"
+        [[ -n "$expected_hash" ]] || { echo "ERROR: declared child manifest has no expected sha256" >&2; return 2; }
+    else
+        canonical_parent=$(cd "$parent_folder" && pwd -P) || { echo "ERROR: cannot resolve parent folder: $parent_folder" >&2; return 2; }
+        case "$canonical_parent" in
+            */.opencode/specs/system-deep-loop/036-deep-loop-innovation)
+                manifest_text=$'001-deep-loop-market-research\n002-deep-loop-effectiveness-and-fanout\n003-baseline-taxonomy-and-state-census\n004-architecture-coverage-and-transition-contract\n005-fanout-live-tools-unblock\n006-transition-authorized-ledger-core\n007-shared-evidence-and-control-services\n008-compatibility-shadow-and-rollback-bridge\n009-fanout-fanin-durable-orchestration\n010-novelty-claims-continuity-and-projections\n011-convergence-termination-and-health\n012-shared-mode-contracts-and-fixtures\n013-mode-and-lane-migrations\n014-staged-state-migration-and-authority-cutover\n015-legacy-writer-retirement\n016-whole-system-gate\n017-integrate-latest-and-closeout\n018-drift-census-and-plan-revalidation\n019-runtime-code-readmes\n020-sk-code-opencode-alignment\n021-completion-evidence-reconcile\n022-shadow-parity-independent-derivation\n023-legacy-compat-event-vocabulary\n024-durable-write-boundaries\n025-artifact-certificate-binding\n026-alignment-coverage-integrity\n027-mode-gate-and-contract-binding\n028-fanout-dispatch-integrity\n029-improvement-promotion-authority\n030-runtime-mirror-and-routing-parity\n031-silent-failure-and-harness-repair\n032-docs-drift-and-p2-batch\n'
+                expected_hash="9eee2c3d1b67f7aa27d6c0314ca2687a1711938dea7e432dc0a35cc9bb82c0cb"
+                ;;
+            *)
+                return 0
+                ;;
+        esac
+    fi
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        [[ -z "$line" ]] && continue
+        [[ "$line" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || { echo "ERROR: invalid child manifest entry: $line" >&2; return 2; }
+        if child_manifest_contains "$line"; then
+            echo "ERROR: duplicate child manifest entry: $line" >&2
+            return 2
+        fi
+        CHILD_MANIFEST_ENTRIES+=("$line")
+        serialized+="$line"$'\n'
+    done <<< "$manifest_text"
+
+    [[ ${#CHILD_MANIFEST_ENTRIES[@]} -gt 0 ]] || { echo "ERROR: declared child manifest is empty" >&2; return 2; }
+    [[ "$expected_hash" =~ ^[[:xdigit:]]{64}$ ]] || { echo "ERROR: invalid child manifest sha256: $expected_hash" >&2; return 2; }
+    actual_hash=$(child_manifest_hash "$serialized") || { echo "ERROR: no sha256 implementation is available for child manifest validation" >&2; return 2; }
+    local normalized_actual_hash normalized_expected_hash
+    normalized_actual_hash=$(printf '%s' "$actual_hash" | tr '[:upper:]' '[:lower:]')
+    normalized_expected_hash=$(printf '%s' "$expected_hash" | tr '[:upper:]' '[:lower:]')
+    if [[ "$normalized_actual_hash" != "$normalized_expected_hash" ]]; then
+        echo "ERROR: child manifest hash mismatch: expected $expected_hash, got $actual_hash" >&2
+        return 2
+    fi
+
+    for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
+        [[ -d "$phase_dir" ]] || continue
+        on_disk_phase_dirs+=("${phase_dir%/}")
+    done
+
+    for phase_dir in "${on_disk_phase_dirs[@]-}"; do
+        [[ -z "$phase_dir" ]] && continue
+        phase_name=$(basename "$phase_dir")
+        if ! child_manifest_contains "$phase_name"; then
+            echo "ERROR: on-disk child is absent from the declared manifest: $phase_name" >&2
+            manifest_error=1
+        fi
+    done
+
+    for phase_name in "${CHILD_MANIFEST_ENTRIES[@]}"; do
+        if [[ ! -d "$parent_folder/$phase_name" ]]; then
+            echo "ERROR: declared child is absent from disk: $phase_name" >&2
+            manifest_error=1
+        fi
+    done
+
+    [[ -z "$manifest_error" ]] || return 2
+    CHILD_MANIFEST_ACTIVE=true
+    CHILD_MANIFEST_HASH="$actual_hash"
+    return 0
+}
+
+collect_phase_dirs() {
+    local parent_folder="$1"
+    local manifest_rc=0
+    local phase_dir=""
+    local phase_name=""
+
+    PHASE_DIRS=()
+    load_child_manifest "$parent_folder" || manifest_rc=$?
+    [[ "$manifest_rc" -eq 0 ]] || return "$manifest_rc"
+
+    if $CHILD_MANIFEST_ACTIVE; then
+        for phase_name in "${CHILD_MANIFEST_ENTRIES[@]}"; do
+            PHASE_DIRS+=("$parent_folder/$phase_name")
+        done
+    else
+        for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
+            [[ -d "$phase_dir" ]] && PHASE_DIRS+=("${phase_dir%/}")
+        done
+    fi
+    return 0
 }
 
 apply_env_overrides() {
@@ -1025,31 +1164,57 @@ run_node_orchestrator() {
     $QUIET_MODE && flags+=(--quiet)
     $VERBOSE && flags+=(--verbose)
 
+    local manifest_rc=0
+    if $RECURSIVE; then
+        collect_phase_dirs "$FOLDER_PATH" || manifest_rc=$?
+        [[ "$manifest_rc" -eq 0 ]] || return "$manifest_rc"
+        if $CHILD_MANIFEST_ACTIVE && ! $JSON_MODE && ! $QUIET_MODE; then
+            echo "Child manifest accepted: ${#CHILD_MANIFEST_ENTRIES[@]} entries (sha256: $CHILD_MANIFEST_HASH)"
+        fi
+    fi
+
     # Validate the parent folder. Non-recursive runs keep byte-identical
     # behavior: validate parent, exit its code.
-    "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"}
-    local rc=$?
+    local rc=0
+    if $CHILD_MANIFEST_ACTIVE; then
+        "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"} || rc=$?
+    else
+        "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"}
+        rc=$?
+    fi
 
-    # Recursive runs also validate each phase child, mirroring the discovery
-    # pattern used by run_recursive_validation. Skip non-directories and any
-    # child lacking both spec.md and description.json, then aggregate the worst
-    # exit code so a failing child surfaces in the orchestrator exit status.
+    # Recursive runs validate the declared set when a parent opts in; other
+    # parents retain the existing live discovery behavior.
     if $RECURSIVE; then
         local phase_dir
-        for phase_dir in "$FOLDER_PATH"/[0-9][0-9][0-9]-*/; do
-            [[ -d "$phase_dir" ]] || continue
-            phase_dir="${phase_dir%/}"
-            [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
-            "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"}
-            local child_rc=$?
-            (( child_rc > rc )) && rc=$child_rc
+        for phase_dir in "${PHASE_DIRS[@]-}"; do
+            [[ -n "$phase_dir" ]] || continue
+            if ! $CHILD_MANIFEST_ACTIVE; then
+                [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
+            fi
+            local child_rc=0
+            if $CHILD_MANIFEST_ACTIVE; then
+                "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"} || child_rc=$?
+            else
+                "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"}
+                child_rc=$?
+            fi
+            if $CHILD_MANIFEST_ACTIVE; then
+                if (( child_rc > rc )); then rc=$child_rc; fi
+            else
+                (( child_rc > rc )) && rc=$child_rc
+            fi
         done
     fi
 
     if $STRICT_MODE && should_run_rule "COMMAND_TREE_PARITY"; then
         local parity_rc=0
         "$COMMAND_TREE_PARITY_SH" --quiet >/dev/null 2>&1 || parity_rc=$?
-        (( parity_rc > rc )) && rc=2
+        if $CHILD_MANIFEST_ACTIVE; then
+            if (( parity_rc > rc )); then rc=2; fi
+        else
+            (( parity_rc > rc )) && rc=2
+        fi
     fi
 
     exit $rc
@@ -1128,12 +1293,18 @@ run_recursive_validation() {
     local child_warnings=0
     local phase_results=""
 
-    # Discover child phase folders (NNN-* pattern)
+    local manifest_rc=0
+    collect_phase_dirs "$parent_folder" || manifest_rc=$?
+    if [[ "$manifest_rc" -ne 0 ]]; then
+        ERRORS=$((ERRORS + 1))
+        return 0
+    fi
+
     local phase_dir
     local phase_dirs=()
-    for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
-        [[ -d "$phase_dir" ]] && phase_dirs+=("${phase_dir%/}")
-    done
+    if [[ ${#PHASE_DIRS[@]} -gt 0 ]]; then
+        phase_dirs=("${PHASE_DIRS[@]}")
+    fi
 
     if [[ ${#phase_dirs[@]} -eq 0 ]]; then
         # No phase children found - just validate parent normally
@@ -1146,6 +1317,9 @@ ${NC}" || true
     ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}  Recursive Phase Validation (${#phase_dirs[@]} phases found)${NC}" || true
     ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}───────────────────────────────────────────────────────────────
 ${NC}" || true
+    if $CHILD_MANIFEST_ACTIVE; then
+        ! $JSON_MODE && ! $QUIET_MODE && echo "  Child manifest accepted: ${#CHILD_MANIFEST_ENTRIES[@]} entries (sha256: $CHILD_MANIFEST_HASH)" || true
+    fi
 
     for phase_dir in "${phase_dirs[@]}"; do
         local phase_name
@@ -1165,8 +1339,13 @@ ${NC}" || true
 
         # Detect child level and validate
         detect_level "$phase_dir"
-        run_all_rules "$phase_dir" "$DETECTED_LEVEL"
-        run_strict_validators "$phase_dir"
+        if $CHILD_MANIFEST_ACTIVE; then
+            run_all_rules "$phase_dir" "$DETECTED_LEVEL" || true
+            run_strict_validators "$phase_dir" || true
+        else
+            run_all_rules "$phase_dir" "$DETECTED_LEVEL"
+            run_strict_validators "$phase_dir"
+        fi
 
         # Accumulate child results
         child_errors=$((child_errors + ERRORS))

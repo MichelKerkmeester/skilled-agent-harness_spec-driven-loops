@@ -50,7 +50,7 @@ If any mirror drifts on those invariants, treat it as a contract failure rather 
 
 | Runtime | Mirror Path | Tool Surface | Hook Bootstrap | Schema Adaptation | Fallback Bridge Eligible | Notes |
 |---------|-------------|--------------|----------------|-------------------|--------------------------|-------|
-| OpenCode / Copilot | `.opencode/agents/deep-research.md` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, memory | Yes (plugin) | Low | Yes | OpenCode uses plugin-based hooks (`@opencode-ai/plugin`); Copilot uses repo-local session-start banner hook. |
+| OpenCode / Copilot | `.opencode/agents/deep-research.md` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, memory | No | Low | Yes | The runtime capability matrix sets `hookBootstrap: false` for the `.opencode` mirror; do not infer a plugin or Copilot hook from this packet. |
 | Claude | `.claude/agents/deep-research.md` | `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `WebFetch`, MCP memory | Yes | Low | Yes | Default command YAML example path points here, but behavior is runtime-agnostic. |
 
 ---

@@ -86,7 +86,7 @@ cursor-agent about
 cursor-agent logout
 ```
 
-**Headless/CI auth:** `CURSOR_API_KEY` env var, `CURSOR_AUTH_TOKEN` env var, `--api-key <key>`, or `--auth-token <token>`. Endpoint override via `--endpoint`/`CURSOR_API_ENDPOINT` (default `https://api2.cursor.sh`); custom headers via `-H`/`--header`.
+**Headless/CI auth:** `CURSOR_API_KEY` env var or `--api-key <key>`. Endpoint override via `--endpoint`/`CURSOR_API_ENDPOINT` (default `https://api2.cursor.sh`); custom headers via `-H`/`--header`.
 
 **Auth-state caveat**: `cursor-agent status` can print a misleadingly cached "Login successful" even when the account is not actually authenticated. `cursor-agent about`'s "User Email" field (or a fail-closed `-p` dispatch's output text) is the reliable check — never trust `status` alone, and never trust the dispatch exit code (always `0`, even on auth failure).
 
@@ -132,7 +132,6 @@ cursor-agent logout
 | Flag | Description |
 |------|-------------|
 | `--api-key <key>` | Headless API-key auth |
-| `--auth-token <token>` | Headless token auth |
 | `-H` / `--header <k:v>` | Custom request header |
 | `-e` / `--endpoint <url>` | Override the API endpoint |
 
@@ -260,7 +259,7 @@ Cursor CLI reads project rules from multiple sources, applied automatically: `.c
 
 | Problem | Cause | Solution |
 |---------|-------|----------|
-| Output contains `Error: Authentication required` (exit `0`) | Not authenticated | Run `cursor-agent login`, or set `CURSOR_API_KEY`/`CURSOR_AUTH_TOKEN` |
+| Output contains `Error: Authentication required` (exit `0`) | Not authenticated | Run `cursor-agent login`, or set `CURSOR_API_KEY` |
 | `cursor-agent status` says "Login successful" but `about` says "Not logged in" | `status` uses a stale cache | Trust `about`'s "User Email" field, not `status` |
 | `Workspace Trust Required` | Directory not yet trusted | Pass `--trust`, `--yolo`, or `-f` |
 | `Cannot use this model: <id>[...]` | Parameterized model bracket, not supported | Use an exact enumerated id from `--list-models` |
@@ -275,7 +274,6 @@ Cursor CLI reads project rules from multiple sources, applied automatically: `.c
 | Variable | Purpose |
 |----------|---------|
 | `CURSOR_API_KEY` | Headless API-key authentication |
-| `CURSOR_AUTH_TOKEN` | Headless token authentication |
 | `CURSOR_API_ENDPOINT` | Override the default API endpoint (`https://api2.cursor.sh`) |
 | `CURSOR_AGENT` | Confirmed live: set to `1` unconditionally whenever the current process runs under `cursor-agent` — the primary self-invocation-guard signal |
 | `CURSOR_CONVERSATION_ID` | Confirmed live: the active session/chat id, matching `--output-format json`'s `session_id` field |

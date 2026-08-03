@@ -19,7 +19,11 @@ These per-model profiles are the WEIGHT of `prompt-models` — its prompt-craft 
 
 ---
 
-## 1. ACTIVE MODELS
+## 1. 📖 OVERVIEW
+
+This index is the orientation surface for the per-model prompt-craft profiles. The registry at ../../assets/model-profiles.json is the source of truth for model ids, executors, and status; each authored profile is linked from the active table.
+
+## 2. ACTIVE MODELS
 
 | Model | Profile | Framework (primary; fallback) | Pre-planning | Status |
 | --- | --- | --- | --- | --- |
@@ -46,7 +50,7 @@ Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Op
 
 ---
 
-## 2. RELATED
+## 3. RELATED
 
 - [`../pattern-index.md`](../pattern-index.md) — Locates executor-owned MECHANICS + ship status.
 - [`../../SKILL.md`](../../SKILL.md) — Hub workflow, dispatch matrix, rules.

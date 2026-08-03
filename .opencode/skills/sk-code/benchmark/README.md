@@ -74,36 +74,31 @@ Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` 
 
 ```text
 benchmark/
-+-- router-final/      # Current deterministic run (router mode)
-+-- live-final/        # Current live run (cli-opencode) + d4-ablation.json
-+-- baseline/          # Frozen pre-optimization snapshot, do not regenerate
-+-- after/ full/ live/ # Earlier development runs, superseded by the -final pair
-`-- fixtures/sk-code/   # Legacy synthetic fixtures, superseded by the playbook corpus
++-- reports/           # Current and archived runs, indexed by report README files
++-- fixtures/sk-code/  # Legacy synthetic fixtures, superseded by the playbook corpus
 ```
 
 | Path | Purpose |
 |---|---|
-| `router-final/` | Latest router-mode report (real-gold scoring, the CI gate) |
-| `live-final/` | Latest live-mode report plus `d4-ablation.json` (skill-on vs skill-off usefulness) |
-| `baseline/` | First sk-code run, kept as a before-snapshot, not reproducible |
+| `reports/` | Current and archived router/live reports, including the compiled-routing archive lane |
 | `fixtures/sk-code/` | Two legacy fixtures, no longer the default corpus |
 
 ### Run-Label Index
 
-Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk; the hyphenated display names in the tree above (`2026-06-01--router-final--router`, `2026-06-01--live-final--live`, `fixtures/sk-code`) refer to the same `router-final/`, `live-final/`, and `fixtures/sk-code/` folders. Verdicts are read from each folder's report.
+Every run-label folder on disk, one row each. `Status` separates current runs from legacy sidecars: `current` is a canonical run the sections above point at, `superseded` is an earlier development run kept only as evidence, `frozen` is the immutable before-anchor, `sidecar` is an additional run kept beside the canonical pair, and `legacy` is a pre-playbook artifact. Underscore-named folders are listed exactly as they sit on disk. Verdicts are read from each folder's report.
 
 | Run label | What it is | Verdict | Status |
 |---|---|---|---|
-| [`router-final/`](./reports/2026-06-01--router-final--router/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
-| [`live-final/`](./reports/2026-06-01--live-final--live/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
-| [`d4r-live/`](./reports/2026-06-02--d4r-live--live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
-| [`router-baseline/`](./reports/2026-07-10--router-baseline--router/) | Router-mode sidecar run | PASS · 85 | sidecar |
-| [`live-mode-b/`](./reports/2026-07-10--live-mode-b--live/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
-| [`live-remediated/`](./reports/2026-06-01--live-remediated--live/) | Live-mode run after a remediation pass, an intermediate before `live-final/` | CONDITIONAL · 79 | superseded |
-| [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
-| [`after/`](./reports/2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
-| [`full/`](./reports/2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
-| [`live/`](./reports/2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
+| [`reports/2026-06-01--router-final--router/`](./reports/2026-06-01--router-final--router/) | Current router-mode run (the deterministic CI gate) | PASS · 84 | current |
+| [`reports/2026-06-01--live-final--live/`](./reports/2026-06-01--live-final--live/) | Current live-mode run (`cli-opencode` dispatch) | CONDITIONAL · 71 | current |
+| [`reports/2026-06-02--d4r-live--live/`](./reports/2026-06-02--d4r-live--live/) | D4-R task-outcome usefulness ablation, advisory only (see its own `README.md`) | PASS · 88 (base-live) | current · advisory |
+| [`reports/2026-07-10--router-baseline--router/`](./reports/2026-07-10--router-baseline--router/) | Router-mode sidecar run | PASS · 85 | sidecar |
+| [`reports/2026-07-10--live-mode-b--live/`](./reports/2026-07-10--live-mode-b--live/) | Live-mode (Mode B) sidecar run | CONDITIONAL · 66 | sidecar |
+| [`reports/2026-06-01--live-remediated--live/`](./reports/2026-06-01--live-remediated--live/) | Live-mode run after a remediation pass | CONDITIONAL · 79 | superseded |
+| [`reports/baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot; the D5 structural gate blocked this run | BLOCKED-BY-STRUCTURE | frozen |
+| [`reports/2026-06-01--after--router/`](./reports/2026-06-01--after--router/) | Earlier router-mode development run | CONDITIONAL · 69 | superseded |
+| [`reports/2026-06-01--full--router/`](./reports/2026-06-01--full--router/) | Earlier router-mode development run (full corpus) | CONDITIONAL · 55 | superseded |
+| [`reports/2026-06-01--live--live/`](./reports/2026-06-01--live--live/) | Earlier live-mode development run | CONDITIONAL · 76 | superseded |
 | [`fixtures/sk-code/`](./fixtures/sk-code/) | Legacy synthetic fixtures, superseded by the playbook corpus | n/a — see folder | legacy |
 
 ---
@@ -154,6 +149,6 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 ## 7. COMPILED-ROUTING ARCHIVE
 
-Compiled-routing parity runs archive under `benchmark/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
+Compiled-routing parity runs archive under `benchmark/reports/compiled-routing/<run-label>/` — a durable, fail-closed sibling of the run-labels above. A run never overwrites another, the active serving manifest gates every archive, and the frozen `baseline` label is never repurposed; new parity evidence uses additive `router-compiled-parity-baseline` / `router-compiled-parity-final` siblings. Each archived pair carries repo-relative provenance (no absolute checkout path), and a joined `serving-snapshot.json` records this hub's live compiled-routing state.
 
 Convention and schema: [`serving-snapshot-schema.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/serving-snapshot-schema.md) · storage standard: [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md).

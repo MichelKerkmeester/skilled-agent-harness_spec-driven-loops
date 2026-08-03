@@ -22,7 +22,7 @@ version: 0.8.0.14
 |---|---|
 | **Use it for** | Looking up the prompt framework, scaffold and gotchas for a small model before dispatch |
 | **Invoke with** | Advisor co-surfaces this hub alongside cli-opencode when a small model is named |
-| **Works on** | DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro and optional Haiku |
+| **Works on** | DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2, and Composer-2.5; MiMo-V2.5-Pro-ultraspeed and Haiku are optional-unverified |
 | **Produces** | A prompt-craft profile (framework, density, scaffold and gotchas) plus a pointer to the executor mechanics |
 
 ---
@@ -31,7 +31,7 @@ version: 0.8.0.14
 
 ### Why This Skill Exists
 
-Small models do not all want the same prompt shape. MiMo performs best with COSTAR and a lean plan. Kimi-k2.7-code uses COSTAR with TIDD-EC fallback and explicitly avoids RCAF. MiniMax wants TIDD-EC and a dense plan. DeepSeek remains the default-unverified RCAF case. Guess wrong and the model underperforms or ignores half the instructions. Without one source of truth, each dispatch reinvents the framework choice. The fix is a single hub that records each model's framework, scaffold and known traps.
+Small models do not all want the same prompt shape. MiMo performs best with COSTAR and a lean plan. Kimi-k2.7-code uses COSTAR with TIDD-EC fallback and explicitly avoids RCAF. MiniMax wants TIDD-EC and a dense plan. DeepSeek and Composer remain default-unverified RCAF cases. GLM-5.2 uses the empirical COSTAR choice. Guess wrong and the model underperforms or ignores half the instructions. Without one source of truth, each dispatch reinvents the framework choice. The fix is a single hub that records each model's framework, scaffold and known traps.
 
 Mixing that prompt-craft with executor mechanics (binary flags, invocation wrappers, budgets, permissions) makes both drift. This hub holds the craft. `cli-opencode` holds the mechanics. Each stays clean and each can change without dragging the other along.
 
@@ -67,7 +67,7 @@ Read(".opencode/skills/sk-prompt/sk-prompt-models/SKILL.md")
 
 ### The Navigation Chain
 
-Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for the prompt-craft: the framework, density, scaffold and gotchas. Finally follow `references/pattern-index.md` to the executor mechanics in `cli-opencode`. The prompt-craft from here and the mechanics from `cli-opencode` combine in the executor's prompt-pack.
+Every dispatch follows four steps. First resolve the target model id through the alias map in `SKILL.md` (e.g. `minimax` resolves to `minimax-m3`, `deepseek` resolves to `deepseek-v4-pro`, and `composer` resolves to `composer-2.5`). Then load `references/models/_index.md` to pick the model row and confirm its status. Then load `references/models/<id>.md` for an authored profile, or use the explicit optional-unverified marker for a variant without one. Finally follow `references/pattern-index.md` to the executor mechanics in the model's `cli-X` surface. The prompt-craft from here and the executor mechanics combine in the executor's prompt-pack.
 
 ### The Per-Model Profiles
 
@@ -93,7 +93,7 @@ The framework assignments follow a pattern rather than a pinned count. The set d
 | mimo-v2.5-pro | COSTAR (fallback RACE, avoid TIDD-EC and CIDI) | lean | Empirical (benchmark 004) |
 | glm-5.2 | COSTAR (fallback TIDD-EC, avoid RCAF) | lean | Empirical (benchmark 008) |
 
-RCAF is the default only for DeepSeek's default-unverified profile. TIDD-EC is the MiniMax choice, backed by a benchmark run. COSTAR is the MiMo and Kimi choice; Kimi uses TIDD-EC as fallback and avoids RCAF based on benchmark 007. The profiles cite their evidence. The generic framework definitions (the closed seven-framework set: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) are defined once in `sk-prompt`. This hub only records the per-model choice.
+RCAF is the default for DeepSeek and Composer's default-unverified profiles. TIDD-EC is the MiniMax choice, backed by a benchmark run. COSTAR is the MiMo, Kimi, and GLM-5.2 choice; Kimi uses TIDD-EC as fallback and avoids RCAF based on benchmark 007. The profiles cite their evidence. The generic framework definitions (the closed seven-framework set: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) are defined once in `sk-prompt`. This hub only records the per-model choice.
 
 ### The Registry
 

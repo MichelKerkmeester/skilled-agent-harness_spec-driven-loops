@@ -143,7 +143,7 @@ pdf-editor/
 - `references/procedures/digital-signature-verification.md` - private card
 - `references/procedures/batch-annotation-cleanup.md` - private card
 
-**Real-world precedent**: `sk-design` uses this exact pattern at hub scale — one parent hub with five public modes, each backed by its own `procedures/` folder plus `shared/procedures/` for cross-mode coordination cards, tracing back to `sk-design/shared/procedure-card-schema.md`.
+**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has two workflow modes and one transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. The shared schema lives at `sk-design/shared/procedure-card-schema.md`.
 
 ---
 
@@ -172,16 +172,16 @@ pdf-editor/
 ### Versioning
 
 **Semantic Versioning** (recommended):
-- Major (1.0.0 → 2.0.0): Breaking changes, complete restructure
-- Minor (1.0.0 → 1.1.0): New features, new bundled resources
-- Patch (1.0.0 → 1.0.1): Bug fixes, typo corrections
+- Major (1.0.0.0 → 2.0.0.0): Breaking changes, complete restructure
+- Minor (1.0.0.0 → 1.1.0.0): New features, new bundled resources
+- Patch (1.0.0.0 → 1.0.1.0): Bug fixes, typo corrections
 
 **Update frontmatter version field**:
 ```yaml
 ---
 name: markdown-optimizer
 description: Complete document quality pipeline...
-version: 2.0.0
+version: 2.0.0.0
 ---
 ```
 

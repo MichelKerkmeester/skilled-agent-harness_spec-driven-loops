@@ -1,0 +1,38 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes",
+  "description": "Implements research.md Section 6 Track A (A1-A7): fixes diagnosed create/doctor defects, wires skill_graph_validate into doctor's output semantics, fi",
+  "keywords": [
+    "implements",
+    "research",
+    "section",
+    "track",
+    "a1-a7",
+    "diagnosed",
+    "doctor",
+    "defects",
+    "wires",
+    "output",
+    "semantics",
+    "leaf-manifest",
+    "generation",
+    "ownership",
+    "ships",
+    "shared",
+    "advisor-index-handoff",
+    "vocabulary",
+    "across",
+    "every",
+    "branch"
+  ],
+  "lastUpdated": "2026-07-31T03:21:28.179Z",
+  "specId": "002",
+  "folderSlug": "core-alignment-fixes",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "035-create-doctor-skill-advisor-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Comment hygiene pre-commit gate
+# Compatibility helper retained for direct legacy invocations.
+# The installed Git hook is .opencode/scripts/git-hooks/pre-commit.
 # Blocks commits that add ephemeral-artifact pointers to code comments.
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 set -euo pipefail

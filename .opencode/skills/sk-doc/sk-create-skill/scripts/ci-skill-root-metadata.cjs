@@ -74,11 +74,14 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
-  const args = { skillsDir: null, format: 'text', fix: false };
+  const args = {
+    skillsDir: null, format: 'text', fix: false, skill: null,
+  };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--skills-dir') { args.skillsDir = argv[i + 1]; i += 1; }
     else if (argv[i] === '--format') { args.format = argv[i + 1]; i += 1; }
     else if (argv[i] === '--fix') { args.fix = true; }
+    else if (argv[i] === '--skill') { args.skill = argv[i + 1]; i += 1; }
   }
   return args;
 }
@@ -494,8 +497,12 @@ function checkRoot(skillDir, options = {}) {
 
 /**
  * Run the fleet-wide skill-root metadata class gate over every discovered root.
- * @param {{ skillsDir?: string, fix?: boolean }} args Options; `skillsDir`
- *   overrides the discovery root and `fix` writes generated files in place.
+ * @param {{ skillsDir?: string, fix?: boolean, skill?: string }} args Options;
+ *   `skillsDir` overrides the discovery root, `fix` writes generated files in
+ *   place, and `skill` scopes discovery to the one root whose basename
+ *   matches — an authoring path (e.g. init_skill.py) can then pass
+ *   `--fix --skill <name>` and prove the write touched only that root,
+ *   instead of accepting the fleet-wide blast radius of an unscoped --fix.
  * @returns {number} Exit code: 0 clean, 1 violations found, 2 the gate could not run.
  */
 function run(args) {
@@ -513,7 +520,14 @@ function run(args) {
     process.stderr.write(`ci-skill-root-metadata: skills dir not found or not a directory: ${skillsDir}\n`);
     return 2;
   }
-  const roots = findSkillRoots(skillsDir);
+  let roots = findSkillRoots(skillsDir);
+  if (args.skill) {
+    roots = roots.filter((dir) => path.basename(dir) === args.skill);
+    if (roots.length === 0) {
+      process.stderr.write(`ci-skill-root-metadata: --skill '${args.skill}' not found (or has no SKILL.md) under ${skillsDir}\n`);
+      return 2;
+    }
+  }
   const results = roots.map((dir) => checkRoot(dir, { fix: args.fix }));
   const failed = results.filter((r) => r.status === 'fail');
   const fixedCount = results.filter((r) => r.fixed).length;

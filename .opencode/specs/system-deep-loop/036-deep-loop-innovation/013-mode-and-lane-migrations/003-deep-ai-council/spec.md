@@ -37,7 +37,8 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/003-deep-ai-council |
 | **Level** | phase parent (Level 2) |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
+| **Evidence reconciliation** | Children `005-resume-adapter` and `006-shadow-parity` were re-evidenced by 021; this lane remains Planned pending acceptance of the reconciled evidence. |
 | **Created** | 2026-07-15 |
 | **Branch** | `UNKNOWN` |
 | **Parent Spec** | `../spec.md` |

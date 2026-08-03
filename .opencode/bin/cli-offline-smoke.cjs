@@ -3,7 +3,7 @@
 // ║ COMPONENT: CLI Offline Smoke                                             ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Daemon-free list-tools + cwd-independence smoke check for the   ║
-// ║ spec-memory, code-index, and skill-advisor CLI shims.                    ║
+// ║ spec-memory and skill-advisor CLI shims.                                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -25,7 +25,7 @@ const socketFileName = 'daemon-ipc.sock';
 const DEFAULT_TIMEOUT_MS = 20_000;
 const MAX_BUFFER_BYTES = 1024 * 1024 * 10;
 const CHECKS = [
-  { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 39 },
+  { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 41 },
   { name: 'skill-advisor', shim: path.join(__dirname, 'skill-advisor.cjs'), expectedCount: 9 },
 ];
 

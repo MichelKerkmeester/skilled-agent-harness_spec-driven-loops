@@ -37,7 +37,7 @@ Mobbin bills itself as the world's largest library of real app UI screenshots, a
 
 The packet is a **TRANSPORT** under the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). It reports the manual's registration state honestly (registered; absence is now a failure symptom to escalate), carries the registered manual's byte-exact reference shape, mandates discovery-first callable confirmation before any call, and runs the read-only research workflows: intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url`, and `failed[]` reported as partial success. Every call happens against the external Mobbin service; nothing in this repo changes, and Write, Edit, and Task are forbidden tools. Whenever the retrieved evidence feeds a design decision, `sk-design` is loaded first and owns the judgment: this packet supplies metadata, images, and source-backed facts, and its output can never satisfy a taste, accessibility, or readiness gate by itself.
 
-This is the hub's third transport and the closest structural sibling of `mcp-refero`: both are remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transports with no CLI machinery. The distinctive Mobbin facts are the single-tool surface, the strictly-no-API-key auth model, and the registered-but-undiscovered state of the manual (discovery and OAuth still pend).
+This is the hub's third transport and the closest structural sibling of `mcp-refero`: both are remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transports with no CLI machinery. The distinctive Mobbin facts are the three-tool surface, the strictly-no-API-key auth model, and the registered-but-undiscovered state of the manual (discovery and OAuth still pend).
 
 ---
 
@@ -121,7 +121,7 @@ Reach for this packet when a user wants Mobbin evidence: real-app screens for a 
 |---|---|
 | `sk-design` | The mandatory cross-hub judgment pairing. Every design-affecting use loads it first; it owns reference locks and every taste/accessibility/readiness verdict. This packet is the transport, that skill is the taste. |
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, discovery, and error-envelope discipline all come from Code Mode. |
-| `mcp-refero` | The closest sibling: another remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transport. Refero covers styles/screens/flows with 8 tools; Mobbin covers app/screen/flow/element intents with 1. |
+| `mcp-refero` | The closest sibling: another remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transport. Refero covers styles/screens/flows with 8 tools; Mobbin covers screens, flows, and sections with 3. |
 | `mcp-figma` | The hub's original Figma transport (CLI-primary with optional MCP). No surface overlap with Mobbin. |
 | `mcp-chrome-devtools` | Browser inspection and preview, never a design-reference search surface. |
 | `sk-code` | Owns adapting any resulting design decision into application code, and verifying it. |
@@ -156,7 +156,7 @@ A: The `mobbin` manual **is registered** in `.utcp_config.json`, but manuals loa
 
 **Q: Can I search apps, flows, or elements directly?**
 
-A: There is one documented tool, `search_screens`. App, screen, flow, and element research are query intents over it: name the app/category, the concrete screen state, the journey, or the component-in-context in your `query`. Flow "sequence" is a reconstruction from returned screens and must be labeled inference.
+A: The documented surface has three tools: `search_screens`, `search_flows`, and `search_sections`. Use the tool matching the requested evidence; app, screen, and element research remain query intents over `search_screens`, while flows and website sections use their dedicated tools.
 
 **Q: Does OAuth work end to end?**
 
@@ -189,11 +189,11 @@ A: No. It is a transport with `mutatesWorkspace: false`: Write, Edit, and Task a
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Verify-only setup: the registered wiring state, the paid-plan gate, and the operator-only OAuth step |
-| [`references/tool-surface.md`](./references/tool-surface.md) | The single-tool contract, the four intent workflows, plan gating, rate limit, and the open questions |
+| [`references/tool-surface.md`](./references/tool-surface.md) | The three-tool contract, the intent workflows, plan gating, rate limit, and the open questions |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth/DCR/PKCE, inferred naming, and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
 | [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed; live items pending) |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: one tool, four query-intent domains |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: three tools across the supported query-intent domains |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for registration/OAuth-gated steps) |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

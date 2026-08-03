@@ -85,7 +85,7 @@ The loop runs seven states, `INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE ->
 | `SCOPE` | Resolve the run's alignment lanes from `--lane-config` or the interactive answers, then freeze them into `deep-alignment-config.json` | `scripts/scoping.cjs` |
 | `DISCOVER` | Call each lane's adapter `discover(scope)`, persist the corpus and seed coverage-graph `FILE` nodes | each `scripts/adapters/<authority>.cjs` |
 | `ITERATE` | Pick the next unaudited slice, run that lane's `standardSource` + `check`, append findings and an iteration record | `scripts/partition-corpus.cjs` + the adapters |
-| `CONVERGE` | Decide CONVERGED / CONTINUE / STOP_MAX_ITERATIONS / NOTHING_TO_CONVERGE | `scripts/check-convergence.cjs` |
+| `CONVERGE` | Decide CONVERGED / CONTINUE / STOP_MAX_ITERATIONS / NOTHING_TO_CONVERGE / DISCOVERY_INCOMPLETE / INTEGRITY_FAILURE | `scripts/check-convergence.cjs` |
 | `REPORT` | Reduce the state log and deltas into the findings registry and the per-lane report | `runtime/scripts/reduce-alignment-state.cjs` |
 | `REMEDIATE` | Gated, opt-in hook point: enterable and safe, but performs no action today | `scripts/remediate-hook.cjs` |
 
@@ -117,7 +117,7 @@ Convergence requires two signals to hold together, always AND and never OR:
 - **Artifact coverage**: the fraction of discovered artifacts checked at least once, across all applicable lanes, must reach the coverage threshold (default `1.0`, every discovered artifact). A lane that discovered zero artifacts is excluded from both sides of the ratio rather than folded into a false pass.
 - **Dry-run stability**: the last N iteration records (default window `2`), across all lanes in append order, must all report zero new findings. Fewer than N iterations recorded yet fails closed to "not stable," so a fresh run can never converge on its first iteration by construction.
 
-Full coverage with unstable findings is not done, because something is still drifting. Stability with incomplete coverage is not done either, because large parts of the corpus were never looked at. `max-iterations` (default `10`) is an independent hard stop applied regardless of the AND-pair. A lane that never stabilizes still terminates. The `check-convergence.cjs` decision is one of CONVERGED, CONTINUE, STOP_MAX_ITERATIONS or NOTHING_TO_CONVERGE.
+Full coverage with unstable findings is not done, because something is still drifting. Stability with incomplete coverage is not done either, because large parts of the corpus were never looked at. `max-iterations` (default `10`) is an independent hard stop applied regardless of the AND-pair. A lane that never stabilizes still terminates. The `check-convergence.cjs` decision is one of CONVERGED, CONTINUE, STOP_MAX_ITERATIONS, NOTHING_TO_CONVERGE, DISCOVERY_INCOMPLETE, or INTEGRITY_FAILURE; the last two fail closed when authoritative discovery or packet integrity is unavailable.
 
 ### Corpus Partitioning And Verdicts
 

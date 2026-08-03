@@ -142,6 +142,18 @@ Validation:
 - Hard minimum: 75
 - Operation target: [operation_target]
 
+[When operation is full-create or full-update:]
+Advisor/Index Handoff (operator-owned; this command did not mutate advisor state; standalone scope - H-only fields omitted):
+- graph-metadata.json: sole skill advisor identity; source for graph indexing
+- leaf-manifest.json: [fresh|stale|missing]
+- Refresh choice - run one when the advisor should include this change:
+  - Full advisor refresh: node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --workspace-root "$PWD" --format json
+  - Graph-only refresh: node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --skills-root "$PWD/.opencode/skills" --format json
+- Refresh status: NOT RUN (operator-owned; see .opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md)
+
+[When operation is reference-only or asset-only:]
+Leaf-manifest freshness: [fresh|stale|missing] (narrow signal only - references/ and assets/ are always leaf roots; see advisor-index-handoff.md Branch Scope for why this branch does not render the full handoff)
+
 Context:
 - Spec path: [spec_path or none]
 - Memory saved: [yes/no]

@@ -31,7 +31,7 @@ parent-hub/
   hub-router.json
   description.json
   graph-metadata.json
-  command-metadata.json
+  command-metadata.json             # optional; only when the hub owns slash commands
   leaf-manifest.json
   changelog/
   manual-testing-playbook/
@@ -164,7 +164,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`code-webflow`, `code-opencode`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; router vocabulary includes surface signal classes inside workflow modes. |
-| `sk-design` | Five workflow design modes plus one `transport` packet (`design-mcp-open-design`) via the `transport-axis` extension; no surface packets. | No runtime-loop extension; four guidance modes share a reference base and the extraction mode runs its own backend. | None; all modes use `metadata` under the single `sk-design` identity. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None. | Transform-verbs + transport-axis example. |
+| `sk-design` | Two workflow design modes plus one `transport` packet (`sk-design-mcp-open-design`) via the `transport-axis` extension; no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. | No runtime-loop extension; the interface mode uses the shared reference base and the markdown-generator mode runs its extraction backend. | None; all modes use `metadata` under the single `sk-design` identity. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None. | Transform-verbs + transport-axis example. |
 | `system-deep-loop` | Workflow-only active modes; no surface packets. | Declares runtime-loop semantics for research, review, and council modes; improvement lanes use host or external adapters. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | None declared (`deprecatedModes: []`); the retired standalone context loop survives only as an advisor comment, not a registry deprecation. | Extension-heavy example: runtime-loop and advisor-projection semantics. |
 | `sk-doc` | Workflow-only; no surface axis, zero named extensions. Several workflowModes may multiplex onto one packet (N modes → 1 packet) when that packet's `SKILL.md` declares each mode. | No runtime-loop extension. | None; all modes use `metadata` under the single `sk-doc` identity. | None. | None. | Workflow-only, zero-extension example — the pure two-tier core scaffolded by this doctrine. |
 
@@ -226,10 +226,10 @@ Naming policy:
 
 Companion file policy:
 
-- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, authored `command-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`.
+- Every hub has `SKILL.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json`, generated `leaf-manifest.json`, `changelog/`, `manual-testing-playbook/`, and `benchmark/`. Add authored `command-metadata.json` only when the hub owns slash commands.
 - Every packet has `README.md`, `SKILL.md`, and `changelog/`.
 - Surface packets also carry `references/` and `assets/` when they need evidence material.
-- Every class-H hub requires authored `command-metadata.json`: one entry per slash command it owns, or the literal `[]` when it owns none. The fleet gate validates the file; see [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) for the complete matrix.
+- A class-H hub may carry authored `command-metadata.json` when it owns slash commands. The file has one entry per owned command and is validated when present; omit it for a command-less hub. See [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) for the complete matrix.
 - Shared directories may hold cross-packet vocabulary or synthesis, but never per-mode workflow logic and never their own `graph-metadata.json` or `description.json`.
 - A single shared workflow doctrine may live once under `shared/` and be **symlinked** into each packet that consumes it (sk-code symlinks its implement → debug → verify doctrine into both surfaces), so packets bundle the doctrine as read-only evidence without forking per-packet copies. The acting agent executes the process; the packet never carries it.
 
@@ -244,6 +244,6 @@ Companion file policy:
 - [validation-and-packaging.md](../shared/validation-and-packaging.md) - validation and packaging gates.
 - [parent-skill-hub-template.md](../../assets/parent-skill/parent-skill-hub-template.md) - routing-only hub template.
 - [parent-skill-registry-template.json](../../assets/parent-skill/parent-skill-registry-template.json) - registry scaffold.
-- [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) - command-surface scaffold (class-H requirement; `[]` when the hub owns no commands).
+- [parent-skill-command-metadata-template.json](../../assets/parent-skill/parent-skill-command-metadata-template.json) - optional command-surface scaffold for hubs that own slash commands.
 - [parent-skill-leaf-aliases-template.json](../../assets/parent-skill/parent-skill-leaf-aliases-template.json) - authored alias scaffold for the rare hub that relocates a mode resource into `shared/`.
 - [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md) - the full file matrix with the per-class template map.

@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor `015-legacy-writer-retirement` has landed its zero-use, rollback, and archival-reader evidence on the candidate worktree
+- [ ] T001 Confirm predecessor `015-legacy-writer-retirement` has landed its zero-use, rollback, and archival-reader evidence on the candidate worktree; prerequisite currently unmet because phase 015 is Planned/unstarted with 0/29 checklist items checked
 - [ ] T002 Resolve the phase-003 BASE and freeze one candidate exact SHA with tree state, ref provenance, toolchain versions, source digests, and fixture digests
 - [ ] T003 Confirm the phase-008 shadow-parity harness, phase-007 effect-recovery and adjudication contracts, phase-011 health harness, phase-012 mixed-version fixtures, eight mode gates, and phase-014/012 evidence are available
 - [ ] T004 Assemble the immutable gate manifest with candidate/BASE pair, manifest hash, commands, expected outcomes, evidence paths, and failure-to-owner reopen map

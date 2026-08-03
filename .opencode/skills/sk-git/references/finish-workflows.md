@@ -19,7 +19,7 @@ version: 1.1.0.18
 
 Complete workflow documentation for completing development work with structured integration options.
 
-This workflow assumes any branch already came from `git worktree add -b ...`, not from direct branch creation commands.
+This workflow assumes any branch already came from the owner-first naming allocator, not from direct branch creation commands.
 
 ---
 
@@ -424,7 +424,7 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
    ## Upgrade
    No action required. / Steps if needed.
 
-   Full changelog: [changelog/<component>/vX.X.X.X.md](<link>)
+   Full changelog: [changelog/<component>/vX.X.X.X.md](https://example.invalid/changelog/<component>/vX.X.X.X.md)
    EOF
    )"
    ```
@@ -467,8 +467,8 @@ git -C <primary-worktree> merge-base --is-ancestor <pushed-sha> HEAD \
 | Team project, needs review | Option 2 (Create PR) | Enables code review, CI checks; keep worktree for updates |
 | Work in progress, need to switch contexts | Option 3 (Keep as-is) | Preserve work for later |
 | Experimental code, failed approach | Option 4 (Discard) | Clean up failed experiments |
-| Short-lived feature worktree (merge back immediately) | Option 1 (Merge locally) | Aligns with the merge-back-fast wt/{NNNN}-{name} lane |
-| Long-running feature worktree | Option 2 (Create PR) | Aligns with the PR-review wt/{NNNN}-{name} lane |
+| Short-lived feature worktree (merge back immediately) | Option 1 (Merge locally) | Legacy `wt/{NNNN}-{name}` example; current lane is owner-first |
+| Long-running feature worktree | Option 2 (Create PR) | Legacy `wt/{NNNN}-{name}` example; current lane is owner-first |
 | Hotfix for production | Option 1 or 2 (Merge/PR) | Never discard or keep hotfixes |
 | Spike/research | Option 4 (Discard) | Research doesn't need to be merged |
 | Release requested by user | Step 6 (Create Release) | Creates annotated tag + GitHub release with formatted notes |
@@ -547,18 +547,18 @@ User: "1"
 [Step 4: Execute Choice - Option 1]
 > git checkout main
 > git pull
-> git merge wt/0001-modal-fix
+> git merge wt/0001-modal-fix  # legacy example
 > npm test
 ✓ Tests still passing after merge
 
-> git branch -d wt/0001-modal-fix
-Deleted branch wt/0001-modal-fix
+> git branch -d wt/0001-modal-fix  # legacy example
+Deleted branch wt/0001-modal-fix  # legacy example
 
 [Step 5: Cleanup Worktree]
-> git worktree list | grep wt/0001-modal-fix
-Found worktree at .worktrees/0001-modal-fix
+> git worktree list | grep wt/0001-modal-fix  # legacy example
+Found worktree at .worktrees/0001-modal-fix  # legacy example
 
-> git worktree remove .worktrees/0001-modal-fix
+> git worktree remove .worktrees/0001-modal-fix  # legacy example
 ✓ Cleaned up worktree
 
 ✅ Complete! Branch merged to main and cleaned up.
@@ -591,8 +591,8 @@ Which option? (1-4)
 User: "2"
 
 [Step 4: Execute Choice - Option 2]
-> git push -u origin wt/0002-user-auth
-Pushed to origin/wt/0002-user-auth
+> git push -u origin wt/0002-user-auth  # legacy example
+Pushed to origin/wt/0002-user-auth  # legacy example
 
 > gh pr create --title "feat(auth): add OAuth2 user authentication" --body "$(cat <<'EOF'
 ## Summary
@@ -616,8 +616,8 @@ Agent: Keep worktree for PR updates? (y/n)
 User: "y"
 
 ✅ Complete! PR created.
-Worktree preserved at .worktrees/0002-user-auth for addressing review feedback.
-To cleanup later: git worktree remove .worktrees/0002-user-auth
+Legacy example worktree preserved at .worktrees/0002-user-auth for addressing review feedback.
+To cleanup later: git worktree remove .worktrees/0002-user-auth  # legacy example
 ```
 
 ### Example 3: Keep Work for Later (Option 3)
@@ -647,14 +647,14 @@ Which option? (1-4)
 User: "3"
 
 [Step 4: Execute Choice - Option 3]
-Keeping branch wt/0003-performance-optimization.
-Worktree preserved at .worktrees/0003-performance-optimization
+Keeping legacy branch wt/0003-performance-optimization.
+Legacy example worktree preserved at .worktrees/0003-performance-optimization
 
 [Step 5: Cleanup Worktree]
 Skipping cleanup (Option 3 selected)
 
 ✅ Complete! Branch and worktree preserved for later.
-To resume: cd .worktrees/0003-performance-optimization
+To resume legacy example: cd .worktrees/0003-performance-optimization
 ```
 
 ### Example 4: Discard Failed Experiment (Option 4)
@@ -685,12 +685,12 @@ User: "4"
 
 [Step 4: Execute Choice - Option 4]
 ⚠️  WARNING: This will permanently delete:
-- Branch: wt/0004-alternative-approach
+- Legacy branch example: wt/0004-alternative-approach
 - All commits:
   a1b2c3d Try alternative caching strategy
   e4f5g6h Add performance benchmarks
   h7i8j9k Revert to previous approach
-- Worktree at: .worktrees/0004-alternative-approach
+- Legacy worktree example at: .worktrees/0004-alternative-approach
 
 This action CANNOT be undone.
 
@@ -699,11 +699,11 @@ Type 'discard' to confirm (or anything else to cancel):
 User: "discard"
 
 > git checkout main
-> git branch -D wt/0004-alternative-approach
-Deleted branch wt/0004-alternative-approach
+> git branch -D wt/0004-alternative-approach  # legacy example
+Deleted branch wt/0004-alternative-approach  # legacy example
 
 [Step 5: Cleanup Worktree]
-> git worktree remove .worktrees/0004-alternative-approach
+> git worktree remove .worktrees/0004-alternative-approach  # legacy example
 ✓ Cleaned up worktree
 
 ✅ Complete! Branch and worktree discarded.

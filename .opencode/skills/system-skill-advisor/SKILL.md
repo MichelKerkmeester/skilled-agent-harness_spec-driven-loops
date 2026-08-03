@@ -423,7 +423,7 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time hooks for Claude, OpenCode and OpenCode. The Claude/OpenCode hooks share the warm-only CLI fallback helper `hooks/lib/skill-advisor-cli-fallback.ts`; the OpenCode plugin bridge (`mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`; the OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
 - MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Daemon-backed CLI callers (`node .opencode/bin/skill-advisor.cjs <tool>`) for doctor routes, scripts and CI — untrusted by default, `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.
