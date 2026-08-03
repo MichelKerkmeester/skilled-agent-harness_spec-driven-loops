@@ -1,35 +1,30 @@
 ---
 title: "Example: staging-only single-page publish"
-description: "Publish-class session: operator confirmation, staging subdomain only, publish receipt, rollback plan."
-trigger_phrases: ["webflow publish example", "webflow staging publish"]
-importance_tier: important
+description: "The approved publish path: confirmation, staging subdomain, single pageId, publish receipt, rollback plan."
+trigger_phrases: ["webflow publish example", "webflow staging example"]
+importance_tier: normal
 contextType: example
 version: 1.0.0.0
 ---
 
-# Staging-only single-page publish (PB class)
+# Example: staging-only single-page publish
 
-## Scenario
+## Prompt
 
-The user asks: "Publish the About page so we can review it."
+> "publish the 'About' page of the test site to the staging subdomain"
 
-## Flow
+## Correct flow
 
-1. **Confirm the target is the test site** (dedicated test workspace per the frozen D7 pattern) and the token carries `sites:write`.
-2. **Operator confirmation required** — state exactly what will happen: single page, staging subdomain, no production domains.
-3. **Publish to the staging subdomain only**:
-   ```ts
-   await call_tool_chain({ tool: "webflow.webflow.data_sites_tool", action: "publish_site", params: {
-     siteId: "<test-site-id>",
-     publishToWebflowSubdomain: true,   // NEVER customDomains in smoke
-     pageIds: ["<about-page-id>"],
-   }});
-   ```
-4. **Evidence**: publish receipt + the `*.webflow.io` URL for review.
-5. **Rollback plan**: re-publish the prior content from the captured before-state (or Designer version-history snapshot re-publish).
+1. **Discover + classify**: `publish_site` (PB) or `update_page_settings` with publishing-status
+   change (PB).
+2. **Confirmation**: operator confirmation with expected output (page URL on `*.webflow.io`) and
+   rollback plan (re-publish prior content/snapshot).
+3. **Execute**: body carries `publishToWebflowSubdomain` ONLY — never `customDomains`; pass the
+   single `pageId` to limit blast radius; respect the 1-publish/min queue.
+4. **Evidence**: publish receipt; verify the staged page.
 
-## Guardrails
+## Why
 
-- `customDomains` is **forbidden** in smoke flows.
-- One publish queue per minute — respect it.
-- The user must confirm the destination is the test site, not a production site.
+Staging (`*.webflow.io`) and production (`customDomains`) are structurally separate publish
+targets. Smoke flows are forbidden from touching production; a single page minimizes blast
+radius.

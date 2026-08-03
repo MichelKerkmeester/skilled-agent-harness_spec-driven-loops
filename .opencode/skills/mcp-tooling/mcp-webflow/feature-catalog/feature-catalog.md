@@ -6,14 +6,14 @@ trigger_phrases:
   - "webflow feature catalog"
   - "webflow capabilities"
 last_updated: "2026-08-02"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # mcp-webflow: Feature Catalog
 
 Canonical capability inventory for the `mcp-webflow` skill. The transport reaches Webflow MCP 2.0 through the `webflow` Code Mode manual (official `webflow-mcp-server`, `WEBFLOW_TOKEN`). Every capability is tagged with its frozen operation class (RO read-only, DW draft-write, DS destructive, PB publish, DP deploy) and gate.
 
-> **Discovery-first contract.** The rows below are the research-time inventory (`references/tool-surface.md`). Always re-discover per session (`list_tools`); callables carry the `webflow.webflow.webflow_<tool>` prefix. The pinned server version's live surface is the only authoritative inventory.
+> **Discovery-first contract.** The rows below are the research-time inventory (`references/tool-surface.md`). Always re-discover per session (`list_tools`); expected callables follow the Code Mode convention `webflow.webflow.<tool>` (registry) / `webflow.webflow_<tool>` (TypeScript) — UNVERIFIED until authenticated discovery. The pinned server version's live surface is the only authoritative inventory.
 
 ## 1. OVERVIEW
 
@@ -45,7 +45,16 @@ Webflow MCP 2.0 exposes the Data API v2 and Designer API as bounded combined too
 | deVariable | `variable_tool` | get/query variables | RO |
 | deVariable | `variable_tool` | create/update/rename variables | DW (sk-design) |
 | deVariable | `variable_tool` | delete variable | DS |
-| Not inspected | aiChat, comments, enterprise, rules, webhooks, localDeMCPConnection | existence source-verified; semantics pending discovery | RO/DW default (fail closed) |
+| webhooks | `data_webhooks_tool` | list/get webhooks | RO |
+| webhooks | `data_webhooks_tool` | create/delete webhook (integration config) | DW / DS |
+| enterprise | `data_enterprise_tool` | 301 redirects, robots.txt, well-known files, site activity logs (Enterprise-gated) | RO/DW/DS per action |
+| aiChat | `data_ai_chat_tool` | `ask_webflow_ai` — AI Q&A over API knowledge | RO |
+| comments | `data_comments_tool` | list/get comment threads and replies | RO |
+| rules | `webflow_guide_tool` | best-practice guidance text | RO |
+| deStyle | `style_tool` | Designer style read/create/update/remove | RO/DW (sk-design) / DS |
+| deComponents | `component_tool` | Designer component builder / unregister | DW (sk-design) / DS |
+| deAsset | `asset_tool` | Designer asset read/upload/delete | RO/DW (sk-design) / DS |
+| localDeMCPConnection | `de_mcp_connection_tool` | `get_designer_app_connection_info` (bridge state) | RO |
 
 ## 3. Cross-cutting capabilities
 

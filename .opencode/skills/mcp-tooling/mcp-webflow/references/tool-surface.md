@@ -1,41 +1,82 @@
 ---
-title: "Webflow MCP Tool Surface"
-description: "Research-time inventory of the official Webflow MCP 2.0 tool modules and their operation classes. Baseline only — always re-discover live per session."
+title: "Webflow MCP Tool Surface (Research Baseline)"
+description: "Research-time inventory of the official Webflow MCP 2.0 tool surface: 18 modules, per-action operation classes, HTTP semantics, and gates. Baseline only — always re-discover live per session."
 trigger_phrases:
   - "webflow tool surface"
   - "webflow mcp tools"
   - "webflow tool inventory"
+  - "webflow actions"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
-# Webflow MCP Tool Surface
+# Webflow MCP Tool Surface (Research Baseline)
 
-> Research-time inventory (Phase 1, deepseek-max lineage). **Baseline only**: live discovery (`list_tools`) per session is the only trustworthy inventory; the pinned server version's actual surface must be recorded here after the first authenticated session (see `../mcp-servers/webflow-mcp/README.md` §3).
+> Research-time inventory (2026-08-02, deepseek-max lineage, official sources). **Baseline only**:
+> live discovery (`list_tools`) per session is the only trustworthy inventory; the pinned server
+> version's actual surface must be recorded here after the first authenticated session
+> (`../mcp-servers/webflow-mcp/README.md` §3). Class = frozen Phase-2 risk class
+> (RO/DW/DS/PB/DP); gate applies at the agent level.
 
 ## Combined-tool pattern
 
-One MCP tool per module with an `actions` array; per-action risk classes derive from the underlying HTTP method + payload (tool-level `readOnlyHint` is not per-action).
+Each of the 18 modules registers **one MCP tool** whose input schema is an `actions` array of
+optional per-action objects; each action maps 1:1 to a Webflow Data API v2 endpoint
+(GET/POST/PUT/PATCH/DELETE per the server source). Tool-level `readOnlyHint` exists but is not
+per-action — per-action class derives from the HTTP method + payload semantics.
 
-## Modules and classes
+## Module inventory (18 modules, official repo `src/tools/`)
 
-| Module | Read-only | Draft-write | Destructive | Publish | Deploy |
-|---|---|---|---|---|---|
-| pages | `list_pages`, `get_page_metadata`, `get_page_content` | `update_page_settings` | — | publish-status change via `update_page_settings` | — |
-| cms | `get_collection_list`, `get_collection_details`, `list_collection_items` | `create_collection*`, `update_collection*`, `create/update_collection_items` | `delete_collection_items` | `publish_collection_items` | — |
-| sites | `list_sites`, `get_site` | — | — | `publish_site` | — |
-| workflows | `list_workflows`, `list_workflow_runs`, `get_workflow_run` | — | — | — | `run_workflow` |
-| scripts | `list_registered_scripts`, `list_applied_scripts`, `get_page_script` | `add_inline_site_script`, `upsert_page_script` | `delete_all_site_scripts`, `delete_all_page_scripts` | — | script registration ships with site publish |
-| components | `list_components`, `get_component_content`, `get_component_properties` | `update_component_content`, `update_component_properties` | — | — | — |
-| dePages | — | `create_page`, `create_page_folder`, `switch_page` | — | — | — |
-| deElement | `query_elements`, `get_selected_element`, snapshot | `select_element`, `set_text`, `set_style`, `set_link`, `set_heading_level`, `set_image_asset`, `add_or_update_attribute`, `update_id_attribute` | `remove_element`, `remove_attribute` | — | — |
-| deVariable | `get_variable_collections`, `get_variables`, `query_variables` | `create_variable_collection`, `create_variable_mode`, `create/update_*_variable`, `rename_variable` | `delete_variable` | — | — |
-| Not inspected (existence verified) | aiChat, comments, enterprise, rules, webhooks, localDeMCPConnection | | | | |
+| Module | Surface | Key actions (class) |
+|--------|---------|---------------------|
+| **sites** | site-level lifecycle | `list_sites` (RO), `get_site` (RO), `publish_site` (PB — POST /v2/sites/:id/publish; body must carry `customDomains` OR `publishToWebflowSubdomain`; optional `pageId`; 1/min queue) |
+| **pages** | page metadata/content/settings | `list_pages` (RO), `get_page_metadata` (RO), `get_page_content` (RO), `update_page_settings` (DW; schema also carries publishing status → PB when flipping to published), `update_static_content` (DW; secondary-locale DOM nodes) |
+| **cms** | collections + items | `get_collection_list` (RO), `get_collection_details` (RO), `list_collection_items` (RO), `create_collection*` (DW), `update_collection_field` (DW), `create_collection_items` (DW), `update_collection_items` (DW — bulk draft writes), `publish_collection_items` (PB), `delete_collection_items` (DS — permanent) |
+| **components** | site components | `list_components` (RO), `get_component_content` (RO), `get_component_properties` (RO), `update_component_content` (DW), `update_component_properties` (DW) |
+| **scripts** | custom code | `list_registered_scripts` (RO), `list_applied_scripts` (RO), `get_page_script` (RO), `add_inline_site_script` (DW), `upsert_page_script` (DW — ships with publish), `delete_all_site_scripts` (DS), `delete_all_page_scripts` (DS) |
+| **workflows** | workflow automation | `list_workflows` (RO), `list_workflow_runs` (RO), `get_workflow_run` (RO), `run_workflow` (DP — executes a pre-approved automation; blast radius depends on the workflow definition) |
+| **webhooks** | integration config | `list_webhooks` (RO), `get_webhook` (RO), `create_webhook` (DW), `delete_webhook` (DS — integration config, not site content) |
+| **enterprise** | Enterprise-gated (plan check) | `list_301_redirects` (RO), `get_robots_txt` (RO), `list_site_activity_logs` (RO), `create_301_redirect` (DW), `update_301_redirect` (DW), `update_robots_txt` (DW), `replace_robots_txt` (DW), `add_well_known_file` (DW), `delete_301_redirect` (DS), `delete_robots_txt` (DS), `remove_well_known_files` (DS) |
+| **aiChat** | AI Q&A | `ask_webflow_ai` (RO — Webflow AI over API knowledge; `readOnlyHint: true`) |
+| **comments** | comment threads | `list_comment_threads` (RO), `get_comment_thread` (RO), `list_comment_replies` (RO) |
+| **rules** | guidance | `webflow_guide_tool` (RO — best-practice guidance text, no side effects) |
+| **dePages** | Designer pages | `create_page` (DW), `create_page_folder` (DW), `switch_page` (DW) — Designer session required |
+| **deElement** | Designer elements | `query_elements` (RO), `get_selected_element` (RO), snapshot (RO), `select_element` (DW), `set_text` (DW), `set_style` (DW), `set_link` (DW), `set_heading_level` (DW), `set_image_asset` (DW), `add_or_update_attribute` (DW), `update_id_attribute` (DW), `remove_element` (DS), `remove_attribute` (DS), `remove_style` (DS), `remove_properties` (DS) |
+| **deStyle** | Designer styles | style read/get (RO), style create/update (DW), `remove_style` (DS) |
+| **deVariable** | Designer variables | `get_variable_collections` (RO), `get_variables` (RO), `query_variables` (RO), `create_variable_collection` (DW), `create_variable_mode` (DW), `create/update_*_variable` (DW), `rename_variable` (DW), `delete_variable` (DS) |
+| **deComponents** | Designer components | component read/get (RO), component builder (DW), `unregister_component` (DS) |
+| **deAsset** | Designer assets | asset read/list (RO), asset upload (DW), asset delete (DS) |
+| **localDeMCPConnection** | OSS-local only | `get_designer_app_connection_info` (RO — bridge-app connection state) |
+
+## Read-only surface (safe, no mutation)
+
+`ask_webflow_ai`, comments (list/get/replies), `webflow_guide_tool`, `get_designer_app_connection_info`,
+`list_sites`, `get_site`, `list_pages`, `get_page_metadata`, `get_page_content`, cms list/get,
+components list/get, scripts list/get, webhooks list/get, workflows list/get, enterprise
+list/get/robots/activity, plus the `de*` getters and `query_*` family.
+
+## Publish/deploy surface (never implicit)
+
+- `publish_site` — the single site-level deploy action (POST /v2/sites/:id/publish).
+- `publish_collection_items` — deploys CMS item drafts to live.
+- `run_workflow` — executes a pre-approved automation.
+- Script registration ships with site publish (publish-adjacent).
+- There is no other deploy path — every other mutation is draft/staging-scoped.
+
+## Destructive surface (no trash/revert via MCP)
+
+CMS item deletion (permanent), script deletion (site/page), webhook deletion, enterprise redirect/
+robots/well-known deletion, `remove_element`/`remove_attribute`/`remove_style`/`remove_properties`,
+`delete_variable`, `unregister_component`, asset deletion. None expose an undo endpoint; rollback
+must be re-applied state or version-history snapshot re-publish. API-level site restore does not
+exist in the Data API v2 surface → treated as unsupported.
 
 ## Cross-cutting facts
 
 - CMS mutations are NOT implicitly draft-safe — the client chooses live vs queued/drafted target.
-- Nothing auto-publishes; publishing is always a separate explicit action; one publish queue per minute.
+- Nothing auto-publishes; one publish queue per minute.
 - Rate limits: plan-based 60/120 rpm; 429 + `Retry-After` (~60s); SDK backoff default.
-- Unknown modules default to read-only/draft-write until discovery evidence proves a higher class (fail closed).
+- `custom_code` scopes are Data-Client-app-only (not site tokens).
+- Unknown modules default to RO/DW until discovery evidence proves a higher class (fail closed).
+- Enterprise module is gated to Enterprise plans; capability varies by workspace tier.

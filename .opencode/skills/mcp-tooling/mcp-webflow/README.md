@@ -27,7 +27,7 @@ Webflow MCP 2.0 transport mode for the `mcp-tooling` hub: operate Webflow sites,
 
 - Nothing auto-publishes; never publish to production `customDomains` from smoke flows.
 - Workspace tokens are read-only; token values never enter the repository.
-- Discover tools first per session (`list_tools`); callable names use the `webflow.webflow.webflow_<tool>` prefix.
+- Discover tools first per session (`list_tools`); expected callables follow the Code Mode convention `webflow.webflow.<tool>` / `webflow.webflow_<tool>` — UNVERIFIED until authenticated discovery.
 
 ## Documentation map
 
@@ -36,8 +36,13 @@ Webflow MCP 2.0 transport mode for the `mcp-tooling` hub: operate Webflow sites,
 | `SKILL.md` | Mode entry contract and operation classes |
 | `INSTALL-GUIDE.md` | Operator setup: token, scopes, verification, version pinning |
 | `references/mcp-wiring.md` | Code Mode wiring, auth, discovery-first contract, remote OAuth alternative |
-| `references/tool-surface.md` | Research-time tool inventory with risk classes (re-discover live) |
+| `references/tool-surface.md` | Research-time 18-module tool inventory with risk classes (re-discover live) |
+| `references/mcp-wiring.md` | Code Mode wiring, auth, scope model, rate limits, Bridge App boundary |
 | `references/troubleshooting.md` | Failure modes and never-list |
+| `feature-catalog/` | Capability cards: cms, publish-deploy, designer, site-pages-scripts |
+| `manual-testing-playbook/` | 12 scenarios across discovery, read, draft, safety gates, pairing, negative |
+| `scripts/` | `doctor.sh` (verify-only) + `install.sh` |
+| `assets/utcp-webflow-manual.md` | Registered manual reference shape |
 | `examples/` | Worked scenarios per operation class |
 | `changelog/` | Version history |
 | `feature-catalog/` | Feature inventory |
