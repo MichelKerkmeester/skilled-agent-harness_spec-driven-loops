@@ -52,7 +52,7 @@ FAILURE MODES:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 10 of 10 |
 | **Predecessor** | `009-template-alignment` |
-| **Successor** | None |
+| **Successor** | `011-deep-research-quality-gaps` |
 | **Handoff Criteria** | Designer capability context documented (guide + card + playbook scenario); every action named matches the official action reference; all packet validators green. |
 
 <!-- /ANCHOR:metadata -->

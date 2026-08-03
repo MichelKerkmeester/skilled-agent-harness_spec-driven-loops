@@ -1,24 +1,24 @@
 {
-  "level": "2",
-  "specFolder": "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
-  "description": "Deepen the Webflow Designer capability context: canvas model and Bridge App boundary, selection-driven edit loop, element-tree semantics, styles with variable modes, components with props/slots/variants, breakpoints, and worked flows — with a new guide, a deepened capability card, and a DRAFT-003 playbook scenario.",
-  "keywords": [
-    "webflow designer capabilities",
-    "designer card",
-    "designer logic",
-    "canvas model"
-  ],
-  "lastUpdated": "2026-08-03T09:03:23.467Z",
-  "specId": "010",
-  "folderSlug": "designer-capabilities",
-  "parentChain": [
-    "mcp-tooling",
-    "015-mcp-webflow"
-  ],
-  "memorySequence": 3,
-  "memoryNameHistory": [
-    "03-08-26_09-47__phase-closed-designer-capability-deepening-010.md",
-    "03-08-26_09-50__phase-010-closed-designer-capability-deepening.md",
-    "03-08-26_10-03__phase-010-closed-designer-capability-deepening.md"
-  ]
+ "level": "2",
+ "specFolder": "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
+ "description": "The Designer surface — canvas state, element tree, design tokens, component props/variants,",
+ "keywords": [
+  "webflow designer capabilities",
+  "designer card",
+  "designer logic",
+  "canvas model"
+ ],
+ "lastUpdated": "2026-08-03T09:03:23.467Z",
+ "specId": "010",
+ "folderSlug": "designer-capabilities",
+ "parentChain": [
+  "mcp-tooling",
+  "015-mcp-webflow"
+ ],
+ "memorySequence": 3,
+ "memoryNameHistory": [
+  "03-08-26_09-47__phase-closed-designer-capability-deepening-010.md",
+  "03-08-26_09-50__phase-010-closed-designer-capability-deepening.md",
+  "03-08-26_10-03__phase-010-closed-designer-capability-deepening.md"
+ ]
 }

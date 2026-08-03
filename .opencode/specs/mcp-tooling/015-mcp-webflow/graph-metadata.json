@@ -16,7 +16,8 @@
     "mcp-tooling/015-mcp-webflow/009-template-alignment",
     "mcp-tooling/015-mcp-webflow/011-phase-11-PROVIDE-DESCRIPTIVE-SLUG",
     "mcp-tooling/015-mcp-webflow/012-phase-12-PROVIDE-DESCRIPTIVE-SLUG",
-    "mcp-tooling/015-mcp-webflow/010-designer-capabilities"
+    "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
+    "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps"
   ],
   "manual": {
     "depends_on": [],
@@ -159,7 +160,7 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no mode for operating Webflow through Webflow's current MCP surface",
     "created_at": "2026-08-02T13:47:06Z",
-    "last_save_at": "2026-08-03T09:03:23.479Z",
+    "last_save_at": "2026-08-03T12:34:55.782Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,7 +172,7 @@
       "spec.md": "a7286bb0c4eecdec3def80a12b6287fd910d4aadce84f7f60e92b57d228fa3ca",
       "handover.md": "ddf5618551abfaffcf299a385168895967c05403034193be8c3ebb480d5f5e48"
     },
-    "last_active_child_id": "mcp-tooling/015-mcp-webflow/010-designer-capabilities",
-    "last_active_at": "2026-08-03T09:03:23.479Z"
+    "last_active_child_id": "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
+    "last_active_at": "2026-08-03T12:34:55.782Z"
   }
 }

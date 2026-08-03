@@ -1,0 +1,27 @@
+{
+ "type": "config",
+ "topic": "Audit mcp-webflow packet docs (references/assets/feature snippets/playbook snippets) for conciseness gaps and missing Webflow MCP 2.0 logic",
+ "maxIterations": 5,
+ "minIterations": 3,
+ "convergenceThreshold": 0.05,
+ "antiConvergence": {
+  "convergenceMode": "off",
+  "divergent": {}
+ },
+ "minIdeaObservations": 2,
+ "resource_map_present": false,
+ "resource_map": {
+  "emit": true
+ },
+ "createdAt": "2026-08-03T12:31:51.000Z",
+ "specFolder": ".opencode/specs/mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
+ "nextRunAt": null,
+ "remainingDelayMs": null,
+ "fanout": {
+  "lineage_label": "fanout",
+  "artifact_dir": ".opencode/specs/mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps/research"
+ },
+ "lineageMode": "new",
+ "sessionId": null,
+ "generation": 1
+}

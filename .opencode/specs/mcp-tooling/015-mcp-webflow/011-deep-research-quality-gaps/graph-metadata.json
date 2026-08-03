@@ -1,0 +1,225 @@
+{
+ "schema_version": 1,
+ "packet_id": "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
+ "spec_folder": "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
+ "parent_id": "mcp-tooling/015-mcp-webflow",
+ "children_ids": [],
+ "manual": {
+  "depends_on": [],
+  "supersedes": [],
+  "related_to": []
+ },
+ "derived": {
+  "trigger_phrases": [
+   "webflow packet audit",
+   "deep research quality gaps",
+   "mcp-webflow conciseness",
+   "webflow mcp 2.0 logic",
+   "deep research plan",
+   "quality gap audit",
+   "mcp-webflow audit",
+   "luna sol lineage",
+   "deep research tasks",
+   "deep research summary",
+   "mcp-webflow findings"
+  ],
+  "key_topics": [
+   "webflow",
+   "packet",
+   "audit",
+   "deep",
+   "research",
+   "quality",
+   "gaps",
+   "mcp-webflow",
+   "conciseness",
+   "mcp",
+   "logic",
+   "plan"
+  ],
+  "importance_tier": "important",
+  "status": "in_progress",
+  "key_files": [
+   "research/findings-registry.json",
+   "research/research.md",
+   "research/resource-map.md",
+   "research/convergence-report.md",
+   "research/orchestration-summary.json",
+   "research/lineages/luna-max-fast/research.md",
+   "research/lineages/sol-high-fast/research.md",
+   "research/deep-research-config.json",
+   "spec.md",
+   "plan.md",
+   "tasks.md",
+   "implementation-summary.md"
+  ],
+  "entities": [
+   {
+    "name": "findings-registry.json",
+    "kind": "config",
+    "path": "research/findings-registry.json",
+    "source": "derived"
+   },
+   {
+    "name": "research.md",
+    "kind": "doc",
+    "path": "research/research.md",
+    "source": "derived"
+   },
+   {
+    "name": "convergence-report.md",
+    "kind": "doc",
+    "path": "research/convergence-report.md",
+    "source": "derived"
+   },
+   {
+    "name": "orchestration-summary.json",
+    "kind": "config",
+    "path": "research/orchestration-summary.json",
+    "source": "derived"
+   },
+   {
+    "name": "deep-research-config.json",
+    "kind": "config",
+    "path": "research/deep-research-config.json",
+    "source": "derived"
+   },
+   {
+    "name": "spec.md",
+    "kind": "doc",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "plan.md",
+    "kind": "doc",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "tasks.md",
+    "kind": "doc",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "implementation-summary.md",
+    "kind": "doc",
+    "path": "implementation-summary.md",
+    "source": "derived"
+   },
+   {
+    "name": "Research Quality",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Gap Audit",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Feature Specification",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Parent Spec",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Handoff Criteria",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Problem Statement Are",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Implementation Plan",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Clean Architecture",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Key Components",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Data Flow",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Task Format",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Task Notation",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Completion Criteria",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "raised",
+    "kind": "key_phrase",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Implementation Summary",
+    "kind": "proper_noun",
+    "path": "implementation-summary.md",
+    "source": "derived"
+   }
+  ],
+  "causal_summary": "Are the mcp-webflow references, assets, feature-catalog snippets, and playbook snippets too",
+  "created_at": "2026-08-03T12:33:54.498Z",
+  "last_save_at": "2026-08-03T12:34:55.759Z",
+  "save_lineage": "same_pass",
+  "last_accessed_at": null,
+  "source_docs": [
+   "spec.md",
+   "plan.md",
+   "tasks.md",
+   "implementation-summary.md",
+   "research/research.md"
+  ],
+  "source_fingerprint": "sha256:2ecb830fc2ac21e7a00c95ea41a7a4b8ce7988ff57393207793e1aacc127aa93",
+  "source_doc_hashes": {
+   "spec.md": "c32e8b0ac2da20b97fef037108c859de26bf118513f9c16d4e86581c0ad3e642",
+   "plan.md": "947fc5c22ade3da5744c76bf09b43b902942d3e80ff0f0284c92668c8a606ff2",
+   "tasks.md": "5f4ea068aeff3163fcaa4a8bb6a2da1e28d0d2810e04e903f00f70c0474e1c6c",
+   "implementation-summary.md": "f0bb7f3a9a30092af6b90c9e1cd82136f00d3b14b28f29639258bf84f56f90a1",
+   "research/research.md": "4689cbc3c0b9f758ec7aab519219adc87b4306dc8276d1b5c2a7eb862efc9f17"
+  },
+  "last_active_child_id": null,
+  "last_active_at": null
+ }
+}

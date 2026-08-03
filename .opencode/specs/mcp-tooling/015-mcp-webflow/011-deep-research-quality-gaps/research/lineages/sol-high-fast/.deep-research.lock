@@ -1,0 +1,11 @@
+{
+  "owner_pid": 32665,
+  "started_at_iso": "2026-08-03T11:56:56.849Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-03T11:56:56.849Z",
+  "packet_id": ".opencode/specs/mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps/research/lineages/sol-high-fast",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-03T11:56:56.849Z",
+  "acquire_nonce": "32665-1785758216850-a5b9fd21-3df5-4dea-8f54-8e01b1b2f29a"
+}
