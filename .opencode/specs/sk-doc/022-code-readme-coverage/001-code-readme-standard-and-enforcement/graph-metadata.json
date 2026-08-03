@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement",
+  "spec_folder": "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement",
+  "parent_id": "sk-doc/022-code-readme-coverage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code readme standard ruling",
+      "directory tree requirement readme",
+      "validate_document code folder mode",
+      "audit_readmes discovery manifest",
+      "code readme standard plan",
+      "readme enforcement plan",
+      "code readme validator mode",
+      "code readme standard tasks",
+      "readme enforcement tasks",
+      "code readme validator tasks",
+      "code readme standard checklist",
+      "readme enforcement checklist"
+    ],
+    "key_topics": [
+      "code",
+      "readme",
+      "standard",
+      "ruling",
+      "directory",
+      "tree",
+      "requirement",
+      "folder",
+      "mode",
+      "discovery",
+      "manifest",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+      ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+      ".pi/extensions/README.md",
+      ".github/workflows/README.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-code-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-and-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Task",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standard And Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directory Tree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
+    "created_at": "2026-07-30T18:58:50.551Z",
+    "last_save_at": "2026-07-30T19:14:39.704Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:d01a901e4d18c7b324898dc41c5e4e3da7fceb3c6e02ac87789850995edf376f",
+    "source_doc_hashes": {
+      "spec.md": "8f97e0e9fe242e3efa8b65197f03d80e46321ced9cc07e6b95971f7930f3d4c2",
+      "plan.md": "2aa6bd4302feeabb1bd7ccea5b04200c25e5c61c8dfc88ebc8fdd69ffca32108",
+      "tasks.md": "da8b617201d99f97a97559ccf9a88a3ccbd91d751ae8540801525ec306d6961e",
+      "checklist.md": "19dfae536faa42adddc8d0280ef3bc9844d2f383739a66c4f646b77c036b823a",
+      "decision-record.md": "44d0059289b8e5634de493c56ecc6084153959ace7d34a4fb2c6f46dab3f933d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

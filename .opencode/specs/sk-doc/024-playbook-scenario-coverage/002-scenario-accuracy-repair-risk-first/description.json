@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
+  "description": "A dedicated research pass walked existing scenarios against current behavior and found a class the census work",
+  "keywords": [
+    "dedicated",
+    "research",
+    "pass",
+    "walked",
+    "existing",
+    "scenarios",
+    "against",
+    "current",
+    "behavior",
+    "found",
+    "class",
+    "census",
+    "work"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.252Z",
+  "specId": "002",
+  "folderSlug": "scenario-accuracy-repair-risk-first",
+  "parentChain": [
+    "sk-doc",
+    "024-playbook-scenario-coverage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

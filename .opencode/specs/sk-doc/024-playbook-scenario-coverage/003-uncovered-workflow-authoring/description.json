@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/024-playbook-scenario-coverage/003-uncovered-workflow-authoring",
+  "description": "Coverage gaps in this fleet were previously argued from prose",
+  "keywords": [
+    "coverage",
+    "gaps",
+    "fleet",
+    "previously",
+    "argued",
+    "prose"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.258Z",
+  "specId": "003",
+  "folderSlug": "uncovered-workflow-authoring",
+  "parentChain": [
+    "sk-doc",
+    "024-playbook-scenario-coverage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

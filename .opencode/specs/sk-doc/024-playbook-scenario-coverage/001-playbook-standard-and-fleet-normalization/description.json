@@ -1,0 +1,33 @@
+{
+  "specFolder": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
+  "description": "Two contracts share one directory name, and only one of them is checked",
+  "keywords": [
+    "two",
+    "contracts",
+    "share",
+    "one",
+    "directory",
+    "name",
+    "only",
+    "them",
+    "checked"
+  ],
+  "lastUpdated": "2026-07-31T05:13:19.351Z",
+  "specId": "001",
+  "folderSlug": "playbook-standard-and-fleet-normalization",
+  "parentChain": [
+    "sk-doc",
+    "024-playbook-scenario-coverage"
+  ],
+  "memorySequence": 8,
+  "memoryNameHistory": [
+    "31-07-26_06-11__holding-the-pause-per-your-explicit-instruction.md",
+    "31-07-26_06-12__paused-per-your-explicit-instruction-the-goal.md",
+    "31-07-26_06-12__still-paused-per-your-instruction-no-work-is.md",
+    "31-07-26_06-12__holding-the-pause-awaiting-your-resume-or-goal.md",
+    "31-07-26_06-12__paused-holding-awaiting-your-resume-or-goal-clear.md",
+    "31-07-26_06-12__paused-holding-awaiting-resume-or-goal-clear.md",
+    "31-07-26_06-13__paused-holding-awaiting-resume-or-goal-clear.md",
+    "31-07-26_06-13__paused-holding-awaiting-resume-or-goal-clear.md"
+  ]
+}

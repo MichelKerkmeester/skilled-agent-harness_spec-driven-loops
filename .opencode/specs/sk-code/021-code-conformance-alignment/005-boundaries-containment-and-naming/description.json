@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/021-code-conformance-alignment/005-boundaries-containment-and-naming",
+  "description": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically",
+  "keywords": [
+    "four",
+    "defect",
+    "classes",
+    "share",
+    "one",
+    "property",
+    "standard",
+    "states",
+    "code",
+    "something",
+    "else",
+    "machine",
+    "cannot",
+    "mechanically"
+  ],
+  "lastUpdated": "2026-07-30T19:25:14.068Z",
+  "specId": "005",
+  "folderSlug": "boundaries-containment-and-naming",
+  "parentChain": [
+    "sk-code",
+    "021-code-conformance-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

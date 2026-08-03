@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-code/021-code-conformance-alignment",
+  "description": "The sk-code `code-opencode` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
+  "keywords": [
+    "sk-code",
+    "code-opencode",
+    "surface",
+    "defines",
+    "file-opening",
+    "contract",
+    "hard-block",
+    "comment-hygiene",
+    "gate",
+    "portability",
+    "blockers",
+    "canonical"
+  ],
+  "lastUpdated": "2026-07-30T19:25:14.037Z",
+  "specId": "021",
+  "folderSlug": "code-conformance-alignment",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

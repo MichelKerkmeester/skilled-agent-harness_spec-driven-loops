@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
+  "description": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
+  "keywords": [
+    "every",
+    "document",
+    "tells",
+    "agent",
+    "external",
+    "executor",
+    "exists",
+    "invoke",
+    "wrong",
+    "somewhere"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.267Z",
+  "specId": "001",
+  "folderSlug": "executor-and-dispatch-contract-truth",
+  "parentChain": [
+    "sk-doc",
+    "025-skill-doc-currency"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

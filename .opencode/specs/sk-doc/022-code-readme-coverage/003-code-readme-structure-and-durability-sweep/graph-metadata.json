@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep",
+  "spec_folder": "sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep",
+  "parent_id": "sk-doc/022-code-readme-coverage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code readme structural sweep",
+      "readme durability grep gate",
+      "readme separator heading conformance",
+      "code readme lane sweep",
+      "code readme structure sweep plan",
+      "readme durability sweep plan",
+      "code readme structure sweep tasks",
+      "readme durability sweep tasks",
+      "code readme structure sweep checklist",
+      "readme durability sweep checklist"
+    ],
+    "key_topics": [
+      "code",
+      "readme",
+      "structural",
+      "sweep",
+      "durability",
+      "grep",
+      "gate",
+      "separator",
+      "heading",
+      "conformance",
+      "lane",
+      "structure"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/bin/README.md",
+      ".opencode/scripts/git-hooks/lib/README.md",
+      ".pi/extensions/README.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directory Tree",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structure And Durability Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm And Re",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hard Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Construction",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four shapes repeat, and their counts overlap because most files carry more than one:",
+    "created_at": "2026-07-30T18:58:50.819Z",
+    "last_save_at": "2026-07-30T19:19:36.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:c18750d744a54dd8b1502318f9a1666d4681c5502dc2be5d017b0b239f97357d",
+    "source_doc_hashes": {
+      "spec.md": "a4b0ed63068406a8dc9395f1616a0ba7dd8254cf33c34e28018e5fcaf3cb7126",
+      "plan.md": "b872a6750e67d0892fb5c5f33c26e0982ee5a9ccf0449a690e32e9f3674a69a1",
+      "tasks.md": "7dcaaea40568a8f030ac969ae4ff03c43b456cc719947501e0f96245775bad49",
+      "checklist.md": "60f242806f4ad8f7bcec7c65348f38b43f25b6c196452374776842bcc39658f7",
+      "decision-record.md": "5f85acdcef3bd59fd2b994a3b566d28e3030a0dc0bb1d62a2fe74ca5924094f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/023-feature-catalog-integrity",
+  "description": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
+  "keywords": [
+    "feature",
+    "catalogs",
+    "canonical",
+    "inventory",
+    "skill",
+    "today",
+    "agents",
+    "read",
+    "them",
+    "decide"
+  ],
+  "lastUpdated": "2026-07-30T19:29:14.219Z",
+  "specId": "023",
+  "folderSlug": "feature-catalog-integrity",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

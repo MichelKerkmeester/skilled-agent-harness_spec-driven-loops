@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+  "spec_folder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
+  "parent_id": "sk-doc/022-code-readme-coverage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme false claims",
+      "stale readme inventory",
+      "missing code readme",
+      "broken readme link gate",
+      "code readme truth plan",
+      "readme missing orientation plan",
+      "code readme truth tasks",
+      "readme missing orientation tasks",
+      "code readme truth checklist",
+      "readme missing orientation checklist"
+    ],
+    "key_topics": [
+      "readme",
+      "false",
+      "claims",
+      "stale",
+      "inventory",
+      "missing",
+      "code",
+      "broken",
+      "link",
+      "gate",
+      "truth",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".github/workflows/README.md",
+      ".opencode/install-guides/install-scripts/README.md",
+      ".opencode/hooks/git/README.md",
+      ".opencode/scripts/git-hooks/tests/README.md",
+      ".opencode/commands/doctor/scripts/README.md",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/tests/README.md",
+      ".opencode/scripts/README.md",
+      "scripts/README.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Task",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Truth And Missing Orientation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement These",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm And Instrument",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broken Content",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Inventories",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "These are the only findings in the program with real operator cost",
+    "created_at": "2026-07-30T18:58:50.668Z",
+    "last_save_at": "2026-07-30T19:17:00.627Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c8500f24d1c39d51f77c8b0cacc30810e45c4e5406c4d83687c5ef0101bc0381",
+    "source_doc_hashes": {
+      "spec.md": "7eda66dda27bac369fcf3994cc6b2fa6d91d227b208b2c91228253f3822ad691",
+      "plan.md": "8ec7eab898bf60f4fec0cbe4d119b4fb42009db8593c0826fe4804cad5ad2c97",
+      "tasks.md": "113df828728d66e67ddda26f5aad3c6fde8570e6b8b511d81bba2b19bbcfefbe",
+      "checklist.md": "b47c6a1637defae57b74d70b1ce55d73ebc8f4560bf9158d2442223fcba89e2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
