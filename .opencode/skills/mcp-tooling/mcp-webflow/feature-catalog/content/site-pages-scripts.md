@@ -30,10 +30,12 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | scripts | `add_page_script`, `add_site_script`, `set_page_scripts`, `set_site_scripts`, freeform code upserts, `update_registered_script` | DW (ships with publish) |
 | scripts | `delete_all_site_scripts`, `delete_all_page_scripts` | DS |
 | webhooks | `list_webhooks`, `get_webhook` | RO |
-| webhooks | `create_webhook`, `delete_webhook` | DW / DS (integration config) |
+| webhooks | `create_webhook` (`site_id`, `trigger_type`, `url`), `list_webhooks`/`get_webhook` | DW / RO |
+| webhooks | `delete_webhook` | DS (integration config; delivery/auth state is on Webflow's side — no delivery log or retry surface in MCP) |
 | enterprise | `list_301_redirects`, `get_robots_txt`, `list_site_activity_logs` | RO (Enterprise plan) |
 | enterprise | redirects/robots/well-known create-update / delete | DW / DS (Enterprise plan) |
-| aiChat | `ask_webflow_ai` | RO |
+| aiChat | `ask_webflow_ai` | RO (answer quality is model-dependent; treat as advisory, verify facts against the API) |
+| utility | `webflow_guide_tool` (read-only guide resource), `get_more_tools` (surface discovery) | RO |
 | comments | `list_comment_threads`, `get_comment_thread`, `list_comment_replies` | RO |
 | comments | `create_reply` (remote) | DW |
 | rules | `webflow_guide_tool` | RO |

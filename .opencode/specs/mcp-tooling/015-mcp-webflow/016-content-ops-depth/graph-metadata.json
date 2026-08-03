@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "packet_id": "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
- "spec_folder": "mcp-tooling/015-mcp-webflow/011-deep-research-quality-gaps",
+ "packet_id": "mcp-tooling/015-mcp-webflow/016-content-ops-depth",
+ "spec_folder": "mcp-tooling/015-mcp-webflow/016-content-ops-depth",
  "parent_id": "mcp-tooling/015-mcp-webflow",
  "children_ids": [],
  "manual": {
@@ -11,79 +11,35 @@
  },
  "derived": {
   "trigger_phrases": [
-   "webflow packet audit",
-   "deep research quality gaps",
-   "mcp-webflow conciseness",
-   "webflow mcp 2.0 logic",
-   "deep research plan",
-   "quality gap audit",
-   "mcp-webflow audit",
-   "luna sol lineage",
-   "deep research tasks",
-   "deep research summary",
-   "mcp-webflow findings"
+   "webflow content ops",
+   "schema markup",
+   "whtml depth",
+   "compression lifecycle"
   ],
   "key_topics": [
    "webflow",
-   "packet",
-   "audit",
-   "deep",
-   "research",
-   "quality",
-   "gaps",
-   "mcp-webflow",
-   "conciseness",
-   "mcp",
-   "logic",
-   "plan"
+   "content",
+   "ops",
+   "schema",
+   "markup",
+   "whtml",
+   "depth",
+   "compression",
+   "lifecycle",
+   "p2s",
+   "localization",
+   "card"
   ],
   "importance_tier": "important",
   "status": "in_progress",
   "key_files": [
-   "research/findings-registry.json",
-   "research/research.md",
-   "research/resource-map.md",
-   "research/convergence-report.md",
-   "research/orchestration-summary.json",
-   "research/lineages/luna-max-fast/research.md",
-   "research/lineages/sol-high-fast/research.md",
-   "research/deep-research-config.json",
    "spec.md",
    "plan.md",
    "tasks.md",
+   "checklist.md",
    "implementation-summary.md"
   ],
   "entities": [
-   {
-    "name": "findings-registry.json",
-    "kind": "config",
-    "path": "research/findings-registry.json",
-    "source": "derived"
-   },
-   {
-    "name": "research.md",
-    "kind": "doc",
-    "path": "research/research.md",
-    "source": "derived"
-   },
-   {
-    "name": "convergence-report.md",
-    "kind": "doc",
-    "path": "research/convergence-report.md",
-    "source": "derived"
-   },
-   {
-    "name": "orchestration-summary.json",
-    "kind": "config",
-    "path": "research/orchestration-summary.json",
-    "source": "derived"
-   },
-   {
-    "name": "deep-research-config.json",
-    "kind": "config",
-    "path": "research/deep-research-config.json",
-    "source": "derived"
-   },
    {
     "name": "spec.md",
     "kind": "doc",
@@ -103,19 +59,25 @@
     "source": "derived"
    },
    {
+    "name": "checklist.md",
+    "kind": "doc",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
     "name": "implementation-summary.md",
     "kind": "doc",
     "path": "implementation-summary.md",
     "source": "derived"
    },
    {
-    "name": "Research Quality",
+    "name": "Operations Depth",
     "kind": "proper_noun",
     "path": "spec.md",
     "source": "derived"
    },
    {
-    "name": "Gap Audit",
+    "name": "Initialized Level",
     "kind": "proper_noun",
     "path": "spec.md",
     "source": "derived"
@@ -139,7 +101,7 @@
     "source": "derived"
    },
    {
-    "name": "Problem Statement Are",
+    "name": "Problem Statement",
     "kind": "proper_noun",
     "path": "spec.md",
     "source": "derived"
@@ -187,9 +149,33 @@
     "source": "derived"
    },
    {
-    "name": "raised",
+    "name": "evidence",
     "kind": "key_phrase",
     "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Checklist",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Date",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Protocol",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "Code Quality",
+    "kind": "proper_noun",
+    "path": "checklist.md",
     "source": "derived"
    },
    {
@@ -199,25 +185,25 @@
     "source": "derived"
    }
   ],
-  "causal_summary": "Are the mcp-webflow references, assets, feature-catalog snippets, and playbook snippets too",
-  "created_at": "2026-08-03T12:33:54.498Z",
-  "last_save_at": "2026-08-03T12:34:55.759Z",
+  "causal_summary": "P1/P2s: localization card promised unsupported locale management; schema-markup page actions omitted; WHTML one-row; compression lacked task lifecycle; webhooks lacked delivery contract; page-metadata example read content instead of metadata",
+  "created_at": "2026-08-03T14:01:58.620Z",
+  "last_save_at": "2026-08-03T14:01:58.620Z",
   "save_lineage": "same_pass",
   "last_accessed_at": null,
   "source_docs": [
    "spec.md",
    "plan.md",
    "tasks.md",
-   "implementation-summary.md",
-   "research/research.md"
+   "checklist.md",
+   "implementation-summary.md"
   ],
-  "source_fingerprint": "sha256:571d8b52613a57392b3836cfc1dc1af0d3d6c857cc9a28936cd47d5a5e0668d4",
+  "source_fingerprint": "sha256:35295005523015703251a58c4a966d66dad30480ee76d6839db51293ea4f54d1",
   "source_doc_hashes": {
-   "spec.md": "c32e8b0ac2da20b97fef037108c859de26bf118513f9c16d4e86581c0ad3e642",
-   "plan.md": "947fc5c22ade3da5744c76bf09b43b902942d3e80ff0f0284c92668c8a606ff2",
-   "tasks.md": "5f4ea068aeff3163fcaa4a8bb6a2da1e28d0d2810e04e903f00f70c0474e1c6c",
-   "implementation-summary.md": "f0bb7f3a9a30092af6b90c9e1cd82136f00d3b14b28f29639258bf84f56f90a1",
-   "research/research.md": "4689cbc3c0b9f758ec7aab519219adc87b4306dc8276d1b5c2a7eb862efc9f17"
+   "spec.md": "d271eaaa93078dde7d5403841d449a3cd6fe13a3b1d4b4bf6601b619b21eaef2",
+   "plan.md": "d550bd8fe25620d2d05a0c0fc7b11836e6d9f658c448e42e0eeb858534f367c0",
+   "tasks.md": "98f2785e6751abc1f25781dd753698602fa49697fddd4494da1bdd624d1bc643",
+   "checklist.md": "923ce019cbef20761c62d19c7e1499c2862b19d4875fe46fa67e07ea6346bbde",
+   "implementation-summary.md": "26760b69c3d05703676e0f796170c05b657e38b2b0a31a24cf6ac20d14673720"
   },
   "last_active_child_id": null,
   "last_active_at": null

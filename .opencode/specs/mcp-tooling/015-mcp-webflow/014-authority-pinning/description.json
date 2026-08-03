@@ -1,0 +1,31 @@
+{
+ "specFolder": "mcp-tooling/015-mcp-webflow/014-authority-pinning",
+ "description": "P0-6: `webflow-mcp-server@latest` is not reproducible; hosted docs, OSS README, and packet disagreed on endpoint and capability provenance",
+ "keywords": [
+  "p0-6",
+  "webflow-mcp-server",
+  "latest",
+  "reproducible",
+  "hosted",
+  "docs",
+  "oss",
+  "readme",
+  "packet",
+  "disagreed",
+  "endpoint",
+  "capability",
+  "provenance"
+ ],
+ "lastUpdated": "2026-08-03T14:01:55.602Z",
+ "specId": "014",
+ "folderSlug": "authority-pinning",
+ "parentChain": [
+  "mcp-tooling",
+  "015-mcp-webflow"
+ ],
+ "memorySequence": 1,
+ "memoryNameHistory": [
+  "03-08-26_15-01__phase-014-authority-pinning-closed-findings.md"
+ ],
+ "level": 2
+}

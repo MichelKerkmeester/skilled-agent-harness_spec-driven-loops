@@ -1,0 +1,210 @@
+{
+ "schema_version": 1,
+ "packet_id": "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
+ "spec_folder": "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
+ "parent_id": "mcp-tooling/015-mcp-webflow",
+ "children_ids": [],
+ "manual": {
+  "depends_on": [],
+  "supersedes": [],
+  "related_to": []
+ },
+ "derived": {
+  "trigger_phrases": [
+   "webflow troubleshooting",
+   "mode forbidden",
+   "error contract"
+  ],
+  "key_topics": [
+   "webflow",
+   "troubleshooting",
+   "mode",
+   "forbidden",
+   "error",
+   "contract",
+   "p2s",
+   "stopped",
+   "auth",
+   "modeforbidden",
+   "dynamic",
+   "tools"
+  ],
+  "importance_tier": "important",
+  "status": "in_progress",
+  "key_files": [
+   "spec.md",
+   "plan.md",
+   "tasks.md",
+   "checklist.md",
+   "implementation-summary.md"
+  ],
+  "entities": [
+   {
+    "name": "spec.md",
+    "kind": "doc",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "plan.md",
+    "kind": "doc",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "tasks.md",
+    "kind": "doc",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "checklist.md",
+    "kind": "doc",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "implementation-summary.md",
+    "kind": "doc",
+    "path": "implementation-summary.md",
+    "source": "derived"
+   },
+   {
+    "name": "Initialized Level",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Feature Specification",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Parent Spec",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Handoff Criteria",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Problem Statement",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Purpose Remediate",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
+    "name": "Implementation Plan",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Clean Architecture",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Key Components",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Data Flow",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Current Role",
+    "kind": "proper_noun",
+    "path": "plan.md",
+    "source": "derived"
+   },
+   {
+    "name": "Task Format",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Task Notation",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Completion Criteria",
+    "kind": "proper_noun",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "ModeForbidden",
+    "kind": "key_phrase",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "evidence",
+    "kind": "key_phrase",
+    "path": "tasks.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Checklist",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Date",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   },
+   {
+    "name": "Verification Protocol",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
+   }
+  ],
+  "causal_summary": "P1/P2s: troubleshooting stopped at auth/429; ModeForbidden, dynamic tools, and migration/input changes were uncovered; README scenario count was stale",
+  "created_at": "2026-08-03T14:02:00.030Z",
+  "last_save_at": "2026-08-03T14:02:00.030Z",
+  "save_lineage": "same_pass",
+  "last_accessed_at": null,
+  "source_docs": [
+   "spec.md",
+   "plan.md",
+   "tasks.md",
+   "checklist.md",
+   "implementation-summary.md"
+  ],
+  "source_fingerprint": "sha256:d6003fa21f8607ec7f7008cbdfdd2dd460a14eac04b890b6d17386ffe195bc12",
+  "source_doc_hashes": {
+   "spec.md": "a7e1dbe6e9026e1ebbb859fb834d6f636db82fdd35498d4a303ae8eadf9625c8",
+   "plan.md": "ac5115a13ae29582ac9c54376b2e6d84c8f82c136d6a55b8275ca2961f36cc7a",
+   "tasks.md": "ae5ec967cd8246401385faa6168062cf1f96e846fdd0ddf63e7f562c05c76f4d",
+   "checklist.md": "8fd7f89f3cdb1ab0c63edb77ec571e06ecf58b47ba84be3cf9d37c29437a8c3d",
+   "implementation-summary.md": "ee259cb27215be353379fd8c5dce767fc1f0888fa24a85fbeb139ab68ad01f51"
+  },
+  "last_active_child_id": null,
+  "last_active_at": null
+ }
+}

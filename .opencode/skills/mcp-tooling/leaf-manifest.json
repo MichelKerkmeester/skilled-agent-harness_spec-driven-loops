@@ -60,6 +60,8 @@
         "assets/brat-data-entry.example.json",
         "assets/plugins/beancount-finance/example.beancount",
         "assets/plugins/beancount-finance/example.data.json",
+        "assets/plugins/health-md/healthmd-export.example.json",
+        "assets/plugins/iconic/iconic-rules.example.json",
         "assets/plugins/obsidian-tables/example.table.md",
         "assets/workflows.md",
         "references/mcp-tools.md",
@@ -68,6 +70,14 @@
         "references/plugins/beancount-finance/data-model.md",
         "references/plugins/beancount-finance/troubleshooting.md",
         "references/plugins/beancount-finance/workflows.md",
+        "references/plugins/health-md/data-model.md",
+        "references/plugins/health-md/health-md.md",
+        "references/plugins/health-md/troubleshooting.md",
+        "references/plugins/health-md/workflows.md",
+        "references/plugins/iconic/data-model.md",
+        "references/plugins/iconic/iconic.md",
+        "references/plugins/iconic/troubleshooting.md",
+        "references/plugins/iconic/workflows.md",
         "references/plugins/obsidian-tables/data-model.md",
         "references/plugins/obsidian-tables/obsidian-tables.md",
         "references/plugins/obsidian-tables/troubleshooting.md",
@@ -106,7 +116,8 @@
         "references/designer-capabilities.md",
         "references/mcp-wiring.md",
         "references/tool-surface.md",
-        "references/troubleshooting.md"
+        "references/troubleshooting.md",
+        "references/version-fixture.md"
       ],
       "packet": "mcp-webflow",
       "workflowMode": "mcp-webflow"

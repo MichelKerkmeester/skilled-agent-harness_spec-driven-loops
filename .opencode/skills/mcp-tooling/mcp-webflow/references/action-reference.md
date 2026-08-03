@@ -239,7 +239,7 @@ without required parameters are marked `—`.
 | `list_301_redirects` | `site_id` | RO |
 | `list_site_activity_logs` | `site_id` | RO |
 | `remove_well_known_files` | `site_id, fileNames` | DS |
-| `replace_robots_txt` | `site_id` | DW |
+| `replace_robots_txt` | `site_id` | DS |
 | `update_301_redirect` | `site_id, redirect_id, fromUrl, toUrl` | DW |
 | `update_robots_txt` | `site_id` | DW |
 
@@ -316,6 +316,9 @@ without required parameters are marked `—`.
 ## 14. SCRIPTS
 
 ### `data_scripts_tool` — read, write
+
+Registration and application actions **stage** the site's script configuration; staged changes
+ship with the next `publish_site` (separate PB gate). Clear/remove actions are destructive.
 
 | Action | Required parameters | Class |
 |--------|---------------------|-------|

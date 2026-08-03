@@ -1,0 +1,34 @@
+{
+ "specFolder": "mcp-tooling/015-mcp-webflow/016-content-ops-depth",
+ "description": "P1/P2s: localization card promised unsupported locale management; schema-markup page actions omitted; WHTML one-row; compression lacked task",
+ "keywords": [
+  "p2s",
+  "localization",
+  "card",
+  "promised",
+  "unsupported",
+  "locale",
+  "management",
+  "schema-markup",
+  "page",
+  "actions",
+  "omitted",
+  "whtml",
+  "one-row",
+  "compression",
+  "lacked",
+  "task"
+ ],
+ "lastUpdated": "2026-08-03T14:01:58.620Z",
+ "specId": "016",
+ "folderSlug": "content-ops-depth",
+ "parentChain": [
+  "mcp-tooling",
+  "015-mcp-webflow"
+ ],
+ "memorySequence": 1,
+ "memoryNameHistory": [
+  "03-08-26_15-01__phase-016-content-ops-depth-closed-findings.md"
+ ],
+ "level": 2
+}

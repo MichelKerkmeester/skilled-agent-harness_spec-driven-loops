@@ -1,6 +1,6 @@
 ---
 title: "Example: read CMS content and page metadata"
-description: "Read-only Webflow session: discover tools, list CMS items, read page metadata. No confirmation gates needed."
+description: "Read-only Webflow session: discover tools, list CMS items, read page metadata via `get_page_metadata`. No confirmation gates needed."
 trigger_phrases:
   - "webflow read example"
   - "webflow cms read"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Example: read CMS content and page metadata - Worked Example
 
-Read-only Webflow session: discover tools, list CMS items, read page metadata — no confirmation gates needed.
+Read-only Webflow session: discover tools, list CMS items, read page metadata (`get_page_metadata`) — no confirmation gates needed.
 
 ---
 

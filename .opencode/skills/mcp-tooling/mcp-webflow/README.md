@@ -33,7 +33,7 @@ version: 1.3.0.0
 Webflow MCP 2.0 exposes Webflow's Data API v2 and Designer API as bounded combined tools. This
 packet documents the complete remote surface (31 tools / 220 actions with required parameters),
 the local OSS baseline (18 modules), the frozen risk classes (RO/DW/DS/PB/DP/UNKNOWN) and their
-gates, the least-privilege auth model, and 16 deterministic manual-testing scenarios. The
+gates, the least-privilege auth model, and 18 deterministic manual-testing scenarios. The
 transport never mutates this workspace (`mutatesWorkspace: false`; Write/Edit/Task forbidden);
 all mutations land in Webflow's cloud under the frozen gates. Designer-family operations always
 pair with `sk-design`.

@@ -134,7 +134,7 @@ drift.
 
 Treat the deployed remote surface and the OSS snapshot as **different surfaces** until a
 version-specific reconciliation lands; the local stdio server is the deterministic baseline for
-automation. Record the tested endpoint + version in `mcp-servers/webflow-mcp/README.md` after the
+automation. Record the tested endpoint + version in [`version-fixture.md`](version-fixture.md) (and `mcp-servers/webflow-mcp/README.md`) after the
 first authenticated session.
 
 ---
@@ -175,8 +175,11 @@ first authenticated session.
 
 - Read-only and draft-safe mutations pass without a gate (scope check only).
 - Destructive (`delete_*`, `remove_*`), publish (`publish_site`, `publish_collection_items`,
-  publish-status changes), and deploy (`run_workflow`, script registration) classes **require
-  operator confirmation** and rollback evidence.
+  publish-status changes), and deploy (`run_workflow`) classes **require operator confirmation**
+  and rollback evidence.
+- Script registration/application is **draft-write staging** (script config updates ship with the
+  next publish) — not itself a deploy; custom-code changes still need confirmation + read-back
+  evidence because they affect the production site on publish.
 - Publish from smoke/test flows to `publishToWebflowSubdomain` only — never `customDomains`;
   single `pageId` limits blast radius.
 - Nothing auto-publishes; CMS mutations are not implicitly draft-safe.

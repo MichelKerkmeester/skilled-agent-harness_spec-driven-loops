@@ -1,6 +1,6 @@
 ---
 title: "Sitemap, scripts, assets, WHTML"
-description: "Webflow sitemap/scripts/assets/whtml capability card: bulk sitemap status, the 20-action scripts surface, asset compression, and WHMTL building."
+description: "Webflow sitemap/scripts/assets/whtml capability card: bulk sitemap status, the 20-action scripts surface, asset compression task lifecycle, WHTML building, and schema-markup page actions."
 trigger_phrases: ["webflow sitemap", "webflow scripts", "webflow assets", "webflow whtml"]
 contextType: implementation
 version: 1.0.0.0
@@ -45,13 +45,24 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 
 | Action | Class |
 |--------|-------|
-| `insert_whtml` (page building via WHTML) | DW (design-affecting → sk-design pairing) |
+| `insert_whtml` (`build_label`, `parent_element_id`, `creation_position`, `html`) | DW (design-affecting → sk-design pairing) |
+
+### Schema markup (pages)
+
+`bulk_update_pages_schema_markup` and `query_pages_schema_markup` (both `site_id`, `pages[]`)
+read/write structured-data markup per page — DW with a write preview of the affected page list
+(bulk blast radius), RO reads ungated.
 
 ### Semantics
 
-- Scripts ship with publish: script registration is publish-adjacent; clearing scripts is DS.
+- Scripts stage with publish: registration/application is DW staging; clearing scripts is DS;
+  changes ship with the next `publish_site` (see `references/mcp-wiring.md` §10).
 - Bulk sitemap updates: confirm the selection before writing (bulk blast radius).
-- `insert_whtml` builds page structure — pair with `sk-design` for layout intent.
+- `insert_whtml` builds page structure — pair with `sk-design` for layout intent; WHTML has no
+  batching or read-back action on the surface, so verify via `get_element_snapshot` after insert.
+- Asset compression is a task lifecycle: request compression → poll `list_compression_tasks` /
+  `get_compression_task` → confirm the format result (`compress_assets` takes `format`) before
+  replacing assets.
 
 ### Example prompts
 

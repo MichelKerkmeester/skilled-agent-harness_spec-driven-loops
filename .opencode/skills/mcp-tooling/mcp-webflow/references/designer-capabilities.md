@@ -54,7 +54,7 @@ All of these are **canvas-bound**: they read or move the live Designer state, so
 The canonical Designer workflow is a five-step loop, always starting from what is true on the canvas rather than from assumptions about the tree:
 
 1. **Snapshot** — `get_element_snapshot` (`id {component, element}`, RO) captures the element's rendered state before any change.
-2. **Discover** — `query_elements` (`queries[]`, RO) or `get_all_elements` (`pageId`, `siteId`, RO) locates the target in the tree.
+2. **Discover** — `query_elements` (`queries[]`, RO) or `get_all_elements` (`pageId`, `siteId`, RO) locates the target in the tree. Queries are multi-dimension: element type, display name, tag, and attributes; the target-id shape is always `{component, element}` — a query result that does not resolve to that shape must not be used as a mutation target.
 3. **Focus** — `select_element` or `open_canvas` puts the target in view so the operator and the agent agree on what is about to change.
 4. **Mutate** — a draft-write (DW) action from the element/style/variable/component sets (§4–§6), with the target id and a write preview.
 5. **Verify** — snapshot or query read-back confirms the postcondition; a DS action inside the loop requires operator confirmation plus a rollback statement (version-history restore) before it runs.
@@ -88,6 +88,14 @@ Semantics that matter:
 Styles are named, reusable property sets; design tokens are typed variables collected into collections with modes. The two compose: styles can be bound to variable modes so a theme switch re-skins every element using the style.
 
 **Style lifecycle** (`data_style_tool`): `create_style` (`name`, `properties[]`, DW), `update_style`, `rename_style`, `remove_style` (DS), reads `query_styles` / `get_styles`. Mode bindings: `set_style_variable_mode` (`style_name`, `variable_collection_id`, `mode_id`, DW), `get_style_variable_modes`, `remove_style_variable_mode` / `remove_all_style_variable_modes` (DS).
+
+**Class semantics**: styles are **named classes** in the Designer's class system — a class can
+carry a combo-class chain (multiple class names on one element) and raw-CSS
+(designer-applied custom CSS). `set_style` with `style_names` assigns the class chain; element
+styling must therefore distinguish: (a) a named class applied to an element, (b) a combo-class
+(additional class layered on the same element), and (c) raw-CSS overrides that are invisible to
+the style table. Read back the resolved style state (`get_styles` / snapshot) after any class
+change — raw-CSS overrides and breakpoint-specific values only surface on read-back.
 
 **Token lifecycle** (`data_variable_tool`): collections `create_variable_collection` / `reorder_variable_collection` (DW); modes `create_variable_mode` (DW); typed variables — color, font family, number, percentage, size — each with `create_*` / `update_*` (DW) and `delete_variable` (DS); reads `get_variable_collections`, `get_variables`, `query_variables`.
 
@@ -127,6 +135,9 @@ Breakpoints are **canvas-bound** state: `get_all_breakpoints` reads the live Des
 - Styles carry `style_names` and are defined once; per-breakpoint behavior comes from the style system inside the Designer (a style's properties resolve per breakpoint in the canvas).
 - An element's responsive behavior is therefore changed by editing which styles apply (`set_style`) and what those styles contain (`create_style` / `update_style`), not by a dedicated responsive action.
 - Snapshot verification is breakpoint-aware: `get_element_snapshot` reflects the current canvas mode, so a responsive change should be verified at the target breakpoint with the canvas on that breakpoint.
+- **Version-qualified**: breakpoint reads are canvas-bound and version-dependent — verify
+  `get_all_breakpoints` against the pinned server version (see `version-fixture.md`) before
+  relying on its result; the local OSS baseline exposes breakpoints read-only.
 
 ---
 
@@ -134,7 +145,10 @@ Breakpoints are **canvas-bound** state: `get_all_breakpoints` reads the live Des
 
 **Assets** feed the visual layer: `list_assets`, `get_asset`, `get_asset_preview`, `create_asset` (`file_name`, `file_hash`), `create_asset_folder`, `update_asset`, `update_asset_folder`, `upload_image_by_url` (DW), `compress_assets` (`format` — WebP/AVIF pipeline, DW), `list_compression_tasks` / `get_compression_task`, and `delete_asset` (DS). Elements bind to assets with `set_image_asset` (`image_asset_id`); the edit loop for an image swap is: upload → list to confirm the asset id → `set_image_asset` → snapshot verify.
 
-**Pages** are the canvas context and the branch vehicle: `create_page` (`siteId`, `title`, `slug`), `create_page_folder`, `update_page_settings`, `switch_page` (canvas-bound), plus branches `create_branch`, `get_branch_details`, `list_branches`, `get_branch_parent_page_id`, `get_current_branch_id` (all RO/DW) and `delete_branch` (DS). Branches are parallel edit contexts: switching the canvas to a branch isolates Designer edits from the main page until the branch merges — a natural staging pattern for design work.
+**Pages** are the canvas context and the branch vehicle: `create_page` (`siteId`, `title`, `slug`), `create_page_folder`, `update_page_settings`, `switch_page` (canvas-bound), plus branches `create_branch`, `get_branch_details`, `list_branches`, `get_branch_parent_page_id`, `get_current_branch_id` (all RO/DW) and `delete_branch` (DS). Branches are parallel edit contexts: switching the canvas to a branch isolates Designer edits
+from the main page. The documented surface covers create/list/details/delete only — **no merge
+operation exists in the MCP surface**; merging happens in the Webflow UI/Designer. Do not imply
+an MCP merge; document branch state and hand merge to the operator. `delete_branch` is DS.
 
 ---
 

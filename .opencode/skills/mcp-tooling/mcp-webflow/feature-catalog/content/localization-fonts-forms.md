@@ -1,6 +1,6 @@
 ---
 title: "Localization, fonts, forms"
-description: "Webflow localization/fonts/forms capability card: locale management, font CRUD, form submission reads."
+description: "Webflow localization/fonts/forms capability card: secondary-locale content, font CRUD, form submission reads — locale administration is out of the MCP surface."
 trigger_phrases: ["webflow localization", "webflow fonts", "webflow forms"]
 contextType: implementation
 version: 1.0.0.0
@@ -10,8 +10,9 @@ version: 1.0.0.0
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
-Site-level content capabilities beyond pages/CMS: localization (locales + secondary-locale
-content), fonts (upload/manage site fonts), and forms (read submissions).
+Site-level content capabilities beyond pages/CMS: localization (secondary-locale
+content only — **locale administration lives in the Webflow UI, not the MCP surface**), fonts
+(upload/manage site fonts), and forms (read submissions).
 
 ---
 ## 2. HOW IT WORKS

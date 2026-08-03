@@ -52,7 +52,7 @@ FAILURE MODES:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 11 of 11 |
 | **Predecessor** | `010-designer-capabilities` |
-| **Successor** | None (remediation phase follows on findings) |
+| **Successor** | `012-cms-draft-safety` |
 | **Handoff Criteria** | 10 iterations completed; canonical research.md + registry + resource-map + convergence report produced; findings severity-normalized |
 
 <!-- /ANCHOR:metadata -->

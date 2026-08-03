@@ -1,0 +1,34 @@
+{
+ "specFolder": "mcp-tooling/015-mcp-webflow/012-cms-draft-safety",
+ "description": "P0-1/P0-2 from the deep-research audit: the packet labeled draft payloads without an explicit `draft: true` (OSS adapter defaults omitted to live),",
+ "keywords": [
+  "p0-1",
+  "p0-2",
+  "deep-research",
+  "audit",
+  "packet",
+  "labeled",
+  "draft",
+  "payloads",
+  "without",
+  "explicit",
+  "true",
+  "oss",
+  "adapter",
+  "defaults",
+  "omitted",
+  "live"
+ ],
+ "lastUpdated": "2026-08-03T14:01:52.732Z",
+ "specId": "012",
+ "folderSlug": "cms-draft-safety",
+ "parentChain": [
+  "mcp-tooling",
+  "015-mcp-webflow"
+ ],
+ "memorySequence": 1,
+ "memoryNameHistory": [
+  "03-08-26_15-01__phase-012-cms-draft-safety-closed-findings.md"
+ ],
+ "level": 2
+}

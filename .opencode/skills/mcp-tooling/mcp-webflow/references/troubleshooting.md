@@ -87,7 +87,28 @@ Designer Bridge App failures, surface drift, and redaction rules. Run `../script
   guess.
 
 ---
-## 8. WORKFLOW AND WEBHOOK ISSUES
+## 8. MODE FORBIDDEN AND DYNAMIC-TOOL ERRORS
+
+- **`ModeForbidden`-style rejections**: the remote surface can refuse an action because of the
+  current mode/role or because the action requires Enterprise/permission scopes. Re-check the
+  operator's role and the action's Enterprise requirement (`action-reference.md` §9) before
+  retrying; a repeated refusal is a permissions problem, not a retry problem.
+- **Dynamic tools**: the surfaced tool set can change with the pinned server version (see
+  `version-fixture.md`). A "missing tool" is first a version-drift check — re-run discovery —
+  before any manual registration change.
+- **Migration/input changes**: Webflow's changelog has broken parameters within days (e.g.
+  `translatable` → secondary-locale id). When a documented parameter returns 400, check the
+  changelog for a recent contract change before assuming a payload bug.
+
+### Structured Error Contract
+
+Errors are not all 401/403/429: expect structured failures (validation 400s with field-level
+details, 404s for stale ids, 500s when exclusions cannot resolve). Capture the full error body,
+the exact action + parameters, and the server version; triage by class — contract drift
+(changelog), stale target (re-discover), or scope (permissions) — and record the resolution in
+the scenario evidence.
+
+## 9. WORKFLOW AND WEBHOOK ISSUES
 
 - `run_workflow` fails: confirm the workflow id and required inputs (`flows`/`workflows` list is
   RO); the blast radius depends on the workflow definition — state it in the confirmation.
@@ -95,14 +116,14 @@ Designer Bridge App failures, surface drift, and redaction rules. Run `../script
   class.
 
 ---
-## 9. REDACTION RULES
+## 10. REDACTION RULES
 
 - Never commit or log token values; redact tool output containing them.
 - Never print the resolved `${WEBFLOW_TOKEN}` value (doctor.sh reports presence only).
 - Never record account identifiers in fixtures.
 
 ---
-## 10. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 - [`mcp-wiring.md`](mcp-wiring.md) — wiring and auth details
 - [`action-reference.md`](action-reference.md) — action inventory
