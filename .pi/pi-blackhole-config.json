@@ -1,0 +1,4 @@
+{
+  "_comment": "Project override (shallow-merges over the global blackhole config). Auto-compaction must not fire before 272,000 tokens.",
+  "compactAfterTokens": 272000
+}

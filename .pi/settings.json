@@ -1,6 +1,44 @@
 {
+  "lastChangelogVersion": "0.83.0",
+  "theme": "dark",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "max",
+  "showHardwareCursor": true,
+  "autocompleteMaxVisible": 20,
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "always",
+  "treeFilterMode": "default",
+  "enabledModels": [
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-5.6-luna",
+    "deepseek/deepseek-v4-pro",
+    "deepseek/deepseek-v4-flash",
+    "xiaomi/mimo-v2.5-pro",
+    "xiaomi/mimo-v2.5-pro-ultraspeed",
+    "minimax/MiniMax-M3"
+  ],
   "packages": [
-    "npm:pi-mcp-extension",
+    "npm:pi-blackhole",
+    "npm:pi-compaction-model",
+    "npm:pi-gpt-fast-mode",
+    "npm:pi-plan",
+    "npm:pi-statusline",
     "npm:pi-subagents"
-  ]
+  ],
+  "hideThinkingBlock": false,
+  "compaction": {
+    "enabled": false
+  },
+  "statusLine": {
+    "type": "command",
+    "command": ".pi/statusline.sh"
+  },
+  "compactionModel": {
+    "model": "deepseek/deepseek-v4-flash",
+    "thinkingLevel": "max"
+  }
 }
