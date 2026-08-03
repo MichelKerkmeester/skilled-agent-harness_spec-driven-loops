@@ -1,0 +1,30 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+  "description": "Phase parent for the mcp-obsidian playbook validation run: execute every manual-testing-playbook scenario against a live throwaway vault (headless",
+  "keywords": [
+    "phase",
+    "parent",
+    "mcp-obsidian",
+    "playbook",
+    "validation",
+    "run",
+    "execute",
+    "every",
+    "manual-testing-playbook",
+    "scenario",
+    "against",
+    "live",
+    "throwaway",
+    "vault",
+    "headless"
+  ],
+  "lastUpdated": "2026-08-03T04:10:31.325Z",
+  "specId": "010",
+  "folderSlug": "playbook-validation",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

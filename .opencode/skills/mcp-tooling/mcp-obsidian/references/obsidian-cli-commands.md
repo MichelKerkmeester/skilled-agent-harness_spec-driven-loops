@@ -106,13 +106,13 @@ notesmd-cli set-default-vault work   # Pin the vault this session will operate o
 |---------|-------------|-------|
 | `notesmd-cli list` | List notes in the (default) vault | Add `--vault <name>` to target another |
 | `notesmd-cli print <note>` | Print a note's contents to stdout | Machine-readable; safe to pipe |
-| `notesmd-cli search <query>` | Search note **titles/names** for a term | Fast filename-level match `VERIFY` |
+| `notesmd-cli search <query>` | Search note **titles/names** for a term | **Broken in v0.3.6 (validated):** returns "Cannot find note in vault" even for on-disk notes. Use `list` + filter or `search-content` for name lookups. |
 | `notesmd-cli search-content <query>` | Full-text search across note **bodies** | Slower; scans file contents |
 
 **Agent pattern — read before you write:**
 ```bash
-notesmd-cli search "Sprint"           # Find candidate notes by name
-notesmd-cli search-content "blocker"  # Find notes mentioning a term in the body
+notesmd-cli list | grep -i "Sprint"   # Find notes by name — notesmd-cli search (title) is broken in v0.3.6
+notesmd-cli search-content "blocker"  # Find notes mentioning a term in the body (reliable)
 notesmd-cli print "Sprint Board"      # Read the full note before editing
 ```
 

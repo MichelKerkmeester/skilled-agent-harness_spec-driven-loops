@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Routes Obsidian between two CLI profiles — headless notesmd-cli (no running app) and the app-backed official obsidian CLI — plus the cyanheads Obsidian MCP for live-app note ops. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.1.0.0
+version: 1.1.0.1
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api -->
@@ -112,7 +112,7 @@ def resolve_execution_profile(request, runtime):
 |---|---|---|---|
 | Open a note | notesmd-cli | `notesmd-cli open "<name>"` | `obsidian` CLI (in live app) |
 | Open/append daily note | notesmd-cli | `notesmd-cli daily` | MCP `obsidian_write_note` |
-| Search by note name | notesmd-cli | `notesmd-cli search "<query>"` | MCP `obsidian_search_notes` |
+| Search by note name | notesmd-cli | `notesmd-cli list` + filter (`search` title-lookup is broken in v0.3.6) | MCP `obsidian_search_notes` |
 | Search note contents | notesmd-cli | `notesmd-cli search-content "<query>"` | MCP `obsidian_search_notes` |
 | List notes | notesmd-cli | `notesmd-cli list` | MCP `obsidian_search_notes` |
 | Print a note to stdout | notesmd-cli | `notesmd-cli print "<name>"` | MCP `obsidian_get_note` |
@@ -443,7 +443,7 @@ const result = await call_tool_chain({
 - Requires Code Mode MCP to be configured
 - `OBSIDIAN_VERIFY_SSL` defaults to `false`; only enable it behind a trusted TLS endpoint
 
-**Headless MCP alternative:** StevenStavrakis' `obsidian-mcp` (npm @1.0.6) is filesystem-based and can run with no app/token — treat that no-app/no-token claim as `VERIFY` before relying on it. Local REST API's built-in Streamable HTTP `/mcp/` endpoint via `npx mcp-remote` (npm @0.1.38) is a later target, pending Code Mode HTTP-manual support.
+**Alternative MCP servers (two exist — do not conflate the tool names):** (1) **Local REST API's own built-in MCP** — the `obsidian-local-rest-api` plugin (v5.1.0+) serves a Streamable HTTP MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read`/`vault_write`/`vault_patch`/`search_simple`/`tag_list`/…) — validated working, needs no extra npm package, and is a DIFFERENT surface from the cyanheads `obsidian_*` tools. (2) StevenStavrakis' `obsidian-mcp` (npm @1.0.6) is filesystem-based — treat its no-app/no-token claim as `VERIFY`.
 
 ---
 
@@ -484,7 +484,7 @@ const result = await call_tool_chain({
 - [ ] `notesmd-cli --version` prints a version string
 - [ ] `notesmd-cli list-vaults` shows at least one registered vault with a default
 - [ ] `notesmd-cli list` returns notes for the default vault (empty list is valid)
-- [ ] `notesmd-cli search "<query>"` returns matching note names (or an empty result)
+- [ ] `notesmd-cli search-content "<query>"` returns body matches (title `search` is broken in v0.3.6 — use `list` + filter for names)
 - [ ] For in-app work: `obsidian "<vault/path>"` opens the note in the running app
 - [ ] For MCP work: a Code Mode `obsidian.obsidian_get_note` call returns note content as JSON
 

@@ -80,6 +80,8 @@ Use **`notesmd-cli`** (the headless CLI) when:
 
 The server reports **14 tools total**. The five below are the confirmed `obsidian_*` core; the remaining nine are **not enumerated in this pass** — run `list_tools()` to enumerate them and `tool_info()` to confirm each signature before use.
 
+> **Two different MCP servers — do not conflate the tool names.** This catalog is the **cyanheads `obsidian-mcp-server`** (`obsidian_*` tools, launched via `npx`). The `obsidian-local-rest-api` plugin (v5.1.0+) ALSO ships its **own** built-in MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read` / `vault_write` / `vault_patch` / `vault_move` / `search_simple` / `search_query` / `tag_list` / `command_list` / … — validated live). If `OBSIDIAN_BASE_URL` points at the plugin's own `/mcp/`, expect `vault_*` names, not `obsidian_*`. Same Local REST API core, different server + tool surface — always confirm with `list_tools()`.
+
 ### Confirmed core (5 tools)
 
 | Tool (append to `obsidian.obsidian_`) | Description |
