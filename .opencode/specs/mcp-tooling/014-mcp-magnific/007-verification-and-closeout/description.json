@@ -1,0 +1,35 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-magnific/007-verification-and-closeout",
+  "description": "A registered remote MCP can appear complete while authentication fails, schemas drift, routing selects the wrong mode, credits are spent without",
+  "keywords": [
+    "registered",
+    "remote",
+    "mcp",
+    "appear",
+    "complete",
+    "while",
+    "authentication",
+    "fails",
+    "schemas",
+    "drift",
+    "routing",
+    "selects",
+    "wrong",
+    "mode",
+    "credits",
+    "spent",
+    "without"
+  ],
+  "lastUpdated": "2026-08-02T15:18:02.175Z",
+  "specId": "007",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-magnific"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_16-18__phase-007-verification-and-closeout-scaffolded.md"
+  ]
+}

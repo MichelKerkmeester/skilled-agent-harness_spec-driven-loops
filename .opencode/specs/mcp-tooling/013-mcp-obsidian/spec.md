@@ -128,6 +128,14 @@ Aggregate file scope. Per-phase detail lives in each child plan.
 | 7 | 007-hub-registration-and-advisor/ | Five hub files + `smart-routing.md` + leaf-manifest regen + compiled-routing re-mint + `advisor_rebuild` + repo README | Pending |
 | 8 | 008-verification-and-closeout/ | `validate.sh --recursive --strict`, `parent-skill-check` exit 0, route-validate, advisor-recall test + live CLI/MCP smoke, benchmark, closeout | Pending |
 | 9 | 009-community-plugin-support/ | Knowledge / logic / workflows so the mode's AI can operate three community plugins at the vault **file layer**: obsidian-flat-financing (Beancount `.beancount`), obsidian-tables (`.table.md` JSON), obsidian42-BRAT (beta-plugin installer). Authors `references/` + `assets/` that Phase 5 folds into the shipped skill. | Pending |
+| 10 | 010-playbook-validation/ | Live validation run of the manual-testing-playbook against a real throwaway vault (headless CLI, MCP, plugins) plus the mcp-tooling routing benchmark, across five phase children. | In Progress |
+| 11 | 011-plugin-installation/ | Install health-md (true community plugin) file-layer into all three vaults. | In Progress |
+| 12 | 012-skill-support-extension/ | Deep research on health-md (**cli-codex GPT-5.6 SOL HIGH FAST**) → extend the mode's plugin knowledge: per-plugin references, router updates, feature-catalog + playbook entries (OBS-014, live-run), asset, changelog → mode v1.2.0.0. | In Progress |
+| 13 | 013-iconic-integration/ | Integrate the Iconic icon plugin (v1.1.10, rulebook already in all vaults) into the mode: per-plugin references, router updates, catalog + playbook entries (OBS-015), asset, changelog → mode v1.3.0.0. | In Progress |
+| 14 | 014-health-md-reference-remediation/ | Implement the deep-research remediation order in the four health-md reference docs: real `health-viz` fence contract, mock-fallback trap, Apple/Android model, narrowed write authority, file-layer separation, privacy contract. | In Progress |
+| 15 | 015-health-md-fixtures-and-blocks/ | Replace the example fixture with a schema-true v7 artifact and add tested `health-viz` render-block examples; changelog v1.4.0.0. | In Progress |
+| 16 | 016-health-md-catalog-and-playbook/ | Rework OBS-014 (health-viz contract, mock-fallback guard, authentic-source verification) + the health-md feature-catalog card. | In Progress |
+| 17 | 017-health-md-live-validation-closeout/ | Execute the remediated OBS-014 live (mock-fallback guard + authentic verification), validate phases 014-017, close out. | In Progress |
 
 ### Phase Transition Rules
 
@@ -157,7 +165,7 @@ Aggregate file scope. Per-phase detail lives in each child plan.
 ## 4. OPEN QUESTIONS
 
 - **Build vs adopt (per surface):** resolved in Phase 1. Preliminary landscape to validate — an Obsidian community CLI exists (e.g. the terminal workflow described at dsebastien.net) and multiple third-party Obsidian MCP servers exist on npm; several depend on the **Local REST API** community plugin. Phase 1 confirms the best candidate for each surface and whether either must be built.
-- **Vault access in this environment:** does the target environment have an Obsidian vault (and Local REST API plugin + token) available? If not, the MCP path is authored as documented-but-unproven (same posture `mcp-click-up` took) and live smoke is deferred.
+- **Vault access in this environment:** does the target environment have an Obsidian vault (and Local REST API plugin + token) available? If not, the MCP path is authored as documented-but-unproven (same posture `mcp-click-up` took) and live smoke is deferred. **Resolved 2026-08-03:** three vaults on this machine (MEGA/Documents/Obsidian, iCloud "Michel Kerkmeester", AI_Systems/Barter); Local REST API v5.1.0 in the first two.
 - **Classification:** decided as a **workflow** mode (`cli-plus-mcp`, `mutatesWorkspace: true`) like `mcp-click-up`, since Obsidian operations read and write a vault. Revisit only if research shows the surface is read-only.
 - **CLI transport:** is the chosen CLI a PATH binary (invoked via Bash, registered nowhere) like `cupt`, or does it need its own config store? Phase 3 decides.
 <!-- /ANCHOR:questions -->

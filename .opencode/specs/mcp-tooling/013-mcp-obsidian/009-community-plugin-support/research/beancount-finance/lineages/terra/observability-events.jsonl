@@ -1,0 +1,3 @@
+{"timestamp":"2026-08-02T11:56:07Z","type":"artifact_root_bound","session_id":"fanout-terra-1785671329489-48jpky","artifact_dir":"lineages/terra","resolve_artifact_root_skipped":true}
+{"timestamp":"2026-08-02T11:58:35Z","type":"convergence_telemetry","iteration":3,"score":0.58,"early_synthesis":false,"reason":"stopPolicy=max-iterations"}
+{"timestamp":"2026-08-02T11:59:47Z","type":"synthesis_complete","iterations":3,"stop_reason":"max_iterations_reached"}

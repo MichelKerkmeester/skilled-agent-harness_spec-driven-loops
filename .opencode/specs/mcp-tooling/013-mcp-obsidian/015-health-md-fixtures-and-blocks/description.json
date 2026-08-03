@@ -1,0 +1,29 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+  "description": "The deep research found the mode's example asset and quick-start blocks are not safe: the fixture (`healthmd-export.example.json`) was authored from",
+  "keywords": [
+    "deep",
+    "research",
+    "found",
+    "mode",
+    "example",
+    "asset",
+    "quick-start",
+    "blocks",
+    "safe",
+    "fixture",
+    "healthmd-export",
+    "json",
+    "authored"
+  ],
+  "lastUpdated": "2026-08-03T14:16:45.987Z",
+  "specId": "015",
+  "folderSlug": "health-md-fixtures-and-blocks",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

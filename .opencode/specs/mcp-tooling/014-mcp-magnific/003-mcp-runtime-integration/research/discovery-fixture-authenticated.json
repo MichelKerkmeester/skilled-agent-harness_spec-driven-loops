@@ -1,0 +1,3371 @@
+{
+ "fixture_id": "mcp-magnific-discovery-authenticated",
+ "captured_at": "2026-08-02T18:10:00Z",
+ "state": "authenticated",
+ "auth": "operator browser OAuth completed 2026-08-02T18:04Z; session cached in ~/.mcp-auth (never in repo)",
+ "supersedes": "mcp-magnific-discovery-pre-auth (2026-08-02)",
+ "endpoint": "https://mcp.magnific.com",
+ "transport": "streamable-http via mcp-remote stdio bridge",
+ "server_info": {
+  "name": "pikaso",
+  "version": "1.0.0"
+ },
+ "tool_count": 85,
+ "resource_count": 22,
+ "prompt_count": 1,
+ "tools": [
+  {
+   "name": "account_balance",
+   "description": "User plan + credits. Check before paid generations. Returns plan.{tier,productName,isUnlimitedMode,unlimitedAppliesHere}, credits.{available,totalPlan,spent,hasExtraCredits}. No history.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "account_profile",
+   "description": "Signed-in user identity for display: name, displayName, email, avatarUrl. avatarUrl always resolves to a usable image (falls back to a default avatar). No plan or credits \u2014 use account_balance for tho",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "creation_status",
+   "description": "Snapshot creation status. In-progress: `poll_after_seconds`. Internal/widget. Wait: `creations_wait`. Browse: `creations_get`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Creation identifier.",
+      "type": "string"
+     },
+     "inlineImage": {
+      "description": "On completed: return `data:` URI in `results.url` (CSP-restricted iframes). Original URL in `results.originalUrl`.",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "creations_show",
+   "description": "Inline render of 1..100 creations. Widget loads data and self-polls via MCP resources \u2014 no additional tool calls needed for display.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "identifiers": {
+      "description": "1..100 creation identifiers to render.",
+      "items": {
+       "description": "Creation identifier.",
+       "type": "string"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "identifiers"
+    ]
+   }
+  },
+  {
+   "name": "creations_wait",
+   "description": "Long-poll 1..8 creations until terminal or `timeoutSeconds` (default 25, max 25). In-progress entries get `poll_after_seconds` for the next call.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "identifiers": {
+      "description": "1..8 creation identifiers.",
+      "items": {
+       "description": "Creation identifier.",
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "timeoutSeconds": {
+      "description": "Long-poll budget (default 25).",
+      "minimum": 0,
+      "maximum": 25,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "identifiers"
+    ]
+   }
+  },
+  {
+   "name": "creations_get",
+   "description": "Single creation complete data \u2014 metadata + URLs (`url` full-res, `previewUrl` ~1024px, `thumbnailUrl` ~400px).",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Creation identifier.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "creations_search",
+   "description": "Search user creations as raw TOON text. Use `creations_get` for one id. `reference` required with from=folder/project-root. Defaults: history, page 1.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "description": "Default history; folder/project-root need `reference`.",
+      "enum": [
+       "history",
+       "folder",
+       "project-root",
+       "all-assets",
+       "favorites",
+       "downloads",
+       "trash",
+       "upload",
+       "v3-upload",
+       "v3-favorites",
+       "v3-trash"
+      ],
+      "type": "string"
+     },
+     "reference": {
+      "description": "Folder/project reference.",
+      "type": "string"
+     },
+     "query": {
+      "description": "Name filter.",
+      "type": "string"
+     },
+     "page": {
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Folder/project filter.",
+      "type": "string"
+     },
+     "fileType": {
+      "description": "Media type.",
+      "enum": [
+       "image",
+       "video",
+       "audio"
+      ],
+      "type": "string"
+     },
+     "toolNames": {
+      "description": "Include tool slugs.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "excludeToolNames": {
+      "description": "Exclude tool slugs.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "model": {
+      "description": "Filter by model/mode slugs (e.g. [\"seedream-4-5\"]).",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "ratio": {
+      "description": "Filter by aspect ratios (e.g. [\"16:9\", \"1:1\"]).",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "styleName": {
+      "description": "Filter by style names.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "dateStart": {
+      "description": "Only creations created on/after this date (ISO 8601).",
+      "type": "string"
+     },
+     "dateEnd": {
+      "description": "Only creations created on/before this date (ISO 8601).",
+      "type": "string"
+     },
+     "orderBy": {
+      "description": "Sort field. Default created_at.",
+      "enum": [
+       "created_at",
+       "updated_at"
+      ],
+      "type": "string"
+     },
+     "orderDirection": {
+      "description": "Sort direction. Default desc (newest first).",
+      "enum": [
+       "asc",
+       "desc"
+      ],
+      "type": "string"
+     },
+     "perPage": {
+      "description": "Results per page (1\u201350, default 25).",
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "creations_list",
+   "description": "Filterable gallery widget (image/video/audio). Use instead of `creations_search` when user wants to browse their library.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "description": "Source section. Default history; folder/project-root need `reference`.",
+      "enum": [
+       "history",
+       "folder",
+       "project-root",
+       "all-assets",
+       "favorites",
+       "downloads",
+       "trash",
+       "upload",
+       "v3-upload",
+       "v3-favorites",
+       "v3-trash"
+      ],
+      "type": "string"
+     },
+     "reference": {
+      "description": "Folder or project reference (required when from=folder or from=project-root).",
+      "type": "string"
+     },
+     "query": {
+      "description": "Search text to pre-fill the search bar.",
+      "type": "string"
+     },
+     "fileType": {
+      "description": "Pre-select a media type filter.",
+      "enum": [
+       "image",
+       "video",
+       "audio"
+      ],
+      "type": "string"
+     },
+     "toolNames": {
+      "description": "Pre-filter to specific tool slugs.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     }
+    }
+   }
+  },
+  {
+   "name": "creations_request_upload",
+   "description": "Step 1 for local/user files: get presigned PUT URL(s). Upload bytes outside MCP, then call `creations_finalize_upload`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "mimeType": {
+      "description": "File MIME type.",
+      "enum": [
+       "image/jpeg",
+       "image/png",
+       "image/webp",
+       "video/mp4",
+       "video/quicktime",
+       "video/webm",
+       "video/x-m4v",
+       "audio/wav",
+       "audio/x-wav",
+       "audio/mpeg",
+       "audio/mp4",
+       "audio/ogg",
+       "audio/flac"
+      ],
+      "type": "string"
+     },
+     "count": {
+      "description": "Batch count; omitted returns one upload.",
+      "minimum": 1,
+      "maximum": 100,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "mimeType"
+    ]
+   }
+  },
+  {
+   "name": "creations_finalize_upload",
+   "description": "Step 2 after PUT from `creations_request_upload`: convert temp path(s) to creations. Images <=25MB, audio <=50MB, videos <=200MB.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "path": {
+      "description": "Single path from `creations_request_upload`.",
+      "type": "string"
+     },
+     "uploads": {
+      "description": "Batch 1-100.",
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "path": {
+         "description": "Path from uploads[].",
+         "type": "string"
+        }
+       },
+       "type": "object",
+       "required": [
+        "path"
+       ]
+      },
+      "type": "array"
+     },
+     "visible": {
+      "description": "Show the upload in the gallery feed. Default false (hidden working asset).",
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  {
+   "name": "creations_upload_show",
+   "description": "Inline upload widget for user-local files (image/video/audio). No-UI clients use creations_request_upload + creations_finalize_upload instead.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "description": "Default auto.",
+      "enum": [
+       "auto",
+       "image",
+       "video",
+       "audio"
+      ],
+      "type": "string"
+     },
+     "label": {
+      "description": "Widget heading.",
+      "type": "string"
+     },
+     "min_files": {
+      "description": "Gates Continue. Default 1.",
+      "minimum": 0,
+      "maximum": 20,
+      "type": "integer"
+     },
+     "max_files": {
+      "description": "Default 20 (1 when multiple=false).",
+      "minimum": 1,
+      "maximum": 20,
+      "type": "integer"
+     },
+     "multiple": {
+      "description": "Default true for image/auto, false for video/audio.",
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  {
+   "name": "creations_upload_image",
+   "description": "Upload public image URL in one step. For local/user files use `creations_request_upload` then `creations_finalize_upload`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "description": "Public image URL.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "url"
+    ]
+   }
+  },
+  {
+   "name": "creations_upload_file",
+   "description": "Import a file the host rewrote to a download URL (e.g. ChatGPT uploads) as a creation; use the identifier in image tools. Public URL: `creations_upload_image`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "description": "Host file reference (JPEG/PNG/WebP, max 25 MB).",
+      "properties": {
+       "download_url": {
+        "description": "URL the host rewrote this file to. Never fabricate one from a file id/attachment ref \u2014 no real URL means call `creations_upload_show` or `creations_request_upload`+`creations_finalize_upload` instead.",
+        "type": "string"
+       },
+       "file_id": {
+        "description": "Host file id.",
+        "type": "string"
+       },
+       "mime_type": {
+        "description": "MIME type reported by host.",
+        "type": "string"
+       },
+       "file_name": {
+        "description": "Original file name.",
+        "type": "string"
+       }
+      },
+      "type": "object",
+      "required": [
+       "download_url",
+       "file_id"
+      ]
+     }
+    },
+    "required": [
+     "file"
+    ]
+   }
+  },
+  {
+   "name": "creations_move",
+   "description": "Move creations into `targetFolderReference`. Identifiers from `images_generate`/`creations_search`. Foreign identifier \u2192 abort. Target folder must belong to user.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "targetFolderReference": {
+      "description": "Destination folder ref. User-owned.",
+      "type": "string"
+     },
+     "creationIdentifiers": {
+      "description": "Creation identifiers (max 200). Foreign identifier \u2192 abort.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "targetFolderReference",
+     "creationIdentifiers"
+    ]
+   }
+  },
+  {
+   "name": "creations_like",
+   "description": "Toggle heart/favorite reaction on a user-owned creation.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Creation identifier (from `creations_search`/`creations_get`).",
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "`folderReference` from `creations_search`/`creations_get`.",
+      "type": "string"
+     },
+     "unlike": {
+      "description": "Set `true` to remove the existing heart. Default `false` (add a heart).",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "folderReference"
+    ]
+   }
+  },
+  {
+   "name": "creations_comment",
+   "description": "Add a comment (or reply) to a user-owned creation.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Creation identifier the comment will be attached to.",
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "`folderReference` from `creations_search`/`creations_get`.",
+      "type": "string"
+     },
+     "text": {
+      "description": "Comment body (plain text, 1\u20135000 chars).",
+      "type": "string"
+     },
+     "replyToCommentId": {
+      "description": "Existing comment id to reply to; omit for new thread.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "folderReference",
+     "text"
+    ]
+   }
+  },
+  {
+   "name": "folders_list",
+   "description": "List folders/projects as raw TOON text. No params=top level; `onlyProjects`=projects; `parentReference`=children. Refs work with creations/folder tools.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "parentReference": {
+      "description": "List children; exclusive with `onlyProjects`.",
+      "type": "string"
+     },
+     "onlyProjects": {
+      "description": "Top-level projects only.",
+      "type": "boolean"
+     },
+     "page": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "folders_get",
+   "description": "Fetch folder metadata by `reference`. Use before `creations_search` (`from=folder`). Foreign refs error.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "reference": {
+      "description": "Folder reference.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reference"
+    ]
+   }
+  },
+  {
+   "name": "folders_create",
+   "description": "Create folder/project. No `parentReference`: workspace root. `type` defaults: project at root, folder when nested.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "description": "Display name.",
+      "type": "string"
+     },
+     "parentReference": {
+      "description": "Parent ref.",
+      "type": "string"
+     },
+     "type": {
+      "description": "`project`|`folder`. Inferred from parentReference.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   }
+  },
+  {
+   "name": "folders_rename",
+   "description": "Rename a folder by `reference`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "reference": {
+      "description": "Folder reference.",
+      "type": "string"
+     },
+     "name": {
+      "description": "New display name.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reference",
+     "name"
+    ]
+   }
+  },
+  {
+   "name": "folders_delete",
+   "description": "Move a folder and its files to trash.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "reference": {
+      "description": "Folder reference.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reference"
+    ]
+   }
+  },
+  {
+   "name": "project_report",
+   "description": "English markdown status report for a project/folder. Last 7 days default, max 30.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "reference": {
+      "description": "Project/folder reference from `folders_list` or `folders_get`.",
+      "type": "string"
+     },
+     "days": {
+      "description": "1-30; default 7.",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "reference"
+    ]
+   }
+  },
+  {
+   "name": "projects_move",
+   "description": "Move creations or spaces into `targetProjectReference`. Identifiers from `creations_search`/`spaces_list`. Target project must belong to user.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "elementType": {
+      "description": "`creation`|`space`.",
+      "enum": [
+       "creation",
+       "space"
+      ],
+      "type": "string"
+     },
+     "elementIdentifiers": {
+      "description": "Identifiers from `creations_search`/`spaces_list` (max 200). Foreign element \u2192 abort.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "targetProjectReference": {
+      "description": "Destination project ref. User-owned.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "elementType",
+     "elementIdentifiers",
+     "targetProjectReference"
+    ]
+   }
+  },
+  {
+   "name": "spaces_list",
+   "description": "Lean spaces catalog as raw TOON text. Share each `webUrl`; call `spaces_show` only for inline canvas preview. Do not use `creations_search`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "description": "Name filter.",
+      "type": "string"
+     },
+     "ownership": {
+      "description": "Default all.",
+      "enum": [
+       "all",
+       "mine",
+       "shared"
+      ],
+      "type": "string"
+     },
+     "page": {
+      "description": "Default 1, max 1000.",
+      "type": "integer"
+     },
+     "perPage": {
+      "description": "Default 25, max 100.",
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "spaces_create",
+   "description": "Create empty Space. Share `space.webUrl`; only call `spaces_show` when inline preview is requested.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "description": "Display name.",
+      "type": "string"
+     },
+     "description": {
+      "description": "Max 1000 chars.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   }
+  },
+  {
+   "name": "spaces_add_creations",
+   "description": "Add existing creation(s) as image nodes to a Space. Pass creation identifiers from creations_finalize_upload, images_generate, or creations_search. Give the user space.webUrl afterwards.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     },
+     "creationIdentifiers": {
+      "description": "Creation identifiers (1-20) to add as nodes.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "pageId": {
+      "description": "Target page id. Defaults to the current page.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId",
+     "creationIdentifiers"
+    ]
+   }
+  },
+  {
+   "name": "spaces_show",
+   "description": "Optional inline Space preview. Prefer `space.webUrl`; use `spaces_state` for headless node catalog.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId"
+    ]
+   }
+  },
+  {
+   "name": "spaces_state",
+   "description": "Read-only board context, raw TOON. Default: current page + pageIndex (other pages, counts). pageId: another page on demand. scope=all: whole board (costly). selectedElementIds: selected nodes. Needs v",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     },
+     "selectedElementIds": {
+      "description": "Selected node ids.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "selectedConnectionIds": {
+      "description": "Selected connection ids.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "currentPageId": {
+      "description": "Page the user is viewing.",
+      "type": "string"
+     },
+     "pageId": {
+      "description": "Read a specific page; falls back to currentPageId.",
+      "type": "string"
+     },
+     "scope": {
+      "description": "current_page (default) | all (whole board, costly).",
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId"
+    ]
+   }
+  },
+  {
+   "name": "spaces_get_nodes",
+   "description": "Read-only. Like `spaces_state` but scoped to `nodeIds` + their connections. Cheaper than full board. Needs view perm.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     },
+     "nodeIds": {
+      "description": "Node ids to fetch. Returns these + all incoming/outgoing connections.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "currentPageId": {
+      "description": "Current page id for pageId resolution.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId",
+     "nodeIds"
+    ]
+   }
+  },
+  {
+   "name": "spaces_run",
+   "description": "Run Space workflow from `startNodeId`. Poll with `spaces_run_status`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     },
+     "startNodeId": {
+      "description": "Node id from `spaces_state`.",
+      "type": "string"
+     },
+     "mode": {
+      "description": "downstream (default)=startNodeId onward, never reruns upstream; singular=only startNodeId; connected=whole connected graph, reruns succeeded upstream (destructive\u2014only for explicit full reruns).",
+      "enum": [
+       "singular",
+       "connected",
+       "downstream"
+      ],
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId",
+     "startNodeId"
+    ]
+   }
+  },
+  {
+   "name": "spaces_run_status",
+   "description": "Poll `spaces_run`. `timeoutSeconds` long-polls up to 25s. In-progress returns `poll_after_seconds`; terminal call `creations_show`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workflowRunIdentifier": {
+      "description": "Run identifier from `spaces_run`.",
+      "type": "string"
+     },
+     "timeoutSeconds": {
+      "description": "0 snapshot, 1-25 long-poll.",
+      "minimum": 0,
+      "maximum": 25,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "workflowRunIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "spaces_edit",
+   "description": "External MCP only. Start headless Space edit. Poll `spaces_edit_status` until allTerminal, then verify with `spaces_state`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "description": "Edit request.",
+      "type": "string"
+     },
+     "spaceId": {
+      "description": "Space UUID. Preferred; boardId accepted.",
+      "type": "string"
+     },
+     "boardId": {
+      "description": "Legacy alias for spaceId.",
+      "type": "string"
+     },
+     "threadId": {
+      "description": "Legacy grouping id.",
+      "type": "string"
+     },
+     "selectedElementIds": {
+      "description": "Selected node ids.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "selectedConnectionIds": {
+      "description": "Selected connection ids.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "anchorElementId": {
+      "description": "Element to extend from.",
+      "type": "string"
+     },
+     "anchorDirection": {
+      "description": "Direction from anchorElementId.",
+      "enum": [
+       "left",
+       "right",
+       "up",
+       "down"
+      ],
+      "type": "string"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  },
+  {
+   "name": "spaces_edit_status",
+   "description": "Wait for `spaces_edit` like `creations_wait`: long-polls up to `timeoutSeconds` (default 25, max 25). Snapshot-only when 0. Terminal \u2192 `spaces_state`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "operationId": {
+      "description": "From `spaces_edit`; preferred.",
+      "type": "string"
+     },
+     "threadId": {
+      "description": "Legacy thread_id from `spaces_edit`.",
+      "type": "string"
+     },
+     "runId": {
+      "description": "Specific run_id.",
+      "type": "string"
+     },
+     "timeoutSeconds": {
+      "description": "Long-poll seconds (default 25, max 25). 0 = snapshot only + poll_after_seconds hint.",
+      "minimum": 0,
+      "maximum": 25,
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "images_generate",
+   "description": "Generate/edit images. No refs=TTI. references[] (max 12; see field docs). Output is opaque (no alpha); for transparent/cutout background, chain `images_remove_background` after. Defaults: mode=auto, r",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "prompt": {
+      "description": "Prompt.",
+      "type": "string"
+     },
+     "brandKitId": {
+      "description": "Optional. Brand kit sqid (the `id` from brand_kit_list/brand_kit_get). When set, the image is generated on-brand: brand palette, logo, typography and reference imagery are applied automatically.",
+      "type": "string"
+     },
+     "templateSlug": {
+      "description": "Optional. Content template `slug` from the kit (brand_kit_get.templates); requires brandKitId. Applies that content type's prompt-ready description.",
+      "type": "string"
+     },
+     "validationRunId": {
+      "description": "Brand Kit validation run id; pair with validationScenarioKey. The persisted scenario overrides generation args.",
+      "type": "string"
+     },
+     "validationScenarioKey": {
+      "description": "recommendedScenarios[].key; requires validationRunId.",
+      "type": "string"
+     },
+     "mode": {
+      "description": "Model `slug` from images_models_list. User named a model/family/provider \u2192 resolve to its slug (never 'auto'). Omit/'auto' only if no model preference. Naming trap: Nano Banana 2 = `imagen-nano-banana-2-flash`; `imagen-nano-banana-2` is Nano Banana Pro.",
+      "type": "string"
+     },
+     "aspectRatio": {
+      "description": "Default 1:1; edits may snap.",
+      "enum": [
+       "1:1",
+       "21:9",
+       "16:9",
+       "9:16",
+       "2:3",
+       "3:4",
+       "1:2",
+       "2:1",
+       "5:4",
+       "4:5",
+       "3:2",
+       "4:3"
+      ],
+      "type": "string"
+     },
+     "references": {
+      "description": "Max 12.",
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "type": {
+         "description": "image = any photo you have, incl. of a person/product to keep consistent. character/product/locations = pre-built library asset, never a creation. style = library LoRA, or a creation as style photo.",
+         "enum": [
+          "image",
+          "style",
+          "character",
+          "product",
+          "locations"
+         ],
+         "type": "string"
+        },
+        "identifier": {
+         "description": "creation identifier for image/style-photo; numeric `id` from library_list for character/product/locations/style-LoRA. Upload URLs first.",
+         "type": "string"
+        }
+       },
+       "type": "object",
+       "required": [
+        "type",
+        "identifier"
+       ]
+      },
+      "type": "array"
+     },
+     "count": {
+      "description": "1..8.",
+      "minimum": 1,
+      "maximum": 8,
+      "type": "integer"
+     },
+     "resolution": {
+      "description": "Optional. Supported values per model \u2014 see `images_models_list.resolutions`. Omitted values use the model default.",
+      "type": "string"
+     },
+     "quality": {
+      "description": "Optional. Supported values per model \u2014 see `images_models_list.qualities`. Omitted values use the model default.",
+      "type": "string"
+     },
+     "extraSettings": {
+      "description": "Model-specific. Keys/values via images_models_settings. Needs explicit mode.",
+      "type": "object"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   }
+  },
+  {
+   "name": "images_remove_background",
+   "description": "Cut-out subject on transparent PNG. Color BG: `images_color_background`. AI scene: `images_generate` with reference + prompt \"replace the background with X\".",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_upscale",
+   "description": "AI upscale 2x\u201316x (Magnific, premium). Call `images_upscale_modes_list` first to pick a `mode` and discover per-mode params. Defaults: mode=creative, scale=2x. Exact pixels: `images_resize`. Aspect: `",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "mode": {
+      "description": "From `images_upscale_modes_list`. Default creative.",
+      "enum": [
+       "creative",
+       "ultra-sublime",
+       "ultra-photo",
+       "ultra-denoiser",
+       "ultra"
+      ],
+      "type": "string"
+     },
+     "scale": {
+      "description": "Default 2x; allowed values vary by mode.",
+      "enum": [
+       "2x",
+       "4x",
+       "8x",
+       "16x"
+      ],
+      "type": "string"
+     },
+     "precisionPreset": {
+      "description": "Slider macro; requires a precision mode.",
+      "enum": [
+       "balanced",
+       "portraits",
+       "grainyAnalog"
+      ],
+      "type": "string"
+     },
+     "presets": {
+      "description": "Creative preset; default 'subtle'.",
+      "enum": [
+       "subtle",
+       "vivid",
+       "wild",
+       "custom"
+      ],
+      "type": "string"
+     },
+     "optimised": {
+      "description": "Creative subject-type preset; default StandardUltra.",
+      "enum": [
+       "StandardUltra",
+       "SoftPortrait",
+       "HardPortrait",
+       "ArtAndIllustration",
+       "VideoGameAssets",
+       "NatureAndLandscapes",
+       "FilmAndPhotography",
+       "ThreeDRenders",
+       "ScienceFictionAndHorror"
+      ],
+      "type": "string"
+     },
+     "engine": {
+      "description": "Creative engine; default automatic.",
+      "enum": [
+       "automatic",
+       "magnific_illusio",
+       "magnific_sharpy",
+       "magnific_sparkle"
+      ],
+      "type": "string"
+     },
+     "prompt": {
+      "description": "Creative guidance prompt (max 2000 chars).",
+      "type": "string"
+     },
+     "creativity": {
+      "description": "Creative; -10..10.",
+      "type": "integer"
+     },
+     "resemblance": {
+      "description": "Creative; -10..10.",
+      "type": "integer"
+     },
+     "hdr": {
+      "description": "Creative; -10..10.",
+      "type": "integer"
+     },
+     "fractality": {
+      "description": "Creative; -10..10.",
+      "type": "integer"
+     },
+     "sharpness": {
+      "description": "Precision; 0..100.",
+      "type": "integer"
+     },
+     "grain": {
+      "description": "Precision; 0..100.",
+      "type": "integer"
+     },
+     "ultraDetail": {
+      "description": "Precision; 0..100. Not for ultra-sublime.",
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_skin_enhancer",
+   "description": "AI skin enhancer. faithful preserves identity; creative reinterprets; flexible uses presets. Defaults: faithful, sharpen=0, smartGrain=0.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "version": {
+      "description": "Default 'faithful'.",
+      "enum": [
+       "faithful",
+       "creative",
+       "flexible"
+      ],
+      "type": "string"
+     },
+     "sharpen": {
+      "description": "0-100; default 0.",
+      "minimum": 0,
+      "maximum": 100,
+      "type": "integer"
+     },
+     "smartGrain": {
+      "description": "0-100; default 0.",
+      "minimum": 0,
+      "maximum": 100,
+      "type": "integer"
+     },
+     "skinDetail": {
+      "description": "faithful only.",
+      "minimum": 0,
+      "maximum": 100,
+      "type": "integer"
+     },
+     "optimizedFor": {
+      "description": "flexible only.",
+      "enum": [
+       "enhance_skin",
+       "enhance_everything",
+       "improve_lighting",
+       "transform_to_real",
+       "no_make_up"
+      ],
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_relight",
+   "description": "AI relight. 1-4 lights with azimuth/elevation enums, type neutral|gel, intensity 1-10. Gel uses hex `color`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "lights": {
+      "description": "1-4 lights.",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "azimuth": {
+         "description": "Horizontal degrees.",
+         "enum": [
+          -135,
+          -90,
+          -45,
+          0,
+          45,
+          90,
+          135,
+          180
+         ],
+         "type": "integer"
+        },
+        "elevation": {
+         "description": "Vertical degrees.",
+         "enum": [
+          -90,
+          -45,
+          0,
+          45,
+          90
+         ],
+         "type": "integer"
+        },
+        "type": {
+         "description": "Default neutral.",
+         "enum": [
+          "neutral",
+          "gel"
+         ],
+         "type": "string"
+        },
+        "color": {
+         "description": "Gel only; hex; default #ffffff.",
+         "type": "string"
+        },
+        "intensity": {
+         "description": "1-10; default 5.",
+         "minimum": 1,
+         "maximum": 10,
+         "type": "integer"
+        }
+       },
+       "type": "object",
+       "required": [
+        "azimuth",
+        "elevation"
+       ]
+      },
+      "type": "array"
+     },
+     "resolution": {
+      "description": "1k or 2k default.",
+      "enum": [
+       "1k",
+       "2k"
+      ],
+      "type": "string"
+     },
+     "numImages": {
+      "description": "Default 1.",
+      "minimum": 1,
+      "maximum": 2,
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "lights"
+    ]
+   }
+  },
+  {
+   "name": "images_change_camera",
+   "description": "Reframe camera around subject. Defaults: rotate=45, vertical=0, closeup=5.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (not a file/upload id \u2014 import those first)",
+      "type": "string"
+     },
+     "rotate": {
+      "description": "0-360; default 45.",
+      "minimum": 0,
+      "maximum": 360,
+      "type": "integer"
+     },
+     "vertical": {
+      "description": "-30..90; default 0.",
+      "minimum": -30,
+      "maximum": 90,
+      "type": "integer"
+     },
+     "closeup": {
+      "description": "0..10; default 5.",
+      "minimum": 0,
+      "maximum": 10,
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_variations",
+   "description": "Generate image-variation grid; each tile becomes its own creation (creations_wait \u2192 results.tiles). Modes: angles|demographics|expressions|age|storyboard|custom. Defaults: angles, 3x3, 1:1, 4k.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Source image identifier.",
+      "type": "string"
+     },
+     "variationMode": {
+      "description": "Default 'angles'.",
+      "enum": [
+       "angles",
+       "demographics",
+       "expressions",
+       "age",
+       "storyboard",
+       "custom"
+      ],
+      "type": "string"
+     },
+     "prompt": {
+      "description": "Required for custom; used for storyboard.",
+      "type": "string"
+     },
+     "gridRows": {
+      "description": "Default 3.",
+      "minimum": 1,
+      "maximum": 4,
+      "type": "integer"
+     },
+     "gridCols": {
+      "description": "Default 3. rows*cols <= 9.",
+      "minimum": 1,
+      "maximum": 4,
+      "type": "integer"
+     },
+     "aspectRatio": {
+      "description": "'1:1' default.",
+      "enum": [
+       "1:1",
+       "21:9",
+       "16:9",
+       "9:16",
+       "4:3",
+       "4:5",
+       "5:4",
+       "3:4",
+       "3:2",
+       "2:3"
+      ],
+      "type": "string"
+     },
+     "resolution": {
+      "description": "'2k' or '4k' (default).",
+      "enum": [
+       "2k",
+       "4k"
+      ],
+      "type": "string"
+     },
+     "selectedAngles": {
+      "description": "Angles mode labels, ideally one per tile.",
+      "maxItems": 9,
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "selectedEthnicities": {
+      "description": "Demographic labels.",
+      "maxItems": 9,
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "selectedGenders": {
+      "description": "Demographics mode genders.",
+      "maxItems": 9,
+      "items": {
+       "enum": [
+        "male",
+        "female"
+       ],
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_crop",
+   "description": "Crop to `aspectRatio`: center by default, or `auto=true` for AI focal-point crop that keeps the subject. Pixels: `images_resize`. AI upscale: `images_upscale`. Ratios: 1:1, 16:9, 9:16, 4:3, 3:4, 3:2, ",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "aspectRatio": {
+      "description": "Target ratio.",
+      "enum": [
+       "1:1",
+       "16:9",
+       "9:16",
+       "4:3",
+       "3:4",
+       "3:2",
+       "2:3",
+       "21:9"
+      ],
+      "type": "string"
+     },
+     "auto": {
+      "description": "true = AI focal-point crop that keeps the subject. Default false = center-crop. Both cost 1 credit.",
+      "type": "boolean"
+     },
+     "prompt": {
+      "description": "Subject hint for auto crop, e.g. \"the dog\". Ignored unless auto.",
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "aspectRatio"
+    ]
+   }
+  },
+  {
+   "name": "images_expand",
+   "description": "AI outpaint to `aspectRatio`: keeps the original and generates new surroundings, anchoring the subject automatically. Crop instead (no new pixels): `images_crop`. Ratios: 1:1, 16:9, 9:16, 4:3, 3:4, 3:",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "aspectRatio": {
+      "description": "Target ratio to outpaint into.",
+      "enum": [
+       "1:1",
+       "16:9",
+       "9:16",
+       "4:3",
+       "3:4",
+       "3:2",
+       "2:3",
+       "21:9"
+      ],
+      "type": "string"
+     },
+     "prompt": {
+      "description": "Optional hint for what to generate in the new area, e.g. \"sandy beach\".",
+      "type": "string"
+     },
+     "mode": {
+      "description": "Generation model. Default ideogram.",
+      "enum": [
+       "ideogram",
+       "flux",
+       "classic"
+      ],
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "aspectRatio"
+    ]
+   }
+  },
+  {
+   "name": "images_resize",
+   "description": "Resize to exact pixels (no AI). For real detail upscaling: `images_upscale` first. Aspect: `images_crop`. Dimensions snap to multiples of 8; center-crop on aspect mismatch.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Image creation identifier (import uploads first).",
+      "type": "string"
+     },
+     "width": {
+      "description": "px; snaps to multiples of 8.",
+      "minimum": 16,
+      "maximum": 8192,
+      "type": "integer"
+     },
+     "height": {
+      "description": "px; snaps to multiples of 8.",
+      "minimum": 16,
+      "maximum": 8192,
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "width",
+     "height"
+    ]
+   }
+  },
+  {
+   "name": "images_to_svg",
+   "description": "Trace raster creation into SVG. New vector from prompt: `images_generate_svg`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Raster image identifier.",
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "images_generate_svg",
+   "description": "Text-to-SVG (Recraft v4 Pro Vector). Raster: `images_generate`. Trace existing raster: `images_to_svg`. Default aspectRatio=1:1.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "prompt": {
+      "description": "Vector image prompt.",
+      "type": "string"
+     },
+     "aspectRatio": {
+      "description": "Aspect ratio (default 1:1).",
+      "enum": [
+       "1:1",
+       "2:1",
+       "1:2",
+       "3:2",
+       "2:3",
+       "4:3",
+       "3:4",
+       "5:4",
+       "4:5",
+       "16:9",
+       "9:16"
+      ],
+      "type": "string"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   }
+  },
+  {
+   "name": "images_models_list",
+   "description": "TTI model catalog as lean TOON text. `search` filters by name, slug, family (gpt, seedream, flux\u2026), description, or tags.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "description": "Case-insensitive filter on name, slug, description, or tags.",
+      "type": "string"
+     },
+     "onlyRecommended": {
+      "description": "When true, returns only models with an `agentRecommendation`.",
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  {
+   "name": "images_upscale_modes_list",
+   "description": "Per-mode params, scales, defaults, macros, and guidance for `images_upscale`. Read before calling it.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "images_upscale_presets_list",
+   "description": "Saved Magnific image-upscale presets as copyable params; Classic excluded.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "images_models_settings",
+   "description": "Valid images_generate extraSettings for one model. Only if images_models_list flags extraSettings.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "mode": {
+      "description": "Model slug from images_models_list.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "mode"
+    ]
+   }
+  },
+  {
+   "name": "library_list",
+   "description": "Lean library catalog for agent reasoning: references (characters, styles, elements, locations), color palettes, agents and contexts. Brand kits are NOT here \u2014 use brand_kit_list. Visual picker uses li",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "scope": {
+      "description": "all (default)|projects|organization.",
+      "enum": [
+       "all",
+       "projects",
+       "organization"
+      ],
+      "type": "string"
+     },
+     "type": {
+      "description": "character|style|element|locations|color|agent|context.",
+      "enum": [
+       "character",
+       "style",
+       "element",
+       "locations",
+       "color",
+       "agent",
+       "context"
+      ],
+      "type": "string"
+     },
+     "page": {
+      "description": "Default 1.",
+      "type": "integer"
+     },
+     "perPage": {
+      "description": "Default/max 50.",
+      "type": "integer"
+     },
+     "search": {
+      "description": "Filter by name/description.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "library_show",
+   "description": "Inline library picker grouped by source (own / public / team / project). User clicks \u2192 next tool call with id/identifier context.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "scope": {
+      "description": "all (default)|projects|organization.",
+      "enum": [
+       "all",
+       "projects",
+       "organization"
+      ],
+      "type": "string"
+     },
+     "type": {
+      "description": "character|style|element|locations|color|agent|context.",
+      "enum": [
+       "character",
+       "style",
+       "element",
+       "locations",
+       "color",
+       "agent",
+       "context"
+      ],
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "library_create",
+   "description": "Create a reusable library asset (character/product/location) from 1-6 images. Use the returned numeric `id` in generation refs (same id Spaces uses). No LoRA training.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "description": "Unique. Letters, digits, `_`, `-`.",
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "type": "string"
+     },
+     "type": {
+      "description": "character=people/animals/avatars; product=objects/elements; locations=places.",
+      "enum": [
+       "character",
+       "product",
+       "locations"
+      ],
+      "type": "string"
+     },
+     "description": {
+      "description": "Truncated at 1000.",
+      "maxLength": 1000,
+      "type": "string"
+     },
+     "gender": {
+      "description": "Character only.",
+      "type": "string"
+     },
+     "productType": {
+      "description": "Product only. Truncated at 64.",
+      "maxLength": 64,
+      "type": "string"
+     },
+     "images": {
+      "description": "1-6 JPEG/PNG/WebP images; first is cover.",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "creationIdentifier": {
+         "description": "Creation identifier. Exclusive with `url`.",
+         "type": "string"
+        },
+        "url": {
+         "description": "Public HTTPS URL. Exclusive with `creationIdentifier`.",
+         "type": "string"
+        }
+       },
+       "type": "object"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "name",
+     "type",
+     "images"
+    ]
+   }
+  },
+  {
+   "name": "library_edit",
+   "description": "Edit an owned library asset (character/product/location) by numeric `id`. Partial update: send only fields to change. Optionally replace `cover` and/or `images` (reference set). No LoRA/variants/sheet",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Numeric library asset id (from library_create / library_list).",
+      "type": "integer"
+     },
+     "name": {
+      "description": "New unique A-Z/0-9/_/- name, max 50.",
+      "type": "string"
+     },
+     "description": {
+      "description": "New description, max 1000. Empty string clears it.",
+      "type": "string"
+     },
+     "gender": {
+      "description": "Character only.",
+      "type": "string"
+     },
+     "productType": {
+      "description": "Product only.",
+      "type": "string"
+     },
+     "cover": {
+      "description": "Replace the cover/preview image.",
+      "additionalProperties": false,
+      "properties": {
+       "creationIdentifier": {
+        "description": "Creation identifier. Exclusive with `url`.",
+        "type": "string"
+       },
+       "url": {
+        "description": "Public HTTPS URL. Exclusive with `creationIdentifier`.",
+        "type": "string"
+       }
+      },
+      "type": "object"
+     },
+     "images": {
+      "description": "Replace the reference image set (1-6 JPEG/PNG/WebP).",
+      "items": {
+       "description": "Replace the cover/preview image.",
+       "additionalProperties": false,
+       "properties": {
+        "creationIdentifier": {
+         "description": "Creation identifier. Exclusive with `url`.",
+         "type": "string"
+        },
+        "url": {
+         "description": "Public HTTPS URL. Exclusive with `creationIdentifier`.",
+         "type": "string"
+        }
+       },
+       "type": "object"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "library_delete",
+   "description": "Permanently delete an owned library asset by numeric `id`. Deletes its character variants too. Irreversible.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Numeric library asset id (from library_create / library_list).",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "library_share",
+   "description": "Share an owned library asset by numeric `id` with team / projects / individuals / groups. Replaces the asset's share targets. Types (as library_list emits): character/style/product/locations (referenc",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Numeric library asset id (from library_list).",
+      "type": "integer"
+     },
+     "type": {
+      "description": "From library_list `type`. character|style|product|locations|color|template|app.",
+      "enum": [
+       "character",
+       "style",
+       "element",
+       "locations",
+       "palette",
+       "template",
+       "app",
+       "product",
+       "color"
+      ],
+      "type": "string"
+     },
+     "access": {
+      "description": "Share targets. Empty array shares with no one.",
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "type": {
+         "description": "team = whole team (no ids). project|individual|group require ids.",
+         "enum": [
+          "team",
+          "project",
+          "individual",
+          "group"
+         ],
+         "type": "string"
+        },
+        "ids": {
+         "description": "Target ids (user/project/group). Required for project|individual|group; omit for team.",
+         "items": {
+          "type": "string"
+         },
+         "type": "array"
+        }
+       },
+       "type": "object",
+       "required": [
+        "type"
+       ]
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "access"
+    ]
+   }
+  },
+  {
+   "name": "models3d_generate",
+   "description": "Image-to-3D GLB. Upload external images first. Animate with `models3d_rig`. Models: tripo-p1 default, tripo-v31, trellis-2.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Source image identifier. Optional when `views` is set.",
+      "type": "string"
+     },
+     "views": {
+      "description": "Multiview, Tripo only: 2-4 of front/left/back/right \u2192 source image identifiers. Replaces creationIdentifier.",
+      "type": "object"
+     },
+     "model": {
+      "description": "tripo-p1 (default, fast), tripo-v31 (HQ), trellis-2.",
+      "enum": [
+       "tripo-p1",
+       "tripo-v31",
+       "trellis-2"
+      ],
+      "type": "string"
+     },
+     "resolution": {
+      "description": "trellis-2: 512, 1024 default, 1536.",
+      "enum": [
+       512,
+       1024,
+       1536
+      ],
+      "type": "integer"
+     },
+     "textureQuality": {
+      "description": "Tripo: none, standard default, detailed v31 only.",
+      "enum": [
+       "none",
+       "standard",
+       "detailed"
+      ],
+      "type": "string"
+     },
+     "faceLimit": {
+      "description": "Tripo faces. tripo-p1: 100..20,000 (default 10,000); tripo-v31: up to 2,000,000. Optional \u2014 omit for the model default.",
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "video_plan",
+   "description": "Call FIRST for any video request. Returns markdown plan: brief, open questions, characters to prepare, recommended model slug, prompt draft. Videos >15s: plan splits into clips + `video_concatenate` i",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "prompt": {
+      "description": "Raw user idea; pass verbatim.",
+      "type": "string"
+     },
+     "durationHint": {
+      "description": "Seconds; >15 triggers multi-clip plan.",
+      "type": "integer"
+     },
+     "styleHint": {
+      "description": "Visual style (e.g. \"cinematic\", \"anime\").",
+      "type": "string"
+     },
+     "aspectRatioHint": {
+      "description": "Aspect ratio hint (e.g. \"16:9\").",
+      "type": "string"
+     },
+     "referenceIdentifiers": {
+      "description": "Creation identifiers already attached as references.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   }
+  },
+  {
+   "name": "video_generate",
+   "description": "Generate video. External clients: call `video_plan` first to draft the brief and resolve model choice \u2014 skip only if the user explicitly says \"just generate\" or \"one-shot\". Pick a model with `slug` (c",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "video": {
+      "properties": {
+       "clips": {
+        "items": {
+         "properties": {
+          "position": {
+           "description": "0-based index; defaults to array index.",
+           "type": "number"
+          },
+          "duration": {
+           "description": "Seconds; required when `slug` is set.",
+           "type": "number"
+          },
+          "slug": {
+           "description": "Model identifier copied verbatim from `video_models_list` (e.g. `bytedance-seedance-pro-2.0`); omit for auto-select. Only this field name is read \u2014 `model`/`modelSlug` are tolerated as aliases but prefer `slug`.",
+           "type": "string"
+          },
+          "prompt": {
+           "description": "Prompt. Check model maxLength. Exclusive with `multi_prompt`.",
+           "type": "string"
+          },
+          "aspectRatio": {
+           "description": "Allowed values per model.",
+           "type": "string"
+          },
+          "resolution": {
+           "description": "Required by some models; see catalog.",
+           "type": "string"
+          },
+          "keyframes": {
+           "properties": {
+            "start": {
+             "properties": {
+              "type": {
+               "description": "image.",
+               "type": "string"
+              },
+              "url": {
+               "description": "Asset URL or a creation `identifier`; never `webUrl`.",
+               "type": "string"
+              }
+             },
+             "type": "object",
+             "required": [
+              "type",
+              "url"
+             ]
+            },
+            "end": {
+             "properties": {
+              "type": {
+               "description": "image.",
+               "type": "string"
+              },
+              "url": {
+               "description": "Asset URL or a creation `identifier`; never `webUrl`.",
+               "type": "string"
+              }
+             },
+             "type": "object"
+            },
+            "video": {
+             "properties": {
+              "type": {
+               "description": "video.",
+               "type": "string"
+              },
+              "url": {
+               "description": "Asset URL or a creation `identifier`; never `webUrl`.",
+               "type": "string"
+              }
+             },
+             "type": "object"
+            }
+           },
+           "type": "object"
+          },
+          "references": {
+           "description": "Allowed types/limits per model. For Seedance 2.0 audio/lipsync, include `{type:\"audio\", url:\"asset URL or creation identifier\"}` here; this can coexist with `withSoundEffects:true` and needs a visual reference.",
+           "items": {
+            "properties": {
+             "type": {
+              "description": "Use `audio` for Seedance 2.0 audio/lipsync references.",
+              "enum": [
+               "image",
+               "video",
+               "character",
+               "product",
+               "style",
+               "color",
+               "effect",
+               "audio"
+              ],
+              "type": "string"
+             },
+             "url": {
+              "description": "Asset URL or a creation `identifier`. Required for non-color/effect refs; for Seedance 2.0 audio/lipsync put the audio URL here with type `audio`.",
+              "type": "string"
+             },
+             "custom_model_id": {
+              "description": "Custom-reference identifier.",
+              "type": "string"
+             },
+             "modifier_key": {
+              "description": "Prompt mention key, max 100 chars.",
+              "type": "string"
+             },
+             "name": {
+              "description": "Required with `custom_model_id`.",
+              "type": "string"
+             },
+             "images": {
+              "description": "Selected custom-model media IDs. Not for Kling.",
+              "items": {
+               "type": "integer"
+              },
+              "type": "array"
+             }
+            },
+            "type": "object",
+            "required": [
+             "type"
+            ]
+           },
+           "type": "array"
+          },
+          "cameraMotion": {
+           "description": "Only when model lists cameraMotion values.",
+           "type": "string"
+          },
+          "negativePrompt": {
+           "description": "Only when model supports `negativePrompt`.",
+           "type": "string"
+          },
+          "audioUrl": {
+           "description": "Only for lipsync-only models whose catalog has audioConstraints without limit. Do not use for Seedance 2.0; use `references[].type=\"audio\"` instead. Exclusive with `withSoundEffects`.",
+           "type": "string"
+          },
+          "withSoundEffects": {
+           "description": "Only when model has soundEffects.allowed.",
+           "type": "boolean"
+          },
+          "multi_prompt": {
+           "description": "Only when multishot.allowed; max 6; replaces `prompt`.",
+           "items": {
+            "properties": {
+             "index": {
+              "description": "1-based shot index.",
+              "type": "number"
+             },
+             "prompt": {
+              "type": "string"
+             },
+             "duration": {
+              "description": "Shot seconds; Seedance requires it.",
+              "type": "number"
+             },
+             "cameraMotion": {
+              "type": "string"
+             }
+            },
+            "type": "object",
+            "required": [
+             "prompt"
+            ]
+           },
+           "type": "array"
+          }
+         },
+         "type": "object"
+        },
+        "type": "array"
+       }
+      },
+      "type": "object",
+      "required": [
+       "clips"
+      ]
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "video"
+    ]
+   }
+  },
+  {
+   "name": "video_models_list",
+   "description": "Video-gen model catalog as lean TOON text. `search` filters by name, slug, description, or tags. Run `video_plan` first \u2014 plan resolves slug to validate here.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "description": "Case-insensitive filter on name, slug, description, or tags.",
+      "type": "string"
+     },
+     "onlyRecommended": {
+      "description": "When true, returns only models with an `agentRecommendation`.",
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  {
+   "name": "video_upscale",
+   "description": "Upscale video via Topaz or Magnific. Pass `creationIdentifier` or Freepik `videoUrl`. Params: `video_upscale_models_list`. Then call `creations_show`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Completed owned video identifier. Required without `videoUrl`.",
+      "type": "string"
+     },
+     "videoUrl": {
+      "description": "Freepik video URL. Required without `creationIdentifier`.",
+      "type": "string"
+     },
+     "mode": {
+      "description": "See `video_upscale_models_list`.",
+      "enum": [
+       "topaz",
+       "magnific",
+       "magnific_precision"
+      ],
+      "type": "string"
+     },
+     "upscaleFactor": {
+      "description": "Topaz only, required: 1-8.",
+      "type": "number"
+     },
+     "targetFps": {
+      "description": "Topaz only, required: 0-60 FPS.",
+      "type": "number"
+     },
+     "targetResolution": {
+      "description": "Magnific/Precision required: width 640-3840.",
+      "type": "number"
+     },
+     "focus": {
+      "description": "Topaz only, required: 0-1.",
+      "type": "number"
+     },
+     "sharpen": {
+      "description": "Topaz: 0-1 required. Magnific: 0-100.",
+      "type": "number"
+     },
+     "enhancementModel": {
+      "description": "Topaz only, required.",
+      "enum": [
+       "proteus",
+       "artemis",
+       "nyx",
+       "rhea",
+       "gaia",
+       "colorize",
+       "dione",
+       "theia",
+       "iris",
+       "themis",
+       "starlightFast2",
+       "astra2",
+       "starlightPrecise25"
+      ],
+      "type": "string"
+     },
+     "frameInterpolation": {
+      "description": "Topaz only, required.",
+      "enum": [
+       "apollo",
+       "chronos"
+      ],
+      "type": "string"
+     },
+     "creativity": {
+      "description": "Magnific Creative only: 0-100.",
+      "type": "number"
+     },
+     "magnificResolution": {
+      "description": "Magnific preset.",
+      "enum": [
+       "720p",
+       "1k",
+       "2k",
+       "4k"
+      ],
+      "type": "string"
+     },
+     "premiumQuality": {
+      "description": "Magnific Creative only.",
+      "type": "boolean"
+     },
+     "fpsBoost": {
+      "description": "Magnific/Precision only.",
+      "type": "boolean"
+     },
+     "smartGrain": {
+      "description": "Magnific/Precision: 0-100.",
+      "type": "number"
+     },
+     "flavor": {
+      "description": "Magnific Creative only.",
+      "enum": [
+       "vivid",
+       "natural"
+      ],
+      "type": "string"
+     },
+     "turbo": {
+      "description": "Magnific Creative only.",
+      "type": "boolean"
+     },
+     "preview": {
+      "description": "Magnific/Precision preview.",
+      "type": "boolean"
+     },
+     "strength": {
+      "description": "Precision 0-100.",
+      "type": "number"
+     },
+     "proResOutput": {
+      "description": "Magnific/Precision: also emit ProRes 422 HQ master (.mov). Ignored on preview.",
+      "type": "boolean"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "mode"
+    ]
+   }
+  },
+  {
+   "name": "video_upscale_models_list",
+   "description": "Video upscale mode catalog as raw TOON text (topaz, magnific, magnific_precision) with required/optional params, ranges and enums. Read before calling `video_upscale`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {}
+   }
+  },
+  {
+   "name": "video_concatenate",
+   "description": "Concatenate completed video creations into one MP4. Assembles multi-clip plans from `video_plan`. Audio from each clip; no external audio bed. Returns queued creation.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "description": "Label for the concatenated video in the media viewer.",
+      "type": "string"
+     },
+     "creationIdentifiers": {
+      "description": "2-10 completed video identifiers in playback order.",
+      "items": {
+       "description": "Completed video creation identifier.",
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifiers"
+    ]
+   }
+  },
+  {
+   "name": "video_speak",
+   "description": "Make a character speak. Image+audio \u2192 talking head (Veed Fabric 1.0). Video+audio \u2192 lip sync (Lipsync 2.0). Omit `mode` for auto. Pass asset URLs or a creation `identifier` (from `audio_tts`, `images_",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "audioUrl": {
+      "description": "Asset URL or a creation `identifier` (from `audio_tts`).",
+      "type": "string"
+     },
+     "videoUrl": {
+      "description": "Asset URL or a creation `identifier`. Required without `imageUrl`; mutually exclusive with it.",
+      "type": "string"
+     },
+     "imageUrl": {
+      "description": "Asset URL or a creation `identifier`. Required without `videoUrl`; mutually exclusive with it.",
+      "type": "string"
+     },
+     "mode": {
+      "description": "Omit for auto: image \u2192 veed-fabric-1.0, video \u2192 lipsync-2.0.",
+      "enum": [
+       "latentsync",
+       "lipsync-2.0",
+       "omnihuman",
+       "veed-fabric-1.0",
+       "veed-fabric-1.0-fast",
+       "veed-sync-2-v2v",
+       "react-1"
+      ],
+      "type": "string"
+     },
+     "resolution": {
+      "description": "Only for veed modes; defaults to 720p.",
+      "enum": [
+       "480p",
+       "720p"
+      ],
+      "type": "string"
+     },
+     "prompt": {
+      "description": "Script/prompt; model-dependent support.",
+      "type": "string"
+     },
+     "voiceId": {
+      "description": "Voice ID from `audio_voices_list`; links the voice to the creation.",
+      "type": "integer"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "audioUrl"
+    ]
+   }
+  },
+  {
+   "name": "audio_tts",
+   "description": "TTS voiceover. ElevenLabs/Google: voiceId (single) or speakers (2) \u2014 get via `audio_voices_show` (or `audio_voices_list` for agent-only lookup). Seed Audio (model=seed_audio_1_0): voice-less, no voice",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "description": "Max 40k (seed_audio_1_0: 2k). Eleven v3 best <=3k; turbo <=10k. `(pause 1.5s)` only on turbo.",
+      "type": "string"
+     },
+     "voiceId": {
+      "description": "From voices catalog; required unless `speakers` or model=seed_audio_1_0 (voice-less).",
+      "type": "integer"
+     },
+     "speakers": {
+      "description": "2 speakers, same provider.",
+      "items": {
+       "additionalProperties": false,
+       "properties": {
+        "voiceId": {
+         "type": "integer"
+        },
+        "speakerName": {
+         "description": "Label; defaults to voice name.",
+         "type": "string"
+        }
+       },
+       "type": "object",
+       "required": [
+        "voiceId"
+       ]
+      },
+      "type": "array"
+     },
+     "model": {
+      "description": "Default: eleven_v3 or gemini_v2_5_pro.",
+      "enum": [
+       "eleven_turbo_v2_5",
+       "eleven_v3",
+       "gemini_v2_5_pro",
+       "gemini_v3_1_flash_tts",
+       "seed_audio_1_0"
+      ],
+      "type": "string"
+     },
+     "stability": {
+      "description": "ElevenLabs 0-1; default 0.5.",
+      "type": "number"
+     },
+     "similarityBoost": {
+      "description": "ElevenLabs 0-1; default 0.2.",
+      "type": "number"
+     },
+     "speed": {
+      "description": "0.7-1.2 (ElevenLabs); 0.5-2.0 (seed_audio_1_0); default 1.0.",
+      "type": "number"
+     },
+     "useSpeakerBoost": {
+      "description": "ElevenLabs; default true.",
+      "type": "boolean"
+     },
+     "temperature": {
+      "description": "Gemini 0-2; default 1.0.",
+      "type": "number"
+     },
+     "systemInstruction": {
+      "description": "Gemini; max 10k.",
+      "type": "string"
+     },
+     "maxDuration": {
+      "description": "seed_audio_1_0 only, required. 10-120s. Billing = seconds.",
+      "type": "integer"
+     },
+     "volume": {
+      "description": "seed_audio_1_0 only; 0-2.",
+      "type": "number"
+     },
+     "pitch": {
+      "description": "seed_audio_1_0 only; -12..12.",
+      "type": "integer"
+     },
+     "sampleRate": {
+      "description": "seed_audio_1_0 only; 8000-48000 Hz.",
+      "type": "integer"
+     },
+     "outputFormat": {
+      "description": "seed_audio_1_0 only.",
+      "enum": [
+       "mp3",
+       "wav",
+       "pcm",
+       "ogg_opus"
+      ],
+      "type": "string"
+     },
+     "audioUrls": {
+      "description": "seed_audio_1_0 only; <=3 reference-audio URLs for voice style.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "imageUrl": {
+      "description": "seed_audio_1_0 only; style reference; excludes audioUrls.",
+      "type": "string"
+     },
+     "visible": {
+      "type": "boolean"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text"
+    ]
+   }
+  },
+  {
+   "name": "audio_music_generate",
+   "description": "AI music generation. Google Lyria or ElevenLabs. Pass `prompt`, optional `model`/`durationSeconds`/`instrumental`. Lyria/Lyria-3 produce fixed 30s; Lyria-3-Pro accepts 30\u2013180s; ElevenLabs v1/v2 accept",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "prompt": {
+      "description": "Music description. Min 10 chars, max 2000. Describe genre, mood, instruments, tempo.",
+      "type": "string"
+     },
+     "model": {
+      "description": "Default: google-lyria. google-lyria/google-lyria-3 = fixed 30s. google-lyria-3-pro = 30\u2013180s. ElevenLabs v1/v2 = 10\u2013300s.",
+      "enum": [
+       "google-lyria",
+       "google-lyria-3",
+       "google-lyria-3-pro",
+       "elevenlabs-music-generation",
+       "elevenlabs-music-generation-v2"
+      ],
+      "type": "string"
+     },
+     "durationSeconds": {
+      "description": "Duration in seconds. Required for ElevenLabs v1/v2. Effective for google-lyria-3-pro (30\u2013180) and ElevenLabs v1/v2 (10\u2013300). Ignored for fixed-duration models.",
+      "type": "integer"
+     },
+     "instrumental": {
+      "description": "Omit vocals. Only applicable for ElevenLabs v1/v2.",
+      "type": "boolean"
+     },
+     "folderReference": {
+      "description": "Optional project/folder reference from `folders_list` to place results in. Omit for the default.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   }
+  },
+  {
+   "name": "audio_voices_list",
+   "description": "TTS voice catalog as raw TOON text, no UI. Lean entries without preview URLs. Optional `search` filters by name, description, gender, or language.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "description": "Optional case-insensitive filter on voice name, description, gender, or language.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "audio_voices_show",
+   "description": "Inline TTS voice picker. User replies with voiceId.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "provider": {
+      "description": "Default all.",
+      "enum": [
+       "elevenlabs",
+       "google"
+      ],
+      "type": "string"
+     },
+     "pendingText": {
+      "description": "Script for follow-up audio_tts.",
+      "type": "string"
+     },
+     "pendingModel": {
+      "description": "Model for follow-up audio_tts.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "images_models_show",
+   "description": "Inline TTI model picker. User replies with slug.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "pendingPrompt": {
+      "description": "Prompt. Carried into picker for follow-up.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "video_models_show",
+   "description": "Inline video model picker. User replies with slug.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "pendingPrompt": {
+      "description": "Prompt. Carried into picker for follow-up.",
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "design_auto_resize",
+   "description": "Create resized design pages from an image. Use directly when ratios/social formats are known; otherwise show `design_auto_resize_show`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Source image identifier.",
+      "type": "string"
+     },
+     "aspectRatios": {
+      "description": "Unique target ratios.",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "name": {
+      "description": "2-6 word name.",
+      "type": "string"
+     },
+     "textLayers": {
+      "description": "Default true.",
+      "type": "boolean"
+     },
+     "imageLayers": {
+      "description": "Default true.",
+      "type": "boolean"
+     },
+     "numLayers": {
+      "description": "2-8.",
+      "minimum": 2,
+      "maximum": 8,
+      "type": "integer"
+     },
+     "multipage": {
+      "description": "Default true; false fans out.",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "creationIdentifier",
+     "aspectRatios"
+    ]
+   }
+  },
+  {
+   "name": "design_auto_layers",
+   "description": "Extract editable layers from a flat image into a Pikaso design.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Identifier of the source image.",
+      "type": "string"
+     },
+     "name": {
+      "description": "Descriptive 2-6 word name from the image subject. Required.",
+      "type": "string"
+     },
+     "numLayers": {
+      "description": "Max layers (2-8, default 6).",
+      "minimum": 2,
+      "maximum": 8,
+      "type": "integer"
+     },
+     "vectorize": {
+      "description": "Vectorize image layers (default false).",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "design_auto_resize_show",
+   "description": "Show aspect-ratio picker when ratios are vague or explicitly requested; otherwise call `design_auto_resize`. Never call twice.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "creationIdentifier": {
+      "description": "Source image identifier.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "creationIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "flows_list",
+   "description": "Flows catalog as raw TOON text, no UI. Lean entries without preview URLs. For an inline picker use flows_show; for a single flow input/output spec use flows_get.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "ownership": {
+      "description": "mine (default) = own + saved + shared. public = community.",
+      "enum": [
+       "mine",
+       "public"
+      ],
+      "type": "string"
+     },
+     "page": {
+      "type": "integer"
+     },
+     "perPage": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "flows_show",
+   "description": "Inline flow picker for visual selection. For headless catalog use flows_list; for a single flow spec use flows_get.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string"
+     },
+     "ownership": {
+      "description": "mine (default) = own + saved + shared. public = community.",
+      "enum": [
+       "mine",
+       "public"
+      ],
+      "type": "string"
+     },
+     "page": {
+      "type": "integer"
+     },
+     "perPage": {
+      "type": "integer"
+     }
+    }
+   }
+  },
+  {
+   "name": "flows_get",
+   "description": "Flow input/output spec as raw TOON text. Each input includes a normalized `kind`, `howToProvide`, and resolved `options`/`presetOptions` where applicable. Call before `flows_run`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "identifier": {
+      "description": "From flows_list/flows_show.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "identifier"
+    ]
+   }
+  },
+  {
+   "name": "flows_run",
+   "description": "Run flow. `flows_get` first for input specs. `inputs` is `{inputId: value}` (creation inputs from `creations_list`, voices from `audio_voices_show`). Returns `workflowRunIdentifier` \u2192 `flows_wait` \u2192 `",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "identifier": {
+      "description": "From flows_list/flows_show.",
+      "type": "string"
+     },
+     "inputs": {
+      "description": "{inputId: value} from `flows_get`.",
+      "type": "object"
+     }
+    },
+    "required": [
+     "identifier",
+     "inputs"
+    ]
+   }
+  },
+  {
+   "name": "flows_wait",
+   "description": "Long-poll a `flows_run`. Terminal: one entry per output creation with real `identifier` for `creations_show`. In-progress: `poll_after_seconds`.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "workflowRunIdentifier": {
+      "description": "Run identifier from `flows_run`.",
+      "type": "string"
+     },
+     "timeoutSeconds": {
+      "description": "Long-poll budget (default 25).",
+      "minimum": 0,
+      "maximum": 25,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "workflowRunIdentifier"
+    ]
+   }
+  },
+  {
+   "name": "stock_show",
+   "description": "Inline stock picker for visual browse/select. For textual search use stock_search.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "pendingPrompt": {
+      "description": "Intent to carry forward after selection.",
+      "type": "string"
+     },
+     "query": {
+      "description": "Pre-fill search bar.",
+      "type": "string"
+     },
+     "content_type": {
+      "description": "Pre-select content type tab. Use \"icon\" for SVG.",
+      "enum": [
+       "photo",
+       "vector",
+       "video",
+       "icon"
+      ],
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "name": "stock_search",
+   "description": "Search Freepik stock catalog by keyword. Returns items with IDs, titles, types, preview URLs. Use stock_get for full details, stock_download for file URL.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "description": "Search keywords.",
+      "type": "string"
+     },
+     "content_type": {
+      "description": "Filter by type. \"design\" = curated psd+vector. Omit for all types.",
+      "enum": [
+       "photo",
+       "vector",
+       "illustration",
+       "psd",
+       "design",
+       "video",
+       "icon",
+       "3d"
+      ],
+      "type": "string"
+     },
+     "license": {
+      "description": "free or premium. Omit for both.",
+      "enum": [
+       "free",
+       "premium"
+      ],
+      "type": "string"
+     },
+     "ai_generated": {
+      "description": "only = AI-generated, excluded = no AI. Omit for both. Ignored for icons.",
+      "enum": [
+       "only",
+       "excluded"
+      ],
+      "type": "string"
+     },
+     "orientation": {
+      "description": "Image orientation; for video maps to aspect ratio. Ignored for icons.",
+      "enum": [
+       "portrait",
+       "landscape",
+       "square",
+       "panoramic"
+      ],
+      "type": "string"
+     },
+     "page": {
+      "description": "Default: 1.",
+      "type": "integer"
+     },
+     "per_page": {
+      "description": "1\u201350. Default: 20.",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   }
+  },
+  {
+   "name": "stock_get",
+   "description": "Full details for a single Freepik stock item: preview URL, dimensions, formats, author.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Freepik stock item ID.",
+      "type": "integer"
+     },
+     "type": {
+      "description": "Default: photo. Use \"video\" for videos, \"icon\" for SVG.",
+      "enum": [
+       "photo",
+       "vector",
+       "video",
+       "icon"
+      ],
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "stock_download",
+   "description": "Signed download URL for a stock item. Pass folder_reference to also save as a creation.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Freepik stock item ID.",
+      "type": "integer"
+     },
+     "type": {
+      "description": "Default: photo. Use \"icon\" for SVG.",
+      "enum": [
+       "photo",
+       "vector",
+       "video",
+       "icon",
+       "psd",
+       "3d"
+      ],
+      "type": "string"
+     },
+     "format": {
+      "description": "Default: render (flattened image). vector/psd only: source = layered PSD/vector ZIP for editors.",
+      "enum": [
+       "render",
+       "source"
+      ],
+      "type": "string"
+     },
+     "folder_reference": {
+      "description": "Project folder UUID. When provided, creation saved to library.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "stock_to_creation",
+   "description": "Convert Freepik stock item \u2192 Pikaso creation. Use after user selects from stock_show.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "description": "Freepik stock item ID.",
+      "type": "integer"
+     },
+     "type": {
+      "description": "Default: image. Use \"video\" for stock videos.",
+      "enum": [
+       "image",
+       "video"
+      ],
+      "type": "string"
+     },
+     "folder_reference": {
+      "description": "Target project folder UUID. Omit to save without folder.",
+      "type": "string"
+     },
+     "title": {
+      "description": "Creation display title. Defaults to \"Stock item {id}\".",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   }
+  },
+  {
+   "name": "simulate_cost",
+   "description": "Estimate credit cost before running one credit-consuming tool. Pass `tool` + same `arguments` you would pass to that tool. Read-only \u2014 never charges.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "tool": {
+      "description": "Target tool to price. Use the real tool name, not legacy simulate_* names.",
+      "enum": [
+       "images_generate",
+       "images_generate_svg",
+       "images_to_svg",
+       "images_remove_background",
+       "images_upscale",
+       "images_crop",
+       "images_resize",
+       "images_variations",
+       "images_relight",
+       "images_change_camera",
+       "images_skin_enhancer",
+       "video_generate",
+       "video_upscale",
+       "video_speak",
+       "audio_tts",
+       "audio_music_generate",
+       "models3d_generate"
+      ],
+      "type": "string"
+     },
+     "arguments": {
+      "description": "Same args as target tool. Omit or pass {} to get required/optional args for targets that need input. If unsure, reload tools/list and inspect the target tool schema.",
+      "type": "object"
+     }
+    },
+    "required": [
+     "tool"
+    ]
+   }
+  },
+  {
+   "name": "simulate_flows",
+   "description": "Estimate the credit cost of `flows_run` before running it, for the same inputs. Call `flows_get` first for input specs. `inputs` is `{inputId: value}`, as for `flows_run`. Read-only \u2014 never charges.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "identifier": {
+      "description": "Flow identifier from `flows_list` / `flows_show`.",
+      "type": "string"
+     },
+     "inputs": {
+      "description": "{inputId: value} from `flows_get` \u2014 the same inputs you would pass to `flows_run`.",
+      "type": "object"
+     }
+    },
+    "required": [
+     "identifier",
+     "inputs"
+    ]
+   }
+  },
+  {
+   "name": "simulate_spaces",
+   "description": "Estimate the credit cost of `spaces_run` before running it, for the same `startNodeId` and `mode`. Read-only \u2014 never charges.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "spaceId": {
+      "description": "Space UUID.",
+      "type": "string"
+     },
+     "startNodeId": {
+      "description": "Node id from `spaces_state` \u2014 same start node you would pass to `spaces_run`.",
+      "type": "string"
+     },
+     "mode": {
+      "description": "Default downstream. Matches `spaces_run`.",
+      "enum": [
+       "singular",
+       "connected",
+       "downstream"
+      ],
+      "type": "string"
+     }
+    },
+    "required": [
+     "spaceId",
+     "startNodeId"
+    ]
+   }
+  }
+ ],
+ "resources": [
+  {
+   "name": "auto_resize_picker",
+   "uri": "ui://design/auto-resize-picker"
+  },
+  {
+   "name": "media_viewer",
+   "uri": "ui://media/viewer"
+  },
+  {
+   "name": "voice_picker",
+   "uri": "ui://audio/voice-picker"
+  },
+  {
+   "name": "image_model_picker",
+   "uri": "ui://image/model-picker"
+  },
+  {
+   "name": "video_model_picker",
+   "uri": "ui://video/model-picker"
+  },
+  {
+   "name": "space_viewer",
+   "uri": "ui://spaces/viewer"
+  },
+  {
+   "name": "library_picker",
+   "uri": "ui://library/picker"
+  },
+  {
+   "name": "flows_picker",
+   "uri": "ui://flows/picker"
+  },
+  {
+   "name": "stock_picker",
+   "uri": "ui://stock/picker"
+  },
+  {
+   "name": "media_list",
+   "uri": "ui://media/list"
+  },
+  {
+   "name": "media_upload",
+   "uri": "ui://creations/upload"
+  },
+  {
+   "name": "flows",
+   "uri": "flows://"
+  },
+  {
+   "name": "creations_show_data",
+   "uri": "creations://show"
+  },
+  {
+   "name": "image_models",
+   "uri": "models://image"
+  },
+  {
+   "name": "video_models",
+   "uri": "models://video"
+  },
+  {
+   "name": "video_upscale_models",
+   "uri": "models://video/upscale"
+  },
+  {
+   "name": "voices",
+   "uri": "voices://"
+  },
+  {
+   "name": "library",
+   "uri": "library://"
+  },
+  {
+   "name": "stock_search_catalog",
+   "uri": "stock://search"
+  },
+  {
+   "name": "stock_download_resource",
+   "uri": "stock://download"
+  },
+  {
+   "name": "creations_list_data",
+   "uri": "creations://list"
+  },
+  {
+   "name": "project_tree",
+   "uri": "projects://tree"
+  }
+ ],
+ "prompts": [
+  {
+   "name": "seedance-video-generation",
+   "description": "Reference-role prompting, camera language and constraints for Seedance video generation (ported from fc-freepik-agent preset skill)"
+  }
+ ],
+ "balance_probe": {
+  "content": [
+   {
+    "type": "text",
+    "text": "{\"plan\":{\"tier\":\"magnific\",\"productName\":\"Premium+\",\"isUnlimitedMode\":false,\"unlimitedAppliesHere\":false},\"credits\":{\"available\":44381,\"totalPlan\":60000,\"spent\":15619,\"hasExtraCredits\":true}}"
+   }
+  ],
+  "structuredContent": {
+   "plan": {
+    "tier": "magnific",
+    "productName": "Premium+",
+    "isUnlimitedMode": false,
+    "unlimitedAppliesHere": false
+   },
+   "credits": {
+    "available": 44381,
+    "totalPlan": 60000,
+    "spent": 15619,
+    "hasExtraCredits": true
+   }
+  },
+  "isError": false
+ },
+ "observations": [
+  "Live surface (85 tools) substantially exceeds the official docs baseline (~34 names): docs list is outdated/incomplete; live tools/list is authoritative",
+  "tools_show (docs) absent from live list; creations_upload_show / creations_upload_image / creations_upload_file replace the docs' request-upload trio",
+  "Cost simulation exists: simulate_cost(tool), simulate_flows, simulate_spaces \u2014 enables spend estimation before execution",
+  "Destructive/sharing surface confirmed: folders_delete, library_delete, library_share; execution surface: spaces_run, spaces_edit, flows_run, stock_download",
+  "Creates-workspace writes confirmed: creations_like, creations_comment, folders_create/rename, spaces_create, projects_move, library_create/edit",
+  "account_balance returns structured credit data (plan tier, available/total/spent, unlimited-mode flag)",
+  "server_info name 'pikaso' matches the X-Pikaso-Client CORS header observed pre-auth"
+ ],
+ "code_mode_namespace": "expected magnific.magnific_<tool> per the naming convention; exact registry names require Code Mode list_tools in a Code Mode session (server-side names above are the canonical tool names)"
+}

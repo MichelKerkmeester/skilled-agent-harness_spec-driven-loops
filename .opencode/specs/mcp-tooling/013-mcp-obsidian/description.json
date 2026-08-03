@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "1",
   "specFolder": "mcp-tooling/013-mcp-obsidian",
   "description": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
   "keywords": [
@@ -14,7 +14,7 @@
     "mcp-tooling",
     "hub"
   ],
-  "lastUpdated": "2026-08-02T11:17:14.252Z",
+  "lastUpdated": "2026-08-03T11:57:49.999Z",
   "specId": "013",
   "folderSlug": "mcp-obsidian",
   "parentChain": [

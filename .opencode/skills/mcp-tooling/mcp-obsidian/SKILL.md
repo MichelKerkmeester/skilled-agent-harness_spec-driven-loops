@@ -2,10 +2,10 @@
 name: mcp-obsidian
 description: Routes Obsidian between two CLI profiles — headless notesmd-cli (no running app) and the app-backed official obsidian CLI — plus the cyanheads Obsidian MCP for live-app note ops. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.1.0.1
+version: 1.3.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, data.json -->
 
 # mcp-obsidian Skill
 
@@ -22,6 +22,8 @@ Obsidian vault and note management via **two CLI profiles** and the **cyanheads 
 - "create a note", "open a note", "search notes", "search my vault"
 - "add a tag to a note", "manage frontmatter", "delete a note", "move a note"
 - "obsidian plugin", "beancount", "beancount finance", "obsidian tables", "brat"
+- "health", "health data", "apple health", "health chart", "health-md", "health.md"
+- "iconic", "icons", "icon color", "file icons", "folder icons", "icon rules", "iconic rulebook"
 - "local rest api", "obsidian api key"
 
 ### Automatic Triggers (keyword patterns)
@@ -67,6 +69,16 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/obsidian42-brat/data-model.md
              references/plugins/obsidian42-brat/workflows.md
              references/plugins/obsidian42-brat/troubleshooting.md
+           Health.md Visualizations:
+             references/plugins/health-md/health-md.md                   (plugin index)
+             references/plugins/health-md/data-model.md
+             references/plugins/health-md/workflows.md
+             references/plugins/health-md/troubleshooting.md
+           Iconic:
+             references/plugins/iconic/iconic.md                         (plugin index)
+             references/plugins/iconic/data-model.md
+             references/plugins/iconic/workflows.md
+             references/plugins/iconic/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes

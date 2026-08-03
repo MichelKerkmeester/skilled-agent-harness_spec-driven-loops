@@ -1,303 +1,314 @@
 {
-  "skill": "mcp-tooling",
-  "version": "1.1.0.0",
-  "routerPolicy": {
-    "defaultMode": null,
-    "ambiguityDelta": 1,
-    "tieBreak": [
-      "mcp-chrome-devtools",
-      "mcp-click-up",
-      "mcp-obsidian",
-      "mcp-aside-devtools",
-      "mcp-figma",
-      "mcp-refero",
-      "mcp-mobbin",
-      "mcp-webflow"
-    ],
-    "outcomes": {
-      "single": "one dominant tool signal routes to one mode",
-      "orderedBundle": "multiple explicitly requested tools route in tie-break order",
-      "defer": "unclear or contradictory tool intent asks for disambiguation"
-    },
-    "defaultResource": [
-      "shared/references/smart-routing.md",
-      "mode-registry.json"
-    ],
-    "defaultResourceSemantics": "fallback-only",
-    "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",
-    "discoveryClasses": [
-      "hub-identity",
-      "provider-neutral-design-research"
-    ],
-    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+ "skill": "mcp-tooling",
+ "version": "1.1.0.0",
+ "routerPolicy": {
+  "defaultMode": null,
+  "ambiguityDelta": 1,
+  "tieBreak": [
+   "mcp-chrome-devtools",
+   "mcp-click-up",
+   "mcp-obsidian",
+   "mcp-aside-devtools",
+   "mcp-figma",
+   "mcp-refero",
+   "mcp-mobbin",
+   "mcp-webflow"
+  ],
+  "outcomes": {
+   "single": "one dominant tool signal routes to one mode",
+   "orderedBundle": "multiple explicitly requested tools route in tie-break order",
+   "defer": "unclear or contradictory tool intent asks for disambiguation"
   },
-  "routerSignals": {
-    "mcp-chrome-devtools": {
-      "weight": 4,
-      "classes": [
-        "chrome-devtools-aliases",
-        "browser-debug"
-      ],
-      "resources": [
-        "mcp-chrome-devtools/SKILL.md"
-      ]
-    },
-    "mcp-click-up": {
-      "weight": 4,
-      "classes": [
-        "clickup-aliases",
-        "task-management"
-      ],
-      "resources": [
-        "mcp-click-up/SKILL.md"
-      ]
-    },
-    "mcp-obsidian": {
-      "weight": 4,
-      "classes": [
-        "obsidian-aliases",
-        "note-management"
-      ],
-      "resources": [
-        "mcp-obsidian/SKILL.md"
-      ]
-    },
-    "mcp-aside-devtools": {
-      "weight": 4,
-      "classes": [
-        "aside-devtools-aliases",
-        "agentic-browser"
-      ],
-      "resources": [
-        "mcp-aside-devtools/SKILL.md"
-      ]
-    },
-    "mcp-figma": {
-      "weight": 4,
-      "classes": [
-        "figma-aliases",
-        "design-transport"
-      ],
-      "resources": [
-        "mcp-figma/SKILL.md"
-      ]
-    },
-    "mcp-refero": {
-      "weight": 4,
-      "classes": [
-        "refero-aliases",
-        "design-reference-research"
-      ],
-      "resources": [
-        "mcp-refero/SKILL.md"
-      ]
-    },
-    "mcp-mobbin": {
-      "weight": 4,
-      "classes": [
-        "mobbin-aliases",
-        "app-design-research"
-      ],
-      "resources": [
-        "mcp-mobbin/SKILL.md"
-      ]
-    },
-    "mcp-webflow": {
-      "weight": 4,
-      "classes": [
-        "webflow-aliases",
-        "webflow-operations"
-      ],
-      "resources": [
-        "mcp-webflow/SKILL.md"
-      ]
-    }
+  "defaultResource": [
+   "shared/references/smart-routing.md",
+   "mode-registry.json"
+  ],
+  "defaultResourceSemantics": "fallback-only",
+  "defaultResourceContract": "A scored route assembles exactly the selected mode's declared resources. defaultResource is consulted ONLY when no mode scores (zero-signal branch), and then only as the defer-time suggestion offered alongside disambiguation - it is never unioned into a scored route's resource set.",
+  "discoveryClasses": [
+   "hub-identity",
+   "provider-neutral-design-research"
+  ],
+  "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt matching only discovery vocabulary scores zero modes and takes the defer outcome instead of fanning out to every mode."
+ },
+ "routerSignals": {
+  "mcp-chrome-devtools": {
+   "weight": 4,
+   "classes": [
+    "chrome-devtools-aliases",
+    "browser-debug"
+   ],
+   "resources": [
+    "mcp-chrome-devtools/SKILL.md"
+   ]
   },
-  "vocabularyClasses": {
-    "hub-identity": {
-      "note": "Discovery-only (see routerPolicy.discoveryClasses): hub-level vocabulary that identifies THIS hub, not any one mode. Deliberately unreferenced by routerSignals so hub-identity-only prompts defer.",
-      "keywords": [
-        "mcp-tooling",
-        "mcp tool bridge",
-        "mode-registry",
-        "hub-router"
-      ]
-    },
-    "provider-neutral-design-research": {
-      "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
-      "keywords": [
-        "screen examples"
-      ]
-    },
-    "chrome-devtools-aliases": {
-      "keywords": [
-        "chrome devtools",
-        "browser debug",
-        "dom inspect",
-        "lighthouse",
-        "bdg",
-        "cdp"
-      ]
-    },
-    "browser-debug": {
-      "keywords": [
-        "screenshot capture",
-        "console errors",
-        "network requests",
-        "har export",
-        "performance trace",
-        "cdp domain"
-      ]
-    },
-    "clickup-aliases": {
-      "keywords": [
-        "clickup",
-        "cupt",
-        "task management",
-        "work queue",
-        "mark done",
-        "time tracking",
-        "project tracker"
-      ]
-    },
-    "obsidian-aliases": {
-      "keywords": [
-        "obsidian",
-        "obsidian vault",
-        "notesmd-cli",
-        "obsidian mcp",
-        "markdown notes"
-      ]
-    },
-    "note-management": {
-      "keywords": [
-        "create note",
-        "vault search",
-        "backlinks",
-        "daily note",
-        "knowledge base",
-        "note crud"
-      ]
-    },
-    "task-management": {
-      "keywords": [
-        "log time",
-        "process queue",
-        "clickup documents",
-        "clickup goals",
-        "bulk tasks",
-        "clickup task"
-      ]
-    },
-    "figma-aliases": {
-      "keywords": [
-        "figma",
-        "figma cli",
-        "figma-ds-cli",
-        "figma desktop",
-        "render in figma",
-        "figma tokens",
-        "extract design.md",
-        "figma mcp"
-      ]
-    },
-    "design-transport": {
-      "keywords": [
-        "figma daemon",
-        "connect to figma",
-        "figma variables",
-        "export from figma",
-        "figma export",
-        "design tokens",
-        "design file"
-      ]
-    },
-    "aside-devtools-aliases": {
-      "keywords": [
-        "aside",
-        "aside browser",
-        "aside cli",
-        "aside mcp",
-        "aside repl",
-        "ai browser automation",
-        "agentic browser"
-      ]
-    },
-    "agentic-browser": {
-      "keywords": [
-        "agentic browser task",
-        "natural language browser",
-        "browser agent",
-        "aside daemon",
-        "aside account",
-        "repl evidence capture",
-        "click through",
-        "on its own"
-      ]
-    },
-    "refero-aliases": {
-      "keywords": [
-        "refero",
-        "refero mcp",
-        "design reference search",
-        "ui reference",
-        "real app screens",
-        "refero.design"
-      ]
-    },
-    "design-reference-research": {
-      "keywords": [
-        "design reference",
-        "ui screens from real apps",
-        "design inspiration search",
-        "reference styles",
-        "user flow references",
-        "web products"
-      ]
-    },
-    "mobbin-aliases": {
-      "keywords": [
-        "mobbin",
-        "mobbin mcp",
-        "app design research",
-        "ux flow references",
-        "mobile design patterns"
-      ]
-    },
-    "app-design-research": {
-      "keywords": [
-        "real app screenshots",
-        "mobile ux research",
-        "onboarding flow examples",
-        "app screen gallery",
-        "design pattern research",
-        "ios app examples",
-        "phone apps"
-      ]
-    },
-    "webflow-aliases": {
-      "note": "Webflow site/page/CMS/designer operations naming Webflow or its tools.",
-      "keywords": [
-        "webflow",
-        "webflow mcp",
-        "webflow site",
-        "webflow cms",
-        "webflow designer",
-        "webflow publish",
-        "webflow collection",
-        "webflow workflow"
-      ]
-    },
-    "webflow-operations": {
-      "note": "Operation-class phrasing that must route to mcp-webflow.",
-      "keywords": [
-        "publish webflow",
-        "webflow staging publish",
-        "webflow cms item",
-        "webflow page settings",
-        "webflow component",
-        "webflow variable"
-      ]
-    }
+  "mcp-click-up": {
+   "weight": 4,
+   "classes": [
+    "clickup-aliases",
+    "task-management"
+   ],
+   "resources": [
+    "mcp-click-up/SKILL.md"
+   ]
+  },
+  "mcp-obsidian": {
+   "weight": 4,
+   "classes": [
+    "obsidian-aliases",
+    "note-management",
+    "health-md-data"
+   ],
+   "resources": [
+    "mcp-obsidian/SKILL.md"
+   ]
+  },
+  "mcp-aside-devtools": {
+   "weight": 4,
+   "classes": [
+    "aside-devtools-aliases",
+    "agentic-browser"
+   ],
+   "resources": [
+    "mcp-aside-devtools/SKILL.md"
+   ]
+  },
+  "mcp-figma": {
+   "weight": 4,
+   "classes": [
+    "figma-aliases",
+    "design-transport"
+   ],
+   "resources": [
+    "mcp-figma/SKILL.md"
+   ]
+  },
+  "mcp-refero": {
+   "weight": 4,
+   "classes": [
+    "refero-aliases",
+    "design-reference-research"
+   ],
+   "resources": [
+    "mcp-refero/SKILL.md"
+   ]
+  },
+  "mcp-mobbin": {
+   "weight": 4,
+   "classes": [
+    "mobbin-aliases",
+    "app-design-research"
+   ],
+   "resources": [
+    "mcp-mobbin/SKILL.md"
+   ]
+  },
+  "mcp-webflow": {
+   "weight": 4,
+   "classes": [
+    "webflow-aliases",
+    "webflow-operations"
+   ],
+   "resources": [
+    "mcp-webflow/SKILL.md"
+   ]
   }
+ },
+ "vocabularyClasses": {
+  "hub-identity": {
+   "note": "Discovery-only (see routerPolicy.discoveryClasses): hub-level vocabulary that identifies THIS hub, not any one mode. Deliberately unreferenced by routerSignals so hub-identity-only prompts defer.",
+   "keywords": [
+    "mcp-tooling",
+    "mcp tool bridge",
+    "mode-registry",
+    "hub-router"
+   ]
+  },
+  "provider-neutral-design-research": {
+   "note": "Discovery-only (see routerPolicy.discoveryClasses): generic design-research phrasing naming neither provider. Reserved for defer between mcp-refero and mcp-mobbin per MT-008/MT-009 scenario contracts; never provider-scoring vocabulary.",
+   "keywords": [
+    "screen examples"
+   ]
+  },
+  "chrome-devtools-aliases": {
+   "keywords": [
+    "chrome devtools",
+    "browser debug",
+    "dom inspect",
+    "lighthouse",
+    "bdg",
+    "cdp"
+   ]
+  },
+  "browser-debug": {
+   "keywords": [
+    "screenshot capture",
+    "console errors",
+    "network requests",
+    "har export",
+    "performance trace",
+    "cdp domain"
+   ]
+  },
+  "clickup-aliases": {
+   "keywords": [
+    "clickup",
+    "cupt",
+    "task management",
+    "work queue",
+    "mark done",
+    "time tracking",
+    "project tracker"
+   ]
+  },
+  "obsidian-aliases": {
+   "keywords": [
+    "obsidian",
+    "obsidian vault",
+    "notesmd-cli",
+    "obsidian mcp",
+    "markdown notes"
+   ]
+  },
+  "note-management": {
+   "keywords": [
+    "create note",
+    "vault search",
+    "backlinks",
+    "daily note",
+    "knowledge base",
+    "note crud"
+   ]
+  },
+  "task-management": {
+   "keywords": [
+    "log time",
+    "process queue",
+    "clickup documents",
+    "clickup goals",
+    "bulk tasks",
+    "clickup task"
+   ]
+  },
+  "figma-aliases": {
+   "keywords": [
+    "figma",
+    "figma cli",
+    "figma-ds-cli",
+    "figma desktop",
+    "render in figma",
+    "figma tokens",
+    "extract design.md",
+    "figma mcp"
+   ]
+  },
+  "design-transport": {
+   "keywords": [
+    "figma daemon",
+    "connect to figma",
+    "figma variables",
+    "export from figma",
+    "figma export",
+    "design tokens",
+    "design file"
+   ]
+  },
+  "aside-devtools-aliases": {
+   "keywords": [
+    "aside",
+    "aside browser",
+    "aside cli",
+    "aside mcp",
+    "aside repl",
+    "ai browser automation",
+    "agentic browser"
+   ]
+  },
+  "agentic-browser": {
+   "keywords": [
+    "agentic browser task",
+    "natural language browser",
+    "browser agent",
+    "aside daemon",
+    "aside account",
+    "repl evidence capture",
+    "click through",
+    "on its own"
+   ]
+  },
+  "refero-aliases": {
+   "keywords": [
+    "refero",
+    "refero mcp",
+    "design reference search",
+    "ui reference",
+    "real app screens",
+    "refero.design"
+   ]
+  },
+  "design-reference-research": {
+   "keywords": [
+    "design reference",
+    "ui screens from real apps",
+    "design inspiration search",
+    "reference styles",
+    "user flow references",
+    "web products"
+   ]
+  },
+  "mobbin-aliases": {
+   "keywords": [
+    "mobbin",
+    "mobbin mcp",
+    "app design research",
+    "ux flow references",
+    "mobile design patterns"
+   ]
+  },
+  "app-design-research": {
+   "keywords": [
+    "real app screenshots",
+    "mobile ux research",
+    "onboarding flow examples",
+    "app screen gallery",
+    "design pattern research",
+    "ios app examples",
+    "phone apps"
+   ]
+  },
+  "webflow-aliases": {
+   "note": "Webflow site/page/CMS/designer operations naming Webflow or its tools.",
+   "keywords": [
+    "webflow",
+    "webflow mcp",
+    "webflow site",
+    "webflow cms",
+    "webflow designer",
+    "webflow publish",
+    "webflow collection",
+    "webflow workflow"
+   ]
+  },
+  "webflow-operations": {
+   "note": "Operation-class phrasing that must route to mcp-webflow.",
+   "keywords": [
+    "publish webflow",
+    "webflow staging publish",
+    "webflow cms item",
+    "webflow page settings",
+    "webflow component",
+    "webflow variable"
+   ]
+  },
+  "health-md-data": {
+   "keywords": [
+    "health md",
+    "health.md",
+    "health data",
+    "apple health",
+    "health chart",
+    "health visualization"
+   ]
+  }
+ }
 }

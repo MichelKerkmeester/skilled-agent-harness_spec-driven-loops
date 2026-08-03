@@ -1,0 +1,1034 @@
+{
+  "sessionId": "fanout-luna-1785675410437-3ctuwx",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-exact-persisted-data-json-keys-defaults-list-shapes-and-version-pin-semanti",
+      "inboxId": null,
+      "text": "What exact persisted data.json keys, defaults, list shapes, and version-pin semantics does BRAT use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-does-every-brat-command-do-including-beta-plugins-frozen-release-tags-updat",
+      "inboxId": null,
+      "text": "What does every BRAT command do, including beta plugins, frozen release tags, updates, restart, and themes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-exact-release-root-asset-fetch-and-vault-file-install-enabling-mechanics-do",
+      "inboxId": null,
+      "text": "What exact release/root asset-fetch and vault-file install/enabling mechanics does BRAT implement?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-headless-file-layer-workflows-are-safe-for-plugin-installation-enabling-re",
+      "inboxId": null,
+      "text": "Which headless file-layer workflows are safe for plugin installation, enabling, registration, and frozen pinning?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-errors-and-edge-cases-occur-and-what-source-backed-ai-recipes-and-troubles",
+      "inboxId": null,
+      "text": "Which errors and edge cases occur, and what source-backed AI recipes and troubleshooting checks address them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-exact-persisted-data-json-keys-defaults-list-shapes-and-version-pin-semanti",
+      "inboxId": null,
+      "text": "What exact persisted data.json keys, defaults, list shapes, and version-pin semantics does BRAT use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-does-every-brat-command-do-including-beta-plugins-frozen-release-tags-updat",
+      "inboxId": null,
+      "text": "What does every BRAT command do, including beta plugins, frozen release tags, updates, restart, and themes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-3-what-exact-release-root-asset-fetch-and-vault-file-install-enabling-mechanics-do",
+      "inboxId": null,
+      "text": "What exact release/root asset-fetch and vault-file install/enabling mechanics does BRAT implement?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-which-headless-file-layer-workflows-are-safe-for-plugin-installation-enabling-re",
+      "inboxId": null,
+      "text": "Which headless file-layer workflows are safe for plugin installation, enabling, registration, and frozen pinning?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-which-errors-and-edge-cases-occur-and-what-source-backed-ai-recipes-and-troubles",
+      "inboxId": null,
+      "text": "Which errors and edge cases occur, and what source-backed AI recipes and troubleshooting checks address them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Full vault-file install mechanics need dedicated tracing of release asset validation, manifest fallback, minAppVersion handling, `community-plugins.json` enablement, and reload order.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Full command behavior details still need deeper tracing through modals, delete/update helpers, and settings UI.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Error and edge-case catalog still needs a dedicated pass over `githubUtils`, modals, settings UI, private-repo token docs, and notification paths.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Safe headless AI workflows still need synthesis from BRAT source plus Obsidian vault-file behavior.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Private repository token handling needs a dedicated pass over token validation, SecretStorage names, and settings UI.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What does every BRAT command do, including beta plugins, frozen release tags, updates, restart, and themes?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which errors and edge cases occur, and what source-backed AI recipes and troubleshooting checks address them?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which non-token errors and edge cases occur, and what source-backed AI recipes and troubleshooting checks address them?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact release/root asset-fetch and vault-file install/enabling mechanics does BRAT implement?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None for the core file-layer knowledge base. Residual uncertainty is limited to modal UI microcopy and branch details unavailable through the cached source fetch.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-pluginlist-is-a-string-array-of-github-repository-paths-such-as-tfthacker-obsidi",
+      "text": "`pluginList` is a string array of GitHub repository paths such as `TfTHacker/obsidian42-brat`; `pluginSubListFrozenVersion` is an array of objects shaped as `{repo, version, token?, tokenName?, isIncompatible?}`; `themesList` is an array of `{repo, lastUpdate}` where `lastUpdate` is a checksum of the theme file. Deprecated `token` is intentionally written as `undefined`; active private access is represented by `tokenName`, with token values stored in Obsidian SecretStorage rather than `data.json`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-5-brat-command-registration-is-centralized-in-plugincommands-the-constructor-loops",
+      "text": "BRAT command registration is centralized in `PluginCommands`: the constructor loops through `bratCommands` and calls `this.plugin.addCommand({id, name, icon, callback})` for each. The registered command IDs found in source are `AddBetaPlugin`, `checkForUpdatesAndUpdate`, `checkForUpdatesAndDontUpdate`, `updateOnePlugin`, `reinstallOnePlugin`, `restartPlugin`, `disablePlugin`, `enablePlugin`, `openGitHubZRepository`, `openCommunityPagePlugin`, `openGitHubRepoTheme`, `opentPluginSettings`, `GrabBetaTheme`, `updateBetaThemes`, `removeGraduatedFromBrat`, `updateGraduatedToStableAndRemove`, and `allCommands`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-1-brat-persists-settings-by-merging-loaddata-over-default-settings-so-omitted-keys",
+      "text": "BRAT persists settings by merging `loadData()` over `DEFAULT_SETTINGS`, so omitted keys in `data.json` inherit defaults at runtime rather than needing to exist on disk. The v2.2+ source settings model includes `pluginList`, `pluginSubListFrozenVersion`, `themesList`, startup/update/install/logging/notification flags, token-name fields, latest-version default selection, and incompatible-plugin override. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-6-source-and-docs-align-that-brat-expects-a-github-repository-path-for-plugin-test",
+      "text": "Source and docs align that BRAT expects a GitHub repository path for plugin testing and takes over download/copy/update work. The official docs describe adding a repository path and state that BRAT downloads updates and reloads the plugin; source shows release asset installation writes `main.js`, `manifest.json`, and optional `styles.css` to `.obsidian/plugins/<manifest.id>/`. [SOURCE: https://tfthacker.com/BRAT] [SOURCE: https://tfthacker.com/brat-plugins] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-7-source-backed-release-selection-is-release-centric-not-root-file-centric-brat-ca",
+      "text": "Source-backed release selection is release-centric, not root-file-centric: BRAT calls GitHub releases, can fetch a specific tag via `/releases/tags/<version>`, otherwise sorts releases by semver-coerced tag then date, and downloads release assets by exact names. This directly explains the data-model meaning of release-tag pins in `pluginSubListFrozenVersion.version`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-exact-default-data-model-is-pluginlist-pluginsublistfrozenversion-themeslist",
+      "text": "The exact default data model is: `pluginList: []`, `pluginSubListFrozenVersion: []`, `themesList: []`, `updateAtStartup: true`, `updateThemesAtStartup: true`, `enableAfterInstall: true`, `loggingEnabled: false`, `loggingPath: \"BRAT-log\"`, `loggingVerboseEnabled: false`, `debuggingMode: false`, `notificationsEnabled: true`, `globalTokenName: \"\"`, `personalAccessToken: \"\"`, `selectLatestPluginVersionByDefault: false`, and `allowIncompatiblePlugins: false`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-8-theme-registration-shares-data-json-but-uses-a-separate-list-themeslist-stores-r",
+      "text": "Theme registration shares `data.json` but uses a separate list: `themesList` stores repository path plus checksum. Official theme docs state BRAT downloads `theme.css` and `manifest.json` into the vault themes folder, tries `theme-beta.css` before `theme.css`, and uses file checksum/change detection rather than theme manifest versioning. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts] [SOURCE: https://tfthacker.com/brat-themes]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-1-4-version-pin-semantics-are-source-defined-update-sweeps-build-a-map-from-pluginsu",
+      "text": "Version-pin semantics are source-defined: update sweeps build a map from `pluginSubListFrozenVersion`, skip entries whose `version` is truthy and not `\"latest\"`, and update entries with missing/empty version or `\"latest\"`. Therefore a frozen pin is any non-empty release tag other than `\"latest\"`; ordinary/latest-tracking installs can still have an entry in `pluginSubListFrozenVersion`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/main.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-safe-file-layer-registration-for-brat-after-a-headless-install-requires-both-l",
+      "text": "A safe file-layer registration for BRAT after a headless install requires both list shapes from `data.json`: add the repo string to `pluginList`, and add or update `{repo, version, tokenName?, isIncompatible?}` in `pluginSubListFrozenVersion`. A frozen pin is any non-empty version other than `\"latest\"`; `\"latest\"` or an empty/missing version tracks updates. Source `addBetaPluginToList` updates both structures and avoids persisting token values. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-3-brat-s-compatibility-checks-are-part-of-the-safe-workflow-not-ui-only-polish-sou",
+      "text": "BRAT's compatibility checks are part of the safe workflow, not UI-only polish. Source checks `minAppVersion` with Obsidian's `requireApiVersion`, blocks incompatible latest installs unless incompatible installs are explicitly allowed and confirmed for a specified version, and blocks desktop-only plugins on mobile unless forced. Obsidian's manifest docs make `minAppVersion`, `version`, `id`, and `isDesktopOnly` core plugin manifest fields. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts] [SOURCE: https://docs.obsidian.md/Reference/Manifest]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-5-enabling-is-a-separate-vault-application-state-transition-from-file-installation",
+      "text": "Enabling is a separate vault/application state transition from file installation. BRAT's in-app path calls Obsidian's `loadManifest`, `enablePluginAndSave`, and then reloads manifests; Obsidian's user docs separately state that installed plugins must be enabled before use. Therefore a headless AI can safely stage files and BRAT registration, but it should either use an Obsidian API/CLI enable operation or edit `.obsidian/community-plugins.json` only while Obsidian is closed and after validating that the plugin folder name matches `manifest.id`. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts] [SOURCE: https://obsidian.md/help/community-plugins] [SOURCE: https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin] [INFERENCE: based on BRAT's `enablePluginAndSave` call plus Obsidian's installed-then-enable model]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-2-for-plugin-assets-headless-ai-should-treat-release-assets-as-authoritative-and-e",
+      "text": "For plugin assets, headless AI should treat release assets as authoritative and exact-name-sensitive. BRAT uses GitHub release asset lookup by exact asset name; missing `manifest.json` causes validation failure, missing `main.js` makes the release incomplete, and `styles.css` is optional. Obsidian's release docs independently specify the same uploaded plugin assets: `main.js`, `manifest.json`, and optional `styles.css`. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts] [SOURCE: https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-practical-ai-guardrail-is-to-separate-stage-register-and-activate-stage-mean",
+      "text": "The practical AI guardrail is to separate \"stage\", \"register\", and \"activate\". Stage means write plugin/theme files from verified assets. Register means update BRAT `data.json` using BRAT's list shapes. Activate means enable the plugin or apply the theme through Obsidian state. Activation is the riskiest file-layer step because Obsidian can cache manifests and because BRAT's own source performs manifest reloads after writes. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts] [SOURCE: https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin] [INFERENCE: based on BRAT reload/load-manifest calls and Obsidian restart/reload guidance]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-safe-headless-frozen-version-recipe-is-fetch-the-release-tag-explicitly-vali",
+      "text": "The safe headless frozen-version recipe is: fetch the release tag explicitly, validate the release manifest, write files to the manifest id folder, register the repo in `pluginList`, add `{repo, version:\"<tag>\"}` to `pluginSubListFrozenVersion`, and do not expect BRAT's update sweep to advance it. Source skips update entries whose version is truthy and not `\"latest\"`; BRAT docs describe the frozen-version command as installing the specified release and excluding it from normal updates. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts] [SOURCE: https://tfthacker.com/brat-plugins]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-safe-headless-theme-workflow-differs-from-plugin-installation-brat-reads-roo",
+      "text": "The safe headless theme workflow differs from plugin installation: BRAT reads root `theme-beta.css` first, falls back to root `theme.css`, requires root `manifest.json`, writes files to `.obsidian/themes/<manifest.name>/theme.css` and `manifest.json`, sets the theme in-app on new install, and records `{repo,lastUpdate}` using a checksum of the downloaded CSS. BRAT docs confirm that theme updates are checksum/change based rather than theme-manifest-version based and that deleting a BRAT theme entry does not delete the theme files. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts] [SOURCE: https://tfthacker.com/brat-themes]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-safest-headless-workflow-is-not-to-invent-a-separate-brat-installer-it-is-to",
+      "text": "The safest headless workflow is not to invent a separate BRAT installer; it is to mirror BRAT's source path: resolve a GitHub repo path, fetch a release or release tag, require a valid `manifest.json` with `id` and `version`, fetch release assets named `main.js`, `manifest.json`, and optional `styles.css`, write them under `.obsidian/plugins/<manifest.id>/`, and then register the repository in BRAT settings. BRAT's docs describe that it removes the manual folder/download/copy work, while source shows the actual release-file and vault-write steps. [SOURCE: https://tfthacker.com/BRAT] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-themes",
+        "https://obsidian.md/help/community-plugins",
+        "https://docs.obsidian.md/Plugins/Getting%20started/Build%20a%20plugin",
+        "https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin",
+        "https://docs.obsidian.md/Reference/Manifest"
+      ]
+    },
+    {
+      "id": "finding-3-1-brat-no-longer-treats-token-values-as-normal-data-json-data-in-v2-0-flows-settin",
+      "text": "BRAT no longer treats token values as normal `data.json` data in v2.0+ flows: settings keep `globalTokenName` for the global PAT and `pluginSubListFrozenVersion[].tokenName` for per-repo tokens, while legacy `personalAccessToken` and per-plugin `token` are deprecated. The settings helper deliberately writes `token: undefined` and stores only `tokenName` when adding or updating tracked plugin entries. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts#L646-L690] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts#L781-L807]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-4-brat-sends-github-authenticated-api-release-requests-with-authorization-token-pe",
+      "text": "BRAT sends GitHub authenticated API/release requests with `Authorization: Token ${personalAccessToken}` when a token value is available. Release selection uses `/repos/{owner}/{repo}/releases` or `/releases/tags/{version}`, and private-release asset download uses the asset API URL plus `Accept: application/octet-stream`; public downloads use `browser_download_url`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2582-L2664] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts:L2-L3]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-2-brat-s-migration-path-creates-deterministic-secretstorage-names-for-old-plain-te",
+      "text": "BRAT's migration path creates deterministic SecretStorage names for old plain-text settings: `brat-gh-global` for the global token and `brat-gh-{owner}-{repo}` for per-repository tokens after lowercasing, dash-normalizing, and truncating to 64 characters; it also deduplicates by reusing an existing secret with the same token value before clearing the plain-text token fields and writing a migration log under the BRAT plugin folder. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts:L1-L2] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts:L0]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-3-install-and-update-calls-resolve-tokens-in-this-order-if-the-plugin-entry-passes",
+      "text": "Install and update calls resolve tokens in this order: if the plugin entry passes a non-empty `secretName`, BRAT reads that SecretStorage value; if that value is missing, BRAT shows a \"Secret not found\" notice but continues with an empty token value; if there is no per-repo secret name, BRAT falls back to `settings.globalTokenName`. That means file-layer AI can safely register the name in `data.json`, but cannot complete private access unless the same SecretStorage entry exists in Obsidian on that device. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts:L11-L14] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2571-L2596]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-7-official-brat-docs-still-frame-private-repository-support-as-experimental-and-si",
+      "text": "Official BRAT docs still frame private repository support as experimental and simple: developers should create a fine-grained PAT scoped to the intended repository with contents read-only permission, and testers place that token in BRAT settings. The source-backed v2.0+ refinement is that the token value goes into SecretStorage, not into `data.json`; release notes confirm SecretStorage values are not synced, so the same secret name/value must be added on every device. [SOURCE: https://tfthacker.com/brat-private-repo:L0-L2] [SOURCE: https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1:L17-L21]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-settings-ui-exposes-tokens-through-obsidian-secretcomponent-so-the-visible-s",
+      "text": "The settings UI exposes tokens through Obsidian `SecretComponent`, so the visible setting is a secret name selector rather than a token text field. The global PAT setting stores the normalized secret name in `globalTokenName`, fetches the actual value from `app.secretStorage.getSecret(...)` for validation, and can clear only the saved name. The beta-plugin list separately flags entries where `tokenName` is configured but SecretStorage has no value, disables that plugin's update button, and passes the token name back into the edit modal. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts#L2850-L2895] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts#L3101-L3236]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-3-5-token-validation-is-stricter-than-try-the-install-brat-accepts-only-ghp-and-gith",
+      "text": "Token validation is stricter than \"try the install\": BRAT accepts only `ghp_` and `github_pat_` prefixes and validates full token shape before making a GitHub request. It then derives scopes, accepted permissions, expiration, and rate-limit information from response headers; missing scopes/permissions produce an insufficient-scope error, expired tokens produce an expired error, and a repository-specific validation treats successful access to that repo as a valid token. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/githubUtils.ts:L0-L2] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts#L470-L620]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/utils/TokenValidator.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts",
+        "https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/main.ts",
+        "https://tfthacker.com/brat-private-repo",
+        "https://newreleases.io/project/github/TfTHacker/obsidian42-brat/release/2.0.1",
+        "command output: `curl -L --max-time 20 https://raw.githubusercontent.com/...` failed with DNS resolution error"
+      ]
+    },
+    {
+      "id": "finding-4-1-brat-s-primary-non-token-install-blocker-is-absence-of-a-usable-github-release-g",
+      "text": "BRAT's primary non-token install blocker is absence of a usable GitHub release: `grabReleaseFromRepository` returns `null` on a 404, and `getAllReleaseFiles` raises \"No release found\" before asset download begins. Troubleshooting check: inspect `https://github.com/<owner>/<repo>/releases`, verify the requested frozen tag exists when pinned, and remember that latest mode sorts release records rather than reading only repository-root files. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2673] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-4-compatibility-gates-are-file-layer-relevant-not-just-ui-warnings-brat-blocks-ins",
+      "text": "Compatibility gates are file-layer relevant, not just UI warnings. BRAT blocks installs when `manifest.json.minAppVersion` exceeds the running Obsidian API version unless incompatible installs are allowed and confirmed; on mobile, a manifest with `isDesktopOnly: true` is blocked unless forced, in which case BRAT mutates the local manifest copy by recording original values under a `brat` object and lowering the incompatible field for local loading. Troubleshooting check: inspect installed `.obsidian/plugins/<id>/manifest.json` for `brat.isIncompatible`, `brat.minAppVersionOriginal`, and `brat.isDesktopOnlyOriginal` before assuming the upstream manifest was copied byte-for-byte. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2694] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2730-L2800]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-6-github-api-rate-limiting-is-distinguished-from-ordinary-asset-failures-brat-wrap",
+      "text": "GitHub API rate limiting is distinguished from ordinary asset failures. BRAT wraps GitHub requests with a User-Agent, parses rate-limit headers from GitHub response errors, throws a dedicated rate-limit error on status 403 with zero remaining requests, and otherwise lets install/update catch and log a user-facing \"Error adding/updating plugin\" message. Troubleshooting check: when multiple installs fail across repositories, check BRAT logs and developer console for rate-limit context rather than debugging each repository's release layout independently. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2789-L2857] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3022-L3047]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-2-release-asset-names-are-exact-match-requirements-brat-looks-for-release-assets-n",
+      "text": "Release asset names are exact-match requirements. BRAT looks for release assets named `main.js`, `manifest.json`, and optional `styles.css`; missing `main.js` makes install/update abort with a \"release is not complete\" message, while missing release `manifest.json` can be filled from the already-selected primary manifest only for beta-manifest or manifest-fallback cases. Troubleshooting check: do not rely on files inside the repo tree or inside a generated source zip; the files must be uploaded as release assets with those exact names. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2706-L2813] [SOURCE: https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-8-source-backed-file-layer-ai-recipe-for-a-non-token-install-failure-normalize-the",
+      "text": "Source-backed file-layer AI recipe for a non-token install failure: normalize the repo path to `owner/repo`; list releases and select the same release BRAT would select, honoring frozen tag if present; verify exact release assets `main.js` and `manifest.json`; parse `manifest.json.id`, `version`, `minAppVersion`, and `isDesktopOnly`; verify the vault folder `.obsidian/plugins/<id>/` contains fresh `main.js` and `manifest.json`; verify BRAT `data.json` has both `pluginList` and `pluginSubListFrozenVersion` entries; verify `.obsidian/community-plugins.json` includes the plugin id only when Obsidian/BRAT has actually enabled it. [INFERENCE: based on source behavior in BetaPlugins.ts release selection, vault writes, enablement calls, and update skip logic plus prior iteration schema findings]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-7-theme-troubleshooting-is-a-different-recipe-from-plugin-troubleshooting-official",
+      "text": "Theme troubleshooting is a different recipe from plugin troubleshooting. Official BRAT theme docs say theme installs read repository-root `theme-beta.css` first, then `theme.css`, save CSS plus `manifest.json` into the vault themes folder, and track changes by checksum rather than manifest version; if BRAT becomes confused after GitHub caching delay, the docs advise unregistering the theme and deleting the local file before retrying. [SOURCE: https://tfthacker.com/brat-themes] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-5-update-checks-intentionally-skip-frozen-plugins-and-can-self-heal-missing-local-",
+      "text": "Update checks intentionally skip frozen plugins and can self-heal missing local manifests. The update sweep builds maps from `pluginSubListFrozenVersion`, skips repos whose version is truthy and not `\"latest\"`, and for a missing local `manifest.json` catches platform file-not-found codes and reruns the install path. Troubleshooting check: if a registered plugin does not update, inspect BRAT `data.json` for a non-`latest` version pin; if the plugin folder is incomplete, a BRAT update can attempt reinstall, but an AI should still verify the release assets and final `.obsidian/plugins/<id>/manifest.json`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2894-L2926] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-4-3-version-and-release-tag-mismatches-are-a-concrete-failure-class-current-brat-dev",
+      "text": "Version and release-tag mismatches are a concrete failure class. Current BRAT developer docs say v1.1+ primarily uses GitHub releases, choosing an exact release for frozen installs and the latest release/pre-release by semver otherwise; forum cases show \"missing asset\" symptoms can actually come from the manifest/version pointing BRAT or Obsidian checks at a different release than the one the developer inspected. Troubleshooting check: compare the BRAT-selected tag, the release asset list, and `manifest.json.version`; for frozen installs, treat `pluginSubListFrozenVersion[].version` as the tag BRAT requests. [SOURCE: https://tfthacker.com/brat-developers] [SOURCE: https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078] [SOURCE: https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369]",
+      "addedAtIteration": 4,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2437-L2459",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2640-L2813",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2832-L3047",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2252-L2289",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2645-L2857",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://community.obsidian.md/plugins/obsidian42-brat",
+        "https://forum.obsidian.md/t/attempting-install-of-github-based-plugin-using-brat-results-in-main-js-is-missing-from-release/66149",
+        "https://forum.obsidian.md/t/plugin-pr-not-working-your-latest-release-is-missing-the-file/76078",
+        "https://forum.obsidian.md/t/cant-make-a-plugin-to-work-on-brat/84369"
+      ]
+    },
+    {
+      "id": "finding-5-2-add-beta-plugin-opens-the-add-new-plugin-modal-with-the-command-path-displayaddn",
+      "text": "\"Add beta plugin\" opens the add-new-plugin modal with the command path `displayAddNewPluginModal(false, true)`; install behavior then flows through `addPlugin`, which first tries release `manifest-beta.json`, then release `manifest.json`, rejects missing manifests or missing `version`, checks `minAppVersion`, checks mobile `isDesktopOnly`, and only proceeds to release asset download/write after validation. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1124-L1139] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2524-L2648] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2730-L2815]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-7-enable-disable-commands-are-obsidian-plugin-state-operations-not-brat-registry-e",
+      "text": "Enable/disable commands are Obsidian plugin-state operations, not BRAT registry edits: they list manifests by enabled state and call `disablePluginAndSave` or `enablePluginAndSave`. The GitHub/community-page commands are navigation helpers that fetch Obsidian community plugin/theme lists and open GitHub or `obsidian.md/plugins` URLs. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1325-L1524] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2324-L2388]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-9-graduated-plugin-commands-are-v2-2-era-command-coverage-one-removes-the-repo-fro",
+      "text": "Graduated-plugin commands are v2.2-era command coverage: one removes the repo from BRAT while keeping the plugin installed, and the other installs the community stable release using the matched stable version, force-reinstalls and enables it, then removes it from BRAT on success. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1648-L1777] [SOURCE: https://www.obsidianstats.com/plugins/obsidian42-brat]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-3-plugin-installation-is-release-asset-based-brat-selects-a-release-by-exact-tag-f",
+      "text": "Plugin installation is release-asset based: BRAT selects a release by exact tag for a frozen version or by latest semver/date otherwise, fetches exact assets named `main.js`, `manifest.json`, and optional `styles.css`, then writes `main.js`, `manifest.json`, and optional `styles.css` into `.obsidian/plugins/<manifest.id>/`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2628-L2756] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2410-L2459] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2477-L2493]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-6-reinstall-and-restart-are-not-the-same-operation-reinstall-offers-a-filtered-lis",
+      "text": "Reinstall and restart are not the same operation: reinstall offers a filtered list, calls `updatePlugin(..., forceReinstall=true)`, rewrites release files, reloads manifests, and reloads the plugin if enabled; restart lists installed manifests and calls `reloadPlugin`, which only disables then enables the selected plugin. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1250-L1318] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2852-L2869] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3068-L3084]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-command-catalog-is-source-complete-in-plugincommands-ts-commands-are-array-e",
+      "text": "The command catalog is source-complete in `PluginCommands.ts`: commands are array entries registered by the constructor through `plugin.addCommand`, with visible command IDs for adding beta plugins, update check/update, check-only, single-plugin update, reinstall, restart, disable, enable, open GitHub/plugin community pages, open settings, add/update themes, graduated-plugin removal/update, and an all-commands chooser. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1124-L1242] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1781-L1916]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-install-side-effects-are-ordered-after-release-file-write-brat-adds-or-updat",
+      "text": "The install side effects are ordered: after release-file write, BRAT adds or updates the repo in BRAT settings via `addBetaPluginToList`; if `enableAfterInstall` is true, it loads the manifest from Obsidian's plugin folder and calls `enablePluginAndSave`; then it reloads manifests. A file-layer AI should therefore treat `.obsidian/plugins/<id>/` files, BRAT `data.json`, and `.obsidian/community-plugins.json` enablement as related but distinct artifacts. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2819-L2853] [INFERENCE: based on BRAT calling Obsidian `enablePluginAndSave` after release-file writes and prior iterations' schema findings for `pluginList` and `pluginSubListFrozenVersion`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-8-theme-commands-use-a-different-path-from-plugins-grab-beta-theme-opens-addnewthe",
+      "text": "Theme commands use a different path from plugins: \"Grab beta theme\" opens `AddNewTheme`, \"Update beta themes\" calls `themesCheckAndUpdates`, and the shared utility fetches repository-root `theme-beta.css` or `theme.css` plus root `manifest.json`, tracking CSS checksum instead of release `manifest.json.version`. Official BRAT docs also warn that theme handling follows a different process than plugins. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1530-L1644] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488] [SOURCE: https://tfthacker.com/brat-developers]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    },
+    {
+      "id": "finding-5-5-update-commands-split-cleanly-check-and-update-all-calls-checkforpluginupdatesan",
+      "text": "Update commands split cleanly: \"check and update all\" calls `checkForPluginUpdatesAndInstallUpdates(true, false)`, \"check only\" calls the same function with `onlyCheckDontUpdate=true`, and \"update one\" offers only non-frozen or latest-tracking repos before calling `updatePlugin`. The update sweep also skips entries whose stored version is truthy and not `latest`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1143-L1244] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3150-L3187]",
+      "addedAtIteration": 5,
+      "sources": [
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts",
+        "https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts",
+        "https://tfthacker.com/BRAT",
+        "https://tfthacker.com/brat-plugins",
+        "https://tfthacker.com/brat-developers",
+        "https://tfthacker.com/brat-themes",
+        "https://www.obsidianstats.com/plugins/obsidian42-brat"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f89e0e2f9821",
+      "text": "Direct raw fetches for some guessed source URLs initially failed through the web cache, so the successful path was GitHub tree navigation plus specific file opens. This is not a source dead end; it is a tooling access note.",
+      "contentHash": "f89e0e2f9821",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0ad60c9db4ec",
+      "text": "Treating `pluginSubListFrozenVersion` as only frozen plugins was ruled out: source adds or updates an entry for every registered plugin and only treats truthy non-`\"latest\"` versions as update-skipped pins. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts]",
+      "contentHash": "0ad60c9db4ec",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7682712fcb1d",
+      "text": "Treating repository-root `manifest.json` as the primary v2.2 install source was ruled out for the plugin install path: current source asks GitHub releases for `manifest.json` and assets, with fallback/compatibility behavior to trace further next iteration. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts]",
+      "contentHash": "7682712fcb1d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5e3cda02f846",
+      "text": "No new dead-end source direction was found. The prior raw-source tooling note remains a retrieval limitation, not a content dead end.",
+      "contentHash": "5e3cda02f846",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-077b023c2ec2",
+      "text": "Purely editing BRAT `data.json` as a complete install was ruled out: BRAT also writes release assets, loads manifests, and enables via Obsidian APIs. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/BetaPlugins.ts]",
+      "contentHash": "077b023c2ec2",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3701214dcf74",
+      "text": "Treating theme installs like plugin installs was ruled out: themes use root CSS/manifest files and checksum tracking, not release `main.js` assets or plugin enablement. [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/features/themes.ts] [SOURCE: https://tfthacker.com/brat-themes]",
+      "contentHash": "3701214dcf74",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b590feba918b",
+      "text": "Relying on raw GitHub retrieval via local shell was not usable in this environment because DNS resolution for `raw.githubusercontent.com` failed; the fallback evidence path was web-cached GitHub source pages. [SOURCE: command output: curl raw.githubusercontent.com returned \"Could not resolve host: raw.githubusercontent.com\"]",
+      "contentHash": "b590feba918b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-bc25ef8bfa61",
+      "text": "Storing a private GitHub token directly in BRAT `data.json` is ruled out for v2.0+ operation; current settings store secret names and intentionally remove token values from persisted settings. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts#L654-L690] [SOURCE: https://raw.githubusercontent.com/TfTHacker/obsidian42-brat/main/src/migrations.ts:L1-L2]",
+      "contentHash": "bc25ef8bfa61",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e9d6cc2903aa",
+      "text": "Treating a configured `tokenName` as proof of usable private access is ruled out; SettingsTab and BetaPlugins both separately check whether the named secret exists, and install/update can still proceed without a token value after warning. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/SettingsTab.ts#L3101-L3236] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2571-L2596]",
+      "contentHash": "e9d6cc2903aa",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6c8ab684031d",
+      "text": "No new dead-end source direction was found. The existing blocked note about local raw GitHub retrieval remains a retrieval limitation rather than content evidence.",
+      "contentHash": "6c8ab684031d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-318274d81dbd",
+      "text": "Retrying local raw GitHub fetches was avoided because the strategy lists local raw retrieval failure as blocked. GitHub HTML/source pages and official documentation remained usable.",
+      "contentHash": "318274d81dbd",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-71b70781732b",
+      "text": "Treating a missing plugin in Obsidian as purely a BRAT `data.json` issue was ruled out: BRAT may have registered the repo while install failed before writing or enabling the plugin files. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L2804-L2849]",
+      "contentHash": "71b70781732b",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-759be9aaf573",
+      "text": "Treating plugin and theme diagnostics as interchangeable was ruled out: plugins are release-asset/version driven, while themes are root-file/checksum driven. [SOURCE: https://tfthacker.com/brat-themes] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/githubUtils.ts#L2392-L2488]",
+      "contentHash": "759be9aaf573",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3bd97bfa46aa",
+      "text": "Direct source access to `AddNewPluginModal.ts`, `VersionSuggestModal.ts`, and `AddNewTheme.ts` returned cache misses through the web tool. The command/install mechanics were still source-backed through `PluginCommands.ts`, `BetaPlugins.ts`, `githubUtils.ts`, and official BRAT docs, so this is a source-access limitation rather than an unanswered behavior gap.",
+      "contentHash": "3bd97bfa46aa",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b8b355f7f10f",
+      "text": "Retrying local raw GitHub fetches remained out of scope because prior iterations recorded that path as blocked; this pass used GitHub HTML source and official docs instead.",
+      "contentHash": "b8b355f7f10f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1f2cbc8556d8",
+      "text": "Treating \"restart plugin\" as reinstall/update was ruled out: restart only disables/enables an installed plugin, while reinstall goes through `updatePlugin` with `forceReinstall=true`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1250-L1318] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3068-L3084]",
+      "contentHash": "1f2cbc8556d8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a085e749c556",
+      "text": "Treating enable/disable as BRAT registration was ruled out: those commands save Obsidian plugin enablement state, while BRAT registry changes happen through `addBetaPluginToList` and `deletePlugin`. [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts#L1325-L1398] [SOURCE: https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts#L3221-L3235]",
+      "contentHash": "a085e749c556",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 40,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.78,
+    "coverageBySources": {
+      "code": 2,
+      "community.obsidian.md": 1,
+      "docs.obsidian.md": 3,
+      "forum.obsidian.md": 3,
+      "github.com": 14,
+      "newreleases.io": 1,
+      "obsidian.md": 1,
+      "other": 4,
+      "raw.githubusercontent.com": 5,
+      "tfthacker.com": 5,
+      "www.obsidianstats.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/obsidian42-brat/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

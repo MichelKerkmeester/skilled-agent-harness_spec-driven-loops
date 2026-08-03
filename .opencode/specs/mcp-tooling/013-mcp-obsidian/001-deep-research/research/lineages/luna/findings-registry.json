@@ -1,0 +1,793 @@
+{
+  "sessionId": "fanout-luna-1785652123667-7lklw5",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-08-02T07:16:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-official-obsidian-automation-surfaces-exist-and-which-require-a-running-app",
+      "inboxId": null,
+      "text": "What official Obsidian automation surfaces exist, and which require a running app?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-community-cli-packages-and-binaries-are-real-identifiable-and-feature-comp",
+      "inboxId": null,
+      "text": "Which community CLI packages and binaries are real, identifiable, and feature-complete enough to adopt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-mcp-servers-and-package-identities-are-real-and-what-are-their-headless-ap",
+      "inboxId": null,
+      "text": "Which MCP servers and package identities are real, and what are their headless/app and auth requirements?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-do-the-local-rest-api-plugin-and-obsidian-uri-scheme-provide-including-auth",
+      "inboxId": null,
+      "text": "What do the Local REST API plugin and obsidian:// URI scheme provide, including auth, configuration, and limits?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-ranked-build-vs-adopt-choice-should-be-made-for-each-feature-and-for-the-du",
+      "inboxId": null,
+      "text": "What ranked BUILD-vs-ADOPT choice should be made for each feature and for the dual CLI+MCP mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-official-obsidian-automation-surfaces-exist-and-which-require-a-running-app",
+      "inboxId": null,
+      "text": "What official Obsidian automation surfaces exist, and which require a running app?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-community-cli-packages-and-binaries-are-real-identifiable-and-feature-comp",
+      "inboxId": null,
+      "text": "Which community CLI packages and binaries are real, identifiable, and feature-complete enough to adopt?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-mcp-servers-and-package-identities-are-real-and-what-are-their-headless-ap",
+      "inboxId": null,
+      "text": "Which MCP servers and package identities are real, and what are their headless/app and auth requirements?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-what-do-the-local-rest-api-plugin-and-obsidian-uri-scheme-provide-including-auth",
+      "inboxId": null,
+      "text": "What do the Local REST API plugin and obsidian:// URI scheme provide, including auth, configuration, and limits?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-5-what-ranked-build-vs-adopt-choice-should-be-made-for-each-feature-and-for-the-du",
+      "inboxId": null,
+      "text": "What ranked BUILD-vs-ADOPT choice should be made for each feature and for the dual CLI+MCP mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-obsidian-headless-is-a-real-official-npm-package-but-its-scope-is-obsidian-sync-",
+      "text": "`obsidian-headless` is a real official npm package, but its scope is Obsidian Sync and Publish. The npm identity is `obsidian-headless`, it exposes the `ob` binary, requires Node.js 22 or later, and authenticates with `ob login`; its documented commands sync or publish vaults rather than provide arbitrary note CRUD/search. It is therefore not the requested headless note API. [SOURCE: https://www.npmjs.com/package/obsidian-headless] [SOURCE: https://obsidian.md/help/sync/headless]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-obsidian-uri-scheme-is-an-app-launch-action-surface-not-a-data-plane-officia",
+      "text": "The `obsidian://` URI scheme is an app-launch/action surface, not a data plane. Official actions include opening files, creating notes, opening the daily note, creating unique notes, searching, and choosing a vault. It relies on the desktop application registering the scheme and carries no REST-style bearer-token model; it cannot replace authenticated CRUD/search for a server integration. [SOURCE: https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-coddingtonbear-local-rest-api-is-a-real-community-plugin-with-an-explicit-lo",
+      "text": "The coddingtonbear Local REST API is a real community plugin with an explicit local-server contract. It runs inside desktop Obsidian, serves HTTP on `127.0.0.1:27123` or HTTPS on `127.0.0.1:27124`, and requires `Authorization: Bearer <api-key>` for protected routes. A process using it is not headless with respect to Obsidian: the desktop app, vault, plugin, and token must all be available. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-initial-feature-split-is-clear-adopt-the-official-cli-for-app-backed-file-se",
+      "text": "The initial feature split is clear. Adopt the official CLI for app-backed file/search/daily/tag/template commands when interactive Obsidian semantics are required; adopt Local REST API for process-level CRUD/search/tag/frontmatter operations; build only the missing normalization and mode contract. Backlinks and richer daily/template behavior require either Obsidian commands/plugin APIs or explicit derived logic, because they are not established as complete core Local REST API endpoints in the documented baseline. [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-local-rest-api-covers-the-strongest-shared-baseline-for-the-requested-mode-v",
+      "text": "The Local REST API covers the strongest shared baseline for the requested mode: vault file list/read/write/append/patch/delete/move/copy, simple and JsonLogic search, tags, commands, and opening files. Its patch API supports headings, block references, and frontmatter fields, and the plugin documents a built-in Streamable HTTP MCP endpoint at `/mcp/`. This makes it the most direct transport to adopt for both a CLI wrapper and an MCP wrapper. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-official-obsidian-cli-is-a-desktop-app-automation-surface-not-a-standalone-v",
+      "text": "The official `obsidian` CLI is a desktop-app automation surface, not a standalone vault CLI. The help page documents the command-line interface as enabled from Obsidian settings, with commands for files, search, daily notes, tags, templates, commands, and note creation; when Obsidian is not running, the first command launches it. This makes it suitable for an app-backed adapter but not for a headless server process. [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-official-typescript-vault-and-metadatacache-apis-are-plugin-process-apis-the",
+      "text": "The official TypeScript Vault and MetadataCache APIs are plugin-process APIs. They expose the primitives needed for file mutation and metadata/link resolution, but the docs do not present them as a supported standalone CLI or remote MCP transport. A custom Obsidian plugin could build richer in-app behavior, but that is a different adoption surface from a process-level adapter. [SOURCE: https://docs.obsidian.md/Plugins/Vault] [SOURCE: https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://obsidian.md/help/sync/headless",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI"
+      ]
+    },
+    {
+      "id": "finding-2-6-connorbritain-obsidian-mcp-server-is-a-real-scoped-npm-package-repository-pair-a",
+      "text": "`@connorbritain/obsidian-mcp-server` is a real scoped npm package/repository pair at v0.2.3. It adds graph analytics, periodic notes, JsonLogic search, and optional Dataview/Periodic Notes/Smart Connections integrations, but requires Node 18+, Obsidian, and Local REST API. Its `OBSIDIAN_API_KEY`, host, port, protocol, and vault-path contract fits the target prefix, but the optional plugin graph/semantic surface creates more runtime coupling than the cyanheads baseline. [SOURCE: https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server] [SOURCE: https://github.com/ConnorBritain/obsidian-mcp-server]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-7-huangyihe-obsidian-mcp-is-also-a-verified-npm-repository-pair-at-v1-6-0-but-its-",
+      "text": "`@huangyihe/obsidian-mcp` is also a verified npm/repository pair at v1.6.0, but its contract differs. It requires the desktop app and Local REST API, uses `OBSIDIAN_API_TOKEN`, `OBSIDIAN_API_PORT`, and `OBSIDIAN_VAULT_PATH`, and explicitly warns that the `OBSIDIAN_` prefix is required. It advertises note/folder CRUD, search, frontmatter, daily/periodic notes, and a filesystem fallback, making it feature-rich but less compatible with a single `OBSIDIAN_API_KEY` convention. [SOURCE: https://www.npmjs.com/package/%40huangyihe/obsidian-mcp] [SOURCE: https://github.com/newtype-01/obsidian-mcp]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-8-mseep-obsidian-mcp-server-exists-as-an-npm-package-but-its-package-readme-direct",
+      "text": "`@mseep/obsidian-mcp-server` exists as an npm package, but its package README directs users to clone `cyanheads/obsidian-mcp-server` while presenting a separately scoped package. That makes the identity resolvable but the provenance and release relationship less clear than the canonical unscoped package; it should not be the default adoption target without pinning and source/package audit. [SOURCE: https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-3-mcp-obsidian-is-a-real-pypi-distribution-not-merely-a-github-repository-name-pyp",
+      "text": "`mcp-obsidian` is a real PyPI distribution, not merely a GitHub repository name. PyPI identifies the project, maintainer, Python >=3.11 requirement, v0.2.2 release, and `mcp-obsidian`/`uvx` invocation. Its documented seven tools are file listing, read, search, patch, append, and delete. It requires the Local REST API plugin and `OBSIDIAN_API_KEY`, with optional `OBSIDIAN_HOST` and `OBSIDIAN_PORT`; the server process can be headless, but its Obsidian backend cannot. [SOURCE: https://pypi.org/project/mcp-obsidian/] [SOURCE: https://github.com/MarkusPfundstein/mcp-obsidian]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-2-notesmd-cli-covers-headless-note-list-read-search-create-update-delete-move-dail",
+      "text": "`notesmd-cli` covers headless note list/read/search/create/update/delete/move, daily notes, and frontmatter. It reads `.obsidian/daily-notes.json` for daily-note folder/format/template behavior, and its move operation updates internal links. It does not document a first-class backlinks report, tag-management API, or template catalog; those should be treated as build/derived features rather than assumed CLI capabilities. [SOURCE: https://github.com/Yakitrak/notesmd-cli]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-1-notesmd-cli-is-the-strongest-verified-community-cli-candidate-for-a-truly-headle",
+      "text": "`notesmd-cli` is the strongest verified community CLI candidate for a truly headless dual mode. The maintained Go repository explicitly renamed itself from `obsidian-cli` to `notesmd-cli` after the official CLI appeared, publishes v0.3.6, and provides Homebrew, Scoop, AUR, and source-install identities. It registers a vault directory directly and does not require Obsidian to run. [SOURCE: https://github.com/Yakitrak/notesmd-cli]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-4-obsidian-mcp-server-is-a-verified-npm-package-identity-the-npm-registry-record-n",
+      "text": "`obsidian-mcp-server` is a verified npm package identity. The npm registry record names the package, identifies cyanheads as author, points to the matching GitHub repository, and reports latest tag `3.2.9`; the repository documents `bunx obsidian-mcp-server@latest` and an npx equivalent. Its current server exposes 14 tools and 3 resources covering note CRUD, search, tags, frontmatter, structural patching, UI open, and opt-in command execution. [SOURCE: https://registry.npmjs.org/obsidian-mcp-server] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-cyanheads-server-is-process-headless-but-app-backed-it-requires-local-rest-a",
+      "text": "The cyanheads server is process-headless but app-backed. It requires Local REST API plugin v4+, a running local endpoint, and `OBSIDIAN_API_KEY`; it defaults to HTTP `127.0.0.1:27123`, supports HTTPS `127.0.0.1:27124` through `OBSIDIAN_BASE_URL`, and makes self-signed TLS behavior explicit with `OBSIDIAN_VERIFY_SSL=false`. The configuration prefix is consistently `OBSIDIAN_`, with additional `MCP_` transport settings and optional path/read-only controls. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-exact-clickup-mcp-server-name-was-not-a-resolvable-npm-package-in-this-audit",
+      "text": "The exact `@clickup/mcp-server` name was not a resolvable npm package in this audit: npm search returned other ClickUp packages, while the exact package page did not resolve. The safe rule for this project is to require a successful registry/package-page identity check before adding any candidate to `.utcp_config.json`; an unresolvable name is not an installable dependency. [SOURCE: https://www.npmjs.com/package/%40clickup/mcp-server] [SOURCE: https://www.npmjs.com/search?q=keywords%3Aclickup]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-11-the-package-questi0nm4rk-vori-is-real-but-intentionally-read-only-it-queries-mar",
+      "text": "The package `@questi0nm4rk/vori` is real but intentionally read-only: it queries Markdown vaults for frontmatter, hashtags, and wikilinks. It is useful as a search/indexing adjunct, but it cannot satisfy the requested dual CRUD CLI surface. [SOURCE: https://www.npmjs.com/package/%40questi0nm4rk/vori]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-2-9-the-swift-otaviocc-obsidianmcpserver-is-an-identifiable-source-brew-mint-binary-",
+      "text": "The Swift `otaviocc/ObsidianMCPServer` is an identifiable source/Brew/Mint binary, not a cross-platform npm or PyPI package. It requires macOS/Swift, the Local REST API plugin, and `OBSIDIAN_BASE_URL` plus `OBSIDIAN_API_KEY`; it has broad note, frontmatter, search, bulk-tag, and periodic-note operations. It is a valid platform-specific alternative but not the portable default for a dual CLI+MCP mode. [SOURCE: https://github.com/otaviocc/ObsidianMCPServer]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://pypi.org/project/mcp-obsidian/",
+        "https://github.com/MarkusPfundstein/mcp-obsidian",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40connorbritain/obsidian-mcp-server",
+        "https://github.com/ConnorBritain/obsidian-mcp-server",
+        "https://www.npmjs.com/package/%40huangyihe/obsidian-mcp",
+        "https://github.com/newtype-01/obsidian-mcp",
+        "https://www.npmjs.com/package/%40mseep%2Fobsidian-mcp-server",
+        "https://github.com/otaviocc/ObsidianMCPServer",
+        "https://www.npmjs.com/package/%40clickup/mcp-server",
+        "https://www.npmjs.com/package/%40questi0nm4rk/vori"
+      ]
+    },
+    {
+      "id": "finding-3-6-backlinks-are-a-build-derive-decision-the-local-rest-api-endpoint-and-tool-lists",
+      "text": "Backlinks are a BUILD/DERIVE decision. The Local REST API endpoint and tool lists document outgoing-link/metadata access only indirectly and do not expose a core backlinks query; the official MetadataCache API can support an in-app plugin implementation, while a headless implementation can scan `[[wikilinks]]` and Markdown links. Treat backlink indexing, alias resolution, embeds, and cache invalidation as an explicit feature rather than claiming it is supplied by CRUD/search adoption. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks] [SOURCE: https://github.com/Yakitrak/notesmd-cli]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-7-daily-notes-are-an-adopt-adapt-decision-the-official-cli-exposes-daily-and-daily",
+      "text": "Daily notes are an ADOPT/ADAPT decision. The official CLI exposes daily and daily append/prepend commands; `notesmd-cli` reads the vault daily-notes configuration and template directly; community MCP servers can expose periodic-note tools when the relevant plugin or command is available. Build one `daily_note` facade that selects the app-backed command path, filesystem config path, or REST command path and reports which backend was used. [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://github.com/Yakitrak/notesmd-cli] [SOURCE: https://github.com/newtype-01/obsidian-mcp] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-9-frontmatter-is-an-adopt-decision-with-a-safety-wrapper-local-rest-api-can-target",
+      "text": "Frontmatter is an ADOPT decision with a safety wrapper. Local REST API can target a frontmatter key through GET/PATCH, `notesmd-cli` can print/edit/delete YAML fields, and cyanheads offers atomic frontmatter management. The wrapper should preserve YAML types, support read-modify-write or `ifMatch`, and reject silent whole-file clobbering. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://github.com/Yakitrak/notesmd-cli] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-1-local-rest-api-is-the-shared-adoption-substrate-for-the-mcp-side-its-documented-",
+      "text": "Local REST API is the shared adoption substrate for the MCP side. Its documented endpoint matrix and built-in MCP server cover vault CRUD, targeted heading/block/frontmatter patching, simple and structured search, tags, command discovery/execution, and UI opening; the same authenticated local service can serve a CLI adapter and a third-party stdio MCP adapter. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-4-note-crud-is-an-adopt-decision-with-a-build-facade-use-local-rest-api-or-the-can",
+      "text": "Note CRUD is an ADOPT decision with a BUILD facade. Use Local REST API or the canonical MCP adapter for the app-backed path and `notesmd-cli` for the headless CLI path; build only a common operation schema, path validation, structured errors, optimistic-concurrency handling, and explicit destructive confirmation. Local REST API supports full file CRUD and its default delete behavior can move files to trash. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://github.com/Yakitrak/notesmd-cli]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-5-search-is-an-adopt-decision-with-normalization-local-rest-api-provides-built-in-",
+      "text": "Search is an ADOPT decision with normalization. Local REST API provides built-in fuzzy search and JsonLogic metadata search; cyanheads adds text, JsonLogic, and optional Omnisearch modes. The dual facade should expose a stable text/structured query shape and use filesystem search only as the headless fallback. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-8-tags-are-an-adopt-decision-local-rest-api-has-a-tag-list-endpoint-the-official-c",
+      "text": "Tags are an ADOPT decision. Local REST API has a tag list endpoint, the official CLI has tag commands, and cyanheads provides list/manage behavior for frontmatter and inline tags. Build only canonical tag normalization, scope filtering, and conflict behavior between inline `#tags` and frontmatter `tags:`. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-10-templates-are-a-split-decision-the-official-cli-exposes-template-listing-reading",
+      "text": "Templates are a split decision. The official CLI exposes template listing, reading, insertion, variable resolution, and creation; `notesmd-cli` documents template use for daily-note creation but not a general template manager; the Local REST API core endpoint matrix does not establish a portable template CRUD surface. Adopt the official CLI for app-backed template semantics and build a small filesystem renderer only as an explicitly limited headless fallback. [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://github.com/Yakitrak/notesmd-cli] [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-12-the-utcp-config-json-entry-should-pin-an-identity-rather-than-use-a-moving-lates",
+      "text": "The `.utcp_config.json` entry should pin an identity rather than use a moving `@latest` tag. The preferred stdio shape is `npx -y obsidian-mcp-server@3.2.9` (or a lockfile-controlled Bun equivalent) with the canonical `OBSIDIAN_` and `MCP_` variables; the preferred HTTP shape points to the Local REST API `/mcp/` endpoint with a bearer header if the host supports remote Streamable HTTP. The implementation must validate the exact package/version at install time because similarly named scoped packages are not interchangeable. [SOURCE: https://registry.npmjs.org/obsidian-mcp-server] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server] [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-built-in-mcp-endpoint-should-rank-first-when-the-host-supports-streamable-ht",
+      "text": "The built-in `/mcp/` endpoint should rank first when the host supports Streamable HTTP because it removes an extra server process and has direct access to live Obsidian metadata and commands. The canonical `obsidian-mcp-server` npm package ranks first among stdio adapters because it is an identifiable package/repository pair, supports stdio and HTTP, and adds typed note/tag/frontmatter/search tools over the same backend. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://registry.npmjs.org/obsidian-mcp-server] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-cli-recommendation-must-be-split-by-runtime-contract-adopt-notesmd-cli-for-a",
+      "text": "The CLI recommendation must be split by runtime contract. Adopt `notesmd-cli` for a truly headless filesystem mode: it has a real binary/install identity, direct vault registration, note CRUD/search/daily/frontmatter, and no Obsidian process or token. Adopt the official `obsidian` CLI for an app-backed mode when native tags, templates, plugin commands, and live Obsidian semantics are required. Do not present either one as covering both contracts transparently. [SOURCE: https://github.com/Yakitrak/notesmd-cli] [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-11-the-normalized-auth-contract-should-use-obsidian-api-key-as-the-canonical-secret",
+      "text": "The normalized auth contract should use `OBSIDIAN_API_KEY` as the canonical secret, `OBSIDIAN_BASE_URL` for the Local REST endpoint, `OBSIDIAN_VERIFY_SSL` for the self-signed local certificate policy, `OBSIDIAN_REQUEST_TIMEOUT_MS` for bounded calls, and `OBSIDIAN_READ_PATHS`, `OBSIDIAN_WRITE_PATHS`, `OBSIDIAN_READ_ONLY`, and `OBSIDIAN_ENABLE_COMMANDS` for least-privilege controls. `MCP_TRANSPORT_TYPE`, `MCP_LOG_LEVEL`, `MCP_HTTP_HOST`, and `MCP_HTTP_PORT` belong to the adapter/server layer. Map forks that use `OBSIDIAN_API_TOKEN` to the canonical key at the boundary; do not make two secret names equally authoritative. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server] [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://github.com/newtype-01/obsidian-mcp]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    },
+    {
+      "id": "finding-3-13-the-ranked-overall-decision-is-1-adopt-local-rest-api-s-built-in-mcp-for-http-ca",
+      "text": "The ranked overall decision is: (1) adopt Local REST API’s built-in MCP for HTTP-capable hosts; (2) adopt pinned `obsidian-mcp-server` for stdio and use it as the MCP backend behind the new mode; (3) adopt `notesmd-cli` for headless CLI operations; (4) adopt official `obsidian` CLI for app-backed CLI operations; (5) build the `mcp-obsidian` facade, normalization, feature routing, backlinks derivation, safety policy, and package identity checks. Do not build a replacement vault engine before these boundaries are tested against a fixture vault. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://registry.npmjs.org/obsidian-mcp-server] [SOURCE: https://github.com/Yakitrak/notesmd-cli] [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://registry.npmjs.org/obsidian-mcp-server",
+        "https://github.com/Yakitrak/notesmd-cli",
+        "https://obsidian.md/help/cli",
+        "https://docs.obsidian.md/Reference/TypeScript%20API/MetadataCache/unresolvedLinks",
+        "https://www.npmjs.com/package/obsidian-headless",
+        "https://github.com/newtype-01/obsidian-mcp"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8e0a7d9f7734",
+      "text": "`obsidian-headless` as a note-operation backend: its verified package identity and documented command surface are Sync/Publish, not arbitrary vault operations. [SOURCE: https://www.npmjs.com/package/obsidian-headless]",
+      "contentHash": "8e0a7d9f7734",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c4ecbc77ad16",
+      "text": "`obsidian://` as the primary CRUD or MCP transport: it launches desktop actions and has no authenticated data API. [SOURCE: https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI]",
+      "contentHash": "c4ecbc77ad16",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8b97a7b3f4a8",
+      "text": "The nested `cli-codex` executor could not initialize its app-server client in this runtime. Direct-mode continuation is recorded in the lineage state; research evidence remains packet-local and citation-backed.",
+      "contentHash": "8b97a7b3f4a8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a1ec0e64628a",
+      "text": "Treating the official TypeScript API as a headless binary: it is documented as an Obsidian plugin API. [SOURCE: https://docs.obsidian.md/Plugins/Vault]",
+      "contentHash": "a1ec0e64628a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8cee284023d1",
+      "text": "`@clickup/mcp-server` as an adopted package: the exact name did not resolve during identity verification. [SOURCE: https://www.npmjs.com/package/%40clickup/mcp-server]",
+      "contentHash": "8cee284023d1",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-800c974e0398",
+      "text": "`@questi0nm4rk/vori` as the dual CRUD CLI: its advertised surface is read-only query/search. [SOURCE: https://www.npmjs.com/package/%40questi0nm4rk/vori]",
+      "contentHash": "800c974e0398",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e8b6665ff3d9",
+      "text": "A process being runnable with `npx`, `uvx`, or a native binary does not make the Obsidian backend headless; all Local REST API candidates still need the app/plugin/token.",
+      "contentHash": "e8b6665ff3d9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-59f0a08e761e",
+      "text": "The legacy `obsidian-cli` name as the primary install target: the maintained project explicitly renamed the binary/repository to `notesmd-cli`; use the current identity. [SOURCE: https://github.com/Yakitrak/notesmd-cli]",
+      "contentHash": "59f0a08e761e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0b456a6415ab",
+      "text": "Unscoped package-name assumptions are unsafe. `obsidian-mcp-server`, `@mseep/obsidian-mcp-server`, and `@connorbritain/obsidian-mcp-server` are distinct npm identities even when their names and README text overlap.",
+      "contentHash": "0b456a6415ab",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7ca134fb79b8",
+      "text": "A single “headless Obsidian” backend covering all semantics: official headless is Sync/Publish, the official CLI is app-backed, and Local REST/MCP requires the desktop plugin. [SOURCE: https://www.npmjs.com/package/obsidian-headless] [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "contentHash": "7ca134fb79b8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-dd8f13178f84",
+      "text": "Building a full replacement note engine as the first implementation: the adopted transports already cover the majority of CRUD/search/tag/frontmatter behavior. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api] [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "contentHash": "dd8f13178f84",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0d62b6f18ecd",
+      "text": "Convergence telemetry fell below the first iteration ratio but remained above the configured threshold; the max-iterations policy still required this third pass, so synthesis was intentionally deferred until after these feature and configuration checks.",
+      "contentHash": "0d62b6f18ecd",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-18d6b88a9f86",
+      "text": "The negative package identity remains unresolved as an installable candidate; no dependency should be generated from an unresolvable scoped name.",
+      "contentHash": "18d6b88a9f86",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ca49ff70f2c3",
+      "text": "Treating backlinks or template management as guaranteed core Local REST API features: the documented endpoint/tool matrix does not establish those complete portable surfaces. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "contentHash": "ca49ff70f2c3",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 31,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.58,
+    "coverageBySources": {
+      "docs.obsidian.md": 2,
+      "github.com": 7,
+      "obsidian.md": 3,
+      "pypi.org": 1,
+      "registry.npmjs.org": 1,
+      "www.npmjs.com": 6
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

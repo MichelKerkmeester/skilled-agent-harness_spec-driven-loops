@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-magnific/002-mode-architecture-and-scaffold",
+  "description": "Without a frozen architecture, Magnific could be misclassified as a workflow, granted local write tools it does not need, allowed to spend credits",
+  "keywords": [
+    "without",
+    "frozen",
+    "architecture",
+    "magnific",
+    "misclassified",
+    "workflow",
+    "granted",
+    "local",
+    "write",
+    "tools",
+    "need",
+    "allowed",
+    "spend",
+    "credits"
+  ],
+  "lastUpdated": "2026-08-02T15:23:35.516Z",
+  "specId": "002",
+  "folderSlug": "mode-architecture-and-scaffold",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-magnific"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "02-08-26_16-17__phase-002-mode-architecture-and-scaffold.md",
+    "02-08-26_16-22__nested-packet-scaffolded-at-opencode-skills-mcp.md",
+    "02-08-26_16-23__nested-packet-scaffolded-at-opencode-skills-mcp.md"
+  ]
+}

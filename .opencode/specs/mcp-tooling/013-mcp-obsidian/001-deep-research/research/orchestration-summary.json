@@ -1,0 +1,70 @@
+{
+  "run_id": "1785652123667-7lklw5",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/sol/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-02T06:44:47.048Z",
+        "end_at_iso": "2026-08-02T06:58:18.716Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 6
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-08-02T06:38:00Z",
+          "deltaMs": 287048
+        }
+      ]
+    },
+    {
+      "label": "luna",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/luna/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-02T06:37:02.990Z",
+        "end_at_iso": "2026-08-02T07:08:21.744Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 10
+      },
+      "sample": [
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-08-02T07:16:00.000Z",
+          "deltaMs": 338256
+        }
+      ]
+    }
+  ]
+}

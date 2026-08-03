@@ -1,0 +1,60 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "The plugin-owned settings, commands, structured layout, directive writers, and subprocess boundaries are verified from the 2.3.1 source tree.",
+    "The requested Beancount directive forms, chronology, balancing weights, assertions, padding, price/include behavior, and lot matching are verified from official documentation.",
+    "The BQL execution boundary, current grammar/source tables, dashboard query families, and bean-price output path are verified from plugin and upstream source.",
+    "The dashboard/UI feature surface, structured routing, settings effects, and supported versus direct-write workflows are verified from the 2.3.1 source tree.",
+    "The layered error catalog, v3 bean-check boundary, CSV/reconciliation workflow, and AI operating recipes are verified or explicitly marked as inference."
+  ],
+  "keyFindings": [
+    "data.json is a settings object merged over DEFAULT_SETTINGS; connection readiness is runtime-only.",
+    "The generated ledger includes directive files in a fixed order and routes transactions by year or month.",
+    "BQL uses parameterized bean-query arguments; price fetching uses bean-price with plugin-side filtering and deduplication.",
+    "Writer success is not ledger validation; bean-check remains a required post-write gate.",
+    "Posting weights and cost-lot selection, not visual units alone, determine transaction validity.",
+    "Dashboard values are typed inventory transformations; row grain, currency selection, and date bounds must be explicit.",
+    "bean-price stdout is filtered and appended by the plugin; the plugin does not request in-place update mode.",
+    "Dashboard controllers are projections over included Beancount text; the file graph remains the source of truth.",
+    "A safe file mutation needs a backup, include check, bean-check, and a small BQL readback.",
+    "False-zero results require raw command capture, include verification, currency inspection, and raw inventory readback.",
+    "Bulk CSV import is an AI file workflow, not a first-class plugin importer; raw input and running-balance reconciliation are mandatory."
+  ],
+  "ruledOutDirections": [
+    "No separate beanquery executable setting key was found.",
+    "No supported pad-creation UI was found.",
+    "The repository-root compiled main.js was not available at the inspected source ref.",
+    "Operating currency does not change ledger processing; balance does not assert total cost basis; pad cannot initialize cost lots.",
+    "There is no private database-backed BQL path separate from the configured Beancount executable.",
+    "The modal is not a complete editor for pads, bulk imports, or arbitrary metadata.",
+    "The plugin has no verified v2.3.1 bean-check service wrapper separate from README capability and editor .errors integration."
+  ],
+  "observedIdeas": [
+    "Use data.json only for plugin configuration and vault text as the source of truth for ledger state.",
+    "Use filename/lineno BQL readback before any targeted update or delete.",
+    "Read open accounts, current balances, and inventory lots before writing.",
+    "For every query, state the row grain and valuation basis before trusting a scalar result.",
+    "For prices, inspect commodity source metadata, generated output, inclusion, and price date together.",
+    "Treat UI-supported writes and direct-file workflows as separate capabilities, then apply the same validation gate.",
+    "Classify failures by layer before changing text: parse, lifecycle, weights, assertion/pad, lot, include, BQL/process, price, mutation, or CSV."
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 14,
+    "convergenceScore": 0.07,
+    "coverageBySources": {
+      "plugin-source": 1,
+      "beancount-language": 1,
+      "beanquery": 1,
+      "beanprice": 1,
+      "workflows": 1
+    },
+    "sourceFindings": 22,
+    "reconstructionGaps": 1
+  }
+}

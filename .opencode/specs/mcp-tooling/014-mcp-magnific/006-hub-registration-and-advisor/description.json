@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-magnific/006-hub-registration-and-advisor",
+  "description": "A mode package on disk remains invisible until both hub-local routing and advisor-level hub discovery include its vocabulary",
+  "keywords": [
+    "mode",
+    "package",
+    "disk",
+    "remains",
+    "invisible",
+    "until",
+    "hub-local",
+    "routing",
+    "advisor-level",
+    "hub",
+    "discovery",
+    "include",
+    "vocabulary"
+  ],
+  "lastUpdated": "2026-08-02T15:18:00.754Z",
+  "specId": "006",
+  "folderSlug": "hub-registration-and-advisor",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-magnific"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_16-18__phase-006-hub-registration-and-advisor-scaffolded.md"
+  ]
+}

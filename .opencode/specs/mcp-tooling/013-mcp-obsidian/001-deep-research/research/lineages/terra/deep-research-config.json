@@ -1,0 +1,81 @@
+{
+  "topic": "Map Obsidian automation surfaces (official help/developer docs and plugin API, community CLIs, MCP servers, the Local REST API community plugin, and the obsidian:// URI scheme) to decide BUILD-vs-ADOPT for (a) an Obsidian CLI tool and (b) an Obsidian MCP tool for a new mcp-obsidian mode that mirrors mcp-click-up (dual CLI+MCP). Must verify each candidate package/binary identity, determine whether tools work headlessly or require a running Obsidian app + Local REST API token, capture the auth/config/env-prefix pattern to mirror in .utcp_config.json + .env.example, and enumerate the feature surface (note CRUD, search, backlinks, daily notes, tags, frontmatter, templates).",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/terra",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-02T06:31:31.226Z",
+  "status": "complete",
+  "completedAt": "2026-08-02T06:41:54Z",
+  "terminalStop": "maxIterationsReached",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "type": "cli-codex",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-terra-1785652123667-7lklw5",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "writeBoundary": {
+    "allowedRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/terra",
+    "specAnchoring": "disabled for detached fan-out lineage",
+    "continuitySave": "not run; the requested workflow phases end at synthesis"
+  }
+}

@@ -1,0 +1,17 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+MT-004,mcp-tooling,live,routing,routing,,,,100,PASS,
+MT-007,mcp-tooling,live,routing,routing,mcp-aside-devtools,,,50,PASS,
+MT-001,mcp-tooling,live,routing,routing,mcp-chrome-devtools,,,45,PASS,
+MT-002,mcp-tooling,live,routing,routing,mcp-click-up,,,50,PASS,
+MT-003,mcp-tooling,live,routing,routing,mcp-figma,,,0,FAIL,first failing stage: routed-intra
+MT-H04,mcp-tooling,live,holdout,routing,mcp-aside-devtools,,,42,PASS,
+MT-H01,mcp-tooling,live,holdout,routing,mcp-chrome-devtools,,,45,PASS,
+MT-H02,mcp-tooling,live,holdout,routing,mcp-figma,,,0,FAIL,first failing stage: backend-kind-mismatch
+MT-H07,mcp-tooling,live,holdout,routing,mcp-obsidian,,,50,PASS,
+MT-H06,mcp-tooling,live,holdout,routing,mcp-mobbin,,,50,PASS,
+MT-H03,mcp-tooling,live,holdout,routing,mcp-click-up,,,0,FAIL,first failing stage: routed-intra
+MT-H05,mcp-tooling,live,holdout,routing,mcp-refero,,,0,FAIL,first failing stage: backend-kind-mismatch
+MT-009,mcp-tooling,live,routing,routing,mcp-mobbin,,,81,PASS,
+MT-010,mcp-tooling,live,routing,routing,mcp-obsidian,,,50,PASS,
+MT-008,mcp-tooling,live,routing,routing,mcp-refero,,,0,FAIL,first failing stage: backend-kind-mismatch
+MT-CR-001,mcp-tooling,live,routing,routing,mcp-refero,,,0,FAIL,first failing stage: routed-intra

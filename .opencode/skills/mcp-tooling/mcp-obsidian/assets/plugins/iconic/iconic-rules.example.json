@@ -1,0 +1,43 @@
+{
+  "showAllFileIcons": true,
+  "showAllFolderIcons": true,
+  "showTagPillIcons": false,
+  "showMenuActions": true,
+  "maxSearchResults": 100,
+  "maxBackups": 2,
+  "fileRules": [
+    {
+      "id": "e71lH",
+      "name": "Markdown notes",
+      "icon": "lucide-file-text",
+      "color": "#3b82f6",
+      "match": "any",
+      "conditions": [{ "source": "extension", "operator": "is", "value": "md" }],
+      "enabled": true
+    },
+    {
+      "id": "FE8l6",
+      "name": "Canvas boards",
+      "icon": "lucide-layout-template",
+      "color": "#8b5cf6",
+      "match": "any",
+      "conditions": [{ "source": "extension", "operator": "is", "value": "canvas" }],
+      "enabled": true
+    }
+  ],
+  "folderRules": [
+    {
+      "id": "hf4ce",
+      "name": "Attachment folders",
+      "icon": "lucide-paperclip",
+      "color": "#64748b",
+      "match": "any",
+      "conditions": [
+        { "source": "name", "operator": "is", "value": "attachments" },
+        { "source": "name", "operator": "is", "value": "assets" },
+        { "source": "name", "operator": "is", "value": "media" }
+      ],
+      "enabled": true
+    }
+  ]
+}

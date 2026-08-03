@@ -22,7 +22,7 @@ The inventory records current behavior only. Exact `notesmd-cli` flags for `crea
 
 The mode has 23 catalog entries: 11 headless CLI operations, 3 official app-backed CLI capabilities, 5 confirmed cyanheads MCP core tools, 1 explicit inventory boundary for the remaining 9 MCP tools whose names were not captured, and 3 plugin file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
 
-Category inventory includes `mcp-high-priority/` (4), `mcp-medium-priority/` (1), `mcp-low-priority/` (1), the `notesmd-cli-*` and `obsidian-cli-*` operation folders (14), and the new `plugins/` category (3).
+Category inventory includes `mcp-high-priority/` (4), `mcp-medium-priority/` (1), `mcp-low-priority/` (1), the `notesmd-cli-*` and `obsidian-cli-*` operation folders (14), and the new `plugins/` category (5).
 
 ---
 
@@ -198,7 +198,7 @@ See [`mcp-low-priority/additional-tools-verify.md`](mcp-low-priority/additional-
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the three community plugins covered by the mode. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
+The plugin category records file-layer operations for the five community plugins covered by the mode. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
 
 ### Beancount Ledger
 
@@ -217,3 +217,15 @@ See [`plugins/obsidian-tables.md`](plugins/obsidian-tables.md).
 Stage GitHub beta-plugin assets, register the repository and release policy, and activate the manifest ID through the vault files.
 
 See [`plugins/obsidian42-brat.md`](plugins/obsidian42-brat.md).
+
+### Health.md Visualizations
+
+Create, patch, and validate Apple Health export files (JSON/CSV/Markdown/Bases) in the vault data folder, and place render blocks.
+
+See [`plugins/health-md.md`](plugins/health-md.md).
+
+### Iconic
+
+Add, edit, and disable Iconic icon rules and visibility toggles in `data.json` with backup-before-merge discipline.
+
+See [`plugins/iconic.md`](plugins/iconic.md).

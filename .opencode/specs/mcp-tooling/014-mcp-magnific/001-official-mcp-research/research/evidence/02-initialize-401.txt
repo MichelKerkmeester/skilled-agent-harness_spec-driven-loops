@@ -1,0 +1,13 @@
+HTTP/2 401 
+content-type: application/json
+x-request-id: ak-618d89f9a8d7c12bb5fb4b47b0158e24
+www-authenticate: Bearer error="invalid_token", resource_metadata="https://mcp.magnific.com/.well-known/oauth-protected-resource", scope="openid profile email mcp:custom-audience"
+content-length: 30
+date: Sun, 02 Aug 2026 15:10:56 GMT
+alt-svc: h3=":443"; ma=93600
+access-control-allow-headers: Authorization, Content-Type, X-Pikaso-Client
+access-control-allow-methods: GET, POST, OPTIONS
+access-control-allow-origin: *
+strict-transport-security: max-age=31536000 ; includeSubDomains ; preload
+
+{"message":"Unauthenticated."}

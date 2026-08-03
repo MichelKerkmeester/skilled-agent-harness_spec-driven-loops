@@ -1,0 +1,64 @@
+{
+  "openQuestions": [
+    {"id":"Q6","text":"Which tag or commit matches the installed plugin version?","status":"open","blocking":false},
+    {"id":"Q7","text":"Has a later release fixed first-sort-only execution, and what are the exhaustive command IDs/UI notices?","status":"open","blocking":false}
+  ],
+  "resolvedQuestions": [
+    {"id":"Q1","text":"Exact .table.md wrapper and root schema","status":"resolved","iteration":2},
+    {"id":"Q2","text":"Canonical types, definitions, values, options, and colors","status":"resolved","iteration":2},
+    {"id":"Q3","text":"Formula definition, references, evaluation, and persistence","status":"resolved","iteration":2},
+    {"id":"Q4","text":"Views, filters, sorts, ordering, embeds, and divergence","status":"resolved","iteration":2},
+    {"id":"Q5","text":"Settings, CSV, migrations, safe workflows, and troubleshooting","status":"resolved","iteration":2}
+  ],
+  "keyFindings": [
+    {"id":"F1","title":"Portable single-file .table.md model","iteration":1,"source":"https://github.com/aztekgold/obsidian-tables#tables-for-obsidian"},
+    {"id":"F2","title":"Ten documented user-facing kinds","iteration":1,"source":"https://github.com/aztekgold/obsidian-tables#multiple-column-types"},
+    {"id":"F3","title":"Rename-stable live formulas","iteration":1,"source":"https://github.com/aztekgold/obsidian-tables#formulas"},
+    {"id":"F4","title":"Named views and embeds","iteration":1,"source":"https://github.com/aztekgold/obsidian-tables#embeds"},
+    {"id":"F5","title":"Canonical source surfaces mapped","iteration":1,"source":"https://github.com/aztekgold/obsidian-tables/tree/main/src"},
+    {"id":"F6","title":"Agentable 1.0 root and policy","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts"},
+    {"id":"F7","title":"YAML marker plus json-table fence","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts"},
+    {"id":"F8","title":"Column display/constraints schema","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts"},
+    {"id":"F9","title":"Multi-select is constrained select","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts"},
+    {"id":"F10","title":"Rows key cells by stable column ID","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts"},
+    {"id":"F11","title":"Views persist sorts, filters, hidden columns, order","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts"},
+    {"id":"F12","title":"Ten flat ANDed filter operators","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts"},
+    {"id":"F13","title":"Only first persisted sort currently executes","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts"},
+    {"id":"F14","title":"Formula source and computed strings both persist","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts"},
+    {"id":"F15","title":"Legacy data canonicalizes on save","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts"},
+    {"id":"F16","title":"CSV import is text-only","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts"},
+    {"id":"F17","title":"Four current settings fields","iteration":2,"source":"https://github.com/aztekgold/obsidian-tables/blob/main/src/main.ts"}
+  ],
+  "ruledOutDirections": [
+    {"direction":"Treat .table.md as bare JSON","reason":"Markdown handler requires marker and fence","iteration":2},
+    {"direction":"Use multi-select as canonical type","reason":"Current schema uses select plus multiSelect","iteration":2},
+    {"direction":"Treat formula results as render-only","reason":"Recompute writes row cells","iteration":2},
+    {"direction":"Assume every sort executes","reason":"Current handler uses rules[0]","iteration":2},
+    {"direction":"Infer keys from README labels","reason":"Types and serializers are authoritative","iteration":1},
+    {"direction":"Retry raw/blob/API/CDN retrieval","reason":"Iteration 1 exhausted these transports","iteration":1}
+  ],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 2,
+    "blockingOpenQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 17,
+    "convergenceScore": 0.9,
+    "stopReason": "maxIterationsReached",
+    "coverageBySources": {"readme":1.0,"types":1.0,"fileHandlers":1.0,"runtimeHandlers":1.0,"migrationCsv":1.0,"installedReleaseParity":0.0}
+  },
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "divergence": {
+    "completed": [
+      {"from":"README contract","to":"source-verified Agentable schema","iteration":2},
+      {"from":"documented multi-sort","to":"first-sort-only runtime","iteration":2}
+    ],
+    "overrides": [],
+    "saturatedDirections": ["wrapper-root","columns-cells","formulas","views-filters-sorts","migration-workflows"]
+  }
+}
+

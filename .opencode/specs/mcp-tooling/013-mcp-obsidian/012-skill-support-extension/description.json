@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
+  "description": "Phase 11 put health-md in every vault, but the `mcp-obsidian` mode knows nothing about it",
+  "keywords": [
+    "phase",
+    "put",
+    "health-md",
+    "every",
+    "vault",
+    "mcp-obsidian",
+    "mode",
+    "knows",
+    "nothing",
+    "about"
+  ],
+  "lastUpdated": "2026-08-03T11:54:06.742Z",
+  "specId": "012",
+  "folderSlug": "skill-support-extension",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

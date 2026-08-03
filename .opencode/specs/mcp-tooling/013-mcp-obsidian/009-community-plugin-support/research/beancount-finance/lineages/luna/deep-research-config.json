@@ -1,0 +1,70 @@
+{
+  "topic": "Deep-dive research on the Obsidian plugin 'Beancount Ledger' (id beancount-finance, author mkshp, v2.3.1, GitHub github.com/mkshp-dev), for an AI operating the vault at the FILE LAYER. It manages a Beancount ledger with live BQL queries, transaction management, and net-worth/balance tracking; it shells out to python beanquery (bean-query) and beanprice (bean-price). Resolve the EXACT data model: (a) the Beancount v3 ledger directives it reads/writes (open, transaction+postings, balance, price, pad, note, commodity, include; multi-currency and cost-basis {} lots); (b) the plugin's OWN settings/state schema in .obsidian/plugins/beancount-finance/data.json (READ the plugin source main.js from the mkshp-dev GitHub repo); (c) how it invokes bean-query/beanquery for BQL and bean-price for prices, and the BQL query-language surface. Cover the full feature surface (live BQL queries, transaction entry UI, net-worth/balance dashboards); every command + setting key; file-layer AI workflows (add account, append balanced transaction, BQL query recipes matching the dashboards, bulk CSV import, reconciliation); a full error/edge-case catalog (unbalanced entry, unopened account, currency mismatch, malformed date, bean-check errors, cost-basis lots); AI-usage recipes. Cite sources (mkshp-dev repo + main.js, Beancount + beanquery docs). Produce a verified data-model + workflows + troubleshooting knowledge base.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "fanoutLineageArtifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/beancount-finance/lineages/luna",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-02T11:52:21Z",
+  "status": "complete",
+  "iterationsCompleted": 5,
+  "completedAt": "2026-08-02T12:45:00Z",
+  "synthesisPath": "research.md",
+  "resourceMapPath": "resource-map.md",
+  "reconstructionGaps": 1,
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "type": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1785671329489-48jpky",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "artifactRootBinding": {
+    "overrideUsed": true,
+    "resolveArtifactRootCommandSkipped": true,
+    "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/beancount-finance/lineages/luna"
+  }
+}

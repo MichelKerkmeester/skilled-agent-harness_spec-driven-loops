@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-magnific/006-hub-registration-and-advisor",
+  "spec_folder": "mcp-tooling/014-mcp-magnific/006-hub-registration-and-advisor",
+  "parent_id": "mcp-tooling/014-mcp-magnific",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "mcp-tooling/014-mcp-magnific/005-feature-catalog-and-playbook",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "register mcp-magnific",
+      "magnific hub routing",
+      "magnific advisor discovery",
+      "mcp-magnific phase 6",
+      "magnific hub plan",
+      "magnific advisor plan",
+      "register mcp-magnific plan",
+      "magnific hub tasks",
+      "magnific advisor tasks",
+      "register mcp-magnific tasks",
+      "magnific hub summary",
+      "magnific advisor summary"
+    ],
+    "key_topics": [
+      "register",
+      "mcp-magnific",
+      "magnific",
+      "hub",
+      "routing",
+      "advisor",
+      "discovery",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "mode"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Magnific",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A mode package on disk remains invisible until both hub-local routing and advisor-level hub discovery include its vocabulary",
+    "created_at": "2026-08-02T13:36:50Z",
+    "last_save_at": "2026-08-02T15:18:00.754Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6c4235cc901b86b23810667302b978baaa50b017381c676dda1ee5bffd3ef480",
+    "source_doc_hashes": {
+      "spec.md": "7d0b7ea9119d9a9e271fc91e26a6426e0840b3632368fb447fdfc54ef13eb521",
+      "plan.md": "f4543e9d18e108617f4cba31c9878c60864f1fabfe9143f4748465a4ee16b29c",
+      "tasks.md": "b9f8a2ed35cfd1d137b1dcc01a790a33ccd2f76fdad167d417f8040283b2b009",
+      "implementation-summary.md": "18330859a5467371b61f067b06019c81a505e137dfca69984bfa8cd1ac713d1e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

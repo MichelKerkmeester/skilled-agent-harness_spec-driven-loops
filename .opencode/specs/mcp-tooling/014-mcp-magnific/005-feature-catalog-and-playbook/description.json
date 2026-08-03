@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-magnific/005-feature-catalog-and-playbook",
+  "description": "Without an inventory and scenario corpus, operators cannot tell what the MCP actually supports, which checks are free, which actions spend credits, or",
+  "keywords": [
+    "without",
+    "inventory",
+    "scenario",
+    "corpus",
+    "operators",
+    "cannot",
+    "tell",
+    "mcp",
+    "actually",
+    "supports",
+    "checks",
+    "free",
+    "actions",
+    "spend",
+    "credits"
+  ],
+  "lastUpdated": "2026-08-02T15:17:59.104Z",
+  "specId": "005",
+  "folderSlug": "feature-catalog-and-playbook",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-magnific"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-08-26_16-17__phase-005-feature-catalog-and-playbook-scaffolded.md"
+  ]
+}

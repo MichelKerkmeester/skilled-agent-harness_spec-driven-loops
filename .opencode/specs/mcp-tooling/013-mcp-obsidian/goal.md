@@ -1,6 +1,6 @@
 # Goal Prompt — mcp-obsidian (Obsidian CLI + MCP mode)
 
-> Paste this as the session goal. Updated 2026-08-02 (Phase 1 + research.md done; Phase 9 authored; implementation reset to cli-codex TERRA/LUNA only).
+> Paste this as the session goal. Updated 2026-08-03 (health-md extension: phases 11–12; deep research via GPT-5.6 SOL HIGH FAST).
 
 ---
 
@@ -15,6 +15,8 @@
 **PHASES:** 1 deep-research (DONE) · 2 tool-selection-and-scaffold · 3 cli-tool-integration · 4 mcp-server-integration · 5 skill-authoring · 6 feature-catalog-and-playbook · 7 hub-registration-and-advisor · 8 verification-and-closeout · 9 community-plugin-support (additive: file-layer knowledge for obsidian-flat-financing/Beancount, obsidian-tables/`.table.md` JSON, obsidian42-BRAT installer — `references/`+`assets/` already authored; Phase 5 folds them into the skill).
 
 **LOCKED DECISIONS:** packet `013-mcp-obsidian`; classification = workflow mode (`cli-plus-mcp`) like mcp-click-up. **ADOPT-SET (verified):** CLI = official `obsidian` CLI (app-backed, desktop v1.12.4+) + `notesmd-cli` (Yakitrak, headless filesystem); MCP = cyanheads `obsidian-mcp-server@3.2.9` (`npx -y … @latest`, stdio, env `OBSIDIAN_API_KEY`/`OBSIDIAN_BASE_URL`/`OBSIDIAN_VERIFY_SSL`, needs Local REST API v4+ + running app). Both profiles; vaults exist on this machine.
+
+**EXTENSION 2026-08-03 (health-md):** Phases 11 (`011-plugin-installation`, health-md 2.1.0 installed + enabled in all 3 vaults) and 12 (`012-skill-support-extension`, health-md file-layer skill support) added to the packet. **Research directive: the health-md deep research MUST run on cli-codex GPT-5.6 SOL HIGH FAST** (`--model gpt-5.6-sol -c model_reasoning_effort="high" -c service_tier="fast"`) via `/deep:research` (state under `012-skill-support-extension/research/`), then references are deepened from findings, then live OBS-014. TaskForge: explicitly OUT (removed from skill + specs per operator).
 
 **EXECUTOR POLICY (implementation):** Phases 2–8 implementation MUST be authored ONLY by cli-codex GPT-5.6 executors — **LUNA (max, fast)** and **TERRA (max, fast)**, both ALWAYS on the FAST service tier (`-c service_tier=fast`). NO Claude subagents for implementation. (Phase 1 research already used SOL/TERRA/LUNA.)
 

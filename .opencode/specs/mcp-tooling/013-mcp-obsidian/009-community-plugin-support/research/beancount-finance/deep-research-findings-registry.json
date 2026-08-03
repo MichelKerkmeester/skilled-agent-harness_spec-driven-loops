@@ -1,0 +1,370 @@
+{
+  "mergedFrom": [
+    "luna",
+    "sol",
+    "terra"
+  ],
+  "openQuestions": [
+    {
+      "question": "Does a given installed v2.3.1 bundle match the examined repository source byte-for-byte?",
+      "impact": "non-critical",
+      "reason": "The public source is TypeScript and the user requested main.js. The reviewed source is the build input, not a byte-level inspection of a locally installed release artifact.",
+      "recommendedHandling": "For a production vault, retain the installed plugin version and compare its release checksum or inspected bundle before relying on undocumented behavior.",
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "question": "Which exact formatting binary backs the format command in every release build?",
+      "impact": "non-critical",
+      "reason": "The core ledger, query, transaction, and price behavior is source-backed; formatting implementation details do not alter the file model.",
+      "recommendedHandling": "Treat formatting as a non-semantic operation and validate the resulting ledger before replacing any file.",
+      "_lineages": [
+        "terra"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "text": "Exact data.json keys/defaults",
+      "status": "resolved",
+      "iteration": 1,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "Q2",
+      "text": "Commands, views, BQL invocation, and dashboards",
+      "status": "resolved",
+      "iteration": 1,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "Q3",
+      "text": "Beancount v3 directives and lots",
+      "status": "resolved",
+      "iteration": 2,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "Q4",
+      "text": "File-layer workflows",
+      "status": "resolved",
+      "iteration": 2,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "Q5",
+      "text": "Failure and edge-case catalog",
+      "status": "resolved",
+      "iteration": 2,
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F9",
+      "title": "Actual beanquery grammar includes SELECT, BALANCES, JOURNAL, PRINT, PIVOT, and virtual tables",
+      "iteration": 2,
+      "source": "https://github.com/beancount/beanquery/blob/master/beanquery/parser/bql.ebnf",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F-008",
+      "title": "AI safety requires an independent validation gate",
+      "summary": "The recommended parse-check-query-append-recheck workflow is necessary because the inspected writers use atomic writes and optional backups but do not establish automatic ledger-wide validation before every mutation.",
+      "iteration": 3,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/utils/directives/transactionDirectives.ts",
+        "https://beancount.io/docs/Basics/syntax"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F5",
+      "title": "bean-price runs once on ledger and appends deduplicated price directives",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/services/price.service.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F4",
+      "title": "bean-query argv is -q -f format ledger query",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/queryRunner.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F8",
+      "title": "Beancount transaction weights, multi-currency, and lot-booking semantics",
+      "iteration": 2,
+      "source": "https://beancount.github.io/docs/beancount_language_syntax/",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "beanprice requires commodity price metadata",
+      "iteration": 2,
+      "source": "https://github.com/beancount/beanprice/blob/master/README.md",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F-003",
+      "title": "BQL is an external command path",
+      "summary": "runQuery resolves the main ledger and calls bean-query or configured equivalent with argument arrays. It supports csv, text, and beancount output, 50 MiB buffered output, and errors on stderr.",
+      "iteration": 1,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/utils/queryRunner.ts",
+        "https://github.com/beancount/beanquery/blob/c28ab32e39adfed15d8ed4ad2ad2a8d30aa40423/beanquery/shell.py"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F-007",
+      "title": "BQL is available in notes and dashboards",
+      "summary": "Fenced bql blocks, direct inline bql expressions, and cached named query directives share the external query runner. Dashboard query builders cover net worth, reports, balances, history, commodities, prices, and holdings.",
+      "iteration": 2,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/ui/markdown/BQLCodeBlockProcessor.ts",
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/ui/markdown/InlineBQLProcessor.ts",
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/queries/index.ts"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F7",
+      "title": "Canonical dashboard BQL query shapes recovered",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/queries/index.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F1",
+      "title": "Exact 21-key settings schema",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/settings.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "No plugin CSV import; beangulp is the v3-compatible framework",
+      "iteration": 2,
+      "source": "https://github.com/beancount/beangulp/blob/master/README.rst",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Plugin -q hides load errors; .errors is the explicit validation channel",
+      "iteration": 2,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/lang/beancount-lint.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F-001",
+      "title": "Plugin identity and source boundary",
+      "summary": "Beancount Ledger is beancount-finance v2.3.1 by mkshp, desktop-only. Repository source is TypeScript; src/main.ts is the inspected source equivalent of the released main.js bundle.",
+      "iteration": 1,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/manifest.json",
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/main.ts"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F-004",
+      "title": "Price retrieval has deliberate narrow parsing",
+      "summary": "PriceService invokes bean-price, waits up to 60 seconds, treats stderr as informational, extracts simple price directives, and exact-deduplicates before writing the target file.",
+      "iteration": 1,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/services/price.service.ts",
+        "https://github.com/beancount/beanprice/blob/d3227dc26715d2a963e3f17e5ed35906cc693cd4/README.md"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F-002",
+      "title": "Settings are a shallow persisted object",
+      "summary": "data.json is read as raw plugin data merged over DEFAULT_SETTINGS. Twenty named setting keys are source-backed; isConnectionReady is runtime-only.",
+      "iteration": 1,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/settings.ts",
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/main.ts"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F2",
+      "title": "Seven command IDs; insert-BQL command removed",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/main.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F3",
+      "title": "Structured ledger includes and operation routing",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/structuredLayout.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F-005",
+      "title": "The ledger is canonical text, not plugin state",
+      "summary": "The plugin views and writes Beancount files in the vault. Account lifecycle, transactions, balances, notes, prices, commodities, pads, and includes follow Beancount syntax and validation rules.",
+      "iteration": 2,
+      "confidence": "high",
+      "sources": [
+        "https://beancount.io/docs/Basics/syntax",
+        "https://beancount.github.io/docs/index.html"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F-006",
+      "title": "Transaction writer preserves rich posting annotations",
+      "summary": "The serializer writes payee/narration combinations, flags, tags, links, metadata, costs, prices, comments, and posting metadata; it does not prove a local pre-write balance check.",
+      "iteration": 2,
+      "confidence": "high",
+      "sources": [
+        "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/a686c5003b75de554a4cd1a1cfb9c5c76fe6cb81/src/utils/directives/transactionDirectives.ts"
+      ],
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "id": "F6",
+      "title": "Transaction writer supports metadata, lots, and @/@@ prices",
+      "iteration": 1,
+      "source": "https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/directives/transactionDirectives.ts",
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "id": "F13",
+      "title": "Validation-first file-layer workflows and recovery catalog",
+      "iteration": 2,
+      "source": "https://beancount.github.io/docs/getting_started_with_beancount/",
+      "_lineages": [
+        "sol"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Assume every plugin write automatically runs bean-check",
+      "reason": "A BQL ERRORS helper is present, but no per-write bean-check invocation was established.",
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "direction": "Assume the plugin supplies a native CSV importer",
+      "reason": "No dedicated CSV import UI or writer was established in the inspected source; the CSV procedure in research.md is an AI workflow.",
+      "_lineages": [
+        "terra"
+      ]
+    },
+    {
+      "direction": "BQL success as validation",
+      "reason": "The plugin passes -q, so validation errors require .errors or bean-check",
+      "iteration": 2,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "direction": "obsidian-flat-financing",
+      "reason": "Different plugin and data contract",
+      "iteration": 1,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "direction": "plugin-native CSV import",
+      "reason": "No command or source path implements bulk CSV import; use a staged external importer such as beangulp",
+      "iteration": 2,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "direction": "tracked main.js",
+      "reason": "2.3.1 Git tree has no main.js; release bundle is generated from tagged TypeScript",
+      "iteration": 1,
+      "_lineages": [
+        "sol"
+      ]
+    },
+    {
+      "direction": "Treat the plugin as a separate finance database",
+      "reason": "Source and feature surface operate on vault Beancount files and external command results.",
+      "_lineages": [
+        "terra"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 2,
+    "resolvedQuestions": 5,
+    "keyFindings": 21,
+    "sourceFindings": 43,
+    "reconstructionGaps": 1,
+    "convergenceScore": 0.317,
+    "coverageBySources": {}
+  }
+}

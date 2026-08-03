@@ -1,0 +1,27 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation",
+  "description": "The health-md deep research (phase 012, `research/lineages/codex/research.md`, 6 iterations, all questions answered) found the mode's health-md",
+  "keywords": [
+    "health-md",
+    "deep",
+    "research",
+    "phase",
+    "lineages",
+    "codex",
+    "iterations",
+    "questions",
+    "answered",
+    "found",
+    "mode"
+  ],
+  "lastUpdated": "2026-08-03T14:16:15.206Z",
+  "specId": "014",
+  "folderSlug": "health-md-reference-remediation",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

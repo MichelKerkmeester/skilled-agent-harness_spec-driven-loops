@@ -1,0 +1,75 @@
+{
+  "topic": "Deep-dive research on the Obsidian plugin obsidian-tables (GitHub aztekgold/obsidian-tables), an interactive JSON-table plugin, for an AI operating the vault at the FILE LAYER. Resolve the EXACT .table.md JSON schema: every top-level key (columns/rows/views + any id/order/version keys), per-column-type structure for ALL types (text, number, checkbox, select, multi-select, url, email, note-link, date, formula) including options/colors storage, formula persistence vs render-time compute, and how views/filters/sorts serialize — READ the plugin SOURCE in the aztekgold/obsidian-tables repo (the installed main.js is minified). Cover the full feature surface (multiple views, multi-level sort, complex filters, drag-reorder, CSV export, embeds via ![[Name.table.md|View]]); commands + settings; file-layer AI workflows (create a valid .table.md, add/patch rows, CSV to table import, query rows, safe in-place patch, schema migration); a full error/edge-case catalog (malformed JSON symptoms, .table.md-as-markdown parsing, formula errors); AI-usage recipes. Cite sources (repo source + README). Produce a verified data-model + workflows + troubleshooting knowledge base.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "fanoutLineageArtifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/obsidian-tables/lineages/luna",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-08-02T12:23:33.102Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "medium",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1785673258726-kcaoky",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

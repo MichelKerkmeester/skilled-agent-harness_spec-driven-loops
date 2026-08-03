@@ -1,0 +1,38 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/014-mcp-magnific/001-official-mcp-research",
+  "description": "The landing page describes capabilities in product language but does not establish the wire protocol, authorization flow, callable names, schemas, job",
+  "keywords": [
+    "landing",
+    "page",
+    "describes",
+    "capabilities",
+    "product",
+    "language",
+    "establish",
+    "wire",
+    "protocol",
+    "authorization",
+    "flow",
+    "callable",
+    "names",
+    "schemas",
+    "job"
+  ],
+  "lastUpdated": "2026-08-02T16:08:20.863Z",
+  "specId": "001",
+  "folderSlug": "official-mcp-research",
+  "parentChain": [
+    "mcp-tooling",
+    "014-mcp-magnific"
+  ],
+  "memorySequence": 6,
+  "memoryNameHistory": [
+    "02-08-26_16-14__live-probe-get-https-mcp-magnific-com-returned.md",
+    "02-08-26_16-15__live-probe-get-https-mcp-magnific-com-returned.md",
+    "02-08-26_16-16__live-probe-get-https-mcp-magnific-com-returned.md",
+    "02-08-26_16-16__live-probe-get-https-mcp-magnific-com-returned.md",
+    "02-08-26_17-07__live-probe-get-https-mcp-magnific-com-returned.md",
+    "02-08-26_17-08__live-probe-get-https-mcp-magnific-com-returned.md"
+  ]
+}

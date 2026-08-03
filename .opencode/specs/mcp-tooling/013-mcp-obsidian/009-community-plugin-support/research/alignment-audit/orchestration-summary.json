@@ -1,0 +1,22 @@
+{
+  "run_id": "1785687082172-7luqqz",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "base_artifact_dir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/alignment-audit",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 0,
+  "failed": 3,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 3
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 3
+  }
+}

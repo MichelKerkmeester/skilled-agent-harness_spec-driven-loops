@@ -1,0 +1,6 @@
+{"event":"detached_lineage_bound","sessionId":"fanout-terra-1785675410437-3ctuwx","artifactDir":"lineages/terra","resolveArtifactRootExecuted":false,"timestamp":"2026-08-02T12:58:55Z"}
+{"event":"research_iteration","run":1,"ratio":1.0,"status":"complete","timestamp":"2026-08-02T13:01:56Z"}
+{"event":"research_iteration","run":2,"ratio":0.9,"status":"complete","timestamp":"2026-08-02T13:03:10Z"}
+{"event":"research_iteration","run":3,"ratio":0.85,"status":"complete","timestamp":"2026-08-02T13:04:56Z"}
+{"event":"convergence_telemetry","candidate":"continue","terminal":false,"stopPolicy":"max-iterations","timestamp":"2026-08-02T13:04:56Z"}
+{"event":"phase_synthesis","status":"complete","timestamp":"2026-08-02T13:07:00Z"}

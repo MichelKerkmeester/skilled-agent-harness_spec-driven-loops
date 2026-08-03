@@ -1,0 +1,11 @@
+{
+  "owner_pid": 4577,
+  "started_at_iso": "2026-08-02T12:22:58.080Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-02T12:22:58.080Z",
+  "packet_id": ".opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-02T12:22:58.080Z",
+  "acquire_nonce": "4577-1785673378080-9148f49e-9b08-4aa8-a057-215b5f3cdbaa"
+}

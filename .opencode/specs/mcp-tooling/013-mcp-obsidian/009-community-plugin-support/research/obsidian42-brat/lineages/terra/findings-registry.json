@@ -1,0 +1,46 @@
+{
+  "sessionId": "fanout-terra-1785675410437-3ctuwx",
+  "generation": 1,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "q-schema", "text": "What is the source-defined data.json schema?", "iteration": 1},
+    {"id": "q-commands", "text": "Which commands map to the requested operations?", "iteration": 1},
+    {"id": "q-install", "text": "How do installation and enablement work at the file layer?", "iteration": 2},
+    {"id": "q-workflow", "text": "What is the safe AI workflow?", "iteration": 2},
+    {"id": "q-edge-cases", "text": "Which automation errors and edge cases matter?", "iteration": 3}
+  ],
+  "keyFindings": [
+    {"id": "f-schema", "text": "The source defines Settings fields/defaults and uses a shallow default merge.", "iteration": 1},
+    {"id": "f-latest-sentinel", "text": "A non-frozen install has a pluginSubListFrozenVersion entry whose version is latest.", "iteration": 1},
+    {"id": "f-command-drift", "text": "The current palette has one add command with or without version, rather than necessarily two historical command titles.", "iteration": 1},
+    {"id": "f-release-tag", "text": "A pin is the exact GitHub release tag, not merely a semver-normalized manifest version.", "iteration": 2},
+    {"id": "f-release-assets", "text": "main.js and manifest.json are required release assets; styles.css is optional.", "iteration": 2},
+    {"id": "f-enable-equivalence", "text": "File-layer enablement must use manifest.id and preserve the community-plugin enable list.", "iteration": 2},
+    {"id": "f-theme-path", "text": "Themes use root CSS/manifest files and a manifest-name target folder, not GitHub release assets.", "iteration": 3},
+    {"id": "f-private-boundary", "text": "Private access requires an already-authorized SecretStorage value; data.json is not sufficient.", "iteration": 3},
+    {"id": "f-stale-style", "text": "An absent incoming styles.css does not cause BRAT to delete an existing one.", "iteration": 3},
+    {"id": "f-cache", "text": "GitHub caching can temporarily make a freshly published update unavailable.", "iteration": 3}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Treat pluginSubListFrozenVersion as pin-only", "iteration": 1},
+    {"approach": "Store a personal access token in data.json", "iteration": 1},
+    {"approach": "Fetch normal BRAT plugin artifacts from repository root", "iteration": 2},
+    {"approach": "Automatically force an incompatible minAppVersion install", "iteration": 2},
+    {"approach": "Delete installed theme files when unregistering a beta theme", "iteration": 3},
+    {"approach": "Place a private GitHub token directly in data.json", "iteration": 3}
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 10,
+    "convergenceScore": 0.35,
+    "coverageBySources": {"github.com": 8, "tfthacker.com": 4, "docs.obsidian.md": 1}
+  },
+  "divergence": {
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": []
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-magnific",
+  "spec_folder": "mcp-tooling/014-mcp-magnific",
+  "parent_id": "mcp-tooling",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "mcp-tooling/014-mcp-magnific/001-official-mcp-research",
+    "mcp-tooling/014-mcp-magnific/002-mode-architecture-and-scaffold",
+    "mcp-tooling/014-mcp-magnific/003-mcp-runtime-integration",
+    "mcp-tooling/014-mcp-magnific/004-skill-authoring",
+    "mcp-tooling/014-mcp-magnific/005-feature-catalog-and-playbook",
+    "mcp-tooling/014-mcp-magnific/006-hub-registration-and-advisor",
+    "mcp-tooling/014-mcp-magnific/007-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-magnific",
+      "magnific mcp",
+      "magnific creative generation",
+      "mcp-tooling magnific mode"
+    ],
+    "key_topics": [
+      "mcp-magnific",
+      "magnific",
+      "mcp",
+      "creative",
+      "generation",
+      "mcp-tooling",
+      "mode",
+      "exposes",
+      "official",
+      "remote",
+      "https",
+      "com"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Which Magnific",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Magnific exposes an official remote MCP at `https://mcp.magnific.com`, but this framework has no Magnific mode",
+    "created_at": "2026-08-02T13:36:45Z",
+    "last_save_at": "2026-08-02T16:08:20.885Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:45fc069cddc182ead93d07c2f0528dca026d17b195e9eabe40caed48937a93c2",
+    "source_doc_hashes": {
+      "spec.md": "e3d6811252e4d209d246403b2d92afa2a111b702ac1db0edba087d9cff930937"
+    },
+    "last_active_child_id": "mcp-tooling/014-mcp-magnific/001-official-mcp-research",
+    "last_active_at": "2026-08-02T16:08:20.885Z"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "What official Obsidian automation surfaces exist, and which require a running desktop app?",
+    "Which community CLI candidates have verified identities and sufficient coverage?",
+    "Which community MCP candidates have verified identities and sufficient coverage?",
+    "What Local REST API and obsidian URI constraints determine configuration?",
+    "What ranked BUILD-vs-ADOPT recommendation best fits each surface?"
+  ],
+  "keyFindings": [
+    "The official bundled binary is `obsidian` and requires the desktop app.",
+    "The official CLI covers CRUD, search, backlinks, daily notes, tags, properties/frontmatter, and templates.",
+    "Local REST API is an in-app community plugin using bearer-token authentication.",
+    "Local REST API now bundles a Streamable HTTP MCP endpoint at `/mcp/`.",
+    "The maintained headless content CLI is `notesmd-cli`, not the legacy `obsidian-cli` identity.",
+    "The official npm `obsidian-headless` binary `ob` handles Sync and Publish rather than note management.",
+    "npm and binary `obsidian-mcp-server` wrap Local REST API and therefore remain app-coupled.",
+    "npm and binary `obsidian-mcp` access vault files directly and work without Obsidian or a token.",
+    "The built-in Local REST API MCP endpoint is the default MCP adoption candidate.",
+    "Dedicated backlink and template tools remain gaps in the strongest MCP candidates.",
+    "The final CLI decision is adopt official `obsidian`, with `notesmd-cli` only for an explicit headless profile.",
+    "The final MCP decision is adopt Local REST API built-in MCP through `mcp-remote`, with filesystem `obsidian-mcp` only for an explicit headless profile.",
+    "The Code Mode secret key is `obsidian_OBSIDIAN_AUTH_HEADER`, mapped from manual-local `OBSIDIAN_AUTH_HEADER`.",
+    "The justified build scope is routing, safety, install/doctor, fixtures, and optional compatibility shims."
+  ],
+  "ruledOutDirections": [
+    "Run resolveArtifactRoot for this detached lineage",
+    "Write outside the bound lineage directory"
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 14,
+    "sourceFindings": 28,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.68,
+    "coverageBySources": {
+      "official-docs": 3,
+      "upstream-repositories": 9,
+      "package-manifests": 2
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+  "description": "The mode's health-md playbook scenario (OBS-014) and feature-catalog card were authored before the deep research and carry the same defects: the",
+  "keywords": [
+    "mode",
+    "health-md",
+    "playbook",
+    "scenario",
+    "obs-014",
+    "feature-catalog",
+    "card",
+    "authored",
+    "deep",
+    "research",
+    "carry",
+    "same",
+    "defects"
+  ],
+  "lastUpdated": "2026-08-03T14:17:15.078Z",
+  "specId": "016",
+  "folderSlug": "health-md-catalog-and-playbook",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -18,13 +18,15 @@ For any plugin, locate its data by checking, in order:
 3. **Plugin settings/state** at `<vault>/.obsidian/plugins/{plugin-id}/data.json`.
 4. **Vault-level plugin state** — `community-plugins.json` (enabled ids), `app.json`, `appearance.json`.
 
-## 3. THE THREE PLUGINS — data map
+## 3. THE FIVE PLUGINS — data map
 
 | Plugin | Data the AI edits | Operation |
 |--------|-------------------|-----------|
 | `beancount-finance` | the structured `*.beancount` ledger | append/patch balanced Beancount directives |
 | `obsidian-tables` | `*.table.md` (JSON) | edit `columns`/`rows`/`views` JSON (`VERIFY` schema) |
 | `obsidian42-brat` | `.obsidian/plugins/{id}/` + `community-plugins.json` + BRAT `data.json` | install = write plugin assets + enable id + register in BRAT |
+| `health-md` | Apple Health export files in the data folder (default `Health/`), JSON/CSV/Markdown/Bases | create/append/patch data files + place the render block; NEVER fabricate data |
+| `iconic` | `.obsidian/plugins/iconic/data.json` (rulebook + settings) | merge rules/toggles with backup-before-write; preserve unrelated keys; rendering is in-app |
 
 ## 4. WHAT THE FILE LAYER CAN AND CANNOT DO
 

@@ -22,6 +22,7 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-03 | [`2026-08-03--playbook-validation--live/`](./2026-08-03--playbook-validation--live/) | live | 10 PASS, 6 FAIL | **BLOCKED-BY-ROUTE-GOLD** 42/100 | `.opencode/skills/mcp-tooling/manual-testing-playbook` |
 | 2026-08-03 | [`2026-08-03--playbook-validation--router/`](./2026-08-03--playbook-validation--router/) | router | 16 PASS | **PASS** 98/100 | `.opencode/skills/mcp-tooling/manual-testing-playbook` |
 
 ## 3. STORAGE RULE

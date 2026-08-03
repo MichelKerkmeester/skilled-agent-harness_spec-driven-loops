@@ -1,0 +1,52 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"q1","text":"What file formats, schema generations, and canonical daily-data semantics does the plugin accept?","status":"resolved","iteration":1},
+    {"id":"q2","text":"How do folder discovery, file patterns, format selection, caching, and compatibility scanning behave?","status":"resolved","iteration":2},
+    {"id":"q3","text":"What is the complete health-viz block contract, including date variables, appearance, and validation?","status":"resolved","iteration":3},
+    {"id":"q4","text":"How are roll-ups, the data dictionary, lossless archives, granular tables, and large files handled without double counting or unsafe ingestion?","status":"resolved","iteration":4},
+    {"id":"q5","text":"Which Apple/Android export differences and file-layer edge cases constrain reliable automation?","status":"resolved","iteration":5}
+  ],
+  "keyFindings": [
+    {"id":"kf01","label":"Current plugin release 2.1.0 accepts JSON CSV Markdown frontmatter and Bases daily data","iteration":1,"sources":["https://github.com/CodyBontecou/health-md-visualizations","https://community.obsidian.md/plugins/health-md"]},
+    {"id":"kf02","label":"Mixed daily schemas v0 through v7 are supported and newer versions are best effort","iteration":1,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf03","label":"Data folder structure glob format cache invalidation and compatibility scan are separate controls","iteration":2,"sources":["https://github.com/CodyBontecou/health-md-visualizations","https://community.obsidian.md/plugins/health-md"]},
+    {"id":"kf04","label":"The render fence is health-viz with type required and from to last as common date controls","iteration":3,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf05","label":"An empty default Health folder activates deterministic bundled mock data","iteration":3,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf06","label":"Daily summaries rollups dictionary metadata and lossless source archives are distinct ingest layers","iteration":4,"sources":["https://github.com/CodyBontecou/health-md-visualizations","https://github.com/CodyBontecou/health-md"]},
+    {"id":"kf07","label":"The plugin excludes canonical records routes waveforms clinical payloads and binary data from day cache metrics","iteration":4,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf08","label":"Apple v7 Android frozen v4 and Android analytical v5 are independent compatibility profiles","iteration":5,"sources":["https://github.com/CodyBontecou/health-md"]},
+    {"id":"kf09","label":"Platform permission and export-selection gaps must not be normalized to zero","iteration":5,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf10","label":"Android raw snapshots are archival products and not daily HealthData inputs","iteration":5,"sources":["https://github.com/CodyBontecou/health-md-android"]},
+    {"id":"kf11","label":"Existing packet examples use the wrong fence and invented chart keys","iteration":6,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]},
+    {"id":"kf12","label":"Existing packet verification omits the mock fallback and real-source assertion","iteration":6,"sources":["https://github.com/CodyBontecou/health-md-visualizations"]}
+  ],
+  "ruledOutDirections": [
+    {"direction":"Use cached v2-era README as current","reason":"Current repository and Community listing document the v7 contract","iteration":1},
+    {"direction":"Move root files when enabling nesting","reason":"Root files continue to load in nested modes","iteration":2},
+    {"direction":"Use raw Templater or Dataview expressions in blocks","reason":"Plugin supplies its own variable syntax","iteration":3},
+    {"direction":"Treat successful render as proof of real exports","reason":"Default empty folder falls back to bundled mock data","iteration":3},
+    {"direction":"Flatten daily summaries rollups and source archives","reason":"Plugin indexes them as distinct layers","iteration":4},
+    {"direction":"Unify Apple v7 and Android v4 v5 semantics","reason":"Canonical contracts keep them as independent profiles","iteration":5},
+    {"direction":"Use current packet quick-start example unchanged","reason":"It uses the wrong fence and invented keys","iteration":6}
+  ],
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 12,
+    "newInfoRatios": [1.0,0.9,0.92,0.93,0.9,0.58],
+    "latestNewInfoRatio": 0.58,
+    "rollingThreeAverage": 0.8033,
+    "convergenceThreshold": 0.05,
+    "thresholdReached": false,
+    "stopReason": "all_questions_answered",
+    "coverageBySources": {
+      "plugin_repository": 6,
+      "obsidian_community_listing": 4,
+      "canonical_exporter_monorepo": 3,
+      "android_exporter_repository": 2,
+      "local_packet_references": 1
+    }
+  }
+}

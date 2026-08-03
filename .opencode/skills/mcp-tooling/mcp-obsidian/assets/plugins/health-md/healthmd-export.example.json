@@ -1,0 +1,25 @@
+{
+  "healthmd.health_data": {
+    "schema_version": 7,
+    "timezone": "Europe/Amsterdam",
+    "source": "Health.md export (example fixture)",
+    "days": [
+      {
+        "date": "2026-08-01",
+        "statistics": {
+          "step_count": { "count": 8421, "unit": "count" },
+          "active_energy": { "count": 412.3, "unit": "kcal" },
+          "heart_rate": { "average": 68, "unit": "count/min" }
+        }
+      },
+      {
+        "date": "2026-08-02",
+        "statistics": {
+          "step_count": { "count": 12054, "unit": "count" },
+          "active_energy": { "count": 534.1, "unit": "kcal" },
+          "heart_rate": { "average": 71, "unit": "count/min" }
+        }
+      }
+    ]
+  }
+}

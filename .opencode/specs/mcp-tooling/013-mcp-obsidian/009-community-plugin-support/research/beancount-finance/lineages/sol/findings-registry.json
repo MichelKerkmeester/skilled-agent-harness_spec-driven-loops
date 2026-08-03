@@ -1,0 +1,32 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id":"Q1","text":"Exact data.json keys/defaults","status":"resolved","iteration":1},
+    {"id":"Q2","text":"Commands, views, BQL invocation, and dashboards","status":"resolved","iteration":1},
+    {"id":"Q3","text":"Beancount v3 directives and lots","status":"resolved","iteration":2},
+    {"id":"Q4","text":"File-layer workflows","status":"resolved","iteration":2},
+    {"id":"Q5","text":"Failure and edge-case catalog","status":"resolved","iteration":2}
+  ],
+  "keyFindings": [
+    {"id":"F1","title":"Exact 21-key settings schema","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/settings.ts"},
+    {"id":"F2","title":"Seven command IDs; insert-BQL command removed","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/main.ts"},
+    {"id":"F3","title":"Structured ledger includes and operation routing","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/structuredLayout.ts"},
+    {"id":"F4","title":"bean-query argv is -q -f format ledger query","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/queryRunner.ts"},
+    {"id":"F5","title":"bean-price runs once on ledger and appends deduplicated price directives","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/services/price.service.ts"},
+    {"id":"F6","title":"Transaction writer supports metadata, lots, and @/@@ prices","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/directives/transactionDirectives.ts"},
+    {"id":"F7","title":"Canonical dashboard BQL query shapes recovered","iteration":1,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/queries/index.ts"},
+    {"id":"F8","title":"Beancount transaction weights, multi-currency, and lot-booking semantics","iteration":2,"source":"https://beancount.github.io/docs/beancount_language_syntax/"},
+    {"id":"F9","title":"Actual beanquery grammar includes SELECT, BALANCES, JOURNAL, PRINT, PIVOT, and virtual tables","iteration":2,"source":"https://github.com/beancount/beanquery/blob/master/beanquery/parser/bql.ebnf"},
+    {"id":"F10","title":"Plugin -q hides load errors; .errors is the explicit validation channel","iteration":2,"source":"https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/lang/beancount-lint.ts"},
+    {"id":"F11","title":"beanprice requires commodity price metadata","iteration":2,"source":"https://github.com/beancount/beanprice/blob/master/README.md"},
+    {"id":"F12","title":"No plugin CSV import; beangulp is the v3-compatible framework","iteration":2,"source":"https://github.com/beancount/beangulp/blob/master/README.rst"},
+    {"id":"F13","title":"Validation-first file-layer workflows and recovery catalog","iteration":2,"source":"https://beancount.github.io/docs/getting_started_with_beancount/"}
+  ],
+  "ruledOutDirections": [
+    {"direction":"obsidian-flat-financing","reason":"Different plugin and data contract","iteration":1},
+    {"direction":"tracked main.js","reason":"2.3.1 Git tree has no main.js; release bundle is generated from tagged TypeScript","iteration":1},
+    {"direction":"plugin-native CSV import","reason":"No command or source path implements bulk CSV import; use a staged external importer such as beangulp","iteration":2},
+    {"direction":"BQL success as validation","reason":"The plugin passes -q, so validation errors require .errors or bean-check","iteration":2}
+  ],
+  "metrics": {"iterationsCompleted":2,"openQuestions":0,"resolvedQuestions":5,"keyFindings":13,"sourceFindings":13,"reconstructionGaps":0,"convergenceScore":0.88,"coverageBySources":{"plugin-tag-source":1.0,"beancount-docs":1.0,"beanquery-docs":1.0,"beanprice-docs":1.0,"beangulp-source":1.0}}
+}

@@ -1,0 +1,1387 @@
+{
+  "sessionId": "fanout-luna-1785673258726-kcaoky",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-08-02T12:55:02.700Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-are-the-exact-top-level-keys-and-per-column-structures-for-every-supported-",
+      "inboxId": null,
+      "text": "What are the exact top-level keys and per-column structures for every supported type, including option/color storage and formula behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-how-do-rows-views-filters-multi-level-sorts-reordering-exports-and-embeds-serial",
+      "inboxId": null,
+      "text": "How do rows, views, filters, multi-level sorts, reordering, exports, and embeds serialize at the file layer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-commands-settings-and-user-facing-feature-behavior-must-an-ai-account-for-w",
+      "inboxId": null,
+      "text": "What commands, settings, and user-facing feature behavior must an AI account for when operating the vault?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-create-patch-import-query-migration-and-safe-in-place-editing-workflows-ar",
+      "inboxId": null,
+      "text": "Which create, patch, import, query, migration, and safe in-place editing workflows are valid for an AI?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-malformed-file-parsing-formula-and-edge-case-symptoms-are-observable-and-wh",
+      "inboxId": null,
+      "text": "What malformed-file, parsing, formula, and edge-case symptoms are observable, and what recipes avoid them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-are-the-exact-top-level-keys-and-per-column-structures-for-every-supported-",
+      "inboxId": null,
+      "text": "What are the exact top-level keys and per-column structures for every supported type, including option/color storage and formula behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-how-do-rows-views-filters-multi-level-sorts-reordering-exports-and-embeds-serial",
+      "inboxId": null,
+      "text": "How do rows, views, filters, multi-level sorts, reordering, exports, and embeds serialize at the file layer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-commands-settings-and-user-facing-feature-behavior-must-an-ai-account-for-w",
+      "inboxId": null,
+      "text": "What commands, settings, and user-facing feature behavior must an AI account for when operating the vault?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-which-create-patch-import-query-migration-and-safe-in-place-editing-workflows-ar",
+      "inboxId": null,
+      "text": "Which create, patch, import, query, migration, and safe in-place editing workflows are valid for an AI?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-malformed-file-parsing-formula-and-edge-case-symptoms-are-observable-and-wh",
+      "inboxId": null,
+      "text": "What malformed-file, parsing, formula, and edge-case symptoms are observable, and what recipes avoid them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which commands/settings and file-layer workflows are safest for AI operation?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How views, filters, sorting, column/row reorder, CSV export, and embeds serialize and behave in practice?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact malformed-file and formula-error symptoms should troubleshooting recipes cover?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What malformed JSON, markdown extraction, CSV, and formula error messages are observable?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What safe read/patch/query/migration recipes avoid corrupting `.table.md` wrappers?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What commands/settings and format-specific file creation/import behavior must an AI account for?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What malformed JSON, Markdown extraction, CSV, and formula error messages and recovery steps are observable?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact safe create/add/patch/query/migration recipes should the final knowledge base prescribe?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which source claims are implementation caveats versus intended behavior?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the complete malformed-file/formula-error catalog, including exact user-visible symptoms and recovery choices?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which AI recipes need explicit warnings for formula limits, commas in multi-select values, stale computed cells, and missing views?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No material source question remains for the requested current `main` scope. Version drift after the inspected repository state is an external maintenance concern.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What are the exact top-level keys and per-column structures for every supported type, including option/color storage and formula behavior?",
+    "How do rows, views, filters, multi-level sorts, reordering, exports, and embeds serialize at the file layer?",
+    "What commands, settings, and user-facing feature behavior must an AI account for when operating the vault?",
+    "Which create, patch, import, query, migration, and safe in-place editing workflows are valid for an AI?",
+    "What malformed-file, parsing, formula, and edge-case symptoms are observable, and what recipes avoid them?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-checkbox-canonical-creator-type-is-boolean-the-ui-label-is-checkbox-cells-are-sa",
+      "text": "**Checkbox:** canonical creator type is `\"boolean\"` (the UI label is Checkbox). Cells are saved as the strings `\"true\"` and `\"false\"`, and the renderer checks specifically for `\"true\"`. The migration layer accepts legacy `\"checkbox\"` and normalizes it to `\"boolean\"`. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/CheckboxRenderer.ts]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-9-date-type-date-cells-are-millisecond-timestamps-serialized-as-strings-by-the-pic",
+      "text": "**Date:** `type: \"date\"`; cells are millisecond timestamps serialized as strings by the picker. `display.dateFormat` defaults to `\"YYYY/MM/DD\"` and supports `\"MMMM D, YYYY\"`, `\"MMM D\"`, `\"DD/MM/YYYY\"`, `\"MM/DD/YYYY\"`, and `\"YYYY/MM/DD\"`. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DateRenderer.ts]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-7-email-type-email-the-cell-remains-a-string-values-matching-the-plugin-s-simple-l",
+      "text": "**Email:** `type: \"email\"`; the cell remains a string. Values matching the plugin's simple `local@host.tld` pattern render as `mailto:` links; non-matching text remains plain text. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/EmailRenderer.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-10-formula-type-formula-constraints-formula-stores-the-expression-and-constraints-f",
+      "text": "**Formula:** `type: \"formula\"`; `constraints.formula` stores the expression and `constraints.formulaResultKind` caches `number`, `date`, or `text` for sort/filter gating. Formula columns are not directly editable cells. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-5-multi-select-current-creation-still-uses-type-select-plus-constraints-multiselec",
+      "text": "**Multi-select:** current creation still uses `type: \"select\"` plus `constraints.multiSelect: true`. The renderer stores selected values as one comma-separated string such as `\"Urgent,Research\"`; there is no escaping layer for commas. Legacy `\"multiselect\"` and `\"multi-select\"` are migrated to `type: \"select\"` with `multiSelect: true`. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/columnUtils.ts]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/MultiSelectRenderer.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-8-note-link-canonical-type-link-the-cell-is-a-vault-path-string-such-as-projects-a",
+      "text": "**Note link:** canonical `type: \"link\"`; the cell is a vault path string such as `Projects/Alpha.md`, not a wrapped `[[...]]` value. The editor resolves a typed link to the full path when possible. `constraints.suggestAllFiles` controls whether the suggester includes all files. Legacy `\"notelink\"` and `\"wikilink\"` are accepted. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/NoteLinkRenderer.ts]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-2-number-type-number-the-editor-saves-a-parsed-json-number-null-when-emptied-or-a-",
+      "text": "**Number:** `type: \"number\"`; the editor saves a parsed JSON number, `null` when emptied, or a string if invalid text is entered. File-layer writers should use JSON numbers for valid numeric cells. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/NumberRenderer.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-4-select-type-select-constraints-options-is-an-ordered-array-of-value-color-object",
+      "text": "**Select:** `type: \"select\"`; `constraints.options` is an ordered array of `{value,color?}` objects. A selected cell stores the option value as one string. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DropdownRenderer.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-1-text-type-text-cell-values-are-normally-strings-constraints-wrap-controls-displa",
+      "text": "**Text:** `type: \"text\"`; cell values are normally strings. `constraints.wrap` controls display wrapping. Empty cells are `\"\"`.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-1-6-url-type-url-the-cell-remains-a-string-values-matching-http-https-ftp-or-protoco",
+      "text": "**URL:** `type: \"url\"`; the cell remains a string. Values matching `http://`, `https://`, `ftp://`, or protocol-relative `//` render as external links; other strings remain plain text. `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/UrlRenderer.ts]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-2-1-export-table-as-csv-all-columns-and-all-rows-in-current-stored-order",
+      "text": "**Export table as CSV:** all columns and all rows in current stored order.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SearchHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/AbstractTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/livePreviewExtension.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`"
+      ]
+    },
+    {
+      "id": "finding-2-2-export-view-to-csv-visible-columns-only-after-the-current-first-sort-all-active-",
+      "text": "**Export view to CSV:** visible columns only, after the current first sort, all active AND filters, and ephemeral search.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SearchHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/AbstractTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/livePreviewExtension.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`"
+      ]
+    },
+    {
+      "id": "finding-3-3-add-table-inline-add-table-inline-inserts-a-jsontable-fenced-block-containing-th",
+      "text": "`add-table-inline` / **Add table inline**: inserts a ` ```jsontable ` fenced block containing the skeleton JSON at the editor cursor.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/main.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/fileUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/manifest.json]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-3-1-create-new-table-create-new-table-available-when-an-active-file-has-a-folder-or-",
+      "text": "`create-new-table` / **Create new table**: available when an active file has a folder or when the vault root is usable; creates in the active file's parent or root. The file explorer also exposes **New table** on folders.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/main.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/fileUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/manifest.json]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-3-2-import-csv-import-csv-file-opens-a-file-picker-parses-the-selected-csv-and-creat",
+      "text": "`import-csv` / **Import CSV file**: opens a file picker, parses the selected CSV, and creates a new table next to the active file (or at root).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/main.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/fileUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/manifest.json]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/CHANGELOG.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-10-apply-only-the-first-sorts-entry-to-match-current-plugin-behavior-report-additio",
+      "text": "Apply only the first `sorts` entry to match current plugin behavior; report additional sort entries as serialized but currently ineffective.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-16-apply-the-smallest-object-level-patch-keyed-by-row-column-ids",
+      "text": "Apply the smallest object-level patch keyed by row/column IDs.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-1-choose-a-unique-filename-ending-in-table-md",
+      "text": "Choose a unique filename ending in `.table.md`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-14-confirm-the-filename-extension-and-for-table-md-locate-exactly-one-intended-json",
+      "text": "Confirm the filename extension and, for `.table.md`, locate exactly one intended `json-table` block and validate frontmatter.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-9-if-emulating-a-saved-view-apply-its-filters-as-and-rules-using-the-operator-sema",
+      "text": "If emulating a saved view, apply its filters as AND rules using the operator semantics from `FilterHandler`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-11-ignore-hiddencolumns-for-data-retrieval-unless-the-user-explicitly-asks-for-the-",
+      "text": "Ignore `hiddenColumns` for data retrieval unless the user explicitly asks for the view projection. Do not use `columnOrder` as a reliable active order in current `main`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-5-include-version-agentable-1-0-0-metadata-title-arrays-for-columns-views-and-rows",
+      "text": "Include `version: \"agentable-1.0.0\"`, `metadata.title`, arrays for `columns`, `views`, and `rows`, and a default view with all five view fields.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-20-keep-a-pre-write-backup-or-reversible-diff-when-the-environment-supports-it",
+      "text": "Keep a pre-write backup or reversible diff when the environment supports it.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-15-parse-json-validate-root-arrays-and-id-references-before-mutation",
+      "text": "Parse JSON; validate root arrays and ID references before mutation.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-6-parse-the-block-back-after-writing-and-assert-that-every-row-cell-key-is-either-",
+      "text": "Parse the block back after writing and assert that every row cell key is either a known column ID or intentionally retained extension data.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-7-parse-the-root-and-build-column-name-column-id-and-column-id-definition-maps",
+      "text": "Parse the root and build `column name -> column ID` and `column ID -> definition` maps.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-3-put-one-valid-tabledata-object-inside-a-json-table-block",
+      "text": "Put one valid `TableData` object inside a ` ```json-table ` block.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-19-re-read-and-parse-the-written-file-verify-target-change-plus-invariants-unchange",
+      "text": "Re-read and parse the written file; verify target change plus invariants: unchanged row count unless intended, unique IDs, every formula/column reference still resolves, and `views[0]` exists.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-8-read-rows-cells-columnid-directly",
+      "text": "Read `rows[*].cells[columnId]` directly.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-13-read-the-complete-file-and-retain-the-original-bytes-for-rollback-diff",
+      "text": "Read the complete file and retain the original bytes for rollback/diff.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-17-serialize-only-the-payload-preserve-markdown-body-and-frontmatter-keys-update-ta",
+      "text": "Serialize only the payload. Preserve Markdown body and frontmatter keys; update `table-links` only when link cells changed.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-12-treat-search-as-unavailable-from-the-file-because-it-is-ephemeral-and-not-persis",
+      "text": "Treat search as unavailable from the file because it is ephemeral and not persisted.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-4-use-stable-unique-ids-with-the-expected-prefixes-col-view-row-opaque-row-id-flt-",
+      "text": "Use stable unique IDs with the expected prefixes (`col_`, `view_`, `row_`/opaque row ID, `flt_`, `srt_`) and reference cells by column ID, never by column name.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-2-write-frontmatter-with-the-exact-boolean-json-table-plugin-true-and-a-table-link",
+      "text": "Write frontmatter with the exact boolean `json-table-plugin: true` and a `table-links` list.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-4-18-write-through-an-atomic-or-vault-process-equivalent-not-a-sequence-of-partial-te",
+      "text": "Write through an atomic or vault-process equivalent, not a sequence of partial text substitutions.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/migrateUtils.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/JsonTableView.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FilterHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/SortHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/EmbedTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`"
+      ]
+    },
+    {
+      "id": "finding-5-2-with-nonnumeric-operands-can-only-be-used-between-number-or-date-columns",
+      "text": "`>`/`<` with nonnumeric operands: `\"<\" can only be used between number or date columns`;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-21-columnorder-and-later-sorts-entries-can-look-authoritative-in-json-but-are-not-f",
+      "text": "`columnOrder` and later `sorts` entries can look authoritative in JSON but are not fully honored by current renderer code.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-12-contains-performs-exact-case-insensitive-membership-for-multi-select-values-spli",
+      "text": "`contains()` performs exact case-insensitive membership for multi-select values split on commas, but substring matching for other columns.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-7-contains-with-the-wrong-arity-or-a-non-column-first-argument",
+      "text": "`contains()` with the wrong arity or a non-column first argument;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-14-date-supports-fixed-width-yyyy-yy-mm-dd-tokens-only-it-does-not-support-mmmm-m-d",
+      "text": "`date()` supports fixed-width `YYYY`/`YY`/`MM`/`DD` tokens only; it does not support `MMMM`/`M`/`D` in formula parsing, even though date display formats support month names.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-9-date-with-the-wrong-arity-nonliteral-format-invalid-token-layout-mismatched-inpu",
+      "text": "`date()` with the wrong arity, nonliteral format, invalid token layout, mismatched input, or invalid month/day range;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-6-if-with-the-wrong-arity-or-a-non-comparison-first-argument",
+      "text": "`if()` with the wrong arity or a non-comparison first argument;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-22-policy-permissions-is-typed-but-not-enforced-by-the-plugin-so-it-cannot-be-used-",
+      "text": "`policy.permissions` is typed but not enforced by the plugin, so it cannot be used as a security boundary.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-13-today-is-local-midnight-not-the-current-instant",
+      "text": "`today()` is local midnight, not the current instant.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-8-today-with-arguments",
+      "text": "`today()` with arguments;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-1-arithmetic-with-text-date-operands-can-only-be-used-between-number-columns",
+      "text": "arithmetic with text/date operands: `\"+\" can only be used between number columns`;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-11-division-by-zero",
+      "text": "division by zero.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-17-duplicate-column-ids-are-not-rejected-they-can-make-cells-and-formula-resolution",
+      "text": "Duplicate column IDs are not rejected; they can make `cells` and formula resolution ambiguous. Generate and validate uniqueness.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-18-duplicate-column-names-are-tolerated-formula-authoring-resolves-the-first-exact-",
+      "text": "Duplicate column names are tolerated; formula authoring resolves the first exact name match and reports a warning.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-15-formula-if-results-are-numeric-only-when-both-branches-infer-as-numbers-omitted-",
+      "text": "Formula `if()` results are numeric only when both branches infer as numbers; omitted false branches make the result text-shaped.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-5-formula-column-referencing-another-formula-column",
+      "text": "Formula column referencing another Formula column;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-20-legacy-aliases-are-normalized-only-on-load-save-a-file-layer-ai-should-migrate-b",
+      "text": "Legacy aliases are normalized only on load/save; a file-layer AI should migrate before querying.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-19-missing-row-cell-keys-render-as-empty-extra-cell-keys-have-no-visible-column-and",
+      "text": "Missing row cell keys render as empty; extra cell keys have no visible column and may be lost by CSV export.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-23-note-link-cells-are-path-strings-table-links-is-derived-markdown-frontmatter-not",
+      "text": "Note-link cells are path strings; `table-links` is derived Markdown frontmatter, not the row-value encoding.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-10-runtime-nonnumeric-data-in-a-number-date-source-cell",
+      "text": "runtime nonnumeric data in a number/date source cell;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-16-the-tokenizer-s-number-loop-permits-multiple-dots-and-then-uses-parsefloat-so-ma",
+      "text": "The tokenizer's number loop permits multiple dots and then uses `parseFloat`, so malformed literals such as `1.2.3` deserve an explicit AI-side numeric-literal check rather than blind trust. `[INFERENCE: tokenizer accepts the whole token but parser calls parseFloat]` `[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-3-unary-minus-on-non-number",
+      "text": "unary minus on non-number;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    },
+    {
+      "id": "finding-5-4-unknown-or-deleted-column-reference",
+      "text": "unknown or deleted column reference;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/README.md]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/MarkdownFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/JsonFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/utils/csv.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/fileHandlers/CsvFileHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/tokenizer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/parser.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/formula/evaluator.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/FormulaHandler.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/FormulaRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/InlineTableRenderer.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/types.ts]`",
+        "`[SOURCE: https://github.com/aztekgold/obsidian-tables/blob/main/src/renderers/DivTableRenderer.ts]`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-d7d1a6ae7b7f",
+      "text": "A top-level table `id` or `order` key is not part of the current `TableData` interface.",
+      "contentHash": "d7d1a6ae7b7f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-90ca35f9dd95",
+      "text": "The installed minified `main.js` is not needed for the current schema resolution; repository source is authoritative for this pass.",
+      "contentHash": "90ca35f9dd95",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d595287f9642",
+      "text": "`columnOrder` is not a reliable active per-view ordering mechanism in current `main`; it is serialized but not consumed by the renderer.",
+      "contentHash": "d595287f9642",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-572372336ec2",
+      "text": "An embed alias is not arbitrary display text only; it is interpreted as a view name and may mutate the table by creating that view.",
+      "contentHash": "572372336ec2",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b774b6166b25",
+      "text": "Do not overwrite a `.table.md` file with raw JSON; its frontmatter and fenced block are part of the file contract.",
+      "contentHash": "b774b6166b25",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-60f7bef2e4a1",
+      "text": "Do not treat `tableRenderer` as a visual renderer choice in v1.5.0.",
+      "contentHash": "60f7bef2e4a1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ca8fa1b6fadd",
+      "text": "Do not use direct `.csv` table editing when the goal is a persisted vault mutation.",
+      "contentHash": "ca8fa1b6fadd",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2ef55a5bd992",
+      "text": "Patching by row index or column name is not robust.",
+      "contentHash": "2ef55a5bd992",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-40487fd4171f",
+      "text": "Replacing an entire `.table.md` with JSON is not a safe migration.",
+      "contentHash": "40487fd4171f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8dd668646a11",
+      "text": "Treating persisted formula output as always fresh is not justified.",
+      "contentHash": "8dd668646a11",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f3fea654e5c3",
+      "text": "Assuming CSV multiline fields, strict IDs, policy enforcement, or exact version validation.",
+      "contentHash": "f3fea654e5c3",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-70b563091fd1",
+      "text": "Treating display date formats as formula `date()` parsing formats.",
+      "contentHash": "70b563091fd1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-47b78422e0df",
+      "text": "Treating formula em dashes as literal stored values.",
+      "contentHash": "47b78422e0df",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 12,
+    "keyFindings": 58,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.61,
+    "coverageBySources": {
+      "code": 25,
+      "github.com": 25
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/obsidian-tables/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

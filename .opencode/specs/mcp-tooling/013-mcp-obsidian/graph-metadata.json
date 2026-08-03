@@ -12,7 +12,15 @@
     "mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook",
     "mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor",
     "mcp-tooling/013-mcp-obsidian/008-verification-and-closeout",
-    "mcp-tooling/013-mcp-obsidian/009-community-plugin-support"
+    "mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+    "mcp-tooling/013-mcp-obsidian/010-playbook-validation",
+    "mcp-tooling/013-mcp-obsidian/011-plugin-installation",
+    "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
+    "mcp-tooling/013-mcp-obsidian/013-iconic-integration",
+    "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation",
+    "mcp-tooling/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
+    "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
+    "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout"
   ],
   "manual": {
     "depends_on": [],
@@ -24,7 +32,10 @@
       "mcp-obsidian",
       "obsidian cli mcp",
       "obsidian vault tooling",
-      "mcp-tooling obsidian mode"
+      "mcp-tooling obsidian mode",
+      "mcp-obsidian handover",
+      "mcp-obsidian session continuation",
+      "obsidian mode validation handover"
     ],
     "key_topics": [
       "mcp-obsidian",
@@ -35,13 +46,13 @@
       "tooling",
       "mcp-tooling",
       "mode",
-      "drive",
-      "clickup",
-      "terminal",
-      "tool"
+      "handover",
+      "session",
+      "continuation",
+      "validation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
@@ -50,7 +61,9 @@
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
       ".opencode/skills/mcp-tooling/SKILL.md",
       ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
-      "spec.md"
+      ".pi/extensions/spec-gate-classify.ts",
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -96,9 +109,21 @@
         "source": "derived"
       },
       {
+        "name": "spec-gate-classify.ts",
+        "kind": "code",
+        "path": ".pi/extensions/spec-gate-classify.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -136,21 +161,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Time",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
     "created_at": "2026-08-02T05:50:25Z",
-    "last_save_at": "2026-08-02T11:17:14.270Z",
+    "last_save_at": "2026-08-03T14:18:05.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:81a73c47c2ee320b63fc3aba88af54fa1b4ea85a6a3cb667ea67f9c86bf87f41",
+    "source_fingerprint": "sha256:748d5b1adbff96d2a87b530aa9b7cf78abecb2551fc27c563f2d69026d2039e9",
     "source_doc_hashes": {
-      "spec.md": "24b1de4a45a0bc63e27f6a842bb2bc677b621bc99b28ccce412560acf9e9cf6e"
+      "spec.md": "c0a4425949f3f428f08424bd9fe7c3efa53e230a1199d56349a653e221753347",
+      "handover.md": "0c761e5604752140ffd2afc8471f9b8ab160b10e579eb25101b4b70d627b6fad"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
     "last_active_at": "2026-08-02T11:17:14.270Z"
   }
 }

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/014-mcp-magnific/003-mcp-runtime-integration",
+  "spec_folder": "mcp-tooling/014-mcp-magnific/003-mcp-runtime-integration",
+  "parent_id": "mcp-tooling/014-mcp-magnific",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "mcp-tooling/014-mcp-magnific/002-mode-architecture-and-scaffold",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "magnific mcp runtime",
+      "magnific utcp manual",
+      "mcp-remote magnific",
+      "mcp-magnific phase 3",
+      "magnific runtime plan",
+      "magnific utcp plan",
+      "mcp-remote magnific plan",
+      "magnific runtime tasks",
+      "magnific utcp tasks",
+      "mcp-remote magnific tasks",
+      "magnific runtime summary",
+      "mcp-magnific phase 3 summary"
+    ],
+    "key_topics": [
+      "magnific",
+      "mcp",
+      "runtime",
+      "utcp",
+      "manual",
+      "mcp-remote",
+      "mcp-magnific",
+      "phase",
+      "plan",
+      "tasks",
+      "summary",
+      "remote"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/discovery-fixture.json",
+      "implementation-summary.md",
+      "research/discovery-fixture-authenticated.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "discovery-fixture.json",
+        "kind": "config",
+        "path": "research/discovery-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "discovery-fixture-authenticated.json",
+        "kind": "config",
+        "path": "research/discovery-fixture-authenticated.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Remote",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "StreamableHTTPClientTransport",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "input",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The remote endpoint is not registered in Code Mode, so agents cannot discover or call Magnific",
+    "created_at": "2026-08-02T13:36:48Z",
+    "last_save_at": "2026-08-02T16:07:04.694Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:65b92da09679f5240ad061d4d0053933218da8637b5f19cee32db912da55c77a",
+    "source_doc_hashes": {
+      "spec.md": "90c5f5e0eac60b7944bf999271675d0b7591c73d8e65829a6fc5d6d6f1350ef9",
+      "plan.md": "8ac4e6b6be6f4474b1be8140fadbf140ec33debcd7b8d6adf8b544df8a2bb1e8",
+      "tasks.md": "69c677df00add76c23b78a8aa6742efc52886a2c1e2e5bcd63ea4c217b9dece6",
+      "implementation-summary.md": "9bd662b1081e4accd9c88ec8dde994905a357edba4cab299bf50b7e8f16c736f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

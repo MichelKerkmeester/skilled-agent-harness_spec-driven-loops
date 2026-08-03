@@ -1,0 +1,28 @@
+{
+  "run_id": "1785761188430-s7x969",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
+  "base_artifact_dir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/012-skill-support-extension/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "codex",
+      "index": 0,
+      "started_at_iso": "2026-08-03T12:43:50.731Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

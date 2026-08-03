@@ -1,0 +1,3197 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "mcp-tooling",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-tooling"
+  },
+  "verdict": "BLOCKED-BY-ROUTE-GOLD",
+  "aggregateScore": 42,
+  "generalization": {
+    "fittedScore": 42,
+    "holdoutScore": 27,
+    "generalizationGap": 15,
+    "fittedCount": 9,
+    "holdoutCount": 7,
+    "negativeCount": 0,
+    "note": "holdout excluded from the fitted aggregate; gap = fitted minus holdout"
+  },
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": true,
+      "violations": [
+        {
+          "scenarioId": "MT-H02",
+          "class": "backend-kind-mismatch",
+          "tool": "Bash",
+          "reason": "non-mutating backend used a mutating tool"
+        },
+        {
+          "scenarioId": "MT-H02",
+          "class": "backend-kind-mismatch",
+          "tool": "Bash",
+          "reason": "non-mutating backend used a mutating tool"
+        },
+        {
+          "scenarioId": "MT-H02",
+          "class": "backend-kind-mismatch",
+          "tool": "Bash",
+          "reason": "non-mutating backend used a mutating tool"
+        },
+        {
+          "scenarioId": "MT-H05",
+          "class": "backend-kind-mismatch",
+          "tool": "Bash",
+          "reason": "non-mutating backend used a mutating tool"
+        },
+        {
+          "scenarioId": "MT-008",
+          "class": "backend-kind-mismatch",
+          "tool": "Bash",
+          "reason": "non-mutating backend used a mutating tool"
+        }
+      ],
+      "reason": "tool-surface violation"
+    },
+    "routeGold": {
+      "mode": "auto",
+      "enabled": true,
+      "rows": 16,
+      "matches": 0,
+      "violations": 16,
+      "parseFailures": 0,
+      "failed": true,
+      "details": [
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-004",
+          "expectedIntents": [],
+          "observedIntents": [],
+          "expectedResources": [],
+          "observedResources": [
+            "mode-registry.json",
+            "hub-router.json"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-007",
+          "expectedIntents": [
+            "mcp-aside-devtools"
+          ],
+          "observedIntents": [
+            "mcp-aside-devtools"
+          ],
+          "expectedResources": [
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/session-management.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-001",
+          "expectedIntents": [
+            "mcp-chrome-devtools"
+          ],
+          "observedIntents": [
+            "mcp-chrome-devtools",
+            "chrome-devtools-aliases",
+            "browser-debug"
+          ],
+          "expectedResources": [
+            "mcp-chrome-devtools/references/cdp-patterns.md",
+            "mcp-chrome-devtools/references/session-management.md"
+          ],
+          "observedResources": [
+            "mcp-chrome-devtools/SKILL.md",
+            "mcp-chrome-devtools/references/session-management.md",
+            "mcp-chrome-devtools/references/troubleshooting.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-002",
+          "expectedIntents": [
+            "mcp-click-up"
+          ],
+          "observedIntents": [
+            "mcp-click-up",
+            "CUPT_DAILY"
+          ],
+          "expectedResources": [
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
+          ],
+          "observedResources": [
+            "mcp-click-up/SKILL.md",
+            "mcp-click-up/references/cupt-commands.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-003",
+          "expectedIntents": [
+            "mcp-figma"
+          ],
+          "observedIntents": [
+            "mcp-figma"
+          ],
+          "expectedResources": [
+            "mcp-figma/references/figma-cli-reference.md",
+            "mcp-figma/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "references/figma-cli-reference.md",
+            "references/tool-surface.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-H04",
+          "expectedIntents": [
+            "mcp-aside-devtools"
+          ],
+          "observedIntents": [
+            "mcp-aside-devtools"
+          ],
+          "expectedResources": [
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "mcp-aside-devtools/SKILL.md",
+            "mcp-aside-devtools/references/aside-cli-reference.md",
+            "mcp-aside-devtools/references/session-management.md",
+            "mcp-aside-devtools/references/troubleshooting.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-H01",
+          "expectedIntents": [
+            "mcp-chrome-devtools"
+          ],
+          "observedIntents": [
+            "mcp-chrome-devtools"
+          ],
+          "expectedResources": [
+            "mcp-chrome-devtools/references/cdp-patterns.md",
+            "mcp-chrome-devtools/references/session-management.md"
+          ],
+          "observedResources": [
+            "mcp-chrome-devtools/SKILL.md",
+            "mcp-chrome-devtools/references/troubleshooting.md",
+            "mcp-chrome-devtools/references/session-management.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-H02",
+          "expectedIntents": [
+            "mcp-figma"
+          ],
+          "observedIntents": [
+            "mcp-figma"
+          ],
+          "expectedResources": [
+            "mcp-figma/references/figma-cli-reference.md",
+            "mcp-figma/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "references/figma-cli-reference.md",
+            "references/tool-surface.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-H07",
+          "expectedIntents": [
+            "mcp-obsidian"
+          ],
+          "observedIntents": [],
+          "expectedResources": [
+            "mcp-obsidian/references/mcp-tools.md",
+            "mcp-obsidian/references/obsidian-cli-commands.md"
+          ],
+          "observedResources": [
+            "mcp-obsidian/SKILL.md",
+            "mcp-obsidian/references/obsidian-cli-commands.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-H06",
+          "expectedIntents": [
+            "mcp-mobbin"
+          ],
+          "observedIntents": [
+            "mcp-mobbin"
+          ],
+          "expectedResources": [
+            "mcp-mobbin/references/tool-surface.md",
+            "mcp-mobbin/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "mcp-mobbin/SKILL.md",
+            "mcp-mobbin/references/tool-surface.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-H03",
+          "expectedIntents": [
+            "mcp-click-up"
+          ],
+          "observedIntents": [
+            "mcp-click-up"
+          ],
+          "expectedResources": [
+            "mcp-click-up/references/cupt-commands.md",
+            "mcp-click-up/references/mcp-tools.md"
+          ],
+          "observedResources": [
+            "mcp-click-up/SKILL.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-H05",
+          "expectedIntents": [
+            "mcp-refero"
+          ],
+          "observedIntents": [
+            "STYLES",
+            "SCREENS"
+          ],
+          "expectedResources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "references/tool-surface.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": true,
+          "resourceOk": false,
+          "scenarioId": "MT-009",
+          "expectedIntents": [
+            "mcp-mobbin"
+          ],
+          "observedIntents": [
+            "mcp-mobbin"
+          ],
+          "expectedResources": [
+            "mcp-mobbin/references/tool-surface.md",
+            "mcp-mobbin/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "mcp-mobbin/SKILL.md",
+            "mcp-mobbin/references/tool-surface.md",
+            "mcp-mobbin/references/mcp-wiring.md",
+            "mcp-mobbin/feature-catalog/feature-catalog.md",
+            "mcp-mobbin/examples/platform-flow-research.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-010",
+          "expectedIntents": [
+            "mcp-obsidian"
+          ],
+          "observedIntents": [],
+          "expectedResources": [
+            "mcp-obsidian/references/mcp-tools.md",
+            "mcp-obsidian/references/obsidian-cli-commands.md"
+          ],
+          "observedResources": [
+            "mcp-obsidian/SKILL.md",
+            "mcp-obsidian/references/obsidian-cli-commands.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-008",
+          "expectedIntents": [
+            "mcp-refero"
+          ],
+          "observedIntents": [],
+          "expectedResources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "references/tool-surface.md"
+          ]
+        },
+        {
+          "applicable": true,
+          "pass": false,
+          "intentOk": false,
+          "resourceOk": false,
+          "scenarioId": "MT-CR-001",
+          "expectedIntents": [
+            "mcp-refero"
+          ],
+          "observedIntents": [
+            "mcp-refero",
+            "mcp-mobbin"
+          ],
+          "expectedResources": [
+            "mcp-refero/references/tool-surface.md",
+            "mcp-refero/references/mcp-wiring.md"
+          ],
+          "observedResources": [
+            "mode-registry.json",
+            "hub-router.json",
+            "mcp-refero/SKILL.md",
+            "mcp-mobbin/SKILL.md"
+          ]
+        }
+      ]
+    }
+  },
+  "routeGold": {
+    "mode": "auto",
+    "enabled": true,
+    "rows": 16,
+    "matches": 0,
+    "violations": 16,
+    "parseFailures": 0,
+    "failed": true,
+    "details": [
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-004",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "expectedResources": [],
+        "observedResources": [
+          "mode-registry.json",
+          "hub-router.json"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-007",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/session-management.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-001",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools",
+          "chrome-devtools-aliases",
+          "browser-debug"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-chrome-devtools/references/session-management.md",
+          "mcp-chrome-devtools/references/troubleshooting.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-002",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up",
+          "CUPT_DAILY"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/SKILL.md",
+          "mcp-click-up/references/cupt-commands.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-003",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/figma-cli-reference.md",
+          "references/tool-surface.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H04",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/SKILL.md",
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/session-management.md",
+          "mcp-aside-devtools/references/troubleshooting.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H01",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-chrome-devtools/references/troubleshooting.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H02",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/figma-cli-reference.md",
+          "references/tool-surface.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-H07",
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-obsidian/references/mcp-tools.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ],
+        "observedResources": [
+          "mcp-obsidian/SKILL.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H06",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/SKILL.md",
+          "mcp-mobbin/references/tool-surface.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H03",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/SKILL.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-H05",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "STYLES",
+          "SCREENS"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/tool-surface.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-009",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/SKILL.md",
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md",
+          "mcp-mobbin/feature-catalog/feature-catalog.md",
+          "mcp-mobbin/examples/platform-flow-research.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-010",
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-obsidian/references/mcp-tools.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ],
+        "observedResources": [
+          "mcp-obsidian/SKILL.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-008",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/tool-surface.md"
+        ]
+      },
+      {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-CR-001",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "mcp-refero",
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mode-registry.json",
+          "hub-router.json",
+          "mcp-refero/SKILL.md",
+          "mcp-mobbin/SKILL.md"
+        ]
+      }
+    ]
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 38
+    },
+    "D2": {
+      "points": 20,
+      "score": 38
+    },
+    "D3": {
+      "points": 15,
+      "score": 25
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "excludedDimensions": [],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {
+    "passed": 10,
+    "routed-intra": 3,
+    "backend-kind-mismatch": 3
+  },
+  "headlineBottleneck": "routed-intra",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "routed-intra",
+      "detail": "3 scenario(s) first fail at stage 'routed-intra'"
+    }
+  ],
+  "coverage": {
+    "routing": 16,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 16,
+    "holdout": 7,
+    "negative": 0
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "scenarioId": "MT-004",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 0,
+          "resourceRecall": null,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": null,
+          "routedCount": 2,
+          "wastedCount": 0,
+          "proxy": "no-positive-gold",
+          "note": "not-applicable: no expected-resource gold to measure over-routing against"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": false,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": []
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 19,
+        "activated": false,
+        "toolCalls": [
+          "code_mode_call_tool_chain",
+          "code_mode_call_tool_chain",
+          "code_mode_call_tool_chain",
+          "code_mode_call_tool_chain",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "The MCP bridge exposes external tool transports (figma, github, refero, etc.) but no local file reader, so I'll consult the skill router file directly.```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\"mode-registry.json\", \"hub-router.json\"],\n  \"assets\": [],\n  \"agent\": \"none"
+      },
+      "routeTelemetry": null,
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-004",
+        "expectedIntents": [],
+        "observedIntents": [],
+        "expectedResources": [],
+        "observedResources": [
+          "mode-registry.json",
+          "hub-router.json"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-007",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 2,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-aside-devtools",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 15,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "bash",
+          "read",
+          "read",
+          "read",
+          "glob"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-aside-devtools\", \"intents\": [\"mcp-aside-devtools\"]}\n\n```json\n{\n  \"surface\": \"UNKNOWN\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\"mcp-aside-devtools/references/aside-cli-reference.md\", \"mcp-aside-devtools/references/session-management.md\"],\n  \"assets\": [],\n  \"agent\": \"no"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-aside-devtools"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-007",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/session-management.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 45,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-chrome-devtools",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 21,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "bash",
+          "bash",
+          "bash",
+          "grep",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-chrome-devtools\", \"intents\": [\"mcp-chrome-devtools\", \"chrome-devtools-aliases\", \"browser-debug\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mcp-chrome-devtools/SKILL.md\", \"mcp-chrome-devtools/references/session-management.md\", \"mcp-chrome-dev"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-chrome-devtools"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-001",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools",
+          "chrome-devtools-aliases",
+          "browser-debug"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-chrome-devtools/references/session-management.md",
+          "mcp-chrome-devtools/references/troubleshooting.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-002",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 2,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-click-up",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 11,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-click-up\", \"intents\": [\"mcp-click-up\", \"CUPT_DAILY\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mcp-click-up/SKILL.md\", \"mcp-click-up/references/cupt-commands.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-click-up"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-002",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up",
+          "CUPT_DAILY"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/SKILL.md",
+          "mcp-click-up/references/cupt-commands.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-003",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 1,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 2,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-figma",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 13,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-figma\", \"intents\": [\"mcp-figma\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"references/figma-cli-reference.md\", \"references/tool-surface.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```\n\nRouting trace: \"render in figma\" + \"de"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-figma"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-003",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/figma-cli-reference.md",
+          "references/tool-surface.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H04",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.25,
+          "routedCount": 4,
+          "wastedCount": 3,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 42,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-aside-devtools",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 17,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "bash"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-aside-devtools\", \"intents\": [\"mcp-aside-devtools\"]}\n\nRouter path (compiled router → `servingAuthority: legacy`, so hub-router.json scoring applied): `agentic-browser` class in `hub-router.json:226-236` matches \"click through\" and \"on its own\" → single dominant signal → "
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-aside-devtools"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H04",
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "observedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": [
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-aside-devtools/SKILL.md",
+          "mcp-aside-devtools/references/aside-cli-reference.md",
+          "mcp-aside-devtools/references/session-management.md",
+          "mcp-aside-devtools/references/troubleshooting.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H01",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.33333333333333337,
+          "routedCount": 3,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 45,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-chrome-devtools",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 17,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "bash",
+          "read",
+          "bash"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-chrome-devtools\", \"intents\": [\"mcp-chrome-devtools\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mcp-chrome-devtools/SKILL.md\", \"mcp-chrome-devtools/references/troubleshooting.md\", \"mcp-chrome-devtools/references/session-management.md\"], \"asse"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-chrome-devtools"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H01",
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "observedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": [
+          "mcp-chrome-devtools/references/cdp-patterns.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ],
+        "observedResources": [
+          "mcp-chrome-devtools/SKILL.md",
+          "mcp-chrome-devtools/references/troubleshooting.md",
+          "mcp-chrome-devtools/references/session-management.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H02",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 1,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 2,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": false,
+          "firstFailingStage": "backend-kind-mismatch",
+          "violations": [
+            {
+              "class": "backend-kind-mismatch",
+              "tool": "Bash",
+              "reason": "non-mutating backend used a mutating tool"
+            },
+            {
+              "class": "backend-kind-mismatch",
+              "tool": "Bash",
+              "reason": "non-mutating backend used a mutating tool"
+            },
+            {
+              "class": "backend-kind-mismatch",
+              "tool": "Bash",
+              "reason": "non-mutating backend used a mutating tool"
+            }
+          ]
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "backend-kind-mismatch",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-figma",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 18,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "bash",
+          "read",
+          "read",
+          "bash",
+          "read",
+          "bash"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-figma\", \"intents\": [\"mcp-figma\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"references/figma-cli-reference.md\", \"references/tool-surface.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-figma"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H02",
+        "expectedIntents": [
+          "mcp-figma"
+        ],
+        "observedIntents": [
+          "mcp-figma"
+        ],
+        "expectedResources": [
+          "mcp-figma/references/figma-cli-reference.md",
+          "mcp-figma/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/figma-cli-reference.md",
+          "references/tool-surface.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H07",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 0,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 2,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-obsidian",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 19,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "bash",
+          "read",
+          "read",
+          "glob",
+          "glob"
+        ],
+        "observedReads": [
+          "references/**",
+          "assets/**"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "Compiled router returned `servingAuthority: legacy`, so I apply the hub-router legacy scoring. The prompt scores on `note-management` (\"knowledge base\", \"capture a note\", \"link to related ones\") + `obsidian-aliases` (\"markdown notes\") → single `mcp-obsidian`. Now checking the mcp-obsidian packet for"
+      },
+      "routeTelemetry": {
+        "observed": false,
+        "reason": "route-declaration-missing"
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-H07",
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-obsidian/references/mcp-tools.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ],
+        "observedResources": [
+          "mcp-obsidian/SKILL.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H06",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 1,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 2,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-mobbin",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 24,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "glob",
+          "read",
+          "glob",
+          "glob",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "Routing analysis of the `mcp-tooling` hub (via `hub-router.json` + `mode-registry.json`, then the packet router in `mcp-mobbin/SKILL.md`):\n\n**Signal match:** \"phone apps\", \"walkthroughs\"/\"welcome first-time users\" (≈ `app-design-research`: \"phone apps\", \"onboarding flow examples\"), \"signup\" → clear "
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-mobbin"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H06",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/SKILL.md",
+          "mcp-mobbin/references/tool-surface.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H03",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 1,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-click-up",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 11,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "bash",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-click-up\", \"intents\": [\"mcp-click-up\", \"mcp-click-up\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mcp-click-up/SKILL.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-click-up"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-H03",
+        "expectedIntents": [
+          "mcp-click-up"
+        ],
+        "observedIntents": [
+          "mcp-click-up"
+        ],
+        "expectedResources": [
+          "mcp-click-up/references/cupt-commands.md",
+          "mcp-click-up/references/mcp-tools.md"
+        ],
+        "observedResources": [
+          "mcp-click-up/SKILL.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-H05",
+      "tier": "live",
+      "stage": "holdout",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 0,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": false,
+          "firstFailingStage": "backend-kind-mismatch",
+          "violations": [
+            {
+              "class": "backend-kind-mismatch",
+              "tool": "Bash",
+              "reason": "non-mutating backend used a mutating tool"
+            }
+          ]
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "backend-kind-mismatch",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 14,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "bash",
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-refero\", \"intents\": [\"STYLES\", \"SCREENS\"]}\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"references/tool-surface.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-refero"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-H05",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "STYLES",
+          "SCREENS"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/tool-surface.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-009",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": 1,
+          "resourceRecall": 1,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.4,
+          "routedCount": 5,
+          "wastedCount": 3,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 81,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-mobbin",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 13,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "glob"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-mobbin\", \"intents\": [\"mcp-mobbin\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mcp-mobbin/SKILL.md\", \"mcp-mobbin/references/tool-surface.md\", \"mcp-mobbin/references/mcp-wiring.md\", \"mcp-mobbin/feature-catalog/feature-catalog.md\", \"mcp-mobbin/e"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-mobbin"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": true,
+        "resourceOk": false,
+        "scenarioId": "MT-009",
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "observedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mcp-mobbin/SKILL.md",
+          "mcp-mobbin/references/tool-surface.md",
+          "mcp-mobbin/references/mcp-wiring.md",
+          "mcp-mobbin/feature-catalog/feature-catalog.md",
+          "mcp-mobbin/examples/platform-flow-research.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-010",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0.5,
+          "intentRecall": 0,
+          "resourceRecall": 0.5,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.5,
+          "routedCount": 2,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 50,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-obsidian",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 20,
+        "activated": false,
+        "toolCalls": [
+          "glob",
+          "glob",
+          "read",
+          "bash",
+          "read",
+          "read",
+          "bash",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "Compiled router returned the `legacy` sentinel, so I fall back to the legacy routing below. The prompt (\"daily note\", \"Obsidian vault\", \"search my notes\") scores only `note-management` + `obsidian-aliases` → `mcp-obsidian`, whose declared resource is `mcp-obsidian/SKILL.md`. Let me check that packet"
+      },
+      "routeTelemetry": {
+        "observed": false,
+        "reason": "route-declaration-missing"
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-010",
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-obsidian/references/mcp-tools.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ],
+        "observedResources": [
+          "mcp-obsidian/SKILL.md",
+          "mcp-obsidian/references/obsidian-cli-commands.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-008",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 0,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": false,
+          "firstFailingStage": "backend-kind-mismatch",
+          "violations": [
+            {
+              "class": "backend-kind-mismatch",
+              "tool": "Bash",
+              "reason": "non-mutating backend used a mutating tool"
+            }
+          ]
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "backend-kind-mismatch",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 17,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read",
+          "read",
+          "bash",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "The task routes through `mcp-tooling`. Reading its registry/router (part of the skill) to resolve the exact mode and resources.Route scores clearly to `mcp-refero`. Verifying via the compiled router (the SKILL.md's default front door) and reading the scored mode's declared resources.ROUTED: {\"workfl"
+      },
+      "routeTelemetry": {
+        "observed": false,
+        "reason": "route-declaration-missing"
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-008",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "references/tool-surface.md"
+        ]
+      }
+    },
+    {
+      "scenarioId": "MT-CR-001",
+      "tier": "live",
+      "stage": "routing",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": 1,
+          "resourceRecall": 0,
+          "negative": false,
+          "liveResourceOnly": true
+        },
+        "commandRecipe": {
+          "applicable": false,
+          "valid": true,
+          "firstFailingStage": null,
+          "firstFailingSubcheck": null,
+          "missReasons": []
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "assetRecall": {
+          "score": null,
+          "note": "no expected assets for this scenario"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        },
+        "modePrecision": {
+          "score": null,
+          "expectedMode": null,
+          "observedMode": null,
+          "advisory": true,
+          "unscored": "fixture carries no expected.mode"
+        },
+        "relativeRanking": {
+          "score": null,
+          "pass": null,
+          "targetRank": null,
+          "violatingSkills": [],
+          "checkedSkillIds": [],
+          "ranks": {},
+          "advisory": true,
+          "unscored": "fixture carries no rankBelowSkillIds"
+        },
+        "hubRoute": {
+          "applicable": false,
+          "pass": true
+        },
+        "toolSurface": {
+          "applicable": true,
+          "pass": true,
+          "firstFailingStage": null,
+          "violations": [],
+          "skippedBashAllowlistChecks": []
+        },
+        "typedPairRecall": {
+          "applicable": true,
+          "score": null,
+          "hit": 0,
+          "expectedCount": 2,
+          "observedCount": 0,
+          "unresolvedCount": 0,
+          "capExceeded": false,
+          "errorClass": "routing_contract_error",
+          "reason": "gated scenario observed no resourceContract from the router"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "recipeCapped": false,
+      "classKind": "routing",
+      "expectedWorkflowMode": "mcp-refero",
+      "expectedSurface": null,
+      "observedSurface": "UNKNOWN",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 10,
+        "activated": false,
+        "toolCalls": [
+          "read",
+          "read",
+          "read"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "ROUTED: {\"workflowMode\": \"mcp-refero\", \"intents\": [\"mcp-refero\", \"mcp-mobbin\"]}\n\n```json\n{\"surface\": \"UNKNOWN\", \"subLanguage\": \"none\", \"resources\": [\"mode-registry.json\", \"hub-router.json\", \"mcp-refero/SKILL.md\", \"mcp-mobbin/SKILL.md\"], \"assets\": [], \"agent\": \"none\", \"disambiguation\": false}\n```"
+      },
+      "routeTelemetry": {
+        "observed": true,
+        "source": "live-declaration",
+        "workflowMode": [
+          "mcp-refero"
+        ]
+      },
+      "errorClass": "routing_contract_error",
+      "routeGold": {
+        "applicable": true,
+        "pass": false,
+        "intentOk": false,
+        "resourceOk": false,
+        "scenarioId": "MT-CR-001",
+        "expectedIntents": [
+          "mcp-refero"
+        ],
+        "observedIntents": [
+          "mcp-refero",
+          "mcp-mobbin"
+        ],
+        "expectedResources": [
+          "mcp-refero/references/tool-surface.md",
+          "mcp-refero/references/mcp-wiring.md"
+        ],
+        "observedResources": [
+          "mode-registry.json",
+          "hub-router.json",
+          "mcp-refero/SKILL.md",
+          "mcp-mobbin/SKILL.md"
+        ]
+      }
+    }
+  ],
+  "excludedRows": [],
+  "runQuality": {
+    "scenarioCount": 16,
+    "traceMode": "live",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  },
+  "topologyDigest": "ea7d031319ac3fc29f4e2462d2d34412ebf8c26c3b519922ba4567fc1e396257"
+}

@@ -1,0 +1,550 @@
+{
+  "sessionId": "fanout-terra-1785652123667-7lklw5",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-08-02T06:41:54Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-official-obsidian-surfaces-are-automation-capable-and-what-is-their-suppor",
+      "inboxId": null,
+      "text": "Which official Obsidian surfaces are automation-capable, and what is their supported feature and runtime boundary?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-community-cli-candidates-have-a-verified-package-binary-identity-usable-fe",
+      "inboxId": null,
+      "text": "Which community CLI candidates have a verified package/binary identity, usable feature coverage, and true headless execution?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-mcp-server-candidates-have-a-verified-identity-and-transport-and-do-they-r",
+      "inboxId": null,
+      "text": "Which MCP-server candidates have a verified identity and transport, and do they require the Local REST API plugin and a running Obsidian app?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-does-the-local-rest-api-community-plugin-authenticate-and-what-crud-search-b",
+      "inboxId": null,
+      "text": "How does the Local REST API community plugin authenticate and what CRUD/search/backlink/daily-note/tag/frontmatter/template operations does it expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-configuration-auth-environment-prefix-and-build-vs-adopt-choice-best-mirror",
+      "inboxId": null,
+      "text": "What configuration, auth, environment-prefix, and build-vs-adopt choice best mirrors the local mcp-click-up dual CLI+MCP pattern?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-official-obsidian-surfaces-are-automation-capable-and-what-is-their-suppor",
+      "inboxId": null,
+      "text": "Which official Obsidian surfaces are automation-capable, and what is their supported feature and runtime boundary?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-community-cli-candidates-have-a-verified-package-binary-identity-usable-fe",
+      "inboxId": null,
+      "text": "Which community CLI candidates have a verified package/binary identity, usable feature coverage, and true headless execution?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-mcp-server-candidates-have-a-verified-identity-and-transport-and-do-they-r",
+      "inboxId": null,
+      "text": "Which MCP-server candidates have a verified identity and transport, and do they require the Local REST API plugin and a running Obsidian app?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-does-the-local-rest-api-community-plugin-authenticate-and-what-crud-search-b",
+      "inboxId": null,
+      "text": "How does the Local REST API community plugin authenticate and what CRUD/search/backlink/daily-note/tag/frontmatter/template operations does it expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-what-configuration-auth-environment-prefix-and-build-vs-adopt-choice-best-mirror",
+      "inboxId": null,
+      "text": "What configuration, auth, environment-prefix, and build-vs-adopt choice best mirrors the local mcp-click-up dual CLI+MCP pattern?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which MCP package should be adopted, if any, instead of connecting to the Local REST API plugin's built-in MCP endpoint?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact environment variables and safety controls should the mcp-obsidian manual expose?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which community CLI candidates add value over the official CLI without requiring the app?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which MCP-server candidates have a verified identity and transport, and do they require the Local REST API plugin and a running Obsidian app?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How does the Local REST API community plugin authenticate and what CRUD/search/backlink/daily-note/tag/frontmatter/template operations does it expose?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-obsidian-is-a-supported-ui-automation-protocol-for-open-new-daily-search-flows-a",
+      "text": "`obsidian://` is a supported UI-automation protocol for open/new/daily/search flows and can append, prepend, or overwrite a note, but it drives Obsidian UI behavior rather than offering a headless query API; it has no documented backlinks/tag/frontmatter enumeration surface. [SOURCE: https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-6-local-rest-api-is-app-bound-it-only-exists-after-the-plugin-is-installed-and-ena",
+      "text": "Local REST API is app-bound: it only exists after the plugin is installed and enabled in a running Obsidian vault. It uses a bearer API key and HTTPS on `127.0.0.1:27124` by default with a self-signed certificate; HTTP on 27123 is opt-in. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-local-clickup-precedent-uses-a-named-code-mode-manual-stdio-npx-launch-and-m",
+      "text": "The local ClickUp precedent uses a named Code Mode manual, stdio `npx` launch, and manual-prefixed environment variables; its own verification note records that `@clickup/mcp-server` returned a public-registry 404. The new mode must copy the configuration shape, not blindly copy the package-name practice. [SOURCE: .utcp_config.json:66] [SOURCE: .env.example:1] [SOURCE: .opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-local-rest-api-community-plugin-now-exposes-both-authenticated-rest-and-a-bu",
+      "text": "The Local REST API community plugin now exposes both authenticated REST and a built-in Streamable HTTP MCP endpoint. Its core capabilities include full CRUD, section/frontmatter patching, text/JSONLogic search, tags, command execution, and opening notes in the UI. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-official-obsidian-cli-is-the-only-first-party-command-line-candidate-it-requ",
+      "text": "The official `obsidian` CLI is the only first-party command-line candidate. It requires the 1.12.7+ installer, must be enabled in Obsidian settings, and requires the desktop app; the first command starts the app if it is not running. [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-official-cli-already-covers-the-cli-target-surface-file-crud-including-templ",
+      "text": "The official CLI already covers the CLI target surface: file CRUD (including template-based create), search, backlinks/outgoing links, daily-note read/append/prepend, tags, and frontmatter through the `property:*` commands. [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-plugin-api-is-richer-than-the-uri-scheme-vault-can-read-write-process-notes-",
+      "text": "The plugin API is richer than the URI scheme—`Vault` can read/write/process notes safely—but it is an in-app extension API (`this.app.vault`), not a standalone CLI or headless server. [SOURCE: https://docs.obsidian.md/Plugins/Vault]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI",
+        "https://docs.obsidian.md/Plugins/Vault",
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        ".utcp_config.json:66",
+        ".env.example:1",
+        ".opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65"
+      ]
+    },
+    {
+      "id": "finding-2-2-obsidian-vfs-core-is-a-real-npm-package-0-4-0-at-the-checked-registry-page-but-i",
+      "text": "`@obsidian-vfs/core` is a real npm package (0.4.0 at the checked registry page), but it is a library, not a CLI. It reads/enumerates files directly when Obsidian is down; its search and wikilink resolution depend on the official `obsidian` binary and are unavailable in degraded mode. [SOURCE: https://www.npmjs.com/package/%40obsidian-vfs/core]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-2-5-a-true-headless-mode-can-be-assembled-from-official-headless-sync-plus-direct-ma",
+      "text": "A true headless mode can be assembled from official Headless Sync plus direct Markdown/filesystem operations, but that is a build decision with explicit semantic gaps: no Obsidian index, no verified backlinks, no template-plugin execution, and no app-managed link updates unless another component supplies them. [INFERENCE: based on https://obsidian.md/help/sync/headless and https://www.npmjs.com/package/%40obsidian-vfs/core]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-2-1-obsidian-headless-is-a-separate-official-open-beta-sync-client-npm-install-g-obs",
+      "text": "Obsidian Headless is a separate official open-beta Sync client: `npm install -g obsidian-headless` exposes the `ob` command and requires an Obsidian Sync subscription. It syncs a local vault without the GUI; it is not documented as a note CRUD/search/backlinks API. [SOURCE: https://obsidian.md/help/sync/headless]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-official-obsidian-cli-remains-the-only-audited-cli-that-directly-covers-the-",
+      "text": "The official `obsidian` CLI remains the only audited CLI that directly covers the requested operations—note CRUD, search, backlinks, daily notes, tags/properties, and template create—but it must drive a running desktop app. [SOURCE: https://obsidian.md/help/cli]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-pypi-obsidian-cli-package-is-a-real-but-different-binary-named-obsidian-its-",
+      "text": "The PyPI `obsidian-cli` package is a real but different binary named `obsidian`; its documented scope is vault listing/opening/template creation, not full note CRUD/search/backlinks/frontmatter. It risks a name collision with the official first-party `obsidian` CLI. [SOURCE: https://pypi.org/project/obsidian-cli/]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-sensible-cli-ranking-is-therefore-1-adopt-official-obsidian-for-the-normal-d",
+      "text": "The sensible CLI ranking is therefore: (1) adopt official `obsidian` for the normal desktop-local mcp-obsidian mode; (2) build a deliberately small filesystem fallback only if a non-desktop server is a hard requirement; (3) do not adopt the conflicting PyPI `obsidian-cli` or a generic unverified vault CLI as the primary surface. [SOURCE: https://obsidian.md/help/cli] [SOURCE: https://pypi.org/project/obsidian-cli/]",
+      "addedAtIteration": 2,
+      "sources": [
+        "https://obsidian.md/help/cli",
+        "https://obsidian.md/help/sync/headless",
+        "https://www.npmjs.com/package/%40obsidian-vfs/core",
+        "https://pypi.org/project/obsidian-cli/"
+      ]
+    },
+    {
+      "id": "finding-3-5-mcp-obsidian-is-a-real-pypi-package-0-2-2-with-the-uvx-mcp-obsidian-executable-a",
+      "text": "`mcp-obsidian` is a real PyPI package (0.2.2) with the `uvx mcp-obsidian` executable and `OBSIDIAN_API_KEY` configuration. Its own quick start requires the Local REST API community plugin to be running. It is a valid fallback, but its older release and smaller documented operation set make it lower-ranked than `obsidian-mcp-server`. [SOURCE: https://pypi.org/project/mcp-obsidian/]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-3-obsidian-mcp-server-is-a-verified-community-npm-package-and-executable-identity-",
+      "text": "`obsidian-mcp-server` is a verified community npm package and executable identity: its upstream documentation provides `npx -y obsidian-mcp-server@latest` for stdio and identifies the same package by name. It wraps Local REST API v4+, so it still requires the running app, enabled plugin, and `OBSIDIAN_API_KEY`; it is not a headless replacement. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server] [SOURCE: https://www.npmjs.com/package/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-7-direct-adoption-of-the-plugin-s-built-in-mcp-is-architecturally-preferred-only-i",
+      "text": "Direct adoption of the plugin's built-in MCP is architecturally preferred only if Code Mode supports a header-bearing Streamable HTTP manual. The local `.utcp_config.json` examples inspected here establish stdio, not that HTTP schema. Until that capability is confirmed, adopt the verified `obsidian-mcp-server` stdio wrapper; do not invent a remote-HTTP configuration shape. [INFERENCE: based on .utcp_config.json:66 and https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-8-recommended-immediate-configuration-is-a-manual-named-obsidian-launched-as-npx-y",
+      "text": "Recommended immediate configuration is a manual named `obsidian`, launched as `npx -y obsidian-mcp-server@latest`, with the mapped secrets/configuration `OBSIDIAN_API_KEY`, `OBSIDIAN_BASE_URL`, `OBSIDIAN_VERIFY_SSL`, `OBSIDIAN_READ_ONLY`, `OBSIDIAN_READ_PATHS`, and `OBSIDIAN_WRITE_PATHS`. Start `OBSIDIAN_READ_ONLY=true` and scoped paths; enable writes or commands only for an explicit operational need. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server] [SOURCE: .env.example:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-cyanheads-wrapper-is-the-strongest-immediate-stdio-candidate-its-documented-",
+      "text": "The cyanheads wrapper is the strongest immediate stdio candidate. Its documented tool surface covers note read/list/search/write/append/targeted patch/replace/delete, tags, frontmatter, UI open, and guarded command execution. It adds `OBSIDIAN_READ_PATHS`, `OBSIDIAN_WRITE_PATHS`, `OBSIDIAN_READ_ONLY`, and opt-in commands, which are useful agent-safety controls absent from a raw remote-endpoint configuration. Its link support is outgoing-link parsing, not a verified backlinks service. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-existing-code-mode-manual-establishes-an-immediately-usable-stdio-shape-tran",
+      "text": "The existing Code Mode manual establishes an immediately usable stdio shape—`transport: \"stdio\"`, `command: \"npx\"`, argument array, and an `env` object. The `.env.example` convention prefixes every server variable with the manual name, so a manual named `obsidian` maps `OBSIDIAN_API_KEY` to `obsidian_OBSIDIAN_API_KEY`, rather than exposing an unprefixed shared secret. [SOURCE: .utcp_config.json:66] [SOURCE: .env.example:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-local-rest-api-plugin-exposes-full-file-crud-simple-and-structured-search-ta",
+      "text": "The Local REST API plugin exposes full file CRUD, simple and structured search, tags, active-file operations, targeted frontmatter/heading/block patching, command listing/execution, and UI open. It does not document a first-class backlinks endpoint or a native template API; daily/periodic-note behavior can be reached through configured commands or the active-file/command surface, not assumed as a dedicated neutral API. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-local-rest-api-plugin-itself-is-the-least-layered-mcp-candidate-its-built-in",
+      "text": "The Local REST API plugin itself is the least-layered MCP candidate: its built-in server is Streamable HTTP at `https://127.0.0.1:27124/mcp/`, authenticated with `Authorization: Bearer <API key>`. The plugin must be installed and enabled in a running Obsidian vault; its self-signed HTTPS certificate must be trusted, or its opt-in HTTP endpoint at `http://127.0.0.1:27123/mcp/` can be used. It is therefore local/app-backed, not headless. [SOURCE: https://github.com/coddingtonbear/obsidian-local-rest-api]",
+      "addedAtIteration": 3,
+      "sources": [
+        "https://github.com/coddingtonbear/obsidian-local-rest-api",
+        "https://github.com/cyanheads/obsidian-mcp-server",
+        "https://www.npmjs.com/package/obsidian-mcp-server",
+        "https://pypi.org/project/mcp-obsidian/",
+        ".utcp_config.json:66",
+        ".env.example:1"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-faff62301b88",
+      "text": "Calling the official `obsidian` CLI headless: the official documentation requires a running desktop app and launches it on first use. [SOURCE: https://obsidian.md/help/cli]",
+      "contentHash": "faff62301b88",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9a3489089054",
+      "text": "Do not adopt the existing ClickUp package name as a template without a registry verification; the local documentation records a 404 for it. [SOURCE: .opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md:65]",
+      "contentHash": "9a3489089054",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a4d8d9a60d05",
+      "text": "Treating `obsidian://` as a full data-plane API: it lacks the documented rich query and metadata surface needed for agent operations. [SOURCE: https://obsidian.md/help/Extending%2BObsidian/Obsidian%2BURI]",
+      "contentHash": "a4d8d9a60d05",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e41277b08463",
+      "text": "A third-party CLI that reuses the `obsidian` binary name introduces ambiguous invocation and an avoidable installer/configuration conflict. [SOURCE: https://pypi.org/project/obsidian-cli/]",
+      "contentHash": "e41277b08463",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4a63c1ccc44d",
+      "text": "Adopting PyPI `obsidian-cli` as the mcp-obsidian CLI: it shares the `obsidian` executable name with the official CLI but its documented scope is vault setup/opening rather than the requested operational surface. [SOURCE: https://pypi.org/project/obsidian-cli/]",
+      "contentHash": "4a63c1ccc44d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0e97db940916",
+      "text": "Treating `@obsidian-vfs/core` as a drop-in executable: npm describes it as a shared engine/library and its useful graph/search functions are unavailable while Obsidian is down. [SOURCE: https://www.npmjs.com/package/%40obsidian-vfs/core]",
+      "contentHash": "0e97db940916",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-765006fbf3b4",
+      "text": "Treating official Obsidian Headless (`ob`) as an automation API: its documented surface is Sync administration, not note CRUD/search/backlink tooling. [SOURCE: https://obsidian.md/help/sync/headless]",
+      "contentHash": "765006fbf3b4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-143ea545672b",
+      "text": "Configuring the built-in HTTP MCP directly in `.utcp_config.json` before Code Mode's HTTP-manual and custom-header schema is verified. [INFERENCE: based on .utcp_config.json:66]",
+      "contentHash": "143ea545672b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0eb4e68fc667",
+      "text": "Enabling unrestricted command execution or whole-vault writes by default for an autonomous client. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server]",
+      "contentHash": "0eb4e68fc667",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c6da74a0ec24",
+      "text": "Treating any Local REST API wrapper as headless: every verified wrapper delegates to the plugin running inside Obsidian. [SOURCE: https://github.com/cyanheads/obsidian-mcp-server] [SOURCE: https://pypi.org/project/mcp-obsidian/]",
+      "contentHash": "c6da74a0ec24",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 21,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.75,
+    "coverageBySources": {
+      "code": 3,
+      "docs.obsidian.md": 1,
+      "github.com": 2,
+      "obsidian.md": 3,
+      "pypi.org": 2,
+      "www.npmjs.com": 2
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/001-deep-research/research/lineages/terra/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

@@ -1,0 +1,58 @@
+{
+  "topic": "Deep-dive research on the Obsidian plugin Beancount Ledger (beancount-finance, mkshp, v2.3.1) for file-layer AI operation of a Beancount v3 ledger, including the exact ledger model, plugin data.json schema, BeanQuery and bean-price execution, workflows, dashboards, edge cases, and AI recipes.",
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/beancount-finance/lineages/terra",
+  "createdAt": "2026-08-02T11:56:07Z",
+  "status": "complete",
+  "loopType": "research",
+  "executionMode": "auto",
+  "maxIterations": 3,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "resourceMapPresent": false,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "telemetry-only-before-limit",
+    "rule": "Run all three iterations. A convergence signal before the max-iteration boundary broadens the next review angle; it never triggers early synthesis."
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-terra-1785671329489-48jpky",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "fanoutLineageArtifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/research/beancount-finance/lineages/terra"
+  },
+  "reducer": {
+    "stateLog": "deep-research-state.jsonl",
+    "strategy": "deep-research-strategy.md",
+    "registry": "findings-registry.json",
+    "dashboard": "deep-research-dashboard.md",
+    "iterationDir": "iterations",
+    "deltaDir": "deltas",
+    "promptDir": "prompts"
+  },
+  "outputs": {
+    "research": "research.md",
+    "resourceMap": "resource-map.md",
+    "statusLog": "orchestration-status.log",
+    "observabilityEvents": "observability-events.jsonl"
+  },
+  "routeProof": {
+    "targetAgent": "deep-research",
+    "agentDefinitionLoaded": true,
+    "resolvedRoute": "Resolved route: mode=research target_agent=deep-research"
+  }
+}

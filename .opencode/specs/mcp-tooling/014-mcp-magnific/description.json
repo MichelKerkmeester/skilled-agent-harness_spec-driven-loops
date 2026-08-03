@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "mcp-tooling/014-mcp-magnific",
+  "description": "Magnific exposes an official remote MCP at `https://mcp.magnific.com`, but this framework has no Magnific mode",
+  "keywords": [
+    "magnific",
+    "exposes",
+    "official",
+    "remote",
+    "mcp",
+    "https",
+    "com",
+    "framework",
+    "mode"
+  ],
+  "lastUpdated": "2026-08-02T16:07:14.698Z",
+  "specId": "014",
+  "folderSlug": "mcp-magnific",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "02-08-26_16-18__phase-1-closed-out-recursive-strict-validation.md",
+    "02-08-26_16-23__phase-1-closed-out-recursive-strict-validation.md",
+    "02-08-26_16-27__phase-1-closed-out-recursive-strict-validation.md",
+    "02-08-26_17-07__phase-1-closed-out-recursive-strict-validation.md"
+  ]
+}
