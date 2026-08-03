@@ -1,0 +1,32 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/001-provisioning",
+  "description": "Provision the live test env for the playbook run: install notesmd-cli, register the Obsidian test vault, install + activate the Local REST API plugin",
+  "keywords": [
+    "provision",
+    "live",
+    "test",
+    "env",
+    "playbook",
+    "run",
+    "install",
+    "notesmd-cli",
+    "register",
+    "obsidian",
+    "vault",
+    "activate",
+    "local",
+    "rest",
+    "api",
+    "plugin"
+  ],
+  "lastUpdated": "2026-08-03T04:28:33.823Z",
+  "specId": "001",
+  "folderSlug": "provisioning",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian",
+    "010-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

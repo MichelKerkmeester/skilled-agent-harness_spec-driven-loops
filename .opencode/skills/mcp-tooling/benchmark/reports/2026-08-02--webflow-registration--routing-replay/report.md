@@ -23,9 +23,9 @@
 
 **Score: 12/12 (100%).** Sample webflow route evidence: `intents: [mcp-webflow]`, `resources: [mcp-webflow/references/tool-surface.md, mcp-webflow/references/mcp-wiring.md]`, `matchedAliases: [webflow, webflow cms]`, `defaultApplied: false`.
 
-## Advisor recall (static)
+## Advisor recall (static → live re-probed)
 
-The skill-advisor daemon is DOWN (documented infra blocker); live recall probes are blocked. Static keyword coverage: `description.json` carries `mcp-webflow`, `webflow`, `webflow mcp`, `webflow cms`, `webflow publish`; hub identity is advisor-routable by hub membership (routingClass metadata). Live recall to be re-probed after daemon restart.
+The skill-advisor daemon was DOWN during the original run (documented infra blocker); static keyword coverage was recorded (`description.json` carries `mcp-webflow`, `webflow`, `webflow mcp`, `webflow cms`, `webflow publish`). **Re-probed live 2026-08-02 after daemon restart**: a webflow-heavy prompt returns `mcp-tooling` (0.598, top rank) ahead of `sk-code` (0.576) and `mcp-code-mode` (0.564); leaf mode selection resolves through `hub-router.json` (12/12 replay above). B-002 closed by this re-probe.
 
 ## Findings and recommendations
 

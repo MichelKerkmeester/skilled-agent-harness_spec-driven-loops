@@ -1,0 +1,33 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/004-plugin-tie-in-scenarios",
+  "description": "Execute the 3 plugin tie-in scenarios (OBS-011 beancount, OBS-012 tables, OBS-013 brat) at the file layer in the test vault and record pass/fail.",
+  "keywords": [
+    "execute",
+    "plugin",
+    "tie-in",
+    "scenarios",
+    "obs-011",
+    "beancount",
+    "obs-012",
+    "tables",
+    "obs-013",
+    "brat",
+    "file",
+    "layer",
+    "test",
+    "vault",
+    "record",
+    "pass",
+    "fail"
+  ],
+  "lastUpdated": "2026-08-03T04:28:34.291Z",
+  "specId": "004",
+  "folderSlug": "plugin-tie-in-scenarios",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian",
+    "010-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

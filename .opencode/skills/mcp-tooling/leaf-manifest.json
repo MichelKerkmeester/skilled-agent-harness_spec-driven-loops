@@ -95,8 +95,13 @@
     },
     {
       "leaves": [
-        "assets/example-payloads.md",
-        "assets/utcp-webflow-manual.md",
+        "assets/examples/destructive-refused.md",
+        "assets/examples/draft-page-settings.md",
+        "assets/examples/first-session-discovery.md",
+        "assets/examples/read-cms-content.md",
+        "assets/examples/staging-publish.md",
+        "assets/payload-examples.md",
+        "assets/utcp-manual-reference.md",
         "references/action-reference.md",
         "references/mcp-wiring.md",
         "references/tool-surface.md",

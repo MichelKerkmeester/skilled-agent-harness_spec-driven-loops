@@ -1,0 +1,30 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/010-playbook-validation/003-mcp-scenarios",
+  "description": "Execute the 6 MCP manual-testing-playbook scenarios (round-trip + verification) against the live Local REST API and record pass/fail.",
+  "keywords": [
+    "execute",
+    "mcp",
+    "manual-testing-playbook",
+    "scenarios",
+    "round-trip",
+    "verification",
+    "against",
+    "live",
+    "local",
+    "rest",
+    "api",
+    "record",
+    "pass",
+    "fail"
+  ],
+  "lastUpdated": "2026-08-03T04:28:34.143Z",
+  "specId": "003",
+  "folderSlug": "mcp-scenarios",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian",
+    "010-playbook-validation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
