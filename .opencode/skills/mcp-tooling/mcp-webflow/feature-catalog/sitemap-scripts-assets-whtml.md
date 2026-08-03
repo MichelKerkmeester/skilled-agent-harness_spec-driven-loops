@@ -7,13 +7,16 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# Sitemap, scripts, assets, whtml
+# Capability: Sitemap, scripts, assets, whtml
 
-## What it does
+## 1. OVERVIEW
 
 The operational surface beyond content: sitemap status bulk updates, the rich custom-code scripts
 module, asset management (incl. compression tasks), and WHMTL page building.
 
+## 2. HOW IT WORKS
+
+# Sitemap, scripts, assets, whtml
 ## Actions
 
 ### `data_sitemap_tool` (read+write)
@@ -43,7 +46,7 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 
 | Action | Class |
 |--------|-------|
-| `insert_whtml` (page building via WHMTL) | DW (design-affecting → sk-design pairing) |
+| `insert_whtml` (page building via WHTML) | DW (design-affecting → sk-design pairing) |
 
 ## Semantics
 
@@ -56,4 +59,24 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 - "update the sitemap status of the 'Blog' collection items to 'noindex'" (confirmation, bulk)
 - "list the site scripts" / "clear all page scripts on the 'About' page" (confirmation)
 - "compress the hero images of the test site"
-- "build a two-column section with WHMTL on the 'About' page" (sk-design)
+- "build a two-column section with WHTML on the 'About' page" (sk-design)
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Sitemap`, `Assets`, `WHTML`, `Scripts`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |

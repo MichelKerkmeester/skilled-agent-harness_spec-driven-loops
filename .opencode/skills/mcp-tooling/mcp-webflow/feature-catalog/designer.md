@@ -7,13 +7,16 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# Designer-family operations (`de*` modules)
+# Capability: Designer-family operations (de* modules)
 
-## What it does
+## 1. OVERVIEW
 
 Operates the live Designer canvas via the Bridge App: elements (deElement), styles (deStyle),
 variables (deVariable), components (deComponents), assets (deAsset), and pages (dePages).
 
+## 2. HOW IT WORKS
+
+# Designer-family operations (`de*` modules)
 ## Capabilities
 
 | Module | Actions | Class | Gate |
@@ -42,3 +45,23 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 - "set the hero heading level to H1 in the test site" → sk-design + deElement DW
 - "create a variable collection 'Brand' with a mode 'Light'" → sk-design + deVariable DW
 - "remove the 'hero' element" → confirmation + rollback statement (DS)
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Elements`, `Components`, `Variables`, `Style`, `Designer canvas`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |

@@ -7,22 +7,25 @@ contextType: implementation
 version: 1.0.0.0
 ---
 
-# Localization, fonts, forms
+# Capability: Localization, fonts, forms
 
-## What it does
+## 1. OVERVIEW
 
 Site-level content capabilities beyond pages/CMS: localization (locales + secondary-locale
 content), fonts (upload/manage site fonts), and forms (read submissions).
 
+## 2. HOW IT WORKS
+
+# Localization, fonts, forms
 ## Actions
 
 ### `data_localization_tool` (read+write)
 
 | Action | Class |
 |--------|-------|
-| locale reads (list locales, locale content) | RO |
-| create/update locales and secondary-locale content (incl. `update_component_properties` per locale) | DW |
-| delete locale / locale content | DS |
+| localized page/component content reads (incl. `update_component_properties` reads) | RO |
+| update localized page/component content (secondary locales) | DW |
+| content deletes within localization | DS |
 
 ### `data_fonts_tool` (read+write)
 
@@ -37,7 +40,7 @@ content), fonts (upload/manage site fonts), and forms (read submissions).
 | Action | Class |
 |--------|-------|
 | `list_site_form_submissions` and related reads | RO |
-| submission exports/config | DW |
+| `delete_form_submission` | DS |
 
 ## Semantics
 
@@ -51,3 +54,23 @@ content), fonts (upload/manage site fonts), and forms (read submissions).
 - "add a Spanish locale to the test site"
 - "list the site fonts" / "batch delete the unused 'OldFont' family" (confirmation)
 - "list the form submissions of the 'Contact' form"
+
+## 3. SOURCE FILES
+
+### Implementation
+
+- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Localization`, `Fonts`, `Forms`
+- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+
+### Validation And Tests
+
+- See `../manual-testing-playbook/` for the relevant scenarios.
+
+## 4. SOURCE METADATA
+
+| Field | Value |
+|-------|-------|
+| Surface | remote (action-reference) + local OSS where noted |
+| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
+| Version | 1.1.0.0 |
