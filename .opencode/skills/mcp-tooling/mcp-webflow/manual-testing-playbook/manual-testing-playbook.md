@@ -146,3 +146,13 @@ and failure triage against the frozen contract and the action reference.
 | DISCOVER-002 | Tool-surface drift fails closed | Discovery and Setup | `../references/action-reference.md` |
 | DISCOVER-003 | Remote vs local surface reconciliation | Discovery and Setup | `../feature-catalog/feature-catalog.md` |
 | NEG-001 | Non-Webflow intent defers | Negative | hub routing (no catalog entry) |
+
+### Capability Traceability
+
+Every scenario ID above maps to at least one capability source: a feature-catalog card
+(`../feature-catalog/content|design|intelligence|operations/*.md`), the remote action reference
+(`../references/action-reference.md`) for the discovery scenarios, or — for NEG-001 — an
+explicitly documented exception (hub routing, no catalog entry). Each destination is verified by
+the packet link checker (repository markdown-link guard, `check-markdown-links.cjs`), which fails
+the PR on any broken link — so renaming or moving a catalog card or reference must be mirrored
+in this index.

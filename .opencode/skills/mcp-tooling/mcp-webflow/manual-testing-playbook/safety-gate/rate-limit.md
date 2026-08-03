@@ -9,11 +9,11 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-This scenario validates 429 backoff and Retry-After for `SAFE-003`. It focuses on 429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed..
+This scenario validates 429 backoff and Retry-After for `SAFE-003`. It focuses on 429 responses triggering Retry-After-aware backoff while failed non-idempotent writes are not blindly replayed.
 
 ### Why This Matters
 
-429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed.
+429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed. A reproducible run proves the backoff actually honors the server-declared window instead of a guess, and that a failed write is surfaced to the user rather than re-fired.
 
 ---
 
@@ -24,10 +24,10 @@ Operators run the exact prompt and command sequence for `SAFE-003` and confirm t
 - Objective: 429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed.
 - Real user request: `Keep reading the CMS items until the rate limit kicks in.`
 - Prompt: `Execute a read until a 429 occurs (real server response - no mocks).`
-- Expected execution process: Trigger a real 429, honor Retry-After, do not replay ambiguous writes.
-- Expected signals: 429 observed with Retry-After (~60s) and X-RateLimit-Remaining headers; backoff honored; no blind replay.
-- Desired user-visible outcome: A clean backoff sequence with no replay.
-- Pass/fail: PASS if backoff honors Retry-After and no ambiguous write is replayed; FAIL if replayed or mocked.
+- Expected execution process: Trigger a real 429, capture the Retry-After header value, wait that exact duration, retry once, record the 429 body.
+- Expected signals: 429 observed with Retry-After (~60s), X-RateLimit-Remaining, and X-RateLimit-Limit headers; backoff duration equals the captured Retry-After value; single retry after the wait; 429 body recorded verbatim.
+- Desired user-visible outcome: A clean backoff sequence with no replay and a recorded 429 body.
+- Pass/fail: PASS if backoff honors the captured Retry-After value and no ambiguous write is replayed; FAIL if replayed, mocked, or retried before the window elapses.
 
 ---
 
@@ -39,24 +39,30 @@ Operators run the exact prompt and command sequence for `SAFE-003` and confirm t
 
 ### Commands
 
-1. Repeated `list_collection_items` until 429. 2. Record headers. 3. Backoff and retry once.
+1. Call `list_collection_items(collection_id)` repeatedly (real server, no mocks) until the response status is `429`.
+2. Capture the `Retry-After` header value (seconds) from the 429 response headers.
+3. Wait exactly the captured duration — no tool calls during the wait.
+4. Retry the identical read exactly once after the window elapses.
+5. Record the 429 body verbatim (status, headers, payload) in the evidence log.
 
 ### Expected
 
-429 observed with Retry-After (~60s) and X-RateLimit-Remaining headers; backoff honored; no blind replay.
+429 observed with Retry-After (~60s) and X-RateLimit-Remaining/X-RateLimit-Limit headers; backoff duration equals the captured Retry-After value; single retry after the window; 429 body recorded; no blind replay of any write.
 
 ### Evidence
 
-Response headers, backoff timings, no-replay record.
+Response headers (Retry-After, X-RateLimit-Remaining, X-RateLimit-Limit), recorded 429 body, wait duration vs. Retry-After value, retry outcome, no-replay record (zero create/update/delete calls after the 429).
 
 ### Pass / Fail
 
-- **Pass**: if backoff honors Retry-After and no ambiguous write is replayed
-- **Fail**: if replayed or mocked
+- **Pass**: backoff honors the captured Retry-After value (wait ≥ header value) and no ambiguous write is replayed
+- **Fail**: retry before the window elapses, blind replay of a non-idempotent write, or mocked 429
 
 ### Failure Triage
 
-1. Verify the header spelling (X-RateLimit-Remaining). 2. Wait the Retry-After window.
+1. Verify the header spelling (`Retry-After`, `X-RateLimit-Remaining`, `X-RateLimit-Limit`); a missing Retry-After means the fallback is a fixed 60s backoff — record which path was taken.
+2. If the retry still returns 429, stop and record the second 429 body — do not loop or retry again.
+3. Confirm no non-idempotent write (create/update/delete) was called between the first 429 and the retry; if one was, the run FAILS on replay regardless of backoff timing.
 
 ---
 

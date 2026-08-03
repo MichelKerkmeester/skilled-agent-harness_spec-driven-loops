@@ -31,9 +31,17 @@ workflow execution.
 - **Staging vs production is structural**: `publishToWebflowSubdomain` (`*.webflow.io`) is the
   only publish target allowed from smoke/test flows — production `customDomains` is forbidden
   there. A single `pageId` limits blast radius.
+- **Completion check**: after `publish_site`, verify the publish receipt (target, scope, result)
+  before claiming success — a missing or ambiguous receipt is a failure, not a completion.
+- **Queue check**: one successful publish per minute — a completed publish occupies the queue
+  slot; wait ~60s before the next publish and honor `Retry-After` on 429; never blind-replay.
+- **Blast-radius check**: site publish ships every staged change (draft pages, CMS items, script
+  config, static content) — broader than a single `pageId` receipt; a page-level receipt proves
+  only that page, so confirm what actually went live.
+- **Rollback posture**: re-publish the prior content/snapshot; Designer version history for
+  page-level work. Site publish is never rolled back per-page — restore the previous full state.
 - Publishing multiple staged pages to staging, then staging to production, publishes all staged
   changes — never mix targets accidentally.
-- Rollback = re-publish prior content/snapshot; Designer version history for page-level work.
 - Script registration ships with site publish (publish-adjacent — treat as gated).
 
 ### Example prompts

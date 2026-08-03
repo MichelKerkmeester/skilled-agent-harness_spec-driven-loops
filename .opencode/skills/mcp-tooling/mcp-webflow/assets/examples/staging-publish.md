@@ -26,6 +26,12 @@ Show the only publish flow allowed from smoke/test contexts: staging-first with 
 
 Use when a publish is genuinely required. Confirmation must precede the call; the body carries `publishToWebflowSubdomain` + `pageId`; never `customDomains`.
 
+### Provenance and postconditions
+
+- **Actions exercised:** `publish_site` (class PB) with `publishToWebflowSubdomain: true` and a single `pageId`, preceded by operator confirmation.
+- **Expected postcondition:** the page is live on the `*.webflow.io` staging subdomain only; `customDomains` untouched; publish receipt captured; the 1-publish/min queue respected.
+- **Read-back:** fetch the staged URL and confirm it serves the updated content; verify the receipt names the staging subdomain and the single page, and that no `customDomains` receipt exists.
+
 ---
 
 ## 2. EXAMPLE SESSION

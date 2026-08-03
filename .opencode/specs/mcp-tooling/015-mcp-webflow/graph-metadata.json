@@ -23,7 +23,8 @@
     "mcp-tooling/015-mcp-webflow/014-authority-pinning",
     "mcp-tooling/015-mcp-webflow/015-designer-depth-p1",
     "mcp-tooling/015-mcp-webflow/016-content-ops-depth",
-    "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability"
+    "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
+    "mcp-tooling/015-mcp-webflow/018-findings-backlog"
   ],
   "manual": {
     "depends_on": [],
@@ -166,7 +167,7 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no mode for operating Webflow through Webflow's current MCP surface",
     "created_at": "2026-08-02T13:47:06Z",
-    "last_save_at": "2026-08-03T14:02:00.050Z",
+    "last_save_at": "2026-08-03T14:21:04.956Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,7 +179,7 @@
       "spec.md": "a7286bb0c4eecdec3def80a12b6287fd910d4aadce84f7f60e92b57d228fa3ca",
       "handover.md": "ddf5618551abfaffcf299a385168895967c05403034193be8c3ebb480d5f5e48"
     },
-    "last_active_child_id": "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
-    "last_active_at": "2026-08-03T14:02:00.050Z"
+    "last_active_child_id": "mcp-tooling/015-mcp-webflow/018-findings-backlog",
+    "last_active_at": "2026-08-03T14:21:04.956Z"
   }
 }

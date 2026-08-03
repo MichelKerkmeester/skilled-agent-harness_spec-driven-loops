@@ -1,16 +1,18 @@
 ---
-title: "Phase 017: Troubleshooting and Traceability"
-description: "P1/P2s: ModeForbidden/dynamic-tool/migration coverage, structured error contract, README scenario-count consistency."
+title: "Phase 018: Findings Backlog (P1/P2)"
+description: "Remaining deep-research P1/P2 findings: publish completion/blast-radius, page-settings boundary, unpublish payload, forms schema scope, webhook lifecycle, redirects/activity-log, utility/AI contract, SAFE-003 reproducibility, cross-ref graph, payload contract alignment, capability traceability, analyze surface, example provenance."
 trigger_phrases:
-  - "webflow troubleshooting"
-  - "mode forbidden"
-  - "error contract"
+  - "webflow backlog"
+  - "publish completion"
+  - "webhook lifecycle"
+  - "payload contract"
+  - "capability traceability"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability"
-    last_updated_at: "2026-08-03T13:58:52Z"
+    packet_pointer: "mcp-tooling/015-mcp-webflow/018-findings-backlog"
+    last_updated_at: "2026-08-03T14:16:14Z"
     last_updated_by: "pi"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -18,7 +20,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "015-mcp-webflow-017"
+      session_id: "015-mcp-webflow-018"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -44,14 +46,14 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | P0 |
+| **Priority** | P1 |
 | **Status** | Complete (2026-08-03) |
 | **Created** | 2026-08-03 |
-| **Branch** | `015-mcp-webflow/017-troubleshooting-and-traceability` |
+| **Branch** | `015-mcp-webflow/018-findings-backlog` |
 | **Parent Spec** | `../spec.md` |
-| **Predecessor** | (chain via 011) |
-| **Successor** | `018-findings-backlog` |
-| **Handoff Criteria** | Findings remediated with evidence; packet validators green |
+| **Predecessor** | `017-troubleshooting-and-traceability` |
+| **Successor** | None |
+| **Handoff Criteria** | All backlog findings remediated by fresh deepseek-v4-flash markdown agents; validators green |
 
 <!-- /ANCHOR:metadata -->
 
@@ -62,12 +64,17 @@ FAILURE MODES:
 
 ### Problem Statement
 
-P1/P2s: troubleshooting stopped at auth/429; ModeForbidden, dynamic tools, and migration/input changes were uncovered; README scenario count was stale.
+The deep-research audit left 14 P1/P2 findings unremediated after phases 012-017: publish
+completion/blast-radius checks, page-settings publish boundary, unpublish payload coverage,
+forms schema scope, webhook lifecycle depth, redirects/activity-log audit safety, utility/AI
+operating contract, SAFE-003 reproducibility, cross-reference graph verification, payload
+contract alignment, capability traceability, analyze operational surface, and worked-example
+provenance contracts.
 
 ### Purpose
 
-Remediate the phase's deep-research findings in the mcp-webflow packet with concrete,
-evidence-cited fixes.
+Close the remaining backlog with fresh-context deepseek-v4-flash markdown agents, each bound to
+a disjoint file scope, followed by the full packet verification gate.
 
 <!-- /ANCHOR:problem -->
 
@@ -78,12 +85,17 @@ evidence-cited fixes.
 
 ### In Scope
 
-troubleshooting.md (§8 ModeForbidden/dynamic tools/migration, §8b structured error contract), README.md scenario count to 18.
+- publish-deploy card (completion/queue/blast-radius/rollback), site-pages-scripts card
+  (page-settings boundary), localization-fonts-forms card (forms schema scope).
+- action-reference §9 (enterprise/redirects), §19 (webhooks), §22 (utility contract);
+  SAFE-003 rate-limit scenario rewrite (reproducible Retry-After flow).
+- designer-capabilities §5 variable-mode read-back; analyze card operational contract.
+- payload-examples contract alignment + provenance; 5 worked examples provenance/postcondition
+  H3s; playbook §9 cross-ref verification + capability traceability note.
 
 ### Out of Scope
 
-- New actions or schema changes beyond the documented surface.
-- The frozen gate contract (reconciled, not redefined).
+- New actions or schema changes; the frozen gate contract.
 
 <!-- /ANCHOR:scope -->
 
@@ -110,8 +122,9 @@ troubleshooting.md (§8 ModeForbidden/dynamic tools/migration, §8b structured e
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: All phase tasks completed with `[evidence:]` markers.
-- **SC-002**: `validate_skill_package.py` PASS; link check 0 broken; recursive strict validation green.
+- **SC-001**: All backlog tasks completed with evidence markers.
+- **SC-002**: Fresh deepseek-v4-flash markdown agents (4 parallel, disjoint scopes) reported clean.
+- **SC-003**: `validate_skill_package.py` PASS; link check 0 broken; recursive strict validation green.
 
 <!-- /ANCHOR:success-criteria -->
 

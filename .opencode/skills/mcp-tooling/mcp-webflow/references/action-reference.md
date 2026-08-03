@@ -243,6 +243,8 @@ without required parameters are marked `—`.
 | `update_301_redirect` | `site_id, redirect_id, fromUrl, toUrl` | DW |
 | `update_robots_txt` | `site_id` | DW |
 
+> **Note**: Redirect rules and activity-log reads are audit-safe: `list_301_redirects` and `list_site_activity_logs` are RO, and redirect writes (`create_301_redirect`, `update_301_redirect`) are DW with write preview. Blast radius: bulk redirect replacement rewrites the whole mapping at once — preview the full fromUrl/toUrl set before applying.
+
 
 ---
 ## 10. FONTS
@@ -431,6 +433,8 @@ ship with the next `publish_site` (separate PB gate). Clear/remove actions are d
 | `get_webhook` | `webhook_id` | RO |
 | `list_webhooks` | `site_id` | RO |
 
+> **Note**: The webhook lifecycle is CRUD-only on the MCP surface. Delivery, authentication, retries, and versioning are managed on Webflow's side, not through these actions. `create_webhook` takes `site_id, trigger_type, url`; `delete_webhook` is DS — confirm before removing a production endpoint.
+
 
 ---
 ## 20. WHTML
@@ -492,6 +496,14 @@ ship with the next `publish_site` (separate PB gate). Clear/remove actions are d
 | Action | Required parameters | Class |
 |--------|---------------------|-------|
 | `get_more_tools` | `brief, category, context` | RO |
+
+**Operating contract**: `webflow_guide_tool` (`get_guidelines`) is a read-only guide resource —
+load it to get the workflow guidance for a task; it never mutates state. `get_more_tools` is
+surface discovery — it advertises what else the remote surface offers, not a capability
+guarantee; treat its results as routing hints to confirm against the action reference before
+relying on them. `ask_webflow_ai` is **advisory RO**: its answers are model-generated and must
+be verified against the actual API reads (list/get actions) before being trusted as fact;
+never feed an unverified AI answer into a DW/DS decision.
 
 ---
 ## 23. RELATED RESOURCES

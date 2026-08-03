@@ -26,6 +26,12 @@ Show the DW path: draft-scoped writes pass with a scope check; publish-status ch
 
 Use for any draft-scoped content write. Review the payload before sending; never flip publishing status without the PB gate.
 
+### Provenance and postconditions
+
+- **Actions exercised:** `update_page_settings` (class DW) — draft-scoped, no publishing-status flip.
+- **Expected postcondition:** the page title is updated in the draft; publishing status and the live page are unchanged; no publish receipt is produced.
+- **Read-back:** `get_page_metadata` (class RO) returns the new title with the previous publishing status, and the transcript confirms no PB-class call.
+
 ---
 
 ## 2. EXAMPLE SESSION

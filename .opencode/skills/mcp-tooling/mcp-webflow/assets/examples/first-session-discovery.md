@@ -26,6 +26,12 @@ Show the deterministic first-authenticated-session sequence so the surface is pi
 
 Use once after the token + test site are provisioned. Discovery of the pinned version is the only authoritative inventory.
 
+### Provenance and postconditions
+
+- **Actions exercised:** `bash scripts/doctor.sh`, `list_tools()` discovery (no mutation), and one read-only smoke call — `list_sites` (class RO).
+- **Expected postcondition:** the pinned server version is recorded in `mcp-servers/webflow-mcp/README.md`, drift (if any) is recorded with a dated fixture, and the first live RO evidence is captured.
+- **Read-back:** re-read the pinned-version fixture files and confirm they name the version `list_tools()` actually returned; confirm the smoke call returned the expected test site.
+
 ---
 
 ## 2. EXAMPLE SESSION

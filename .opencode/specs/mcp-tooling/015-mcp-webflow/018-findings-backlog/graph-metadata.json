@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
- "packet_id": "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
- "spec_folder": "mcp-tooling/015-mcp-webflow/017-troubleshooting-and-traceability",
+ "packet_id": "mcp-tooling/015-mcp-webflow/018-findings-backlog",
+ "spec_folder": "mcp-tooling/015-mcp-webflow/018-findings-backlog",
  "parent_id": "mcp-tooling/015-mcp-webflow",
  "children_ids": [],
  "manual": {
@@ -11,27 +11,30 @@
  },
  "derived": {
   "trigger_phrases": [
-   "webflow troubleshooting",
-   "mode forbidden",
-   "error contract"
+   "webflow backlog",
+   "publish completion",
+   "webhook lifecycle",
+   "payload contract",
+   "capability traceability"
   ],
   "key_topics": [
    "webflow",
-   "troubleshooting",
-   "mode",
-   "forbidden",
-   "error",
+   "backlog",
+   "publish",
+   "completion",
+   "webhook",
+   "lifecycle",
+   "payload",
    "contract",
-   "p2s",
-   "stopped",
-   "auth",
-   "modeforbidden",
-   "dynamic",
-   "tools"
+   "capability",
+   "traceability",
+   "deep-research",
+   "audit"
   ],
   "importance_tier": "important",
   "status": "in_progress",
   "key_files": [
+   "manual-testing-playbook/manual-testing-playbook.md",
    "spec.md",
    "plan.md",
    "tasks.md",
@@ -39,6 +42,12 @@
    "implementation-summary.md"
   ],
   "entities": [
+   {
+    "name": "manual-testing-playbook.md",
+    "kind": "doc",
+    "path": "manual-testing-playbook/manual-testing-playbook.md",
+    "source": "derived"
+   },
    {
     "name": "spec.md",
     "kind": "doc",
@@ -70,6 +79,12 @@
     "source": "derived"
    },
    {
+    "name": "Findings Backlog",
+    "kind": "proper_noun",
+    "path": "spec.md",
+    "source": "derived"
+   },
+   {
     "name": "Initialized Level",
     "kind": "proper_noun",
     "path": "spec.md",
@@ -94,13 +109,7 @@
     "source": "derived"
    },
    {
-    "name": "Problem Statement",
-    "kind": "proper_noun",
-    "path": "spec.md",
-    "source": "derived"
-   },
-   {
-    "name": "Purpose Remediate",
+    "name": "Problem Statement The",
     "kind": "proper_noun",
     "path": "spec.md",
     "source": "derived"
@@ -130,12 +139,6 @@
     "source": "derived"
    },
    {
-    "name": "Current Role",
-    "kind": "proper_noun",
-    "path": "plan.md",
-    "source": "derived"
-   },
-   {
     "name": "Task Format",
     "kind": "proper_noun",
     "path": "tasks.md",
@@ -150,12 +153,6 @@
    {
     "name": "Completion Criteria",
     "kind": "proper_noun",
-    "path": "tasks.md",
-    "source": "derived"
-   },
-   {
-    "name": "ModeForbidden",
-    "kind": "key_phrase",
     "path": "tasks.md",
     "source": "derived"
    },
@@ -182,11 +179,17 @@
     "kind": "proper_noun",
     "path": "checklist.md",
     "source": "derived"
+   },
+   {
+    "name": "Code Quality",
+    "kind": "proper_noun",
+    "path": "checklist.md",
+    "source": "derived"
    }
   ],
-  "causal_summary": "P1/P2s: troubleshooting stopped at auth/429; ModeForbidden, dynamic tools, and migration/input changes were uncovered; README scenario count was stale",
-  "created_at": "2026-08-03T14:02:00.030Z",
-  "last_save_at": "2026-08-03T14:02:00.030Z",
+  "causal_summary": "The deep-research audit left 14 P1/P2 findings unremediated after phases 012-017: publish",
+  "created_at": "2026-08-03T14:21:04.939Z",
+  "last_save_at": "2026-08-03T14:21:04.939Z",
   "save_lineage": "same_pass",
   "last_accessed_at": null,
   "source_docs": [
@@ -196,13 +199,13 @@
    "checklist.md",
    "implementation-summary.md"
   ],
-  "source_fingerprint": "sha256:f51acaa235d0b35bb0eeae2b4621b2ab433236a361170fd4e4e0e5626f0b4e1f",
+  "source_fingerprint": "sha256:d8e8e346b07ca18267cb1995e7f09235c9338134b92c6f6d09f3c8ec298206fc",
   "source_doc_hashes": {
-   "spec.md": "a7e1dbe6e9026e1ebbb859fb834d6f636db82fdd35498d4a303ae8eadf9625c8",
-   "plan.md": "ac5115a13ae29582ac9c54376b2e6d84c8f82c136d6a55b8275ca2961f36cc7a",
-   "tasks.md": "ae5ec967cd8246401385faa6168062cf1f96e846fdd0ddf63e7f562c05c76f4d",
-   "checklist.md": "8fd7f89f3cdb1ab0c63edb77ec571e06ecf58b47ba84be3cf9d37c29437a8c3d",
-   "implementation-summary.md": "ee259cb27215be353379fd8c5dce767fc1f0888fa24a85fbeb139ab68ad01f51"
+   "spec.md": "73bf117f7d41dd1ba19cde170973dd98fc3fbcfd9cf7c1475c9cdbfdfc5e5525",
+   "plan.md": "2c2f549b34b06b486922c43d5e87505f209e03c43170ca69459196c4004f9040",
+   "tasks.md": "805ad2c1e9fad0b7be0f262067cc2af87667ee4bb3d7e3f8335cba86cd4fe08b",
+   "checklist.md": "5305f20eebe8a9c326cfcce44b7ad5e30265a8004c30c16f1714f0500ae4f600",
+   "implementation-summary.md": "4f222fca00621314a7a51a06424636a024878d20aecf60d5ece67063dfe3e2d3"
   },
   "last_active_child_id": null,
   "last_active_at": null

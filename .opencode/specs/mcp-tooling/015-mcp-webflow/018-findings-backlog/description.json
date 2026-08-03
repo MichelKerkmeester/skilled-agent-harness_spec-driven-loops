@@ -1,0 +1,24 @@
+{
+  "specFolder": "mcp-tooling/015-mcp-webflow/018-findings-backlog",
+  "description": "The deep-research audit left 14 P1/P2 findings unremediated after phases 012-017: publish",
+  "keywords": [
+    "deep-research",
+    "audit",
+    "left",
+    "findings",
+    "unremediated",
+    "phases",
+    "publish"
+  ],
+  "lastUpdated": "2026-08-03T14:21:04.939Z",
+  "specId": "018",
+  "folderSlug": "findings-backlog",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-08-26_15-21__phase-018-closed-remaining-p1-p2-findings.md"
+  ]
+}

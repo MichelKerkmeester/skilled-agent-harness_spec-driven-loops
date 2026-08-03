@@ -26,6 +26,12 @@ Show the read-only execution path: discovery-first, RO classification, ungated r
 
 Use as the template for any read-only Webflow request. Discovery must run per session; scope check only.
 
+### Provenance and postconditions
+
+- **Actions exercised:** `list_collection_items` and `get_page_metadata` (both class RO).
+- **Expected postcondition:** CMS items and page metadata are read with zero write calls; no Webflow state changed; evidence captured redacted.
+- **Read-back:** re-run `list_collection_items` and compare item count/IDs with the first read (must be unchanged), and confirm the transcript contains no DW/DS/PB/DP call.
+
 ---
 
 ## 2. EXAMPLE SESSION

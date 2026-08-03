@@ -35,18 +35,22 @@ content only — **locale administration lives in the Webflow UI, not the MCP su
 | upload/add font, update font metadata | DW |
 | `batch_delete_fonts` | DS |
 
-### `data_forms_tool` (read+write)
+### `data_forms_tool` (submission reads; delete is DS)
 
 | Action | Class |
 |--------|-------|
-| `list_site_form_submissions` and related reads | RO |
+| Schema scope — submissions only: `list_site_form_submissions`, `list_form_submissions`, `get_form_submission`, `get_form`, `list_forms` | RO |
 | `delete_form_submission` | DS |
+
+No form-creation or submission-mutation surface: the tool lists/gets submissions and deletes a
+submission — it does not create forms or edit submissions. Rows per
+[`action-reference.md` §11 FORMS](../../references/action-reference.md).
 
 ### Semantics
 
 - Localization writes are content changes — review target locale; deletes are DS.
 - Font deletes are bulk and irreversible via the surface — DS confirmation.
-- Forms reads are read-only (no gate); form config writes are DW.
+- Forms are submissions-only: reads (list/get) carry no gate; `delete_form_submission` is DS with confirmation; no form-creation or submission-mutation surface.
 
 ### Example prompts
 

@@ -10,9 +10,9 @@ version: 1.0.0.0
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
-Read-only access to Webflow Analyze report data for a site: traffic over time, ranked pages,
-ranked dimensions, engagement events, and time on page. Requires the Webflow Analyze add-on;
-actions return an error on sites without it.
+Advisory, read-only access to Webflow Analyze report data for a site: traffic over time,
+ranked pages, ranked dimensions, engagement events, and time on page. Requires the Webflow
+Analyze add-on; actions return an error on sites without it.
 
 ---
 ## 2. HOW IT WORKS
@@ -28,9 +28,23 @@ actions return an error on sites without it.
 
 ### Semantics
 
+- Analyze is an **operational, read-only surface**: every action is RO — there is **no mutation
+  surface at all**, so no DW/DS gates ever apply and there is nothing to confirm before a call.
+- The reads are **advisory natural-language analytics**: they shape questions into report
+  queries over the site's data; they never modify site data.
 - Use the guide actions first when unsure how to shape a query or trace an event back to the
   element that produced it.
-- Read-only: no gates beyond scope check.
+
+### Operational contract
+
+- **Advisory, not authoritative**: report values are model-generated answers over the site's
+  analytics data. Never trust them as fact — verify any number, trend, or ranking that feeds a
+  decision against the raw API reads (traffic / ranked pages / ranked dimensions / engagement /
+  time-on-page calls) before acting on it or reporting it.
+- **RO advisory in practice**: treat the answer as a starting point for the operator, not as a
+  data source to quote; when the numbers matter, cite the underlying raw reads.
+- **Contradiction handling**: if a generated answer contradicts a raw read, the read wins —
+  re-query, treat the discrepancy as a generation error, and report it to the operator.
 
 ### Example prompts
 

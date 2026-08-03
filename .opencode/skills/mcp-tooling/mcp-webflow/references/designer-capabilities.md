@@ -101,6 +101,8 @@ change — raw-CSS overrides and breakpoint-specific values only surface on read
 
 Tokenization logic: create collection → create mode (e.g. "Light") → create typed variables → `set_style_variable_mode` to bind a style → apply the style to elements. A second mode ("Dark") then re-skins the same style without touching elements. Renames ripple through every binding; deletes are DS because they break every bound style.
 
+**Mode-binding read-back (mandatory)**: `set_style_variable_mode` is a DW action whose effect is not visible in the write response. After binding, verify with `get_style_variable_modes` that the expected mode is present on the style, then snapshot (`get_element_snapshot`) to confirm the bound mode actually resolves on an element using that style. The snapshot is the proof that the theme switch re-skins rather than silently falling back to the default mode. Removing a binding (`remove_style_variable_mode`, `remove_all_style_variable_modes`) is DS precisely because it breaks every style bound to the removed mode — confirm the exact style and mode, and state the rollback (re-run the binding) before executing.
+
 ---
 
 ## 6. COMPONENTS: BUILDER, PROPS, VARIANTS, SLOTS

@@ -23,7 +23,7 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | sites | `list_sites`, `get_site` | RO |
 | sites | `publish_site` | PB (see publish-deploy card) |
 | pages | `list_pages`, `get_page_metadata`, `get_page_content` | RO |
-| pages | `update_page_settings` (SEO/OG/slug/title — schema also carries publishing status) | DW; PB when flipping status |
+| pages | `update_page_settings` (SEO/OG/slug/title — schema also carries publishing status) | DW (drafts settings only); PB when flipping publishing status |
 | pages | `update_static_content` (secondary-locale DOM nodes), page branches (create/update) | DW |
 | pages | `delete_branch` (remote) | DS |
 | scripts | `list_registered_scripts`, `list_applied_scripts`, `get_page_script` | RO |
@@ -44,7 +44,7 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 
 - `custom_code` scopes are Data-Client-app-only (site tokens cannot call custom-code endpoints).
 - Enterprise module is gated to Enterprise plans; capability varies by workspace tier.
-- `update_page_settings` can flip publishing status — review the payload before sending.
+- **Page-settings publish boundary**: `update_page_settings` is a DW draft write — SEO/OG/slug/title changes stage without publishing; a publishing-status flip never rides the DW path and is applied only through the PB gate (operator confirmation, staging-first).
 
 ---
 ## 3. SOURCE FILES
