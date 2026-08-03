@@ -1,3 +1,24 @@
+---
+title: "Webflow MCP Wiring (via Code Mode)"
+description: "How the official Webflow MCP 2.0 transport is wired through Code Mode: registered manual, local stdio + WEBFLOW_TOKEN, the remote OAuth alternative, scope model, rate limits, Bridge App boundary, and surface reconciliation."
+trigger_phrases:
+  - "webflow mcp wiring"
+  - "webflow utcp manual"
+  - "webflow code mode"
+  - "webflow token"
+  - "webflow oauth"
+  - "webflow bridge app"
+importance_tier: important
+contextType: implementation
+version: 1.2.0.0
+---
+
+# Webflow MCP Wiring (via Code Mode)
+
+How the official Webflow MCP 2.0 transport is wired through Code Mode, with the full auth and rate-limit contract.
+
+---
+
 ## 1. OVERVIEW
 
 Transport identity (frozen): official `webflow-mcp-server` (npm), local stdio registration with
@@ -166,7 +187,7 @@ first authenticated session.
 ---
 ## 11. RELATED RESOURCES
 
-- [`../action-reference.md`](../action-reference.md) — remote surface (31 tools / 220 actions)
-- [`../tool-surface.md`](../tool-surface.md) — local OSS baseline
-- [`../troubleshooting.md`](../troubleshooting.md) — failure modes
+- [`action-reference.md`](action-reference.md) — remote surface (31 tools / 220 actions)
+- [`tool-surface.md`](tool-surface.md) — local OSS baseline
+- [`troubleshooting.md`](troubleshooting.md) — failure modes
 - [`../SKILL.md`](../SKILL.md) — frozen classes and gates

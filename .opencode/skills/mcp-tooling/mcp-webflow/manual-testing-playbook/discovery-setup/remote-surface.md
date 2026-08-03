@@ -1,15 +1,15 @@
 ---
-title: "REMOTE-SURFACE-001 -- Remote vs local surface reconciliation"
+title: "DISCOVER-003 -- Remote vs local surface reconciliation"
 description: "The session resolves which surface is live (remote vs local OSS) before any call."
 stage: routing
 version: 1.0.0.0
 ---
 
-# REMOTE-SURFACE-001 -- Remote vs local surface reconciliation
+# DISCOVER-003 -- Remote vs local surface reconciliation
 
 ## 1. OVERVIEW
 
-This scenario validates Remote vs local surface reconciliation for `REMOTE-SURFACE-001`. It focuses on The session resolves which surface is live (remote vs local OSS) before any call..
+This scenario validates Remote vs local surface reconciliation for `DISCOVER-003`. It focuses on The session resolves which surface is live (remote vs local OSS) before any call..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ The session resolves which surface is live (remote vs local OSS) before any call
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `REMOTE-SURFACE-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `DISCOVER-003` and confirm the expected signals without contradictory evidence.
 
 - Objective: The session resolves which surface is live (remote vs local OSS) before any call.
 - Real user request: `Run discovery and identify the live surface.`
@@ -81,6 +81,6 @@ list_tools count, surface verdict, pinned version.
 ## 5. SOURCE METADATA
 
 - Group: Discovery and Setup
-- Playbook ID: REMOTE-SURFACE-001
+- Playbook ID: DISCOVER-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `discovery-setup/remote-surface.md`

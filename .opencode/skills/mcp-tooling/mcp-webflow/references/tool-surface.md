@@ -1,6 +1,6 @@
 ---
 title: "Webflow MCP Tool Surface (Research Baseline)"
-description: "Research-time inventory of the official Webflow MCP 2.0 tool surface: 18 modules, per-action operation classes, HTTP semantics, and gates. Baseline only — always re-discover live per session."
+description: "Research-time inventory of the local OSS webflow-mcp-server 18-module surface with risk classes; the remote surface lives in action-reference.md."
 trigger_phrases:
   - "webflow tool surface"
   - "webflow mcp tools"
@@ -12,7 +12,7 @@ version: 1.1.0.0
 ---
 # Webflow MCP Tool Surface (Local OSS Baseline)
 
-Research-time inventory of the local `webflow-mcp-server` 18-module surface with risk classes.
+Research-time inventory of the local 18-module server surface.
 
 ---
 ## 1. OVERVIEW
@@ -94,5 +94,5 @@ exist in the Data API v2 surface → treated as unsupported.
 ---
 ## 8. RELATED RESOURCES
 
-- [`../action-reference.md`](../action-reference.md) — remote surface (31 tools / 220 actions)
+- [`action-reference.md`](action-reference.md) — remote surface (31 tools / 220 actions)
 - [`../SKILL.md`](../SKILL.md) — frozen classes and gates

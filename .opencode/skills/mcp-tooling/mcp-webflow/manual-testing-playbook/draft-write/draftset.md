@@ -1,15 +1,15 @@
 ---
-title: "DRAFTSET-001 -- Draft page settings update"
+title: "DRAFT-001 -- Draft page settings update"
 description: "DW page settings update without publish-status change."
 stage: routing
 version: 1.0.0.0
 ---
 
-# DRAFTSET-001 -- Draft page settings update
+# DRAFT-001 -- Draft page settings update
 
 ## 1. OVERVIEW
 
-This scenario validates Draft page settings update for `DRAFTSET-001`. It focuses on DW page settings update without publish-status change..
+This scenario validates Draft page settings update for `DRAFT-001`. It focuses on DW page settings update without publish-status change..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ DW page settings update without publish-status change.
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `DRAFTSET-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `DRAFT-001` and confirm the expected signals without contradictory evidence.
 
 - Objective: DW page settings update without publish-status change.
 - Real user request: `Update the 'About' page title in the test site (draft).`
@@ -81,6 +81,6 @@ Before/after settings, no publish receipt.
 ## 5. SOURCE METADATA
 
 - Group: Draft-Write
-- Playbook ID: DRAFTSET-001
+- Playbook ID: DRAFT-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `draft-write/draftset.md`

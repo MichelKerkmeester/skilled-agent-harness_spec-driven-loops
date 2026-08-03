@@ -1,15 +1,15 @@
 ---
-title: "RATELIMIT-001 -- 429 backoff and Retry-After"
+title: "SAFE-003 -- 429 backoff and Retry-After"
 description: "429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed."
 stage: safety
 version: 1.0.0.0
 ---
 
-# RATELIMIT-001 -- 429 backoff and Retry-After
+# SAFE-003 -- 429 backoff and Retry-After
 
 ## 1. OVERVIEW
 
-This scenario validates 429 backoff and Retry-After for `RATELIMIT-001`. It focuses on 429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed..
+This scenario validates 429 backoff and Retry-After for `SAFE-003`. It focuses on 429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ This scenario validates 429 backoff and Retry-After for `RATELIMIT-001`. It focu
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `RATELIMIT-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `SAFE-003` and confirm the expected signals without contradictory evidence.
 
 - Objective: 429 responses trigger Retry-After-aware backoff; failed non-idempotent writes are not blindly replayed.
 - Real user request: `Keep reading the CMS items until the rate limit kicks in.`
@@ -81,6 +81,6 @@ Response headers, backoff timings, no-replay record.
 ## 5. SOURCE METADATA
 
 - Group: Safety Gate
-- Playbook ID: RATELIMIT-001
+- Playbook ID: SAFE-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `safety-gate/rate-limit.md`

@@ -11,12 +11,12 @@ version: 1.2.0.0
 
 # mcp-webflow: Feature Catalog
 
-<!-- sk-doc-template: feature-catalog-template -->
 
 Canonical capability inventory for the mcp-webflow transport.
 
 ---
 
+---
 ## 1. OVERVIEW
 
 Canonical capability inventory for the `mcp-webflow` skill. The transport reaches Webflow MCP 2.0
@@ -30,6 +30,7 @@ DP deploy) and gate. The transport never mutates this workspace (`mutatesWorkspa
 Write/Edit/Task forbidden); all mutations land in Webflow's cloud under the frozen gates.
 Designer-family modules require `sk-design` pairing.
 
+---
 ## 2. REMOTE SURFACE (31 tools / 220 actions, 21 groups)
 
 | Capability group | Tools | Actions | Read/Write |
@@ -56,8 +57,10 @@ Designer-family modules require `sk-design` pairing.
 | Designer canvas | 2 | 16 | read, write |
 | Utility | 3 | 3 | read |
 
+---
 ## 3. CAPABILITY CARDS
 
+---
 ### CMS
 
 #### Description
@@ -71,8 +74,9 @@ version remains the authoritative inventory.
 
 #### Source Files
 
-See [`cms.md`](cms.md) for the full capability card.
+See [`design/component-variants.md`](design/component-variants.md) for the full capability card.
 
+---
 ### Publish and deploy
 
 #### Description
@@ -88,6 +92,7 @@ version remains the authoritative inventory.
 
 See [`publish-deploy.md`](publish-deploy.md) for the full capability card.
 
+---
 ### Designer-family
 
 #### Description
@@ -103,6 +108,7 @@ version remains the authoritative inventory.
 
 See [`designer.md`](designer.md) for the full capability card.
 
+---
 ### Site, pages, scripts, webhooks, enterprise, AI
 
 #### Description
@@ -118,6 +124,7 @@ version remains the authoritative inventory.
 
 See [`site-pages-scripts.md`](site-pages-scripts.md) for the full capability card.
 
+---
 ### Agent Instructions
 
 #### Description
@@ -133,6 +140,7 @@ version remains the authoritative inventory.
 
 See [`agent-instructions.md`](agent-instructions.md) for the full capability card.
 
+---
 ### Analyze add-on
 
 #### Description
@@ -148,6 +156,7 @@ version remains the authoritative inventory.
 
 See [`analyze.md`](analyze.md) for the full capability card.
 
+---
 ### Localization, fonts, forms
 
 #### Description
@@ -163,6 +172,7 @@ version remains the authoritative inventory.
 
 See [`localization-fonts-forms.md`](localization-fonts-forms.md) for the full capability card.
 
+---
 ### Sitemap, scripts, assets, WHTML
 
 #### Description
@@ -178,6 +188,7 @@ version remains the authoritative inventory.
 
 See [`sitemap-scripts-assets-whtml.md`](sitemap-scripts-assets-whtml.md) for the full capability card.
 
+---
 ### Component variants
 
 #### Description
@@ -193,6 +204,7 @@ version remains the authoritative inventory.
 
 See [`component-variants.md`](component-variants.md) for the full capability card.
 
+---
 ## 4. LOCAL OSS BASELINE (18 modules)
 
 The local `webflow-mcp-server` (npm) surface is the research-time 18-module baseline documented in
@@ -203,6 +215,7 @@ remote surface (e.g., `run_workflow`, Designer `de*` modules) and omits remote-o
 (analyze, fonts, forms, localization, sitemap, WHTML, component variants, agent instructions).
 Do not mix surfaces when calling tools.
 
+---
 ## 5. CROSS-CUTTING CAPABILITIES
 
 - **No auto-publish**: publishing is always a separate explicit action (1/min queue); remote CMS

@@ -1,15 +1,15 @@
 ---
-title: "NONWEBFLOW-001 -- Non-Webflow intent defers"
+title: "NEG-001 -- Non-Webflow intent defers"
 description: "Off-topic requests never route to webflow tools."
 stage: negative
 version: 1.0.0.0
 ---
 
-# NONWEBFLOW-001 -- Non-Webflow intent defers
+# NEG-001 -- Non-Webflow intent defers
 
 ## 1. OVERVIEW
 
-This scenario validates Non-Webflow intent defers for `NONWEBFLOW-001`. It focuses on Off-topic requests never route to webflow tools..
+This scenario validates Non-Webflow intent defers for `NEG-001`. It focuses on Off-topic requests never route to webflow tools..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Off-topic requests never route to webflow tools.
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `NONWEBFLOW-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `NEG-001` and confirm the expected signals without contradictory evidence.
 
 - Objective: Off-topic requests never route to webflow tools.
 - Real user request: `Review the auth module code; search refero for web product styles.`
@@ -81,6 +81,6 @@ Routing verdicts (benchmark replay 12/12).
 ## 5. SOURCE METADATA
 
 - Group: Negative
-- Playbook ID: NONWEBFLOW-001
+- Playbook ID: NEG-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `negative/non-webflow.md`

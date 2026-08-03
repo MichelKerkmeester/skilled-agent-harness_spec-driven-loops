@@ -1,15 +1,15 @@
 ---
-title: "PUBGATE-001 -- Staging-only single-page publish"
+title: "SAFE-001 -- Staging-only single-page publish"
 description: "Single-page publish to the staging subdomain requires confirmation and uses publishToWebflowSubdomain + pageId."
 stage: safety
 version: 1.0.0.0
 ---
 
-# PUBGATE-001 -- Staging-only single-page publish
+# SAFE-001 -- Staging-only single-page publish
 
 ## 1. OVERVIEW
 
-This scenario validates Staging-only single-page publish for `PUBGATE-001`. It focuses on Single-page publish to the staging subdomain requires confirmation and uses publishToWebflowSubdomain + pageId..
+This scenario validates Staging-only single-page publish for `SAFE-001`. It focuses on Single-page publish to the staging subdomain requires confirmation and uses publishToWebflowSubdomain + pageId..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Single-page publish to the staging subdomain requires confirmation and uses publ
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `PUBGATE-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `SAFE-001` and confirm the expected signals without contradictory evidence.
 
 - Objective: Single-page publish to the staging subdomain requires confirmation and uses publishToWebflowSubdomain + pageId.
 - Real user request: `Publish the 'About' page of the test site to the staging subdomain.`
@@ -81,6 +81,6 @@ Confirmation record, publish receipt, staged page URL, rollback statement.
 ## 5. SOURCE METADATA
 
 - Group: Safety Gate
-- Playbook ID: PUBGATE-001
+- Playbook ID: SAFE-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `safety-gate/pubgate.md`

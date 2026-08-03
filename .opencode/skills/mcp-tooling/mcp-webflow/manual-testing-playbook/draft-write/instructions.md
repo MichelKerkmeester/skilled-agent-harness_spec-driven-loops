@@ -1,15 +1,15 @@
 ---
-title: "INSTRUCTIONS-001 -- Agent Instructions draft-write"
+title: "DRAFT-002 -- Agent Instructions draft-write"
 description: "Agent Instruction create/update are DW; delete is DS (cascading)."
 stage: routing
 version: 1.0.0.0
 ---
 
-# INSTRUCTIONS-001 -- Agent Instructions draft-write
+# DRAFT-002 -- Agent Instructions draft-write
 
 ## 1. OVERVIEW
 
-This scenario validates Agent Instructions draft-write for `INSTRUCTIONS-001`. It focuses on Agent Instruction create/update are DW; delete is DS (cascading)..
+This scenario validates Agent Instructions draft-write for `DRAFT-002`. It focuses on Agent Instruction create/update are DW; delete is DS (cascading)..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Agent Instruction create/update are DW; delete is DS (cascading).
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `INSTRUCTIONS-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `DRAFT-002` and confirm the expected signals without contradictory evidence.
 
 - Objective: Agent Instruction create/update are DW; delete is DS (cascading).
 - Real user request: `Create a rule 'publish staging only' on the test site.`
@@ -81,6 +81,6 @@ Instruction content reviewed; delete confirmation record.
 ## 5. SOURCE METADATA
 
 - Group: Draft-Write
-- Playbook ID: INSTRUCTIONS-001
+- Playbook ID: DRAFT-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `draft-write/instructions.md`

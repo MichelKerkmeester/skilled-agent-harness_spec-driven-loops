@@ -1,15 +1,15 @@
 ---
-title: "PAIR-DATA-001 -- Data-family runs transport-only"
+title: "PAIR-002 -- Data-family runs transport-only"
 description: "Data-family operations run transport-only (negative pairing check)."
 stage: routing
 version: 1.0.0.0
 ---
 
-# PAIR-DATA-001 -- Data-family runs transport-only
+# PAIR-002 -- Data-family runs transport-only
 
 ## 1. OVERVIEW
 
-This scenario validates Data-family runs transport-only for `PAIR-DATA-001`. It focuses on Data-family operations run transport-only (negative pairing check)..
+This scenario validates Data-family runs transport-only for `PAIR-002`. It focuses on Data-family operations run transport-only (negative pairing check)..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Data-family operations run transport-only (negative pairing check).
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `PAIR-DATA-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `PAIR-002` and confirm the expected signals without contradictory evidence.
 
 - Objective: Data-family operations run transport-only (negative pairing check).
 - Real user request: `Create a draft CMS item in the 'Blog' collection.`
@@ -81,6 +81,6 @@ Tool call order; no forced sk-design load.
 ## 5. SOURCE METADATA
 
 - Group: Judgment Pairing
-- Playbook ID: PAIR-DATA-001
+- Playbook ID: PAIR-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pairing/pair-data.md`

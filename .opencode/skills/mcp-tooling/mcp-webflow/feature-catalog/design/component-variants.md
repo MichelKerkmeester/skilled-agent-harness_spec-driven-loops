@@ -1,17 +1,13 @@
 ---
-title: "Capability: Component variants"
+title: "Component variants"
 description: "Webflow component-variants capability card: the eight data_component_variants_tool actions — variant reads, create/update, default variants, and destructive delete_variant."
 trigger_phrases: ["webflow component variants", "webflow variants", "webflow variant"]
-importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
----
 
 # Component variants
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Operates component variant definitions on the remote surface via `data_component_variants_tool`
@@ -20,6 +16,16 @@ component change appearance per state; `delete_variant` is destructive.
 
 ---
 ## 2. HOW IT WORKS
+
+### Variant Reads
+
+Reads list and inspect variants for a component (`get_variant_settings` and variant list/get actions) — RO, no gate.
+
+### Variant Mutations
+
+Create, update, set-default, and delete variants — DW for create/update/set-default, DS for `delete_variant` (operator confirmation, irreversible).
+
+### Action Table
 
 | Action | Required parameters | Class |
 |--------|---------------------|-------|
@@ -44,24 +50,22 @@ Example prompts: "list the variants of the 'Button' component", "create a 'hover
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Components) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Components) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Components
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `component-variants.md`
+- Feature file path: `design/component-variants.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`designer.md`](designer.md) — related capability

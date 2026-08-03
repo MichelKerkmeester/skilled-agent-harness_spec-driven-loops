@@ -1,7 +1,10 @@
 ---
 title: "Example: staging-only single-page publish"
 description: "The approved publish path: confirmation, staging subdomain, single pageId, publish receipt, rollback plan."
-trigger_phrases: ["webflow publish example", "webflow staging example"]
+trigger_phrases:
+  - "webflow publish example"
+  - "webflow staging example"
+  - "webflow staging publish flow"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0

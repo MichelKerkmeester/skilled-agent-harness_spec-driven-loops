@@ -1,17 +1,14 @@
 ---
-title: "Capability: Agent Instructions (rules + skills)"
+title: "Agent Instructions"
 description: "Webflow Agent Instructions capability card: create/read/search/update/move/delete site rules and skills — the markdown guidance agents follow per site."
 trigger_phrases: ["webflow agent instructions", "webflow rules", "webflow skills"]
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Agent Instructions (rules + skills)
+# Agent Instructions
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Manages a site's agent instructions: markdown-based rules and skills that give agents custom
@@ -33,7 +30,6 @@ resolve server-side against the site's own data.
 | `delete_instruction` | `site_id`, `kind`, `path` | DS |
 | `move_instruction` | `site_id`, `kind`, `fromPath`, `toPath` | DW |
 
----
 ### Semantics
 
 - `kind` selects the path grammar (rule vs skill); deleting a skill's `SKILL.md` cascades to all
@@ -41,7 +37,6 @@ resolve server-side against the site's own data.
 - `move_instruction` renames/moves with cascade; the destination must keep the same parent folder.
 - This is site-scoped configuration — review content before writing; treat deletion as DS.
 
----
 ### Example prompts
 
 - "search the agent instructions on the test site"
@@ -55,24 +50,22 @@ resolve server-side against the site's own data.
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Agent Instructions) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Agent Instructions) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Agent Instructions
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `agent-instructions.md`
+- Feature file path: `intelligence/agent-instructions.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`analyze.md`](analyze.md) — related capability

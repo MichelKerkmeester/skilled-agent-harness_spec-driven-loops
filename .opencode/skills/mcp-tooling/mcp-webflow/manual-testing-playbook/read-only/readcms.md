@@ -1,15 +1,15 @@
 ---
-title: "READCMS-001 -- Read CMS collection"
+title: "READ-001 -- Read CMS collection"
 description: "RO CMS reads pass without confirmation."
 stage: routing
 version: 1.0.0.0
 ---
 
-# READCMS-001 -- Read CMS collection
+# READ-001 -- Read CMS collection
 
 ## 1. OVERVIEW
 
-This scenario validates Read CMS collection for `READCMS-001`. It focuses on RO CMS reads pass without confirmation..
+This scenario validates Read CMS collection for `READ-001`. It focuses on RO CMS reads pass without confirmation..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ RO CMS reads pass without confirmation.
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `READCMS-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `READ-001` and confirm the expected signals without contradictory evidence.
 
 - Objective: RO CMS reads pass without confirmation.
 - Real user request: `List the CMS collection items in the test site.`
@@ -81,6 +81,6 @@ Tool output (redacted).
 ## 5. SOURCE METADATA
 
 - Group: Read-Only
-- Playbook ID: READCMS-001
+- Playbook ID: READ-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `read-only/readcms.md`

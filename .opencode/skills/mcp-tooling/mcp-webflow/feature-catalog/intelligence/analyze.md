@@ -1,17 +1,13 @@
 ---
-title: "Capability: Analyze add-on reports"
+title: "Analyze add-on"
 description: "Webflow Analyze capability card: traffic trends, ranked pages, ranked dimensions, engagement, time-on-page reports (Analyze add-on required)."
 trigger_phrases: ["webflow analyze", "webflow traffic", "webflow analytics"]
-importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Analyze add-on reports
+# Analyze add-on
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Read-only access to Webflow Analyze report data for a site: traffic over time, ranked pages,
@@ -30,14 +26,12 @@ actions return an error on sites without it.
 | `get_time_on_page_report` | `site_id`, `startTime`, `endTime`, `metricScope` | RO |
 | traffic trend / ranked pages / ranked dimensions / engagement events | `site_id`, date range, filters | RO |
 
----
 ### Semantics
 
 - Use the guide actions first when unsure how to shape a query or trace an event back to the
   element that produced it.
 - Read-only: no gates beyond scope check.
 
----
 ### Example prompts
 
 - "what is the traffic trend for the test site over the last 30 days"
@@ -51,24 +45,22 @@ actions return an error on sites without it.
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Analyze (add-on)) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Analyze (add-on)) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Analyze (add-on)
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `analyze.md`
+- Feature file path: `intelligence/analyze.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`agent-instructions.md`](agent-instructions.md) — related capability

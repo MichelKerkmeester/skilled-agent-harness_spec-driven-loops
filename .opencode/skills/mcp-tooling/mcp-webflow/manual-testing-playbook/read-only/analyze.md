@@ -1,15 +1,15 @@
 ---
-title: "ANALYZE-001 -- Analyze reports read-only"
+title: "READ-003 -- Analyze reports read-only"
 description: "Analyze reports are read-only and pass ungated (Analyze add-on required)."
 stage: routing
 version: 1.0.0.0
 ---
 
-# ANALYZE-001 -- Analyze reports read-only
+# READ-003 -- Analyze reports read-only
 
 ## 1. OVERVIEW
 
-This scenario validates Analyze reports read-only for `ANALYZE-001`. It focuses on Analyze reports are read-only and pass ungated (Analyze add-on required)..
+This scenario validates Analyze reports read-only for `READ-003`. It focuses on Analyze reports are read-only and pass ungated (Analyze add-on required)..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Analyze reports are read-only and pass ungated (Analyze add-on required).
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `ANALYZE-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `READ-003` and confirm the expected signals without contradictory evidence.
 
 - Objective: Analyze reports are read-only and pass ungated (Analyze add-on required).
 - Real user request: `Show me the traffic trend for the test site over the last 30 days.`
@@ -81,6 +81,6 @@ Report output or SKIP record naming the missing add-on.
 ## 5. SOURCE METADATA
 
 - Group: Read-Only
-- Playbook ID: ANALYZE-001
+- Playbook ID: READ-003
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `read-only/analyze.md`

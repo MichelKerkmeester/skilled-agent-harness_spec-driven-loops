@@ -1,7 +1,10 @@
 ---
 title: "Example: destructive action refused without confirmation"
 description: "Shows the fail-closed path for a destructive Webflow request: discovery, class DS, confirmation required, refusal without it."
-trigger_phrases: ["webflow delete example", "webflow destructive example"]
+trigger_phrases:
+  - "webflow delete example"
+  - "webflow destructive example"
+  - "webflow destructive refusal"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0

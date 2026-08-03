@@ -11,7 +11,7 @@ version: 1.1.0.0
 ---
 # Webflow MCP Action Reference (Remote Surface)
 
-Complete official action reference for the Webflow MCP remote surface: 31 tools, 220 actions.
+Complete action inventory for the remote Webflow MCP surface.
 
 ---
 ## 1. OVERVIEW
@@ -31,8 +31,6 @@ Every action on the page-building tools (`data_element_tool`, `data_element_sett
 `data_variable_tool`) requires `siteId` and `pageId` in addition to the parameters listed;
 Designer-canvas actions (`designer_tool`, `element_snapshot_tool`) require `siteId`. Actions
 without required parameters are marked `—`.
-
----
 
 ---
 ## 2. AGENT INSTRUCTIONS
@@ -495,6 +493,6 @@ without required parameters are marked `—`.
 ---
 ## 23. RELATED RESOURCES
 
-- [`../tool-surface.md`](../tool-surface.md) — local OSS baseline (18 modules)
-- [`../mcp-wiring.md`](../mcp-wiring.md) — wiring, auth, scope model
+- [`tool-surface.md`](tool-surface.md) — local OSS baseline (18 modules)
+- [`mcp-wiring.md`](mcp-wiring.md) — wiring, auth, scope model
 - [`../SKILL.md`](../SKILL.md) — frozen classes and gates

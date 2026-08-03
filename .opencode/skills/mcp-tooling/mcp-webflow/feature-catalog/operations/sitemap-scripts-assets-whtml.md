@@ -1,17 +1,13 @@
 ---
-title: "Capability: Sitemap, scripts, assets, whtml"
+title: "Sitemap, scripts, assets, WHTML"
 description: "Webflow sitemap/scripts/assets/whtml capability card: bulk sitemap status, the 20-action scripts surface, asset compression, and WHMTL building."
 trigger_phrases: ["webflow sitemap", "webflow scripts", "webflow assets", "webflow whtml"]
-importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Sitemap, scripts, assets, whtml
+# Sitemap, scripts, assets, WHTML
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 The operational surface beyond content: sitemap status bulk updates, the rich custom-code scripts
@@ -51,14 +47,12 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 |--------|-------|
 | `insert_whtml` (page building via WHTML) | DW (design-affecting → sk-design pairing) |
 
----
 ### Semantics
 
 - Scripts ship with publish: script registration is publish-adjacent; clearing scripts is DS.
 - Bulk sitemap updates: confirm the selection before writing (bulk blast radius).
 - `insert_whtml` builds page structure — pair with `sk-design` for layout intent.
 
----
 ### Example prompts
 
 - "update the sitemap status of the 'Blog' collection items to 'noindex'" (confirmation, bulk)
@@ -73,24 +67,22 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Sitemap, Assets, WHTML, Scripts) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Sitemap, Assets, WHTML, Scripts) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Sitemap, Assets, WHTML, Scripts
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `sitemap-scripts-assets-whtml.md`
+- Feature file path: `operations/sitemap-scripts-assets-whtml.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`site-pages-scripts.md`](site-pages-scripts.md) — related capability

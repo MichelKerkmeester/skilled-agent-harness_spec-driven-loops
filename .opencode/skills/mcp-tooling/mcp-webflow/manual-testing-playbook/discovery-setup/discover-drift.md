@@ -1,15 +1,15 @@
 ---
-title: "DISCOVER-DRIFT-001 -- Tool-surface drift fails closed"
+title: "DISCOVER-002 -- Tool-surface drift fails closed"
 description: "Live discovery is authoritative; drift is recorded and mismatched tools are never called."
 stage: routing
 version: 1.0.0.0
 ---
 
-# DISCOVER-DRIFT-001 -- Tool-surface drift fails closed
+# DISCOVER-002 -- Tool-surface drift fails closed
 
 ## 1. OVERVIEW
 
-This scenario validates Tool-surface drift fails closed for `DISCOVER-DRIFT-001`. It focuses on Live discovery is authoritative; drift is recorded and mismatched tools are never called..
+This scenario validates Tool-surface drift fails closed for `DISCOVER-002`. It focuses on Live discovery is authoritative; drift is recorded and mismatched tools are never called..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ Live discovery is authoritative; drift is recorded and mismatched tools are neve
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `DISCOVER-DRIFT-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `DISCOVER-002` and confirm the expected signals without contradictory evidence.
 
 - Objective: Live discovery is authoritative; drift is recorded and mismatched tools are never called.
 - Real user request: `List tools and compare them against the baseline inventory.`
@@ -81,6 +81,6 @@ Dated drift fixture, refused-call record.
 ## 5. SOURCE METADATA
 
 - Group: Discovery and Setup
-- Playbook ID: DISCOVER-DRIFT-001
+- Playbook ID: DISCOVER-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `discovery-setup/discover-drift.md`

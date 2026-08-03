@@ -1,7 +1,10 @@
 ---
 title: "Example: read CMS content and page metadata"
 description: "Read-only Webflow session: discover tools, list CMS items, read page metadata. No confirmation gates needed."
-trigger_phrases: ["webflow read example", "webflow cms read"]
+trigger_phrases:
+  - "webflow read example"
+  - "webflow cms read"
+  - "webflow read-only session"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0

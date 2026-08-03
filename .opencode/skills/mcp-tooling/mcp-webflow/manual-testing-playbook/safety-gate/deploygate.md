@@ -1,15 +1,15 @@
 ---
-title: "DEPLOYGATE-001 -- run_workflow requires confirmation"
+title: "SAFE-004 -- run_workflow requires confirmation"
 description: "run_workflow (local OSS surface) requires confirmation with a named target environment and rollback controls."
 stage: safety
 version: 1.0.0.0
 ---
 
-# DEPLOYGATE-001 -- run_workflow requires confirmation
+# SAFE-004 -- run_workflow requires confirmation
 
 ## 1. OVERVIEW
 
-This scenario validates run_workflow requires confirmation for `DEPLOYGATE-001`. It focuses on run_workflow (local OSS surface) requires confirmation with a named target environment and rollback controls..
+This scenario validates run_workflow requires confirmation for `SAFE-004`. It focuses on run_workflow (local OSS surface) requires confirmation with a named target environment and rollback controls..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ run_workflow (local OSS surface) requires confirmation with a named target envir
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `DEPLOYGATE-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `SAFE-004` and confirm the expected signals without contradictory evidence.
 
 - Objective: run_workflow (local OSS surface) requires confirmation with a named target environment and rollback controls.
 - Real user request: `Run the 'Weekly report' workflow on the test site.`
@@ -81,6 +81,6 @@ Confirmation record, run receipt, environment name.
 ## 5. SOURCE METADATA
 
 - Group: Safety Gate
-- Playbook ID: DEPLOYGATE-001
+- Playbook ID: SAFE-004
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `safety-gate/deploygate.md`

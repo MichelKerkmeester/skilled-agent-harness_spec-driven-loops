@@ -1,7 +1,10 @@
 ---
 title: "Example: draft-safe page settings update"
 description: "Draft-write session: update page settings without publishing. No confirmation gate; scope check only."
-trigger_phrases: ["webflow draft example", "webflow page settings"]
+trigger_phrases:
+  - "webflow draft example"
+  - "webflow page settings"
+  - "webflow draft write"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0

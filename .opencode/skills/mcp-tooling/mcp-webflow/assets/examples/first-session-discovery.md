@@ -1,7 +1,10 @@
 ---
 title: "Example: first authenticated session (discovery + pin)"
 description: "The operator-approved first live session: doctor, discovery, drift check, version pin, fixture update."
-trigger_phrases: ["webflow first session", "webflow discovery example"]
+trigger_phrases:
+  - "webflow first session"
+  - "webflow discovery example"
+  - "webflow first authenticated session"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0

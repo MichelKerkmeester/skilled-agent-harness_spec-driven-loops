@@ -1,17 +1,14 @@
 ---
-title: "Capability: CMS content (read, draft-write, publish, delete)"
+title: "CMS"
 description: "Webflow CMS capability card: collection/item reads (RO), draft and live writes (DW), publish (PB), and delete (DS) with the frozen gates and CMS-specific semantics."
 trigger_phrases: ["webflow cms", "webflow collection", "webflow cms items"]
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: CMS content (read, draft-write, publish, delete)
+# CMS
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Read, create, update, publish, and delete Webflow CMS collections and items through the `cms`
@@ -30,7 +27,6 @@ module of the official MCP server (Data API v2).
 | `publish_collection_items` / `unpublish_collection_items` | PB | operator confirmation; live publish (no staging-domain target — staging policy applies at the site level); 1 publish/min queue |
 | `delete_collection_items`, `delete_collection_field` | DS | operator confirmation; before/after listing; rollback = re-publish prior content |
 
----
 ### Safety-critical semantics
 
 - On the **remote surface**, create/update item actions create **drafts**; publishing is a separate
@@ -40,7 +36,6 @@ module of the official MCP server (Data API v2).
 - Delete is permanent via the MCP surface (no trash/revert endpoint); rollback is re-publishing
   prior content — confirm before/after state.
 
----
 ### Example prompts
 
 - RO: "list the CMS collection items in the test site"
@@ -56,24 +51,23 @@ module of the official MCP server (Data API v2).
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (CMS) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (CMS) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: CMS
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `cms.md`
+- Feature file path: `content/cms.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`publish-deploy.md`](publish-deploy.md) — related capability
+- [`localization-fonts-forms.md`](localization-fonts-forms.md) — related capability

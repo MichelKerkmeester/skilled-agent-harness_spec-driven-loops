@@ -1,17 +1,13 @@
 ---
-title: "Capability: Site, pages, scripts, webhooks, enterprise, AI"
+title: "Site, pages, scripts, webhooks, enterprise, AI"
 description: "Webflow site/pages/scripts/webhooks/enterprise/AI capability card: the read-only and draft-write surface beyond CMS and Designer."
 trigger_phrases: ["webflow site", "webflow pages", "webflow scripts", "webflow webhooks", "webflow enterprise", "webflow ai"]
-importance_tier: normal
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Site, pages, scripts, webhooks, enterprise, AI
+# Site, pages, scripts, webhooks, enterprise, AI
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 The remaining Data-API modules: site-level reads/publish, page settings and static content,
@@ -42,7 +38,6 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | comments | `create_reply` (remote) | DW |
 | rules | `webflow_guide_tool` | RO |
 
----
 ### Notes
 
 - `custom_code` scopes are Data-Client-app-only (site tokens cannot call custom-code endpoints).
@@ -56,24 +51,24 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Pages, Scripts, Sites, Webhooks, Enterprise, Utility, Comments) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Pages, Scripts, Sites, Webhooks, Enterprise, Utility, Comments) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Pages, Scripts, Sites, Webhooks, Enterprise, Utility, Comments
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `site-pages-scripts.md`
+- Feature file path: `content/site-pages-scripts.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`cms.md`](cms.md) — related capability
+- [`publish-deploy.md`](publish-deploy.md) — related capability
+- [`sitemap-scripts-assets-whtml.md`](sitemap-scripts-assets-whtml.md) — related capability

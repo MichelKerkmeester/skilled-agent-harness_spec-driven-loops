@@ -1,17 +1,14 @@
 ---
-title: "Capability: Designer-family operations (de* modules)"
+title: "Designer-family"
 description: "Webflow Designer capability card: elements, styles, variables, components, assets, pages via the Bridge App — always paired with sk-design, draft-only until publish."
 trigger_phrases: ["webflow designer", "webflow element", "webflow style", "webflow variable", "webflow component"]
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Designer-family operations (de* modules)
+# Designer-family
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Operates the live Designer canvas via the Bridge App: elements (deElement), styles (deStyle),
@@ -34,7 +31,6 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 | deAsset | asset read/list, upload, delete | RO/DW/DS | sk-design pairing for DW |
 | localDeMCPConnection | `get_designer_app_connection_info` | RO | none (diagnostic) |
 
----
 ### Safety-critical semantics
 
 - Designer tools require the **Bridge App open in the Designer** (auto-installs on remote OAuth;
@@ -44,7 +40,6 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 - **All Designer-family operations load `sk-design` first** (cross-hub pairing): the transport
   executes, never decides taste.
 
----
 ### Example prompts
 
 - "set the hero heading level to H1 in the test site" → sk-design + deElement DW
@@ -58,24 +53,22 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Elements, Components, Variables, Style, Designer canvas) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Elements, Components, Variables, Style, Designer canvas) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Elements, Components, Variables, Style, Designer canvas
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `designer.md`
+- Feature file path: `design/designer.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`component-variants.md`](component-variants.md) — related capability

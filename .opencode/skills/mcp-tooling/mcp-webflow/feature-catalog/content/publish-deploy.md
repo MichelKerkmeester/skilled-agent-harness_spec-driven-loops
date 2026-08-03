@@ -1,17 +1,14 @@
 ---
-title: "Capability: Publish and deploy (site, collection items, workflows)"
+title: "Publish and deploy"
 description: "Webflow publish/deploy capability card: publish_site, publish_collection_items, run_workflow — staging-first gates, the 1-per-minute queue, and rollback posture."
 trigger_phrases: ["webflow publish", "webflow staging", "webflow deploy", "webflow workflow"]
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
----
 
-# Capability: Publish and deploy (site, collection items, workflows)
+# Publish and deploy
 
-<!-- sk-doc-template: feature-catalog-snippet -->
-
----
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 ## 1. OVERVIEW
 
 Explicitly deploys Webflow content to live or staging: site publish, CMS item publish, and
@@ -29,7 +26,6 @@ workflow execution.
 | `update_page_settings` with publishing-status change | PB | operator confirmation |
 | `run_workflow` | DP | operator confirmation; workflow id + inputs; blast radius depends on the workflow definition |
 
----
 ### Safety-critical semantics
 
 - **Staging vs production is structural**: `publishToWebflowSubdomain` (`*.webflow.io`) is the
@@ -40,7 +36,6 @@ workflow execution.
 - Rollback = re-publish prior content/snapshot; Designer version history for page-level work.
 - Script registration ships with site publish (publish-adjacent — treat as gated).
 
----
 ### Example prompts
 
 - "publish the 'About' page to the staging subdomain" → confirmation + `publishToWebflowSubdomain` + `pageId`
@@ -54,24 +49,23 @@ workflow execution.
 
 | File | Layer | Role |
 |---|---|---|
-| `../references/action-reference.md` | Shared | Required parameters per action (Sites, CMS) |
-| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
-| `../SKILL.md` | Shared | Frozen classes and gates |
+| `../../references/action-reference.md` | Shared | Required parameters per action (Sites, CMS) |
+| `../../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+| `../../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
 
----
 
 ## 4. SOURCE METADATA
 
 - Group: Sites, CMS
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `publish-deploy.md`
+- Feature file path: `content/publish-deploy.md`
 
 Related references:
-- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+- [`cms.md`](cms.md) — related capability
+- [`site-pages-scripts.md`](site-pages-scripts.md) — related capability

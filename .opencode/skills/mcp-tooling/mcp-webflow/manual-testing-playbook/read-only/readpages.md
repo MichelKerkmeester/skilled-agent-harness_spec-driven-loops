@@ -1,15 +1,15 @@
 ---
-title: "READPAGES-001 -- Page reads pass ungated"
+title: "READ-002 -- Page reads pass ungated"
 description: "RO page reads pass ungated."
 stage: routing
 version: 1.0.0.0
 ---
 
-# READPAGES-001 -- Page reads pass ungated
+# READ-002 -- Page reads pass ungated
 
 ## 1. OVERVIEW
 
-This scenario validates Page reads pass ungated for `READPAGES-001`. It focuses on RO page reads pass ungated..
+This scenario validates Page reads pass ungated for `READ-002`. It focuses on RO page reads pass ungated..
 
 ### Why This Matters
 
@@ -19,7 +19,7 @@ RO page reads pass ungated.
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt and command sequence for `READPAGES-001` and confirm the expected signals without contradictory evidence.
+Operators run the exact prompt and command sequence for `READ-002` and confirm the expected signals without contradictory evidence.
 
 - Objective: RO page reads pass ungated.
 - Real user request: `List the pages of the test site and get the content of the 'About' page.`
@@ -81,6 +81,6 @@ Tool output (redacted).
 ## 5. SOURCE METADATA
 
 - Group: Read-Only
-- Playbook ID: READPAGES-001
+- Playbook ID: READ-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `read-only/readpages.md`

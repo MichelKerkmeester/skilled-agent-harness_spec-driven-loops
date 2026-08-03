@@ -24,7 +24,6 @@ Designer Bridge App failures, surface drift, and redaction rules. Run `../script
 
 ---
 
-# Webflow MCP Troubleshooting
 
 ---
 ## 2. Discovery Fails (No `Webflow.Webflow.*` Tools In `List_Tools`)
@@ -105,6 +104,6 @@ Designer Bridge App failures, surface drift, and redaction rules. Run `../script
 ---
 ## 10. RELATED RESOURCES
 
-- [`../mcp-wiring.md`](../mcp-wiring.md) — wiring and auth details
-- [`../action-reference.md`](../action-reference.md) — action inventory
+- [`mcp-wiring.md`](mcp-wiring.md) — wiring and auth details
+- [`action-reference.md`](action-reference.md) — action inventory
 - [`../SKILL.md`](../SKILL.md) — frozen classes and gates
