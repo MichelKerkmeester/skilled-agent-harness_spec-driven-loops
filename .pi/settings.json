@@ -25,6 +25,7 @@
     "npm:pi-blackhole",
     "npm:pi-compaction-model",
     "npm:pi-gpt-fast-mode",
+    "npm:pi-omplike-advisor",
     "npm:pi-plan",
     "npm:pi-statusline",
     "npm:pi-subagents"
