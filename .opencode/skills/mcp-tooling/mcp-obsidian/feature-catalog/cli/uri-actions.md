@@ -48,7 +48,7 @@ The headless CLI can edit the underlying files but cannot invoke command-palette
 
 - Group: official obsidian CLI app actions
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `obsidian-cli-app-actions/uri-actions.md`
+- Feature file path: `cli/uri-actions.md`
 
 Related references:
 - [`open-note-or-vault.md`](open-note-or-vault.md) — primary live-app action.

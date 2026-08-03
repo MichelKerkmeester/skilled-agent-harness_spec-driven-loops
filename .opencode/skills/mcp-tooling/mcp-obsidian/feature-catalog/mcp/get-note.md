@@ -48,7 +48,7 @@ If the app, API, token, or manual is unavailable, the router should switch to `n
 
 - Group: MCP high priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-high-priority/get-note.md`
+- Feature file path: `mcp/get-note.md`
 
 Related references:
 - [`write-note.md`](write-note.md) — structured write counterpart.

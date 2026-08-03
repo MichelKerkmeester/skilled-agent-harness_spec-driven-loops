@@ -48,8 +48,8 @@ If the result is empty, the operator checks spelling, the active vault, title se
 
 - Group: notesmd-cli search
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-search/search-note-content.md`
+- Feature file path: `cli/search-note-content.md`
 
 Related references:
 - [`search-note-names.md`](search-note-names.md) — title/name search.
-- [`../notesmd-cli-daily/open-daily-note.md`](../notesmd-cli-daily/open-daily-note.md) — daily note content source.
+- [`../cli/open-daily-note.md`](../cli/open-daily-note.md) — daily note content source.

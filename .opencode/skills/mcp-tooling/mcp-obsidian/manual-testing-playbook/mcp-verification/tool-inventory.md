@@ -83,7 +83,7 @@ Capture the full list, five schemas, exact remaining names, server package versi
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root inventory policy and scenario index |
-| [`../../feature-catalog/mcp-low-priority/additional-tools-verify.md`](../../feature-catalog/mcp-low-priority/additional-tools-verify.md) | Catalog entry for the unknown-tool boundary |
+| [`../../feature-catalog/mcp/additional-tools-verify.md`](../../feature-catalog/mcp/additional-tools-verify.md) | Catalog entry for the unknown-tool boundary |
 
 ### Implementation And Test Anchors
 

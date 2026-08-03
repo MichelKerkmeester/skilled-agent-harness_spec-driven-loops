@@ -80,7 +80,7 @@ Capture discovery, schema, response, query, and live-vault context.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root MCP policy and scenario index |
-| [`../../feature-catalog/mcp-high-priority/search-notes.md`](../../feature-catalog/mcp-high-priority/search-notes.md) | Catalog entry for live search |
+| [`../../feature-catalog/mcp/search-notes.md`](../../feature-catalog/mcp/search-notes.md) | Catalog entry for live search |
 
 ### Implementation And Test Anchors
 

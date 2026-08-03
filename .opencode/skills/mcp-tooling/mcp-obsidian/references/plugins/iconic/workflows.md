@@ -30,7 +30,7 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 
 ## 2. RECIPES
 
-### 2.1 Give an extension an icon (add a file rule)
+### Give an extension an icon (add a file rule)
 
 - Append to `fileRules` (or edit the existing rule for that extension):
 
@@ -40,25 +40,25 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 
 - Prefer editing the existing rule when one matches the extension — merging beats duplicating.
 
-### 2.2 Change a color
+### Change a color
 
 - Find the rule by `name` or `conditions.value`, set `color` to the new hex, keep `id` and everything else.
 
-### 2.3 Disable/enable a rule
+### Disable/enable a rule
 
 - Flip the rule's `enabled` boolean. Do not delete the rule unless asked.
 
-### 2.4 Flip a visibility toggle
+### Flip a visibility toggle
 
 - e.g. `showAllFolderIcons` → `true` / `false`, or `showTagPillIcons`. Single-key merge.
 
-### 2.5 Apply the canonical rulebook (bundle pattern)
+### Apply the canonical rulebook (bundle pattern)
 
 - Same as the Iconic-Setup `merge_rules.py`: back up, then merge the canonical asset `assets/plugins/iconic/iconic-rules.full.json` into the freshly-read vault `data.json` — ONLY its `fileRules`/`folderRules` arrays (plus any explicitly requested keys).
 - Merge by stable rule `id`: **update rules whose ids already exist, append rules with missing ids.** Preserve unrelated settings and user overrides (including per-item icon maps).
 - The full asset contains only the two rule arrays — it is never a whole-`data.json` replacement. The compact `assets/plugins/iconic/iconic-rules.example.json` is schema reference only. Rule-class coverage and the merge contract are summarized in the usage companion `assets/plugins/iconic/iconic-rules.full.md`.
 
-### 2.6 Add a folder rule
+### Add a folder rule
 
 - Append to `folderRules` with `source: name` conditions (`is` for exact names, `contains` for partial):
 

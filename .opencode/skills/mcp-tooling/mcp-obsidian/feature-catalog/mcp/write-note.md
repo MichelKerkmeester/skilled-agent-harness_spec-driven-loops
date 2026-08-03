@@ -48,7 +48,7 @@ Write operations should use an idempotent marker or a throwaway note in manual t
 
 - Group: MCP high priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-high-priority/write-note.md`
+- Feature file path: `mcp/write-note.md`
 
 Related references:
 - [`get-note.md`](get-note.md) — read-before-write counterpart.

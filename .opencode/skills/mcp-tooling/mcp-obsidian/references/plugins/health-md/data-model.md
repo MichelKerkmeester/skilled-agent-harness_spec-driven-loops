@@ -61,31 +61,31 @@ Nested structures still load files directly under the data folder, so flat expor
 
 Distinct layers must never be treated as one stream: daily summaries, separately-indexed roll-ups, the data dictionary, lossless/raw archives, and individual entry notes.
 
-### 3.1 Daily summaries — `healthmd.health_data`
+### Daily summaries — `healthmd.health_data`
 
 - Schema versions v0 through v7 are supported; v5/v6 remain valid historical files; a mixed vault can load v0–v7 without relabeling older exports.
 - Versions newer than v7 are reported best-effort — never assert support for unknown versions.
 - Re-export only when corrected v7 summary or roll-up semantics are required; preserve authentic export semantics and validate version/format.
 
-### 3.2 Roll-ups — `<data folder>/Rollups/`
+### Roll-ups — `<data folder>/Rollups/`
 
 - Weekly/monthly/yearly exported statistics, indexed separately from daily points; keep them separate (merging causes double counting).
 - JSON, Markdown, and Bases roll-ups use v7 semantics; roll-up CSV is unversioned because its public header lacks a schema-version column.
 - v7 corrects VO₂ Max roll-ups to use the latest daily measurement and preserves canonical unit/timezone semantics. Do not silently rewrite older roll-ups.
 
-### 3.3 Metric dictionary — `_healthmd_data_dictionary.json`
+### Metric dictionary — `_healthmd_data_dictionary.json`
 
 - Aliases, canonical units, metric IDs/types: interpretation metadata, not observations.
 - Read to resolve a metric name; avoid casual edits; never invent metrics.
 
-### 3.4 Lossless/raw archives
+### Lossless/raw archives
 
 - `healthmd.healthkit_records` v1 (Apple, embedded in v6/v7 JSON): the plugin reads only capture status, schema version, record counts, query status counts, and warning counts. Canonical records, UUID relationships, routes, waveforms, clinical payloads, and binary/base64 material are excluded from metric summaries and the in-memory day cache. Do not rewrite the archive.
 - Android raw JSON/NDJSON snapshots: immutable provider/API archival products preserving provider-native structures; explicitly not daily summaries. Keep them out of daily-data ingestion.
 - Android destinations: Storage Access Framework destinations may be local or provider-backed; compatibility API uploads may be HTTP or HTTPS, while raw uploads require HTTPS and reject redirects. "Local-first" therefore does not mean every user-selected destination is local.
 - Large JSON/CSV/lossless inputs get bounded previews — a correctness, performance, and privacy boundary.
 
-### 3.5 Individual entry notes
+### Individual entry notes
 
 - Detailed workouts, vitals, and platform-specific entries live in notes discoverable by declared frontmatter/tags — a separate discovery path.
 - Do not merge them into daily summaries.

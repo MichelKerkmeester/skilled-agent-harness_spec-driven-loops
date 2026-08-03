@@ -48,7 +48,7 @@ The command operates locally and does not need a running app. Re-registering the
 
 - Group: notesmd-cli vaults
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-vaults/remove-vault.md`
+- Feature file path: `cli/remove-vault.md`
 
 Related references:
 - [`list-vaults.md`](list-vaults.md) — verifies the registration list.

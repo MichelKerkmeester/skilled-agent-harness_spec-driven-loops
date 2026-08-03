@@ -48,8 +48,8 @@ The command is suitable for servers, CI, and unattended workflows because it doe
 
 - Group: notesmd-cli create
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-create/create-note.md`
+- Feature file path: `cli/create-note.md`
 
 Related references:
-- [`../notesmd-cli-search/search-note-names.md`](../notesmd-cli-search/search-note-names.md) — title lookup used before creation.
-- [`../notesmd-cli-search/search-note-content.md`](../notesmd-cli-search/search-note-content.md) — body search for follow-up verification.
+- [`../cli/search-note-names.md`](../cli/search-note-names.md) — title lookup used before creation.
+- [`../cli/search-note-content.md`](../cli/search-note-content.md) — body search for follow-up verification.

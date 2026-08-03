@@ -81,8 +81,8 @@ Capture the three command outputs, exit codes, and the exact selected vault name
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-vaults/list-vaults.md`](../../feature-catalog/notesmd-cli-vaults/list-vaults.md) | Catalog entry for vault discovery |
-| [`../../feature-catalog/notesmd-cli-vaults/set-default-vault.md`](../../feature-catalog/notesmd-cli-vaults/set-default-vault.md) | Catalog entry for default selection |
+| [`../../feature-catalog/cli/list-vaults.md`](../../feature-catalog/cli/list-vaults.md) | Catalog entry for vault discovery |
+| [`../../feature-catalog/cli/set-default-vault.md`](../../feature-catalog/cli/set-default-vault.md) | Catalog entry for default selection |
 
 ### Implementation And Test Anchors
 

@@ -49,11 +49,11 @@ The settings and defaults are defined by [`src/settings.ts`](https://github.com/
 
 ## 3. REPOSITORY AND THEME RECORDS
 
-### 3.1 `pluginList`
+### `pluginList`
 
 `pluginList` is a string array, not an array of release objects. Each string identifies a GitHub repository using the `owner/repository` path. The repository path is the stable membership key used to find the beta plugin in BRAT's update policy.
 
-### 3.2 `pluginSubListFrozenVersion`
+### `pluginSubListFrozenVersion`
 
 Records in `pluginSubListFrozenVersion` use the following persisted fields:
 
@@ -67,11 +67,11 @@ Records in `pluginSubListFrozenVersion` use the following persisted fields:
 
 The release selector uses the exact `version` tag for a frozen record. A frozen record can remain in `pluginList` so the plugin is installed and registered while update sweeps deliberately skip it.
 
-### 3.3 GitHub token separation in v2.0+
+### GitHub token separation in v2.0+
 
 BRAT v2.0+ keeps GitHub token values in Obsidian SecretStorage. `globalTokenName` and a record's `tokenName` identify SecretStorage entries; they are not credentials. The migration/source logic uses deterministic names, including the global `brat-gh-global` entry and repository-derived names, and accepts GitHub tokens with `ghp_` or `github_pat_` prefixes. A headless authoring workflow may require an existing SecretStorage entry for a private repository, but it must never place that secret in this JSON file. See [`src/settings.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts) and [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
 
-### 3.4 `themesList`
+### `themesList`
 
 Each theme record has this shape:
 

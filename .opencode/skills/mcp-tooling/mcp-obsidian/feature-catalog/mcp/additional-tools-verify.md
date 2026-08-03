@@ -48,8 +48,8 @@ Until enumeration is available, route known structured note work only to the fiv
 
 - Group: MCP low priority / verification boundary
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-low-priority/additional-tools-verify.md`
+- Feature file path: `mcp/additional-tools-verify.md`
 
 Related references:
-- [`../mcp-high-priority/get-note.md`](../mcp-high-priority/get-note.md) — confirmed callable example.
+- [`../mcp/get-note.md`](../mcp/get-note.md) — confirmed callable example.
 - [`../../references/mcp-tools.md`](../../references/mcp-tools.md) — current inventory boundary and invocation rules.

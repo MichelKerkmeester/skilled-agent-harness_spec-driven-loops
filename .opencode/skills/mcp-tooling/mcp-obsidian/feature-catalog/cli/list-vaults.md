@@ -48,7 +48,7 @@ The command needs no running app and reads local CLI configuration stored at `~/
 
 - Group: notesmd-cli vaults
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-vaults/list-vaults.md`
+- Feature file path: `cli/list-vaults.md`
 
 Related references:
 - [`set-default-vault.md`](set-default-vault.md) — changes the selected default.

@@ -48,8 +48,8 @@ The command uses the default vault unless a specific vault is selected. The `--v
 
 - Group: notesmd-cli search
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-search/search-note-names.md`
+- Feature file path: `cli/search-note-names.md`
 
 Related references:
 - [`search-note-content.md`](search-note-content.md) — body search for the same query surface.
-- [`../notesmd-cli-create/create-note.md`](../notesmd-cli-create/create-note.md) — search-before-create safety pattern.
+- [`../cli/create-note.md`](../cli/create-note.md) — search-before-create safety pattern.

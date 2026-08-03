@@ -48,8 +48,8 @@ The operation requires the running app, Local REST API plugin v4.0.0+, API key, 
 
 - Group: MCP high priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-high-priority/delete-note.md`
+- Feature file path: `mcp/delete-note.md`
 
 Related references:
 - [`get-note.md`](get-note.md) — read-back verification.
-- [`../../feature-catalog/notesmd-cli-delete/delete-note.md`](../notesmd-cli-delete/delete-note.md) — headless destructive alternative.
+- [`../../feature-catalog/cli/delete-note.md`](../cli/delete-note.md) — headless destructive alternative.

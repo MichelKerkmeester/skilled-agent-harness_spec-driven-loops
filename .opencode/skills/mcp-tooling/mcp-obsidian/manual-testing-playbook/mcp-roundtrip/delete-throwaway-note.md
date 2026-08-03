@@ -82,7 +82,7 @@ Capture exact path/content, schemas, delete response, and post-delete response.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root destructive-wave policy |
-| [`../../feature-catalog/mcp-high-priority/delete-note.md`](../../feature-catalog/mcp-high-priority/delete-note.md) | Catalog entry for MCP deletion |
+| [`../../feature-catalog/mcp/delete-note.md`](../../feature-catalog/mcp/delete-note.md) | Catalog entry for MCP deletion |
 
 ### Implementation And Test Anchors
 

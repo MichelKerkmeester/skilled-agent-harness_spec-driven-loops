@@ -80,8 +80,8 @@ Capture the exact name emitted by `list-vaults` and the final filesystem check.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-vaults/add-vault.md`](../../feature-catalog/notesmd-cli-vaults/add-vault.md) | Catalog entry for registration |
-| [`../../feature-catalog/notesmd-cli-vaults/remove-vault.md`](../../feature-catalog/notesmd-cli-vaults/remove-vault.md) | Catalog entry for removal |
+| [`../../feature-catalog/cli/add-vault.md`](../../feature-catalog/cli/add-vault.md) | Catalog entry for registration |
+| [`../../feature-catalog/cli/remove-vault.md`](../../feature-catalog/cli/remove-vault.md) | Catalog entry for removal |
 
 ### Implementation And Test Anchors
 

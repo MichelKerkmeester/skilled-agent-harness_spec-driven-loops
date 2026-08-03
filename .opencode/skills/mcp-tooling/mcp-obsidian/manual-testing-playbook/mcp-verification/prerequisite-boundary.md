@@ -79,7 +79,7 @@ Capture the warning/probe output, confirm no token value appears, and capture th
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root routing policy and prerequisite rules |
-| [`../../feature-catalog/mcp-low-priority/additional-tools-verify.md`](../../feature-catalog/mcp-low-priority/additional-tools-verify.md) | Catalog entry for the discovery boundary |
+| [`../../feature-catalog/mcp/additional-tools-verify.md`](../../feature-catalog/mcp/additional-tools-verify.md) | Catalog entry for the discovery boundary |
 
 ### Implementation And Test Anchors
 

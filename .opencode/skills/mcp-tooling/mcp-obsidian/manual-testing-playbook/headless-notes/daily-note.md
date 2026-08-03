@@ -79,7 +79,7 @@ Capture the vault list, daily output, listing, and an observation that Obsidian 
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-daily/open-daily-note.md`](../../feature-catalog/notesmd-cli-daily/open-daily-note.md) | Catalog entry for daily notes |
+| [`../../feature-catalog/cli/open-daily-note.md`](../../feature-catalog/cli/open-daily-note.md) | Catalog entry for daily notes |
 
 ### Implementation And Test Anchors
 

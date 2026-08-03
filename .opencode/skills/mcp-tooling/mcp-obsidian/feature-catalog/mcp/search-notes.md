@@ -48,8 +48,8 @@ An empty result is valid. The operator checks the active vault, query spelling, 
 
 - Group: MCP high priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-high-priority/search-notes.md`
+- Feature file path: `mcp/search-notes.md`
 
 Related references:
 - [`get-note.md`](get-note.md) — reads a selected result.
-- [`../../feature-catalog/notesmd-cli-search/search-note-content.md`](../notesmd-cli-search/search-note-content.md) — headless search alternative.
+- [`../../feature-catalog/cli/search-note-content.md`](../cli/search-note-content.md) — headless search alternative.

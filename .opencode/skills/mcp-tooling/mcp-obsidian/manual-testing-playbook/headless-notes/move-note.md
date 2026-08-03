@@ -81,7 +81,7 @@ Capture both note paths, contents before/after, command exit codes, and any link
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-move/move-note.md`](../../feature-catalog/notesmd-cli-move/move-note.md) | Catalog entry for move/rename |
+| [`../../feature-catalog/cli/move-note.md`](../../feature-catalog/cli/move-note.md) | Catalog entry for move/rename |
 
 ### Implementation And Test Anchors
 

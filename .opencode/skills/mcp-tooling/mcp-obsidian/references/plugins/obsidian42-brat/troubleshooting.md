@@ -68,7 +68,7 @@ The asset, manifest, release, and compatibility behavior above follows [`src/fea
 
 ## 3. PLUGIN FAILURE RECIPES
 
-### 3.1 No release or wrong tag
+### No release or wrong tag
 
 Capture the exact request and response before changing the vault:
 
@@ -82,7 +82,7 @@ jq -r '.assets[].name' /tmp/brat-release.json
 
 If the exact-tag request fails, do not install the latest release under the frozen tag. If the latest request returns no release, do not write a registration record that implies a staged plugin.
 
-### 3.2 Exact asset set
+### Exact asset set
 
 The minimum plugin asset set is:
 
@@ -99,7 +99,7 @@ jq -e '.id and .version' /tmp/brat-stage/manifest.json >/dev/null
 
 A successful JSON parse does not prove that the file is a compatible Obsidian plugin; the `id`, `version`, and compatibility fields still need checking.
 
-### 3.3 Version and compatibility metadata
+### Version and compatibility metadata
 
 Record three independent values in the diagnostic output: requested release tag, API `tag_name`, and manifest `version`. Then record the target Obsidian version and `minAppVersion`, plus `isDesktopOnly` when present. Repair the release selection or target environment before changing `allowIncompatiblePlugins`.
 

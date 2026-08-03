@@ -48,8 +48,8 @@ The exact registration UI wording and PATH location are stable enough to documen
 
 - Group: official obsidian CLI registration
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `obsidian-cli-registration/register-cli.md`
+- Feature file path: `cli/register-cli.md`
 
 Related references:
-- [`../obsidian-cli-app-actions/open-note-or-vault.md`](../obsidian-cli-app-actions/open-note-or-vault.md) — app-backed command use after registration.
+- [`../cli/open-note-or-vault.md`](../cli/open-note-or-vault.md) — app-backed command use after registration.
 - [`../../references/troubleshooting.md`](../../references/troubleshooting.md) — registration recovery.

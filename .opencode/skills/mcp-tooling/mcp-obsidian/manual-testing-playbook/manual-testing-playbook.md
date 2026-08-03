@@ -165,7 +165,7 @@ Prompt: `Before changing any notes, confirm my registered vaults and set TEST_VA
 #### Test Execution
 
 > **Feature File:** [`headless-vaults/vault-preflight.md`](headless-vaults/vault-preflight.md)
-> **Catalog:** [`notesmd-cli-vaults/list-vaults.md`](../feature-catalog/notesmd-cli-vaults/list-vaults.md) and [`notesmd-cli-vaults/set-default-vault.md`](../feature-catalog/notesmd-cli-vaults/set-default-vault.md)
+> **Catalog:** [`cli/list-vaults.md`](../feature-catalog/cli/list-vaults.md) and [`cli/set-default-vault.md`](../feature-catalog/cli/set-default-vault.md)
 
 ### OBS-002 | Vault registration lifecycle
 
@@ -180,7 +180,7 @@ Prompt: `Register my throwaway vault for headless Obsidian work, verify it appea
 #### Test Execution
 
 > **Feature File:** [`headless-vaults/vault-registration.md`](headless-vaults/vault-registration.md)
-> **Catalog:** [`notesmd-cli-vaults/add-vault.md`](../feature-catalog/notesmd-cli-vaults/add-vault.md) and [`notesmd-cli-vaults/remove-vault.md`](../feature-catalog/notesmd-cli-vaults/remove-vault.md)
+> **Catalog:** [`cli/add-vault.md`](../feature-catalog/cli/add-vault.md) and [`cli/remove-vault.md`](../feature-catalog/cli/remove-vault.md)
 
 ---
 
@@ -296,22 +296,22 @@ The current mode package has no dedicated automated test suite for these externa
 
 | Feature ID | Feature Name | Catalog entries |
 |---|---|---|
-| `OBS-001` | Vault preflight and default selection | [`list-vaults`](../feature-catalog/notesmd-cli-vaults/list-vaults.md), [`set-default-vault`](../feature-catalog/notesmd-cli-vaults/set-default-vault.md) |
-| `OBS-002` | Vault registration lifecycle | [`add-vault`](../feature-catalog/notesmd-cli-vaults/add-vault.md), [`remove-vault`](../feature-catalog/notesmd-cli-vaults/remove-vault.md) |
-| `OBS-003` | Create and read a note | [`create-note`](../feature-catalog/notesmd-cli-create/create-note.md) |
-| `OBS-004` | Search notes | [`search-note-names`](../feature-catalog/notesmd-cli-search/search-note-names.md), [`search-note-content`](../feature-catalog/notesmd-cli-search/search-note-content.md) |
-| `OBS-005` | Open the daily note | [`open-daily-note`](../feature-catalog/notesmd-cli-daily/open-daily-note.md) |
-| `OBS-006` | Move or rename a note | [`move-note`](../feature-catalog/notesmd-cli-move/move-note.md) |
-| `OBS-007` | Delete a note | [`delete-note`](../feature-catalog/notesmd-cli-delete/delete-note.md) |
-| `OBS-008` | Frontmatter command surface | [`edit-frontmatter`](../feature-catalog/notesmd-cli-frontmatter/edit-frontmatter.md) |
-| `OBS-009` | Register and inspect official CLI | [`register-cli`](../feature-catalog/obsidian-cli-registration/register-cli.md) |
-| `OBS-010` | Open an app-backed target | [`open-note-or-vault`](../feature-catalog/obsidian-cli-app-actions/open-note-or-vault.md), [`uri-actions`](../feature-catalog/obsidian-cli-app-actions/uri-actions.md) |
-| `MCP-H001` | Read/write round-trip | [`get-note`](../feature-catalog/mcp-high-priority/get-note.md), [`write-note`](../feature-catalog/mcp-high-priority/write-note.md) |
-| `MCP-H002` | Search live vault | [`search-notes`](../feature-catalog/mcp-high-priority/search-notes.md) |
-| `MCP-H003` | Manage tags | [`manage-tags`](../feature-catalog/mcp-medium-priority/manage-tags.md) |
-| `MCP-H004` | Delete throwaway note | [`delete-note`](../feature-catalog/mcp-high-priority/delete-note.md) |
-| `MCP-M001` | Tool inventory | [`additional-tools-verify`](../feature-catalog/mcp-low-priority/additional-tools-verify.md) |
-| `MCP-M002` | App/token boundary | [`additional-tools-verify`](../feature-catalog/mcp-low-priority/additional-tools-verify.md) |
+| `OBS-001` | Vault preflight and default selection | [`list-vaults`](../feature-catalog/cli/list-vaults.md), [`set-default-vault`](../feature-catalog/cli/set-default-vault.md) |
+| `OBS-002` | Vault registration lifecycle | [`add-vault`](../feature-catalog/cli/add-vault.md), [`remove-vault`](../feature-catalog/cli/remove-vault.md) |
+| `OBS-003` | Create and read a note | [`create-note`](../feature-catalog/cli/create-note.md) |
+| `OBS-004` | Search notes | [`search-note-names`](../feature-catalog/cli/search-note-names.md), [`search-note-content`](../feature-catalog/cli/search-note-content.md) |
+| `OBS-005` | Open the daily note | [`open-daily-note`](../feature-catalog/cli/open-daily-note.md) |
+| `OBS-006` | Move or rename a note | [`move-note`](../feature-catalog/cli/move-note.md) |
+| `OBS-007` | Delete a note | [`delete-note`](../feature-catalog/cli/delete-note.md) |
+| `OBS-008` | Frontmatter command surface | [`edit-frontmatter`](../feature-catalog/cli/edit-frontmatter.md) |
+| `OBS-009` | Register and inspect official CLI | [`register-cli`](../feature-catalog/cli/register-cli.md) |
+| `OBS-010` | Open an app-backed target | [`open-note-or-vault`](../feature-catalog/cli/open-note-or-vault.md), [`uri-actions`](../feature-catalog/cli/uri-actions.md) |
+| `MCP-H001` | Read/write round-trip | [`get-note`](../feature-catalog/mcp/get-note.md), [`write-note`](../feature-catalog/mcp/write-note.md) |
+| `MCP-H002` | Search live vault | [`search-notes`](../feature-catalog/mcp/search-notes.md) |
+| `MCP-H003` | Manage tags | [`manage-tags`](../feature-catalog/mcp/manage-tags.md) |
+| `MCP-H004` | Delete throwaway note | [`delete-note`](../feature-catalog/mcp/delete-note.md) |
+| `MCP-M001` | Tool inventory | [`additional-tools-verify`](../feature-catalog/mcp/additional-tools-verify.md) |
+| `MCP-M002` | App/token boundary | [`additional-tools-verify`](../feature-catalog/mcp/additional-tools-verify.md) |
 | `OBS-011` | Beancount file-layer transaction | Dedicated plugin reference in [`beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md) |
 | `OBS-012` | Obsidian Tables file-layer round-trip | Dedicated plugin reference in [`obsidian-tables-roundtrip.md`](plugin-tie-ins/obsidian-tables-roundtrip.md) |
 | `OBS-013` | BRAT headless beta-plugin install | Dedicated plugin reference in [`brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md) |

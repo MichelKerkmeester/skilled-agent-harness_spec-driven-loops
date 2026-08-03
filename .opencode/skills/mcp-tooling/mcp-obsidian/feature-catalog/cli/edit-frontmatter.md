@@ -48,8 +48,8 @@ Frontmatter changes are filesystem edits and do not require the Obsidian app. Th
 
 - Group: notesmd-cli frontmatter
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-frontmatter/edit-frontmatter.md`
+- Feature file path: `cli/edit-frontmatter.md`
 
 Related references:
-- [`../notesmd-cli-create/create-note.md`](../notesmd-cli-create/create-note.md) — controlled note fixture creation.
-- [`../notesmd-cli-search/search-note-content.md`](../notesmd-cli-search/search-note-content.md) — verifies metadata-bearing note content.
+- [`../cli/create-note.md`](../cli/create-note.md) — controlled note fixture creation.
+- [`../cli/search-note-content.md`](../cli/search-note-content.md) — verifies metadata-bearing note content.

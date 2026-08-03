@@ -48,8 +48,8 @@ The operator registers the CLI, confirms the app-backed environment, checks `obs
 
 - Group: official obsidian CLI app actions
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `obsidian-cli-app-actions/open-note-or-vault.md`
+- Feature file path: `cli/open-note-or-vault.md`
 
 Related references:
-- [`../obsidian-cli-registration/register-cli.md`](../obsidian-cli-registration/register-cli.md) — enables the binary.
+- [`../cli/register-cli.md`](../cli/register-cli.md) — enables the binary.
 - [`uri-actions.md`](uri-actions.md) — app/plugin URI action boundary.

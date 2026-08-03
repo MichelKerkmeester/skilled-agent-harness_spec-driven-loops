@@ -80,8 +80,8 @@ Capture help, command, exit code, visible app state, and any URI-action details.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and app-backed scenario index |
-| [`../../feature-catalog/obsidian-cli-app-actions/open-note-or-vault.md`](../../feature-catalog/obsidian-cli-app-actions/open-note-or-vault.md) | Catalog entry for live-app opening |
-| [`../../feature-catalog/obsidian-cli-app-actions/uri-actions.md`](../../feature-catalog/obsidian-cli-app-actions/uri-actions.md) | Catalog entry for the URI boundary |
+| [`../../feature-catalog/cli/open-note-or-vault.md`](../../feature-catalog/cli/open-note-or-vault.md) | Catalog entry for live-app opening |
+| [`../../feature-catalog/cli/uri-actions.md`](../../feature-catalog/cli/uri-actions.md) | Catalog entry for the URI boundary |
 
 ### Implementation And Test Anchors
 

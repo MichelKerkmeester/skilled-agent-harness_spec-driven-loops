@@ -48,8 +48,8 @@ The command's exact output and configuration-driven path are not expanded beyond
 
 - Group: notesmd-cli daily
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-daily/open-daily-note.md`
+- Feature file path: `cli/open-daily-note.md`
 
 Related references:
-- [`../notesmd-cli-vaults/list-vaults.md`](../notesmd-cli-vaults/list-vaults.md) — confirms the target vault.
-- [`../notesmd-cli-search/search-note-content.md`](../notesmd-cli-search/search-note-content.md) — searches the daily note body.
+- [`../cli/list-vaults.md`](../cli/list-vaults.md) — confirms the target vault.
+- [`../cli/search-note-content.md`](../cli/search-note-content.md) — searches the daily note body.

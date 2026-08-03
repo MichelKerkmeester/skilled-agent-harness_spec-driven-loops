@@ -48,8 +48,8 @@ There is no documented recovery mechanism in the current references. Recovery th
 
 - Group: notesmd-cli delete
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-delete/delete-note.md`
+- Feature file path: `cli/delete-note.md`
 
 Related references:
-- [`../notesmd-cli-search/search-note-names.md`](../notesmd-cli-search/search-note-names.md) — exact target resolution.
-- [`../notesmd-cli-move/move-note.md`](../notesmd-cli-move/move-note.md) — safer non-destructive rename alternative.
+- [`../cli/search-note-names.md`](../cli/search-note-names.md) — exact target resolution.
+- [`../cli/move-note.md`](../cli/move-note.md) — safer non-destructive rename alternative.

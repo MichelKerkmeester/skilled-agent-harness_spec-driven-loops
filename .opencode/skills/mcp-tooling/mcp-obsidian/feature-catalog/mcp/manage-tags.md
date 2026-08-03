@@ -48,8 +48,8 @@ When those prerequisites are unavailable, frontmatter editing through `notesmd-c
 
 - Group: MCP medium priority
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `mcp-medium-priority/manage-tags.md`
+- Feature file path: `mcp/manage-tags.md`
 
 Related references:
-- [`../mcp-high-priority/get-note.md`](../mcp-high-priority/get-note.md) — selects the note before tag work.
-- [`../../feature-catalog/notesmd-cli-frontmatter/edit-frontmatter.md`](../notesmd-cli-frontmatter/edit-frontmatter.md) — headless metadata alternative.
+- [`../mcp/get-note.md`](../mcp/get-note.md) — selects the note before tag work.
+- [`../../feature-catalog/cli/edit-frontmatter.md`](../cli/edit-frontmatter.md) — headless metadata alternative.

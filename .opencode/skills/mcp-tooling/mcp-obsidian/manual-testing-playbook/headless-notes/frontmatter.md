@@ -80,7 +80,7 @@ Capture help output, version, note path, and any controlled before/after frontma
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and `VERIFY`/`SKIP` rules |
-| [`../../feature-catalog/notesmd-cli-frontmatter/edit-frontmatter.md`](../../feature-catalog/notesmd-cli-frontmatter/edit-frontmatter.md) | Catalog entry for frontmatter |
+| [`../../feature-catalog/cli/edit-frontmatter.md`](../../feature-catalog/cli/edit-frontmatter.md) | Catalog entry for frontmatter |
 
 ### Implementation And Test Anchors
 

@@ -81,7 +81,7 @@ Capture discovery, schema, mutation response, read-back, and note path.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root MCP policy and scenario index |
-| [`../../feature-catalog/mcp-medium-priority/manage-tags.md`](../../feature-catalog/mcp-medium-priority/manage-tags.md) | Catalog entry for tag management |
+| [`../../feature-catalog/mcp/manage-tags.md`](../../feature-catalog/mcp/manage-tags.md) | Catalog entry for tag management |
 
 ### Implementation And Test Anchors
 

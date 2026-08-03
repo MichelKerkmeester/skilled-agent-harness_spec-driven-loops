@@ -80,7 +80,7 @@ Capture the exact title/path, pre-delete content, exit code, and final search ou
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and destructive-wave rules |
-| [`../../feature-catalog/notesmd-cli-delete/delete-note.md`](../../feature-catalog/notesmd-cli-delete/delete-note.md) | Catalog entry for deletion |
+| [`../../feature-catalog/cli/delete-note.md`](../../feature-catalog/cli/delete-note.md) | Catalog entry for deletion |
 
 ### Implementation And Test Anchors
 

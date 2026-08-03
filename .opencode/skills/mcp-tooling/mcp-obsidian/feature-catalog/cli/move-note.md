@@ -48,8 +48,8 @@ After the move, the operator searches or prints the destination and confirms the
 
 - Group: notesmd-cli move
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-move/move-note.md`
+- Feature file path: `cli/move-note.md`
 
 Related references:
-- [`../notesmd-cli-search/search-note-names.md`](../notesmd-cli-search/search-note-names.md) — resolves the source title.
-- [`../notesmd-cli-delete/delete-note.md`](../notesmd-cli-delete/delete-note.md) — destructive note targeting rules.
+- [`../cli/search-note-names.md`](../cli/search-note-names.md) — resolves the source title.
+- [`../cli/delete-note.md`](../cli/delete-note.md) — destructive note targeting rules.

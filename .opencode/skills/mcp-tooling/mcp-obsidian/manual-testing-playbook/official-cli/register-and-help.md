@@ -78,7 +78,7 @@ Capture the app version, registration setting, `command -v obsidian`, help outpu
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and app-backed prerequisites |
-| [`../../feature-catalog/obsidian-cli-registration/register-cli.md`](../../feature-catalog/obsidian-cli-registration/register-cli.md) | Catalog entry for registration |
+| [`../../feature-catalog/cli/register-cli.md`](../../feature-catalog/cli/register-cli.md) | Catalog entry for registration |
 
 ### Implementation And Test Anchors
 

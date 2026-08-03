@@ -48,7 +48,7 @@ The playbook uses an operator-owned fixture or an existing non-production vault.
 
 - Group: notesmd-cli vaults
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-vaults/add-vault.md`
+- Feature file path: `cli/add-vault.md`
 
 Related references:
 - [`list-vaults.md`](list-vaults.md) — confirms registration state.

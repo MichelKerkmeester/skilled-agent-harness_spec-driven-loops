@@ -48,7 +48,7 @@ A failed selection should be treated as a configuration error rather than a reas
 
 - Group: notesmd-cli vaults
 - Canonical catalog source: `FEATURE-CATALOG.md`
-- Feature file path: `notesmd-cli-vaults/set-default-vault.md`
+- Feature file path: `cli/set-default-vault.md`
 
 Related references:
 - [`list-vaults.md`](list-vaults.md) — observes the current default.

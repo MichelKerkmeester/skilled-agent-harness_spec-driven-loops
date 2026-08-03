@@ -82,8 +82,8 @@ Capture discovery, schema, round-trip response, and second-read content. Capture
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root MCP policy and wave order |
-| [`../../feature-catalog/mcp-high-priority/get-note.md`](../../feature-catalog/mcp-high-priority/get-note.md) | Catalog entry for the read tool |
-| [`../../feature-catalog/mcp-high-priority/write-note.md`](../../feature-catalog/mcp-high-priority/write-note.md) | Catalog entry for the write tool |
+| [`../../feature-catalog/mcp/get-note.md`](../../feature-catalog/mcp/get-note.md) | Catalog entry for the read tool |
+| [`../../feature-catalog/mcp/write-note.md`](../../feature-catalog/mcp/write-note.md) | Catalog entry for the write tool |
 
 ### Implementation And Test Anchors
 

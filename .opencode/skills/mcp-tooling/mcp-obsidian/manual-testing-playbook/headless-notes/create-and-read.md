@@ -80,7 +80,7 @@ Capture the vault list, search result, create exit code, and print output.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-create/create-note.md`](../../feature-catalog/notesmd-cli-create/create-note.md) | Catalog entry for headless creation |
+| [`../../feature-catalog/cli/create-note.md`](../../feature-catalog/cli/create-note.md) | Catalog entry for headless creation |
 
 ### Implementation And Test Anchors
 

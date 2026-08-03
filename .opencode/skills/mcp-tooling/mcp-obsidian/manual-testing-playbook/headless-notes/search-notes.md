@@ -78,8 +78,8 @@ Capture both outputs, the fixture contents or path, and the exit codes.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root policy and scenario index |
-| [`../../feature-catalog/notesmd-cli-search/search-note-names.md`](../../feature-catalog/notesmd-cli-search/search-note-names.md) | Catalog entry for title search |
-| [`../../feature-catalog/notesmd-cli-search/search-note-content.md`](../../feature-catalog/notesmd-cli-search/search-note-content.md) | Catalog entry for body search |
+| [`../../feature-catalog/cli/search-note-names.md`](../../feature-catalog/cli/search-note-names.md) | Catalog entry for title search |
+| [`../../feature-catalog/cli/search-note-content.md`](../../feature-catalog/cli/search-note-content.md) | Catalog entry for body search |
 
 ### Implementation And Test Anchors
 
