@@ -1,0 +1,24 @@
+{
+  "level": 1,
+  "specFolder": "mcp-tooling/015-mcp-webflow/009-template-alignment",
+  "description": "Strictly align every mcp-webflow packet file with the sk-create-skill asset/reference templates, the feature-catalog snippet template, and the manual-testing-playbook snippet template, verified by fresh DeepSeek v4 Flash sub-agents.",
+  "keywords": [
+    "mcp-webflow template alignment",
+    "webflow asset template",
+    "webflow playbook naming",
+    "template conformance",
+    "skill template alignment"
+  ],
+  "lastUpdated": "2026-08-03T06:17:51.414Z",
+  "specId": "mcp-tooling/015-mcp-webflow/009-template-alignment",
+  "folderSlug": "009-template-alignment",
+  "parentChain": [
+    "mcp-tooling",
+    "015-mcp-webflow"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "03-08-26_07-17__zero-p0-p1-template-deviations-after-remediation.md",
+    "03-08-26_07-17__zero-p0-p1-template-deviations-after-remediation.md"
+  ]
+}

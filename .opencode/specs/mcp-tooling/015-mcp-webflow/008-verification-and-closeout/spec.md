@@ -38,7 +38,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 8 of 8 |
 | **Predecessor** | `007-routing-benchmark-and-deep-review` |
-| **Successor** | None (packet closeout) |
+| **Successor** | `009-template-alignment` |
 | **Handoff Criteria** | Recursive strict validation exits 0, hub and routing checks pass, smoke evidence is safe and honest, metadata is refreshed, and all completion claims across the packet are reconciled and evidence-backed. |
 <!-- /ANCHOR:metadata -->
 

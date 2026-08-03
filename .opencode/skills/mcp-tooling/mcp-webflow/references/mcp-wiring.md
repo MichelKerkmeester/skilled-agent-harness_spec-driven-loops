@@ -1,29 +1,10 @@
----
-title: "Webflow MCP Wiring (via Code Mode)"
-description: "Wiring the official Webflow MCP 2.0 through this project's Code Mode: the registered webflow manual, local stdio + WEBFLOW_TOKEN, the remote OAuth alternative, scope model, rate limits, Bridge App boundary, version-surface reconciliation, callable naming, and the mandatory discovery-first contract."
-trigger_phrases:
-  - "webflow mcp wiring"
-  - "webflow utcp manual"
-  - "webflow code mode"
-  - "webflow token"
-  - "webflow oauth"
-  - "webflow bridge app"
-importance_tier: important
-contextType: implementation
-version: 1.1.0.0
----
-
-# Webflow MCP Wiring (via Code Mode)
-
-> **Transport identity (frozen by Phase 2):** official `webflow-mcp-server` (npm), local stdio
-> registration with `WEBFLOW_TOKEN` as the deterministic automation default; remote OAuth
-> (`https://mcp.webflow.com/mcp` per hosted docs; `/sse` per the repo README — see §6) as the
-> operator-preference alternative. Version pinning and the README-vs-hosted surface reconciliation
-> are mandatory before first live use.
-
----
-
 ## 1. OVERVIEW
+
+Transport identity (frozen): official `webflow-mcp-server` (npm), local stdio registration with
+`WEBFLOW_TOKEN` as the deterministic automation default; remote OAuth (`https://mcp.webflow.com/mcp`
+per hosted docs; `/sse` per the repo README — see §6) as the operator-preference alternative.
+Version pinning and the README-vs-hosted surface reconciliation are mandatory before first live
+use.
 
 Webflow MCP 2.0 exposes Webflow's Data API v2 and Designer API as a bounded combined-tool surface
 (18 tool modules, one MCP tool per module with an `actions` array). This skill reaches it through
@@ -36,6 +17,7 @@ Claims below are tagged **[CONFIRMED]** (read from this repo's config or cited o
 research time), **[INFERRED]** (supported but not exercised end-to-end), or **[UNKNOWN]**
 (requires an authenticated session or a provisioned test site).
 
+---
 ## 2. THE REGISTERED `webflow` MANUAL
 
 Registered in `.utcp_config.json` (manual call template, type `mcp`):
@@ -61,6 +43,7 @@ Registered in `.utcp_config.json` (manual call template, type `mcp`):
 the operator's environment (`.env.example` documents the namespaced `webflow_WEBFLOW_TOKEN`).
 Server prerequisites: Node.js 22.3.0+ **[CONFIRMED]**.
 
+---
 ## 3. AUTHENTICATION (least privilege)
 
 ### Token kinds
@@ -88,6 +71,7 @@ access custom-code endpoints), `ecommerce:read/write`, `forms:read/write`, `page
 - Role gate: only site owners/admins can authorize the MCP server/app.
 - Token values live only in the operator environment; the repo carries names and placeholders.
 
+---
 ## 4. DISCOVERY-FIRST CONTRACT
 
 Before invoking any Webflow tool:
@@ -104,6 +88,7 @@ authenticated discovery (mobbin precedent: `mobbin.mobbin.search_screens` /
 `tool-surface.md`; **always re-discover per session** — never call from memory, and fail closed on
 drift.
 
+---
 ## 5. REMOTE OAUTH ALTERNATIVE
 
 - Endpoint per hosted docs: `https://mcp.webflow.com/mcp` (Streamable HTTP; registry
@@ -117,6 +102,7 @@ drift.
 - Not registered by default; operator decision required (interactive consent is not
   automation-friendly).
 
+---
 ## 6. VERSION-SURFACE CONTRADICTION (reconcile per session)
 
 | Surface | Documents | Evidence |
@@ -130,6 +116,7 @@ version-specific reconciliation lands; the local stdio server is the determinist
 automation. Record the tested endpoint + version in `mcp-servers/webflow-mcp/README.md` after the
 first authenticated session.
 
+---
 ## 7. DESIGNER BRIDGE APP BOUNDARY
 
 - Data API tools work with Webflow closed **[CONFIRMED]**.
@@ -140,6 +127,7 @@ first authenticated session.
   `publish_site`.
 - All Designer-family operations must load `sk-design` first (cross-hub pairing).
 
+---
 ## 8. RATE LIMITS AND ERROR SEMANTICS
 
 - Plan-based general limits: Starter/Basic 60 req/min; CMS/eCommerce/Business 120 req/min;
@@ -149,6 +137,7 @@ first authenticated session.
 - Site publish: **one successful publish per minute**.
 - The official SDK (used by the server) has built-in exponential backoff.
 
+---
 ## 9. DIAGNOSTIC FLOW
 
 1. `scripts/doctor.sh` — node/npx versions, manual presence (verify, never re-add), token
@@ -160,6 +149,7 @@ first authenticated session.
 4. On any drift between live `list_tools` and the baseline inventory → record the drift, fail
    closed on mismatched tools, and update `tool-surface.md` with the dated fixture.
 
+---
 ## 10. SAFETY BOUNDARY (summary)
 
 - Read-only and draft-safe mutations pass without a gate (scope check only).
@@ -172,3 +162,11 @@ first authenticated session.
 - Workspace tokens are read-only; `custom_code` scopes are Data-Client-app-only.
 - API-level site backup/restore does not exist in the Data API v2 surface — DS class carries the
   strongest confirmations.
+
+---
+## 11. RELATED RESOURCES
+
+- [`../action-reference.md`](../action-reference.md) — remote surface (31 tools / 220 actions)
+- [`../tool-surface.md`](../tool-surface.md) — local OSS baseline
+- [`../troubleshooting.md`](../troubleshooting.md) — failure modes
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

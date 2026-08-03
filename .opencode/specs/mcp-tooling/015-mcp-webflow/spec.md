@@ -128,7 +128,11 @@ The parent remains a control file. Detailed execution evidence belongs to the ch
 | 6 | `006-hub-registration-and-advisor/` | Register the mode across registry, router, advisor, compiled routing, manifest, and hub docs | Complete |
 | 7 | `007-routing-benchmark-and-deep-review/` | Benchmark routing boundaries and run independent deep review; resolve or explicitly defer verified findings | Complete |
 | 8 | `008-verification-and-closeout/` | Run recursive strict validation, hub checks, route/advisor tests, safe live smoke, and completion reconciliation | Complete |
+| 9 | `009-template-alignment/` | Strictly align every packet file with the sk-create-skill asset/reference templates and the catalog/playbook snippet templates (assets, examples relocation, playbook naming, dividers, reference structure) | Complete (2026-08-03) |
 
+| 10 | 010-phase-10-PROVIDE-DESCRIPTIVE-SLUG/ | [Phase 10 scope] | Pending |
+| 11 | 011-phase-11-PROVIDE-DESCRIPTIVE-SLUG/ | [Phase 11 scope] | Pending |
+| 12 | 012-phase-12-PROVIDE-DESCRIPTIVE-SLUG/ | [Phase 12 scope] | Pending |
 ### Phase Transition Rules
 - Phase 1 must produce a cited synthesis and explicit recommendations before Phase 2 starts.
 - Phase 2 freezes architecture and safety before any MCP integration or external mutation test.
@@ -148,6 +152,9 @@ The parent remains a control file. Detailed execution evidence belongs to the ch
 | 005 | 006 | Feature catalog and playbook cover the researched capability and risk surfaces | Catalog/playbook validators |
 | 006 | 007 | Hub and advisor surfaces are aligned and generated assets are current | Parent-skill check, route validation, advisor recall |
 | 007 | 008 | Routing benchmark passes and verified review findings are resolved or approved for deferral | Benchmark report and deep-review verdict |
+| 009-template-alignment | 010-phase-10-PROVIDE-DESCRIPTIVE-SLUG | [Criteria TBD] | [Verification TBD] |
+| 010-phase-10-PROVIDE-DESCRIPTIVE-SLUG | 011-phase-11-PROVIDE-DESCRIPTIVE-SLUG | [Criteria TBD] | [Verification TBD] |
+| 011-phase-11-PROVIDE-DESCRIPTIVE-SLUG | 012-phase-12-PROVIDE-DESCRIPTIVE-SLUG | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

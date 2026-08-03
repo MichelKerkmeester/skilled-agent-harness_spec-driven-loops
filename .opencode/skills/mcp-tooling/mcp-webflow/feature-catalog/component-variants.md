@@ -9,12 +9,16 @@ version: 1.0.0.0
 
 # Component variants
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 Operates component variant definitions on the remote surface via `data_component_variants_tool`
 (read+write; page-building tool — `siteId` and `pageId` required on every action). Variants let a
 component change appearance per state; `delete_variant` is destructive.
 
+---
 ## 2. HOW IT WORKS
 
 | Action | Required parameters | Class |
@@ -33,21 +37,31 @@ Delete is irreversible via the surface — operator confirmation with before/aft
 Example prompts: "list the variants of the 'Button' component", "create a 'hover' variant of the
 'Card' component", "delete the 'old-state' variant" (confirmation).
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — `Components` group
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Components) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for designer and destructive-gate scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote |
-| Authority | developers.webflow.com/mcp/tools/data-tools.md (2026-08-03) |
-| Version | 1.0.0.0 |
+- Group: Components
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `component-variants.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

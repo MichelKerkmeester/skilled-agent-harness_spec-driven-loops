@@ -9,15 +9,18 @@ version: 1.0.0.0
 
 # Capability: Designer-family operations (de* modules)
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 Operates the live Designer canvas via the Bridge App: elements (deElement), styles (deStyle),
 variables (deVariable), components (deComponents), assets (deAsset), and pages (dePages).
 
+---
 ## 2. HOW IT WORKS
 
-# Designer-family operations (`de*` modules)
-## Capabilities
+### Capabilities
 
 | Module | Actions | Class | Gate |
 |--------|---------|-------|------|
@@ -31,7 +34,8 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 | deAsset | asset read/list, upload, delete | RO/DW/DS | sk-design pairing for DW |
 | localDeMCPConnection | `get_designer_app_connection_info` | RO | none (diagnostic) |
 
-## Safety-critical semantics
+---
+### Safety-critical semantics
 
 - Designer tools require the **Bridge App open in the Designer** (auto-installs on remote OAuth;
   local mode needs the Bridge App Designer extension). Data API tools work with Webflow closed.
@@ -40,28 +44,38 @@ variables (deVariable), components (deComponents), assets (deAsset), and pages (
 - **All Designer-family operations load `sk-design` first** (cross-hub pairing): the transport
   executes, never decides taste.
 
-## Example prompts
+---
+### Example prompts
 
 - "set the hero heading level to H1 in the test site" → sk-design + deElement DW
 - "create a variable collection 'Brand' with a mode 'Light'" → sk-design + deVariable DW
 - "remove the 'hero' element" → confirmation + rollback statement (DS)
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Elements`, `Components`, `Variables`, `Style`, `Designer canvas`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Elements, Components, Variables, Style, Designer canvas) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: Elements, Components, Variables, Style, Designer canvas
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `designer.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

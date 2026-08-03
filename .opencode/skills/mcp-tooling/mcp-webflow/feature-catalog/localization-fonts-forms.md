@@ -9,15 +9,18 @@ version: 1.0.0.0
 
 # Capability: Localization, fonts, forms
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 Site-level content capabilities beyond pages/CMS: localization (locales + secondary-locale
 content), fonts (upload/manage site fonts), and forms (read submissions).
 
+---
 ## 2. HOW IT WORKS
 
-# Localization, fonts, forms
-## Actions
+### Actions
 
 ### `data_localization_tool` (read+write)
 
@@ -42,35 +45,46 @@ content), fonts (upload/manage site fonts), and forms (read submissions).
 | `list_site_form_submissions` and related reads | RO |
 | `delete_form_submission` | DS |
 
-## Semantics
+---
+### Semantics
 
 - Localization writes are content changes — review target locale; deletes are DS.
 - Font deletes are bulk and irreversible via the surface — DS confirmation.
 - Forms reads are read-only (no gate); form config writes are DW.
 
-## Example prompts
+---
+### Example prompts
 
 - "list the locales of the test site"
 - "add a Spanish locale to the test site"
 - "list the site fonts" / "batch delete the unused 'OldFont' family" (confirmation)
 - "list the form submissions of the 'Contact' form"
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Localization`, `Fonts`, `Forms`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Localization, Fonts, Forms) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: Localization, Fonts, Forms
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `localization-fonts-forms.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

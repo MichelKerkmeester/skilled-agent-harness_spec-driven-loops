@@ -288,7 +288,7 @@ lands; the local stdio server is the deterministic baseline for automation.
 
 Docs: `INSTALL-GUIDE.md` · `references/mcp-wiring.md` · `references/tool-surface.md` ·
 `references/troubleshooting.md` · `feature-catalog/` · `manual-testing-playbook/` ·
-`scripts/doctor.sh` · `assets/utcp-webflow-manual.md`
+`scripts/doctor.sh` · `assets/utcp-manual-reference.md`
 
 ---
 
@@ -301,10 +301,10 @@ Docs: `INSTALL-GUIDE.md` · `references/mcp-wiring.md` · `references/tool-surfa
 - `references/tool-surface.md` — local OSS 18-module tool inventory with risk classes.
 - `references/troubleshooting.md` — failure modes and never-list.
 - `feature-catalog/` — capability cards (cms, publish-deploy, designer, site-pages-scripts).
-- `manual-testing-playbook/` — 12 scenarios across discovery, read, draft, safety gates,
+- `manual-testing-playbook/` — 16 scenarios across discovery, read, draft, safety gates,
   pairing, and negative classes.
 - `scripts/` — `doctor.sh` (verify-only) and `install.sh`.
-- `assets/utcp-webflow-manual.md` — registered-manual reference shape.
+- `assets/utcp-manual-reference.md` — registered-manual reference shape.
 - `mcp-servers/webflow-mcp/README.md` — server pointer and pinned-version fixture slot.
 - `changelog/` — release notes (v1.0.0.0 scaffold, v1.1.0.0 depth upgrade, v1.2.0.0 template
   alignment).

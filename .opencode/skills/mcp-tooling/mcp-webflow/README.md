@@ -61,7 +61,7 @@ pair with `sk-design`.
 | [`feature-catalog/`](feature-catalog/feature-catalog.md) | Capability cards (9) covering the full surface |
 | [`manual-testing-playbook/`](manual-testing-playbook/manual-testing-playbook.md) | 16 scenarios across discovery, read, draft, safety, pairing, negative |
 | [`scripts/`](scripts/README.md) | `doctor.sh` + `install.sh` |
-| [`assets/`](assets/utcp-webflow-manual.md) | Registered-manual reference shape + example payloads |
+| [`assets/`](assets/utcp-manual-reference.md) | Registered-manual reference shape + payload examples + examples/ |
 
 ## 5. TROUBLESHOOTING
 

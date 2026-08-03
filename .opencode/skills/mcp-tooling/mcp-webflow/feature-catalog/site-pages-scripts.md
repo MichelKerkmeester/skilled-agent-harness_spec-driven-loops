@@ -9,15 +9,18 @@ version: 1.0.0.0
 
 # Capability: Site, pages, scripts, webhooks, enterprise, AI
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 The remaining Data-API modules: site-level reads/publish, page settings and static content,
 custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and AI Q&A.
 
+---
 ## 2. HOW IT WORKS
 
-# Site, pages, scripts, webhooks, enterprise, AI
-## Capabilities
+### Capabilities
 
 | Module | Actions | Class |
 |--------|---------|-------|
@@ -39,28 +42,38 @@ custom-code scripts, webhooks, Enterprise-gated redirects/robots/activity, and A
 | comments | `create_reply` (remote) | DW |
 | rules | `webflow_guide_tool` | RO |
 
-## Notes
+---
+### Notes
 
 - `custom_code` scopes are Data-Client-app-only (site tokens cannot call custom-code endpoints).
 - Enterprise module is gated to Enterprise plans; capability varies by workspace tier.
 - `update_page_settings` can flip publishing status — review the payload before sending.
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Pages`, `Scripts`, `Sites`, `Webhooks`, `Enterprise`, `Utility`, `Comments`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Pages, Scripts, Sites, Webhooks, Enterprise, Utility, Comments) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: Pages, Scripts, Sites, Webhooks, Enterprise, Utility, Comments
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `site-pages-scripts.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

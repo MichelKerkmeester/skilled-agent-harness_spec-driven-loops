@@ -9,38 +9,48 @@ importance_tier: important
 contextType: implementation
 version: 1.1.0.0
 ---
-
 # Webflow MCP Action Reference (Remote Surface)
 
-> Source: official Webflow MCP tool documentation (developers.webflow.com/mcp/tools/*, fetched
-> 2026-08-03) — the **remote deployed surface** (`com.webflow/mcp` 2.0.0): **31 tools / 220
-> actions**. The local OSS server (`webflow-mcp-server` npm) exposes the smaller 18-module
-> baseline in `tool-surface.md`. Always re-discover the pinned version's live surface per
-> session. Class = frozen risk class applied by action-name semantics
-> (RO/DW/DS/PB/DP); read/write flags are the official tool-level flags.
->
-> **Global parameters**: every action on the page-building tools
-> (`data_element_tool`, `data_element_settings_tool`, `data_component_tool`, `data_component_props_tool`,
-> `data_component_variants_tool`, `data_element_builder`, `data_component_builder`, `data_whtml_builder`,
-> `data_style_tool`, `data_variable_tool`) requires `siteId` and `pageId` in addition to the
-> parameters listed; Designer-canvas actions (`designer_tool`, `element_snapshot_tool`) require
-> `siteId`. Actions without required parameters are marked `—`.
+Complete official action reference for the Webflow MCP remote surface: 31 tools, 220 actions.
 
-## AGENT INSTRUCTIONS
+---
+## 1. OVERVIEW
+
+Source: official Webflow MCP tool documentation (developers.webflow.com/mcp/tools/*, fetched
+2026-08-03) — the **remote deployed surface** (`com.webflow/mcp` 2.0.0): **31 tools / 220
+actions**. The local OSS server (`webflow-mcp-server` npm) exposes the smaller 18-module baseline
+in `tool-surface.md`. Always re-discover the pinned version's live surface per session. Class =
+frozen risk class applied by action-name semantics (RO/DW/DS/PB/DP); read/write flags are the
+official tool-level flags.
+
+### Global Parameters
+
+Every action on the page-building tools (`data_element_tool`, `data_element_settings_tool`,
+`data_component_tool`, `data_component_props_tool`, `data_component_variants_tool`,
+`data_element_builder`, `data_component_builder`, `data_whtml_builder`, `data_style_tool`,
+`data_variable_tool`) requires `siteId` and `pageId` in addition to the parameters listed;
+Designer-canvas actions (`designer_tool`, `element_snapshot_tool`) require `siteId`. Actions
+without required parameters are marked `—`.
+
+---
+
+---
+## 2. AGENT INSTRUCTIONS
 
 ### `data_agent_instructions_tool` — read, write
 
-| Action | Required parameters | Class |
-|--------|---------------------|-------|
-| `search_instructions` | `site_id` | RO |
-| `read_instruction` | `site_id, path` | RO |
-| `create_instruction` | `site_id, kind, path, markdown` | DW |
-| `update_instruction` | `site_id, kind, path` | DW |
-| `delete_instruction` | `site_id, kind, path` | DS |
-| `move_instruction` | `site_id, kind, fromPath, toPath` | DW |
+| Action                | Required parameters               | Class |
+| -----------------------| -----------------------------------| -------|
+| `search_instructions` | `site_id`                         | RO    |
+| `read_instruction`    | `site_id, path`                   | RO    |
+| `create_instruction`  | `site_id, kind, path, markdown`   | DW    |
+| `update_instruction`  | `site_id, kind, path`             | DW    |
+| `delete_instruction`  | `site_id, kind, path`             | DS    |
+| `move_instruction`    | `site_id, kind, fromPath, toPath` | DW    |
 
 
-## ANALYZE (ADD-ON)
+---
+## 3. ANALYZE (ADD-ON)
 
 ### `data_analyze_tool` — read
 
@@ -55,7 +65,8 @@ version: 1.1.0.0
 | `get_traffic_report` | `site_id, startTime, endTime, metricScope, bucketTimeZone` | RO |
 
 
-## ASSETS
+---
+## 4. ASSETS
 
 ### `data_assets_tool` — read, write
 
@@ -87,7 +98,8 @@ version: 1.1.0.0
 | `get_asset_preview` | `asset_id` | RO |
 
 
-## CMS
+---
+## 5. CMS
 
 ### `data_cms_tool` — read, write
 
@@ -109,7 +121,8 @@ version: 1.1.0.0
 | `update_collection_items` | `collection_id, request{items[].id, fieldData}` | DW |
 
 
-## COMMENTS
+---
+## 6. COMMENTS
 
 ### `data_comments_tool` — read, write
 
@@ -122,7 +135,8 @@ version: 1.1.0.0
 | `search_comment_user_by_email` | `site_id, email` | RO |
 
 
-## COMPONENTS
+---
+## 7. COMPONENTS
 
 ### `data_component_tool` — read, write *(+ siteId, pageId global)*
 
@@ -172,7 +186,8 @@ version: 1.1.0.0
 | `set_variant_styles` | `variant_id, style_name` | DW |
 
 
-## ELEMENTS
+---
+## 8. ELEMENTS
 
 ### `data_element_tool` — read, write *(+ siteId, pageId global)*
 
@@ -211,7 +226,8 @@ version: 1.1.0.0
 | `create_element` | `build_label, parent_element_id, creation_position, element_schema{type}` | DW |
 
 
-## ENTERPRISE
+---
+## 9. ENTERPRISE
 
 ### `data_enterprise_tool` — read, write
 
@@ -230,7 +246,8 @@ version: 1.1.0.0
 | `update_robots_txt` | `site_id` | DW |
 
 
-## FONTS
+---
+## 10. FONTS
 
 ### `data_fonts_tool` — read, write
 
@@ -245,7 +262,8 @@ version: 1.1.0.0
 | `update_font` | `site_id, font_id` | DW |
 
 
-## FORMS
+---
+## 11. FORMS
 
 ### `data_forms_tool` — read, write
 
@@ -260,7 +278,8 @@ version: 1.1.0.0
 | `update_form_submission` | `site_id, form_submission_id, form_submission_data` | DW |
 
 
-## LOCALIZATION
+---
+## 12. LOCALIZATION
 
 ### `data_localization_tool` — read, write
 
@@ -275,7 +294,8 @@ version: 1.1.0.0
 | `update_static_content` | `page_id, localeId, nodes` | DW |
 
 
-## PAGES
+---
+## 13. PAGES
 
 ### `data_pages_tool` — read, write
 
@@ -294,7 +314,8 @@ version: 1.1.0.0
 | `update_page_settings` | `page_id` | DW |
 
 
-## SCRIPTS
+---
+## 14. SCRIPTS
 
 ### `data_scripts_tool` — read, write
 
@@ -322,7 +343,8 @@ version: 1.1.0.0
 | `update_registered_script` | `site_id, script_id` | DW |
 
 
-## SITEMAP
+---
+## 15. SITEMAP
 
 ### `data_sitemap_tool` — read, write
 
@@ -338,7 +360,8 @@ version: 1.1.0.0
 | `update_page_sitemap_status` | `page_id, includeInSitemap` | DW |
 
 
-## SITES
+---
+## 16. SITES
 
 ### `data_sites_tool` — read, write
 
@@ -349,7 +372,8 @@ version: 1.1.0.0
 | `publish_site` | `site_id` | PB |
 
 
-## STYLE
+---
+## 17. STYLE
 
 ### `data_style_tool` — read, write *(+ siteId, pageId global)*
 
@@ -367,7 +391,8 @@ version: 1.1.0.0
 | `update_style` | `style_name` | DW |
 
 
-## VARIABLES
+---
+## 18. VARIABLES
 
 ### `data_variable_tool` — read, write *(+ siteId, pageId global)*
 
@@ -393,7 +418,8 @@ version: 1.1.0.0
 | `update_size_variable` | `variable_collection_id, variable_id, value` | DW |
 
 
-## WEBHOOKS
+---
+## 19. WEBHOOKS
 
 ### `data_webhook_tool` — read, write
 
@@ -405,7 +431,8 @@ version: 1.1.0.0
 | `list_webhooks` | `site_id` | RO |
 
 
-## WHTML
+---
+## 20. WHTML
 
 ### `data_whtml_builder` — write *(+ siteId, pageId global)*
 
@@ -414,7 +441,8 @@ version: 1.1.0.0
 | `insert_whtml` | `build_label, parent_element_id, creation_position, html` | DW |
 
 
-## DESIGNER CANVAS
+---
+## 21. DESIGNER CANVAS
 
 ### `designer_tool` — read, write *(+ siteId)*
 
@@ -443,7 +471,8 @@ version: 1.1.0.0
 | `get_element_snapshot` | `id {component, element}` | RO |
 
 
-## UTILITY
+---
+## 22. UTILITY
 
 ### `ask_webflow_ai` — read
 
@@ -463,3 +492,9 @@ version: 1.1.0.0
 |--------|---------------------|-------|
 | `get_more_tools` | `brief, category, context` | RO |
 
+---
+## 23. RELATED RESOURCES
+
+- [`../tool-surface.md`](../tool-surface.md) — local OSS baseline (18 modules)
+- [`../mcp-wiring.md`](../mcp-wiring.md) — wiring, auth, scope model
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

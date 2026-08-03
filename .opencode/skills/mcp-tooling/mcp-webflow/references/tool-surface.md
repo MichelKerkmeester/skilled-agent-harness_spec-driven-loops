@@ -10,25 +10,29 @@ importance_tier: important
 contextType: implementation
 version: 1.1.0.0
 ---
+# Webflow MCP Tool Surface (Local OSS Baseline)
 
-# Webflow MCP Tool Surface (Research Baseline)
+Research-time inventory of the local `webflow-mcp-server` 18-module surface with risk classes.
 
-> **Two surfaces.** The remote deployed surface (`com.webflow/mcp` 2.0.0) is documented at **31
-> tools / 216 actions** in `action-reference.md` (official docs, 2026-08-03). This file is the
-> **local OSS server baseline** (18 modules, research-time 2026-08-02). **Baseline only**:
-> live discovery (`list_tools`) per session is the only trustworthy inventory; the pinned server
-> version's actual surface must be recorded here after the first authenticated session
-> (`../mcp-servers/webflow-mcp/README.md` §3). Class = frozen Phase-2 risk class
-> (RO/DW/DS/PB/DP); gate applies at the agent level.
+---
+## 1. OVERVIEW
 
-## Combined-tool pattern
+**Two surfaces.** The remote deployed surface (`com.webflow/mcp` 2.0.0) is documented at **31
+tools / 220 actions** in `action-reference.md` (official docs, 2026-08-03). This file is the
+**local OSS server baseline** (18 modules, research-time 2026-08-02). Baseline only: live
+discovery (`list_tools`) per session is the only trustworthy inventory; the pinned server
+version's actual surface must be recorded here after the first authenticated session.
+
+---
+## 2. Combined-Tool Pattern
 
 Each of the 18 modules registers **one MCP tool** whose input schema is an `actions` array of
 optional per-action objects; each action maps 1:1 to a Webflow Data API v2 endpoint
 (GET/POST/PUT/PATCH/DELETE per the server source). Tool-level `readOnlyHint` exists but is not
 per-action — per-action class derives from the HTTP method + payload semantics.
 
-## Module inventory (18 modules, official repo `src/tools/`)
+---
+## 3. Module Inventory (18 Modules, Official Repo `Src/Tools/`)
 
 | Module | Surface | Key actions (class) |
 |--------|---------|---------------------|
@@ -51,14 +55,16 @@ per-action — per-action class derives from the HTTP method + payload semantics
 | **deAsset** | Designer assets | asset read/list (RO), asset upload (DW), asset delete (DS) |
 | **localDeMCPConnection** | OSS-local only | `get_designer_app_connection_info` (RO — bridge-app connection state) |
 
-## Read-only surface (safe, no mutation)
+---
+## 4. Read-Only Surface (Safe, No Mutation)
 
 `ask_webflow_ai`, comments (list/get/replies), `webflow_guide_tool`, `get_designer_app_connection_info`,
 `list_sites`, `get_site`, `list_pages`, `get_page_metadata`, `get_page_content`, cms list/get,
 components list/get, scripts list/get, webhooks list/get, workflows list/get, enterprise
 list/get/robots/activity, plus the `de*` getters and `query_*` family.
 
-## Publish/deploy surface (never implicit)
+---
+## 5. Publish/Deploy Surface (Never Implicit)
 
 - `publish_site` — the single site-level deploy action (POST /v2/sites/:id/publish).
 - `publish_collection_items` — deploys CMS item drafts to live.
@@ -66,7 +72,8 @@ list/get/robots/activity, plus the `de*` getters and `query_*` family.
 - Script registration ships with site publish (publish-adjacent).
 - There is no other deploy path — every other mutation is draft/staging-scoped.
 
-## Destructive surface (no trash/revert via MCP)
+---
+## 6. Destructive Surface (No Trash/Revert Via Mcp)
 
 CMS item deletion (permanent), script deletion (site/page), webhook deletion, enterprise redirect/
 robots/well-known deletion, `remove_element`/`remove_attribute`/`remove_style`/`remove_properties`,
@@ -74,7 +81,8 @@ robots/well-known deletion, `remove_element`/`remove_attribute`/`remove_style`/`
 must be re-applied state or version-history snapshot re-publish. API-level site restore does not
 exist in the Data API v2 surface → treated as unsupported.
 
-## Cross-cutting facts
+---
+## 7. Cross-Cutting Facts
 
 - CMS mutations are NOT implicitly draft-safe — the client chooses live vs queued/drafted target.
 - Nothing auto-publishes; one publish queue per minute.
@@ -82,3 +90,9 @@ exist in the Data API v2 surface → treated as unsupported.
 - `custom_code` scopes are Data-Client-app-only (not site tokens).
 - Unknown modules default to RO/DW until discovery evidence proves a higher class (fail closed).
 - Enterprise module is gated to Enterprise plans; capability varies by workspace tier.
+
+---
+## 8. RELATED RESOURCES
+
+- [`../action-reference.md`](../action-reference.md) — remote surface (31 tools / 220 actions)
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

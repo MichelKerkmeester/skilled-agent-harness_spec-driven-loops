@@ -9,6 +9,9 @@ version: 1.0.0.0
 
 # Capability: Agent Instructions (rules + skills)
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 Manages a site's agent instructions: markdown-based rules and skills that give agents custom
@@ -16,10 +19,10 @@ guidance for working on that site. Instructions can reference Webflow primitives
 styles, components, pages, CMS collections and items, locales, and other instructions), which
 resolve server-side against the site's own data.
 
+---
 ## 2. HOW IT WORKS
 
-# Agent Instructions (rules + skills)
-## Actions (`data_agent_instructions_tool`, read+write)
+### Actions (`data_agent_instructions_tool`, read+write)
 
 | Action | Params | Class |
 |--------|--------|-------|
@@ -30,35 +33,46 @@ resolve server-side against the site's own data.
 | `delete_instruction` | `site_id`, `kind`, `path` | DS |
 | `move_instruction` | `site_id`, `kind`, `fromPath`, `toPath` | DW |
 
-## Semantics
+---
+### Semantics
 
 - `kind` selects the path grammar (rule vs skill); deleting a skill's `SKILL.md` cascades to all
   its descendants.
 - `move_instruction` renames/moves with cascade; the destination must keep the same parent folder.
 - This is site-scoped configuration — review content before writing; treat deletion as DS.
 
-## Example prompts
+---
+### Example prompts
 
 - "search the agent instructions on the test site"
 - "create a rule 'always use staging subdomain for publishes' on the test site"
 - "move the skill 'brand-guidelines' to 'shared/'" (confirmation for cascading renames)
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Agent Instructions`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Agent Instructions) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: Agent Instructions
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `agent-instructions.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

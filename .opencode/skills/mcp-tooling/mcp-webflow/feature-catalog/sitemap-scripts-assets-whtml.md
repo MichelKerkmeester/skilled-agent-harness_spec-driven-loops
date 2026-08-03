@@ -9,15 +9,18 @@ version: 1.0.0.0
 
 # Capability: Sitemap, scripts, assets, whtml
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 The operational surface beyond content: sitemap status bulk updates, the rich custom-code scripts
 module, asset management (incl. compression tasks), and WHMTL page building.
 
+---
 ## 2. HOW IT WORKS
 
-# Sitemap, scripts, assets, whtml
-## Actions
+### Actions
 
 ### `data_sitemap_tool` (read+write)
 
@@ -48,35 +51,46 @@ module, asset management (incl. compression tasks), and WHMTL page building.
 |--------|-------|
 | `insert_whtml` (page building via WHTML) | DW (design-affecting → sk-design pairing) |
 
-## Semantics
+---
+### Semantics
 
 - Scripts ship with publish: script registration is publish-adjacent; clearing scripts is DS.
 - Bulk sitemap updates: confirm the selection before writing (bulk blast radius).
 - `insert_whtml` builds page structure — pair with `sk-design` for layout intent.
 
-## Example prompts
+---
+### Example prompts
 
 - "update the sitemap status of the 'Blog' collection items to 'noindex'" (confirmation, bulk)
 - "list the site scripts" / "clear all page scripts on the 'About' page" (confirmation)
 - "compress the hero images of the test site"
 - "build a two-column section with WHTML on the 'About' page" (sk-design)
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `Sitemap`, `Assets`, `WHTML`, `Scripts`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (Sitemap, Assets, WHTML, Scripts) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: Sitemap, Assets, WHTML, Scripts
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `sitemap-scripts-assets-whtml.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

@@ -9,15 +9,18 @@ version: 1.0.0.0
 
 # Capability: CMS content (read, draft-write, publish, delete)
 
+<!-- sk-doc-template: feature-catalog-snippet -->
+
+---
 ## 1. OVERVIEW
 
 Read, create, update, publish, and delete Webflow CMS collections and items through the `cms`
 module of the official MCP server (Data API v2).
 
+---
 ## 2. HOW IT WORKS
 
-# CMS content (collections + items)
-## Capabilities
+### Capabilities
 
 | Action | Class | Gate |
 |--------|-------|------|
@@ -27,7 +30,8 @@ module of the official MCP server (Data API v2).
 | `publish_collection_items` / `unpublish_collection_items` | PB | operator confirmation; live publish (no staging-domain target — staging policy applies at the site level); 1 publish/min queue |
 | `delete_collection_items`, `delete_collection_field` | DS | operator confirmation; before/after listing; rollback = re-publish prior content |
 
-## Safety-critical semantics
+---
+### Safety-critical semantics
 
 - On the **remote surface**, create/update item actions create **drafts**; publishing is a separate
   explicit action (`publish_collection_items`). The local OSS surface additionally allows direct
@@ -36,7 +40,8 @@ module of the official MCP server (Data API v2).
 - Delete is permanent via the MCP surface (no trash/revert endpoint); rollback is re-publishing
   prior content — confirm before/after state.
 
-## Example prompts
+---
+### Example prompts
 
 - RO: "list the CMS collection items in the test site"
 - DW: "update the title field of the 'Blog' collection item 'hello-world' to 'Hello Webflow' —
@@ -44,22 +49,31 @@ module of the official MCP server (Data API v2).
 - PB: "publish the 'Blog' collection draft items to the staging subdomain"
 - DS (refused without confirmation): "delete all items in the 'Drafts' collection"
 
+---
 ## 3. SOURCE FILES
 
 ### Implementation
 
-- [`../references/action-reference.md`](../references/action-reference.md) — groups: `CMS`
-- [`../references/tool-surface.md`](../references/tool-surface.md) — local OSS baseline where applicable
-- [`../SKILL.md`](../SKILL.md) — frozen classes and gates
+| File | Layer | Role |
+|---|---|---|
+| `../references/action-reference.md` | Shared | Required parameters per action (CMS) |
+| `../references/tool-surface.md` | Shared | Local OSS baseline where applicable |
+| `../SKILL.md` | Shared | Frozen classes and gates |
 
 ### Validation And Tests
 
-- See `../manual-testing-playbook/` for the relevant scenarios.
+| File | Type | Role |
+|---|---|---|
+| `../manual-testing-playbook/` | Manual playbook | Relevant scenarios for this capability |
+
+---
 
 ## 4. SOURCE METADATA
 
-| Field | Value |
-|-------|-------|
-| Surface | remote (action-reference) + local OSS where noted |
-| Authority | developers.webflow.com/mcp/tools/* (2026-08-03) |
-| Version | 1.1.0.0 |
+- Group: CMS
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `cms.md`
+
+Related references:
+- [`../references/action-reference.md`](../references/action-reference.md) — complete action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

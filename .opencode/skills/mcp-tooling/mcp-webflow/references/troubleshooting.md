@@ -11,10 +11,23 @@ importance_tier: normal
 contextType: implementation
 version: 1.1.0.0
 ---
+# Webflow MCP Troubleshooting
+
+Common failure modes for the webflow Code Mode manual and their fixes.
+
+---
+## 1. OVERVIEW
+
+This reference covers discovery failures, auth/scope errors, rate limiting, publish-queue issues,
+Designer Bridge App failures, surface drift, and redaction rules. Run `../scripts/doctor.sh`
+(verify-only) first.
+
+---
 
 # Webflow MCP Troubleshooting
 
-## Discovery fails (no `webflow.webflow.*` tools in `list_tools`)
+---
+## 2. Discovery Fails (No `Webflow.Webflow.*` Tools In `List_Tools`)
 
 1. Confirm the operator environment exports `WEBFLOW_TOKEN` (namespaced
    `webflow_WEBFLOW_TOKEN` in `.env.example`); the Code Mode manual resolves `${WEBFLOW_TOKEN}`
@@ -25,7 +38,8 @@ version: 1.1.0.0
 3. Confirm Node >= 22.3.0 (the server's documented runtime requirement).
 4. Re-run discovery per session; never call from memory.
 
-## Tool calls fail with auth errors (401/403)
+---
+## 3. Tool Calls Fail With Auth Errors (401/403)
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
@@ -35,14 +49,16 @@ version: 1.1.0.0
 | 403 on custom-code endpoints | `custom_code` scopes are Data-Client-app-only | use a Data Client app token or drop the call |
 | 403 on authorize | role below owner/admin | only site owners/admins can authorize the MCP server |
 
-## Rate limiting (429)
+---
+## 4. Rate Limiting (429)
 
 - Honor `Retry-After` (~60s); the official SDK applies exponential backoff by default.
 - Publishing is limited to one successful queue per minute — batch or wait.
 - Plan-based general limits: Starter/Basic 60 rpm; CMS/eCommerce/Business 120 rpm.
 - Never blind-replay ambiguous non-idempotent writes after a 429/error.
 
-## Publish failures
+---
+## 5. Publish Failures
 
 - "Publish queue busy": one publish per minute — wait and retry once, verify before retry.
 - Staging vs production: the publish body requires `customDomains` OR `publishToWebflowSubdomain`.
@@ -50,7 +66,8 @@ version: 1.1.0.0
 - Published drafts didn't appear: CMS items may have been written to the draft queue — publishing
   is a separate explicit action (`publish_collection_items`).
 
-## Designer / Bridge App failures (`de*` tools)
+---
+## 6. Designer / Bridge App Failures (`De*` Tools)
 
 - Designer tools fail when Webflow is closed or the Designer session has no authorized site —
   Designer API tools require the Bridge App open in the Designer.
@@ -59,7 +76,8 @@ version: 1.1.0.0
 - `get_designer_app_connection_info` (RO) reports connection state — check it before Designer work.
 - Designer edits are draft-only; they appear on the live site only after `publish_site`.
 
-## Suspicious or missing tools
+---
+## 7. Suspicious Or Missing Tools
 
 - The public `webflow/mcp-server` README and the hosted docs disagree on the surface (`/sse` vs
   `/mcp`, resources presence). Treat the **pinned server version's live discovery** as
@@ -69,15 +87,24 @@ version: 1.1.0.0
 - Tool named differently than the baseline: record the drift and update the fixture; do not
   guess.
 
-## Workflow / webhook issues
+---
+## 8. WORKFLOW AND WEBHOOK ISSUES
 
 - `run_workflow` fails: confirm the workflow id and required inputs (`flows`/`workflows` list is
   RO); the blast radius depends on the workflow definition — state it in the confirmation.
 - Webhook create/delete: integration config, not site content; `delete_webhook` is destructive
   class.
 
-## Redaction rules (always)
+---
+## 9. REDACTION RULES
 
 - Never commit or log token values; redact tool output containing them.
 - Never print the resolved `${WEBFLOW_TOKEN}` value (doctor.sh reports presence only).
 - Never record account identifiers in fixtures.
+
+---
+## 10. RELATED RESOURCES
+
+- [`../mcp-wiring.md`](../mcp-wiring.md) — wiring and auth details
+- [`../action-reference.md`](../action-reference.md) — action inventory
+- [`../SKILL.md`](../SKILL.md) — frozen classes and gates

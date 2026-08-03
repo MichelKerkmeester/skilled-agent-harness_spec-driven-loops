@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
-  "spec_folder": "mcp-tooling/015-mcp-webflow/008-verification-and-closeout",
+  "packet_id": "mcp-tooling/015-mcp-webflow/009-template-alignment",
+  "spec_folder": "mcp-tooling/015-mcp-webflow/009-template-alignment",
   "parent_id": "mcp-tooling/015-mcp-webflow",
   "children_ids": [],
   "manual": {
@@ -11,36 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "webflow verification",
-      "mcp-webflow phase 8",
-      "webflow closeout",
-      "webflow verification plan",
-      "webflow closeout plan",
-      "webflow verification tasks",
-      "webflow closeout tasks",
-      "webflow verification summary",
-      "webflow closeout status"
+      "mcp-webflow template alignment",
+      "webflow asset template",
+      "webflow playbook naming",
+      "template conformance",
+      "webflow template plan",
+      "mcp-webflow template alignment plan",
+      "name",
+      "template",
+      "plan core",
+      "webflow template tasks",
+      "tasks core",
+      "implementation"
     ],
     "key_topics": [
-      "webflow",
-      "verification",
       "mcp-webflow",
-      "phase",
-      "closeout",
+      "template",
+      "alignment",
+      "webflow",
+      "asset",
+      "playbook",
+      "naming",
+      "conformance",
       "plan",
-      "tasks",
-      "summary",
-      "status",
-      "packet",
-      "passing",
-      "phases"
+      "name",
+      "core",
+      "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -87,7 +97,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -99,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Prove",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -111,7 +121,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Layered",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -123,7 +139,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Validate",
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -135,13 +151,13 @@
         "source": "derived"
       },
       {
-        "name": "Static Gate",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -153,25 +169,19 @@
         "source": "derived"
       },
       {
-        "name": "Review Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Phases",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-task",
+        "name": "Purpose",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resolving",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -181,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "A packet with passing phases can still fail as a whole: a stale child summary, conflicting statuses, unfresh generated assets, an unvalidated doc, or an untested connection",
-    "created_at": "2026-08-02T13:47:11Z",
-    "last_save_at": "2026-08-03T06:21:03.984Z",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-08-03T06:16:12.356Z",
+    "last_save_at": "2026-08-03T06:17:04.484Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:679553f0d50de5921df4d77703163002deaf9be0f0b968b2d60f879970394e5b",
+    "source_fingerprint": "sha256:8b5fb9fbb795cb447a0790f04d77c2b9e8f067979417aba2b45b890f26134f50",
     "source_doc_hashes": {
-      "spec.md": "2679cbd7b5ed5a68de2285166a2c10aa67e48d5ba832d8c0b25218b91e475625",
-      "plan.md": "99d1ca5e7a8e27f3be23c9271fec629a751c79e6ebb1305a4d57957e18eafd1f",
-      "tasks.md": "e62b60d7eae02ba4b8a2012fdd20cd6921757e4b898c8cec3e346756dc92137b",
-      "implementation-summary.md": "92b16702a4ab74d43edb63ff0c68021cf0f83a4e2bbef57079da466a25f7210a"
+      "spec.md": "7137a81443e6724e0c7d6fb0441afd697b18a00d50d2108def13ae2c0b8edf87",
+      "plan.md": "3649a64c94735739954a4c2ded4add9d21605d8051d066bc45ee72e29ffa84c2",
+      "tasks.md": "216e73163b6d1a9c205ad1bf75ae64bd9efc373a438f03f40877b029d49b8ff8",
+      "implementation-summary.md": "9e5d95b407759909962e32b4d12b163108b0ec83bbce67ff496791ddf7791101"
     },
     "last_active_child_id": null,
     "last_active_at": null

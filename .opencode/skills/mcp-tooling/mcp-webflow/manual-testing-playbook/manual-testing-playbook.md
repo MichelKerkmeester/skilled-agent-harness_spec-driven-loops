@@ -81,23 +81,22 @@ boundary held.
 
 | ID | Name | Category | File |
 |---|---|---|---|
-| DISCOVER-001 | Discovery and prefix contract | discovery-setup | [`discovery-setup/discover-001.md`](discovery-setup/discover-001.md) |
-| DISCOVER-DRIFT-001 | Tool-surface drift fails closed | discovery-setup | [`discovery-setup/discover-drift-001.md`](discovery-setup/discover-drift-001.md) |
-| REMOTE-SURFACE-001 | Remote vs local surface reconciliation | discovery-setup | [`discovery-setup/remote-surface-001.md`](discovery-setup/remote-surface-001.md) |
-| READCMS-001 | Read CMS collection | read-only | [`read-only/readcms-001.md`](read-only/readcms-001.md) |
-| READPAGES-001 | Page reads pass ungated | read-only | [`read-only/readpages-001.md`](read-only/readpages-001.md) |
-| ANALYZE-001 | Analyze reports read-only | read-only | [`read-only/analyze-001.md`](read-only/analyze-001.md) |
-| DRAFTSET-001 | Draft page settings update | draft-write | [`draft-write/draftset-001.md`](draft-write/draftset-001.md) |
-| INSTRUCTIONS-001 | Agent Instructions draft-write | draft-write | [`draft-write/instructions-001.md`](draft-write/instructions-001.md) |
-| PUBGATE-001 | Staging-only single-page publish | safety-gate | [`safety-gate/pubgate-001.md`](safety-gate/pubgate-001.md) |
-| REFUSE-001 | Destructive action without confirmation | safety-gate | [`safety-gate/refuse-001.md`](safety-gate/refuse-001.md) |
-| RATELIMIT-001 | 429 backoff and Retry-After | safety-gate | [`safety-gate/rate-limit-001.md`](safety-gate/rate-limit-001.md) |
-| DEPLOYGATE-001 | run_workflow requires confirmation | safety-gate | [`safety-gate/deploygate-001.md`](safety-gate/deploygate-001.md) |
-| BULKGATE-001 | Bulk writes confirm the selection | safety-gate | [`safety-gate/bulkgate-001.md`](safety-gate/bulkgate-001.md) |
-| PAIR-001 | Designer-family change pairs with sk-design | pairing | [`pairing/pair-001.md`](pairing/pair-001.md) |
-| PAIR-DATA-001 | Data-family runs transport-only | pairing | [`pairing/pair-data-001.md`](pairing/pair-data-001.md) |
-| NONWEBFLOW-001 | Non-Webflow intent defers | negative | [`negative/non-webflow-001.md`](negative/non-webflow-001.md) |
-
+| DISCOVER-001 | Discovery and prefix contract | discovery-setup | [`discovery-setup/discover.md`](discovery-setup/discover.md) |
+| DISCOVER-DRIFT-001 | Tool-surface drift fails closed | discovery-setup | [`discovery-setup/discover-drift.md`](discovery-setup/discover-drift.md) |
+| REMOTE-SURFACE-001 | Remote vs local surface reconciliation | discovery-setup | [`discovery-setup/remote-surface.md`](discovery-setup/remote-surface.md) |
+| READCMS-001 | Read CMS collection | read-only | [`read-only/readcms.md`](read-only/readcms.md) |
+| READPAGES-001 | Page reads pass ungated | read-only | [`read-only/readpages.md`](read-only/readpages.md) |
+| ANALYZE-001 | Analyze reports read-only | read-only | [`read-only/analyze.md`](read-only/analyze.md) |
+| DRAFTSET-001 | Draft page settings update | draft-write | [`draft-write/draftset.md`](draft-write/draftset.md) |
+| INSTRUCTIONS-001 | Agent Instructions draft-write | draft-write | [`draft-write/instructions.md`](draft-write/instructions.md) |
+| PUBGATE-001 | Staging-only single-page publish | safety-gate | [`safety-gate/pubgate.md`](safety-gate/pubgate.md) |
+| REFUSE-001 | Destructive action without confirmation | safety-gate | [`safety-gate/refuse.md`](safety-gate/refuse.md) |
+| RATELIMIT-001 | 429 backoff and Retry-After | safety-gate | [`safety-gate/rate-limit.md`](safety-gate/rate-limit.md) |
+| DEPLOYGATE-001 | run_workflow requires confirmation | safety-gate | [`safety-gate/deploygate.md`](safety-gate/deploygate.md) |
+| BULKGATE-001 | Bulk writes confirm the selection | safety-gate | [`safety-gate/bulkgate.md`](safety-gate/bulkgate.md) |
+| PAIR-001 | Designer-family change pairs with sk-design | pairing | [`pairing/pair.md`](pairing/pair.md) |
+| PAIR-DATA-001 | Data-family runs transport-only | pairing | [`pairing/pair-data.md`](pairing/pair-data.md) |
+| NONWEBFLOW-001 | Non-Webflow intent defers | negative | [`negative/non-webflow.md`](negative/non-webflow.md) |
 ## 8. AUTOMATED TEST CROSS-REFERENCE
 
 - Hub routing benchmark: `../benchmark/reports/2026-08-02--webflow-registration--routing-replay/`

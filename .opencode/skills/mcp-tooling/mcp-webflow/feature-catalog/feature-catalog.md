@@ -11,6 +11,12 @@ version: 1.2.0.0
 
 # mcp-webflow: Feature Catalog
 
+<!-- sk-doc-template: feature-catalog-template -->
+
+Canonical capability inventory for the mcp-webflow transport.
+
+---
+
 ## 1. OVERVIEW
 
 Canonical capability inventory for the `mcp-webflow` skill. The transport reaches Webflow MCP 2.0
