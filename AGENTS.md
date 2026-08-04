@@ -23,6 +23,8 @@
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
 4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail.
 
+Law 4 blocks forward progress and completion while a check is failing. A failing check may enter the bounded remediation loop in Section 4, but the hard stop remains until the authoritative gate passes.
+
 #### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
 
 When an approved plan names a specific workflow, command, agent or skill (e.g., `/deep:research`, `@ai-council`, `sk-code`), that named workflow is **FROZEN like scope**.
@@ -88,12 +90,27 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | **Confirmed vs inferred**            | For load-bearing claims, prose must distinguish confirmed (with evidence: file:line, command, artifact) from inferred (state what would confirm it). |
 | **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta. See `constitutional/regression-baseline-and-delta.md`.                       |
 | **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting. See `constitutional/finding-is-a-hypothesis.md`.           |
+| **Objective proof plan**              | For machine-state tasks, translate acceptance criteria into 1-5 observable pass/fail checks before changing files. Include exact paths, formats, and exposed boundary cases. |
+| **Observed command evidence**         | A command counts as evidence only after its output and exit status are read. Run focused checks during repair, then rerun the authoritative whole gate. |
+| **Safe negative control**             | When practical and non-destructive, reproduce the exact failing symptom before the fix so the same check proves the change.                         |
+| **Final-state proof**                 | Before completion, prove that required artifacts exist, objective checks pass from the final state, and the scoped diff contains no task-created residue. |
+
+**Task-specific proof:**
+
+| Task type | Required proof |
+|---|---|
+| **Filter or transform** | Inventory every in-scope variant, process each one, and rescan for residue. |
+| **Computed answer** | Confirm the result through an independent derivation before writing it. |
+| **Performance claim** | Measure actual runtime under stated conditions and report the baseline and delta. |
+| **Exact artifact** | Verify the required filename, path, format, and content shape directly. |
 
 ##### Blast-Radius Management
 
 - **Match effort to blast-radius.** Open non-trivial work with stakes read ("low-blast, reversible" / "high-blast: touches auth + data").
 - **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation. For commit/push, see `main-branch-direct-push.md`.
 - **Name what still speaks the old contract** — Confirm deployed servers, installed clients, caches, and API consumers won't break.
+- **Sanitize by persistence boundary** — Distinguish working-tree removal from sensitive-data eradication. Inventory every persistence location, but keep ordinary removal scoped to the requested surface and do not rewrite history, branches, or reflogs until the rollback is named and the operator approves the destructive action.
+- **Acquire dependencies deliberately** — Prefer tools already available in the project. Installation is a scoped mutation and must pass the same scope, approval, and verification rules as other changes.
 
 ##### Communication
 
@@ -117,7 +134,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 4. **Dual-threshold:** confidence ≥ 0.70 AND uncertainty ≤ 0.35 → PROCEED. Either fails → INVESTIGATE (max 3 iterations) → ESCALATE.
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
-1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`.
+1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
 2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
@@ -172,6 +189,15 @@ Trigger: "save context", "save memory", `/memory:save`
   - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
   - **MEDIUM** issues: patch when practical
   - **PASSED/SKIPPED**: no action needed
+
+#### FINAL-STATE VERIFICATION [HARD] BLOCK
+Trigger: Before claiming a machine-state task is done or that its output works.
+1. Confirm every required artifact exists at the exact path and matches the required format.
+2. Rerun the objective proof plan and the authoritative workspace gate from the final state. Read the output and exit status.
+3. Inspect the scoped diff or status. Remove task-created temporary output and confirm no unrelated file was changed.
+4. If any check fails, keep the completion claim blocked, enter the bounded remediation loop, or report the blocker with evidence.
+
+The Completion Verification Rule remains an additional requirement for spec-packet completion and metadata reconciliation.
 
 #### COMPLETION VERIFICATION RULE [HARD] BLOCK
 Trigger: Claiming "done", "complete", "finished", "works"
@@ -258,13 +284,20 @@ Every spec folder (Level 1+) MUST contain:
 
 **Planning & Approach:**
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
+- **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
 - **Apply project-specific conventions from `AGENTS.md`** before acting.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
+- **Produce the smallest complete result early.** Prefer a complete in-scope artifact over scaffolding or parallel fallback paths that the target environment does not require.
 - **Do not stop early when the requested solution is still incomplete.** Do not frame partial progress as a `good stopping point`, `natural checkpoint`, or `future work` when a safe path forward exists.
 - **Do not ask for permission to continue when the next safe step is already clear and in scope.** Avoid `should I continue?` or `want me to keep going?` when you can proceed safely under the existing rules.
+
+**Debugging & Iteration:**
+- Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
+- Law 4 keeps forward progress and completion blocked while a check fails; diagnosis and repair are the permitted bounded remediation loop, not permission to proceed past the failure.
+- If an attempt repeats without new evidence, inspect the available interface, change the approach, or follow Section 7 escalation. Do not repeat the same guess.
 
 **Verification & Reasoning:**
 - **Use frequent self-checks and reasoning loops** to catch and fix your own mistakes before asking for help.
@@ -276,7 +309,9 @@ Every spec folder (Level 1+) MUST contain:
 
 #### Quality Principles
 
-- **Prefer simplicity** — reuse existing patterns; cite evidence with sources
+- **Prefer simplicity** — produce the smallest complete solution, reuse existing patterns, and cite evidence with sources
+- **Prefer available project tools** — add a dependency only when the scoped result requires it
+- **Require fallbacks only for real constraints** — add a no-install path only when the target execution environment cannot rely on dependency installation
 - **Solve only the stated problem** — avoid over-engineering and premature optimization
 - **Verify with checks** — simplicity, performance, maintainability, scope before changes
 - **Truth over agreement** — correct user misconceptions with evidence; never agree for conversational flow
@@ -340,8 +375,17 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 | Exact text / token / symbol | **Grep** — `rg -n "<pattern>" <path>` |
 | Known file or path | **Glob** |
 | Concept, intent, "how does X work", or unfamiliar code | **Grep** for likely vocabulary → **Glob** to map the surrounding tree → **Read** to confirm. Widen the pattern rather than trusting a single hit |
+| Bug or exact failure | **Grep** the exact error or symbol, identify callers and consumers, then **Read** the responsible files before editing |
 
 > **Note:** `memory_search` is for spec docs and saved memory only — it does not index arbitrary code.
+
+#### Terminal Command Discipline
+
+- Use non-interactive commands and disable pagers. Never open an interactive editor from an automated session.
+- Follow the Grep, Glob, and Read routes above for workspace discovery and inspection. Terminal commands do not override specialized tool routing.
+- Verify that commands, flags, APIs, and paths exist before relying on them. If an option is unsupported, inspect the available interface and change the command instead of repeating the guess.
+- Treat dependency installation as the scoped mutation defined under Blast-Radius Management; verify need and authority before running it.
+- Start long-running builds or downloads only after prerequisites, scope, and mutation gates pass. Read the final output and exit status.
 
 ### MCP Tool Routing
 
@@ -369,6 +413,10 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook-system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` ("Feature flags reference table").
 
 Before enabling any results-affecting path, check `ENV-REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
+
+#### Directive Capsule
+
+Hook-capable runtimes may restate the operating disposition on each turn, including comment hygiene, governor, and proof-over-appearance guidance. The capsule is a short reminder; this framework remains the durable source of the full rules. See `.opencode/hooks/injection-contract.md`.
 
 #### Recovery Flow (hooks unavailable or fail)
 
@@ -474,7 +522,8 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 | **Deep review**                   | `/deep:review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                                                                                     |                                                                                                                                                                          |
 | **Deep AI Council**               | `/deep:ai-council` → Seats deliberate → Critique → Converge → `ai-council/**` artifacts → Council test gate                                                                                 |                                                                                                                                                                          |
 | **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` → evaluator-first loop → proposals → scoring → guarded promotion              |                                                                                                                                                                          |
-| **Claim completion**              | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` → Load `checklist.md` → Verify ALL items → Mark with evidence                                   |                                                                                                                                                                          |
+| **Machine-state task**            | Define objective checks → Implement the smallest complete result → Run and inspect → Repair against the same checks → Pass Final-State Verification                                       |                                                                                                                                                                          |
+| **Claim completion**              | Pass Final-State Verification → Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` when applicable → Load `checklist.md` → Verify ALL items → Mark with evidence → Reconcile completion metadata |                                                                                                                                                                          |
 | **Save context**                  | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                                                                         |                                                                                                                                                                          |
 | **End session**                   | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                                                                               |                                                                                                                                                                          |
 | **Memory DB admin**               | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, routing diagnostics                                                                                     |                                                                                                                                                                          |

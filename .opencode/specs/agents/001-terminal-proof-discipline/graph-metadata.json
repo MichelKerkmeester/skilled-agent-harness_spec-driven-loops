@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/001-terminal-proof-discipline",
+  "spec_folder": "agents/001-terminal-proof-discipline",
+  "parent_id": "agents",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "terminal proof discipline",
+      "governor directive injection",
+      "AGENTS.md improvement",
+      "hidden test final state",
+      "proof over appearance",
+      "terminal proof plan",
+      "AGENTS.md plan",
+      "directive capsule plan",
+      "terminal proof tasks",
+      "directive capsule tasks",
+      "terminal proof checklist",
+      "directive capsule verification"
+    ],
+    "key_topics": [
+      "terminal",
+      "proof",
+      "discipline",
+      "governor",
+      "directive",
+      "injection",
+      "agents",
+      "improvement",
+      "hidden",
+      "test",
+      "final",
+      "state"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/plugins/mk-skill-advisor.js",
+      "dist/hooks/claude/user-prompt-submit.js",
+      ".pi/extensions/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".pi/extensions/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proof Discipline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directive Injection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Integrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Placement Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Terminal Discipline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A terminal-engineer benchmark prompt encodes a verification protocol that AGENTS.md did not express: encode every requirement as an objective pass-or-fail command, watch the check fail before fixing, fix the root cause once, and close with a clean re-run plus a stray-file sweep",
+    "created_at": "2026-08-05T00:00:00Z",
+    "last_save_at": "2026-08-04T05:48:00.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70fdd883d8a8114dabdc8c42449f5aed704da6a65054fe1ef76a12b6cbe74411",
+    "source_doc_hashes": {
+      "spec.md": "e5a4741e133458fe695dee6edd66c4c084d15380a8b321d4f16df3fb7855f11f",
+      "plan.md": "1154cb6dcfa4e9fd48a289d55de78207c31b348a2e5bac8b05dbe8c15bc5c10d",
+      "tasks.md": "06aca0db6256df2f0f2c38c825e7a774bb31066cf364690086d28aa78d1d9fca",
+      "checklist.md": "fedd90cfad7c79b53f8657451b3f263393bb48ae050b067fcb274c36e8f724cb",
+      "decision-record.md": "c7f44ddaa7f0c40a9f1c2919b7f3af933b373617e0eb1ccc7c28afc7c9ee1c5a",
+      "implementation-summary.md": "09e1ce8126c891be0f6415ca835be3e6c74dfff4cab57998ae27f52f70156174"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

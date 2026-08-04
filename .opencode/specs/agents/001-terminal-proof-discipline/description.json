@@ -1,0 +1,27 @@
+{
+  "specFolder": "agents/001-terminal-proof-discipline",
+  "level": 2,
+  "description": "Terminal-proof mechanics integrated into AGENTS.md's existing authorities and a proof-over-appearance directive extended the per-turn governor capsule through the existing injection chain",
+  "keywords": [
+    "terminal",
+    "proof",
+    "discipline",
+    "AGENTS.md",
+    "directive",
+    "governor",
+    "capsule",
+    "injection",
+    "final",
+    "gate"
+  ],
+  "lastUpdated": "2026-08-05T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "terminal-proof-discipline",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-08-26_00-00__terminal-proof-discipline-and-directive-injection.md"
+  ]
+}
