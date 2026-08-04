@@ -36,7 +36,7 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 
 Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `MK_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `MK_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `MK_GOAL_AUTONOMY=active` or smoke-tested with `MK_GOAL_AUTONOMY=smoke`. `MK_GOAL_MAX_AUTO_TURNS` and `MK_GOAL_MAX_WALL_MS` tune the guarded continuation caps; status output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
 
-State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, `/goal history` lists archived records read-only, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. `/goal doctor` and `/goal health` report active/archive counts, log sizes, last sweep time, and orphan candidates. `/goal resume` reactivates only `paused` or `usage_limited` goals. See `references/hooks/goal-plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
+State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, `/goal history` lists archived records read-only, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. `/goal doctor` and `/goal health` report active/archive counts, log sizes, last sweep time, and orphan candidates. `/goal resume` reactivates only `paused` or `usage_limited` goals. See `.opencode/hooks/goal/goal-plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
 
 ---
 
@@ -49,7 +49,7 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 | `.opencode/plugins/mk-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
 | `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | `.opencode/skills/.goal-state/` | Runtime state | Per-session JSON goal records and bounded debug logs. |
-| `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
+| `.opencode/hooks/goal/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
 
 ### Validation And Tests
 
@@ -71,4 +71,4 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 - Group: UX Hooks
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `ux-hooks/goal-opencode-plugin.md`
-- Related reference: `references/hooks/goal-plugin.md`
+- Related reference: `.opencode/hooks/goal/goal-plugin.md`

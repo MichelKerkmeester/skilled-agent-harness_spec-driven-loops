@@ -20,7 +20,7 @@ version: 3.6.0.9
 
 SessionStart priming injects context via stdout on Claude Code SessionStart based on source routing (compact/startup/resume/clear).
 
-This hook handles four session start scenarios: after compaction it reads the cached PreCompact payload, on fresh startup it surfaces a Spec Kit Memory overview plus the shared startup payload (`graphQualitySummary`, `sharedPayloadTransport`), on resume it loads prior session state, and after /clear it provides minimal context. The output is written to stdout for Claude Code to inject into the conversation. The same payload shape is transported by `hooks/copilot/session-prime.ts` and `hooks/opencode/session-start.ts`.
+This hook handles four session start scenarios: after compaction it reads the cached PreCompact payload, on fresh startup it surfaces a Spec Kit Memory overview plus the shared startup payload (`graphQualitySummary`, `sharedPayloadTransport`), on resume it loads prior session state, and after /clear it provides minimal context. The output is written to stdout for Claude Code to inject into the conversation. The same payload shape is transported by the `session-start.ts` adapters under `hooks/codex/`, `hooks/cursor/`, and `hooks/devin/`.
 
 ---
 

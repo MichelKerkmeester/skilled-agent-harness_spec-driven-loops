@@ -78,7 +78,7 @@ Resource domains:
 - `references/graph/` documents skill graph queries, drift reconciliation, graph extraction status and `enhances` propagation.
 - `references/runtime/` documents standalone MCP topology, stable tool ids, bridge policy, freshness and daemon lease behavior.
 - `references/config/` documents package-local database path policy.
-- `references/hooks/` documents prompt-time hook behavior across runtimes.
+- `hooks/` documents prompt-time hook behavior across runtimes.
 - `references/decisions/` documents deferred decision records and historical rationale that still affects operators.
 - `feature-catalog/` documents current advisor capabilities and source-of-truth feature references.
 - `manual-testing-playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
@@ -181,7 +181,7 @@ RESOURCE_MAP = {
     "FRESHNESS": ["references/runtime/freshness-contract.md"],
     "DAEMON_LEASE": ["references/runtime/daemon-lease-contract.md"],
     "DB_PATH": ["references/config/db-path-policy.md"],
-    "HOOK": ["references/hooks/skill-advisor-hook.md"],
+    "HOOK": ["hooks/skill-advisor-hook.md"],
     "DECISIONS": ["references/decisions/deferred-decisions.md"],
     "RECOMMEND": ["feature-catalog/mcp-surface/advisor-recommend.md"],
     "STATUS": ["feature-catalog/mcp-surface/advisor-status.md"],
@@ -392,7 +392,7 @@ Package references:
 - `references/runtime/freshness-contract.md` — trust-state vocabulary and caller obligations.
 - `references/runtime/daemon-lease-contract.md` — single-writer daemon lease behavior.
 - `references/config/db-path-policy.md` — package-local SQLite path policy.
-- `references/hooks/skill-advisor-hook.md` — prompt-time hook behavior.
+- `hooks/skill-advisor-hook.md` — prompt-time hook behavior.
 - `references/decisions/deferred-decisions.md` — Tier D decision records (F6 deprecation banners).
 - `ARCHITECTURE.md`
 - `mcp-server/README.md`

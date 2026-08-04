@@ -49,7 +49,7 @@ goal core:
   (operator-visible in chat) + turn-end verify (no forced continuation). Injection is
   universal; verify/continue exists only where a real lifecycle event supports it.
 
-Full contract: [`../references/hooks/goal-plugin.md`](../references/hooks/goal-plugin.md)
+Full contract: [`goal-plugin.md`](../../../hooks/goal/goal-plugin.md)
 and the `cli-external-orchestration/032-goal-hooks-cross-runtime` packet.
 
 ## Why

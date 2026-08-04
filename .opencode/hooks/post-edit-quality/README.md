@@ -96,5 +96,5 @@ Expected result: all tests pass (covers the router and the Claude/Codex adapters
 ## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): finding visibility per runtime.
+- [`../injection-contract.md`](../injection-contract.md): finding visibility per runtime.
 - [`../../skills/sk-code/sk-code-quality/SKILL.md`](../../skills/sk-code/sk-code-quality/SKILL.md): the comment-hygiene standard the primary checker enforces.

@@ -61,26 +61,6 @@
   },
   {
     "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/hooks/goal-plugin.md",
-    "diskPath": "references/hooks/goal-plugin.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/hooks/injection-contract.md",
-    "diskPath": "references/hooks/injection-contract.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/hooks/skill-advisor-hook-validation.md",
-    "diskPath": "references/hooks/skill-advisor-hook-validation.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
-    "leafResourceId": "references/hooks/skill-advisor-hook.md",
-    "diskPath": "references/hooks/skill-advisor-hook.md"
-  },
-  {
-    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/memory/embedder-architecture.md",
     "diskPath": "references/memory/embedder-architecture.md"
   },

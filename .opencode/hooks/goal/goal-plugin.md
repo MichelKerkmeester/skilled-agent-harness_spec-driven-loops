@@ -111,7 +111,7 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .opencode/plugins/mk-goal.js
 ```
 
-For documentation-only changes under `system-spec-kit`, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
+For documentation-only changes, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
 
 ## 8. CROSS-RUNTIME RELATIONSHIP
 
@@ -141,8 +141,8 @@ Claude reaches `/goal-opencode` through its whole-directory `.claude/commands` â
 
 ## 9. RELATED REFERENCES
 
-- `references/config/hook-system.md` - cross-runtime hook and plugin transport map.
-- `references/hooks/injection-contract.md` - the active-goal block's per-runtime visibility.
-- `feature-catalog/ux-hooks/goal-opencode-plugin.md` - current feature catalog entry.
-- `manual-testing-playbook/ux-hooks/goal-opencode-plugin.md` - operator validation scenario.
+- [`hook-system.md`](../../skills/system-spec-kit/references/config/hook-system.md) - cross-runtime hook and plugin transport map.
+- [`injection-contract.md`](../injection-contract.md) - the active-goal block's per-runtime visibility.
+- [`goal-opencode-plugin.md`](../../skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md) - current feature catalog entry.
+- [`goal-opencode-plugin.md`](../../skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md) - operator validation scenario.
 - `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/` - the cross-runtime goal-hook packet (the legacy `/goal` OpenCode packet is archived at `system-deep-loop/z_archive/026-goal-opencode-plugin/`).

@@ -674,7 +674,7 @@ Environment variables consumed by the local `.opencode/plugins/mk-goal.js` plugi
 | `MK_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | number (positive int, days) | Age threshold before an orphaned active-state file is swept and archived. | `.opencode/plugins/mk-goal.js` |
 | `MK_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-active-state sweep passes. | `.opencode/plugins/mk-goal.js` |
 
-Detailed operator guidance lives in `references/hooks/goal-plugin.md`.
+Detailed operator guidance lives in `.opencode/hooks/goal/goal-plugin.md`.
 
 ---
 

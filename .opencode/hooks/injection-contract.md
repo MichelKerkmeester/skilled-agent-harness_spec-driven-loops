@@ -61,7 +61,7 @@ result and act rather than narrate...
 - **Trigger:** every user prompt submission.
 - **Owning module:** `system-skill-advisor/mcp-server/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`, `GOVERNOR_DIRECTIVE`), one function, called by every runtime's adapter.
 - **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`mk-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` appends it onto the visible prompt text via the `input` event's `{action:"transform"}`).
-- **See also:** [`skill-advisor-hook.md`](./skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
+- **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
 
 ### Spec-Gate Gate-3 Question
 
@@ -84,7 +84,7 @@ B) Create a new spec folder
 **Injects:** a deduplicated continuity brief, active-goal guidance, or a stale-dist warning, each bounded and each appended independently.
 
 - **Trigger:** `session.created` (continuity/goal) or before a risky Bash command (dist-freshness).
-- **Owning modules:** `mk-spec-memory.js`, `mk-goal.js`, `mk-dist-freshness-guard.js` (see their own entries in [`../../../../.opencode/plugins/README.md`](../../../../.opencode/plugins/README.md) §5).
+- **Owning modules:** `mk-spec-memory.js`, `mk-goal.js`, `mk-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
 - **Channel:** `[SYS]` only. All three use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
 ### Cross-Runtime Active-Goal Brief (Cursor / Pi)
@@ -223,7 +223,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 **Injects:** an allow/deny decision with reason for a `PermissionRequest` event, composing the same `spec-gate-core`/`dispatch-rule-checks` cores the tool-time hooks already use.
 
-- **Channel:** `[BLOCK]`. Not applicable to Pi/OpenCode/Claude/Cursor/Codex. None of them expose a distinct approval-gate event separate from the tool-call-time hooks above. See [`../../../cli-external-orchestration/cli-pi/references/pi-tools.md`](../../../cli-external-orchestration/cli-pi/references/pi-tools.md) for why this is a confirmed non-gap rather than a missing bridge.
+- **Channel:** `[BLOCK]`. Not applicable to Pi/OpenCode/Claude/Cursor/Codex. None of them expose a distinct approval-gate event separate from the tool-call-time hooks above. See [`../skills/cli-external-orchestration/cli-pi/references/pi-tools.md`](../skills/cli-external-orchestration/cli-pi/references/pi-tools.md) for why this is a confirmed non-gap rather than a missing bridge.
 
 ### Session-Start Advisories (worktree/git-hooks/dist-staleness/codex-hooks checks)
 
@@ -247,9 +247,9 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ## 6. RELATED
 
-- [`skill-advisor-hook.md`](./skill-advisor-hook.md): setup, validation, and operator states for the advisor hook this doc's §2 cites.
-- [`goal-plugin.md`](./goal-plugin.md): the `/goal` plugin's own injection contract, referenced in §2, not duplicated here.
-- [`../../../../.opencode/plugins/README.md`](../../../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
-- [`../../../../.pi/extensions/README.md`](../../../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
-- [`../../../../.claude/hooks/README.md`](../../../../.claude/hooks/README.md), [`../../../../.cursor/hooks/README.md`](../../../../.cursor/hooks/README.md), [`../../../../.devin/hooks/README.md`](../../../../.devin/hooks/README.md), [`../../../../.codex/hooks/README.md`](../../../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`../../../hooks/README.md`](../../../hooks/README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.opencode/skills/` while every other hook in this doc stays inside its owning skill.
+- [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md): setup, validation, and operator states for the advisor hook this doc's §2 cites.
+- [`goal-plugin.md`](./goal/goal-plugin.md): the `/goal` plugin's own injection contract, referenced in §2, not duplicated here.
+- [`../plugins/README.md`](../plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
+- [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
+- [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
+- [`README.md`](./README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.opencode/skills/` while every other hook in this doc stays inside its owning skill.

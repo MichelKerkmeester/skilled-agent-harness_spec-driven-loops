@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-hook-docs-relocation",
+  "spec_folder": "system-speckit/032-hook-docs-relocation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook docs relocation",
+      "references/hooks move",
+      "injection contract home",
+      "skill advisor hook reference",
+      "hook relocation plan",
+      "injection contract move",
+      "hook relocation tasks",
+      "hook relocation checklist",
+      "hook relocation decision",
+      "hook relocation summary",
+      "resume hook relocation"
+    ],
+    "key_topics": [
+      "hook",
+      "docs",
+      "relocation",
+      "references",
+      "hooks",
+      "move",
+      "injection",
+      "contract",
+      "home",
+      "skill",
+      "advisor",
+      "reference"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/hooks/README.md",
+      ".cursor/hooks/README.md",
+      "references/config/hook-system.md",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/injection-contract.md",
+      ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+      ".claude/hooks/README.md",
+      ".codex/hooks/README.md",
+      ".devin/hooks/README.md",
+      ".pi/extensions/README.md",
+      ".opencode/hooks/dispatch/README.md",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/mcp-route-guard/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-system.md",
+        "kind": "doc",
+        "path": "references/config/hook-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-hook-validation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Reference Docs Relocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Relocate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Prove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ownership",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The folder `.opencode/skills/system-spec-kit/references/hooks/` holds four documents that describe hooks, not the spec-kit itself: the injection visibility contract, the goal plugin operator contract, and two skill-advisor hook adapter contracts",
+    "created_at": "2026-08-04T05:57:43.886Z",
+    "last_save_at": "2026-08-04T08:43:15.612Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f8e0f00b664a3d5044966b6dd41d83a0073762e8bbc1721426790b8660ae357a",
+    "source_doc_hashes": {
+      "spec.md": "9e972c768a2f2431314058fccb1af9d38fb7545b1d6d0d8f91c5198e15aa4b28",
+      "plan.md": "875aba64a3538d5724a66f6903c127413083c61ccfb67f835ca6868cf03df24f",
+      "tasks.md": "353d581ea0057e2364a6faaead02b4ff05ae0a71f8e042cddbe5a789b5730d8c",
+      "checklist.md": "d434deed0daeebaeb41e67bd0c8437f4ab64e598a6b31e25f87312b2408acaed",
+      "decision-record.md": "8a32b05fe71047e71053783efb1d8da84b5133156265f80e44d2b701f0262121",
+      "implementation-summary.md": "2dcbfa0189fa5ca110b74b43f33d7af47d2e6ad2859f3c70f56e2f8119eac411"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

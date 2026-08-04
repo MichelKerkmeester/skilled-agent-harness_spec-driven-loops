@@ -110,5 +110,5 @@ Expected result: all tests pass.
 ## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): what each hook injects and its operator visibility.
+- [`../injection-contract.md`](../injection-contract.md): what each hook injects and its operator visibility.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary `hard_rules:` declarer these checks enforce.

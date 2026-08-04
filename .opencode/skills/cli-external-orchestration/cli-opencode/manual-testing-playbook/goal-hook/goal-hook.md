@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the OpenCode-native `mk-goal` plugin for `CO-039`. It focuses on the `/goal-opencode` command's action set (`set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, `resume`), the `mk_goal` / `mk_goal_status` tool contract those actions route through, per-OpenCode-session goal state, native OpenCode token accounting, and the `experimental.chat.system.transform` injection that steers the model with a passive `[active_goal]` block.
 
-`mk-goal` (`.opencode/plugins/mk-goal.js`) is a SEPARATE system from the runtime-neutral cross-runtime port under `.opencode/hooks/goal/` (see `CE-P03` in the `cli-external-orchestration` hub playbook). This plugin keeps **per-OpenCode-session** state, one JSON file per hex-encoded session id under `.opencode/skills/.goal-state/`, and derives its `tokens_used` accounting from OpenCode's own `message.updated` event feed rather than a turn-count estimate. Full contract: `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md`.
+`mk-goal` (`.opencode/plugins/mk-goal.js`) is a SEPARATE system from the runtime-neutral cross-runtime port under `.opencode/hooks/goal/` (see `CE-P03` in the `cli-external-orchestration` hub playbook). This plugin keeps **per-OpenCode-session** state, one JSON file per hex-encoded session id under `.opencode/skills/.goal-state/`, and derives its `tokens_used` accounting from OpenCode's own `message.updated` event feed rather than a turn-count estimate. Full contract: `.opencode/hooks/goal/goal-plugin.md`.
 
 ### Why This Matters
 
@@ -128,7 +128,7 @@ await rm(stateDir, { recursive: true, force: true });
 || `.opencode/plugins/tests/mk-goal-export-contract.test.cjs` | Plugin export-shape unit coverage (3 tests) |
 || `.opencode/plugins/tests/mk-goal-capabilities.test.cjs` | Env/capability-flag unit coverage (7/8; 1 pre-existing stale-path failure, see Section 3) |
 || `.opencode/plugins/tests/mk-goal-tool-path.test.cjs` | Tool-context session-id resolution unit coverage (9 tests) |
-|| `.opencode/skills/system-spec-kit/references/hooks/goal-plugin.md` | Operator contract for the plugin: runtime surfaces, environment variables, output fields, cross-runtime relationship |
+|| `.opencode/hooks/goal/goal-plugin.md` | Operator contract for the plugin: runtime surfaces, environment variables, output fields, cross-runtime relationship |
 || `.opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt` | The live headless-run finding cited in Section 3 Optional Supplemental Checks |
 
 ---

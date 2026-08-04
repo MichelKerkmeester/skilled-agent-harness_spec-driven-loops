@@ -73,4 +73,4 @@ This folder also holds the Claude Code side of the Gate-3 spec-folder discipline
 Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
 For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
 
-The prompt-time advisor contract lives at `../../../references/hooks/skill-advisor-hook.md`.
+The prompt-time advisor contract lives at `../../../../system-skill-advisor/hooks/skill-advisor-hook.md`.

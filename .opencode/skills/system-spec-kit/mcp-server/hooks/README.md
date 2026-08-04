@@ -169,5 +169,5 @@ Expected result: hook helper and runtime hook tests exit with Vitest success.
 
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../core/README.md`](../core/README.md)
-- [`../../references/hooks/skill-advisor-hook.md`](../../references/hooks/skill-advisor-hook.md)
+- [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md)
 - [`../../references/config/hook-system.md`](../../references/config/hook-system.md)

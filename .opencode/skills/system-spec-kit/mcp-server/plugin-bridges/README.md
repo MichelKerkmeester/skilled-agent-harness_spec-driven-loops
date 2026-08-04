@@ -32,7 +32,7 @@ Current state:
 
 - Spec-memory plugin bridge lives here as `mk-spec-memory-bridge.mjs` and routes through the daemon-backed `spec-memory.cjs` CLI.
 - Message-shape helpers for safe synthetic text-part insertion live here.
-- The goal plugin `.opencode/plugins/mk-goal.js` is intentionally absent from this directory because it is a standalone local OpenCode plugin, not a daemon bridge. Its operator contract lives in `../../references/hooks/goal-plugin.md`.
+- The goal plugin `.opencode/plugins/mk-goal.js` is intentionally absent from this directory because it is a standalone local OpenCode plugin, not a daemon bridge. Its operator contract lives in `../../../../hooks/goal/goal-plugin.md`.
 
 ---
 
@@ -84,4 +84,4 @@ Expected result: Plugin bridge smoke tests and related advisor or message-schema
 
 - [`../README.md`](../README.md)
 - [`../skill_advisor/README.md`](../../../system-skill-advisor/mcp-server/README.md)
-- Goal plugin contract: `../../references/hooks/goal-plugin.md`
+- Goal plugin contract: `../../../../hooks/goal/goal-plugin.md`

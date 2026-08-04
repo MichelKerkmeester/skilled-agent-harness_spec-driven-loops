@@ -201,7 +201,7 @@ Do not copy the Claude nested hook block into GitHub/Copilot-facing files. `hook
 ```
 □ Read the source file before editing
 □ Verify the registered command, plugin bridge, or wrapper path still resolves
-□ Run the per-runtime smoke test from `references/hooks/skill-advisor-hook.md §4`
+□ Run the per-runtime smoke test from `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md §4`
 □ Confirm fail-open behavior: errors must return `{}` or empty `additionalContext`, never throw to the runtime
 □ If TypeScript sources feed compiled runtime entrypoints, rebuild the owning package so dist-freshness checks do not report stale output
 ```
@@ -250,8 +250,8 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 
-- Skill Advisor hook contract + smoke tests: `system-spec-kit/references/hooks/skill-advisor-hook.md`
-- Skill Advisor hook validation procedures: `system-spec-kit/references/hooks/skill-advisor-hook-validation.md`
+- Skill Advisor hook contract + smoke tests: `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`
+- Skill Advisor hook validation procedures: `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md`
 - Runtime hook system internals: `system-spec-kit/references/config/hook-system.md`
 
 ### Settings Files (wiring source-of-truth)

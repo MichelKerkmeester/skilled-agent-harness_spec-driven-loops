@@ -1077,8 +1077,8 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md)             | Template usage and composition rules                                                                 |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md)     | Full environment variable reference                                                                  |
 | [`references/config/launcher-lease.md`](./references/config/launcher-lease.md)                   | mk-spec-memory launcher single-writer lease and stale-reclaim behavior                               |
-| [`references/hooks/skill-advisor-hook.md`](./references/hooks/skill-advisor-hook.md)             | Prompt-time Skill Advisor hook contract across supported runtimes                                    |
-| [`references/hooks/skill-advisor-hook-validation.md`](./references/hooks/skill-advisor-hook-validation.md) | Skill Advisor hook validation playbook                                                     |
+| [`skill-advisor-hook.md`](../system-skill-advisor/hooks/skill-advisor-hook.md)                   | Prompt-time Skill Advisor hook contract across supported runtimes                                    |
+| [`skill-advisor-hook-validation.md`](../system-skill-advisor/hooks/skill-advisor-hook-validation.md) | Skill Advisor hook validation playbook                                                  |
 | [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md)         | Feature-flag rollback and smoke-test procedures                                                      |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md)                     | Complete catalog of implemented features                                                |
 | [`../../changelog/system-spec-kit/`](../../changelog/system-spec-kit/) | Release changelog history for system-spec-kit |

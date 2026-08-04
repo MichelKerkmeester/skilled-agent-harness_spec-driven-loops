@@ -89,7 +89,6 @@ This skill uses simple intent/domain routing, not keyed runtime resource routing
 - `references/debugging/` for troubleshooting and root-cause methodology.
 - `references/cli/` for daemon CLI parity, shared smart-router behavior, and memory handback contracts.
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
-- `references/hooks/` for prompt-time advisor hooks, the OpenCode goal plugin, runtime hook parity, and hook validation playbooks.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
 **Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .opencode/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The rest of the package is deliberately NOT routable: `scripts/`, `mcp-server/`, `shared/`, `templates/`, `constitutional/`, `changelog/` and other engine dirs are the spec-kit + memory-MCP runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises memory-engine behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
@@ -220,9 +219,6 @@ RESOURCE_MAP = {
         "references/validation/template-compliance-contract.md",
     ],
     "HOOKS": [
-        "references/hooks/skill-advisor-hook.md",
-        "references/hooks/skill-advisor-hook-validation.md",
-        "references/hooks/goal-plugin.md",
         "references/config/hook-system.md",
     ],
     "LAUNCHER": [
@@ -267,7 +263,6 @@ LOADING_LEVELS = {
         "references/validation/phase-checklists.md",
         "references/templates/template-guide.md",
         "references/workflows/intake-contract.md",
-        "references/hooks/skill-advisor-hook-validation.md",
     ],
 }
 
@@ -438,11 +433,11 @@ Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecatio
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook-system.md`, `references/hooks/skill-advisor-hook.md`, `references/hooks/goal-plugin.md`, `mcp-server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook-system.md`, `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`, `.opencode/hooks/goal/goal-plugin.md`, `mcp-server/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
 
 ### OpenCode Goal Plugin
 
-The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`references/hooks/goal-plugin.md`](./references/hooks/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
+The local `/goal` surface is `.opencode/plugins/mk-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.goal-state/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `mk_goal` / `mk_goal_status` plugin tools. Use [`.opencode/hooks/goal/goal-plugin.md`](../../hooks/goal/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 

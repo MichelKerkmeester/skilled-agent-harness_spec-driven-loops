@@ -82,5 +82,5 @@ Expected result: all tests pass.
 ## 7. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): the advisory's exact injected text and visibility.
+- [`../injection-contract.md`](../injection-contract.md): the advisory's exact injected text and visibility.
 - [`../../skills/mcp-code-mode/SKILL.md`](../../skills/mcp-code-mode/SKILL.md): the Code Mode workflow this guard routes toward.

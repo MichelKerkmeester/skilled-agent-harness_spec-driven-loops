@@ -119,4 +119,4 @@ npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
 ```
 
-The complete adapter matrix and smoke commands live in [`../hooks/skill-advisor-hook.md`](../hooks/skill-advisor-hook.md).
+The complete adapter matrix and smoke commands live in [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md).

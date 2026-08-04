@@ -18,7 +18,7 @@ trigger_phrases:
 
 `git-preflight-advisory.ts` evaluates Pi's `tool_call` event for bash commands and buffers any matching advisory. The visible channel is the matching `tool_result` event: its returned `content` appends the advisory text that the model reads. Warn-only: it never blocks, and any internal error resolves to silence.
 
-Rule set and messages: [`../git-preflight-advisory.mjs`](../git-preflight-advisory.mjs) + [`../../lib/git-rule-checks.mjs`](../../lib/git-rule-checks.mjs); visibility taxonomy: `system-spec-kit/references/hooks/injection-contract.md`.
+Rule set and messages: [`../git-preflight-advisory.mjs`](../git-preflight-advisory.mjs) + [`../../lib/git-rule-checks.mjs`](../../lib/git-rule-checks.mjs); visibility taxonomy: `.opencode/hooks/injection-contract.md`.
 
 ## 3. RELATED
 

@@ -35,11 +35,11 @@ Use this catalog as the canonical inventory for both current behavior and delive
 | Area | Shipped surface | Primary catalog / reference entry |
 |---|---|---|
 | Code graph | Shared startup payload parity across Claude/Copilot/OpenCode | [`context-preservation/session-start-priming.md`](../feature-catalog/context-preservation/session-start-priming.md) (Claude slice), `references/config/hook-system.md` (Shared Startup Payload Parity section) |
-| Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp-server/README.md`, `references/hooks/skill-advisor-hook.md` |
-| Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp-server/README.md`, `references/hooks/skill-advisor-hook-validation.md` |
-| Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill-advisor-hook.md`, `references/hooks/skill-advisor-hook-validation.md` (Step 3) |
-| Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook-system.md` (Advisor Bridge and Threshold Contract section), `references/hooks/skill-advisor-hook.md` |
-| Goal plugin | Local `/goal` OpenCode plugin state, injection, and tool contract | [`ux-hooks/goal-opencode-plugin.md`](../feature-catalog/ux-hooks/goal-opencode-plugin.md), `references/hooks/goal-plugin.md` |
+| Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp-server/README.md`, `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md` |
+| Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp-server/README.md`, `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` |
+| Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`, `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` (Step 3) |
+| Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook-system.md` (Advisor Bridge and Threshold Contract section), `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md` |
+| Goal plugin | Local `/goal` OpenCode plugin state, injection, and tool contract | [`ux-hooks/goal-opencode-plugin.md`](../feature-catalog/ux-hooks/goal-opencode-plugin.md), `.opencode/hooks/goal/goal-plugin.md` |
 
 ### Command-Surface Contract
 

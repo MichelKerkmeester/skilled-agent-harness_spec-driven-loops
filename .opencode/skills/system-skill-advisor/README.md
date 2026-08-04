@@ -211,7 +211,7 @@ A: Memory, spec folders and continuity stay in `system-spec-kit`. The advisor de
 
 **Q: Where are the runtime hooks documented?**
 
-A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract across Claude, Codex, Cursor, Devin, and the OpenCode plugin bridge. The source adapters live under `.opencode/skills/system-spec-kit/mcp-server/hooks/`.
+A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across Claude, Codex, Cursor, Devin, and the OpenCode plugin bridge. The source adapters live under `.opencode/skills/system-skill-advisor/hooks/`.
 
 ---
 
@@ -242,7 +242,7 @@ A: `references/hooks/skill-advisor-hook.md` covers the prompt-time hook contract
 | [`references/runtime/standalone-mcp-shape.md`](./references/runtime/standalone-mcp-shape.md) | Standalone MCP topology |
 | [`references/graph/skill-graph-query-cookbook.md`](./references/graph/skill-graph-query-cookbook.md) | Worked examples for all query types |
 | [`references/graph/skill-graph-drift.md`](./references/graph/skill-graph-drift.md) | Detect and reconcile SQLite drift from source files |
-| [`references/hooks/skill-advisor-hook.md`](./references/hooks/skill-advisor-hook.md) | Prompt-time hook contract across runtimes |
+| [`hooks/skill-advisor-hook.md`](./hooks/skill-advisor-hook.md) | Prompt-time hook contract across runtimes |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current feature inventory |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual validation scenario index |
 | [`feature-catalog/hooks-and-plugin/goal-opencode-plugin.md`](./feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) | `/goal` OpenCode plugin reference |

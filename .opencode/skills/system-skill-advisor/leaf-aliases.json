@@ -471,8 +471,8 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "references/hooks/skill-advisor-hook.md",
-    "diskPath": "references/hooks/skill-advisor-hook.md"
+    "leafResourceId": "hooks/skill-advisor-hook.md",
+    "diskPath": "hooks/skill-advisor-hook.md"
   },
   {
     "workflowMode": "system-skill-advisor",

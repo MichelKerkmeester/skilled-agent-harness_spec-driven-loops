@@ -26,7 +26,7 @@ trigger_phrases:
 | `session-compact-context.ts` | `session_compact` | Rehydrates spec-folder continuity after a compaction (summary retention, shared state file, bounded CLI fallback) and injects the recovered context. |
 | `lib/claude-hook-adapter.ts` | (library) | `spawnSync` proxy into this skill's compiled `dist/hooks/claude/*.js` plus the JSON-envelope parser; imported by the session bridges and the advisor's `prompt-advisor.ts`. |
 
-Exact injected strings and per-runtime visibility: [`../../../references/hooks/injection-contract.md`](../../../references/hooks/injection-contract.md).
+Exact injected strings and per-runtime visibility: [`injection-contract.md`](../../../../../hooks/injection-contract.md).
 
 ## 3. RELATED
 

@@ -13,7 +13,7 @@ stage: routing
 expected_workflow_mode: system-skill-advisor
 expected_leaf_resources:
   - workflow_mode: system-skill-advisor
-    leaf_resource_id: references/hooks/skill-advisor-hook.md
+    leaf_resource_id: hooks/skill-advisor-hook.md
 ---
 
 # CL-007 Goal OpenCode Plugin

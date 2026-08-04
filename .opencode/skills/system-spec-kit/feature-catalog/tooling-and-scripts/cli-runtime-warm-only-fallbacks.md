@@ -46,9 +46,8 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 | `mcp-server/hooks/claude/session-prime.ts` | Hook adapter | Claude session priming with CLI warm path |
 | `mcp-server/hooks/claude/compact-inject.ts` | Hook adapter | Claude compaction path with CLI fallback |
 | `mcp-server/hooks/claude/session-stop.ts` | Hook adapter | Claude stop hook with CLI fallback |
-| `mcp-server/hooks/opencode/session-start.ts` | Hook adapter | OpenCode session-start with CLI warm path |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Hook adapter | Claude advisor hook with CLI fallback |
-| `.opencode/skills/system-skill-advisor/hooks/opencode/user-prompt-submit.ts` | Hook adapter | OpenCode advisor hook with CLI fallback |
+| `mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | Plugin bridge | OpenCode advisor bridge with CLI fallback |
 | `.opencode/plugins/mk-spec-memory.js` | OpenCode plugin | New spec-memory plugin surface |
 | `mcp-server/plugin-bridges/mk-spec-memory-bridge.mjs` | Plugin bridge | CLI/IPC bridge, zero in-process DB imports |
 | `.opencode/plugins/mk-code-graph.js` | OpenCode plugin | Synthesizes its transport contract from the status payload |

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/032-hook-docs-relocation",
+  "level": 2,
+  "description": "Four hook reference docs move out of system-spec-kit references into owning trees: the injection contract and goal plugin contract to the unified hook home, the advisor hook contracts to the advisor hooks tree",
+  "keywords": [
+    "hook",
+    "docs",
+    "relocation",
+    "injection",
+    "contract",
+    "goal",
+    "plugin",
+    "advisor",
+    "reference",
+    "repoint"
+  ],
+  "lastUpdated": "2026-08-05T00:00:00Z",
+  "specId": "032",
+  "folderSlug": "hook-docs-relocation",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-08-26_00-00__hook-docs-relocation.md"
+  ]
+}

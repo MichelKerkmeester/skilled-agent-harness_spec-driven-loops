@@ -131,7 +131,6 @@ Prompt-time routing is available across runtime adapters:
 | Runtime | Hook Surface |
 | --- | --- |
 | Claude Code | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` |
-| OpenCode | `.opencode/skills/system-skill-advisor/hooks/opencode/user-prompt-submit.ts` plus `prompt-wrapper.ts` fallback and `lib/opencode-hook-policy.ts` |
 | OpenCode | `.opencode/plugins/mk-skill-advisor.js` plus the cross-process gateway at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` |
 
 The OpenCode bridge must use the stable package entrypoint:
@@ -393,6 +392,6 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 | --- | --- |
 | [README.md](./README.md) | Operator overview, quick start, runtime integrations. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Package-local architecture and public API entrypoints. |
-| [Hook reference](./references/hooks/skill-advisor-hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
+| [Hook reference](./hooks/skill-advisor-hook.md) | Claude, Copilot, OpenCode and OpenCode plugin hook contract. |
 | [Manual testing playbook](./manual-testing-playbook/manual-testing-playbook.md) | OP-001 / OP-002 operator scenarios + indexer edge cases. |
 | [Embedder pluggability narrative](../system-spec-kit/references/memory/embedder-pluggability.md) | Canonical two-MCP / two-embedder / two-mechanism reference. |

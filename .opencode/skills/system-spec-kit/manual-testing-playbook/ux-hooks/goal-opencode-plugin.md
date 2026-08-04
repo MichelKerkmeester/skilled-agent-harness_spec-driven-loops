@@ -6,7 +6,7 @@ id: ux-hooks-goal-opencode-plugin
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
   - workflow_mode: system-spec-kit
-    leaf_resource_id: references/hooks/goal-plugin.md
+    leaf_resource_id: references/config/hook-system.md
 ---
 
 # 454 -- Goal OpenCode plugin active-goal injection and status
@@ -187,7 +187,7 @@ Confirm OpenCode was restarted -> inspect `.opencode/plugins/mk-goal.js` plugin 
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/goal-opencode-plugin.md](../../feature-catalog/ux-hooks/goal-opencode-plugin.md)
-- Operator reference: [references/hooks/goal-plugin.md](../../references/hooks/goal-plugin.md)
+- Operator reference: [goal-plugin.md](../../../../hooks/goal/goal-plugin.md)
 - Source file: `.opencode/plugins/mk-goal.js`
 - Command file: `.opencode/commands/goal-opencode.md`
 

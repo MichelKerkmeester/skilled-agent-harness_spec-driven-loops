@@ -97,4 +97,4 @@ Expected result: all tests pass (includes the forged-iteration-marker regression
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
 - [`../../skills/.loop-guard-state/README.md`](../../skills/.loop-guard-state/README.md): the shared state directory contract.
-- [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): decision visibility per runtime.
+- [`../injection-contract.md`](../injection-contract.md): decision visibility per runtime.

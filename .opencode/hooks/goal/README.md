@@ -124,4 +124,4 @@ Expected result: `STATUS=OK ACTION=set` with `mutation=created`, then `STATUS=OK
 - [`../../plugins/mk-goal.js`](../../plugins/mk-goal.js): the OpenCode goal plugin this core ports its template, hardening, and heuristic verifier from.
 - [`../../commands/goal-opencode.md`](../../commands/goal-opencode.md): the `/goal-opencode` router contract `bin/goal.cjs` mirrors action-for-action.
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../../skills/system-spec-kit/references/hooks/injection-contract.md`](../../skills/system-spec-kit/references/hooks/injection-contract.md): what each hook injects and its operator visibility (pending an entry for this concern once per-runtime adapters land).
+- [`../injection-contract.md`](../injection-contract.md): what each hook injects and its operator visibility (pending an entry for this concern once per-runtime adapters land).

@@ -23,7 +23,7 @@ trigger_phrases:
 
 A further AI-runtime concern, [`goal/`](./goal/README.md), is not a relocation but a new cross-runtime sibling of the OpenCode `mk-goal` plugin: it ports passive session-goal tracking (per-turn goal-brief injection, prompt-injection hardening, a heuristic verifier) to Cursor and Pi through one shared active-goal state file plus a manage CLI, while OpenCode keeps using `mk-goal` directly.
 
-A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate) — an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
+A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate) — an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
 ### Why only these four concerns moved
 
@@ -151,7 +151,7 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 
 ## 6. RELATED
 
-- [`../skills/system-spec-kit/references/hooks/injection-contract.md`](../skills/system-spec-kit/references/hooks/injection-contract.md): what every hook (including the ones that stayed in their skill) actually injects.
+- [`injection-contract.md`](./injection-contract.md): what every hook (including the ones that stayed in their skill) actually injects.
 - Per-concern READMEs: [`dispatch/`](./dispatch/README.md), [`mcp-route-guard/`](./mcp-route-guard/README.md), [`post-edit-quality/`](./post-edit-quality/README.md), [`task-dispatch/`](./task-dispatch/README.md), [`shared/`](./shared/README.md).
 - [`git/README.md`](./git/README.md): the git commit-hooks installer nested in this tree.
 - [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer that chain-calls `git/pre-commit`.

@@ -47,8 +47,8 @@ Required files:
 
 | File | Purpose |
 |------|---------|
-| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Operator reference (native tool table + runtime matrix + shared threshold/render contract) |
-| `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | This playbook |
+| `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md` | Operator reference (native tool table + runtime matrix + shared threshold/render contract) |
+| `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` | This playbook |
 | `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` | `advisor_recommend` handler (must accept `workspaceRoot`) |
 | `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts` | `advisor_validate` handler (must surface `thresholdSemantics` + telemetry totals) |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Shared `renderAdvisorBrief(...)` invariants |
