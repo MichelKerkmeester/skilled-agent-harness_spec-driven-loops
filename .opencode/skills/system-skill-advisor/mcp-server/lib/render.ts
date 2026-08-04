@@ -59,6 +59,11 @@ const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/RE
 // families and tiers change, the disposition does not.
 const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
+// Proof-over-appearance capsule, same dispositional shape as the governor:
+// restates the terminal-verification disposition every turn. Deliberately one
+// line; the full five-step protocol lives in AGENTS.md section 4.
+const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
+
 // Labels the directive block so injected content reads as one structured
 // capsule instead of loose lines.
 const DIRECTIVES_LABEL = '\nDirectives:';
@@ -196,18 +201,18 @@ export function renderAdvisorBrief(
     return capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+    ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
   }
 
   return capText(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+  ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
 }
 
 /** Render the constitutional context retained when no advisor brief is available. */
 export function renderAdvisorFallbackDirective(): string {
-  return DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+  return DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
 }
 
 // Shared timeout-fallback renderer. Previously the OpenCode hook

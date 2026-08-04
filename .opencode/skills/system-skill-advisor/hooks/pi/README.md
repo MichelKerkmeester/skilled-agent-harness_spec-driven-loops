@@ -16,9 +16,9 @@ trigger_phrases:
 
 ## 2. WHAT IT DOES AND INJECTS
 
-`prompt-advisor.ts` fires on Pi's `input` event and proxies the turn through the compiled Claude `user-prompt-submit.js` chain into this skill's advisor. The advisor's brief — `Advisor: <freshness>; use <skill> <confidence>/<uncertainty> pass.` plus the fixed comment-hygiene and governor directives — comes back as `additionalContext` and is appended to the user's own prompt text via Pi's input-transform, making it **operator-visible in Pi's chat** (every other runtime injects it invisibly). Transforms chain additively with the spec-gate classifier on the same event. Fails open.
+`prompt-advisor.ts` fires on Pi's `input` event and proxies the turn through the compiled Claude `user-prompt-submit.js` chain into this skill's advisor. The advisor's brief — `Advisor: <freshness>; use <skill> <confidence>/<uncertainty> pass.` plus the fixed comment-hygiene, governor, and proof-over-appearance directives — comes back as `additionalContext` and is appended to the user's own prompt text via Pi's input-transform, making it **operator-visible in Pi's chat** (every other runtime injects it invisibly). Transforms chain additively with the spec-gate classifier on the same event. Fails open.
 
-Exact composition: `mcp-server/lib/render.ts` (`renderAdvisorBrief()`); visibility taxonomy: `system-spec-kit/references/hooks/injection-contract.md`.
+Exact composition: `mcp-server/lib/render.ts` (`renderAdvisorBrief()`); visibility taxonomy: `.opencode/hooks/injection-contract.md`.
 
 ## 3. RELATED
 

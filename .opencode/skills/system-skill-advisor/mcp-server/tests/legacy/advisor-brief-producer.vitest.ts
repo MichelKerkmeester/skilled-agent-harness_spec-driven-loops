@@ -28,10 +28,12 @@ const options = {
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // Every brief ends with this capsule and it is excluded from the advisor token cap.
 const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+// The proof-over-appearance capsule rides the same always-delivered suffix.
+const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
 const DIRECTIVES_LABEL = '\nDirectives:';
 
 function expectedBrief(summary: string): string {
-  return `${summary}${DIRECTIVES_LABEL}${HYGIENE_DIRECTIVE}${GOVERNOR_DIRECTIVE}`;
+  return `${summary}${DIRECTIVES_LABEL}${HYGIENE_DIRECTIVE}${GOVERNOR_DIRECTIVE}${TERMINAL_PROOF_DIRECTIVE}`;
 }
 
 function expectedSharedSummary(summary: string): string {
@@ -421,7 +423,7 @@ describe('buildSkillAdvisorBrief', () => {
     expect(result.metrics.tokenCap).toBe(120);
     // The hard cap governs the advisor portion only; the fixed directives block
     // is appended in full afterward, so strip it before measuring the cap.
-    const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+    const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
     const cappedPortion = (result.brief ?? '').endsWith(directiveSuffix)
       ? (result.brief ?? '').slice(0, -directiveSuffix.length)
       : (result.brief ?? '');

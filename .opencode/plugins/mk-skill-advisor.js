@@ -44,10 +44,12 @@ const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+// Mirrors the renderer's proof-over-appearance capsule (one line, same shape as the governor).
+const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
 // Mirrors the renderer's label + bullets exactly (the renderer is the
 // canonical copy); model names stay out so the capsule never churns with
 // model releases.
-const FALLBACK_DIRECTIVE = 'Directives:' + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+const FALLBACK_DIRECTIVE = 'Directives:' + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
 const pluginRequire = createRequire(import.meta.url);
 
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
