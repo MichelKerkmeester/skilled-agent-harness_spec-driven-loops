@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
+  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme template descriptive voice",
+      "skill readme template richer",
+      "phase 008 template revision",
+      "phase 008 plan",
+      "readme template revision plan",
+      "phase 008 tasks",
+      "readme template revision tasks",
+      "phase 008 checklist",
+      "readme template revision verification",
+      "phase 008-readme-descriptive-voice-revision summary"
+    ],
+    "key_topics": [
+      "readme",
+      "template",
+      "descriptive",
+      "voice",
+      "skill",
+      "richer",
+      "phase",
+      "revision",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/checklist.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Why It Matters",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Section Model",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writing Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 and 002 refined the standalone and parent-hub README templates and phases 004 and 005 rewrote the fleet against them",
+    "created_at": "2026-08-05T11:48:45.584Z",
+    "last_save_at": "2026-08-05T12:07:15.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38cc2dc742bb892cdf69bdb10dbffd996e4ec226956d6889f66dc8c5ecb9f454",
+    "source_doc_hashes": {
+      "spec.md": "eb7edbf6b7e97aad3972be7c2a29730cd8e2ac60a79062b70e6415a9a4d46c10",
+      "plan.md": "d16bd7b3cc4b60ec8e85ffad1f29b3572f16f89c5777d876cb84704e61b46869",
+      "tasks.md": "36ee143a89be5ab9e7ae451151a537bb8b633506303aeb83521dc97d6a2acce4",
+      "checklist.md": "dc25cbc8172f764cd4d645ab92ab334d261f161558364059e03caa669fdf2f4d",
+      "implementation-summary.md": "815ea7c851f253b9ee844c4ea87c84bb6d670771912c63a27f60bf3c91cd102e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

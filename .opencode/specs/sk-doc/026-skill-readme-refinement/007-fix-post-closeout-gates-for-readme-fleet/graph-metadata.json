@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix link guard",
+      "frontmatter version gaps",
+      "CLI README alignment",
+      "post closeout gates",
+      "link guard remediation plan",
+      "frontmatter version remediation",
+      "CLI README alignment plan",
+      "README fleet remediation tasks",
+      "link guard repair tasks",
+      "CLI README alignment tasks",
+      "link guard remediation checklist",
+      "frontmatter version checklist"
+    ],
+    "key_topics": [
+      "link",
+      "guard",
+      "frontmatter",
+      "version",
+      "gaps",
+      "cli",
+      "readme",
+      "alignment",
+      "post",
+      "closeout",
+      "gates",
+      "remediation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-versions.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Work",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 006 proved that the changed README surfaces have no broken links, but the repository-wide guard still reports 96 failures across older documents",
+    "created_at": "2026-08-05T05:58:53Z",
+    "last_save_at": "2026-08-05T12:04:11.877Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0d8b76e12345c6a289cc2ed2440c971e5591692606fd3dba48d1a59c6bb50be0",
+    "source_doc_hashes": {
+      "spec.md": "d6dc000c67faa31e637b1b836f912b45fb55525027f5266356945fc94966883b",
+      "plan.md": "2f0994a50a43f90354612d2db2992c4d68b2444c08aff4809d9461f62005400b",
+      "tasks.md": "e9ac910adbaf5a4189edec8df64464521e6f28ab9fc9d2f2610a848329b81dbd",
+      "checklist.md": "5af8e23318df688e4629aa340bae7df3191e82c17fcd9d01906586ef873d195f",
+      "decision-record.md": "d3af82ff10daf2563557bed4d40f7d1eafa81cfd2ebbe0eba9ff801d89fe0cd2",
+      "implementation-summary.md": "46bc8c948b52592a1b367678d1a57e85f9d25360121c4a48ea1262f8e035e952"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

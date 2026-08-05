@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
+  "description": "Phases 001 and 002 refined the standalone and parent-hub README templates and phases 004 and 005 rewrote the fleet against them",
+  "keywords": [
+    "phases",
+    "refined",
+    "standalone",
+    "parent-hub",
+    "readme",
+    "templates",
+    "rewrote",
+    "fleet",
+    "against",
+    "them"
+  ],
+  "lastUpdated": "2026-08-05T12:06:37.443Z",
+  "specId": "008",
+  "folderSlug": "readme-descriptive-voice-revision",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
