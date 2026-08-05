@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/038-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "description": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented,",
+  "keywords": [
+    "packet",
+    "phase",
+    "implementation",
+    "summaries",
+    "contain",
+    "contradictory",
+    "state",
+    "frontmatter",
+    "says",
+    "planned",
+    "started",
+    "while",
+    "body",
+    "implemented"
+  ],
+  "lastUpdated": "2026-08-05T01:00:37.795Z",
+  "specId": "008",
+  "folderSlug": "phase-state-reconciliation",
+  "parentChain": [
+    "cli-external-orchestration",
+    "038-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/038-fable-governor-pi-hook/003-pi-directive-capsule",
+  "description": "Pi sessions get no per-turn direction about subagent dispatch: nothing says to prefer the native pi-subagents plugin over cli- routes, and AGENTS.md",
+  "keywords": [
+    "sessions",
+    "get",
+    "per-turn",
+    "direction",
+    "about",
+    "subagent",
+    "dispatch",
+    "nothing",
+    "says",
+    "prefer",
+    "native",
+    "pi-subagents",
+    "plugin",
+    "cli",
+    "routes",
+    "agents"
+  ],
+  "lastUpdated": "2026-08-05T00:57:38.569Z",
+  "specId": "003",
+  "folderSlug": "pi-directive-capsule",
+  "parentChain": [
+    "cli-external-orchestration",
+    "038-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

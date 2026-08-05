@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/038-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "spec_folder": "cli-external-orchestration/038-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "parent_id": "cli-external-orchestration/038-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch validation evidence",
+      "Pi tool_call coverage",
+      "full corpus Vitest baseline",
+      "test evidence reconciliation",
+      "dispatch evidence plan",
+      "Pi factory test plan",
+      "Vitest corpus baseline plan",
+      "dispatch evidence tasks",
+      "Pi factory evidence",
+      "Vitest baseline tasks",
+      "dispatch evidence checklist",
+      "Pi tool_call verification"
+    ],
+    "key_topics": [
+      "dispatch",
+      "validation",
+      "evidence",
+      "coverage",
+      "full",
+      "corpus",
+      "vitest",
+      "baseline",
+      "test",
+      "reconciliation",
+      "plan",
+      "factory"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/vitest.config.ts",
+      "evidence/full-corpus-baseline.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "full-corpus-baseline.md",
+        "kind": "doc",
+        "path": "evidence/full-corpus-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
+    "created_at": "2026-08-04T17:57:54Z",
+    "last_save_at": "2026-08-05T00:56:22.374Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:125f340fb495c4dac1a7c8d7328e62b0f48635393d2128b2d9d2d18156dfde88",
+    "source_doc_hashes": {
+      "spec.md": "013f885670541843e0e1ccb0e9f5ee96554ee4cda2d558f49f3c416b36259529",
+      "plan.md": "974fb7a28f3f3730069917d8ca3da0539063a0dc7d63a785c33737c398edbb02",
+      "tasks.md": "72b2efff2aeb1ea59288050eb70f5351eb367266131e38d82bb971a0da7f4c83",
+      "checklist.md": "1cdf352a66bca76f02aa02bcb3680d95ddbbe37dd9a1b763d9f62c05f3d9e792",
+      "implementation-summary.md": "5fb1b1411297a79ac916ab4cca91944f0c1985cd2beae6b4121537f0af34f6c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

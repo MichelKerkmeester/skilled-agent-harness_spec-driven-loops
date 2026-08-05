@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/038-fable-governor-pi-hook/001-research",
+  "description": "The fable governor per-turn hook re-states a compact disposition capsule (\"thermostat\") on every turn, while AGENTS.md now carries the durable",
+  "keywords": [
+    "fable",
+    "governor",
+    "per-turn",
+    "hook",
+    "re-states",
+    "compact",
+    "disposition",
+    "capsule",
+    "thermostat",
+    "every",
+    "turn",
+    "while",
+    "agents",
+    "now",
+    "carries",
+    "durable"
+  ],
+  "lastUpdated": "2026-08-05T00:57:04.757Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "cli-external-orchestration",
+    "038-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
