@@ -8,6 +8,7 @@ import {
   TransitionPolicyRegistry,
   TypedReducerRegistry,
 } from '../authorized-ledger/index.js';
+import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   prepareEventWrite,
@@ -293,7 +294,7 @@ export class RollbackDrillLedgerHarness {
         { reasonCode: result.reasonCode },
       );
     }
-    await this.ledger.appendAuthorized(event, result.proof);
+    await appendFencedLedgerRecord(this.ledger, event, result.proof);
     const appended = (await this.ledger.readVerifiedEvents()).find((entry) =>
       entry.event.effective.envelope.event_id === event.identity.eventId);
     if (!appended) {
@@ -567,7 +568,7 @@ export class RollbackDrillLedgerHarness {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
+    const receipt = await appendFencedLedgerRecord(this.ledger, event, authorization.proof);
     const verified = (await this.ledger.readVerifiedEvents()).find((entry) =>
       entry.event.effective.envelope.event_id === event.identity.eventId);
     if (!verified) {

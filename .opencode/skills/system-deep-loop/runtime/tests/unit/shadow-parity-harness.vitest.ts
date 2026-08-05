@@ -2,6 +2,8 @@
 // MODULE: Shadow Parity Harness Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   cpSync,
   mkdtempSync,
@@ -450,7 +452,7 @@ async function createLedgerTemplate(options: ExecutorOptions = {}): Promise<stri
       ? `stored-variant-request-${index}`
       : `parity-request-${index}`;
     const proof = await authorize(ledger, gateway, policies, event, requestId);
-    await ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(ledger, event, proof);
   }
   return rootDirectory;
 }

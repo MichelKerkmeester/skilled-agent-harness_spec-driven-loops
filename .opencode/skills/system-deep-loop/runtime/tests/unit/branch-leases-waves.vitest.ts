@@ -17,12 +17,16 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
+  AppendOnlyLedger,
+} from '../../lib/authorized-ledger/index.js';
+import {
   BranchMutationKinds,
   BranchOrchestrationErrorCodes,
   DurableBranchOrchestrator,
   canonicalBranchLeaseResource,
   compileBranchRun,
   compileLogicalBranches,
+  createBranchOrchestrationEventRegistry,
   deriveLogicalBranchId,
   validateImmutableWavePlan,
 } from '../../lib/branch-leases-waves/index.js';
@@ -127,7 +131,20 @@ async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promi
   const deadline = Date.now() + timeoutMs;
   while (!paths.every((path) => existsSync(path))) {
     if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
-    await new Promise((resolveWait) => setTimeout(resolveWait, 5));
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
+  }
+}
+
+async function waitForFilesOrProcessFailure(
+  paths: readonly string[],
+  failurePath: string,
+  timeoutMs = 10_000,
+): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (!paths.every((path) => existsSync(path))) {
+    if (existsSync(failurePath)) throw new Error(readFileSync(failurePath, 'utf8'));
+    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
   }
 }
 
@@ -142,8 +159,8 @@ function runAcquireProcess(
 ): Promise<ChildProcessResult> {
   const testPath = fileURLToPath(import.meta.url);
   const testDirectory = dirname(testPath);
-  const mcpServerDirectory = resolve(testDirectory, '../../../../system-spec-kit/mcp-server');
-  const vitestCli = join(mcpServerDirectory, 'node_modules/vitest/vitest.mjs');
+  const runtimeDirectory = resolve(testDirectory, '../..');
+  const vitestCli = join(runtimeDirectory, 'node_modules/vitest/vitest.mjs');
   return new Promise((resolveProcess, rejectProcess) => {
     const child = spawn(process.execPath, [
       vitestCli,
@@ -153,7 +170,7 @@ function runAcquireProcess(
       '-t',
       'independent process acquisition worker',
     ], {
-      cwd: mcpServerDirectory,
+      cwd: runtimeDirectory,
       env: {
         ...process.env,
         BRANCH_WAVE_PROCESS_ROOT: rootDirectory,
@@ -173,7 +190,61 @@ function runAcquireProcess(
     child.stdout.on('data', (chunk: string) => { stdout += chunk; });
     child.stderr.on('data', (chunk: string) => { stderr += chunk; });
     child.once('error', rejectProcess);
-    child.once('close', (exitCode) => resolveProcess({ exitCode, stdout, stderr }));
+    child.once('close', (exitCode) => {
+      if (exitCode !== 0) {
+        writeFileSync(`${readyPath}.error`, JSON.stringify({ exitCode, stdout, stderr }), 'utf8');
+      }
+      resolveProcess({ exitCode, stdout, stderr });
+    });
+  });
+}
+
+function runRevocationProcess(
+  rootDirectory: string,
+  logicalBranchId: string,
+  readyPath: string,
+  revokePath: string,
+  leasePath: string,
+  resultPath: string,
+): Promise<ChildProcessResult> {
+  const testPath = fileURLToPath(import.meta.url);
+  const testDirectory = dirname(testPath);
+  const runtimeDirectory = resolve(testDirectory, '../..');
+  const vitestCli = join(runtimeDirectory, 'node_modules/vitest/vitest.mjs');
+  return new Promise((resolveProcess, rejectProcess) => {
+    const child = spawn(process.execPath, [
+      vitestCli,
+      'run',
+      '--no-coverage',
+      testPath,
+      '-t',
+      'branch lease revocation worker',
+    ], {
+      cwd: runtimeDirectory,
+      env: {
+        ...process.env,
+        BRANCH_WAVE_REVOCATION_ROOT: rootDirectory,
+        BRANCH_WAVE_REVOCATION_BRANCH: logicalBranchId,
+        BRANCH_WAVE_REVOCATION_READY: readyPath,
+        BRANCH_WAVE_REVOCATION_REVOKE: revokePath,
+        BRANCH_WAVE_REVOCATION_LEASE: leasePath,
+        BRANCH_WAVE_REVOCATION_RESULT: resultPath,
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => { stdout += chunk; });
+    child.stderr.on('data', (chunk: string) => { stderr += chunk; });
+    child.once('error', rejectProcess);
+    child.once('close', (exitCode) => {
+      if (exitCode !== 0) {
+        writeFileSync(`${readyPath}.error`, JSON.stringify({ exitCode, stdout, stderr }), 'utf8');
+      }
+      resolveProcess({ exitCode, stdout, stderr });
+    });
   });
 }
 
@@ -220,6 +291,48 @@ if (process.env.BRANCH_WAVE_PROCESS_ROOT) {
       writeFileSync(resultPath, JSON.stringify(result), 'utf8');
       await waitForFiles([peerResultPath]);
       if (lease) await coordinator.release(lease);
+    });
+  });
+}
+
+if (process.env.BRANCH_WAVE_REVOCATION_ROOT) {
+  describe('branch lease revocation helper', () => {
+    it('branch lease revocation worker', async () => {
+      const rootDirectory = process.env.BRANCH_WAVE_REVOCATION_ROOT as string;
+      const logicalBranchId = process.env.BRANCH_WAVE_REVOCATION_BRANCH as string;
+      const readyPath = process.env.BRANCH_WAVE_REVOCATION_READY as string;
+      const revokePath = process.env.BRANCH_WAVE_REVOCATION_REVOKE as string;
+      const leasePath = process.env.BRANCH_WAVE_REVOCATION_LEASE as string;
+      const resultPath = process.env.BRANCH_WAVE_REVOCATION_RESULT as string;
+      const orchestrator = createOrchestrator(rootDirectory);
+      const grant = await orchestrator.acquireBranchLease({
+        runId: 'run-1',
+        logicalBranchId,
+        ownerId: 'revoked-worker',
+        attemptId: 'revoked-attempt',
+        ttlMs: 2_000,
+        acquireTimeoutMs: 5_000,
+      });
+      writeFileSync(leasePath, JSON.stringify({ expiresAt: grant.lease.expiresAt }), 'utf8');
+      writeFileSync(readyPath, 'ready', 'utf8');
+      await waitForFiles([revokePath]);
+      try {
+        await orchestrator.commitBranchMutation({
+          runId: 'run-1',
+          transitionId: 'revoked-side-effect',
+          grant,
+          mutationKind: BranchMutationKinds.RESULT,
+          data: { result_digest: digest({ revoked: true }) },
+        });
+        writeFileSync(resultPath, JSON.stringify({ status: 'committed' }), 'utf8');
+      } catch (error: unknown) {
+        writeFileSync(resultPath, JSON.stringify({
+          status: 'rejected',
+          errorCode: error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'UNEXPECTED_FAILURE',
+        }), 'utf8');
+      }
     });
   });
 }
@@ -414,6 +527,88 @@ describe('fenced mutation and deterministic wave scheduling', () => {
     });
   });
 
+  it('fences a two-process branch worker after the parent revokes its lease', async () => {
+    const root = temporaryRoot('branch-revocation-process');
+    const orchestrator = createOrchestrator(root);
+    const { firstWave } = await initializeAndAdmit(orchestrator, manifest(1), 1);
+    const logicalBranchId = firstWave.memberBranchIds[0];
+    const readyPath = join(root, 'revoked-worker.ready');
+    const revokePath = join(root, 'revoke');
+    const leasePath = join(root, 'revoked-worker.lease.json');
+    const resultPath = join(root, 'revoked-worker.result.json');
+    const worker = runRevocationProcess(
+      root,
+      logicalBranchId,
+      readyPath,
+      revokePath,
+      leasePath,
+      resultPath,
+    );
+
+    await waitForFilesOrProcessFailure([readyPath, leasePath], `${readyPath}.error`);
+    const lease = JSON.parse(readFileSync(leasePath, 'utf8')) as { expiresAt: string };
+    while (Date.now() < Date.parse(lease.expiresAt)) {
+      await new Promise<void>((resolveNext) => setImmediate(resolveNext));
+    }
+    const successor = await orchestrator.acquireBranchLease({
+      runId: 'run-1',
+      logicalBranchId,
+      ownerId: 'revoking-parent',
+      attemptId: 'revoking-parent-attempt',
+      ttlMs: 5_000,
+      acquireTimeoutMs: 5_000,
+    });
+    writeFileSync(revokePath, 'revoked', 'utf8');
+    const process = await worker;
+    await waitForFiles([resultPath]);
+    const result = JSON.parse(readFileSync(resultPath, 'utf8')) as {
+      status: string;
+      errorCode?: string;
+    };
+
+    expect(process.exitCode, JSON.stringify(process)).toBe(0);
+    expect(result).toMatchObject({ status: 'rejected' });
+    expect([LocksAndFencingErrorCodes.STALE_FENCE, LocksAndFencingErrorCodes.LEASE_LOST])
+      .toContain(result.errorCode);
+    const fold = await orchestrator.replay();
+    expect(fold.state.branches[logicalBranchId]).toMatchObject({
+      acceptedResultDigest: null,
+      terminalOutcome: null,
+    });
+    expect(fold.state.transitionDigests['revoked-side-effect']).toBeUndefined();
+    await orchestrator.releaseBranchLease('run-1', successor);
+  }, 30_000);
+
+  it('persists the held ledger fence on a committed branch mutation', async () => {
+    const root = temporaryRoot('branch-fence-proof');
+    const orchestrator = createOrchestrator(root);
+    const { firstWave } = await initializeAndAdmit(orchestrator, manifest(1), 1);
+    const logicalBranchId = firstWave.memberBranchIds[0];
+    const grant = await orchestrator.acquireBranchLease({
+      runId: 'run-1',
+      logicalBranchId,
+      ownerId: 'fence-proof-worker',
+      attemptId: 'fence-proof-attempt',
+      ttlMs: 5_000,
+    });
+    await orchestrator.commitBranchMutation({
+      runId: 'run-1',
+      transitionId: 'fence-proof-result',
+      grant,
+      mutationKind: BranchMutationKinds.RESULT,
+      data: { result_digest: digest({ committed: true }) },
+    });
+    const ledger = new AppendOnlyLedger({
+      rootDirectory: root,
+      ledgerId: 'branch-orchestration-ledger',
+      auditLedgerId: 'branch-orchestration-ledger-authorization',
+      authorityProvider: () => ({ state: 'legacy_authoritative' as const, epoch: 1 }),
+    }, createBranchOrchestrationEventRegistry());
+    const events = await ledger.readVerifiedEvents();
+    expect(events.at(-1)?.frame.authorization_ref.fence_token).toBeGreaterThan(0);
+    await orchestrator.releaseBranchLease('run-1', grant);
+  });
+
   it('admits only the current wave, uses the full cap, and preserves pool settlement order', async () => {
     const root = temporaryRoot('pool-wave');
     const orchestrator = createOrchestrator(root);
@@ -444,13 +639,7 @@ describe('fenced mutation and deterministic wave scheduling', () => {
         return { source: item.source, completedBranch: context.logicalBranchId };
       },
     });
-    await Promise.race([
-      enteredGate,
-      new Promise<never>((_, reject) => setTimeout(
-        () => reject(new Error('Pool did not fill the authorized wave capacity')),
-        5_000,
-      )),
-    ]);
+    await enteredGate;
     expect(maxActive).toBe(2);
     expect([...called].sort()).toEqual([...firstWave.memberBranchIds].sort());
     releaseWorkers();

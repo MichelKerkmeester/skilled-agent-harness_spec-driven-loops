@@ -6,6 +6,7 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
+import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -740,7 +741,7 @@ export class ClaimContinuityService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    return this.#ledger.appendAuthorized(event, authorization.proof);
+    return appendFencedLedgerRecord(this.#ledger, event, authorization.proof);
   }
 }
 

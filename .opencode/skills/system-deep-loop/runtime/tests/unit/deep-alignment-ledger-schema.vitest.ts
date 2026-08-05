@@ -2,6 +2,8 @@
 // MODULE: Deep Alignment Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -903,7 +905,7 @@ describe('deep-alignment typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(proof.decision.decision_id);
       priorHash = receipt.recordHash;
     }
@@ -1096,7 +1098,7 @@ describe('deep-alignment typed ledger schema', () => {
       await authorizationRequest(harness, event, 'denied-request', 'read-only'),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED });
@@ -1520,7 +1522,7 @@ describe('deep-alignment typed ledger schema', () => {
       idempotencyKey: 'deep-alignment-legacy-event-1',
     }, harness.registry);
     const proof = await authorize(harness, event, 'legacy-upcast-request');
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(first.data);
   });

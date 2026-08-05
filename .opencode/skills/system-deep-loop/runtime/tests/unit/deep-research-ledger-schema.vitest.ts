@@ -2,6 +2,8 @@
 // MODULE: Deep Research Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -523,7 +525,7 @@ describe('deep-research typed ledger schema', () => {
         throw new Error(`${stem}: ${error instanceof Error ? error.message : String(error)}`);
       }
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(proof.decision.decision_id);
       priorHash = receipt.recordHash;
     }
@@ -618,7 +620,7 @@ describe('deep-research typed ledger schema', () => {
     const input = eventInput('deep_research.convergence_evaluated', 16, '0'.repeat(64));
     const event = prepareDeepResearchEvent(input, harness.registry);
     const proof = await authorize(harness, event, 'convergence-signal-request');
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
 
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(input.data);
@@ -840,7 +842,7 @@ describe('deep-research typed ledger schema', () => {
       };
       const event = prepareDeepResearchEvent(input, harness.registry);
       const proof = await authorize(harness, event, `field-kind-positive-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       priorHash = receipt.recordHash;
     }
 
@@ -887,7 +889,7 @@ describe('deep-research typed ledger schema', () => {
       await authorizationRequest(harness, event, 'denied-request', 'read-only'),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED });

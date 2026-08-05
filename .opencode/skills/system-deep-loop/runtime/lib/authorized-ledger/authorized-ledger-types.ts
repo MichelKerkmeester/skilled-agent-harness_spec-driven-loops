@@ -7,6 +7,7 @@ import type {
   EventReadResult,
   EventWritePreflight,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -33,6 +34,8 @@ export interface AuthorizationReference {
   readonly request_digest: string;
   readonly policy_digest: string;
   readonly authority_epoch: number;
+  /** Present for commits made through the fenced mutation boundary. */
+  readonly fence_token?: number;
 }
 
 /** Receipt fields persisted inside an immutable domain frame. */
@@ -154,6 +157,9 @@ export type AuthorityState =
 export interface AuthoritySnapshot {
   readonly state: AuthorityState;
   readonly epoch: number;
+  readonly actorId?: string;
+  readonly capabilityIds?: readonly string[];
+  readonly evidenceDigests?: readonly string[];
 }
 
 /** Exact immutable policy identity requested by a transition. */
@@ -198,6 +204,8 @@ export interface TransitionPolicyDefinition {
   readonly policyVersion: number;
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
+  readonly authorizationState?: JsonValue;
+  readonly capturedAuthorizationState?: JsonValue;
   readonly evaluate: (
     input: Readonly<PolicyEvaluationInput>,
   ) => PolicyEvaluationResult | Promise<PolicyEvaluationResult>;
@@ -287,6 +295,8 @@ export interface GatewayAllowProof {
   readonly proofVersion: number;
   readonly decision: AuthorizationDecisionRecord;
   readonly auditReceipt: AuthorizationAuditReceipt;
+  /** Bound by the fenced writer immediately before the immutable append. */
+  readonly fenceToken?: number;
 }
 
 export interface GatewayAllowResult {
@@ -314,6 +324,18 @@ export interface AuthorizationGatewayOptions {
   readonly authorityProvider: (
     mode: string,
   ) => AuthoritySnapshot | Promise<AuthoritySnapshot>;
+  readonly identityResolver?: (
+    request: Readonly<TransitionAuthorizationRequest>,
+    authority: Readonly<AuthoritySnapshot>,
+  ) => {
+    readonly actorId?: string;
+    readonly capabilityId?: string;
+    readonly evidenceDigest?: string;
+  } | Promise<{
+    readonly actorId?: string;
+    readonly capabilityId?: string;
+    readonly evidenceDigest?: string;
+  }>;
 }
 
 // ───────────────────────────────────────────────────────────────────

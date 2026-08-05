@@ -3,7 +3,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
-import { setTimeout as sleep } from 'node:timers/promises';
 
 import {
   appendJsonlIfChangedAtomic,
@@ -22,6 +21,14 @@ function withHermeticState<T>(testId: string, run: (statePath: string, tempDir: 
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
   return run(join(hermetic.tmpDir, 'state.json'), hermetic.tmpDir);
+}
+
+async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (!paths.every((path) => existsSync(path))) {
+    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
+  }
 }
 
 /**
@@ -72,42 +79,25 @@ function writeConcurrentAppendWriter(tempDir: string): string {
     writerPath,
     [
       "import fs from 'node:fs';",
-      "import { syncBuiltinESMExports } from 'node:module';",
       '',
       'const [, , atomicModulePath, ledgerPath, controlDir, writer, rawValue] = process.argv;',
-      'const originalWriteFileSync = fs.writeFileSync.bind(fs);',
-      'const waitBuffer = new SharedArrayBuffer(4);',
-      'const waitView = new Int32Array(waitBuffer);',
-      'function waitBriefly() {',
-      '  Atomics.wait(waitView, 0, 0, 10);',
-      '}',
-      'function waitForFile(path) {',
-      '  const deadline = Date.now() + 5000;',
+      'async function waitForFile(path) {',
+      '  const deadline = Date.now() + 10000;',
       '  while (!fs.existsSync(path)) {',
-      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
-      '    waitBriefly();',
+      '    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    await new Promise((resolve) => setImmediate(resolve));',
       '  }',
       '}',
-      'fs.writeFileSync = (...args) => {',
-      '  const [target] = args;',
-      "  if (typeof target === 'string' && target.startsWith(ledgerPath) && target.includes('.tmp.')) {",
-      "    originalWriteFileSync(`${controlDir}/${writer}.waiting`, 'ready', 'utf8');",
-      "    waitForFile(`${controlDir}/release`);",
-      '  }',
-      '  return originalWriteFileSync(...args);',
-      '};',
-      'syncBuiltinESMExports();',
-      '',
       'const { appendJsonlIfChangedAtomic } = await import(atomicModulePath);',
-      "originalWriteFileSync(`${controlDir}/${writer}.ready`, 'ready', 'utf8');",
-      "waitForFile(`${controlDir}/start`);",
+      "fs.writeFileSync(`${controlDir}/${writer}.ready`, 'ready', 'utf8');",
+      "await waitForFile(`${controlDir}/start`);",
       'const value = Number(rawValue);',
       'appendJsonlIfChangedAtomic(',
       '  ledgerPath,',
       '  { writer, value },',
       "  { diffField: 'state_hash', diffData: { writer, value }, cache: new Map() },",
       ');',
-      "originalWriteFileSync(`${controlDir}/${writer}.done`, 'done', 'utf8');",
+      "fs.writeFileSync(`${controlDir}/${writer}.done`, 'done', 'utf8');",
     ].join('\n'),
     'utf8',
   );
@@ -141,27 +131,24 @@ function spawnAppendWriter(
     });
     child.on('error', reject);
     child.on('close', (exitCode) => {
+      if (exitCode !== 0) {
+        writeFileSync(join(controlDir, `${writer}.error`), JSON.stringify({ exitCode, stderr }), 'utf8');
+      }
       resolvePromise({ exitCode, stdout: stdout.trim(), stderr: stderr.trim() });
     });
   });
 }
 
-async function releaseConcurrentAppendWriters(controlDir: string, writers: readonly string[]): Promise<void> {
-  const started = Date.now();
-  while (Date.now() - started < 5_000) {
-    if (writers.every((writer) => existsSync(join(controlDir, `${writer}.waiting`)))) {
-      writeFileSync(join(controlDir, 'release'), 'release', 'utf8');
-      return;
+async function waitForConcurrentWritersReady(controlDir: string, writers: readonly string[]): Promise<void> {
+  const deadline = Date.now() + 10_000;
+  while (!writers.every((writer) => existsSync(join(controlDir, `${writer}.ready`)))) {
+    const errorWriter = writers.find((writer) => existsSync(join(controlDir, `${writer}.error`)));
+    if (errorWriter) {
+      throw new Error(readFileSync(join(controlDir, `${errorWriter}.error`), 'utf8'));
     }
-
-    if (writers.every((writer) => existsSync(join(controlDir, `${writer}.done`)))) {
-      return;
-    }
-
-    await sleep(10);
+    if (Date.now() >= deadline) throw new Error('Timed out waiting for concurrent append writers to start.');
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
   }
-
-  throw new Error('Timed out waiting for concurrent append writers.');
 }
 
 afterEach(() => {
@@ -337,13 +324,9 @@ describe('atomic-state', () => {
       const left = spawnAppendWriter(writerPath, atomicModulePath, ledgerPath, controlDir, 'left', 1);
       const right = spawnAppendWriter(writerPath, atomicModulePath, ledgerPath, controlDir, 'right', 2);
 
-      while (!writers.every((writer) => existsSync(join(controlDir, `${writer}.ready`)))) {
-        await sleep(10);
-      }
+      await waitForConcurrentWritersReady(controlDir, writers);
 
       writeFileSync(join(controlDir, 'start'), 'start', 'utf8');
-      await releaseConcurrentAppendWriters(controlDir, writers);
-
       const results = await Promise.all([left, right]);
       expect(results).toEqual([
         expect.objectContaining({ exitCode: 0, stderr: '' }),

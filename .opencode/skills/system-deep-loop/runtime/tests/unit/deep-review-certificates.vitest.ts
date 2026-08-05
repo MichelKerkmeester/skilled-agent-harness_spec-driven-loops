@@ -2,6 +2,8 @@
 // MODULE: Deep Review Certificate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -547,7 +549,7 @@ async function authorizedLedger(events: readonly DeepReviewLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

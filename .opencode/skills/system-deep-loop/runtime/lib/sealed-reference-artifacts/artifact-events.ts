@@ -6,6 +6,7 @@ import type {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
+import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   prepareEventWrite,
@@ -437,7 +438,7 @@ export async function recordArtifactEvent(
       { reasonCode: authorization.reasonCode },
     );
   }
-  const receipt = await recorder.ledger.appendAuthorized(event, authorization.proof);
+  const receipt = await appendFencedLedgerRecord(recorder.ledger, event, authorization.proof);
   return Object.freeze({ receipt, event, decision: authorization.decision });
 }
 

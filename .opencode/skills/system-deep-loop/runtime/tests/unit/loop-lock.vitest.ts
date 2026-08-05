@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -93,16 +93,22 @@ type ChildLockResult = {
 /**
  * Spawns a child process that acquires a loop lock after a barrier is released.
  */
-function runLockChild(lockPath: string, barrierPath: string, packetId: string): Promise<ChildLockResult> {
+function runLockChild(
+  lockPath: string,
+  barrierPath: string,
+  readyPath: string,
+  packetId: string,
+): Promise<ChildLockResult> {
   const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
   const script = `
-    import { existsSync } from 'node:fs';
+    import { existsSync, writeFileSync } from 'node:fs';
     import { acquireLoopLock } from ${JSON.stringify(moduleUrl)};
-    const [lockPath, barrierPath, packetId] = process.argv.slice(1);
+    const [lockPath, barrierPath, readyPath, packetId] = process.argv.slice(1);
+    writeFileSync(readyPath, packetId, 'utf8');
     const deadline = Date.now() + 2000;
     while (!existsSync(barrierPath)) {
       if (Date.now() > deadline) throw new Error('barrier timeout');
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
+      await new Promise((resolve) => setImmediate(resolve));
     }
     const now = new Date().toISOString();
     const result = acquireLoopLock(lockPath, {
@@ -117,7 +123,7 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
   `;
 
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, ['--experimental-strip-types', '--input-type=module', '-e', script, lockPath, barrierPath, packetId], {
+    const child = spawn(process.execPath, ['--experimental-strip-types', '--input-type=module', '-e', script, lockPath, barrierPath, readyPath, packetId], {
       cwd: join(process.cwd()),
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -139,6 +145,85 @@ function runLockChild(lockPath: string, barrierPath: string, packetId: string): 
       }
       resolve(JSON.parse(stdout.trim()) as ChildLockResult);
     });
+  });
+}
+
+async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (!paths.every((path) => existsSync(path))) {
+    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
+  }
+}
+
+interface ReclaimReleaseResult {
+  readonly role: 'reclaimer' | 'releaser';
+  readonly acquired?: boolean;
+  readonly released?: boolean;
+  readonly packetId?: string;
+}
+
+function runReclaimReleaseProcess(
+  lockPath: string,
+  role: ReclaimReleaseResult['role'],
+  readyPath: string,
+  startPath: string,
+  resultPath: string,
+  ownerPid: number,
+  acquireNonce: string,
+): Promise<ChildProcessResult> {
+  const moduleUrl = new URL('../../lib/deep-loop/loop-lock.ts', import.meta.url).href;
+  const script = `
+    import { existsSync, writeFileSync } from 'node:fs';
+    import { acquireLoopLock, releaseLoopLock } from ${JSON.stringify(moduleUrl)};
+    const [lockPath, role, readyPath, startPath, resultPath, ownerPidRaw, acquireNonce] = process.argv.slice(1);
+    async function waitForFile(path) {
+      const deadline = Date.now() + 10000;
+      while (!existsSync(path)) {
+        if (Date.now() >= deadline) throw new Error('barrier timeout');
+        await new Promise((resolve) => setImmediate(resolve));
+      }
+    }
+    writeFileSync(readyPath, role, 'utf8');
+    await waitForFile(startPath);
+    const ownerPid = Number(ownerPidRaw);
+    if (role === 'releaser') {
+      writeFileSync(resultPath, JSON.stringify({ role, released: releaseLoopLock(lockPath, ownerPid, acquireNonce) }), 'utf8');
+    } else {
+      const now = new Date().toISOString();
+      const result = acquireLoopLock(lockPath, {
+        ownerPid: process.pid,
+        startedAtIso: now,
+        ttlMs: 300000,
+        lastHeartbeatIso: now,
+        packetId: 'successor',
+        runtimeKind: 'cli-claude-code',
+      });
+      writeFileSync(resultPath, JSON.stringify({ role, acquired: result.acquired, packetId: result.acquired ? result.lock.packetId : undefined }), 'utf8');
+    }
+  `;
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      '--experimental-strip-types',
+      '--input-type=module',
+      '-e',
+      script,
+      lockPath,
+      role,
+      readyPath,
+      startPath,
+      resultPath,
+      String(ownerPid),
+      acquireNonce,
+    ], { cwd: process.cwd(), stdio: ['ignore', 'pipe', 'pipe'] });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => { stdout += chunk; });
+    child.stderr.on('data', (chunk: string) => { stderr += chunk; });
+    child.once('error', reject);
+    child.once('close', (exitCode, signal) => resolve({ exitCode, signal, stdout, stderr }));
   });
 }
 
@@ -183,17 +268,19 @@ describe('loop-lock', () => {
   });
 
   it('allows exactly one fresh cross-process acquire to win', async () => {
-    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+      const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
     try {
       const lockPath = join(tempDir, '.deep-loop.lock');
       const barrierPath = join(tempDir, 'go');
+      const readyA = join(tempDir, 'a.ready');
+      const readyB = join(tempDir, 'b.ready');
       const children = [
-        runLockChild(lockPath, barrierPath, 'packet-004-a'),
-        runLockChild(lockPath, barrierPath, 'packet-004-b'),
+        runLockChild(lockPath, barrierPath, readyA, 'packet-004-a'),
+        runLockChild(lockPath, barrierPath, readyB, 'packet-004-b'),
       ];
 
-      await new Promise((resolve) => setTimeout(resolve, 50));
-      await import('node:fs').then(({ writeFileSync }) => writeFileSync(barrierPath, 'go', 'utf8'));
+      await waitForFiles([readyA, readyB]);
+      writeFileSync(barrierPath, 'go', 'utf8');
       const results = await Promise.all(children);
 
       expect(results.filter((result) => result.acquired)).toHaveLength(1);
@@ -201,6 +288,137 @@ describe('loop-lock', () => {
       const winner = results.find((result) => result.acquired);
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe(winner?.packetId);
     } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('preserves a successor through a two-process reclaim and release race', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-reclaim-release-'));
+    try {
+      const lockPath = join(tempDir, '.deep-loop.lock');
+      const staleNonce = 'stale-lock-nonce';
+      const staleOwnerPid = knownDeadPid();
+      writeSerializedLock(lockPath, lockData({
+        ownerPid: staleOwnerPid,
+        packetId: 'stale-holder',
+        acquireNonce: staleNonce,
+      }));
+      const startPath = join(tempDir, 'start');
+      const reclaimerReady = join(tempDir, 'reclaimer.ready');
+      const releaserReady = join(tempDir, 'releaser.ready');
+      const reclaimerResult = join(tempDir, 'reclaimer.result.json');
+      const releaserResult = join(tempDir, 'releaser.result.json');
+      const reclaimer = runReclaimReleaseProcess(
+        lockPath,
+        'reclaimer',
+        reclaimerReady,
+        startPath,
+        reclaimerResult,
+        staleOwnerPid,
+        staleNonce,
+      );
+      const releaser = runReclaimReleaseProcess(
+        lockPath,
+        'releaser',
+        releaserReady,
+        startPath,
+        releaserResult,
+        staleOwnerPid,
+        staleNonce,
+      );
+      await waitForFiles([reclaimerReady, releaserReady]);
+      writeFileSync(startPath, 'start', 'utf8');
+      const processes = await Promise.all([reclaimer, releaser]);
+      await waitForFiles([reclaimerResult, releaserResult]);
+      const acquired = JSON.parse(readFileSync(reclaimerResult, 'utf8')) as ReclaimReleaseResult;
+      const released = JSON.parse(readFileSync(releaserResult, 'utf8')) as ReclaimReleaseResult;
+
+      expect(processes.every((process) => process.exitCode === 0), JSON.stringify(processes)).toBe(true);
+      expect(acquired).toMatchObject({ role: 'reclaimer', acquired: true, packetId: 'successor' });
+      expect(released.role).toBe('releaser');
+      expect(JSON.parse(readFileSync(lockPath, 'utf8'))).toMatchObject({ packet_id: 'successor' });
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  }, 20_000);
+
+  it('does not overwrite a successor installed during stale reclaim', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-reclaim-claim-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    const successor = lockData({ ownerPid: process.pid + 100_000, packetId: 'successor' });
+    writeSerializedLock(lockPath, lockData({ ownerPid: process.pid + 100_001, packetId: 'stale' }));
+    let successorInstalled = false;
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        renameSync(from: Parameters<typeof renameSync>[0], to: Parameters<typeof renameSync>[1]) {
+          actual.renameSync(from, to);
+          if (from === lockPath) {
+            writeSerializedLock(lockPath, successor);
+            successorInstalled = true;
+          }
+        },
+        unlinkSync(path: Parameters<typeof unlinkSync>[0]) {
+          if (path === lockPath && !successorInstalled) {
+            writeSerializedLock(lockPath, successor);
+            successorInstalled = true;
+          }
+          return actual.unlinkSync(path);
+        },
+      };
+    });
+
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      expect(loopLock.acquireLoopLock(lockPath, lockData({ packetId: 'reclaimer' }))).toMatchObject({
+        acquired: false,
+      });
+      expect(JSON.parse(readFileSync(lockPath, 'utf8'))).toMatchObject({ packet_id: 'successor' });
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('does not delete a successor installed during identity-checked release', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-release-claim-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    const stale = lockData({ packetId: 'stale' });
+    const successor = lockData({ ownerPid: process.pid + 100_000, packetId: 'successor' });
+    writeSerializedLock(lockPath, stale);
+    let successorInstalled = false;
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        renameSync(from: Parameters<typeof renameSync>[0], to: Parameters<typeof renameSync>[1]) {
+          actual.renameSync(from, to);
+          if (from === lockPath) {
+            writeSerializedLock(lockPath, successor);
+            successorInstalled = true;
+          }
+        },
+        unlinkSync(path: Parameters<typeof unlinkSync>[0]) {
+          if (path === lockPath && !successorInstalled) {
+            writeSerializedLock(lockPath, successor);
+            successorInstalled = true;
+          }
+          return actual.unlinkSync(path);
+        },
+      };
+    });
+
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      expect(loopLock.releaseLoopLock(lockPath, stale.ownerPid, stale.acquireNonce)).toBe(true);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8'))).toMatchObject({ packet_id: 'successor' });
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
       rmSync(tempDir, { recursive: true, force: true });
     }
   });

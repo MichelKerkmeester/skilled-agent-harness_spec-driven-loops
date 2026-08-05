@@ -2,6 +2,8 @@
 // MODULE: Deep Improvement Common Certificate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   chmodSync,
   mkdtempSync,
@@ -439,7 +441,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

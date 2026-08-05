@@ -2,6 +2,9 @@
 // MODULE: Deep Research Shadow Parity Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import { FencedLedgerWriter } from '../../lib/locks-and-fencing/index.js';
+
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -731,7 +734,7 @@ async function appendResumeEvent<TStem extends DeepResearchEventStem>(
   };
   const event = prepareDeepResearchEvent(input, harness.registry);
   const proof = await authorizeResumeEvent(harness, event, `resume-request-${sequence}`);
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
   return event.envelope as DeepResearchLedgerEvent;
 }
 
@@ -1173,7 +1176,7 @@ describe('Deep Research shadow parity', () => {
   it('drives independent real paths: a clean fixture passes and one-path semantic drift fails', async () => {
     const fixture = createFixture('converged');
     const sealed = await createSealedBoundary();
-    const appendSpy = vi.spyOn(AppendOnlyLedger.prototype, 'appendAuthorized');
+    const appendSpy = vi.spyOn(FencedLedgerWriter.prototype, 'append');
     const cleanRun = await caseRun(fixture, sealed);
     const clean = await runDeepResearchParityCase({
       manifest: targetedManifest(fixture),
@@ -1183,7 +1186,7 @@ describe('Deep Research shadow parity', () => {
     expect(clean.receipt.exitStatus).toBe('green');
     expect(clean.receipt.diffDispositions).toEqual([]);
     expect(clean.receipt.parityCertificateDigest).toMatch(/^[a-f0-9]{64}$/);
-    const appendedEventTypes = appendSpy.mock.calls.map(([event]) => event.identity.eventType);
+    const appendedEventTypes = appendSpy.mock.calls.map(([request]) => request.event.identity.eventType);
     const evidence = cleanRun.executors.evidence();
     const droveRealSubstrate = cleanRun.executors.substrateImportsReal
       && fixture.events.every((event) => appendedEventTypes.includes(event.event_type))

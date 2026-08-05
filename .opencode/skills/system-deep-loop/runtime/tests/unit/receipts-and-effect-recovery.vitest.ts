@@ -9,8 +9,10 @@ import {
   rmSync,
   writeFileSync,
 } from 'node:fs';
+import { spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
   afterEach,
@@ -128,7 +130,7 @@ interface Harness {
   readonly registry: EventTypeRegistry;
   readonly policies: TransitionPolicyRegistry;
   readonly ledger: AppendOnlyLedger;
-  readonly ledgerLease: Promise<FencedLease>;
+  readonly ledgerLease?: Promise<FencedLease>;
   readonly writer: AuthorizedEvidenceWriter;
 }
 
@@ -163,8 +165,10 @@ function evaluateAllow(
 function createHarness(
   label: string,
   evaluate: (input: Readonly<PolicyEvaluationInput>) => PolicyEvaluationResult = evaluateAllow,
+  existingRootDirectory?: string,
+  options: Readonly<{ eagerLedgerLease?: boolean }> = {},
 ): Harness {
-  const rootDirectory = temporaryRoot(label);
+  const rootDirectory = existingRootDirectory ?? temporaryRoot(label);
   const registry = createEvidenceControlEventRegistry();
   const policies = new TransitionPolicyRegistry([{
     policyId: 'dark-evidence-policy',
@@ -188,22 +192,27 @@ function createHarness(
     rootDirectory,
     operationTimeoutMs: 5_000,
   });
-  const ledgerLease = coordinator.acquire({
-    resource: {
-      kind: ProtectedResourceKinds.LEDGER,
-      components: { ledgerId: ledger.ledgerId },
-      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-    },
-    ownerId: 'receipt-effect-writer',
-    correlationId: `receipt-effect-${label}`,
-    ttlMs: 300_000,
-    acquireTimeoutMs: 5_000,
-  });
+  let ledgerLease: Promise<FencedLease> | undefined;
+  const acquireLedgerLease = (): Promise<FencedLease> => {
+    ledgerLease ??= coordinator.acquire({
+      resource: {
+        kind: ProtectedResourceKinds.LEDGER,
+        components: { ledgerId: ledger.ledgerId },
+        atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+      },
+      ownerId: 'receipt-effect-writer',
+      correlationId: `receipt-effect-${label}`,
+      ttlMs: 300_000,
+      acquireTimeoutMs: 5_000,
+    });
+    return ledgerLease;
+  };
+  if (options.eagerLedgerLease !== false) ledgerLease = acquireLedgerLease();
   const writer = new AuthorizedEvidenceWriter({
     ledger,
     ledgerFence: {
       writer: new FencedLedgerWriter(coordinator),
-      currentLease: () => ledgerLease,
+      currentLease: acquireLedgerLease,
     },
     gateway,
     policies,
@@ -223,6 +232,14 @@ function createHarness(
   return { rootDirectory, registry, policies, ledger, ledgerLease, writer };
 }
 
+async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (!paths.every((path) => existsSync(path))) {
+    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
+    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
+  }
+}
+
 function createIndependentWriter(harness: Harness): AuthorizedEvidenceWriter {
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory: harness.rootDirectory,
@@ -237,7 +254,7 @@ function createIndependentWriter(harness: Harness): AuthorizedEvidenceWriter {
     ledger: harness.ledger,
     ledgerFence: {
       writer: new FencedLedgerWriter(coordinator),
-      currentLease: () => harness.ledgerLease,
+      currentLease: () => harness.ledgerLease ?? Promise.reject(new Error('Ledger lease was not initialized')),
     },
     gateway,
     policies: harness.policies,
@@ -504,8 +521,12 @@ function effectGateway(
   });
 }
 
-function fileFixture(label: string, relativePath = 'published.txt'): FileFixture {
-  const targetRoot = temporaryRoot(label);
+function fileFixtureAtRoot(
+  label: string,
+  targetRoot: string,
+  relativePath = 'published.txt',
+  logicalEffectId = `file-publication-${label}`,
+): FileFixture {
   const request: AtomicFileEffectRequest = {
     relativePath,
     content: 'durable content\n',
@@ -517,7 +538,7 @@ function fileFixture(label: string, relativePath = 'published.txt'): FileFixture
     request,
     execution: {
       ...effectInput(),
-      logicalEffectId: `file-publication-${label}`,
+      logicalEffectId,
       operation: 'publish-file',
       targetIdentity: atomicFileTargetIdentity(request.relativePath),
       request,
@@ -532,9 +553,152 @@ function fileFixture(label: string, relativePath = 'published.txt'): FileFixture
   };
 }
 
+function fileFixture(label: string, relativePath = 'published.txt'): FileFixture {
+  return fileFixtureAtRoot(label, temporaryRoot(label), relativePath);
+}
+
+interface EffectProcessResult {
+  readonly status: string;
+  readonly errorCode?: string;
+}
+
+function runEffectProcess(input: Readonly<{
+  rootDirectory: string;
+  targetRoot: string;
+  mode: 'recover' | 'operator';
+  workerId: string;
+  readyPath: string;
+  startPath: string;
+  resultPath: string;
+  logicalEffectId: string;
+  recoveryId?: string;
+  resolution?: 'confirmed_not_applied' | 'terminal_failed';
+}>): Promise<{ exitCode: number | null; stdout: string; stderr: string }> {
+  const testPath = fileURLToPath(import.meta.url);
+  const testDirectory = dirname(testPath);
+  const runtimeDirectory = resolve(testDirectory, '../..');
+  const vitestCli = join(runtimeDirectory, 'node_modules/vitest/vitest.mjs');
+  const testName = input.mode === 'recover'
+    ? 'effect recovery process worker'
+    : 'effect operator process worker';
+  return new Promise((resolveProcess, rejectProcess) => {
+    const child = spawn(process.execPath, [
+      vitestCli,
+      'run',
+      '--no-coverage',
+      testPath,
+      '-t',
+      testName,
+    ], {
+      cwd: runtimeDirectory,
+      env: {
+        ...process.env,
+        EFFECT_RACE_ROOT: input.rootDirectory,
+        EFFECT_RACE_TARGET_ROOT: input.targetRoot,
+        EFFECT_RACE_MODE: input.mode,
+        EFFECT_RACE_WORKER: input.workerId,
+        EFFECT_RACE_READY: input.readyPath,
+        EFFECT_RACE_START: input.startPath,
+        EFFECT_RACE_RESULT: input.resultPath,
+        EFFECT_RACE_LOGICAL_EFFECT: input.logicalEffectId,
+        ...(input.recoveryId ? { EFFECT_RACE_RECOVERY_ID: input.recoveryId } : {}),
+        ...(input.resolution ? { EFFECT_RACE_RESOLUTION: input.resolution } : {}),
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => { stdout += chunk; });
+    child.stderr.on('data', (chunk: string) => { stderr += chunk; });
+    child.once('error', rejectProcess);
+    child.once('close', (exitCode) => resolveProcess({ exitCode, stdout, stderr }));
+  });
+}
+
+async function effectProcessExecution(targetRoot: string, logicalEffectId: string): Promise<FileFixture> {
+  return fileFixtureAtRoot(logicalEffectId, targetRoot, 'published.txt', logicalEffectId);
+}
+
+if (process.env.EFFECT_RACE_ROOT) {
+  describe('effect race process helpers', () => {
+    it('effect recovery process worker', async () => {
+      const rootDirectory = process.env.EFFECT_RACE_ROOT as string;
+      const targetRoot = process.env.EFFECT_RACE_TARGET_ROOT as string;
+      const workerId = process.env.EFFECT_RACE_WORKER as string;
+      const readyPath = process.env.EFFECT_RACE_READY as string;
+      const startPath = process.env.EFFECT_RACE_START as string;
+      const resultPath = process.env.EFFECT_RACE_RESULT as string;
+      const logicalEffectId = process.env.EFFECT_RACE_LOGICAL_EFFECT as string;
+      const harness = createHarness('effect-recovery-worker', evaluateAllow, rootDirectory, { eagerLedgerLease: false });
+      const fixture = await effectProcessExecution(targetRoot, logicalEffectId);
+      writeFileSync(readyPath, workerId, 'utf8');
+      await waitForFiles([startPath]);
+      try {
+        const result = await effectGateway(harness).recover({
+          execution: fixture.execution,
+          claim: claim({ claim_id: `claim-${workerId}` }),
+          reasonCode: 'resume_unresolved_intent',
+          startedAt: T3,
+        }, fixture.adapter);
+        writeFileSync(resultPath, JSON.stringify({ status: result.status }), 'utf8');
+      } catch (error: unknown) {
+        writeFileSync(resultPath, JSON.stringify({
+          status: 'rejected',
+          errorCode: error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'UNEXPECTED_FAILURE',
+        }), 'utf8');
+      }
+    });
+
+    it('effect operator process worker', async () => {
+      const rootDirectory = process.env.EFFECT_RACE_ROOT as string;
+      const targetRoot = process.env.EFFECT_RACE_TARGET_ROOT as string;
+      const workerId = process.env.EFFECT_RACE_WORKER as string;
+      const readyPath = process.env.EFFECT_RACE_READY as string;
+      const startPath = process.env.EFFECT_RACE_START as string;
+      const resultPath = process.env.EFFECT_RACE_RESULT as string;
+      const logicalEffectId = process.env.EFFECT_RACE_LOGICAL_EFFECT as string;
+      const recoveryId = process.env.EFFECT_RACE_RECOVERY_ID as string;
+      const resolution = process.env.EFFECT_RACE_RESOLUTION as 'confirmed_not_applied' | 'terminal_failed';
+      const harness = createHarness('effect-operator-worker', evaluateAllow, rootDirectory, { eagerLedgerLease: false });
+      const fixture = await effectProcessExecution(targetRoot, logicalEffectId);
+      writeFileSync(readyPath, workerId, 'utf8');
+      await waitForFiles([startPath]);
+      try {
+        const result = await effectGateway(harness).resolveOperatorDecision({
+          execution: fixture.execution,
+          adapter: fixture.adapter,
+          recoveryId,
+          operatorId: `operator-${workerId}`,
+          resolution,
+          evidenceDigest: EVIDENCE_DIGEST,
+          resolvedAt: T3,
+        });
+        writeFileSync(resultPath, JSON.stringify({ status: result ? 'confirmed' : 'terminal_failed' }), 'utf8');
+      } catch (error: unknown) {
+        writeFileSync(resultPath, JSON.stringify({
+          status: 'rejected',
+          errorCode: error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'UNEXPECTED_FAILURE',
+        }), 'utf8');
+      }
+    });
+  });
+}
+
 async function eventTypes(harness: Harness): Promise<string[]> {
   return (await harness.writer.readVerifiedEvents())
     .map((event) => event.event.effective.envelope.event_type);
+}
+
+async function releaseHarnessLedgerLease(harness: Harness): Promise<void> {
+  if (!harness.ledgerLease) return;
+  const lease = await harness.ledgerLease;
+  await new FencedLeaseCoordinator({ rootDirectory: harness.rootDirectory }).release(lease);
 }
 
 afterEach(() => {
@@ -886,6 +1050,128 @@ describe('effect ordering and idempotency', () => {
     expect(readFileSync(join(fixture.targetRoot, fixture.request.relativePath), 'utf8'))
       .toBe(fixture.request.content);
   });
+
+  it('F-004-01 lets exactly one recovery process execute an unresolved effect', async () => {
+    const harness = createHarness('recovery-two-process');
+    const fixture = fileFixture('recovery-two-process');
+    await expect(effectGateway(harness, {
+      afterIntent: () => { throw new Error('leave intent unresolved'); },
+    }).execute(fixture.execution, fixture.adapter)).rejects.toThrow('leave intent unresolved');
+    await releaseHarnessLedgerLease(harness);
+
+    const startPath = join(harness.rootDirectory, 'recovery.start');
+    const readyA = join(harness.rootDirectory, 'recovery-a.ready');
+    const readyB = join(harness.rootDirectory, 'recovery-b.ready');
+    const resultA = join(harness.rootDirectory, 'recovery-a.result.json');
+    const resultB = join(harness.rootDirectory, 'recovery-b.result.json');
+    const first = runEffectProcess({
+      rootDirectory: harness.rootDirectory,
+      targetRoot: fixture.targetRoot,
+      mode: 'recover',
+      workerId: 'a',
+      readyPath: readyA,
+      startPath,
+      resultPath: resultA,
+      logicalEffectId: fixture.execution.logicalEffectId,
+    });
+    const second = runEffectProcess({
+      rootDirectory: harness.rootDirectory,
+      targetRoot: fixture.targetRoot,
+      mode: 'recover',
+      workerId: 'b',
+      readyPath: readyB,
+      startPath,
+      resultPath: resultB,
+      logicalEffectId: fixture.execution.logicalEffectId,
+    });
+    await waitForFiles([readyA, readyB]);
+    writeFileSync(startPath, 'start', 'utf8');
+    const processes = await Promise.all([first, second]);
+    await waitForFiles([resultA, resultB]);
+    const results = [resultA, resultB].map((path) => (
+      JSON.parse(readFileSync(path, 'utf8')) as EffectProcessResult
+    ));
+
+    expect(processes.every((process) => process.exitCode === 0), JSON.stringify(processes)).toBe(true);
+    expect(results.filter((result) => result.status === 'confirmed')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+    expect(results.find((result) => result.status === 'rejected')?.errorCode)
+      .toBe(ReceiptEffectErrorCodes.RECOVERY_STATE_INVALID);
+    expect(readFileSync(join(fixture.targetRoot, fixture.request.relativePath), 'utf8'))
+      .toBe(fixture.request.content);
+    expect((await eventTypes(harness)).filter((eventType) => eventType === EFFECT_CONFIRMATION_EVENT_TYPE))
+      .toHaveLength(1);
+  }, 30_000);
+
+  it('F-004-02 commits exactly one of two conflicting operator decisions', async () => {
+    const harness = createHarness('operator-two-process');
+    const fixture = fileFixture('operator-two-process');
+    const inDoubtAdapter: EffectAdapter<AtomicFileEffectRequest> = Object.freeze({
+      descriptor: fixture.adapter.descriptor,
+      execute: (intent, request, key) => fixture.adapter.execute(intent, request, key),
+      reconcile: async () => Object.freeze({
+        verdict: 'in_doubt' as const,
+        reason_code: 'operator-required',
+        evidence_digest: EVIDENCE_DIGEST,
+        observed_at: T3,
+        observation: null,
+      }),
+    });
+    await expect(effectGateway(harness, {
+      afterIntent: () => { throw new Error('leave operator intent unresolved'); },
+    }).execute(fixture.execution, inDoubtAdapter)).rejects.toThrow('leave operator intent unresolved');
+    const recovered = await effectGateway(harness).recover({
+      execution: fixture.execution,
+      claim: claim(),
+      reasonCode: 'resume_unresolved_intent',
+      startedAt: T3,
+    }, inDoubtAdapter);
+    expect(recovered.status).toBe('operator_required');
+    await releaseHarnessLedgerLease(harness);
+
+    const startPath = join(harness.rootDirectory, 'operator.start');
+    const readyA = join(harness.rootDirectory, 'operator-a.ready');
+    const readyB = join(harness.rootDirectory, 'operator-b.ready');
+    const resultA = join(harness.rootDirectory, 'operator-a.result.json');
+    const resultB = join(harness.rootDirectory, 'operator-b.result.json');
+    const first = runEffectProcess({
+      rootDirectory: harness.rootDirectory,
+      targetRoot: fixture.targetRoot,
+      mode: 'operator',
+      workerId: 'a',
+      readyPath: readyA,
+      startPath,
+      resultPath: resultA,
+      logicalEffectId: fixture.execution.logicalEffectId,
+      recoveryId: recovered.recovery.recovery_id,
+      resolution: 'confirmed_not_applied',
+    });
+    const second = runEffectProcess({
+      rootDirectory: harness.rootDirectory,
+      targetRoot: fixture.targetRoot,
+      mode: 'operator',
+      workerId: 'b',
+      readyPath: readyB,
+      startPath,
+      resultPath: resultB,
+      logicalEffectId: fixture.execution.logicalEffectId,
+      recoveryId: recovered.recovery.recovery_id,
+      resolution: 'terminal_failed',
+    });
+    await waitForFiles([readyA, readyB]);
+    writeFileSync(startPath, 'start', 'utf8');
+    const processes = await Promise.all([first, second]);
+    await waitForFiles([resultA, resultB]);
+    const results = [resultA, resultB].map((path) => (
+      JSON.parse(readFileSync(path, 'utf8')) as EffectProcessResult
+    ));
+
+    expect(processes.every((process) => process.exitCode === 0), JSON.stringify(processes)).toBe(true);
+    expect(results.filter((result) => result.status !== 'rejected')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+    expect((await eventTypes(harness)).filter((eventType) => eventType === EFFECT_OPERATOR_RESOLVED_EVENT_TYPE))
+      .toHaveLength(1);
+  }, 30_000);
 
   it('fails closed when request bytes differ from the committed canonical input', async () => {
     const harness = createHarness('request-canonical-mismatch');

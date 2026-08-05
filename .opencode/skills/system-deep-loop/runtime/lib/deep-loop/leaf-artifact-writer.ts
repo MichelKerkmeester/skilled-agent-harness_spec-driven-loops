@@ -15,8 +15,19 @@
 // ║          patches the iteration rather than persisting a partial record.    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
-import { appendFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+import {
+  appendFileSync,
+  closeSync,
+  existsSync,
+  fsyncSync,
+  mkdirSync,
+  openSync,
+  readFileSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import { dirname, join } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. CONSTANTS — the route-proof invariants the orchestrator's contract asserts.
@@ -48,6 +59,7 @@ const ALLOWED_STATUS = new Set([
   'insight',
   'thought',
 ]);
+const completedPublicationKeys = new Set<string>();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TYPES
@@ -62,7 +74,16 @@ export interface LeafArtifactContext {
   stateLogPath: string;
   /** Path for the write-once per-iteration delta file. */
   deltaPath: string;
+  /** Test-only crash injection at durable publication boundaries. */
+  faultInjection?: (stage: LeafPublicationStage) => void;
 }
+
+export type LeafPublicationStage =
+  | 'staged'
+  | 'narrative-published'
+  | 'delta-published'
+  | 'state-appended'
+  | 'cleaned';
 
 export interface LeafArtifactResult {
   ok: boolean;
@@ -147,15 +168,34 @@ function validateReported(reported: unknown): string | null {
     return 'leaf payload is not a JSON object';
   }
   const rec = reported as Record<string, unknown>;
-  const stateRecord = (rec.stateRecord ?? rec) as Record<string, unknown>;
+  const stateRecordValue = rec.stateRecord ?? rec;
+  if (!stateRecordValue || typeof stateRecordValue !== 'object' || Array.isArray(stateRecordValue)) {
+    return 'invalid field stateRecord: expected an object';
+  }
+  const stateRecord = stateRecordValue as Record<string, unknown>;
   for (const field of REQUIRED_RECORD_FIELDS) {
     if (!(field in stateRecord)) return `missing required record field: ${field}`;
   }
   if (typeof stateRecord.status !== 'string' || !ALLOWED_STATUS.has(stateRecord.status)) {
-    return `invalid status: ${String(stateRecord.status)}`;
+    return `invalid field status: expected one of ${[...ALLOWED_STATUS].join(', ')}`;
+  }
+  for (const field of ['laneId', 'authority', 'artifactClass'] as const) {
+    if (typeof stateRecord[field] !== 'string' || stateRecord[field].trim() === '') {
+      return `invalid field ${field}: expected a non-empty string`;
+    }
   }
   if (!Array.isArray(stateRecord.artifactsChecked)) {
-    return 'artifactsChecked must be an array of audited paths';
+    return 'invalid field artifactsChecked: expected an array of audited paths';
+  }
+  if (stateRecord.artifactsChecked.some((path) => typeof path !== 'string' || path.trim() === '')) {
+    return 'invalid field artifactsChecked: every path must be a non-empty string';
+  }
+  if (
+    typeof stateRecord.findingsCount !== 'number'
+    || !Number.isSafeInteger(stateRecord.findingsCount)
+    || stateRecord.findingsCount < 0
+  ) {
+    return 'invalid field findingsCount: expected a non-negative integer';
   }
   return null;
 }
@@ -239,20 +279,53 @@ export function writeLeafArtifacts(
   const narrative = synthesizeNarrative(record);
   const recordLine = `${JSON.stringify(record)}\n`;
   const deltaBody = [recordLine, ...deltaFindings.map((d) => `${JSON.stringify(d)}\n`)].join('');
+  const publicationKey = `${ctx.iterationMdPath}\0${ctx.stateLogPath}\0${ctx.deltaPath}\0${recordLine}`;
 
-  // Compose everything BEFORE touching disk so a serialization failure leaves
-  // no partial artifacts. mkdir the parents, then write narrative + delta, then
-  // append the state record last (the record the orchestrator reacts to).
   try {
+    if (completedPublicationKeys.has(publicationKey)) {
+      return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
+    }
+    const recovery = recoverPublication(ctx, narrative, deltaBody, recordLine);
+    if (recovery === 'committed') {
+      completedPublicationKeys.add(publicationKey);
+      return { ok: true, record };
+    }
+    if (recovery === 'conflict') {
+      return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
+    }
+
     ensureDir(ctx.iterationMdPath);
     ensureDir(ctx.deltaPath);
     ensureDir(ctx.stateLogPath);
     if (existsSync(ctx.deltaPath)) {
       return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
     }
-    writeFileSync(ctx.iterationMdPath, narrative, 'utf8');
-    writeFileSync(ctx.deltaPath, deltaBody, 'utf8');
-    appendFileSync(ctx.stateLogPath, recordLine, 'utf8');
+
+    const stageDir = publicationStageDir(ctx);
+    mkdirSync(stageDir, { recursive: true });
+    durableWrite(join(stageDir, 'iteration.md'), narrative);
+    durableWrite(join(stageDir, 'delta.jsonl'), deltaBody);
+    durableWrite(join(stageDir, 'record.jsonl'), recordLine);
+    durableWrite(join(stageDir, 'manifest.json'), JSON.stringify({ stage: 'staged' }) + '\n');
+    invokeFault(ctx, 'staged');
+
+    publishStagedFile(join(stageDir, 'iteration.md'), ctx.iterationMdPath, narrative);
+    durableWrite(join(stageDir, 'manifest.json'), JSON.stringify({ stage: 'narrative-published' }) + '\n');
+    invokeFault(ctx, 'narrative-published');
+
+    publishStagedFile(join(stageDir, 'delta.jsonl'), ctx.deltaPath, deltaBody);
+    durableWrite(join(stageDir, 'manifest.json'), JSON.stringify({ stage: 'delta-published' }) + '\n');
+    invokeFault(ctx, 'delta-published');
+
+    if (!stateContainsLine(ctx.stateLogPath, recordLine)) {
+      appendDurable(ctx.stateLogPath, recordLine);
+    }
+    durableWrite(join(stageDir, 'manifest.json'), JSON.stringify({ stage: 'state-appended' }) + '\n');
+    invokeFault(ctx, 'state-appended');
+
+    rmSync(stageDir, { recursive: true, force: true });
+    invokeFault(ctx, 'cleaned');
+    completedPublicationKeys.add(publicationKey);
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : String(error) };
   }
@@ -261,6 +334,129 @@ export function writeLeafArtifacts(
 
 function ensureDir(filePath: string): void {
   mkdirSync(dirname(filePath), { recursive: true });
+}
+
+type PublicationRecovery = 'none' | 'committed' | 'conflict';
+
+function publicationStageDir(ctx: LeafArtifactContext): string {
+  return `${ctx.deltaPath}.staging-${ctx.iteration}`;
+}
+
+function recoverPublication(
+  ctx: LeafArtifactContext,
+  narrative: string,
+  deltaBody: string,
+  recordLine: string,
+): PublicationRecovery {
+  const stageDir = publicationStageDir(ctx);
+  const stateCommitted = stateContainsLine(ctx.stateLogPath, recordLine);
+
+  if (!existsSync(stageDir)) {
+    if (!stateCommitted) return existsSync(ctx.deltaPath) ? 'conflict' : 'none';
+    if (
+      existsSync(ctx.iterationMdPath)
+      && existsSync(ctx.deltaPath)
+      && readFileSync(ctx.iterationMdPath, 'utf8') === narrative
+      && readFileSync(ctx.deltaPath, 'utf8') === deltaBody
+    ) {
+      return 'committed';
+    }
+    return 'conflict';
+  }
+
+  const stagedNarrativePath = join(stageDir, 'iteration.md');
+  const stagedDeltaPath = join(stageDir, 'delta.jsonl');
+  const stagedRecordPath = join(stageDir, 'record.jsonl');
+  if (!existsSync(stagedNarrativePath) || !existsSync(stagedDeltaPath) || !existsSync(stagedRecordPath)) {
+    rmSync(stageDir, { recursive: true, force: true });
+    return stateCommitted ? 'conflict' : 'none';
+  }
+
+  const stagedRecord = readFileSync(stagedRecordPath, 'utf8');
+  if (stagedRecord !== recordLine) {
+    if (stateCommitted) return 'conflict';
+    removeOwnedArtifact(ctx.iterationMdPath, readFileSync(stagedNarrativePath, 'utf8'));
+    removeOwnedArtifact(ctx.deltaPath, readFileSync(stagedDeltaPath, 'utf8'));
+    rmSync(stageDir, { recursive: true, force: true });
+    return existsSync(ctx.deltaPath) ? 'conflict' : 'none';
+  }
+
+  if (stateCommitted) {
+    publishStagedFile(stagedNarrativePath, ctx.iterationMdPath, narrative);
+    publishStagedFile(stagedDeltaPath, ctx.deltaPath, deltaBody);
+    rmSync(stageDir, { recursive: true, force: true });
+    return 'committed';
+  }
+
+  removeOwnedArtifact(ctx.iterationMdPath, readFileSync(stagedNarrativePath, 'utf8'));
+  removeOwnedArtifact(ctx.deltaPath, readFileSync(stagedDeltaPath, 'utf8'));
+  rmSync(stageDir, { recursive: true, force: true });
+  return existsSync(ctx.deltaPath) ? 'conflict' : 'none';
+}
+
+function stateContainsLine(path: string, expectedLine: string): boolean {
+  if (!existsSync(path)) return false;
+  return readFileSync(path, 'utf8').split(/\r?\n/u).some((line) => `${line}\n` === expectedLine);
+}
+
+function durableWrite(path: string, content: string): void {
+  writeFileSync(path, content, 'utf8');
+  fsyncPath(path);
+}
+
+function appendDurable(path: string, content: string): void {
+  ensureDir(path);
+  let fd: number | undefined;
+  try {
+    fd = openSync(path, 'a');
+    appendFileSync(fd, content, 'utf8');
+    fsyncSync(fd);
+  } finally {
+    if (typeof fd === 'number') closeSync(fd);
+  }
+  fsyncDirectory(dirname(path));
+}
+
+function publishStagedFile(sourcePath: string, targetPath: string, expected: string): void {
+  ensureDir(targetPath);
+  if (existsSync(targetPath)) {
+    if (readFileSync(targetPath, 'utf8') !== expected) {
+      throw new Error(`publication target already exists with different content: ${targetPath}`);
+    }
+    return;
+  }
+  const tempPath = `${targetPath}.tmp.${process.pid}.${Date.now()}`;
+  durableWrite(tempPath, readFileSync(sourcePath, 'utf8'));
+  renameSync(tempPath, targetPath);
+  fsyncDirectory(dirname(targetPath));
+}
+
+function removeOwnedArtifact(path: string, expected: string): void {
+  if (existsSync(path) && readFileSync(path, 'utf8') === expected) {
+    rmSync(path, { force: true });
+  }
+}
+
+function fsyncPath(path: string): void {
+  const fd = openSync(path, 'r');
+  try {
+    fsyncSync(fd);
+  } finally {
+    closeSync(fd);
+  }
+}
+
+function fsyncDirectory(path: string): void {
+  const fd = openSync(path, 'r');
+  try {
+    fsyncSync(fd);
+  } finally {
+    closeSync(fd);
+  }
+}
+
+function invokeFault(ctx: LeafArtifactContext, stage: LeafPublicationStage): void {
+  ctx.faultInjection?.(stage);
 }
 
 // Exported for tests / diagnostics.

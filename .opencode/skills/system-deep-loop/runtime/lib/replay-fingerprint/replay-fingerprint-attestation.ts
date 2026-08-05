@@ -6,6 +6,7 @@ import {
   AppendOnlyLedger,
   AuthorizedLedgerError,
 } from '../authorized-ledger/index.js';
+import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -420,7 +421,44 @@ export async function recordReplayFingerprintAttestation<TState extends JsonObje
       },
     );
   }
-  const receipt = await ledger.appendAuthorized(event, proof);
+  let receipt: DurableAppendReceipt;
+  try {
+    receipt = await appendFencedLedgerRecord(ledger, event, proof);
+  } catch (error: unknown) {
+    const concurrentEvents = await verifiedEvents(ledger);
+    for (const verified of concurrentEvents) {
+      if (
+        verified.event.effective.envelope.event_type !== REPLAY_FINGERPRINT_ATTESTATION_EVENT_TYPE
+      ) {
+        continue;
+      }
+      const concurrent = parseReplayFingerprintAttestationPayload(
+        verified.event.effective.envelope.payload,
+        implementation,
+      );
+      if (payloadKey(concurrent.payload) !== candidateKey) continue;
+      if (
+        concurrent.descriptor.final_digest !== candidate.descriptor.final_digest
+        || Buffer.compare(
+          Buffer.from(concurrent.descriptorBytes),
+          Buffer.from(candidate.descriptorBytes),
+        ) !== 0
+      ) {
+        throw new ReplayFingerprintError(
+          ReplayFingerprintErrorCodes.ATTESTATION_CONFLICT,
+          'attestation',
+          'Concurrent attestation bound the same range to another digest',
+          { stage: 'attestation-concurrent-conflict' },
+        );
+      }
+      return Object.freeze({
+        status: 'idempotent',
+        receipt: durableReceipt(verified),
+        event,
+      });
+    }
+    throw error;
+  }
   if (receipt.sequence <= candidate.descriptor.range_end_sequence) {
     throw new ReplayFingerprintError(
       ReplayFingerprintErrorCodes.ATTESTATION_SELF_INCLUDED,

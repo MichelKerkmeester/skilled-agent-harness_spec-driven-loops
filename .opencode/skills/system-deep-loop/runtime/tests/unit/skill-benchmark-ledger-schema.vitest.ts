@@ -2,6 +2,8 @@
 // MODULE: Skill Benchmark Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -939,7 +941,7 @@ describe('skill-benchmark typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       priorHash = receipt.recordHash;
     }
 
@@ -1025,7 +1027,7 @@ describe('skill-benchmark typed ledger schema', () => {
       foreignForLane,
       'foreign-variant',
     );
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       foreignForLane,
       foreignProof,
     )).rejects.toThrow();
@@ -1045,7 +1047,7 @@ describe('skill-benchmark typed ledger schema', () => {
       correctPrepared,
       'correct-variant',
     );
-    await harness.ledger.appendAuthorized(correctPrepared, correctProof);
+    await appendAuthorizedForTest(harness.ledger, correctPrepared, correctProof);
     await expect(harness.ledger.getVerifiedHead()).resolves.toMatchObject({
       sequence: 1,
     });
@@ -1262,7 +1264,7 @@ describe('skill-benchmark typed ledger schema', () => {
       ),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({

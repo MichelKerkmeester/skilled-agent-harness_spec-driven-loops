@@ -194,7 +194,7 @@ export interface ProtectedWriteSurfaceManifestEntry {
   readonly directReplacement: string;
 }
 
-/** Frozen inventory used to prove that every shipped writer has one dark replacement seam. */
+/** Frozen inventory used to prove that every shipped writer has one authorized mutation boundary. */
 export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceManifestEntry[] =
   Object.freeze([
     {
@@ -203,7 +203,7 @@ export const PROTECTED_WRITE_SURFACE_MANIFEST: readonly ProtectedWriteSurfaceMan
       operation: 'append authorized immutable frame',
       resourceKind: ProtectedResourceKinds.LEDGER,
       atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      directReplacement: 'FencedLedgerWriter.append',
+      directReplacement: 'TransitionAuthorizationGateway.authorize -> FencedLedgerWriter.append (gateway-only)',
     },
     {
       surfaceId: 'authorized-ledger-projection',

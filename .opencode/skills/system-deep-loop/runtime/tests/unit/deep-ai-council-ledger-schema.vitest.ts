@@ -2,6 +2,8 @@
 // MODULE: Deep AI Council Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -605,7 +607,7 @@ describe('deep-ai-council typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(proof.decision.decision_id);
       priorHash = receipt.recordHash;
     }
@@ -849,7 +851,7 @@ describe('deep-ai-council typed ledger schema', () => {
       data: first.data,
     } as DeepAiCouncilEventInput<'ai_council.round_started'>, harness.registry);
     const proof = await authorize(harness, event, 'legacy-request');
-    await expect(harness.ledger.appendAuthorized(event, proof)).resolves.toMatchObject({
+    await expect(appendAuthorizedForTest(harness.ledger, event, proof)).resolves.toMatchObject({
       event_id: 'event-1',
     });
   });

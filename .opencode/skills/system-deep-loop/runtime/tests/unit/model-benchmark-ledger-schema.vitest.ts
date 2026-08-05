@@ -2,6 +2,8 @@
 // MODULE: Model Benchmark Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -1095,7 +1097,7 @@ describe('model-benchmark typed ledger schema', () => {
       const event = prepareModelBenchmarkEvent(input, harness.registry);
       prepared.set(stem, event);
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(
         proof.decision.decision_id,
       );
@@ -1202,7 +1204,7 @@ describe('model-benchmark typed ledger schema', () => {
     if (authorization.verdict !== 'allow') {
       throw new Error(authorization.reasonCode);
     }
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       foreignEvent,
       authorization.proof,
     )).rejects.toMatchObject({
@@ -1213,7 +1215,7 @@ describe('model-benchmark typed ledger schema', () => {
     });
 
     const proof = await authorize(harness, control, 'model-common-variant');
-    await harness.ledger.appendAuthorized(control, proof);
+    await appendAuthorizedForTest(harness.ledger, control, proof);
     const events = await harness.ledger.readVerifiedEvents();
     expect(events).toHaveLength(1);
     expect(events[0]?.event.stored.envelope.payload.scope).toMatchObject({
@@ -1386,7 +1388,7 @@ describe('model-benchmark typed ledger schema', () => {
     );
     const rawEvent = prepareModelBenchmarkEvent(rawInput, harness.registry);
     const rawProof = await authorize(harness, rawEvent, 'raw-result');
-    const rawReceipt = await harness.ledger.appendAuthorized(rawEvent, rawProof);
+    const rawReceipt = await appendAuthorizedForTest(harness.ledger, rawEvent, rawProof);
 
     const proposalInput = eventInput(
       'deep_improvement_common.promotion_proposed',
@@ -1420,7 +1422,7 @@ describe('model-benchmark typed ledger schema', () => {
       normalized,
       'normalized-score',
     );
-    const normalizedReceipt = await harness.ledger.appendAuthorized(
+    const normalizedReceipt = await appendAuthorizedForTest(harness.ledger,
       normalized,
       normalizedProof,
     );
@@ -1439,7 +1441,7 @@ describe('model-benchmark typed ledger schema', () => {
       },
     }, harness.registry);
     const proposalProof = await authorize(harness, proposal, 'promotion-proposal');
-    await harness.ledger.appendAuthorized(proposal, proposalProof);
+    await appendAuthorizedForTest(harness.ledger, proposal, proposalProof);
     await expect(harness.ledger.readVerifiedEvents()).resolves.toHaveLength(3);
   });
 
@@ -1482,7 +1484,7 @@ describe('model-benchmark typed ledger schema', () => {
       ),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({
@@ -1509,7 +1511,7 @@ describe('model-benchmark typed ledger schema', () => {
     mutable.rawOutputRef = 'raw-output:mutated';
     mutable.trialMatrixKey.attempt = 9;
     const proof = await authorize(harness, event, 'immutable-write');
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(original);
   });

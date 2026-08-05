@@ -2,6 +2,8 @@
 // MODULE: Deep Improvement Common Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   rmSync,
@@ -572,7 +574,7 @@ describe('deep-improvement-common typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await harness.ledger.appendAuthorized(event, proof);
+      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(proof.decision.decision_id);
       priorHash = receipt.recordHash;
     }
@@ -868,7 +870,7 @@ describe('deep-improvement-common typed ledger schema', () => {
       await authorizationRequest(harness, event, 'denied-request', 'read-only'),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(harness.ledger.appendAuthorized(
+    await expect(appendAuthorizedForTest(harness.ledger,
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({
@@ -894,7 +896,7 @@ describe('deep-improvement-common typed ledger schema', () => {
     };
     mutableData.rawObservationRef = 'observation-artifact:mutated-after-prepare';
     const proof = await authorize(harness, event, 'immutable-observation-request');
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(originalData);
   });

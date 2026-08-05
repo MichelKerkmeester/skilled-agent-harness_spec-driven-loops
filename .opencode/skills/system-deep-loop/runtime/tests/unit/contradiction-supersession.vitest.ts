@@ -2,6 +2,8 @@
 // MODULE: Contradiction and Supersession Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   mkdtempSync,
   readFileSync,
@@ -230,7 +232,7 @@ async function appendWithoutDomainValidation(
   const authorization = await gateway.authorize(request);
   expect(authorization.verdict).toBe('allow');
   if (authorization.verdict !== 'allow') throw new Error(authorization.reasonCode);
-  await target.ledger.appendAuthorized(event, authorization.proof);
+  await appendAuthorizedForTest(target.ledger, event, authorization.proof);
 }
 
 function framePath(rootDirectory: string, sequence: number): string {

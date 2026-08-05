@@ -6,8 +6,10 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
+  durableReceipt,
   readAuthorizationAudit,
 } from '../authorized-ledger/index.js';
+import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -219,7 +221,7 @@ export class ContradictionSupersessionService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
+    const receipt = await appendFencedLedgerRecord(this.ledger, event, authorization.proof);
     return Object.freeze({ receipt, projection: await this.projection() });
   }
 
@@ -282,8 +284,13 @@ export class ContradictionSupersessionService {
         { eventId: input.eventId, sequence: existing.frame.sequence },
       );
     }
-    const proof = await this.#recoverOriginalProof(existing);
-    const receipt = await this.ledger.appendAuthorized(proposed, proof);
+    // Exact idempotent retry: the event is already durably committed under its
+    // original authorization. Reconfirm the original allow decision is still
+    // recoverable, then return the committed receipt without re-appending.
+    // Re-entering the fenced writer would reject the replay as a head conflict
+    // because the live head has advanced past the recorded prior head.
+    await this.#recoverOriginalProof(existing);
+    const receipt = durableReceipt(existing.frame);
     return Object.freeze({ receipt, projection: await this.projection() });
   }
 

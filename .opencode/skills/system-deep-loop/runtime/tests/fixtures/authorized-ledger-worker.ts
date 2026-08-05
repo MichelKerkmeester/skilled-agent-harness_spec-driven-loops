@@ -2,6 +2,8 @@
 // MODULE: Authorized Ledger Concurrent Writer
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from './authorized-ledger-test-helper.js';
+
 import {
   AppendOnlyLedger,
   AuthorizedLedgerError,
@@ -54,7 +56,7 @@ for (let attempt = 1; attempt <= 40; attempt += 1) {
   const authorization = await gateway.authorize(request);
   if (authorization.verdict === 'deny') continue;
   try {
-    receipt = await ledger.appendAuthorized(event, authorization.proof);
+    receipt = await appendAuthorizedForTest(ledger, event, authorization.proof);
     break;
   } catch (error: unknown) {
     if (!(error instanceof AuthorizedLedgerError)) throw error;

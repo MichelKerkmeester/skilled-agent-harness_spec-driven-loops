@@ -490,20 +490,6 @@ export class ImmutableFrameStore {
     const recoveryPath = join(this.recoveriesDirectory, recoveryFileName(candidate.sequence));
     assertContained(this.quarantineDirectory, quarantinedPath);
     assertContained(this.recoveriesDirectory, recoveryPath);
-    if (existsSync(quarantinedPath) || existsSync(recoveryPath)) {
-      throw new AuthorizedLedgerError(
-        AuthorizedLedgerErrorCodes.RECOVERY_NOT_ALLOWED,
-        'integrity',
-        'Recovery evidence already exists for the torn sequence',
-        { ledgerId: this.ledgerId, sequence: candidate.sequence },
-      );
-    }
-
-    renameSync(candidate.path, quarantinedPath);
-    chmodSync(quarantinedPath, FILE_MODE);
-    fsyncDirectory(this.framesDirectory);
-    fsyncDirectory(this.quarantineDirectory);
-
     const hashInput: Omit<TornTailRecoveryRecord, 'recovery_hash'> = {
       recovery_version: RECOVERY_VERSION,
       ledger_id: this.ledgerId,
@@ -518,18 +504,58 @@ export class ImmutableFrameStore {
       ...hashInput,
       recovery_hash: sha256Bytes(canonicalBytes(hashInput)),
     });
-    const descriptor = openSync(
-      recoveryPath,
-      constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY | constants.O_NOFOLLOW,
-      FILE_MODE,
-    );
-    try {
-      writeFileSync(descriptor, `${canonicalJson(record)}\n`, 'utf8');
-      fsyncSync(descriptor);
-    } finally {
-      closeSync(descriptor);
+
+    if (existsSync(recoveryPath)) {
+      let existing: TornTailRecoveryRecord;
+      try {
+        existing = JSON.parse(readFileSync(recoveryPath, 'utf8')) as TornTailRecoveryRecord;
+      } catch {
+        throw new AuthorizedLedgerError(
+          AuthorizedLedgerErrorCodes.RECOVERY_NOT_ALLOWED,
+          'integrity',
+          'Existing torn-tail recovery evidence is malformed',
+          { ledgerId: this.ledgerId, sequence: candidate.sequence },
+        );
+      }
+      const { recovery_hash: ignoredHash, ...existingHashInput } = existing;
+      void ignoredHash;
+      if (
+        existing.recovery_hash !== sha256Bytes(canonicalBytes(existingHashInput))
+        || existing.ledger_id !== record.ledger_id
+        || existing.sequence !== record.sequence
+        || existing.prior_sequence !== record.prior_sequence
+        || existing.prior_record_hash !== record.prior_record_hash
+        || existing.quarantined_file !== record.quarantined_file
+        || existing.quarantined_digest !== record.quarantined_digest
+      ) {
+        throw new AuthorizedLedgerError(
+          AuthorizedLedgerErrorCodes.RECOVERY_NOT_ALLOWED,
+          'integrity',
+          'Existing torn-tail recovery evidence does not match the candidate',
+          { ledgerId: this.ledgerId, sequence: candidate.sequence },
+        );
+      }
+    } else {
+      const descriptor = openSync(
+        recoveryPath,
+        constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY | constants.O_NOFOLLOW,
+        FILE_MODE,
+      );
+      try {
+        writeFileSync(descriptor, `${canonicalJson(record)}\n`, 'utf8');
+        fsyncSync(descriptor);
+      } finally {
+        closeSync(descriptor);
+      }
+      fsyncDirectory(this.recoveriesDirectory);
     }
-    fsyncDirectory(this.recoveriesDirectory);
+
+    if (!existsSync(quarantinedPath)) {
+      renameSync(candidate.path, quarantinedPath);
+      chmodSync(quarantinedPath, FILE_MODE);
+      fsyncDirectory(this.framesDirectory);
+      fsyncDirectory(this.quarantineDirectory);
+    }
     return record;
   }
 

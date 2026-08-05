@@ -7,7 +7,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 export { FencedLeaseCoordinator } from './fenced-lease-coordinator.js';
-export { FencedLedgerWriter } from './fenced-ledger-writer.js';
+export {
+  FencedLedgerWriter,
+  appendFencedLedgerRecord,
+} from './fenced-ledger-writer.js';
 export { FencedShadowAdapter } from './fenced-shadow-adapter.js';
 export { FencedStateStore } from './fenced-state-store.js';
 export {
@@ -67,6 +70,7 @@ export type {
   AtomicityDomain,
   CanonicalProtectedResource,
   CoordinatorFaultInjection,
+  FenceCapability,
   FencedCommit,
   FencedLease,
   FencedLeaseCoordinatorOptions,

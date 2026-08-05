@@ -24,6 +24,7 @@ import {
   TransitionAuthorizationGateway,
   TypedReducerRegistry,
 } from '../../lib/authorized-ledger/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 import { computeIntegrityHash } from '../../lib/deep-loop/atomic-state.js';
 import {
   canonicalBytes,
@@ -193,7 +194,7 @@ async function appendFixture(
     payload === undefined ? {} : { payload },
   );
   const proof = await authorize(harness, event, `projection-request-${index}`);
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
 }
 
 function environment(label: string): TestEnvironment {

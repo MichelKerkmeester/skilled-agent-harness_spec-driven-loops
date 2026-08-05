@@ -78,9 +78,11 @@ function appendConflict(eventId: string): ReceiptEffectError {
 export class AuthorizedEvidenceWriter {
   readonly #options: AuthorizedEvidenceWriterOptions;
   readonly #maxHeadRetries: number;
+  public readonly rootDirectory: string;
 
   public constructor(options: AuthorizedEvidenceWriterOptions) {
     this.#options = options;
+    this.rootDirectory = options.ledger.rootDirectory;
     this.#maxHeadRetries = options.maxHeadRetries ?? DEFAULT_MAX_HEAD_RETRIES;
     if (!Number.isSafeInteger(this.#maxHeadRetries) || this.#maxHeadRetries <= 0) {
       throw new ReceiptEffectError(

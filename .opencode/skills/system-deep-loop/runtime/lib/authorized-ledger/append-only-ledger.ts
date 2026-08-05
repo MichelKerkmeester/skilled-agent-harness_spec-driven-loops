@@ -19,6 +19,12 @@ import {
   authorizationDecisionDigest,
   readAuthorizationAudit,
 } from './transition-authorization-gateway.js';
+import { assertFenceCapability } from '../locks-and-fencing/fenced-lease-coordinator.js';
+import {
+  AtomicityDomains,
+  ProtectedResourceKinds,
+} from '../locks-and-fencing/locks-and-fencing-types.js';
+import { canonicalizeProtectedResource } from '../locks-and-fencing/protected-resource-registry.js';
 
 import type {
   AuthorizationDecisionRecord,
@@ -32,6 +38,7 @@ import type {
 } from './authorized-ledger-types.js';
 import type { EventTypeRegistry, EventWritePreflight } from '../event-envelope/index.js';
 import type { StoredFrameFile, StoredRecoveryEvidence } from './immutable-frame-store.js';
+import type { FenceCapability } from '../locks-and-fencing/locks-and-fencing-types.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -42,6 +49,14 @@ interface LedgerScanResult {
   readonly events: readonly VerifiedLedgerEvent[];
   readonly tornTail: StoredFrameFile | null;
 }
+
+type AppendAuthorizedInvocation = (
+  event: EventWritePreflight,
+  proof: GatewayAllowProof,
+  fenceCapability: FenceCapability,
+) => Promise<DurableAppendReceipt>;
+
+const appendAuthorizedBridges = new WeakMap<object, AppendAuthorizedInvocation>();
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -71,6 +86,7 @@ const AUTHORIZATION_REFERENCE_FIELDS = new Set([
   'policy_digest',
   'authority_epoch',
 ]);
+const FENCE_TOKEN_FIELD = 'fence_token';
 const RECEIPT_FIELDS = new Set([
   'ledger_id',
   'sequence',
@@ -94,6 +110,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function hasExactFields(value: Record<string, unknown>, fields: ReadonlySet<string>): boolean {
   const keys = Object.keys(value);
   return keys.length === fields.size && keys.every((key) => fields.has(key));
+}
+
+function hasAuthorizationReferenceFields(value: Record<string, unknown>): boolean {
+  const keys = Object.keys(value);
+  const baseFields = keys.filter((key) => key !== FENCE_TOKEN_FIELD);
+  return (
+    (keys.length === AUTHORIZATION_REFERENCE_FIELDS.size
+      || keys.length === AUTHORIZATION_REFERENCE_FIELDS.size + 1)
+    && baseFields.length === AUTHORIZATION_REFERENCE_FIELDS.size
+    && baseFields.every((key) => AUTHORIZATION_REFERENCE_FIELDS.has(key))
+    && (keys.length === AUTHORIZATION_REFERENCE_FIELDS.size || keys.includes(FENCE_TOKEN_FIELD))
+  );
 }
 
 function isPositiveInteger(value: unknown): value is number {
@@ -154,7 +182,7 @@ function parseFrame(stored: StoredFrameFile): LedgerRecordFrame {
   }
   if (
     !isRecord(parsed.authorization_ref)
-    || !hasExactFields(parsed.authorization_ref, AUTHORIZATION_REFERENCE_FIELDS)
+    || !hasAuthorizationReferenceFields(parsed.authorization_ref)
     || !isRecord(parsed.receipt)
     || !hasExactFields(parsed.receipt, RECEIPT_FIELDS)
   ) {
@@ -183,6 +211,10 @@ function validateFrameScalars(frame: LedgerRecordFrame): void {
     || !isHash(frame.authorization_ref.request_digest)
     || !isHash(frame.authorization_ref.policy_digest)
     || !isPositiveInteger(frame.authorization_ref.authority_epoch)
+    || (
+      frame.authorization_ref.fence_token !== undefined
+      && !isPositiveInteger(frame.authorization_ref.fence_token)
+    )
     || !isIsoTimestamp(frame.receipt.committed_at)
   ) {
     throw new AuthorizedLedgerError(
@@ -194,7 +226,7 @@ function validateFrameScalars(frame: LedgerRecordFrame): void {
   }
 }
 
-function durableReceipt(frame: LedgerRecordFrame): DurableAppendReceipt {
+export function durableReceipt(frame: LedgerRecordFrame): DurableAppendReceipt {
   return Object.freeze({
     ...frame.receipt,
     canonicalEventHash: frame.canonical_event_hash,
@@ -234,7 +266,7 @@ function assertEventPreflight(
 }
 
 function authorizationReference(proof: GatewayAllowProof): AuthorizationReference {
-  return Object.freeze({
+  const reference: AuthorizationReference = {
     audit_ledger_id: proof.auditReceipt.auditLedgerId,
     audit_sequence: proof.auditReceipt.sequence,
     audit_record_hash: proof.auditReceipt.recordHash,
@@ -243,7 +275,9 @@ function authorizationReference(proof: GatewayAllowProof): AuthorizationReferenc
     request_digest: proof.decision.request_digest,
     policy_digest: proof.decision.policy_digest,
     authority_epoch: proof.decision.authority_epoch,
-  });
+    ...(proof.fenceToken === undefined ? {} : { [FENCE_TOKEN_FIELD]: proof.fenceToken }),
+  };
+  return Object.freeze(reference);
 }
 
 function assertRecoveryLink(
@@ -311,6 +345,8 @@ export class AppendOnlyLedger {
   readonly #store: ImmutableFrameStore;
   readonly #auditLedgerId: string;
   readonly #now: () => Date;
+  readonly #fenceResourceKey: string;
+  public readonly rootDirectory: string;
 
   public constructor(
     options: AuthorizedLedgerOptions,
@@ -323,6 +359,15 @@ export class AppendOnlyLedger {
     this.registryDigest = registry.digest;
     this.#auditLedgerId = options.auditLedgerId ?? DEFAULT_AUDIT_LEDGER_ID;
     this.#now = options.now ?? (() => new Date());
+    this.rootDirectory = options.rootDirectory;
+    this.#fenceResourceKey = canonicalizeProtectedResource({
+      kind: ProtectedResourceKinds.LEDGER,
+      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+      components: { ledgerId: this.ledgerId },
+    }).resourceKey;
+    appendAuthorizedBridges.set(this, (event, proof, fenceCapability) => (
+      this.#appendAuthorized(event, proof, fenceCapability)
+    ));
     if (this.ledgerId === this.#auditLedgerId) {
       throw new AuthorizedLedgerError(
         AuthorizedLedgerErrorCodes.INPUT_INVALID,
@@ -344,10 +389,12 @@ export class AppendOnlyLedger {
   }
 
   /** Append exactly one event after revalidating its durable single-use allow under lock. */
-  public async appendAuthorized(
+  async #appendAuthorized(
     event: EventWritePreflight,
     proof: GatewayAllowProof,
+    fenceCapability: FenceCapability,
   ): Promise<DurableAppendReceipt> {
+    const fenceToken = assertFenceCapability(fenceCapability, this.#fenceResourceKey);
     const prepared = assertEventPreflight(event, this.#registry);
     if (!proof || proof.proofVersion !== ALLOW_PROOF_VERSION || !proof.decision || !proof.auditReceipt) {
       throw new AuthorizedLedgerError(
@@ -357,6 +404,9 @@ export class AppendOnlyLedger {
         { eventId: prepared.identity.eventId },
       );
     }
+    const fencedProof = proof.fenceToken === fenceToken
+      ? proof
+      : Object.freeze({ ...proof, fenceToken });
 
     return this.#store.withExclusiveLock(async () => {
       const scan = await this.#scanUnlocked(false);
@@ -373,8 +423,8 @@ export class AppendOnlyLedger {
           );
         }
         if (
-          existing.frame.authorization_ref.decision_id !== proof.decision.decision_id
-          || existing.frame.authorization_ref.decision_digest !== proof.decision.decision_digest
+          existing.frame.authorization_ref.decision_id !== fencedProof.decision.decision_id
+          || existing.frame.authorization_ref.decision_digest !== fencedProof.decision.decision_digest
         ) {
           throw new AuthorizedLedgerError(
             AuthorizedLedgerErrorCodes.AUTHORIZATION_ALREADY_USED,
@@ -385,7 +435,7 @@ export class AppendOnlyLedger {
         }
         await this.#verifyProof(
           prepared,
-          proof,
+          fencedProof,
           Object.freeze({
             ledgerId: this.ledgerId,
             sequence: existing.frame.sequence - 1,
@@ -396,15 +446,15 @@ export class AppendOnlyLedger {
         return durableReceipt(existing.frame);
       }
 
-      await this.#verifyProof(prepared, proof, scan.head, false);
+      await this.#verifyProof(prepared, fencedProof, scan.head, false);
       if (scan.events.some(
-        (verified) => verified.frame.authorization_ref.decision_id === proof.decision.decision_id,
+        (verified) => verified.frame.authorization_ref.decision_id === fencedProof.decision.decision_id,
       )) {
         throw new AuthorizedLedgerError(
           AuthorizedLedgerErrorCodes.AUTHORIZATION_ALREADY_USED,
           'authorization',
           'Gateway allow proof has already committed another domain frame',
-          { decisionId: proof.decision.decision_id },
+          { decisionId: fencedProof.decision.decision_id },
         );
       }
       this.#options.faultInjection?.beforeDomainCommit?.();
@@ -427,7 +477,7 @@ export class AppendOnlyLedger {
         sequence,
         prev_record_hash: scan.head.recordHash,
         canonical_event_hash: prepared.canonicalDigest,
-        authorization_ref: authorizationReference(proof),
+        authorization_ref: authorizationReference(fencedProof),
         receipt,
         canonical_event_bytes: Buffer.from(prepared.canonicalBytes).toString('base64'),
       };
@@ -650,4 +700,18 @@ export class AppendOnlyLedger {
     }
   }
 
+}
+
+/** Internal bridge kept out of the package entry point so only fenced writers can call it. */
+export async function appendAuthorizedInternal(
+  ledger: AppendOnlyLedger,
+  event: EventWritePreflight,
+  proof: GatewayAllowProof,
+  fenceCapability: FenceCapability,
+): Promise<DurableAppendReceipt> {
+  const append = appendAuthorizedBridges.get(ledger);
+  if (!append) {
+    throw new TypeError('Ledger instance is not registered for internal append');
+  }
+  return append(event, proof, fenceCapability);
 }
