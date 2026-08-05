@@ -52,9 +52,9 @@ _memory:
 | **Created** | 2026-08-04 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 9 of 9 |
+| **Phase** | 9 of 10 |
 | **Predecessor** | 008-phase-state-reconciliation |
-| **Successor** | None |
+| **Successor** | 010-cross-runtime-coverage-and-verification |
 | **Handoff Criteria** | The injection contract documents all three advisor directives with their owning modules and per-runtime channels, verified by the named grep and validation commands. |
 <!-- /ANCHOR:metadata -->
 

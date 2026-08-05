@@ -9,10 +9,6 @@
 // its own boundary — every exported function fails open, because a telemetry bug must never
 // affect the dispatch it observes.
 //
-// The dispatch-shape regexes are the single source of truth shared with the PreToolUse
-// preflight lint (dispatch-preflight-lint.mjs), so the two can never disagree about what
-// counts as a dispatch.
-
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname } from 'node:path';
 
@@ -26,7 +22,7 @@ export function isAuditDisabled(env = process.env) {
   return env?.[KILL_SWITCH_ENV] === '1';
 }
 
-// ── Dispatch-shape registry (shared with the preflight lint twin) ───────────────────────────
+// ── Dispatch-shape registry (kept for adapter compatibility) ───────────────────────────────
 
 export const DISPATCH_SHAPES = [
   { test: /\bopencode\s+run\b/, skill: 'cli-opencode', packetPath: 'cli-external-orchestration/cli-opencode' },
@@ -40,15 +36,234 @@ export const DISPATCH_SHAPES = [
   { test: /\bpi\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-pi', packetPath: 'cli-external-orchestration/cli-pi' },
 ];
 
+const MAX_INSPECTED_COMMAND_CHARS = 32_768;
+const ASSIGNMENT_TOKEN = /^[A-Za-z_][A-Za-z0-9_]*=(.*)$/s;
+const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi']);
+const PRINT_FLAGS = new Set(['-p', '--print']);
+const SEPARATORS = new Set(['&&', '||', ';', '|', '&']);
+
+function basename(value) {
+  const slash = value.lastIndexOf('/');
+  return slash === -1 ? value : value.slice(slash + 1);
+}
+
+function isAssignmentToken(token) {
+  return !token.quoted && !token.expanded && ASSIGNMENT_TOKEN.test(token.value);
+}
+
+function makeWord(value, quoted, expanded) {
+  return { value, quoted, expanded };
+}
+
+function tokenizeShell(command) {
+  const segments = [[]];
+  let value = '';
+  let quoted = false;
+  let expanded = false;
+  let started = false;
+  let quote = null;
+  let escaped = false;
+  let malformed = false;
+  let unsupported = false;
+
+  const pushWord = () => {
+    if (!started) return;
+    segments.at(-1).push(makeWord(value, quoted, expanded));
+    value = '';
+    quoted = false;
+    expanded = false;
+    started = false;
+  };
+
+  const pushSeparator = (separator) => {
+    pushWord();
+    if (SEPARATORS.has(separator)) segments.push([]);
+  };
+
+  for (let index = 0; index < command.length; index += 1) {
+    const character = command[index];
+
+    if (quote === "'") {
+      if (character === "'") quote = null;
+      else value += character;
+      continue;
+    }
+
+    if (quote === '"') {
+      if (character === '"') {
+        quote = null;
+      } else if (character === '\\' && index + 1 < command.length) {
+        value += command[++index];
+      } else {
+        if (character === '$' || character === '`') expanded = true;
+        value += character;
+      }
+      continue;
+    }
+
+    if (escaped) {
+      value += character;
+      escaped = false;
+      started = true;
+      continue;
+    }
+
+    if (character === '\\') {
+      escaped = true;
+      started = true;
+      continue;
+    }
+
+    if (character === "'" || character === '"') {
+      quote = character;
+      quoted = true;
+      started = true;
+      continue;
+    }
+
+    if (character === '#' && !started) {
+      while (index + 1 < command.length && command[index + 1] !== '\n') index += 1;
+      continue;
+    }
+
+    if (/\s/.test(character)) {
+      pushWord();
+      if (character === '\n') pushSeparator(';');
+      continue;
+    }
+
+    if (character === '&' || character === ';' || character === '|') {
+      const next = command[index + 1];
+      const separator = character === '&' && next === '&'
+        ? '&&'
+        : character === '|' && next === '|'
+          ? '||'
+          : character;
+      if (separator.length === 2) index += 1;
+      pushSeparator(separator);
+      continue;
+    }
+
+    if ((character === '<' || character === '>') && (command[index + 1] === character || command[index + 1] === '&')) {
+      unsupported = true;
+    }
+
+    if (character === '$' || character === '`') expanded = true;
+    value += character;
+    started = true;
+  }
+
+  if (quote !== null || escaped) malformed = true;
+  pushWord();
+  return { segments, malformed, unsupported };
+}
+
+function commandStart(tokens) {
+  let index = 0;
+  while (index < tokens.length && isAssignmentToken(tokens[index])) index += 1;
+
+  if (tokens[index]?.value !== 'env' || tokens[index]?.quoted) return { index, opaque: false };
+  index += 1;
+  while (index < tokens.length) {
+    const token = tokens[index];
+    if (isAssignmentToken(token) || token.value === '-i' || token.value === '--ignore-environment') {
+      index += 1;
+      continue;
+    }
+    if (token.value === '-u' || token.value === '--unset') {
+      index += 2;
+      continue;
+    }
+    if (token.value.startsWith('-u') || token.value.startsWith('--unset=')) {
+      index += 1;
+      continue;
+    }
+    break;
+  }
+  return { index, opaque: false };
+}
+
+function directExecutor(tokens) {
+  if (tokens.length === 0 || tokens.some((token) => token.expanded)) return null;
+  const start = commandStart(tokens);
+  if (start.opaque || start.index >= tokens.length) return null;
+  const executable = tokens[start.index];
+  // A quoted command-position token still names the binary the shell will run, so
+  // `"devin" -p x` invokes devin exactly as the bare form does. Set membership below only
+  // admits an exact executor basename, so a multi-word quoted payload (e.g. "devin -p task")
+  // stays out on its own — dropping quoted executors here instead let them evade both the
+  // authorization gate and the audit trail.
+  const binary = basename(executable.value);
+  if (!EXECUTOR_BASENAMES.has(binary)) return null;
+
+  if (binary === 'opencode' && tokens[start.index + 1]?.value === 'run') return 'cli-opencode';
+  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') {
+    return tokens.slice(start.index + 2).some((token) => PRINT_FLAGS.has(token.value)) ? 'cli-codex' : null;
+  }
+  if (binary === 'claude' || binary === 'devin' || binary === 'cursor-agent' || binary === 'pi') {
+    return tokens.slice(start.index + 1).some((token) => PRINT_FLAGS.has(token.value))
+      ? `cli-${binary === 'cursor-agent' ? 'cursor' : binary === 'claude' ? 'claude-code' : binary}`
+      : null;
+  }
+  return null;
+}
+
+function hasKnownExecutorToken(tokens) {
+  return tokens.some((token) => !token.quoted && EXECUTOR_BASENAMES.has(basename(token.value)));
+}
+
+function hasDispatchText(value) {
+  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value);
+}
+
+function hasDispatchEvidence(tokens) {
+  const hasPrintFlag = tokens.some((token) => PRINT_FLAGS.has(token.value));
+  const knownExecutor = hasKnownExecutorToken(tokens);
+  const embeddedExecutor = tokens.some((token) => !token.quoted && /(?:^|=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
+  const variableExecutor = tokens.some((token) => token.expanded) && hasPrintFlag;
+  const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
+  return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
+}
+
+/**
+ * Inspect a bounded shell command without evaluating it.
+ * @param {unknown} command - raw command text from the tool call.
+ * @returns {{ kind: 'direct', executor: string } | { kind: 'ambiguous' } | { kind: 'none' }}
+ */
+export function inspectDispatch(command) {
+  try {
+    if (typeof command !== 'string' || command.length === 0 || command.length > MAX_INSPECTED_COMMAND_CHARS) {
+      return { kind: 'none' };
+    }
+
+    const parsed = tokenizeShell(command);
+    const direct = [];
+    let candidate = false;
+    for (const tokens of parsed.segments) {
+      const executor = directExecutor(tokens);
+      if (executor) direct.push(executor);
+      else if (hasDispatchEvidence(tokens)) candidate = true;
+    }
+
+    if (!parsed.malformed && !parsed.unsupported && direct.length === 1 && !candidate) {
+      return { kind: 'direct', executor: direct[0] };
+    }
+
+    if (direct.length > 0 || candidate) return { kind: 'ambiguous' };
+    return { kind: 'none' };
+  } catch (_) {
+    return { kind: 'none' };
+  }
+}
+
 /**
  * Recognize a completed Bash command as a CLI dispatch, or fast-exit on anything else.
  * @param {unknown} command - raw command text from the tool call.
  * @returns {{ skill: string } | null} the matched dispatch shape's skill name, or null.
  */
 export function matchDispatchShape(command) {
-  if (typeof command !== 'string' || command.length === 0) return null;
-  const shape = DISPATCH_SHAPES.find((candidate) => candidate.test.test(command));
-  return shape ? { skill: shape.skill } : null;
+  const inspected = inspectDispatch(command);
+  return inspected.kind === 'direct' ? { skill: inspected.executor } : null;
 }
 
 // ── Metadata extraction ──────────────────────────────────────────────────────────────────────

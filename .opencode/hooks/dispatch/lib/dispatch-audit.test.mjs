@@ -10,6 +10,7 @@ import {
   appendAuditLog,
   buildAuditLine,
   extractDispatchMeta,
+  inspectDispatch,
   isAuditDisabled,
   matchDispatchShape,
   recordDispatch,
@@ -31,6 +32,17 @@ describe('matchDispatchShape', () => {
     expect(matchDispatchShape('claude --print "x"')).toEqual({ skill: 'cli-claude-code' });
   });
 
+  it('does not expose prose or quoted payloads as direct matches', () => {
+    expect(matchDispatchShape('printf "devin -p task"')).toBeNull();
+    expect(matchDispatchShape('echo "cursor-agent -p task"')).toBeNull();
+    expect(matchDispatchShape('"devin -p task"')).toBeNull();
+  });
+
+  it('records a quote-safe command-position executor as a direct dispatch', () => {
+    expect(matchDispatchShape('"devin" -p "task"')).toEqual({ skill: 'cli-devin' });
+    expect(matchDispatchShape('"/usr/local/bin/pi" --offline -p "x"')).toEqual({ skill: 'cli-pi' });
+  });
+
   it('fast-exits non-dispatch bash commands', () => {
     expect(matchDispatchShape('git status')).toBeNull();
     expect(matchDispatchShape('ls -la && echo done')).toBeNull();
@@ -41,6 +53,53 @@ describe('matchDispatchShape', () => {
     expect(matchDispatchShape(null)).toBeNull();
     expect(matchDispatchShape('')).toBeNull();
     expect(matchDispatchShape(12345)).toBeNull();
+  });
+});
+
+// ── inspectDispatch ─────────────────────────────────────────────────────────────────────────
+
+describe('inspectDispatch', () => {
+  it.each([
+    ['direct OpenCode', 'opencode run "task"', { kind: 'direct', executor: 'cli-opencode' }],
+    ['direct Claude', 'claude --print "task"', { kind: 'direct', executor: 'cli-claude-code' }],
+    ['direct Codex', 'codex exec --full-auto -p "task"', { kind: 'direct', executor: 'cli-codex' }],
+    ['direct Devin', 'devin -p "task"', { kind: 'direct', executor: 'cli-devin' }],
+    ['direct Cursor', 'cursor-agent -p "task"', { kind: 'direct', executor: 'cli-cursor' }],
+    ['direct Pi', 'pi --offline -p "task"', { kind: 'direct', executor: 'cli-pi' }],
+    ['transparent env wrapper', 'env KEY=value devin -p "task"', { kind: 'direct', executor: 'cli-devin' }],
+    ['prose payload', 'printf "devin -p task"', { kind: 'none' }],
+    ['echo payload', 'echo "cursor-agent -p task"', { kind: 'none' }],
+    ['quoted prose', '"devin -p task"', { kind: 'none' }],
+    // A quote-safe command-position executor is the unquoted binary by another name; quoting it
+    // must not drop the command out of authorization or the audit trail.
+    ['quote-safe executor', '"devin" -p "task"', { kind: 'direct', executor: 'cli-devin' }],
+    ['quote-safe path executor', '"/usr/local/bin/cursor-agent" -p task', { kind: 'direct', executor: 'cli-cursor' }],
+    ['quoted executor without print flag', '"devin" auth status', { kind: 'none' }],
+    ['quoted executor as an argument stays prose', 'echo "devin" -p "hi"', { kind: 'none' }],
+    ['variable executor', '$CLI -p task', { kind: 'ambiguous' }],
+    ['alias-shaped command', 'alias d=devin; d -p task', { kind: 'ambiguous' }],
+    ['command substitution', '$(devin -p task)', { kind: 'ambiguous' }],
+    ['quoted command substitution', 'echo "$(devin -p task)"', { kind: 'ambiguous' }],
+    ['unknown wrapper', 'unknown-wrapper devin -p task', { kind: 'ambiguous' }],
+    ['variable prompt', 'devin -p "$TASK"', { kind: 'ambiguous' }],
+    ['two dispatch segments', 'devin -p task && cursor-agent -p task', { kind: 'ambiguous' }],
+    ['unsupported redirection without dispatch', 'cat x >> out', { kind: 'none' }],
+    ['pipeline without dispatch', 'npm run build 2>&1 | tee log', { kind: 'none' }],
+    ['heredoc without dispatch', 'cat <<EOF\nplain text\nEOF', { kind: 'none' }],
+    ['unbalanced non-dispatch quote', 'echo "plain text', { kind: 'none' }],
+  ])('%s', (_name, command, expected) => {
+    expect(inspectDispatch(command)).toEqual(expected);
+  });
+
+  it('inspects a dispatch segment without borrowing a match from another segment', () => {
+    expect(inspectDispatch('printf "devin -p task"; git status')).toEqual({ kind: 'none' });
+    expect(inspectDispatch('git status && devin -p task')).toEqual({ kind: 'direct', executor: 'cli-devin' });
+  });
+
+  it('bounds malformed and overlong input without throwing', () => {
+    expect(inspectDispatch('devin -p "unterminated')).toEqual({ kind: 'ambiguous' });
+    expect(inspectDispatch('x'.repeat(100_000))).toEqual({ kind: 'none' });
+    expect(inspectDispatch(null)).toEqual({ kind: 'none' });
   });
 });
 

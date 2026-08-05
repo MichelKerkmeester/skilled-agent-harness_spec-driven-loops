@@ -47,20 +47,23 @@ Fire once per user turn, before the model call.
 
 ### Skill Advisor Brief
 
-**Injects:** `Advisor: {live|stale}; use {skill} {confidence}/{uncertainty} pass.` (or the ambiguous two-skill variant), followed by two fixed capsules appended to every brief regardless of the recommendation: the **comment-hygiene HARD BLOCK** reminder and the **Fable-5 governor** directive.
+**Injects:** `Advisor: {live|stale}; use {skill} {confidence}/{uncertainty} pass.` (or the ambiguous two-skill variant), followed by three fixed directives appended to every brief regardless of the recommendation: the **comment-hygiene HARD BLOCK** reminder, the **model-agnostic governor** directive, and the **proof-over-appearance** directive.
 
 ```text
 Advisor: stale; use cli-pi 0.95/0.20 pass.
 Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code
 comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit
 gate blocks violations.
-Fable-5 governor: reason about the problem and the person, not yourself; lead with the
+Governor: reason about the problem and the person, not yourself; lead with the
 result and act rather than narrate...
+Proof over appearance: only real command output counts. Encode every requirement
+as an objective pass-or-fail check...
 ```
 
 - **Trigger:** every user prompt submission.
-- **Owning module:** `system-skill-advisor/mcp-server/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`, `GOVERNOR_DIRECTIVE`), one function, called by every runtime's adapter.
-- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`mk-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` appends it onto the visible prompt text via the `input` event's `{action:"transform"}`).
+- **Canonical owner:** `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`, `GOVERNOR_DIRECTIVE`, `TERMINAL_PROOF_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin bridge (`.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs`) is the fallback emitter: it mirrors the same three directives locally and delegates to the canonical renderer when the compiled module is available.
+- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`mk-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
+- **Pi-only directive ownership:** `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` owns `PI_SUBAGENT_DISPATCH_DIRECTIVE`, appending the native pi-subagents default and explicit `cli-*` override policy after the forwarded advisor context in the same visible `[MSG]` transform. The Pi adapter is a forwarder, not an owner, of the three shared directives; this Pi-only directive is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
 
 ### Spec-Gate Gate-3 Question

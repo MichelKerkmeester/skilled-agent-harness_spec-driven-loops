@@ -39,6 +39,7 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 | ID | Scenario | File |
 | --- | --- | --- |
 | cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md) |
+| cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
 | codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](../manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md) |
 | goal-manage-cli | Goal Manage CLI (Runtime-Neutral) | [goal-manage-cli.md](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md) |
 

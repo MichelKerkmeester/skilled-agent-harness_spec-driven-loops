@@ -12,7 +12,8 @@
     "cli-external-orchestration/038-fable-governor-pi-hook/006-dispatch-authorization-hardening",
     "cli-external-orchestration/038-fable-governor-pi-hook/007-dispatch-validation-evidence",
     "cli-external-orchestration/038-fable-governor-pi-hook/008-phase-state-reconciliation",
-    "cli-external-orchestration/038-fable-governor-pi-hook/009-injection-contract-directive-sync"
+    "cli-external-orchestration/038-fable-governor-pi-hook/009-injection-contract-directive-sync",
+    "cli-external-orchestration/038-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification"
   ],
   "manual": {
     "depends_on": [],
@@ -103,15 +104,15 @@
     ],
     "causal_summary": "The fable governor per-turn hook re-states a compact disposition capsule every turn, but AGENTS.md now embeds richer governor and proof-over-appearance logic",
     "created_at": "2026-08-04T08:24:58Z",
-    "last_save_at": "2026-08-05T00:35:21.499Z",
+    "last_save_at": "2026-08-05T13:05:41.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a47c2a9bb7452d68c65f6ea0dbd1d0cc4b7f2f34cedf17117c01fdd8a655109c",
+    "source_fingerprint": "sha256:cdf7c26fc093c7b2048bfdde75a40a8a15366ab6bacfa315fa51bced687aee58",
     "source_doc_hashes": {
-      "spec.md": "44cd2f2b2bef91eaf1e8724b454de842d730c1fec594846991d2f7cdcd4ce27f"
+      "spec.md": "bb57b8ce1e5bd08b7e5c6fd09284543b854a39101854ca2d53a620122cc11144"
     },
     "last_active_child_id": "cli-external-orchestration/038-fable-governor-pi-hook/009-injection-contract-directive-sync",
     "last_active_at": "2026-08-05T00:35:21.499Z"

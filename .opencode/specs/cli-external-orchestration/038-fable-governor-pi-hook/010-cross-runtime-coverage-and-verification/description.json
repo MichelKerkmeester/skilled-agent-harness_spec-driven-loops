@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/038-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+  "description": "A parked deep review of packet 038 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted",
+  "keywords": [
+    "parked",
+    "deep",
+    "review",
+    "packet",
+    "deep-review-findings-registry",
+    "json",
+    "session",
+    "review-1785915676506",
+    "surfaced",
+    "finding",
+    "r1-p1-001",
+    "quoted"
+  ],
+  "lastUpdated": "2026-08-05T13:02:55.199Z",
+  "specId": "010",
+  "folderSlug": "cross-runtime-coverage-and-verification",
+  "parentChain": [
+    "cli-external-orchestration",
+    "038-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

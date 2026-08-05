@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/038-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+  "spec_folder": "cli-external-orchestration/038-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+  "parent_id": "cli-external-orchestration/038-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quoted executor dispatch bypass",
+      "R1-P1-001 fix",
+      "cross-runtime coverage verification",
+      "directExecutor quoted guard removal",
+      "quoted executor verification plan",
+      "cross-runtime coverage plan",
+      "R1-P1-001 evidence plan",
+      "quoted executor fix tasks",
+      "cross-runtime coverage tasks",
+      "dispatch inspection verification tasks",
+      "quoted executor fix checklist",
+      "cross-runtime coverage checklist"
+    ],
+    "key_topics": [
+      "quoted",
+      "executor",
+      "dispatch",
+      "bypass",
+      "r1-p1-001",
+      "cross-runtime",
+      "coverage",
+      "verification",
+      "directexecutor",
+      "guard",
+      "removal",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
+    ],
+    "entities": [
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-preflight-authorization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-authorization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Dispatch Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A parked deep review of packet 038 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted executor forms bypass Pi dispatch inspection.\" The root cause was a blanket guard in `directExecutor()` (`.opencode/hooks/dispatch/lib/dispatch-audit.mjs:186-197`, prior to fix) that returned `null` for any quoted command-position executor",
+    "created_at": "2026-08-05T12:47:41.790Z",
+    "last_save_at": "2026-08-05T13:05:41.381Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6c5819206110c0bbb6d3c2a5a2dbb5e95036d131c854ad4b9cc47872bb5d315",
+    "source_doc_hashes": {
+      "spec.md": "05ffc6ae07764d2a89cc1778476c0445ddc50a524c6e7e41d6d1f2ecdc1f1603",
+      "plan.md": "4a7aa243dcf96efc569c1c36a477319263c93112b0eda4674d43c935118e5be0",
+      "tasks.md": "c2ddbfc7821f2cf82daf2c4aa1599951150322af10d41949b24b842f142cb4c2",
+      "checklist.md": "0998f5a069eeabac1c4577002df841de25e716da95f8ac2c8a2f45a35910fb8d",
+      "implementation-summary.md": "708d370b9bc2513e765bbce38e7c31357d5ea6433f5bc6d76b02e220c51b8154"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

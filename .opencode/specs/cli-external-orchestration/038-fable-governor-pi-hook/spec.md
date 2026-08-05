@@ -117,6 +117,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-dispatch-validation-evidence/ | P2 evidence remediation: four-class evidence ledger, registered Pi factory evidence, claim correction, full-corpus baseline with bounded deferral | Complete (2026-08-04; focused gates pass; full corpus remains exit 1) |
 | 8 | 008-phase-state-reconciliation/ | P2 state remediation: status/completion reconciliation across 001-009, parent map + handoff repair, generated metadata refresh, resume pointer | Complete (2026-08-05; metadata and state reconciliation verified) |
 | 9 | 009-injection-contract-directive-sync/ | P3 contract remediation: injection-contract.md documents all three advisor directives (comment hygiene, governor, proof-over-appearance) and owning modules | Complete (2026-08-05; scoped contract verification recorded) |
+| 10 | 010-cross-runtime-coverage-and-verification/ | R1-P1-001 quote-safe executor fix recorded with test evidence, cross-runtime manual-testing-playbook scenario + feature-catalog entry authored; R2-P1-002/003 deferred to a separate system-deep-loop packet | Complete (2026-08-05; shared inspector 356/356, Pi preflight 32/32) |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -136,7 +137,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006-dispatch-authorization-hardening | 007-dispatch-validation-evidence | Registered Pi factory blocks cli-pi self-dispatch and executor mismatch; raw-user authorization proven | `npx vitest run .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts --reporter=dot` (27/27 combined) and the Phase 006 evidence ledger |
 | 007-dispatch-validation-evidence | 008-phase-state-reconciliation | Evidence classes separated; full-corpus baseline has owner and revisit trigger | focused Pi suite 32/32; `evidence/full-corpus-baseline.md` records exit 1 and the complete failure ledger |
 | 008-phase-state-reconciliation | 009-injection-contract-directive-sync | Phase 008 reconciliation is complete and Phase 009's contract evidence is retained without source changes | recursive strict validation of the parent packet; any dirty-worktree freshness warning is reported separately |
-| 009-injection-contract-directive-sync | — | injection-contract.md documents all three directives and owning modules | directive grep assertions exit 0; phase 009 strict validation passes |
+| 009-injection-contract-directive-sync | 010-cross-runtime-coverage-and-verification | injection-contract.md documents all three directives and owning modules | directive grep assertions exit 0; phase 009 strict validation passes |
+| 010-cross-runtime-coverage-and-verification | — | R1-P1-001 quote-safe fix verified and documented across the four inspector runtimes; R2-P1-002/003 deferred | shared inspector 356/356, Pi preflight 32/32; feature-catalog + playbook validate 0 issues |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The review's P3 finding requires `injection-contract.md` to document all three fixed advisor directives — comment hygiene, governor, and proof-over-appearance — and the modules that own their text",
     "created_at": "2026-08-04T17:57:55Z",
-    "last_save_at": "2026-08-05T00:56:22.374Z",
+    "last_save_at": "2026-08-05T13:05:41.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae1c187ccbe5d37f278326e5489c6e82f857064589de0876b66ba2f7974b0c89",
+    "source_fingerprint": "sha256:1b96dc41892a93ec06ab47c845f46f0f75ae78eb343475cb5ec29d2587aff596",
     "source_doc_hashes": {
-      "spec.md": "315dd43cd5d9486dee277191c9acdb21485afe3b27962408afa88d3561c949e9",
+      "spec.md": "af3be6a39b171baa630a7deb3fc2ab9fd9e7eafa777ce72c9fe6202bd13439bb",
       "plan.md": "c103ce5f3049069003a219efc1271d817d7e20275091b310fc677553bb3c8351",
       "tasks.md": "8a1e8ab9a0bcc4c999fc232dba3cd004943ed8c3b37b3a1319cc9d1c133a0190",
       "checklist.md": "d06bb0149ec4b1a07b61d95a48fcc9c2d2c346c149ede136b0942be2bbb481b8",

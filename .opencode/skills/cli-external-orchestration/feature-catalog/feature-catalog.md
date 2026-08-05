@@ -75,3 +75,21 @@ The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 pre
 #### Source Files
 
 See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md) for the event behavior, current registration authority, and durable validation anchors.
+
+---
+
+## 5. CLI DISPATCH AUTHORIZATION AND INSPECTION
+
+### Shared Dispatch Inspector And Pi Authorization Gate
+
+#### Description
+
+One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate.
+
+#### Current Reality
+
+A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, `none` is a no-op, and a `cli-pi` self-dispatch is never authorized. The shared inspector suite passes 356/356 and the Pi preflight suite passes 32/32.
+
+#### Source Files
+
+See [`cli-dispatch-authorization/cli-dispatch-authorization.md`](cli-dispatch-authorization/cli-dispatch-authorization.md) for the classification model, the authorization mapping, and the durable test anchors.
