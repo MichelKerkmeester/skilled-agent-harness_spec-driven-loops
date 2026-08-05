@@ -38,6 +38,8 @@ preflight() {
     # -k accepts the plugin's self-signed cert; a non-empty body means the app
     # is running with the plugin enabled. A failure here means: app closed, or
     # plugin disabled, or wrong port — route the task to notesmd-cli instead.
+    # Skipping cert verification is safe only because BASE_URL is loopback; never
+    # send the bearer token to a non-127.0.0.1 host with verification disabled.
     if curl -sk --max-time 5 -H "Authorization: Bearer ${OBSIDIAN_API_KEY:-}" "$BASE_URL/" >/dev/null 2>&1; then
       success "Local REST API responded — app is running"
     else
@@ -66,6 +68,11 @@ const result = await call_tool_chain({
     try {
       existing = await obsidian.obsidian_get_note({ path: "Daily/2026-08-02.md" });
     } catch (e) {
+      // Only a genuine "note absent" is safe to treat as empty. An auth,
+      // transport, or server error must re-throw — otherwise a failed read
+      // would overwrite a real note with empty + marker content.
+      const notFound = e?.status === 404 || /not[_ ]?found/i.test(e?.message ?? "");  // VERIFY error shape with tool_info()
+      if (!notFound) throw e;
       existing = { content: "" };   // Note does not exist yet
     }
 

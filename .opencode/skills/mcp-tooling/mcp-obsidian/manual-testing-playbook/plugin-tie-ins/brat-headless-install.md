@@ -64,6 +64,9 @@ Install a tagged beta plugin headlessly through BRAT by staging its release asse
    jq empty "$STAGE_DIR/manifest.json"
    PLUGIN_ID="$(jq -r '.id // empty' "$STAGE_DIR/manifest.json")"
    jq -e '.id and .version' "$STAGE_DIR/manifest.json" >/dev/null
+   # Reject any id that is not a plain folder name — a manifest-supplied `../` or `/`
+   # would let a hostile release escape .obsidian/plugins/ and write anywhere in the vault.
+   printf '%s' "$PLUGIN_ID" | grep -qE '^[A-Za-z0-9._-]+$' || { echo "unsafe plugin id: $PLUGIN_ID" >&2; exit 1; }
    mkdir -p "$VAULT/.obsidian/plugins/$PLUGIN_ID"
    cp "$STAGE_DIR/main.js" "$VAULT/.obsidian/plugins/$PLUGIN_ID/main.js"
    cp "$STAGE_DIR/manifest.json" "$VAULT/.obsidian/plugins/$PLUGIN_ID/manifest.json"

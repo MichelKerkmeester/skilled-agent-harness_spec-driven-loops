@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.13.0.0
+version: 0.14.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
@@ -79,6 +79,36 @@ ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official 
              references/plugins/iconic/data-model.md
              references/plugins/iconic/workflows.md
              references/plugins/iconic/troubleshooting.md
+           Charts:
+             references/plugins/charts/charts.md                         (plugin index)
+             references/plugins/charts/data-model.md
+             references/plugins/charts/workflows.md
+             references/plugins/charts/troubleshooting.md
+           Dataview:
+             references/plugins/dataview/dataview.md                     (plugin index)
+             references/plugins/dataview/data-model.md
+             references/plugins/dataview/workflows.md
+             references/plugins/dataview/troubleshooting.md
+           Excalidraw:
+             references/plugins/excalidraw/excalidraw.md                 (plugin index)
+             references/plugins/excalidraw/data-model.md
+             references/plugins/excalidraw/workflows.md
+             references/plugins/excalidraw/troubleshooting.md
+           Obsidian Git:
+             references/plugins/git/git.md                               (plugin index)
+             references/plugins/git/data-model.md
+             references/plugins/git/workflows.md
+             references/plugins/git/troubleshooting.md
+           Outliner:
+             references/plugins/outliner/outliner.md                     (plugin index)
+             references/plugins/outliner/data-model.md
+             references/plugins/outliner/workflows.md
+             references/plugins/outliner/troubleshooting.md
+           Minimal (theme):
+             references/plugins/minimal/minimal.md                       (plugin index)
+             references/plugins/minimal/data-model.md
+             references/plugins/minimal/workflows.md
+             references/plugins/minimal/troubleshooting.md
 ```
 
 ### Two Decisions This Router Makes

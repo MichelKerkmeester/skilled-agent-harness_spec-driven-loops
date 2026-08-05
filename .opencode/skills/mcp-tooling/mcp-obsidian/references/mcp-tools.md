@@ -60,6 +60,8 @@ Use this reference when:
 | `OBSIDIAN_BASE_URL` | `http://127.0.0.1:27123` | Local REST API endpoint |
 | `OBSIDIAN_VERIFY_SSL` | `false` | Whether to verify the plugin's self-signed TLS cert |
 
+> **Security:** `OBSIDIAN_VERIFY_SSL=false` (and `curl -k`) is safe only because the Local REST API listens on **loopback** (`127.0.0.1`) with a self-signed cert. Never point `OBSIDIAN_BASE_URL` at a non-loopback host while verification is off — the bearer token would cross the network on an unverified connection.
+
 ---
 
 ## 4. WHEN TO USE MCP VS notesmd-cli
