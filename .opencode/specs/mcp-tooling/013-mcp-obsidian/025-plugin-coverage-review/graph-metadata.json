@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "verify",
+      "every",
+      "community",
+      "plugin",
+      "theme",
+      "supported",
+      "mcp-obsidian",
+      "skill",
+      "properly",
+      "completely",
+      "covered",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Verify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outcome All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PASS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a PASS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach (as executed)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executors",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Infrastructure lesson",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final state: complete",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Review outcome",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Remediation shipped to v4",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. Scenario test outcome (10 PASS · 0 FAIL · 1 SKIP)",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces, remediate the gaps, and headlessly test every plugin playbook scenario",
+    "created_at": "2026-08-05T19:56:29.576Z",
+    "last_save_at": "2026-08-05T19:56:29.576Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f7f009845e233f41006be6cddc84ebc1c56cbb2f456f691fafe0fb094da5b96",
+    "source_doc_hashes": {
+      "spec.md": "6d66aeb00960fade592f35cb44f58989f62e96493e2b18fb7dca028139b96a99",
+      "plan.md": "b0536f0ca4e7b6e2df4bf45c0e70ea2ad5ad1366cc069cdaf4403356b882b316",
+      "tasks.md": "4030a11bca568d7a360a6c9ebad053029e6126bae552b35d073c154df3cb1043",
+      "implementation-summary.md": "e8f09f0dc1826d722d9bcb054e5c5af41126766bf8cfbf6126770c80cba29b4b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

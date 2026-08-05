@@ -1,0 +1,29 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "description": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces,",
+  "keywords": [
+    "verify",
+    "every",
+    "community",
+    "plugin",
+    "theme",
+    "supported",
+    "mcp-obsidian",
+    "skill",
+    "properly",
+    "completely",
+    "covered",
+    "across",
+    "documentation",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-08-05T19:56:17.070Z",
+  "specId": "025",
+  "folderSlug": "plugin-coverage-review",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
