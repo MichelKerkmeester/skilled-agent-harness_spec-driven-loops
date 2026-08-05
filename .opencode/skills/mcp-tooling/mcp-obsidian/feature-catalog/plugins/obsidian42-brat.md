@@ -7,7 +7,7 @@ trigger_phrases:
   - "install plugin from GitHub"
   - "BRAT frozen version"
   - "headless BRAT workflow"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # BRAT file-layer installation operations (`obsidian42-brat`)
@@ -41,8 +41,8 @@ Write these files while Obsidian is closed, retain backups, re-parse every JSON 
 | File | Type | Role |
 |---|---|---|
 | [`../../manual-testing-playbook/plugin-tie-ins/brat-headless-install.md`](../../manual-testing-playbook/plugin-tie-ins/brat-headless-install.md) | Manual playbook | Exercises a headless stage → register → activate install. |
-| [`../../assets/brat-data-entry.example.json`](../../assets/brat-data-entry.example.json) | Asset | Provides a populated BRAT policy fixture without credentials. |
-| [`../../references/plugins/obsidian42-brat/workflows.md`](../../references/plugins/obsidian42-brat/workflows.md) | Validation reference | Defines exact asset checks and the three-stage post-write verification. |
+| [`../../assets/brat-data-entry.example.json`](../../assets/brat-data-entry.example.json) | Fixture | Provides a populated BRAT policy fixture without credentials. |
+| [`../../references/plugins/obsidian42-brat/workflows.md`](../../references/plugins/obsidian42-brat/workflows.md) | Reference | Defines exact asset checks and the three-stage post-write verification. |
 
 ## 4. SOURCE METADATA
 

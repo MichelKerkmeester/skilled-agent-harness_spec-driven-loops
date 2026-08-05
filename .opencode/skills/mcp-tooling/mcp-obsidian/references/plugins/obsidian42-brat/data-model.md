@@ -9,7 +9,7 @@ trigger_phrases:
   - "brat themes list checksum"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # BRAT data.json Data Model

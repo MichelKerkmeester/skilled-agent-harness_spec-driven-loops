@@ -2,7 +2,7 @@
 title: "MCP-H001 -- Read/write round-trip"
 description: "This scenario validates a controlled read, idempotent append, and write through the cyanheads Obsidian MCP."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-H001 -- Read/write round-trip

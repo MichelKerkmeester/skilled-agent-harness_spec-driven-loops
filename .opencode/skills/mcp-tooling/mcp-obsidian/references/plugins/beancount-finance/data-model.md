@@ -9,7 +9,7 @@ trigger_phrases:
   - "bean-price price directives"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Beancount Ledger Data Model

@@ -285,7 +285,25 @@
     "folder icons",
     "icon color",
     "iconic data json",
-    "iconic ruleset"
+    "iconic ruleset",
+    "charts",
+    "chart block",
+    "render block",
+    "dataview",
+    "dql",
+    "dataviewjs",
+    "inline field",
+    "excalidraw",
+    "excalidraw.md",
+    "drawing note",
+    "obsidian-git",
+    "vault git",
+    "auto backup",
+    "outliner",
+    "list editing",
+    "minimal theme",
+    "css theme",
+    "theme snippet"
    ],
    "advisorRouting": {
     "routingClass": "metadata"

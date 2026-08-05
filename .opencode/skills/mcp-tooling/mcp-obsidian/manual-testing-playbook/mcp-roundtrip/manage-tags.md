@@ -2,7 +2,7 @@
 title: "MCP-H003 -- Manage tags"
 description: "This scenario validates a controlled tag mutation through obsidian_manage_tags after schema discovery."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-H003 -- Manage tags

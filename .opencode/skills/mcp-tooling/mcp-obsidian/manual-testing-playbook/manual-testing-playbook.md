@@ -1,14 +1,14 @@
 ---
 title: "mcp-obsidian: Manual Testing Playbook"
-description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and three community-plugin file-layer tie-ins."
-version: 1.0.0.0
+description: "Operator-facing scenarios for headless notesmd-cli operations, the official app-backed obsidian CLI, cyanheads MCP round-trips, and eleven community-plugin file-layer tie-ins."
+version: 0.1.0.0
 ---
 
 # mcp-obsidian: Manual Testing Playbook
 
 > **EXECUTION POLICY:** Every scenario is executed against real commands, files, app state, or Code Mode tools. Valid statuses are `PASS`, `FAIL`, or `SKIP` with a specific prerequisite or sandbox blocker. `UNAUTOMATABLE` is not a valid status.
 
-This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for the Beancount Ledger (`beancount-finance`), Obsidian Tables (`tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), and Iconic (`iconic`) plugins.
+This playbook is the operator directory for the `mcp-obsidian` mode. It validates the headless `notesmd-cli` profile, the official app-backed `obsidian` CLI, the cyanheads `obsidian_*` MCP surface, and file-layer operations for eleven community plugins — Beancount Ledger (`beancount-finance`), Obsidian Tables (`obsidian-tables`), BRAT (`obsidian42-brat`), Health.md Visualizations (`health-md`), Iconic (`iconic`), Charts (`charts`), Dataview (`dataview`), Excalidraw (`excalidraw`), Obsidian Git (`git`), Outliner (`outliner`), and the Minimal theme (`minimal`).
 
 The [feature catalog](../feature-catalog/FEATURE-CATALOG.md) is the current-behavior inventory. These scenario files own exact prompts, command sequences, expected signals, evidence, grading, and triage.
 
@@ -34,7 +34,7 @@ This package provides 19 deterministic scenarios across 6 categories:
 | Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
-| Community-plugin tie-ins | `OBS-011..OBS-015` | File-layer fixtures; app reload is required only for the render/activation check |
+| Community-plugin tie-ins | `OBS-011..OBS-021` | File-layer fixtures; app reload is required only for the render/activation check |
 
 The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the Local REST API + token setup, which may still be pending in an operator environment; those scenarios must be recorded as `SKIP` with that blocker rather than treated as an MCP failure.
 
@@ -228,7 +228,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 ---
 
-## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-013`)
+## 12. COMMUNITY-PLUGIN FILE-LAYER TIE-INS (`OBS-011..OBS-021`)
 
 ### OBS-011 | Beancount file-layer transaction
 
@@ -275,6 +275,94 @@ Prompt: `Install a tagged beta plugin headlessly through BRAT by staging its rel
 > **Feature File:** [`plugin-tie-ins/brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md)
 > **Catalog:** [`../feature-catalog/plugins/obsidian42-brat.md`](../feature-catalog/plugins/obsidian42-brat.md) — the scenario validates BRAT's stage → register → activate file-layer sequence.
 
+### OBS-014 | Health.md data-file round-trip
+
+#### Description
+
+Resolve the Health.md data folder from the plugin's `data.json`, add or edit a data file at the file layer, and verify the visualization reflects it after reload.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/health-md-data.md`](plugin-tie-ins/health-md-data.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/health-md.md`](../feature-catalog/plugins/health-md.md)
+
+### OBS-015 | Iconic rulebook merge round-trip
+
+#### Description
+
+Merge an icon rule (for example a red rule for PDF files) and a toggle into the Iconic `data.json` rulebook, preserving existing rules, and verify the icons after reload.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/iconic-rules.md`](plugin-tie-ins/iconic-rules.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/iconic.md`](../feature-catalog/plugins/iconic.md)
+
+### OBS-016 | Charts render-block round-trip
+
+#### Description
+
+Author chart render blocks (bar and doughnut) with valid JSON bodies in a throwaway note and verify the Charts plugin renders them after reload.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/charts-render-block.md`](plugin-tie-ins/charts-render-block.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/charts.md`](../feature-catalog/plugins/charts.md)
+
+### OBS-017 | Dataview metadata and query round-trip
+
+#### Description
+
+Add inline/frontmatter metadata and a Dataview query block to throwaway notes and verify the query resolves after reload.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/dataview.md`](../feature-catalog/plugins/dataview.md)
+
+### OBS-018 | Excalidraw drawing-note round-trip
+
+#### Description
+
+Create an Excalidraw drawing note at the file layer, validate its embedded JSON, and confirm the file opens as a drawing.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/excalidraw.md`](../feature-catalog/plugins/excalidraw.md)
+
+### OBS-019 | Obsidian Git status round-trip
+
+#### Description
+
+Read the vault's git status and log through the read-only allowlist and confirm the expected fresh-repo signals.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/git-status-roundtrip.md`](plugin-tie-ins/git-status-roundtrip.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/git.md`](../feature-catalog/plugins/git.md)
+
+### OBS-020 | Outliner settings and defaults
+
+#### Description
+
+Inspect the Outliner plugin `data.json` (or confirm its absence means defaults) and report the active settings.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/outliner.md`](../feature-catalog/plugins/outliner.md)
+
+### OBS-021 | Minimal theme activation
+
+#### Description
+
+Activate the Minimal theme via `appearance.json` and apply a snippet-based tweak, verifying at the file layer.
+
+#### Test Execution
+
+> **Feature File:** [`plugin-tie-ins/minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) — owns the exact prompt, command sequence, and grading.
+> **Catalog:** [`../feature-catalog/plugins/minimal.md`](../feature-catalog/plugins/minimal.md)
+
 ---
 
 ## 13. AUTOMATED TEST CROSS-REFERENCE
@@ -315,3 +403,11 @@ The current mode package has no dedicated automated test suite for these externa
 | `OBS-011` | Beancount file-layer transaction | Dedicated plugin reference in [`beancount-transaction.md`](plugin-tie-ins/beancount-transaction.md) |
 | `OBS-012` | Obsidian Tables file-layer round-trip | Dedicated plugin reference in [`obsidian-tables-roundtrip.md`](plugin-tie-ins/obsidian-tables-roundtrip.md) |
 | `OBS-013` | BRAT headless beta-plugin install | Dedicated plugin reference in [`brat-headless-install.md`](plugin-tie-ins/brat-headless-install.md) |
+| `OBS-014` | Health.md file-layer data + render blocks | Dedicated plugin reference in [`health-md-data.md`](plugin-tie-ins/health-md-data.md) |
+| `OBS-015` | Iconic rulebook merge round-trip | Dedicated plugin reference in [`iconic-rules.md`](plugin-tie-ins/iconic-rules.md) |
+| `OBS-016` | Charts render-block round-trip | Dedicated plugin reference in [`charts-render-block.md`](plugin-tie-ins/charts-render-block.md) |
+| `OBS-017` | Dataview metadata and query round-trip | Dedicated plugin reference in [`dataview-metadata-query.md`](plugin-tie-ins/dataview-metadata-query.md) |
+| `OBS-018` | Excalidraw drawing-note round-trip | Dedicated plugin reference in [`excalidraw-drawing-note.md`](plugin-tie-ins/excalidraw-drawing-note.md) |
+| `OBS-019` | Obsidian Git status round-trip | Dedicated plugin reference in [`git-status-roundtrip.md`](plugin-tie-ins/git-status-roundtrip.md) |
+| `OBS-020` | Outliner settings and defaults | Dedicated plugin reference in [`outliner-settings-defaults.md`](plugin-tie-ins/outliner-settings-defaults.md) |
+| `OBS-021` | Minimal theme activation | Dedicated plugin reference in [`minimal-theme-activation.md`](plugin-tie-ins/minimal-theme-activation.md) |

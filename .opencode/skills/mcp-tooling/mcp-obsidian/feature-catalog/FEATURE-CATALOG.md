@@ -7,7 +7,7 @@ trigger_phrases:
   - "obsidian MCP tools"
   - "Obsidian plugin file-layer operations"
 last_updated: "2026-08-03"
-version: 1.0.1.0
+version: 0.1.1.0
 ---
 
 # mcp-obsidian: Feature Catalog
@@ -20,9 +20,9 @@ The inventory records current behavior only. Exact `notesmd-cli` flags for `crea
 
 ## 1. OVERVIEW
 
-The mode has 25 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 5 plugin file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
+The mode has 31 catalog entries: 14 CLI cards (11 headless operations and 3 official app-backed capabilities), 6 MCP cards (5 confirmed cyanheads core tools plus 1 inventory boundary for the remaining 9 tools), and 11 plugin and theme file-layer cards. The headless profile is the default when no running app is available; the official CLI and MCP are app-backed surfaces.
 
-The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (5). Display order below preserves operating sequence and priority context without making directory names part of the contract.
+The catalog groups cards by execution surface: `cli/` (14), `mcp/` (6), and `plugins/` (11). Display order below preserves operating sequence and priority context without making directory names part of the contract.
 
 ---
 
@@ -198,7 +198,7 @@ See [`mcp/additional-tools-verify.md`](mcp/additional-tools-verify.md).
 
 ## 14. PLUGINS
 
-The plugin category records file-layer operations for the five community plugins covered by the mode. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
+The plugin category records file-layer operations for the eleven community artifacts covered by the mode: the original five plugins (Beancount, Tables, BRAT, Health.md, Iconic), the five newly installed plugins (Charts, Dataview, Excalidraw, Git, Outliner) and the Minimal theme. Each card points to the slim plugin index, deep data/workflow/troubleshooting references, copyable assets, and its manual tie-in scenario.
 
 ### Beancount Ledger
 
@@ -229,3 +229,39 @@ See [`plugins/health-md.md`](plugins/health-md.md).
 Add, edit, and disable Iconic icon rules and visibility toggles in `data.json` with backup-before-merge discipline.
 
 See [`plugins/iconic.md`](plugins/iconic.md).
+
+### Charts
+
+Author and validate chart render blocks and operate the Charts settings file with backup-before-write discipline.
+
+See [`plugins/charts.md`](plugins/charts.md).
+
+### Dataview
+
+Add and patch note metadata (frontmatter and inline fields) and author DQL query blocks that read it.
+
+See [`plugins/dataview.md`](plugins/dataview.md).
+
+### Excalidraw
+
+Create and patch `.excalidraw.md` drawing notes and validate their embedded JSON documents.
+
+See [`plugins/excalidraw.md`](plugins/excalidraw.md).
+
+### Git
+
+Read vault git state and operate the plugin settings file with backup discipline; never run destructive git operations on a real vault.
+
+See [`plugins/git.md`](plugins/git.md).
+
+### Outliner
+
+Operate the Outliner settings file (editor-behavior contract only; the plugin has no note format of its own).
+
+See [`plugins/outliner.md`](plugins/outliner.md).
+
+### Minimal
+
+Verify theme installation and activation and propose snippet-based tweaks, never editing `theme.css` in a real vault.
+
+See [`plugins/minimal.md`](plugins/minimal.md).

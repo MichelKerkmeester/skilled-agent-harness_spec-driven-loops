@@ -2,7 +2,7 @@
 title: "OBS-012 -- Obsidian Tables file-layer round-trip"
 description: "This scenario validates the Tables file-layer tie-in by creating and editing a .table.md payload, then verifying that Obsidian renders the changed table."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-012 -- Obsidian Tables file-layer round-trip

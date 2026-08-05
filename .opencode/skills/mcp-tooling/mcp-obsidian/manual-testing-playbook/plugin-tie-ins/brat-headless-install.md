@@ -2,7 +2,7 @@
 title: "OBS-013 -- BRAT headless beta-plugin install"
 description: "This scenario validates the BRAT file-layer install boundary by staging exact release assets, registering a repository, and activating the manifest ID."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-013 -- BRAT headless beta-plugin install

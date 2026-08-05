@@ -7,7 +7,7 @@ trigger_phrases:
   - "edit table row by ID"
   - "formula column"
   - "Agentable table round-trip"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Obsidian Tables file-layer operations (`tables`)
@@ -41,8 +41,8 @@ The canonical root keeps `version`, `metadata.title`, `columns`, `views`, and `r
 | File | Type | Role |
 |---|---|---|
 | [`../../manual-testing-playbook/plugin-tie-ins/obsidian-tables-roundtrip.md`](../../manual-testing-playbook/plugin-tie-ins/obsidian-tables-roundtrip.md) | Manual playbook | Creates/edits a `.table.md` at the file layer and verifies the rendered result. |
-| [`../../assets/plugins/obsidian-tables/example.table.md`](../../assets/plugins/obsidian-tables/example.table.md) | Asset | Provides a valid Agentable 1.0 table fixture with rows, views, links, and a formula. |
-| [`../../references/plugins/obsidian-tables/workflows.md`](../../references/plugins/obsidian-tables/workflows.md) | Validation reference | Defines readback and reload checks after each mutation. |
+| [`../../assets/plugins/obsidian-tables/example.table.md`](../../assets/plugins/obsidian-tables/example.table.md) | Fixture | Provides a valid Agentable 1.0 table fixture with rows, views, links, and a formula. |
+| [`../../references/plugins/obsidian-tables/workflows.md`](../../references/plugins/obsidian-tables/workflows.md) | Reference | Defines readback and reload checks after each mutation. |
 
 ## 4. SOURCE METADATA
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "notesmd-cli install"
   - "notesmd cli"
   - "obsidian command line interface"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # obsidian-cli (notesmd-cli + official obsidian)

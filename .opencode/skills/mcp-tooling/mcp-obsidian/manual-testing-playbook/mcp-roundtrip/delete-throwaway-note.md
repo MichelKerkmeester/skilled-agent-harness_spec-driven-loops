@@ -2,7 +2,7 @@
 title: "MCP-H004 -- Delete the throwaway note"
 description: "This scenario validates destructive obsidian_delete_note behavior against only the round-trip fixture."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-H004 -- Delete the throwaway note

@@ -8,7 +8,7 @@ trigger_phrases:
   - "tables formula example"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 json-table-plugin: true
 table-links:
   - "[[Projects/Atlas.md]]"

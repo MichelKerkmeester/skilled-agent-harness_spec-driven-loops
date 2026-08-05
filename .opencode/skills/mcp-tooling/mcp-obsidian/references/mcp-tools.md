@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian rest api"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Obsidian MCP Tools Reference

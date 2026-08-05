@@ -6,7 +6,7 @@ trigger_phrases:
   - "obsidian-mcp-server install"
   - "obsidian manual"
   - "official obsidian mcp install"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # obsidian-mcp

@@ -2,7 +2,7 @@
 title: "OBS-009 -- Register and inspect the official CLI"
 description: "This scenario validates official obsidian CLI registration and help output in an app-backed environment."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-009 -- Register and inspect the official CLI

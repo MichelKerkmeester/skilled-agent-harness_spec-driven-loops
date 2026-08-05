@@ -9,7 +9,7 @@ trigger_phrases:
   - "tables plugin workflow"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Tables Plugin Index
@@ -42,15 +42,15 @@ Tables provides database-like rows, typed columns, formulas, named views, filter
 
 ## 2. DEEP REFERENCES
 
-- [Data model](obsidian-tables/data-model.md) — exact wrapper, Agentable root, columns, cell encodings, formulas, views, settings, migration, and a full copyable skeleton.
-- [Workflows](obsidian-tables/workflows.md) — create, add/rename columns, add/edit rows, formulas, named views, CSV import, and sort recipes.
-- [Troubleshooting](obsidian-tables/troubleshooting.md) — malformed file recovery, ID integrity, formula, select, migration, sort, and CSV failure paths.
+- [Data model](data-model.md) — exact wrapper, Agentable root, columns, cell encodings, formulas, views, settings, migration, and a full copyable skeleton.
+- [Workflows](workflows.md) — create, add/rename columns, add/edit rows, formulas, named views, CSV import, and sort recipes.
+- [Troubleshooting](troubleshooting.md) — malformed file recovery, ID integrity, formula, select, migration, sort, and CSV failure paths.
 
 ---
 
 ## 3. STARTER ASSET
 
-Copy [`example.table.md`](../../assets/plugins/obsidian-tables/example.table.md) for a valid ten-kind table with two views, a link-column frontmatter index, and an ID-based formula.
+Copy [`example.table.md`](../../../assets/plugins/obsidian-tables/example.table.md) for a valid ten-kind table with two views, a link-column frontmatter index, and an ID-based formula.
 
 ---
 

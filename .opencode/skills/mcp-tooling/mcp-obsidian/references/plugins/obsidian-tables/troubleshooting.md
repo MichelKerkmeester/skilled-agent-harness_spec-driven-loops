@@ -11,7 +11,7 @@ trigger_phrases:
   - "tables csv type coercion"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Tables File-Layer Troubleshooting

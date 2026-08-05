@@ -11,7 +11,7 @@ trigger_phrases:
   - "beancount cost basis lot error"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Beancount Ledger Troubleshooting

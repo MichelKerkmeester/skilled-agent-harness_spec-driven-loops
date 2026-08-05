@@ -5,7 +5,7 @@ trigger_phrases:
   - "Get a note"
   - "obsidian_get_note"
   - "read a note through Obsidian MCP"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Get a note (`obsidian_get_note`)

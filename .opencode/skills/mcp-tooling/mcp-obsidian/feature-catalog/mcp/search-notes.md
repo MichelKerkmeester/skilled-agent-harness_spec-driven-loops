@@ -5,7 +5,7 @@ trigger_phrases:
   - "Search notes"
   - "obsidian_search_notes"
   - "search the live Obsidian vault"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Search notes (`obsidian_search_notes`)

@@ -5,7 +5,7 @@ trigger_phrases:
   - "Remaining cyanheads tools"
   - "enumerate Obsidian MCP tools"
   - "verify the remaining obsidian tools"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Remaining cyanheads tools (VERIFY)

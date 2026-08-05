@@ -5,7 +5,7 @@ trigger_phrases:
   - "Open a note or vault in the app"
   - "official obsidian CLI open note"
   - "launch Obsidian from the command line"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Open a note or vault in the app (`obsidian`)

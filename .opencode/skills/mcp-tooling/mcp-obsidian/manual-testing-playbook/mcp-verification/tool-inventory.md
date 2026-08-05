@@ -2,7 +2,7 @@
 title: "MCP-M001 -- Tool inventory"
 description: "This scenario validates live enumeration of the cyanheads Obsidian MCP tool surface without guessing the nine uncaptured names."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-M001 -- Tool inventory

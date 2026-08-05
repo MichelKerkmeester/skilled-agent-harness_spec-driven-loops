@@ -2,7 +2,7 @@
 title: "MCP-M002 -- App and token prerequisite boundary"
 description: "This scenario validates that a missing MCP app/token prerequisite is reported clearly and that headless routing remains available."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-M002 -- App and token prerequisite boundary

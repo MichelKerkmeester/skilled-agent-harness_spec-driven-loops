@@ -9,7 +9,7 @@ trigger_phrases:
   - "bean-query bean-price"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Beancount Ledger Plugin Reference
@@ -40,23 +40,23 @@ Beancount Ledger owns a structured plain-text Beancount ledger under a configura
 
 ### File-layer doctrine
 
-Operate the data, not the UI: edit the `.beancount` files the plugin reads and `.obsidian/plugins/beancount-finance/data.json` when settings must change. The plugin renders and queries those files; it is not a separate financial database. ([plugin operation logic](plugin-operation-logic.md), [structured layout](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/structuredLayout.ts))
+Operate the data, not the UI: edit the `.beancount` files the plugin reads and `.obsidian/plugins/beancount-finance/data.json` when settings must change. The plugin renders and queries those files; it is not a separate financial database. ([plugin operation logic](../plugin-operation-logic.md), [structured layout](https://github.com/mkshp-dev/obsidian-finance-plugin/blob/2.3.1/src/utils/structuredLayout.ts))
 
 ---
 
 ## 2. DEEP REFERENCES
 
-- [`beancount-finance/data-model.md`](beancount-finance/data-model.md) — complete 21-key settings table, structured on-disk layout, Beancount v3 directives, lots and prices, BQL statements/virtual tables, and bean-price behavior.
-- [`beancount-finance/workflows.md`](beancount-finance/workflows.md) — add accounts, append balanced transactions, reproduce dashboard queries, bulk entry, fetch prices, reconcile, and validate from the terminal.
-- [`beancount-finance/troubleshooting.md`](beancount-finance/troubleshooting.md) — error/edge catalog plus `bean-query`/`bean-price` PATH setup for Python user-base and GUI environments.
+- [`data-model.md`](data-model.md) — complete 21-key settings table, structured on-disk layout, Beancount v3 directives, lots and prices, BQL statements/virtual tables, and bean-price behavior.
+- [`workflows.md`](workflows.md) — add accounts, append balanced transactions, reproduce dashboard queries, bulk entry, fetch prices, reconcile, and validate from the terminal.
+- [`troubleshooting.md`](troubleshooting.md) — error/edge catalog plus `bean-query`/`bean-price` PATH setup for Python user-base and GUI environments.
 
 ---
 
 ## 3. COPYABLE ASSETS
 
-- [`../../assets/plugins/beancount-finance/example.beancount`](../../assets/plugins/beancount-finance/example.beancount) — small valid ledger with opened accounts, balanced transactions, a balance assertion, and a price directive.
-- [`../../assets/plugins/beancount-finance/example.data.json`](../../assets/plugins/beancount-finance/example.data.json) — realistic complete 21-key settings payload.
-- [`../../assets/workflows.md`](../../assets/workflows.md) — shared cross-plugin file-layer workflow asset with the Beancount Ledger section.
+- [`../../../assets/plugins/beancount-finance/example.beancount`](../../../assets/plugins/beancount-finance/example.beancount) — small valid ledger with opened accounts, balanced transactions, a balance assertion, and a price directive.
+- [`../../../assets/plugins/beancount-finance/example.data.json`](../../../assets/plugins/beancount-finance/example.data.json) — realistic complete 21-key settings payload.
+- [`../../../assets/workflows.md`](../../../assets/workflows.md) — shared cross-plugin file-layer workflow asset with the Beancount Ledger section.
 
 ---
 

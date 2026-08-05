@@ -10,7 +10,7 @@ trigger_phrases:
   - "health md mock data"
 importance_tier: "normal"
 contextType: "general"
-version: 1.2.1.0
+version: 0.4.1.0
 ---
 
 # Health.md File-Layer Troubleshooting

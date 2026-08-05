@@ -5,7 +5,7 @@ trigger_phrases:
   - "Set the default vault"
   - "notesmd-cli set-default-vault"
   - "choose the active Obsidian vault"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Set the default vault (`notesmd-cli set-default-vault`)

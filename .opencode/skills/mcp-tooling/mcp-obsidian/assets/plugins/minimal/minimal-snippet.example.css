@@ -1,0 +1,12 @@
+/* Example snippet for the Minimal theme. Labeled example, not live config.
+   Tightens heading sizes for dense reading by overriding the theme variables
+   on the body selector. The variable names come from the installed theme.css
+   so the tweak scales across the whole interface. Obsidian applies snippets
+   on top of the active theme, so these values win over the theme defaults.
+   A real proposal keeps one logical tweak per file and gets a timestamped
+   backup before any write. */
+body {
+  --h1-size: 1.15em;
+  --h2-size: 1.05em;
+  --h3-size: 1em;
+}

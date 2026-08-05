@@ -5,7 +5,7 @@ trigger_phrases:
   - "Search note names"
   - "notesmd-cli search"
   - "find notes by title"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Search note names (`notesmd-cli search`)

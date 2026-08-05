@@ -11,7 +11,7 @@ trigger_phrases:
   - "brat registration removal"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # BRAT File-Layer Workflows

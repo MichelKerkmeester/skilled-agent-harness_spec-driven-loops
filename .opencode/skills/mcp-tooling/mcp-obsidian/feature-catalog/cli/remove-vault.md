@@ -5,7 +5,7 @@ trigger_phrases:
   - "Remove a vault"
   - "notesmd-cli remove-vault"
   - "unregister an Obsidian vault"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Remove a vault (`notesmd-cli remove-vault`)

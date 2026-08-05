@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic version drift"
 importance_tier: "normal"
 contextType: "general"
-version: 1.3.0.0
+version: 0.5.0.0
 ---
 
 # Iconic File-Layer Troubleshooting

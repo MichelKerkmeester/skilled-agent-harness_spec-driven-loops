@@ -9,7 +9,7 @@ trigger_phrases:
   - "health-viz render block"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.2.1.0
+version: 0.4.1.0
 ---
 
 # Health.md Plugin Index (health-md)

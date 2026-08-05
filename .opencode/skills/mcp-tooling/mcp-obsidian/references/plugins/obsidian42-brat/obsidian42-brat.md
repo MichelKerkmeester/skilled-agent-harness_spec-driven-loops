@@ -9,7 +9,7 @@ trigger_phrases:
   - "brat theme tracking"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # BRAT Plugin Index
@@ -32,13 +32,13 @@ For headless work, keep the stages explicit: stage release assets to disk, regis
 
 ## 2. DEEP REFERENCES
 
-- [`data-model.md`](obsidian42-brat/data-model.md) — complete `data.json` keys, defaults, repository/theme records, schema version, and v2.0+ SecretStorage boundary.
-- [`workflows.md`](obsidian42-brat/workflows.md) — stage→register→activate recipes for plugins, frozen tags, updates, themes, removal, and the two sibling mode plugins.
-- [`troubleshooting.md`](obsidian42-brat/troubleshooting.md) — cause→detection→fix catalog for release, asset, compatibility, token, update, and path failures.
+- [`data-model.md`](data-model.md) — complete `data.json` keys, defaults, repository/theme records, schema version, and v2.0+ SecretStorage boundary.
+- [`workflows.md`](workflows.md) — stage→register→activate recipes for plugins, frozen tags, updates, themes, removal, and the two sibling mode plugins.
+- [`troubleshooting.md`](troubleshooting.md) — cause→detection→fix catalog for release, asset, compatibility, token, update, and path failures.
 
 ## 3. STARTER ASSET
 
-Use [`brat-data-entry.example.json`](../../assets/brat-data-entry.example.json) as a valid populated example, not as a replacement for an existing vault file. Merge into the existing BRAT settings while preserving unrelated keys and entries.
+Use [`brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json) as a valid populated example, not as a replacement for an existing vault file. Merge into the existing BRAT settings while preserving unrelated keys and entries.
 
 ## 4. SOURCE BOUNDARY
 

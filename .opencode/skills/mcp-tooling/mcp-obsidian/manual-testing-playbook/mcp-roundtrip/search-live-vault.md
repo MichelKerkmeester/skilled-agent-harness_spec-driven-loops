@@ -2,7 +2,7 @@
 title: "MCP-H002 -- Search the live vault"
 description: "This scenario validates the confirmed obsidian_search_notes tool against a running vault."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # MCP-H002 -- Search the live vault

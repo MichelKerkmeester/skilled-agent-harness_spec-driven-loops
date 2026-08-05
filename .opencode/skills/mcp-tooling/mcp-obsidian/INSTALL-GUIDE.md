@@ -6,7 +6,7 @@ Complete installation and configuration for Obsidian vault work through three ro
 > **Package:** `notesmd-cli` (Yakitrak) | **Dependencies:** a vault filesystem; Homebrew or a supported manual installer for the headless profile; Obsidian desktop v1.12.4+ for the official CLI; Node.js 18+ and npx for the MCP path
 > **Validation:** run the mode-root scripts and the checks in this guide; detailed runtime recovery lives in [`references/troubleshooting.md`](references/troubleshooting.md).
 
-**Version:** 1.0.0.0 | **Updated:** 2026-08-02
+**Version:** 0.1.0.0 | **Updated:** 2026-08-02
 
 ---
 

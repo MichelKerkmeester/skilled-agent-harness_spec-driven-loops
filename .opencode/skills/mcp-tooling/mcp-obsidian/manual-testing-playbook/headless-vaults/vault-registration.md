@@ -2,7 +2,7 @@
 title: "OBS-002 -- Vault registration lifecycle"
 description: "This scenario validates controlled add-vault and remove-vault operations without a running Obsidian app."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-002 -- Vault registration lifecycle

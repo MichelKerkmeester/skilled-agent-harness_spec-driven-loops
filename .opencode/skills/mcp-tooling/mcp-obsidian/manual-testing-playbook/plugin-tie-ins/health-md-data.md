@@ -2,7 +2,7 @@
 title: "OBS-014 -- Health.md data-file round-trip"
 description: "This scenario validates the Health.md file-layer contract by identifying the configured data folder, guarding against the bundled mock-data fallback, creating a throwaway data file, inserting a health-viz render block, and verifying the round-trip."
 stage: routing
-version: 1.2.1.0
+version: 0.4.1.0
 ---
 
 # OBS-014 -- Health.md data-file round-trip

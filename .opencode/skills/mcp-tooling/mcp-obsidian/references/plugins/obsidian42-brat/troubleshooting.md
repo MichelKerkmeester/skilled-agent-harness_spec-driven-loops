@@ -12,7 +12,7 @@ trigger_phrases:
   - "brat theme path confusion"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # BRAT Troubleshooting

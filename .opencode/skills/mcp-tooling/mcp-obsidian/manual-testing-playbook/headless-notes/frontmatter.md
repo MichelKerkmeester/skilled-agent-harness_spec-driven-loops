@@ -2,7 +2,7 @@
 title: "OBS-008 -- Frontmatter command surface"
 description: "This scenario validates the installed notesmd-cli frontmatter help surface before a controlled metadata edit."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-008 -- Frontmatter command surface

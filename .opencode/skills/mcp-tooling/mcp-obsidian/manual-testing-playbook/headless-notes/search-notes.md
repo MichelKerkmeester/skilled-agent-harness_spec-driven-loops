@@ -2,7 +2,7 @@
 title: "OBS-004 -- Search notes"
 description: "This scenario validates title search and full-text content search with notesmd-cli."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-004 -- Search notes

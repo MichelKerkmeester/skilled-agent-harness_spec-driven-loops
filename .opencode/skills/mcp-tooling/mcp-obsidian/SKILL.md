@@ -1,15 +1,15 @@
 ---
 name: mcp-obsidian
-description: Routes Obsidian between two CLI profiles — headless notesmd-cli (no running app) and the app-backed official obsidian CLI — plus the cyanheads Obsidian MCP for live-app note ops. Embedded install and agent safety invariants.
+description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.3.1.1
+version: 0.13.0.0
 ---
 
-<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json -->
+<!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
 
 # mcp-obsidian Skill
 
-Obsidian vault and note management via **two CLI profiles** and the **cyanheads Obsidian MCP**. Profile-based routing: headless `notesmd-cli` operates on the vault filesystem with no running app; the official `obsidian` CLI remote-controls a running desktop app; the MCP handles live-app note reads, writes, tags and search through the Local REST API.
+The skill that makes AI use inside Obsidian effective. It operates notes and vaults through three surfaces (headless `notesmd-cli`, the app-backed official `obsidian` CLI, and the cyanheads MCP) and knows the eleven plugin and theme file formats at the file layer, so an agent can read, write, search, and extend what the vault contains without guessing.
 
 ---
 
@@ -199,6 +199,42 @@ INTENT_SIGNALS = {
                      "file icons", "folder icons", "icon color", "iconic data json",
                      "iconic ruleset"],
     },
+    "PLUGIN_CHARTS": {
+        "weight": 5,
+        "keywords": ["charts", "chart", "obsidian charts", "render block", "chart block",
+                     "bar chart", "line chart", "pie chart", "chart json", "advanced-chart"],
+    },
+    "PLUGIN_DATAVIEW": {
+        "weight": 5,
+        "keywords": ["dataview", "dql", "dataviewjs", "inline field", "metadata query",
+                     "frontmatter query", "task query", "list query", "table query", "dataview query"],
+    },
+    "PLUGIN_EXCALIDRAW": {
+        "weight": 5,
+        "keywords": ["excalidraw", "drawing", "excalidraw.md", "drawing note",
+                     "embedded drawing", "whiteboard", "excalidraw automate", "drawing script"],
+    },
+    "PLUGIN_GIT": {
+        "weight": 5,
+        "keywords": ["obsidian git", "obsidian-git", "git plugin", "auto backup",
+                     "vault git", "commit vault", "push vault", "pull vault", "git status", "git log"],
+    },
+    "PLUGIN_OUTLINER": {
+        "weight": 5,
+        "keywords": ["outliner", "obsidian outliner", "list editing", "list zoom",
+                     "outline plugin", "fold list", "list indentation"],
+    },
+    "PLUGIN_MINIMAL": {
+        "weight": 5,
+        "keywords": ["minimal", "minimal theme", "theme", "css theme", "appearance",
+                     "theme snippet", "style settings", "snippets"],
+    },
+    "PLUGIN_HEALTH": {
+        "weight": 5,
+        "keywords": ["health-md", "health.md", "health data", "apple health",
+                     "android health", "health chart", "health visualization",
+                     "healthkit", "health export", "healthmd"],
+    },
     "PLUGINS": {
         "weight": 5,
         "keywords": ["plugin", "plugin automation", "community plugin"],
@@ -223,7 +259,7 @@ INTENT_SIGNALS = {
 }
 
 # NOTE: no "DEFAULT" entry — route_obsidian_resources() never indexes RESOURCE_MAP
-# by that key. The selected `intent` is one of the nine INTENT_SIGNALS keys above.
+# by that key. The selected `intent` is one of the sixteen INTENT_SIGNALS keys above.
 # Specific plugin intents always supersede generic PLUGINS whenever any specific signal matches: the highest specific score wins, a tie between specific intents disambiguates, and generic PLUGINS is considered only when no specific plugin signal matches.
 # The no-match case is owned by DEFAULT_RESOURCE, whose declared
 # fallback-only semantics mean it is SUGGESTED beside the disambiguation checklist,
@@ -252,11 +288,53 @@ RESOURCE_MAP = {
                        "references/plugins/iconic/data-model.md",
                        "references/plugins/iconic/workflows.md",
                        "references/plugins/iconic/troubleshooting.md"],
+    "PLUGIN_CHARTS":   ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/charts/charts.md",
+                       "references/plugins/charts/data-model.md",
+                       "references/plugins/charts/workflows.md",
+                       "references/plugins/charts/troubleshooting.md"],
+    "PLUGIN_DATAVIEW": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/dataview/dataview.md",
+                       "references/plugins/dataview/data-model.md",
+                       "references/plugins/dataview/workflows.md",
+                       "references/plugins/dataview/troubleshooting.md"],
+    "PLUGIN_EXCALIDRAW": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/excalidraw/excalidraw.md",
+                       "references/plugins/excalidraw/data-model.md",
+                       "references/plugins/excalidraw/workflows.md",
+                       "references/plugins/excalidraw/troubleshooting.md"],
+    "PLUGIN_GIT":     ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/git/git.md",
+                       "references/plugins/git/data-model.md",
+                       "references/plugins/git/workflows.md",
+                       "references/plugins/git/troubleshooting.md"],
+    "PLUGIN_OUTLINER": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/outliner/outliner.md",
+                       "references/plugins/outliner/data-model.md",
+                       "references/plugins/outliner/workflows.md",
+                       "references/plugins/outliner/troubleshooting.md"],
+    "PLUGIN_MINIMAL": ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/minimal/minimal.md",
+                       "references/plugins/minimal/data-model.md",
+                       "references/plugins/minimal/workflows.md",
+                       "references/plugins/minimal/troubleshooting.md"],
+    "PLUGIN_HEALTH":  ["references/plugins/plugin-operation-logic.md",
+                       "references/plugins/health-md/health-md.md",
+                       "references/plugins/health-md/data-model.md",
+                       "references/plugins/health-md/workflows.md",
+                       "references/plugins/health-md/troubleshooting.md"],
     "PLUGINS":        ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/obsidian-tables/obsidian-tables.md",
                        "references/plugins/obsidian42-brat/obsidian42-brat.md",
-                       "references/plugins/iconic/iconic.md"],
+                       "references/plugins/iconic/iconic.md",
+                       "references/plugins/health-md/health-md.md",
+                       "references/plugins/charts/charts.md",
+                       "references/plugins/dataview/dataview.md",
+                       "references/plugins/excalidraw/excalidraw.md",
+                       "references/plugins/git/git.md",
+                       "references/plugins/outliner/outliner.md",
+                       "references/plugins/minimal/minimal.md"],
     "INSTALL":       ["references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
 }
@@ -315,7 +393,9 @@ def route_obsidian_resources(request: str) -> dict:
     elif scores.get("INSTALL", 0) > 4:
         intent = "INSTALL"
     else:
-        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC")
+        specific_plugin_intents = ("PLUGIN_FINANCE", "PLUGIN_TABLES", "PLUGIN_BRAT", "PLUGIN_ICONIC",
+                                   "PLUGIN_CHARTS", "PLUGIN_DATAVIEW", "PLUGIN_EXCALIDRAW",
+                                   "PLUGIN_GIT", "PLUGIN_OUTLINER", "PLUGIN_MINIMAL", "PLUGIN_HEALTH")
         matched_specific_plugin_intents = [
             plugin_intent
             for plugin_intent in specific_plugin_intents

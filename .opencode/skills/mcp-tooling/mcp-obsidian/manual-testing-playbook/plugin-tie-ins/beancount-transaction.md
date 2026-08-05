@@ -2,7 +2,7 @@
 title: "OBS-011 -- Beancount file-layer transaction"
 description: "This scenario validates the beancount-finance file-layer tie-in by appending and checking a balanced scratch ledger."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-011 -- Beancount file-layer transaction
@@ -35,7 +35,7 @@ The mode operates plugin data, not plugin UI. A valid Beancount ledger is the ob
 
 ### Recommended Orchestration Process
 
-Run with the default scratch path or an operator-owned temporary path. Do not point the example at a production ledger.
+Run against a **throwaway scratch ledger** only. The default `${TMPDIR}` path is a disposable file outside any real vault — the file-layer equivalent of the throwaway vault the other plugin tie-ins use. Never point the example at a production ledger or a synced vault's ledger. Leave no artifact behind: after capturing evidence, remove the scratch ledger (`rm -f "$LEDGER"`).
 
 ### Prompt
 

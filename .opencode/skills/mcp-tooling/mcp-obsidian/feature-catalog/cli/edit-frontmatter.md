@@ -5,7 +5,7 @@ trigger_phrases:
   - "Read or modify frontmatter"
   - "notesmd-cli frontmatter"
   - "edit note YAML metadata"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Read or modify frontmatter (`notesmd-cli frontmatter`)

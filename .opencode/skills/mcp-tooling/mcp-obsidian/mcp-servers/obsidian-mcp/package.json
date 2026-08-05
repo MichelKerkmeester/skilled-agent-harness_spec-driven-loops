@@ -1,0 +1,11 @@
+{
+  "name": "obsidian-mcp",
+  "version": "1.0.0",
+  "description": "Placeholder. The Obsidian MCP server (obsidian manual) launches on demand via npx -y obsidian-mcp-server@latest. There is nothing to vendor here, see README.md.",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Nothing to run locally. The obsidian manual in .utcp_config.json launches obsidian-mcp-server via npx, see README.md.'"
+  },
+  "keywords": ["obsidian", "mcp", "notes", "knowledge-base"],
+  "license": "ISC"
+}

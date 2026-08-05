@@ -2,7 +2,7 @@
 title: "OBS-006 -- Move or rename a note"
 description: "This scenario validates a controlled notesmd-cli move or rename and read-back of the destination."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-006 -- Move or rename a note

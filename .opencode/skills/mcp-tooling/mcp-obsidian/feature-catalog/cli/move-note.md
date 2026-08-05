@@ -5,7 +5,7 @@ trigger_phrases:
   - "Move or rename a note"
   - "notesmd-cli move"
   - "rename a vault note"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Move or rename a note (`notesmd-cli move`)

@@ -2,7 +2,7 @@
 title: "OBS-015 -- Iconic rulebook merge round-trip"
 description: "This scenario validates the Iconic file-layer contract by merging a rule into a throwaway data.json with backup discipline and verifying the round-trip."
 stage: routing
-version: 1.3.0.0
+version: 0.5.0.0
 ---
 
 # OBS-015 -- Iconic rulebook merge round-trip

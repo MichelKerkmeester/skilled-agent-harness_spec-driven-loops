@@ -2,7 +2,7 @@
 title: "OBS-001 -- Vault preflight and default selection"
 description: "This scenario validates the notesmd-cli vault preflight and explicit default selection before headless note work."
 stage: routing
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # OBS-001 -- Vault preflight and default selection
