@@ -1,0 +1,27 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+  "description": "Add the missing Style-A section dividers to the 11 plugin feature-catalog leaves so they match the sibling `cli/` and `mcp/` leaves and the repo-wide",
+  "keywords": [
+    "missing",
+    "style-a",
+    "section",
+    "dividers",
+    "plugin",
+    "feature-catalog",
+    "leaves",
+    "match",
+    "sibling",
+    "cli",
+    "mcp",
+    "repo-wide"
+  ],
+  "lastUpdated": "2026-08-06T10:56:27.973Z",
+  "specId": "029",
+  "folderSlug": "feature-catalog-divider-conformance",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
