@@ -1,0 +1,26 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/026-reference-asset-template-conformance",
+  "description": "Align the 11 plugins' reference sets and the markdown asset docs in the `mcp-obsidian` skill to the sk-create-skill reference/asset templates —",
+  "keywords": [
+    "align",
+    "plugins",
+    "reference",
+    "sets",
+    "markdown",
+    "asset",
+    "docs",
+    "mcp-obsidian",
+    "skill",
+    "sk-create-skill",
+    "templates"
+  ],
+  "lastUpdated": "2026-08-06T06:42:44.262Z",
+  "specId": "026",
+  "folderSlug": "reference-asset-template-conformance",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
