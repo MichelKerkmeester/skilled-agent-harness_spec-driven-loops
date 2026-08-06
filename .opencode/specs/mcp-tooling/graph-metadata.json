@@ -16,8 +16,7 @@
     "mcp-tooling/010-mcp-mobbin",
     "mcp-tooling/011-routing-remediation",
     "mcp-tooling/012-template-alignment",
-    "mcp-tooling/013-mcp-obsidian",
-    "mcp-tooling/014-mcp-magnific"
+    "mcp-tooling/013-mcp-obsidian"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +49,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:9f3862ec62f314914aec7b340bdfebef2fda48ad02451677e40ac07cbdf0e570",
     "source_doc_hashes": {},
-    "last_active_child_id": "mcp-tooling/014-mcp-magnific",
+    "last_active_child_id": "mcp-tooling/013-mcp-obsidian",
     "last_active_at": "2026-08-02T13:59:03.000Z"
   }
 }

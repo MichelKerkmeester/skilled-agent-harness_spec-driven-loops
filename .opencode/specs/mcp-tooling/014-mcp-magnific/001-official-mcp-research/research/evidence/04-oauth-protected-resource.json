@@ -1,1 +1,0 @@
-{"resource":"https:\/\/mcp.magnific.com","authorization_servers":["https:\/\/auth.magnific.com\/realms\/mcp"],"jwks_uri":"https:\/\/auth.magnific.com\/realms\/mcp\/protocol\/openid-connect\/certs","scopes_supported":["openid","profile","email","mcp:custom-audience"],"bearer_methods_supported":["header"]}
