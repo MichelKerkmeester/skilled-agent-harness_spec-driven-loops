@@ -8,7 +8,7 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
-version: 1.8.0.11
+version: 1.8.0.12
 ---
 
 # Manual Testing Playbook Snippet Template
@@ -58,6 +58,14 @@ id: "{FEATURE_ID}"                       # stable scenario id; falls back to the
 expected_intent: "{EXPECTED_INTENT}"     # routing intent/mode the skill should select for this prompt
 expected_resources:                      # resource paths the correct route must load (one per line)
   - "{EXPECTED_RESOURCE_PATH}"
+# Routing-gold topology fields — REQUIRED for a skill-benchmark corpus file. The
+# topology gate (validate-playbook-topology.cjs) resolves these against the hub's
+# leaf-manifest.json, so omitting them fails the routing-gold contract even though
+# the operator-scenario validator never checks them.
+expected_workflow_mode: "{EXPECTED_WORKFLOW_MODE}"   # mode that owns the routed leaves
+expected_leaf_resources:                             # one typed pair per leaf the route loads
+  - workflow_mode: "{EXPECTED_WORKFLOW_MODE}"
+    leaf_resource_id: "{LEAF_RESOURCE_ID}"
 version: 1.0.0.0
 ---
 
