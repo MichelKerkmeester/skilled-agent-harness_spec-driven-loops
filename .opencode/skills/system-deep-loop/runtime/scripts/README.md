@@ -1,42 +1,87 @@
 ---
-title: "runtime/ Scripts"
-description: "CLI entry points for deep-loop runtime operations: convergence detection, graph upsert, query, status, fan-out, and loop locking."
+title: "runtime scripts"
+description: "CLI entry points for deep-loop runtime operations and durable state transitions."
+trigger_phrases:
+  - "deep-loop runtime scripts"
+  - "runtime CLI entry points"
 ---
 
-# runtime/ Scripts
+# runtime / scripts
 
 ---
 
 ## 1. OVERVIEW
 
-CLI invocation surface for deep-loop runtime operations. Consumed by active `/deep:*` workflows under `.opencode/commands/deep`, including research, review, ai-council, alignment and the three improvement commands. Each script is a thin CommonJS wrapper around the domain library at `../lib/`. The deprecated standalone context loop no longer consumes fan-out. Legacy context parsing remains only where a script explicitly documents historical artifact compatibility.
+This folder contains the CommonJS CLI entry points for graph operations, state reduction, convergence, executor dispatch, fan-out and loop locking. Each script validates its command boundary, delegates domain behavior to `../lib/` and emits the documented result or exit code.
 
-## 2. SCRIPTS
+The scripts are consumed by deep-loop mode workflows. They are adapters, not a second domain library.
 
-| File | Purpose |
-|------|---------|
-| `convergence.cjs` | Computes typed graph convergence decisions for research, review, council, and legacy context artifacts |
-| `query.cjs` | Queries coverage gaps, unverified claims, contradictions, council graph state, and related graph state |
-| `status.cjs` | Reports session-scoped graph health and stored row counts |
-| `upsert.cjs` | Stores graph nodes, edges, and iteration events for research, review, council, and legacy context artifacts |
-| `fanout-run.cjs` | Runs parallel research or review lineages through headless CLI subprocesses. Deprecated context fan-out is rejected before dispatch. On `SIGINT`/`SIGTERM` it flushes a partial summary marked `stopped:true` instead of dying silently, and treats an empty / no-new-findings tick as valid convergence rather than failure |
-| `fanout-pool.cjs` | Provides the concurrency-capped worker pool and status ledger for fan-out lineages. Pool events and the final summary carry read-side `lag` / `pending` / `failed` gauges plus an `oldest_pending_lag_ms` heartbeat (it does not duplicate the upstream failure classification). The lag ceiling is a true stall detector measuring time since the pool last settled while work is still queued, not queue backpressure, so it no longer false-fires on every pool wider than the concurrency cap |
-| `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess stdout |
-| `fanout-merge.cjs` | Merges research or review fan-out lineage outputs into consolidated artifacts, applying a deterministic content-derived total-order sort (on top of id-or-title dedup and, when `SPECKIT_FANOUT_NEAR_DUP_DEDUP` is enabled, a title-aware Jaccard near-dup gate that treats same-body findings with distinct titles as distinct) so merged findings order reproducibly across runs. `--loop-type context` is accepted but currently uses research registry and state filenames, so it is not a correct context-output merger |
-| `loop-lock.cjs` | CLI adapter for shared loop-lock acquire, heartbeat, stale reclaim, and release operations |
+---
 
-## 3. INTERNAL LIBRARY
+## 2. DIRECTORY TREE
 
-`scripts/lib/cli-guards.cjs` - CLI-specific guards for input validation, error formatting, signal handling, and writer-lock coordination. Kept separate from top-level `lib/` because it serves CLI infrastructure, not domain logic.
-
-## 4. USAGE
-
-```bash
-node .opencode/skills/system-deep-loop/runtime/scripts/<script-name>.cjs <args>
+```text
+scripts/
+└── lib/
 ```
 
-## 5. RELATED RESOURCES
+The `lib/` child contains CLI-only guards and writer-lock helpers.
 
-- Parent SKILL.md: `.opencode/skills/system-deep-loop/runtime/SKILL.md`
-- Domain library: `.opencode/skills/system-deep-loop/runtime/lib/`
-- Tests: `.opencode/skills/system-deep-loop/runtime/tests/`
+---
+
+## 3. FILES
+
+| File | Responsibility |
+|---|---|
+| `append-state-record.cjs` | Appends a validated state record to the durable state stream. |
+| `check-contract-drift.cjs` | Checks command and runtime contract surfaces for drift. |
+| `codex-dispatch.cjs` | Runs the Codex executor dispatch boundary and records its result. |
+| `compile-command-contracts.cjs` | Compiles command contract inputs into the runtime validation surface. |
+| `convergence.cjs` | Computes typed convergence decisions from graph state. |
+| `fanout-merge.cjs` | Merges fan-out lineage outputs into deterministic consolidated artifacts. |
+| `fanout-pool.cjs` | Provides the concurrency-capped fan-out worker pool and status ledger. |
+| `fanout-run.cjs` | Runs research or review fan-out lineages through CLI subprocesses. |
+| `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |
+| `loop-lock.cjs` | Adapts shared loop-lock acquisition, heartbeat, reclaim and release to the CLI. |
+| `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
+| `reduce-alignment-state.cjs` | Reduces alignment state records into the mode projection. |
+| `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
+| `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
+| `status.cjs` | Reports session-scoped graph health and stored row counts. |
+| `upsert.cjs` | Stores graph nodes, edges and iteration events. |
+| `verify-iteration.cjs` | Validates iteration artifacts and their required evidence. |
+
+---
+
+## 4. PUBLIC SURFACE
+
+The public surface is the executable script name plus its documented argument contract. Invoke a script through the runtime path and pass the required mode, session and input arguments. Internal helpers belong to the [CLI internal library](lib/README.md).
+
+The scripts write or read durable state through the domain modules. They do not own mode semantics or consumer presentation.
+
+---
+
+## 5. SPINE ROLE
+
+Scripts are the command boundary between mode workflow YAML and the runtime spine. They normalize input, call the appropriate library module, preserve structured output and map failures to stable exit behavior.
+
+Fan-out scripts additionally own subprocess coordination and salvage. State and graph ownership remains in the library modules and database layer.
+
+---
+
+## 6. VALIDATION
+
+From the repository root, run a script with its documented arguments or run the runtime test suite.
+
+```bash
+.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts
+```
+
+---
+
+## 7. RELATED
+
+- [Runtime overview](../README.md)
+- [CLI internal library](lib/README.md)
+- [Runtime tests](../tests/README.md)
+- [Script interface contract](../references/script-interface-contract.md)

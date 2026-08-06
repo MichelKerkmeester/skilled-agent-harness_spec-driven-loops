@@ -1,41 +1,91 @@
 ---
-title: "Deep Loop Runtime Library"
-description: "Maintainer map for deep-loop runtime helpers moved out of system-spec-kit MCP server."
+title: "deep-loop runtime library"
+description: "Core executor, state, evidence and lifecycle helpers for deep-loop runtime execution."
 trigger_phrases:
   - "deep-loop runtime library"
-  - "loop lock"
-  - "jsonl repair"
-  - "atomic state"
+  - "deep-loop core helpers"
 ---
 
 # Deep Loop Runtime Library
 
+---
+
 ## 1. OVERVIEW
 
-`lib/deep-loop/` is the migrated runtime home for deep-review and deep-research loop helpers. Legacy references to `system-spec-kit/mcp-server/lib/deep-loop/` should point here unless they specifically describe old provenance.
+This folder contains the core helpers shared by deep-loop runtime modes. It owns executor configuration and audit, prompt rendering, atomic state and JSONL repair, loop locking, evidence validation, artifact roots, lifecycle values, permissions checks and pivot coordination.
 
-## 2. HELPER SURFACES
+The public surface is composed from the files listed below. The `continuity-identity/` child supplies the identity boundary used by continuity-aware runtime paths.
+
+---
+
+## 2. DIRECTORY TREE
+
+```text
+deep-loop/
+└── continuity-identity/
+```
+
+---
+
+## 3. FILES
 
 | File | Responsibility |
 |---|---|
-| `loop-lock.ts` | Single-writer loop lock acquisition, heartbeat freshness, stale-lock reclaim and release. |
-| `jsonl-repair.ts` | Corrupt-tail recovery for state logs before audit reads. |
-| `atomic-state.ts` | Atomic JSONL/state writes. |
-| `executor-config.ts` | Executor schema parsing, canonical `kind` handling and sandbox mapping. |
-| `executor-audit.ts` | Executor provenance and dispatch failure JSONL records. |
-| `post-dispatch-validate.ts` | Iteration markdown, JSONL and delta validation after external dispatch. |
-| `evidence-contract.ts` | Machine-checkable dispatch-boundary evidence metadata validation. |
-| `prompt-pack.ts` | Prompt template rendering with required variable checks. |
-| `permissions-gate.ts` | Permission-scope matching logic, built and unit-tested; zero production callers — not wired into deep-loop dispatch today. |
-| `bayesian-scorer.ts` | Convergence scoring. |
-| `fallback-router.ts` | Executor fallback routing. |
-| `runtime-capabilities.cjs` | Parameterized capability-matrix resolver shared by the graph-backed modes. The deep-research and deep-review scripts bind a label plus default matrix path and re-export it as byte-compatible shims. |
-| `artifact-root.cjs` | Canonical seam for the artifact-topology resolver (`resolveArtifactRoot`). The single implementation stays in `system-spec-kit/shared/review-research-paths.cjs`; the research, review and context reducers import it from here so the dependency points at the backend. |
-| `lifecycle-taxonomy.cjs` | Terminal lifecycle enum: seven `stopReason` values and four `sessionOutcome` values. The improvement journal imports it so accepted values and the derived validation strings stay identical across modes. |
+| `artifact-root.cjs` | Resolves the canonical artifact topology root. |
+| `atomic-state.ts` | Writes state atomically across the runtime state boundary. |
+| `bayesian-scorer.ts` | Computes convergence scores from runtime signals. |
+| `continuity-thread.cjs` | Reads and writes continuity-thread compatibility data. |
+| `divergent-pivot.ts` | Coordinates divergent-pivot transaction and quorum behavior. |
+| `evidence-contract.ts` | Validates dispatch-boundary evidence metadata. |
+| `executor-audit.ts` | Records executor provenance and dispatch failure evidence. |
+| `executor-config.ts` | Parses executor configuration, kinds and sandbox mappings. |
+| `fallback-router.ts` | Routes execution to the configured fallback executor. |
+| `jsonl-repair.ts` | Repairs recoverable trailing corruption in state logs. |
+| `leaf-artifact-writer.ts` | Publishes leaf artifacts within the allowed artifact boundary. |
+| `lifecycle-taxonomy.cjs` | Defines terminal lifecycle and session outcome values. |
+| `lineage-timestamp-window.ts` | Checks timestamp windows for lineage records. |
+| `loop-lock.ts` | Acquires, heartbeats, reclaims and releases the single-writer loop lock. |
+| `observability-events.cjs` | Creates runtime observability event records. |
+| `permissions-gate.ts` | Matches permission scopes at the runtime gate. |
+| `pivot-candidates.ts` | Builds and evaluates divergent-pivot candidates. |
+| `post-dispatch-validate.ts` | Validates iteration markdown, JSONL and delta outputs. |
+| `prompt-pack.ts` | Renders prompts and checks required variables. |
+| `receipt-crypto.ts` | Derives, signs and verifies receipt keys and signatures. |
+| `runtime-capabilities.cjs` | Resolves the parameterized runtime capability matrix. |
+| `sleep.ts` | Provides the synchronous sleep primitive used by runtime coordination. |
+| `write-containment.ts` | Checks that runtime writes stay within the allowed boundary. |
 
-The `scripts/loop-lock.cjs` CLI adapter is a thin front door over `loop-lock.ts` for non-TypeScript callers (command YAML, shells, other runtimes). It adds only argv parsing and JSON framing. These shared-backend contracts register no MCP tools and carry no public workflow routing; the runtime stays MCP-free.
+---
 
-Related lifecycle helpers live outside this folder:
+## 4. PUBLIC SURFACE
 
-- Spec Kit runtime: `system-spec-kit/mcp-server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`.
-- Ops: `system-spec-kit/scripts/ops/process-memory-harness.ts`, `process-sweep.ts`.
+| Surface | Entry |
+|---|---|
+| Core runtime helpers | The direct files listed in the FILES table |
+| Continuity identity | [`continuity-identity/README.md`](continuity-identity/README.md) |
+| Domain library map | [`../README.md`](../README.md) |
+
+Consumers should import the helper that owns the contract they need. There is no single deep-loop barrel that hides lock, evidence, executor and artifact ownership.
+
+---
+
+## 5. SPINE ROLE
+
+This module is the coordination core beneath the runtime event spine. It prepares execution, protects write and lock boundaries, records evidence, repairs recoverable state and supplies the lifecycle and continuity signals consumed by reducers, recovery adapters and mode workflows.
+
+---
+
+## 6. VALIDATION
+
+```bash
+.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+```
+
+---
+
+## 7. RELATED
+
+- [Runtime library map](../README.md)
+- [Runtime overview](../../README.md)
+- [Runtime unit tests](../../tests/unit/README.md)
+- [Continuity identity](continuity-identity/README.md)

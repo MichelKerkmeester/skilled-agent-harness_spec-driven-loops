@@ -7,27 +7,26 @@ trigger_phrases:
   - "add readme to runtime lib modules"
   - "code readme coverage system-deep-loop"
 importance_tier: "high"
-contextType: "planning"
+contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes"
-    last_updated_at: "2026-07-29T07:58:00Z"
-    last_updated_by: "claude"
-    recent_action: "Amended: 14 existing-README defects attached; standard-ruling dependency added"
-    next_safe_action: "Re-verify the 14 defects and re-run the 56-missing census, then wait on the standard ruling"
-    blockers:
-      - "R1 is unverifiable until the code-README tree ruling lands in sk-doc/022-code-readme-coverage/001"
+    last_updated_at: "2026-08-06T22:27:25+02:00"
+    last_updated_by: "codex"
+    recent_action: "Completed README coverage: added 56 runtime/lib READMEs and repaired 14 existing runtime READMEs"
+    next_safe_action: "Hand off after strict validation and metadata regeneration; do not commit or push"
+    blockers: []
     key_files:
       - "spec.md"
-    completion_pct: 0
-    open_questions:
-      - "Sequencing of runtime/README.md against WS1 032, which edits the same file for content drift"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Placement = an additive planned phase child 019 under 036"
       - "Standard = the sk-doc create-readme code-README format"
       - "Scope includes runtime/tests and runtime/scripts — 10 of the 14 recorded defects live there"
       - "The 37 existing READMEs are re-checked, not left as-is — 14 confirmed defects attached"
+      - "The code-folder Directory-Tree ruling is accepted in the sk-doc standard decision record"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -45,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -100,13 +99,14 @@ no runtime code changes, no behavioral risk.
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1** — Each authored README conforms to the sk-doc create-readme code-README format.
-- **R2** — Each README's purpose, exports, dependencies, and spine role are accurate against the real module source.
-- **R3** — No runtime source, test, or behavior is modified by this phase.
-- **R4** — A coverage check enumerates the in-scope folder set and confirms full README coverage at close, driven by the
+- **REQ-FUNC-001 (R1)** — Each authored README conforms to the sk-doc create-readme code-README format.
+- **REQ-FUNC-002 (R2)** — Each README's purpose, exports, dependencies, and spine role are accurate against the real module source.
+- **REQ-FUNC-003 (R3)** — No runtime source, test, or behavior is modified by this phase.
+- **REQ-FUNC-004 (R4)** — A coverage check enumerates the in-scope folder set and confirms full README coverage at close, driven by the
   manifest-based auditor rather than a hand-rolled census.
-- **R5** — Existing runtime READMEs are re-checked and repaired against the standard, not only missing ones. The fourteen
-  recorded defects are closed and the remaining existing READMEs pass the same conformance check.
+- **REQ-FUNC-005 (R5)** — Existing runtime READMEs are re-checked and repaired against the standard, not only missing ones. The fourteen
+  recorded defects are closed. All 109 runtime READMEs pass the generic README validator, and the 70 authored or repaired
+  READMEs pass the code-folder validator.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -130,11 +130,8 @@ no runtime code changes, no behavioral risk.
 - **Risk — stale README claims.** A README can drift from the code it describes; mitigation is authoring from the real
   exports and re-checking against source, not from memory.
 - **Dependency — sk-doc create-readme** for the standard and workflow; **the landed runtime source** as the authoring input.
-- **Dependency — `sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement`, hard.** R1 is not verifiable
-  until the Directory-Tree ruling exists, and R4's coverage check uses that phase's manifest-driven auditor rather than a
-  hand-rolled census.
-- **Coordination — WS1 child `032-docs-drift-and-p2-batch`** also edits `runtime/README.md`, for content drift. Sequence this
-  phase's edit after `032` or land both in one commit. Do not re-derive WS1's facts here.
+- **Dependency — sk-doc code-folder standard.** The Directory-Tree ruling is accepted in the standard decision record and
+  was applied to every authored or repaired README.
 <!-- /ANCHOR:risks -->
 
 ---
@@ -142,13 +139,12 @@ no runtime code changes, no behavioral risk.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- How is `runtime/README.md` sequenced against WS1 `032`, which edits the same file for content drift — after `032`, or in
-  one shared commit?
+None. The runtime README sequencing was resolved by authoring against the current runtime tree after the baseline census.
 
 ### Answered
 
-- *Does the scope include `runtime/tests` and `runtime/scripts`?* **Yes.** Ten of the fourteen recorded defects are in
-  `runtime/tests/**` and `runtime/scripts/lib`.
-- *Should the 37 modules that already carry a README be re-checked?* **Yes.** Fourteen confirmed defects are attached and
-  covered by R5.
+- *Does the scope include `runtime/tests` and `runtime/scripts`?* **Yes.** The repair set includes the runtime root, script
+  entry points, script helpers and the eight nested test folders.
+- *Should the 37 modules that already carry a README be re-checked?* **Yes.** Fourteen recorded defects were repaired and
+  all runtime READMEs were validated.
 <!-- /ANCHOR:questions -->

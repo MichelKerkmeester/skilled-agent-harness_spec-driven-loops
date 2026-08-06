@@ -14,7 +14,15 @@
       "deep-loop runtime code readmes",
       "missing code readme runtime modules",
       "add readme to runtime lib modules",
-      "code readme coverage system-deep-loop"
+      "code readme coverage system-deep-loop",
+      "runtime README coverage plan",
+      "deep-loop code README repairs",
+      "runtime README coverage tasks",
+      "deep-loop README verification",
+      "runtime README coverage checklist",
+      "deep-loop README QA",
+      "runtime code README implementation",
+      "deep-loop README coverage complete"
     ],
     "key_topics": [
       "deep-loop",
@@ -27,16 +35,17 @@
       "lib",
       "coverage",
       "system-deep-loop",
-      "folders",
-      "hold"
+      "plan",
+      "repairs"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -88,13 +103,13 @@
         "source": "derived"
       },
       {
-        "name": "none",
-        "kind": "key_phrase",
+        "name": "The Directory",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "none",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -106,32 +121,32 @@
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Runtime Code",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "Standard Re",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
+        "name": "Repair Author",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "4. IMPLEMENTATION PHASES",
-        "kind": "heading",
+        "name": "Verification Complete",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "5. TESTING STRATEGY",
-        "kind": "heading",
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -148,7 +163,13 @@
         "source": "derived"
       },
       {
-        "name": "file",
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -160,25 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Planned",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol Complete",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -186,21 +195,23 @@
     ],
     "causal_summary": "Most folders that hold code in the system-deep-loop runtime have no README",
     "created_at": "2026-07-29T06:45:11.617Z",
-    "last_save_at": "2026-07-30T19:05:25.018Z",
+    "last_save_at": "2026-08-06T20:34:45.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33fac1acce3d479220b4bae9594586f7d8a7ae3c6b41e98650dc02d8bf9a762e",
+    "source_fingerprint": "sha256:fe776757a4f202a3c5fe1f7b90031f543c4bd7f799db37507bf36189a231a8b9",
     "source_doc_hashes": {
-      "spec.md": "e6d857cfd5e1b4b30ae9b18507e9ff5db841e70b171a3a300863b1c8b78983b3",
-      "plan.md": "b15e955d38fa8396c1a01d06a6bcc4f5fe918d17c7c3343c6c05416756f858b6",
-      "tasks.md": "e698f43ebfaef236616de3a6fb2985fc6cc0a13ac52bcdcdb817ba80ed729d90",
-      "checklist.md": "1887e15dd96ea90644e5359e2cfe4811ba66ac2dd384fc60867ba1b24566e429"
+      "spec.md": "61c0fe9b17dc1df014f6f9940aea62f5aecea4d51272b191437f2939dd4b123c",
+      "plan.md": "598bced0cbfec6273a1957936132c464a168d76bfbf260b58984a6ba18d9313c",
+      "tasks.md": "84c26a4f0491bb0a72d69197da0953edb8f1d515561e6f7f9731ddeb2c0708c8",
+      "checklist.md": "46977d5e2f39f78f048b97a4df1e202c8afda0f702dd3d7ccc48e4fa4d567753",
+      "implementation-summary.md": "291f4d578833fbc011da4b8dee9d5ac3053562f89941d251128563155347e867"
     },
     "last_active_child_id": null,
     "last_active_at": null

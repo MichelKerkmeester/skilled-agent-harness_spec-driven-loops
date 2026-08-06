@@ -1,6 +1,9 @@
 ---
-title: "Lifecycle Tests"
-description: "Database open/close + writer-lock lifecycle verification for the runtime/ coverage graph."
+title: "runtime lifecycle tests"
+description: "Vitest coverage for database open, close and writer-lock lifecycle behavior."
+trigger_phrases:
+  - "runtime lifecycle tests"
+  - "database open close tests"
 ---
 
 # Lifecycle Tests
@@ -9,15 +12,45 @@ description: "Database open/close + writer-lock lifecycle verification for the r
 
 ## 1. OVERVIEW
 
-Verifies the SQLite connection lifecycle invariant: the DB is opened inside a `try`, closed in a `finally`, and the single-writer lock under `database/.deep-loop-graph-writer.lock` is acquired and released correctly. Guards the open/close discipline that every script entry point depends on.
+This folder verifies that the coverage graph database opens and closes cleanly and that the database writer lock acquires and releases through the expected lifecycle.
 
-## 2. CONTENTS
+---
 
-| File | Surface under test |
-|------|--------------------|
-| `db-open-close.vitest.ts` | `coverage-graph-db.ts` open/close + `database/` writer-lock acquire/release |
+## 2. FILES
 
-## 3. RELATED RESOURCES
+| File | Responsibility |
+|---|---|
+| `db-open-close.vitest.ts` | Checks database open and close behavior together with writer-lock acquisition and release. |
 
-- Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
-- Coverage-graph schema: `.opencode/skills/system-deep-loop/runtime/references/coverage-graph-schema.md`
+---
+
+## 3. PUBLIC SURFACE
+
+| Surface | Entry |
+|---|---|
+| Test command | `db-open-close.vitest.ts` |
+| Covered boundary | Coverage graph database and writer-lock lifecycle |
+
+The file is executable verification, not a production module.
+
+---
+
+## 4. SPINE ROLE
+
+Lifecycle tests protect the storage boundary beneath graph queries and reducers. They catch resource ownership failures before durable state is handed back to the runtime spine.
+
+---
+
+## 5. VALIDATION
+
+```bash
+.opencode/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .opencode/skills/system-deep-loop/runtime/vitest.config.ts tests/lifecycle
+```
+
+---
+
+## 6. RELATED
+
+- [Runtime test index](../README.md)
+- [Runtime database](../../database/README.md)
+- [Runtime library](../../lib/README.md)

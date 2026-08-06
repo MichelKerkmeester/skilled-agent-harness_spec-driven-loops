@@ -1,6 +1,9 @@
 ---
-title: "Receipts and Effect Recovery: Certified Boundaries and Idempotent Side Effects"
-description: "Certifies boundary receipts and recovers idempotently from side effects across mode and phase boundaries, verified by replay."
+title: "receipts and effect recovery"
+description: "Receipt-backed effect intent, confirmation, reconciliation and recovery contracts."
+trigger_phrases:
+  - "receipts and effect recovery"
+  - "effect recovery gateway"
 ---
 
 # Receipts and Effect Recovery
@@ -9,33 +12,61 @@ description: "Certifies boundary receipts and recovers idempotently from side ef
 
 ## 1. OVERVIEW
 
-Runtime primitives that certify mode and phase boundary transitions and recover idempotently from side effects (writes, external calls) in `system-deep-loop`. Boundary receipts are issued, HMAC-certified and appended only under a valid transition authorization. The effect gateway walks intent through confirmation, conflict, reconciliation and operator-resolved states so a retried effect never double-applies. A replay projection verifies the whole sequence deterministically. Legacy dispatch-receipt surfaces stay authoritative and are only shadow-observed here.
+This folder owns the durable boundary between an effect intent and its verified outcome. It defines receipt events, certification, replay projection, effect adapters, authorization and the gateway that coordinates confirmation, conflict, reconciliation and operator-resolved recovery.
 
-## 2. CONTENTS
+The module is current runtime infrastructure. It observes legacy-compatible shapes through an explicit adapter and does not delegate ownership of new writes to historical formats.
 
-| File | Purpose |
-|------|---------|
-| `authorized-writer.ts` | Appends ledger records only under a valid transition authorization |
-| `boundary-receipts.ts` | Issues and verifies certified boundary receipts (mode or phase abort and similar) as ledger events |
-| `certification.ts` | HMAC certification provider registry that signs and verifies boundary receipt certification envelopes |
-| `effect-adapters.ts` | Replay-safe atomic filesystem effect adapters used by real side-effect execution |
-| `effect-gateway.ts` | `EffectRecoveryGateway`: orchestrates effect intent, confirmation, conflict, reconciliation and operator-resolved events |
-| `errors.ts` | Stable error codes for receipt and effect boundaries |
-| `event-contracts.ts` | Ledger event type definitions and boundary registries for receipts and the effect lifecycle |
-| `legacy-compatibility.ts` | Manifest of legacy-authoritative recovery surfaces the new service only observes, not replaces |
-| `replay-projection.ts` | Replay component registry projecting receipt and effect ledger events for replay-fingerprint verification |
-| `types.ts` | Boundary scope and action, plus effect intent, confirmation and recovery-verdict contracts |
-| `index.ts` | Public API barrel |
+---
 
-## 3. CONSUMERS
+## 2. FILES
 
-- `.opencode/skills/system-deep-loop/runtime/lib/result-envelopes/`
-- `.opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/`
-- `.opencode/skills/system-deep-loop/runtime/lib/rollback-drills/`
-- `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
-- `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
-- `.opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/`
+| File | Responsibility |
+|---|---|
+| `authorized-writer.ts` | Appends ledger records under valid transition authorization. |
+| `boundary-receipts.ts` | Issues and verifies certified boundary receipt events. |
+| `certification.ts` | Registers certification providers and signs or verifies receipt envelopes. |
+| `effect-adapters.ts` | Provides replay-safe atomic filesystem effect adapters. |
+| `effect-gateway.ts` | Coordinates effect intent, confirmation, conflict, reconciliation and operator resolution. |
+| `errors.ts` | Defines stable error codes for receipt and effect boundaries. |
+| `event-contracts.ts` | Defines receipt and effect lifecycle event contracts and registries. |
+| `legacy-compatibility.ts` | Parses compatible legacy fields without assigning them new write ownership. |
+| `replay-projection.ts` | Projects receipt and effect events for replay-fingerprint verification. |
+| `types.ts` | Defines boundary, action, intent, confirmation and recovery-verdict contracts. |
+| `index.ts` | Public barrel for the receipt and effect recovery API. |
 
-## 4. TESTS
+---
 
-- `.opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts`
+## 3. PUBLIC SURFACE
+
+| Surface | Entry |
+|---|---|
+| Gateway | `effect-gateway.ts` |
+| Receipt API | `boundary-receipts.ts`, `certification.ts` |
+| Effect adapters | `effect-adapters.ts` |
+| Public barrel | `index.ts` |
+
+Consumers use the barrel or the gateway-owned functions. Authorization, certification and replay projection remain separate contracts so each boundary can fail closed independently.
+
+---
+
+## 4. SPINE ROLE
+
+Receipt and effect recovery sits after an intent is accepted and before a consumer treats the side effect as durable. It records intent, confirmation and recovery evidence, then exposes a replay projection that can be checked against the runtime fingerprint.
+
+---
+
+## 5. VALIDATION
+
+```bash
+.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+```
+
+---
+
+## 6. RELATED
+
+- [Runtime library map](../README.md)
+- [Authorized ledger](../authorized-ledger/README.md)
+- [Replay fingerprint](../replay-fingerprint/README.md)
+- [Sealed reference artifacts](../sealed-reference-artifacts/README.md)
+- [Runtime unit tests](../../tests/unit/README.md)

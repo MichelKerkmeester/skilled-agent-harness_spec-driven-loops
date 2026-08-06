@@ -1,6 +1,9 @@
 ---
-title: "Test Fixtures"
-description: "Shared TypeScript fixtures for the runtime/ unit test suites: event registries, policy registries and a child-process worker for concurrency tests."
+title: "runtime test fixtures"
+description: "Shared event, ledger and council graph fixtures for runtime tests."
+trigger_phrases:
+  - "runtime test fixtures"
+  - "authorized ledger fixtures"
 ---
 
 # Test Fixtures
@@ -9,23 +12,63 @@ description: "Shared TypeScript fixtures for the runtime/ unit test suites: even
 
 ## 1. OVERVIEW
 
-Reusable fixture data and helpers consumed by suites under `../unit/`. These are test-only building blocks, not runtime code: they construct minimal event and policy registries so a suite can exercise `lib/authorized-ledger/` and `lib/event-envelope/` without repeating registry setup in every file.
+This folder contains reusable inputs and child-process workers for runtime tests. The fixtures build validated event envelopes, authorized-ledger requests and council graph value scenarios without changing production state.
 
-## 2. CONTENTS
+The fixture surface is test-only. Each consumer suite owns the assertion that gives a fixture meaning.
 
-| File | Purpose |
-|------|---------|
-| `authorized-ledger-fixtures.ts` | Builds a fixture event-type registry, a fixture policy registry (allow, throwing and never-resolving evaluators) and helpers to construct a validated fixture event and a ledger-bound authorization request |
-| `authorized-ledger-worker.ts` | Child-process worker script. Appends one fixture event to an `AppendOnlyLedger` through `TransitionAuthorizationGateway`, retrying up to 40 attempts on a denied or conflicting authorization and prints the resulting receipt as JSON on stdout |
-| `event-envelope-producers.ts` | A frozen list of one payload fixture per real event-producer family (observability, council round state, executor audit, fan-out status, iteration state) for event-envelope contract tests |
-| `council-value/` | Council graph value-report fixtures, documented in its own `council-value/README.md` |
+---
 
-## 3. CONSUMERS
+## 2. DIRECTORY TREE
 
-- `authorized-ledger-fixtures.ts` and `authorized-ledger-worker.ts`: `../unit/authorized-ledger.vitest.ts`, `../unit/replay-fingerprint.vitest.ts`, `../unit/next-focus.vitest.ts`, `../unit/shadow-parity-harness.vitest.ts`, `../unit/legacy-projections.test.ts`, `../unit/locks-and-fencing.vitest.ts`
-- `event-envelope-producers.ts`: `../unit/event-envelope.vitest.ts`
+```text
+fixtures/
+└── council-value/
+    └── data/
+```
 
-## 4. RELATED
+---
 
-- Parent tests README: `../README.md`
-- Libraries under test: `../../lib/authorized-ledger/`, `../../lib/event-envelope/`
+## 3. FILES
+
+| File | Responsibility |
+|---|---|
+| `authorized-ledger-fenced-worker.ts` | Child-process worker fixture for fenced authorized-ledger writes. |
+| `authorized-ledger-fixtures.ts` | Builds fixture event registries, policy registries and authorized-ledger requests. |
+| `authorized-ledger-test-helper.ts` | Shared test helper for authorized-ledger setup and assertions. |
+| `authorized-ledger-worker.ts` | Child-process worker that appends a fixture event and prints its receipt. |
+| `event-envelope-producers.ts` | Provides representative payloads for real event-producer families. |
+
+---
+
+## 4. PUBLIC SURFACE
+
+| Surface | Entry |
+|---|---|
+| Ledger fixtures | `authorized-ledger-fixtures.ts` |
+| Worker fixtures | `authorized-ledger-worker.ts`, `authorized-ledger-fenced-worker.ts` |
+| Event fixtures | `event-envelope-producers.ts` |
+| Scenario fixtures | [`council-value/README.md`](council-value/README.md) |
+
+These files are imported by tests and are not runtime production entry points.
+
+---
+
+## 5. SPINE ROLE
+
+Fixtures provide deterministic inputs at the test edge of the runtime spine. They let suites exercise event envelopes, authorization, subprocess ownership and graph queries while keeping test data separate from durable runtime storage.
+
+---
+
+## 6. VALIDATION
+
+```bash
+.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
+```
+
+---
+
+## 7. RELATED
+
+- [Runtime test index](../README.md)
+- [Council value fixtures](council-value/README.md)
+- [Runtime library](../../lib/README.md)
