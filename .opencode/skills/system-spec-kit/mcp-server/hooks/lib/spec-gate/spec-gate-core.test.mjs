@@ -41,6 +41,26 @@ function nextSessionID() {
   return `test-session-${sessionCounter}-${Date.now()}`;
 }
 
+function makeGate3DeliveryRequest(overrides = {}) {
+  return {
+    question: core.GATE_3_QUESTION,
+    sessionID: nextSessionID(),
+    lifecycleEpoch: 0,
+    gateState: {
+      status: 'open',
+      taskScopeFingerprint: 'task-alpha|scope-alpha',
+      answerState: 'awaiting-answer',
+      lifecycleState: 'steady',
+    },
+    env: {
+      [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
+      [core.CHILD_SESSION_ENV]: '0',
+    },
+    deliveryConfirmed: false,
+    ...overrides,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Golden loop
 // ─────────────────────────────────────────────────────────────────────────────
@@ -261,6 +281,251 @@ test('a D answer naming a real folder binds and satisfies (path outranks the ski
   } finally {
     cleanup(root);
   }
+});
+
+test('Gate-3 delivery flag off preserves byte-identical baseline output', () => {
+  core.resetGate3DeliveryShadow();
+  const baseline = core.GATE_3_QUESTION;
+  const seededRequest = makeGate3DeliveryRequest({ deliveryConfirmed: true });
+  core.observeGate3QuestionDelivery(seededRequest);
+  const result = core.observeGate3QuestionDelivery({ ...seededRequest, env: { [core.CHILD_SESSION_ENV]: '0' } });
+
+  assert.deepEqual(Buffer.from(result.question, 'utf8'), Buffer.from(baseline, 'utf8'));
+  assert.equal(result.suppressionEligible, false);
+  assert.equal(result.suppressionConsumed, false);
+  assert.equal(core.getGate3ShadowReceipts().length, 1);
+
+  const reenabled = core.observeGate3QuestionDelivery({
+    ...seededRequest,
+    deliveryConfirmed: false,
+  });
+  assert.equal(reenabled.suppressionEligible, false, 'turning the flag off must clear delivery state');
+  assert.deepEqual(Buffer.from(reenabled.question, 'utf8'), Buffer.from(baseline, 'utf8'));
+});
+
+test('Gate-3 shadow receipt records the planned and emitted full relay', () => {
+  core.resetGate3DeliveryShadow();
+  const receipts = [];
+  const firstRequest = makeGate3DeliveryRequest({
+    sessionID: 'receipt-session',
+    deliveryConfirmed: true,
+    onShadowReceipt: (receipt) => receipts.push(receipt),
+  });
+  core.observeGate3QuestionDelivery(firstRequest);
+  const repeated = core.observeGate3QuestionDelivery({ ...firstRequest, deliveryConfirmed: false });
+
+  assert.equal(repeated.suppressionEligible, true);
+  assert.equal(repeated.suppressionConsumed, false);
+  assert.equal(receipts.length, 2);
+  assert.equal(receipts[0].plannedHash, receipts[0].emittedHash);
+  assert.equal(receipts[1].plannedHash, receipts[1].emittedHash);
+  assert.equal(receipts[1].byteCount, Buffer.byteLength(core.GATE_3_QUESTION, 'utf8'));
+  assert.equal(receipts[0].gateStateHash, receipts[1].gateStateHash);
+  assert.equal(receipts[1].suppressionEligible, true);
+  assert.equal(receipts[1].suppressionConsumed, false);
+  assert.deepEqual(Buffer.from(repeated.question, 'utf8'), Buffer.from(core.GATE_3_QUESTION, 'utf8'));
+});
+
+test('Gate-3 delivery flag off does not create a shadow receipt', () => {
+  core.resetGate3DeliveryShadow();
+  const baseline = core.GATE_3_QUESTION;
+  const result = core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+    env: { [core.CHILD_SESSION_ENV]: '0' },
+    deliveryConfirmed: true,
+  }));
+
+  assert.deepEqual(Buffer.from(result.question, 'utf8'), Buffer.from(baseline, 'utf8'));
+  assert.equal(result.suppressionEligible, false);
+  assert.equal(result.suppressionConsumed, false);
+  assert.deepEqual(core.getGate3ShadowReceipts(), []);
+});
+
+test('Gate-3 delivery state hash separates task/scope, answer, epoch, and session', () => {
+  const baseState = {
+    status: 'open',
+    taskScopeFingerprint: 'task-alpha|scope-alpha',
+    answerState: 'awaiting-answer',
+    lifecycleState: 'steady',
+  };
+  const baseHash = core.buildGate3StateHash(baseState);
+  assert.ok(baseHash);
+  assert.notEqual(
+    baseHash,
+    core.buildGate3StateHash({ ...baseState, taskScopeFingerprint: 'task-beta|scope-beta' }),
+  );
+  assert.notEqual(
+    baseHash,
+    core.buildGate3StateHash({ ...baseState, answerState: 'invalid-answer' }),
+  );
+
+  const baseKey = core.buildGate3DeliveryKey({ sessionID: 'session-alpha', lifecycleEpoch: 0, gateStateHash: baseHash });
+  assert.ok(baseKey);
+  assert.notEqual(baseKey, core.buildGate3DeliveryKey({ sessionID: 'session-beta', lifecycleEpoch: 0, gateStateHash: baseHash }));
+  assert.notEqual(baseKey, core.buildGate3DeliveryKey({ sessionID: 'session-alpha', lifecycleEpoch: 1, gateStateHash: baseHash }));
+  assert.equal(core.buildGate3DeliveryKey({ sessionID: core.UNKNOWN_SESSION_ID, lifecycleEpoch: 0, gateStateHash: baseHash }), null);
+});
+
+test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for suppression', () => {
+  const outcomes = [];
+  const record = (label, result, baseline) => {
+    assert.equal(result.question, baseline, `${label} changed the baseline relay`);
+    assert.equal(result.suppressionConsumed, false, `${label} consumed a shadow decision`);
+    outcomes.push({ label, eligible: result.suppressionEligible });
+  };
+
+  core.resetGate3DeliveryShadow();
+  record(
+    'read-only',
+    core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({ question: null })),
+    null,
+  );
+
+  const firstRequest = makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true });
+  record('first positive', core.observeGate3QuestionDelivery(firstRequest), core.GATE_3_QUESTION);
+
+  record(
+    'repeated unchanged positive',
+    core.observeGate3QuestionDelivery({ ...firstRequest, deliveryConfirmed: false }),
+    core.GATE_3_QUESTION,
+  );
+  const repeatReceipts = core.getGate3ShadowReceipts();
+  assert.equal(repeatReceipts.length, 2);
+  assert.equal(repeatReceipts[0].plannedHash, repeatReceipts[0].emittedHash);
+  assert.equal(repeatReceipts[1].plannedHash, repeatReceipts[1].emittedHash);
+  assert.equal(repeatReceipts[1].suppressionEligible, true);
+  assert.equal(repeatReceipts[1].suppressionConsumed, false);
+  assert.equal(repeatReceipts[1].byteCount, Buffer.byteLength(core.GATE_3_QUESTION, 'utf8'));
+
+  record(
+    'invalid answer',
+    core.observeGate3QuestionDelivery({
+      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true }),
+      gateState: { ...firstRequest.gateState, answerState: 'invalid-answer' },
+    }),
+    core.GATE_3_QUESTION,
+  );
+
+  const { root, folderRel } = makeWorkspace();
+  try {
+    for (const [letter, expectedStatus] of [['A', 'satisfied'], ['B', 'satisfied'], ['C', 'satisfied'], ['D', 'satisfied'], ['E', 'skipped']]) {
+      const sessionID = nextSessionID();
+      const interactiveEnv = { [core.CHILD_SESSION_ENV]: '0' };
+      const opened = core.classifyIntent({
+        prompt: 'implement the matrix change',
+        sessionID,
+        projectDir: root,
+        env: interactiveEnv,
+      });
+      assert.equal(opened.status, 'open');
+      const answer = letter === 'E' ? 'E' : `${letter}, use ${folderRel}`;
+      const answered = core.classifyIntent({ prompt: answer, sessionID, projectDir: root, env: interactiveEnv });
+      assert.equal(answered.status, expectedStatus);
+    }
+    record('valid A-E', core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({ question: null })), null);
+  } finally {
+    cleanup(root);
+  }
+
+  record(
+    'new task/scope',
+    core.observeGate3QuestionDelivery({
+      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true }),
+      gateState: { ...firstRequest.gateState, taskScopeFingerprint: 'task-beta|scope-beta' },
+    }),
+    core.GATE_3_QUESTION,
+  );
+
+  record(
+    'recovery',
+    core.observeGate3QuestionDelivery({
+      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', lifecycleEpoch: 1, deliveryConfirmed: true }),
+      gateState: { ...firstRequest.gateState, lifecycleState: 'resumed' },
+    }),
+    core.GATE_3_QUESTION,
+  );
+
+  const { root: enforcementRoot } = makeWorkspace();
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the matrix change', sessionID, projectDir: enforcementRoot, env: { [core.CHILD_SESSION_ENV]: '0' } });
+    const denied = core.evaluateMutation({
+      tool: 'write',
+      filePath: 'src/login.ts',
+      sessionID,
+      projectDir: enforcementRoot,
+      env: { [core.ENFORCE_ENV]: '1', [core.CHILD_SESSION_ENV]: '0' },
+    });
+    assert.equal(denied.decision, 'deny');
+    record(
+      'enforcement denial',
+      core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+        question: denied.detail,
+        deliveryKind: 'enforcement',
+        sessionID,
+      })),
+      core.GATE_3_DENY_DETAIL,
+    );
+  } finally {
+    cleanup(enforcementRoot);
+  }
+
+  record(
+    'child bypass',
+    core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+      question: null,
+      env: {
+        [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
+        [core.CHILD_SESSION_ENV]: '1',
+      },
+    })),
+    null,
+  );
+  const childFullRelay = core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+    sessionID: 'matrix-child-session',
+    deliveryConfirmed: true,
+    env: {
+      [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
+      [core.CHILD_SESSION_ENV]: '1',
+    },
+  }));
+  assert.equal(childFullRelay.question, core.GATE_3_QUESTION);
+  assert.equal(childFullRelay.suppressionEligible, false);
+  assert.equal(childFullRelay.suppressionConsumed, false);
+
+  record(
+    'disabled',
+    core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+      question: null,
+      env: {
+        [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
+        [core.DISABLED_ENV]: '1',
+        [core.CHILD_SESSION_ENV]: '0',
+      },
+    })),
+    null,
+  );
+
+  const throwingState = {};
+  Object.defineProperty(throwingState, 'status', { get() { throw new Error('state read failed'); } });
+  record(
+    'error',
+    core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({ gateState: throwingState })),
+    core.GATE_3_QUESTION,
+  );
+
+  const eligibleRows = outcomes.filter((outcome) => outcome.eligible);
+  assert.equal(outcomes.length, 11);
+  assert.deepEqual(eligibleRows.map((outcome) => outcome.label), ['repeated unchanged positive']);
+});
+
+test('Gate-3 suppression predicate has no classify or enforcement call site', () => {
+  const source = readFileSync(CORE_SOURCE_PATH, 'utf8');
+  const predicateName = 'shouldSuppressGate3Delivery';
+  const classifyStart = source.indexOf('export function classifyIntent');
+  const enforceStart = source.indexOf('export function evaluateMutation');
+  assert.ok(classifyStart !== -1 && enforceStart !== -1);
+  assert.equal(source.slice(classifyStart, enforceStart).includes(predicateName), false);
+  assert.equal(source.slice(enforceStart).includes(predicateName), false);
 });
 
 test('isAnswerAttempt: answer-shaped turns are attempts, ordinary prose is not', () => {

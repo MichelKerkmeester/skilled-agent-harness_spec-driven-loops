@@ -1,9 +1,9 @@
 ---
-title: "Implementation Summary [Planned]: Gate-3 Relay Edge-Triggering"
-description: "Placeholder: nothing in this packet has been implemented yet. Previews the planned delivery-state suppression predicate for the Gate-3 relay before any code changes land."
+title: "Implementation Summary: Gate-3 Relay Edge-Triggering"
+description: "Implemented the shadow-only Gate-3 delivery suppression predicate, receipt log, byte-parity proof, and 11-row negative-control matrix."
 trigger_phrases:
   - "gate 3 relay implementation summary"
-  - "edge-triggered gate delivery not yet built"
+  - "edge-triggered gate delivery implemented"
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
@@ -11,18 +11,17 @@ _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering"
     last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Recorded the not-yet-built placeholder for Gate-3 relay edge-triggering"
-    next_safe_action: "Begin Phase 1 shadow instrumentation once Phase 001 receipts land"
-    blockers:
-      - "001-measurement-and-receipts-foundation has not yet been built"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the shadow-only Gate-3 delivery predicate and negative-control matrix"
+    next_safe_action: "Keep suppression unconsumed until runtime-specific activation evidence exists"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
     session_dedup:
-      fingerprint: "sha256:2133167210720d71e6a5e08b728b74242a29a3dd41d750e1235a561ce9021a22"
+      fingerprint: "sha256:5f37486a57e63728b9b297a71c546e256c79d50093892e6351d8b4b38cdd1cdb"
       session_id: "2026-08-06-hooks-002-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-gate3-relay-edge-triggering |
-| **Completed** | Not yet implemented (Planned) |
+| **Completed** | 2026-08-06 — shadow implementation and scoped verification complete; activation deferred |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,18 +48,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. No code in `spec-gate-core.mjs` or any adjacent test file has changed as a result of this packet. This document previews the planned build so a future implementer or reviewer can see exactly what 005 will deliver and how it will be verified before any change lands.
+The core now exposes a delivery-only shadow predicate and observer. The candidate is keyed by a confirmed session, lifecycle epoch, and a SHA-256 gate-state hash that includes task/scope, answer, and lifecycle fingerprints. Confirmed full deliveries seed process-local shadow state; a same-key repeat becomes suppression-eligible, while the observer still returns the unchanged full relay.
 
-### Gate-3 Relay Edge-Triggered Suppression (Planned)
+### Gate-3 Relay Edge-Triggered Suppression
 
-Once built, this feature will suppress delivery of an unchanged, repeated Gate-3 relay while gate state stays open, without touching `classifyIntent` or enforcement. It ships shadow-first behind its own independent flag, keyed by session, lifecycle epoch, and a gate-state hash, and activates only after an 11-row gate-matrix negative-control suite proves every preserved path (first-ask, invalid-answer re-ask, task/scope-change re-ask, recovery reset, child bypass, disabled, error) still emits exactly as it does today.
+`MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` is independent and off by default. When enabled, the observer computes and records a receipt for every full Gate-3 relay, but never consumes a suppression decision. The unchanged relay remains byte-identical on first, repeated, invalid-answer, task/scope-change, recovery, enforcement, child, disabled, and error paths.
 
-### Files Planned
+### Files Changed
 
 | File | Planned Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` | Modify (not yet started) | Add the delivery-state suppression predicate, shadow-first, behind an independent flag |
-| Adjacent spec-gate test file (path confirmed in Phase 1) | Modify (not yet started) | Add the 11-row gate-matrix negative-control suite |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs` | Modified | Add the delivery-state key, predicate, shadow receipt, observer, and rollback reset |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs` | Modified | Add flag-off parity, receipt, hash-scope, separation, and 11-row matrix assertions |
+| `.opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/checklist.md` | Updated | Record checklist evidence |
+| `.opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/implementation-summary.md` | Updated | Record implementation and verification state |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +69,7 @@ Once built, this feature will suppress delivery of an unchanged, repeated Gate-3
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The planned verification path is: shadow the predicate with zero output diff against baseline, run the 11-row gate-matrix negative-control suite to green, `rg`-prove the predicate has no call sites inside `classifyIntent` or enforcement, and only then activate the flag through the 007-guardrail-controls-and-activation gate.
+The observer returns the caller-supplied relay unchanged and reports `suppressionConsumed: false`. The full-mock core suite passes 81/81 with exit 0; the flag-off parity assertions compare UTF-8 bytes directly; the matrix records 11 rows with only `repeated unchanged positive` eligible; and the scoped `rg` checks find no predicate call inside `classifyIntent` or `evaluateMutation`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,6 +82,8 @@ Not delivered yet. The planned verification path is: shadow the predicate with z
 | Suppress delivery only, never classification or enforcement | The research is explicit that Gate-3's remaining repetition is confined to mutation-positive/re-ask behavior; collapsing delivery and enforcement into one suppression would risk silently weakening enforcement, not just trimming bytes |
 | Ship shadow-first behind an independent flag | Matches the program's measurement-first, flag-gated, guardrail-preserving cross-cutting constraints; nothing activates without proven zero-diff shadow evidence first |
 | Key suppression on session + epoch + gate-state hash, not a bare open/closed boolean | A bare boolean cannot distinguish "still the same open question" from "task/scope changed while gate stayed open," which the research flags as a false-negative risk |
+| Clear process-local delivery state when the flag is off or the kill-switch is active | Rollback must restore the full baseline and must not leave stale eligibility for a later re-enable |
+| Keep runtime adapters and enforcement untouched | The current phase proves the delivery predicate and shadow contract; a later activation phase owns wiring a consuming delivery branch |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,10 +93,13 @@ Not delivered yet. The planned verification path is: shadow the predicate with z
 
 | Check | Result |
 |-------|--------|
-| 11-row gate-matrix negative-control suite | Not yet run (Planned) |
-| Shadow-mode output diff vs. baseline | Not yet run (Planned) |
-| `rg` proof of enforcement/classification isolation | Not yet run (Planned) |
-| `npx tsc` / lint on `spec-gate-core.mjs` | Not yet run (Planned) |
+| 11-row gate-matrix negative-control suite | 11 rows asserted; only repeated unchanged positive eligible; full suite 81 passed, 0 failed, 0 skipped, exit 0 |
+| Shadow-mode output diff vs. baseline | Flag-off and shadow-on assertions compare the full UTF-8 relay bytes; planned hash equals emitted hash; exit 0 |
+| `rg` proof of enforcement/classification isolation | Full call-site scan: definition at core:228 and observer call at core:293; classify slice: no matches, exit 1; enforcement slice: no matches, exit 1 |
+| `node --check` on both modified JavaScript files | Exit 0 |
+| OpenCode drift guards | Stack folders 6/6 pass; router sync 10/10 pass; repository alignment scan remains the known 472-finding backlog, exit 1 |
+| Codex hook installer check | Worktree-safe check reports existing user-global drift; no installer mutation performed |
+| Strict spec packet validation | Exit 2: generated metadata fingerprint is stale because `graph-metadata.json` is outside this phase's allowed files; continuity freshness also reports the expected dirty packet paths |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,7 +107,7 @@ Not delivered yet. The planned verification path is: shadow the predicate with z
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not yet implemented.** This entire candidate is in the planning stage; no suppression predicate, flag, or test exists yet.
-2. **Blocked on Phase 001.** Activation depends on the canonical block IDs, hashes, and delivery-receipt fields that 001-measurement-and-receipts-foundation is expected to supply; shadow planning can proceed against the current interface in the meantime.
-3. **No universal activation.** Even once built and shadow-proven, the research's confidence verdict for this candidate is "medium; no universal activation" — per-runtime-per-candidate activation stays gated by 007-guardrail-controls-and-activation.
+1. **No consuming branch yet.** This phase computes and logs suppression eligibility only; emitted output remains full until the later activation phase wires a runtime-specific consumer.
+2. **Process-local shadow state.** State is intentionally in-memory and must be cleared on rollback or lifecycle restart; it is not a replacement for host delivery receipts.
+3. **No universal activation.** The research's confidence verdict remains "medium; no universal activation" — per-runtime-per-candidate activation stays gated by its own delivery evidence.
 <!-- /ANCHOR:limitations -->

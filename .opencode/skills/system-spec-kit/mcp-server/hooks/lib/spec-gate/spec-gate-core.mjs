@@ -23,6 +23,12 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
+import {
+  buildDeliveryReceipt,
+  GATE_SPEC_FOLDER_QUESTION_ID,
+  hashPolicyBlock as hashCanonicalPolicyBlock,
+} from '../../../../../system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js';
 import {
   appendFileSync,
   mkdirSync,
@@ -60,6 +66,9 @@ const STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 export const ENFORCE_ENV = 'MK_SPEC_GATE_ENFORCE';
 /** Full no-op kill-switch: both classify and enforce become inert. */
 export const DISABLED_ENV = 'MK_SPEC_GATE_DISABLED';
+/** Independent opt-in for shadowing repeated Gate-3 delivery decisions. */
+export const GATE_3_DELIVERY_SUPPRESSION_ENV = 'MK_SPEC_GATE_3_DELIVERY_SUPPRESSION';
+export const GATE_3_DELIVERY_SHADOW_ID = 'shadow.gate3-delivery-suppression.v1';
 /**
  * Cross-runtime convention for an orchestrated child/dispatched sub-session
  * (see worktree-session.sh's own child-detection branch and the cli-external-orchestration
@@ -117,6 +126,209 @@ export const GATE_3_QUESTION = [
 // Write/Edit is actually blocked -- an instruction to go get that answer from
 // the user, not a menu the model itself could try to resolve alone.
 export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec folder first. Ask the USER to reply with a letter A-E naming an existing (or new) spec folder, then retry.';
+
+const GATE_3_DELIVERY_KIND = 'gate-question';
+const GATE_3_DELIVERY_HASH_ALGORITHM = 'sha256';
+const GATE_3_DELIVERY_STATE = new Map();
+const GATE_3_SHADOW_RECEIPTS = [];
+
+function hashGate3DeliveryValue(value) {
+  return createHash(GATE_3_DELIVERY_HASH_ALGORITHM)
+    .update(JSON.stringify(value), 'utf8')
+    .digest('hex');
+}
+
+function normalizedGate3Fingerprint(value) {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function normalizedGate3Session(sessionID) {
+  const normalized = normalizedGate3Fingerprint(sessionID);
+  if (!normalized || normalized === UNKNOWN_SESSION_ID) return null;
+  if (/^(?:unknown|unresolved|ambiguous)(?:$|[-_:])/i.test(normalized)) return null;
+  return normalized;
+}
+
+function validGate3LifecycleEpoch(value) {
+  return Number.isInteger(value) && value >= 0 ? value : null;
+}
+
+function gate3Environment(env) {
+  return env && typeof env === 'object' ? env : process.env;
+}
+
+function gate3SuppressionFlagEnabled(env) {
+  return gate3Environment(env)[GATE_3_DELIVERY_SUPPRESSION_ENV] === '1';
+}
+
+function gate3ReceiptStatus(receipt) {
+  if (receipt === 'configured' || receipt === 'observed') return receipt;
+  if (receipt && typeof receipt === 'object') {
+    if (receipt.hostReceiptStatus === 'configured' || receipt.hostReceiptStatus === 'observed') {
+      return receipt.hostReceiptStatus;
+    }
+  }
+  return 'unobserved';
+}
+
+function gate3DeliveryConfirmed(request) {
+  return request.deliveryConfirmed === true
+    || request.pinnedBehavioralProbe === true
+    || gate3ReceiptStatus(request.receipt) === 'configured'
+    || gate3ReceiptStatus(request.receipt) === 'observed';
+}
+
+function gate3StateFields(gateState = {}) {
+  if (!gateState || typeof gateState !== 'object' || Array.isArray(gateState)) return null;
+  const status = normalizedGate3Fingerprint(gateState.status);
+  const directTaskScopeFingerprint = normalizedGate3Fingerprint(gateState.taskScopeFingerprint);
+  const taskFingerprint = normalizedGate3Fingerprint(gateState.taskFingerprint);
+  const scopeFingerprint = normalizedGate3Fingerprint(gateState.scopeFingerprint);
+  const taskScopeFingerprint = directTaskScopeFingerprint
+    ?? (taskFingerprint && scopeFingerprint ? `${taskFingerprint}|${scopeFingerprint}` : null);
+  const answerState = normalizedGate3Fingerprint(gateState.answerState ?? 'awaiting-answer');
+  const lifecycleState = normalizedGate3Fingerprint(gateState.lifecycleState ?? 'steady');
+  if (!status || !taskScopeFingerprint || !answerState || !lifecycleState) return null;
+  return { status, taskScopeFingerprint, answerState, lifecycleState };
+}
+
+/** Hash the gate state that determines whether a relay is unchanged. */
+export function buildGate3StateHash(gateState = {}) {
+  const fields = gate3StateFields(gateState);
+  return fields ? hashGate3DeliveryValue(fields) : null;
+}
+
+/** Hash the three delivery-scope dimensions without retaining raw session data. */
+export function buildGate3DeliveryKey({ sessionID, lifecycleEpoch, gateStateHash } = {}) {
+  const session = normalizedGate3Session(sessionID);
+  const epoch = validGate3LifecycleEpoch(lifecycleEpoch);
+  const stateHash = normalizedGate3Fingerprint(gateStateHash);
+  if (!session || epoch === null || !stateHash) return null;
+  return hashGate3DeliveryValue({ session, lifecycleEpoch: epoch, gateStateHash: stateHash });
+}
+
+function gate3DeliveryRequestKey(request = {}) {
+  const gateStateHash = buildGate3StateHash(request.gateState);
+  const key = buildGate3DeliveryKey({
+    sessionID: request.sessionID,
+    lifecycleEpoch: request.lifecycleEpoch,
+    gateStateHash,
+  });
+  return { gateStateHash, key };
+}
+
+/**
+ * Return whether a full Gate-3 relay has already been confirmed for the same
+ * open state in the same session and lifecycle epoch. This is a delivery
+ * predicate only; callers that classify turns or enforce mutations do not use
+ * it.
+ */
+export function shouldSuppressGate3Delivery(request = {}) {
+  try {
+    const environment = gate3Environment(request.env);
+    if (!gate3SuppressionFlagEnabled(environment)
+      || environment[DISABLED_ENV] === '1'
+      || isChildSession(environment)
+      || (request.deliveryKind ?? GATE_3_DELIVERY_KIND) !== GATE_3_DELIVERY_KIND
+      || request.question !== GATE_3_QUESTION) {
+      return false;
+    }
+
+    const stateFields = gate3StateFields(request.gateState);
+    if (!stateFields || stateFields.status !== 'open') return false;
+    const { key } = gate3DeliveryRequestKey(request);
+    return key !== null && GATE_3_DELIVERY_STATE.has(key);
+  } catch (_) {
+    return false;
+  }
+}
+
+function gate3ShadowReceipt(request, gateStateHash, key, suppressionEligible) {
+  const lifecycleEpoch = validGate3LifecycleEpoch(request.lifecycleEpoch);
+  const questionHash = hashCanonicalPolicyBlock({
+    id: GATE_SPEC_FOLDER_QUESTION_ID,
+    content: GATE_3_QUESTION,
+    order: 4,
+  });
+  const receipt = buildDeliveryReceipt({
+    shadowId: GATE_3_DELIVERY_SHADOW_ID,
+    plannedHash: questionHash,
+    emittedHash: questionHash,
+    byteCount: Buffer.byteLength(GATE_3_QUESTION, 'utf8'),
+    lifecycleEpoch: lifecycleEpoch ?? 0,
+    transformMessageIdentity: null,
+    hostReceiptStatus: gate3ReceiptStatus(request.receipt),
+  });
+  return Object.freeze({
+    ...receipt,
+    sessionKeyHash: normalizedGate3Session(request.sessionID)
+      ? hashGate3DeliveryValue(normalizedGate3Session(request.sessionID))
+      : null,
+    gateStateHash,
+    deliveryKeyHash: key,
+    suppressionEligible,
+    suppressionConsumed: false,
+  });
+}
+
+/**
+ * Observe a Gate-3 question delivery without changing the returned relay.
+ * Confirmed deliveries seed the next shadow decision; no shadow decision is
+ * consumed by this phase.
+ */
+export function observeGate3QuestionDelivery(request = {}) {
+  const safeRequest = request && typeof request === 'object' ? request : {};
+  const question = typeof safeRequest.question === 'string' ? safeRequest.question : null;
+  try {
+    const environment = gate3Environment(safeRequest.env);
+    const shadowEnabled = gate3SuppressionFlagEnabled(environment);
+    const childSession = isChildSession(environment);
+    if (!shadowEnabled || environment[DISABLED_ENV] === '1') {
+      GATE_3_DELIVERY_STATE.clear();
+      return { question, suppressionEligible: false, suppressionConsumed: false };
+    }
+    const { gateStateHash, key } = gate3DeliveryRequestKey(safeRequest);
+    const suppressionEligible = question !== null && shouldSuppressGate3Delivery({
+      ...safeRequest,
+      deliveryKind: safeRequest.deliveryKind ?? GATE_3_DELIVERY_KIND,
+      question,
+    });
+
+    if (shadowEnabled && !childSession && question === GATE_3_QUESTION) {
+      const receipt = gate3ShadowReceipt(safeRequest, gateStateHash, key, suppressionEligible);
+      GATE_3_SHADOW_RECEIPTS.push(receipt);
+      if (typeof safeRequest.onShadowReceipt === 'function') {
+        try { safeRequest.onShadowReceipt(receipt); } catch (_) { /* observer failures never affect delivery */ }
+      }
+    }
+
+    if (shadowEnabled
+      && !childSession
+      && question === GATE_3_QUESTION
+      && key !== null
+      && gate3DeliveryConfirmed(safeRequest)
+      && gate3StateFields(safeRequest.gateState)?.status === 'open') {
+      GATE_3_DELIVERY_STATE.set(key, { gateStateHash, lifecycleEpoch: safeRequest.lifecycleEpoch });
+    }
+
+    return { question, suppressionEligible, suppressionConsumed: false };
+  } catch (_) {
+    return { question, suppressionEligible: false, suppressionConsumed: false };
+  }
+}
+
+/** Return immutable shadow receipts for verification or a host-owned logger. */
+export function getGate3ShadowReceipts() {
+  return Object.freeze(GATE_3_SHADOW_RECEIPTS.map((receipt) => ({ ...receipt })));
+}
+
+/** Clear process-local delivery state and receipts for an isolated lifecycle. */
+export function resetGate3DeliveryShadow() {
+  GATE_3_DELIVERY_STATE.clear();
+  GATE_3_SHADOW_RECEIPTS.length = 0;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- session-scoped state (atomic file persistence)
