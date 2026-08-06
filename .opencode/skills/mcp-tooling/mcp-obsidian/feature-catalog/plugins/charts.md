@@ -16,11 +16,15 @@ version: "0.10.0.0"
 
 Charts (repo `phibr0/obsidian-charts`, installed v3.9.0 in the vault, verified from `manifest.json`) renders interactive charts inside notes from fenced code blocks. Two block languages exist: `chart` with a YAML body and `advanced-chart` with a raw Chart.js JSON configuration. A chart can also read its data from a table in the same note or in another note.
 
+---
+
 ## 2. HOW IT WORKS
 
 The mode operates this plugin at the file layer. It edits render blocks inside notes and the plugin settings file. It never drives the chart creator dialog.
 
 A `chart` block requires `type`, `labels` and `series`. An `advanced-chart` block carries a JSON object that is the Chart.js configuration itself, or a wrapper with `chartOptions` and `width`. Settings live in `.obsidian/plugins/obsidian-charts/data.json`. The vault has no `data.json`, so the four bundled defaults apply: `colors`, `contextMenu`, `imageSettings` and `themeable`. The app renders the chart after a note reload. File-layer verification ends at valid YAML or JSON plus correct keys.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -38,6 +42,8 @@ A `chart` block requires `type`, `labels` and `series`. An `advanced-chart` bloc
 ### Verification
 
 - Manual scenario: `manual-testing-playbook/plugin-tie-ins/charts-render-block.md`
+
+---
 
 ## 4. GUARDRAILS
 

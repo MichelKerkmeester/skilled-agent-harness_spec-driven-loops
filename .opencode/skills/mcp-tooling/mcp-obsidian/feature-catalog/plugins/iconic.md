@@ -16,9 +16,13 @@ version: 0.7.0.0
 
 Iconic (repo `gfxholo/iconic`, installed v1.1.10 in every vault) customizes icons/colors for tabs, files & folders, bookmarks, tags, properties, and ribbon. Its ENTIRE configuration is `.obsidian/plugins/iconic/data.json`: visibility toggles (`showAllFileIcons`, `showAllFolderIcons`, `showMenuActions`, …), color pickers, per-item icon maps, and the rulebook (`fileRules` 21 rules by extension + `folderRules` 11 rules by name — already applied in all vaults). The mode edits the JSON; the app renders after reload.
 
+---
+
 ## 2. HOW IT WORKS
 
 Read `data.json` fresh → back up (`.bak` copy) → merge only the requested keys/rules (stable `id`s, preserve everything else) → write + re-parse. Rule shape: `{id, name, icon (lucide-*), color (hex), match (any/all), conditions: [{source: extension|name, operator: is|contains, value}], enabled}`.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -38,6 +42,8 @@ Read `data.json` fresh → back up (`.bak` copy) → merge only the requested ke
 ### Verification
 
 - Manual scenario: `manual-testing-playbook/plugin-tie-ins/iconic-rules.md`
+
+---
 
 ## 4. GUARDRAILS
 

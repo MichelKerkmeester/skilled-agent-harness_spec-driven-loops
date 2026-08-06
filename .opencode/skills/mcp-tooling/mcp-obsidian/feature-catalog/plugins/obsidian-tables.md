@@ -18,11 +18,15 @@ The Obsidian Tables plugin has manifest ID `tables` and is maintained in `aztekg
 
 The file layer can create a table, patch columns/rows/views/formulas, and preserve the wrapper and unrelated body text. Obsidian remains the renderer; a valid JSON payload is necessary but the final render must be checked after the note is opened or reloaded.
 
+---
+
 ## 2. HOW IT WORKS
 
 Read the complete file, confirm `json-table-plugin: true` and exactly one `json-table` fence, then parse the payload. Patch objects by stable `column.id`, `row.id`, and `view.id`; row cells use column IDs rather than visible headers. Preserve `table-links`, unknown root fields, and non-table Markdown, serialize only the JSON payload, and parse the written file again.
 
 The canonical root keeps `version`, `metadata.title`, `columns`, `views`, and `rows`. Formula columns use ID-based references and cached result strings. After the file-layer edit passes its structural checks, open or reload the `.table.md` in Obsidian and confirm the table renders with the changed row or column instead of exposing raw JSON or an error view.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -43,6 +47,8 @@ The canonical root keeps `version`, `metadata.title`, `columns`, `views`, and `r
 | [`../../manual-testing-playbook/plugin-tie-ins/obsidian-tables-roundtrip.md`](../../manual-testing-playbook/plugin-tie-ins/obsidian-tables-roundtrip.md) | Manual playbook | Creates/edits a `.table.md` at the file layer and verifies the rendered result. |
 | [`../../assets/plugins/obsidian-tables/sample.example.table.md`](../../assets/plugins/obsidian-tables/sample.example.table.md) | Fixture | Provides a valid Agentable 1.0 table fixture with rows, views, links, and a formula. |
 | [`../../references/plugins/obsidian-tables/workflows.md`](../../references/plugins/obsidian-tables/workflows.md) | Reference | Defines readback and reload checks after each mutation. |
+
+---
 
 ## 4. SOURCE METADATA
 

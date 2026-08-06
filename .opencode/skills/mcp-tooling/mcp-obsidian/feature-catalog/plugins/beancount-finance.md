@@ -18,11 +18,15 @@ version: 0.1.0.0
 
 The file layer can append balanced transactions and other Beancount directives, run `bean-query`/`bean-price` when those executables are available, and validate the resulting ledger with `bean-check`. Settings changes belong in the plugin's `data.json`; do not invent a separate database or drive the plugin UI.
 
+---
+
 ## 2. HOW IT WORKS
 
 Read the configured root ledger and its included component files before editing. Append a transaction only after the posting accounts are opened, preserve Beancount's dated directive syntax, and keep the postings balanced in each currency. Use BQL for read-side aggregation and `bean-price` only for parsable price directives; a dashboard reload is the final user-visible render check after a file write.
 
 The safe workflow is read → patch the smallest ledger file → run a syntax/ledger check → inspect the diff → reload the relevant Obsidian view. If `bean-check`, `bean-query`, or `bean-price` is missing, report that boundary rather than claiming validation or a price fetch succeeded.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -44,6 +48,8 @@ The safe workflow is read → patch the smallest ledger file → run a syntax/le
 | [`../../examples/beancount-transaction.sh`](../../examples/beancount-transaction.sh) | Reference | Runs the scratch-ledger append and optional `bean-check` flow. |
 | [`../../assets/plugins/beancount-finance/ledger.example.beancount`](../../assets/plugins/beancount-finance/ledger.example.beancount) | Fixture | Provides a small valid ledger fixture. |
 | [`../../assets/plugins/beancount-finance/beancount-data.example.json`](../../assets/plugins/beancount-finance/beancount-data.example.json) | Fixture | Provides a complete example settings payload. |
+
+---
 
 ## 4. SOURCE METADATA
 

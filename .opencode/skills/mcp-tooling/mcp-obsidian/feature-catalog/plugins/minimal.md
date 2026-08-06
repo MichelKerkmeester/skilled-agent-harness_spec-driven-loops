@@ -16,9 +16,13 @@ version: 0.10.0.0
 
 Minimal is a theme by @kepano, installed v9.0.2 in every vault (verified in `.obsidian/themes/Minimal/manifest.json`). It is a complete UI theme shipped as one `theme.css` stylesheet plus a `manifest.json`. It has no plugin surface: no `main.js`, no `data.json`, no commands and no settings keys. Customization at the file layer happens through CSS snippets in `.obsidian/snippets/`.
 
+---
+
 ## 2. HOW IT WORKS
 
 The theme activates through a single string key, `cssTheme`, in `.obsidian/appearance.json`. The value must match the theme folder name exactly. The mode reads the package and the appearance file, verifies activation, proposes snippet files and writes them with backup discipline. It never edits `theme.css` or `manifest.json` in a real vault because Obsidian replaces the theme folder on updates.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -37,6 +41,8 @@ The theme activates through a single string key, `cssTheme`, in `.obsidian/appea
 ### Verification
 
 - Manual scenario: `manual-testing-playbook/plugin-tie-ins/minimal-theme-activation.md`
+
+---
 
 ## 4. GUARDRAILS
 

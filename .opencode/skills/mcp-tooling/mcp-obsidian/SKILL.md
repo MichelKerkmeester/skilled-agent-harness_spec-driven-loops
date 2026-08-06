@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.16.0.0
+version: 0.17.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
