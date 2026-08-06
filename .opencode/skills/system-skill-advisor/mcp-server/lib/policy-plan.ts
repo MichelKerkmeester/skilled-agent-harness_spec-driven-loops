@@ -24,6 +24,10 @@ export interface PolicyBlockInput {
   readonly order?: number;
 }
 
+export interface PolicyBlockContentContext {
+  readonly compiledRouteTargets?: readonly string[];
+}
+
 export interface PolicyPlanInput {
   readonly blocks: readonly PolicyBlockInput[];
   readonly prompt?: string;
@@ -44,7 +48,7 @@ export interface PolicyPlan {
 export interface PolicyBlockDefinition {
   readonly id: string;
   readonly order: number;
-  readonly content: () => string | undefined;
+  readonly content: (context?: PolicyBlockContentContext) => string | undefined;
 }
 
 export type HostReceiptStatus = 'configured' | 'observed' | 'unobserved' | 'unknown';
@@ -75,6 +79,7 @@ export const POLICY_PROOF_OVER_APPEARANCE_ID = 'policy.proof-over-appearance.v1'
 export const LIFECYCLE_SESSION_START_ID = 'lifecycle.session-start.v1';
 export const RUNTIME_OPENCODE_CONTINUITY_ID = 'runtime.opencode-continuity.v1';
 export const ROUTE_OPENCODE_COMPILED_ID = 'route.opencode-compiled.v1';
+export const RUNTIME_OPENCODE_COMPILED_ROUTE_ID = 'runtime.opencode-compiled-route.v1';
 
 export const POLICY_BLOCK_IDS = Object.freeze({
   COMMENT_HYGIENE: POLICY_COMMENT_HYGIENE_ID,
@@ -86,6 +91,7 @@ export const POLICY_BLOCK_IDS = Object.freeze({
   SESSION_START: LIFECYCLE_SESSION_START_ID,
   OPENCODE_CONTINUITY: RUNTIME_OPENCODE_CONTINUITY_ID,
   OPENCODE_COMPILED_ROUTE: ROUTE_OPENCODE_COMPILED_ID,
+  RUNTIME_OPENCODE_COMPILED_ROUTE: RUNTIME_OPENCODE_COMPILED_ROUTE_ID,
 } as const);
 
 export const POLICY_HASH_FIELDS = Object.freeze([
@@ -160,9 +166,15 @@ export const POLICY_BLOCK_REGISTRY: readonly PolicyBlockDefinition[] = Object.fr
     content: () => undefined,
   },
   {
-    id: ROUTE_OPENCODE_COMPILED_ID,
+    id: RUNTIME_OPENCODE_COMPILED_ROUTE_ID,
     order: 8,
-    content: () => undefined,
+    content: (context) => {
+      const targets = context?.compiledRouteTargets;
+      if (!Array.isArray(targets) || targets.some((target) => typeof target !== 'string')) {
+        return undefined;
+      }
+      return serializeCompiledRouteTargetList(targets);
+    },
   },
 ]);
 
@@ -202,6 +214,18 @@ function hashableBlock(block: PolicyBlockInput, index: number): PolicyBlockInput
   };
 }
 
+function normalizedCompiledRouteTargets(targets: readonly string[]): readonly string[] {
+  if (!Array.isArray(targets) || targets.some((target) => typeof target !== 'string')) {
+    throw new TypeError('Compiled-route targets must be an array of strings');
+  }
+  return [...targets].sort();
+}
+
+/** Serialize the complete compiled-route target membership in canonical order. */
+export function serializeCompiledRouteTargetList(targets: readonly string[]): string {
+  return JSON.stringify(normalizedCompiledRouteTargets(targets));
+}
+
 function hasReceiptField(receipt: Record<string, unknown>, field: string): boolean {
   return Object.prototype.hasOwnProperty.call(receipt, field) && receipt[field] !== undefined;
 }
@@ -219,6 +243,32 @@ export function serializePolicyHashInput(input: PolicyPlanInput): string {
 /** Hash one block using its canonical identity, content, and delivery order. */
 export function hashPolicyBlock(block: PolicyBlockInput, index = 0): string {
   return hashSerializedInput(JSON.stringify(hashableBlock(block, index)));
+}
+
+/** Build the registered compiled-route block from the complete target list. */
+export function buildCompiledRoutePolicyBlock(targets: readonly string[]): PolicyBlockInput {
+  const definition = POLICY_BLOCK_REGISTRY.find((candidate) => (
+    candidate.id === RUNTIME_OPENCODE_COMPILED_ROUTE_ID
+  ));
+  const content = definition?.content({ compiledRouteTargets: targets });
+  if (!definition || typeof content !== 'string') {
+    throw new Error('Compiled-route policy block is not registered');
+  }
+  return {
+    id: definition.id,
+    content,
+    order: definition.order,
+  };
+}
+
+/** Hash the registered compiled-route block using every target, before rendering bounds apply. */
+export function hashCompiledRouteTargets(targets: readonly string[]): string {
+  return hashPolicyBlock(buildCompiledRoutePolicyBlock(targets));
+}
+
+/** Build a one-block plan whose content hash reflects the complete target list. */
+export function buildCompiledRoutePolicyPlan(targets: readonly string[]): PolicyPlan {
+  return buildPolicyPlan({ blocks: [buildCompiledRoutePolicyBlock(targets)] });
 }
 
 /** Hash the ordered block sequence for one planned delivery. */

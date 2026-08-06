@@ -20,8 +20,7 @@
       "compiled route cap task list",
       "route line bounding checklist",
       "compiled route cap verification",
-      "route line bounding not yet built",
-      "compiled route cap placeholder"
+      "route line bounding implementation"
     ],
     "key_topics": [
       "opencode",
@@ -42,11 +41,12 @@
     "key_files": [
       ".opencode/plugins/mk-skill-advisor.js",
       ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
-      "spec.md",
+      ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,9 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "mk-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
         "source": "derived"
       },
       {
@@ -81,9 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-skill-advisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -187,17 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`renderCompiledRouteSummaryLine` in `.opencode/plugins/mk-skill-advisor.js` appends an additive line to every OpenCode advisor response: `Compiled routing (served=...): hub=.",
     "created_at": "2026-08-06T11:03:56.252Z",
-    "last_save_at": "2026-08-06T11:04:54.060Z",
+    "last_save_at": "2026-08-06T13:37:35.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ce4d43b69349390cde85cc420f49e6e7b0e04094b896bc9882986b2e50520e0",
+    "source_fingerprint": "sha256:f6bc2f5abb9552617860d918733d6e7465111ebcba7ae7bdf646db5ee7875fb0",
     "source_doc_hashes": {
       "spec.md": "07bc908ac51db94d5168497a8845619626214e6f6f747a8bc6e3dff53043538e",
       "plan.md": "59bc845e2a6a3935759be385c99fd07cb07ce5373fc86dcae3742f3c949141ba",
       "tasks.md": "cb203d7f75ea06011b4dca982a065ffe89cd05d90ab7c301b9b527387b400913",
-      "checklist.md": "b5c354fe44d57f26575f4d7fea9e1505784e32fbc0656a6cef72f18f99f94d59",
-      "implementation-summary.md": "2fc96b9954bda632e981fa38043f482ce1c68cb2da45c3a2fc4820b0a3196faa"
+      "checklist.md": "9b5962f02637c75ba4aabb6e04029cbb7955ef677772f766a3b59805a04a4cb0",
+      "implementation-summary.md": "c9d913780faba24c247e9e2868b9574ee121a2b68d86df521c383683b67ef7f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

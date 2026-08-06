@@ -73,11 +73,14 @@ function loadPlugin() {
   return pluginModulePromise;
 }
 
-function bridgeEnvelope(brief = 'Advisor: live; use sk-code 0.91/0.23 pass.') {
+function bridgeEnvelope(
+  brief = 'Advisor: live; use sk-code 0.91/0.23 pass.',
+  metadata = { freshness: 'live' },
+) {
   return JSON.stringify({
     brief: brief || null,
     status: brief ? 'ok' : 'skipped',
-    metadata: { freshness: 'live' },
+    metadata,
   });
 }
 
@@ -161,6 +164,30 @@ function makeAdvisorFixture() {
   return { root, advisorRoot };
 }
 
+function compiledRouteSummary(targets, overrides = {}) {
+  return {
+    outcome: 'route',
+    hubId: 'sk-code',
+    targets,
+    servingAuthority: 'compiled',
+    ...overrides,
+  };
+}
+
+function legacyCompiledRouteSummaryLine(summary) {
+  if (!summary || typeof summary !== 'object') return null;
+  const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
+  if (!outcome) return null;
+  const hub = typeof summary.hubId === 'string' && summary.hubId ? summary.hubId : 'unknown';
+  const authority = typeof summary.servingAuthority === 'string' && summary.servingAuthority
+    ? summary.servingAuthority
+    : 'compiled';
+  const targets = Array.isArray(summary.targets) && summary.targets.length
+    ? summary.targets.join(',')
+    : 'none';
+  return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
+}
+
 test('malformed optional configuration is reported with a prompt-safe code', async () => {
   const originalHome = process.env.HOME;
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'mk-skill-advisor-home-'));
@@ -183,6 +210,99 @@ test('malformed optional configuration is reported with a prompt-safe code', asy
     }
     fs.rmSync(home, { recursive: true, force: true });
   }
+});
+
+test('bounded route rendering caps targets and exposes a complete reveal path', async () => {
+  const pluginModule = await loadPlugin();
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const unbounded = pluginModule.renderCompiledRouteSummaryLine(summary);
+  const bounded = pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true });
+  const revealed = pluginModule.revealCompiledRouteSummaryTargets(summary);
+
+  assert.equal(unbounded, legacyCompiledRouteSummaryLine(summary));
+  assert.match(bounded, /targets=quality,review,opencode,\+2 more/);
+  assert.match(bounded, /digest=[0-9a-f]{12}/);
+  assert.equal(bounded.split(' targets=')[0], unbounded.split(' targets=')[0]);
+  assert.deepEqual(revealed, summary.targets);
+  for (const target of summary.targets) {
+    assert.ok(bounded.includes(target) || revealed.includes(target), `target ${target} must be visible or revealable`);
+  }
+  assert.equal(
+    pluginModule.renderCompiledRouteSummaryLine(summary, { reveal: true }),
+    unbounded,
+  );
+});
+
+test('flag-off route rendering and plugin delivery remain byte-identical to the baseline', async () => {
+  const pluginModule = await loadPlugin();
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const baseline = legacyCompiledRouteSummaryLine(summary);
+
+  assert.equal(pluginModule.renderCompiledRouteSummaryLine(summary), baseline);
+  assert.equal(pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: false }), baseline);
+
+  const child = fakeChild({
+    stdout: bridgeEnvelope(undefined, { freshness: 'live', compiledRouteSummary: summary }),
+  });
+  const hooks = await makePlugin({
+    boundedCompiledRouteSummary: false,
+    spawnOverride: spawnSequence([child]),
+  });
+  const output = await runPrompt(hooks);
+
+  assert.equal(output.system[1], baseline);
+  assert.match(await status(hooks), /bounded_compiled_route_summary=false/);
+});
+
+test('bounded flag selects the bounded line in the OpenCode transform', async () => {
+  const pluginModule = await loadPlugin();
+  const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
+  const child = fakeChild({
+    stdout: bridgeEnvelope(undefined, { freshness: 'live', compiledRouteSummary: summary }),
+  });
+  const hooks = await makePlugin({
+    boundedCompiledRouteSummary: true,
+    spawnOverride: spawnSequence([child]),
+  });
+  const output = await runPrompt(hooks);
+
+  assert.equal(
+    output.system[1],
+    pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true }),
+  );
+  assert.match(output.system[1], /\+2 more/);
+});
+
+test('target digest is stable for the same membership and changes for a changed omitted set', async () => {
+  const pluginModule = await loadPlugin();
+  const summary = compiledRouteSummary(['alpha', 'beta', 'gamma', 'delta', 'epsilon']);
+  const reordered = compiledRouteSummary(['epsilon', 'delta', 'gamma', 'beta', 'alpha']);
+  const changedOmitted = compiledRouteSummary(['alpha', 'beta', 'gamma', 'delta', 'zeta']);
+
+  const digest = pluginModule.compiledRouteSummaryTargetDigest(summary);
+  assert.equal(pluginModule.compiledRouteSummaryTargetDigest(reordered), digest);
+  assert.notEqual(pluginModule.compiledRouteSummaryTargetDigest(changedOmitted), digest);
+  assert.match(
+    pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: true }),
+    new RegExp(`digest=${digest}`),
+  );
+});
+
+test('bounded rendering preserves the cap boundary and handles empty or malformed summaries', async () => {
+  const pluginModule = await loadPlugin();
+  const exact = ['alpha', 'beta', 'gamma'];
+  const exactLine = pluginModule.renderCompiledRouteSummaryLine(
+    compiledRouteSummary(exact),
+    { bounded: true },
+  );
+
+  assert.doesNotMatch(exactLine, /\+\d+ more/);
+  assert.equal(
+    pluginModule.renderCompiledRouteSummaryLine(compiledRouteSummary([]), { bounded: true }),
+    'Compiled routing (served=compiled): hub=sk-code outcome=route targets=none',
+  );
+  assert.equal(pluginModule.renderCompiledRouteSummaryLine(null, { bounded: true }), null);
+  assert.deepEqual(pluginModule.revealCompiledRouteSummaryTargets({ targets: ['alpha', 42] }), ['alpha']);
 });
 
 test('no-brief turns retain hygiene and governor context with OpenCode runtime metadata', async () => {

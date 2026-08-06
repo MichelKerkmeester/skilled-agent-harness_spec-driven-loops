@@ -38,6 +38,9 @@ const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
 const BRIDGE_TERMINATION_GRACE_MS = 250;
+export const COMPILED_ROUTE_TARGET_CAP = 3;
+export const COMPILED_ROUTE_TARGET_DIGEST_LENGTH = 12;
+export const COMPILED_ROUTE_BOUNDING_ENV = 'MK_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
 const DISABLED_ENV = 'MK_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'MK_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
@@ -94,12 +97,31 @@ function compiledServingSignature() {
   }
 }
 
-// Render the served compiled decision as one additive, bounded, human-legible
+// Render the served compiled decision as one additive, human-legible
 // line. It reports the served authority and outcome (route/clarify/defer/reject),
 // never a new routing target — the compiled decision is byte-identical to legacy
 // on routing fields. Returns null when no compiled decision is served, so the
 // injected context stays byte-identical to the legacy brief.
-function renderCompiledRouteSummaryLine(summary) {
+export function revealCompiledRouteSummaryTargets(summary) {
+  if (!summary || typeof summary !== 'object' || !Array.isArray(summary.targets)) {
+    return [];
+  }
+  return summary.targets.filter((target) => typeof target === 'string');
+}
+
+function digestCompiledRouteTargets(targets) {
+  const canonicalTargets = [...targets].sort();
+  return createHash('sha256')
+    .update(JSON.stringify(canonicalTargets), 'utf8')
+    .digest('hex')
+    .slice(0, COMPILED_ROUTE_TARGET_DIGEST_LENGTH);
+}
+
+export function compiledRouteSummaryTargetDigest(summary) {
+  return digestCompiledRouteTargets(revealCompiledRouteSummaryTargets(summary));
+}
+
+export function renderCompiledRouteSummaryLine(summary, renderOptions = {}) {
   if (!summary || typeof summary !== 'object') return null;
   const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
   if (!outcome) return null;
@@ -107,10 +129,30 @@ function renderCompiledRouteSummaryLine(summary) {
   const authority = typeof summary.servingAuthority === 'string' && summary.servingAuthority
     ? summary.servingAuthority
     : 'compiled';
-  const targets = Array.isArray(summary.targets) && summary.targets.length
-    ? summary.targets.join(',')
-    : 'none';
-  return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
+  const bounded = renderOptions === true
+    || (renderOptions && typeof renderOptions === 'object' && renderOptions.bounded === true);
+  const reveal = renderOptions && typeof renderOptions === 'object' && renderOptions.reveal === true;
+
+  if (!bounded && !reveal) {
+    const targets = Array.isArray(summary.targets) && summary.targets.length
+      ? summary.targets.join(',')
+      : 'none';
+    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
+  }
+
+  const fullTargets = revealCompiledRouteSummaryTargets(summary);
+  if (reveal || fullTargets.length <= COMPILED_ROUTE_TARGET_CAP) {
+    const targets = fullTargets.length ? fullTargets.join(',') : 'none';
+    return `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${targets}`;
+  }
+
+  const visibleTargets = fullTargets.slice(0, COMPILED_ROUTE_TARGET_CAP);
+  const omittedCount = fullTargets.length - visibleTargets.length;
+  const digest = digestCompiledRouteTargets(fullTargets);
+  return [
+    `Compiled routing (served=${authority}): hub=${hub} outcome=${outcome} targets=${visibleTargets.join(',')},+${omittedCount} more`,
+    `digest=${digest}`,
+  ].join(' ');
 }
 
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
@@ -260,6 +302,9 @@ function normalizeOptions(rawOptions) {
   const envMaxPromptBytes = Number(process.env.MK_SKILL_ADVISOR_MAX_PROMPT_BYTES);
   const envMaxBriefChars = Number(process.env.MK_SKILL_ADVISOR_MAX_BRIEF_CHARS);
   const envMaxCacheEntries = Number(process.env.MK_SKILL_ADVISOR_MAX_CACHE_ENTRIES);
+  const configuredBounding = typeof options.boundedCompiledRouteSummary === 'boolean'
+    ? options.boundedCompiledRouteSummary
+    : undefined;
 
   return {
     enabled,
@@ -273,6 +318,7 @@ function normalizeOptions(rawOptions) {
     maxPromptBytes: normalizePositiveInt(options.maxPromptBytes, normalizePositiveInt(envMaxPromptBytes, DEFAULT_MAX_PROMPT_BYTES)),
     maxBriefChars: normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
     maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, normalizePositiveInt(envMaxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES)),
+    boundedCompiledRouteSummary: configuredBounding ?? process.env[COMPILED_ROUTE_BOUNDING_ENV] === '1',
     sourceSignatureOverride: typeof options.sourceSignatureOverride === 'string'
       ? options.sourceSignatureOverride
       : null,
@@ -539,6 +585,7 @@ function eventTypeFrom(event) {
  * @param {number} [rawOptions.maxPromptBytes] - Maximum bridge prompt payload bytes
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
+ * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
@@ -849,7 +896,9 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       output.system.push(response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : FALLBACK_DIRECTIVE);
-      const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary);
+      const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
+        bounded: options.boundedCompiledRouteSummary,
+      });
       if (compiledLine) {
         output.system.push(compiledLine);
       }
@@ -922,6 +971,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             `max_prompt_bytes=${options.maxPromptBytes}`,
             `max_brief_chars=${options.maxBriefChars}`,
             `max_cache_entries=${options.maxCacheEntries}`,
+            `bounded_compiled_route_summary=${options.boundedCompiledRouteSummary}`,
             `runtime_ready=${state.runtimeReady}`,
             `node_binary=${statusSafeBinary(options.nodeBinary)}`,
             `bridge_timeout_ms=${options.bridgeTimeoutMs}`,
