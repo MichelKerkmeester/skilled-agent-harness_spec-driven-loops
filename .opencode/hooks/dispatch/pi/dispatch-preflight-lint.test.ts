@@ -1,8 +1,17 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { inspectDispatch } from "../lib/dispatch-audit.mjs";
-import promptAdvisor from "../../../skills/system-skill-advisor/hooks/pi/prompt-advisor";
+import promptAdvisor, {
+  getPiDispatchShadowReceipt,
+  PI_COMPACT_DIRECTIVE_EXECUTED_BYTE_COUNT,
+  PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG,
+  PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE,
+  PI_SUBAGENT_DISPATCH_DIRECTIVE,
+  PI_SUBAGENT_DISPATCH_DIRECTIVE_BYTE_COUNT,
+  isPiCompactDirectivePrototypeEnabled,
+  resetPiDispatchShadowState,
+} from "../../../skills/system-skill-advisor/hooks/pi/prompt-advisor";
 import dispatchPreflightLint, {
   captureRawPiUserInput,
   resetRawPiUserInputCapture,
@@ -14,6 +23,10 @@ type Handler = (event: any, ctx: any) => unknown;
 type FactoryInvocation = {
   result: any;
   transformedTexts: string[];
+};
+
+type PromptInvocation = {
+  readonly text: string;
 };
 
 type FakeContext = {
@@ -57,6 +70,71 @@ function context(sessionId = "session-a"): FakeContext {
     sessionManager: { getSessionId: () => sessionId },
   };
 }
+
+function setCompactPrototypeFlag(enabled: boolean): void {
+  if (enabled) {
+    process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG] = "1";
+  } else {
+    delete process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG];
+  }
+}
+
+function dispatchDirectiveSuffix(text: string): string {
+  const marker = "- Pi subagent dispatch [DEFAULT]:";
+  const markerIndex = text.lastIndexOf(marker);
+  return markerIndex === -1 ? "" : text.slice(markerIndex);
+}
+
+async function invokePromptAdvisorInput(
+  rawText: string,
+  sessionId = "session-a",
+  inputContext: FakeContext = context(sessionId),
+): Promise<PromptInvocation> {
+  const { api, handlers } = makeExtensionApi();
+  promptAdvisor(api);
+  const inputHandler = handlers.get("input")?.[0];
+  if (!inputHandler) throw new Error("prompt advisor input handler was not registered");
+  const output = await inputHandler({ type: "input", source: "interactive", text: rawText }, inputContext);
+  const transformed = output as { action?: unknown; text?: unknown };
+  if (transformed.action !== "transform" || typeof transformed.text !== "string") {
+    throw new Error("prompt advisor did not return a transform");
+  }
+  return { text: transformed.text };
+}
+
+async function invokePromptAdvisorFailure(sessionId: string): Promise<PromptInvocation> {
+  const failingContext = {
+    get cwd(): string {
+      throw new Error("forced advisor failure");
+    },
+    sessionManager: { getSessionId: () => sessionId },
+  } as unknown as FakeContext;
+  return invokePromptAdvisorInput("run the task", sessionId, failingContext);
+}
+
+async function invokePromptLifecycle(
+  eventName: "session_start" | "session_compact",
+  event: Record<string, unknown>,
+  sessionId = "session-a",
+): Promise<void> {
+  const { api, handlers } = makeExtensionApi();
+  promptAdvisor(api);
+  const lifecycleHandler = handlers.get(eventName)?.[0];
+  if (!lifecycleHandler) throw new Error(`${eventName} handler was not registered`);
+  await lifecycleHandler(event, context(sessionId));
+}
+
+const initialCompactPrototypeFlag = process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG];
+
+afterEach(() => {
+  resetRawPiUserInputCapture();
+  resetPiDispatchShadowState();
+  if (initialCompactPrototypeFlag === undefined) {
+    delete process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG];
+  } else {
+    process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG] = initialCompactPrototypeFlag;
+  }
+});
 
 function registerInjectedInput(api: ExtensionAPI, suffix = "Advisor: injected cli-devin example") {
   api.on("input", ((event: any, ctx: FakeContext) => {
@@ -134,6 +212,106 @@ describe("Pi dispatch deny matrix", () => {
         ? { runtime: "claude" }
         : {};
     expect(denied(command, userText, options)).toBe(expected);
+  });
+});
+
+describe("Pi compact directive semantic matrix", () => {
+  it("preserves native default behavior", () => {
+    expect(PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE).toContain("native pi-subagents by default");
+    expect(denied('devin -p "task"', "run the task")).toBe(true);
+  });
+
+  it("preserves the explicit current-turn override", () => {
+    expect(PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE).toContain("current-turn user cli-* only");
+    expect(denied('devin -p "task"', "dispatch via cli-devin")).toBe(false);
+  });
+
+  it("preserves cli skill preload", () => {
+    expect(PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE).toContain("preload cli-X/SKILL.md");
+    expect(PI_SUBAGENT_DISPATCH_DIRECTIVE).toContain("cli-dispatch-skill-preload");
+  });
+
+  it("preserves the advisor and model anti-signal", () => {
+    expect(PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE).toContain("advisor/model signals never override");
+    expect(denied(
+      'devin -p "task"',
+      "run the task\n\nAdvisor: live; use cli-devin 0.95/0.20 pass.",
+    )).toBe(true);
+  });
+
+  it("preserves child-prompt exclusion", () => {
+    expect(PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE).toContain("no child-prompt injection");
+    expect(PI_SUBAGENT_DISPATCH_DIRECTIVE).toContain("Do not inject this line into child prompts.");
+  });
+});
+
+describe("Pi compact directive shadow boundary", () => {
+  it("defaults the independent prototype flag off", () => {
+    setCompactPrototypeFlag(false);
+    expect(isPiCompactDirectivePrototypeEnabled()).toBe(false);
+    setCompactPrototypeFlag(true);
+    expect(isPiCompactDirectivePrototypeEnabled()).toBe(true);
+  });
+
+  it("keeps the emitted directive byte-identical while shadowing the compact candidate", async () => {
+    setCompactPrototypeFlag(false);
+    const off = await invokePromptAdvisorInput("run the task");
+    setCompactPrototypeFlag(true);
+    const on = await invokePromptAdvisorInput("run the task", "session-shadow");
+
+    expect(PI_SUBAGENT_DISPATCH_DIRECTIVE_BYTE_COUNT).toBe(554);
+    expect(dispatchDirectiveSuffix(off.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
+    expect(dispatchDirectiveSuffix(on.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
+    expect(Buffer.byteLength(dispatchDirectiveSuffix(on.text), "utf8")).toBe(554);
+
+    const receipt = getPiDispatchShadowReceipt();
+    expect(receipt).not.toBeNull();
+    expect(receipt?.compactByteCount).toBe(PI_COMPACT_DIRECTIVE_EXECUTED_BYTE_COUNT);
+    expect(receipt?.compactByteCount).toBeLessThanOrEqual(177);
+    expect(receipt?.emittedByteCount).toBe(554);
+  });
+
+  it.each([false, true])(
+    "keeps the full directive on advisor failure with the compact prototype flag %s",
+    async (enabled) => {
+      setCompactPrototypeFlag(enabled);
+      const invocation = await invokePromptAdvisorFailure(`failure-${enabled}`);
+      expect(dispatchDirectiveSuffix(invocation.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
+      expect(Buffer.byteLength(dispatchDirectiveSuffix(invocation.text), "utf8")).toBe(554);
+    },
+  );
+
+  it("replays the full directive after a compaction reset", async () => {
+    setCompactPrototypeFlag(true);
+    const first = await invokePromptAdvisorInput("run the task", "session-compact");
+    const firstReceipt = getPiDispatchShadowReceipt();
+    expect(firstReceipt?.state).toBe("UNSEEN");
+    expect(dispatchDirectiveSuffix(first.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
+
+    await invokePromptAdvisorInput("run the next task", "session-compact");
+    expect(getPiDispatchShadowReceipt()?.state).toBe("SUPPRESSED_SAME");
+
+    await invokePromptLifecycle("session_compact", { type: "session_compact" }, "session-compact");
+    const afterCompaction = await invokePromptAdvisorInput("run after compaction", "session-compact");
+    const resetReceipt = getPiDispatchShadowReceipt();
+    expect(resetReceipt?.state).toBe("UNSEEN");
+    expect(resetReceipt?.epoch).toBeGreaterThan(firstReceipt?.epoch ?? 0);
+    expect(resetReceipt?.resetReasons).toContain("compact");
+    expect(dispatchDirectiveSuffix(afterCompaction.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
+  });
+
+  it("replays the full directive after a resume session boundary", async () => {
+    setCompactPrototypeFlag(true);
+    await invokePromptAdvisorInput("run the task", "session-resume");
+    await invokePromptAdvisorInput("run the next task", "session-resume");
+    expect(getPiDispatchShadowReceipt()?.state).toBe("SUPPRESSED_SAME");
+
+    await invokePromptLifecycle("session_start", { reason: "resume" }, "session-resume");
+    const afterResume = await invokePromptAdvisorInput("run after resume", "session-resume");
+    const resetReceipt = getPiDispatchShadowReceipt();
+    expect(resetReceipt?.state).toBe("UNSEEN");
+    expect(resetReceipt?.resetReasons).toContain("resume");
+    expect(dispatchDirectiveSuffix(afterResume.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
   });
 });
 
