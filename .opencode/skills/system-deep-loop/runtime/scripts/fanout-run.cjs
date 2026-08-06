@@ -2430,18 +2430,22 @@ async function main() {
           iteration: attempt,
           label: lineage.label,
         });
+        // Log the containment event whenever anything was detected, including preserved
+        // advisories (unattributable not-in-HEAD paths) that must NOT fail the iteration --
+        // so out-of-scope activity on a dirty, multi-actor tree stays visible without
+        // deleting a concurrent writer's work or failing an otherwise-successful run.
+        if (containment.event) {
+          appendFanoutStatusLedger(ledgerPath, {
+            ...containment.event,
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            gauges: latestGauges,
+          });
+        }
         if (containment.violations.length > 0) {
-          if (containment.event) {
-            appendFanoutStatusLedger(ledgerPath, {
-              ...containment.event,
-              at: new Date().toISOString(),
-              label: lineage.label,
-              run_id: runId,
-              loop_type: loopType,
-              spec_folder: specFolder,
-              gauges: latestGauges,
-            });
-          }
           const failure = new Error(
             `lineage ${lineage.label} violated write containment: reverted `
               + `${containment.violations.length} out-of-scope path(s): `
