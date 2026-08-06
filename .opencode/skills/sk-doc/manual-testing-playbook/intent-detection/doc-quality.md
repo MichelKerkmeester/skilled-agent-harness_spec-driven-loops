@@ -1,7 +1,8 @@
 ---
 id: SD-001
-category: intent_detection
 title: 'DOC_QUALITY intent: validate documentation quality for a skill'
+description: "This scenario validates DOC_QUALITY intent detection for SD-001."
+stage: routing
 expected_intent: sk-create-quality-control
 expected_resources:
   - shared/references/validation.md
@@ -18,13 +19,14 @@ expected_leaf_resources:
     leaf_resource_id: references/core-standards.md
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
-expected_token_range_input: 1000-2500
-expected_token_range_output: 800-2500
-created: 2026-05-05
 version: 1.8.0.5
 ---
 
 # SD-001: DOC_QUALITY Intent Detection
+
+This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-001`.
+
+---
 
 ## 1. OVERVIEW
 
@@ -36,23 +38,28 @@ Documentation validation prompts are broad enough to overlap with creation or op
 
 ---
 
+---
+
 ## 2. SCENARIO CONTRACT
 
+- Objective: Verify sk-doc routes the scenario to `DOC_QUALITY` with the expected resources.
 - Real user request: `Validate documentation quality for skill X and report which sections fail sk-doc standards.`
 - Prompt: `Validate documentation quality for skill X and report which sections fail sk-doc standards.`
-- Expected intent: `DOC_QUALITY`
+- Expected signals: Intent resolves to `DOC_QUALITY`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+- Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+
+---
 
 ## 3. TEST EXECUTION
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| SD-001 | DOC_QUALITY intent: validate documentation quality for a skill | Verify sk-doc routes the scenario to `DOC_QUALITY` with the expected resources. | `Validate documentation quality for skill X and report which sections fail sk-doc standards.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `DOC_QUALITY`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+### Prompt
 
+- Prompt: `Validate documentation quality for skill X and report which sections fail sk-doc standards.`
 
-### Setup
+### Commands
 
-```
+```text
 DO NOT execute the work below. INSTEAD describe (in your response):
 1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
@@ -64,7 +71,26 @@ INPUT TO ROUTE:
 Validate documentation quality for skill X and report which sections fail sk-doc standards.
 ```
 
-## Expected Behavior
+### Expected
+
+Intent resolves to `DOC_QUALITY`; loaded resources match `expected_resources`.
+
+### Evidence
+
+CLI transcript with intent, resources, response shape, token counts where applicable.
+
+### Pass / Fail
+
+- **Pass**: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+- **Fail**: wrong intent or empty output
+
+### Failure Triage
+
+Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+
+### Optional Supplemental Checks
+
+**Expected Behavior**
 
 - **Intent picked**: `DOC_QUALITY`
 - **Resources loaded**:
@@ -74,20 +100,41 @@ Validate documentation quality for skill X and report which sections fail sk-doc
   - `references/evergreen-packet-id-rule.md`
 - **Outcome**: CLI loads only the four global references above and produces a non-empty validation-style response (DQI checklist or per-section findings) referencing at least one of those resources.
 
-## Cross-CLI Variants
+**Cross-CLI Variants**
 
 - **cli-opencode (gpt-5.5/high/fast)**: short prompt fits inline; default foreground dispatch is fine.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise structured output.
 
-## Success Criteria
+**Success Criteria**
 
 - intent_picked == `DOC_QUALITY`
 - false_positive_resource_load_count <= 1
 - response is non-empty and references at least one of the expected_resources
 
-## 4. SOURCE METADATA
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `../../SKILL.md` | The sk-doc router under test |
+| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+
+---
+
+## 5. SOURCE METADATA
 
 - Group: Intent Detection
 - Playbook ID: SD-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `intent-detection/doc-quality.md`
+

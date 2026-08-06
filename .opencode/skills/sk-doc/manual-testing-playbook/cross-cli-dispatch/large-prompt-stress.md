@@ -1,7 +1,8 @@
 ---
 id: SD-011
-category: cross_cli_dispatch
 title: 'Large-prompt stress: cli-opencode stdin-redirection mitigation'
+description: "This scenario validates large-prompt SKILL_CREATION dispatch for SD-011."
+stage: routing
 expected_intent: sk-create-skill
 expected_resources:
   - sk-create-skill/references/skill/creation-workflow.md
@@ -18,13 +19,14 @@ expected_leaf_resources:
     leaf_resource_id: assets/skill/skill-readme-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-expected_token_range_input: 8000-12000
-expected_token_range_output: 2000-3000
-created: 2026-05-05
 version: 1.8.0.7
 ---
 
 # SD-011: Large-Prompt Stress (cli-opencode stall mitigation)
+
+This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-011`.
+
+---
 
 ## 1. OVERVIEW
 
@@ -36,23 +38,28 @@ Large prompts can stall dispatchers, truncate resource traces, or bury the actua
 
 ---
 
+---
+
 ## 2. SCENARIO CONTRACT
 
+- Objective: Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources.
 - Real user request: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
 - Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
-- Expected intent: `SKILL_CREATION`
+- Expected signals: Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+- Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+
+---
 
 ## 3. TEST EXECUTION
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| SD-011 | Large-prompt stress: cli-opencode stdin-redirection mitigation | Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources. | `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+### Prompt
 
+- Prompt: `sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.`
 
-### Setup
+### Commands
 
-```
+```text
 DO NOT execute the work below. INSTEAD describe (in your response):
 1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
@@ -64,29 +71,67 @@ INPUT TO ROUTE:
 sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.
 ```
 
-(~3000 chars; pushes past cli-opencode's inline-prompt stall threshold; stdin-redirection mitigation MUST be exercised for opencode variant)
+### Expected
 
-## Expected Behavior
+Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`.
+
+### Evidence
+
+CLI transcript with intent, resources, response shape, token counts where applicable.
+
+### Pass / Fail
+
+- **Pass**: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+- **Fail**: wrong intent or empty output
+
+### Failure Triage
+
+Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+
+### Optional Supplemental Checks
+
+**Expected Behavior**
 
 - **Intent picked**: `SKILL_CREATION` (resolves correctly even at scale)
 - **Resources loaded**: skill-creation reference + SKILL.md, skill README and reference templates
 - **Outcome**: CLI emits the full skill scaffold without truncation or stall. cli-opencode MUST complete via `echo "$prompt" | opencode run -` (foreground + stdin), NOT inline arg.
 
-## Cross-CLI Variants
+**Cross-CLI Variants**
 
 - **cli-opencode (gpt-5.5/high/fast)**: MUST use stdin redirection (`echo prompt | opencode run -`); inline-arg form WILL stall above ~2k chars.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: handles large inline prompts; record latency.
 
-## Success Criteria
+**Success Criteria**
 
 - intent_picked == `SKILL_CREATION` despite prompt size
 - cli-opencode completes within 2x baseline latency using stdin redirection
 - false_positive_resource_load_count <= 1
 - response is non-empty and references at least one of the expected_resources
 
-## 4. SOURCE METADATA
 
-- Group: Cross-CLI Dispatch
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `../../SKILL.md` | The sk-doc router under test |
+| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Cross Cli Dispatch
 - Playbook ID: SD-011
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `cross-cli-dispatch/large-prompt-stress.md`
+

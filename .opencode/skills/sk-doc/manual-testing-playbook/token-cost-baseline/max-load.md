@@ -1,7 +1,8 @@
 ---
 id: SD-015
-category: token_cost_baseline
 title: 'Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP'
+description: "This scenario validates ON_DEMAND_ALL ceiling token-cost behavior for SD-015."
+stage: routing
 expected_intent: UNKNOWN
 expected_resources:
   - sk-create-agent/assets/agent-template.md
@@ -401,13 +402,14 @@ expected_leaf_resources:
     leaf_resource_id: references/skill/creation-workflow.md
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: references/skill/examples-and-maintenance.md
-expected_token_range_input: 5000-10000
-expected_token_range_output: 2000-3000
-created: 2026-05-05
 version: 1.8.0.9
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)
+
+This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-015`.
+
+---
 
 ## 1. OVERVIEW
 
@@ -419,23 +421,28 @@ The ceiling case proves that load-all behavior is available only when explicitly
 
 ---
 
+---
+
 ## 2. SCENARIO CONTRACT
 
+- Objective: Verify sk-doc routes the scenario to `ON_DEMAND_ALL` with the expected resources.
 - Real user request: `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.`
 - Prompt: `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.`
-- Expected intent: `ON_DEMAND_ALL`
+- Expected signals: Intent resolves to `ON_DEMAND_ALL`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+- Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+
+---
 
 ## 3. TEST EXECUTION
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| SD-015 | Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP | Verify sk-doc routes the scenario to `ON_DEMAND_ALL` with the expected resources. | `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `ON_DEMAND_ALL`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+### Prompt
 
+- Prompt: `Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.`
 
-### Setup
+### Commands
 
-```
+```text
 DO NOT execute the work below. INSTEAD describe (in your response):
 1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
@@ -447,28 +454,66 @@ INPUT TO ROUTE:
 Show the full sk-doc toolkit: all templates, frameworks, format guide, references, and assets.
 ```
 
-(Contains ON_DEMAND_KEYWORDS: "full template", "all frameworks", "format guide" — triggers ON_DEMAND load of every RESOURCE_MAP entry.)
+### Expected
 
-## Expected Behavior
+Intent resolves to `ON_DEMAND_ALL`; loaded resources match `expected_resources`.
+
+### Evidence
+
+CLI transcript with intent, resources, response shape, token counts where applicable.
+
+### Pass / Fail
+
+- **Pass**: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+- **Fail**: wrong intent or empty output
+
+### Failure Triage
+
+Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+
+### Optional Supplemental Checks
+
+**Expected Behavior**
 
 - **Intent picked**: ON_DEMAND fallback (load-all)
 - **Resources loaded**: every reference + asset enumerated in `RESOURCE_MAP` (all 11 intents' resources).
 - **Outcome**: CLI emits a directory-style summary of loaded resources, NOT a normal intent-specific output. This establishes the CEILING token cost per CLI.
 
-## Cross-CLI Variants
+**Cross-CLI Variants**
 
 - **cli-opencode (gpt-5.5/high/fast)**: stress-tests context window; record peak input tokens.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may truncate output; record peak input tokens.
 
-## Success Criteria
+**Success Criteria**
 
 - ON_DEMAND_KEYWORDS triggered; load-all engaged
 - all 22 enumerated resources appear in the loaded set (false_positive_resource_load_count tolerated up to 3 for any new RESOURCE_MAP additions)
 - per-CLI ceiling token cost recorded; should be the upper bound of SD-013/SD-014/SD-015 spectrum
 
-## 4. SOURCE METADATA
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `../../SKILL.md` | The sk-doc router under test |
+| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+
+---
+
+## 5. SOURCE METADATA
 
 - Group: Token Cost Baseline
 - Playbook ID: SD-015
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `token-cost-baseline/max-load.md`
+

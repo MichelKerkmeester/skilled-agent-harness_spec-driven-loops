@@ -1,7 +1,8 @@
 ---
 id: SD-006
-category: resource_loading
 title: 'README_CREATION intent loads mixed references + assets'
+description: "This scenario validates README_CREATION mixed resource loading for SD-006."
+stage: routing
 expected_intent: sk-create-readme
 expected_resources:
   - sk-create-readme/references/README.md
@@ -12,13 +13,14 @@ expected_leaf_resources:
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-template.md
-expected_token_range_input: 1000-2500
-expected_token_range_output: 1500-3000
-created: 2026-05-05
 version: 1.8.0.8
 ---
 
 # SD-006: Mixed References + Assets Resource Loading (README)
+
+This document captures the routing-gold contract, current behavior, execution notes, source anchors, and metadata for `SD-006`.
+
+---
 
 ## 1. OVERVIEW
 
@@ -30,23 +32,28 @@ README creation needs process guidance and a concrete scaffold; either one alone
 
 ---
 
+---
+
 ## 2. SCENARIO CONTRACT
 
+- Objective: Verify sk-doc routes the scenario to `README_CREATION` with the expected resources.
 - Real user request: `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.`
 - Prompt: `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.`
-- Expected intent: `README_CREATION`
+- Expected signals: Intent resolves to `README_CREATION`; loaded resources match `expected_resources`.
 - Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+- Pass/fail: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+
+---
 
 ## 3. TEST EXECUTION
 
-| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|---|---|
-| SD-006 | README_CREATION intent loads mixed references + assets | Verify sk-doc routes the scenario to `README_CREATION` with the expected resources. | `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `README_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+### Prompt
 
+- Prompt: `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.`
 
-### Setup
+### Commands
 
-```
+```text
 DO NOT execute the work below. INSTEAD describe (in your response):
 1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
@@ -58,7 +65,26 @@ INPUT TO ROUTE:
 Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.
 ```
 
-## Expected Behavior
+### Expected
+
+Intent resolves to `README_CREATION`; loaded resources match `expected_resources`.
+
+### Evidence
+
+CLI transcript with intent, resources, response shape, token counts where applicable.
+
+### Pass / Fail
+
+- **Pass**: PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output.
+- **Fail**: wrong intent or empty output
+
+### Failure Triage
+
+Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt.
+
+### Optional Supplemental Checks
+
+**Expected Behavior**
 
 - **Intent picked**: `README_CREATION`
 - **Resources loaded**:
@@ -66,20 +92,41 @@ Create a README for packages/auth/ covering purpose, install, usage, configurati
   - `assets/readme/readme-template.md` (scaffold)
 - **Outcome**: CLI loads both resources and emits a `README.md` that follows the template's section order and applies the guidance from `references/README.md`.
 
-## Cross-CLI Variants
+**Cross-CLI Variants**
 
 - **cli-opencode (gpt-5.5/high/fast)**: foreground OK; produces filled scaffold inline.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact README; verify section completeness.
 
-## Success Criteria
+**Success Criteria**
 
 - intent_picked == `README_CREATION`
 - false_positive_resource_load_count <= 1
 - response is non-empty and references both expected_resources (template structure + guidance)
 
-## 4. SOURCE METADATA
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| `../../SKILL.md` | The sk-doc router under test |
+| `../../sk-create-skill/scripts/validate-playbook-topology.cjs` | Routing-gold contract gate |
+
+---
+
+## 5. SOURCE METADATA
 
 - Group: Resource Loading
 - Playbook ID: SD-006
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `resource-loading/mixed-references-assets.md`
+
