@@ -12,9 +12,17 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { pathToFileURL } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '../../..');
 const PLUGIN_PATH = path.join(ROOT, '.opencode', 'plugins', 'mk-spec-memory.js');
+const MESSAGE_IDENTITY_PATH = path.join(
+  ROOT,
+  '.opencode',
+  'plugins',
+  'lib',
+  'opencode-message-identity.js',
+);
 const SCHEMA_PATH = path.join(
   ROOT,
   '.opencode',
@@ -51,6 +59,10 @@ async function importPlugin(tag = 'default') {
   const source = fs.readFileSync(PLUGIN_PATH, 'utf8')
     .replace("import { tool } from '@opencode-ai/plugin/tool';", 'const tool = (definition) => definition;')
     .replace(
+      "import * as messageIdentity from './lib/opencode-message-identity.js';",
+      `import * as messageIdentity from ${JSON.stringify(pathToFileURL(MESSAGE_IDENTITY_PATH).href)};`,
+    )
+    .replace(
       /const BRIDGE_PATH = .*?;\nconst SOURCE_PATHS = \[[\s\S]*?\n\];/,
       "const BRIDGE_PATH = '/test/mk-spec-memory-bridge.mjs';\nconst SOURCE_PATHS = [BRIDGE_PATH];",
     );
@@ -69,6 +81,7 @@ async function createPlugin(binary, options = {}) {
       cliTimeoutMs: 500,
       cacheTtlMs: options.cacheTtlMs ?? 5000,
       maxBriefChars: options.maxBriefChars ?? 120,
+      deduplicateTransforms: options.deduplicateTransforms,
     },
   );
 }
@@ -393,4 +406,131 @@ test('Claude hook sources pin bounded, truthful, snapshot-consistent behavior', 
 
   assert.match(shared, /MAX_HOOK_STDIN_BYTES/);
   assert.match(shared, /process\.stdin\.destroy\(\)/);
+});
+
+test('same-message continuity contributions are suppressed only after the first delivery', async () => {
+  const root = makeTempDir('mk-spec-memory-dedup');
+  const binary = writeExecutable(root, 'bridge.js', `
+process.stdin.resume();
+process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok', brief: 'same continuity block', metadata: {} })));
+`);
+  try {
+    const hooks = await createPlugin(binary, {
+      directory: root,
+      deduplicateTransforms: true,
+      tag: 'same-message',
+    });
+    const input = {
+      sessionID: 'memory-dedup-session',
+      messageID: 'memory-message-1',
+      transformCallOrdinal: 0,
+    };
+    const first = { system: [] };
+    const second = { system: [] };
+    await hooks['experimental.chat.system.transform'](input, first);
+    await hooks['experimental.chat.system.transform'](input, second);
+
+    assert.equal(first.system.length, 1);
+    assert.deepEqual(second.system, []);
+
+    const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+    const receipt = identityModule.getMultiTransformReceipt(
+      identityModule.resolveMessageIdentity(input),
+    );
+    assert.deepEqual(receipt.transforms.map((entry) => ({
+      transform: entry.transform,
+      outcome: entry.outcome,
+    })), [
+      { transform: 'mk-spec-memory', outcome: 'delivered' },
+      { transform: 'mk-spec-memory', outcome: 'suppressed_duplicate' },
+    ]);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('distinct continuity messages with identical text both receive full delivery', async () => {
+  const root = makeTempDir('mk-spec-memory-distinct');
+  const binary = writeExecutable(root, 'bridge.js', `
+process.stdin.resume();
+process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok', brief: 'identical continuity text', metadata: {} })));
+`);
+  try {
+    const hooks = await createPlugin(binary, {
+      directory: root,
+      deduplicateTransforms: true,
+      tag: 'distinct-message',
+    });
+    const first = { system: [] };
+    const second = { system: [] };
+    await hooks['experimental.chat.system.transform']({
+      sessionID: 'memory-distinct-session',
+      messageID: 'memory-message-a',
+      transformCallOrdinal: 0,
+    }, first);
+    await hooks['experimental.chat.system.transform']({
+      sessionID: 'memory-distinct-session',
+      messageID: 'memory-message-b',
+      transformCallOrdinal: 0,
+    }, second);
+
+    assert.deepEqual(second.system, first.system);
+    assert.equal(first.system.length, 1);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('flag-off continuity delivery preserves repeated output byte-for-byte', async () => {
+  const root = makeTempDir('mk-spec-memory-flag-off');
+  const binary = writeExecutable(root, 'bridge.js', `
+process.stdin.resume();
+process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok', brief: 'flag-off continuity', metadata: {} })));
+`);
+  try {
+    const hooks = await createPlugin(binary, {
+      directory: root,
+      deduplicateTransforms: false,
+      tag: 'flag-off',
+    });
+    const input = {
+      sessionID: 'memory-flag-off-session',
+      messageID: 'memory-message-flag-off',
+      transformCallOrdinal: 0,
+    };
+    const first = { system: [] };
+    const second = { system: [] };
+    await hooks['experimental.chat.system.transform'](input, first);
+    await hooks['experimental.chat.system.transform'](input, second);
+
+    assert.equal(JSON.stringify(second.system), JSON.stringify(first.system));
+    assert.equal(second.system.length, 1);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('unresolvable continuity identity fails open with full delivery', async () => {
+  const root = makeTempDir('mk-spec-memory-unresolved');
+  const binary = writeExecutable(root, 'bridge.js', `
+process.stdin.resume();
+process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok', brief: 'unresolved continuity', metadata: {} })));
+`);
+  try {
+    const hooks = await createPlugin(binary, {
+      directory: root,
+      deduplicateTransforms: true,
+      tag: 'unresolved',
+    });
+    const input = { sessionID: 'memory-unresolved-session' };
+    const first = { system: [] };
+    const second = { system: [] };
+    await hooks['experimental.chat.system.transform'](input, first);
+    await hooks['experimental.chat.system.transform'](input, second);
+
+    assert.deepEqual(second.system, first.system);
+    assert.equal(first.system.length, 1);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });

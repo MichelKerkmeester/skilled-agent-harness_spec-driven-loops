@@ -23,6 +23,8 @@ import { createRequire } from 'node:module';
 
 import { tool } from '@opencode-ai/plugin/tool';
 
+import * as messageIdentity from './lib/opencode-message-identity.js';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -294,6 +296,9 @@ function normalizeOptions(rawOptions) {
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
   const configuredTtl = options.cacheTTLMs ?? options.cacheTtlMs;
   const enabled = options.enabled !== false && !envDisablesPlugin();
+  const configuredTransformDedup = typeof options.deduplicateTransforms === 'boolean'
+    ? options.deduplicateTransforms
+    : undefined;
 
   const envCacheTTLMs = Number(process.env.MK_SKILL_ADVISOR_CACHE_TTL_MS);
   const envThreshold = Number(process.env.MK_SKILL_ADVISOR_THRESHOLD_CONFIDENCE);
@@ -319,6 +324,8 @@ function normalizeOptions(rawOptions) {
     maxBriefChars: normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
     maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, normalizePositiveInt(envMaxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES)),
     boundedCompiledRouteSummary: configuredBounding ?? process.env[COMPILED_ROUTE_BOUNDING_ENV] === '1',
+    deduplicateTransforms: configuredTransformDedup
+      ?? process.env[messageIdentity.OPENCODE_TRANSFORM_DEDUP_ENV] === '1',
     sourceSignatureOverride: typeof options.sourceSignatureOverride === 'string'
       ? options.sourceSignatureOverride
       : null,
@@ -566,6 +573,19 @@ function eventTypeFrom(event) {
   return typeof payload?.type === 'string' ? payload.type : null;
 }
 
+function shouldDeliverTransformContribution(input, options, blockId, content, order) {
+  if (!options.deduplicateTransforms) return true;
+  const identity = messageIdentity.resolveMessageIdentity(input);
+  const contentHash = messageIdentity.hashPolicyBlockContent(blockId, content, order);
+  if (!identity || !contentHash) return true;
+  return messageIdentity.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-skill-advisor',
+  }).shouldDeliver;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -586,6 +606,7 @@ function eventTypeFrom(event) {
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
  * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
+ * @param {boolean} [rawOptions.deduplicateTransforms] - Suppress duplicate same-message system blocks
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
@@ -814,6 +835,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     state.disabledReason = !options.enabled
       ? (disabledEnvName() ?? 'config_enabled_false')
       : null;
+    messageIdentity.clearTransformDedupState();
   }
 
   function cacheHitRate() {
@@ -883,7 +905,15 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (!prompt) {
         state.lastBridgeStatus = 'skipped';
         state.lastErrorCode = 'MISSING_PROMPT';
-        output.system.push(FALLBACK_DIRECTIVE);
+        if (shouldDeliverTransformContribution(
+          input,
+          options,
+          messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
+          FALLBACK_DIRECTIVE,
+          1,
+        )) {
+          output.system.push(FALLBACK_DIRECTIVE);
+        }
         return;
       }
 
@@ -893,20 +923,48 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         sessionID,
         options,
       });
-      output.system.push(response.brief
+      const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
-        : FALLBACK_DIRECTIVE);
+        : FALLBACK_DIRECTIVE;
+      const advisorBlockId = response.brief
+        ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
+        : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
+      const advisorBlockOrder = response.brief ? 0 : 1;
+      if (shouldDeliverTransformContribution(
+        input,
+        options,
+        advisorBlockId,
+        advisorBlock,
+        advisorBlockOrder,
+      )) {
+        output.system.push(advisorBlock);
+      }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,
       });
-      if (compiledLine) {
+      if (compiledLine && shouldDeliverTransformContribution(
+        input,
+        options,
+        messageIdentity.POLICY_BLOCK_IDS.RUNTIME_OPENCODE_COMPILED_ROUTE,
+        compiledLine,
+        8,
+      )) {
         output.system.push(compiledLine);
       }
     } catch {
       state.lastBridgeStatus = 'fail_open';
       state.lastErrorCode = 'UNEXPECTED_HOOK_ERROR';
       try {
-        if (options.enabled && Array.isArray(output.system) && !output.system.includes(FALLBACK_DIRECTIVE)) {
+        if (options.enabled
+          && Array.isArray(output.system)
+          && !output.system.includes(FALLBACK_DIRECTIVE)
+          && shouldDeliverTransformContribution(
+            input,
+            options,
+            messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
+            FALLBACK_DIRECTIVE,
+            1,
+          )) {
           output.system.push(FALLBACK_DIRECTIVE);
         }
       } catch {
@@ -944,6 +1002,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             state.inFlight.delete(key);
           }
         }
+        messageIdentity.clearTransformDedupSession(sessionID);
         return;
       }
 

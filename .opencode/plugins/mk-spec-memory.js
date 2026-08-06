@@ -20,6 +20,8 @@ import { fileURLToPath } from 'node:url';
 
 import { tool } from '@opencode-ai/plugin/tool';
 
+import * as messageIdentity from './lib/opencode-message-identity.js';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -95,6 +97,9 @@ function normalizeOptions(rawOptions) {
   const envCliTimeoutMs = Number(process.env.MK_SPEC_MEMORY_CLI_TIMEOUT_MS);
   const envMaxBriefChars = Number(process.env.MK_SPEC_MEMORY_MAX_BRIEF_CHARS);
   const envMaxCacheEntries = Number(process.env.MK_SPEC_MEMORY_MAX_CACHE_ENTRIES);
+  const configuredTransformDedup = typeof options.deduplicateTransforms === 'boolean'
+    ? options.deduplicateTransforms
+    : undefined;
 
   return {
     enabled: options.enabled !== false && !envDisablesPlugin(),
@@ -112,6 +117,8 @@ function normalizeOptions(rawOptions) {
       normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
     ),
     maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, normalizePositiveInt(envMaxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES)),
+    deduplicateTransforms: configuredTransformDedup
+      ?? process.env[messageIdentity.OPENCODE_TRANSFORM_DEDUP_ENV] === '1',
     sourceSignatureOverride: typeof options.sourceSignatureOverride === 'string' ? options.sourceSignatureOverride : null,
   };
 }
@@ -266,6 +273,19 @@ function bridgePayload({ request, projectDir, sessionID, options }) {
   return JSON.stringify(payload);
 }
 
+function shouldDeliverTransformContribution(input, options, blockId, content, order) {
+  if (!options.deduplicateTransforms) return true;
+  const identity = messageIdentity.resolveMessageIdentity(input);
+  const contentHash = messageIdentity.hashPolicyBlockContent(blockId, content, order);
+  if (!identity || !contentHash) return true;
+  return messageIdentity.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-spec-memory',
+  }).shouldDeliver;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -284,6 +304,7 @@ function bridgePayload({ request, projectDir, sessionID, options }) {
  * @param {string} [rawOptions.specFolder] - Optional spec folder scope for continuity recovery
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected continuity brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum continuity cache entries
+ * @param {boolean} [rawOptions.deduplicateTransforms] - Suppress duplicate same-message system blocks
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
@@ -444,6 +465,7 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
     state.cacheMisses = 0;
     state.continuityLookups = 0;
     state.disabledReason = !options.enabled ? (disabledEnvName() ?? 'config_enabled_false') : null;
+    messageIdentity.clearTransformDedupState();
   }
 
   function cacheHitRate() {
@@ -482,6 +504,13 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
     const result = await getContinuity({ sessionID });
     if (!result.brief) return;
     const brief = markedBrief(result.brief, options.maxBriefChars);
+    if (!shouldDeliverTransformContribution(
+      input,
+      options,
+      messageIdentity.POLICY_BLOCK_IDS.OPENCODE_CONTINUITY,
+      brief.text,
+      7,
+    )) return;
     if (output.system.some((entry) => typeof entry === 'string' && entry.includes(brief.marker))) return;
     output.system.push(brief.text);
   }
@@ -495,6 +524,7 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
       }
       if (eventType === 'session.deleted') {
         invalidateSession(extractEventSessionID(event));
+        messageIdentity.clearTransformDedupSession(extractEventSessionID(event));
         return;
       }
       if (eventType === 'server.instance.disposed' || eventType === 'global.disposed') {

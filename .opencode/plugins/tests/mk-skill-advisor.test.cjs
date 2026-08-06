@@ -26,6 +26,13 @@ const BRIDGE_PATH = path.join(
   'plugin-bridges',
   'mk-skill-advisor-bridge.mjs',
 );
+const MESSAGE_IDENTITY_PATH = path.join(
+  WORKSPACE_ROOT,
+  '.opencode',
+  'plugins',
+  'lib',
+  'opencode-message-identity.js',
+);
 const RENDERER_PATH = path.join(
   WORKSPACE_ROOT,
   '.opencode',
@@ -513,4 +520,143 @@ test('status exposes prompt-safe configuration health', async () => {
 
   assert.match(pluginStatus, /^config_status=(loaded|absent|error)$/m);
   assert.match(pluginStatus, /^config_error_code=(none|CONFIG_PARSE_ERROR|CONFIG_READ_ERROR)$/m);
+});
+
+test('same-message advisor contributions are suppressed only after the first delivery', async () => {
+  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: same-message block') });
+  const hooks = await makePlugin({
+    deduplicateTransforms: true,
+    spawnOverride: spawnSequence([child]),
+  });
+  const input = {
+    sessionID: 'advisor-dedup-session',
+    messageID: 'advisor-message-1',
+    transformCallOrdinal: 0,
+    prompt: 'repeat this exact text',
+  };
+  const first = await runPrompt(hooks, input, { system: [] });
+  const second = await runPrompt(hooks, input, { system: [] });
+
+  assert.equal(first.system.length, 1);
+  assert.deepEqual(second.system, []);
+
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const identity = identityModule.resolveMessageIdentity(input);
+  const receipt = identityModule.getMultiTransformReceipt(identity);
+  assert.deepEqual(receipt.transforms.map((entry) => ({
+    transform: entry.transform,
+    outcome: entry.outcome,
+  })), [
+    { transform: 'mk-skill-advisor', outcome: 'delivered' },
+    { transform: 'mk-skill-advisor', outcome: 'suppressed_duplicate' },
+  ]);
+});
+
+test('distinct advisor messages with identical text both receive full delivery', async () => {
+  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: identical text block') });
+  const hooks = await makePlugin({
+    deduplicateTransforms: true,
+    spawnOverride: spawnSequence([child]),
+  });
+  const first = await runPrompt(hooks, {
+    sessionID: 'advisor-distinct-session',
+    messageID: 'advisor-message-a',
+    transformCallOrdinal: 0,
+    prompt: 'same user text',
+  }, { system: [] });
+  const second = await runPrompt(hooks, {
+    sessionID: 'advisor-distinct-session',
+    messageID: 'advisor-message-b',
+    transformCallOrdinal: 0,
+    prompt: 'same user text',
+  }, { system: [] });
+
+  assert.deepEqual(second.system, first.system);
+  assert.equal(first.system.length, 1);
+});
+
+test('flag-off advisor delivery preserves repeated output byte-for-byte', async () => {
+  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: flag-off baseline') });
+  const hooks = await makePlugin({
+    deduplicateTransforms: false,
+    spawnOverride: spawnSequence([child]),
+  });
+  const input = {
+    sessionID: 'advisor-flag-off-session',
+    messageID: 'advisor-message-flag-off',
+    transformCallOrdinal: 0,
+    prompt: 'same user text',
+  };
+  const first = await runPrompt(hooks, input, { system: [] });
+  const second = await runPrompt(hooks, input, { system: [] });
+
+  assert.equal(JSON.stringify(second.system), JSON.stringify(first.system));
+  assert.equal(second.system.length, 1);
+});
+
+test('unresolvable advisor identity fails open with full delivery', async () => {
+  const child = fakeChild({ stdout: bridgeEnvelope('Advisor: unresolved identity') });
+  const hooks = await makePlugin({
+    deduplicateTransforms: true,
+    spawnOverride: spawnSequence([child]),
+  });
+  const input = {
+    sessionID: 'advisor-unresolved-session',
+    prompt: 'same user text',
+  };
+  const first = await runPrompt(hooks, input, { system: [] });
+  const second = await runPrompt(hooks, input, { system: [] });
+
+  assert.deepEqual(second.system, first.system);
+  assert.equal(first.system.length, 1);
+});
+
+test('malformed advisor identity fields resolve to no identity without throwing', async () => {
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const malformedInput = {
+    sessionID: {},
+    messageID: [],
+    transformCallOrdinal: 'not-an-ordinal',
+    prompt: 'same user text',
+  };
+
+  assert.doesNotThrow(() => identityModule.resolveMessageIdentity(malformedInput));
+  assert.equal(identityModule.resolveMessageIdentity(malformedInput), null);
+});
+
+test('multi-transform receipts record both transform fires and their outcomes', async () => {
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const state = identityModule.createTransformDedupState();
+  const identity = identityModule.resolveMessageIdentity({
+    sessionID: 'receipt-session',
+    messageID: 'receipt-message',
+    transformCallOrdinal: 0,
+  });
+  const blockId = identityModule.POLICY_BLOCK_IDS.ADVISOR_ROUTE;
+  const contentHash = identityModule.hashPolicyBlockContent(blockId, 'shared block', 0);
+
+  assert.equal(identityModule.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-skill-advisor',
+    state,
+  }).shouldDeliver, true);
+  assert.equal(identityModule.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-spec-memory',
+    state,
+  }).shouldDeliver, false);
+
+  const receipt = identityModule.getMultiTransformReceipt(identity, state);
+  assert.deepEqual(receipt.transforms.map((entry) => ({
+    transform: entry.transform,
+    blockId: entry.blockId,
+    outcome: entry.outcome,
+  })), [
+    { transform: 'mk-skill-advisor', blockId, outcome: 'delivered' },
+    { transform: 'mk-spec-memory', blockId, outcome: 'suppressed_duplicate' },
+  ]);
 });

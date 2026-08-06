@@ -1,21 +1,20 @@
 ---
 title: "Implementation Summary: OpenCode Transform Dedup"
-description: "Planned, not yet built. This packet documents the intended stable-message-identity resolver, same-message dedup, and multi-transform receipts ahead of implementation."
+description: "Implemented stable-message-identity dedup for OpenCode system transforms, with flag-off parity and multi-transform receipts."
 trigger_phrases:
-  - "transform dedup not yet built"
-  - "message identity resolver placeholder"
+  - "OpenCode transform dedup implementation"
+  - "message identity resolver"
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the forward-looking not-yet-built implementation placeholder"
-    next_safe_action: "Implement opencode-message-identity.js per plan.md Phase 2 once phase 001 ships"
-    blockers:
-      - "Blocked on phase 001 shipping stable message identity and multi-transform receipts"
+    last_updated_at: "2026-08-06T14:16:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the shared identity resolver and two plugin dedup gates"
+    next_safe_action: "Review the downstream phase against the shipped helper API"
+    blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
       - ".opencode/plugins/mk-spec-memory.js"
@@ -23,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-003"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-opencode-transform-dedup |
-| **Completed** | Not yet completed - planning only |
+| **Completed** | 2026-08-06 - scoped implementation complete in this worktree; packet metadata refresh remains blocked by file scope |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,17 +49,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This packet is a planning spec: `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` describe the intended shared stable-message-identity resolver (`opencode-message-identity.js`), its consumption by `mk-skill-advisor.js` and `mk-spec-memory.js`, the same-message dedup gate, and the multi-transform receipt extension. None of these changes exist on disk yet, and this phase's implementation is explicitly blocked on phase `001-measurement-and-receipts-foundation` shipping stable message identity and multi-transform receipts first.
+The shared helper now resolves a stable `{sessionId, messageId, transformCallOrdinal}` identity without consulting prompt text, hashes contributions with the existing canonical policy-block algorithm, and tracks delivered/suppressed contributions in process-local state. Both OpenCode transforms use the same state only when deduplication is explicitly enabled; unresolved identities fall open to the existing full-delivery path.
 
-### Planned Files (not yet created)
+### Shipped Files
 
 | File | Planned Action | Purpose |
 |------|-----------------|---------|
-| `.opencode/plugins/lib/opencode-message-identity.js` | Create | Shared stable message-identity resolver and dedup-state tracker |
-| `.opencode/plugins/mk-skill-advisor.js` | Modify | Consume the resolver; suppress genuine same-message duplicates |
-| `.opencode/plugins/mk-spec-memory.js` | Modify | Consume the resolver; suppress genuine same-message duplicates |
-| `.opencode/plugins/tests/mk-skill-advisor.test.cjs` | Modify | Dedup and non-dedup fixture cases |
-| `.opencode/plugins/tests/mk-spec-memory.test.cjs` | Modify | Dedup and non-dedup fixture cases |
+| `.opencode/plugins/lib/opencode-message-identity.js` | Created | Shared identity resolver, canonical block hashing, dedup tracker, lifecycle cleanup, and multi-transform receipt accessors (`:169`, `:285`, `:303`) |
+| `.opencode/plugins/mk-skill-advisor.js` | Modified | Independent flag, canonical block gates before every system append, and session cleanup (`:327`, `:576`, `:908`, `:933`, `:945`) |
+| `.opencode/plugins/mk-spec-memory.js` | Modified | Independent flag, continuity-block gate, and session cleanup (`:120`, `:276`, `:507`, `:527`) |
+| `.opencode/plugins/tests/mk-skill-advisor.test.cjs` | Modified | Same/distinct/flag-off/fail-open fixtures plus multi-transform receipt assertions (`:525-661`) |
+| `.opencode/plugins/tests/mk-spec-memory.test.cjs` | Modified | Same/distinct/flag-off/fail-open continuity fixtures (`:411-532`) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +67,9 @@ Nothing yet. This packet is a planning spec: `spec.md`, `plan.md`, `tasks.md`, a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not applicable yet. `plan.md` section 4 lays out the intended delivery order: (1) confirm phase 001's identity/receipt infrastructure is shipped and green, and inventory both transform call sites' available session/message/turn fields, (2) build the shared resolver and dedup-state tracker and wire both plugins to it behind an independent flag, (3) prove same-message suppression, distinct-message non-suppression, fail-open on unresolved identity, and flag-off parity with fixtures, then run both plugin test suites. When implementation lands, this section will be rewritten to describe what was actually delivered, replacing this forward-looking description.
+The flag is `deduplicateTransforms` or `MK_OPENCODE_TRANSFORM_DEDUP=1`; both default to off (`mk-skill-advisor.js:327-328`, `mk-spec-memory.js:120-121`). When enabled, each contribution is keyed by resolved message identity plus the canonical block ID and content hash. The first matching contribution is delivered, later duplicates are suppressed, and every recorded fire is available through the detached multi-transform receipt (`opencode-message-identity.js:285-316`).
+
+The advisor maps its brief, fallback, and compiled-route entries to the canonical policy IDs (`mk-skill-advisor.js:926-952`). The continuity plugin maps its brief to the registered continuity block (`mk-spec-memory.js:507-515`). If identity or canonical hashing cannot be resolved, the gate returns the delivery-open result without recording suppression (`opencode-message-identity.js:169-175`, `mk-skill-advisor.js:577-580`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -81,7 +82,8 @@ Not applicable yet. `plan.md` section 4 lays out the intended delivery order: (1
 | Identity from session + message/turn ID + ordinal, never prompt text | Research.md's Eliminated Alternatives explicitly rules out content-hash-alone dedup - identical text can be a genuinely distinct message |
 | Fail-open (no suppression) when identity cannot be resolved | Matches the parent program's guardrail-preserving principle; an unresolvable identity must never become an excuse to drop a delivery |
 | Shared resolver module consumed by both plugins, not duplicated logic | A cross-plugin duplicate can only be detected if both plugins check the same dedup state; independent per-plugin implementations could not see each other's deliveries |
-| Hard-block this phase's implementation start on phase 001 | Dedup without stable identity/receipt infrastructure would be exactly the ruled-out content-hash approach in a different location |
+| Keep the new flag independent and off by default | Existing output is byte-preserved until an operator opts into same-message dedup |
+| Reuse the canonical block registry and hash algorithm | Dedup keys remain aligned with the policy planner instead of inventing a second block identity scheme |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,18 +93,42 @@ Not applicable yet. `plan.md` section 4 lays out the intended delivery order: (1
 
 | Check | Result |
 |-------|--------|
-| Same-message duplicate suppression fixture in `mk-skill-advisor.test.cjs` | Not yet run |
-| Distinct-message-identical-text non-suppression fixture in `mk-skill-advisor.test.cjs` | Not yet run |
-| Identity-resolution-failure fail-open fixture in `mk-spec-memory.test.cjs` | Not yet run |
-| Flag-off byte-identical parity fixture in `mk-spec-memory.test.cjs` | Not yet run |
+| Same-message duplicate suppression in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:525-553` and `mk-spec-memory.test.cjs:411-451` |
+| Distinct-message-identical-text non-suppression in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:555-576` and `mk-spec-memory.test.cjs:452-482` |
+| Identity-resolution-failure fail-open in both plugins | PASS - full Node command: `ℹ tests 42`, `ℹ pass 42`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:597-625` and `mk-spec-memory.test.cjs:513-532` |
+| Flag-off byte-identical parity in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:578-595` and `mk-spec-memory.test.cjs:484-511` |
+| Multi-transform receipt records both transforms and outcomes | PASS - `mk-skill-advisor.test.cjs:627-661`; direct state fixture records `mk-skill-advisor/delivered` and `mk-spec-memory/suppressed_duplicate` |
+| Canonical policy-plan regression | PASS - policy-plan Vitest: `Test Files 2 passed (2)`, `Tests 37 passed (37)` |
 <!-- /ANCHOR:verification -->
+
+### Required Command Output
+
+```text
+node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs .opencode/plugins/tests/mk-spec-memory.test.cjs
+ℹ tests 42
+ℹ pass 42
+ℹ fail 0
+
+npm test -- tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts
+> test
+> vitest run tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts
+Test Files 2 passed (2)
+Tests 37 passed (37)
+
+node --test --test-name-pattern='^(same-message advisor|distinct advisor|flag-off advisor|same-message continuity|distinct continuity|flag-off continuity)'
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+```
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a planning artifact, not a shipped fix.** No code exists yet; every row above is a planned action, not a completed one.
-2. **This phase is hard-blocked on phase `001-measurement-and-receipts-foundation`.** Implementation cannot begin - not just cannot activate - until stable message identity and multi-transform receipts exist.
-3. **The exact OpenCode field(s) that provide a stable message/turn identity are not confirmed yet.** `spec.md` §7 leaves this open, to be resolved from phase 001's fixture work.
+1. **The flag remains off by default.** Production activation requires `deduplicateTransforms: true` or `MK_OPENCODE_TRANSFORM_DEDUP=1`.
+2. **Unresolvable OpenCode identity fails open.** The helper never falls back to prompt-text hashing, so some host shapes will continue to receive full delivery until they expose all three identity components.
+3. **Repository-wide drift guards remain noisy.** `run-all-drift-guards.sh` failed on 472 alignment findings outside this phase; the scoped alignment check over `.opencode/plugins` passed with `Findings: 0`, `Errors: 0`, `Warnings: 0`, router-sync passed 10/10, and stack-folder checks passed. The Codex hook installer also reports global hook drift (8 missing, 8 command mismatches, 7 orphaned); no hook files were changed.
+4. **No commit was created.** The requested result is left in the current worktree for the operator's existing branch workflow.
+5. **Strict packet validation is not green.** `validate.sh ... --strict` reports one `GENERATED_METADATA_INTEGRITY` violation because `description.json` and `graph-metadata.json` still contain hashes from before the required checklist and summary edits. Those generated metadata files are outside the requested change set and were not modified.
 <!-- /ANCHOR:limitations -->
