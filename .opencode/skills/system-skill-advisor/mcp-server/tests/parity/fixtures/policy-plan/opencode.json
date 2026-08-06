@@ -1,0 +1,11 @@
+{
+  "runtime": "opencode",
+  "serializer": "opencode-output.system",
+  "cases": [
+    { "name": "first", "context": "advisor", "inputText": "Implement a feature" },
+    { "name": "repeat", "context": "advisor", "inputText": "Implement a feature" },
+    { "name": "Gate-emitting", "context": "gate", "inputText": "Implement a feature" },
+    { "name": "read-only", "context": "readOnly", "inputText": "Explain the architecture" },
+    { "name": "failure-fallback", "context": "fallback", "inputText": "Implement a feature" }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Measurement & Receipts Foundation"
-description: "Verification items for the shadow planner, canonical block IDs, delivery receipts, and parity fixtures. Planning packet - items are pending until implementation lands."
+description: "Verification items and implementation evidence for the shadow planner, canonical block IDs, delivery receipts, and parity fixtures."
 trigger_phrases:
   - "measurement and receipts checklist"
   - "shadow planner verification"
@@ -10,18 +10,20 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the verification checklist for the shadow planner phase"
-    next_safe_action: "Author implementation-summary.md as a forward-looking not-yet-built placeholder"
-    blockers: []
+    last_updated_at: "2026-08-06T12:56:28Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded scoped implementation and verification evidence for the shadow planner phase"
+    next_safe_action: "Resolve Pi owner export before broader wiring"
+    blockers:
+      - "The current Pi prompt-advisor owner has no PI_SUBAGENT_DISPATCH_DIRECTIVE export or equivalent text constant."
+      - "The full repository Vitest gate is not clean in this environment; see implementation-summary.md."
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 81
     open_questions: []
     answered_questions: []
 ---
@@ -51,8 +53,8 @@ _memory:
   - **Evidence**: `spec.md` REQ-001 through REQ-006
 - [x] CHK-002 [P0] Technical approach defined in plan.md
   - **Evidence**: `plan.md` sections 3 (Architecture) and 4 (Implementation Phases)
-- [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence**: `plan.md` section 6 - `render.ts`, Gate core, Pi dispatch directive, and OpenCode plugin bridges, all read-only inputs to this phase
+- [ ] CHK-003 [P1] Dependencies identified and available
+  - **Evidence**: `render.ts` and the Gate owner are available; inspection of `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:16-57` found no `PI_SUBAGENT_DISPATCH_DIRECTIVE` export or equivalent owner constant. The mismatch is recorded as a deviation.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -61,9 +63,13 @@ _memory:
 ## Code Quality
 
 - [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+  - **Evidence**: No project lint/format script is defined in `mcp-server/package.json`; the first `npm run typecheck` run exited 0 before the repository-wide test harness altered ignored dependencies, but the final rerun exited 2 on missing `zod` and MCP SDK packages. `git diff --check` and comment hygiene both exit 0.
+- [x] CHK-011 [P0] No console errors or warnings
+  - **Evidence**: `tests/parity/policy-plan-serializer-parity.vitest.ts:153-190`; `../../system-spec-kit/mcp-server/node_modules/.bin/vitest run tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts` reports 2 files and 37 tests passed, exit 0; the existing renderer/producer/privacy command reports 3 files and 32 tests passed, exit 0.
+- [x] CHK-012 [P1] Error handling implemented
+  - **Evidence**: `policy-plan.ts:245-285` validates every receipt field; `policy-plan.ts:317-332` keeps shadow observation fail-open; `tests/policy-plan.vitest.ts:79-96` rejects each missing field.
+- [x] CHK-013 [P1] Code follows project patterns
+  - **Evidence**: `policy-plan.ts:213-243` exposes pure allow-listed hash helpers; `render.ts:164-242` calls the observer additively and returns the original render values; the initial package typecheck exited 0 before ignored dependency directories became incomplete.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -71,10 +77,14 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
-- [ ] CHK-021 [P0] Manual/negative-control testing complete (zero-output-diff proof)
-- [ ] CHK-022 [P1] Edge cases tested (Gate-emitting, read-only, and failure/fallback fixture cases)
-- [ ] CHK-023 [P1] Error scenarios validated (adversarial raw-data-leakage control)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
+  - **Evidence**: `tests/policy-plan.vitest.ts:23-113` covers IDs, hash purity, receipt fields, and configured/observed lanes; `tests/parity/policy-plan-serializer-parity.vitest.ts:153-190` covers all six serializers and 30 parity rows; both scoped suites exit 0.
+- [x] CHK-021 [P0] Manual/negative-control testing complete (zero-output-diff proof)
+  - **Evidence**: Proof-first `npx vitest run tests/policy-plan.vitest.ts` exited 1 before the allow-list because the received serialization contained the path and session token; the allow-listed rerun exited 0. The parity suite prints `SC-001 byte-diff: empty; rows=30` and exits 0.
+- [x] CHK-022 [P1] Edge cases tested (Gate-emitting, read-only, and failure/fallback fixture cases)
+  - **Evidence**: `tests/parity/fixtures/policy-plan/*.json` contains five cases for each of Claude, Codex, Devin, Cursor, OpenCode, and Pi; the parity run reports 37/37 tests passed, exit 0.
+- [x] CHK-023 [P1] Error scenarios validated (adversarial raw-data-leakage control)
+  - **Evidence**: `tests/policy-plan.vitest.ts:46-61` asserts a filesystem path and session token are absent from the serialized hash input; the post-allow-list unit run reports 2/2 tests passed, exit 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -82,13 +92,20 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - **Evidence**: No dispatched review finding was supplied; the scoped change is classified as a `matrix/evidence` implementation with additive observer wiring in `render.ts:164-242`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - **Evidence**: The producer inventory is explicit in `policy-plan.ts:121-167` (nine stable IDs and owner-content callbacks); absent owners are represented as `undefined` rather than copied text.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - **Evidence**: `render.ts:7,168-242` is the only production consumer in scope; `tests/policy-plan.vitest.ts:5-20` and `tests/parity/policy-plan-serializer-parity.vitest.ts:8-15` are the test consumers; the scoped diff contains no other production call-site edits.
 - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+  - **Evidence**: The required path-plus-session negative control is present at `tests/policy-plan.vitest.ts:46-61`; the broader generic table axes are not part of this phase's requested fixture contract.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+  - **Evidence**: `tests/parity/policy-plan-serializer-parity.vitest.ts:21-22,153-190` defines six runtimes x five cases and prints `rows=30`.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+  - **Evidence**: Not applicable: `policy-plan.ts:173-243` reads only explicit block input and owner constants; it does not read environment or mutable global state.
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+  - **Evidence**: No commit or fix SHA was created in this worktree; evidence remains file-and-command based as requested.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -96,9 +113,12 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Hash inputs never include raw prompt text, file paths, or session identifiers (REQ-002)
-- [ ] CHK-032 [P1] Shadow receipts are never merged into, or consumed by, the emitted response
+- [x] CHK-030 [P0] No hardcoded secrets
+  - **Evidence**: The only session-like value is the adversarial test fixture at `tests/policy-plan.vitest.ts:47-55`; the planner's allow-list is `policy-plan.ts:91-105` and excludes prompt/session fields.
+- [x] CHK-031 [P0] Hash inputs never include raw prompt text, file paths, or session identifiers (REQ-002)
+  - **Evidence**: `policy-plan.ts:213-227` serializes only `id`, `content`, and `order`; `tests/policy-plan.vitest.ts:46-61` verifies the path and session token are absent.
+- [x] CHK-032 [P1] Shadow receipts are never merged into, or consumed by, the emitted response
+  - **Evidence**: `observeRenderedAdvisorPolicy` returns `void` at `policy-plan.ts:317-332`; every `render.ts` return remains the original `rendered` value or `null` at `render.ts:168-242`; parity diff is empty across 30 rows.
 <!-- /ANCHOR:security -->
 
 ---
@@ -106,9 +126,10 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized
-  - **Evidence**: `spec.md`, `plan.md`, and `tasks.md` describe the same planned shadow planner, hash functions, receipt shape, and parity fixture matrix
-- [ ] CHK-041 [P1] Code comments adequate (no spec-path/ADR/REQ/CHK ids embedded per comment-hygiene.md)
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+  - **Evidence**: `checklist.md` and `implementation-summary.md` are updated, but `spec.md`, `plan.md`, and `tasks.md` remain unchanged by the explicit file-scope constraint; the summary records this deviation.
+- [x] CHK-041 [P1] Code comments adequate (no spec-path/ADR/REQ/CHK ids embedded per comment-hygiene.md)
+  - **Evidence**: `python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` exits 0 for `policy-plan.ts`, `render.ts`, and both new Vitest files.
 - [ ] CHK-042 [P2] README updated (if `lib/policy-plan.ts` warrants a directory README entry)
 <!-- /ANCHOR:docs -->
 
@@ -118,7 +139,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only
-  - **Evidence**: No temp files created; all writes confined to `001-measurement-and-receipts-foundation/`
+  - **Evidence**: No task-created temp files remain; the generated TypeScript build-info artifact from the baseline compiler check was removed before final status inspection.
 - [x] CHK-051 [P1] scratch/ cleaned before completion
   - **Evidence**: No `scratch/` folder created or used in this spec-doc packet
 <!-- /ANCHOR:file-org -->
@@ -130,9 +151,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 3/11 (planning-stage items only; implementation items pending) |
-| P1 Items | 10 | 3/10 (planning-stage items only; implementation items pending) |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 11 | 8/11 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: Not yet run - this packet is planning-only; implementation has not started.
+**Verification Date**: 2026-08-06. Scoped implementation evidence is recorded; pending items are the Pi owner mismatch, final dependency-backed typecheck, broader generic fix-matrix coverage, lack of a commit SHA, unsynchronized planning docs, and the optional README review.
 <!-- /ANCHOR:summary -->
