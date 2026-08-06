@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Makes AI use inside Obsidian effective: vault and note operations across the headless notesmd-cli, the app-backed official obsidian CLI, and the cyanheads MCP, plus deep plugin and theme knowledge (Beancount, Tables, BRAT, Health.md, Iconic, Charts, Dataview, Excalidraw, Git, Outliner, Minimal) operated at the file layer. Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.14.0.0
+version: 0.15.0.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, beancount, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, charts, chart render block, dataview, dql, dataviewjs, inline field, excalidraw, excalidraw.md, drawing note, obsidian-git, vault git, auto backup, outliner, list editing, minimal theme, css theme, theme snippet -->
@@ -51,6 +51,7 @@ The skill that makes AI use inside Obsidian effective. It operates notes and vau
 ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official obsidian CLI command details)
            references/mcp-tools.md                      (cyanheads MCP tool catalog + invocation)
+           references/lra-rest-surface.md               (Local REST API REST endpoints + built-in MCP)
            references/troubleshooting.md                (error, auth, REST API, or install issue detected)
            Plugin operation logic:
              references/plugins/plugin-operation-logic.md (plugin-driven note automation)
@@ -297,7 +298,8 @@ INTENT_SIGNALS = {
 # PLUGINS / INSTALL / TROUBLESHOOT routes.
 RESOURCE_MAP = {
     "NOTES_CLI":     ["references/obsidian-cli-commands.md"],
-    "MCP_ADVANCED":  ["references/mcp-tools.md"],
+    "MCP_ADVANCED":  ["references/mcp-tools.md",
+                     "references/lra-rest-surface.md"],
     "PLUGIN_FINANCE": ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/beancount-finance/data-model.md",

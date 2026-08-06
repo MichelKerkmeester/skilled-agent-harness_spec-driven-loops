@@ -136,7 +136,7 @@ Minimal block:
 
 The body is a JSON object. Without a `chartOptions` key the object is the Chart.js configuration itself. With a `chartOptions` key the Chart.js configuration sits inside it and `width` may sit beside it. Any valid Chart.js 3.x configuration works, including `options` for scales, tooltips and plugins.
 
-VERIFY: release notes for older versions describe a `charts` block language with `type`, `data` and `settings` keys. The installed 3.9.0 registers only `chart` and `advanced-chart`. A block fenced with another language renders as a plain code block, not a chart.
+The installed 3.9.0 registers exactly two block languages — `chart` and `advanced-chart` (confirmed from `main.js`: `registerMarkdownCodeBlockProcessor("chart")` and `("advanced-chart")`); a block fenced with any other language renders as a plain code block, not a chart. (Older release notes describe a single `charts` language keyed by `type`/`data`/`settings`; that form is not present in 3.9.0.)
 
 ---
 

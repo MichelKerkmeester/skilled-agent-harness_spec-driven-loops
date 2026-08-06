@@ -78,6 +78,7 @@
         "assets/plugins/outliner/outliner-settings.example.json",
         "assets/plugins/outliner/outliner-settings.partial.example.json",
         "assets/workflows.md",
+        "references/lra-rest-surface.md",
         "references/mcp-tools.md",
         "references/obsidian-cli-commands.md",
         "references/plugins/beancount-finance/beancount-finance.md",

@@ -208,7 +208,7 @@ Obsidian applies snippets on top of the active theme, so the same variable names
 
 ### Enablement
 
-Obsidian records enabled snippets in an array inside `appearance.json`. The exact key name follows Obsidian's documented appearance file format (VERIFY: the key is not present in this vault because no snippet exists yet). The AI proposes the snippet file first and documents the enable step as the user's in-app action.
+Obsidian records enabled snippets under the `enabledCssSnippets` array in `appearance.json` (the key is absent until the first snippet is enabled). The AI proposes the snippet file first and documents the enable step as the user's in-app action.
 
 ### Backup discipline
 
