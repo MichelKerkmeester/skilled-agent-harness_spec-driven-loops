@@ -8,12 +8,12 @@
 | Field | Value |
 |-------|-------|
 | **Packet** | `.opencode/specs/system-deep-loop/036-deep-loop-innovation` (phase parent, Level 3) |
-| **Status** | Planning COMPLETE · Execution NOT STARTED (0 implementation-summaries in phases 003-017) |
+| **Status** | Execution IN PROGRESS · spine 001-013 BUILT+landed · WS1 remediation (018-033) in progress · **014 authority cutover BLOCKED** pending WS1 · 033 deferred |
 | **Scope** | 17 phases: 001-002 research inputs (frozen), 003-017 implementation, 018 drift census (done) |
 | **Size** | 121 implementation spec docs; the 013 fan-out alone is 8 modes × 7 leaves = 56 leaves (~54% of tasks) |
 | **Validation** | 125/125 folders `validate.sh --strict` clean (errors=0 warnings=0) as of this handover |
 | **Branch** | `skilled/v4.0.0.0` (shared, concurrent sessions active) |
-| **Executor policy** | Primary `cli-codex` GPT-5.6-SOL `xhigh` `fast`; fallback `cli-opencode` `openai/gpt-5.6-sol-fast --variant xhigh`. Operator has authorized MAX parallelization. |
+| **Executor policy** | **Build = GPT-5.6-LUNA `max` `fast`** (cli-codex / cli-opencode / cli-pi); **Design·verify·gate = GPT-5.6-SOL `high` `fast`**. Serial dispatch; SOL adversarial verify per child before land. Land via leak-guard `commit-tree` scoped to `036/` (never blanket working-tree push). |
 
 ---
 
@@ -127,18 +127,26 @@ live-tools unblock         │
 
 ---
 
-## 7. What is already done (this session, all on origin)
+## 7. What is already done (on origin/skilled/v4.0.0.0)
 
-- **Phase 018 drift census** — two-model deep-research (`gpt-5.6-sol-fast` + `glm-5.2`) over all 15 impl phases: 0 invalidated, 003/012/013 need refinement, both controls passed.
-- **~400 cross-phase reference repairs** — `065→036`, the 214 `phase-006`/`phase-007` service misattributions, 107 leaf-index+3 self-descriptions, kebab runtime paths, the ledger phase-ID space, the manifest packet identity — all adversarially audited, on origin.
-- **020 coupling recorded** in 003 §6 + 018 §9.
-- Validation: 125/125 folders strict-clean.
+- **Spine 001-013 BUILT + landed** — research (001-002), census (003), architecture/transition contract + 178-row bijective ledger (004), fan-out unblock (005), ledger core + auth gateway (006, dark), shared services (007), compat/shadow/rollback (008), durable fan-in (009), novelty/convergence (010-011), shared mode contracts + write-set conflict graph (012), and the 8 per-mode migrations (013).
+- **WS1 remediation landed** — the validation-gate review BLOCKED 014; WS1 fixes clear it. Landed: 018 (drift census), 021, 022/001-002, **024 durable-write-boundaries** (`5c98e4654e`), 025/002-004.
+- **024 deep review** — 20-iter GPT-5.6-LUNA MAX FAST, verdict FAIL; findings F001-F004 confirmed real (identity fail-open, policy-digest, cross-process publication/lock ownership).
+- **033 identity/lock hardening — DEFERRED** — 3 non-converged build passes (the last hung on the full-aggregate shared-graph SQLite append-lock); design + postmortem landed at `2c39edddd1`, status Blocked. See `033-identity-and-lock-ownership-hardening/handover.md`.
+- **Epic roadmap** — this packet's `handover.md` carries the completion path + all carry-forward mechanics; it is the primary resume doc.
+- **Metadata caveat** — many landed children still show stale `planned`/`in_progress` in `graph-metadata.json`; the §3 phase map + `handover.md` ledger are authoritative.
 
 ---
 
-## 8. First moves for the execution agent
+## 8. Completion path — for the autonomous execution agent
 
-1. Read `handover.md` (this packet root) end to end — it has the dispatch commands, wave plan, and traps.
-2. Pin an isolated worktree off origin's current tip; pin BASE in 003 against that SHA.
-3. Run **004/002 (the 178-row bijective ledger + triage) FIRST**, standalone, with authority to defer/reject.
-4. Then execute wave-by-wave per §3, dispatching parallel `cli-codex` SOL-xhigh-fast agents within each wave per 012's write-set conflict graph, each leaf verified by a blocking SOL receipt.
+Read this packet's `handover.md` end to end FIRST (completion path + carry-forward mechanics + traps). Then execute — autonomously and serially — to close the epic:
+
+1. **Reconcile metadata** — `generate-description.js` + `backfill-graph-metadata.js` across landed 036 children; clear the parent `--strict` debt (register 033 in the `validate.sh` child manifest; add `RELATED DOCUMENTS` to parent `spec.md`; add child predecessor/successor cross-refs).
+2. **Finish WS1 remediation** — build the remaining children (019, 020, 023, 026→032) and re-attempt/land **033**. Each cycle: LUNA-max-fast build → SOL-high-fast adversarial verify → leak-guard land.
+3. **016 whole-system gate** on a frozen SHA — prove WS1 cleared the 014-blocking findings.
+4. **014 staged authority cutover** — flip authority legacy→ledger one mode at a time, each behind a cutover certificate + rollback window; then **015** legacy-writer retirement (zero-use gated).
+5. **Closeout** — final 016 gate → **017** integrate-latest + reopen-on-drift + parent rollup + merge to main.
+6. **Optional 034** runtime-lib modularization (reorg-last, after lib-touching children land).
+
+**Discipline:** verify-before-land (SOL adversarial pass per child, explicit model); never push the blanket working tree (leak-guard `commit-tree` scoped to `036/`); run the per-mode test matrix per-mode (the full 168-file aggregate hangs on shared-graph SQLite append-lock); recover the runtime to the clean anchor `5c98e4654e` if a build halts.
