@@ -1,0 +1,71 @@
+{
+  "run_id": "1786005742754-jdlynd",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/hooks/001-per-prompt-injection-audit",
+  "base_artifact_dir": ".opencode/specs/hooks/001-per-prompt-injection-audit/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "sol",
+      "state_log": ".opencode/specs/hooks/001-per-prompt-injection-audit/research/lineages/sol/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-06T08:42:22.766Z",
+        "end_at_iso": "2026-08-06T09:40:29.551Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 13,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 20
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-08-06T10:05:00Z",
+          "deltaMs": 1350449
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-08-06T10:24:00Z",
+          "deltaMs": 2490449
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-08-06T11:00:00Z",
+          "deltaMs": 4650449
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-08-06T11:18:00Z",
+          "deltaMs": 5730449
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-08-06T11:45:00Z",
+          "deltaMs": 7350449
+        }
+      ]
+    }
+  ]
+}

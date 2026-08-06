@@ -1,0 +1,14 @@
+{
+  "specFolder": "agents",
+  "description": "Track folder for agents packets — agent behavior, terminal-proof discipline, and cross-runtime surface coverage.",
+  "keywords": [
+    "track"
+  ],
+  "lastUpdated": "2026-08-06T00:00:00.000Z",
+  "specId": "agents",
+  "folderSlug": "agents",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}
