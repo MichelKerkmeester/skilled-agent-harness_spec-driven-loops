@@ -59,7 +59,7 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 7. `MCP-H004` deletes only the throwaway note created by `MCP-H001`. The operator must capture the exact path before execution.
 8. `OBS-011` uses a scratch `.beancount` ledger. The `bean-check` validator is optional; an explicit warning that it is unavailable is an acceptable signal.
 9. `OBS-012` uses a non-production vault and the Tables plugin; preserve the original `.table.md` asset and capture the app reload/render boundary.
-10. `OBS-013` uses a throwaway vault, `curl`, `jq`, a release fixture or GitHub access, and backups of BRAT `data.json` and `community-plugins.json`; close Obsidian before the file-layer writes.
+10. `OBS-013` uses a throwaway vault, `jq`, and backups of BRAT `data.json` and `community-plugins.json`; stage from the shipped offline release fixture (no network) or from live GitHub access with `curl`; close Obsidian before the file-layer writes.
 
 ---
 
