@@ -1,0 +1,27 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/027-plugin-source-grounding-and-refinements",
+  "description": "Follow-up refinements on the `mcp-obsidian` skill after the 025 coverage review and 026 template-conformance passes: ground the `VERIFY`-marked claims",
+  "keywords": [
+    "follow-up",
+    "refinements",
+    "mcp-obsidian",
+    "skill",
+    "coverage",
+    "review",
+    "template-conformance",
+    "passes",
+    "ground",
+    "verify",
+    "marked",
+    "claims"
+  ],
+  "lastUpdated": "2026-08-06T09:21:35.715Z",
+  "specId": "027",
+  "folderSlug": "plugin-source-grounding-and-refinements",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

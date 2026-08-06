@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/027-plugin-source-grounding-and-refinements",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/027-plugin-source-grounding-and-refinements",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "follow-up",
+      "refinements",
+      "mcp-obsidian",
+      "skill",
+      "coverage",
+      "review",
+      "template-conformance",
+      "passes",
+      "ground",
+      "verify",
+      "marked",
+      "claims"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outcome All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance criteria",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical files",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Risk note",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ground Minimal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ground Charts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "handshake",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How Done",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Iconic",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final state: complete — shipped to v4 as `5ab29d5bfc`",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What changed",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Follow-up refinements on the `mcp-obsidian` skill after the 025 coverage review and 026 template-conformance passes: ground the `VERIFY`-marked claims that the installed plugin sources actually resolve, and document the Local REST API plugin's own REST + built-in-MCP surface (which the skill referenced but never described)",
+    "created_at": "2026-08-06T09:22:38.878Z",
+    "last_save_at": "2026-08-06T09:22:38.878Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bcb409e3a5b180fc55735ccffc578038b973d645c14b62d23a648d492e8cd1df",
+    "source_doc_hashes": {
+      "spec.md": "de622f05a25cdd564d7558159df82de4c5f9bb902c507e54d34a589376b87525",
+      "plan.md": "f730adf476efec9c72d7bd20d66e9b7fd4e79a5b0af1ae8a5ea4bfe00c66911d",
+      "tasks.md": "c00c0f679cfa09f9e2742da6701e1ba753f5c5031d5ece1d1f1b02b856350b8c",
+      "implementation-summary.md": "9f3fda8c1239975eb0a0d80ad011575b0f0f2e953ed11fab610f02d495a28b47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
