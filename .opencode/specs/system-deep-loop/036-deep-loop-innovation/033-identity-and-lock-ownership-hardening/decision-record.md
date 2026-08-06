@@ -1,0 +1,144 @@
+---
+title: "Decision Record: Identity and Lock Ownership Hardening"
+description: "Accepted architecture decisions for fail-closed identity, explicit policy state, and process-shared ownership boundaries."
+trigger_phrases:
+  - "identity ownership ADR"
+  - "deep-loop lock decision record"
+  - "F005 loop lock hardening decision"
+  - "policy authorization state ADR"
+importance_tier: "critical"
+contextType: "decision-record"
+parent: "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
+    last_updated_at: "2026-08-06T05:29:50Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Recorded the identity-required predicate and compare-and-swap restore decision"
+    next_safe_action: "Regenerate child metadata and confirm strict validation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "F005 is a real partial-record window and is hardened rather than dismissed as harness flakiness."
+      - "Malformed append-lock ownership is treated conservatively and is never reclaimed by age alone."
+      - "Shadowing and legacy-authoritative adapters intentionally have no identity binding; identity checks are required when a binding, resolver, or authority mode says they are required."
+---
+# Decision Record: Identity and Lock Ownership Hardening
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Use explicit identity state and token-checked atomic ownership
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-05 |
+| **Deciders** | Runtime remediation owner and Codex execution verifier |
+| **Scope** | Authorized transitions, leaf publication, append locks, and loop-lock acquisition |
+
+<!-- ANCHOR:adr-001-context -->
+### Context
+
+The runtime had four confirmed defects at authorization and filesystem ownership boundaries. In identity-required modes, missing authority identity bindings could cause gateway comparisons to skip, while shadowing and legacy-authoritative adapters intentionally have no identity binding. Closure-captured authorization state was absent from policy identity. The staged leaf writer used an in-memory winner set and a racy existence check. Append-lock reclaim used age alone and release deleted unconditionally; its restore path could also overwrite a live lock created during the steal window. Direct inspection of the fresh loop-lock path found that it created the exclusive file before writing the complete owner record, which exposes a partial JSON window to a competing process.
+
+### Constraints
+
+- 024's gateway-only fenced append, hard-private `#appendAuthorized`, idempotent replay short-circuit, and passing tests are frozen guarantees.
+- The runtime uses filesystem coordination and must remain compatible with the existing write-once and recovery protocols.
+- The policy registry cannot safely introspect arbitrary JavaScript closure environments.
+- Ambiguous ownership must fail closed; an age heuristic is not proof that an owner is dead.
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- ANCHOR:adr-001-decision -->
+### Decision
+
+**We chose**: Require explicit authorization state, fail closed on unresolved identity when identity validation is required, and use token-checked filesystem claims for every cross-process ownership boundary.
+
+**How it works**: The gateway uses an explicit identity-required predicate. Validation is required when an identity resolver is configured, when the authority supplies any actor, capability, or evidence binding, or when the authority state is outside the deliberately unbound `shadowing` and `legacy_authoritative` states. Only an authority in one of those two no-binding states, with no resolver and no binding fields, skips identity comparison. A required but unresolved actor, capability, or evidence field records a typed denial; provider outage remains on the existing gateway-failure path. Policy registration rejects definitions with no explicit serializable authorization state and includes the state digest in the policy identity. Leaf publication runs under the shared append lock. Append locks carry a pid-plus-random-nonce token; reclaim claims and revalidates a dead matching token, while release claims and deletes only its own token. If a dead-owner claim must be restored, the reclaimer uses `linkSync(claimPath, lockPath)` as a non-overwriting compare-and-swap: `EEXIST` means a live winner owns the path, so only the detached claim is removed; `ENOENT` means the claim is already gone. Fresh loop-lock acquisition fsyncs a complete temporary record and hard-links it into the exclusive target path, so readers never observe a partial target record.
+
+**F005 disposition**: Hardened. Direct code inspection confirmed a real fresh-acquisition partial-file window. The existing two-process falsifier was retained and stabilized with a common readiness barrier; the atomic hard-link publication closes the window.
+
+**F004 re-fix**: The retained owner/successor checks do not cover a reclaimer racing two independent live acquirers. The new deterministic three-process test pauses the reclaimer after it detaches the dead owner, mutates the detached claim, then releases two `openSync(..., 'wx')` racers before the restore commit. The CAS restore preserves the one live winner and prevents the reclaimer from entering the critical section.
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Explicit state plus token-checked atomic claims** | Auditable, fail closed, reuses existing filesystem primitives, and handles successor races | Adds registration fields and a small claim/retry path | 9/10 |
+| Infer closure state from `evaluate.toString()` | No call-site changes | JavaScript source cannot expose runtime closure values reliably; identical source can hide different state | 2/10 |
+| Keep age-only reclaim and tighten the threshold | Small code change | A live slow owner can still be removed; threshold selection is not proof | 1/10 |
+| Hold only a delta existence check for leaf publication | Low overhead | Check-then-publish remains cross-process racy | 3/10 |
+| Write fresh loop-lock JSON directly after `O_EXCL` | Familiar and simple | The target inode is observable while incomplete | 2/10 |
+| Restore by `existsSync` plus `renameSync` | Small and familiar | A live inode created after the check can be overwritten during restore | 1/10 |
+
+**Why this one**: It optimizes for correctness at the exact boundaries where a false allow or duplicate owner can become durable. It also keeps the existing lock and recovery architecture rather than adding a second coordination subsystem.
+<!-- /ANCHOR:adr-001-alternatives -->
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+**What improves**:
+
+- Missing identity evidence becomes a durable typed denial instead of an implicit allow.
+- Identity checks no longer over-deny deliberately unbound shadow/legacy adapters; required modes still fail closed on missing or mismatched evidence.
+- Closure-only policy state cannot share an identity with a policy whose state differs.
+- Independent leaf writers and appenders have one process-shared winner, with write-once replay preserved.
+- Live, dead, malformed, and successor ownership states have conservative, testable behavior.
+- A live lock created during dead-owner restore wins atomically; the detached claim is discarded without removing that live inode.
+- Fresh loop-lock readers see either no record or one complete record.
+
+**What it costs**:
+
+- Every transition policy registration must declare `authorizationState: null` or explicit state. Mitigation: the registration inventory and TypeScript gate catch omissions early.
+- Dead or malformed locks can wait for the existing five-second acquisition timeout. Mitigation: preserve the lock for inspection rather than risk deleting a live owner.
+- Leaf publication takes the existing append-lock critical section across staging and publication. Mitigation: staged writes are local filesystem operations and the winner path remains bounded by existing timeout behavior.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A resolver returns incomplete identity | H | The gateway checks every request identity field and denies the first unresolved field. |
+| PID liveness is ambiguous because of permission or reuse | H | Treat non-`ESRCH` results as live and require token match after atomic claim. |
+| Hard-link claim is unsupported across a device boundary | M | Temp and target are siblings; claim errors fail acquisition rather than overwrite. |
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Four findings were confirmed by direct runtime read; F005 had a concrete partial-file window. |
+| 2 | **Beyond Local Maxima?** | PASS | Explicit state, shared lock reuse, token claims, and atomic publication were compared against source-only and age-only alternatives. |
+| 3 | **Sufficient?** | PASS | The implementation uses the existing gateway and filesystem boundaries without introducing a new coordinator. |
+| 4 | **Fits Goal?** | PASS | The changes target identity, policy identity, leaf publication, append ownership, and loop-lock acquisition only. |
+| 5 | **Open Horizons?** | PASS | The design leaves a clear extension point for richer owner liveness evidence without weakening the conservative default. |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-001-five-checks -->
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation
+
+**What changes**:
+
+- Gateway identity context records unresolved fields and denies before policy evaluation; provider outages retain `GATEWAY_FAILURE`.
+- Policy registration computes `authorizationStateDigest` and rejects undefined state; all runtime/test registrations declare state.
+- Leaf publication calls `withAppendLock` around recovery, staging, publication, state append, and cleanup, returning whether this process published.
+- Append locks write `{pid, nonce}`, reclaim only a dead matching owner, restore detached claims with non-overwriting hard-link CAS, and compare the token before release.
+- Fresh loop locks fsync complete temporary records and use an atomic hard-link claim.
+- Tests cover red-before failures, eight shadow-parity adapters plus their harness, cross-process contention, the three-process owner/restore race, owner/successor races, and the retained fresh-acquisition falsifier.
+
+**How to roll back**: Revert this packet's runtime and test changes as a reviewed unit, preserve all lock/state artifacts for inspection, leave 024 documents untouched, and rerun the owned gates. No data migration or external deployment action is required.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->

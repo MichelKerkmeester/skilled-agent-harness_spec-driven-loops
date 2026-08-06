@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening",
+  "description": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity",
+  "keywords": [
+    "authorization",
+    "gateway",
+    "skipped",
+    "identity",
+    "comparisons",
+    "authority",
+    "bindings",
+    "resolver",
+    "output",
+    "absent",
+    "allowing",
+    "caller-supplied"
+  ],
+  "lastUpdated": "2026-08-06T05:29:50.967Z",
+  "specId": "033",
+  "folderSlug": "identity-and-lock-ownership-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
