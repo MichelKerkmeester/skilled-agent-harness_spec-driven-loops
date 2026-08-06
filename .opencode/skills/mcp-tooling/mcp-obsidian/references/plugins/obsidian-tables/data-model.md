@@ -1,5 +1,5 @@
 ---
-title: "Tables File-Layer Data Model"
+title: Tables File-Layer Data Model
 description: "Complete file-layer contract for the Tables Obsidian plugin: the Agentable 1.0 .table.md envelope, canonical columns, ID-keyed rows, formulas, views, settings, and migration behavior."
 trigger_phrases:
   - "tables table md schema"
@@ -379,7 +379,7 @@ table-links:
 - `table-links` mirrors the `col_note` path as a derived `[[...]]` entry. If link cells change, regenerate this frontmatter list consistently.
 - The `Open work` view has one sort rule intentionally. A second serialized sort rule is retained by the model but not currently executed by the renderer.
 
-The same ready-to-copy data file is available as [`example.table.md`](../../../assets/plugins/obsidian-tables/example.table.md).
+The same ready-to-copy data file is available as [`example.table.md`](../../../assets/plugins/obsidian-tables/sample.example.table.md).
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Minimal Theme File-Layer Index"
+title: Minimal Theme Index (`Minimal`)
 description: "Entry point for operating the Minimal Obsidian theme at the file layer: identity, activation contract, file surface, customization boundary and sibling reference files."
 trigger_phrases:
   - "minimal theme obsidian"
@@ -17,8 +17,9 @@ version: 0.10.0.0
 
 The `mcp-obsidian` mode treats Minimal as a **theme artifact layer**, never as a plugin. The AI reads the theme package, verifies activation and proposes snippet-based tweaks. It never edits the theme's own CSS in a real vault.
 
-## 1. IDENTITY
+---
 
+## 1. OVERVIEW
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian theme ID | `Minimal` | Theme directory name and the exact `cssTheme` value |
@@ -29,6 +30,8 @@ The `mcp-obsidian` mode treats Minimal as a **theme artifact layer**, never as a
 | Minimum Obsidian version | 1.13.0 | Manifest `minAppVersion` field |
 | Documentation | https://minimal.guide | Cited inside the theme's embedded settings block |
 | License header | MIT, Copyright 2020-2026 | First comment in `theme.css` |
+
+---
 
 ## 2. WHAT IT IS
 
@@ -72,6 +75,8 @@ When both companions are absent, snippet-based tweaks are the only customization
 
 The folder location is the quickest discriminator. A folder under `themes/` is a theme and follows this reference set. A folder under `plugins/` follows the plugin sets.
 
+---
+
 ## 3. FILE-LAYER SURFACE
 
 | Layer | Path or artifact | Operable by AI |
@@ -88,6 +93,8 @@ The theme package is a shipped artifact. Every other layer is user configuration
 ### Update behavior
 
 Obsidian replaces the theme folder when a theme update installs. A snippet survives the update because it lives outside the theme folder. A hand-edited `theme.css` does not survive and blocks the update. This is the durable why behind the read-only rule.
+
+---
 
 ## 4. ACTIVATION LOCATION
 
@@ -123,6 +130,8 @@ Expected output is the two-line JSON above. Any other value means the theme is n
 
 Writing `appearance.json` is a rare, approval-gated action. Take a timestamped backup first. Change only the `cssTheme` value. Re-parse the JSON after the write. Reverting is a single restore of the backup.
 
+---
+
 ## 5. WHEN TO USE THIS REFERENCE SET
 
 Use this set when the user asks about the theme, the appearance settings, colors, fonts, UI spacing, CSS tweaks or why the interface renders a certain way. The frontmatter trigger phrases cover the common phrasings.
@@ -146,6 +155,8 @@ Use this set when the user asks about the theme, the appearance settings, colors
 
 Plugin questions stay in the plugin sets. Iconic, Dataview, Charts, Health.md and the other reference sets each own their plugin file layer. A question about a plugin that renders inside the themed UI belongs to that plugin's set, not here.
 
+---
+
 ## 6. BOUNDARY RULES
 
 - **Never edit `theme.css` in a real vault.** The file is the shipped artifact. Editing it breaks theme updates and hides the change from the user.
@@ -154,6 +165,8 @@ Plugin questions stay in the plugin sets. Iconic, Dataview, Charts, Health.md an
 - **Propose snippets, then write with backup discipline.** A snippet file gets a timestamped backup before any write.
 - **Never invent settings keys.** The theme has no settings keys. The embedded `@settings` schema is read-only documentation for companion plugins.
 - **State the reload boundary.** CSS changes render after a reload or restart. File-layer verification never proves rendered pixels.
+
+---
 
 ## 7. SIBLING FILES
 

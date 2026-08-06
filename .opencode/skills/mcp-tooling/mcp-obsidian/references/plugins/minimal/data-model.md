@@ -1,5 +1,5 @@
 ---
-title: "Minimal Theme File-Layer Data Model"
+title: Minimal Theme File-Layer Data Model
 description: "File-layer contract for the Minimal theme: theme package files, the cssTheme activation key, the embedded @settings schema, the snippets layer and the boundary the AI must not cross."
 trigger_phrases:
   - "minimal theme data model"
@@ -16,6 +16,8 @@ version: 0.10.0.0
 # Minimal Theme File-Layer Data Model
 
 Minimal is a theme, so its data model is a **file-layer contract**, not a plugin rulebook. There is no `data.json`, no settings schema owned by a plugin and no vault content written by the theme. The model covers the theme package, the activation key, the embedded settings schema and the snippets layer.
+
+---
 
 ## 1. OVERVIEW
 
@@ -35,6 +37,8 @@ Minimal is a theme, so its data model is a **file-layer contract**, not a plugin
 | Activation | `.obsidian/appearance.json` | Read always. Write only with approval |
 | Snippets | `.obsidian/snippets/*.css` | Read, propose, write with backup |
 | Companion plugins | `.obsidian/plugins/obsidian-*-settings/` | Absent in this vault |
+
+---
 
 ## 2. THEME PACKAGE
 
@@ -76,6 +80,8 @@ The AI reads this file to report the installed version. It never writes it.
 
 The header comment is verified text and reads in part: "Designed to be used with Minimal Theme Settings and Hider plugins." This is the theme author's own statement of companion intent.
 
+---
+
 ## 3. ACTIVATION ARTIFACT
 
 ### appearance.json schema
@@ -102,6 +108,8 @@ The theme activates through a single optional key in `.obsidian/appearance.json`
 ### Related appearance keys
 
 Obsidian stores other appearance state in the same file, including interface language, base color scheme and enabled CSS snippets. This vault's file holds only `cssTheme` today. The snippet enablement key is documented in section 5.
+
+---
 
 ## 4. EMBEDDED SETTINGS SCHEMA
 
@@ -176,6 +184,8 @@ Representative variable ids from the block, verified in the installed file:
 
 The AI reads these ids to explain what a tweak would change. It never writes them into `theme.css`. The full list lives in the `@settings` block inside the installed file.
 
+---
+
 ## 5. SNIPPETS LAYER
 
 ### Directory contract
@@ -210,9 +220,13 @@ cp snippet.css snippet.css.bak-$(date +%s)
 
 A single snippet file stays one logical tweak set. Multiple tweaks become multiple files with clear names.
 
+---
+
 ## 6. COMPANION PLUGIN DATA
 
 Minimal Theme Settings and Style Settings are separate community plugins. Neither is installed in this vault, verified in `.obsidian/community-plugins.json`. When one is installed later, it owns its own plugin folder and its own data file. It falls under the plugin reference-set discipline, not this theme set.
+
+---
 
 ## 7. WHAT THE AI MUST NOT DO
 

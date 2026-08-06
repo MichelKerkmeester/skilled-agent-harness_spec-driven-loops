@@ -144,7 +144,7 @@ Capture the release response and selected asset names, manifest identity/version
 
 | File | Role |
 |---|---|
-| [../../assets/brat-data-entry.example.json](../../assets/brat-data-entry.example.json) | Populated BRAT policy fixture without credentials |
+| [../../assets/plugins/obsidian42-brat/brat-data-entry.example.json](../../assets/plugins/obsidian42-brat/brat-data-entry.example.json) | Populated BRAT policy fixture without credentials |
 | [../../references/plugins/obsidian42-brat/troubleshooting.md](../../references/plugins/obsidian42-brat/troubleshooting.md) | Release, asset, compatibility, token, and path diagnosis |
 | [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
 

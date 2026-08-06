@@ -41,7 +41,7 @@ Write these files while Obsidian is closed, retain backups, re-parse every JSON 
 | File | Type | Role |
 |---|---|---|
 | [`../../manual-testing-playbook/plugin-tie-ins/brat-headless-install.md`](../../manual-testing-playbook/plugin-tie-ins/brat-headless-install.md) | Manual playbook | Exercises a headless stage → register → activate install. |
-| [`../../assets/brat-data-entry.example.json`](../../assets/brat-data-entry.example.json) | Fixture | Provides a populated BRAT policy fixture without credentials. |
+| [`../../assets/plugins/obsidian42-brat/brat-data-entry.example.json`](../../assets/plugins/obsidian42-brat/brat-data-entry.example.json) | Fixture | Provides a populated BRAT policy fixture without credentials. |
 | [`../../references/plugins/obsidian42-brat/workflows.md`](../../references/plugins/obsidian42-brat/workflows.md) | Reference | Defines exact asset checks and the three-stage post-write verification. |
 
 ## 4. SOURCE METADATA

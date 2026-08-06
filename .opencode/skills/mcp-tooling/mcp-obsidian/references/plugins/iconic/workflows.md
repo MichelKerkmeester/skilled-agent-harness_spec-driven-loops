@@ -1,5 +1,5 @@
 ---
-title: "Iconic File-Layer Workflows"
+title: Iconic File-Layer Workflows
 description: "Safe file-layer recipes for Iconic: add/edit/disable rules, flip visibility toggles, change colors, and merge rulebooks with backup discipline."
 trigger_phrases:
   - "add iconic rule"
@@ -27,6 +27,8 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 3. Apply the minimal merge (below).
 4. Write + re-parse JSON.
 5. Tell the user the icons render after an in-app reload.
+
+---
 
 ## 2. RECIPES
 
@@ -65,6 +67,8 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 ```json
 { "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
 ```
+
+---
 
 ## 3. VERIFYING
 

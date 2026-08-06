@@ -1,5 +1,5 @@
 ---
-title: "Beancount Ledger Data Model"
+title: Beancount Ledger Data Model
 description: "Complete file-layer data model for the Beancount Ledger community plugin, including its 21-key settings object, structured ledger layout, Beancount directives, BQL surface, and bean-price behavior."
 trigger_phrases:
   - "beancount finance data model"
@@ -238,4 +238,4 @@ The complete source boundary is the tagged plugin repository and the primary Bea
 - [beanquery Beancount source adapter](https://github.com/beancount/beanquery/blob/master/beanquery/sources/beancount.py)
 - [beanprice README](https://github.com/beancount/beanprice/blob/master/README.md)
 
-File-layer examples and shared workflows live in [`../../../assets/plugins/beancount-finance/example.beancount`](../../../assets/plugins/beancount-finance/example.beancount), [`../../../assets/plugins/beancount-finance/example.data.json`](../../../assets/plugins/beancount-finance/example.data.json), and [`../../../assets/workflows.md`](../../../assets/workflows.md).
+File-layer examples and shared workflows live in [`../../../assets/plugins/beancount-finance/ledger.example.beancount`](../../../assets/plugins/beancount-finance/ledger.example.beancount), [`../../../assets/plugins/beancount-finance/beancount-data.example.json`](../../../assets/plugins/beancount-finance/beancount-data.example.json), and [`../../../assets/workflows.md`](../../../assets/workflows.md).

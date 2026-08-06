@@ -1,5 +1,5 @@
 ---
-title: "Beancount Ledger Troubleshooting"
+title: Beancount Ledger Troubleshooting
 description: "Cause, detection, and file-layer recovery for Beancount Ledger parse, account, balance, lot, BQL, bean-price, PATH, include, and concurrent-edit failures."
 trigger_phrases:
   - "beancount ledger error"
@@ -205,8 +205,8 @@ The plugin's own writers can create backups and use atomic replacement, but the 
 
 - [`data-model.md`](data-model.md) — settings, layout, directives, BQL, and price semantics.
 - [`workflows.md`](workflows.md) — add, append, import, price, reconcile, and validate recipes.
-- [`../../../assets/plugins/beancount-finance/example.beancount`](../../../assets/plugins/beancount-finance/example.beancount) — valid starter ledger.
-- [`../../../assets/plugins/beancount-finance/example.data.json`](../../../assets/plugins/beancount-finance/example.data.json) — complete settings payload.
+- [`../../../assets/plugins/beancount-finance/ledger.example.beancount`](../../../assets/plugins/beancount-finance/ledger.example.beancount) — valid starter ledger.
+- [`../../../assets/plugins/beancount-finance/beancount-data.example.json`](../../../assets/plugins/beancount-finance/beancount-data.example.json) — complete settings payload.
 - [`../../../assets/workflows.md`](../../../assets/workflows.md) — shared cross-plugin workflow asset.
 
 ---

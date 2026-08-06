@@ -1,5 +1,5 @@
 ---
-title: "Dataview metadata layers example"
+title: Dataview Metadata Layers Example
 description: "A copyable note showing all three Dataview metadata layers: frontmatter fields, inline fields and implicit file fields, with a query that reads one field from each layer."
 trigger_phrases:
   - "dataview metadata layers"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "dataview three layers"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Dataview Metadata Layers Example
@@ -57,6 +57,8 @@ SORT file.mtime DESC
 ```
 ````
 
+---
+
 ## 3. LAYER MAP
 
 | Query token | Layer | Where it lives |
@@ -69,12 +71,16 @@ SORT file.mtime DESC
 | `Sprint` | Inline field | `Sprint:: 42` in the body |
 | `FROM "Notes"` | Folder source | The folder holding the note |
 
+---
+
 ## 4. RULES TO KEEP
 
 - Keep one source per key. The note spells `owner` in frontmatter only, so no inline `Owner::` line exists and no ambiguity arises.
 - Implicit `file.*` fields never need declaring. They exist on every note.
 - `file.day` is conditional and absent here, so the query avoids it.
 - `contains(status, "done")` is a verified function from the data model.
+
+---
 
 ## 5. HONEST LIMITS
 

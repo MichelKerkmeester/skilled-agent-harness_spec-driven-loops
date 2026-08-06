@@ -1,5 +1,5 @@
 ---
-title: "Beancount Ledger Plugin Reference"
+title: Beancount Ledger Plugin Reference
 description: "Slim index for the beancount-finance community plugin: identity, file-layer doctrine, deep data model, workflows, troubleshooting, and copyable assets."
 trigger_phrases:
   - "beancount finance plugin"
@@ -54,8 +54,8 @@ Operate the data, not the UI: edit the `.beancount` files the plugin reads and `
 
 ## 3. COPYABLE ASSETS
 
-- [`../../../assets/plugins/beancount-finance/example.beancount`](../../../assets/plugins/beancount-finance/example.beancount) — small valid ledger with opened accounts, balanced transactions, a balance assertion, and a price directive.
-- [`../../../assets/plugins/beancount-finance/example.data.json`](../../../assets/plugins/beancount-finance/example.data.json) — realistic complete 21-key settings payload.
+- [`../../../assets/plugins/beancount-finance/ledger.example.beancount`](../../../assets/plugins/beancount-finance/ledger.example.beancount) — small valid ledger with opened accounts, balanced transactions, a balance assertion, and a price directive.
+- [`../../../assets/plugins/beancount-finance/beancount-data.example.json`](../../../assets/plugins/beancount-finance/beancount-data.example.json) — realistic complete 21-key settings payload.
 - [`../../../assets/workflows.md`](../../../assets/workflows.md) — shared cross-plugin file-layer workflow asset with the Beancount Ledger section.
 
 ---

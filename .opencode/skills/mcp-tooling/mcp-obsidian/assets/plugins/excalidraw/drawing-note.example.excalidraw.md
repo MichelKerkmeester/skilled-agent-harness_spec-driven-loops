@@ -1,5 +1,5 @@
 ---
-title: "Excalidraw drawing note skeleton example"
+title: Excalidraw Drawing Note Skeleton — Example
 description: "Copyable minimal drawing note for the Excalidraw Obsidian plugin: verified frontmatter and an honest empty canvas, ready to validate at the file layer."
 trigger_phrases:
   - "excalidraw drawing note example"
@@ -10,15 +10,14 @@ trigger_phrases:
   - "excalidraw copyable drawing note"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Excalidraw Drawing Note Skeleton — Example
 
 Copyable example of a valid drawing note for the `obsidian-excalidraw-plugin` (installed 2.26.2). This is an EXAMPLE file, not a live drawing. Copy the block in section 2 into a vault as a `.excalidraw.md` note and validate it before use.
 
-## 1. What this file is
-
+## 1. OVERVIEW
 A minimal drawing note with the verified default shape from the data model:
 
 - Frontmatter with `excalidraw-plugin: parsed` and `tags: [excalidraw]`
@@ -27,7 +26,9 @@ A minimal drawing note with the verified default shape from the data model:
 
 The scene JSON uses only keys documented in the data model: `type`, `version`, `source`, `elements`, `appState`. No element data is invented.
 
-## 2. Copyable drawing note
+---
+
+## 2. COPYABLE DRAWING NOTE
 
 Copy the block below verbatim into a new note named like `Drawing 2026-01-01 10.00.00.excalidraw.md`:
 
@@ -47,9 +48,19 @@ tags: [excalidraw]
 ```
 ````
 
-## 3. Honesty notes
+---
+
+## 3. HONESTY NOTES
 
 - The canvas is empty by design. An empty `elements` array is valid and loadable.
 - `source` points at the installed release tag `2.26.2`. Do not rewrite `source` or `version` when copying an existing drawing.
 - `appState` uses the two default keys verified in the data model. Do not invent `appState` values.
 - File-layer validity does not prove in-app render. Open the note in Obsidian for visual confirmation.
+
+---
+
+## 4. RELATED RESOURCES
+
+- [Excalidraw plugin index](../../../references/plugins/excalidraw/excalidraw.md)
+- [Excalidraw data model](../../../references/plugins/excalidraw/data-model.md)
+- [Excalidraw file-layer workflows](../../../references/plugins/excalidraw/workflows.md)

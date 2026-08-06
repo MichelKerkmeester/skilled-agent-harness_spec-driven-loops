@@ -1,5 +1,5 @@
 ---
-title: "Dataview query block example"
+title: Dataview Query Block Example
 description: "A copyable note pairing frontmatter and inline fields with one DQL table block that reads exactly those fields, for headless Dataview metadata-query testing."
 trigger_phrases:
   - "dataview query example"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "dataview query block"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Dataview Query Block Example
@@ -60,6 +60,8 @@ LIMIT 20
 ```
 ````
 
+---
+
 ## 3. WHAT THE QUERY READS
 
 | Query token | Metadata layer | Source in the note |
@@ -72,6 +74,8 @@ LIMIT 20
 | `contains(status, "active")` | Verified function | Filters on the frontmatter value |
 
 The `File` column comes from the implicit layer. `file.name`, `file.path` and `file.mtime` exist on every note without any declaration.
+
+---
 
 ## 4. HONEST LIMITS
 

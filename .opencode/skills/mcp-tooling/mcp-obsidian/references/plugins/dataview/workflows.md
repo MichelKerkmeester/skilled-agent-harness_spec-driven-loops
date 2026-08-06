@@ -1,5 +1,5 @@
 ---
-title: "Dataview File-Layer Workflows"
+title: Dataview File-Layer Workflows
 description: "Safe file-layer recipes for Dataview: resolve query results by reading notes, validate query blocks, add inline and frontmatter fields, place query blocks and edit settings with backup discipline."
 trigger_phrases:
   - "create dataview query"
@@ -10,7 +10,7 @@ trigger_phrases:
   - "dataview frontmatter field"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Dataview File-Layer Workflows
@@ -37,6 +37,8 @@ These recipes change the **note content and settings files** Dataview reads. The
 - For in-place note edits, keep a copy of the original note text in the working transcript.
 - Append-first for metadata. Patch in place only when the field shape stays valid.
 
+---
+
 ## 2. READ: RESOLVE A QUERY'S RESULTS
 
 Goal: answer a question the user could ask Dataview, without rendering.
@@ -61,6 +63,8 @@ Query: `TABLE status, due FROM "Projects" WHERE status = "active"`.
 ### Checkpoint
 
 `query_resolved_from_files`: every reported value traces to a field read from a real note and the WHERE filter is applied correctly.
+
+---
 
 ## 3. VALIDATE: CHECK A QUERY BLOCK
 
@@ -99,6 +103,8 @@ FROM "Projects"
 
 `query_block_validated`: fence language, view type, clauses, FROM source and field names all pass against the verified grammar.
 
+---
+
 ## 4. ADD INLINE FIELD DATA TO A NOTE
 
 Goal: make a note queryable by inline fields without touching its existing structure.
@@ -134,6 +140,8 @@ Date:: 2026-06-30
 ### Checkpoint
 
 `inline_fields_appended`: each `Key:: Value` line uses the `::` separator, keys are unique and the note body before the addition is unchanged.
+
+---
 
 ## 5. ADD FRONTMATTER FIELDS TO A NOTE
 
@@ -175,6 +183,8 @@ Revenue summary goes here.
 
 `frontmatter_merged`: YAML parses, existing keys survive and the new fields match the names the query expects.
 
+---
+
 ## 6. CREATE A TABLE QUERY BLOCK
 
 Goal: add a table view to a note.
@@ -211,6 +221,8 @@ LIMIT 20
 
 `table_block_placed`: fence language `dataview`, valid view type, verified field names and at least one matching note on disk.
 
+---
+
 ## 7. CREATE A TASK OR CALENDAR QUERY BLOCK
 
 Goal: add a task list or calendar view.
@@ -243,6 +255,8 @@ FROM "Journal"
 ### Checkpoint
 
 `task_or_calendar_block_valid`: the source notes contain the required item or date data and the block passes grammar validation.
+
+---
 
 ## 8. ENABLE DATAVIEWJS
 
@@ -279,6 +293,8 @@ Goal: allow `dataviewjs` blocks and `$=` inline JS to run.
 
 `dataviewjs_enabled`: the two keys are `true`, the rest of `data.json` is byte-identical and the JSON parses.
 
+---
+
 ## 9. CHANGE RENDER DEFAULTS
 
 Goal: adjust how Dataview renders null values, dates, or result counts.
@@ -303,6 +319,8 @@ Goal: adjust how Dataview renders null values, dates, or result counts.
 ### Checkpoint
 
 `settings_merged`: the target keys carry the new values, unrelated keys are untouched and the file parses.
+
+---
 
 ## 10. VERIFYING
 

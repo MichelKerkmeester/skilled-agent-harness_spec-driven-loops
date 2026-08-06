@@ -1,5 +1,5 @@
 ---
-title: "Health.md File-Layer Index"
+title: Health.md Plugin Index (health-md)
 description: "Lean entry point for operating the Health.md Visualizations Obsidian plugin through its vault data files (JSON/CSV/Markdown/Bases): Apple and Android exports, health-viz render blocks, and the data-folder verification trap."
 trigger_phrases:
   - "health-md obsidian plugin"
@@ -16,8 +16,9 @@ version: 0.4.1.0
 
 The `mcp-obsidian` mode operates this plugin by **managing the data files it renders** — never by driving its chart UI. Health.md Visualizations renders Apple Health and Android Health exports already present in the vault.
 
-## 1. IDENTITY
+---
 
+## 1. OVERVIEW
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian plugin ID | health-md | Plugin directory name + enablement entry |
@@ -26,11 +27,15 @@ The `mcp-obsidian` mode operates this plugin by **managing the data files it ren
 | Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults (Phase 11); desktop and mobile supported |
 | Companion exporters | Health.md iOS/Android app | Apple export profile v7; Android frozen export v4; Android analytical export v5 |
 
+---
+
 ## 2. WHAT IT DOES
 
 Renders interactive health visualizations from data files **already in the vault**. A `health-viz` fenced code block placed in any note (including daily notes) becomes a chart canvas fed by the local data. It never fetches from Apple or a cloud — it renders what the data folder contains.
 
 Chart coverage is shared across platforms for common activity, heart, respiratory/vitals, sleep, mobility, workout, body, nutrition, and hearing fields. Mood/State of Mind and HealthKit-style medication catalog/dose events are iOS-only; Android walking symmetry is partial and Android Stand can use an explicit steps-derived proxy when `standHours` is missing.
+
+---
 
 ## 3. FILE-LAYER SURFACE (what the AI touches)
 
@@ -44,6 +49,8 @@ Chart coverage is shared across platforms for common activity, heart, respirator
 | Chart placement | `health-viz` fenced block in a note | Yes — insert the render block |
 | Plugin settings | `.obsidian/plugins/health-md/data.json` | Read the full contract (folder/structure/pattern/format plus theme/palette/appearance, chart dimensions, click behavior); edit only on explicit user request |
 | Enablement | `.obsidian/community-plugins.json` | Yes (Phase 11 done) |
+
+---
 
 ## 4. RENDER BLOCK (quick start)
 
@@ -60,11 +67,15 @@ Block contract, per the plugin's renderer registry:
 - Appearance keys override global theme, palette, and colors; canvas click behavior can pin the tooltip, open the source file, or open a Daily Note. Some HTML/SVG/Leaflet renderers have no canvas tooltip layer.
 - Prefer copying an existing working block from the vault over inventing keys; unknown block options render nothing.
 
+---
+
 ## 5. VERIFICATION TRAP (bundled mock data)
 
 When the data folder is **missing or empty**, the plugin falls back to deterministic bundled example data. A rendered chart therefore proves **neither** that the configured data folder was found **nor** that real health exports were loaded.
 
 Verification always requires: identify the actual selected data folder from the plugin settings (not the default) and confirm at least one authentic source file exists there, matches the file pattern, and parses.
+
+---
 
 ## 6. DATA FORMATS
 
@@ -76,6 +87,8 @@ Verification always requires: identify the actual selected data folder from the 
 | Obsidian Bases | YAML frontmatter | Same frontmatter path as Markdown |
 
 Markdown without frontmatter renders granular tables but cannot declare schema, units, timezone, or capture completeness.
+
+---
 
 ## 7. GOTCHAS
 

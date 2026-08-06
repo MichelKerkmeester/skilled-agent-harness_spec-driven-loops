@@ -1,5 +1,5 @@
 ---
-title: "Tables Plugin Index"
+title: Tables Plugin Index
 description: "Lean entry point for operating the Tables Obsidian community plugin through its portable .table.md JSON data files."
 trigger_phrases:
   - "tables obsidian plugin"
@@ -50,7 +50,7 @@ Tables provides database-like rows, typed columns, formulas, named views, filter
 
 ## 3. STARTER ASSET
 
-Copy [`example.table.md`](../../../assets/plugins/obsidian-tables/example.table.md) for a valid ten-kind table with two views, a link-column frontmatter index, and an ID-based formula.
+Copy [`example.table.md`](../../../assets/plugins/obsidian-tables/sample.example.table.md) for a valid ten-kind table with two views, a link-column frontmatter index, and an ID-based formula.
 
 ---
 

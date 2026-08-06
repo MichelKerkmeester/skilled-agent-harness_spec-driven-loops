@@ -57,9 +57,8 @@
     },
     {
       "leaves": [
-        "assets/brat-data-entry.example.json",
-        "assets/plugins/beancount-finance/example.beancount",
-        "assets/plugins/beancount-finance/example.data.json",
+        "assets/plugins/beancount-finance/beancount-data.example.json",
+        "assets/plugins/beancount-finance/ledger.example.beancount",
         "assets/plugins/charts/charts-block.example.md",
         "assets/plugins/dataview/dataview-metadata.example.md",
         "assets/plugins/dataview/dataview-query.example.md",
@@ -74,7 +73,8 @@
         "assets/plugins/iconic/iconic-rules.full.md",
         "assets/plugins/minimal/minimal-activation.example.json",
         "assets/plugins/minimal/minimal-snippet.example.css",
-        "assets/plugins/obsidian-tables/example.table.md",
+        "assets/plugins/obsidian-tables/sample.example.table.md",
+        "assets/plugins/obsidian42-brat/brat-data-entry.example.json",
         "assets/plugins/outliner/outliner-settings.example.json",
         "assets/plugins/outliner/outliner-settings.partial.example.json",
         "assets/workflows.md",

@@ -1,5 +1,5 @@
 ---
-title: "Tables .table.md Example"
+title: Tables `.table.md` Example
 description: "A valid Tables .table.md asset containing all ten user-facing kinds, two rows, two saved views, and an ID-based Formula column."
 trigger_phrases:
   - "tables table md example"

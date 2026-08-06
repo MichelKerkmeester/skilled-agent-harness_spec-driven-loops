@@ -1,5 +1,5 @@
 ---
-title: "Charts File-Layer Data Model"
+title: Charts File-Layer Data Model
 description: "Complete file-layer contract for the Charts plugin: settings keys, chart YAML and advanced-chart JSON block models, table-reference mode, image export and the global render API."
 trigger_phrases:
   - "charts data model"
@@ -10,12 +10,14 @@ trigger_phrases:
   - "charts render block schema"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Charts File-Layer Data Model
 
 Charts renders from fenced code blocks inside notes and stores its settings in one JSON file. The AI operates the blocks and the settings file. The app renders.
+
+---
 
 ## 1. OVERVIEW
 
@@ -38,6 +40,8 @@ Charts renders from fenced code blocks inside notes and stores its settings in o
 - `advanced-chart` bodies parse as JSON and pass directly to Chart.js.
 - Settings live in `data.json`. The vault has no `data.json`, so the bundled defaults apply.
 - The AI edits blocks and settings. Rendering happens in-app.
+
+---
 
 ## 2. SETTINGS CONTRACT
 
@@ -79,6 +83,8 @@ The defaults below come from the DEFAULT_SETTINGS object bundled in main.js 3.9.
 - Read `data.json` fresh before any change. The user may have changed settings in-app.
 - No `data.json` means defaults apply. Do not write a file just to mirror defaults.
 - Preserve unknown keys when editing. Newer plugin versions may add settings.
+
+---
 
 ## 3. CHART BLOCK MODELS
 
@@ -132,6 +138,8 @@ The body is a JSON object. Without a `chartOptions` key the object is the Chart.
 
 VERIFY: release notes for older versions describe a `charts` block language with `type`, `data` and `settings` keys. The installed 3.9.0 registers only `chart` and `advanced-chart`. A block fenced with another language renders as a plain code block, not a chart.
 
+---
+
 ## 4. TABLE-REFERENCE MODE
 
 A chart block can read its data from a table in the same note or in another note. Set the `id` key to the section id of the table. Set `file` when the table lives in another note. The plugin looks up the section in the metadata cache, extracts the table text and parses it into labels and datasets.
@@ -162,6 +170,8 @@ Behavior:
 - Dataset styling keys still apply in table mode. Labels and datasets come from the table.
 - The chart also reloads on workspace CSS changes.
 
+---
+
 ## 5. DATASET AND STYLING KEYS
 
 These keys apply to the YAML path and to table mode.
@@ -185,6 +195,8 @@ Color flow:
 
 The best-fit keys are handled by the block processor before rendering. The fit line appends to `series` with computed regression values. The plugin computes the fit at render time. Do not re-derive the regression from the file layer.
 
+---
+
 ## 6. AXIS AND SCALE KEYS
 
 For bar and line types the YAML path builds explicit scales. The keys below control those scales.
@@ -202,6 +214,8 @@ For bar and line types the YAML path builds explicit scales. The keys below cont
 
 For radar and polarArea the radial scale uses `rMin` and `rMax` to clamp the radius range and `beginAtZero` for the starting point.
 
+---
+
 ## 7. IMAGE EXPORT ARTIFACT
 
 The Create Image from Chart command exports a chart block to an image file. The AI cannot click the command, but it can predict and verify the artifact shape.
@@ -213,9 +227,13 @@ The Create Image from Chart command exports a chart block to an image file. The 
 
 The AI can verify that the exported artifact exists, carries the right extension and that the note holds the replacement link. VERIFY the image bytes with the user. The AI cannot read pixels.
 
+---
+
 ## 8. GLOBAL API
 
 The plugin exposes `window.renderChart` on load. It points at the renderer's raw render function. A user can call it from the developer console with a Chart.js configuration object. This is a debug surface, not a file-layer tool. Do not rely on it for automation.
+
+---
 
 ## 9. WHAT THE AI MUST NOT DO
 

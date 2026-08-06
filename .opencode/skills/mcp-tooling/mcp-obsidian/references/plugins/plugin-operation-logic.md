@@ -1,5 +1,5 @@
 ---
-title: "Reference — Plugin operation logic (file-layer model)"
+title: Reference — Plugin operation logic (file-layer model)
 description: "The mcp-obsidian mode operates Obsidian community plugins by editing the data they read, never by driving their UI."
 trigger_phrases:
   - "plugin operation logic"

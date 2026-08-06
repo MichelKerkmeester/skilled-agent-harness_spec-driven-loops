@@ -1,5 +1,5 @@
 ---
-title: "Charts File-Layer Troubleshooting"
+title: Charts File-Layer Troubleshooting
 description: "Cause, detection and recovery for Charts failures: wrong block language, invalid YAML or JSON, missing required keys, broken table references, stale reads and settings regressions."
 trigger_phrases:
   - "chart not rendering"
@@ -10,12 +10,14 @@ trigger_phrases:
   - "charts data json lost settings"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Charts File-Layer Troubleshooting
 
 Diagnose the block, the data source and the settings separately. A valid block can still fail to render when the language is wrong, a key is missing or the table reference is stale.
+
+---
 
 ## 1. OVERVIEW
 
@@ -36,6 +38,8 @@ Diagnose the block, the data source and the settings separately. A valid block c
 | Table mode renders an empty chart | The table has no data rows or `select` filtered everything out |
 | Plugin fails to load | `data.json` is invalid JSON after a bad merge |
 | Chart reloads on every edit | Normal. Table-mode blocks watch the referenced note and reload on change |
+
+---
 
 ## 2. DIAGNOSIS SEQUENCE
 
@@ -71,6 +75,8 @@ Obsidian keeps the metadata cache in memory. The vault has no on-disk copy of it
 
 The settings file carries the four known keys. Read it fresh before diagnosing. When the file is absent, defaults apply and settings cannot be the cause of a failure. When the file exists, compare each key against the defaults in data-model.md section 2.
 
+---
+
 ## 3. RECOVERY
 
 | Problem | Fix |
@@ -90,6 +96,8 @@ The settings file carries the four known keys. Read it fresh before diagnosing. 
 | Wrong export format | Set `imageSettings.format` to the wanted value |
 | Colors shift after a theme change | Set `themeable` to `false` to pin the `colors` palette |
 
+---
+
 ## 4. VALIDATION CHECKPOINTS
 
 Run these named checks in order after any chart edit. Stop at the first failure.
@@ -101,6 +109,8 @@ Run these named checks in order after any chart edit. Stop at the first failure.
 - Settings round-trip checkpoint. `data.json` re-parses after the merge and keeps every key not being changed.
 - Scope checkpoint. The edit changed only the intended block or key. No unrelated note content moved.
 - Image-export checkpoint. The exported file matches the format setting. The note holds the markdown link.
+
+---
 
 ## 5. LIMITS
 
@@ -119,6 +129,8 @@ Run these named checks in order after any chart edit. Stop at the first failure.
 - A chart that renders is not proof the data is correct. Read the underlying table or series values when numbers matter.
 - `window.renderChart` is a debug surface for the developer console. Do not rely on it for automation.
 
+---
+
 ## 6. PREVENTION
 
 - Keep one block language per chart. Do not switch fences casually.
@@ -129,12 +141,16 @@ Run these named checks in order after any chart edit. Stop at the first failure.
 - Keep the settings file valid. Re-parse after every merge.
 - State the data source in the note when a block reads a table elsewhere.
 
+---
+
 ## 7. ESCALATION
 
 - Ask the user to open the developer console with CTRL+SHIFT+I and read the chart error block when the file layer looks correct.
 - Ask the user to run the plugin commands when a block cannot be rebuilt by hand.
 - Do not guess section ids, chart types or settings keys. Report the VERIFY markers instead.
 - When the plugin misbehaves after an Obsidian update, compare the plugin version and the Obsidian version against minAppVersion 0.12.7.
+
+---
 
 ## 8. COMMAND ARTIFACT MAP
 

@@ -1,5 +1,5 @@
 ---
-title: "Beancount Ledger File-Layer Workflows"
+title: Beancount Ledger File-Layer Workflows
 description: "Validated terminal recipes for editing a Beancount Ledger vault, querying it with bean-query, fetching prices with bean-price, importing entries, reconciling balances, and checking the result with bean-check."
 trigger_phrases:
   - "beancount file layer workflow"
@@ -373,6 +373,6 @@ Do not call a mutation complete until all of these are true:
 
 - [`data-model.md`](data-model.md) — settings, layout, directive syntax, BQL tables, and price pipeline.
 - [`troubleshooting.md`](troubleshooting.md) — error catalog and PATH/GUI recovery.
-- [`../../../assets/plugins/beancount-finance/example.beancount`](../../../assets/plugins/beancount-finance/example.beancount) — small valid starter ledger.
-- [`../../../assets/plugins/beancount-finance/example.data.json`](../../../assets/plugins/beancount-finance/example.data.json) — complete 21-key settings example.
+- [`../../../assets/plugins/beancount-finance/ledger.example.beancount`](../../../assets/plugins/beancount-finance/ledger.example.beancount) — small valid starter ledger.
+- [`../../../assets/plugins/beancount-finance/beancount-data.example.json`](../../../assets/plugins/beancount-finance/beancount-data.example.json) — complete 21-key settings example.
 - [`../../../assets/workflows.md`](../../../assets/workflows.md) — shared cross-plugin file-layer workflow index.

@@ -1,5 +1,5 @@
 ---
-title: "Iconic Full Rulebook — Usage Guide"
+title: Iconic Full Rulebook — Usage Guide
 description: "Template-conformant Markdown companion for the canonical Iconic automatic-rule payload: rule-class coverage and the safe-merge contract, with iconic-rules.full.json as the exact source."
 trigger_phrases:
   - "iconic full rulebook guide"

@@ -1,5 +1,5 @@
 ---
-title: "Charts File-Layer Index"
+title: Charts Plugin Index (obsidian-charts)
 description: "Lean entry point for operating the Charts Obsidian plugin (phibr0/obsidian-charts) through chart and advanced-chart render blocks plus its settings file in the vault."
 trigger_phrases:
   - "charts plugin obsidian"
@@ -10,15 +10,16 @@ trigger_phrases:
   - "chart file layer"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.10.0.0"
+version: 0.10.0.0
 ---
 
 # Charts Plugin Index (obsidian-charts)
 
 The `mcp-obsidian` mode operates this plugin by **editing render blocks inside notes and the plugin settings file**. It never drives the chart creator dialog.
 
-## 1. IDENTITY
+---
 
+## 1. OVERVIEW
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian plugin ID | `obsidian-charts` | Plugin directory name plus enablement entry |
@@ -30,6 +31,8 @@ The `mcp-obsidian` mode operates this plugin by **editing render blocks inside n
 | Desktop only | false | Works on desktop and mobile |
 | Enablement | Enabled in `community-plugins.json` | Verified in this vault |
 | State file | `<vault>/.obsidian/plugins/obsidian-charts/data.json` | Settings surface. Absent in this vault, so plugin defaults apply |
+
+---
 
 ## 2. WHAT IT DOES
 
@@ -56,6 +59,8 @@ The editor context menu shows an Insert Chart entry when the `contextMenu` setti
 - It offers no custom sidebar view in this version. VERIFY: older release notes describe a Charts View sidebar pane. The installed 3.9.0 bundle registers no custom view.
 - The creator dialog and the table wizard are UI-only. The AI works at the file layer instead.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI touches)
 
 | Layer | Path / artifact | Safe handling |
@@ -72,6 +77,8 @@ The editor context menu shows an Insert Chart entry when the `contextMenu` setti
 | --- | --- | --- |
 | `chart` | YAML with `type`, `labels`, `series` | Renderer pipeline: YAML to Chart.js config |
 | `advanced-chart` | JSON, a Chart.js configuration | Direct Chart.js render |
+
+---
 
 ## 4. RENDER BLOCK CONTRACT (quick start)
 
@@ -110,6 +117,8 @@ A minimal `advanced-chart` block:
 | Raw Chart.js configuration control | `advanced-chart` |
 | Data from a table in a note | `chart` with `id`, `file`, `layout` and `select` |
 
+---
+
 ## 5. SETTINGS LOCATION
 
 Settings live in `.obsidian/plugins/obsidian-charts/data.json`. This vault has no `data.json` yet, so the plugin defaults apply. The defaults carry four keys: `colors`, `contextMenu`, `imageSettings` and `themeable`.
@@ -133,9 +142,13 @@ The settings tab renders the heading Settings - Charts. Its controls map one-to-
 
 Read the full contract in data-model.md section 2.
 
+---
+
 ## 6. WHEN TO USE THIS REFERENCE SET
 
 Use this reference set when the user asks to create a chart in a note, edit an existing chart block, point a chart at a table, export a chart as an image, change chart colors or fix a chart that fails to render. Use it before touching chart-related settings or plugin enablement.
+
+---
 
 ## 7. SIBLING FILES
 
@@ -144,6 +157,8 @@ Use this reference set when the user asks to create a chart in a note, edit an e
 | data-model.md | Exact artifact schemas: settings keys, chart block models, table-reference mode, image export and the global API |
 | workflows.md | Numbered file-layer recipes with before and after patterns |
 | troubleshooting.md | Failure modes, fixes and named validation checkpoints |
+
+---
 
 ## 8. GOTCHAS
 
