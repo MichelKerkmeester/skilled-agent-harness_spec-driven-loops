@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.0",
   "theme": "dark",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -17,12 +17,14 @@
     "openai-codex/gpt-5.6-luna",
     "deepseek/deepseek-v4-pro",
     "deepseek/deepseek-v4-flash",
+    "opencode/deepseek-v4-flash-free",
     "xiaomi/mimo-v2.5-pro",
     "xiaomi/mimo-v2.5-pro-ultraspeed",
     "minimax/MiniMax-M3"
   ],
   "packages": [
     "npm:pi-blackhole",
+    "npm:pi-cache-optimizer",
     "npm:pi-gpt-fast-mode",
     "npm:pi-omplike-advisor",
     "npm:pi-plan",

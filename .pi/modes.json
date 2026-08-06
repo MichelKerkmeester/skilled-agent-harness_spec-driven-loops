@@ -1,9 +1,10 @@
 {
   "modes": {
     "advisor": {
-      "provider": "deepseek",
-      "modelId": "deepseek-v4-flash",
-      "thinkingLevel": "max"
+      "provider": "openai-codex",
+      "modelId": "gpt-5.6-luna",
+      "thinkingLevel": "xhigh",
+      "serviceTier": "fast"
     }
   }
 }
