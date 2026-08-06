@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains open, even when nothing about the task, scope, or answer state has changed since the last ask",
     "created_at": "2026-08-06T11:02:30.631Z",
-    "last_save_at": "2026-08-06T16:59:09.317Z",
+    "last_save_at": "2026-08-06T18:42:26.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ff4ad313b4178300151f42494dd1e8a30ca023c00d4bc50f301d504245263c3",
+    "source_fingerprint": "sha256:0b6c35a9358069adc564854b1790d49339894e9399725fd94f2c3aa919bbd53b",
     "source_doc_hashes": {
       "spec.md": "a7d957c5c4e400995f2c747e6df84d1b931d03a8dde4e38c853b4893e39fdf56",
       "plan.md": "a6afc47b04c104726ce364997c39db97e07f18a5db5284d851c98cf5553bce31",
       "tasks.md": "daaf795260b2f304be9248f891aa8c069bfe3b0149acb3daa533b9b2e4f038d3",
       "checklist.md": "01567fc405020ecf74a69ae1ec8a2765f2eef4224d93dcb71d8450993eed1cfa",
-      "implementation-summary.md": "e3d64a3d63a1c4494caa97b733684bed40cc7e6c48a5e325f96c1ce414e670fc"
+      "implementation-summary.md": "3b1077c348daba86cedf41847faabcbbd111f9f9fb83e5fd9f7b40eac7a142cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

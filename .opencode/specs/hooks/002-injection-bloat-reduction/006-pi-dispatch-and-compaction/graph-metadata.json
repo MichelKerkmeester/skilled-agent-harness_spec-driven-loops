@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`PISUBAGENTDISPATCHDIRECTIVE` in `prompt-advisor.ts` emits a 554-byte dispatch directive on every non-empty parent input, even on advisor failure, and by policy is never copied into child prompts",
     "created_at": "2026-08-06T11:07:29.467Z",
-    "last_save_at": "2026-08-06T17:51:28.701Z",
+    "last_save_at": "2026-08-06T18:44:37.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a119b0aa64e2c4dfb86e095c859beb570389755b5105d9aa70b55215ae19ea30",
+    "source_fingerprint": "sha256:b8e7fb67d9817a982eee7b085309b5aeddfdd57f2e6392fda8fe74c26354a856",
     "source_doc_hashes": {
       "spec.md": "28a7309e6f0ab69adabf9ba0e80e9b171dbf16b6bccf399ef9f15a9e9ab205f6",
       "plan.md": "deed6acda1d011a47b50c10183f094095166812fed6376f312096dddce7548f6",
       "tasks.md": "2532902011d64a8ba5175f4fc8b1d4362fc741dfead7005e5dfcebe82e232764",
-      "checklist.md": "31792c93c73472b7c903aa63635b159091ecf6375aa226e94238adaf703aa91b",
-      "implementation-summary.md": "30a8304eb9e7b8c5857d0f04044ba5e29df4abf1cae34c40fc9899a199bef6bb"
+      "checklist.md": "fd25518b3d9aee6780cb09f9e737f93ad3e1a36424734722b0976684702729b5",
+      "implementation-summary.md": "69ec9675288f16702161ee45c81365bbdd5bba01ec7dccda793f213f15ce4d58"
     },
     "last_active_child_id": null,
     "last_active_at": null

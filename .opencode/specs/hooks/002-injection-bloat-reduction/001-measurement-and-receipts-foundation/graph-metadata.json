@@ -22,7 +22,7 @@
       "measurement and receipts checklist",
       "shadow planner verification",
       "measurement and receipts summary",
-      "shadow planner not yet built"
+      "shadow planner implementation evidence"
     ],
     "key_topics": [
       "measurement",
@@ -43,10 +43,14 @@
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
       ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
-      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
+      "checklist.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "spec.md",
+      "mcp-server/package.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,9 +61,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan-serializer-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -75,9 +97,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp-server/package.json",
         "source": "derived"
       },
       {
@@ -169,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime adapters emit, and nothing records whether a block was actually delivered versus merely rendered",
     "created_at": "2026-08-06T10:59:21.547Z",
-    "last_save_at": "2026-08-06T11:00:59.922Z",
+    "last_save_at": "2026-08-06T18:36:10.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f60881f0a2c28d756ed0f67bb883a1f697eb226d6ba779c92c72967e5c064f31",
+    "source_fingerprint": "sha256:99b14e9201d6c4ba63953a8a03b739621ea0a6b8bacaafe62b3086a28d621c0b",
     "source_doc_hashes": {
       "spec.md": "a4df08e898afd7842dc310a8334e859813675857445731872bdb5578f2461886",
       "plan.md": "89fbd725fa132a5deef27bd974f8280c672a8cae382d74de84f57a56dcf66c58",
       "tasks.md": "5f05feae4085248dfaced662cee1d07cd68e20d49d5b674d00f126bce7195ba8",
-      "checklist.md": "8a110aa205af0c7a3380d0b9c5da6d6afbb5775311ad96e42b57c2ae431038bf",
-      "implementation-summary.md": "7cc9056f5b9a00e2da64b76b9e6808be9acd9d53c6a983a7192b3b5eeccfad6e"
+      "checklist.md": "b675501169ee8ddf07683ac00da0d4d0a13fe79ce135083f3433861cad92bdbb",
+      "implementation-summary.md": "c814dbb1db622bef4c23ff4d944b86c369d2d35e41d45848e28c22873e9167d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering"
-    last_updated_at: "2026-08-06T00:00:00Z"
+    last_updated_at: "2026-08-06T18:42:25.802Z"
     last_updated_by: "codex"
     recent_action: "Implemented and verified the shadow-only Gate-3 delivery predicate and negative-control matrix"
     next_safe_action: "Keep suppression unconsumed until runtime-specific activation evidence exists"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
     session_dedup:
-      fingerprint: "sha256:5f37486a57e63728b9b297a71c546e256c79d50093892e6351d8b4b38cdd1cdb"
+      fingerprint: "sha256:1b942d977a250ecf2ea8ec677e9bf3e9b6ca737dfb34e8bebc85be744bef42fd"
       session_id: "2026-08-06-hooks-002-005"
       parent_session_id: null
     completion_pct: 100
