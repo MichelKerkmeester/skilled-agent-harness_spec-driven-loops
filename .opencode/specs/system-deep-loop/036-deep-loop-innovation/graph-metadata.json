@@ -35,7 +35,8 @@
     "system-deep-loop/036-deep-loop-innovation/029-improvement-promotion-authority",
     "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity",
     "system-deep-loop/036-deep-loop-innovation/031-silent-failure-and-harness-repair",
-    "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch"
+    "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
+    "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -49,10 +50,10 @@
       "evidence-ledger runtime for system-deep-loop",
       "per-mode migration deep-loop",
       "transition-authorized ledger core",
-      "resume 036 deep-loop innovation execution",
-      "start implementing the 178 deep-loop recs",
-      "deep-loop innovation execution handover",
-      "parallelize deep-loop implementation cli-codex"
+      "036 epic next steps",
+      "deep-loop-innovation completion roadmap",
+      "resume WS1 remediation",
+      "014 authority cutover gate"
     ],
     "key_topics": [
       "deep-loop",
@@ -73,9 +74,8 @@
     "key_files": [
       "004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md",
       "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-      "handover.md",
       "spec.md",
-      "018-drift-census-and-plan-revalidation/research/research.md"
+      "handover.md"
     ],
     "entities": [
       {
@@ -85,15 +85,15 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -133,55 +133,49 @@
         "source": "derived"
       },
       {
-        "name": "Session Handover",
+        "name": "Innovation Epic",
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Execution Start The",
-        "kind": "proper_noun",
+        "name": "sealed",
+        "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Handover Summary",
-        "kind": "proper_noun",
+        "name": "The ledger (confirmed)",
+        "kind": "heading",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Phase Completed",
-        "kind": "proper_noun",
+        "name": "Pending (inferred — no impl-summary + the standing WS1 goal; verify at resume)",
+        "kind": "heading",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Context Transfer",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Modified",
-        "kind": "proper_noun",
+        "name": "Completion path (sequenced)",
+        "kind": "heading",
         "path": "handover.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-07-31T01:25:21.984Z",
+    "last_save_at": "2026-08-06T17:31:02.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:3353ecc156da7644083e220fc7b184cbca7cf83a33291dbf7970fbe4e32041d8",
+    "source_fingerprint": "sha256:16415dad809f20a3d1c26159049e26a5f1d7a5fbd1a3c046cab6adac038573d7",
     "source_doc_hashes": {
       "spec.md": "f6f55f0eddf20ee68c4b121b4d33bf3123a3b010deabe4e5bbceca4577afb3ce",
-      "handover.md": "c75e48300eaa3143ea3f141e5284f93c848904ff3b4eede35506570a822eb6c3"
+      "handover.md": "e1f97597808c32af2fc5418ac01d1ab33d404ab5e8a2597a5ce48cd41688168a"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
     "last_active_at": null
