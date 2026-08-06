@@ -172,3 +172,34 @@ Remove the throwaway vault. Nothing outside `/tmp/_pbtest-dataview-metadata-quer
 ~~~sh
 rm -rf /tmp/_pbtest-dataview-metadata-query
 ~~~
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/dataview/dataview.md](../../references/plugins/dataview/dataview.md) | Dataview plugin identity and deep-reference index |
+| [../../references/plugins/dataview/data-model.md](../../references/plugins/dataview/data-model.md) | Metadata layers, query block formats, and verified DQL data model |
+| [../../references/plugins/dataview/workflows.md](../../references/plugins/dataview/workflows.md) | Note metadata, query authoring, validation, and settings workflows |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/dataview/dataview-metadata.example.md](../../assets/plugins/dataview/dataview-metadata.example.md) | Copyable frontmatter, inline-field, and implicit-file-field fixture |
+| [../../assets/plugins/dataview/dataview-query.example.md](../../assets/plugins/dataview/dataview-query.example.md) | Copyable metadata and DQL table-query fixture |
+| [../../references/plugins/dataview/troubleshooting.md](../../references/plugins/dataview/troubleshooting.md) | Empty-result, rendering, field, and settings diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI operation boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-017
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/dataview-metadata-query.md

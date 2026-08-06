@@ -171,3 +171,33 @@ fi
 ~~~
 
 Every write in this scenario stays inside `/tmp/_pbtest-charts-render-block`. No command touches the MEGA, iCloud or Barter vaults.
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/charts/charts.md](../../references/plugins/charts/charts.md) | Charts plugin identity and deep-reference index |
+| [../../references/plugins/charts/data-model.md](../../references/plugins/charts/data-model.md) | Chart and advanced-chart block schemas, keys, and settings model |
+| [../../references/plugins/charts/workflows.md](../../references/plugins/charts/workflows.md) | Author, parse, verify, and cleanup workflow |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/charts/charts-block.example.md](../../assets/plugins/charts/charts-block.example.md) | Example `chart` and `advanced-chart` render blocks used by the scenario |
+| [../../references/plugins/charts/troubleshooting.md](../../references/plugins/charts/troubleshooting.md) | Render-block, parsing, settings, and compatibility diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-016
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/charts-render-block.md

@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for MCP tool bridges: routes to four workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.3.2.0
+version: 1.4.2.0
 metadata:
   author: OpenCode
   family: mcp

@@ -115,3 +115,34 @@ Note on honest grading: an empty `git remote -v` output proves no remote is conf
    ~~~
 
 2. Confirm no real vault path was touched. Every git command ran with `-C "$PB"` or inside the throwaway dir, and the note was written only under `$PB`. No command in this scenario references MEGA/Documents/Obsidian, iCloud or Barter.
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/git/git.md](../../references/plugins/git/git.md) | Plugin identity and deep-reference index |
+| [../../references/plugins/git/data-model.md](../../references/plugins/git/data-model.md) | Git settings, repository state, and file-layer contract |
+| [../../references/plugins/git/workflows.md](../../references/plugins/git/workflows.md) | Initialize, inspect, commit, and verify workflow |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/git/git-commands.example.md](../../assets/plugins/git/git-commands.example.md) | Git command fixture and test anchor |
+| [../../assets/plugins/git/git-settings.example.json](../../assets/plugins/git/git-settings.example.json) | Git settings fixture without credentials |
+| [../../references/plugins/git/troubleshooting.md](../../references/plugins/git/troubleshooting.md) | Repository, status, log, and path diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-019
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/git-status-roundtrip.md

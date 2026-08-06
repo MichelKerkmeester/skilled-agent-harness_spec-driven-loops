@@ -100,3 +100,35 @@ Add a red icon rule for PDF files and enable tag-pill icons in the Iconic setup,
 | PASS | Backup exists, diff = exactly the 2 intended changes, JSON parses, real vault file untouched |
 | FAIL | Unrelated keys changed, no backup, invalid JSON, or the real vault file was modified |
 | SKIP | No vault with iconic installed available |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/iconic/iconic.md](../../references/plugins/iconic/iconic.md) | Plugin identity and deep-reference index |
+| [../../references/plugins/iconic/data-model.md](../../references/plugins/iconic/data-model.md) | Iconic settings, rule schema, visibility toggles, and safe-merge boundary |
+| [../../references/plugins/iconic/workflows.md](../../references/plugins/iconic/workflows.md) | Add, edit, disable, toggle, recolor, and merge workflows |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/iconic/iconic-rules.full.json](../../assets/plugins/iconic/iconic-rules.full.json) | Canonical full automatic-rule payload fixture |
+| [../../assets/plugins/iconic/iconic-rules.full.md](../../assets/plugins/iconic/iconic-rules.full.md) | Rule-class coverage and safe-merge usage guide |
+| [../../assets/plugins/iconic/iconic-rules.example.json](../../assets/plugins/iconic/iconic-rules.example.json) | Minimal example rulebook fixture |
+| [../../references/plugins/iconic/troubleshooting.md](../../references/plugins/iconic/troubleshooting.md) | File-layer diagnosis and recovery |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-015
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/iconic-rules.md

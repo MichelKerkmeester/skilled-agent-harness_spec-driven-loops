@@ -143,3 +143,34 @@ Remove the throwaway vault and confirm the removal headlessly. No real vault fil
 rm -rf /tmp/_pbtest-excalidraw-drawing-note
 test ! -e /tmp/_pbtest-excalidraw-drawing-note && echo "throwaway vault removed"
 ~~~
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/excalidraw/excalidraw.md](../../references/plugins/excalidraw/excalidraw.md) | Plugin identity and deep-reference index |
+| [../../references/plugins/excalidraw/data-model.md](../../references/plugins/excalidraw/data-model.md) | Excalidraw frontmatter, scene envelope, and drawing-note data model |
+| [../../references/plugins/excalidraw/workflows.md](../../references/plugins/excalidraw/workflows.md) | Create, extract, validate, and render workflow |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/excalidraw/drawing-note.example.excalidraw.md](../../assets/plugins/excalidraw/drawing-note.example.excalidraw.md) | Canonical copyable drawing-note skeleton fixture |
+| [../../assets/plugins/excalidraw/drawing-scene.example.json](../../assets/plugins/excalidraw/drawing-scene.example.json) | Canonical empty scene JSON fixture |
+| [../../references/plugins/excalidraw/troubleshooting.md](../../references/plugins/excalidraw/troubleshooting.md) | Drawing-note, parsing, render, and compatibility diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-018
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/excalidraw-drawing-note.md

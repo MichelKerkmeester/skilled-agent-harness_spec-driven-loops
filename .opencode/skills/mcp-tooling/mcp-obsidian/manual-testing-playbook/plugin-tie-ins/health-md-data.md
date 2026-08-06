@@ -152,3 +152,34 @@ GUARD: no authentic source file found
 | Cleanup | Verified — throwaway files removed; throwaway vault removed; real vault has no `Health/` folder (confirmed untouched) |
 
 **Verdict:** PASS on file-layer mechanics + mock-fallback guard behavior; the authentic-source axis is correctly graded as not-passable until the user exports real health data (documented expected state, not a defect).
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/health-md/health-md.md](../../references/plugins/health-md/health-md.md) | Plugin identity, settings, and deep-reference index |
+| [../../references/plugins/health-md/data-model.md](../../references/plugins/health-md/data-model.md) | Health.md data-file schema and plugin settings |
+| [../../references/plugins/health-md/workflows.md](../../references/plugins/health-md/workflows.md) | Data-folder, export, render-block, and round-trip workflows |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/health-md/healthmd-export.example.json](../../assets/plugins/health-md/healthmd-export.example.json) | Canonical Health.md export fixture and data-file shape |
+| [../../assets/plugins/health-md/health-viz-blocks.example.md](../../assets/plugins/health-md/health-viz-blocks.example.md) | Validated `health-viz` render-block forms |
+| [../../references/plugins/health-md/troubleshooting.md](../../references/plugins/health-md/troubleshooting.md) | Data-folder, parsing, fallback, and render diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-014
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/health-md-data.md

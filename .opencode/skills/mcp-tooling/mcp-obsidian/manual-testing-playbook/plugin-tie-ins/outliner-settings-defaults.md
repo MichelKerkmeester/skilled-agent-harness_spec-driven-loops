@@ -129,3 +129,34 @@ Check the Outliner plugin setup in my vault and report which settings are active
 ## 4. CLEANUP
 
 Remove the throwaway vault with `rm -rf /tmp/_pbtest-outliner-settings-defaults` after the run. Confirm the path no longer exists. The real vaults are never written and never read during this scenario, so no vault state changes. Limitation restated: this scenario proves the reference provenance and the example assets agree with the recorded facts; a fresh live-vault re-verification is out of reach headlessly and outside this test boundary.
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/outliner/outliner.md](../../references/plugins/outliner/outliner.md) | Plugin identity and deep-reference index |
+| [../../references/plugins/outliner/data-model.md](../../references/plugins/outliner/data-model.md) | Outliner settings keys, defaults, and data model |
+| [../../references/plugins/outliner/workflows.md](../../references/plugins/outliner/workflows.md) | Outliner setup, settings inspection, and validation workflow |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/outliner/outliner-settings.example.json](../../assets/plugins/outliner/outliner-settings.example.json) | Complete Outliner default settings fixture |
+| [../../assets/plugins/outliner/outliner-settings.partial.example.json](../../assets/plugins/outliner/outliner-settings.partial.example.json) | Partial settings override fixture |
+| [../../references/plugins/outliner/troubleshooting.md](../../references/plugins/outliner/troubleshooting.md) | Settings, installation, and path diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-020
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/outliner-settings-defaults.md

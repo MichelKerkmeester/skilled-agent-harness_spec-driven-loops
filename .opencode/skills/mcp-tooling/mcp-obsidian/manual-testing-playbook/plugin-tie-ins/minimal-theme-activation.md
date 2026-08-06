@@ -114,3 +114,34 @@ Set up the Minimal theme in my vault and make the headings smaller with a snippe
 The test owns one directory, `/tmp/_pbtest-minimal-theme-activation`. Remove it with `rm -rf` after the run and verify the path is gone. The real vault files were only ever read as copy sources. The snippet enablement step is an in-app action (Settings → Appearance → CSS snippets) and is out of scope for the file-layer test.
 
 Honest grading note: the file-layer checks prove files and keys, not rendered pixels. A check that confirms an expected default or an absence, such as the missing enabled-snippet key in `appearance.json`, passes only with that limitation stated.
+
+---
+
+## 5. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|---|---|
+| [../manual-testing-playbook.md](../manual-testing-playbook.md) | Root policy and plugin tie-in index |
+| [../../references/plugins/minimal/minimal.md](../../references/plugins/minimal/minimal.md) | Minimal theme identity and deep-reference index |
+| [../../references/plugins/minimal/data-model.md](../../references/plugins/minimal/data-model.md) | Minimal theme package, activation key, and snippet data model |
+| [../../references/plugins/minimal/workflows.md](../../references/plugins/minimal/workflows.md) | Theme setup, activation, snippet, and rollback workflow |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|---|---|
+| [../../assets/plugins/minimal/minimal-activation.example.json](../../assets/plugins/minimal/minimal-activation.example.json) | Minimal activation fixture for offline file-layer verification |
+| [../../assets/plugins/minimal/minimal-snippet.example.css](../../assets/plugins/minimal/minimal-snippet.example.css) | Minimal snippet fixture for offline snippet verification |
+| [../../references/plugins/minimal/troubleshooting.md](../../references/plugins/minimal/troubleshooting.md) | Theme, activation, snippet, and path diagnosis |
+| [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
+
+---
+
+## 6. SOURCE METADATA
+
+- Group: Plugin tie-ins
+- Playbook ID: OBS-021
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugin-tie-ins/minimal-theme-activation.md
