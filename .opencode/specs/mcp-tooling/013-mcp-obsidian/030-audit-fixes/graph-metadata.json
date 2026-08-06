@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
+  "spec_folder": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
+  "parent_id": "mcp-tooling/013-mcp-obsidian",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "three",
+      "defects",
+      "two",
+      "fresh-opus",
+      "bug",
+      "audits",
+      "mcp-obsidian",
+      "mode",
+      "skill",
+      "mcp-tooling",
+      "parent",
+      "integration"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "implementation-summary.md",
+      "specs/mcp-tooling/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/mcp-tooling/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outcome All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Done",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Sources",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation And Test Anchors",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical files",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How Isolated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate-3",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
+    "created_at": "2026-08-06T13:47:25.994Z",
+    "last_save_at": "2026-08-06T13:47:25.994Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6272e7f91a6a20562bbd063eebccc655b44420259171a70336dccc17d7733adb",
+    "source_doc_hashes": {
+      "spec.md": "055361a655eeb8ee348b1a6c5ebeeadedf24bacd4e90667fa938bf49622e57fa",
+      "plan.md": "a351f41c8392beeb7c5f28423585b1cb00b77f5297329ab94cbcb247d17cbc12",
+      "tasks.md": "3d1539fccf51654a83d5c1e1bde35c218ccbfce3a3d861757171420636f78a8c",
+      "implementation-summary.md": "a164965a504a0e76317b3be050602d2cfaab96e39554988252567a95c0f3abb3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

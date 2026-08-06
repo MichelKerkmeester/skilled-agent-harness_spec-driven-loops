@@ -1,0 +1,27 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
+  "description": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
+  "keywords": [
+    "three",
+    "defects",
+    "two",
+    "fresh-opus",
+    "bug",
+    "audits",
+    "mcp-obsidian",
+    "mode",
+    "skill",
+    "mcp-tooling",
+    "parent",
+    "integration"
+  ],
+  "lastUpdated": "2026-08-06T13:47:14.330Z",
+  "specId": "030",
+  "folderSlug": "audit-fixes",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
