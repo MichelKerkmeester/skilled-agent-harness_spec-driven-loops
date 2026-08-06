@@ -11,19 +11,18 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the implementation plan for the guardrail negative-control and activation gate"
-    next_safe_action: "Begin Phase 1 (control specification) once Phase 001 receipts land"
-    blockers:
-      - "001-measurement-and-receipts-foundation has not yet been built"
+    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the controls, matrix, risk register, rollback procedure, and verification"
+    next_safe_action: "Collect candidate-owned behavioral and delivery evidence against the shared schema"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     session_dedup:
-      fingerprint: "sha256:465090ae1643f68ae982951dbafc5ec6cf8acca1e3c45e51dbfa75a5effe0eae"
+      fingerprint: "sha256:222627f1f36874b6c68c5d10fc30ad8aaf7970cc19e4470d25009857d40956b5"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,9 +60,9 @@ Build three named behavioral negative controls (forbidden-comment reject, unsupp
 - [x] Dependencies identified (Phase 001 receipts; candidates 002-006 supplying their own evidence)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-001 through REQ-007)
-- [ ] Tests passing (three behavioral negative controls, activation matrix schema validated)
-- [ ] Docs updated (spec/plan/tasks/checklist/implementation-summary, this packet)
+- [x] All acceptance criteria met (REQ-001 through REQ-007)
+- [x] Tests passing (three behavioral negative controls, activation matrix schema validated)
+- [x] Docs updated (spec/plan/tasks/checklist/implementation-summary, this packet)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -93,20 +92,20 @@ Evidence-gated activation: a documented schema requires both a behavioral-contro
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Specify the forbidden-comment reject negative control against a real comment-hygiene guard
-- [ ] Specify the unsupported-completion-claim block negative control against a real guard
-- [ ] Draft the governor scored-scenario rubric (not exact-string matching)
+- [x] Specify the forbidden-comment reject negative control against a real comment-hygiene guard
+- [x] Specify the unsupported-completion-claim block negative control against a real guard
+- [x] Draft the governor scored-scenario rubric (not exact-string matching)
 
 ### Phase 2: Core Implementation
-- [ ] Design the per-runtime-per-candidate activation matrix schema (fields, required evidence types, fail-open default)
-- [ ] Map each of the seven named central risks to a control or monitoring entry
-- [ ] Draft the per-block/per-runtime rollback procedure template
+- [x] Design the per-runtime-per-candidate activation matrix schema (fields, required evidence types, fail-open default)
+- [x] Map each of the seven named central risks to a control or monitoring entry
+- [x] Draft the per-block/per-runtime rollback procedure template
 
 ### Phase 3: Verification
-- [ ] Execute the three behavioral negative controls and confirm each rejects/blocks the real case
-- [ ] Populate the activation matrix with placeholder unknown-state cells and confirm every one defaults to emit
-- [ ] Work one hypothetical candidate cell through the rollback procedure end-to-end as proof
-- [ ] Confirm the evidence schema is consumable by 002-006 without modification
+- [x] Execute the three behavioral negative controls and confirm each rejects/blocks the real case
+- [x] Populate the activation matrix with placeholder unknown-state cells and confirm every one defaults to emit
+- [x] Work one hypothetical candidate cell through the rollback procedure end-to-end as proof
+- [x] Confirm the evidence schema is consumable by 002-006 without modification
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,8 +127,8 @@ Evidence-gated activation: a documented schema requires both a behavioral-contro
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 001-measurement-and-receipts-foundation | Internal (sibling phase) | Not yet built | Activation cannot happen without shared receipt fields; the gate schema itself can still be designed now |
-| Candidates 002-006 evidence | Internal (sibling phases) | Not yet built | No cell can activate until its owning candidate supplies both behavioral and delivery evidence |
+| 001-measurement-and-receipts-foundation | Internal (sibling phase) | Committed prerequisite; no activation performed here | Candidate flags remain off until shared receipt fields and candidate evidence are available |
+| Candidates 002-006 evidence | Internal (sibling phases) | Schema defined; evidence not populated | No cell can activate until its owning candidate supplies both behavioral and delivery evidence |
 <!-- /ANCHOR:dependencies -->
 
 ---

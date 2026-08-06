@@ -10,19 +10,18 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the task list for the guardrail negative-control and activation gate"
-    next_safe_action: "Begin T001 once Phase 001 receipts land"
-    blockers:
-      - "001-measurement-and-receipts-foundation has not yet been built"
+    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_by: "codex"
+    recent_action: "Completed all terminal gate tasks and recorded verification evidence"
+    next_safe_action: "Collect candidate evidence against activation-matrix.schema.json"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     session_dedup:
-      fingerprint: "sha256:71ac205de468c56b9d58150b2a5dfb349f138780c102d9fb901cae0d0d50036c"
+      fingerprint: "sha256:a42b5d4b1e9af951d62d40a2ec85f1a8984d07b2cd1643d1a5972b33591e67bf"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +44,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Status: Planned - nothing below has been implemented yet; this list is the forward plan for the phase.
+Status: Complete - all terminal gate tasks are implemented and verified; candidate flags remain off.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -53,9 +52,9 @@ Status: Planned - nothing below has been implemented yet; this list is the forwa
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [B] Specify the forbidden-comment reject negative control against a real comment-hygiene guard
-- [ ] T002 Specify the unsupported-completion-claim block negative control against a real guard
-- [ ] T003 [P] Draft the governor scored-scenario rubric (not exact-string matching)
+- [x] T001 [B] Specify the forbidden-comment reject negative control against a real comment-hygiene guard (`guardrail-negative-controls.test.mjs`)
+- [x] T002 Specify the unsupported-completion-claim block negative control against a real guard (`guardrail-negative-controls.test.mjs`)
+- [x] T003 [P] Draft the governor scored-scenario rubric (not exact-string matching) (`guardrail-negative-controls.test.mjs`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,9 +62,9 @@ Status: Planned - nothing below has been implemented yet; this list is the forwa
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Design the per-runtime-per-candidate activation matrix schema (fields, evidence types, fail-open default)
-- [ ] T005 Map each of the seven named central risks to a control or monitoring entry
-- [ ] T006 Draft the per-block/per-runtime rollback procedure template
+- [x] T004 Design the per-runtime-per-candidate activation matrix schema (fields, evidence types, fail-open default) (`activation-matrix.json`, `activation-matrix.schema.json`)
+- [x] T005 Map each of the seven named central risks to a control or monitoring entry (`risk-register.md`)
+- [x] T006 Draft the per-block/per-runtime rollback procedure template (`rollback-procedure.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,12 +72,12 @@ Status: Planned - nothing below has been implemented yet; this list is the forwa
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Execute the three behavioral negative controls and confirm each rejects/blocks the real case
-- [ ] T008 Populate the activation matrix with placeholder unknown-state cells; confirm every one defaults to emit
-- [ ] T009 Work one hypothetical candidate cell through the rollback procedure end-to-end as proof
-- [ ] T010 Confirm the evidence schema is consumable by 002-006 without modification
-- [ ] T011 Document the risk-register mapping for all seven named central risks
-- [ ] T012 Reconcile spec/plan/tasks/checklist/implementation-summary for this packet
+- [x] T007 Execute the three behavioral negative controls and confirm each rejects/blocks the real case (`guardrail-negative-controls.test.mjs`)
+- [x] T008 Populate the activation matrix with placeholder unknown-state cells; confirm every one defaults to emit (`activation-matrix.test.mjs`)
+- [x] T009 Work one hypothetical candidate cell through the rollback procedure end-to-end as proof (`rollback-procedure.md`)
+- [x] T010 Confirm the evidence schema is consumable by 002-006 without modification (`activation-matrix.schema.json`, `activation-matrix.test.mjs`)
+- [x] T011 Document the risk-register mapping for all seven named central risks (`risk-register.md`)
+- [x] T012 Reconcile spec/plan/tasks/checklist/implementation-summary for this packet (phase records) — Evidence: `checklist.md` and `implementation-summary.md`; phase validator exit 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -86,9 +85,9 @@ Status: Planned - nothing below has been implemented yet; this list is the forwa
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Three behavioral negative controls and the fail-open default both proven
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Three behavioral negative controls and the fail-open default both proven
 <!-- /ANCHOR:completion -->
 
 ---

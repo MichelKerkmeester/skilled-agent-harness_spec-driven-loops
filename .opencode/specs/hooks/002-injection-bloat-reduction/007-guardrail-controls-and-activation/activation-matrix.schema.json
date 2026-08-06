@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "activation-matrix.schema.json",
+  "title": "Per-runtime per-candidate activation matrix",
+  "description": "Evidence contract for candidates 002-006. Missing, failing, stale, unknown, or ambiguous evidence remains fail-open and emits the full baseline.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "phase",
+    "activationState",
+    "runtimes",
+    "candidates",
+    "policy",
+    "applicabilityRules",
+    "cells"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "phase": {"const": "007-guardrail-controls-and-activation"},
+    "activationState": {"enum": ["all-candidate-flags-off", "evidence-gated"]},
+    "runtimes": {
+      "type": "array",
+      "const": ["Claude Code", "Codex", "Cursor", "Devin", "OpenCode", "Pi"]
+    },
+    "candidates": {
+      "type": "array",
+      "const": ["002", "003", "004", "005", "006"]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultVerdict",
+        "unknownOrAmbiguousVerdict",
+        "inapplicableVerdict",
+        "activationRequires",
+        "activationRequiresPassingEvidence"
+      ],
+      "properties": {
+        "defaultVerdict": {"const": "emit"},
+        "unknownOrAmbiguousVerdict": {"const": "emit"},
+        "inapplicableVerdict": {"const": "N/A"},
+        "activationRequires": {
+          "const": ["behavioralEvidence", "deliveryEvidence"]
+        },
+        "activationRequiresPassingEvidence": {"const": true}
+      }
+    },
+    "applicabilityRules": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["candidate", "runtimes", "reason"],
+        "properties": {
+          "candidate": {"enum": ["002", "003", "004", "005", "006"]},
+          "runtimes": {
+            "type": "array",
+            "items": {"enum": ["Claude Code", "Codex", "Cursor", "Devin", "OpenCode", "Pi"]},
+            "minItems": 1
+          },
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 30,
+      "items": {"$ref": "#/$defs/cell"}
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A candidate-owned receipt or behavioral result. A passing record must name the artifact, source, observation time, and result notes.",
+      "required": ["status", "artifact", "source", "observedAt", "notes"],
+      "properties": {
+        "status": {"enum": ["pass", "fail", "unknown", "ambiguous"]},
+        "artifact": {"type": "string", "minLength": 1},
+        "source": {"type": "string", "minLength": 1},
+        "observedAt": {"type": "string", "format": "date-time"},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    },
+    "passingEvidence": {
+      "allOf": [
+        {"$ref": "#/$defs/evidence"},
+        {"properties": {"status": {"const": "pass"}}}
+      ]
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime",
+        "candidate",
+        "applicable",
+        "behavioralEvidence",
+        "deliveryEvidence",
+        "verdict"
+      ],
+      "properties": {
+        "runtime": {"enum": ["Claude Code", "Codex", "Cursor", "Devin", "OpenCode", "Pi"]},
+        "candidate": {"enum": ["002", "003", "004", "005", "006"]},
+        "applicable": {"type": "boolean"},
+        "behavioralEvidence": {
+          "oneOf": [{"type": "null"}, {"$ref": "#/$defs/evidence"}]
+        },
+        "deliveryEvidence": {
+          "oneOf": [{"type": "null"}, {"$ref": "#/$defs/evidence"}]
+        },
+        "verdict": {"enum": ["N/A", "emit", "activated"]}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "applicable": {"const": false},
+            "verdict": {"const": "N/A"}
+          }
+        },
+        {
+          "properties": {
+            "applicable": {"const": true},
+            "verdict": {"const": "emit"}
+          }
+        },
+        {
+          "properties": {
+            "applicable": {"const": true},
+            "behavioralEvidence": {"$ref": "#/$defs/passingEvidence"},
+            "deliveryEvidence": {"$ref": "#/$defs/passingEvidence"},
+            "verdict": {"const": "activated"}
+          }
+        }
+      ]
+    }
+  }
+}

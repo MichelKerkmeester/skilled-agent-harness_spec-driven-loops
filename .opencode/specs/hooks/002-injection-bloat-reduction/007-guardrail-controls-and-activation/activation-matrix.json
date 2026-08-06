@@ -1,0 +1,81 @@
+{
+  "$schema": "./activation-matrix.schema.json",
+  "schemaVersion": 1,
+  "phase": "007-guardrail-controls-and-activation",
+  "activationState": "all-candidate-flags-off",
+  "runtimes": [
+    "Claude Code",
+    "Codex",
+    "Cursor",
+    "Devin",
+    "OpenCode",
+    "Pi"
+  ],
+  "candidates": ["002", "003", "004", "005", "006"],
+  "policy": {
+    "defaultVerdict": "emit",
+    "unknownOrAmbiguousVerdict": "emit",
+    "inapplicableVerdict": "N/A",
+    "activationRequires": ["behavioralEvidence", "deliveryEvidence"],
+    "activationRequiresPassingEvidence": true
+  },
+  "applicabilityRules": [
+    {
+      "candidate": "002",
+      "runtimes": ["OpenCode"],
+      "reason": "OpenCode-only route bounding"
+    },
+    {
+      "candidate": "003",
+      "runtimes": ["OpenCode"],
+      "reason": "OpenCode-only transform deduplication"
+    },
+    {
+      "candidate": "004",
+      "runtimes": ["Claude Code", "Codex", "Devin", "OpenCode"],
+      "reason": "Shared native serializer and replay behavior"
+    },
+    {
+      "candidate": "005",
+      "runtimes": ["Claude Code", "Codex", "Cursor", "Devin", "OpenCode", "Pi"],
+      "reason": "Cross-runtime spec-gate behavior"
+    },
+    {
+      "candidate": "006",
+      "runtimes": ["Pi"],
+      "reason": "Pi-only compaction behavior"
+    }
+  ],
+  "cells": [
+    {"runtime": "Claude Code", "candidate": "002", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Codex", "candidate": "002", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Cursor", "candidate": "002", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Devin", "candidate": "002", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "OpenCode", "candidate": "002", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Pi", "candidate": "002", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Claude Code", "candidate": "003", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Codex", "candidate": "003", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Cursor", "candidate": "003", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Devin", "candidate": "003", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "OpenCode", "candidate": "003", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Pi", "candidate": "003", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Claude Code", "candidate": "004", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Codex", "candidate": "004", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Cursor", "candidate": "004", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Devin", "candidate": "004", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "OpenCode", "candidate": "004", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Pi", "candidate": "004", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Claude Code", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Codex", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Cursor", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Devin", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "OpenCode", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Pi", "candidate": "005", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"},
+    {"runtime": "Claude Code", "candidate": "006", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Codex", "candidate": "006", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Cursor", "candidate": "006", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Devin", "candidate": "006", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "OpenCode", "candidate": "006", "applicable": false, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "N/A"},
+    {"runtime": "Pi", "candidate": "006", "applicable": true, "behavioralEvidence": null, "deliveryEvidence": null, "verdict": "emit"}
+  ]
+}

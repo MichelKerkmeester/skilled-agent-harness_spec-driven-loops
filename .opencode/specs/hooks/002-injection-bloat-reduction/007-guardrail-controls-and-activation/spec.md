@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Guardrail Controls and Activation Gate"
 description: "Planning spec: build the behavioral negative-control suite and the per-runtime-per-candidate activation/rollback gate that candidates 002-006 must pass, with unknown or ambiguous state defaulting to emit, closing out the injection-bloat-reduction phase map."
-status: planned
-completion_pct: 0
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "guardrail negative controls"
   - "per-runtime activation gate"
@@ -13,24 +13,23 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for the guardrail negative-control and activation gate"
-    next_safe_action: "Draft the per-runtime-per-candidate activation matrix schema"
-    blockers:
-      - "001-measurement-and-receipts-foundation has not yet been built"
+    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the terminal guardrail controls and fail-open activation matrix"
+    next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
       - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
     session_dedup:
-      fingerprint: "sha256:324d528f877ad1a2c67a35eddc22d791bb1405304b18b87c884523a908041028"
+      fingerprint: "sha256:b639de51eec82cd687b402dbf87ffc8d4f9b836109b446fc23d30b01ddc23633"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "What exact scored-scenario rubric proves governor behavior without relying on the directive's current exact string?"
-      - "Should the activation matrix be one shared artifact across 002-006, or does each candidate own its row against a schema this packet defines?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The governor is scored by four behavioral markers and remains valid under marker-preserving wording changes."
+      - "The activation matrix is shared here; candidates 002-006 fill its evidence fields without changing this gate's fail-open policy."
 ---
 # Feature Specification: Guardrail Controls and Activation Gate
 
@@ -46,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete (gate defined; candidate flags remain off) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -86,8 +85,12 @@ Build the terminal behavioral negative-control suite and the per-runtime-per-can
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Guardrail negative-control suite (new file, path confirmed in Phase 1) | Create | Forbidden-comment reject, unsupported-completion block, governor scored scenarios |
-| Per-runtime-per-candidate activation matrix (new file, path confirmed in Phase 1) | Create | Runtime x candidate grid with pass/fail evidence fields and fail-open default |
+| `guardrail-negative-controls.test.mjs` | Create | Forbidden-comment reject, unsupported-completion block, governor scored scenarios |
+| `activation-matrix.json` | Create | Six-runtime x five-candidate grid with fail-open verdicts |
+| `activation-matrix.schema.json` | Create | Cell shape and behavioral/delivery evidence contract |
+| `activation-matrix.test.mjs` | Create | Matrix completeness and zero-activation fail-open proof |
+| `risk-register.md` | Create | Seven central risk-to-control mappings |
+| `rollback-procedure.md` | Create | Per-block/per-runtime rollback template and worked example |
 <!-- /ANCHOR:scope -->
 
 ---
