@@ -4,7 +4,17 @@
 
 import { canonicalFold } from './shared/unicode-normalization.js';
 import { resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
-import { observeRenderedAdvisorPolicy } from './policy-plan.js';
+import {
+  buildAdvisorRenderPlan,
+  evaluateDeliveryState,
+  observeRenderedAdvisorPolicy,
+  ROUTE_ADVISOR_ID,
+  SHADOW_DELIVERY_STATE_MACHINE,
+  type DeliveryReceipt,
+  type DeliveryStateMachine,
+  type DeliveryStateName,
+  type DeliveryStateSignals,
+} from './policy-plan.js';
 import { isAmbiguousTopTwo } from './scorer/ambiguity.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 import type { AdvisorScoredRecommendation } from './scorer/types.js';
@@ -20,6 +30,25 @@ export interface AdvisorBriefRenderOptions {
     readonly uncertaintyThreshold?: number;
     readonly confidenceOnly?: boolean;
   };
+  readonly deliveryState?: ShadowDeliveryRenderOptions;
+}
+
+export interface ShadowDeliveryRenderOptions extends DeliveryStateSignals {
+  readonly stateMachine?: DeliveryStateMachine;
+  readonly deliveryConfirmed?: boolean;
+  readonly receipt?: DeliveryReceipt | 'configured' | 'observed' | 'unobserved' | 'unknown';
+  readonly onShadowLog?: (record: ShadowRouteOnlyLogRecord) => void;
+}
+
+export interface ShadowRouteOnlyLogRecord {
+  readonly shadowId: string;
+  readonly sessionKnown: boolean;
+  readonly epoch: number;
+  readonly policySetHash: string;
+  readonly routeState: DeliveryStateName | null;
+  readonly emittedByteCount: number;
+  readonly routeOnlyByteCount: number;
+  readonly savedBytes: number;
 }
 
 export interface AdvisorBriefRenderableResult {
@@ -48,6 +77,10 @@ const TOKEN_TO_CHAR_ESTIMATE = 4;
 const INSTRUCTION_LABEL_PATTERN =
   /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+const ROUTE_ONLY_SHADOW_ID = 'shadow.route-only.advisor.v1';
+export const ROUTE_ONLY_ESTIMATED_BYTES = 43;
+
+const SHADOW_ROUTE_ONLY_LOG: ShadowRouteOnlyLogRecord[] = [];
 
 // Injected into every advisor brief so all hook-capable runtimes receive
 // the comment hygiene rule even when AGENTS.md is absent from session context.
@@ -150,6 +183,101 @@ function metadataSkillLabel(result: AdvisorBriefRenderableResult): string | null
   return typeof metadata?.skillLabel === 'string' ? metadata.skillLabel : null;
 }
 
+/** Return only the advisor route block that the shadow path would retain. */
+export function renderRouteOnlyAdvisorBrief(rendered: string | null): string | null {
+  const routeBlock = buildAdvisorRenderPlan(rendered).blocks.find((block) => (
+    block.id === ROUTE_ADVISOR_ID
+  ));
+  return routeBlock?.content ?? null;
+}
+
+/** Read the append-only in-process shadow log without exposing route content. */
+export function getShadowRouteOnlyLog(): readonly ShadowRouteOnlyLogRecord[] {
+  return Object.freeze(SHADOW_ROUTE_ONLY_LOG.map((record) => ({ ...record })));
+}
+
+/** Clear shadow log entries between isolated evaluations. */
+export function clearShadowRouteOnlyLog(): void {
+  SHADOW_ROUTE_ONLY_LOG.length = 0;
+}
+
+function stateSignalsForBlock(options: ShadowDeliveryRenderOptions): ShadowDeliveryRenderOptions {
+  return {
+    ...options,
+    lifecycleEvent: undefined,
+    scopeChanged: false,
+    policySetChanged: false,
+    goalChanged: false,
+  };
+}
+
+function observeShadowRouteOnly(
+  rendered: string | null,
+  options: ShadowDeliveryRenderOptions | undefined,
+): void {
+  const plan = buildAdvisorRenderPlan(rendered);
+  const shadowOptions = options ?? {};
+  const machine = shadowOptions.stateMachine ?? SHADOW_DELIVERY_STATE_MACHINE;
+  const epochSnapshot = machine.advanceForSignals(shadowOptions);
+  const blockOptions = stateSignalsForBlock(shadowOptions);
+  const decisions = plan.blocks.map((block) => evaluateDeliveryState({
+    ...blockOptions,
+    blockId: block.id,
+    contentHash: block.contentHash,
+  }, machine));
+
+  if (shadowOptions.deliveryConfirmed === true || shadowOptions.receipt === 'configured' || shadowOptions.receipt === 'observed') {
+    for (const [index, block] of plan.blocks.entries()) {
+      if (decisions[index]?.state === 'SUPPRESSED_SAME') {
+        continue;
+      }
+      machine.recordDelivery({
+        ...blockOptions,
+        blockId: block.id,
+        contentHash: block.contentHash,
+        deliveryConfirmed: shadowOptions.deliveryConfirmed,
+        receipt: shadowOptions.receipt,
+      });
+    }
+  }
+
+  const routeIndex = plan.blocks.findIndex((block) => block.id === ROUTE_ADVISOR_ID);
+  const routeDecision = routeIndex === -1 ? null : decisions[routeIndex] ?? null;
+  const routeOnly = routeDecision?.routeOnlyEligible
+    ? renderRouteOnlyAdvisorBrief(rendered)
+    : null;
+  const emittedByteCount = rendered === null ? 0 : Buffer.byteLength(rendered, 'utf8');
+  const routeOnlyByteCount = routeOnly === null ? 0 : Buffer.byteLength(routeOnly, 'utf8');
+  const record: ShadowRouteOnlyLogRecord = Object.freeze({
+    shadowId: ROUTE_ONLY_SHADOW_ID,
+    sessionKnown: routeDecision?.sessionKnown ?? epochSnapshot.sessionKnown,
+    epoch: routeDecision?.epoch ?? epochSnapshot.epoch,
+    policySetHash: plan.policySetHash,
+    routeState: routeDecision?.state ?? null,
+    emittedByteCount,
+    routeOnlyByteCount,
+    savedBytes: Math.max(0, emittedByteCount - routeOnlyByteCount),
+  });
+  SHADOW_ROUTE_ONLY_LOG.push(record);
+  options?.onShadowLog?.(record);
+}
+
+function observeAdvisorPolicy(
+  rendered: string | null,
+  options: AdvisorBriefRenderOptions = {},
+): void {
+  observeRenderedAdvisorPolicy(rendered);
+  observeShadowRouteOnly(rendered, options.deliveryState);
+}
+
+/** Run the shadow planner for a runtime callback without changing its output. */
+export function observeShadowDelivery(
+  rendered: string | null,
+  deliveryState: ShadowDeliveryRenderOptions = {},
+): void {
+  observeAdvisorPolicy(rendered, { deliveryState });
+}
+
 // ───────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ───────────────────────────────────────────────────────────────
@@ -166,11 +294,11 @@ export function renderAdvisorBrief(
   options: AdvisorBriefRenderOptions = {},
 ): string | null {
   if (result.status !== 'ok') {
-    observeRenderedAdvisorPolicy(null);
+    observeAdvisorPolicy(null, options);
     return null;
   }
   if (result.freshness !== 'live' && result.freshness !== 'stale') {
-    observeRenderedAdvisorPolicy(null);
+    observeAdvisorPolicy(null, options);
     return null;
   }
 
@@ -188,27 +316,27 @@ export function renderAdvisorBrief(
   ));
   const [top, second] = recommendations;
   if (!top) {
-    observeRenderedAdvisorPolicy(null);
+    observeAdvisorPolicy(null, options);
     return null;
   }
 
   const topLabel = sanitizeSkillLabel(metadataSkillLabel(result) ?? top.skill);
   if (!topLabel) {
-    observeRenderedAdvisorPolicy(null);
+    observeAdvisorPolicy(null, options);
     return null;
   }
 
   if (tokenCap > DEFAULT_TOKEN_CAP && second && hasAdvisorAmbiguitySignal(recommendations, result.ambiguous === true)) {
     const secondLabel = sanitizeSkillLabel(second.skill);
     if (!secondLabel) {
-      observeRenderedAdvisorPolicy(null);
+      observeAdvisorPolicy(null, options);
       return null;
     }
     const rendered = capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
     ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
-    observeRenderedAdvisorPolicy(rendered);
+    observeAdvisorPolicy(rendered, options);
     return rendered;
   }
 
@@ -216,14 +344,14 @@ export function renderAdvisorBrief(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
   ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
-  observeRenderedAdvisorPolicy(rendered);
+  observeAdvisorPolicy(rendered, options);
   return rendered;
 }
 
 /** Render the constitutional context retained when no advisor brief is available. */
-export function renderAdvisorFallbackDirective(): string {
+export function renderAdvisorFallbackDirective(options: AdvisorBriefRenderOptions = {}): string {
   const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
-  observeRenderedAdvisorPolicy(rendered);
+  observeAdvisorPolicy(rendered, options);
   return rendered;
 }
 
@@ -233,12 +361,12 @@ export function renderAdvisorFallbackDirective(): string {
 // a cold-start timeout fallback aligned on a single contract — `renderAdvisorBrief`
 // itself returns null when there are no recommendations, which is correct for
 // the live-result path; this function is the explicit fallback companion.
-export function renderAdvisorTimeoutFallback(): string {
+export function renderAdvisorTimeoutFallback(options: AdvisorBriefRenderOptions = {}): string {
   const rendered = [
     'Advisor: stale (cold-start timeout)',
     'Fallback marker: {"stale":true,"reason":"timeout-fallback"}',
   ].join('\n');
-  observeRenderedAdvisorPolicy(rendered);
+  observeAdvisorPolicy(rendered, options);
   return rendered;
 }
 

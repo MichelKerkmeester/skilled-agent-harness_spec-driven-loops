@@ -176,6 +176,16 @@ const ADVISOR_SCRIPT_RELATIVE_PATHS = [
   join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill_advisor_runtime.py'),
   join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill_graph_compiler.py'),
 ];
+const SHADOW_RENDERER_URL = new URL(
+  '../skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/render.js',
+  import.meta.url,
+);
+let shadowRendererPromise;
+
+function loadShadowRenderer() {
+  shadowRendererPromise ??= import(SHADOW_RENDERER_URL).catch(() => null);
+  return shadowRendererPromise;
+}
 
 async function loadConfig() {
   const path = join(homedir(), '.config', 'opencode', 'plugin', 'mk-skill-advisor.json');
@@ -344,6 +354,8 @@ function sessionIdFrom(input) {
     || input.sessionId
     || input.session?.id
     || input.properties?.sessionID
+    || input.properties?.info?.sessionID
+    || input.properties?.info?.id
     || '__global__');
 }
 
@@ -571,6 +583,77 @@ function eventPayloadFrom(event) {
 function eventTypeFrom(event) {
   const payload = eventPayloadFrom(event);
   return typeof payload?.type === 'string' ? payload.type : null;
+}
+
+function lifecycleEventFrom(input, eventType = null) {
+  const candidates = [
+    input?.lifecycleEvent,
+    input?.lifecycle_event,
+    input?.lifecycleSource,
+    input?.lifecycle_source,
+    input?.source,
+    input?.properties?.source,
+  ];
+  for (const candidate of candidates) {
+    if (candidate === 'startup' || candidate === 'resume' || candidate === 'compact') {
+      return candidate;
+    }
+  }
+  if (eventType === 'session.created') return 'startup';
+  if (eventType === 'session.resumed') return 'resume';
+  if (eventType === 'session.compacted' || eventType === 'session.compact') return 'compact';
+  return undefined;
+}
+
+function rawSessionValueFrom(input) {
+  return input?.sessionID
+    ?? input?.sessionId
+    ?? input?.session?.id
+    ?? input?.properties?.sessionID
+    ?? input?.properties?.sessionId;
+}
+
+function shadowDeliveryStateFor(input, sessionID, lifecycleEvent, deliveryConfirmed) {
+  const rawSession = rawSessionValueFrom(input);
+  const ambiguous = Boolean(
+    input?.sessionIdentityAmbiguous
+      || input?.session_identity_ambiguous
+      || (rawSession && typeof rawSession === 'object'),
+  );
+  const explicitConfirmation = input?.sessionIdentityConfirmed
+    ?? input?.session_identity_confirmed;
+  const sessionKnown = sessionID !== '__global__'
+    && !ambiguous
+    && explicitConfirmation !== false;
+  return {
+    sessionId: sessionKnown ? sessionID : undefined,
+    sessionIdentityConfirmed: sessionKnown,
+    sessionIdentityAmbiguous: ambiguous,
+    lifecycleEvent,
+    scopeChanged: input?.scopeChanged === true || input?.scope_changed === true,
+    policySetChanged: input?.policySetChanged === true || input?.policy_set_changed === true,
+    goalChanged: input?.goalChanged === true || input?.goal_changed === true,
+    deliveryConfirmed,
+  };
+}
+
+async function observeShadowDeliveryForRuntime(
+  rendered,
+  input,
+  sessionID,
+  lifecycleEvent,
+  deliveryConfirmed = true,
+) {
+  try {
+    const renderer = await loadShadowRenderer();
+    if (typeof renderer?.observeShadowDelivery !== 'function') return;
+    renderer.observeShadowDelivery(
+      typeof rendered === 'string' ? rendered : null,
+      shadowDeliveryStateFor(input, sessionID, lifecycleEvent, deliveryConfirmed),
+    );
+  } catch {
+    // Shadow planning must never alter the active OpenCode transform.
+  }
 }
 
 function shouldDeliverTransformContribution(input, options, blockId, content, order) {
@@ -865,6 +948,17 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
       let prompt = extractPrompt(input);
       const sessionID = sessionIdFrom(input);
+      let pendingShadowLifecycle = lifecycleEventFrom(input);
+      const observeBlock = async (rendered) => {
+        const lifecycleEvent = pendingShadowLifecycle;
+        pendingShadowLifecycle = undefined;
+        await observeShadowDeliveryForRuntime(
+          rendered,
+          input,
+          sessionID,
+          lifecycleEvent,
+        );
+      };
       if (!prompt && sessionID !== '__global__') {
         try {
           const result = await ctx?.client?.session?.messages?.({
@@ -913,6 +1007,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           1,
         )) {
           output.system.push(FALLBACK_DIRECTIVE);
+          await observeBlock(FALLBACK_DIRECTIVE);
         }
         return;
       }
@@ -938,6 +1033,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         advisorBlockOrder,
       )) {
         output.system.push(advisorBlock);
+        await observeBlock(advisorBlock);
       }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,
@@ -950,6 +1046,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         8,
       )) {
         output.system.push(compiledLine);
+        await observeBlock(compiledLine);
       }
     } catch {
       state.lastBridgeStatus = 'fail_open';
@@ -966,6 +1063,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             1,
           )) {
           output.system.push(FALLBACK_DIRECTIVE);
+          await observeBlock(FALLBACK_DIRECTIVE);
         }
       } catch {
         // A hostile output container must not turn advisor failure into prompt failure.
@@ -982,6 +1080,28 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         if (options.enabled) {
           state.runtimeReady = true;
           state.lastBridgeStatus = 'ready';
+          await observeShadowDeliveryForRuntime(
+            null,
+            eventPayload,
+            sessionIdFrom(eventPayload),
+            'startup',
+            false,
+          );
+        }
+        return;
+      }
+
+      if (eventType === 'session.resumed'
+        || eventType === 'session.compacted'
+        || eventType === 'session.compact') {
+        if (options.enabled) {
+          await observeShadowDeliveryForRuntime(
+            null,
+            eventPayload,
+            sessionIdFrom(eventPayload),
+            lifecycleEventFrom(eventPayload, eventType),
+            false,
+          );
         }
         return;
       }
@@ -991,6 +1111,9 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           || eventPayload?.properties?.info?.sessionID
           || eventPayload?.properties?.info?.id
           || sessionIdFrom(eventPayload));
+        if (options.enabled) {
+          await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
+        }
         state.epoch += 1;
         for (const key of [...state.advisorCache.keys()]) {
           if (key.startsWith(`${sessionID}::`)) {

@@ -18,6 +18,7 @@ import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
 } from '../../mcp-server/lib/render.js';
+import type { ShadowDeliveryRenderOptions } from '../../mcp-server/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
@@ -34,7 +35,16 @@ const IS_CLI_ENTRY = process.argv[1]
 
 export interface ClaudeUserPromptSubmitInput {
   readonly session_id?: string;
+  readonly session_identity_confirmed?: boolean;
+  readonly session_identity_ambiguous?: boolean;
   readonly hook_event_name?: string;
+  readonly lifecycle_event?: string;
+  readonly lifecycle_source?: string;
+  readonly source?: string;
+  readonly scope_changed?: boolean;
+  readonly policy_set_changed?: boolean;
+  readonly goal_changed?: boolean;
+  readonly delivery_receipt_status?: 'configured' | 'observed' | 'unobserved' | 'unknown';
   readonly prompt?: string;
   readonly cwd?: string;
   readonly transcript_path?: string;
@@ -122,6 +132,41 @@ function positiveIntFromEnv(value: string | undefined, fallback: number): number
 
 function claudeHookTimeoutMs(): number {
   return positiveIntFromEnv(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS, DEFAULT_CLAUDE_HOOK_TIMEOUT_MS);
+}
+
+function lifecycleEventFor(input: ClaudeUserPromptSubmitInput): string | undefined {
+  const explicit = input.lifecycle_event ?? input.lifecycle_source;
+  if (explicit === 'startup' || explicit === 'resume' || explicit === 'compact') {
+    return explicit;
+  }
+  if (input.hook_event_name === 'SessionStart'
+    && (input.source === 'startup' || input.source === 'resume' || input.source === 'compact')) {
+    return input.source;
+  }
+  return undefined;
+}
+
+/** Convert runtime-owned identity and lifecycle fields into shadow-only signals. */
+export function deliveryStateOptionsFor(
+  input: ClaudeUserPromptSubmitInput,
+): ShadowDeliveryRenderOptions {
+  const hasSessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0;
+  const shadowProbeConfirmed = hasSessionId
+    && input.session_identity_confirmed !== false
+    && input.session_identity_ambiguous !== true;
+  return {
+    sessionId: input.session_id,
+    sessionIdentityConfirmed: input.session_identity_confirmed ?? hasSessionId,
+    sessionIdentityAmbiguous: input.session_identity_ambiguous === true,
+    lifecycleEvent: lifecycleEventFor(input),
+    scopeChanged: input.scope_changed === true,
+    policySetChanged: input.policy_set_changed === true,
+    goalChanged: input.goal_changed === true,
+    deliveryConfirmed: shadowProbeConfirmed,
+    ...(input.delivery_receipt_status
+      ? { receipt: input.delivery_receipt_status }
+      : {}),
+  };
 }
 
 export function emitDiagnostic(
@@ -225,7 +270,8 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    const brief = renderBrief(result);
+    const renderOptions = { deliveryState: deliveryStateOptionsFor(input) };
+    const brief = renderBrief(result, renderOptions);
     emitDiagnostic({
       workspaceRoot,
       status: result.status,

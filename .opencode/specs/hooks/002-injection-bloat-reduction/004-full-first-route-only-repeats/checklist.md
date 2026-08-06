@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Full-First + Route-Only Repeats"
-description: "Verification items for the delivery-state machine, epoch resolver, and the seven behavioral negative controls. Planning packet - items are pending until implementation lands."
+description: "Verification evidence for the shadow-only delivery-state machine, epoch resolver, byte-parity proof, and seven behavioral negative controls."
 trigger_phrases:
   - "full first route only repeats checklist"
   - "delivery state machine verification"
@@ -10,19 +10,20 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats"
-    last_updated_at: "2026-08-06T00:00:00Z"
+    last_updated_at: "2026-08-06T15:15:00Z"
     last_updated_by: "opus"
-    recent_action: "Authored the verification checklist for the delivery-state machine phase"
-    next_safe_action: "Author implementation-summary.md as a forward-looking not-yet-built placeholder"
+    recent_action: "Implemented the shadow-only delivery state machine and recorded final verification evidence"
+    next_safe_action: "Keep route-only delivery disabled; activation is a later phase"
     blockers:
-      - "Blocked on phases 001-003 shipping receipts, bounding, and dedup first"
+      - "Full repository alignment guard reports pre-existing baseline drift; scoped alignment passes"
+      - "Global Codex hook installer check reports hook-file drift outside this worktree"
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,10 +62,14 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented (unresolved session identity always defaults to full delivery)
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks
+  - **Evidence**: `policy-plan.ts:409`, `render.ts:292`; `npm run typecheck` exit 0, `node --check .opencode/plugins/mk-skill-advisor.js` exit 0, and `git diff --check` exit 0
+- [x] CHK-011 [P0] No console errors or warnings
+  - **Evidence**: `node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs .opencode/plugins/tests/mk-spec-memory.test.cjs` — 42 passed, 0 failed, exit 0; focused Vitest — 23 passed, 0 failed, exit 0
+- [x] CHK-012 [P1] Error handling implemented (unresolved session identity always defaults to full delivery)
+  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:409`, `policy-plan.ts:457`; focused Vitest — 23 passed, 0 failed, exit 0
+- [x] CHK-013 [P1] Code follows project patterns
+  - **Evidence**: scoped `verify_alignment_drift.py` over the changed code roots — 130 files scanned, 0 findings, 0 errors, 0 warnings, exit 0; the full guard's unrelated baseline drift is recorded below
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -72,10 +77,14 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
-- [ ] CHK-021 [P0] Manual/negative-control testing complete (all seven behavioral negative controls green)
-- [ ] CHK-022 [P1] Edge cases tested (dirty-marking, epoch advance, unknown-session isolation)
-- [ ] CHK-023 [P1] Error scenarios validated (long-context, advisor failure, no-match, comment-writing, completion-proof, resume, compaction)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
+  - **Evidence**: `policy-plan.ts:409`, `render.ts:214`, `user-prompt-submit.ts:150`, `mk-skill-advisor.js:640`; focused Vitest — 23 passed, 0 failed, exit 0; legacy/hook/parity suite — 77 passed, 0 failed, exit 0
+- [x] CHK-021 [P0] Manual/negative-control testing complete (all seven behavioral negative controls green)
+  - **Evidence**: `policy-plan-negative-controls.vitest.ts:40`, `policy-plan-negative-controls.vitest.ts:113`; focused Vitest — 7 named controls plus parity assertions, 23 total tests passed, exit 0
+- [x] CHK-022 [P1] Edge cases tested (dirty-marking, epoch advance, unknown-session isolation)
+  - **Evidence**: `policy-plan.vitest.ts:140`, `policy-plan.vitest.ts:163`, `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, 0 failed, exit 0
+- [x] CHK-023 [P1] Error scenarios validated (long-context, advisor failure, no-match, comment-writing, completion-proof, resume, compaction)
+  - **Evidence**: `policy-plan-negative-controls.vitest.ts:42`, `:65`, `:73`, `:77`, `:83`, `:89`, `:94`; focused Vitest — 23 passed, 0 failed, exit 0
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,13 +92,20 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+  - **Evidence**: `policy-plan.ts:409` is the single algorithmic state-machine implementation; no unresolved actionable finding remains in the scoped diff; `git diff --check` exit 0
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+  - **Evidence**: producer inventory covers `render.ts:265`, `user-prompt-submit.ts:248`, `mk-skill-advisor.js:640`, and `skill-advisor-brief.ts:180`; `rg` producer inventory command exit 0
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+  - **Evidence**: consumer inventory covers `render.ts:292`, `user-prompt-submit.ts:273`, `mk-skill-advisor.js:955`, `skill-advisor-brief.ts:180`, and all relevant test suites; `rg` consumer inventory command exit 0
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+  - **Evidence**: Not applicable to this phase's non-security state machine; malformed, unresolved, and ambiguous identity handling is exercised at `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, exit 0
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+  - **Evidence**: six epoch signals at `policy-plan.vitest.ts:163`, seven negative controls at `policy-plan-negative-controls.vitest.ts:40`, and 30 serializer parity rows (`SC-001 byte-diff: empty; rows=30`); all associated suites passed
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+  - **Evidence**: OpenCode runtime shadow observer at `mk-skill-advisor.js:640` is fail-open and non-consuming; plugin suite — 42 passed, 0 failed, exit 0
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+  - **Evidence**: baseline SHA `7ebc12cd92a49cfce007d79f93e7ec30ea4e1efd`; final `git status --short` contains only the six requested code/test files plus the two explicitly requested record documents
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -97,9 +113,12 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented (malformed lifecycle/session signals never crash the state machine)
-- [ ] CHK-032 [P1] Auth/authz working correctly (not applicable - no auth surface in this module)
+- [x] CHK-030 [P0] No hardcoded secrets
+  - **Evidence**: scoped diff review of the six implementation/test files; no credential material added; comment-hygiene checks exit 0 for all six files
+- [x] CHK-031 [P0] Input validation implemented (malformed lifecycle/session signals never crash the state machine)
+  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:326`, `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, 0 failed, exit 0
+- [x] CHK-032 [P1] Auth/authz working correctly (not applicable - no auth surface in this module)
+  - **Evidence**: No auth/authz surface is introduced; the changed boundary is the local shadow state machine at `policy-plan.ts:409`; focused Vitest exit 0
 <!-- /ANCHOR:security -->
 
 ---
@@ -109,8 +128,10 @@ _memory:
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
   - **Evidence**: `spec.md`, `plan.md`, and `tasks.md` describe the same planned delivery-state machine, epoch resolver, and negative-control suite
-- [ ] CHK-041 [P1] Code comments adequate (no spec-path/ADR/REQ/CHK ids embedded per comment-hygiene.md)
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-041 [P1] Code comments adequate (no spec-path/ADR/REQ/CHK ids embedded per comment-hygiene.md)
+  - **Evidence**: `check-comment-hygiene.sh` run with `python3` against each of the six changed code/test files — all six exit 0 with no findings
+- [x] CHK-042 [P2] README updated (if applicable)
+  - **Evidence**: Not applicable; this phase changes internal rendering/state behavior and adds no user-facing README contract
 <!-- /ANCHOR:docs -->
 
 ---
@@ -131,9 +152,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 3/11 (planning-stage items only; implementation items pending) |
-| P1 Items | 10 | 3/10 (planning-stage items only; implementation items pending) |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Not yet run - this packet is planning-only; implementation has not started.
+**Verification Date**: 2026-08-06. Scoped implementation checks pass. The full `run-all-drift-guards.sh` command remains red on the pre-existing repository-wide alignment backlog (472 findings: 268 errors, 204 warnings); its stack-folder and router-sync subguards pass.
 <!-- /ANCHOR:summary -->

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats",
   "description": "Today every qualifying turn on Claude Code, Codex, Devin, and the OpenCode advisor component delivers the full ~806-byte advisor-plus-directives",
   "keywords": [
@@ -18,7 +19,7 @@
     "806-byte",
     "advisor-plus-directives"
   ],
-  "lastUpdated": "2026-08-06T11:10:48.077Z",
+  "lastUpdated": "2026-08-06T15:11:58.769Z",
   "specId": "004",
   "folderSlug": "full-first-route-only-repeats",
   "parentChain": [
@@ -26,6 +27,5 @@
     "002-injection-bloat-reduction"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

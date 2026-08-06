@@ -3,9 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
+  DeliveryStateMachine,
   buildDeliveryReceipt,
   buildPolicyPlan,
   DELIVERY_RECEIPT_FIELDS,
+  evaluateDeliveryState,
   GATE_SPEC_FOLDER_QUESTION_ID,
   hashPolicyBlock,
   hashPolicySet,
@@ -16,6 +18,8 @@ import {
   POLICY_COMMENT_HYGIENE_ID,
   ROUTE_ADVISOR_ID,
   RUNTIME_PI_DISPATCH_ID,
+  resetShadowDeliveryState,
+  resolveConfirmedSessionId,
   serializePolicyHashInput,
 } from '../lib/policy-plan.js';
 import type { DeliveryReceipt } from '../lib/policy-plan.js';
@@ -110,5 +114,131 @@ describe('shadow policy planner', () => {
 
     expect(configured.hostReceiptStatus).not.toBe(observed.hostReceiptStatus);
     expect(isDeliveryReceipt(observed)).toBe(true);
+  });
+
+  it('transitions from unseen to delivered to same-content suppression', () => {
+    const machine = new DeliveryStateMachine();
+    const input = { sessionId: 'session-a', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+
+    expect(machine.inspect(input)).toMatchObject({
+      state: 'UNSEEN',
+      epoch: 0,
+      sessionKnown: true,
+      routeOnlyEligible: false,
+    });
+    expect(machine.confirmDelivery(input)).toMatchObject({
+      state: 'DELIVERED',
+      epoch: 0,
+    });
+    expect(machine.inspect(input)).toMatchObject({
+      state: 'SUPPRESSED_SAME',
+      epoch: 0,
+      routeOnlyEligible: true,
+    });
+  });
+
+  it('marks a changed content hash dirty and requires a new full delivery', () => {
+    const machine = new DeliveryStateMachine();
+    const original = { sessionId: 'session-dirty', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+    const changed = { ...original, contentHash: 'hash-b' };
+
+    machine.confirmDelivery(original);
+    expect(machine.inspect(original).state).toBe('SUPPRESSED_SAME');
+    expect(machine.inspect(changed)).toMatchObject({
+      state: 'UNSEEN',
+      contentHash: 'hash-b',
+      routeOnlyEligible: false,
+    });
+    expect(machine.confirmDelivery(changed).state).toBe('DELIVERED');
+    expect(machine.inspect(changed).state).toBe('SUPPRESSED_SAME');
+  });
+
+  it.each([
+    ['startup', { lifecycleEvent: 'startup' }],
+    ['resume', { lifecycleEvent: 'resume' }],
+    ['compact', { lifecycleEvent: 'compact' }],
+    ['scope', { scopeChanged: true }],
+    ['policy set', { policySetChanged: true }],
+    ['goal', { goalChanged: true }],
+  ])('advances the epoch and resets blocks for a %s signal', (_name, signal) => {
+    const machine = new DeliveryStateMachine();
+    const input = { sessionId: 'session-epoch', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+    const secondInput = { ...input, blockId: POLICY_COMMENT_HYGIENE_ID, contentHash: 'hash-b' };
+
+    machine.confirmDelivery(input);
+    machine.confirmDelivery(secondInput);
+    expect(machine.inspect(input).state).toBe('SUPPRESSED_SAME');
+    expect(machine.inspect(secondInput).state).toBe('SUPPRESSED_SAME');
+    const advanced = machine.advanceForSignals({ ...input, ...signal });
+
+    expect(advanced).toMatchObject({ epoch: 1, sessionKnown: true, advanced: true });
+    expect(machine.inspect(input)).toMatchObject({
+      state: 'UNSEEN',
+      epoch: 1,
+      routeOnlyEligible: false,
+    });
+    expect(machine.inspect(secondInput)).toMatchObject({
+      state: 'UNSEEN',
+      epoch: 1,
+      routeOnlyEligible: false,
+    });
+  });
+
+  it('never reads or shares state for unknown or ambiguous identities', () => {
+    const machine = new DeliveryStateMachine();
+    const confirmed = { sessionId: 'confirmed-session', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+    machine.confirmDelivery(confirmed);
+    expect(machine.inspect(confirmed).state).toBe('SUPPRESSED_SAME');
+
+    const unknown = { blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+    expect(evaluateDeliveryState(unknown, machine)).toMatchObject({
+      state: 'UNSEEN',
+      sessionKnown: false,
+      routeOnlyEligible: false,
+    });
+    expect(machine.confirmDelivery(unknown).sessionKnown).toBe(false);
+    expect(machine.inspect(unknown).state).toBe('UNSEEN');
+    expect(machine.inspect({
+      ...confirmed,
+      sessionIdentity: { id: 'confirmed-session', confirmed: false },
+    })).toMatchObject({
+      state: 'UNSEEN',
+      sessionKnown: false,
+    });
+    expect(resolveConfirmedSessionId({ sessionId: 'confirmed-session', sessionIdentityAmbiguous: true })).toBeNull();
+    expect(machine.inspect(confirmed).state).toBe('SUPPRESSED_SAME');
+  });
+
+  it('reproduces the representative reduction in shadow accounting only', () => {
+    resetShadowDeliveryState();
+    const machine = new DeliveryStateMachine();
+    const block = { id: ROUTE_ADVISOR_ID, content: 'r'.repeat(43), order: 0 };
+    const contentHash = hashPolicyBlock(block);
+    const input = { sessionId: 'scenario-session', blockId: block.id, contentHash };
+    const fullPolicyBytes = 806;
+    const routeOnlyBytes = 43;
+    const gateBytes = 522;
+    const turns = 10;
+    const mutationPositiveTurns = 3;
+    const lifecycleReplays = 0;
+    const fullDeliveries = Math.max(1, 1 + lifecycleReplays);
+    let shadowBytes = 0;
+
+    for (let turn = 0; turn < turns; turn += 1) {
+      const decision = machine.inspect(input);
+      if (decision.state === 'UNSEEN') {
+        shadowBytes += fullPolicyBytes;
+        machine.confirmDelivery(input);
+      } else {
+        expect(decision.state).toBe('SUPPRESSED_SAME');
+        shadowBytes += routeOnlyBytes;
+      }
+    }
+    shadowBytes += Math.min(mutationPositiveTurns, fullDeliveries) * gateBytes;
+
+    const baselineBytes = turns * fullPolicyBytes + mutationPositiveTurns * gateBytes;
+    expect(baselineBytes).toBe(9_626);
+    expect(shadowBytes).toBe(1_715);
+    expect(Number(((1 - shadowBytes / baselineBytes) * 100).toFixed(1))).toBe(82.2);
   });
 });

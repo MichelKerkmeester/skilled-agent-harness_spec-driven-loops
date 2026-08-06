@@ -20,8 +20,8 @@
       "delivery state machine task list",
       "full first route only repeats checklist",
       "delivery state machine verification",
-      "full first route only repeats not yet built",
-      "delivery state machine placeholder"
+      "full first route only repeats implemented",
+      "delivery state machine shadow verification"
     ],
     "key_topics": [
       "full",
@@ -42,11 +42,14 @@
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
       ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan-negative-controls.vitest.ts",
       "plan.md",
+      "spec.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/plugins/mk-skill-advisor.js",
       "implementation-summary.md"
     ],
     "entities": [
@@ -63,15 +66,39 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan-negative-controls.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan-negative-controls.vitest.ts",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -84,12 +111,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
         "source": "derived"
       },
       {
@@ -175,29 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Documentation Map",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Today every qualifying turn on Claude Code, Codex, Devin, and the OpenCode advisor component delivers the full ~806-byte advisor-plus-directives payload (`D=763 B` directives + `R=43 B` representative route), regardless of whether the exact same policy set was already delivered and accepted earlier in the same session/lifecycle epoch",
     "created_at": "2026-08-06T11:10:54.422Z",
-    "last_save_at": "2026-08-06T11:10:54.422Z",
+    "last_save_at": "2026-08-06T15:14:29.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ef7626f2110f10143a92c9918361262d7a979d0d0b68ad0dbd9639552499f30",
+    "source_fingerprint": "sha256:1ee925650a3f9bf2e001e952ab939bbc51792b0b25beaac7d42569430b1c101a",
     "source_doc_hashes": {
       "spec.md": "8b35e547d59a090512cad0a9e75952a112168d493cdd0fa6887cd4a584ecd27f",
       "plan.md": "dceef7896a25c7f183723c1a8128cbf6656687d2379ed5c55b6bb0750ab06a63",
       "tasks.md": "4e9766731d4f436efea725bcf28f4e9b16ed5557d1fbee64cb622d64179218fb",
-      "checklist.md": "255bdf00c0c6d38c4d5cf33adc94867fa9b37a81224d23f68bf1ef0562d1ae3a",
-      "implementation-summary.md": "5e842641fd661cce156866f654881409cbff1d0acbd916eab4ee097608630fee"
+      "checklist.md": "217e8f817ceee64a2e8702e45f15cf54e2a7966fa6d5fb57357c6bde6224bd86",
+      "implementation-summary.md": "1d8897462b9a6454be2680663ef62e048113a0318598fedda6c049d61d3f3ce0"
     },
     "last_active_child_id": null,
     "last_active_at": null

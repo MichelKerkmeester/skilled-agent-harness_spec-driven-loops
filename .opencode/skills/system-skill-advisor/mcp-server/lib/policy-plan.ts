@@ -65,6 +65,50 @@ export interface DeliveryReceipt {
 
 export type DeliveryReceiptInput = DeliveryReceipt;
 
+export type DeliveryStateName = 'UNSEEN' | 'DELIVERED' | 'SUPPRESSED_SAME';
+
+export type DeliveryLifecycleEvent = 'startup' | 'resume' | 'compact';
+
+export type DeliveryEpochReason =
+  | DeliveryLifecycleEvent
+  | 'scope-change'
+  | 'policy-set-change'
+  | 'goal-change';
+
+export interface DeliveryStateSignals {
+  readonly sessionId?: unknown;
+  readonly sessionIdentity?: unknown;
+  readonly sessionIdentityConfirmed?: boolean;
+  readonly sessionIdentityAmbiguous?: boolean;
+  readonly lifecycleEvent?: unknown;
+  readonly scopeChanged?: boolean;
+  readonly policySetChanged?: boolean;
+  readonly goalChanged?: boolean;
+}
+
+export interface DeliveryStateRequest extends DeliveryStateSignals {
+  readonly blockId: string;
+  readonly contentHash: string;
+  readonly deliveryConfirmed?: boolean;
+  readonly receipt?: DeliveryReceipt | HostReceiptStatus;
+}
+
+export interface DeliveryStateSnapshot {
+  readonly state: DeliveryStateName;
+  readonly blockId: string;
+  readonly contentHash: string;
+  readonly epoch: number;
+  readonly sessionKnown: boolean;
+  readonly routeOnlyEligible: boolean;
+}
+
+export interface DeliveryEpochSnapshot {
+  readonly epoch: number;
+  readonly sessionKnown: boolean;
+  readonly advanced: boolean;
+  readonly reasons: readonly DeliveryEpochReason[];
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
@@ -168,7 +212,7 @@ export const POLICY_BLOCK_REGISTRY: readonly PolicyBlockDefinition[] = Object.fr
   {
     id: RUNTIME_OPENCODE_COMPILED_ROUTE_ID,
     order: 8,
-    content: (context) => {
+    content: (context?: PolicyBlockContentContext) => {
       const targets = context?.compiledRouteTargets;
       if (!Array.isArray(targets) || targets.some((target) => typeof target !== 'string')) {
         return undefined;
@@ -228,6 +272,324 @@ export function serializeCompiledRouteTargetList(targets: readonly string[]): st
 
 function hasReceiptField(receipt: Record<string, unknown>, field: string): boolean {
   return Object.prototype.hasOwnProperty.call(receipt, field) && receipt[field] !== undefined;
+}
+
+const UNKNOWN_SESSION_MARKER = /^(?:unknown|unresolved|ambiguous)(?:$|[-_:])/i;
+
+function normalizedSessionId(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const normalized = value.trim();
+  if (!normalized
+    || normalized === '__global__'
+    || normalized === '<unknown>'
+    || UNKNOWN_SESSION_MARKER.test(normalized)) {
+    return null;
+  }
+  return normalized;
+}
+
+/** Resolve a session key only when the runtime supplied a trustworthy identity. */
+export function resolveConfirmedSessionId(signals: DeliveryStateSignals): string | null {
+  if (signals.sessionIdentityAmbiguous === true || signals.sessionIdentityConfirmed === false) {
+    return null;
+  }
+
+  if (signals.sessionIdentity !== undefined) {
+    if (typeof signals.sessionIdentity !== 'object'
+      || signals.sessionIdentity === null
+      || Array.isArray(signals.sessionIdentity)) {
+      return null;
+    }
+    const identity = signals.sessionIdentity as Record<string, unknown>;
+    if (identity.ambiguous === true
+      || (identity.confirmed !== true && identity.status !== 'confirmed')) {
+      return null;
+    }
+    return normalizedSessionId(
+      identity.sessionId ?? identity.sessionID ?? identity.id,
+    );
+  }
+
+  return normalizedSessionId(signals.sessionId);
+}
+
+function normalizedLifecycleEvent(value: unknown): DeliveryLifecycleEvent | null {
+  if (value === 'startup' || value === 'resume' || value === 'compact') {
+    return value;
+  }
+  return null;
+}
+
+/** Return the epoch-changing signals present in one runtime event. */
+export function deliveryEpochReasons(
+  signals: DeliveryStateSignals,
+): readonly DeliveryEpochReason[] {
+  const reasons: DeliveryEpochReason[] = [];
+  const lifecycleEvent = normalizedLifecycleEvent(signals.lifecycleEvent);
+  if (lifecycleEvent) {
+    reasons.push(lifecycleEvent);
+  }
+  if (signals.scopeChanged === true) {
+    reasons.push('scope-change');
+  }
+  if (signals.policySetChanged === true) {
+    reasons.push('policy-set-change');
+  }
+  if (signals.goalChanged === true) {
+    reasons.push('goal-change');
+  }
+  return Object.freeze([...new Set(reasons)]);
+}
+
+function receiptConfirmsDelivery(
+  receipt: DeliveryReceipt | HostReceiptStatus | undefined,
+): boolean {
+  if (receipt === 'configured' || receipt === 'observed') {
+    return true;
+  }
+  if (!receipt || typeof receipt !== 'object') {
+    return false;
+  }
+  return receipt.hostReceiptStatus === 'configured' || receipt.hostReceiptStatus === 'observed';
+}
+
+function receiptMatchesDelivery(
+  receipt: DeliveryReceipt | HostReceiptStatus | undefined,
+  contentHash: string,
+  epoch: number,
+): boolean {
+  if (!receipt || typeof receipt !== 'object') {
+    return true;
+  }
+  return receipt.plannedHash === contentHash && receipt.lifecycleEpoch === epoch;
+}
+
+interface StoredDeliveryState {
+  readonly state: DeliveryStateName;
+  readonly contentHash: string;
+  readonly epoch: number;
+}
+
+interface SessionDeliveryState {
+  epoch: number;
+  readonly blocks: Map<string, StoredDeliveryState>;
+}
+
+function validBlockRequest(input: DeliveryStateRequest): boolean {
+  return typeof input.blockId === 'string'
+    && input.blockId.length > 0
+    && typeof input.contentHash === 'string'
+    && input.contentHash.length > 0;
+}
+
+function snapshot(
+  input: DeliveryStateRequest,
+  state: DeliveryStateName,
+  epoch: number,
+  sessionKnown: boolean,
+): DeliveryStateSnapshot {
+  return Object.freeze({
+    state,
+    blockId: input.blockId,
+    contentHash: input.contentHash,
+    epoch,
+    sessionKnown,
+    routeOnlyEligible: sessionKnown && state === 'SUPPRESSED_SAME',
+  });
+}
+
+/**
+ * Track confirmed policy-block delivery inside a session-scoped lifecycle epoch.
+ *
+ * Unknown identities never acquire a map key, which keeps their decisions
+ * independent from every confirmed session.
+ */
+export class DeliveryStateMachine {
+  private readonly sessions = new Map<string, SessionDeliveryState>();
+
+  private sessionFor(signals: DeliveryStateSignals, create = true): SessionDeliveryState | null {
+    const sessionId = resolveConfirmedSessionId(signals);
+    if (!sessionId) {
+      return null;
+    }
+    const existing = this.sessions.get(sessionId);
+    if (existing || !create) {
+      return existing ?? null;
+    }
+    const created: SessionDeliveryState = { epoch: 0, blocks: new Map() };
+    this.sessions.set(sessionId, created);
+    return created;
+  }
+
+  /** Apply all epoch-changing signals exactly once for the current event. */
+  public advanceForSignals(signals: DeliveryStateSignals = {}): DeliveryEpochSnapshot {
+    const reasons = deliveryEpochReasons(signals);
+    const session = this.sessionFor(signals);
+    if (!session) {
+      return Object.freeze({ epoch: 0, sessionKnown: false, advanced: false, reasons });
+    }
+    if (reasons.length === 0) {
+      return Object.freeze({
+        epoch: session.epoch,
+        sessionKnown: true,
+        advanced: false,
+        reasons,
+      });
+    }
+    session.epoch += 1;
+    session.blocks.clear();
+    return Object.freeze({
+      epoch: session.epoch,
+      sessionKnown: true,
+      advanced: true,
+      reasons,
+    });
+  }
+
+  /** Return the current epoch without creating state for an unknown identity. */
+  public currentEpoch(signals: DeliveryStateSignals = {}): number {
+    return this.sessionFor(signals, false)?.epoch ?? 0;
+  }
+
+  /** Inspect and transition one block toward same-content suppression. */
+  public inspect(input: DeliveryStateRequest): DeliveryStateSnapshot {
+    const epochSnapshot = this.advanceForSignals(input);
+    const session = this.sessionFor(input);
+    if (!session || !validBlockRequest(input)) {
+      return snapshot(input, 'UNSEEN', epochSnapshot.epoch, false);
+    }
+
+    const existing = session.blocks.get(input.blockId);
+    if (!existing || existing.epoch !== session.epoch || existing.contentHash !== input.contentHash) {
+      session.blocks.set(input.blockId, {
+        state: 'UNSEEN',
+        contentHash: input.contentHash,
+        epoch: session.epoch,
+      });
+      return snapshot(input, 'UNSEEN', session.epoch, true);
+    }
+
+    if (existing.state === 'DELIVERED') {
+      session.blocks.set(input.blockId, {
+        ...existing,
+        state: 'SUPPRESSED_SAME',
+      });
+      return snapshot(input, 'SUPPRESSED_SAME', session.epoch, true);
+    }
+
+    return snapshot(input, existing.state, session.epoch, true);
+  }
+
+  /** Record a full delivery only after an explicit or receipt-backed confirmation. */
+  public recordDelivery(input: DeliveryStateRequest): DeliveryStateSnapshot {
+    const epochSnapshot = this.advanceForSignals(input);
+    const session = this.sessionFor(input);
+    if (!session || !validBlockRequest(input)) {
+      return snapshot(input, 'UNSEEN', epochSnapshot.epoch, false);
+    }
+
+    const confirmed = input.deliveryConfirmed === true || receiptConfirmsDelivery(input.receipt);
+    const receiptMatches = receiptMatchesDelivery(input.receipt, input.contentHash, session.epoch);
+    if (!confirmed || !receiptMatches) {
+      const existing = session.blocks.get(input.blockId);
+      return snapshot(
+        input,
+        existing?.contentHash === input.contentHash ? existing.state : 'UNSEEN',
+        session.epoch,
+        true,
+      );
+    }
+
+    session.blocks.set(input.blockId, {
+      state: 'DELIVERED',
+      contentHash: input.contentHash,
+      epoch: session.epoch,
+    });
+    return snapshot(input, 'DELIVERED', session.epoch, true);
+  }
+
+  /** Confirm a full delivery with a caller-owned host receipt or probe. */
+  public confirmDelivery(input: DeliveryStateRequest): DeliveryStateSnapshot {
+    return this.recordDelivery({ ...input, deliveryConfirmed: true });
+  }
+
+  /** Mark one block dirty so the next decision requires full delivery. */
+  public markDirty(input: DeliveryStateRequest): DeliveryStateSnapshot {
+    const epochSnapshot = this.advanceForSignals(input);
+    const session = this.sessionFor(input);
+    if (!session || !validBlockRequest(input)) {
+      return snapshot(input, 'UNSEEN', epochSnapshot.epoch, false);
+    }
+    session.blocks.set(input.blockId, {
+      state: 'UNSEEN',
+      contentHash: input.contentHash,
+      epoch: session.epoch,
+    });
+    return snapshot(input, 'UNSEEN', session.epoch, true);
+  }
+
+  /** Advance one confirmed session epoch and clear every block in it. */
+  public advanceEpoch(signals: DeliveryStateSignals = {}): DeliveryEpochSnapshot {
+    const session = this.sessionFor(signals);
+    const reasons = deliveryEpochReasons(signals);
+    if (!session) {
+      return Object.freeze({ epoch: 0, sessionKnown: false, advanced: false, reasons });
+    }
+    session.epoch += 1;
+    session.blocks.clear();
+    return Object.freeze({
+      epoch: session.epoch,
+      sessionKnown: true,
+      advanced: true,
+      reasons,
+    });
+  }
+
+  /** Remove all state for one confirmed session. */
+  public clearSession(signals: DeliveryStateSignals): void {
+    const sessionId = resolveConfirmedSessionId(signals);
+    if (sessionId) {
+      this.sessions.delete(sessionId);
+    }
+  }
+
+  /** Clear the in-process shadow state between isolated evaluations. */
+  public clear(): void {
+    this.sessions.clear();
+  }
+}
+
+export const SHADOW_DELIVERY_STATE_MACHINE = new DeliveryStateMachine();
+
+/** Evaluate one block using the process-local shadow delivery state. */
+export function evaluateDeliveryState(
+  input: DeliveryStateRequest,
+  machine: DeliveryStateMachine = SHADOW_DELIVERY_STATE_MACHINE,
+): DeliveryStateSnapshot {
+  return machine.inspect(input);
+}
+
+/** Confirm one full block delivery using the process-local shadow state. */
+export function confirmDeliveryState(
+  input: DeliveryStateRequest,
+  machine: DeliveryStateMachine = SHADOW_DELIVERY_STATE_MACHINE,
+): DeliveryStateSnapshot {
+  return machine.confirmDelivery(input);
+}
+
+/** Advance the process-local shadow epoch for a lifecycle or semantic change. */
+export function advanceDeliveryEpoch(
+  signals: DeliveryStateSignals,
+  machine: DeliveryStateMachine = SHADOW_DELIVERY_STATE_MACHINE,
+): DeliveryEpochSnapshot {
+  return machine.advanceEpoch(signals);
+}
+
+/** Reset the process-local shadow state without affecting emitted content. */
+export function resetShadowDeliveryState(): void {
+  SHADOW_DELIVERY_STATE_MACHINE.clear();
 }
 
 // ───────────────────────────────────────────────────────────────────
