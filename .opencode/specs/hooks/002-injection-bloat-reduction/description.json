@@ -1,0 +1,25 @@
+{
+  "specFolder": "hooks/002-injection-bloat-reduction",
+  "description": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190",
+  "keywords": [
+    "hooks",
+    "research",
+    "measured",
+    "three",
+    "always-on",
+    "directives",
+    "comment-hygiene",
+    "governor",
+    "proof-over-appearance",
+    "bytes"
+  ],
+  "lastUpdated": "2026-08-06T11:21:30.637Z",
+  "specId": "002",
+  "folderSlug": "injection-bloat-reduction",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

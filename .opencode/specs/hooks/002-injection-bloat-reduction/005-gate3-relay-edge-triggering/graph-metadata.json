@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+  "spec_folder": "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 3 relay suppression",
+      "edge-triggered gate delivery",
+      "gate open-epoch dedup",
+      "suppress repeated gate question",
+      "gate 3 relay plan",
+      "edge-triggered gate delivery plan",
+      "gate matrix negative controls",
+      "gate 3 relay tasks",
+      "edge-triggered gate delivery tasks",
+      "gate 3 relay checklist",
+      "edge-triggered gate delivery verification",
+      "gate 3 relay implementation summary"
+    ],
+    "key_topics": [
+      "gate",
+      "relay",
+      "suppression",
+      "edge-triggered",
+      "delivery",
+      "open-epoch",
+      "dedup",
+      "suppress",
+      "repeated",
+      "question",
+      "plan",
+      "matrix"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relay Edge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Reductions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Predicate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains open, even when nothing about the task, scope, or answer state has changed since the last ask",
+    "created_at": "2026-08-06T11:02:30.631Z",
+    "last_save_at": "2026-08-06T11:22:53.299Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f9536dbe1a247a0f8d81f9d7e605805a454a650b377c14b2e9ab03625fab2e3",
+    "source_doc_hashes": {
+      "spec.md": "a7d957c5c4e400995f2c747e6df84d1b931d03a8dde4e38c853b4893e39fdf56",
+      "plan.md": "a6afc47b04c104726ce364997c39db97e07f18a5db5284d851c98cf5553bce31",
+      "tasks.md": "daaf795260b2f304be9248f891aa8c069bfe3b0149acb3daa533b9b2e4f038d3",
+      "checklist.md": "49524b6736c26e96140756b6707dfce7dd69a901947c4693f36c50c54ca9316c",
+      "implementation-summary.md": "baca7977870312e0a7b7e1ed3e9179fea8a6cfecfc4dd34ca7e7410cbac7d8c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

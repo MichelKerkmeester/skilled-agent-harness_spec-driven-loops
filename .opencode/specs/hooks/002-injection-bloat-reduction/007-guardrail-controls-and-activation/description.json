@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
+  "description": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely",
+  "keywords": [
+    "none",
+    "candidates",
+    "opencode",
+    "route",
+    "bounding",
+    "transform",
+    "dedup",
+    "full-first",
+    "route-only-repeats",
+    "gate",
+    "suppression",
+    "compaction",
+    "safely"
+  ],
+  "lastUpdated": "2026-08-06T11:21:30.625Z",
+  "specId": "007",
+  "folderSlug": "guardrail-controls-and-activation",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction",
+  "description": "`PISUBAGENTDISPATCHDIRECTIVE` in `prompt-advisor.ts` emits a 554-byte dispatch directive on every non-empty parent input, even on advisor failure, and",
+  "keywords": [
+    "pisubagentdispatchdirective",
+    "prompt-advisor",
+    "emits",
+    "554-byte",
+    "dispatch",
+    "directive",
+    "every",
+    "non-empty",
+    "parent",
+    "input",
+    "even",
+    "advisor",
+    "failure"
+  ],
+  "lastUpdated": "2026-08-06T11:21:30.603Z",
+  "specId": "006",
+  "folderSlug": "pi-dispatch-and-compaction",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

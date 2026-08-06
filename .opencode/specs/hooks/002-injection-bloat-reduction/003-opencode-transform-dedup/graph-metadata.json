@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup",
+  "spec_folder": "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode transform dedup",
+      "same message system transform dedup",
+      "stable message identity opencode",
+      "transform dedup plan",
+      "message identity resolver plan",
+      "transform dedup tasks",
+      "message identity resolver task list",
+      "transform dedup checklist",
+      "message identity resolver verification",
+      "transform dedup not yet built",
+      "message identity resolver placeholder"
+    ],
+    "key_topics": [
+      "opencode",
+      "transform",
+      "dedup",
+      "same",
+      "message",
+      "system",
+      "stable",
+      "identity",
+      "plan",
+      "resolver",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/plugins/mk-spec-memory.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+      ".opencode/plugins/tests/mk-spec-memory.test.cjs",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-spec-memory.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transform Dedup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Reductions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to `output.system` for the same user message, with no shared coordination proving whether a policy/advisor block was already delivered for that exact message",
+    "created_at": "2026-08-06T11:07:41.298Z",
+    "last_save_at": "2026-08-06T11:07:41.298Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7535692c5f2b975a28719d7a110f1cb1a55e495f004ea67bd675e1ccbac7c8b8",
+    "source_doc_hashes": {
+      "spec.md": "35fd982bf038f4b37e4a92169255d92d6ea85e5c6b72377e3d2945ffef9483ac",
+      "plan.md": "add6ca99393c23886564924aad7c4e26c2d6b8414e3f928301ab646d4920767f",
+      "tasks.md": "3c1122f40611046409d0b9f84013ad768e86cfddb47fecadd965d64f76e90b26",
+      "checklist.md": "26ebf667507284ef0c6854c1d040852284b9ed4f31296aa2e851c6cb6ffd1130",
+      "implementation-summary.md": "ea2d7f5d1cd2907fea39aafc696b9b7de2ce86fe0896c8bb743a61fcbeebaaf4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

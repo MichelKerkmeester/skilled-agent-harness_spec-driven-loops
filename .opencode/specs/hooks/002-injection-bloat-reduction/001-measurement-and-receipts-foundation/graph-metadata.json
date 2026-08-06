@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation",
+  "spec_folder": "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "measurement and receipts foundation",
+      "shadow planner canonical block ids",
+      "delivery receipt hashes injection bloat",
+      "measurement and receipts plan",
+      "shadow planner plan",
+      "policy plan module",
+      "measurement and receipts tasks",
+      "shadow planner task list",
+      "measurement and receipts checklist",
+      "shadow planner verification",
+      "measurement and receipts summary",
+      "shadow planner not yet built"
+    ],
+    "key_topics": [
+      "measurement",
+      "receipts",
+      "foundation",
+      "shadow",
+      "planner",
+      "canonical",
+      "block",
+      "ids",
+      "delivery",
+      "receipt",
+      "hashes",
+      "injection"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Receipts Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Reductions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime adapters emit, and nothing records whether a block was actually delivered versus merely rendered",
+    "created_at": "2026-08-06T10:59:21.547Z",
+    "last_save_at": "2026-08-06T11:00:59.922Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f60881f0a2c28d756ed0f67bb883a1f697eb226d6ba779c92c72967e5c064f31",
+    "source_doc_hashes": {
+      "spec.md": "a4df08e898afd7842dc310a8334e859813675857445731872bdb5578f2461886",
+      "plan.md": "89fbd725fa132a5deef27bd974f8280c672a8cae382d74de84f57a56dcf66c58",
+      "tasks.md": "5f05feae4085248dfaced662cee1d07cd68e20d49d5b674d00f126bce7195ba8",
+      "checklist.md": "8a110aa205af0c7a3380d0b9c5da6d6afbb5775311ad96e42b57c2ae431038bf",
+      "implementation-summary.md": "7cc9056f5b9a00e2da64b76b9e6808be9acd9d53c6a983a7192b3b5eeccfad6e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

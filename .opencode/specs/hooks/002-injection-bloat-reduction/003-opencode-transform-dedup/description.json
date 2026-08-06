@@ -1,0 +1,27 @@
+{
+  "specFolder": "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup",
+  "description": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to",
+  "keywords": [
+    "opencode",
+    "mk-skill-advisor",
+    "mk-spec-memory",
+    "register",
+    "independent",
+    "experimental",
+    "chat",
+    "system",
+    "transform",
+    "handler",
+    "append"
+  ],
+  "lastUpdated": "2026-08-06T11:07:36.208Z",
+  "specId": "003",
+  "folderSlug": "opencode-transform-dedup",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

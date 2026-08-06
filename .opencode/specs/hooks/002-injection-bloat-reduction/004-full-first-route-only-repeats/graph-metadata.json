@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats",
+  "spec_folder": "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "full first route only repeats",
+      "delivery state machine unseen delivered suppressed",
+      "lifecycle epoch policy replay",
+      "full first route only repeats plan",
+      "delivery state machine implementation",
+      "full first route only repeats tasks",
+      "delivery state machine task list",
+      "full first route only repeats checklist",
+      "delivery state machine verification",
+      "full first route only repeats not yet built",
+      "delivery state machine placeholder"
+    ],
+    "key_topics": [
+      "full",
+      "first",
+      "route",
+      "only",
+      "repeats",
+      "delivery",
+      "state",
+      "machine",
+      "unseen",
+      "delivered",
+      "suppressed",
+      "lifecycle"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/plugins/mk-skill-advisor.js",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Repeats",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Today",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Cost Model",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Today every qualifying turn on Claude Code, Codex, Devin, and the OpenCode advisor component delivers the full ~806-byte advisor-plus-directives payload (`D=763 B` directives + `R=43 B` representative route), regardless of whether the exact same policy set was already delivered and accepted earlier in the same session/lifecycle epoch",
+    "created_at": "2026-08-06T11:10:54.422Z",
+    "last_save_at": "2026-08-06T11:10:54.422Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ef7626f2110f10143a92c9918361262d7a979d0d0b68ad0dbd9639552499f30",
+    "source_doc_hashes": {
+      "spec.md": "8b35e547d59a090512cad0a9e75952a112168d493cdd0fa6887cd4a584ecd27f",
+      "plan.md": "dceef7896a25c7f183723c1a8128cbf6656687d2379ed5c55b6bb0750ab06a63",
+      "tasks.md": "4e9766731d4f436efea725bcf28f4e9b16ed5557d1fbee64cb622d64179218fb",
+      "checklist.md": "255bdf00c0c6d38c4d5cf33adc94867fa9b37a81224d23f68bf1ef0562d1ae3a",
+      "implementation-summary.md": "5e842641fd661cce156866f654881409cbff1d0acbd916eab4ee097608630fee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

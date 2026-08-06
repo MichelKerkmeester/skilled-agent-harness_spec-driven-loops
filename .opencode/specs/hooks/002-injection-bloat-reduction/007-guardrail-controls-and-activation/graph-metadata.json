@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
+  "spec_folder": "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "guardrail negative controls",
+      "per-runtime activation gate",
+      "injection reduction rollback",
+      "governor behavioral scenarios",
+      "guardrail activation gate plan",
+      "behavioral negative control plan",
+      "activation matrix rollback plan",
+      "guardrail activation gate tasks",
+      "behavioral negative control tasks",
+      "guardrail activation gate checklist",
+      "behavioral negative control verification",
+      "guardrail activation gate implementation summary"
+    ],
+    "key_topics": [
+      "guardrail",
+      "negative",
+      "controls",
+      "per-runtime",
+      "activation",
+      "gate",
+      "injection",
+      "reduction",
+      "rollback",
+      "governor",
+      "behavioral",
+      "scenarios"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guardrail Controls",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement None",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "placeholder",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely activate on byte savings alone",
+    "created_at": "2026-08-06T11:10:46.674Z",
+    "last_save_at": "2026-08-06T11:22:54.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2be2e4556d930f7ec30507367e4244e823620da970bcc17c237df4cb729aad65",
+    "source_doc_hashes": {
+      "spec.md": "ec11f9c9875255cc97104c84bd37a1f4c50b4f33285822e064f6fcdb241d0dd6",
+      "plan.md": "7616139a4487d70b5f95861798732cce80fe1afd4e21bbcaa220fb94bc96c2fc",
+      "tasks.md": "0a9fdffc738c64590462dda81e59ceb46aa5f0802f93e63bab473a59b6482d3b",
+      "checklist.md": "188fc9c5bede95e34736a392d1592a33450b7bd9956813d7e4e34667566b4cbb",
+      "implementation-summary.md": "3cc1118e6c35c9a51fc1eebe466df50c21fbc095b45c7ced2dd9d6c915ed1f63"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

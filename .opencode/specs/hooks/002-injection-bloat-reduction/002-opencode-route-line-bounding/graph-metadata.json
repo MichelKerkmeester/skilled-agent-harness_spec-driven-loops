@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding",
+  "spec_folder": "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode route line bounding",
+      "compiled route target cap",
+      "bounded compiled routing summary",
+      "route line bounding plan",
+      "compiled route cap implementation",
+      "route line bounding tasks",
+      "compiled route cap task list",
+      "route line bounding checklist",
+      "compiled route cap verification",
+      "route line bounding not yet built",
+      "compiled route cap placeholder"
+    ],
+    "key_topics": [
+      "opencode",
+      "route",
+      "line",
+      "bounding",
+      "compiled",
+      "target",
+      "cap",
+      "bounded",
+      "routing",
+      "summary",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Line Bounding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Reductions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Block Ownership",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Flag",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`renderCompiledRouteSummaryLine` in `.opencode/plugins/mk-skill-advisor.js` appends an additive line to every OpenCode advisor response: `Compiled routing (served=...): hub=.",
+    "created_at": "2026-08-06T11:03:56.252Z",
+    "last_save_at": "2026-08-06T11:04:54.060Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7ce4d43b69349390cde85cc420f49e6e7b0e04094b896bc9882986b2e50520e0",
+    "source_doc_hashes": {
+      "spec.md": "07bc908ac51db94d5168497a8845619626214e6f6f747a8bc6e3dff53043538e",
+      "plan.md": "59bc845e2a6a3935759be385c99fd07cb07ce5373fc86dcae3742f3c949141ba",
+      "tasks.md": "cb203d7f75ea06011b4dca982a065ffe89cd05d90ab7c301b9b527387b400913",
+      "checklist.md": "b5c354fe44d57f26575f4d7fea9e1505784e32fbc0656a6cef72f18f99f94d59",
+      "implementation-summary.md": "2fc96b9954bda632e981fa38043f482ce1c68cb2da45c3a2fc4820b0a3196faa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
