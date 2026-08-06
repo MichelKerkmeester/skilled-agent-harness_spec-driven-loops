@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/027-playbook-snippet-template-migration",
+  "spec_folder": "sk-doc/027-playbook-snippet-template-migration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook snippet template migration",
+      "manual-testing-playbook alignment",
+      "sk-doc playbook snippet reformat",
+      "playbook migration plan",
+      "playbook migration tasks",
+      "playbook migration checklist",
+      "packet 027 summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "snippet",
+      "template",
+      "migration",
+      "manual-testing-playbook",
+      "alignment",
+      "sk-doc",
+      "reformat",
+      "plan",
+      "tasks",
+      "checklist",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 32 per-feature snippet files under `.opencode/skills/sk-doc/manual-testing-playbook/` drifted from the snippet template (`sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md`)",
+    "created_at": "2026-08-06T07:24:08.534Z",
+    "last_save_at": "2026-08-06T07:26:13.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6f03297cfe16fa78eeb7d71f6baac0a01462bf80869109ac199cddafb16b5a1",
+    "source_doc_hashes": {
+      "spec.md": "82f2c042413fbf926ddc4325f74cd4220279a970cd166de188c7af05d97399cc",
+      "plan.md": "81a2ecb44597835dc2d9c04be30f4ef02903ab320a4488a356d9670f0dcd18e7",
+      "tasks.md": "4e58f6d6d07a205d258431a36256859f7b9edd3b5e79bcd6af7b82b32c04e53a",
+      "checklist.md": "897303d1973c88ec68ccd86a13ed8f4d76507ab0a1fdcef8e14382ff9a7b5b37",
+      "implementation-summary.md": "bcd981f689c1f81d51717c89d5e2951e9e80aca5ab5943d542017b83285a4a57"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
