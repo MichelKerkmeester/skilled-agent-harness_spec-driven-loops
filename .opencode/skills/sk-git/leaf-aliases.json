@@ -286,11 +286,6 @@
   },
   {
     "workflowMode": "sk-git",
-    "leafResourceId": "references/config-content-filters.md",
-    "diskPath": "references/config-content-filters.md"
-  },
-  {
-    "workflowMode": "sk-git",
     "leafResourceId": "references/continuous-integration.md",
     "diskPath": "references/continuous-integration.md"
   },

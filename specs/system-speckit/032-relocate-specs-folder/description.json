@@ -1,23 +1,17 @@
 {
   "level": "2",
   "specFolder": "system-speckit/032-relocate-specs-folder",
-  "description": "Phase parent: evaluate and, if approved, execute moving the root spec-kit folder from .opencode/specs/ to a top-level specs/ directory.",
+  "description": "The canonical spec-kit tree currently lives at `.opencode/specs/`",
   "keywords": [
-    "phase",
-    "parent",
-    "evaluate",
-    "approved",
-    "execute",
-    "moving",
-    "root",
+    "canonical",
     "spec-kit",
-    "folder",
+    "tree",
+    "currently",
+    "lives",
     "opencode",
-    "specs",
-    "top-level",
-    "directory"
+    "specs"
   ],
-  "lastUpdated": "2026-08-06T09:06:39.403Z",
+  "lastUpdated": "2026-08-07T09:12:06.240Z",
   "specId": "032",
   "folderSlug": "relocate-specs-folder",
   "parentChain": [

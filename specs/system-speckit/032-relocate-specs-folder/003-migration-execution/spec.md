@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-07T05:26:00Z"
+    last_updated_at: "2026-08-07T11:35:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Steps 1-8 and 10 executed and verified; step 9 deferred, step 11 in progress"
-    next_safe_action: "Finish step 11's full sweep, then operator reviews the final state"
+    recent_action: "Steps 1-8 and 10 verified; step 9 reindex running, dedup gap found; step 11 in progress"
+    next_safe_action: "Resolve step 9 dedup approach with operator, then finish step 11's sweep"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-system-speckit-032-relocate-003"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -52,9 +52,9 @@ Phase 002 accepted both ADRs — build a new topology-flip function on existing 
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 3 |
+| **Phase** | 3 of 4 |
 | **Predecessor** | 002-migration-plan |
-| **Successor** | None |
+| **Successor** | 004-code-graph-index-flag-deprecation |
 | **Handoff Criteria** | Operator resolves the step 9 daemon-workspace mismatch and reviews the final state |
 <!-- /ANCHOR:metadata -->
 

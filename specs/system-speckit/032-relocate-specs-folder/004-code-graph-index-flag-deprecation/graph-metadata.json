@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
-  "spec_folder": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+  "packet_id": "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
+  "spec_folder": "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
   "parent_id": "system-speckit/032-relocate-specs-folder",
   "children_ids": [],
   "manual": {
@@ -11,48 +11,39 @@
   },
   "derived": {
     "trigger_phrases": [
-      "specs root migration execution",
-      "topology flip runbook",
-      "execute the specs flip",
-      "migration execution runbook",
-      "topology flip steps",
-      "migration execution tasks",
-      "migration execution checklist",
-      "migration execution decision record",
-      "migration execution summary"
+      "code graph index flag deprecation",
+      "SPECKIT_CODE_GRAPH_INDEX cleanup",
+      "maintainer flags filter removal",
+      "code graph index flag deprecation plan",
+      "code graph index flag deprecation tasks",
+      "code graph index flag deprecation checklist",
+      "code graph index flag deprecation summary"
     ],
     "key_topics": [
-      "specs",
-      "root",
-      "migration",
-      "execution",
-      "topology",
-      "flip",
-      "runbook",
-      "execute",
-      "steps",
-      "tasks",
-      "checklist",
-      "decision"
+      "code",
+      "graph",
+      "index",
+      "flag",
+      "deprecation",
+      "cleanup",
+      "maintainer",
+      "flags",
+      "filter",
+      "removal",
+      "plan",
+      "tasks"
     ],
-    "importance_tier": "important",
-    "status": "complete",
+    "importance_tier": "normal",
+    "status": "in_progress",
     "key_files": [
-      "plan.md",
       "tasks.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "spec.md",
+      "plan.md",
       "checklist.md",
-      "scratch/.gitkeep"
+      "spec.md",
+      "scratch/.gitkeep",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -60,21 +51,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -84,9 +63,21 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": ".gitkeep",
         "kind": "file",
         "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -96,19 +87,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Migration Execution",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
+        "name": "Flag Remnants",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,6 +105,18 @@
         "source": "derived"
       },
       {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -138,19 +129,19 @@
         "source": "derived"
       },
       {
-        "name": "Spec Kit Memory",
+        "name": "Overview Four",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview This",
+        "name": "Pattern Targeted",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Sequential",
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -168,20 +159,20 @@
         "source": "derived"
       },
       {
-        "name": "Setup Scope",
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Key Design Decision",
+        "name": "All Phase",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Reindex Memory",
-        "kind": "proper_noun",
+        "name": "it",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -190,11 +181,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW — the literal commands, the exact order, the exact checks between steps",
-    "created_at": "2026-08-06T17:53:46Z",
-    "last_save_at": "2026-08-07T09:15:17.339Z",
+    "causal_summary": "`scripts/setup-maintainer-filters.sh` (removed in this session's step-11 cleanup) installed a git clean/smudge filter keeping `SPECKITCODEGRAPHINDEX{SKILLS,AGENTS,COMMANDS,SPECS,PLUGINS}` `\"true\"` locally for maintainers while committing `\"false\"`",
+    "created_at": "2026-08-07T08:47:41Z",
+    "last_save_at": "2026-08-07T09:12:46.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,17 +199,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4f1c1c53bf5c434fcbe31b9266b49a026d1ba8660d9c46fa1da7f7bfddf7807",
+    "source_fingerprint": "sha256:adb447dc6137293c382029a05aaac44ccd492b4f76e4937cc18a459c8a93bf0b",
     "source_doc_hashes": {
-      "spec.md": "11d19c91ba236a122579269cb0e15d7aeff2822cc55670ada89502a7321d9881",
-      "plan.md": "d0067c1e61325dd72bf419f1808707386822b2a227ddc600719e9fc17ab22780",
-      "tasks.md": "9172c7d199d68a559c858edfac22ac02a92acdcf3f51cd4f376f6a3d4f35aa65",
-      "checklist.md": "d4b6877102b85e77283bcd7c299c2508823d77ef13b19b4501926e0332be2def",
-      "decision-record.md": "bf3685fd84b164967067de89a4bc057085464082f94dba77143f4bf5c2936d9e",
-      "implementation-summary.md": "7775ba192c974e8d865d9e6cca538cc917762c1aa20b01f772c623017db5467b"
+      "spec.md": "6f31d0f3714857f0eb2a7339915205cafe91ea9515b4b3c019532c663c846fa6",
+      "plan.md": "0b18144109367622c8e141ed06fcfecac538052ce5457ed7bb0868c942433350",
+      "tasks.md": "1373e24413dcac59c86b2596dfad7079364b30ebdded416e95906b15bbf019c8",
+      "checklist.md": "7250bdfef1938b3ad17bbe9ca3aba2fa91583e28c5d5a0f03e8b401c3b9aa7ae",
+      "implementation-summary.md": "4a6b2e84bf2e169e23e0317511e5802c7abaa5e0e2e600c8904206c4427faa4a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,7 +5,7 @@
 const SEGMENT_BOUNDARY = '(^|/)';
 const SEGMENT_END = '(/|$)';
 
-export type IndexScopePolicySource = 'default' | 'env' | 'scan-argument';
+export type IndexScopePolicySource = 'default' | 'scan-argument';
 export type IncludedSkillsList = 'all' | 'none' | string[];
 
 export interface IndexScopePolicy {
@@ -35,7 +35,6 @@ export interface ResolveIndexScopePolicyInput {
   includePlugins?: boolean;
   includeGlobs?: readonly string[];
   excludeGlobs?: readonly string[];
-  env?: Record<string, string | undefined>;
 }
 
 const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
@@ -71,17 +70,8 @@ function normalizeSkillList(values: readonly string[]): string[] {
   return [...new Set(values.map(value => value.trim()).filter(value => /^sk-[a-z0-9-]+$/.test(value)))].sort();
 }
 
-function parseSkillsEnvValue(value: string | undefined): IncludedSkillsList {
-  const normalized = value?.trim();
-  if (!normalized || normalized.toLowerCase() === 'false') return 'none';
-  if (normalized.toLowerCase() === 'true') return 'all';
-  const skills = normalizeSkillList(normalized.split(','));
-  return skills.length > 0 ? skills : 'none';
-}
-
 function resolveIncludedSkillsList(
   includeSkills: ResolveIndexScopePolicyInput['includeSkills'],
-  env: Record<string, string | undefined>,
 ): IncludedSkillsList {
   if (includeSkills === true) return 'all';
   if (includeSkills === false) return 'none';
@@ -89,11 +79,7 @@ function resolveIncludedSkillsList(
     const skills = normalizeSkillList(includeSkills);
     return skills.length > 0 ? skills : 'none';
   }
-  return parseSkillsEnvValue(env.SPECKIT_CODE_GRAPH_INDEX_SKILLS);
-}
-
-function isEnabledEnvValue(value: string | undefined): boolean {
-  return value?.trim().toLowerCase() === 'true';
+  return 'none';
 }
 
 function hasPerCallScopeOverride(input: ResolveIndexScopePolicyInput): boolean {
@@ -137,26 +123,14 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
 }
 
 function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}): IndexScopePolicy {
-  const env = input.env ?? process.env;
-  const includedSkillsList = resolveIncludedSkillsList(input.includeSkills, env);
-  const includeAgents = input.includeAgents ?? isEnabledEnvValue(env.SPECKIT_CODE_GRAPH_INDEX_AGENTS);
-  const includeCommands = input.includeCommands ?? isEnabledEnvValue(env.SPECKIT_CODE_GRAPH_INDEX_COMMANDS);
-  const includeSpecs = input.includeSpecs ?? isEnabledEnvValue(env.SPECKIT_CODE_GRAPH_INDEX_SPECS);
-  const includePlugins = input.includePlugins ?? isEnabledEnvValue(env.SPECKIT_CODE_GRAPH_INDEX_PLUGINS);
+  const includedSkillsList = resolveIncludedSkillsList(input.includeSkills);
+  const includeAgents = input.includeAgents ?? false;
+  const includeCommands = input.includeCommands ?? false;
+  const includeSpecs = input.includeSpecs ?? false;
+  const includePlugins = input.includePlugins ?? false;
   const includeGlobs = normalizeGlobList(input.includeGlobs);
   const excludeGlobs = normalizeGlobList(input.excludeGlobs);
-  const envProvided = includedSkillsList !== 'none'
-    || includeAgents
-    || includeCommands
-    || includeSpecs
-    || includePlugins
-    || includeGlobs.length > 0
-    || excludeGlobs.length > 0;
-  const source: IndexScopePolicySource = hasPerCallScopeOverride(input)
-    ? 'scan-argument'
-    : envProvided
-      ? 'env'
-      : 'default';
+  const source: IndexScopePolicySource = hasPerCallScopeOverride(input) ? 'scan-argument' : 'default';
   const policyWithoutDerivedText = {
     includeSkills: includedSkillsList !== 'none',
     includedSkillsList,

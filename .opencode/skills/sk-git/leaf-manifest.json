@@ -59,7 +59,6 @@
         "manual-testing-playbook/worktree-setup/fresh-feature-isolated-worktree.md",
         "manual-testing-playbook/worktree-setup/stay-on-main-no-feature-branches.md",
         "references/commit-workflows.md",
-        "references/config-content-filters.md",
         "references/continuous-integration.md",
         "references/finish-workflows.md",
         "references/github-mcp-integration.md",
