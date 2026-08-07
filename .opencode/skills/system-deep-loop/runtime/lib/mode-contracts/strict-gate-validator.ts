@@ -50,6 +50,23 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+/** Reject extension keys so mode evidence cannot silently widen its contract. */
+export function hasExactKeys(value: unknown, keys: readonly string[]): value is Record<string, unknown> {
+  if (!isRecord(value)) return false;
+  const expected = new Set(keys);
+  const actual = Object.keys(value);
+  return actual.length === keys.length && actual.every((key) => expected.has(key));
+}
+
+/** Validate every row in a typed evidence collection; callers must reject on false. */
+export function validateRows<T>(rows: readonly T[], predicate: (row: T) => boolean): boolean {
+  try {
+    return Array.isArray(rows) && rows.every(predicate);
+  } catch {
+    return false;
+  }
+}
+
 function isDigest(value: unknown): value is string {
   return typeof value === 'string' && HEX_64.test(value);
 }

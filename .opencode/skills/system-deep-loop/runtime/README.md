@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The runtime is the shared execution surface for deep-loop modes. It provides durable event and state handling, graph-backed convergence, executor dispatch, council coordination, recovery boundaries and the CLI entry points that consume those capabilities.
+The runtime is the shared execution surface for research, review, council and alignment modes. It provides durable event and state handling, graph-backed convergence, executor dispatch, council coordination, recovery boundaries and the CLI entry points that consume those capabilities. Improvement lanes use their host-specific runtime boundary.
 
 The public runtime surface is split between typed or CommonJS modules under `lib/` and thin CLI adapters under `scripts/`. Tests under `tests/` exercise the same contracts without changing runtime behavior.
 

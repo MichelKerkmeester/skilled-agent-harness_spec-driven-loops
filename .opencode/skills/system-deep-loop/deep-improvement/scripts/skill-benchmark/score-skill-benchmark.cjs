@@ -32,7 +32,9 @@ const { scoreD1Inter, scoreModePrecision, scoreRelativeAdvisorRanking } = requir
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
+const DEFAULT_PROFILE_PATH = path.resolve(__dirname, '../../assets/skill-benchmark/default-profile.json');
+const DEFAULT_PROFILE = JSON.parse(fs.readFileSync(DEFAULT_PROFILE_PATH, 'utf8'));
+const WEIGHTS = Object.freeze({ ...DEFAULT_PROFILE.weights });
 // D1-intra favors resource recall because useful skill routing depends more on
 // loading the right guidance than on matching an internal intent label.
 const D1_INTRA_INTENT_WEIGHT = 0.4;

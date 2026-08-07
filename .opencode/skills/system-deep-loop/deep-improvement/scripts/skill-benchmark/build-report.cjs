@@ -19,6 +19,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
+const path = require('path');
+const TAXONOMY_PATH = path.resolve(__dirname, '../../assets/skill-benchmark/remediation-taxonomy.json');
+const TAXONOMY = JSON.parse(fs.readFileSync(TAXONOMY_PATH, 'utf8'));
+const TAXONOMY_BY_CLASS = new Map(TAXONOMY.findings.map((finding) => [finding.class, finding]));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -242,7 +246,16 @@ function renderReport(report) {
 
   lines.push('## Ranked bottlenecks');
   lines.push('');
-  const bn = r.bottlenecks || [];
+  const bn = (r.bottlenecks || []).map((bottleneck) => {
+    const taxonomy = TAXONOMY_BY_CLASS.get(bottleneck.class);
+    if (!taxonomy) return bottleneck;
+    return {
+      ...bottleneck,
+      targetFile: bottleneck.targetFile || taxonomy.targetFile,
+      handoffLane: bottleneck.handoffLane || taxonomy.handoffLane,
+      detail: bottleneck.detail || taxonomy.oneLineFix,
+    };
+  });
   if (!bn.length) lines.push('_None._');
   else {
     lines.push('| Severity | Class | Locus | Finding |');

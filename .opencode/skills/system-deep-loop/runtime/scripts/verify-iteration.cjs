@@ -191,7 +191,7 @@ function verify(loopType, artifactDir, iteration) {
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {
-    process.stdout.write('Usage: verify-iteration.cjs --loop-type review|research|context|alignment --artifact-dir <dir> --iteration <N> [--json]\n');
+    process.stdout.write(`Usage: verify-iteration.cjs --loop-type ${Object.keys(LEAF_BY_LOOP).join('|')} --artifact-dir <dir> --iteration <N> [--json]\n`);
     return 0;
   }
   if (args.error) { process.stderr.write(`${args.error}\n`); return 2; }

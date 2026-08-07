@@ -24,6 +24,7 @@ export interface RegisteredTransitionPolicy {
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
   readonly implementationDigest: string;
+  readonly authorizationStateDigest: string;
   readonly digest: string;
   readonly evaluate: (
     input: Readonly<PolicyEvaluationInput>,
@@ -36,6 +37,7 @@ export interface TransitionPolicyInspectionEntry {
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
   readonly implementationDigest: string;
+  readonly authorizationStateDigest: string;
   readonly digest: string;
 }
 
@@ -57,6 +59,10 @@ function requireIdentity(value: string, field: string): string {
 
 function registryKey(policyId: string, policyVersion: number): string {
   return `${policyId}@${policyVersion}`;
+}
+
+function compareCodeUnits(left: string, right: string): number {
+  return left < right ? -1 : left > right ? 1 : 0;
 }
 
 function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTransitionPolicy {
@@ -91,12 +97,17 @@ function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTrans
   const implementationDigest = sha256Bytes(
     canonicalBytes(Function.prototype.toString.call(definition.evaluate)),
   );
+  const authorizationState = definition.capturedAuthorizationState
+    ?? definition.authorizationState
+    ?? null;
+  const authorizationStateDigest = sha256Bytes(canonicalBytes(authorizationState));
   const digest = sha256Bytes(canonicalBytes({
     policyId,
     policyVersion: definition.policyVersion,
     evaluatorVersion,
     ruleIds,
     implementationDigest,
+    authorizationStateDigest,
   }));
   return Object.freeze({
     policyId,
@@ -104,6 +115,7 @@ function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTrans
     evaluatorVersion,
     ruleIds: Object.freeze(ruleIds),
     implementationDigest,
+    authorizationStateDigest,
     digest,
     evaluate: definition.evaluate,
   });
@@ -142,14 +154,17 @@ export class TransitionPolicyRegistry {
   public inspect(): readonly TransitionPolicyInspectionEntry[] {
     return Object.freeze(
       Array.from(this.#policies.values())
-        .sort((left, right) => registryKey(left.policyId, left.policyVersion)
-          .localeCompare(registryKey(right.policyId, right.policyVersion)))
+        .sort((left, right) => compareCodeUnits(
+          registryKey(left.policyId, left.policyVersion),
+          registryKey(right.policyId, right.policyVersion),
+        ))
         .map((policy) => Object.freeze({
           policyId: policy.policyId,
           policyVersion: policy.policyVersion,
           evaluatorVersion: policy.evaluatorVersion,
           ruleIds: Object.freeze([...policy.ruleIds]),
           implementationDigest: policy.implementationDigest,
+          authorizationStateDigest: policy.authorizationStateDigest,
           digest: policy.digest,
         })),
     );

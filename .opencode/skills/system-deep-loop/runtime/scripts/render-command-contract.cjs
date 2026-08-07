@@ -213,7 +213,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node render-command-contract.cjs --command deep/ai-council|deep/review|deep/research [--compare] -- [arguments]\n');
+  process.stdout.write(`Usage: node render-command-contract.cjs --command ${Object.keys(COMMANDS).join('|')} [--compare] -- [arguments]\n`);
 }
 
 function main(argv = process.argv.slice(2)) {

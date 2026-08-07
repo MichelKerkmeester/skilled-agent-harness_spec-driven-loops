@@ -16,8 +16,10 @@ export {
 export { resolveModeInterfaceCompatibility } from './compatibility-policy.js';
 export {
   matchesArtifactClaimSet,
+  hasExactKeys,
   matchesInstalledVersionBindings,
   matchesPreparedAuthorizationDecision,
+  validateRows,
 } from './strict-gate-validator.js';
 export {
   evaluateModeEventWrite,

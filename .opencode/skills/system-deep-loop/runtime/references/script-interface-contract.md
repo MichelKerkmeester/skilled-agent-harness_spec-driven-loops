@@ -64,7 +64,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 | Arg | Required | Values | Notes |
 |---|---|---|---|
 | `--spec-folder` | Yes | path string | Stored as `specFolder`. |
-| `--loop-type` | Yes | `research` or `review` | Validated before DB operations. |
+| `--loop-type` | Yes | `research`, `review` or `council` | Validated before DB operations. |
 | `--session-id` | Yes | string | Scopes graph reads and writes to one loop lineage. |
 
 ---
@@ -163,4 +163,3 @@ Relevant source:
 | `lib/deep-loop/permissions-gate.ts` | Pre-dispatch execute/write matching logic; built and tested, zero production callers — not wired into dispatch. |
 | `tests/integration/*-script.vitest.ts` | Script-level regression coverage. |
 | `tests/lifecycle/db-open-close.vitest.ts` | DB lifecycle regression coverage. |
-

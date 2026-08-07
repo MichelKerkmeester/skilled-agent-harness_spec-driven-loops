@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement"
-description: "Proves an agent, model, prompt framework or skill improved with measured evidence before any canonical file changes. Scores candidates across five dimensions and promotes only behind an operator gate."
+description: "Proposal-first evaluator skill that tests bounded agent improvement with 5-dimension scoring, dynamic profiling and guarded promotion across three co-equal lanes."
 trigger_phrases:
   - "deep-improvement"
   - "agent improvement loop"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "5-dimension scoring"
   - "model-benchmark mode"
   - "skill-benchmark mode"
-version: 1.17.1.0
+version: 1.17.0.38
 ---
 
 # deep-improvement
 
-> Prove an agent, model, prompt framework or skill improved before you ship it and promote the candidate only when scored evidence and operator approval both pass.
+> Test whether an agent improved before you ship it. Score a bounded candidate across five dimensions and promote only when the evidence and the approval gate both pass.
 
 ---
 
@@ -21,10 +21,10 @@ version: 1.17.1.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Proving an agent, model, prompt framework or skill improved with measured evidence before you mutate the canonical file |
-| **Invoke with** | `/deep:agent-improvement`, `/deep:model-benchmark`, `/deep:skill-benchmark` or a direct script under `scripts/` |
-| **Works on** | Any agent `.md` under `.opencode/agents/`, a model against repeatable fixtures, a prompt framework against the same fixtures or a skill's real-world routing |
-| **Produces** | Packet-local candidates with five-dimension scores, benchmark reports, an append-only journal and a dashboard under `{spec_folder}/improvement/` |
+| **Use it for** | Proving a bounded agent, model, or skill improved with measured evidence before you mutate the canonical file |
+| **Invoke with** | `/deep:agent-improvement`, `/deep:model-benchmark`, or `/deep:skill-benchmark` |
+| **Works on** | Any agent `.md` under `.opencode/agents/`, a model or prompt framework against repeatable fixtures, or a skill's real-world routing |
+| **Produces** | Lane-specific candidates, benchmark reports, an append-only journal and a dashboard; output roots are defined by each lane's command contract |
 
 ---
 
@@ -36,15 +36,7 @@ Editing an agent prompt is normally guesswork. You reword a rule, the prompt rea
 
 ### What It Does
 
-`deep-improvement` replaces that guess with measured evidence. It writes a candidate to a packet-local sandbox and scores it across five deterministic dimensions, then promotes to the canonical file only after score evidence and operator approval both pass. It is the only deep loop that can mutate a file, but it does so exclusively behind a guarded promotion gate with a recorded rollback path. The skill runs three co-equal lanes. Lane A improves a bounded agent `.md` file. Lane B benchmarks a model or prompt framework against repeatable fixtures. Lane C diagnoses a skill's routing and usefulness.
-
-### The Evaluation Layer
-
-| Target | What the skill operates |
-|---|---|
-| **Agent definitions** | bounded candidate scoring and guarded promotion for any `.md` under `.opencode/agents/`, with runtime mirrors covered by the integration scan |
-| **Model and prompt frameworks** | repeatable-fixture benchmarks with regression-blocking `outcomeScoreDelta` evidence |
-| **Skill routing** | ranked diagnostic reports on routing, discovery, efficiency and usefulness |
+`deep-improvement` replaces that guess with measured evidence. It writes a candidate to a bounded sandbox, scores it across five deterministic dimensions and promotes to the canonical file only after both score evidence and operator approval pass. It is the only deep loop that can mutate a file, but it does so exclusively behind a guarded promotion gate with a recorded rollback path. The three co-equal lanes are defined by the `deep-improvement` entries in [`mode-registry.json`](../mode-registry.json): Agent-Improvement, Model-Benchmark and Skill-Benchmark.
 
 ---
 
@@ -58,7 +50,7 @@ Editing an agent prompt is normally guesswork. You reword a rule, the prompt rea
 /deep:agent-improvement ".opencode/agents/debug.md" :confirm --spec-folder={spec_folder}
 ```
 
-The integration scan maps every surface the agent touches. A packet-local candidate lands under `{spec_folder}/improvement/candidates/`. The five-dimension scorer reports `candidate-acceptable` or `needs-improvement` and a refreshed dashboard shows dimensional progress.
+The integration scan maps every surface the agent touches. A packet-local candidate lands under `{spec_folder}/improvement/candidates/`. The five-dimension scorer reports `candidate-acceptable` or `needs-improvement`, and a refreshed dashboard shows dimensional progress.
 
 **Step 3: Run a single script when you only need one signal.**
 
@@ -73,7 +65,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvemen
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=.opencode/agents/debug.md
 ```
 
-Each script returns JSON with a five-dimension breakdown and a recommendation.
+Each returns JSON with a five-dimension breakdown and a recommendation.
 
 ---
 
@@ -81,17 +73,15 @@ Each script returns JSON with a five-dimension breakdown and a recommendation.
 
 ### The Proposal-First Lifecycle
 
-The loop never touches the canonical file until you tell it to. It copies the target, scans its integration surface, derives a dynamic profile from the agent's own rules, writes one bounded candidate to a packet-local directory, scores it and records the evidence. Promotion is a separate guarded step that demands score evidence, benchmark status, repeatability, boundary compliance and explicit operator approval. The promotion helper supports an accept/ship split. The accept mode snapshots candidate evidence without touching the canonical target. The ship mode writes only the accepted snapshot. The rollback mode restores the pre-acceptance backup.
+The loop never touches the canonical file until you tell it to. It copies the target, scans its integration surface, derives a dynamic profile from the agent's own rules, writes one bounded candidate to a packet-local directory, scores it and records the evidence. Promotion is a separate guarded step that demands score evidence, benchmark status, repeatability, boundary compliance and explicit operator approval. The current promotion helper also supports an accept/ship split: accept snapshots candidate evidence without mutating the canonical target, ship writes only the accepted snapshot, and rollback restores the pre-acceptance backup.
 
 ### The Integration Scan
 
-An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition (`.opencode/agents/`), its Claude runtime mirror (`.claude/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise. The score reflects the whole integration surface, not the prompt in isolation.
-
-Mirror parity is also enforced repo-wide outside a scoring run. `scripts/check-agent-mirror-sync.cjs` gates commits through `.opencode/hooks/git/pre-commit` and pull requests into `main` through `.github/workflows/agent-mirror-sync.yml`, so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable, so it never blocks an unrelated commit. The CI gate on `main` is the fail-closed backstop.
+An agent is more than its `.md` file. `scan-integration.cjs` inventories the canonical agent definition (`.opencode/agents/`), its Claude runtime mirror (`.claude/agents/`), command dispatch files, YAML workflow assets, skill references and the skill-advisor routing path. The scanner extracts emphasized strings from the canonical agent and marks a mirror aligned when enough of them appear. A drifted mirror shows up before it causes a runtime surprise, and the score reflects the whole integration surface, not the prompt in isolation. Mirror parity is also enforced repo-wide outside a scoring run: `scripts/check-agent-mirror-sync.cjs` gates commits (through `.opencode/hooks/git/pre-commit`) and pull requests into `main` (through `.github/workflows/agent-mirror-sync.yml`), so drifted runtime copies are caught before they merge. The commit hook fails open when Node or the checker is unavailable so it never blocks an unrelated commit; the CI gate on `main` is the fail-closed backstop.
 
 ### Five Scoring Dimensions (Lane A)
 
-Scoring is deterministic. Every check is a regex, string, file-existence or reference test with no model-as-judge step, so a score always traces back to specific evidence.
+Scoring is deterministic. Every check is a regex, string match or file-existence check. No model-as-judge step means a score always traces back to specific evidence.
 
 | Dimension | Weight | What it measures |
 |---|---|---|
@@ -99,17 +89,17 @@ Scoring is deterministic. Every check is a regex, string, file-existence or refe
 | Rule Coherence | 0.25 | ALWAYS/NEVER rules align with workflow steps |
 | Integration Consistency | 0.25 | Mirrors in sync, commands and skills reference the agent |
 | Output Quality | 0.15 | Output-verification items present, no placeholder content |
-| System Fitness | 0.15 | Permission alignment and valid resource references, with complete frontmatter required |
+| System Fitness | 0.15 | Permission alignment, valid resource references, complete frontmatter |
 
 Profiles are generated dynamically from the target agent file via `generate-profile.cjs`. No static profiles ship, so any agent in `.opencode/agents/` is a valid target the moment it exists.
 
 ### Guarded Promotion
 
-A candidate becomes promotion-eligible only when five gates all pass. Prompt scoring must clear the bar. Benchmark status must be complete and passing. Repeatability must be proven. The manifest boundary must hold. The operator must approve. `promote-candidate.cjs` enforces every gate before it writes the canonical file. The rollback helper restores the archived pre-promotion state and records a dimensional comparison so you can audit the difference. The scorer and the mutator stay independent throughout.
+A candidate becomes promotion-eligible only when five gates all pass: prompt scoring must clear the bar, benchmark status must be complete and passing, repeatability must be proven, the manifest boundary must hold and the operator must approve. `promote-candidate.cjs` enforces every gate before it writes the canonical file. The rollback helper restores the archived pre-promotion state and records a dimensional comparison so you can audit the difference. The scorer and the mutator stay independent throughout.
 
 ### The Three Lanes
 
-All three lanes reuse the same candidate and dispatcher seams with one shared scorer.
+All three lanes share the same candidate, dispatcher and scorer seams.
 
 | Lane | Command | What it tests |
 |---|---|---|
@@ -117,7 +107,7 @@ All three lanes reuse the same candidate and dispatcher seams with one shared sc
 | B: Model-Benchmark | `/deep:model-benchmark` | A model or prompt framework against repeatable fixtures |
 | C: Skill-Benchmark | `/deep:skill-benchmark` | A skill's routing, discovery, efficiency and usefulness |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/`. Benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas, so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -127,7 +117,7 @@ Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and 
 
 Run `deep-improvement` when you want to prove an agent edit earned its place before you commit it. Run it when integration drift across runtime mirrors worries you and you need a scanner to find every surface. Run Lane B when a model or prompt framework needs benchmark comparison against repeatable fixtures. Run Lane C when a skill's routing accuracy or discoverability needs measurement.
 
-Skip it for open-ended prompt rewrites across many agent families at once and for direct canonical edits you already have confidence in. General planning belongs in `/speckit:plan`.
+Skip it for open-ended prompt rewrites across many agent families at once. Skip it for direct canonical edits you already have confidence in. Skip it for general planning that belongs in `/speckit:plan`.
 
 ### Sibling Deep Loops
 
@@ -139,7 +129,7 @@ Skip it for open-ended prompt rewrites across many agent families at once and fo
 | `deep-review` | Audits code for bugs and security gaps. Run it after implementation, not during improvement. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Feed it context from `@context` or `/speckit:plan`, not an agent file. |
 
-`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. It writes only when the promotion gate opens. Every write records a rollback path. `system-spec-kit` owns spec-folder validation and memory continuity for the run. `runtime/` provides the shared coverage graph and atomic-state layer. `sk-prompt/sk-prompt-models` owns the benchmark output tree that Lane B writes into.
+`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the run. `runtime/` provides the shared coverage graph and atomic-state layer. `sk-prompt/sk-prompt-models` owns the benchmark output tree that Lane B writes into.
 
 ---
 
@@ -169,11 +159,11 @@ A: It finds every file that references an agent: the canonical definition, its C
 
 **Q: What do the five dimensions measure?**
 
-A: Structural Integrity checks that required sections are present. Rule Coherence checks that ALWAYS/NEVER rules align with workflow steps. Integration Consistency checks that mirrors are in sync and that commands and skills reference the agent. Output Quality checks that output-verification items exist with no placeholder content. System Fitness checks permission alignment and valid resource references, then requires complete frontmatter.
+A: Structural Integrity checks that required sections are present. Rule Coherence checks that ALWAYS/NEVER rules align with workflow steps. Integration Consistency checks that mirrors are in sync and that commands and skills reference the agent. Output Quality checks that output-verification items exist with no placeholder content. System Fitness checks permissions, resource references and frontmatter completeness.
 
 **Q: How are the three lanes different?**
 
-A: Lane A improves a bounded agent `.md` file and writes packet-local candidates with five-dimension scores. Lane B benchmarks a model or prompt framework against repeatable fixtures. Lane C diagnoses a skill's routing, discovery, efficiency and usefulness without mutating the skill. All three lanes reuse the same candidate and dispatcher seams with one shared scorer.
+A: Lane A improves a bounded agent `.md` file and writes packet-local candidates with five-dimension scores. Lane B benchmarks a model or prompt framework against repeatable fixtures. Lane C diagnoses a skill's routing, discovery, efficiency and usefulness without mutating the skill. All three share the same candidate, dispatcher and scorer seams.
 
 **Q: How does rollback work?**
 
@@ -183,7 +173,7 @@ A: `rollback-candidate.cjs` restores the archived pre-promotion state to the can
 
 ## 8. VERIFICATION
 
-The skill ships two validation packages plus a behavior benchmark.
+The skill ships two validation packages.
 
 ### Feature Catalog
 
@@ -191,18 +181,18 @@ The `feature-catalog/` covers every capability across five categories: evaluatio
 
 ### Manual Testing Playbook
 
-`manual-testing-playbook/` carries deterministic scenarios across all feature categories. The root playbook defines preconditions and expected signals, with pass or fail verdict rules plus a partial tier for ambiguous signals. Every scenario maps to a dedicated feature file that carries the canonical prompt and expected signals, anchored to live sources.
+`manual-testing-playbook/` carries deterministic scenarios across all feature categories. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and source anchors.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-improvement/README.md --type readme` reports zero issues |
 | Behavior | Run the playbook scenarios under `manual-testing-playbook/` in a live session |
 
+---
+
 ### Behavior Benchmark
 
-`behavior-benchmark/` (IMB scenarios) measures what an executor model actually does at the `/deep:agent-improvement` command surface under realistic vague/concise prompts: whether it runs the evaluator-first loop (scored on a packet-local candidate plus an evaluator score), how it presents the result, whether it halts or stalls and its latency versus a Claude baseline. Contracts and baselines live here. Run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
-
----
+`behavior-benchmark/` (IMB scenarios) measures what an executor model actually does at the `/deep:agent-improvement` command surface under realistic vague/concise prompts: whether it runs the evaluator-first loop (scored on a **packet-local candidate + evaluator score**), how it presents, whether it halts or stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
 
 ## 9. RELATED DOCUMENTS
 

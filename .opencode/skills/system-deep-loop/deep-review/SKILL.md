@@ -438,3 +438,4 @@ Key integrations:
 
 ### Code Graph Integration
 
+The review loop consumes the shared runtime graph and its strict mode-gate validator; packet-specific convergence and state rules remain in this skill.

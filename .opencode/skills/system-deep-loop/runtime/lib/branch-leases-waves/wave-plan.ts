@@ -22,6 +22,11 @@ import type {
 export const WAVE_PLAN_VERSION = 1;
 export const WAVE_POLICY_VERSION = 1;
 
+function freezeArray<T>(values: T[]): T[] {
+  Object.freeze(values);
+  return values;
+}
+
 const WAVE_ID_PATTERN = /^wave-v1-[a-f0-9]{24}$/u;
 
 // ───────────────────────────────────────────────────────────────────
@@ -87,8 +92,8 @@ export function compileImmutableWavePlan<TItem>(
     waves.push(Object.freeze({
       waveId,
       ordinal,
-      memberBranchIds: Object.freeze(memberBranchIds) as unknown as string[],
-      prerequisiteWaveIds: Object.freeze(prerequisiteWaveIds) as unknown as string[],
+      memberBranchIds: freezeArray(memberBranchIds),
+      prerequisiteWaveIds: freezeArray(prerequisiteWaveIds),
     }));
   }
 
@@ -103,7 +108,7 @@ export function compileImmutableWavePlan<TItem>(
     policy,
     manifestFingerprint,
     planFingerprint,
-    waves: Object.freeze(waves) as unknown as ImmutableWave[],
+    waves: freezeArray(waves),
   });
 }
 

@@ -607,7 +607,7 @@ workflow:
 
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
-        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}"'
+        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}"'
         note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"

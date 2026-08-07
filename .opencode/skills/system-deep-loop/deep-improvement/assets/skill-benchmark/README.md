@@ -19,8 +19,8 @@ version: 1.17.0.4
 
 Current state:
 
-- `default-profile.json` is REFERENCE ONLY. Its `weights` block mirrors the hardcoded `WEIGHTS` in `scripts/skill-benchmark/score-skill-benchmark.cjs`, but there is no `--profile` loader on the Lane C path, so the file is not consumed at runtime (its own `notes` field states this).
-- `remediation-taxonomy.json` is a `v1` catalog keyed by finding `class`. It is validated by its own test but not imported by the report code, which does not yet enrich bottlenecks with its `targetFile` / `oneLineFix` / `handoffLane` fields.
+- `default-profile.json` is the default Lane C scoring profile loaded by `score-skill-benchmark.cjs`.
+- `remediation-taxonomy.json` is the `v1` catalog loaded by the report renderer to enrich bottlenecks with `targetFile`, `oneLineFix` and `handoffLane` fields.
 - `fixtures/` holds legacy per-skill public/private fixture pairs, loaded only via the explicit `--fixtures-dir` override. The playbook (`manual-testing-playbook/`) is now the default Lane C corpus.
 
 ---
@@ -54,8 +54,8 @@ skill-benchmark/
 
 | Boundary | Rule |
 |---|---|
-| Imports | These are JSON data files; they import nothing. `default-profile.json` is read by no script today (no `--profile` loader exists). |
-| Consumers | `fixtures/` is read by `scripts/skill-benchmark/run-skill-benchmark.cjs` only on the `--fixtures-dir` (legacy) path. `remediation-taxonomy.json` is read by its own Vitest suite (`model-benchmark/tests/remediation.vitest.ts`), not by the report renderer. |
+| Imports | The scorer loads `default-profile.json`; the report renderer loads `remediation-taxonomy.json`. |
+| Consumers | `fixtures/` is read by `scripts/skill-benchmark/run-skill-benchmark.cjs` only on the `--fixtures-dir` (legacy) path. The taxonomy is also covered by `model-benchmark/tests/remediation.vitest.ts`. |
 | Ownership | Lane C reference data lives here. The weights and verdict logic that actually run live in `scripts/skill-benchmark/score-skill-benchmark.cjs`. Bottleneck rendering lives in `scripts/skill-benchmark/build-report.cjs`. |
 | Write policy | Reference data — hand-edited only. No script writes back into this directory; benchmark runs emit reports to a separate `--outputs-dir`. |
 
