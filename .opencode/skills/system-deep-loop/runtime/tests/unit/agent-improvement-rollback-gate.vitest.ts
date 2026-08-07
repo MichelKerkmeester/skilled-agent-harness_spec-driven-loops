@@ -7,7 +7,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -60,17 +60,6 @@ import type {
   DeepImprovementCommonModeGateInput,
 } from '../../lib/deep-improvement-common-rollback-gate/index.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
-
-// Delegated services keep their own real-substrate suites as the executable contract.
-import './deep-improvement-common-rollback-gate.vitest.js';
-import './agent-improvement-certificates.vitest.js';
-import './agent-improvement-resume-adapter.vitest.js';
-import './agent-improvement-sealed-artifacts.vitest.js';
-import './agent-improvement-shadow-parity.vitest.js';
-import './agent-improvement-reducers.vitest.js';
-import './agent-improvement-ledger-schema.vitest.js';
-
-vi.setConfig({ testTimeout: 30_000 });
 
 const BASE_SHA = '1'.repeat(40);
 const CANDIDATE_SHA = '2'.repeat(40);

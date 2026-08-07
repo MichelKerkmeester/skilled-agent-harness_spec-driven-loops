@@ -7,7 +7,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -65,17 +65,6 @@ import type {
   ModelBenchmarkRollbackRequest,
   ModelBenchmarkRollbackWindowExecution,
 } from '../../lib/model-benchmark-rollback-gate/index.js';
-
-// Delegated services keep their own real-substrate suites as the executable contract.
-import './deep-improvement-common-rollback-gate.vitest.js';
-import './model-benchmark-certificates.vitest.js';
-import './model-benchmark-resume-adapter.vitest.js';
-import './model-benchmark-sealed-artifacts.vitest.js';
-import './model-benchmark-shadow-parity.vitest.js';
-import './model-benchmark-reducers.vitest.js';
-import './model-benchmark-ledger-schema.vitest.js';
-
-vi.setConfig({ testTimeout: 30_000 });
 
 const BASE_SHA = '1'.repeat(40);
 const CANDIDATE_SHA = '2'.repeat(40);

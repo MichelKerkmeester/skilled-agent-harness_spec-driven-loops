@@ -2,12 +2,14 @@
 // MODULE: Skill Benchmark Rollback Gate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import { createHash } from 'node:crypto';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -69,20 +71,6 @@ import type {
   SkillBenchmarkRollbackRequest,
   SkillBenchmarkRollbackWindowExecution,
 } from '../../lib/skill-benchmark-rollback-gate/index.js';
-
-// Delegated services keep their own real-substrate suites as the executable contract.
-import './deep-improvement-common-rollback-gate.vitest.js';
-import './skill-benchmark-certificates.vitest.js';
-import './skill-benchmark-resume-adapter.vitest.js';
-import './skill-benchmark-sealed-artifacts.vitest.js';
-import './skill-benchmark-shadow-parity.vitest.js';
-import './skill-benchmark-reducers.vitest.js';
-import './skill-benchmark-ledger-schema.vitest.js';
-
-// This suite imports the sibling contract suites above; the resume-adapter suite runs heavy
-// replay cases that need a long budget. vi.setConfig is last-wins per module, so this value must
-// not fall below the most-demanding imported suite or those cases are starved and time out.
-vi.setConfig({ testTimeout: 3_600_000 });
 
 const BASE_SHA = '1'.repeat(40);
 const CANDIDATE_SHA = '2'.repeat(40);
@@ -837,7 +825,7 @@ describe('skill benchmark rollback switch caller boundary', () => {
     if (firstAuthorization.verdict !== 'allow') {
       throw new Error(`Expected the anchor event to be authorized, got ${firstAuthorization.reasonCode}`);
     }
-    await fixture.harness.ledger.appendAuthorized(firstEvent, firstAuthorization.proof);
+    await appendAuthorizedForTest(fixture.harness.ledger, firstEvent, firstAuthorization.proof);
 
     const event = createFixtureEvent(fixture.harness.registry, 2);
     const request = await createFixtureRequest(

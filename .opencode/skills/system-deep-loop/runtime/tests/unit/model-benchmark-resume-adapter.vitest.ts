@@ -2,6 +2,8 @@
 // MODULE: Model Benchmark Certificate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import {
   chmodSync,
   mkdtempSync,
@@ -530,7 +532,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1055,6 +1057,7 @@ async function scenario(options: ScenarioOptions = {}): Promise<Scenario> {
 }
 
 afterAll(() => {
+  vi.setConfig({ testTimeout: 30_000 });
   for (const root of temporaryRoots.splice(0)) {
     rmSync(root, { recursive: true, force: true });
   }
@@ -1537,7 +1540,7 @@ async function authorizedModelLedger(events: readonly ModelBenchmarkLedgerEvent[
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected model fixture authorization at ${index}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

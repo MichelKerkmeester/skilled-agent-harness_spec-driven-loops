@@ -12,6 +12,7 @@ const helperDir = dirname(fileURLToPath(import.meta.url));
 export const runtimeRoot = resolve(helperDir, '..', '..');
 const CASSETTE_SCHEMA_VERSION = 1;
 const DEFAULT_CASSETTE_DIR = join(runtimeRoot, 'tests', 'fixtures', 'cassettes');
+const FORCE_KILL_DELAY_MS = 100;
 
 export type ScriptName = 'convergence' | 'query' | 'status' | 'upsert';
 
@@ -324,14 +325,30 @@ export function spawnCjs(
       cwd: options.cwd ?? runtimeRoot,
       env: options.env ?? process.env,
       stdio: [options.stdin === undefined ? 'ignore' : 'pipe', 'pipe', 'pipe'],
+      detached: process.platform !== 'win32',
     });
     let stdout = '';
     let stderr = '';
     let timedOut = false;
+    let forceKillTimer: NodeJS.Timeout | null = null;
+    const killProcessTree = (signal: NodeJS.Signals): void => {
+      if (process.platform !== 'win32' && child.pid !== undefined) {
+        try {
+          process.kill(-child.pid, signal);
+          return;
+        } catch {
+          // The process may have exited between the timeout and escalation.
+        }
+      }
+      child.kill(signal);
+    };
     const timeout = options.timeoutMs
       ? setTimeout(() => {
           timedOut = true;
-          child.kill('SIGTERM');
+          killProcessTree('SIGTERM');
+          forceKillTimer = setTimeout(() => {
+            killProcessTree('SIGKILL');
+          }, FORCE_KILL_DELAY_MS);
         }, options.timeoutMs)
       : null;
 
@@ -344,6 +361,7 @@ export function spawnCjs(
     child.stderr?.on('data', (chunk) => { stderr += chunk; });
     child.on('close', (exitCode, signal) => {
       if (timeout) clearTimeout(timeout);
+      if (forceKillTimer) clearTimeout(forceKillTimer);
       resolvePromise({
         exitCode,
         stdout: stdout.trim(),
