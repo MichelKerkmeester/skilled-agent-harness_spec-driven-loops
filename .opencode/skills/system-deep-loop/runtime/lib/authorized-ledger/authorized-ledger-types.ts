@@ -7,6 +7,7 @@ import type {
   EventReadResult,
   EventWritePreflight,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -198,6 +199,10 @@ export interface TransitionPolicyDefinition {
   readonly policyVersion: number;
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
+  /** Fallback authorization-state snapshot covered by the policy digest when no captured state is supplied. */
+  readonly authorizationState?: JsonValue;
+  /** Authorization-state snapshot captured with the policy so the digest binds identity, not just evaluator source. */
+  readonly capturedAuthorizationState?: JsonValue;
   readonly evaluate: (
     input: Readonly<PolicyEvaluationInput>,
   ) => PolicyEvaluationResult | Promise<PolicyEvaluationResult>;
