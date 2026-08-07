@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -1374,6 +1379,18 @@ describe('skill-benchmark typed ledger schema', () => {
     })).toMatchObject({
       status: 'pin-old-runtime',
       reasonCode: 'stable-design-identity-missing',
+    });
+  });
+
+  it('replays the captured common lifecycle log through the skill vocabulary', () => {
+    const records = readRealJsonl(REAL_LEGACY_LOGS.common);
+    const unknown = unknownLegacyRecords(records, decideSkillBenchmarkCompatibility);
+    expect(records).toHaveLength(19);
+    expect(unknown).toEqual([]);
+    expect(decideSkillBenchmarkCompatibility(records[0])).toMatchObject({
+      status: 'pin-old-runtime',
+      reasonCode: 'stable-identity-missing',
+      targetStem: 'deep_improvement_common.run_started',
     });
   });
 

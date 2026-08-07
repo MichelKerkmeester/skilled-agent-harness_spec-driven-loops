@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -1010,6 +1015,13 @@ describe('deep-improvement-common typed ledger schema', () => {
       sessionId: 'run-1',
       parentSessionId: 'lineage-1',
     }).status).toBe('blocked');
+  });
+
+  it('replays the captured common lifecycle log without unknown legacy blocks', () => {
+    const records = readRealJsonl(REAL_LEGACY_LOGS.common);
+    const unknown = unknownLegacyRecords(records, decideDeepImprovementCommonCompatibility);
+    expect(records).toHaveLength(19);
+    expect(unknown).toEqual([]);
   });
 
   it('upcasts legacy JSONL purely with source and upcaster digests retained', () => {

@@ -3,6 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
+  decideDeepImprovementCommonCompatibility,
+  upcastLegacyDeepImprovementCommonRecord,
+} from '../deep-improvement-common-ledger-schema/index.js';
+import {
   canonicalBytes,
   sha256Bytes,
 } from '../event-envelope/index.js';
@@ -11,6 +15,11 @@ import {
 } from './skill-benchmark-ledger-types.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
+import type {
+  DeepImprovementCommonCompatibilityDecision,
+  DeepImprovementCommonEventStem,
+  LegacyUpcastContext as CommonLegacyUpcastContext,
+} from '../deep-improvement-common-ledger-schema/index.js';
 import type {
   LegacySkillBenchmarkUpcastContext,
   LegacySkillBenchmarkUpcastResult,
@@ -66,6 +75,17 @@ function decision(
   });
 }
 
+function fromCommonDecision(
+  common: DeepImprovementCommonCompatibilityDecision,
+): SkillBenchmarkCompatibilityDecision {
+  return decision(
+    common.status,
+    common.reasonCode,
+    common.targetStem,
+    common.sourceVersion,
+  );
+}
+
 function eventName(record: Record<string, unknown>): string | null {
   const candidate = record.eventType ?? record.event;
   return typeof candidate === 'string' ? candidate : null;
@@ -91,6 +111,12 @@ function hasStableDesignIdentity(record: Record<string, unknown>): boolean {
   return isToken(record.runId ?? record.sessionId)
     && isToken(record.lineageId ?? record.parentSessionId ?? record.sessionId)
     && isToken(record.benchmarkDesignId ?? record.designId);
+}
+
+function isCommonTarget(
+  stem: SkillBenchmarkEventStem,
+): stem is DeepImprovementCommonEventStem {
+  return stem.startsWith('deep_improvement_common.');
 }
 
 function digestRecord(record: Record<string, unknown>): string {
@@ -145,18 +171,22 @@ export function decideSkillBenchmarkCompatibility(
   }
 
   const targetStem = recordTarget(input);
-  if (!targetStem) {
-    return decision('blocked', 'unknown-legacy-record', null, version);
+  if (targetStem) {
+    if (!hasStableDesignIdentity(input)) {
+      return decision(
+        'pin-old-runtime',
+        'stable-design-identity-missing',
+        targetStem,
+        version,
+      );
+    }
+    return decision('migrate', 'registered-pure-upcaster', targetStem, version);
   }
-  if (!hasStableDesignIdentity(input)) {
-    return decision(
-      'pin-old-runtime',
-      'stable-design-identity-missing',
-      targetStem,
-      version,
-    );
-  }
-  return decision('migrate', 'registered-pure-upcaster', targetStem, version);
+
+  const common = decideDeepImprovementCommonCompatibility(input);
+  return common.status === 'blocked'
+    ? decision('blocked', 'unknown-legacy-record', null, version)
+    : fromCommonDecision(common);
 }
 
 export function upcastLegacySkillBenchmarkRecord(
@@ -165,9 +195,39 @@ export function upcastLegacySkillBenchmarkRecord(
 ): LegacySkillBenchmarkUpcastResult {
   const compatibility = decideSkillBenchmarkCompatibility(input);
   if (compatibility.status !== 'migrate'
-    || compatibility.targetStem !== 'skill_benchmark.run_planned'
+    || !compatibility.targetStem
     || !isObject(input)) {
     return Object.freeze({ status: 'refused', decision: compatibility });
+  }
+
+  if (isCommonTarget(compatibility.targetStem)) {
+    if (context.scope.variant !== 'skill-benchmark') {
+      return Object.freeze({
+        status: 'refused',
+        decision: decision(
+          'pin-old-runtime',
+          'skill-benchmark-common-scope-missing',
+          compatibility.targetStem,
+          compatibility.sourceVersion,
+        ),
+      });
+    }
+    return upcastLegacyDeepImprovementCommonRecord(
+      input,
+      context as unknown as CommonLegacyUpcastContext,
+    ) as unknown as LegacySkillBenchmarkUpcastResult;
+  }
+
+  if (compatibility.targetStem !== 'skill_benchmark.run_planned') {
+    return Object.freeze({
+      status: 'refused',
+      decision: decision(
+        'blocked',
+        'upcaster-not-registered',
+        compatibility.targetStem,
+        compatibility.sourceVersion,
+      ),
+    });
   }
 
   const recordDigest = digestRecord(input);

@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -980,6 +985,13 @@ describe('deep-review typed ledger schema', () => {
       stem: 'deep_review.unknown',
       eventVersion: 1,
     }).status).toBe('blocked');
+  });
+
+  it('replays the captured review state log without unknown legacy blocks', () => {
+    const records = readRealJsonl(REAL_LEGACY_LOGS.review);
+    const unknown = unknownLegacyRecords(records, decideDeepReviewCompatibility);
+    expect(records).toHaveLength(64);
+    expect(unknown).toEqual([]);
   });
 
   it('upcasts registered legacy JSONL purely and drives the real append path', async () => {

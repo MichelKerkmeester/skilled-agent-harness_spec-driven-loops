@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -963,6 +968,25 @@ describe('deep-research typed ledger schema', () => {
       parentSessionId: 'lineage-1',
       run: 1,
     }).status).toBe('blocked');
+  });
+
+  it('replays the captured research state log without unknown legacy blocks', () => {
+    const records = readRealJsonl(REAL_LEGACY_LOGS.research);
+    const unknown = unknownLegacyRecords(records, decideDeepResearchCompatibility);
+    expect(records).toHaveLength(18);
+    expect(unknown).toEqual([]);
+  });
+
+  it('blocks an unregistered legacy stem instead of dropping it', () => {
+    expect(decideDeepResearchCompatibility({
+      type: 'event',
+      event: 'operator_invented_stem',
+      schemaVersion: 1,
+    })).toMatchObject({
+      status: 'blocked',
+      reasonCode: 'unknown-legacy-record',
+      targetStem: null,
+    });
   });
 
   it('upcasts legacy JSONL purely while preserving source and upcaster digests', () => {

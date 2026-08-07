@@ -27,6 +27,8 @@ const LEGACY_UPCASTER_FINGERPRINT = sha256Bytes(canonicalBytes(
 ));
 
 const LEGACY_EVENT_STEMS = Object.freeze({
+  topic_completed: 'ai_council.round_ended',
+  round_completed: 'ai_council.round_ended',
   round_start: 'ai_council.round_started',
   seat_returned: 'ai_council.seat_returned',
   deliberation_synthesized: 'ai_council.deliberation_synthesized',
@@ -38,6 +40,10 @@ const LEGACY_EVENT_STEMS = Object.freeze({
 } as const satisfies Readonly<Record<string, DeepAiCouncilEventStem>>);
 
 const PINNED_LEGACY_EVENTS = new Set([
+  'session_initialized',
+  'topic_started',
+  'workflow_failed',
+  'lock_released',
   'progress_record',
   'seat_started',
   'seat_retry',
@@ -78,8 +84,9 @@ function decision(
 }
 
 function recordTarget(record: Record<string, unknown>): DeepAiCouncilEventStem | null {
-  if (!isNonEmptyString(record.event)) return null;
-  return LEGACY_EVENT_STEMS[record.event as keyof typeof LEGACY_EVENT_STEMS] ?? null;
+  const name = record.event ?? record.type;
+  if (!isNonEmptyString(name)) return null;
+  return LEGACY_EVENT_STEMS[name as keyof typeof LEGACY_EVENT_STEMS] ?? null;
 }
 
 function hasStableIdentity(
@@ -190,6 +197,9 @@ export function decideDeepAiCouncilCompatibility(
   }
   if (input.type === 'audit' && input.event === 'artifact_verified') {
     return decision('compatible', 'legacy-audit-evidence-remains-non-authoritative', null, version);
+  }
+  if (input.type === 'progress_record' && input.event === 'session_heartbeat') {
+    return decision('compatible', 'legacy-liveness-record-is-non-authoritative', null, version);
   }
   if (isNonEmptyString(input.event) && PINNED_LEGACY_EVENTS.has(input.event)) {
     return decision('pin-old-runtime', 'shared-or-lossy-legacy-event', null, version);

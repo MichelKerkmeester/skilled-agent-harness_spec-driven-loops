@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -1432,7 +1437,19 @@ describe('deep-alignment typed ledger schema', () => {
       authorityEpochId: 'authority-epoch-2',
       run: 1,
       lane: 'lane-schema',
-    }).status).toBe('migrate');
+    })).toMatchObject({
+      status: 'pin-old-runtime',
+      reasonCode: 'legacy-iteration-is-a-nonterminal-slice',
+      targetStem: null,
+    });
+    expect(decideDeepAlignmentCompatibility({
+      type: 'config',
+      schemaVersion: 1,
+      sessionId: 'session-only',
+    })).toMatchObject({
+      status: 'migrate',
+      targetStem: 'deep_alignment.run_initialized',
+    });
     expect(decideDeepAlignmentCompatibility({
       type: 'event',
       event: 'verdict_changed',
@@ -1456,60 +1473,74 @@ describe('deep-alignment typed ledger schema', () => {
     }
   });
 
-  it('upcasts registered legacy JSONL purely and drives the real append path', async () => {
-    const record = {
+  it('replays the captured alignment state log without unknown legacy blocks', () => {
+    const records = readRealJsonl(REAL_LEGACY_LOGS.alignment);
+    const unknown = unknownLegacyRecords(records, decideDeepAlignmentCompatibility);
+    expect(records).toHaveLength(49);
+    expect(unknown).toEqual([]);
+  });
+
+  it('pins every iteration slice without promoting any slice to lane completion', () => {
+    const slices = [1, 2].map((run) => decideDeepAlignmentCompatibility({
       type: 'iteration',
       schemaVersion: 1,
-      runId: 'run-1',
+      sessionId: 'session-only',
+      run,
+      laneId: 'lane-schema',
+      status: 'completed',
+    }));
+    expect(slices).toEqual([
+      expect.objectContaining({
+        status: 'pin-old-runtime',
+        reasonCode: 'legacy-iteration-is-a-nonterminal-slice',
+        targetStem: null,
+      }),
+      expect.objectContaining({
+        status: 'pin-old-runtime',
+        reasonCode: 'legacy-iteration-is-a-nonterminal-slice',
+        targetStem: null,
+      }),
+    ]);
+    expect(slices.some((result) => result.targetStem === 'deep_alignment.lane_completed'))
+      .toBe(false);
+  });
+
+  it('upcasts a sessionId-only legacy config and drives the real append path', async () => {
+    const record = {
+      type: 'config',
+      schemaVersion: 1,
       sessionId: 'session-1',
-      authorityEpochId: 'authority-epoch-2',
-      run: 1,
-      lane: 'lane-schema',
-      status: 'complete',
-      observations: ['legacy-observation'],
-      verifications: ['legacy-verification'],
-      counts: {
-        applicable: 1,
-        notApplicable: 0,
-        unresolved: 0,
-        untested: 0,
-        blocked: 0,
-        nonConformant: 1,
-      },
     };
     const context = {
       scope: {
-        runId: 'run-1',
         sessionId: 'session-1',
-        authorityEpochId: 'authority-epoch-2',
+        runId: 'session-1',
+        authorityEpochId: 'legacy-authority',
         generation: 1,
-        iterationId: 'iteration-1',
-        laneId: 'lane-schema',
       },
       prevEventHash: '0'.repeat(64),
-      replay: replayMetadata('legacy-iteration'),
+      replay: replayMetadata('legacy-config'),
     };
     const first = upcastLegacyDeepAlignmentRecord(record, context);
     const second = upcastLegacyDeepAlignmentRecord(record, context);
     expect(second).toEqual(first);
     expect(first.status).toBe('migrated');
     if (first.status !== 'migrated') throw new Error(first.decision.reasonCode);
-    expect(first.targetStem).toBe('deep_alignment.lane_completed');
-    if (first.targetStem !== 'deep_alignment.lane_completed') {
+    expect(first.targetStem).toBe('deep_alignment.run_initialized');
+    if (first.targetStem !== 'deep_alignment.run_initialized') {
       throw new Error(first.targetStem);
     }
     expect(first.originalRecordDigest).toBe(digest(record));
     expect(first.upcasterFingerprint).toMatch(/^[a-f0-9]{64}$/);
     expect(first.replay.final_digest).toBe(context.replay.final_digest);
-    expect(record.observations).toEqual(['legacy-observation']);
 
     const harness = createHarness();
     const event = prepareDeepAlignmentEvent({
       stem: first.targetStem,
-      scope: first.scope as DeepAlignmentScopeMap['deep_alignment.lane_completed'],
+      scope: first.scope as DeepAlignmentScopeMap['deep_alignment.run_initialized'],
       prevEventHash: first.prevEventHash,
       replay: first.replay,
-      data: first.data as unknown as DeepAlignmentPayloadMap['deep_alignment.lane_completed'],
+      data: first.data as unknown as DeepAlignmentPayloadMap['deep_alignment.run_initialized'],
       eventId: 'legacy-event-1',
       streamId: 'deep-alignment-legacy-run-1',
       streamSequence: 1,

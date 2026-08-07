@@ -3,6 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+import {
+  REAL_LEGACY_LOGS,
+  readRealJsonl,
+  unknownLegacyRecords,
+} from '../helpers/legacy-real-log.js';
 
 import {
   mkdtempSync,
@@ -819,6 +824,36 @@ describe('deep-ai-council typed ledger schema', () => {
       eventVersion: 1,
       payloadVersion: 2,
     }).status).toBe('blocked');
+  });
+
+  it('replays captured council state logs without unknown legacy blocks', () => {
+    const records = [
+      ...readRealJsonl(REAL_LEGACY_LOGS.council),
+      ...readRealJsonl(REAL_LEGACY_LOGS.councilArchive),
+    ];
+    const unknown = unknownLegacyRecords(records, decideDeepAiCouncilCompatibility);
+    expect(records).toHaveLength(26);
+    expect(unknown).toEqual([]);
+  });
+
+  it('accepts the live heartbeat and registers both terminal record types', () => {
+    expect(decideDeepAiCouncilCompatibility({
+      type: 'progress_record',
+      event: 'session_heartbeat',
+      progress_delta: 0,
+      schemaVersion: 1,
+    })).toMatchObject({ status: 'compatible', targetStem: null });
+    for (const type of ['topic_completed', 'round_completed']) {
+      expect(decideDeepAiCouncilCompatibility({
+        type,
+        runId: 'run-1',
+        roundId: 'round-1',
+        schemaVersion: 1,
+      })).toMatchObject({
+        status: 'migrate',
+        targetStem: 'ai_council.round_ended',
+      });
+    }
   });
 
   it('upcasts registered legacy rows with source and upcaster digests retained', async () => {

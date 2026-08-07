@@ -34,6 +34,17 @@ const LEGACY_EVENT_STEMS = Object.freeze({
 } as const satisfies Readonly<Record<string, DeepReviewEventStem>>);
 
 const PINNED_LEGACY_EVENTS = new Set([
+  'init_complete',
+  'graph_seed_skipped',
+  'config_warning',
+  'graph_convergence',
+  'claim_adjudication',
+  'synthesis_incomplete',
+  'synthesis_complete',
+  'lock_released',
+  'userPaused',
+  'stuckRecovery',
+  'recovery_baseline',
   'finding_updated',
   'finding_removed',
   'report_rewritten',

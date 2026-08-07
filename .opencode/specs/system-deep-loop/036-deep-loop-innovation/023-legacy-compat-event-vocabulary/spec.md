@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 6 scoped findings before any edit"
+    last_updated_at: "2026-08-07T03:06:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed six legacy compatibility vocabularies and scoped per-file verification"
+    next_safe_action: "Orchestrator reviews and lands the uncommitted candidate"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,10 +24,8 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
-    open_questions:
-      - "Per unmapped stem: map it, or pin it as legacy-only? Each disposition needs a recorded rationale."
-      - "Does the alignment lane-completion semantics fix belong here or in 026?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "OPERATOR RULING: write the six live vocabularies with full upcaster coverage. The prove-no-legacy-state shortcut is NOT the chosen path."
       - "The census still runs first, as evidence for the mapping work rather than as an alternative exit"
@@ -66,7 +64,7 @@ Blocker 2 is that the compatibility bridge blocks ordinary live events. Research
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -268,7 +266,7 @@ All six carry the CUTOVER BLOCKER cross-tag. `F-022-02` is CONFIRMED-WITH-CORREC
 |-----------|-------|----------|
 | Scope | 16/25 | 6 findings across 6 `legacy-compatibility.ts` modules, 6 paired vitest suites, and a new legacy-state census artifact |
 | Risk | 18/25 | Edits production compat-bridge code (`runtime/lib/*-ledger-schema`) that migrates real state at cutover; a wrongly pinned stem loses data (R-002) |
-| Research | 10/20 | Root cause and target stems already isolated by review; the per-stem map-or-pin dispositions remain open work reserved to ADR-003 |
+| Research | 18/20 | Root cause, captured live stems, and ADR-003 map-or-pin dispositions are recorded against the census |
 | Multi-Agent | 6/15 | Single workstream, five sequential phases, one independent-verification pass (REQ-U04) |
 | Coordination | 12/15 | Wave W2 hard gate on `014` cutover (Blocker 2); depends on `021`'s honest baselines, independent of `022` |
 | **Total** | **62/100** | **Level 3** |

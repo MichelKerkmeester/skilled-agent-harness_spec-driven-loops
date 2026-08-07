@@ -15,7 +15,10 @@
       "blocker 2 upcaster coverage",
       "unknown legacy record migration",
       "live event vocabulary upcaster",
-      "deep loop 023 compat"
+      "deep loop 023 compat",
+      "legacy compat event vocabulary implementation",
+      "deep loop 023 implementation summary",
+      "zero blocked legacy replay"
     ],
     "key_topics": [
       "legacy",
@@ -32,7 +35,7 @@
       "deep"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,7 +52,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-ledger-schema.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -116,6 +120,12 @@
         "name": "skill-benchmark-ledger-schema.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,33 +199,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
     "created_at": "2026-07-31T01:25:19.803Z",
-    "last_save_at": "2026-07-31T01:25:19.803Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-07T03:06:29.365Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a830f8da3e9bcb3219b0e87940d75bd4781e56a67c87ccb8ab72a8732f6d6a83",
+    "source_fingerprint": "sha256:9b731632f97004313d5c614ea3176e87d653dcae0e12dfc3d209633e34cbdac5",
     "source_doc_hashes": {
-      "spec.md": "07f1206dd7c2a1f6e0bea4bab2a05afc8bb361d89c77b4b251f8e638ecdc3b73",
-      "plan.md": "a7e9ab7186bc9a01876f209c57c08c17f4219c95e600bfc5270976742ffba5fd",
-      "tasks.md": "81773cd21e5d2c9f235a44aa4d6843873934f5f8a0bac3e182fd9e5a3126806f",
-      "checklist.md": "b51ca31ae20882878007c97872f6d5d30314394dec4744cad7b9ac5f138f1e6d",
-      "decision-record.md": "a2ddc7db4dbbd372e684bbaae7edfaf2fe9a4de8ca024e62b60736c12ccf6ea3"
+      "spec.md": "e8d1295ba9de5d0cb21af7e92ddf23aeda1faf46982039600b616ade725edce0",
+      "plan.md": "e4e938150f7a4ad8122df43ee1f208e40a70e04c2556781695959f1757908939",
+      "tasks.md": "24950478bf7e2c6b0594329d381bb390468d1929e09d44396974fe0fa971495e",
+      "checklist.md": "ea86228a36306a473437404c60ff2ce4482e73fc763b7b8033721acadff898f3",
+      "decision-record.md": "5dd366fccd4e2e54f7ca1e657d0e794a49efc30f7b883abbe01b5c54178f5ca1",
+      "implementation-summary.md": "10b67c9ba2a28137fccb67002b380e212561a2b381f0f2f41f10a9b6a239e6c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

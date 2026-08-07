@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored ADR-001 and ADR-002 from the WS1 phase-tree proposal, both Accepted"
-    next_safe_action: "Scaffold ADR-003 as per-stem dispositions are made"
+    last_updated_at: "2026-08-07T03:06:00Z"
+    last_updated_by: "codex"
+    recent_action: "Accepted ADR-003 with census-checked map, pin, and delegation dispositions"
+    next_safe_action: "Orchestrator reviews and lands the uncommitted candidate"
     blockers: []
     key_files:
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -233,8 +233,52 @@ The reason six broken upcasters shipped green is that their fixtures are synthet
 
 ---
 
-## RESERVED DECISIONS
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Map lossless lifecycle records and pin legacy-only observations
 
-**Per-stem map-versus-pin dispositions (ADR-003, to be written as they are made).**
+### Metadata
 
-Each currently unmapped stem needs its own recorded decision: map it to a typed target, or pin it as legacy-only. Those decisions depend on the census output (REQ-007) and cannot be made before it exists. Record each one in ADR-003 as it is taken, with the census entry it was checked against. A pin that contradicts the census is a defect, not a decision.
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-07 |
+| **Deciders** | Packet owner, based on the captured-log census |
+
+### Context
+
+The real logs contain both lifecycle records that can be represented by an existing typed event and operational, derived, or mutation records for which inventing a typed target would overstate the evidence. Alignment also contains an iteration slice that is not a terminal lane completion, and council emits a nested heartbeat shape that must remain non-authoritative.
+
+### Decision
+
+Map only records with a lossless typed target. Pin every live stem without one, retaining the legacy record as an explicit compatibility outcome. The complete mode-by-mode disposition table is in `implementation-summary.md`; the census and fixture provenance are the evidence sources for each pin.
+
+| Case | Disposition | Rationale |
+|------|-------------|-----------|
+| Research, review, alignment, and common lifecycle records | Mapped to their registered typed targets | The existing upcasters have a lossless target and stable identity checks. |
+| Research/review operational, convergence, synthesis, lock, and mutation records | Pinned | No lossless typed mode event exists; pinning preserves the old fact without fabricating semantics. |
+| Alignment `type:"iteration"` slice | Pinned as non-terminal | The captured stream contains slices; mapping one to `lane_completed` would claim terminal completion. |
+| Alignment `type:"finding"` | Pinned | The legacy row lacks typed adjudication/proof bindings. |
+| Alignment config with only `sessionId` | Mapped to `deep_alignment.run_initialized` | This is the identity shape emitted by the live config; `runId` and `authorityEpochId` are not required here. |
+| Council `{type:"progress_record",event:"session_heartbeat"}` | Compatible, non-authoritative | The live heartbeat is liveness evidence, not a domain event. |
+| Council `topic_completed` and `round_completed` | Mapped to `ai_council.round_ended` | Both are terminal round signals with the same typed destination. |
+| Skill-benchmark common stems | Delegated to the common upcaster | This matches the established agent/model variant bridge and keeps common vocabulary behavior single-sourced. |
+
+### Alternatives Considered
+
+| Option | Why rejected |
+|--------|--------------|
+| Map every legacy row to the nearest typed event | It would turn operational or partial evidence into false domain semantics. |
+| Block every unmapped row | It reopens the original cutover blocker on the first ordinary lifecycle record. |
+| Change reducers or authority behavior to absorb the rows | Those surfaces belong to the alignment-coverage and authority-cutover workstreams, outside this child. |
+
+### Consequences
+
+- Real logs migrate without an unknown-record block while lossy records remain visibly pinned.
+- The alignment migration no longer promotes a slice to terminal lane completion.
+- The common bridge remains the single implementation for shared improvement lifecycle events.
+- A future live stem still requires an explicit mapping or pin; the fail-closed behavior for genuinely unknown stems remains intact.
+
+### Rollback
+
+Restore the six touched ledger-schema files from clean anchor `5c98e4654e4bcaf2c7002412d6da2b92f1793942` and rerun the affected ledger-schema suite. This rollback was not executed because all gates remained green.
+<!-- /ANCHOR:adr-003 -->

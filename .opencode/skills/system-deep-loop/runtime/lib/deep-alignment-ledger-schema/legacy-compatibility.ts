@@ -34,11 +34,18 @@ const LEGACY_EVENT_STEMS = Object.freeze({
 } as const satisfies Readonly<Record<string, DeepAlignmentEventStem>>);
 
 const PINNED_LEGACY_EVENTS = new Set([
+  'leaf_output_unpersisted',
+  'recovery_baseline',
   'authority_rewritten',
   'finding_removed',
   'finding_updated',
   'observation_replaced',
   'verdict_changed',
+]);
+
+const PINNED_LEGACY_TYPES = new Set([
+  'iteration',
+  'finding',
 ]);
 
 // ───────────────────────────────────────────────────────────────────
@@ -74,9 +81,7 @@ function decision(
 }
 
 function hasStableIdentity(record: Record<string, unknown>): boolean {
-  return isNonEmptyString(record.runId ?? record.sessionId)
-    && isNonEmptyString(record.sessionId)
-    && isNonEmptyString(record.authorityEpochId);
+  return isNonEmptyString(record.sessionId);
 }
 
 function hasLaneIdentity(record: Record<string, unknown>): boolean {
@@ -187,6 +192,16 @@ export function decideDeepAlignmentCompatibility(
   }
   if (input.type === 'partial-observation') {
     return decision('degraded', 'legacy-observation-lacks-proof-bindings', null, version);
+  }
+  if (typeof input.type === 'string' && PINNED_LEGACY_TYPES.has(input.type)) {
+    return decision(
+      'pin-old-runtime',
+      input.type === 'iteration'
+        ? 'legacy-iteration-is-a-nonterminal-slice'
+        : 'legacy-finding-lacks-typed-adjudication',
+      null,
+      version,
+    );
   }
   if (input.type === 'event'
     && isNonEmptyString(input.event)

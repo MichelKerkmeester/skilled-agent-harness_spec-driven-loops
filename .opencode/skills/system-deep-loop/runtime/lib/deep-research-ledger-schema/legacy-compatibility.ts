@@ -33,7 +33,22 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   blocked_stop: 'deep_research.convergence_blocked',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
+const PINNED_LEGACY_TYPES = new Set([
+  'iteration_start',
+]);
+
 const PINNED_LEGACY_EVENTS = new Set([
+  'detached_scope_bound',
+  'started',
+  'run_now_requested',
+  'run_now_rejected',
+  'run_now_accepted',
+  'run_now_restored',
+  'config_warning',
+  'graph_convergence',
+  'synthesis_incomplete',
+  'synthesis_complete',
+  'lock_released',
   'idea_observed',
   'idea_promoted',
   'idea_rejected',
@@ -157,6 +172,10 @@ export function decideDeepResearchCompatibility(
 
   if (input.type === 'progress') {
     return decision('compatible', 'legacy-liveness-record-is-non-authoritative', null, version);
+  }
+
+  if (typeof input.type === 'string' && PINNED_LEGACY_TYPES.has(input.type)) {
+    return decision('pin-old-runtime', 'legacy-record-has-no-lossless-mode-event', null, version);
   }
 
   if (input.type === 'event' && isNonEmptyString(input.event)
