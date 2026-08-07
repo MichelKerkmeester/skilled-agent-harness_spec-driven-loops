@@ -47,13 +47,13 @@ function createFixture(): Fixture {
   return {
     tempDirectory,
     workspacePath,
-    canonicalPacketPath: path.join(
+    canonicalPacketPath: path.join(workspacePath, 'specs', relativePacketPath),
+    legacyPacketPath: path.join(
       workspacePath,
       '.opencode',
       'specs',
       relativePacketPath,
     ),
-    legacyPacketPath: path.join(workspacePath, 'specs', relativePacketPath),
     quarantinePath,
     quarantinePacketPath: path.join(quarantinePath, relativePacketPath),
   };

@@ -55,7 +55,7 @@ export function resolveSpecFolderCanonical(rawArg: string, workspacePath: string
     return path.resolve(resolvedWorkspace, trimmedArg);
   }
 
-  const canonicalRoot = path.join(resolvedWorkspace, '.opencode', 'specs');
+  const canonicalRoot = path.join(resolvedWorkspace, 'specs');
   const canonicalCandidate = path.resolve(canonicalRoot, trimmedArg);
   assertWithinRoot(canonicalCandidate, canonicalRoot);
 
@@ -63,7 +63,7 @@ export function resolveSpecFolderCanonical(rawArg: string, workspacePath: string
     return canonicalCandidate;
   }
 
-  const legacyRoot = path.join(resolvedWorkspace, 'specs');
+  const legacyRoot = path.join(resolvedWorkspace, '.opencode', 'specs');
   const legacyCandidate = path.resolve(legacyRoot, trimmedArg);
   if (isDirectory(legacyCandidate)) {
     return legacyCandidate;

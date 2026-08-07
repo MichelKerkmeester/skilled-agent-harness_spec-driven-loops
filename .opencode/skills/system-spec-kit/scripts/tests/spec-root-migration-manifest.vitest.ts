@@ -52,7 +52,7 @@ afterEach(() => {
 describe('buildMigrationManifest', () => {
   it('enumerates canonical packets when the legacy root is missing', () => {
     const workspacePath = createWorkspace();
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
     createPacket(canonicalRoot, 'track/002-description-only', {
       'description.json': '{"title":"Description only"}\n',
     });
@@ -77,8 +77,8 @@ describe('buildMigrationManifest', () => {
 
   it('classifies the union of packet identities across independent roots', () => {
     const workspacePath = createWorkspace();
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
-    const legacyRoot = path.join(workspacePath, 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
+    const legacyRoot = path.join(workspacePath, '.opencode', 'specs');
     const sharedFiles = { 'notes/a.txt': 'same\n', 'spec.md': '# Same\n' };
 
     createPacket(canonicalRoot, 'track/001-canonical', { 'spec.md': '# Canonical\n' });
@@ -106,8 +106,8 @@ describe('buildMigrationManifest', () => {
 
   it('produces stable content hashes independent of root spelling and directory order', () => {
     const workspacePath = createWorkspace();
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
-    const legacyRoot = path.join(workspacePath, 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
+    const legacyRoot = path.join(workspacePath, '.opencode', 'specs');
     const files = {
       'nested/z.txt': 'last\n',
       'nested/a.txt': 'first\n',
@@ -134,10 +134,11 @@ describe('buildMigrationManifest', () => {
 
   it('classifies a workspace-relative root alias without duplicate entries', () => {
     const workspacePath = createWorkspace();
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
-    const legacyRoot = path.join(workspacePath, 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
+    const legacyRoot = path.join(workspacePath, '.opencode', 'specs');
     createPacket(canonicalRoot, 'track/001-alias', { 'spec.md': '# Alias\n' });
-    fs.symlinkSync(path.join('.opencode', 'specs'), legacyRoot, 'dir');
+    fs.mkdirSync(path.dirname(legacyRoot), { recursive: true });
+    fs.symlinkSync(path.join('..', 'specs'), legacyRoot, 'dir');
 
     const manifest = buildMigrationManifest(workspacePath);
 
@@ -153,11 +154,13 @@ describe('buildMigrationManifest', () => {
 
   it('rejects an existing root that resolves outside the workspace', () => {
     const workspacePath = createWorkspace();
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
+    const legacyRoot = path.join(workspacePath, '.opencode', 'specs');
     const externalRoot = path.join(path.dirname(workspacePath), 'external-specs');
     createPacket(canonicalRoot, 'track/001-canonical', { 'spec.md': '# Canonical\n' });
     createPacket(externalRoot, 'track/002-external', { 'spec.md': '# External\n' });
-    fs.symlinkSync(externalRoot, path.join(workspacePath, 'specs'), 'dir');
+    fs.mkdirSync(path.dirname(legacyRoot), { recursive: true });
+    fs.symlinkSync(externalRoot, legacyRoot, 'dir');
 
     expect(() => buildMigrationManifest(workspacePath)).toThrow(
       'Spec root resolves outside the workspace',

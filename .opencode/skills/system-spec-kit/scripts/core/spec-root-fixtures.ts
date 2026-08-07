@@ -136,11 +136,16 @@ function createPacket(rootPath: string, packetId: string, content: string): void
 export function materializeRootFixture(fixture: RootFixture): MaterializedRootFixture {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-fixture-'));
   const workspaceDir = path.join(tempDir, 'workspace');
-  const canonicalRoot = path.join(workspaceDir, '.opencode', 'specs');
-  const legacyRoot = path.join(workspaceDir, 'specs');
+  const canonicalRoot = path.join(workspaceDir, 'specs');
+  const legacyRoot = path.join(workspaceDir, '.opencode', 'specs');
   const physicalRoots: PhysicalRoot[] = [];
 
   fs.mkdirSync(workspaceDir, { recursive: true });
+  // legacyRoot now nests one level deeper (.opencode/specs) than canonicalRoot
+  // (specs) -- pre-create its parent so fixtures that write directly at
+  // legacyRoot (a symlink or a plain file, not addLegacyRoot()'s directory)
+  // never fail on a missing intermediate directory.
+  fs.mkdirSync(path.dirname(legacyRoot), { recursive: true });
 
   const addCanonicalRoot = (): void => {
     fs.mkdirSync(canonicalRoot, { recursive: true });
@@ -164,7 +169,7 @@ export function materializeRootFixture(fixture: RootFixture): MaterializedRootFi
       case 'R3':
         addCanonicalRoot();
         createPacket(canonicalRoot, RELATIVE_PACKET_ID, PACKET_CONTENT);
-        fs.symlinkSync(path.join('.opencode', 'specs'), legacyRoot, 'dir');
+        fs.symlinkSync(path.join('..', 'specs'), legacyRoot, 'dir');
         physicalRoots.push({ rootPath: legacyRoot, kind: 'legacy' });
         break;
       case 'R4':
@@ -214,7 +219,7 @@ export function materializeRootFixture(fixture: RootFixture): MaterializedRootFi
           RELATIVE_PACKET_ID,
           'External packet must remain isolated.\n',
         );
-        fs.symlinkSync(path.relative(workspaceDir, externalRoot), legacyRoot, 'dir');
+        fs.symlinkSync(path.relative(path.dirname(legacyRoot), externalRoot), legacyRoot, 'dir');
         break;
       }
     }

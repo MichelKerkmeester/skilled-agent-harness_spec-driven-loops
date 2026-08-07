@@ -33,7 +33,7 @@ export const SPEC_ROOT_RESOLVERS = [
     symbol: 'getSpecsDirectories / findActiveSpecsDir / getAllExistingSpecsDirs',
     consumerOrEffect:
       'Active root selection and existing-root enumeration; aliases retain their first spelling.',
-    precedence: 'legacy-first',
+    precedence: 'canonical-first',
   },
   {
     file: 'scripts/core/subfolder-utils.ts:39-58,129-149',

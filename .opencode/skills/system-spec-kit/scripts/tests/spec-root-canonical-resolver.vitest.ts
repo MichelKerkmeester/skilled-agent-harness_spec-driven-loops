@@ -33,37 +33,38 @@ describe('resolveSpecFolderCanonical', () => {
   });
 
   it('prefers the canonical packet for an ambiguous unqualified identity', () => {
-    const canonicalPacket = createPacket(path.join(workspacePath, '.opencode', 'specs'));
-    createPacket(path.join(workspacePath, 'specs'));
+    const canonicalPacket = createPacket(path.join(workspacePath, 'specs'));
+    createPacket(path.join(workspacePath, '.opencode', 'specs'));
 
     expect(resolveSpecFolderCanonical(PACKET_ID, workspacePath)).toBe(canonicalPacket);
   });
 
   it('returns the canonical candidate for a new unqualified packet', () => {
     expect(resolveSpecFolderCanonical(PACKET_ID, workspacePath)).toBe(
-      path.join(workspacePath, '.opencode', 'specs', PACKET_ID),
+      path.join(workspacePath, 'specs', PACKET_ID),
     );
   });
 
   it('falls back to a unique legacy-only packet for reads', () => {
-    const legacyPacket = createPacket(path.join(workspacePath, 'specs'));
+    const legacyPacket = createPacket(path.join(workspacePath, '.opencode', 'specs'));
 
     expect(resolveSpecFolderCanonical(PACKET_ID, workspacePath)).toBe(legacyPacket);
   });
 
   it('preserves an explicit legacy-qualified path when canonical also exists', () => {
-    createPacket(path.join(workspacePath, '.opencode', 'specs'));
-    const legacyPacket = createPacket(path.join(workspacePath, 'specs'));
+    createPacket(path.join(workspacePath, 'specs'));
+    const legacyPacket = createPacket(path.join(workspacePath, '.opencode', 'specs'));
 
-    expect(resolveSpecFolderCanonical(`specs/${PACKET_ID}`, workspacePath)).toBe(legacyPacket);
+    expect(resolveSpecFolderCanonical(`.opencode/specs/${PACKET_ID}`, workspacePath))
+      .toBe(legacyPacket);
   });
 
   it('preserves an explicit canonical-qualified path when only legacy exists', () => {
-    createPacket(path.join(workspacePath, 'specs'));
-    const canonicalPacket = path.join(workspacePath, '.opencode', 'specs', PACKET_ID);
+    createPacket(path.join(workspacePath, '.opencode', 'specs'));
+    const canonicalPacket = path.join(workspacePath, 'specs', PACKET_ID);
 
     expect(
-      resolveSpecFolderCanonical(`./.opencode/specs/${PACKET_ID}`, workspacePath),
+      resolveSpecFolderCanonical(`./specs/${PACKET_ID}`, workspacePath),
     ).toBe(canonicalPacket);
   });
 

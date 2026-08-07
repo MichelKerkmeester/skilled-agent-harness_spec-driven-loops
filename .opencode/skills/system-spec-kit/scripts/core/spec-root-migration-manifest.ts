@@ -102,8 +102,8 @@ function getPhysicalRoots(workspacePath: string): PhysicalRoot[] {
 
   const realWorkspace = fs.realpathSync(resolvedWorkspace);
   const candidates: PhysicalRoot[] = [
-    { rootPath: path.join(resolvedWorkspace, '.opencode', 'specs'), kind: 'canonical' },
-    { rootPath: path.join(resolvedWorkspace, 'specs'), kind: 'legacy' },
+    { rootPath: path.join(resolvedWorkspace, 'specs'), kind: 'canonical' },
+    { rootPath: path.join(resolvedWorkspace, '.opencode', 'specs'), kind: 'legacy' },
   ];
 
   return candidates.flatMap((candidate) => {

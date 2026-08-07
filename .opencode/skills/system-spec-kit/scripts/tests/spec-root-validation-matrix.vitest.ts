@@ -49,8 +49,8 @@ function getRoots(fixture: MaterializedRootFixture): {
   legacyRoot: string;
 } {
   return {
-    canonicalRoot: path.join(fixture.workspaceDir, '.opencode', 'specs'),
-    legacyRoot: path.join(fixture.workspaceDir, 'specs'),
+    canonicalRoot: path.join(fixture.workspaceDir, 'specs'),
+    legacyRoot: path.join(fixture.workspaceDir, '.opencode', 'specs'),
   };
 }
 
@@ -187,8 +187,8 @@ describe('spec root source validation matrix', () => {
     tempDirectories.push(tempDirectory);
     const workspaceDir = path.join(tempDirectory, 'workspace');
     const packetId = 'system-speckit/001-no-alias';
-    const canonicalPacket = path.join(workspaceDir, '.opencode', 'specs', packetId);
-    const legacyRoot = path.join(workspaceDir, 'specs');
+    const canonicalPacket = path.join(workspaceDir, 'specs', packetId);
+    const legacyRoot = path.join(workspaceDir, '.opencode', 'specs');
     const freezeDirectory = path.join(tempDirectory, 'freeze');
     fs.mkdirSync(canonicalPacket, { recursive: true });
     fs.mkdirSync(freezeDirectory);

@@ -31,8 +31,8 @@ describe('spec root config precedence', () => {
   });
 
   it('orders canonical first while enumerating both existing roots', () => {
-    const canonicalRoot = path.join(tempDirectory, '.opencode', 'specs');
-    const legacyRoot = path.join(tempDirectory, 'specs');
+    const canonicalRoot = path.join(tempDirectory, 'specs');
+    const legacyRoot = path.join(tempDirectory, '.opencode', 'specs');
     fs.mkdirSync(canonicalRoot, { recursive: true });
     fs.mkdirSync(legacyRoot, { recursive: true });
 
@@ -42,7 +42,7 @@ describe('spec root config precedence', () => {
   });
 
   it('falls back to the legacy root when it is the only existing root', () => {
-    const legacyRoot = path.join(tempDirectory, 'specs');
+    const legacyRoot = path.join(tempDirectory, '.opencode', 'specs');
     fs.mkdirSync(legacyRoot, { recursive: true });
 
     expect(findActiveSpecsDir()).toBe(legacyRoot);

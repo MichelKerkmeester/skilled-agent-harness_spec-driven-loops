@@ -18,11 +18,11 @@ export function assertSpecWriteAllowed(relativePacketId: string, workspacePath: 
   const resolvedWorkspace = path.resolve(workspacePath);
   const collision = classifySpecRootCollision(relativePacketId, [
     {
-      rootPath: path.join(resolvedWorkspace, '.opencode', 'specs'),
+      rootPath: path.join(resolvedWorkspace, 'specs'),
       kind: 'canonical',
     },
     {
-      rootPath: path.join(resolvedWorkspace, 'specs'),
+      rootPath: path.join(resolvedWorkspace, '.opencode', 'specs'),
       kind: 'legacy',
     },
   ]);

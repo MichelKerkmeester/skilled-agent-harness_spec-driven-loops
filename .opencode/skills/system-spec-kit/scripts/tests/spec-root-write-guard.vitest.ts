@@ -50,14 +50,14 @@ describe('assertSpecWriteAllowed', () => {
   });
 
   it('allows a canonical-only packet while writers are unfrozen', () => {
-    createPacket(path.join(workspacePath, '.opencode', 'specs'), 'canonical\n');
+    createPacket(path.join(workspacePath, 'specs'), 'canonical\n');
 
     expect(() => writeGuard.assertSpecWriteAllowed(PACKET_ID, workspacePath)).not.toThrow();
   });
 
   it('rejects a divergent duplicate and reports both roots', () => {
-    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
-    const legacyRoot = path.join(workspacePath, 'specs');
+    const canonicalRoot = path.join(workspacePath, 'specs');
+    const legacyRoot = path.join(workspacePath, '.opencode', 'specs');
     createPacket(canonicalRoot, 'canonical\n');
     createPacket(legacyRoot, 'legacy\n');
 
@@ -71,7 +71,7 @@ describe('assertSpecWriteAllowed', () => {
   });
 
   it('rejects writes while the global writer freeze is active', () => {
-    createPacket(path.join(workspacePath, '.opencode', 'specs'), 'canonical\n');
+    createPacket(path.join(workspacePath, 'specs'), 'canonical\n');
     writerFreeze.freezeWriters('maintenance window');
 
     expect(() => writeGuard.assertSpecWriteAllowed(PACKET_ID, workspacePath)).toThrow(

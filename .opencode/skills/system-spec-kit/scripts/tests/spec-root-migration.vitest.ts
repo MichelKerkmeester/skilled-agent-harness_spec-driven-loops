@@ -30,8 +30,8 @@ function createFixture(): MigrationFixture {
   const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-migration-'));
   const workspacePath = path.join(tempDirectory, 'workspace');
   const relativePacketPath = path.join(...PACKET_ID.split('/'));
-  const canonicalPacketPath = path.join(workspacePath, '.opencode', 'specs', relativePacketPath);
-  const legacyPacketPath = path.join(workspacePath, 'specs', relativePacketPath);
+  const canonicalPacketPath = path.join(workspacePath, 'specs', relativePacketPath);
+  const legacyPacketPath = path.join(workspacePath, '.opencode', 'specs', relativePacketPath);
   const quarantinePath = path.join(tempDirectory, 'quarantine');
 
   tempDirectories.push(tempDirectory);

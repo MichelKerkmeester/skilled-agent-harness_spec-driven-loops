@@ -217,8 +217,8 @@ export function migrateLegacyOnlyToCanonical(
   opts: MigrationOptions,
 ): MigrationResult {
   const workspace = assertWorkspaceDirectory(workspacePath);
-  const canonicalRoot = path.join(workspace, '.opencode', 'specs');
-  const legacyRoot = path.join(workspace, 'specs');
+  const canonicalRoot = path.join(workspace, 'specs');
+  const legacyRoot = path.join(workspace, '.opencode', 'specs');
   const quarantineRoot = assertQuarantineLocation(
     opts.quarantinePath,
     canonicalRoot,
@@ -271,8 +271,8 @@ export function restoreFromQuarantine(
   workspacePath: string,
 ): void {
   const workspace = assertWorkspaceDirectory(workspacePath);
-  const canonicalRoot = path.join(workspace, '.opencode', 'specs');
-  const legacyRoot = path.join(workspace, 'specs');
+  const canonicalRoot = path.join(workspace, 'specs');
+  const legacyRoot = path.join(workspace, '.opencode', 'specs');
   const quarantineRoot = assertQuarantineLocation(
     quarantinePath,
     canonicalRoot,
