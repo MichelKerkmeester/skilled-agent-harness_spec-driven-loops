@@ -41,11 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-      ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/checklist.md",
-      ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/implementation-summary.md",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -54,27 +49,15 @@
     ],
     "entities": [
       {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains open, even when nothing about the task, scope, or answer state has changed since the last ask",
     "created_at": "2026-08-06T11:02:30.631Z",
-    "last_save_at": "2026-08-07T04:38:36.027Z",
+    "last_save_at": "2026-08-07T08:02:23.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3967fab70e40565094d316dcb0ac8d6df03992cb499b6a174d42743f5640dff",
+    "source_fingerprint": "sha256:b316ca8dfb9b3b0c3195899bdc5d82b5175466b05ee22bae7f49a484acd6b38e",
     "source_doc_hashes": {
-      "spec.md": "86e00ed4b898f613fb2830cc72fc0d4ae7ffa53e165b88d0870f4cbdbef74044",
+      "spec.md": "d97975d0ed8b4676ba64c6dcd8dbea76fd0ea68dc3f1844b9e63139e4797870b",
       "plan.md": "793bbaba79cecc7b6c89b3194602a09cadbdb635c512ca7d74b897454b7e7477",
       "tasks.md": "c722e256bf716a58f381abe695890779031e4fe933b0838d421f06ca5c818e69",
-      "checklist.md": "5d46c68757f2c37eaca52b021abea2c2885857e6fed12cb25189a11f70d794d4",
-      "implementation-summary.md": "dc89ab3a8d39d2dfef8cab37a2706616e9ab73d1cccb4a6caa8eebfded3e8bcf"
+      "checklist.md": "e7853edfc5b4a8dc76844b23543f14008bb91ee31e9a71ce2a4f6b792279174f",
+      "implementation-summary.md": "d95952b95e5262d5c26031722a46b140e82f15ca806b4257f18d5a85c70bd2d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

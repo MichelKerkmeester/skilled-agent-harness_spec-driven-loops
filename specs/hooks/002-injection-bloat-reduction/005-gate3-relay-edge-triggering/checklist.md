@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5d46c68757f2c37eaca52b021abea2c2885857e6fed12cb25189a11f70d794d4"
       session_id: "2026-08-06-hooks-002-005"
       parent_session_id: null
     completion_pct: 100

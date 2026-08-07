@@ -154,6 +154,6 @@ Deduplicate same-message OpenCode system-transform contributions using stable me
 - **Verification Checklist**: See `checklist.md`
 - **Program Parent**: See `../spec.md`
 - **Predecessor Phase**: See `../002-opencode-route-line-bounding/spec.md`
-- **Research Source**: See `../../001-per-prompt-injection-audit/research/research.md`
+- **Research Source**: See `../per-prompt-injection-audit/research/research.md`
 
 <!-- /ANCHOR:related-docs -->

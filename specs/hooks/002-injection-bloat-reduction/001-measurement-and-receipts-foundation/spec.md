@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
-      - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
@@ -154,6 +154,6 @@ Ship a shadow-only, privacy-safe measurement layer — canonical block IDs, a co
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Program Parent**: See `../spec.md`
-- **Research Source**: See `../../001-per-prompt-injection-audit/research/research.md`
+- **Research Source**: See `../per-prompt-injection-audit/research/research.md`
 
 <!-- /ANCHOR:related-docs -->

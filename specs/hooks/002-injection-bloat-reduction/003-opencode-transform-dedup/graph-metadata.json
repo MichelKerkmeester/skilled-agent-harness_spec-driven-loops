@@ -40,49 +40,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/plugins/mk-skill-advisor.js",
-      ".opencode/plugins/mk-spec-memory.js",
-      ".opencode/plugins/lib/opencode-message-identity.js",
-      ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
-      ".opencode/plugins/tests/mk-spec-memory.test.cjs",
       "tasks.md",
       "plan.md",
       "checklist.md",
       "spec.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-spec-memory.js",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-message-identity.js",
-        "kind": "code",
-        "path": ".opencode/plugins/lib/opencode-message-identity.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-skill-advisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-spec-memory.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -105,12 +69,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
         "source": "derived"
       },
       {
@@ -196,11 +154,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to `output.system` for the same user message, with no shared coordination proving whether a policy/advisor block was already delivered for that exact message",
     "created_at": "2026-08-06T11:07:41.298Z",
-    "last_save_at": "2026-08-07T04:23:29.197Z",
+    "last_save_at": "2026-08-07T08:02:22.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +204,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd091f627854407f15c3f9734c4d3e25fcfbd82028b8175662f9f3553871e220",
+    "source_fingerprint": "sha256:b34048d148fbb55b79008c2b6560788697ad8ab6687d873c8c377dc2b18403ee",
     "source_doc_hashes": {
-      "spec.md": "a1e929390b167879ee0e6526da13bc3c65f689ea311013735a953564da6ace13",
+      "spec.md": "490d5c0af0996c2da6f4e4591de043156a2f5e3959bc6133ee7e6eb0746be8a9",
       "plan.md": "add6ca99393c23886564924aad7c4e26c2d6b8414e3f928301ab646d4920767f",
       "tasks.md": "e54de428897cc291917be44f6366e600f450662670dc8802ec9cee7105a0f625",
       "checklist.md": "0e872ef02e125b9f4cbabdde31d2114652ef5ef504415d4bc878d3770eb8a6b9",

@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5871f0ba2aae0d713977fe7588ba65386f105650c81409d86a0bf4425a5c67f7"
       session_id: "2026-08-06-hooks-002-002"
       parent_session_id: null
     completion_pct: 100

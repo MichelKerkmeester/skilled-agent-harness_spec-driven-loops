@@ -1,8 +1,8 @@
 {
   "run_id": "1786005742754-jdlynd",
   "loop_type": "research",
-  "spec_folder": ".opencode/specs/hooks/001-per-prompt-injection-audit",
-  "base_artifact_dir": ".opencode/specs/hooks/001-per-prompt-injection-audit/research",
+  "spec_folder": ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit",
+  "base_artifact_dir": ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
@@ -22,7 +22,7 @@
   "timestamp_anomalies": [
     {
       "label": "sol",
-      "state_log": ".opencode/specs/hooks/001-per-prompt-injection-audit/research/lineages/sol/deep-research-state.jsonl",
+      "state_log": ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/lineages/sol/deep-research-state.jsonl",
       "window": {
         "start_at_iso": "2026-08-06T08:42:22.766Z",
         "end_at_iso": "2026-08-06T09:40:29.551Z",

@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-07T04:31:31Z"
+    last_updated_at: "2026-08-07T07:55:49.310Z"
     last_updated_by: "codex"
     recent_action: "Verified guardrail controls"
     next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
@@ -24,7 +24,7 @@ _memory:
       - "risk-register.md"
       - "rollback-procedure.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:dd5d22e0dc473ed0a586d9b0a284dea053aa7947e78abb3c57aa35ce5eb5aa1a"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100

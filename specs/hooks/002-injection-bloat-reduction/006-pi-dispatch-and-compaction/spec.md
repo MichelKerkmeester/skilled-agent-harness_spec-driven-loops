@@ -20,7 +20,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
-      - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-006"

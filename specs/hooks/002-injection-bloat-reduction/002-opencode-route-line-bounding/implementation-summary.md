@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding"
-    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_at: "2026-08-07T07:55:47.416Z"
     last_updated_by: "codex"
     recent_action: "Reconciled the completed bounded renderer and flag-off parity evidence"
     next_safe_action: "Keep the candidate flag off pending the activation gate"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:18eae2e0e5068178a708aa9fc07085b3a49ce39b2f594b50597d4200d02fdecd"
       session_id: "2026-08-06-hooks-002-002"
       parent_session_id: null
     completion_pct: 100

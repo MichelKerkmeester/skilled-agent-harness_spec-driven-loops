@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
-      - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md"
     session_dedup:
       fingerprint: "sha256:a58b4ac86925ff742eb31020f958426e2574b1086f3f14caab1bccffb6a3fc7a"
       session_id: "2026-08-06-hooks-002"
@@ -44,7 +44,7 @@ _memory:
 | **Status** | In Progress (planning) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Research source** | `hooks/001-per-prompt-injection-audit/research/research.md` |
+| **Research source** | `hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

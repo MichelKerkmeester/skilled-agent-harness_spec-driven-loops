@@ -4,7 +4,7 @@
   "spec_folder": "hooks",
   "parent_id": null,
   "children_ids": [
-    "hooks/001-per-prompt-injection-audit",
+    "hooks/002-injection-bloat-reduction",
     "hooks/001-hook-docs-relocation"
   ],
   "manual": {
@@ -29,7 +29,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:40dbf3e5dafb7008021ea6e50acd33ab0d6f32481c256e824554d629f6105028",
     "source_doc_hashes": {},
-    "last_active_child_id": "hooks/001-per-prompt-injection-audit",
+    "last_active_child_id": "hooks/002-injection-bloat-reduction",
     "last_active_at": "2026-08-06T00:00:00.000Z"
   }
 }

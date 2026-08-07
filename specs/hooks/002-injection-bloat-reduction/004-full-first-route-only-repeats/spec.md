@@ -160,6 +160,6 @@ Ship a delivery-state machine (`UNSEEN` -> `DELIVERED(hash, epoch)` -> `SUPPRESS
 - **Verification Checklist**: See `checklist.md`
 - **Program Parent**: See `../spec.md`
 - **Predecessor Phase**: See `../003-opencode-transform-dedup/spec.md`
-- **Research Source**: See `../../001-per-prompt-injection-audit/research/research.md`
+- **Research Source**: See `../per-prompt-injection-audit/research/research.md`
 
 <!-- /ANCHOR:related-docs -->

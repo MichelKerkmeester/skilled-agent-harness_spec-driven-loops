@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -50,12 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -193,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely activate on byte savings alone",
     "created_at": "2026-08-06T11:10:46.674Z",
-    "last_save_at": "2026-08-07T04:40:30.525Z",
+    "last_save_at": "2026-08-07T08:02:23.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e06377a810d731ae509f7b3b87b882d124f29360f6bead90b627e635c69dc45c",
+    "source_fingerprint": "sha256:32aaf6dfd3763bf31544ec075dcf1966141cba59e5065e2a88a8a77344188f3e",
     "source_doc_hashes": {
-      "spec.md": "7095b5419754519f72bcf57623a86d877300e3f15dc5e743b85f0adf125b1b35",
+      "spec.md": "b443d7e07feaf96dd06cdbde562eddbfb5224924a813b11f99f85cd09d1c9476",
       "plan.md": "222627f1f36874b6c68c5d10fc30ad8aaf7970cc19e4470d25009857d40956b5",
       "tasks.md": "a42b5d4b1e9af951d62d40a2ec85f1a8984d07b2cd1643d1a5972b33591e67bf",
-      "checklist.md": "924f210819640f7159f2da9fbd3ef5951d6b2e850f1cead3f3076effbb7a9378",
-      "implementation-summary.md": "3069d9548feec7495cfde90fa40b1dd461cbb7c1936571c6a58bd11f959ef3a6"
+      "checklist.md": "7a0102111ca0cfed35e7ffbc9ee306748ac6b265336155b4211fcbc5f14f55f4",
+      "implementation-summary.md": "b9b5b37eb4cc4f3744f9fe6c7794cffc59d32732becdded3de300b5f02314c44"
     },
     "last_active_child_id": null,
     "last_active_at": null

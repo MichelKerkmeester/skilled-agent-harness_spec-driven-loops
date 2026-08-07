@@ -41,43 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
       "checklist.md",
       "plan.md",
       "tasks.md",
       "spec.md",
-      "mcp-server/package.json",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan-serializer-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -100,12 +70,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp-server/package.json",
         "source": "derived"
       },
       {
@@ -197,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime adapters emit, and nothing records whether a block was actually delivered versus merely rendered",
     "created_at": "2026-08-06T10:59:21.547Z",
-    "last_save_at": "2026-08-07T04:23:28.545Z",
+    "last_save_at": "2026-08-07T08:02:21.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad2f5ae0934f871f54a3554cd41b7f4549517998817085a651dfdb1291dfbbd4",
+    "source_fingerprint": "sha256:41a7a0e1d0eff8efb85e93408de541d31e13026c85833cc70e8e8a38a289fa0b",
     "source_doc_hashes": {
-      "spec.md": "be4530ced94362a2e0b16a1f0d6df5dd739cdd0e27dd15021bba5af39fc04850",
+      "spec.md": "f396b9013906b90ce3e574d4a7582c31511d4fe607ba0ca1a31733f1c3491bed",
       "plan.md": "89fbd725fa132a5deef27bd974f8280c672a8cae382d74de84f57a56dcf66c58",
       "tasks.md": "33ab58171fcba69999bba5244ded27968589e9ed0580dcb60b9b262b8dd09a2e",
       "checklist.md": "25b44f40d1a1aa6d6c2429e9287781b7fb82fae1131c8af0e6af54a4b8203e9b",

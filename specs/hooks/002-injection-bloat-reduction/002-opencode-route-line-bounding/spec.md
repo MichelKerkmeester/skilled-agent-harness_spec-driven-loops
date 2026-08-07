@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
-      - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-002"
@@ -153,6 +153,6 @@ Bound or digest the compiled-route target list behind an independent flag, with 
 - **Verification Checklist**: See `checklist.md`
 - **Program Parent**: See `../spec.md`
 - **Predecessor Phase**: See `../001-measurement-and-receipts-foundation/spec.md`
-- **Research Source**: See `../../001-per-prompt-injection-audit/research/research.md`
+- **Research Source**: See `../per-prompt-injection-audit/research/research.md`
 
 <!-- /ANCHOR:related-docs -->
