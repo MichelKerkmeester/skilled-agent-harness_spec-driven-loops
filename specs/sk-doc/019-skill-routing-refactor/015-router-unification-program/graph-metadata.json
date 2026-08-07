@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "parent_id": "sk-doc/019-skill-routing-refactor",
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/002-default-mode-implementation",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/003-contract-schemas",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/005-decision-evaluator",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/006-execution-verify-commit",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/007-recovery-ladder",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/010-learning-overlay",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/015-cutover-hardening",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/016-default-on-decision",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/017-create-skill-alignment",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/018-benchmark-alignment",
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router unification program",
+      "fleet routing consistency to unified refactor",
+      "compiled policy migration gates",
+      "router activation verification"
+    ],
+    "key_topics": [
+      "router",
+      "unification",
+      "program",
+      "fleet",
+      "routing",
+      "consistency",
+      "unified",
+      "refactor",
+      "compiled",
+      "policy",
+      "migration",
+      "gates"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unification Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXECUTIVE SUMMARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent for the fleet router-unification program: a reversible compiled policy, closed route decision algebra, shared recovery budget, destination-local execution, calibrated negotiation, offline correction, and the rollout, cleanup, onboarding, benchmark, and activation gates that make the contract operational.",
+    "created_at": "2026-07-18T04:39:04.759Z",
+    "last_save_at": "2026-07-24T12:00:50.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f24921b3586e009e38771583319577764cded1b621cb3a6327f0651183d1e7d4",
+    "source_doc_hashes": {
+      "spec.md": "bd4502deba1dd0ae69a9130438a3203c1140ba4974419b40d8aebdfac6e61e35"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+  "sessionId": "fanout-p018-mimo-1-1781718236450-bbehhf",
+  "generatedAt": "2026-06-17T14:35:00Z",
+  "totalFindings": 5,
+  "bySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4
+  },
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "category": "correctness",
+      "file": "mcp_server/lib/ops/job-store.ts",
+      "line": "339-341",
+      "summary": "isCancelRequestedFast returns false for jobs that crashed before cancel request",
+      "finding_class": "design-coupling",
+      "content_hash": "sha256:a1b2c3d4e5f6",
+      "iteration": 1,
+      "status": "active",
+      "remediation": "Document the coupling between isCancelRequestedFast and resetRunningJobsForKind; consider adding a DB-backfill path on boot that populates cancelledJobIds from durable cancel_requested=1 rows before the fast path is used."
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "mcp_server/handlers/memory-index.ts",
+      "line": "1176",
+      "summary": "Yield counter first yield at row 200, not guaranteed for small corpora",
+      "finding_class": "advisory",
+      "content_hash": "sha256:f6e5d4c3b2a1",
+      "iteration": 1,
+      "status": "advisory",
+      "remediation": "None required. 200-row synchronous batch is sub-second."
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "mcp_server/handlers/memory-index.ts",
+      "line": "1311",
+      "summary": "Causal-chain yield granularity (50 folders) is coarser than metadata-edge (200 rows)",
+      "finding_class": "advisory",
+      "content_hash": "sha256:1a2b3c4d5e6f",
+      "iteration": 1,
+      "status": "advisory",
+      "remediation": "None required. Folder counts are typically < 100."
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "mcp_server/utils/batch-processor.ts",
+      "line": "150",
+      "summary": "shouldAbort checked only at batch-loop top, not between items",
+      "finding_class": "advisory",
+      "content_hash": "sha256:6f5e4d3c2b1a",
+      "iteration": 1,
+      "status": "advisory",
+      "remediation": "None required. Dual-layer guard (shouldAbort + per-item isCancelled) covers the gap."
+    },
+    {
+      "id": "P2-004",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "mcp_server/lib/ops/job-store.ts",
+      "line": "397-399",
+      "summary": "cancelledJobIds cleanup verified on both reset and normal completion paths",
+      "finding_class": "no-issue",
+      "content_hash": "sha256:abcdef123456",
+      "iteration": 1,
+      "status": "advisory",
+      "remediation": "None required."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "V1",
+  "explicitMode": "implementation",
+  "observations": [
+    {
+      "kind": "command",
+      "value": "/implementation"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "authored:command",
+      "kind": "authored",
+      "value": "explicit mode has precedence",
+      "provenance": {
+        "source": "request",
+        "capturedAtEpoch": 7
+      },
+      "trust": "live"
+    }
+  ],
+  "pinnedActivationGeneration": 7,
+  "requestFactsHash": "144523fdf72f528660bd880b2a87dcdb87688f4da3837e4f91e100ad5d913833"
+}

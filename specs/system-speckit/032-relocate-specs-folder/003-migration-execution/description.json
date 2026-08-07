@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+  "description": "Literal, ordered runbook for executing the accepted specs-root topology flip. Scoped only — not run; a separate operator approval gates execution.",
+  "keywords": [
+    "literal",
+    "ordered",
+    "runbook",
+    "executing",
+    "accepted",
+    "specs-root",
+    "topology",
+    "flip",
+    "scoped",
+    "only",
+    "run",
+    "separate",
+    "operator",
+    "approval",
+    "gates",
+    "execution"
+  ],
+  "lastUpdated": "2026-08-06T17:59:35.065Z",
+  "specId": "003",
+  "folderSlug": "migration-execution",
+  "parentChain": [
+    "system-speckit",
+    "032-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

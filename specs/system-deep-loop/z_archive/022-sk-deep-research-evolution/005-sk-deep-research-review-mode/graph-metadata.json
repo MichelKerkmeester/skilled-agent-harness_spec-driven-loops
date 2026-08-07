@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/005-sk-deep-research-review-mode",
+  "spec_folder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/005-sk-deep-research-review-mode",
+  "parent_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "030",
+      "deep research",
+      "review mode",
+      "sk-deep-research",
+      "review mode plan",
+      "deep research review plan",
+      "review mode tasks",
+      "deep research review tasks",
+      "implementation",
+      "summary",
+      "research",
+      "improving"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "review",
+      "mode",
+      "sk-deep-research",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "improving",
+      "currently",
+      "reviewing"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "handover.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/review.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Currently",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Currently, reviewing spec folders, code changes, skills, and their cross-references for release readiness is a manual, single-pass process",
+    "created_at": "2026-04-12T09:02:50.177Z",
+    "last_save_at": "2026-07-16T16:31:47.841Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:16aa234984c39e10d4fa3aa146d5241398876af47262bb5f73f4592130a10165",
+    "source_doc_hashes": {
+      "spec.md": "bf59e6a29200e1f80bbdf175d08af822ab1aeedcb64a0f72fe998032778981fe",
+      "plan.md": "5c822614c285b27a8d306db1829daf0f10f6cdc05c54e403c721e40b81c814c1",
+      "tasks.md": "a0c615686f5f350dcd3189134e9084d0735a22776f511df3b572147058713da9",
+      "implementation-summary.md": "af7bdd38904f7c8e92d223b7c3f31d8f295d96201c1ed92444894bf74f225f9b",
+      "research/research.md": "bdb24caac3dc48db6d603b9d7f5bec5ec5d8893ce59054ceb21bc9857bc62a0e",
+      "handover.md": "b40dff4e7c5678260fabca85dc085bfa00cc8cefae183ddaf03350ddc4276071"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor embeddings read-only observability",
+      "safe model switch dim drift warn",
+      "cold-start timeout alignment 45s 120s",
+      "observability model-switch plan",
+      "doctor embeddings cold-start timeout implementation plan",
+      "observability model-switch tasks",
+      "observability model-switch implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "embeddings",
+      "read-only",
+      "observability",
+      "safe",
+      "model",
+      "switch",
+      "dim",
+      "drift",
+      "warn",
+      "cold-start",
+      "timeout"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/handlers/embedder-status.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/factory.ts",
+      "shared/types.ts",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/assets/doctor_embeddings.yaml",
+      ".opencode/commands/doctor/speckit.md",
+      "mcp_server/ENV_REFERENCE.md",
+      "mcp_server/INSTALL_GUIDE.md",
+      "mcp_server/tests/embedder-status.vitest.ts",
+      "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+      ".opencode/bin/hf-model-server.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "embedder-status.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/embedder-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_embeddings.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_embeddings.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": "mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-status.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Operators",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Operators have no read-only view of embedder state: `embedderstatus.ts:68-86` does not report model-server state, requested/effective provider, or fallback reason",
+    "created_at": "2026-05-29T11:22:57.379Z",
+    "last_save_at": "2026-07-17T17:19:30.574Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a4ba4cb879da96f18d1630ffe199aacf1a12810f0efc67f02a766d8d59dc979d",
+    "source_doc_hashes": {
+      "spec.md": "b7fbe0319f8a96b5e1c14fdfe4ae3206cb0f2324ee33f112c45a304be3e6b83a",
+      "plan.md": "c6b4fd0edad75bd7dcc40a4f09c881abe31b50794a3a71ddf4af2867952431fa",
+      "tasks.md": "fb11a592b21b6d62f15c1fe7d7f77ce8a3c8d78c25459bf1dca81902cba66494",
+      "implementation-summary.md": "0c189f15570307a259723107ea3460a96713f05ce38429da0462e1170d8a336b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

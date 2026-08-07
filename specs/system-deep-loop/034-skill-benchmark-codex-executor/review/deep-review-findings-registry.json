@@ -1,0 +1,1776 @@
+{
+  "sessionId": "2026-07-15T19:42:12.593Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Load-bearing quantitative claims and all four open questions lack report citations",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Operational recommendations escape the fitted-only evidence they later disclaim",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Report data does not expose enough evidence for claim (g)",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P2",
+      "title": "Twenty of twenty-two evidence anchors do not fully support their citing sentence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P2",
+      "title": "Omitted D1/D2 proxy and D5 hard-gate semantics overstate independent evidence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The Open Questions section duplicates settled recommendation work",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 119,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "maintainability — adjusted final recommendations synthesis",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Load-bearing quantitative claims and all four open questions lack report citations",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Operational recommendations escape the fitted-only evidence they later disclaim",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Report data does not expose enough evidence for claim (g)",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P2",
+      "title": "Twenty of twenty-two evidence anchors do not fully support their citing sentence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P2",
+      "title": "Omitted D1/D2 proxy and D5 hard-gate semantics overstate independent evidence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "Load-bearing quantitative claims and all four open questions lack report citations",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Operational recommendations escape the fitted-only evidence they later disclaim",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P2",
+      "title": "Report data does not expose enough evidence for claim (g)",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P2",
+      "title": "Twenty of twenty-two evidence anchors do not fully support their citing sentence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 17,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-002",
+      "severity": "P2",
+      "title": "Omitted D1/D2 proxy and D5 hard-gate semantics overstate independent evidence",
+      "file": ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 8
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "uncovered_dimensions",
+      "severity": "blocking"
+    }
+  ],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "citation_anchor_precision",
+      "citation_anchor_resolution",
+      "citation_completeness",
+      "evidence_anchor_contract",
+      "generalization_scope",
+      "literal_nullability_semantics",
+      "live_evidence_nullability",
+      "measurement_semantics",
+      "new_high_severity_synthesis_regression",
+      "omitted_signal",
+      "provenance_precision",
+      "quantitative_claim_citation_coverage",
+      "recommendation_calibration",
+      "structural_clarity"
+    ],
+    "ruledOut": [
+      "cross_runtime_aggregate_parity",
+      "efficiency_accounting",
+      "findings_table_aggregate_parity",
+      "gold_recall_arithmetic_code",
+      "gold_recall_arithmetic_doc",
+      "new_high_severity_synthesis_regression",
+      "null_gold_semantics",
+      "observed_activity_aggregation",
+      "open_question_gap_validity",
+      "path_prefix_classification",
+      "per_scenario_anomaly",
+      "recommendation_gap_validity",
+      "surface_match_coverage"
+    ],
+    "deferred": [
+      "citation_anchor_precision",
+      "generalization_scope",
+      "measurement_semantics",
+      "provenance_precision"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "live_evidence_nullability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gold_recall_arithmetic_doc": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gold_recall_arithmetic_code": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "surface_match_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "null_gold_semantics": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "efficiency_accounting": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_runtime_aggregate_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "observed_activity_aggregation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_prefix_classification": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "citation_anchor_resolution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "quantitative_claim_citation_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "literal_nullability_semantics": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "findings_table_aggregate_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "recommendation_gap_validity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "open_question_gap_validity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "recommendation_calibration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "measurement_semantics": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          4,
+          5
+        ]
+      },
+      "structural_clarity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "per_scenario_anomaly": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_anchor_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "citation_completeness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "generalization_scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "omitted_signal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "citation_anchor_precision": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "provenance_precision": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "new_high_severity_synthesis_regression": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 5,
+      "id": "SL-005-01",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:67",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:13"
+      ],
+      "bugClass": "generalization_scope",
+      "disposition": "deferred",
+      "rationale": "Adjusted wording is supplied in this narrative, but the reviewed target is read-only.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:67",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:71",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:13",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:13"
+      ],
+      "reason": "Apply the scoped wording in a separate implementation/edit pass."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:73",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:119"
+      ],
+      "bugClass": "citation_anchor_precision",
+      "disposition": "deferred",
+      "rationale": "The narrative supplies citations and a precise anchor convention without mutating the target.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:99",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:103",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:107",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:115",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:119"
+      ],
+      "reason": "Transfer the adjusted list and cited questions into the target during follow-up."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-03",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:44",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:44",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:49",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:49"
+      ],
+      "bugClass": "measurement_semantics",
+      "disposition": "deferred",
+      "rationale": "A ready-to-insert reading guide is supplied below.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-003.md:27",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-003.md:28",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-003.md:29"
+      ],
+      "reason": "The guide must be inserted into the read-only analysis in a separate edit pass."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-04",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:3"
+      ],
+      "bugClass": "provenance_precision",
+      "disposition": "deferred",
+      "rationale": "Narrow replacement wording is supplied without asserting missing provenance.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:3",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:1"
+      ],
+      "reason": "Attach a non-report audit citation or adopt the narrower provenance text."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:27",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "bugClass": "gold_recall_arithmetic_doc",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:45",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "bugClass": "gold_recall_arithmetic_code",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:53",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "bugClass": "surface_match_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:21",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:181",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:661"
+      ],
+      "bugClass": "null_gold_semantics",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:181",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:661"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:41",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:499",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "bugClass": "efficiency_accounting",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:499",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:71",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:12"
+      ],
+      "bugClass": "cross_runtime_aggregate_parity",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:12"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:55",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "bugClass": "observed_activity_aggregation",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:37",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1648",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "bugClass": "path_prefix_classification",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1648",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "reason": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "bugClass": "findings_table_aggregate_parity",
+      "disposition": "ruled_out",
+      "rationale": "Complete aggregate projections match the table.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "reason": "No value mismatch found; only the table's citation precision is defective."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:95",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:101",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:105",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:117"
+      ],
+      "bugClass": "recommendation_gap_validity",
+      "disposition": "ruled_out",
+      "rationale": "The gaps are real; their missing or imprecise citations are tracked separately.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:15",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:17",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:15",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:17"
+      ],
+      "reason": "Report projections confirm the recommendation premises."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:121",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:122",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:123",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:124"
+      ],
+      "bugClass": "open_question_gap_validity",
+      "disposition": "ruled_out",
+      "rationale": "The questions are substantively grounded, while their citation omissions are covered by R2-P1-002.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:121",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:124",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1231",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "reason": "No invented report gap found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189"
+      ],
+      "bugClass": "per_scenario_anomaly",
+      "disposition": "ruled_out",
+      "rationale": "No omitted per-scenario anomaly changes the direction of recommendations 1-5.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:53",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:55",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:63",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189"
+      ],
+      "reason": "Complete-population projections reproduced the stated family and activity patterns."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-05",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-004.md:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:73"
+      ],
+      "bugClass": "new_high_severity_synthesis_regression",
+      "disposition": "ruled_out",
+      "rationale": "The synthesis changes wording and evidence coverage without discovering a new defect class.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-004.md:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:73"
+      ],
+      "reason": "All material issues are already represented by the adjudicated active register."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:27",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "bugClass": "gold_recall_arithmetic_doc",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:45",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "bugClass": "gold_recall_arithmetic_code",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:53",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "bugClass": "surface_match_coverage",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:21",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:181",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:661"
+      ],
+      "bugClass": "null_gold_semantics",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:181",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:661"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:41",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:499",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "bugClass": "efficiency_accounting",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:499",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:71",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:12"
+      ],
+      "bugClass": "cross_runtime_aggregate_parity",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier1-deep-improvement-luna-codex.report.json:12"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:55",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "bugClass": "observed_activity_aggregation",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1731"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:37",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1648",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "bugClass": "path_prefix_classification",
+      "disposition": "ruled_out",
+      "rationale": "Complete-population recomputation matched the draft claim.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1648",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:1751"
+      ],
+      "proof": "Verified against every applicable report row and aggregate field."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "bugClass": "findings_table_aggregate_parity",
+      "disposition": "ruled_out",
+      "rationale": "Complete aggregate projections match the table.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:11",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:12"
+      ],
+      "proof": "No value mismatch found; only the table's citation precision is defective."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:95",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:101",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:105",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:117"
+      ],
+      "bugClass": "recommendation_gap_validity",
+      "disposition": "ruled_out",
+      "rationale": "The gaps are real; their missing or imprecise citations are tracked separately.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-mcp-tooling-luna-opencode.report.json:12",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:15",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:17",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:15",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:17"
+      ],
+      "proof": "Report projections confirm the recommendation premises."
+    },
+    {
+      "iteration": 2,
+      "id": "SL2-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:121",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:122",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:123",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:124"
+      ],
+      "bugClass": "open_question_gap_validity",
+      "disposition": "ruled_out",
+      "rationale": "The questions are substantively grounded, while their citation omissions are covered by R2-P1-002.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:121",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:124",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1231",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+      ],
+      "proof": "No invented report gap found."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-304",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-doc-luna-opencode.report.json:189",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189"
+      ],
+      "bugClass": "per_scenario_anomaly",
+      "disposition": "ruled_out",
+      "rationale": "No omitted per-scenario anomaly changes the direction of recommendations 1-5.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:53",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:55",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:63",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:189"
+      ],
+      "proof": "Complete-population projections reproduced the stated family and activity patterns."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005-05",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-004.md:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:73"
+      ],
+      "bugClass": "new_high_severity_synthesis_regression",
+      "disposition": "ruled_out",
+      "rationale": "The synthesis changes wording and evidence coverage without discovering a new defect class.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/review/iterations/iteration-004.md:1",
+        ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:73"
+      ],
+      "proof": "All material issues are already represented by the adjudicated active register."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "generalization_scope",
+      "citation_anchor_precision",
+      "measurement_semantics",
+      "provenance_precision",
+      "new_high_severity_synthesis_regression"
+    ],
+    "covered": [
+      "generalization_scope",
+      "citation_anchor_precision",
+      "measurement_semantics",
+      "provenance_precision",
+      "new_high_severity_synthesis_regression"
+    ],
+    "ruledOut": [
+      "new_high_severity_synthesis_regression"
+    ],
+    "deferred": [
+      "generalization_scope",
+      "citation_anchor_precision",
+      "measurement_semantics",
+      "provenance_precision"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 4,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 2,
+          "partial": 8,
+          "fail": 12,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:17",
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:23",
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:91",
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:113"
+        ],
+        "findingRefs": [
+          "R2-P1-001"
+        ],
+        "summary": "All 22 links resolve, but only 2 fully support their linked claim; 8 are partial aggregate anchors and 12 point only to scenario identifiers."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 8,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:3",
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:1231",
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/artifacts/tier2-sk-code-luna-opencode.report.json:2715"
+        ],
+        "findingRefs": [
+          "R1-P1-001",
+          "R2-P1-002"
+        ],
+        "summary": "Eight provenance figures reproduce; claim (g) is semantically supported but uses literal null wording for omitted keys, and the verifier identity has no report-verifiable audit anchor."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:1"
+        ],
+        "findingRefs": [],
+        "summary": "Not applicable to an analytical findings document."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:1"
+        ],
+        "findingRefs": [],
+        "summary": "Not applicable to an analytical findings document."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:1"
+        ],
+        "findingRefs": [],
+        "summary": "No feature-catalog claim is in scope."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/068-skill-benchmark-codex-executor/tier2-luna-routing-analysis.md:1"
+        ],
+        "findingRefs": [],
+        "summary": "No playbook capability is in scope."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

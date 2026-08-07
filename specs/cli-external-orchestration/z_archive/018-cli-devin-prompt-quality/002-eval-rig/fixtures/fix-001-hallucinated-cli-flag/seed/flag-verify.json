@@ -1,0 +1,14 @@
+{
+  "status": "REJECTED",
+  "rejected": [
+    "--reasoning-effort"
+  ],
+  "accepted": [
+    "--model",
+    "--prompt-file",
+    "--print"
+  ],
+  "rejected_count": 1,
+  "accepted_count": 3,
+  "dispatched_command": "devin --model swe-1.6 --prompt-file task.txt --print"
+}

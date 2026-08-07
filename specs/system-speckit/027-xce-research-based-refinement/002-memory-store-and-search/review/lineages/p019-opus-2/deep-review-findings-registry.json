@@ -1,0 +1,104 @@
+{
+  "sessionId": "fanout-p019-opus-2-1781719527072-mk6no9",
+  "mode": "review",
+  "reviewTarget": "019-maintenance-grace-daemon-survives-reelection",
+  "totalIterations": 1,
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "category": "traceability",
+      "dimension": "traceability",
+      "finding_class": "spec-code-drift",
+      "title": "019 packet docs diverge from shipped implementation; Files-to-Change table does not resolve to shipped files",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection/spec.md",
+      "line": 112,
+      "evidence": [
+        "spec.md:112-121",
+        "lib/storage/maintenance-marker.ts:22-50",
+        "lib/providers/retry-manager.ts:1038",
+        ".opencode/bin/lib/model-server-supervision.cjs:609-640",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:329-333"
+      ],
+      "content_hash": "f001-spec-code-drift-fileslist-module-paths-jobid-labels",
+      "adjudicated": true,
+      "confidence": 0.88,
+      "status": "active"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "category": "traceability",
+      "dimension": "maintainability",
+      "finding_class": "stale-doc",
+      "title": "implementation-summary Known Limitation 4 is stale: embedding queue IS marker-protected per tick",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection/implementation-summary.md",
+      "line": 104,
+      "evidence": [
+        "implementation-summary.md:104",
+        "lib/providers/retry-manager.ts:1038",
+        "lib/providers/retry-manager.ts:1055"
+      ],
+      "content_hash": "f002-stale-limitation-embedding-queue-protected",
+      "status": "active"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "category": "traceability",
+      "dimension": "traceability",
+      "finding_class": "spec-code-drift",
+      "title": "Spec/plan/tasks TTL (60s) diverges from shipped 180s",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection/spec.md",
+      "line": 103,
+      "evidence": [
+        "spec.md:103",
+        "spec.md:132",
+        "lib/storage/maintenance-marker.ts:25",
+        "implementation-summary.md:56"
+      ],
+      "content_hash": "f003-ttl-60s-vs-180s-divergence",
+      "status": "active"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "category": "maintainability",
+      "dimension": "maintainability",
+      "finding_class": "stale-test-fixture",
+      "title": "Predicate unit-test fixture encodes obsolete jobId marker shape, not shipped labels",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-maintenance-guard.vitest.ts",
+      "line": 28,
+      "evidence": [
+        "tests/launcher-maintenance-guard.vitest.ts:5-10",
+        "tests/launcher-maintenance-guard.vitest.ts:28-33",
+        "tests/launcher-maintenance-guard.vitest.ts:127-137",
+        "lib/storage/maintenance-marker.ts:44-50"
+      ],
+      "content_hash": "f004-test-fixture-jobid-vs-labels",
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "dimensionsCovered": 4,
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "convergenceScore": 0.50,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "releaseReadinessState": "in-progress"
+}

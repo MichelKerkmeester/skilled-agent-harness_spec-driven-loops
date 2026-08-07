@@ -1,0 +1,23 @@
+RD-017..019 + E2E-020..024 — orchestrator independent spot-verify
+Dispatch: codex gpt-5.5 workspace-write, log dai-05-06-codex.log, BATCH SUMMARY 3 PASS / 5 PARTIAL / 0 FAIL / 0 SKIP
+Anti-fabrication: codex ran workspace-write so its /tmp artifacts persist; orchestrator inspected them directly.
+
+RD-019 Plateau Detection (PASS):
+  artifact /tmp/reducer-test-plateau/experiment-registry.json -> "shouldStop": true + "plateau" reason present
+  -> CORROBORATED (matches codex "stopStatus.shouldStop true with plateau reason")
+
+E2E-024 Candidate Lineage (PARTIAL — helper proves, live loop blocked):
+  artifact /tmp/dai-e2e-024/candidate-lineage.json -> nodes=3, ids=[candidate-1,candidate-2,candidate-3], waves=[0]
+  -> CORROBORATED exactly (3-node single-session wave-0 chain)
+
+E2E-023 Trade-Off Detection (PARTIAL — helper proves, live loop blocked):
+  artifact /tmp/dai-e2e-023/trade-off-report.json -> {improving: ruleCoherence, regressing: integration, improvementDelta: 5, regressionDelta: -4, iteration: 3} + pareto array
+  -> QUALITATIVE CLAIM CORROBORATED (ruleCoherence-improving / integration-regressing trade-off detected, non-dominated via pareto)
+  -> ORCHESTRATOR-WINS CORRECTION: codex prose said "+8 / -6"; persisted artifact shows "+5 / -4". Delta magnitudes overstated in codex note;
+     scenario pass-criterion (a real cross-dimension trade-off is detected & not dominated) is satisfied -> verdict PARTIAL stands. Minor evidence-prose nit, non-blocking.
+
+RD-017/RD-018 (PASS): reducer dashboard without/with dimensions; /tmp/reducer-test-nodim + /tmp/reducer-test-dim artifacts present; standard + 5-dimension tables.
+E2E-020/021/022 (PARTIAL): helper pipelines (scan-integration/generate-profile/score-candidate/mutation-coverage/reduce-state) verified in /tmp; live /deep:start-agent-improvement-loop :confirm needs interactive AI runtime dispatch (not runnable non-interactively) -> proven-via-helper.
+
+Vitest basis (all green this session, 8 files/99 tests): reduce-state-dashboard, mutation-coverage, trade-off-detector, candidate-lineage .vitest.ts.
+VERDICT: codex RD+E2E batch corroborated, 0 FAIL. 3 PASS (RD) / 5 PARTIAL (E2E live-loop-blocked, helpers proven). E2E-023 delta prose corrected by artifact.

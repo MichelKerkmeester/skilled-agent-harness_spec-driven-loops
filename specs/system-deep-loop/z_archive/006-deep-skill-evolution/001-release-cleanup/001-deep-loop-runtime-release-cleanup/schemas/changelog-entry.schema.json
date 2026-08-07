@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/spec/131/000/002/changelog-entry.schema.json",
+  "title": "Changelog Entry",
+  "description": "Shape of a deep-research skill changelog entry (e.g. changelog/v1.13.0.0.md). The markdown file embeds these fields in frontmatter + a structured body. This schema captures the frontmatter fields and required body sections.",
+  "type": "object",
+  "required": [
+    "version",
+    "date",
+    "summary",
+    "breaking",
+    "sections"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semver-like 4-part version (MAJOR.MINOR.PATCH.BUILD)"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of the changelog entry"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20,
+      "description": "One-paragraph summary of what changed and why it matters"
+    },
+    "breaking": {
+      "type": "boolean",
+      "description": "True if any change in this entry breaks backward compatibility"
+    },
+    "sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["added", "changed", "fixed", "deferred"],
+      "properties": {
+        "added": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "New capabilities or files"
+        },
+        "changed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Modifications to existing content"
+        },
+        "fixed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Bug fixes (with reference to audit-finding IDs where relevant)"
+        },
+        "deferred": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "P2 items intentionally deferred (with rationale)"
+        }
+      }
+    },
+    "audit_finding_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AF-[0-9]{4}$"
+      },
+      "description": "Optional list of audit-finding IDs resolved or deferred in this version"
+    }
+  },
+  "examples": [
+    {
+      "version": "1.13.0.0",
+      "date": "2026-05-24",
+      "summary": "Release-cleanup pass against current sk-doc templates and HVR standards. README rewritten to marketing-leaning voice anchored at ~70% of Public/README.md intensity. Surgical alignment fixes across references, assets, feature catalog, and manual testing playbook. Smart Router preserved (untouched).",
+      "breaking": false,
+      "sections": {
+        "added": [
+          "Release-cleanup spec folder at .opencode/specs/.../131/000/002-deep-research with 4 JSON schemas and resource-map"
+        ],
+        "changed": [
+          "README.md full rewrite per skill_readme_template.md with HVR score >= 85",
+          "version frontmatter bumped 1.12.0.0 -> 1.13.0.0"
+        ],
+        "fixed": [
+          "[N] structural deviations across references/ per audit-findings AF-0001..AF-XXXX",
+          "[M] HVR violations corrected"
+        ],
+        "deferred": [
+          "[K] P2 items deferred with rationale recorded in audit-findings.jsonl"
+        ]
+      },
+      "audit_finding_refs": ["AF-0001", "AF-0002"]
+    }
+  ]
+}

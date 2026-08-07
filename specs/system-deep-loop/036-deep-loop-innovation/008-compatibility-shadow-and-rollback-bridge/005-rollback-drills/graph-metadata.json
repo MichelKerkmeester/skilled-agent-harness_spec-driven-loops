@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop rollback drills",
+      "legacy authority rollback rehearsal",
+      "rollback evidence before cutover",
+      "rollback drills implementation plan",
+      "deep-loop rollback rehearsal runner",
+      "rollback drills tasks",
+      "deep-loop rollback evidence tasks",
+      "rollback drills checklist",
+      "deep-loop rollback verifier contract",
+      "rollback drills implementation",
+      "rollback drill verification evidence"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "rollback",
+      "drills",
+      "legacy",
+      "authority",
+      "rehearsal",
+      "evidence",
+      "cutover",
+      "implementation",
+      "plan",
+      "runner",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/rollback-drills.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-drills.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/rollback-drills.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Drills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "intact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the phase-004 rollback window, and prove state integrity before phase 014 may attempt a real cutover.",
+    "created_at": "2026-07-16T03:43:49.540Z",
+    "last_save_at": "2026-07-21T04:32:26.804Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41b4c2a05281a0a415ecf620837fd7506a91777e2962278234f92a9b9bde7000",
+    "source_doc_hashes": {
+      "spec.md": "890dcf85b986c3dd68b14943b02ccbb42eef72761d93b95e272dd504e3eb57e4",
+      "plan.md": "c46dd47b202e619bf9793200339b21ab936dc8ca42d5114eda4b1c662bdffe53",
+      "tasks.md": "fbca790423501573a1462b835ec884fa67988027a52f82e83e30445cd4d1dca7",
+      "checklist.md": "8af9518e26f547f3245efaf1685a2db9544eb01ca3f35ccab2ad24c6b788b207",
+      "implementation-summary.md": "404105b9dea49c6d5ec871a9096c8bcc9ec4c74f72069f303900c5f33a25b589"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

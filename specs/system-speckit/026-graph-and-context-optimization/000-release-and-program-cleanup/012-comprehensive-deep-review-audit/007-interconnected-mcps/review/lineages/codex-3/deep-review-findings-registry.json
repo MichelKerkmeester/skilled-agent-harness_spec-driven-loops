@@ -1,0 +1,101 @@
+{
+  "sessionId": "fanout-codex-3-1780596001496-57ueol",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "concurrency-correctness",
+      "title": "Fan-out CLI worker serializes lineages despite the concurrency cap",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:311",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:174"
+      ],
+      "finding_class": "behavioral-regression",
+      "content_hash": "60e5b6060911ac6e1a63019b156b085b46de2a7c5fcbe6fffbb30fbd5bd5bb99",
+      "firstSeenIteration": 1
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "permission-boundary",
+      "title": "Fan-out lineages run with repo-write permission while the artifact boundary is prompt-only",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:83",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:142",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:910"
+      ],
+      "finding_class": "safety-contract-gap",
+      "content_hash": "d6355873e0eb0895ed503f0c672df8dad279c95d5be72124bc27d899147431f6",
+      "firstSeenIteration": 2
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "executor-config-contract",
+      "title": "Per-lineage iterations config changes only timeout, not the loop bound",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:292",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:131",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:142",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:154"
+      ],
+      "finding_class": "contract-drift",
+      "content_hash": "cc47431ee802c21fdda72bd8cf1944615f55d4bc97a6d652bb5a296197257c3e",
+      "firstSeenIteration": 3
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "spec-alignment",
+      "title": "Review slice names a runtime reduce-state entrypoint that is intentionally owned by deep-review",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/spec.md:58",
+        ".opencode/skills/deep-loop-runtime/SKILL.md:157",
+        ".opencode/skills/deep-loop-runtime/SKILL.md:261"
+      ],
+      "finding_class": "documentation-drift",
+      "content_hash": "a216d9ceca7c76a0536691eaa236d3861eb9e8d68522d45c1becc02da9157882",
+      "firstSeenIteration": 4
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "category": "graceful-degradation",
+      "title": "Code-graph unavailable fallback guidance conflicts across root and skill docs",
+      "evidence": [
+        "AGENTS.md:118",
+        ".opencode/skills/system-code-graph/SKILL.md:292"
+      ],
+      "finding_class": "operator-contract-drift",
+      "content_hash": "f78357a1e2a5463fd667ec1208bd33e9e066d7c66e4311f8c8ca22f60a4d441e",
+      "firstSeenIteration": 4
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.74,
+  "graphConvergenceScore": 0.66,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

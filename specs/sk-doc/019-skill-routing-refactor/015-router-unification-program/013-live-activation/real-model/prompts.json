@@ -1,0 +1,160 @@
+{
+  "hubs": {
+    "sk-code": [
+      {
+        "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+        "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback."
+      },
+      {
+        "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+        "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode."
+      }
+    ],
+    "mcp-tooling": [
+      {
+        "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+        "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging."
+      },
+      {
+        "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/clickup-task-management.md",
+        "prompt": "Mark the ClickUp task done and add a note that it shipped."
+      }
+    ],
+    "system-deep-loop": [
+      {
+        "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/research-routing.md",
+        "prompt": "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary."
+      },
+      {
+        "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md",
+        "prompt": "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict."
+      }
+    ],
+    "cli-external-orchestration": [
+      {
+        "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
+        "prompt": "Delegate this to OpenCode and run the ablation suite with full plugin and Spec Kit Memory runtime."
+      },
+      {
+        "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/claude-code-second-opinion.md",
+        "prompt": "Get an Anthropic CLI second opinion on this refactor with extended thinking before I merge."
+      }
+    ],
+    "sk-prompt": [
+      {
+        "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/generic-prompt-improve.md",
+        "prompt": "Help me write a better prompt for a customer support chatbot."
+      },
+      {
+        "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/named-model-prompt-models.md",
+        "prompt": "What framework and scaffold does DeepSeek-v4-pro want for a coding task?"
+      }
+    ],
+    "sk-design": [
+      {
+        "source": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/interface-mode.md",
+        "prompt": "Make this SaaS pricing page look less generic and give it a distinctive visual direction."
+      },
+      {
+        "source": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/audit-mode.md",
+        "prompt": "Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop."
+      }
+    ],
+    "sk-doc": [
+      {
+        "source": ".opencode/skills/sk-doc/manual-testing-playbook/intent-detection/doc-quality.md",
+        "prompt": "Validate documentation quality for skill X and report which sections fail sk-doc standards."
+      },
+      {
+        "source": ".opencode/skills/sk-doc/manual-testing-playbook/intent-detection/skill-creation.md",
+        "prompt": "Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds."
+      }
+    ]
+  },
+  "records": [
+    {
+      "hubId": "sk-code",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+      "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback."
+    },
+    {
+      "hubId": "sk-code",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+      "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode."
+    },
+    {
+      "hubId": "mcp-tooling",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/chrome-devtools-browser-debug.md",
+      "prompt": "Use Chrome DevTools to capture a HAR for the reducer dashboard failing in staging."
+    },
+    {
+      "hubId": "mcp-tooling",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/mcp-tooling/manual-testing-playbook/hub-routing/clickup-task-management.md",
+      "prompt": "Mark the ClickUp task done and add a note that it shipped."
+    },
+    {
+      "hubId": "system-deep-loop",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/research-routing.md",
+      "prompt": "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary."
+    },
+    {
+      "hubId": "system-deep-loop",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/system-deep-loop/manual-testing-playbook/mode-routing/review-routing.md",
+      "prompt": "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict."
+    },
+    {
+      "hubId": "cli-external-orchestration",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
+      "prompt": "Delegate this to OpenCode and run the ablation suite with full plugin and Spec Kit Memory runtime."
+    },
+    {
+      "hubId": "cli-external-orchestration",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/claude-code-second-opinion.md",
+      "prompt": "Get an Anthropic CLI second opinion on this refactor with extended thinking before I merge."
+    },
+    {
+      "hubId": "sk-prompt",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/generic-prompt-improve.md",
+      "prompt": "Help me write a better prompt for a customer support chatbot."
+    },
+    {
+      "hubId": "sk-prompt",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/sk-prompt/manual-testing-playbook/hub-routing/named-model-prompt-models.md",
+      "prompt": "What framework and scaffold does DeepSeek-v4-pro want for a coding task?"
+    },
+    {
+      "hubId": "sk-design",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/interface-mode.md",
+      "prompt": "Make this SaaS pricing page look less generic and give it a distinctive visual direction."
+    },
+    {
+      "hubId": "sk-design",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/sk-design/manual-testing-playbook/mode-routing/audit-mode.md",
+      "prompt": "Audit this checkout UI for WCAG contrast, keyboard focus, responsive issues, and design slop."
+    },
+    {
+      "hubId": "sk-doc",
+      "prompt_idx": 1,
+      "source": ".opencode/skills/sk-doc/manual-testing-playbook/intent-detection/doc-quality.md",
+      "prompt": "Validate documentation quality for skill X and report which sections fail sk-doc standards."
+    },
+    {
+      "hubId": "sk-doc",
+      "prompt_idx": 2,
+      "source": ".opencode/skills/sk-doc/manual-testing-playbook/intent-detection/skill-creation.md",
+      "prompt": "Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds."
+    }
+  ]
+}

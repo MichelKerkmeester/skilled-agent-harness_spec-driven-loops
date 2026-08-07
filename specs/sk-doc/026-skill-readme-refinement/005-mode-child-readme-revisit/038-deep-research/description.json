@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
+  "description": "The deep-research mode skill README at `.opencode/skills/system-deep-loop/deep-research/README.md` predates the mcp-obsidian pilot standard",
+  "keywords": [
+    "deep-research",
+    "mode",
+    "skill",
+    "readme",
+    "opencode",
+    "skills",
+    "system-deep-loop",
+    "predates",
+    "mcp-obsidian",
+    "pilot",
+    "standard"
+  ],
+  "lastUpdated": "2026-08-04T18:51:40.994Z",
+  "specId": "038",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

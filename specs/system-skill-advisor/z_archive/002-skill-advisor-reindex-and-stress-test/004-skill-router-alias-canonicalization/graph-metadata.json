@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
+  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
+  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "065/004 alias canonicalization",
+      "skill router aliases",
+      "deep review alias",
+      "065/004 plan",
+      "alias canonicalization plan",
+      "065/004 tasks",
+      "alias canonicalization tasks",
+      "065/004 checklist",
+      "alias canonicalization checklist",
+      "065/004 implementation summary",
+      "065/004 resource map",
+      "alias canonicalization resources"
+    ],
+    "key_topics": [
+      "alias",
+      "canonicalization",
+      "skill",
+      "router",
+      "aliases",
+      "deep",
+      "review",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "resource-map.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. RISKS & DEPENDENCIES",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "alias-aware",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. TESTING STRATEGY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: [x] Inventory command/skill id pairs",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: [x] Reproduce CP-103 WARN",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-003: [x] Define alias groups",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan phase to normalize accepted aliases between command ids and skill ids in router scenarios and advisor outputs.",
+    "created_at": "2026-05-18T07:49:27.134Z",
+    "last_save_at": "2026-07-15T11:59:12.405Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:ccd49e11ea82cfcf825f78d58398d795b27ca91281b982a3b9f0f093f20abf43",
+    "source_doc_hashes": {
+      "spec.md": "1b5442efd0cb7d9a4b69fa45d85ca3c61a354844506d2d454abb59c4b21eccff",
+      "plan.md": "eced1a8d1c37bad99c4fb8a5ae170d5ee04ac0ce9c1b42dcff6c8553ffd2481e",
+      "tasks.md": "32bb5146fabb05f7055ad986cd90e70ee96110e40f38077f12c9a3a1a8115f0e",
+      "checklist.md": "1b90eacc9e00ea0397dc93ed1301341b3bda72043d8c0abe1e3fda37546c9f73",
+      "implementation-summary.md": "71d40f89af0a3ec8aa2f02a6fb13cdf8001b682ffad4bb1c48beabc7fe5acafc",
+      "resource-map.md": "9dbd8f68c01373479d2b30da6fd725aa9d91d353ac0c863d543513e0248df0e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

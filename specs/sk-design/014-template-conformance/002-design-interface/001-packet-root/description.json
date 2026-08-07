@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/001-packet-root",
+  "description": "The `design-interface` packet root has `SKILL.md` (345 lines, 4,336 words per `wc -w`, 36,702 bytes) and `README.md` (202 lines, 2,260 words, 16,826",
+  "keywords": [
+    "design-interface",
+    "packet",
+    "root",
+    "skill",
+    "lines",
+    "words",
+    "per",
+    "bytes",
+    "readme"
+  ],
+  "lastUpdated": "2026-07-27T15:04:44.595Z",
+  "specId": "001",
+  "folderSlug": "packet-root",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

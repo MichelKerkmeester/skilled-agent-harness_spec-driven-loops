@@ -1,0 +1,5 @@
+COMMAND: alt daemon index Public with writable caches
+TIMESTAMP: 2026-05-12T20:11:35Z
+zsh:4: nice(5) failed: operation not permitted
+Project: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Indexing failed: Daemon error: Operation not permitted (os error 1)

@@ -1,0 +1,45 @@
+
+=== Preprocessor Tests ===
+
+loadTemplate:
+  ✓ throws for non-existent file
+  ✓ throws for empty path
+  ✓ throws for null path
+  ✓ loads existing template
+
+preprocess:
+  ✓ throws for non-string content
+  ✓ handles empty content
+  ✓ returns content without markers unchanged
+  ✓ processes COMPLEXITY_GATE markers for Level 2
+  ✓ processes COMPLEXITY_GATE markers for Level 3
+  ✓ handles null context
+  ✓ handles empty context
+preprocess: Unknown level "invalid", defaulting to "2"
+  ✓ warns for invalid level
+  ✓ returns stats in result
+  ✓ returns validation in result
+
+expand:
+  ✓ expand loads and processes template
+  ✓ expand accepts level option
+
+injectComplexityMetadata:
+  ✓ returns content unchanged when no complexityScore
+  ✓ returns content unchanged when complexityScore is null
+  ✓ injects metadata when complexityScore provided
+
+INJECTION_POINTS:
+  ✓ has spec.md injection points
+  ✓ has plan.md injection points
+  ✓ has tasks.md injection points
+  ✓ has checklist.md injection points
+
+Edge Cases:
+  ✓ handles content with special characters
+  ✓ handles deeply nested content
+  ✓ handles markers with extra whitespace
+
+=== Summary ===
+Passed: 26
+Failed: 0

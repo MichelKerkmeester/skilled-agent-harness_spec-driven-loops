@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/020-spec-kit-codegraph-decoupling",
+  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "020 codegraph decoupling",
+      "spec-kit code graph decoupling",
+      "zero system-code-graph imports",
+      "020 plan",
+      "codegraph decoupling plan",
+      "020 tasks",
+      "020 checklist",
+      "020 ADR",
+      "codegraph decoupling ADR",
+      "supersede ADR-002",
+      "020 implementation summary",
+      "codegraph decoupling summary"
+    ],
+    "key_topics": [
+      "codegraph",
+      "decoupling",
+      "spec-kit",
+      "code",
+      "graph",
+      "zero",
+      "system-code-graph",
+      "imports",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+      ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+      "lib/code-graph-boundary.ts",
+      "decision-record.md",
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "code-graph-boundary.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
+        "source": "derived"
+      },
+      {
+        "name": "readiness-marker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/readiness-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-contracts.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/code-graph-contracts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Code Graph Decoupling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Ownership",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Readiness Marker",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remove system-spec-kit MCP server source imports from system-code-graph and lock a process-boundary integration pattern.",
+    "created_at": "2026-05-15T08:24:07Z",
+    "last_save_at": "2026-07-15T11:59:17.867Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-15T09:35:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:09aedcfc51cf1f2b684f95a11d611b36daf92eb6c6b3de2796c0677f43a090db",
+    "source_doc_hashes": {
+      "spec.md": "6db155772994fa2bb8e93c127916b3be10e595f2040c50ed70245cd67a58d571",
+      "plan.md": "e73c8ba26f462ec2a4adbd377007737e6bd74248d0f949b517ae295c5a1794f0",
+      "tasks.md": "d28724454e79f26487fba486bfecba97add1cd95d84872b8d749857f8905a265",
+      "checklist.md": "edf2e89fff4f95c56cf57cee5c68ed195f92fad92aac774f98aca22f9d881581",
+      "decision-record.md": "32a0ea1b588e8266625cba4fc0b629dc08f412bfe563576b4aae1ebebf67002f",
+      "implementation-summary.md": "8ebe2c7074c9822897e484606c1fa7df199ec26b1683c12a1df923399d378320"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

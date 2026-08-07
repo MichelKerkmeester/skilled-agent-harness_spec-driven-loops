@@ -1,0 +1,26 @@
+# Iteration 018: RQ-V5 adversarial — security gates + typed I/O contract
+
+**Focus:** RQ-V5 adversarial — security gates + typed I/O contract  
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant high (read-only). **Status:** complete. **newInfoRatio:** 0.67.  
+**Raw output:** prompts/iteration-018.out  ·  **Prompt:** prompts/iteration-018.prompt
+
+### VERDICTS
+| Claim | Original verdict | Adversarial result (upheld/downgraded/refuted) | Revised verdict | Strongest counter-evidence (file:line) |
+|---|---|---|---|---|
+| 1 — Security/quality STANDING gates | ADAPT | downgraded | ADAPT narrowly: add OWASP naming/preset only, not “missing coverage” | `.opencode/skills/sk-code-review/references/security_checklist.md:24-64`; `.opencode/agents/review.md:315-327`; `AGENTS.md:38-42` |
+| 2 — Per-agent typed dispatch schemas + uniform output envelope | ADOPT | downgraded | ADAPT: typed normalization/header over existing structured contracts, not wholesale net-new I/O | `.opencode/agents/orchestrate.md:192-215`; `.opencode/agents/code.md:270-310`; `.opencode/agents/review.md:237-245`; `.opencode/agents/context.md:230-284` |
+
+### EVIDENCE
+- [V-018-01] Claim 1 security standing gates: I do not find a standalone `/security-review` command under `.opencode/commands`; the only command-level “security review” hit I verified is `/memory:search "auth security review"` as a `security_audit` retrieval example, not a security scan command (`.opencode/commands/memory/search.md:140-150`). But the absence of that command does not mean absent coverage. `sk-code-review` always loads `security_checklist.md` for every invocation, including security/correctness reviews (`.opencode/skills/sk-code-review/SKILL.md:84-90`), and its baseline security/correctness minimums are always enforced (`.opencode/skills/sk-code-review/SKILL.md:92-99`, `.opencode/skills/sk-code-review/SKILL.md:364-372`). The checklist covers OWASP-like classes without the OWASP label: XSS, SQL/NoSQL/command injection, SSRF, path traversal, prototype pollution (`.opencode/skills/sk-code-review/references/security_checklist.md:24-36`), auth/authz/IDOR/token checks (`.opencode/skills/sk-code-review/references/security_checklist.md:39-49`), secrets/PII/sensitive logs (`.opencode/skills/sk-code-review/references/security_checklist.md:52-64`), CSP/headers/CORS/cookies (`.opencode/skills/sk-code-review/references/security_checklist.md:121-130`), supply chain audit prompts (`.opencode/skills/sk-code-review/references/security_checklist.md:134-145`), and privacy/data handling (`.opencode/skills/sk-code-review/references/security_checklist.md:161-171`). Source-verification is not only in `@review`: repo-global rules say “Never lie or fabricate” and require explicit uncertainty (`AGENTS.md:38-42`), `@context` forbids uncited findings and unverified graph claims (`.opencode/agents/context.md:331-352`), and `@code` requires file:line citations plus verified RETURN claims (`.opencode/agents/code.md:316-325`, `.opencode/agents/code.md:351-363`). Real gap: no named OWASP mapping and no standalone `/security-review` command; not an absent security/source-verification framework.
+- [V-018-02] Claim 2 typed I/O contract: A uniform typed contract is genuinely absent, but “agent I/O is scattered unstructured prose” overstates it. `@orchestrate` already requires a structured task delegation block with objective, scope, boundary, agent, skills, output format, success, dependencies, depth, scale, and tool-call estimate (`.opencode/agents/orchestrate.md:192-215`). `@code` has a parseable first-line RETURN with `PASS|FAIL|BLOCKED`, `escalation`, and `confidence`, plus required fields for mode/files/verification/command/exit code/rubric/escalation/confidence (`.opencode/agents/code.md:270-310`). `@review` defines gate input and output fields including `gate_type`, `task_id`, artifact, context, threshold, pass/score/breakdown/blockers/required/suggestions/confidence (`.opencode/agents/review.md:237-245`) and structured report formats (`.opencode/agents/review.md:264-279`). `@context` has a mandatory six-section Context Package with evidence, gaps, nested-dispatch status, and recommendation (`.opencode/agents/context.md:230-284`). Real gap: these are Markdown/prose contracts, not one typed schema with consistent `status/confidence/failure_type` across every leaf. The adoption value is schema normalization, not inventing structured I/O from scratch.
+
+### REVISED NET-NEW VALUE
+Claim 1: Sub-packet-worthy only if scoped to a named OWASP/secrets/PII review preset or checklist mapping, plus maybe a command alias. Do not claim spec-kit lacks security coverage; it lacks explicit OWASP labeling and command-level discoverability.
+
+Claim 2: Still worth a sub-packet, but as an adapter over existing contracts: add a typed dispatch header/schema and normalized output envelope that preserves `@code` RETURN, `@review` gates, and `@context` Context Package. Do not replace the richer Markdown evidence bodies.
+
+### METRICS
+newInfoRatio: 0.67
+novelty: The main new information is that both claims are narrower than proposed: security coverage is already broad, and agent I/O is already structured but not uniformly typed.
+status: complete
+focus: RQ-V5 adversarial — security gates + typed I/O contract

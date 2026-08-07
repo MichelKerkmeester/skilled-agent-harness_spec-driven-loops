@@ -1,0 +1,26 @@
+{
+  "run": "targeted-deepening-sol",
+  "note": "Follow-on to 001. Single-lineage SOL xhigh, findings-seeded from 001 registry. Three threads: fan-out automation, recommendation deep-dive, general effectiveness + AI-council. Non-converging (divergent within each thread).",
+  "max_iterations": 20,
+  "stop_policy": "max-iterations",
+  "convergence_mode": "divergent",
+  "generations": [
+    {
+      "label": "sol",
+      "kind": "cli-codex",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "fast",
+      "iterations": 20
+    }
+  ],
+  "threads": {
+    "fan-out-automation": "iters 1-5",
+    "recommendation-deep-dive": "iters 6-15",
+    "general-effectiveness-and-council": "iters 16-20"
+  },
+  "seeded_from": "001-deep-loop-market-research/research/findings-registry.json (216 repos, 222 insights, 134 contradictions)",
+  "web_search": "codex top-level --search (live GitHub/web mining)",
+  "transport_mandate": "GPT via cli-codex only",
+  "created_at": "2026-07-15T04:15:25.896Z"
+}

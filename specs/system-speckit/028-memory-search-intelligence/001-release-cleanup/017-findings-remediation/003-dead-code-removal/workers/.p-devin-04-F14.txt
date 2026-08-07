@@ -1,0 +1,24 @@
+Repository remediation worker. Repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+Spec folder pre-approved (skip Gate 3). Make ONLY the change described. Touch NOTHING else.
+Do not run git commands that mutate state. Do not commit.
+
+FINDING devin-04:F14
+TASK: `.env.example` is a tracked example file that git silently ignores, because `.gitignore` line 23
+carries the pattern `.env.*` with no negation. Confirm with `git check-ignore -v .env.example`.
+
+Add a negation entry `!.env.example` immediately AFTER the `.env.*` line so the example file is
+visible to git again. Order matters in gitignore: the negation must come after the pattern it undoes.
+Change nothing else in `.gitignore`.
+
+Before finishing, verify BOTH:
+  git check-ignore -v .env.example     -> must now report NO match (exit 1)
+  git check-ignore -v .env             -> must still be ignored (real secrets stay ignored)
+If the second check shows `.env` is no longer ignored, you have over-corrected: revert and return BLOCKED.
+
+Return EXACTLY:
+FINDING: <id>
+REVERIFIED: <command + its real output>
+STATUS: APPLIED | STALE | BLOCKED
+CHANGE: <files touched, what changed>
+EVIDENCE: <both check-ignore results>
+RISK: <what this could break and how you checked>

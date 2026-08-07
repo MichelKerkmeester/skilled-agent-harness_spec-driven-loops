@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "naming",
+      "convention",
+      "test",
+      "spec",
+      "091",
+      "implementation",
+      "plan",
+      "tasks",
+      "suite",
+      "checklist"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "naming",
+      "convention",
+      "test",
+      "spec",
+      "implementation",
+      "plan",
+      "tasks",
+      "suite",
+      "checklist",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "scripts/tests/test-naming-migration.js",
+      "scripts/tests/test-export-contracts.js",
+      "scripts/tests/test-bug-regressions.js",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "test-naming-migration.js",
+        "kind": "code",
+        "path": "scripts/tests/test-naming-migration.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-export-contracts.js",
+        "kind": "code",
+        "path": "scripts/tests/test-export-contracts.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-bug-regressions.js",
+        "kind": "code",
+        "path": "scripts/tests/test-bug-regressions.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specifi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Convention Test Suite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Risk",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Framework",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Infrastructure",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Export Contracts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bug Regressions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The naming convention migration (spec 090) renames identifiers across ~206 JS files, 9 skill docs, and touches shell/Python scripts",
+    "created_at": "2026-04-12T09:02:53.561Z",
+    "last_save_at": "2026-07-10T06:22:15.062Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f5c47fa1984c36632d4ea116be5b7cd397eceeb1db1c992cc63fa4089adfb6b",
+    "source_doc_hashes": {
+      "spec.md": "00196e95f82d1478f6cb9dbee62598276711537f48ca27440e7b100c10a370ec",
+      "plan.md": "c17625259992c0bd8be1f26c1a63e491e365776f026e9eb7fdab370aabb3da82",
+      "tasks.md": "aee014636b94c92cabed61b799d091a33b3205610dd0d702effe35cf20581aee",
+      "checklist.md": "4bb3bcfbb07557faa961759d527dd18e0aa78dbe6e1dc497f80e243075f813c6",
+      "implementation-summary.md": "be2d930aa268be92eb320d9439e89bbc91cbefff3bbcfc0f7dc5cacea50cb85b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

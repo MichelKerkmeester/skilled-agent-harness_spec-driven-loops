@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "006-runtime-matrix-execution-validation",
+      "full matrix execution",
+      "v1-0-4 stress",
+      "matrix execution validation",
+      "feature x executor matrix",
+      "feature × executor matrix",
+      "006-runtime-matrix-execution-validation resource map",
+      "full matrix execution validation file ledger"
+    ],
+    "key_topics": [
+      "006-runtime-matrix-execution-validation",
+      "full",
+      "matrix",
+      "execution",
+      "v1-0-4",
+      "stress",
+      "validation",
+      "feature",
+      "executor",
+      "resource",
+      "map",
+      "file"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "logs/feature-runs/summary.tsv",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.tsv",
+        "kind": "file",
+        "path": "logs/feature-runs/summary.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Matrix Execution Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Create",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frozen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runner Policy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 030 designed a full v1.0.4 matrix but intentionally did not execute it",
+    "created_at": "2026-04-29T14:45:00Z",
+    "last_save_at": "2026-07-17T17:19:08.557Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:e4920e9eeff4bf330786412972149328ea86246ab3e8613553544dddf414fb99",
+    "source_doc_hashes": {
+      "spec.md": "25dd9cee482740fe896b128bdfc1593609f83c84e4446612916fbed394e54910",
+      "plan.md": "62afe7ecaf5ef659a7061860b2a53d15af8f7689869224ffb7917f9164e6c51b",
+      "tasks.md": "0fc362fcb31ed405b1ea4975e3ed90d122c996d860f3085b0f256e89ea42e58e",
+      "checklist.md": "74711cec69820989edb157951fd5df51382ba1d54fe60ff833ddf279010acfe3",
+      "implementation-summary.md": "9d85e4cca045a7143c8495b9fc38805d891795305b02dfd44bc7ef3e387ceb34",
+      "resource-map.md": "d73ca5d4b24452994dd1e3e6534ecc89ef7517c0f3306bb294c4725f7b83b8dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

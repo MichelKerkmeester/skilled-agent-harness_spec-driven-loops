@@ -1,0 +1,73 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/tests/validation/fixtures/",
+  "folder_role": "Test fixture directory for evidence marker fence edge cases, providing markdown samples that test the robustness of [EVIDENCE:...] marker parsing against various fence block configurations.",
+  "file_inventory": {
+    "by_extension": {
+      ".md": [
+        "evidence-indented-fence.md",
+        "evidence-mismatched-fence.md",
+        "evidence-nested-fence.md"
+      ],
+      ".json": [],
+      ".ts": []
+    },
+    "directories": [],
+    "total_files": 3
+  },
+  "architecture_observation": "fixture-only - contains 3 markdown fixture files that test edge cases in evidence marker parsing within fenced code blocks without any executable code or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "evidence-indented-fence.md",
+      "kind": "fixture",
+      "file": "evidence-indented-fence.md",
+      "purpose": "Fixture testing that evidence markers inside indented fenced code blocks with paren-heavy content are correctly ignored."
+    },
+    {
+      "name": "evidence-mismatched-fence.md",
+      "kind": "fixture",
+      "file": "evidence-mismatched-fence.md",
+      "purpose": "Fixture testing the documented false-negative behavior for mismatched fence blocks (unclosed fences)."
+    },
+    {
+      "name": "evidence-nested-fence.md",
+      "kind": "fixture",
+      "file": "evidence-nested-fence.md",
+      "purpose": "Fixture testing that inner triple-backtick lines inside an outer four-backtick fence are preserved, and markers after the outer fence closes are correctly parsed."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "evidence-indented-fence.md",
+      "imported_by": ["tests/validation/evidence-marker-audit.vitest.ts"]
+    },
+    {
+      "symbol": "evidence-mismatched-fence.md",
+      "imported_by": ["tests/validation/evidence-marker-audit.vitest.ts"]
+    },
+    {
+      "symbol": "evidence-nested-fence.md",
+      "imported_by": ["tests/validation/evidence-marker-audit.vitest.ts"]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder provides test fixtures for the evidence marker audit system, which validates that the parseMarkers function correctly handles [EVIDENCE:...] markers in markdown files while respecting fenced code block boundaries. The fixtures cover three critical edge cases: indented fences (where leading whitespace can confuse fence detection), mismatched fences (where unclosed fence blocks create false-negative scenarios that are documented as acceptable behavior), and nested fences (where triple-backtick blocks inside four-backtick blocks should be treated as inner content, not as closing fences). These fixtures ensure the evidence marker parser maintains robustness against real-world markdown edge cases that can occur in spec documentation, preventing false positives where markers inside code blocks are incorrectly extracted, and maintaining documented behavior for known false-negative scenarios. The test suite validates that parseMarkers returns empty arrays for markers inside code contexts and correctly extracts markers that appear outside of fenced blocks.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/validation/evidence-marker-audit.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "Each fixture must be valid markdown with proper fence block syntax",
+    "Fixtures must test specific edge cases in fence parsing (indentation, mismatching, nesting)",
+    "The evidence-indented-fence.md fixture must test that markers inside indented triple-backtick blocks return empty results",
+    "The evidence-mismatched-fence.md fixture must test the documented false-negative behavior for unclosed fences",
+    "The evidence-nested-fence.md fixture must test that inner triple-backticks inside outer four-backticks are preserved as content",
+    "Fixtures must be loadable by the loadFixture() helper function in the test file",
+    "Fixture filenames must match the pattern evidence-{edge-case-type}.md",
+    "Fixtures must include [EVIDENCE:...] markers to test parsing behavior",
+    "Fixtures must represent realistic markdown edge cases that can occur in spec documentation",
+    "The parseMarkers function must handle these fixtures according to the documented fence parsing rules"
+  ]
+}

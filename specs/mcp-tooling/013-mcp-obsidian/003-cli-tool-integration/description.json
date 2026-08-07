@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/003-cli-tool-integration",
+  "description": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it,",
+  "keywords": [
+    "phase",
+    "mcp-obsidian",
+    "mode",
+    "empty",
+    "skeleton",
+    "working",
+    "cli",
+    "surface",
+    "way",
+    "install",
+    "chosen",
+    "obsidian",
+    "verify"
+  ],
+  "lastUpdated": "2026-08-02T06:05:32.386Z",
+  "specId": "003",
+  "folderSlug": "cli-tool-integration",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

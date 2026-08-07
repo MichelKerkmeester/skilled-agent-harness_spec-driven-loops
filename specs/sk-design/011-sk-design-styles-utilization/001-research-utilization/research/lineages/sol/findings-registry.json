@@ -1,0 +1,1409 @@
+{
+  "sessionId": "fanout-sol-1784366607889-1j7alg",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 8,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-18T10:43:42.755Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-6-which-retrieval-substrate-or-layered-combination-of-substrates-best-balances-rel",
+      "inboxId": null,
+      "text": "Which retrieval substrate, or layered combination of substrates, best balances relevance, determinism, runtime cost, context size, and maintenance?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-7-what-should-the-hub-and-each-of-the-five-modes-consume-and-when-should-a-task-re",
+      "inboxId": null,
+      "text": "What should the hub and each of the five modes consume, and when should a task reference one coherent real style versus synthesize selected attributes across several styles?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-8-which-anti-slop-rules-and-proof-gates-keep-outputs-distinctive-rather-than-avera",
+      "inboxId": null,
+      "text": "Which anti-slop rules and proof gates keep outputs distinctive rather than averaging the corpus into a generic middle?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-9-what-index-build-query-refresh-validation-and-corpus-change-tooling-is-justified",
+      "inboxId": null,
+      "text": "What index build, query, refresh, validation, and corpus-change tooling is justified by the repository's existing patterns?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-10-how-should-utilization-strategies-rank-by-leverage-versus-build-cost-after-accou",
+      "inboxId": null,
+      "text": "How should utilization strategies rank by leverage versus build cost after accounting for size, staleness, licensing, provenance, and extraction fidelity risks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-6-which-retrieval-substrate-or-layered-combination-of-substrates-best-balances-rel",
+      "inboxId": null,
+      "text": "Which retrieval substrate, or layered combination of substrates, best balances relevance, determinism, runtime cost, context size, and maintenance?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-7-what-should-the-hub-and-each-of-the-five-modes-consume-and-when-should-a-task-re",
+      "inboxId": null,
+      "text": "What should the hub and each of the five modes consume, and when should a task reference one coherent real style versus synthesize selected attributes across several styles?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-8-which-anti-slop-rules-and-proof-gates-keep-outputs-distinctive-rather-than-avera",
+      "inboxId": null,
+      "text": "Which anti-slop rules and proof gates keep outputs distinctive rather than averaging the corpus into a generic middle?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-9-what-index-build-query-refresh-validation-and-corpus-change-tooling-is-justified",
+      "inboxId": null,
+      "text": "What index build, query, refresh, validation, and corpus-change tooling is justified by the repository's existing patterns?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-10-how-should-utilization-strategies-rank-by-leverage-versus-build-cost-after-accou",
+      "inboxId": null,
+      "text": "How should utilization strategies rank by leverage versus build cost after accounting for size, staleness, licensing, provenance, and extraction fidelity risks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What should the hub and each of the five modes consume, and when should a task reference one coherent real style versus synthesize selected attributes across several styles?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What index build, query, refresh, validation, and corpus-change tooling is justified by the repository's existing patterns?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should utilization strategies rank by leverage versus build cost after accounting for size, staleness, licensing, provenance, and extraction fidelity risks?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which anti-slop rules and proof gates keep outputs distinctive rather than averaging the corpus into a generic middle?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which retrieval substrate, or layered combination of substrates, best balances relevance, determinism, runtime cost, context size, and maintenance? **Narrow remaining proof:** labeled mode-specific top-K relevance evaluation plus semantic-lane ablation on a quiescent snapshot.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-a-style-is-a-uniform-six-artifact-bundle-but-the-artifact-classes-differ-sharply",
+      "text": "**A style is a uniform six-artifact bundle, but the artifact classes differ sharply in context cost.** At the stable 977-bundle measurement point, all 977 bundles contained `DESIGN.md`, `design-tokens.json`, `css-variables.css`, `tailwind-v4.css`, `source.md`, and one `*-canonical.json`, totaling 85,374,474 bytes. Median sizes were 51,109 bytes for canonical JSON, 19,584 for `DESIGN.md`, 9,936 for design tokens, 2,119 for CSS variables, 1,555 for Tailwind, and 780 for provenance. The representative source file explicitly enumerates the five generated siblings; `source.md` itself is the sixth artifact. [SOURCE: .opencode/skills/sk-design/styles/kobu/source.md:1-12] [INFERENCE: deterministic byte and completeness aggregation over the 977 `*/DESIGN.md`-anchored bundles]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-9-audit-retrieve-the-selected-reference-s-do-don-t-constraints-provenance-and-rele",
+      "text": "**audit:** retrieve the selected reference's do/don't constraints, provenance, and relevant token slices as comparison evidence, not as a replacement for target evidence; the contract owns slop/token-misuse detection and requires evidence-specific audit resources. [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:23-29] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:95-115]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-5-existing-contracts-imply-mode-specific-consumption-rather-than-one-universal-ret",
+      "text": "**Existing contracts imply mode-specific consumption rather than one universal retrieval payload.** The hub should route and carry only a compact candidate manifest because it explicitly owns no per-mode logic; its smallest-useful-mode policy is already the first relevance filter. [SOURCE: .opencode/skills/sk-design/SKILL.md:13-15] [SOURCE: .opencode/skills/sk-design/SKILL.md:140-142] The provisional mode mapping is:",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-7-foundations-retrieve-axis-specific-design-tokens-json-slices-color-type-layout-s",
+      "text": "**foundations:** retrieve axis-specific `design-tokens.json` slices (color, type, layout/spacing), optionally joined to the selected `DESIGN.md` rationale; its router is explicitly axis-based and permits multi-axis loading only when the task needs it. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:55-80] [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:85-103]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-6-interface-load-one-coherent-candidate-s-design-md-plus-source-md-as-a-grounding-",
+      "text": "**interface:** load one coherent candidate's `DESIGN.md` plus `source.md` as a grounding reference, then critique/deviate rather than copy; the contract asks for real-system grounding and says a real-world reference is one reference, never copied. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-90]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-10-md-generator-do-not-let-corpus-retrieval-override-live-measured-extraction-use-a",
+      "text": "**md-generator:** do not let corpus retrieval override live measured extraction; use at most one corpus pair for STUDY/format calibration because this mode captures and validates source truth and its examples are explicitly one-at-a-time study artifacts. [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:10-15] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:109-122]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-8-motion-retrieve-only-motion-bearing-fields-or-matching-narrative-sections-when-p",
+      "text": "**motion:** retrieve only motion-bearing fields or matching narrative sections when present; otherwise do not load a style merely because it matches static aesthetics, because the contract routes by temporal concern and makes static-token coordination on-demand. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:51-66] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:97-113]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-11-provenance-is-present-but-the-representative-metadata-is-not-a-complete-rights-r",
+      "text": "**Provenance is present, but the representative metadata is not a complete rights record.** Kobu's `source.md` records a Refero style URL, original site, screenshot, style UUID, and capture timestamp, but no explicit license or allowed-use field. Retrieval results therefore need provenance surfaced alongside every candidate, and later research must test license-field coverage corpus-wide rather than assuming a reference is reusable because it is indexed. [SOURCE: .opencode/skills/sk-design/styles/kobu/source.md:3-12] [INFERENCE: absence of an explicit license field in the representative provenance record limits what can be concluded about reuse rights]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-1-the-corpus-was-actively-growing-during-the-iteration-so-its-cardinality-is-not-p",
+      "text": "**The corpus was actively growing during the iteration, so its cardinality is not presently a stable indexing input.** Three read-only snapshots observed 974, then 977, then 981 complete style bundles; the final snapshot at `2026-07-18T09:31:30.875369Z` showed newly modified bundles arriving roughly every 9–10 seconds. This conflicts with, but may be progressing toward, the prompt's approximately 1,290-style estimate. A build should pin a revision or wait for a quiescence window before publishing count/checksum metadata. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24] [INFERENCE: deterministic read-only inventories of `.opencode/skills/sk-design/styles/*/DESIGN.md` during this iteration, plus bundle mtimes from the final snapshot]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-4-the-token-schema-is-regular-enough-for-a-compact-structural-index-without-flatte",
+      "text": "**The token schema is regular enough for a compact structural index without flattening every value into embeddings.** All 977 sampled `design-tokens.json` files parsed successfully. The three dominant top-level shapes covered 961/977 bundles and shared `$extensions`, `color`, `font`, `spacing`, `surface`, and `typography`, with `radius` and/or `shadow` as the principal variations. The smallest sample has two colors and one font, while the largest begins with a much denser semantic palette; this makes per-axis counts, names, descriptions, and provenance useful deterministic ranking features. [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:1-20] [SOURCE: .opencode/skills/sk-design/styles/base44/design-tokens.json:1-80] [SOURCE: .opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100] [INFERENCE: JSON validation and top-level-shape aggregation over all 977 measured token documents]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-1-3-the-two-most-useful-retrieval-payloads-serve-different-purposes-design-md-preser",
+      "text": "**The two most useful retrieval payloads serve different purposes: `DESIGN.md` preserves a coherent design identity, while `design-tokens.json` supports deterministic field-level filtering.** Across the 977-bundle snapshot, `DESIGN.md` ranged from 169 to 537 lines (median 373), while token documents ranged from 46 to 667 scalar leaves (median 202). Kobu's reference ties its aesthetic thesis to named colors, typography, spacing, components, and explicit do/don't constraints; the compact 19–86 JSON expresses the same machine-readable token primitives plus extraction metadata. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-18] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:159-177] [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:1-20] [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:43-89] [INFERENCE: line and scalar-leaf distributions from all 977 measured bundles]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-1.md:16-24`",
+        "`.opencode/skills/sk-design/SKILL.md:13-15,140-184,203-204`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:16-17,71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-180`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/base44/design-tokens.json:1-140`",
+        "`.opencode/skills/sk-design/styles/clickup/design-tokens.json:1-100`",
+        "`.opencode/skills/sk-design/styles/column/DESIGN.md:1-100`",
+        "Read-only Python inventory outputs for bundle counts, completeness, byte/line/leaf distributions, JSON validity, schema shapes, and mtimes."
+      ]
+    },
+    {
+      "id": "finding-2-3-a-compact-committed-retrieval-manifest-is-cheap-enough-to-make-the-deterministic",
+      "text": "**A compact committed retrieval manifest is cheap enough to make the deterministic first stage, but static metadata alone has inadequate free-text recall.** A prototype record containing id, title, up to 12 headings, token axes, artifact sizes, and exact path serialized to 502,895 bytes (486.4 bytes/style) for 1,034 styles and took 171.1 ms to derive while parsing tokens. Scanning that compact projection took about 0.95–1.08 ms/query, but exact two-term tests for `brutalist editorial`, `playful colorful`, and `reduced motion` returned zero because those attributes occur in body prose rather than titles/headings. Static-only is therefore appropriate for exact eligibility/provenance/axis filtering and deterministic candidate narrowing, not final relevance ranking unless it duplicates enough prose to cease being compact. [INFERENCE: read-only Python compact-manifest benchmark over 1,034 captured bundles; compared against the same snapshot's full `DESIGN.md` bodies]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-2-4-a-queryable-sqlite-token-lexical-store-gives-excellent-query-latency-and-express",
+      "text": "**A queryable SQLite token/lexical store gives excellent query latency and expressiveness, but its footprint, native dependency, and freshness obligations make it a derived accelerator.** An in-memory table plus FTS5 index over all 1,034 style bodies ingested in 179.7 ms, occupied 29,093,888 SQLite page bytes, returned top-10 BM25 results in 0.054–0.203 ms for the three test queries, and ran a structured two-axis filter in 0.145 ms. The repository implementation likewise depends on `better-sqlite3`, probes both the FTS5 compile option and table presence, sanitizes lexical terms, weights BM25 columns, and fails open when FTS5 is unavailable. A store can support exact token/provenance filters and ranked lexical search, but it should expose its manifest generation/hash and rebuild from checked artifacts rather than be committed as canonical state. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:9-14,96-143,150-205,207-252] [SOURCE: .opencode/skills/system-skill-advisor/README.md:115-130] [INFERENCE: read-only in-memory SQLite benchmark over the pinned 1,034-document snapshot]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-2-5-on-demand-grep-is-a-credible-zero-build-fallback-and-freshness-oracle-but-not-th",
+      "text": "**On-demand grep is a credible zero-build fallback and freshness oracle, but not the default substrate.** Each test query deterministically read 20,378,783 bytes across 1,034 `DESIGN.md` files and completed in 32.71–33.35 ms on the warm local checkout, finding 34, 22, and 29 all-term matches respectively. That cost is acceptable for diagnosis or when a derived index is stale/unavailable, and grep reads source truth immediately; however, every query repeats the full scan, lexical matches are unranked without additional code, structured token/provenance predicates require joins to other artifacts, and indiscriminate snippet/body loading would violate the hub's smallest-useful-mode discipline. [SOURCE: .opencode/skills/sk-design/SKILL.md:140-142,168-184] [INFERENCE: read-only full-file scan benchmark over 20,378,783 bytes of `DESIGN.md` content]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-2-6-the-best-current-balance-is-a-layered-hybrid-committed-manifest-deterministic-fi",
+      "text": "**The best current balance is a layered hybrid: committed manifest → deterministic filters → lexical rank → optional semantic rerank → mode-specific hydration.** The committed manifest should join crawl state with per-artifact content hashes, title/summary, token axes and counts, available motion/do-don't sections, provenance/license-known state, mode eligibility, and byte costs. Deterministic filters should first exclude pending/stale/unlicensed-for-the-request candidates and constrain mode/axis. FTS5/BM25 should rank body text; semantic ranking should be optional, versioned, and only break lexical/structured ambiguity because the repository's semantic lane adds model/runtime dependencies while its hybrid API already supports separately switchable vector, FTS, BM25, graph, and trigger channels. The hub receives only candidate cards; hydration then preserves one coherent `DESIGN.md` plus provenance for interface, token-axis slices for foundations, motion sections only for motion, do/don't plus provenance for audit, and at most one calibration pair for md-generator. This keeps retrieval broad but context narrow and preserves each mode rather than flattening their logic. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145] [SOURCE: .opencode/skills/sk-design/SKILL.md:140-142,168-184,201-204] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-90] [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:55-103] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122] [INFERENCE: synthesis of findings 1-5 and iteration-1 mode-consumption evidence]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-2-2-the-current-crawl-state-proves-why-a-hand-maintained-static-index-is-insufficien",
+      "text": "**The current crawl state proves why a hand-maintained static index is insufficient and why every published index needs freshness metadata.** The manual `styles/README.md` says 50 of 1,290 styles, while the read-only snapshot found 1,034 `DESIGN.md` bundles and the 1,290-row crawl manifest contained 1,034 `captured` plus 256 `pending` rows. The existing manifest is useful provenance/freshness input (`uuid`, URL, `lastmod`, slug, status, capture time, error), but it has no retrieval attributes, artifact hashes, token-axis statistics, or mode eligibility. This contradiction is resolved as manual-index staleness, not corpus uncertainty. [SOURCE: .opencode/skills/sk-design/styles/README.md:1-12] [SOURCE: .opencode/skills/sk-design/styles/_manifest.json:1-18] [INFERENCE: read-only Python snapshot and manifest aggregation over `.opencode/skills/sk-design/styles/` at 2026-07-18T09:40Z]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-2-1-the-strongest-repository-native-precedent-is-a-checked-source-manifest-plus-a-re",
+      "text": "**The strongest repository-native precedent is a checked source manifest plus a rebuildable query projection, not a database as source of truth.** The advisor's `leaf-manifest.json` is generated, must be byte-stable under `--check`, and authorizes exact routable paths; its SQLite graph separately indexes checked `graph-metadata.json`, records source paths and content hashes, and reports changed or missing sources by recomputing SHA-256. The styles harness already has the beginnings of the same split: committed `_manifest.json` is lastmod-keyed crawl state, while captured artifacts remain canonical. A styles retrieval manifest should therefore be committed and checkable, while any SQLite/FTS or embedding store should be disposable and generation-bound. [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:87-99] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203] [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:23-28,37-49,91-96]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-114,285-313`",
+        "`.opencode/skills/system-skill-advisor/README.md:115-154`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-203`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:1-260`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1-260`",
+        "`.opencode/skills/sk-design/SKILL.md:130-214`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/sk-design/styles/_manifest.json:1-24`",
+        "`.opencode/skills/sk-design/styles/README.md:1-61`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:136-367`",
+        "Read-only Python corpus, compact-manifest, file-scan, structured-query, and in-memory FTS5 benchmark output from the pinned 2026-07-18T09:40Z snapshot."
+      ]
+    },
+    {
+      "id": "finding-3-2-bm25-materially-improved-the-two-discriminating-lexical-queries-while-determinis",
+      "text": "**BM25 materially improved the two discriminating lexical queries, while deterministic metadata remained useful for eligibility rather than final ranking.** Interface precision@5 rose from 0.20 to 0.80 and audit from 0.00 to 0.60; the five-query mean rose from 0.44 to 0.68. Foundations tied at 1.00 because 681 rows met a broad rubric, while md-generator tied at 1.00 because all 1,091 rows did, so those ties demonstrate structural eligibility but provide almost no ranking discrimination. This supports deterministic filters followed by lexical ranking, not BM25-only or metadata-only retrieval. [INFERENCE: top-5 results and rubric counts in the pinned ablation] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:20-26]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-3-4-candidate-discovery-can-stay-cheap-in-context-while-hydration-remains-mode-propo",
+      "text": "**Candidate discovery can stay cheap in context while hydration remains mode-proportional.** Five candidate cards cost 1,357–1,582 bytes per mode (7,302 bytes across all five queries). Selected hydration ranged from 845 bytes for motion fragments to 16,471 bytes for one md-generator calibration pair, with a 4,803-byte median and 40,088 bytes across five independently selected mode payloads. These measurements validate candidate-card-first delivery and show why full-document hydration belongs only to coherent-reference modes. [INFERENCE: UTF-8 byte measurement of serialized top-5 cards and selected payloads from the pinned snapshot] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-90] [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:55-103] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115] [SOURCE: .opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-3-5-semantic-lift-remains-unmeasured-not-negative-repository-evidence-establishes-a-",
+      "text": "**Semantic lift remains unmeasured, not negative.** Repository evidence establishes a separately switchable semantic/vector lane, but this lineage has no verified corpus-specific labeled embedding index bound to the pinned generation. Running a different or newly built generation would break the controlled comparison, so no semantic result was fabricated. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:22-26] [INFERENCE: absence of a verified generation-bound semantic result in the lineage evidence]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-3-1-the-comparison-used-a-stable-content-addressed-generation-rather-than-a-moving-d",
+      "text": "**The comparison used a stable, content-addressed generation rather than a moving directory count.** The snapshot contained 1,091 `DESIGN.md` documents and their 2,182 token/provenance siblings (3,273 files, 34,241,583 bytes); pre/post path, size, and mtime fingerprints matched, and the loaded bytes produced snapshot id `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`. This removes the active-crawl ambiguity for this ablation without claiming that 1,091 is the final corpus size. [INFERENCE: read-only snapshot fingerprint and SHA-256 aggregation performed before ranking]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-3-6-the-layered-architecture-is-better-supported-but-the-first-key-question-is-not-y",
+      "text": "**The layered architecture is better supported but the first key question is not yet fully closed.** The stable ablation now supports checked generation metadata → deterministic eligibility → BM25 → mode-specific hydration, with semantic reranking remaining optional. It cannot establish general relevance because two rubrics were nearly universal, motion had no positives, and labels were mechanical rather than human visual judgments. [INFERENCE: synthesis of findings 1-5 and the limits of the declared rubric]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-3-3-the-motion-test-produced-useful-negative-knowledge-but-no-relevance-estimate-no-",
+      "text": "**The motion test produced useful negative knowledge but no relevance estimate.** No document satisfied both a motion-bearing heading and explicit reduced-motion evidence, so both P@5 values are zero by construction; treating that as a BM25 failure would be invalid. A motion holdout needs at least one manually verified positive intent or a rubric aligned to motion evidence the corpus actually records. [INFERENCE: zero relevant corpus rows under the declared motion rubric]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-102`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,375-480`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-3.md:6-53`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-002.md:14-95`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:71-90`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:55-103`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:51-66,97-113`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:23-29,95-115`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:10-15,109-122`",
+        "`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:4-18,99-145`",
+        "Read-only in-memory snapshot, deterministic-rank, SQLite FTS5/BM25, candidate-card, and hydration-byte output for snapshot `sha256:8b9b3d84696b0bbbb0aac6e67671f1c65ddc46b0fa23adf568e6a40ef6d04a39`."
+      ]
+    },
+    {
+      "id": "finding-4-2-one-should-be-the-default-and-synthesis-should-require-a-named-evidence-gap-plus",
+      "text": "**`ONE` should be the default, and `SYNTHESIS` should require a named evidence gap plus exclusive dimension ownership.** A global three-source cap, lower mode caps, and one owner per dimension make the decision reproducible rather than an invitation to blend the top-K. [INFERENCE: synthesis of the six current authority contracts and the Kobu/19–86 conflict test]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-4-1-a-single-universal-payload-is-unnecessary-five-compact-cards-followed-by-the-tab",
+      "text": "**A single universal payload is unnecessary: five compact cards followed by the table's mode-specific hydration caps covers all six consumers while preserving authority boundaries.** The hub stays logic-free; only interface and md-generator STUDY normally need a complete coherent reference. [SOURCE: .opencode/skills/sk-design/SKILL.md:140-184] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:28-45]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-4-4-kobu-and-19-86-validate-both-sides-of-the-procedure-each-works-as-one-coherent-r",
+      "text": "**Kobu and 19–86 validate both sides of the procedure: each works as one coherent reference, but naive mixing breaks explicit rules on imagery, palette, typography, spacing, and signature scale.** The procedure therefore rejects a plausible-looking but evidence-incoherent generic middle without averaging values. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36,159-177] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31,105-137]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-4-5-measured-payloads-validate-full-hydration-only-where-coherent-identity-is-requir",
+      "text": "**Measured payloads validate full hydration only where coherent identity is required and sliced hydration elsewhere.** The two full reference/provenance pairs cost 17.7–21.7 KB, while three foundations axes cost 3.2–5.5 KB and audit constraints cost 2.4–2.6 KB; top-5 cards previously cost only 1.4–1.6 KB. [INFERENCE: direct UTF-8 byte measurement of the inspected bundles] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:28-45]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-4-6-provenance-is-sufficient-for-traceability-but-insufficient-for-exact-reuse-autho",
+      "text": "**Provenance is sufficient for traceability but insufficient for exact-reuse authority.** Both bundles identify Refero/original URLs, UUID, screenshot, and capture time but omit an explicit license/allowed-use field, so the contract can support inspiration and comparison while refusing exact copying absent separate rights evidence. [SOURCE: .opencode/skills/sk-design/styles/kobu/source.md:3-12] [SOURCE: .opencode/skills/sk-design/styles/19-86/source.md:3-12]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-4-3-the-only-generally-detachable-synthesis-dimensions-are-foundations-color-surface",
+      "text": "**The only generally detachable synthesis dimensions are foundations' color/surface semantics, typography roles, spacing/layout rhythm, and motion's temporal behavior; signature composition, imagery, component grammar, and geometry/elevation remain anchor-locked.** This preserves why a style works while allowing explicitly independent axes to be informed separately. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:59-103] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:55-66,97-113] [INFERENCE: contrasting lock failures in the two style references]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-5`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-129`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-140,142-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-4.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/skills/sk-design/SKILL.md:130-219`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:55-114`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:45-119`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:20-124`",
+        "`.opencode/skills/sk-design/design-md-generator/SKILL.md:1-125`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-235`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-182`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`",
+        "Read-only temporal-term scans and UTF-8 section-byte measurements for the two style bundles."
+      ]
+    },
+    {
+      "id": "finding-5-1-corpus-use-proof-v1-makes-anti-slop-a-blocking-evidence-contract-not-an-aestheti",
+      "text": "**`CORPUS_USE_PROOF v1` makes anti-slop a blocking evidence contract, not an aesthetic slogan.** Eight rows connect authority, rationale, fingerprint, deltas, synthesis, rights, trope budget, and target proof to a binary verdict and explicit fallback. [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:44-79] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:266-281] [INFERENCE: operational gate defined and fixture-tested in this iteration]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-5-2-a-coherent-source-fingerprint-must-bind-content-identity-and-design-identity-gen",
+      "text": "**A coherent-source fingerprint must bind content identity and design identity.** Generation/hash and provenance prevent stale or anonymous use, while thesis, identity locks, and explicit prohibitions prevent a valid file reference from legitimizing an incoherent result. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:164-173] [INFERENCE: gate row 3 combines content-addressability with the corpus document's own relational constraints]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-5-5-a-trope-budget-catches-superficially-distinctive-incoherence-that-a-named-thesis",
+      "text": "**A trope budget catches superficially distinctive incoherence that a named thesis alone misses.** Predeclaring one high-salience device by default, requiring purpose for every device, enforcing zero unsupported tropes, and prohibiting multi-anchor signature motifs rejects a stack of individually fashionable elements without banning deliberate variance. [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:85-106] [INFERENCE: trope-stack falsification and control scenario in this iteration]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-5-6-audit-can-verify-compliance-while-leaving-taste-with-the-owning-modes-it-validat",
+      "text": "**Audit can verify compliance while leaving taste with the owning modes.** It validates evidence, reconciliation, counts, contradictions, and verdict logic; it does not choose the thesis, transformations, register, or visual direction. [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:14-16] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:148-194] [SOURCE: .opencode/skills/sk-design/design-audit/SKILL.md:140-169]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-5-4-provenance-does-not-grant-copy-authority-a-use-label-plus-an-exact-expression-sc",
+      "text": "**Provenance does not grant copy authority.** A use label plus an exact-expression scan distinguishes attributed inspiration/comparison from exact reuse; missing rights evidence forces transformation or refusal even when source metadata is otherwise complete. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:35-36] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:61-63]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-5-3-transformation-deltas-and-exclusive-axis-ownership-are-the-mechanical-barrier-to",
+      "text": "**Transformation deltas and exclusive axis ownership are the mechanical barrier to generic averaging.** Every applied influence must name one owner, the source relationship, the changed result, and a target reason; means, medians, interpolation, or dual ownership fail without a taste judgment. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:27-36] [INFERENCE: bad-averaging falsification in this iteration]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-145,147-553`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-5.md:6-48`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:1-119`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:14-328`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-106,140-169`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:264-292`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:6-8,117-188`"
+      ]
+    },
+    {
+      "id": "finding-6-3-hash-all-core-source-bytes-but-incrementally-reparse-only-changed-records-publis",
+      "text": "**Hash all core source bytes, but incrementally reparse only changed records; publish only a quiescent generation.** The old manifest supplies per-artifact hashes. A build enumerates a sorted input set, hashes every canonical input, reparses only added/changed styles, drops removed styles, and reuses unchanged derived fields. It then repeats the input-set fingerprint; any pre/post mismatch aborts with `corpus-changing` and leaves the prior manifest intact. A successful write uses an adjacent temporary file plus atomic rename. `--check` generates in memory, byte-compares with the committed manifest, reports added/changed/removed ids, and never writes. This is simpler than a watcher: the current bounded inventory found 1,235 complete core bundles and 39,434,637 core bytes in 51.09 ms; the prior compact-manifest prototype derived 1,034 rows in 171.1 ms. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:383-399,455-488] [SOURCE: .opencode/skills/.completion-sentinel-state/README.md:115-119] [INFERENCE: bounded read-only Python inventory at 2026-07-18T10:11:54.313Z plus the active-crawl evidence requires pre/post quiescence rather than a long-lived watcher]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-6-4-modes-should-submit-generic-candidate-and-hydration-requirements-neither-the-hub",
+      "text": "**Modes should submit generic candidate and hydration requirements; neither the hub nor engine should encode taste.** The hub routes to a mode only. The mode calls `query` with `{mode, text, needs, axes, exclusions, limit, maxCardBytes}`; `mode` is observability, while filtering is driven by generic capabilities. Candidate cards return `{styleId, generationHash, contentHash, title, thesis, tokenAxes, capabilities, provenance, licenseStatus, scoreBreakdown, estimatedHydrationBytes, warnings}`. After the mode chooses one candidate, `hydrate` requires the same `generationHash` and accepts generic includes/axes/max-bytes. Suggested mode requests are: interface=`coherent-reference+provenance`; foundations=`tokens` plus requested axes; motion=`motion-sections`; audit=`constraints+provenance`; md-generator=`calibration` with `maxReferences:1`. This preserves prior measured candidate-card efficiency (five cards: 1,357-1,582 bytes/mode; selected hydration median: 4,803 bytes) and keeps selection judgment in each mode. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:194-297,437-452,511-528] [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:99-115,164-190,232-290] [INFERENCE: capability fields are a generic transport projection of the already-established per-mode consumption contract]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-6-5-staleness-must-be-explicit-and-recover-through-live-source-truth-never-silent-st",
+      "text": "**Staleness must be explicit and recover through live source truth, never silent stale use.** Query startup verifies the committed manifest generation; hydrate re-hashes the selected artifacts. A fresh, matching FTS cache may rank eligible rows. A missing/stale FTS cache falls back to manifest filters plus a bounded live `DESIGN.md` scan and returns `degraded:true`, `fallback:\"source-scan\"`, and the live generation hash. A stale manifest triggers the same live scan and disables cache use; if source scanning or selected-artifact verification fails, the command returns `unavailable`/`generation-mismatch` and no hydrated reference. This fallback is proportionate: the prior full scan read 20,378,783 bytes in 32.71-33.35 ms, while FTS5 used about 29.1 MB and answered in 0.054-0.203 ms. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:401-452] [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:164-204] [INFERENCE: source scan is a safe degraded path only when its status and generation are surfaced]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-6-2-the-committed-projection-needs-a-small-deterministic-v1-schema-with-two-hash-lev",
+      "text": "**The committed projection needs a small deterministic v1 schema with two hash levels.** A header should contain `schemaVersion`, `generationHash`, `crawlManifestHash`, `recordCount`, and sorted `styles[]`; volatile timestamps stay out of byte-stable content. Each style record should contain stable id/slug/status, title/thesis excerpt, token-axis names/counts, generic capability flags (`coherent-reference`, `tokens`, `motion-sections`, `constraints`, `calibration`), provenance/license-known state, section pointers, and sorted artifact records `{path, bytes, sha256}`. `contentHash` is SHA-256 over sorted relative-path/raw-byte pairs for the canonical inputs; `generationHash` is SHA-256 over the schema version, crawl-manifest hash, and sorted `(id, contentHash)` pairs. Repository status code already stores source path/content hash and recomputes SHA-256 to classify missing, changed, and fresh sources. [SOURCE: .opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-151,164-204] [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:87-88] [INFERENCE: applying the repository's byte-stable projection and content-hash freshness contracts to the style bundle boundary]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-6-1-use-one-checked-generated-manifest-over-canonical-captured-artifacts-with-every-",
+      "text": "**Use one checked generated manifest over canonical captured artifacts, with every other index disposable.** Canonical inputs are `styles/_manifest.json` crawl state plus each captured bundle's `DESIGN.md`, `design-tokens.json`, `source.md`, and canonical provenance JSON; CSS/Tailwind remain hydratable artifacts but need only path/hash/byte metadata in the retrieval projection. The extractor already separates lastmod-keyed resumable crawl state from generated style folders, while the advisor establishes a byte-stable generated-manifest/derived-runtime split. The minimal lifecycle is therefore `capture -> build/check manifest -> query candidate cards -> hydrate selected fields`; an optional FTS projection is rebuilt from the manifest generation and is never source of truth. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:17-28,37-49,64-76,91-96] [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:87-88,307-312]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-6-6-validation-should-be-cheap-and-local-network-capture-and-semantic-infrastructure",
+      "text": "**Validation should be cheap and local; network capture and semantic infrastructure are deferred.** Required fixtures are: byte-stable `build --check`; add/change/delete invalidation; pre/post mutation abort; missing/stale FTS fallback; generation-mismatch hydration refusal; deterministic card ordering/tie-breaks; per-mode generic request snapshots; and prior anti-slop evidence rows attached to hydrated references. Run them plus manifest `--check` on PRs touching `styles/**`, the tool, or mode contracts. Run the extractor's browser-backed `--self-test` only for capture/harness changes because it recaptures a live page and can hit 429s. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:78-89,98-106] [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:87-88] [INFERENCE: local deterministic checks cover retrieval integrity; network capture validates a different boundary]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-192`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:8-548`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/prompts/iteration-6.md:6-48`",
+        "`.opencode/skills/sk-design/styles/_harness/README.md:13-112`",
+        "`.opencode/skills/system-skill-advisor/SKILL.md:80-319`",
+        "`.opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/status.ts:114-213`",
+        "Repository grep results for manifest/check/hash/atomic/freshness patterns, including `.opencode/skills/.completion-sentinel-state/README.md:115-119`.",
+        "Bounded read-only Python corpus inventory output at `2026-07-18T10:11:54.313Z`."
+      ]
+    },
+    {
+      "id": "finding-7-3-structural-extraction-quality-is-currently-high-but-confidence-and-version-metad",
+      "text": "**Structural extraction quality is currently high, but confidence and version metadata cannot be treated as uniform proof of fidelity.** Every one of the 1,286 bundles had the five named generated artifacts plus exactly one canonical JSON; all 1,286 token JSON and 1,286 canonical JSON documents parsed. The scan found 20,130 raw color-token confidence values, all `1`, but typography-scale confidence existed for only 1,260 bundles and included values below `1`; one canonical document lacked the otherwise common `capturedAt` path. Every token document exposed extraction metadata and `extractedAt`, but no uniform schema/extractor-version path appeared in the metadata-key inventory. JSON validity and a numeric extractor confidence are therefore eligibility evidence, not proof of visual correctness, accessibility, rights, or currentness. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:24-26,74-75,98-106] [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,297-307] [INFERENCE: recursive metadata-key, required-artifact, and JSON-parse scan over all 1,286 captured bundles]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-7-2-the-corpus-was-still-moving-so-a-directory-count-is-not-a-publishable-generation",
+      "text": "**The corpus was still moving, so a directory count is not a publishable generation identifier.** The first bounded attempt observed 1,282 bundles; the recovered scan less than a minute later observed 1,286 complete bundles, while `_manifest.json` held 1,290 rows: 1,286 `captured` and 4 `pending`. The existing crawler already resets a captured row when sitemap `lastmod` changes. A retrieval build must consequently pin sorted inputs, hashes, and a generation hash, then repeat the fingerprint before publishing; candidate hydration must reject a generation mismatch. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:93-96] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:13-19] [INFERENCE: two read-only bundle inventories and `_manifest.json` status aggregation during this iteration]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-7-5-the-minimum-viable-layer-can-ship-before-the-remaining-relevance-experiment-if-s",
+      "text": "**The minimum viable layer can ship before the remaining relevance experiment if sequencing is strict.** Phase A is the 5–8 day checked manifest/cards/hydration/proof baseline with a bounded live lexical scan and generation mismatch refusal. Phase B runs the labeled holdout against that exact generation and may independently add FTS for measured operational need. Phase C may trial semantics only after the labeled baseline exists. This separates safe utilization from optional acceleration: FTS changes projection cost, and semantics changes ranking, but neither is allowed to weaken eligibility, provenance, byte caps, mode authority, or proof. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:19-31,82] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:496-537] [INFERENCE: dependency ordering preserves the independently useful and reversible baseline while keeping the unresolved relevance question open]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-7-6-the-risk-controls-are-policy-gates-not-ranking-hints-they-apply-before-a-candida",
+      "text": "**The risk controls are policy gates, not ranking hints.** They apply before a candidate can influence output:",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-7-4-the-safest-high-leverage-strategy-is-the-minimum-viable-utilization-layer-accele",
+      "text": "**The safest high-leverage strategy is the minimum viable utilization layer; accelerators rank below its evidence and generation gates.** Benefit scores use `5 = strongest`; cost, burden, and exposure scores use `1 = lowest/best` and `5 = highest/worst`; reversibility uses `5 = easiest to remove`. Day ranges are planning estimates, not observed labor. The 5–8 day baseline and +1–2 day FTS range come directly from iteration 6; the other ranges are lower-confidence inferences from that fixture/tool scope.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-7-1-the-surfaced-provenance-layer-is-complete-and-uniform-but-it-is-not-a-rights-rec",
+      "text": "**The surfaced provenance layer is complete and uniform, but it is not a rights record.** All 1,286 captured bundles in the recovered snapshot had a `source.md` with the same six fields: Refero style URL, original-site URL, north star, preview screenshot URL, style UUID, and capture timestamp. No license-, copyright-, attribution-, terms-, allowed-use-, or reuse-rights field or text appeared in those 1,286 provenance files. This confirms metadata absence only on the surfaced `source.md` layer; it neither proves permission nor proves prohibition, and it is not a legal conclusion. Candidate cards therefore need `licenseStatus: unknown` by default and must preserve the source URL, screenshot URL, UUID, and capture time as provenance rather than represent them as rights evidence. [SOURCE: .opencode/skills/sk-design/styles/_harness/extract-refero.mjs:275-292] [INFERENCE: corpus-wide read-only field and rights-term scan of 1,286 `styles/*/source.md` files at 2026-07-18T10:20:07Z]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/sk-design/styles/_harness/README.md:21-26,37-49,66-75,93-106`",
+        "`.opencode/skills/sk-design/styles/_harness/extract-refero.mjs:119-165,275-307,323-330,357-366`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:16-36,52-62`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-005.md:22-31,45-51`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31,82`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:388-457,496-537`",
+        "Read-only corpus-wide provenance, required-artifact, recursive metadata-key, JSON-validity, and crawl-manifest scans at `2026-07-18T10:19:26Z` and recovered snapshot `2026-07-18T10:20:07Z`."
+      ]
+    },
+    {
+      "id": "finding-8-4-generation-checks-disposable-projection-construction-and-candidate-card-context-",
+      "text": "Generation checks, disposable projection construction, and candidate-card context are sufficiently bounded for a local repository-native baseline. [INFERENCE: current timing and byte measurements] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:410-442]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    },
+    {
+      "id": "finding-8-2-on-the-pooled-human-holdout-deterministic-eligibility-metadata-ranking-beat-gene",
+      "text": "On the pooled human holdout, deterministic eligibility/metadata ranking beat generic BM25 for all three weak modes, with 0.60 versus 0.33 macro P@5. [INFERENCE: holdout table and manually inspected labels]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    },
+    {
+      "id": "finding-8-6-semantic-reranking-is-optional-research-not-baseline-infrastructure-only-measure",
+      "text": "Semantic reranking is optional research, not baseline infrastructure; only measured lift on a larger same-generation human holdout can promote it. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:43-46] [INFERENCE: absent generation-bound semantic evidence]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    },
+    {
+      "id": "finding-8-3-the-apparent-conflict-with-prior-interface-audit-bm25-gains-is-resolved-by-query",
+      "text": "The apparent conflict with prior interface/audit BM25 gains is resolved by query shape: positive lexical discrimination benefits from BM25, while required-facet composition and negation require deterministic gates and mode judgment. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:28-46] [INFERENCE: current motion hard negatives]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    },
+    {
+      "id": "finding-8-5-the-best-balance-is-checked-manifest-deterministic-eligibility-required-facets-s",
+      "text": "The best balance is checked manifest → deterministic eligibility/required facets → same-generation BM25 top K → mode selection → bounded hydration, with a degraded live source scan and refusal on generation mismatch. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:9-31] [INFERENCE: holdout closes the remaining relevance proof]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    },
+    {
+      "id": "finding-8-1-the-pinned-generation-was-stable-and-content-addressed-across-1-290-complete-bun",
+      "text": "The pinned generation was stable and content-addressed across 1,290 complete bundles, so every rank and label refers to identical source bytes. [INFERENCE: read-only generation hash and pre/post stat verification]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-config.json:1-75`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-state.jsonl:1-9`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/deep-research-strategy.md:11-282`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:375-554`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-003.md:1-103`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-006.md:1-82`",
+        "The 27 style documents cited in the holdout table under `.opencode/skills/sk-design/styles/*/DESIGN.md`.",
+        "Read-only in-memory snapshot, deterministic-rank, BM25, candidate-card, and pre/post fingerprint output for generation `sha256:0f70d96a1e640f69eb6fdad6248b67f178926aa65ac61be1eb346646a2ffd8b4`."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-993b34ca6a06",
+      "text": "**Mechanical all-corpus substring labels as the final gold standard:** useful for a bounded smoke test, but zero- and near-universal-positive sets cannot validate ranking quality. Future evaluation should use a small human-labeled holdout with known positives and hard negatives rather than vary this same rubric.",
+      "contentHash": "993b34ca6a06",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7197cbab2ff3",
+      "text": "Claiming semantic improvement without a verified corpus-specific index and labels bound to the same snapshot.",
+      "contentHash": "7197cbab2ff3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3cf6cd53a5b2",
+      "text": "Interpreting the motion 0.00 scores as evidence against either ranker.",
+      "contentHash": "3cf6cd53a5b2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a6bff3c4f388",
+      "text": "Treating the five-query aggregate P@5 as a general corpus relevance score; the foundations and md-generator rubrics were too broad and the motion rubric had no positives.",
+      "contentHash": "a6bff3c4f388",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4d049af46666",
+      "text": "Using BM25 without deterministic mode/provenance/axis eligibility, even though BM25 outperformed metadata on the discriminating lexical queries.",
+      "contentHash": "4d049af46666",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2967217eb83f",
+      "text": "**Top-K-as-palette synthesis:** retrieving several relevant styles and blending their values cannot preserve provenance or a coherent design thesis. Candidate diversity is useful for selection or distinct alternatives, not averaging.",
+      "contentHash": "2967217eb83f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c3984fb87178",
+      "text": "Letting corpus rank override hub routing, user pins, target evidence, mode standards, or live measured extraction.",
+      "contentHash": "c3984fb87178",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-0d8ad4b4dab6",
+      "text": "Treating incidental temporal words in a static style as motion evidence.",
+      "contentHash": "0d8ad4b4dab6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c201c27dc0fd",
+      "text": "Unbounded mixing of top-ranked styles or averaging token values.",
+      "contentHash": "c201c27dc0fd",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-95c328dc8d86",
+      "text": "Using more than one study pair or any corpus synthesis in md-generator's measured phases.",
+      "contentHash": "95c328dc8d86",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-45199094d7fd",
+      "text": "**Similarity or novelty scoring as the anti-slop authority:** a visually unusual trope stack can score as novel while violating its named thesis. Use evidence rows and hard contradictions; similarity may only be diagnostic.",
+      "contentHash": "45199094d7fd",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d15aabdda75a",
+      "text": "A prose-only “be distinctive” reminder with no blocking evidence fields.",
+      "contentHash": "d15aabdda75a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-f44b25f96090",
+      "text": "A source citation alone as proof of coherence; content identity does not establish design consistency.",
+      "contentHash": "f44b25f96090",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a49a11e714f1",
+      "text": "Any numeric distinctiveness score that rewards adding more motifs.",
+      "contentHash": "a49a11e714f1",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5389a559b7bb",
+      "text": "Audit choosing the design thesis or overruling interface/foundations/motion taste decisions.",
+      "contentHash": "5389a559b7bb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-4092a51b5d83",
+      "text": "A committed SQLite/FTS database: it is larger than the compact manifest, environment-dependent, and fully derivable. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:401-417]",
+      "contentHash": "4092a51b5d83",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-bb0e3cd8c72f",
+      "text": "A filesystem watcher or daemon: full bounded inventory is 51.09 ms and prior generation was 171.1 ms, so lifecycle complexity has no measured justification. [INFERENCE: current bounded inventory and prior benchmark in findings-registry.json:383-399]",
+      "contentHash": "bb0e3cd8c72f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-95cda4f6d415",
+      "text": "Do not retry “database as canonical state”; only a disposable generation-bound projection is justified.",
+      "contentHash": "95cda4f6d415",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-b129cfbe0a54",
+      "text": "Keep “semantic ranking before a labeled, generation-bound evaluation” blocked; changing the storage wrapper does not resolve the missing evidence.",
+      "contentHash": "b129cfbe0a54",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3e2674384748",
+      "text": "Mandatory live Refero/browser tests in ordinary PR CI: the extractor already isolates that network-sensitive check behind `--self-test`. [SOURCE: .opencode/skills/sk-design/styles/_harness/README.md:98-106]",
+      "contentHash": "3e2674384748",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fa11e16a81eb",
+      "text": "Per-mode taste rules in the hub or engine: mode-supplied generic requirements preserve the hub's routing boundary. [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:164-190,232-290] [INFERENCE: generic capabilities avoid central taste policy]",
+      "contentHash": "fa11e16a81eb",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-b12c944cac42",
+      "text": "Promote “watcher/daemon-based refresh for this corpus” to exhausted unless future profiling shows build/check latency above the interactive budget.",
+      "contentHash": "b12c944cac42",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3d257dd4f242",
+      "text": "Semantic embeddings in the first build: semantic lift is still unmeasured on a generation-bound labeled holdout. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/findings-registry.json:531-548]",
+      "contentHash": "3d257dd4f242",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-04446ee73352",
+      "text": "Default full-document loading and watcher/service infrastructure: the former externalizes cost into context and copying exposure; the latter has no measured runtime need.",
+      "contentHash": "04446ee73352",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-6d3284f2b82c",
+      "text": "Keep watcher/daemon/service retrieval and pre-evaluation semantic ranking blocked unless future measurements invalidate the current sub-second local lifecycle or demonstrate same-generation relevance lift.",
+      "contentHash": "6d3284f2b82c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-230b349daa03",
+      "text": "Promote default full-corpus prompt loading to an exhausted strategy: its apparent zero build cost hides maximum recurring context cost and bypasses candidate, provenance, hydration, and coherence controls.",
+      "contentHash": "230b349daa03",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c586a62a7982",
+      "text": "Shipping semantic reranking before a labeled, same-generation comparison: storage/versioning work cannot substitute for relevance evidence.",
+      "contentHash": "c586a62a7982",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-95891f2faccd",
+      "text": "Treating absent license fields as either permission or prohibition: the metadata supports only `unknown`, not a legal verdict.",
+      "contentHash": "95891f2faccd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-afe73490b243",
+      "text": "Treating the secondary scan's `malformed_urls` counter as corpus evidence: the URL regex consumed Markdown's `](` separator in duplicated link syntax; direct field coverage was retained, but that counter was discarded.",
+      "contentHash": "afe73490b243",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-bda7d23db7f8",
+      "text": "BM25-only ranking for compositional or negated mode intents; high term frequency can reward an explicit contradiction.",
+      "contentHash": "bda7d23db7f8",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-44b5fd07b9d1",
+      "text": "Metadata-only final ranking; prior interface/audit evidence shows material lexical gains after deterministic eligibility.",
+      "contentHash": "44b5fd07b9d1",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-dc48ff3e1311",
+      "text": "Promote “one ranker can be authoritative across all five modes” to exhausted; the evidence requires deterministic constraints, lexical ranking, and mode-owned judgment.",
+      "contentHash": "dc48ff3e1311",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-1425899c5917",
+      "text": "Promote “semantic reranking required before baseline launch” to exhausted for this decision. Reconsider only as a separately measured same-generation ablation.",
+      "contentHash": "1425899c5917",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-6343bb30704b",
+      "text": "Semantic reranking as a baseline dependency without a same-generation labeled comparison.",
+      "contentHash": "6343bb30704b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9b2db830e623",
+      "text": "Treating pooled recall as corpus-wide recall or this nine-candidate-per-mode pool as a universal gold standard.",
+      "contentHash": "9b2db830e623",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 5,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 147,
+      "other": 18
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

@@ -1,0 +1,152 @@
+You are iteration 5 of 10 in a POST-REMEDIATION RE-REVIEW. Packet 021 ran the original deep-review; packet 022 just landed 5 batches of fixes. Your job is to confirm 022's fixes are clean AND surface any genuinely NEW residue 022 missed or introduced.
+
+CRITICAL — USER CLARIFICATIONS (these REVERSE earlier framings; treat as binding ground truth):
+
+Q1 (User answered A): The actual ship state is EMBEDDINGS_PROVIDER=auto cascading Voyage -> OpenAI -> llama-cpp (auto-selected when GGUF runtime installed) -> hf-local. **llama-cpp auto-select-when-installed IS the intended default behavior**, NOT explicit opt-in. The 014/017 implementation-summary's "explicit opt-in" wording was the BUG; the code is correct. Batch 1 of 022 already fixed the 014 narrative to reflect this.
+
+Q2 (User answered yes): Voyage auto-pick when VOYAGE_API_KEY is set is INTENTIONAL. The Voyage -> OpenAI -> llama-cpp -> hf-local cascade is the canonical resolver order, NOT residue. Do NOT flag the cascade itself.
+
+POST-014 + POST-022 CANONICAL DEFAULTS (treat as ground truth):
+- Auto-cascade resolver order: VOYAGE_API_KEY (Voyage) -> OPENAI_API_KEY (OpenAI) -> llama-cpp (when GGUF runtime installed) -> hf-local
+- Memory MCP hf-local fallback: onnx-community/embeddinggemma-300m-ONNX, dtype=q8, dims=768
+- CocoIndex sentence-transformers default: google/embeddinggemma-300m, dtype=bf16, dims=768
+- Voyage default model: voyage-4, dims=1024
+- OpenAI default model: text-embedding-3-small, dims=1536
+- Sqlite filenames are profile-keyed: context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite (resolved via shared/embeddings/profile.ts:resolveActiveProfileDbPath)
+- ONNX runtime backend: REJECTED (014/014 reverted); onnxruntime-node and onnxruntime-common removed from package.jsons
+
+TRUE RESIDUE (FLAG as P1 if found):
+- Docs or configs claiming a DIFFERENT default for hf-local than EmbeddingGemma (e.g. still naming nomic-ai/nomic-embed-text-v1.5 or all-MiniLM-L6-v2 as the current default)
+- Docs claiming "llama-cpp explicit opt-in" or "hf-local restored as automatic default" (contradicts Q1=A)
+- Marketing claims like "Voyage recommended (8% better than OpenAI)" or "(primary)" attached to voyage-code-3 in default contexts
+- Hardcoded literal "context-index.sqlite" or "context-index__voyage__voyage-4__1024.sqlite" in production code (NOT in vitest temp-dir patterns)
+- onnxruntime-node or onnxruntime-common references in production code (NOT in z_archive)
+- 384-dim claims as a current default (MiniLM-era)
+- Stale test assertions expecting nomic-ai/nomic-embed-text-v1.5 or 384 dims
+
+INTENTIONAL — DO NOT FLAG (these are CORRECT per Q1=A, Q2=yes, or test patterns):
+- The Voyage -> OpenAI -> llama-cpp -> hf-local cascade DESCRIPTION wherever it appears (correct precedence)
+- "Default DB: context-index__llama-cpp__unsloth-embeddinggemma-300m-gguf__768__q8.sqlite" in committed runtime configs (this names the actual default DB when llama-cpp is auto-selected, which is intended)
+- llama-cpp named as "default local provider" or "default when no cloud keys" in docs (correct per Q1=A)
+- factory.ts auto-select-llama-cpp logic (intended behavior)
+- voyage.ts / openai.ts / hf-local.ts provider implementations (intended)
+- Voyage registry entries in factory.ts for model dimensions (legacy-model-lookup support, intended)
+- nomic-ai/nomic-embed-text-v1.5 in shared/embeddings/factory.ts and providers/hf-local.ts model-dim registries (intentional legacy-model-lookup support; user can opt in via HF_EMBEDDINGS_MODEL)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/** migration narrative (historical record)
+- .opencode/specs/**/z_archive/** any content (frozen history)
+- .opencode/specs/**/review/logs/** stderr/stdout files (forensic transcripts of past review runs; not source)
+- .opencode/specs/**/review/iterations/** of OTHER packets (frozen review artifacts)
+- evidence/*.txt or evidence/*.jsonl files (forensic records)
+- vitest temp-dir patterns using "context-index.sqlite" as a fixed test filename (correct test idiom)
+- test_backward_compat.py asserting old model strings (regression safety)
+- doctor_memory.yaml / _routes.yaml provider-detection branches (required for /doctor diagnostics)
+- 021-local-llm-legacy-review/**, 022-local-llm-legacy-remediation/**, 023-post-remediation-re-review/** (own packets, not target)
+
+SCOPE SURFACES (read-only):
+1. Code .ts/.py/.cjs under: shared/, .opencode/skills/, scripts/, mcp_server/, cocoindex_code/
+2. Markdown .md/SKILL.md/README/INSTALL_GUIDE under: .opencode/skills/**, .opencode/install_guides/, repo root
+3. JSON/configs: description.json, graph-metadata.json (per packet), package.json, .utcp_config.json, .claude/mcp.json, root .mcp.json, opencode.json, _routes.yaml, .codex/config.toml, .gemini/settings.json, pyproject.toml, requirements*.txt, .opencode/settings*.json, .claude/settings*.json
+4. Assets/templates/fixtures: assets/config_templates.md, prompt packs, test fixtures, frozen sample text
+5. References: .opencode/skills/**/references/**
+
+REVIEW DIMENSIONS (categorize each finding under exactly one):
+- correctness: dead/unreachable code, incorrect defaults asserted in code, config-drift between committed configs
+- traceability: stale docs/READMEs/SKILL.md/INSTALL_GUIDE/references claiming outdated defaults
+- maintainability: fixture rot, asset rot, orphaned templates, legacy prompt-pack residue
+
+SEVERITY LEVELS:
+- P0 (Blocker): default-asserting code/doc that BREAKS post-014 behavior or actively misleads users into wrong setup
+- P1 (Required): visible/user-facing doc or config asserting a different default than canonical post-014
+- P2 (Suggestion): commented-out residue, obsolete example, redundant fixture
+
+BANNED OPERATIONS (RM-8 Layer 1):
+- NO rm, NO rm -rf, NO git rm, NO mv, NO sed -i, NO rmdir
+- NO writes outside the iteration file at the exact path given below
+- NO commits, NO branch creation
+- READ-ONLY against repo except your iteration file
+If you detect a need to mutate, record it as a "scope_violation" finding instead of executing.
+
+YOUR TASK FOR THIS ITERATION (#5):
+1. Focus dimension for this iter: traceability
+2. Use rg/grep + Read across the scope surfaces. Discriminate residue from intentional historical context.
+3. Produce EXACTLY ONE file: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review/review/iterations/iteration-005.md
+4. The file must be markdown with this structure:
+
+# Iteration 005 — Local-LLM Legacy Hunt
+
+## Focus
+[one paragraph: what you scanned this iteration and why]
+
+## Findings
+
+| ID | Severity | Dimension | File:Line | Evidence (quote) | Disposition | Recommendation |
+|----|----------|-----------|-----------|------------------|-------------|----------------|
+| L-005-001 | P1 | traceability | path/to/file:N | "quoted snippet" | confirmed-residue | [short fix recommendation] |
+| ... | ... | ... | ... | ... | ... | ... |
+
+## Iteration summary
+- Files scanned: N
+- New findings: N (P0=N, P1=N, P2=N)
+- Out-of-scope/historical noted but NOT flagged: N
+- Notes: [anything for the synthesizer]
+
+CONSTRAINTS:
+- 5–15 NEW findings per iter (avoid duplicating prior iterations — see prior findings below)
+- Each finding MUST have a real file:line evidence quote (no hallucinated paths)
+- If you cannot find new genuine residue, output fewer findings + note "saturation" in iteration summary
+- Skip files inside /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review (this review packet itself)
+- Skip files inside .git/, node_modules/, __pycache__/, .venv/, dist/, build/, _sandbox/
+
+WRITE ONLY /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review/review/iterations/iteration-005.md. DO NOT WRITE ANYWHERE ELSE.
+
+
+PRIOR ITERATIONS FINDINGS (avoid duplicate flags — these are already covered):
+
+--- iteration-001.md ---
+| L-001-001 | P1 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/profile.ts:147 | "return 'hf-local';" | confirmed-residue | Align `resolveActiveProfileProvider()` with the canonical resolver by including the llama-cpp availability step before hf-local, or delegate active profile creation to `getStartupEmbeddingProfile()`. |
+| L-001-002 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:51 | "const PROD_DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);" | confirmed-residue | After fixing the shared profile resolver, keep this caller covered with a no-key + llama-cpp-installed regression test so ablation reads the llama-cpp profile DB. |
+| L-001-003 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/run-bm25-baseline.ts:40 | "const PROD_DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);" | confirmed-residue | Route BM25 baseline DB selection through the canonical startup profile so the no-cloud-key default is llama-cpp, not hf-local. |
+| L-001-004 | P1 | correctness | .opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts:35 | "const DB_PATH = resolveActiveProfileDbPath(undefined, DB_DIR);" | confirmed-residue | Use the canonical provider profile for ground-truth mapping; otherwise the mapper targets the hf-local DB while runtime writes llama-cpp. |
+| L-001-005 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts:64 | "return resolveActiveProfileDbPath(undefined, DEFAULT_DB_DIR);" | confirmed-residue | Replace or repair this helper dependency so memory baseline captures the actual active profile DB under the llama-cpp default. |
+| L-001-006 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts:38 | "resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database'))," | confirmed-residue | Make checkpoint creation resolve the same active DB as runtime; a no-key llama-cpp install should checkpoint `context-index__llama-cpp__...sqlite`. |
+| L-001-007 | P1 | correctness | .opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts:37 | "resolveActiveProfileDbPath(undefined, path.resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/database'))," | confirmed-residue | Make checkpoint restore use the canonical active profile path so restores do not silently target hf-local on llama-cpp default installs. |
+| L-001-008 | P1 | correctness | .opencode/skills/system-spec-kit/config/config.jsonc:28 | "\"databasePath\": \".opencode/skills/system-spec-kit/mcp_server/dist/database/context-index.sqlite\"," | confirmed-residue | Remove or rewrite this doc-only config field to describe provider-keyed DB derivation; the fixed literal conflicts with post-014 filenames. |
+| L-001-009 | P1 | correctness | .opencode/skills/system-spec-kit/package-lock.json:17 | "\"onnxruntime-common\": \"^1.21.0\"" | confirmed-residue | Regenerate the lockfile after the package.json removals so the root lock package no longer declares `onnxruntime-common` as a direct dependency. |
+| L-001-010 | P1 | correctness | .opencode/skills/system-spec-kit/package-lock.json:40 | "\"onnxruntime-common\": \"^1.21.0\"," | confirmed-residue | Regenerate the lockfile so the `mcp_server` package lock entry matches `mcp_server/package.json` and drops the direct ONNX runtime dependency. |
+| L-001-011 | P1 | correctness | .opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:301 | "// Detect native module version mismatch (onnxruntime-node, sharp)" | confirmed-residue | Remove the `onnxruntime-node` production-code reference or generalize the message to native module failures without naming the rejected runtime. |
+
+--- iteration-002.md ---
+| L-002-001 | P1 | traceability | PUBLIC_RELEASE.md:25 | "context-index.sqlite" | confirmed-residue | Replace the single-file consumer-project database example with the provider-keyed active profile filename pattern, preferably naming the llama-cpp default DB when no cloud keys are set. |
+| L-002-002 | P1 | traceability | .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:113 | "\| `.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite` \| Default repo-local memory database used by the checked-in configs \|" | confirmed-residue | Rewrite the install guide's runtime-path section to say configs point at `SPEC_KIT_DB_DIR` and runtime derives `context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite`; sweep the repeated sqlite inspection and backup snippets in the same file. |
+| L-002-003 | P1 | traceability | .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:116 | "local fallback stays on `context-index.sqlite`, while Voyage and OpenAI profiles get their own profile-specific filenames" | confirmed-residue | Remove the special-case claim that local fallback stays on the legacy filename; all Memory MCP embedding profiles should be documented as provider-keyed filenames. |
+| L-002-004 | P1 | traceability | .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:212 | "- `onnxruntime-common` (ONNX model runtime)" | confirmed-residue | Update the current dependency list after the ONNX runtime package removal; keep hf-local EmbeddingGemma documentation, but do not claim `onnxruntime-common` is installed directly. |
+| L-002-005 | P1 | traceability | .opencode/skills/system-spec-kit/references/memory/memory_system.md:25 | "\| Database \| `mcp_server/dist/database/context-index.sqlite` \| SQLite with FTS5 + vector embeddings (canonical runtime path; `mcp_server/database/context-index.sqlite` is a compatibility symlink) \|" | confirmed-residue | Replace the canonical database row with the active-profile DB path contract and mention compatibility only as historical/legacy behavior if still needed. |
+| L-002-006 | P1 | traceability | .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/323-doctor-memory-fresh-install.md:10 | "bootstrap the active hf-local default profile database, `mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite`" | confirmed-residue | Rebase the fresh-install doctor scenario on the canonical auto resolver: cloud keys first, otherwise llama-cpp when GGUF runtime is installed, with hf-local only as fallback. |
+| L-002-007 | P1 | traceability | .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/324-doctor-memory-drift-detection.md:39 | "such as `.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite` for the hf-local default." | confirmed-residue | Change the example default database to the llama-cpp profile DB, or phrase hf-local as an explicit fallback/override scenario. |
+| L-002-008 | P1 | traceability | .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/325-doctor-memory-long-pole-rebuild.md:39 | "Use a disposable workspace with a populated active hf-local default profile database and vector DB." | confirmed-residue | Update the long-pole rebuild scenario to use the active resolved profile DB instead of assuming hf-local is the default profile. |
+| L-002-009 | P1 | traceability | .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/327-doctor-memory-disk-pressure.md:43 | "free space is less than `2 * (active hf-local default profile DB bytes + vector DB bytes)`" | confirmed-residue | Make the disk-pressure precondition compute against the active resolved profile DB; keep Voyage as a cloud-key branch, but add llama-cpp as the no-cloud-key default. |
+| L-002-010 | P2 | traceability | .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md:32 | "attempts to load `better-sqlite3` plus optional `onnxruntime-node` and `sharp` installs" | confirmed-residue | Refresh the feature catalog to match the post-022 native-module health surface; remove the rejected `onnxruntime-node` probe from current behavior docs unless the code still intentionally probes it. |
+
+--- iteration-003.md ---
+| L-003-001 | P1 | maintainability | .codex/config.toml:16 | "e.g., context-index__hf-local__onnx-community_embeddinggemma-300m-onnx__768__q8.sqlite" | confirmed-residue | Update the Codex config comment to use the llama-cpp default DB example, or phrase the hf-local filename strictly as fallback/override. |
+| L-003-002 | P1 | maintainability | .codex/config.toml:17 | "for the Setup A default since 014/012" | confirmed-residue | Remove the stale Setup A default claim; post-014 no-cloud-key default is llama-cpp when GGUF runtime is installed. |
+| L-003-003 | P2 | maintainability | .opencode/commands/doctor/update.md:213 | "`mcp_server/database/context-index.sqlite`" | confirmed-residue | Refresh the `/doctor:update` subsystem contract so memory DB examples use the active provider-keyed profile path instead of the legacy singleton filename. |
+| L-003-004 | P2 | maintainability | .opencode/commands/doctor/update.md:268 | "`mcp_server/database/context-index.sqlite` and `mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak`" | confirmed-residue | Update the allowed-target example to describe provider-keyed memory DBs and their matching backup pattern. |
+| L-003-005 | P2 | maintainability | .opencode/commands/doctor/assets/doctor_update.yaml:102 | "- \"mcp_server/database/context-index.sqlite\"  # memory FTS/metadata DB" | confirmed-residue | Replace the hardcoded update workflow target with active-profile DB resolution language or a provider-keyed glob constrained by the canonical resolver. |
+| L-003-006 | P2 | maintainability | .opencode/commands/doctor/assets/doctor_update.yaml:416 | "const db = new Database('.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite');" | confirmed-residue | Make the embedded count snippet resolve the active profile DB before opening SQLite, otherwise the workflow can audit the wrong file. |
+| L-003-007 | P2 | maintainability | .opencode/commands/doctor/assets/doctor_causal-graph.yaml:78 | "- \"mcp_server/database/context-index.sqlite\"  # host DB for causal_edges table" | confirmed-residue | Reword the causal-graph mutation boundary around the active memory DB path instead of the legacy singleton filename. |
+| L-003-008 | P2 | maintainability | .opencode/commands/doctor/assets/doctor_causal-graph.yaml:174 | "context-index.sqlite missing -> STATUS=MISSING with recommendation to run /doctor memory" | confirmed-residue | Change the missing-DB halt condition to check the active resolved profile DB, not `context-index.sqlite`. |
+| L-003-009 | P2 | maintainability | .opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts:609 | "MEMORY_DB_PATH points directly to the active hf-local default profile database" | confirmed-residue | Rebase the manual playbook fixture text on the canonical active profile, with hf-local described only as fallback. |
+| L-003-010 | P2 | maintainability | .opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.js:380 | "MEMORY_DB_PATH points directly to context-index.sqlite for disposable fixtures." | confirmed-residue | Keep the disposable fixture DB if tests need it, but update the generated fixture prose so it does not teach the legacy singleton DB as the memory path. |
+
+--- iteration-004.md ---
+| L-004-001 | P1 | correctness | .gemini/scripts/spec-kit-memory.sh:11 | "EMBEDDINGS_PROVIDER   - auto \| voyage \| openai \| hf-local (default: auto)" | confirmed-residue | Add `llama-cpp` to the launcher contract so Gemini users see the canonical provider set. |
+| L-004-002 | P1 | correctness | .gemini/scripts/spec-kit-memory.sh:32 | "DEFAULT_DB_PATH=\"${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite\"" | confirmed-residue | Stop defaulting `MEMORY_DB_PATH` to the singleton sqlite file; let the server derive the provider-keyed DB from `SPEC_KIT_DB_DIR` or the active profile. |
+| L-004-003 | P1 | correctness | .gemini/scripts/spec-kit-memory.sh:33 | "HF_LOCAL_DB_PATH=\"${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/database/context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite\"" | confirmed-residue | Remove the stale nomic hf-local path or replace it with the current EmbeddingGemma q8 fallback only for explicit hf-local fallback scenarios. |
+| L-004-004 | P1 | correctness | .gemini/scripts/spec-kit-memory.sh:50 | "Fall back to HF-local database when no API keys are available" | confirmed-residue | Change the no-cloud-key branch to respect the canonical llama-cpp-when-installed default before hf-local fallback. |
+| L-004-005 | P1 | correctness | .gemini/scripts/spec-kit-memory.sh:53 | "auto\|hf-local)" | confirmed-residue | Do not route `auto` through the hf-local DB override; reserve hf-local path pinning for explicit `EMBEDDINGS_PROVIDER=hf-local` if any override remains. |
+| L-004-006 | P1 | correctness | .opencode/commands/doctor/scripts/mcp-doctor.sh:200 | "local db_file=\"$db_dir/context-index.sqlite\"" | confirmed-residue | Resolve the active provider profile DB for the database health check instead of checking only the legacy singleton filename. |
+| L-004-007 | P1 | correctness | .opencode/commands/doctor/assets/doctor_memory.yaml:22 | "Memory doctor workflows treat context-index.sqlite and the voyage vector DB as" | confirmed-residue | Rewrite the memory doctor invariant around active provider-keyed profile DBs, including llama-cpp and OpenAI profiles. |
+| L-004-008 | P1 | correctness | .opencode/commands/doctor/assets/doctor_memory.yaml:64 | "- \"mcp_server/database/context-index.sqlite\"  # primary memory FTS/metadata DB" | confirmed-residue | Replace the fixed allowed target with canonical active-profile DB resolution or a constrained provider-keyed target set. |
+| L-004-009 | P1 | correctness | .opencode/commands/doctor/assets/doctor_memory.yaml:145 | "- \"Bash: stat -f '%m %z' database/context-index.sqlite (mtime + size)\"" | confirmed-residue | Make Phase 0 discovery stat the active resolved profile DB rather than the legacy singleton file. |
+

@@ -1,0 +1,147 @@
+{
+  "openQuestions": [
+    "Which process or stale runtime configuration continues writing the underscore-form skill-advisor database path?",
+    "Are the deep-research transactional resume and certificate layers scheduled for production promotion or retirement?",
+    "Which compatibility consumers still require fallback command-body injection?"
+  ],
+  "resolvedQuestions": [
+    "All configured launchers and CLI surfaces inspected are reachable; no launcher is an orphan.",
+    "Shared-payload duplication and code-graph no-op metrics are intentional package-isolation choices.",
+    "Deep-research resume machinery is consumed by shadow parity but not named by the active YAML workflows.",
+    "Compiled-routing rollout files are dynamically loaded and cannot be classified as dead.",
+    "Legacy deep-command bodies remain active in fallback and fix injection modes.",
+    "Agent mirrors are expected packaging surfaces, but their human inventory has drifted.",
+    "Root MCP config mirrors are symlinks rather than independent stale copies.",
+    "The rotated dist-freshness log escapes the current ignore pattern.",
+    "Hidden scan scripts contain non-portable absolute workstation paths.",
+    "No CAT-1 dead file or CAT-2 safely deletable legacy file met the evidence threshold."
+  ],
+  "keyFindings": [
+    {
+      "id": "SOL-01",
+      "severity": "P1",
+      "category": ["CAT-4", "CAT-5"],
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      "summary": "Distinct live skill-advisor SQLite state exists under both mcp-server and mcp_server paths while current config names only the canonical hyphenated path.",
+      "source": "research.md#sol-01-p1-split-skill-advisor-database-authority"
+    },
+    {
+      "id": "SOL-02",
+      "severity": "P2",
+      "category": ["CAT-5", "CAT-6"],
+      "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "summary": "Three launcher programs plus shared supervision total 8,457 lines and intentionally implement different daemon lifecycle policies.",
+      "source": "research.md#sol-02-p2-launcher-supervision-is-large-and-policy-split"
+    },
+    {
+      "id": "SOL-03",
+      "severity": "P2",
+      "category": ["CAT-5", "CAT-6"],
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/shared-payload.ts",
+      "summary": "Three package-local shared-payload implementations total 2,373 lines and are protected by an isolation policy that creates drift cost.",
+      "source": "research.md#sol-03-p2-isolation-policy-duplicates-shared-payload-contracts"
+    },
+    {
+      "id": "SOL-04",
+      "severity": "P2",
+      "category": ["CAT-6"],
+      "path": ".opencode/skills/system-code-graph/mcp-server/lib/shared/metrics-stub.ts",
+      "summary": "Four production modules retain guarded metrics calls behind a provider that always disables emission and implements no-op methods.",
+      "source": "research.md#sol-04-p2-code-graph-metrics-scaffolding-is-permanently-inert"
+    },
+    {
+      "id": "SOL-05",
+      "severity": "P2",
+      "category": ["CAT-6"],
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-resume-adapter/deep-research-resume-adapter.ts",
+      "summary": "A 4,667-line resume and shadow-parity pair composes a parallel transactional architecture not referenced by active research YAML.",
+      "source": "research.md#sol-05-p2-deep-research-maintains-a-parallel-shadow-resume-architecture"
+    },
+    {
+      "id": "SOL-06",
+      "severity": "P2",
+      "category": ["CAT-4", "CAT-5", "CAT-6"],
+      "path": ".opencode/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      "summary": "Generated production routing preserves phase-numbered topology and carries seven distinct hub compilers totaling 3,155 lines.",
+      "source": "research.md#sol-06-p2-compiled-routing-preserves-program-topology-and-seven-compilers"
+    },
+    {
+      "id": "SOL-07",
+      "severity": "P2",
+      "category": ["CAT-5", "CAT-6"],
+      "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      "summary": "Four deep commands retain legacy bodies and compiled contracts, with fix mode concatenating both representations.",
+      "source": "research.md#sol-07-p2-deep-commands-maintain-dual-live-representations"
+    },
+    {
+      "id": "SOL-08",
+      "severity": "P2",
+      "category": ["CAT-5", "CAT-6"],
+      "path": ".opencode/agents/README.txt",
+      "summary": "Thirteen agent definitions are packaged in each of three runtime trees, and the two Markdown inventories already omit deep-alignment.",
+      "source": "research.md#sol-08-p2-agent-mirror-maintenance-has-produced-inventory-drift"
+    },
+    {
+      "id": "SOL-09",
+      "severity": "P2",
+      "category": ["CAT-4"],
+      "path": ".opencode/skills/system-spec-kit/scripts/.scan-one.sh",
+      "summary": "Committed hidden scan scripts embed one developer workstation's absolute repository and spec paths.",
+      "source": "research.md#sol-09-p2-hidden-scan-scripts-are-workstation-pinned"
+    },
+    {
+      "id": "SOL-10",
+      "severity": "P3",
+      "category": ["CAT-3"],
+      "path": ".opencode/logs/dist-freshness-guard.log.1",
+      "summary": "The plugin-generated rotated log is not ignored because the repository ignores *.log but not *.log.*.",
+      "source": "research.md#sol-10-p3-rotated-log-generation-leaks-into-git-status"
+    }
+  ],
+  "ruledOutDirections": [
+    "Delete cli-exit-taxonomy-smoke.cjs merely because it is manual rather than CI-wired.",
+    "Delete check-no-spec-imports.cjs; it is invoked by a GitHub workflow and a foundation test.",
+    "Delete mk-skill-advisor-bridge.mjs; the OpenCode plugin spawns it.",
+    "Delete legacy deep-command bodies; the renderer consumes them in both supported modes.",
+    "Delete numbered compiled routers; the runtime engine loads them dynamically.",
+    "Treat runtime-specific agent differences as corruption.",
+    "Treat root MCP config symlinks as duplicate stale files.",
+    "Treat generated scan inventories as accidental residue without accounting for benchmark and regeneration contracts.",
+    "Treat .rename-engine-disposable as accidental residue."
+  ],
+  "coverageBySources": {
+    "bin-and-launchers": 1,
+    "mcp-server-contracts": 1,
+    "deep-loop-runtime": 2,
+    "compiled-routing": 1,
+    "commands": 1,
+    "agent-mirrors": 1,
+    "root-config-and-state": 1,
+    "residue-and-portability": 1,
+    "adversarial-verification": 1
+  },
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": "UNAVAILABLE",
+  "graphBlockers": ["codeGraphEmpty"],
+  "divergence": {
+    "completed": ["bin", "mcp", "deep-loop", "routing", "commands", "agents", "config", "residue", "literal-verification", "adversarial-synthesis"],
+    "failures": ["Broad ripgrep JSON output exceeded the tool record limit; narrower searches succeeded."],
+    "overrides": ["Convergence remained telemetry-only until maxIterations."],
+    "saturatedDirections": ["CAT-1 literal deadness", "CAT-2 safe deletion", "root config duplication"]
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 3,
+    "resolvedQuestions": 10,
+    "keyFindings": 10,
+    "convergenceScore": 0.88,
+    "averageNewInfoRatio": 0.669,
+    "coverageBySources": {
+      "repository-surfaces": 9,
+      "iteration-artifacts": 10,
+      "literal-search-extension-classes": 12
+    }
+  },
+  "lastUpdated": "2026-07-27T06:44:46Z"
+}

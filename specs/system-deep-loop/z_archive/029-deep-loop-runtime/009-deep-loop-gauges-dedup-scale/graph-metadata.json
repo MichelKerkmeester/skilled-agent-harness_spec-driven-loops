@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/009-deep-loop-gauges-dedup-scale",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/009-deep-loop-gauges-dedup-scale",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop gauge defaults flood test",
+      "progress heartbeat cadence production default",
+      "lag ceiling production default flood test",
+      "fanout dedup scale test false collapse rate",
+      "SPECKIT_FANOUT_NEAR_DUP_DEDUP scale",
+      "deep loop gauge flood test plan",
+      "fanout dedup scale test plan",
+      "progress heartbeat cadence flood harness",
+      "near dup dedup false collapse harness",
+      "gauge default decision plan",
+      "deep loop gauge flood test tasks",
+      "fanout dedup scale test tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "gauge",
+      "defaults",
+      "flood",
+      "test",
+      "progress",
+      "heartbeat",
+      "cadence",
+      "production",
+      "default",
+      "lag"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scripts/gauge-flood-test.mjs",
+      "scripts/dedup-scale-test.mjs",
+      "results/dedup-scale-metrics.json",
+      "results/gauge-flood-metrics.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "gauge-flood-test.mjs",
+        "kind": "file",
+        "path": "scripts/gauge-flood-test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dedup-scale-test.mjs",
+        "kind": "file",
+        "path": "scripts/dedup-scale-test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dedup-scale-metrics.json",
+        "kind": "config",
+        "path": "results/dedup-scale-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "gauge-flood-metrics.json",
+        "kind": "config",
+        "path": "results/gauge-flood-metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Gauge Defaults Flood",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dedup Scale",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Measure",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Performance The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Gauge Flood",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 009 dark-flag validation (research sections 3.5 and 3.6) qualified two graduated deep-loop capabilities",
+    "created_at": "2026-06-24T08:09:54.181Z",
+    "last_save_at": "2026-07-16T16:32:58.218Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a2770bc0f88107bc72fa7ffc32c7e2b95e1f8fefe4a92b78e1c055af7dd02a4c",
+    "source_doc_hashes": {
+      "spec.md": "18004b5a9cdaeb47fbb7b5bb857e3bf15e1251725a18ef2cf54223bc1f16b061",
+      "plan.md": "fda26278e2331ea6c548b633e327eb7a3200edc25a8c87a876e51fe8affe5844",
+      "tasks.md": "147c11e035fd690ed7908cdf4bed36e288b6041298f8746a4824f51d3a080273",
+      "checklist.md": "e098169632421553422c02b0ea93bb85b765340d00047ba5d3fadd3a7e8df425",
+      "implementation-summary.md": "4e99e1ef812cf2b1214aa8c54738abb108e1f5d4ad08c7a7198b2a4802f64add"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

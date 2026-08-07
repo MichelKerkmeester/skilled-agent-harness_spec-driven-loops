@@ -1,0 +1,2992 @@
+{
+  "sessionId": "114-001-dr-2026-05-18",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-rq1-context-budget-engine-answered-iter-1-surveyed-5-patterns-iter-6-deepened-wi",
+      "text": "RQ1 — Context Budget Engine: ANSWERED. Iter 1 surveyed 5 patterns; iter 6 deepened with per-model token-budget defaults table (8 models), truncation-marker syntax, eviction priority ladder, sk-prompt cli_prompt_quality_card.md integration point.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-2-rq2-output-verification-pipeline-answered-iter-2-surveyed-5-patterns-iter-7-deep",
+      "text": "RQ2 — Output Verification Pipeline: ANSWERED. Iter 2 surveyed 5 patterns; iter 7 deepened with drop-in system_instructions for SWE-1.6 output verification, confidence-scoring rubric formula, post-dispatch-validate.ts integration handshake, hard-fail message template.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-3-rq3-per-model-profiles-escalation-answered-iter-3-surveyed-5-patterns-iter-8-dee",
+      "text": "RQ3 — Per-Model Profiles & Escalation: ANSWERED. Iter 3 surveyed 5 patterns; iter 8 deepened with full model-profile.json schema (8 models), escalation decision matrix (downgrade + escalate + quota-aware), registry location verdict (sk-prompt/assets/), bayesian scoring placement verdict (cli-* iter recipes).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-4-rq4-structured-scope-permissions-answered-iter-4-surveyed-5-patterns-iter-9-deep",
+      "text": "RQ4 — Structured Scope/Permissions: ANSWERED. Iter 4 surveyed 5 patterns; iter 9 deepened with permissions-matrix.schema.json, RM-8 counter-example walkthrough (44-file deletion analysis), schema location verdict (cli-opencode/assets/), runtime enforcement design (pre-tool-call hook).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-5-rq5-skill-architecture-synthesis-answered-iter-5-verdict-hybrid-distributed-refe",
+      "text": "RQ5 — Skill Architecture (synthesis): ANSWERED. Iter 5 verdict HYBRID (distributed references + enhances edges, NO new skill); iter 10 cross-cutting AGENTS.md addition + 5 enhances-edges + trigger_phrases + 5-lane scoring simulation. Iter 11 gap audit Outcome B = coverage confirmed (41 artifacts across 10 iters).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-2-9-documents-balanced-brace-checking-for-c-style-languages",
+      "text": "[ ] Documents balanced brace checking for C-style languages",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-documents-compile-commands-for-python-py-compile-js-mjs-node-check-ts-tsx-tsc-no",
+      "text": "[ ] Documents compile commands for Python (py_compile), JS/MJS (node --check), TS/TSX (tsc --noEmit), Rust (rustc), Go (go build), C/C++ (gcc/g++), BoneScript (bone_check)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-documents-decompose-strategy-from-bin-governor-js-167-212-split-file-one-error-a",
+      "text": "[ ] Documents decompose strategy from bin/governor.js:167-212 (split file, one-error-at-a-time, rewrite section)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-27-documents-error-truncation-500-chars",
+      "text": "[ ] Documents error truncation (500 chars)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-25-documents-execute-commands-for-python-python-js-mjs-node-ts-tsx",
+      "text": "[ ] Documents execute commands for Python (python), JS/MJS (node), TS (tsx)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-documents-governoraction-enum-accept-retry-hardfail",
+      "text": "[ ] Documents GovernorAction enum (Accept, Retry, HardFail)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-28-documents-graceful-fallback-for-unsupported-languages-return-passed-true-errors",
+      "text": "[ ] Documents graceful fallback for unsupported languages (return passed=true, errors=[])",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-documents-placeholder-detection-patterns-todo-pass-placeholder-notimplementederr",
+      "text": "[ ] Documents placeholder detection patterns (TODO, ..., pass placeholder, NotImplementedError)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-documents-shouldhardfail-logic-verifier-ms-105-117-all-failed-compile-or-all-cra",
+      "text": "[ ] Documents shouldHardFail logic (verifier.ms:105-117): all failed compile OR all crashed after max retries",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-documents-the-5-stage-pipeline-with-conditional-execution-dependencies",
+      "text": "[ ] Documents the 5-stage pipeline with conditional execution dependencies",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-documents-the-weighted-contribution-formula-compile-35-execute-25-test-25-lint-1",
+      "text": "[ ] Documents the weighted contribution formula (compile 35%, execute 25%, test 25%, lint 10%, auto-fix -5%)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-26-documents-timeout-values-15s-compile-10s-execute",
+      "text": "[ ] Documents timeout values (15s compile, 10s execute)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-documents-truncation-marker-detection-rest-of-more",
+      "text": "[ ] Documents truncation marker detection (\"... rest of\", \"... more\")",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-includes-auto-fix-logic-from-verifier-ms-231-250-missing-newline-tab-to-space-or",
+      "text": "[ ] Includes auto-fix logic from verifier.ms:231-250 (missing newline, tab-to-space, orphan brace handling)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-includes-code-quote-from-verifier-ms-252-260",
+      "text": "[ ] Includes code quote from verifier.ms:252-260",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-includes-code-quote-from-verifier-ms-32-102",
+      "text": "[ ] Includes code quote from verifier.ms:32-102",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-includes-integration-with-event-bus-and-tool-scorer",
+      "text": "[ ] Includes integration with event bus and tool scorer",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-includes-verificationresult-struct-schema-passed-confidence-compiled-executed-te",
+      "text": "[ ] Includes VerificationResult struct schema (passed, confidence, compiled, executed, tests_passed, lint_clean, auto_fixed, errors, hard_fail)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-maps-each-stage-to-our-existing-verification-surfaces-post-dispatch-validate-ts-",
+      "text": "[ ] Maps each stage to our existing verification surfaces (post-dispatch-validate.ts for JSONL validation, sk-code for syntax checks, etc.)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-maps-to-our-existing-anti-hallucination-patterns-shipped-in-packet-113",
+      "text": "[ ] Maps to our existing anti-hallucination patterns (shipped in packet 113)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-maps-to-our-existing-deep-loop-iter-contract-deep-loop-iter-contract-md-stop-con",
+      "text": "[ ] Maps to our existing deep-loop iter contract (deep-loop-iter-contract.md stop conditions)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-29-maps-to-our-existing-sk-code-verification-patterns-language-specific-syntax-chec",
+      "text": "[ ] Maps to our existing sk-code verification patterns (language-specific syntax checks)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-maps-to-our-existing-verification-surfaces-post-dispatch-validate-ts-for-jsonl-v",
+      "text": "[ ] Maps to our existing verification surfaces (post-dispatch-validate.ts for JSONL validation confidence analogs)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-provides-guidance-on-tuning-weights-for-small-vs-large-models",
+      "text": "[ ] Provides guidance on tuning weights for small vs large models",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-reference-doc-exists-at-cli-devin-references-confidence-scoring-md",
+      "text": "[ ] Reference doc exists at `cli-devin/references/confidence-scoring.md`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-reference-doc-exists-at-cli-devin-references-hard-fail-policy-md",
+      "text": "[ ] Reference doc exists at `cli-devin/references/hard-fail-policy.md`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-reference-doc-exists-at-cli-devin-references-language-commands-md",
+      "text": "[ ] Reference doc exists at `cli-devin/references/language-commands.md`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-reference-doc-exists-at-cli-devin-references-verification-pipeline-md",
+      "text": "[ ] Reference doc exists at `cli-devin/references/verification-pipeline.md`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-reference-doc-exists-at-cli-opencode-references-structural-validation-md",
+      "text": "[ ] Reference doc exists at `cli-opencode/references/structural-validation.md`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-auto-detects-providers-from-env-vars-in-preference-order-anthropic-api-key-opena",
+      "text": "Auto-detects providers from env vars in preference order: ANTHROPIC_API_KEY → OPENAI_API_KEY → DEEPSEEK_API_KEY",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-canescalate-checks-enabled-flag-and-session-count-max-per-session-default-5",
+      "text": "canEscalate() checks: enabled flag AND session count < max_per_session (default 5)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-confidence-capped-at-0-95-to-prevent-tools-from-being-permanently-locked-out",
+      "text": "Confidence capped at 0.95 to prevent tools from being permanently locked out",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-default-profile-uses-conservative-assumptions-8192-context-no-tool-calling-text-",
+      "text": "Default profile uses conservative assumptions (8192 context, no tool calling, text format)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-documented-threshold-rationale-3-calls-minimum-sample-size-0-35-30-success-rate-",
+      "text": "Documented threshold rationale: 3 calls = minimum sample size, 0.35 = ~30% success rate after Laplace smoothing",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-documents-template-mapping-to-chat-template-formats",
+      "text": "Documents template mapping to chat template formats",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-implements-3-tier-fallback-custom-built-in-substring-default",
+      "text": "Implements 3-tier fallback: custom → built-in (substring) → default",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-implements-anthropic-openai-format-conversion-for-response-handling",
+      "text": "Implements Anthropic → OpenAI format conversion for response handling",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-implements-laplace-smoothing-formula-successes-1-total-2",
+      "text": "Implements Laplace smoothing formula: (successes + 1) / (total + 2)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-implements-openai-anthropic-format-conversion-for-system-messages-tool-calls-too",
+      "text": "Implements OpenAI → Anthropic format conversion for: system messages, tool calls, tool results",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-implements-two-condition-demotion-total-calls-3-and-confidence-0-35",
+      "text": "Implements two-condition demotion: total_calls >= 3 AND confidence < 0.35",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-includes-escalation-specific-system-prompt-template-expert-coding-assistant-call",
+      "text": "Includes escalation-specific system prompt template (\"expert coding assistant called in as escalation support\")",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-includes-example-profiles-for-3-common-small-models-qwen-2-5-coder-phi-3-mini-de",
+      "text": "Includes example profiles for 3 common small models (Qwen 2.5 Coder, Phi-3 Mini, DeepSeek Coder v2 Lite)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-json-schema-validates-all-12-modelprofile-fields",
+      "text": "JSON schema validates all 12 ModelProfile fields",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-maps-tool-format-enum-to-devin-s-tool-calling-modes",
+      "text": "Maps tool_format enum to Devin's tool-calling modes",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-persists-scores-across-sessions-via-json-file-smallcode-tool-scores-json-in-smal",
+      "text": "Persists scores across sessions via JSON file (`.smallcode/tool_scores.json` in smallcode; adapt to skill tree location)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-provider-config-includes-name-baseurl-envkey-defaultmodel-models-array",
+      "text": "Provider config includes: name, baseUrl, envKey, defaultModel, models array",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-returns-false-for-tools-with-insufficient-data-3-calls-even-if-confidence-is-low",
+      "text": "Returns false for tools with insufficient data (<3 calls) even if confidence is low",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-returns-false-for-unknown-tools-no-data-yet",
+      "text": "Returns false for unknown tools (no data yet)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-returns-structured-modelprofile-object-with-all-12-fields-populated",
+      "text": "Returns structured ModelProfile object with all 12 fields populated",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-returns-true-only-when-both-conditions-are-met-enough-data-poor-performance",
+      "text": "Returns true only when both conditions are met (enough data + poor performance)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-substring-matching-is-bidirectional-modelname-contains-key-key-contains-modelnam",
+      "text": "Substring matching is bidirectional (modelName.contains(key) || key.contains(modelName))",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-tracks-success-failure-per-tool-name-task-type-tuple",
+      "text": "Tracks success/failure per (tool_name, task_type) tuple",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-unknown-tools-0-calls-return-baseline-confidence-0-5-exploration-bonus-0-15-0-65",
+      "text": "Unknown tools (0 calls) return baseline confidence 0.5 + exploration_bonus (0.15) = 0.65",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-5-29-opencode-skills-cli-devin-assets-escalation-providers-json-new-shared-escalation",
+      "text": "`.opencode/skills/cli-devin/assets/escalation-providers.json` (new) — shared escalation provider config",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-28-opencode-skills-cli-devin-assets-model-profiles-json-new-shared-model-profile-re",
+      "text": "`.opencode/skills/cli-devin/assets/model-profiles.json` (new) — shared model profile registry",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-opencode-skills-cli-devin-references-confidence-scoring-md-new",
+      "text": "`.opencode/skills/cli-devin/references/confidence-scoring.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-opencode-skills-cli-devin-references-context-budget-md-new",
+      "text": "`.opencode/skills/cli-devin/references/context-budget.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-22-opencode-skills-cli-devin-references-escalation-engine-md-new-primary-target",
+      "text": "`.opencode/skills/cli-devin/references/escalation-engine.md` (new) — primary target",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-opencode-skills-cli-devin-references-file-summarization-md-new",
+      "text": "`.opencode/skills/cli-devin/references/file-summarization.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-opencode-skills-cli-devin-references-hard-fail-policy-md-new",
+      "text": "`.opencode/skills/cli-devin/references/hard-fail-policy.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-opencode-skills-cli-devin-references-language-commands-md-new",
+      "text": "`.opencode/skills/cli-devin/references/language-commands.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-18-opencode-skills-cli-devin-references-model-profile-schema-md-new-primary-target",
+      "text": "`.opencode/skills/cli-devin/references/model-profile-schema.md` (new) — primary target",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-opencode-skills-cli-devin-references-token-usage-display-md-new",
+      "text": "`.opencode/skills/cli-devin/references/token-usage-display.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-21-opencode-skills-cli-devin-references-tool-demotion-md-new",
+      "text": "`.opencode/skills/cli-devin/references/tool-demotion.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-20-opencode-skills-cli-devin-references-tool-scoring-md-new-primary-target",
+      "text": "`.opencode/skills/cli-devin/references/tool-scoring.md` (new) — primary target",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-opencode-skills-cli-devin-references-truncation-strategy-md-new",
+      "text": "`.opencode/skills/cli-devin/references/truncation-strategy.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-opencode-skills-cli-devin-references-verification-pipeline-md-new",
+      "text": "`.opencode/skills/cli-devin/references/verification-pipeline.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-27-opencode-skills-cli-opencode-assets-permissions-matrix-schema-json-new",
+      "text": "`.opencode/skills/cli-opencode/assets/permissions-matrix.schema.json` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-24-opencode-skills-cli-opencode-assets-tool-allowlist-schema-json-new",
+      "text": "`.opencode/skills/cli-opencode/assets/tool-allowlist-schema.json` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-23-opencode-skills-cli-opencode-assets-tool-category-schema-json-new",
+      "text": "`.opencode/skills/cli-opencode/assets/tool-category-schema.json` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-26-opencode-skills-cli-opencode-assets-write-approval-gate-schema-json-new",
+      "text": "`.opencode/skills/cli-opencode/assets/write-approval-gate-schema.json` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-opencode-skills-cli-opencode-references-context-eviction-md-new",
+      "text": "`.opencode/skills/cli-opencode/references/context-eviction.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-19-opencode-skills-cli-opencode-references-model-detection-md-new",
+      "text": "`.opencode/skills/cli-opencode/references/model-detection.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-opencode-skills-cli-opencode-references-structural-validation-md-new",
+      "text": "`.opencode/skills/cli-opencode/references/structural-validation.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-25-opencode-skills-cli-opencode-references-two-stage-routing-md-new",
+      "text": "`.opencode/skills/cli-opencode/references/two-stage-routing.md` (new)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-30-add-to-cli-devin-skill-md-trigger-phrases-small-model-context-budget-token-optim",
+      "text": "Add to cli-devin SKILL.md `trigger_phrases`: \"small model\", \"context budget\", \"token optimization\", \"SWE-1.6 budget\", \"verification pipeline\", \"model profile\", \"escalation\", \"tool scoring\"",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-32-add-to-cli-devin-graph-metadata-json-enhances-edge-to-cli-opencode-weight-0-3-co",
+      "text": "Add to cli-devin/graph-metadata.json `enhances` edge to cli-opencode (weight 0.3, context: \"shared model profiles and escalation config\")",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-34-add-to-cli-devin-graph-metadata-json-enhances-edge-to-mcp-code-mode-weight-0-3-c",
+      "text": "Add to cli-devin/graph-metadata.json `enhances` edge to mcp-code-mode (weight 0.3, context: \"tool scoring and provider config\")",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-31-add-to-cli-opencode-skill-md-trigger-phrases-permissions-matrix-tool-categories-",
+      "text": "Add to cli-opencode SKILL.md `trigger_phrases`: \"permissions matrix\", \"tool categories\", \"allowlist\", \"write approval\", \"structured permissions\", \"two-stage routing\"",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-33-add-to-cli-opencode-graph-metadata-json-enhances-edge-to-cli-devin-weight-0-3-co",
+      "text": "Add to cli-opencode/graph-metadata.json `enhances` edge to cli-devin (weight 0.3, context: \"verification pipeline patterns\")",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-38-advisor-behavior-surface-cli-devin-as-top-candidate-with-0-70-score-request-oper",
+      "text": "Advisor behavior: Surface cli-devin as top candidate with ~0.70 score, request operator confirmation",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-37-estimated-total-0-65-0-75-below-0-8-threshold",
+      "text": "Estimated total: 0.65-0.75 — below 0.8 threshold",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-fusion-ts-lines-41-42-default-confidence-threshold-0-8",
+      "text": "fusion.ts lines 41-42 (DEFAULT_CONFIDENCE_THRESHOLD = 0.8)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-41-fusion-ts-lines-41-44-default-confidence-threshold-0-8-task-intent-regex",
+      "text": "fusion.ts lines 41-44 (DEFAULT_CONFIDENCE_THRESHOLD = 0.8, TASK_INTENT regex)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-iter-001-md-lines-34-66-104-129-161-cli-devin-references-target-paths",
+      "text": "iter-001.md lines 34, 66, 104, 129, 161 (cli-devin/references/ target paths)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-iter-002-md-lines-86-131-161-257-321-cli-devin-cli-opencode-references-target-pa",
+      "text": "iter-002.md lines 86, 131, 161, 257, 321 (cli-devin/cli-opencode/references/ target paths)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-iter-003-md-lines-37-87-124-150-217-hybrid-placement-options",
+      "text": "iter-003.md lines 37, 87, 124, 150, 217 (hybrid placement options)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-iter-004-md-lines-48-78-128-180-233-cli-opencode-assets-json-schemas",
+      "text": "iter-004.md lines 48, 78, 128, 180, 233 (cli-opencode/assets/ JSON schemas)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-36-lane-scores-explicit-author-0-10-lexical-0-70-swe-1-6-context-budget-derived-gen",
+      "text": "Lane scores: explicit_author (0.10), lexical (0.70 — \"SWE-1.6\" + \"context budget\"), derived_generated (0.65 — \"optimize\" in TASK_INTENT), semantic_shadow (0.60), graph_causal (0.20)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-39-mitigation-once-references-files-exist-and-graph-metadata-enhances-edges-are-add",
+      "text": "Mitigation: Once references/ files exist and graph-metadata `enhances` edges are added, graph_causal lane would boost score to ~0.80-0.85",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-35-prompt-optimize-this-swe-1-6-dispatch-for-small-model-context-budget",
+      "text": "Prompt: \"Optimize this SWE-1.6 dispatch for small-model context budget\"",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-sk-prompt-graph-metadata-json-lines-8-34-enhances-precedent-weight-0-4",
+      "text": "sk-prompt/graph-metadata.json lines 8-34 (enhances precedent, weight 0.4)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-42-sk-prompt-graph-metadata-json-lines-8-34-enhances-precedent",
+      "text": "sk-prompt/graph-metadata.json lines 8-34 (enhances precedent)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-40-system-skill-advisor-skill-md-lines-90-127-smart-routing-pseudocode-multi-tier-f",
+      "text": "system-skill-advisor/SKILL.md lines 90-127 (smart routing pseudocode, multi-tier fallback)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-system-skill-advisor-skill-md-lines-90-127-smart-routing-pseudocode",
+      "text": "system-skill-advisor/SKILL.md lines 90-127 (smart routing pseudocode)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-20-shorter-saves-2-tokens-per-truncation-event-which-matters-only-at-high-trunca",
+      "text": "**20% shorter**: Saves ~2 tokens per truncation event, which matters only at high truncation frequency.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-24-before-clear-checklist-budget-awareness-is-a-pre-composition-consideration-not-a",
+      "text": "**Before CLEAR checklist**: Budget awareness is a pre-composition consideration, not a post-composition validation check, so it precedes the CLEAR 5-Question Pre-Dispatch Checklist.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-context-windows-sourced-from-industry-standard-values-swe-1-6-matches-smallcode-",
+      "text": "**Context Windows**: Sourced from industry-standard values (SWE-1.6 matches smallcode fallback 8192; Kimi k2.6 documented as \"unusually large context\"; others based on typical 2026 frontier model specs).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-25-cross-cli-relevance-this-guidance-applies-to-all-cli-orchestrators-cli-devin-cli",
+      "text": "**Cross-CLI relevance**: This guidance applies to all CLI orchestrators (cli-devin, cli-opencode, cli-codex, cli-gemini), not just cli-devin, making it appropriate for the shared cli_prompt_quality_card.md mirror.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-19-estimate-context-size-for-file-heavy-tasks-count-approximate-tokens-4-chars-1-to",
+      "text": "**Estimate context size**: For file-heavy tasks, count approximate tokens (4 chars ≈ 1 token) and ensure total input fits within the model's 70% budget threshold (see cli-devin/references/context-budget.md for per-model defaults).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-18-event-emission-matches-smallcode-s-eventbus-emit-context-eviction-pattern-contex",
+      "text": "**Event emission**: Matches smallcode's eventBus.emit(\"context.eviction\") pattern (context-card.md:81-83) for telemetry.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-exact-match-to-smallcode-maintains-consistency-with-the-source-pattern-we-re-ext",
+      "text": "**Exact match to smallcode**: Maintains consistency with the source pattern we're extracting from.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-23-follows-existing-guidance-patterns-the-anti-hallucination-wording-paragraph-line",
+      "text": "**Follows existing guidance patterns**: The anti-hallucination wording paragraph (lines 47-50) is already a \"composition guidance\" subsection; budget awareness belongs alongside it.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-less-explicit-budget-limit-is-slightly-terser-than-to-fit-context-budget-but-sti",
+      "text": "**Less explicit**: \"budget limit\" is slightly terser than \"to fit context budget\" but still clear.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-22-leverage-summarization-for-files-exceeding-the-summary-threshold-swe-1-6-200-lin",
+      "text": "**Leverage summarization**: For files exceeding the summary threshold (SWE-1.6: 200 lines, DeepSeek-v4-pro: 300 lines, Kimi-k2.6: 500 lines), summarize rather than include full content.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-max-budget-fixed-at-70-across-all-models-smallcode-default-from-context-card-md-",
+      "text": "**Max Budget %**: Fixed at 70% across all models (smallcode default from context-card.md:9-12). This reserves 30% for system prompt, output tokens, and safety margin.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-20-prioritize-recent-context-when-budget-is-tight-prefer-recent-conversation-turns-",
+      "text": "**Prioritize recent context**: When budget is tight, prefer recent conversation turns and tool results over older history — the eviction ladder drops tool results first, then conversation at 50% rate.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-priority-1-evict-old-tool-results-full-eviction-no-rate-limit",
+      "text": "**Priority 1**: Evict old tool results (full eviction, no rate limit)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-priority-2-evict-old-conversation-at-50-rate-preserves-recent-context",
+      "text": "**Priority 2**: Evict old conversation at 50% rate (preserves recent context)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-17-protected-categories-system-prompt-is-never-evicted-smallcode-doesn-t-explicitly",
+      "text": "**Protected categories**: system_prompt is never evicted (smallcode doesn't explicitly protect it, but our recipes should for safety).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-self-documenting-the-full-phrase-to-fit-context-budget-makes-the-truncation-reas",
+      "text": "**Self-documenting**: The full phrase \"to fit context budget\" makes the truncation reason explicit without additional context.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-summary-threshold-scaled-by-context-window-tier-8k-200-32k-300-128k-500-200k-600",
+      "text": "**Summary Threshold**: Scaled by context window tier (8k→200, 32k→300, 128k→500, 200k→600). Smallcode's default 200 lines is for 8k models; larger models can afford to summarize larger files before truncation.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-tier-1-tool-results-matches-smallcode-exactly-tool-results-are-the-most-evictabl",
+      "text": "**Tier 1 (tool_results)**: Matches smallcode exactly — tool results are the most evictable because they can be re-fetched on demand.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-tier-2-conversation-50-rate-matches-smallcode-exactly-preserves-recent-conversat",
+      "text": "**Tier 2 (conversation, 50% rate)**: Matches smallcode exactly — preserves recent conversation while shedding older turns.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-tier-3-working-memory-25-rate-extension-for-our-system-working-memory-is-more-va",
+      "text": "**Tier 3 (working_memory, 25% rate)**: Extension for our system — working_memory is more valuable than tool results but less than conversation; conservative eviction rate prevents loss of intermediate state.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-token-cost-the-8-word-overhead-is-negligible-relative-to-the-token-savings-from-",
+      "text": "**Token cost**: The ~8-word overhead is negligible relative to the token savings from truncation itself (typically 1,000+ tokens saved).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-tool-result-integration-when-mcp-responses-or-tool-outputs-are-truncated-mid-pro",
+      "text": "**Tool-result integration**: When MCP responses or tool outputs are truncated mid-prompt, the full suffix provides clear signal to both the model and human reviewers.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-use-case-consider-this-only-if-empirical-testing-shows-candidate-a-causes-prompt",
+      "text": "**Use case**: Consider this only if empirical testing shows Candidate A causes prompt-composition pressure on SWE-1.6.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-21-use-truncation-markers-if-you-must-include-large-outputs-that-risk-overflow-appl",
+      "text": "**Use truncation markers**: If you must include large outputs that risk overflow, apply the truncation suffix `[... truncated ${deficit} tokens to fit context budget]` to signal explicit budget management (see cli-devin/references/truncation-strategy.md).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-working-memory-tokens-scaled-by-context-window-tier-8k-500-32k-1-000-128k-2-000-",
+      "text": "**Working Memory Tokens**: Scaled by context window tier (8k→500, 32k→1,000, 128k→2,000, 200k→3,000). Smallcode's default 500 is for 8k models; larger models get proportionally more working memory for intermediate state.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-auto-fixed-anti-hallucination-failures-penalty-for-uncertain-unknown-claims",
+      "text": "- auto_fixed → anti-hallucination-failures (penalty for uncertain/unknown claims)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-compiled-structure-check-required-sections-exist-heading-hierarchy-valid",
+      "text": "- compiled → structure-check (required sections exist, heading hierarchy valid)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-executed-cite-check-every-claim-has-file-line-citation",
+      "text": "- executed → cite-check (every claim has file:line citation)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-lint-clean-citation-accuracy-cited-refs-actually-exist-and-match-content",
+      "text": "- lint_clean → citation-accuracy (cited refs actually exist and match content)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-tests-passed-recommendation-actionability-findings-include-concrete-artifacts",
+      "text": "- tests_passed → recommendation-actionability (findings include concrete artifacts)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-0-70-hard-fail-and-refuse-delivery-catastrophic-failure-in-one-or-more-stages",
+      "text": "**< 0.70**: Hard-fail and refuse delivery (catastrophic failure in one or more stages)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-0-70-0-79-ship-with-warning-minor-citation-gaps-or-1-2-anti-hallucination-flags",
+      "text": "**0.70-0.79**: Ship with warning (minor citation gaps or 1-2 anti-hallucination flags)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-0-80-ship-without-hesitation-all-stages-pass-zero-anti-hallucination-failures",
+      "text": "**0.80+**: Ship without hesitation (all stages pass, zero anti-hallucination failures)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-adapted-from-smallcode-s-verification-pipeline-verifier-ms-252-260",
+      "text": "Adapted from smallcode's verification pipeline (verifier.ms:252-260).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-16-adapted-from-smallcode-s-verification-pipeline-verifier-ms-32-102-with",
+      "text": "Adapted from smallcode's verification pipeline (verifier.ms:32-102) with",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-confidence-scoring-for-swe-1-6-research-iteration-output",
+      "text": "Confidence scoring for SWE-1.6 research iteration output.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-content-quality-validator-for-research-iteration-output",
+      "text": "Content-quality validator for research iteration output.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-14-of-iteration-content-citations-actionability-anti-hallucination-rather",
+      "text": "of iteration content (citations, actionability, anti-hallucination) rather",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-17-research-specific-quality-dimensions",
+      "text": "research-specific quality dimensions.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-13-sibling-to-validateiterationoutputs-this-function-validates-the-quality",
+      "text": "Sibling to validateIterationOutputs — this function validates the QUALITY",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-term-mapping",
+      "text": "Term mapping:",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-15-than-structural-correctness-file-existence-jsonl-shape",
+      "text": "than structural correctness (file existence, JSONL shape).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-24-avoids-duplication-a-top-level-config-file-option-b-would-require-each-cli-skill",
+      "text": "**Avoids duplication**: A top-level config file (Option B) would require each CLI skill to implement its own loading logic and risk drift. By centralizing in sk-prompt/assets, all CLI skills can reference the same source of truth via the existing mirror sync pattern.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-25-consistent-with-existing-patterns-sk-prompt-assets-already-contains-cli-prompt-q",
+      "text": "**Consistent with existing patterns**: sk-prompt/assets already contains cli_prompt_quality_card.md as a shared asset. Adding model-profile.json follows the same pattern and leverages the existing mirror sync infrastructure.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-22-cross-cli-master-location-sk-prompt-is-the-cross-cli-master-for-prompt-quality-g",
+      "text": "**Cross-CLI master location**: sk-prompt is the cross-CLI master for prompt quality guidance (evidenced by cli_prompt_quality_card.md mirror sync to cli-claude-code, cli-codex, cli-gemini at lines 105-111). Placing model-profile.json in sk-prompt/assets makes it a shared asset accessible to all CLI orchestrators.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-32-historical-state-belongs-in-the-skill-tree-tool-success-failure-tracking-require",
+      "text": "**Historical state belongs in the skill tree**: Tool success/failure tracking requires persistent state across sessions. The natural location for this state is within the skill tree (e.g., `.opencode/skills/cli-devin/state/tool_scores.json`), not in the mcp-code-mode layer which is focused on external tool execution.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-37-laplace-smoothing-formula-is-simple-enough-to-inline-the-core-formula-successes-",
+      "text": "**Laplace smoothing formula is simple enough to inline**: The core formula `(successes + 1) / (total + 2)` (iter-003.md:119-121) is trivial to implement in each CLI skill's iter recipe. There's no complexity that warrants a centralized abstraction layer.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-23-logical-cohesion-model-profiles-inform-prompt-construction-decisions-framework-s",
+      "text": "**Logical cohesion**: Model profiles inform prompt construction decisions (framework selection, pre-planning density, bundle-gate strictness). sk-prompt already owns the CLI Prompt Quality Card (cli_prompt_quality_card.md) which documents framework selection and pre-planning density rules (lines 22-51). Model profiles extend this guidance by adding model-specific capability metadata.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-31-mcp-code-mode-is-for-external-api-integration-mcp-code-mode-s-purpose-is-orchest",
+      "text": "**mcp-code-mode is for external API integration**: mcp-code-mode's purpose is orchestrating external MCP tools (ClickUp, Notion, Figma, Chrome DevTools, etc.) through TypeScript execution (SKILL.md lines 1-13). It is not designed for internal routing decisions within the OpenCode skill tree. Placing bayesian scoring there would conflate external API orchestration with internal model selection.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-33-per-call-flexibility-cli-iter-recipes-can-apply-bayesian-scoring-differently-per",
+      "text": "**Per-call flexibility**: cli-* iter recipes can apply bayesian scoring differently per CLI based on their specific model portfolios and use cases. For example:",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-30-per-iteration-model-selection-is-a-cli-orchestrator-concern-bayesian-tool-scorin",
+      "text": "**Per-iteration model selection is a CLI orchestrator concern**: Bayesian tool scoring informs which model to select for a specific dispatch based on historical performance. This is a routing decision made by the CLI skill (cli-devin, cli-opencode, etc.) before composing the dispatch prompt. It is NOT an external MCP tool concern.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-26-skill-tree-hygiene-sk-prompt-is-a-cross-cutting-skill-focused-on-prompt-quality-",
+      "text": "**Skill tree hygiene**: sk-prompt is a cross-cutting skill focused on prompt quality across all CLI orchestrators. Model profiles are fundamentally about understanding model capabilities to construct better prompts — this aligns with sk-prompt's mission.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-38-tool-demotion-thresholds-are-cli-specific-the-demotion-threshold-total-calls-3-a",
+      "text": "**Tool demotion thresholds are CLI-specific**: The demotion threshold `total_calls >= 3 AND confidence < 0.35` (iter-003.md:142-147) may need tuning per CLI based on their model behavior. A centralized layer would make per-CLI tuning harder.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-context-length-max-output-tokens-tool-calling-support-tool-format-supports-json-",
+      "text": "`context_length`, `max_output_tokens`, `tool_calling_support`, `tool_format`, `supports_json_mode`, `supports_system_message`, `chat_template` (was `template`), `strengths`, `weaknesses`, `stop_sequences` — direct from smallcode ModelProfile (iter-003.md:22-35)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-id-provider-free-tier-pro-tier-escalation-target-average-iter-wall-clock-min-ope",
+      "text": "`id`, `provider`, `free_tier`, `pro_tier`, `escalation_target`, `average_iter_wall_clock_min` — OpenCode extensions for routing and escalation",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-28-add-mirror-sync-entries-to-cli-prompt-quality-card-md-mirror-section-for-cli-dev",
+      "text": "Add mirror sync entries to cli_prompt_quality_card.md mirror section for cli-devin, cli-opencode, cli-codex, cli-gemini, cli-claude-code",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-45-adding-internal-model-selection-logic-to-mcp-code-mode-would-violate-its-single-",
+      "text": "Adding internal model selection logic to mcp-code-mode would violate its single responsibility (external API orchestration)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-36-cli-codex-score-gpt-5-5-vs-claude-sonnet-4-7-for-review-tasks",
+      "text": "cli-codex: score gpt-5.5 vs claude-sonnet-4.7 for review tasks",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-34-cli-devin-score-swe-1-6-vs-deepseek-v4-for-coding-tasks",
+      "text": "cli-devin: score SWE-1.6 vs DeepSeek v4 for coding tasks",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-35-cli-opencode-score-deepseek-v4-pro-vs-kimi-k2-6-vs-glm-5-1-for-complex-reasoning",
+      "text": "cli-opencode: score deepseek-v4-pro vs kimi-k2.6 vs glm-5.1 for complex reasoning tasks",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-condition-ambiguous-requirements-detected-and-current-model-in-swe-1-6-qwen3-6",
+      "text": "condition: \"ambiguous_requirements_detected AND current_model in ['swe-1.6', 'qwen3.6']\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-condition-free-tier-exhausted-and-pro-tier-available-and-task-complexity-score-4",
+      "text": "condition: \"free_tier_exhausted AND pro_tier_available AND task_complexity_score >= 4\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-condition-hallucination-risk-score-8-and-current-model-in-deepseek-v4-pro-kimi-k",
+      "text": "condition: \"hallucination_risk_score >= 8 AND current_model in ['deepseek-v4-pro', 'kimi-k2.6', 'glm-5.1']\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-condition-iteration-count-2-and-success-rate-0-and-current-model-profile-escalat",
+      "text": "condition: \"iteration_count >= 2 AND success_rate == 0 AND current_model != profile.escalation_target\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-condition-iteration-count-3-and-success-rate-0-4-and-current-model-tier-frontier",
+      "text": "condition: \"iteration_count >= 3 AND success_rate < 0.4 AND current_model_tier == 'frontier'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-condition-iteration-count-5-and-success-rate-0-3-and-current-model-tier-frontier",
+      "text": "condition: \"iteration_count >= 5 AND success_rate < 0.3 AND current_model_tier != 'frontier'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-condition-quota-remaining-0-1-and-task-complexity-score-5",
+      "text": "condition: \"quota_remaining < 0.1 AND task_complexity_score <= 5\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-condition-quota-remaining-0-1-and-task-complexity-score-6",
+      "text": "condition: \"quota_remaining < 0.1 AND task_complexity_score >= 6\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-condition-quota-remaining-0-2-and-current-model-tier-frontier",
+      "text": "condition: \"quota_remaining < 0.2 AND current_model_tier == 'frontier'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-condition-quota-remaining-0-5-and-task-complexity-score-8",
+      "text": "condition: \"quota_remaining >= 0.5 AND task_complexity_score >= 8\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-17-condition-session-escalation-count-5",
+      "text": "condition: \"session_escalation_count >= 5\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-condition-task-complexity-score-3-and-current-model-tier-frontier",
+      "text": "condition: \"task_complexity_score <= 3 AND current_model_tier == 'frontier'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-condition-task-complexity-score-7-and-current-model-tier-small",
+      "text": "condition: \"task_complexity_score >= 7 AND current_model_tier == 'small'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-condition-task-complexity-score-9-and-current-model-tier-frontier",
+      "text": "condition: \"task_complexity_score >= 9 AND current_model_tier != 'frontier'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-condition-task-is-context-gathering-only-and-current-model-swe-1-6",
+      "text": "condition: \"task_is_context_gathering_only AND current_model != 'swe-1.6'\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-27-create-opencode-skills-sk-prompt-assets-model-profile-json-with-the-schema-from-",
+      "text": "Create `.opencode/skills/sk-prompt/assets/model-profile.json` with the schema from Artifact 1",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-21-downgrade-rules-checked-last-most-conservative",
+      "text": "Downgrade rules — checked last (most conservative)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-39-each-cli-skill-cli-devin-cli-opencode-cli-codex-cli-gemini-cli-claude-code-imple",
+      "text": "Each CLI skill (cli-devin, cli-opencode, cli-codex, cli-gemini, cli-claude-code) implements its own tool scoring state file at `<skill>/state/tool_scores.json`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-40-each-cli-skill-s-iter-recipe-includes-a-bayesian-scoring-helper-function-impleme",
+      "text": "Each CLI skill's iter recipe includes a bayesian_scoring() helper function implementing Laplace smoothing: `confidence = (successes + 1) / (total + 2)`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-41-each-cli-skill-s-iter-recipe-includes-a-should-demote-helper-implementing-the-de",
+      "text": "Each CLI skill's iter recipe includes a should_demote() helper implementing the demotion threshold: `total_calls >= 3 AND confidence < 0.35`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-42-each-cli-skill-s-iter-recipe-loads-tool-scores-json-at-dispatch-start-updates-af",
+      "text": "Each CLI skill's iter recipe loads tool_scores.json at dispatch start, updates after each tool call, and persists before session end",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-20-escalate-rules-checked-third",
+      "text": "Escalate rules — checked third",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-44-mcp-code-mode-s-tool-registry-layer-is-for-discovering-and-calling-external-mcp-",
+      "text": "mcp-code-mode's tool-registry layer is for discovering and calling external MCP tools (MyService, Figma, etc.), not for internal routing decisions",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-19-quota-aware-rules-checked-second",
+      "text": "Quota-aware rules — checked second",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-18-session-gates-max-escalations-cooldown-checked-first",
+      "text": "Session gates (max escalations, cooldown) — checked first",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-46-the-context-reduction-benefit-of-mcp-code-mode-98-reduction-skill-md-line-26-app",
+      "text": "The context reduction benefit of mcp-code-mode (98% reduction: SKILL.md line 26) applies to external MCP tool schemas, not to internal model selection logic which is already small",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-43-the-scoring-state-is-not-shared-across-cli-skills-each-maintains-its-own-histori",
+      "text": "The scoring state is NOT shared across CLI skills — each maintains its own historical data per its model portfolio",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-29-update-each-cli-skill-s-skill-md-to-reference-the-shared-model-profile-json-path",
+      "text": "Update each CLI skill's SKILL.md to reference the shared model-profile.json path for model selection logic",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-39-aligns-with-iter-005-hybrid-verdict-iter-005-places-rq4-patterns-under-cli-openc",
+      "text": "**Aligns with iter-005 HYBRID verdict** — iter-005 places RQ4 patterns under `cli-opencode/assets/` (JSON schemas) as part of the distributed references approach. The permissions-matrix.schema.json is a JSON schema, not a prose reference doc.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-41-co-located-with-runtime-enforcement-logic-the-schema-will-be-consumed-by-cli-ope",
+      "text": "**Co-located with runtime enforcement logic** — The schema will be consumed by cli-opencode's execution layer (pre-tool-call hook). Placing it under `cli-opencode/assets/` keeps the schema and its consumer in the same skill directory, reducing cross-skill coupling.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-30-current-behavior-dangerously-skip-permissions-disables-opencode-s-per-tool-call-",
+      "text": "**Current behavior:** `--dangerously-skip-permissions` disables OpenCode's per-tool-call permission prompts",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-damage-44-files-deleted-across-phases-007-and-008",
+      "text": "**Damage:** 44 files deleted across phases 007 and 008",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-13-decision-deny",
+      "text": "**Decision:** DENY",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-20-decision-deny",
+      "text": "**Decision:** DENY",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-27-decision-deny",
+      "text": "**Decision:** DENY",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-32-decision-deny-flag-does-not-bypass-schema-enforcement",
+      "text": "**Decision:** DENY (flag does not bypass schema enforcement)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-deleted-file-types-spec-docs-spec-md-plan-md-tasks-md-checklist-md-decision-reco",
+      "text": "**Deleted file types:** Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) AND `review/` packet subtrees",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-42-enables-skill-specific-customization-different-cli-skills-cli-devin-cli-opencode",
+      "text": "**Enables skill-specific customization** — Different CLI skills (cli-devin, cli-opencode, cli-codex) may need different permission profiles based on their runtime environments and use cases. Per-skill assets/ directories allow skill-specific schema variants without a monolithic global schema.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-21-enforcement-point-pre-tool-call-hook-would-reject-the-bash-rm-rf-invocation-befo",
+      "text": "**Enforcement point:** Pre-tool-call hook would reject the `bash rm -rf` invocation before execution",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-14-enforcement-point-pre-tool-call-hook-would-reject-the-bash-rm-invocation-before-",
+      "text": "**Enforcement point:** Pre-tool-call hook would reject the `bash rm` invocation before execution",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-28-enforcement-point-pre-tool-call-hook-would-reject-the-bash-tool-invocation-entir",
+      "text": "**Enforcement point:** Pre-tool-call hook would reject the `bash` tool invocation entirely for any command in read-only-corpus scope",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-executor-cli-opencode-opencode-run-with-model-opencode-go-deepseek-v4-pro-varian",
+      "text": "**Executor:** cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-40-extends-cli-devin-agent-config-recipe-pattern-the-cli-devin-assets-agent-config-",
+      "text": "**Extends cli-devin agent-config recipe pattern** — The `cli-devin/assets/agent-config-deep-research-iter.json` file establishes the precedent for structured permissions as JSON assets under CLI skill assets/ directories. The permissions-matrix.schema.json follows this pattern for cli-opencode.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-45-global-opencode-assets-permissions-matrix-schema-json-rejected-because-different",
+      "text": "**Global `.opencode/assets/permissions-matrix.schema.json`** — Rejected because different CLI skills have different permission needs (cli-devin needs SWE-1.6 budget defaults, cli-opencode needs DeepSeek-specific permissions).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-43-graph-metadata-enhances-edges-for-co-surfacing-as-per-iter-005-cross-cutting-con",
+      "text": "**Graph-metadata enhances edges for co-surfacing** — As per iter-005, cross-cutting concerns can be shared via graph-metadata `enhances` edges. The permissions-matrix.schema.json can be referenced by other skills via enhances edges if needed, without requiring a new shared skill.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-46-inline-in-cli-opencode-skill-md-rejected-because-the-schema-is-a-structured-json",
+      "text": "**Inline in cli-opencode SKILL.md** — Rejected because the schema is a structured JSON artifact that should be versioned and validated independently, not embedded in prose documentation.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-56-layer-1-replaced-schema-based-pre-tool-call-hook-enforced-at-runtime-not-instruc",
+      "text": "**Layer 1 (replaced):** Schema-based pre-tool-call hook (enforced at runtime, not instruction-only)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-57-layer-2-retained-git-worktree-isolation-containment-if-enforcer-fails",
+      "text": "**Layer 2 (retained):** Git worktree isolation (containment if enforcer fails)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-58-layer-3-retained-commit-before-dispatch-recovery-baseline-if-enforcer-fails",
+      "text": "**Layer 3 (retained):** Commit-before-dispatch (recovery baseline if enforcer fails)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-59-layer-4-retained-model-selection-risk-based-model-choice-for-multi-phase-work",
+      "text": "**Layer 4 (retained):** Model selection (risk-based model choice for multi-phase work)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-mechanism-deepseek-hallucinated-a-cleanup-action-and-used-bash-tool-to-execute-r",
+      "text": "**Mechanism:** DeepSeek hallucinated a cleanup action and used `bash` tool to execute `rm` commands",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-44-new-shared-skill-sk-permissions-matrix-rejected-per-iter-005-hybrid-verdict-no-n",
+      "text": "**New shared skill `sk-permissions-matrix`** — Rejected per iter-005 HYBRID verdict (no new skill warranted for CLI-specific patterns).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-23-operation-class-exec-via-bash-tool",
+      "text": "**Operation class:** `Exec` (via `bash` tool)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-16-operation-class-write-via-bash-rm-rf-executing-recursive-deletion",
+      "text": "**Operation class:** `Write` (via `bash rm -rf` executing recursive deletion)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-operation-class-write-via-bash-rm-executing-filesystem-deletion",
+      "text": "**Operation class:** `Write` (via `bash rm` executing filesystem deletion)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-15-result-deletions-blocked",
+      "text": "**Result:** Deletions blocked",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-22-result-deletions-blocked",
+      "text": "**Result:** Deletions blocked",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-29-result-deletions-blocked",
+      "text": "**Result:** Deletions blocked",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-33-result-deletions-blocked",
+      "text": "**Result:** Deletions blocked",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-31-schema-enforcement-pre-tool-call-hook-operates-at-the-cli-opencode-execution-lay",
+      "text": "**Schema enforcement:** Pre-tool-call hook operates at the cli-opencode execution layer, independent of permission prompts",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-12-schema-rule-match-rule-7-target-glob-operation-class-write-scope-read-only-corpu",
+      "text": "**Schema rule match:** Rule #7 (`{target_glob: \"**\", operation_class: \"Write\", scope: \"read-only-corpus\", action: \"deny\"}`)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-19-schema-rule-match-rule-7-target-glob-operation-class-write-scope-read-only-corpu",
+      "text": "**Schema rule match:** Rule #7 (`{target_glob: \"**\", operation_class: \"Write\", scope: \"read-only-corpus\", action: \"deny\"}`)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-26-schema-rule-match-rule-8-target-glob-operation-class-exec-scope-read-only-corpus",
+      "text": "**Schema rule match:** Rule #8 (`{target_glob: \"**\", operation_class: \"Exec\", scope: \"read-only-corpus\", action: \"deny\"}`)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-25-scope-read-only-corpus-deep-review-dispatch-scope",
+      "text": "**Scope:** `read-only-corpus` (deep-review dispatch scope)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-scope-read-only-corpus-deep-review-is-contractually-read-only",
+      "text": "**Scope:** `read-only-corpus` (deep-review is contractually read-only)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-18-scope-read-only-corpus-deep-review-is-contractually-read-only",
+      "text": "**Scope:** `read-only-corpus` (deep-review is contractually read-only)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-shipped-mitigation-four-layer-prose-mitigation-layer-1-prompt-hardening-layer-2-",
+      "text": "**Shipped mitigation:** Four-layer prose mitigation (Layer 1: prompt hardening, Layer 2: worktree isolation, Layer 3: commit-before-dispatch, Layer 4: model selection)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-target-glob-packet-root-spec-docs-live-under-packet-root",
+      "text": "**Target glob:** `{packet-root}/**` (spec docs live under packet root)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-17-target-glob-packet-root-review-review-subtree-under-packet-root",
+      "text": "**Target glob:** `{packet-root}/review/**` (review subtree under packet root)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-24-target-glob-rm-operates-on-any-path",
+      "text": "**Target glob:** `**` (rm operates on any path)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-49-cli-devin-assets-agent-config-deep-research-iter-json-1-47-agent-config-recipe-p",
+      "text": "`cli-devin/assets/agent-config-deep-research-iter.json:1-47` — Agent-config recipe pattern precedent",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-66-cli-devin-assets-agent-config-deep-research-iter-json-17-46-agent-config-precede",
+      "text": "`cli-devin/assets/agent-config-deep-research-iter.json:17-46` — Agent-config precedent (structured permissions loaded at dispatch time)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-37-cli-devin-assets-agent-config-deep-research-iter-json-17-46-structured-permissio",
+      "text": "`cli-devin/assets/agent-config-deep-research-iter.json:17-46` — Structured permissions analog (allow/deny arrays with Exec(rm) in deny list)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-34-cli-opencode-references-destructive-scope-violations-md-12-19-rm-8-incident-summ",
+      "text": "`cli-opencode/references/destructive_scope_violations.md:12-19` — RM-8 incident summary (44 files deleted)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-63-cli-opencode-references-destructive-scope-violations-md-122-130-out-of-scope-run",
+      "text": "`cli-opencode/references/destructive_scope_violations.md:122-130` — Out-of-scope runtime scope guard (future work, this iter provides the design)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-35-cli-opencode-references-destructive-scope-violations-md-29-46-root-cause-unrestr",
+      "text": "`cli-opencode/references/destructive_scope_violations.md:29-46` — Root cause (unrestricted filesystem write + instruction-only guard)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-64-cli-opencode-references-destructive-scope-violations-md-29-46-root-cause-analysi",
+      "text": "`cli-opencode/references/destructive_scope_violations.md:29-46` — Root cause analysis (instruction-only guard + --dangerously-skip-permissions = failure)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-36-cli-opencode-references-destructive-scope-violations-md-64-72-layer-1-shipped-mi",
+      "text": "`cli-opencode/references/destructive_scope_violations.md:64-72` — Layer 1 shipped mitigation (prose-based ALLOWED WRITE PATHS and BANNED OPERATIONS)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-65-iter-004-md-138-187-pattern-4-write-operation-approval-gate-pre-execution-gating",
+      "text": "`iter-004.md:138-187` — Pattern 4: Write-Operation Approval Gate (pre-execution gating precedent in smallcode)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-38-iter-004-md-190-240-pattern-5-structured-permissions-matrix-with-acceptance-crit",
+      "text": "`iter-004.md:190-240` — Pattern 5: Structured Permissions Matrix with acceptance criteria (RM-8 counter-example: YES)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-47-iter-005-md-28-44-hybrid-approach-verdict-distributed-references-files-enhances-",
+      "text": "`iter-005.md:28-44` — HYBRID approach verdict (distributed references/ files + enhances edges, no new skill)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-48-iter-005-md-70-76-rq4-target-path-distribution-permissions-matrix-schema-json-un",
+      "text": "`iter-005.md:70-76` — RQ4 target path distribution (permissions-matrix.schema.json under cli-opencode/assets/)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-54-actual-filesystem-changes-via-git-diff-name-only-or-find-newer",
+      "text": "Actual filesystem changes (via `git diff --name-only` or `find ... -newer`)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-aligns-with-iter-005-hybrid-verdict-which-places-rq4-patterns-under-cli-opencode",
+      "text": "Aligns with iter-005 HYBRID verdict which places RQ4 patterns under `cli-opencode/assets/` (JSON schemas)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-co-located-with-cli-opencode-specific-runtime-enforcement-logic",
+      "text": "Co-located with cli-opencode-specific runtime enforcement logic",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-60-console-error-message-to-operator",
+      "text": "Console error message to operator",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-extends-the-cli-opencode-agent-config-recipe-pattern-established-by-cli-devin-s-",
+      "text": "Extends the cli-opencode agent-config recipe pattern established by cli-devin's `agent-config-deep-research-iter.json`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-52-loaded-permissions-matrix-schema-json-from-cli-opencode-assets",
+      "text": "Loaded permissions-matrix.schema.json (from cli-opencode/assets/)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-62-optional-spec-kit-memory-entry-under-scope-violations-finding-type",
+      "text": "Optional: Spec Kit Memory entry under `scope_violations` finding type",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-53-pre-tool-call-allow-decision-from-pre-hook",
+      "text": "Pre-tool-call allow decision (from pre-hook)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-55-scope-context",
+      "text": "Scope context",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-51-scope-context-repo-root-packet-root-state-paths-from-yaml-dispatch-wrapper-or-en",
+      "text": "Scope context: repo-root, packet-root, state-paths (from YAML dispatch wrapper or environment)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-61-structured-log-file-opencode-state-session-id-scope-violations-jsonl",
+      "text": "Structured log file: `.opencode/state/<session-id>/scope-violations.jsonl`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-50-tool-call-metadata-tool-id-operation-class-args-file-paths-command-strings",
+      "text": "Tool call metadata: tool_id, operation_class, args (file paths, command strings)",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-49-allowlist",
+      "text": "\"allowlist\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-64-code-quality-for-small-models",
+      "text": "\"code quality for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-43-confidence-scoring",
+      "text": "\"confidence scoring\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-32-context-budget-engine",
+      "text": "\"context budget engine\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-58-context-eviction",
+      "text": "\"context eviction\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-72-context-reduction-for-small-models",
+      "text": "\"context reduction for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-41-context-truncation-strategy",
+      "text": "\"context truncation strategy\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-36-escalation-provider",
+      "text": "\"escalation provider\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-42-file-summarization",
+      "text": "\"file summarization\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-44-hard-fail-policy",
+      "text": "\"hard fail policy\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-66-language-specific-verification-for-small-models",
+      "text": "\"language-specific verification for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-70-mcp-orchestration-for-small-models",
+      "text": "\"mcp orchestration for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-53-model-detection",
+      "text": "\"model detection\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-35-model-profile",
+      "text": "\"model profile\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-38-output-verification",
+      "text": "\"output verification\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-57-permissions-matrix-schema",
+      "text": "\"permissions matrix schema\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-47-permissions-matrix",
+      "text": "\"permissions matrix\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-61-small-model-code-work",
+      "text": "\"small model code work\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-68-small-model-tool-chain",
+      "text": "\"small model tool chain\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-30-small-model",
+      "text": "\"small model\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-46-small-model",
+      "text": "\"small model\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-40-small-model-dispatch",
+      "text": "\"small-model dispatch\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-63-small-model-verification",
+      "text": "\"small-model verification\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-59-structural-validation",
+      "text": "\"structural validation\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-39-structured-permissions",
+      "text": "\"structured permissions\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-51-structured-permissions",
+      "text": "\"structured permissions\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-65-surface-aware-small-model-routing",
+      "text": "\"surface-aware small-model routing\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-31-swe-1-6-budget",
+      "text": "\"swe-1.6 budget\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-62-swe-1-6-code-standards",
+      "text": "\"swe-1.6 code standards\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-33-token-optimization",
+      "text": "\"token optimization\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-55-tool-allowlist-schema",
+      "text": "\"tool allowlist schema\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-48-tool-categories",
+      "text": "\"tool categories\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-54-tool-category-schema",
+      "text": "\"tool category schema\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-69-tool-scoring-for-small-models",
+      "text": "\"tool scoring for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-37-tool-scoring",
+      "text": "\"tool scoring\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-52-two-stage-routing",
+      "text": "\"two-stage routing\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-71-type-safe-tool-invocation-for-small-models",
+      "text": "\"type-safe tool invocation for small models\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-34-verification-pipeline",
+      "text": "\"verification pipeline\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-56-write-approval-gate-schema",
+      "text": "\"write approval gate schema\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-50-write-approval-gate",
+      "text": "\"write approval gate\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-cli-devin-cli-opencode",
+      "text": "**cli-devin → cli-opencode**",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-18-cli-devin-mcp-code-mode",
+      "text": "**cli-devin → mcp-code-mode**",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-cli-devin-sk-prompt",
+      "text": "**cli-devin → sk-prompt**",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-29-cli-devin-graph-metadata-json-add-to-derived-trigger-phrases-array-line-66-83",
+      "text": "**cli-devin/graph-metadata.json** — Add to `derived.trigger_phrases` array (line 66-83):",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-cli-opencode-cli-devin",
+      "text": "**cli-opencode → cli-devin**",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-45-cli-opencode-graph-metadata-json-add-to-derived-trigger-phrases-array-line-63-77",
+      "text": "**cli-opencode/graph-metadata.json** — Add to `derived.trigger_phrases` array (line 63-77):",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-16-context-string-code-standards-for-small-model-work",
+      "text": "**Context String:** \"code standards for small-model work\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-context-string-prompt-quality-for-small-model-dispatch",
+      "text": "**Context String:** \"prompt quality for small-model dispatch\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-context-string-shared-model-profiles-and-escalation-config",
+      "text": "**Context String:** \"shared model profiles and escalation config\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-20-context-string-tool-scoring-and-provider-config",
+      "text": "**Context String:** \"tool scoring and provider config\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-context-string-verification-pipeline-patterns",
+      "text": "**Context String:** \"verification pipeline patterns\"",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-85-derived-generated-0-60-matches-use-in-task-intent-code-review-in-derived-key-top",
+      "text": "**derived_generated:** 0.60 (matches \"use\" in TASK_INTENT, \"code review\" in derived.key_topics)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-90-derived-generated-0-65-matches-extract-in-task-intent-patterns-in-derived-key-to",
+      "text": "**derived_generated:** 0.65 (matches \"extract\" in TASK_INTENT, \"patterns\" in derived.key_topics)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-80-derived-generated-0-70-matches-dispatch-in-task-intent-regex-read-in-task-intent",
+      "text": "**derived_generated:** 0.70 (matches \"dispatch\" in TASK_INTENT regex, \"read\" in TASK_INTENT, \"file\" in FILE_SAVE_OPERATION context)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-78-explicit-author-0-10-no-explicit-skill-name-in-prompt",
+      "text": "**explicit_author:** 0.10 (no explicit skill name in prompt)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-88-explicit-author-0-10-no-explicit-skill-name-in-prompt",
+      "text": "**explicit_author:** 0.10 (no explicit skill name in prompt)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-83-explicit-author-0-90-explicit-skill-name-cli-devin-in-prompt",
+      "text": "**explicit_author:** 0.90 (explicit skill name \"cli-devin\" in prompt)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-92-graph-causal-0-35-enhances-edges-cli-opencode-cli-devin-at-0-5-cli-devin-cli-ope",
+      "text": "**graph_causal:** 0.35 (enhances edges: cli-opencode→cli-devin at 0.5, cli-devin→cli-opencode at 0.5)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-82-graph-causal-0-40-enhances-edges-cli-devin-sk-prompt-at-0-4-cli-opencode-cli-dev",
+      "text": "**graph_causal:** 0.40 (enhances edges: cli-devin→sk-prompt at 0.4, cli-opencode→cli-devin at 0.5, sk-code→cli-devin at 0.4 — combined boost)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-87-graph-causal-0-45-enhances-edges-cli-devin-sk-prompt-at-0-4-cli-devin-mcp-code-m",
+      "text": "**graph_causal:** 0.45 (enhances edges: cli-devin→sk-prompt at 0.4, cli-devin→mcp-code-mode at 0.3, cli-opencode→cli-devin at 0.5)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-89-lexical-0-70-matches-extract-patterns-deepseek-permissions-matrix-in-cli-opencod",
+      "text": "**lexical:** 0.70 (matches \"extract\", \"patterns\", \"DeepSeek\", \"permissions matrix\" in cli-opencode trigger_phrases and derived.key_topics)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-79-lexical-0-75-matches-dispatch-swe-1-6-context-budget-optimization-in-cli-devin-t",
+      "text": "**lexical:** 0.75 (matches \"dispatch\", \"SWE-1.6\", \"context budget\", \"optimization\" in cli-devin trigger_phrases and derived.key_topics)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-84-lexical-0-80-matches-cli-devin-code-review-output-verification-structured-permis",
+      "text": "**lexical:** 0.80 (matches \"cli-devin\", \"code review\", \"output verification\", \"structured permissions\" in cli-devin trigger_phrases)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-67-mcp-code-mode-graph-metadata-json-add-to-derived-trigger-phrases-array-line-39-5",
+      "text": "**mcp-code-mode/graph-metadata.json** — Add to `derived.trigger_phrases` array (line 39-52):",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-21-rationale-cli-devin-s-tool-scoring-cli-devin-references-tool-scoring-md-and-prov",
+      "text": "**Rationale:** cli-devin's tool scoring (cli-devin/references/tool-scoring.md) and provider config (cli-devin/assets/escalation-providers.json) inform mcp-code-mode's tool-chain orchestration for small models. Small models benefit from pre-scored tool affordances to avoid tool-selection errors. Weight 0.3 reflects moderate dependency — mcp-code-mode can function without this, but small-model dispatch quality improves with tool-scoring context.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-rationale-cli-devin-s-verification-pipeline-cli-devin-references-verification-pi",
+      "text": "**Rationale:** cli-devin's verification pipeline (cli-devin/references/verification-pipeline.md) includes structural validation, confidence scoring, and hard-fail policies that apply equally to cli-opencode's small-model dispatch. Bidirectional edge ensures both CLI orchestrators surface each other's verification patterns on small-model prompts. Weight 0.5 reflects mutual dependency for consistent verification behavior.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-rationale-cli-opencode-dispatches-to-deepseek-v4-pro-default-and-other-small-mod",
+      "text": "**Rationale:** cli-opencode dispatches to DeepSeek-V4-Pro (default) and other small models via the opencode-go provider. It needs access to cli-devin's shared model profiles (cli-devin/assets/model-profiles.json) and escalation provider config (cli-devin/assets/escalation-providers.json) for consistent small-model behavior across both CLI orchestrators. Weight 0.5 reflects strong dependency — cli-opencode cannot implement small-model optimization without these shared assets.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-17-rationale-sk-code-provides-surface-aware-coding-standards-and-verification-recip",
+      "text": "**Rationale:** sk-code provides surface-aware coding standards and verification recipes. When small models perform code work via cli-devin, they need sk-code's patterns for Webflow frontend, OpenCode system code, and language-specific verification. Small models have reduced capacity to infer standards from context, so explicit sk-code guidance via enhances edge improves code quality. Weight 0.4 matches the sk-prompt precedent for utility-to-CLI edges.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-rationale-small-model-dispatch-swe-1-6-deepseek-v4-glm-5-1-kimi-k2-6-requires-st",
+      "text": "**Rationale:** Small-model dispatch (SWE-1.6, DeepSeek-V4, GLM-5.1, Kimi-K2.6) requires structured prompts with explicit framework choice, scoring, and output formatting guidance. sk-prompt's DEPTH thinking and CLEAR scoring frameworks improve small-model prompt quality, which is critical given small models' reduced reasoning capacity. This extends the sk-prompt precedent (already enhances cli-devin at 0.4, line 25-28) with explicit context for small-model use.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-91-semantic-shadow-0-60-semantic-similarity-to-cli-opencode-s-causal-summary-and-pe",
+      "text": "**semantic_shadow:** 0.60 (semantic similarity to cli-opencode's causal_summary and permissions matrix patterns)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-81-semantic-shadow-0-65-semantic-similarity-to-cli-devin-s-causal-summary-devin-cli",
+      "text": "**semantic_shadow:** 0.65 (semantic similarity to cli-devin's causal_summary: \"Devin CLI orchestrator... SWE-1.6 routing\")",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-86-semantic-shadow-0-70-semantic-similarity-to-cli-devin-s-causal-summary-and-verif",
+      "text": "**semantic_shadow:** 0.70 (semantic similarity to cli-devin's causal_summary and verification pipeline patterns)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-sk-code-cli-devin",
+      "text": "**sk-code → cli-devin**",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-60-sk-code-graph-metadata-json-add-to-derived-trigger-phrases-array-line-124-139",
+      "text": "**sk-code/graph-metadata.json** — Add to `derived.trigger_phrases` array (line 124-139):",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-small-model-dispatch-rule-before-dispatching-to-small-models-swe-1-6-deepseek-v4",
+      "text": "**Small-model dispatch rule** — Before dispatching to small models (SWE-1.6, DeepSeek-V4, GLM-5.1, Kimi-K2.6) for autonomous coding work, you MUST consult the skill-specific small-model references for context budget defaults, verification pipeline requirements, and escalation provider config. Skills carry model-specific optimization contracts (e.g., SWE-1.6's 128K context budget with file-summarization truncation, DeepSeek's permissions matrix with two-stage routing) that are not in the binary's `--help` and easy to miss. Any `<binary> --model <X>` invocation for a small model requires the corresponding `references/small-model-*.md` files in context.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-19-weight-0-3",
+      "text": "**Weight:** 0.3",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-weight-0-4",
+      "text": "**Weight:** 0.4",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-15-weight-0-4",
+      "text": "**Weight:** 0.4",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-weight-0-5",
+      "text": "**Weight:** 0.5",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-weight-0-5",
+      "text": "**Weight:** 0.5",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-25-cli-devin-graph-metadata-json-lines-6-33-no-current-enhances-edges",
+      "text": "cli-devin/graph-metadata.json lines 6-33 (no current enhances edges)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-73-cli-devin-graph-metadata-json-lines-66-83-current-trigger-phrases",
+      "text": "cli-devin/graph-metadata.json lines 66-83 (current trigger_phrases)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-26-cli-opencode-graph-metadata-json-lines-6-33-no-current-enhances-edges",
+      "text": "cli-opencode/graph-metadata.json lines 6-33 (no current enhances edges)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-74-cli-opencode-graph-metadata-json-lines-63-77-current-trigger-phrases",
+      "text": "cli-opencode/graph-metadata.json lines 63-77 (current trigger_phrases)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-95-fusion-ts-lines-181-200-buildlanescores-function-5-lane-architecture",
+      "text": "fusion.ts lines 181-200 (buildLaneScores function, 5-lane architecture)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-93-fusion-ts-lines-41-42-default-confidence-threshold-0-8",
+      "text": "fusion.ts lines 41-42 (DEFAULT_CONFIDENCE_THRESHOLD = 0.8)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-94-fusion-ts-lines-43-46-task-intent-file-save-operation-regexes",
+      "text": "fusion.ts lines 43-46 (TASK_INTENT, FILE_SAVE_OPERATION regexes)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-77-iter-001-md-through-iter-004-md-pattern-names-for-trigger-phrase-derivation",
+      "text": "iter-001.md through iter-004.md (pattern names for trigger phrase derivation)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-76-mcp-code-mode-graph-metadata-json-lines-39-52-current-trigger-phrases",
+      "text": "mcp-code-mode/graph-metadata.json lines 39-52 (current trigger_phrases)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-28-mcp-code-mode-graph-metadata-json-lines-6-18-no-current-enhances-edges",
+      "text": "mcp-code-mode/graph-metadata.json lines 6-18 (no current enhances edges)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-75-sk-code-graph-metadata-json-lines-124-139-current-trigger-phrases",
+      "text": "sk-code/graph-metadata.json lines 124-139 (current trigger_phrases)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-27-sk-code-graph-metadata-json-lines-9-20-existing-enhances-edges-to-sk-code-review",
+      "text": "sk-code/graph-metadata.json lines 9-20 (existing enhances edges to sk-code-review and system-spec-kit)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-22-sk-prompt-already-has-enhances-edge-to-cli-devin-at-weight-0-4-line-25-28-we-kee",
+      "text": "sk-prompt already has enhances edge to cli-devin at weight 0.4 (line 25-28) — we keep this and add explicit context \"prompt quality for small-model dispatch\" to the context_string.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-23-sk-prompt-has-enhances-edges-to-cli-claude-code-cli-codex-cli-gemini-cli-opencod",
+      "text": "sk-prompt has enhances edges to cli-claude-code, cli-codex, cli-gemini, cli-opencode at weight 0.4 — we preserve these unchanged as they are not small-model-specific.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-24-sk-prompt-graph-metadata-json-lines-8-34-enhances-precedent-weight-0-4",
+      "text": "sk-prompt/graph-metadata.json lines 8-34 (enhances precedent, weight 0.4)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-96-system-skill-advisor-skill-md-lines-90-127-smart-routing-pseudocode-multi-tier-f",
+      "text": "system-skill-advisor/SKILL.md lines 90-127 (smart routing pseudocode, multi-tier fallback)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-8-coverage-in-iters-1-10-2-stage-routing-is-covered-in-iter-004-pattern-3-category",
+      "text": "**Coverage in iters 1-10:** 2-stage routing IS covered in iter-004 Pattern 3 (category selector + category-based schema injection), but this is framed as a permissions/structured-scope pattern, not as a tool-routing optimization.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-12-coverage-in-iters-1-10-task-decomposition-is-not-explicitly-covered-as-a-standal",
+      "text": "**Coverage in iters 1-10:** Task decomposition is NOT explicitly covered as a standalone pattern, but the hard-fail decompose strategy (iter-002 Pattern 4, iter-007 Artifact 4) includes \"retry with escalated context or decompose the research question\" as a fallback mechanism.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-7-dropped-reason-overlaps-with-mcp-code-mode-2-stage-routing-is-already-implemente",
+      "text": "**Dropped reason:** Overlaps with mcp-code-mode (2-stage routing is already implemented in mcp-code-mode's tool orchestration layer; forgiving JSON parser is a general parsing utility not specific to small-model optimization).",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-11-dropped-reason-overlaps-with-sk-prompt-medium-density-pre-plan-shipped-in-packet",
+      "text": "**Dropped reason:** Overlaps with sk-prompt medium-density pre-plan (shipped in packet 113). Smallcode's planner.ms auto-decomposes complex tasks into sub-tasks; sk-prompt's medium pre-plan requires explicit 3-4 ordered steps with per-step acceptance.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-10-rq-auto-decompose-planner-ms-task-decomposition",
+      "text": "**RQ-auto-decompose — planner.ms task decomposition**",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-6-rq-tool-routing-2-stage-routing-forgiving-json-parser",
+      "text": "**RQ-tool-routing — 2-stage routing + forgiving JSON parser**",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-rq1-context-budget-engine-5-baseline-patterns-4-deepening-artifacts-9-total-arti",
+      "text": "**RQ1 (Context Budget Engine):** 5 baseline patterns + 4 deepening artifacts = 9 total artifacts covering budget allocation, truncation, eviction, summarization, usage tracking, per-model defaults, syntax candidates, eviction ladder, and sk-prompt integration.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-rq2-output-verification-pipeline-5-baseline-patterns-4-deepening-artifacts-9-tot",
+      "text": "**RQ2 (Output Verification Pipeline):** 5 baseline patterns + 4 deepening artifacts = 9 total artifacts covering multi-stage verification, structural validation, confidence scoring, hard-fail gatekeeper, language commands, system instructions, rubric formula, post-dispatch integration, and hard-fail template.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-rq3-per-model-profiles-escalation-5-baseline-patterns-4-deepening-artifacts-9-to",
+      "text": "**RQ3 (Per-Model Profiles & Escalation):** 5 baseline patterns + 4 deepening artifacts = 9 total artifacts covering profile schema, lookup logic, Bayesian scoring, tool demotion, escalation config, JSON schema (8 models), escalation matrix, registry location, and scoring placement.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-rq4-structured-scope-permissions-5-baseline-patterns-4-deepening-artifacts-9-tot",
+      "text": "**RQ4 (Structured Scope/Permissions):** 5 baseline patterns + 4 deepening artifacts = 9 total artifacts covering tool categories, allowlist filtering, 2-stage routing, approval gates, permissions matrix, schema definition, RM-8 counter-example, schema location, and runtime enforcement.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-rq5-skill-architecture-1-synthesis-artifact-4-cross-cutting-artifacts-5-total-ar",
+      "text": "**RQ5 (Skill Architecture):** 1 synthesis artifact + 4 cross-cutting artifacts = 5 total artifacts covering HYBRID verdict, target path distribution, skill-advisor co-surfacing, AGENTS.md addition, enhances-edge wiring, trigger_phrases, and scoring simulation.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-9-verdict-exclude-the-small-model-output-quality-contribution-ratio-is-low-for-thi",
+      "text": "**Verdict:** **EXCLUDE** — The small-model output-quality contribution ratio is LOW for this pattern. 2-stage routing reduces context overhead by 50%+ but is primarily a context-budget optimization (already covered in RQ1), not a verification or permissions pattern. The forgiving JSON parser is a general-purpose utility that applies to all models, not specific to small-model optimization.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-13-verdict-exclude-the-small-model-output-quality-contribution-ratio-is-medium-for-",
+      "text": "**Verdict:** **EXCLUDE** — The small-model output-quality contribution ratio is MEDIUM for this pattern, but it was correctly dropped per ADR-002 because sk-prompt's medium pre-plan (already shipped in packet 113) provides the same function with explicit operator control. Smallcode's auto-decompose is automated but risks over-decomposition; sk-prompt's explicit pre-plan is more predictable for small models.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-14-1-paragraph-overview-of-the-research-purpose-extract-smallcode-patterns-for-smal",
+      "text": "1-paragraph overview of the research purpose (extract smallcode patterns for small-model optimization)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-30-5-lane-scoring-simulation-results-from-iter-010",
+      "text": "5-Lane scoring simulation results (from iter-010)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-29-agents-md-addition-text-from-iter-010",
+      "text": "AGENTS.md addition text (from iter-010)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-21-baseline-patterns-from-iters-1-4-5-patterns-each",
+      "text": "Baseline patterns (from iters 1-4, 5 patterns each)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-24-candidate-target-paths-in-our-skill-tree",
+      "text": "Candidate target paths in our skill tree",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-22-deepening-artifacts-from-iters-6-9-4-artifacts-each",
+      "text": "Deepening artifacts (from iters 6-9, 4 artifacts each)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-19-each-subsection-includes",
+      "text": "Each subsection includes:",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-37-graph-metadata-validation-verify-enhances-edges-are-well-formed-and-bidirectiona",
+      "text": "Graph-metadata validation (verify enhances edges are well-formed and bidirectional where appropriate)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-26-hybrid-verdict-rationale-from-iter-005",
+      "text": "HYBRID verdict rationale (from iter-005)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-43-iteration-cross-reference-which-iteration-surfaced-which-pattern",
+      "text": "Iteration cross-reference (which iteration surfaced which pattern)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-25-ordering-rationale-rq1-rq2-rq3-rq4-follows-the-small-model-dispatch-lifecycle-bu",
+      "text": "Ordering rationale: RQ1 → RQ2 → RQ3 → RQ4 follows the small-model dispatch lifecycle (budget → verify → profile → permissions)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-31-p0-agents-md-graph-metadata-enhances-edges-advisor-routing-prerequisite",
+      "text": "P0: AGENTS.md + graph-metadata enhances edges (advisor routing prerequisite)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-32-p1-cli-devin-references-for-swe-1-6-budget-highest-impact-small-model-optimizati",
+      "text": "P1: cli-devin references/ for SWE-1.6 budget (highest-impact small-model optimization)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-33-p2-cli-opencode-references-for-permissions-matrix-rm-8-prevention",
+      "text": "P2: cli-opencode references/ for permissions matrix (RM-8 prevention)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-34-p3-shared-assets-in-cli-devin-assets-model-profiles-escalation-config",
+      "text": "P3: Shared assets in cli-devin/assets/ (model profiles, escalation config)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-35-p4-sk-prompt-integration-budget-awareness-guidance-in-cli-prompt-quality-card-md",
+      "text": "P4: sk-prompt integration (budget awareness guidance in cli_prompt_quality_card.md)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-17-primary-target-paths-cli-devin-references-cli-opencode-references-cli-devin-asse",
+      "text": "Primary target paths: cli-devin/references/, cli-opencode/references/, cli-devin/assets/, cli-opencode/assets/, AGENTS.md, graph-metadata.json",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-20-research-question-from-deep-research-strategy-md-lines-30-34",
+      "text": "Research question (from deep-research-strategy.md lines 30-34)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-39-rm-8-counter-example-validation-verify-permissions-matrix-schema-json-would-prev",
+      "text": "RM-8 counter-example validation (verify permissions-matrix.schema.json would prevent 44-file deletion)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-41-rq-auto-decompose-exclusion-overlaps-with-sk-prompt-medium-pre-plan-medium-contr",
+      "text": "RQ-auto-decompose exclusion (overlaps with sk-prompt medium pre-plan, MEDIUM contribution ratio but correctly trimmed per ADR-002)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-40-rq-tool-routing-exclusion-overlaps-with-mcp-code-mode-low-contribution-ratio",
+      "text": "RQ-tool-routing exclusion (overlaps with mcp-code-mode, LOW contribution ratio)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-28-skill-advisor-co-surfacing-mechanism-enhances-edges-trigger-phrases",
+      "text": "Skill-advisor co-surfacing mechanism (enhances edges + trigger_phrases)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-36-skill-advisor-routing-tests-verify-enhances-edges-trigger-phrases-clear-0-8-thre",
+      "text": "Skill-advisor routing tests (verify enhances edges + trigger_phrases clear 0.8 threshold)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-23-smallcode-provenance-citations-file-line-references",
+      "text": "Smallcode provenance citations (file:line references)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-42-smallcode-source-file-index-src-context-budget-ms-src-governor-verifier-ms-src-m",
+      "text": "Smallcode source file index (src/context/budget.ms, src/governor/verifier.ms, src/model/profiles.ms, etc.)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-18-subsection-for-each-rq-rq1-context-budget-engine-rq2-output-verification-pipelin",
+      "text": "Subsection for each RQ (RQ1: Context Budget Engine, RQ2: Output Verification Pipeline, RQ3: Per-Model Profiles & Escalation, RQ4: Structured Scope/Permissions)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-44-target-path-cross-reference-which-skill-receives-which-pattern",
+      "text": "Target path cross-reference (which skill receives which pattern)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-27-target-path-distribution-table-20-patterns-mapped-to-cli-devin-cli-opencode",
+      "text": "Target path distribution table (20 patterns mapped to cli-devin/cli-opencode)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-16-total-artifacts-41-patterns-artifacts-across-5-rqs",
+      "text": "Total artifacts: 41 patterns/artifacts across 5 RQs",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-38-trigger-phrase-matching-tests-verify-small-model-keywords-surface-correct-skills",
+      "text": "Trigger_phrase matching tests (verify small-model keywords surface correct skills)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-15-verdict-summary-hybrid-architecture-distributed-references-enhances-edges-no-new",
+      "text": "Verdict summary: HYBRID architecture (distributed references + enhances edges, no new skill)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-rq1-artifact-1a-per-model-defaults-table-research-md-lines-135-151-matches-iter-",
+      "text": "**RQ1 Artifact 1a (Per-Model Defaults Table)** — research.md lines 135-151 ✓ matches iter-006.md lines 18-39",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-rq1-pattern-1-percentage-based-budget-allocation-research-md-lines-29-45-matches",
+      "text": "**RQ1 Pattern 1 (Percentage-Based Budget Allocation)** — research.md lines 29-45 ✓ matches iter-001.md lines 17-38",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-rq11-gap-audit-coverage-research-md-lines-5-7-matches-iter-011-md-lines-1-6",
+      "text": "**RQ11 Gap Audit Coverage** — research.md lines 5-7 ✓ matches iter-011.md lines 1-6",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-7-rq2-artifact-2a-drop-in-system-instructions-research-md-lines-332-348-matches-it",
+      "text": "**RQ2 Artifact 2a (Drop-in System Instructions)** — research.md lines 332-348 ✓ matches iter-007.md lines 21-38",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-rq2-pattern-3-calibrated-confidence-scoring-research-md-lines-264-282-matches-it",
+      "text": "**RQ2 Pattern 3 (Calibrated Confidence Scoring)** — research.md lines 264-282 ✓ matches iter-002.md lines 148-177",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-rq3-pattern-1-per-model-profile-schema-research-md-lines-416-432-matches-iter-00",
+      "text": "**RQ3 Pattern 1 (Per-Model Profile Schema)** — research.md lines 416-432 ✓ matches iter-003.md lines 17-46",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-rq4-pattern-2-allowlist-filtering-research-md-lines-626-639-matches-iter-004-md-",
+      "text": "**RQ4 Pattern 2 (Allowlist Filtering)** — research.md lines 626-639 ✓ matches iter-004.md lines 58-80",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-rq5-architecture-verdict-hybrid-research-md-lines-788-792-matches-iter-005-md-li",
+      "text": "**RQ5 Architecture Verdict (HYBRID)** — research.md lines 788-792 ✓ matches iter-005.md lines 28-34",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-9-002-cli-devin-context-budget-6-artifacts-patterns-1-2-4-5-artifacts-1a-1b",
+      "text": "002-cli-devin-context-budget: 6 artifacts (Patterns 1,2,4,5 + Artifacts 1a,1b)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-10-003-cli-opencode-eviction-2-artifacts-pattern-3-artifact-1c",
+      "text": "003-cli-opencode-eviction: 2 artifacts (Pattern 3 + Artifact 1c)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-11-004-sk-prompt-budget-awareness-1-artifact-artifact-1d",
+      "text": "004-sk-prompt-budget-awareness: 1 artifact (Artifact 1d)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-12-005-cli-devin-verification-pipeline-5-artifacts-patterns-1-5",
+      "text": "005-cli-devin-verification-pipeline: 5 artifacts (Patterns 1-5)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-13-006-cli-devin-output-verification-4-artifacts-artifacts-2a-2d",
+      "text": "006-cli-devin-output-verification: 4 artifacts (Artifacts 2a-2d)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-14-007-sk-prompt-model-profiles-4-artifacts-patterns-1-2-artifacts-3a-3c",
+      "text": "007-sk-prompt-model-profiles: 4 artifacts (Patterns 1,2 + Artifacts 3a,3c)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-15-008-cli-devin-tool-scoring-3-artifacts-patterns-3-4-artifact-3d",
+      "text": "008-cli-devin-tool-scoring: 3 artifacts (Patterns 3,4 + Artifact 3d)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-16-009-cli-devin-escalation-engine-2-artifacts-pattern-5-artifact-3b",
+      "text": "009-cli-devin-escalation-engine: 2 artifacts (Pattern 5 + Artifact 3b)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-17-010-cli-opencode-permissions-matrix-8-artifacts-patterns-1-2-4-5-artifacts-4a-4d",
+      "text": "010-cli-opencode-permissions-matrix: 8 artifacts (Patterns 1,2,4,5 + Artifacts 4a-4d)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-18-011-cli-opencode-two-stage-routing-1-artifact-pattern-3",
+      "text": "011-cli-opencode-two-stage-routing: 1 artifact (Pattern 3)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-19-012-rq5-cross-cutting-5-artifacts-hybrid-verdict-enhances-edges-trigger-phrases-",
+      "text": "012-rq5-cross-cutting: 5 artifacts (HYBRID verdict, enhances edges, trigger_phrases, AGENTS.md, scoring simulation)",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-24-integrates-with-cli-devin-s-prompt-file-generation-to-inject-budget-aware-contex",
+      "text": "Integrates with cli-devin's prompt-file generation to inject budget-aware context sizing hints",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-20-line-899-002-cli-devin-context-budget-rq1-9-artifacts-should-be-rq1-6-artifacts",
+      "text": "Line 899: `002-cli-devin-context-budget | RQ1 (9 artifacts)` → Should be `RQ1 (6 artifacts)`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-21-line-907-010-cli-opencode-permissions-matrix-rq4-9-artifacts-should-be-rq4-8-art",
+      "text": "Line 907: `010-cli-opencode-permissions-matrix | RQ4 (9 artifacts)` → Should be `RQ4 (8 artifacts)`",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-23-returns-total-budget-tokens-with-per-category-allocation-breakdown",
+      "text": "Returns total budget tokens with per-category allocation breakdown",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-22-typescript-javascript-budget-calculator-accepting-model-context-length-and-max-b",
+      "text": "TypeScript/JavaScript budget calculator accepting model context length and max_budget_pct parameters",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-25-would-this-have-prevented-44-file-deletions-yes-if-bash-was-in-the-denied-tools-",
+      "text": "Would this have prevented 44 file deletions? YES — if bash was in the denied_tools list for read-only dispatches, the tool would be filtered out before execution",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-25-context-budget",
+      "text": "\"context budget\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-28-escalation",
+      "text": "\"escalation\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-27-model-profile",
+      "text": "\"model profile\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-29-permissions-matrix",
+      "text": "\"permissions matrix\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-22-small-model",
+      "text": "\"small model\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-31-small-model-dispatch",
+      "text": "\"small-model dispatch\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-23-small-model-logic",
+      "text": "\"small-model logic\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-24-swe-1-6-optimization",
+      "text": "\"swe-1.6 optimization\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-30-tool-scoring",
+      "text": "\"tool scoring\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-26-verification-pipeline",
+      "text": "\"verification pipeline\"",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-14-agents-md-rule-addition-iter-010-lines-28-40-a-sibling-rule-to-the-cli-dispatch-",
+      "text": "**AGENTS.md rule addition** (iter-010 lines 28-40): A sibling rule to the CLI dispatch rule requiring consultation of skill-specific small-model references before dispatching to small models.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-bayesian-tool-scoring-with-laplace-smoothing-rq3-pattern-3-the-bayesian-tool-sco",
+      "text": "**Bayesian Tool Scoring with Laplace Smoothing (RQ3 Pattern 3)**: The Bayesian tool scorer (smallcode src/governor/tool_scorer.ms) is a sophisticated algorithm that applies equally to all small models regardless of CLI orchestrator. As a centralized reference in `sk-small-model/references/bayesian-tool-scoring.md`, it provides a single implementation reference. Distributed across cli-devin/references/ and cli-opencode/references/, it risks divergent interpretations or duplicate implementation work.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-15-enhances-edge-co-surfacing-iter-010-lines-44-86-when-cli-devin-is-dispatched-for",
+      "text": "**Enhances-edge co-surfacing** (iter-010 lines 44-86): When cli-devin is dispatched for SWE-1.6, the advisor's graph_causal lane boosts cli-opencode (via bidirectional enhances at 0.5) and sk-prompt (via enhances at 0.4), surfacing the relevant small-model patterns as co-skills.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-escalation-decision-matrix-rq3-artifact-2b-a-unified-escalation-matrix-defining-",
+      "text": "**Escalation Decision Matrix (RQ3 Artifact 2b)**: A unified escalation matrix defining when_to_downgrade, when_to_escalate, and quota_aware rules across all small models. This matrix applies equally to cli-devin and cli-opencode dispatches. As a centralized asset in `sk-small-model/assets/escalation-matrix.json`, it ensures consistent escalation behavior. Distributed across cli-devin/assets/ and cli-opencode/assets/, it risks inconsistent escalation policies.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-17-minimizes-maintenance-burden-the-sentinel-skill-holds-minimal-state-enhances-edg",
+      "text": "**Minimizes maintenance burden:** The sentinel skill holds minimal state (enhances edges to cli-devin/cli-opencode, AGENTS.md rule pointer, 1-2 paragraph philosophy). All actual patterns (context budget, verification pipeline, model profiles, permissions matrix) stay distributed in cli-devin/references/, cli-opencode/references/, and shared assets in cli-devin/assets/.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-model-profile-registry-rq3-artifact-1a-a-unified-model-profile-json-schema-cover",
+      "text": "**Model Profile Registry (RQ3 Artifact 1a)**: A unified model-profile.json schema covering 8 models (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, gpt-5.5, Claude Opus, Claude Sonnet) with context windows, tool calling support, and escalation thresholds. As a centralized asset in `sk-small-model/assets/`, this provides a single source of truth for model-specific defaults. Distributed across cli-devin/assets/ and cli-opencode/assets/, it risks divergence (e.g., cli-devin adds a new model profile that cli-opencode doesn't mirror).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-18-preserves-cli-specific-integration-patterns-live-where-they-re-used-with-concret",
+      "text": "**Preserves CLI-specific integration:** Patterns live where they're used, with concrete integration contracts per skill. The sentinel skill does not duplicate CLI-specific logic.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-19-reduces-discovery-friction-the-sentinel-skill-provides-a-single-routing-target-w",
+      "text": "**Reduces discovery friction:** The sentinel skill provides a single routing target with 10-15 trigger_phrases. Enhances edges from the sentinel skill to cli-devin/cli-opencode ensure co-surfacing of distributed patterns.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-16-satisfies-user-goal-a-sentinel-sk-small-model-skill-provides-a-single-unambiguou",
+      "text": "**Satisfies user goal:** A sentinel `sk-small-model` skill provides a single, unambiguous skill to \"check\" for small-model logic. The advisor will surface this skill on any small-model dispatch, meeting the user's mental model.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-32-small-model-dispatch-rule-before-dispatching-to-small-models-swe-1-6-deepseek-v4",
+      "text": "**Small-model dispatch rule** — Before dispatching to small models (SWE-1.6, DeepSeek-V4, GLM-5.1, Kimi-K2.6) for autonomous coding work, you MUST consult the skill-specific small-model references for context budget defaults, verification pipeline requirements, and escalation provider config. Skills carry model-specific optimization contracts (e.g., SWE-1.6's 128K context budget with file-summarization truncation, DeepSeek's permissions matrix with two-stage routing) that are not in the binary's `--help` and easy to miss. Any `<binary> --model <X>` invocation for a small model requires the corresponding `references/small-model-*.md` files in context.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-43-opencode-skills-sk-small-model-graph-metadata-json-new",
+      "text": "`.opencode/skills/sk-small-model/graph-metadata.json` (new)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-44-opencode-skills-sk-small-model-references-pattern-index-md-new",
+      "text": "`.opencode/skills/sk-small-model/references/pattern-index.md` (new)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-42-opencode-skills-sk-small-model-skill-md-new",
+      "text": "`.opencode/skills/sk-small-model/SKILL.md` (new)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-cli-devin-needs-swe-1-6-budget-defaults-128k-context-window-file-summarization-t",
+      "text": "cli-devin needs SWE-1.6 budget defaults (128K context window, file-summarization truncation at 200 lines)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-6-cli-devin-s-deep-loop-iter-contract-differs-from-cli-opencode-s-opencode-go-prov",
+      "text": "cli-devin's deep-loop iter contract differs from cli-opencode's opencode-go provider contract",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-10-cli-devin-mcp-code-mode-at-0-3-tool-scoring-and-provider-config",
+      "text": "cli-devin→mcp-code-mode at 0.3 (tool scoring and provider config)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-8-cli-devin-sk-prompt-at-0-4-prompt-quality-for-small-model-dispatch",
+      "text": "cli-devin→sk-prompt at 0.4 (prompt quality for small-model dispatch)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-7-cli-devin-cli-opencode-bidirectional-enhances-at-0-5-shared-model-profiles-and-v",
+      "text": "cli-devin↔cli-opencode bidirectional enhances at 0.5 (shared model profiles and verification pipeline)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-cli-opencode-needs-deepseek-specific-permissions-matrix-two-stage-routing-write-",
+      "text": "cli-opencode needs DeepSeek-specific permissions matrix (two-stage routing, write approval gate)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-11-context-budget-patterns-live-in-cli-devin-references-because-cli-devin-owns-swe-",
+      "text": "Context budget patterns live in cli-devin/references/ because cli-devin owns SWE-1.6 dispatch",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-38-enhances-edges-from-sentinel-skill-to-cli-devin-cli-opencode",
+      "text": "Enhances edges from sentinel skill to cli-devin/cli-opencode",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-41-integration-with-agents-md-rule",
+      "text": "Integration with AGENTS.md rule",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-46-iter-005-lines-28-44-original-hybrid-verdict",
+      "text": "iter-005 lines 28-44 (original HYBRID verdict)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-47-iter-010-lines-28-40-agents-md-addition",
+      "text": "iter-010 lines 28-40 (AGENTS.md addition)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-48-iter-010-lines-44-86-enhances-edge-wiring",
+      "text": "iter-010 lines 44-86 (enhances-edge wiring)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-13-model-profiles-live-in-cli-devin-assets-as-a-shared-asset-that-both-cli-skills-r",
+      "text": "Model profiles live in cli-devin/assets/ as a shared asset that both CLI skills reference via enhances edges",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-40-pattern-index-content",
+      "text": "Pattern index content",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-12-permissions-matrix-patterns-live-in-cli-opencode-references-because-cli-opencode",
+      "text": "Permissions matrix patterns live in cli-opencode/references/ because cli-opencode owns DeepSeek dispatch",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-33-rq1-patterns-cli-devin-references-context-budget-md-truncation-strategy-md-file-",
+      "text": "RQ1 patterns → cli-devin/references/context-budget.md, truncation-strategy.md, file-summarization.md, token-usage-display.md; cli-opencode/references/context-eviction.md",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-34-rq2-patterns-cli-devin-references-verification-pipeline-md-confidence-scoring-md",
+      "text": "RQ2 patterns → cli-devin/references/verification-pipeline.md, confidence-scoring.md, hard-fail-policy.md, language-commands.md; cli-opencode/references/structural-validation.md",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-35-rq3-patterns-cli-devin-references-model-profile-schema-md-tool-scoring-md-tool-d",
+      "text": "RQ3 patterns → cli-devin/references/model-profile-schema.md, tool-scoring.md, tool-demotion.md, escalation-engine.md; cli-opencode/references/model-detection.md; cli-devin/assets/model-profiles.json, escalation-providers.json",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-36-rq4-patterns-cli-opencode-assets-tool-category-schema-json-tool-allowlist-schema",
+      "text": "RQ4 patterns → cli-opencode/assets/tool-category-schema.json, tool-allowlist-schema.json, write-approval-gate-schema.json, permissions-matrix.schema.json; cli-opencode/references/two-stage-routing.md",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-37-sentinel-skill-structure-skill-md-graph-metadata-json-pattern-index-md",
+      "text": "Sentinel skill structure (SKILL.md, graph-metadata.json, pattern-index.md)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-9-sk-code-cli-devin-at-0-4-code-standards-for-small-model-work",
+      "text": "sk-code→cli-devin at 0.4 (code standards for small-model work)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-49-sk-prompt-graph-metadata-json-lines-8-34-enhances-precedent",
+      "text": "sk-prompt/graph-metadata.json lines 8-34 (enhances precedent)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-20-sk-small-model-cli-devin-weight-0-5-context-swe-1-6-budget-defaults-verification",
+      "text": "sk-small-model → cli-devin (weight 0.5, context: \"SWE-1.6 budget defaults, verification pipeline patterns\")",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-21-sk-small-model-cli-opencode-weight-0-5-context-deepseek-permissions-matrix-two-s",
+      "text": "sk-small-model → cli-opencode (weight 0.5, context: \"DeepSeek permissions matrix, two-stage routing\")",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-45-spec-md-2-purpose-lines-83-85-user-goal",
+      "text": "spec.md §2 Purpose lines 83-85 (user goal)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-39-trigger-phrases-in-sentinel-skill",
+      "text": "Trigger phrases in sentinel skill",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-15-13-001-cli-devin-context-budget-p1-foundational-context-budget-for-swe-1-6",
+      "text": "001-cli-devin-context-budget (P1) — Foundational context budget for SWE-1.6",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-17-002-cli-opencode-eviction-p2-cli-specific-eviction-system",
+      "text": "002-cli-opencode-eviction (P2) — CLI-specific eviction system",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-19-004-sk-prompt-budget-awareness-p2-upgraded-from-p3-cross-cli-budget-awareness-gu",
+      "text": "004-sk-prompt-budget-awareness (P2, upgraded from P3) — Cross-CLI budget awareness guidance",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-14-005-cli-devin-verification-pipeline-p1-baseline-verification-pipeline",
+      "text": "005-cli-devin-verification-pipeline (P1) — Baseline verification pipeline",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-15-006-cli-devin-output-verification-p1-verification-deepening",
+      "text": "006-cli-devin-output-verification (P1) — Verification deepening",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-16-007-sk-prompt-model-profiles-p1-upgraded-from-p2-cross-cutting-model-profile-reg",
+      "text": "007-sk-prompt-model-profiles (P1, upgraded from P2) — Cross-cutting model profile registry",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-18-008-cli-devin-tool-scoring-p2-cli-specific-bayesian-tool-scoring",
+      "text": "008-cli-devin-tool-scoring (P2) — CLI-specific Bayesian tool scoring",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-20-009-cli-devin-escalation-engine-p3-pro-tier-escalation-optimization",
+      "text": "009-cli-devin-escalation-engine (P3) — Pro-tier escalation optimization",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-11-010-cli-opencode-permissions-matrix-p0-rm-8-prevention-structured-json-allowlist",
+      "text": "010-cli-opencode-permissions-matrix (P0) — RM-8 prevention, structured JSON allowlist replaces prose mitigation",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-21-011-cli-opencode-two-stage-routing-dropped-overlaps-with-mcp-code-mode-low-small",
+      "text": "011-cli-opencode-two-stage-routing (DROPPED) — Overlaps with mcp-code-mode, low small-model contribution",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-12-012-rq5-cross-cutting-sentinel-skill-p1-downgraded-from-p0-agents-md-enhances-ed",
+      "text": "012-rq5-cross-cutting-sentinel-skill (P1, downgraded from P0) — AGENTS.md + enhances edges + sentinel skill, advisor routing works via enhances alone",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-3-1-2-paragraph-philosophy",
+      "text": "1-2 paragraph philosophy",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-8-agents-md-rule-addition-sibling-to-cli-dispatch-rule",
+      "text": "AGENTS.md rule addition (sibling to CLI dispatch rule)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-agents-md-rule-pointer",
+      "text": "AGENTS.md rule pointer",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-7-cons-012-s-scope-expands-from-agents-md-graph-metadata-to-agents-md-graph-metada",
+      "text": "Cons: 012's scope expands from \"AGENTS.md + graph-metadata\" to \"AGENTS.md + graph-metadata + sentinel skill creation\". This may make 012 larger than other packets.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-5-cons-adds-a-13th-packet-increasing-coordination-overhead-sentinel-skill-is-minim",
+      "text": "Cons: Adds a 13th packet, increasing coordination overhead. Sentinel skill is minimal state — arguably too small for a dedicated packet.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-26-dropped-2-stage-routing-overlaps-with-mcp-code-mode",
+      "text": "DROPPED: 2-stage routing (overlaps with mcp-code-mode)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-enhances-edges-to-cli-devin-and-cli-opencode",
+      "text": "Enhances edges to cli-devin and cli-opencode",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-9-graph-metadata-json-enhances-edges-cli-devin-cli-opencode-bidirectional-at-0-5-c",
+      "text": "graph-metadata.json enhances edges (cli-devin↔cli-opencode bidirectional at 0.5, cli-devin→sk-prompt at 0.4, sk-code→cli-devin at 0.4, cli-devin→mcp-code-mode at 0.3)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-10-new-sk-small-model-sentinel-skill-creation-skill-md-with-philosophy-graph-metada",
+      "text": "NEW: sk-small-model sentinel skill creation (SKILL.md with philosophy, graph-metadata.json with enhances edges, description.json)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-22-p0-permissions-matrix-rm-8-prevention-only-blocking-item",
+      "text": "P0: Permissions-matrix (RM-8 prevention) — only blocking item",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-23-p1-cross-cutting-infrastructure-model-profiles-context-budget-verification-pipel",
+      "text": "P1: Cross-cutting infrastructure (model profiles, context budget, verification pipeline, advisor routing + sentinel skill) — highest-impact small-model optimization",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-24-p2-cli-specific-patterns-eviction-tool-scoring-cross-cli-guidance-budget-awarene",
+      "text": "P2: CLI-specific patterns (eviction, tool scoring) + cross-CLI guidance (budget awareness)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-25-p3-pro-tier-optimization-escalation-engine",
+      "text": "P3: Pro-tier optimization (escalation engine)",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-4-pros-clean-separation-between-cross-cutting-wiring-sentinel-skill-creation-and-d",
+      "text": "Pros: Clean separation between cross-cutting wiring (sentinel skill creation) and distributed pattern implementation (packets 001-011). Sentinel skill creation is lightweight (SKILL.md + graph-metadata.json + AGENTS.md rule) and can be done independently.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-6-pros-reduces-packet-count-012-rq5-cross-cutting-already-covers-agents-md-rule-gr",
+      "text": "Pros: Reduces packet count. 012-rq5-cross-cutting already covers AGENTS.md rule + graph-metadata enhances edges. Sentinel skill creation is a natural extension of this packet.",
+      "addedAtIteration": 15,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 489,
+    "convergenceScore": 0.05,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

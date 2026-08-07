@@ -1,0 +1,31 @@
+Act as a markdown documentation-fixer (seat AF11). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/sk-prompt/README.md
+- .opencode/skills/system-code-graph/README.md
+- .opencode/skills/system-code-graph/SKILL.md
+- .opencode/skills/system-code-graph/mcp_server/README.md
+- .opencode/skills/system-code-graph/mcp_server/core/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/sk-prompt/README.md:130 — $text mode contradicts current questioning rule | stale: The operating-modes table says $text is a direct prompt with no pre-processing question. -> correct: Current sk-prompt rules require one comprehensive question before processing, with $raw as the only documented exception.
+- [P1] .opencode/skills/system-code-graph/README.md:70 — Blast-radius response fields are wrong | stale: Quick start says `blast_radius` returns `affectedSymbols`, `affectedFiles` and readiness metadata. -> correct: `code_graph_query` blast_radius builds a payload with `sourceFiles`, `nodes`, `affectedFiles`, `depthGroups`, `riskLevel`, `minConfidence` and ambiguity fields; `affectedSymbols` is a `detect_changes` field, not a blast-radius output.
+- [P1] .opencode/skills/system-code-graph/README.md:98 — Markdown is not in the default scan | stale: README says default scan globs include markdown, JSON, YAML and TOML as the doc lane. -> correct: Default include globs deliberately omit `**/*.md`; JSON/JSONC/YAML/YML/TOML remain default doc rows, while Markdown/prose docs require explicit `includeGlobs`.
+- [P1] .opencode/skills/system-code-graph/README.md:159 — Old plugin broken-import troubleshooting remains | stale: Troubleshooting says plugin bridge startup can fail with missing `dist/handlers/session-resume.js` and points to a broken-import table. -> correct: The bridge no longer imports session-resume internals; it routes through `.opencode/bin/code-index.cjs` and the launcher IPC bridge.
+- [P1] .opencode/skills/system-code-graph/SKILL.md:23 — Doc-lane coverage overstates Markdown indexing | stale: Glossary says Markdown, JSON, YAML and TOML files are included as inventory rows only. -> correct: Default scan excludes Markdown/prose docs; config formats are included as `language='doc'` rows by default, and Markdown is only re-addable through explicit scan include globs.
+- [P2] .opencode/skills/system-code-graph/mcp_server/README.md:80 — Lib description still mentions vector index | stale: Directory tree describes `lib/` as `Search, vector index, session and utility code`. -> correct: The library barrel exports code-graph modules such as indexer, DB, lease, seed/context, parser, readiness and startup helpers; there is no vector-index export in this package.
+- [P1] .opencode/skills/system-code-graph/mcp_server/README.md:94 — Plugin bridge dependency direction points at dist | stale: Allowed dependency direction says `plugin_bridges/ -> dist/ (compiled runtime)`. -> correct: The plugin bridge routes through the committed CLI shim and launcher IPC bridge rather than importing code-index `dist/` runtime modules directly.
+- [P2] .opencode/skills/system-code-graph/mcp_server/core/README.md:25 — DATABASE_DIR consumer list omits server entrypoint | stale: Current consumers are listed as `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts` and `lib/recovery-procedures.ts`. -> correct: `mcp_server/index.ts` also imports `DATABASE_DIR` and uses it for owner-lease refresh and IPC socket path resolution.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF11","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

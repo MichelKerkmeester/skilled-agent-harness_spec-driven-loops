@@ -1,0 +1,25 @@
+scenario: "CB-003"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 41.926
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/webflow/implementation/performance_patterns.md"
+  - "references/webflow/verification/verification_workflows.md"
+  - "manual_testing_playbook/06--cross-browser-and-performance-gates/003-gpu-compositing.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "GPU-compositing routing loaded Motion performance and timeline refs plus browser-performance playbook context."
+raw_stdout: "/tmp/skc-CB-003-codex.txt"
+raw_stderr: "/tmp/skc-CB-003-codex.err"

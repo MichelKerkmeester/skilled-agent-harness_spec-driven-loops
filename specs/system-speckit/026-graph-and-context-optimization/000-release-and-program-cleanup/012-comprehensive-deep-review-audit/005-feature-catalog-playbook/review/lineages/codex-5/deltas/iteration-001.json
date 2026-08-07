@@ -1,0 +1,8 @@
+{
+  "run": 1,
+  "dimensions": ["correctness"],
+  "findingsNew": {"P0": 0, "P1": 1, "P2": 0},
+  "findingRefs": ["F001"],
+  "newFindingsRatio": 0.5,
+  "verdict": "CONDITIONAL"
+}

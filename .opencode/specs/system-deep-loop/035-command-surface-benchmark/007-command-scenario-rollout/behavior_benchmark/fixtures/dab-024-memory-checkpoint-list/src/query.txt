@@ -1,2 +1,0 @@
-checkpoint list
-MEMORY_CHECKPOINT_LIST_SENTINEL

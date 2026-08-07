@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/012-sk-design-program/003-interface-commands",
+  "description": "The design commands were thin routers that resolved a mode and deferred to the hub — no structured brief intake, no exemplar grounding, no scaffolded",
+  "keywords": [
+    "design",
+    "commands",
+    "thin",
+    "routers",
+    "resolved",
+    "mode",
+    "deferred",
+    "hub",
+    "structured",
+    "brief",
+    "intake",
+    "exemplar",
+    "grounding",
+    "scaffolded"
+  ],
+  "lastUpdated": "2026-07-23T05:36:34.343Z",
+  "specId": "003",
+  "folderSlug": "interface-commands",
+  "parentChain": [
+    "sk-design",
+    "012-sk-design-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

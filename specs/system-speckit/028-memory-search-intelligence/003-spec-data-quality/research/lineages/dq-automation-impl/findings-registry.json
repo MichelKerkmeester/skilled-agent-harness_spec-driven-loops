@@ -1,0 +1,24 @@
+{
+  "openQuestions": [
+    "Stage-0 corpus-wide failure counts per detector (deferred to build)",
+    "On-write latency of A1 body scoring on a large spec (inherited; needs measurement)"
+  ],
+  "resolvedQuestions": ["KQ1-A1", "KQ2-B1", "KQ3-B2", "KQ4-B3", "KQ5-C2", "KQ6-cross"],
+  "keyFindings": [
+    {"id": "A1", "finding": "Reuse the pure scorer computeMemoryQualityScore + non-mutating reviewPostSaveQuality; never the destructive attemptAutoFix on bodies. Seams: generate-context.ts:398 (JSON), workflow.ts:1854 (body), new CONTENT_QUALITY rule in validate.sh.", "floor": "bypass", "evidence": "quality-loop.ts:392,463-468; post-save-review.ts:573,1041; generate-context.ts:398; workflow.ts:1854"},
+    {"id": "B1", "finding": "CI schedule+workflow_dispatch PRIMARY (empty tier) + zero-install post-merge SECONDARY; dq-sweep.ts runner; deny-by-default fixClass allow-list (body-touching never safe); backfill idempotency contract.", "floor": "bypass", "evidence": ".github/workflows/ (no schedule); install-git-hooks.sh:42-52; validate.sh:955; backfill-frontmatter.ts:131-144"},
+    {"id": "B2", "finding": "data-quality route modeled on code-graph; inverted mutation_boundaries/validate_targets; DIAGNOSE/APPLY x fixClass; interactive front door over the B1 engine.", "floor": "bypass", "evidence": "_routes.yaml:79-90; route-validate.py:46; doctor_memory.yaml:65-94"},
+    {"id": "B3", "finding": "Negative signal absent today; capture impressions, split never-retrieved into edge-a (bypass/write-time) vs edge-b (pays/C2-gated) by min_rank_seen, report-only refinement_queue on learned-feedback governance.", "floor": "split", "evidence": "learned-feedback.ts:257-341,181,422,577; grep impression empty"},
+    {"id": "C2", "finding": "run-eval-v2.mjs already IS the prod-mode @3 dual-mode harness; build spec-corpus-golden.json (multi-target) + run-spec-recall-gate.mjs baseline gate (skill-bench pattern). The gate is genuinely net-new (eval-v2:357 is an error-catch, not a gate).", "floor": "instrument", "evidence": "run-eval-v2.mjs:5-26,351-358; eval-metrics.ts:408; skill_advisor_bench.py:248"},
+    {"id": "cross", "finding": "One dq-engine.ts + detector-registry.ts, three front doors (A1/B1/B2), B3 feeds queue, C2 gates promotion; 12-stage rollout, retrieval half last and C2-gated; two hard rails: no body auto-fix, no retrieval promotion without prod@3.", "floor": "n/a", "evidence": "iters 001-006"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Extend runQualityLoop wholesale onto authored docs", "reason": "destructive substring budget-trim", "evidence": "quality-loop.ts:463-468"},
+    {"approach": "post-merge as primary sweep trigger", "reason": "per-dev unenforced; needs CI schedule", "evidence": ".git/hooks/pre-commit"},
+    {"approach": "Mutate doctor_memory.yaml for a fix tier", "reason": "read-only by contract; add a new route", "evidence": "doctor_memory.yaml:21-27"},
+    {"approach": "Derive never-retrieved from learned_feedback_audit alone", "reason": "selection != impression", "evidence": "learned-feedback.ts:257-341"},
+    {"approach": "Build a new prod-mode @3 harness", "reason": "run-eval-v2.mjs already does it", "evidence": "run-eval-v2.mjs:5-26"},
+    {"approach": "Five separate per-surface fix engines", "reason": "would diverge; one engine + one registry", "evidence": "prior-lineage one-engine rule"},
+    {"approach": "Treat run-eval-v2.mjs:357 as an existing regression gate", "reason": "it is the uncaught-error catch handler", "evidence": "run-eval-v2.mjs:351-358"}
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/032-goal-hooks-cross-runtime",
+  "description": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant",
+  "keywords": [
+    "port",
+    "opencode",
+    "passive",
+    "session-goal",
+    "system",
+    "cli-devin",
+    "cli-cursor",
+    "cli-pi",
+    "via",
+    "runtime-neutral",
+    "goal",
+    "hook",
+    "concern",
+    "activate",
+    "dormant"
+  ],
+  "lastUpdated": "2026-07-29T07:11:07.706Z",
+  "specId": "032",
+  "folderSlug": "goal-hooks-cross-runtime",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

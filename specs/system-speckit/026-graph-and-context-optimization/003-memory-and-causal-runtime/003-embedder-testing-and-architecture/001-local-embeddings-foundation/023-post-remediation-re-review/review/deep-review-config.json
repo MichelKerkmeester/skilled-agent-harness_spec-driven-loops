@@ -1,0 +1,30 @@
+{
+  "reviewTarget": "POST-REMEDIATION RE-REVIEW: confirm packet 022's 5-batch fixes land cleanly. Scope is identical to 021 (local-LLM legacy + embedding-default residue across the repo) but expected verdict is PASS or PASS-with-advisories. Treat post-014 defaults as canonical: Memory MCP hf-local q8 768d EmbeddingGemma, CocoIndex sentence-transformers bf16 768d EmbeddingGemma, llama-cpp auto-selected when GGUF runtime installed via Voyage -> OpenAI -> llama-cpp -> hf-local cascade. Voyage and OpenAI cascade-as-primary-when-key-set is INTENTIONAL per user clarification. Flag ONLY genuine remaining residue or NEW issues introduced by 022 batches. Do NOT re-flag intentional historical context (014/* migration narrative, factory fallback chain, doctor provider detection, vitest fixtures exercising fallback paths, test_backward_compat.py).",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "traceability",
+    "maintainability"
+  ],
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/023-post-remediation-re-review/review",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "kind": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    }
+  },
+  "recoveryAnchor": "2c76529effaa35a7df88849c67bb0446d6c852d8",
+  "startedAt": "2026-05-13T16:00:00Z",
+  "lineageMode": "auto"
+}

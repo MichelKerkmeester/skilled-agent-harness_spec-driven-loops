@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+  "description": "Dual-executor deep research (GLM-5.2 High via cli-devin, Grok 4.5 High via cli-cursor) on the implications of relocating .opencode/specs to a top-leve",
+  "keywords": [
+    "dual-executor",
+    "deep",
+    "research",
+    "glm-5",
+    "high",
+    "via",
+    "cli-devin",
+    "grok",
+    "cli-cursor",
+    "implications",
+    "relocating",
+    "opencode",
+    "specs",
+    "top-level",
+    "directory"
+  ],
+  "lastUpdated": "2026-08-06T09:12:17.367Z",
+  "specId": "001",
+  "folderSlug": "relocation-implications-research",
+  "parentChain": [
+    "system-speckit",
+    "032-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

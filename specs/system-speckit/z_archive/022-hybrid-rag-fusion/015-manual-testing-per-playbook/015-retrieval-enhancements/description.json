@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/015-retrieval-enhancements",
+  "description": "The retrieval enhancements category (15--retrieval-enhancements) contains 9 features covering dual-scope surfacing, constitutional memory injection,",
+  "keywords": [
+    "retrieval",
+    "enhancements",
+    "category",
+    "15-retrieval-enhancements",
+    "contains",
+    "features",
+    "covering",
+    "dual-scope",
+    "surfacing",
+    "constitutional",
+    "memory",
+    "injection"
+  ],
+  "lastUpdated": "2026-07-21T05:58:29.752Z",
+  "specId": "015",
+  "folderSlug": "retrieval-enhancements",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "015-manual-testing-per-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

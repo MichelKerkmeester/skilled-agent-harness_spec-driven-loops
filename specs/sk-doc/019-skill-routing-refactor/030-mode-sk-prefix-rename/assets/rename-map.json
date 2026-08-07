@@ -1,0 +1,172 @@
+{
+ "rows": [
+  {
+   "hub": "sk-code",
+   "workflowMode": "quality",
+   "packet": "code-quality",
+   "newWorkflowMode": "sk-code-quality",
+   "newPacket": "sk-code-quality",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-code",
+   "workflowMode": "code-review",
+   "packet": "code-review",
+   "newWorkflowMode": "sk-code-review",
+   "newPacket": "sk-code-review",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-code",
+   "workflowMode": "code-webflow",
+   "packet": "code-webflow",
+   "newWorkflowMode": "sk-code-webflow",
+   "newPacket": "sk-code-webflow",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-code",
+   "workflowMode": "code-opencode",
+   "packet": "code-opencode",
+   "newWorkflowMode": "sk-code-opencode",
+   "newPacket": "sk-code-opencode",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-design",
+   "workflowMode": "interface",
+   "packet": "design-interface",
+   "newWorkflowMode": "sk-design-interface",
+   "newPacket": "sk-design-interface",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-design",
+   "workflowMode": "md-generator",
+   "packet": "design-md-generator",
+   "newWorkflowMode": "sk-design-md-generator",
+   "newPacket": "sk-design-md-generator",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-design",
+   "workflowMode": "design-mcp-open-design",
+   "packet": "design-mcp-open-design",
+   "newWorkflowMode": "sk-design-mcp-open-design",
+   "newPacket": "sk-design-mcp-open-design",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-skill",
+   "packet": "create-skill",
+   "newWorkflowMode": "sk-create-skill",
+   "newPacket": "sk-create-skill",
+   "sharedPacket": true
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-skill-parent",
+   "packet": "create-skill",
+   "newWorkflowMode": "sk-create-skill-parent",
+   "newPacket": "sk-create-skill",
+   "sharedPacket": true
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-readme",
+   "packet": "create-readme",
+   "newWorkflowMode": "sk-create-readme",
+   "newPacket": "sk-create-readme",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-agent",
+   "packet": "create-agent",
+   "newWorkflowMode": "sk-create-agent",
+   "newPacket": "sk-create-agent",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-command",
+   "packet": "create-command",
+   "newWorkflowMode": "sk-create-command",
+   "newPacket": "sk-create-command",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-feature-catalog",
+   "packet": "create-feature-catalog",
+   "newWorkflowMode": "sk-create-feature-catalog",
+   "newPacket": "sk-create-feature-catalog",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-manual-testing-playbook",
+   "packet": "create-manual-testing-playbook",
+   "newWorkflowMode": "sk-create-manual-testing-playbook",
+   "newPacket": "sk-create-manual-testing-playbook",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-benchmark",
+   "packet": "create-benchmark",
+   "newWorkflowMode": "sk-create-benchmark",
+   "newPacket": "sk-create-benchmark",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-flowchart",
+   "packet": "create-flowchart",
+   "newWorkflowMode": "sk-create-flowchart",
+   "newPacket": "sk-create-flowchart",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-changelog",
+   "packet": "create-changelog",
+   "newWorkflowMode": "sk-create-changelog",
+   "newPacket": "sk-create-changelog",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-diff",
+   "packet": "create-diff",
+   "newWorkflowMode": "sk-create-diff",
+   "newPacket": "sk-create-diff",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-doc",
+   "workflowMode": "create-quality-control",
+   "packet": "create-quality-control",
+   "newWorkflowMode": "sk-create-quality-control",
+   "newPacket": "sk-create-quality-control",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-prompt",
+   "workflowMode": "prompt-improve",
+   "packet": "prompt-improve",
+   "newWorkflowMode": "sk-prompt-improve",
+   "newPacket": "sk-prompt-improve",
+   "sharedPacket": false
+  },
+  {
+   "hub": "sk-prompt",
+   "workflowMode": "prompt-models",
+   "packet": "prompt-models",
+   "newWorkflowMode": "sk-prompt-models",
+   "newPacket": "sk-prompt-models",
+   "sharedPacket": false
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://internal/spec/131/000/004/changelog-entry.schema.json",
+  "title": "Changelog Entry",
+  "description": "Shape of a deep-ai-council skill changelog entry (e.g. changelog/v2.1.0.0.md). Per sk-doc changelog convention the markdown file has NO frontmatter and NO version header — it starts directly with the summary paragraph and uses '#### Category' subsections. This schema captures the logical fields embedded in that structure for validation purposes.",
+  "type": "object",
+  "required": [
+    "version",
+    "date",
+    "summary",
+    "breaking",
+    "sections"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semver-like 4-part version (MAJOR.MINOR.PATCH.BUILD)"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of the changelog entry"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 20,
+      "description": "One-paragraph summary of what changed and why it matters (the opening paragraph of the changelog file)"
+    },
+    "breaking": {
+      "type": "boolean",
+      "description": "True if any change in this entry breaks backward compatibility"
+    },
+    "sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["added", "changed", "fixed", "deferred"],
+      "properties": {
+        "added": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "New capabilities or files"
+        },
+        "changed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Modifications to existing content"
+        },
+        "fixed": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Bug fixes (with reference to audit-finding IDs where relevant)"
+        },
+        "deferred": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "P2 items intentionally deferred (with rationale)"
+        }
+      }
+    },
+    "audit_finding_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AF-[0-9]{4}$"
+      },
+      "description": "Optional list of audit-finding IDs resolved or deferred in this version"
+    }
+  },
+  "examples": [
+    {
+      "version": "2.1.0.0",
+      "date": "2026-05-24",
+      "summary": "Release-cleanup pass against current sk-doc templates and HVR standards. README rewritten to marketing-leaning voice anchored at ~70% of Public/README.md intensity. Surgical alignment fixes across SKILL.md, references, feature catalog, and manual testing playbook. Smart Router (§3) preserved (untouched).",
+      "breaking": false,
+      "sections": {
+        "added": [
+          "Release-cleanup spec folder at .opencode/specs/.../131/000/004-deep-ai-council with 4 JSON schemas and resource-map.yaml"
+        ],
+        "changed": [
+          "README.md full rewrite per skill_readme_template.md with HVR score >= 85",
+          "version frontmatter bumped 2.0.0.0 -> 2.1.0.0"
+        ],
+        "fixed": [
+          "SKILL.md §7 scenario count corrected to 32/9 (AF-0001)",
+          "[N] structural deviations across references/ per audit-findings AF-XXXX",
+          "[M] HVR violations corrected"
+        ],
+        "deferred": [
+          "[K] P2 items deferred with rationale recorded in audit-findings.jsonl"
+        ]
+      },
+      "audit_finding_refs": ["AF-0001"]
+    }
+  ]
+}

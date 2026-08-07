@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/z_archive/015-anchor-enforcement-automation",
+  "description": "This archived system-spec-kit archive folder captures work related to Anchor Enforcement Automation",
+  "keywords": [
+    "archived",
+    "system-spec-kit",
+    "archive",
+    "folder",
+    "captures",
+    "work",
+    "related",
+    "anchor",
+    "enforcement",
+    "automation"
+  ],
+  "lastUpdated": "2026-07-18T03:48:59.990Z",
+  "specId": "015",
+  "folderSlug": "anchor-enforcement-automation",
+  "parentChain": [
+    "system-speckit",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

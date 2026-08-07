@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "totalIterations": 15,
+  "resolvedQuestions": [
+    "What exact module owns every SessionStart and per-user-turn injected block for each runtime?",
+    "What is the measured byte/token cost of each block and each runtime's total per turn?",
+    "Which blocks are valuable every turn, redundant across turns, stale, or better placed once?",
+    "What do authoritative prompt-caching and instruction-design sources recommend?",
+    "Which ranked cross-runtime reductions preserve guardrail effectiveness, and what are their measured before/after costs?"
+  ],
+  "openQuestions": [
+    "Pinned host acceptance and post-compaction retention across Claude, Codex, Devin, Pi, and OpenCode.",
+    "Current pinned Cursor beforeSubmitPrompt and preCompact delivery.",
+    "OpenCode transform count, stable message identity, independent-transform order, and whole-prompt telemetry.",
+    "Behavioral negative controls for directive drift/failure and Gate advisory visibility.",
+    "An executed Pi compact serializer preserving all five dispatch semantics.",
+    "Exact tokenizer, cache-hit, billed-input, latency, and cost receipts."
+  ],
+  "keyFindings": [
+    {"id":"ownership-complete","summary":"Every named block has an exact semantic owner and lifecycle lane across all six runtimes.","iterations":[1,2,15]},
+    {"id":"configured-observed-split","summary":"Configured delivery is not observed delivery; Cursor's tested prompt lane is zero and other host receipts remain qualified.","iterations":[1,2,3,9,15]},
+    {"id":"directive-dominance","summary":"The 763-byte directives fallback is 94.7% of the representative 806-byte advisor payload.","iterations":[3,4,12,14]},
+    {"id":"fixed-baseline","summary":"Measured blocks: directives 763 B, route 43 B, Gate 521 B, Pi 554 B, representative SessionStart 389 B.","iterations":[3,7,12,14,15]},
+    {"id":"gate-already-conditional","summary":"Gate read-only and terminal cases are already silent; savings apply only to repeated mutation-positive open-epoch emissions.","iterations":[5,12,14,15]},
+    {"id":"session-lifecycle","summary":"SessionStart is lifecycle-scoped; suppression requires verified replay after resume/compaction and unknown state must emit.","iterations":[7,9,10,13,14]},
+    {"id":"cache-separation","summary":"Stable-prefix placement can improve eligibility but no billed-cache saving is measured; caching is not semantic deduplication.","iterations":[8,12,14,15]},
+    {"id":"opencode-bounds","summary":"OpenCode known components are parameterized by transform count, continuity, and an uncapped compiled summary; whole-prompt totals remain unknown.","iterations":[3,6,9,12,14]},
+    {"id":"target-architecture","summary":"Use a shared identity/policy planner with native serializers, host receipts, lifecycle epochs, and fail-safe emission.","iterations":[10,11,13,14]},
+    {"id":"pi-correction","summary":"The 130-byte Pi reminder and 177-byte repeat composite are modeled targets and not proven semantically equivalent.","iterations":[7,12,14,15]},
+    {"id":"risk-adjusted-rank","summary":"Priority is instrumentation, bounded OpenCode summary, identity-proven same-message dedup, route-only evaluation, Gate evaluation, then Pi prototype.","iterations":[14,15]},
+    {"id":"scenario-results","summary":"Ten-turn shared configured baseline/recommended is 9,626 to 1,715 B; Pi is 15,189 to modeled 3,478 B; Cursor observed remains zero.","iterations":[12,14,15]}
+  ],
+  "ruledOutDirections": [
+    "Numeric provider-token, cache-hit, dollar, latency, or billed-saving claims without receipts.",
+    "Unconditional no-match/failure silence or directive removal.",
+    "Universal startup-only or cross-turn suppression without lifecycle replay proof.",
+    "Universal Gate first-open-only suppression.",
+    "The 130-byte Pi target as preservation-equivalent.",
+    "Configured Cursor prompt savings as realized.",
+    "One OpenCode transform per user turn or a finite whole-prompt total without telemetry.",
+    "Prompt hash alone as OpenCode message identity.",
+    "One universal serializer or storage implementation.",
+    "Serializer completion as host acknowledgement."
+  ],
+  "sourceCoverage": {
+    "repositoryPrimary": ["runtime registries", "canonical renderers and adapters", "Gate classifier/core and tests", "SessionStart lifecycle", "OpenCode plugins", "Pi extensions"],
+    "officialExternal": ["OpenAI prompt caching", "Anthropic prompt caching and prompting", "Gemini caching", "Amazon Bedrock prompt caching", "Claude hooks", "OpenCode plugins", "Pi extension lifecycle"],
+    "runtimeCoverage": {"claude":"configured/source-proven","codex":"configured/source-proven","cursor":"configured plus observed non-delivery","devin":"configured with partial live receipt","opencode":"source-proven; cadence/order unobserved","pi":"source-proven; combined receipt unobserved"}
+  },
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 6,
+    "resolvedQuestions": 5,
+    "totalQuestions": 5,
+    "keyFindings": 12,
+    "sourceFindings": 111,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.48,
+    "terminalStatus": "max-iterations"
+  },
+  "divergence": {
+    "saturatedDirections": ["runtime ownership", "fixed payload measurement", "source-level Gate behavior", "official cache guidance", "static target architecture"],
+    "pivots": [],
+    "councilArtifacts": [],
+    "failures": ["Broad repository grep produced history/generated noise.", "Exact tokenizer vocabulary was unavailable.", "Warm daemon probe was denied by sandbox IPC.", "Static analysis cannot prove host acceptance, billing, or behavioral equivalence."],
+    "overrides": ["Max-iterations policy overrode convergence stopping.", "Iteration 14 downgraded cache, Gate, Pi, and delivery claims."],
+    "remainingFrontier": ["pinned runtime receipts", "provider usage telemetry", "behavioral negative controls", "Cursor delivery", "OpenCode cadence/identity/order", "semantic-preserving Pi compact serializer"]
+  }
+}

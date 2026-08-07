@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prefix registry",
+      "hf-local prefix",
+      "task prefix",
+      "embedding model prefix",
+      "getPrefixFor",
+      "PREFIX_REGISTRY",
+      "COCOINDEX_QUERY_PROMPT_NAME",
+      "embedding model swap",
+      "014/001",
+      "local-embeddings-setup-a 001",
+      "implementation",
+      "plan"
+    ],
+    "key_topics": [
+      "prefix",
+      "registry",
+      "hf-local",
+      "task",
+      "embedding",
+      "model",
+      "getprefixfor",
+      "swap",
+      "local-embeddings-setup-a",
+      "implementation",
+      "plan",
+      "hflocalprovider"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "shared/embeddings.ts",
+      "shared/index.ts",
+      "mcp_server/lib/providers/embeddings.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "scratch/test-prefix-registry.mjs",
+      "scratch/test-cocoindex-prompts.py",
+      "plan.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "shared/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-prefix-registry.mjs",
+        "kind": "file",
+        "path": "scratch/test-prefix-registry.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cocoindex-prompts.py",
+        "kind": "file",
+        "path": "scratch/test-cocoindex-prompts.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prefix Registry Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`HfLocalProvider` (TS, transformers.js-backed) and `cocoindexcode/shared.py` both hardcode prefix conventions for ONE model family (Nomic)",
+    "created_at": "2026-05-12T16:27:47Z",
+    "last_save_at": "2026-07-17T17:19:17.886Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f492ed90c2eba1701f02e4f1c069263855119e426d2c8252595e686e1e7c52f",
+    "source_doc_hashes": {
+      "spec.md": "4093745f02b05f632c4aa5d87f3660fab880339b154c5faa87525be44debd44b",
+      "plan.md": "28e14ab63e72309dbff60793bb9956c782a13c60fd2a80ba5e3cf75906658634",
+      "tasks.md": "2fe7600100c93658653c5eacf42fbaca6e3b238235705ea52312da3673864933",
+      "decision-record.md": "1be2efb324d5a1e4767fd6ff9bccf59bfb8cf94d81b696c1adf76a75cb4be93a",
+      "implementation-summary.md": "c06d533ae46b4da40e607ecc0157e4d859f4ceb9620b4f4e56c413fb0ee9564f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

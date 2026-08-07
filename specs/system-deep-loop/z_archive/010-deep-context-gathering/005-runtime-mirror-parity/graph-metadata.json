@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-deep-context-gathering/005-runtime-mirror-parity",
+  "spec_folder": "system-deep-loop/z_archive/010-deep-context-gathering/005-runtime-mirror-parity",
+  "parent_id": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context runtime mirror",
+      "deep-context agent claude codex",
+      "native seat dispatch parity",
+      "deep-loop agent mirror",
+      "runtime mirror parity",
+      "deep-context mirror plan",
+      "runtime agent mirror approach",
+      "deep-context claude codex plan",
+      "agent parity implementation",
+      "deep-loop mirror convention",
+      "deep-context mirror tasks",
+      "runtime mirror tasks"
+    ],
+    "key_topics": [
+      "deep-context",
+      "runtime",
+      "mirror",
+      "agent",
+      "claude",
+      "codex",
+      "native",
+      "seat",
+      "dispatch",
+      "parity",
+      "deep-loop",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Mirrors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Runtime Mirrors",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skills`/`specs`, which are symlinks to `.opencode/`)",
+    "created_at": "2026-06-07T09:07:23Z",
+    "last_save_at": "2026-07-08T13:43:39.927Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1383b5631eec739704f139d4d713917d8afcd1939ae6696ba20052af5991e5d3",
+    "source_doc_hashes": {
+      "spec.md": "54ee065db08710449a8eca3308bc31d5c2437a1349de2c521d803843f62435dd",
+      "plan.md": "2cc59a39639b189435e8fcfa88621bc895e4e21c8bee9705ac5545528b345cb1",
+      "tasks.md": "c2d2837a31de39a52ecbad2e714aab28eea2bbc8ddec3bc58c1fd61ea3020bd9",
+      "checklist.md": "a1bee7f425590bd029f4c0dab6d5ccb97cef94f3b5bf07842175a600c52a799b",
+      "implementation-summary.md": "2dc1da099d58da53ea9a4b20d72b5863c055eaa7a9fee3d9e5d345a6e590a37d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

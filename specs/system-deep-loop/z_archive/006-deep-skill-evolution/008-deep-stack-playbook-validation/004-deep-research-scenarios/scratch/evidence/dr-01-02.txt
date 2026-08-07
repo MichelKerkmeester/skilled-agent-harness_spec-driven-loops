@@ -1,0 +1,13 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-research / 01-02 entry+init (DR-001..006, DR-027)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dr-01-02.log
+Method §6: rg/anchor re-confirmation of deep-research command/YAML/protocol. 6 PASS / 1 PARTIAL.
+
+DR-001 PASS  auto command @ README.md:76
+DR-002 PASS  confirm gate_init_approval @ deep_start-research-loop_confirm.yaml:333
+DR-003 PASS  preflight required_values_present [research_topic, spec_folder, max_iterations, convergence_threshold] @ auto.yaml:146
+DR-004 PASS  init step_create_directories/config/state/strategy @ auto.yaml:152
+DR-005 PASS  4-state classification (resume = config+state+strategy agree) @ loop_protocol.md:59
+DR-006 PASS  invalid-state halt-for-repair @ auto.yaml:234
+DR-027 PARTIAL  charter Validate Step 7a @ loop_protocol.md:82 + strategy template sections 4/5; README lacks charter doc (non-critical)
+
+Verdict: 6 PASS / 1 PARTIAL / 0 FAIL / 0 SKIP. No remediation.

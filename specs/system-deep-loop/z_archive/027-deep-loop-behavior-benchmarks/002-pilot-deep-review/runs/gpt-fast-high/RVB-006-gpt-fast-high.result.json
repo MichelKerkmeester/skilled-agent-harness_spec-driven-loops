@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "RVB-006",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T11:14:00.113Z",
+  "endedAt": "2026-07-02T11:15:21.765Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8641,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 81652
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": true,
+    "violations": []
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "pass",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": null,
+    "d4": 2,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/002-pilot-deep-review/runs/gpt-fast-high/RVB-006-gpt-fast-high.transcript.jsonl"
+}

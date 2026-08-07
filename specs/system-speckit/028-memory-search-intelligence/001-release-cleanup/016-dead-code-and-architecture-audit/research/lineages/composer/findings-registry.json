@@ -1,0 +1,50 @@
+{
+  "openQuestions": [
+    {
+      "id": "cf-calibration-closure",
+      "text": "Are 005-decision-evaluator and 008-calibration files required only for compiled-route-sync manifest closure?",
+      "source": "iteration-1 F4"
+    }
+  ],
+  "resolvedQuestions": [
+    {"id": "kq-dead-code-bin", "text": "Which bin/ and launcher scripts lack runtime callers outside documentation?", "answeredAtIteration": 1},
+    {"id": "kq-mcp-legacy", "text": "What MCP-server legacy paths, broken symlinks, or deleted runtime artifacts remain?", "answeredAtIteration": 2},
+    {"id": "kq-deep-loop-scripts", "text": "Which deep-loop runtime scripts are minimally referenced outside their own tree?", "answeredAtIteration": 3},
+    {"id": "kq-hub-metadata-drift", "text": "Where do hub mode registries contradict live routing or retain removed modes?", "answeredAtIteration": 4},
+    {"id": "kq-mirror-drift", "text": "How do commands/, agents/, and runtime mirror directories diverge from .opencode/ authority?", "answeredAtIteration": 5}
+  ],
+  "keyFindings": [
+    {"id": "F1", "category": "CAT-1", "path": ".opencode/bin/cli-exit-taxonomy-smoke.cjs", "iteration": 1},
+    {"id": "F2", "category": "CAT-4", "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md", "iteration": 1},
+    {"id": "F3", "category": "CAT-5", "path": ".opencode/bin/mk-*-launcher.cjs", "iteration": 1},
+    {"id": "F4", "category": "CAT-6", "path": ".opencode/bin/lib/compiled-routing/005-decision-evaluator", "iteration": 1},
+    {"id": "F5", "category": "CAT-2", "path": ".opencode/skills/system-spec-kit/:memory:", "iteration": 2},
+    {"id": "F6", "category": "CAT-3", "path": ".opencode/skills/system-spec-kit/mcp-server/database/vectors/.gitkeep", "iteration": 2},
+    {"id": "F7", "category": "CAT-2", "path": ".opencode/skills/system-spec-kit/vectors/", "iteration": 2},
+    {"id": "F8", "category": "CAT-5", "path": "**/post-compaction.cjs", "iteration": 2},
+    {"id": "F9", "category": "CAT-1", "path": ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs", "iteration": 2},
+    {"id": "F10", "category": "CAT-1", "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs", "iteration": 3},
+    {"id": "F11", "category": "CAT-5", "path": ".opencode/skills/system-deep-loop/**/reduce-state.cjs", "iteration": 3},
+    {"id": "F12", "category": "CAT-6", "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-*.cjs", "iteration": 3},
+    {"id": "F13", "category": "CAT-3", "path": ".opencode/install-guides/ (broken symlinks)", "iteration": 3},
+    {"id": "F14", "category": "CAT-5", "path": ".opencode/skills/sk-design/mode-registry.json", "iteration": 4},
+    {"id": "F15", "category": "CAT-6", "path": ".opencode/skills/*/feature-catalog/compiled-routing-and-legacy-fallback/", "iteration": 4},
+    {"id": "F16", "category": "CAT-4", "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/*/description.json", "iteration": 4},
+    {"id": "F17", "category": "CAT-5", "path": ".opencode/bin/lib/compiled-routing/013-live-activation/activation/*/fence-state.json", "iteration": 4},
+    {"id": "F18", "category": "CAT-2", "path": ".opencode/commands/doctor/mcp.md", "iteration": 5},
+    {"id": "F19", "category": "CAT-5", "path": ".opencode/agents/ vs .claude/agents/", "iteration": 5},
+    {"id": "F20", "category": "CAT-5", "path": "opencode.json vs .cursor/mcp.json", "iteration": 5},
+    {"id": "F21", "category": "CAT-3", "path": ".opencode/skills/system-spec-kit/node_modules", "iteration": 5},
+    {"id": "F22", "category": "CAT-1", "path": ".opencode/bin/check-no-spec-imports.cjs", "iteration": 5}
+  ],
+  "ruledOutDirections": [
+    {"direction": "009-parent-hub-rollout router.cjs import-dead", "reason": "Dynamic require in compiled-route.cjs", "iteration": 1},
+    {"direction": "Committed node_modules as CAT-3", "reason": "gitignored via .opencode/.gitignore", "iteration": 1}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "averageNewInfoRatio": 0.76,
+    "findingsCount": 22,
+    "stopReason": "max_iterations"
+  }
+}

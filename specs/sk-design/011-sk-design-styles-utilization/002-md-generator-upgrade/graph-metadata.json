@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
+  "parent_id": "sk-design/011-sk-design-styles-utilization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "md generator upgrade research",
+      "design-md-generator styles",
+      "improve DESIGN.md output",
+      "md generator upgrade plan",
+      "design-md-generator research plan",
+      "improve DESIGN.md plan",
+      "md generator upgrade tasks",
+      "design-md-generator research tasks",
+      "improve DESIGN.md tasks",
+      "md generator upgrade summary",
+      "design-md-generator research status",
+      "improve DESIGN.md status"
+    ],
+    "key_topics": [
+      "generator",
+      "upgrade",
+      "research",
+      "design-md-generator",
+      "styles",
+      "improve",
+      "design",
+      "output",
+      "plan",
+      "tasks",
+      "summary",
+      "status"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/lineages/sol/research.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-lever",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built An",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design `design-md-generator` mode (backend `formatters-v3` + the DESIGN.md section schema at `.opencode/skills/sk-design/design-md-generator/`) generates design documents without any grounding in real, high-quality design systems",
+    "created_at": "2026-07-18T12:23:41.357Z",
+    "last_save_at": "2026-07-18T16:04:36.804Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64a1527416aa9baaef409d9da86c0a7e0bfa5558dfc503161f9ff0603b47706f",
+    "source_doc_hashes": {
+      "spec.md": "1d783f666361a9b3d89d6bb0b955a395b67fae76fe8b2a0218930d2377ef365e",
+      "plan.md": "ecec9e87d2fc8462a6d20d19b459f18648ec8461cf8b03c8b733f1823e0fb172",
+      "tasks.md": "cd55f5a4f9301e4ed9a477ecfaba1f87fe64fe7382b2ea4a9b948da3ea5d563b",
+      "implementation-summary.md": "9ff39dbe9c407cdecf9ae0158eaaa5a9fc1f96dbd4984f28784d6d232eb945b0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

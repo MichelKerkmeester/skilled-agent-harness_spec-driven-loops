@@ -1,0 +1,57 @@
+{
+  "folder_path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/data/",
+  "folder_role": "Data directory for council graph value scenarios, providing scenario definitions including graph seeds, artifact trees, and expected answers for DAC-027 through DAC-032 test cases.",
+  "file_inventory": {
+    "by_extension": {
+      ".cjs": ["scenarios.cjs"],
+      ".ts": [],
+      ".md": []
+    },
+    "directories": [],
+    "total_files": 1
+  },
+  "architecture_observation": "data-only - contains a single CommonJS module that exports scenario data builders for council graph test cases without any executable test logic or subdirectories.",
+  "public_entrypoints": [
+    {
+      "name": "getScenarioData",
+      "kind": "function",
+      "file": "scenarios.cjs",
+      "purpose": "Exports a function that takes a scenario ID (DAC-027 through DAC-032) and returns the complete scenario data including graph seed, artifact tree, and expected answers."
+    },
+    {
+      "name": "listScenarioIds",
+      "kind": "function",
+      "file": "scenarios.cjs",
+      "purpose": "Exports a function that returns an array of all available scenario IDs for enumeration and validation."
+    }
+  ],
+  "internal_imports": [
+    {
+      "symbol": "getScenarioData (via CommonJS require of scenarios.cjs)",
+      "imported_by": [
+        ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/council-value/seed-helpers.ts"
+      ]
+    }
+  ],
+  "external_imports": [],
+  "integration_notes": "This folder provides the test data layer for the council graph value demonstration system. The scenarios.cjs file defines builder functions for six scenarios (DAC-027 through DAC-032) that generate complete test data including graph seeds (nodes and edges representing council sessions, rounds, seats, claims, evidence, disagreements, and decisions), artifact trees (simulated markdown files representing council deliberations, critiques, and state), and expected answers for both baseline file-read approaches and council graph MCP approaches. The data is consumed by the parent seed-helpers.ts module via CommonJS require(), which uses the scenario data to build ScenarioFixture objects that are then used by the test suite to validate that council graph queries provide correct results with significantly fewer operations than baseline file reading. Each scenario tests a different aspect of the council graph: unresolved disagreements (DAC-027), decision support (DAC-028), convergence (DAC-029), convergence blockers (DAC-030), hot nodes (DAC-031), and status/interrupted sessions (DAC-032). The data file uses helper functions to generate consistent node and edge structures, create deliberation and critique file content, and build standard council graph topology patterns.",
+  "validation_commands": [
+    {
+      "command": "cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/council-graph-value-scenarios.vitest.ts",
+      "expected": "exit 0",
+      "verified": true
+    }
+  ],
+  "key_invariants": [
+    "scenarios.cjs must export getScenarioData and listScenarioIds functions",
+    "getScenarioData must accept a scenario ID string and return a complete ScenarioData object",
+    "The BUILDERS object must contain entries for all six scenarios: DAC-027, DAC-028, DAC-029, DAC-030, DAC-031, and DAC-032",
+    "Each scenario must include graphSeed with nodes and edges arrays",
+    "Each scenario must include artifactTree as a Record<string, string> mapping file paths to content",
+    "Each scenario must include baselineExpectedAnswer and graphExpectedAnswer for validation",
+    "Each scenario must include baselineMinFileReads for performance comparison",
+    "Scenario IDs must be case-insensitive (normalized to uppercase internally)",
+    "The file must use strict mode ('use strict')",
+    "Node kinds must match the NODE_KINDS constants: SESSION, ROUND, SEAT, CLAIM, EVIDENCE, DISAGREEMENT, DECISION, RECOMMENDATION"
+  ]
+}

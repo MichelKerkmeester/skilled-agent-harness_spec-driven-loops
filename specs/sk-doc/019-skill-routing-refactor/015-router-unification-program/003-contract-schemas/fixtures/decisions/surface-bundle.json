@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "V1",
+  "action": "route",
+  "route": {
+    "selectionKind": "surfaceBundle",
+    "targets": [
+      {
+        "destinationId": {
+          "skillId": "sk-code",
+          "workflowMode": "implementation",
+          "packetId": "packet-impl",
+          "packetKind": "workflow",
+          "backendKind": "native"
+        },
+        "role": "actor",
+        "authorityRef": "authority:sk-code",
+        "mutatesWorkspace": true
+      },
+      {
+        "destinationId": {
+          "skillId": "system-code-graph",
+          "workflowMode": "context",
+          "packetId": "packet-code-graph",
+          "packetKind": "evidence",
+          "backendKind": "mcp"
+        },
+        "role": "evidence",
+        "authorityRef": "authority:read-only",
+        "mutatesWorkspace": false
+      }
+    ],
+    "basis": {
+      "kind": "bounded-default"
+    },
+    "evidence": [
+      {
+        "kind": "scoreMargin",
+        "value": "2",
+        "nonAuthority": true
+      }
+    ],
+    "authority": "WithheldUntilVerify"
+  }
+}

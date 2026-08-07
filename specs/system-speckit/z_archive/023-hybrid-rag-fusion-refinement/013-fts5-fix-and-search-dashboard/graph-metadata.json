@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
+  "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
+  "parent_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fts5 double quoting bug",
+      "database path drift",
+      "resolve_database_path bug",
+      "vector index empty results",
+      "reinitializedatabase wrong db",
+      "db path drift fix plan",
+      "vector-index-store resolve_database_path fix",
+      "reinitializedatabase wrong db fix",
+      "hybrid search assertinitialized",
+      "fts5 fix plan",
+      "search dashboard plan",
+      "fts5 fix tasks"
+    ],
+    "key_topics": [
+      "fts5",
+      "double",
+      "quoting",
+      "bug",
+      "database",
+      "path",
+      "drift",
+      "vector",
+      "index",
+      "empty",
+      "results",
+      "reinitializedatabase"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/commands/memory/search.md",
+      "mcp_server/lib/search/sqlite-fts.ts",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "mcp_server/core/db-state.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "mcp_server/lib/search/vector-index-queries.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/lib/search/pipeline/types.ts",
+      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "shared/embeddings.ts",
+      "shared/embeddings/profile.ts",
+      "plan.md",
+      "handlers/memory-context.ts",
+      "lib/search/pipeline/stage1-candidate-gen.ts",
+      "lib/search/pipeline/types.ts",
+      "lib/search/pipeline/stage2-fusion.ts",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "sqlite-fts.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/sqlite-fts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "mcp_server/core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Dashboard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Drift Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic search\"`",
+    "created_at": "2026-04-12T09:02:50.339Z",
+    "last_save_at": "2026-07-10T06:23:03.184Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:f2718cc3516682b5aa22d346ed212e980434687d8367b8efe0cf07a189a73b69",
+    "source_doc_hashes": {
+      "spec.md": "5ce2d4865297b329a55442478d9b717e4dbda069baea54f94e3a2b959af5eeac",
+      "plan.md": "cb89c509751dbda2f034a2705cc2c53e356d9201d0908a94f1b1113824b50db0",
+      "tasks.md": "b59198416e2a7537ece50748f27a70a55a4fa12ab2a3ed72a2df707bd380eecf",
+      "checklist.md": "286f4c2c958897e1690ed35f01778a096c4bde3db087ce451557fdb7ba7f33d8",
+      "implementation-summary.md": "e74f7038e08730e5bd7dd61b897330d3e4d9c0c080ccfb243564f4a0f7ce1270",
+      "handover.md": "c5e0d72666c215095922067d19bd69ef2e9997f971ef2f238d7b11e9b0883149"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

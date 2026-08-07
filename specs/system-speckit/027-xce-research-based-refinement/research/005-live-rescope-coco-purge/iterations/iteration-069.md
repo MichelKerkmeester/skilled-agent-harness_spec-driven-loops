@@ -1,0 +1,59 @@
+# Iteration 069 — 004 NEEDS-RESCOPE: 14 live delete-sites (audit had 4); edge_lifecycle_generation rename; stale handler paths
+
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.72. **Findings:** 5.
+**Raw analysis:** `research/prompts/iteration-069.out`
+
+### FINDINGS
+[F-069-01] Direct raw SQL hard-delete sites are live in `causal-edges.ts`, `vector-index-mutations.ts`, `checkpoints.ts`, and `corrections.ts`; `corrections.ts` has two separate delete statements for primary and legacy evidence matches. `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:748`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:140`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1675`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:621`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:638`
+
+[F-069-02] Handler/CLI callers also route into hard-delete wrappers: manual unlink, single memory delete, folder bulk delete, tier bulk delete, health orphan autoRepair, and CLI bulk delete. `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:1124`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:118`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:213`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:252`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:872`, `.opencode/skills/system-spec-kit/mcp_server/cli.ts:396`
+
+[F-069-03] `vector-index-mutations.ts` can hard-delete causal edges before later explicit `causalEdges.deleteEdgesForMemory()` calls: both `delete_memory_from_database()` and multi-delete call `deleteAncillaryMemoryRows()`, which contains the raw causal delete. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:108`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:137`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:653`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:677`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:813`
+
+[F-069-04] `lifecycle_generation` and `causalEdgesGeneration` are not the same concept: planned `lifecycle_generation` is a persisted tombstone column, while `causalEdgesGeneration` is in-memory module state used for cache-key staleness. Keep `causalEdgesGeneration` unchanged and rename/disambiguate the tombstone column/API as persisted edge lifecycle generation, e.g. `edge_lifecycle_generation`. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:132`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:135`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:159`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:168`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:915`
+
+[F-069-05] 004 spec is already partially rescope-aware but still stale: it names `handlers/memory-health.ts`, `handlers/memory-delete.ts`, and `handlers/memory-index.ts`, while live health/delete handlers are `memory-crud-health.ts`, `memory-crud-delete.ts`, and the stale cleanup delete lives in `lib/search/vector-index-mutations.ts`. It also still carries CocoIndex research-basis lines that should be stripped per iter-062 rewrite. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:57`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:78`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:158`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:160`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:161`
+
+### DELETE_SITE_INVENTORY
+site | file:line | deletes causal_edges? | must route through tombstone?
+--- | --- | --- | ---
+`deleteEdge(edgeId)` raw SQL | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:748` | yes, direct by edge id | yes, central helper/replacement
+`deleteEdgesForMemory(memoryId)` raw SQL | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:764`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768` | yes, direct by source/target | yes
+`cleanupOrphanedEdges()` | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:829`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:836` | yes, via `deleteEdge()` | yes
+`memory_causal_unlink` | `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:1124` | yes, via `deleteEdge()` | yes
+`memory_delete` single id | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:117`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:118` | yes, via `deleteEdgesForMemory()` | yes
+`memory_delete` folder bulk path | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:192`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:213` | yes, via `deleteEdgesForMemory()` | yes
+`memory_bulk_delete` tier path | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:248`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:252` | yes, via `deleteEdgesForMemory()` | yes
+`memory_health` autoRepair orphan cleanup | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:868`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:872` | yes, via `cleanupOrphanedEdges()` | yes
+`deleteAncillaryMemoryRows()` | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:108`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:140` | yes, direct by source/target id/text | yes
+`delete_memory_from_database()` caller of ancillary cleanup | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:653`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:677` | yes, via raw ancillary cleanup | yes
+multi-delete caller of ancillary cleanup | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:798`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:813` | yes, via raw ancillary cleanup | yes
+checkpoint scoped restore cleanup | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1668`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1675` | yes, direct by source/target | yes
+correction undo owned-edge delete | `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:611`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:621` | yes, direct relation/evidence-scoped | yes
+correction undo legacy fallback delete | `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:634`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:638` | yes, direct relation/evidence-scoped | yes
+CLI bulk delete | `.opencode/skills/system-spec-kit/mcp_server/cli.ts:385`, `.opencode/skills/system-spec-kit/mcp_server/cli.ts:396` | yes, via `deleteEdgesForMemory()` | yes
+
+### SCOPE_FIX_004
+- Expand caller routing to all live sites above, not only `memory_delete`, `memory_bulk_delete`, manual unlink, and orphan sweep.
+- Add explicit handling for raw SQL sites in `vector-index-mutations.ts`, `checkpoints.ts`, and both `corrections.ts` delete statements.
+- Add CLI bulk delete routing through the same tombstone path or explicitly declare CLI deletion out of scope; current live code hard-deletes via `deleteEdgesForMemory()`.
+- Rename/disambiguate planned persisted `lifecycle_generation` to `edge_lifecycle_generation` or equivalent; keep existing `causalEdgesGeneration` as an in-memory cache counter only.
+- Keep tombstone sweep placement in existing `lib/causal/` as `sweep.ts`; helper must support read-before-delete snapshots by edge id, endpoint memory id, endpoint id/id-text pair, relation/evidence predicates, and orphan edge lists.
+- Strip CocoIndex research-basis table/paragraph from 004 and replace with local live-code evidence inventory.
+
+### VERDICT
+004 = NEEDS-RESCOPE + caller inventory must include all raw SQL, wrapper callers, vector-index entrypoints, checkpoint restore, correction undo/fallback, health orphan repair, and CLI bulk delete; lifecycle generation must be renamed/disambiguated from cache generation.
+
+### RULED_OUT
+- Test-only `DELETE FROM causal_edges` matches under `mcp_server/tests/` are not live production delete sites.
+- `handlers/memory-index.ts` is not a confirmed live causal-edge delete site from the current search; the stale-cleanup causal delete is in `lib/search/vector-index-mutations.ts`.
+- `lifecycle_generation` has no current TypeScript implementation match; it is only planned in 004 spec.
+
+### METRICS
+newInfoRatio: 0.72
+
+novelty: Confirms the audit’s extra raw sites and adds a live non-handler CLI caller plus vector-index entrypoint context showing memory deletion can hard-delete causal edges before wrapper cleanup.
+
+status: complete
+
+sources: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:159`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:168`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:748`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:764`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:829`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:836`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:108`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:140`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:653`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:677`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:813`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1675`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:621`, `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts:638`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:1124`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:118`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:213`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:252`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:872`, `.opencode/skills/system-spec-kit/mcp_server/cli.ts:396`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:57`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:132`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:135`

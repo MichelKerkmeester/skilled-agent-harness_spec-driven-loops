@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-004",
+  "leg": "gpt-fast-high",
+  "startedAt": "2026-07-02T20:30:39.868Z",
+  "endedAt": "2026-07-02T20:44:00.944Z",
+  "checkpoints": {
+    "tFirstOutputMs": 8731,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 801076
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/lightweight-consolidation-n3-lite.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/session-boost-graduated.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/architecture-boundary-enforcement.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-blocked-read-rendering.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-compact-and-completion.md",
+      "opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-dist-freshness-guard.md",
+      ".opencode/skills/.goal-state/7365735f30646237393335616166666551397574515264437a377639537a.json"
+    ]
+  },
+  "terminal": {
+    "exitCode": null,
+    "killedBy": "watchdog"
+  },
+  "classification": "stuck_no_progress",
+  "dimensions": {
+    "d1": 0,
+    "d2": 2,
+    "d3": 0,
+    "d4": 0,
+    "d5": 2
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/gpt-fast-high/ACB-004-gpt-fast-high.transcript.jsonl"
+}

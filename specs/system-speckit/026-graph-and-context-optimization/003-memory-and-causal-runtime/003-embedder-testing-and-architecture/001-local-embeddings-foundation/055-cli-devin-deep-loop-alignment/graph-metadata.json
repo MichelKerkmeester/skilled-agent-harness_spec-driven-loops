@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/055-cli-devin-deep-loop-alignment",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "059 spec",
+      "cli-devin deep-loop alignment",
+      "deep-research executor cli-devin",
+      "059 plan",
+      "059 tasks",
+      "059 implementation",
+      "059 resource map"
+    ],
+    "key_topics": [
+      "spec",
+      "cli-devin",
+      "deep-loop",
+      "alignment",
+      "deep-research",
+      "executor",
+      "plan",
+      "tasks",
+      "implementation",
+      "resource",
+      "map",
+      "first-class"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      "research/gpt-5.5-review.md",
+      "research/gpt-5.5-phase4-review.md",
+      "plan.md",
+      "tasks.md",
+      "resource-map.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-phase4-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-phase4-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Packets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iter Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Iter Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make cli-devin a first-class deep-loop executor across the codebase",
+    "created_at": "2026-05-15T19:00:00Z",
+    "last_save_at": "2026-07-17T17:19:21.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:d7b19ccc6b7920a6d0207e712663311231decc69fb93807726c840a5b847e4f7",
+    "source_doc_hashes": {
+      "spec.md": "0b23e5a1e93a9d678c01bd544b780210f7dc472a9e3f3f3a7bfbc6bad8acb4b6",
+      "plan.md": "834d00cc76eee3e5c4a2ee170b872fa56571e264aff0dde839e95f1cd97b15dc",
+      "tasks.md": "b45e7bd41cb80fedaf980587897ef0339627643c8ae3875f8341677a512eb331",
+      "implementation-summary.md": "25c030b10f96ef8cec29786fced390ae92e36919bcc38ba119b25f6a3c16b90a",
+      "resource-map.md": "e2352186d1354866b6a11bdedaf283d1e285bde3f6c295d822c006aa023c15a1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

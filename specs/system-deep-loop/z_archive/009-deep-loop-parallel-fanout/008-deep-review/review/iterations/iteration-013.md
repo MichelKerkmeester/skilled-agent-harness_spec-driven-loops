@@ -1,0 +1,1452 @@
+user
+You are a senior code reviewer performing ONE iteration (iteration 13) of an autonomous deep-review loop over the work in packet 123 (deep-loop native parallel fan-out): the deep-loop-runtime fanout scripts, executor-config/audit libs, command flag surface, the four deep YAMLs, tests, and the 001-007 spec children.
+Repo root (your workdir): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+REVIEW ONLY THIS ITERATION'S DIMENSION. Be strictly READ-ONLY: inspect files; do NOT modify anything, just report. Be efficient: target 6 to 11 file reads, breadth over exhaustive depth.
+
+THIS ITERATION'S FOCUS:
+DIMENSION: spec-folder doc integrity. Review the 001-006 child spec.md + implementation-summary.md + graph-metadata.json under the 123 packet. Check completion claims match reality (171/171 etc.), no contradictory states, no fabricated counts, continuity fields valid.
+
+Rules:
+- Cite EVERY finding with an exact repo-relative file path and line number. Re-read the cited line before recording a P0.
+- Classify each finding: P0 (correctness/security/contradiction that breaks behavior), P1 (degraded/incomplete/missing validation), P2 (style/naming/docs/polish).
+- Be skeptical and precise. Do NOT invent line numbers. If you cannot confirm an issue from the actual file, do not report it.
+- A clean dimension is a valid result. Report zero findings rather than padding.
+
+OUTPUT (exactly this structure):
+## Focus
+<one line: the dimension>
+## Findings
+<for each: severity, file:line, issue (1-2 sentences), one-line fix. If none: "No findings.">
+## Verdict
+<one line>
+Then a line that is EXACTLY one of: Review verdict: PASS | Review verdict: CONDITIONAL | Review verdict: FAIL
+
+Then, AFTER the verdict line, emit the machine block:
+===FINDINGS_JSON===
+[{"id":"f-p123-i13-01","severity":"P0|P1|P2","file":"relative/path","line":123,"issue":"...","fix":"..."}]
+===END_FINDINGS===
+(emit [] between the markers if there are no findings)
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+codex
+SKILL ROUTING: User directed → `deep-review`; I’ll keep this strictly read-only and focus only on packet 123’s child spec integrity. I’m going to sample the child docs and cross-check stated completion/counts against nearby metadata rather than widening into implementation review.
+exec
+/bin/zsh -lc "sed -n '1,220p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+name: deep-review
+description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
+argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+version: 1.10.2.0
+---
+<!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
+
+<!-- Keywords: deep-review, code-audit, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
+
+# Autonomous Deep Review Loop
+
+Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
+
+Runtime path resolution:
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
+- Claude runtime: `.claude/agents/*.md`
+- Codex runtime: `.codex/agents/*.toml`
+
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
+
+## 1. WHEN TO USE
+
+### When to Use This Skill
+
+Use this skill when:
+- Code quality audit requiring multiple rounds across different review dimensions
+- Spec folder validation requiring cross-reference checks between docs and implementation
+- Release readiness check before shipping a feature or component
+- Finding misalignments between spec documents and actual code
+- Verifying cross-references across documentation, agents, commands, and code
+- Iterative review where each dimension's findings inform subsequent dimensions
+- Unattended or overnight audit sessions
+
+### When NOT to Use
+
+- Simple single-pass code review (use `sk-code-review` instead)
+- Known issues that just need fixing (go directly to implementation)
+- Implementation tasks (use `sk-code` or `/speckit:implement`)
+- Quick one-file checks (use direct Grep/Read)
+- Fewer than 2 review dimensions needed (single-pass suffices)
+
+### FORBIDDEN INVOCATION PATTERNS
+
+This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
+
+**NEVER:**
+- Write a custom bash/shell dispatcher to parallelize iterations (ad-hoc shell fan-out)
+- Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
+- Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
+- Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
+- Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
+- Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
+
+**COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:start-review-loop`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage active P0 → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
+
+**ALWAYS:**
+- Invoke via `/deep:start-review-loop :auto` or `/deep:start-review-loop :confirm`
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`)
+- Let `scripts/reduce-state.cjs` be the SINGLE state writer
+- Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
+- Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
+
+### Trigger Phrases
+
+- "review code quality" / "audit this code"
+- "audit spec folder" / "validate spec completeness"
+- "release readiness check" / "pre-release review"
+- "find misalignments" (between spec and implementation)
+- "verify cross-references" (across docs and code)
+- "deep review" / "iterative review" / "review loop"
+- "quality audit" / "convergence detection"
+
+### Keyword Triggers
+
+`deep review`, `code audit`, `iterative review`, `review loop`, `release readiness`, `spec folder review`, `convergence detection`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`
+
+---
+
+## 2. SMART ROUTING
+
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+|-------|-------------|-----------|
+| ALWAYS | Every skill invocation | `references/protocol/quick_reference.md` |
+| CONDITIONAL | If intent signals match | Loop protocol, convergence, state format, review contract |
+| ON_DEMAND | Only on explicit request | Full protocol docs, detailed specifications |
+
+### Smart Router Pseudocode
+
+- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
+- Pattern 2: Existence-Check Before Load - `load_if_available()` guards markdown paths, checks `inventory`, and uses `seen`.
+- Pattern 3: Extensible Routing Key - `get_routing_key()` derives the review phase from dispatch context.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` returns review disambiguation and missing phases return a "no review resources" notice.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/protocol/quick_reference.md"
+
+INTENT_SIGNALS = {
+    "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "code audit", "iterative review", ":review", "audit spec"]},
+    "REVIEW_ITERATION":   {"weight": 4, "keywords": ["review iteration", "dimension review", "review findings", "P0", "P1", "P2"]},
+    "REVIEW_CONVERGENCE": {"weight": 3, "keywords": ["review convergence", "coverage gate", "verdict", "binary gate", "all dimensions"]},
+    "REVIEW_REPORT":      {"weight": 3, "keywords": ["review report", "remediation", "verdict", "release readiness", "planning packet"]},
+}
+
+NOISY_SYNONYMS = {
+    "REVIEW_SETUP":       {"audit code": 2.0, "review spec folder": 1.8, "release readiness": 1.5, "pre-release": 1.5},
+    "REVIEW_ITERATION":   {"review dimension": 1.5, "check correctness": 1.4, "check security": 1.4, "check alignment": 1.4},
+    "REVIEW_CONVERGENCE": {"all dimensions covered": 1.6, "coverage complete": 1.5, "stop review": 1.4},
+    "REVIEW_REPORT":      {"review results": 1.5, "what to fix": 1.4, "ship decision": 1.6, "final report": 1.5},
+}
+
+# RESOURCE_MAP: local markdown assets + local review-specific protocol docs
+RESOURCE_MAP = {
+    "REVIEW_SETUP":       [
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "assets/deep_review_strategy.md",
+    ],
+    "REVIEW_ITERATION":   [
+        "references/protocol/loop_protocol.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+    ],
+    "REVIEW_CONVERGENCE": [
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
+    ],
+    "REVIEW_REPORT":      [
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "assets/deep_review_dashboard.md",
+    ],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS":            [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full protocol", "all templates", "complete reference", "resume deep review", "deep-review wave", "review artifact", "release-readiness audit", "convergence-tracked", "same session lineage", "P0"],
+    "ON_DEMAND":         [
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+    ],
+}
+
+PHASE_RESOURCE_MAP = {
+    "init": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_outputs.md"],
+    "iteration": ["references/protocol/loop_protocol.md", "references/convergence/convergence.md", "references/convergence/convergence_signals.md"],
+    "stuck": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/protocol/loop_protocol.md", "references/state/state_reducer_registry.md"],
+    "synthesis": ["references/state/state_format.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
+}
+
+NON_MARKDOWN_REFERENCES = {
+    "review_contract": "assets/review_mode_contract.yaml",
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the review target or spec folder",
+    "Confirm the review phase",
+    "Provide one concrete file, diff range, or expected finding class",
+    "Confirm the verification command set before final review",
+]
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def get_routing_key(dispatch_context) -> str:
+    phase = str(getattr(dispatch_context, "phase", "")).strip().lower()
+    if phase:
+        return phase
+    text = str(getattr(dispatch_context, "text", "")).lower()
+    if "recovery" in text:
+        return "stuck"
+    if "convergence" in text or "synthesis" in text:
+        return "synthesis"
+    if "iteration" in text or "dimension" in text:
+        return "iteration"
+    return "init"
+
+def route_review_resources(task, dispatch_context):
+    inventory = discover_markdown_resources()
+    routing_key = get_routing_key(dispatch_context)
+    scores = score_intents(task, INTENT_SIGNALS, NOISY_SYNONYMS)
+    intents = select_intents(scores, ambiguity_delta=1.0)
+
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+
+exec
+/bin/zsh -lc "rg --files .opencode/specs | rg '/123-|/123/'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/handover.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/decision-record.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/tasks.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-010.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-004.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-005.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-001.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-011.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-006.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-002.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-012.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-003.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-007.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-008.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-009.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-008.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-009.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-001.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-002.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-003.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-013.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-007.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-006.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-012.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-004.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-010.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-011.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/logs/iter-005.out
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-008.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-011.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-009.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-010.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-012.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-001.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-003.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-007.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-005.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-002.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-004.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/deltas/iter-006.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-008.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-011.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-009.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-010.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-012.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-001.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-003.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-007.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-005.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-002.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-004.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/state-parts/iter-006.jsonl
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review/review/run_review.sh
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/changelog.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/plan.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/checklist.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/tasks.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/plan.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/tasks.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/description.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json
+
+codex
+The file inventory already shows an asymmetry: `001` and `002` have `implementation-summary.md`, while `003`-`006` appear to have only `spec.md`, `description.json`, and `graph-metadata.json`. I’m checking the actual numbered lines now so any finding is tied to a real cite, not a directory-list inference.
+exec
+/bin/zsh -lc "sed -n '1,180p' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/references/protocol/quick_reference.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+title: Deep Review Quick Reference
+description: One-page cheat sheet for the autonomous deep review loop.
+---
+
+# Deep Review Quick Reference
+
+One-page cheat sheet for the autonomous deep review loop.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### When to Use
+
+- Looking up the canonical `/deep:start-review-loop` invocation without re-reading the full SKILL.md.
+- Confirming default thresholds, verdicts, or release-readiness states at a glance.
+- Refreshing the artifact-name and packet-file checklist before a manual orchestration pass.
+- Triaging a stuck loop and need the fastest path to convergence semantics.
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `/deep:start-review-loop:auto "target"` | Run autonomous review (no approval gates) |
+| `/deep:start-review-loop:confirm "target"` | Run review with approval gates at each iteration |
+| `/deep:start-review-loop "target"` | Ask which mode to use |
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--max-iterations` | 7 | Maximum review iterations |
+| `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--spec-folder` | auto | Target spec folder path |
+| `--severity-threshold` | P2 | Minimum severity to report |
+
+---
+
+## 2. WHEN TO USE
+
+| Scenario | Use |
+|----------|-----|
+| Multi-pass code quality audit | `/deep:start-review-loop` |
+| Simple single-pass code review | `sk-code-review` |
+| Pre-release readiness check | `/deep:start-review-loop:auto "spec folder"` |
+| Spec/implementation alignment check | `/deep:start-review-loop:auto "skill sk-name"` |
+| Deep technical investigation | `/deep:start-research-loop` (different skill) |
+
+---
+
+## 3. ARCHITECTURE
+
+```
+/deep:start-review-loop  -->  YAML workflow  -->  @deep-review agent (LEAF)
+    |                    |                      |
+    |                    |                      +-- Read state
+    |                    |                      +-- Review (3-5 actions)
+    |                    |                      +-- Write findings (P0/P1/P2)
+    |                    |                      +-- Update state
+    |                    |
+    |                    +-- Init (config, strategy, state)
+    |                    +-- Loop (dispatch, evaluate, decide)
+    |                    +-- Synthesize (review-report.md)
+    |                    +-- Save (memory context)
+```
+
+---
+
+## 4. STATE FILES
+
+Review mode stores its packet under the resolved local review path rooted at `{spec_folder}/review/`:
+
+| File | Location | Format | Purpose |
+|------|----------|--------|---------|
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable) |
+| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
+| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
+| Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |
+| Dashboard | `review/deep-review-dashboard.md` | Markdown | Auto-generated review dashboard |
+| Iterations | `review/iterations/iteration-NNN.md` | Markdown | Per-iteration findings (write-once) |
+| Report | `review/review-report.md` | Markdown | Final 9-section review report |
+| Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
+
+### Lifecycle Modes
+
+| Mode | Effect |
+|------|--------|
+| `resume` | Continue the current review lineage without resetting generation |
+| `restart` | Archive current review state and start a new generation |
+| `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
+| `completed-continue` (deferred) | Reserved. Snapshot the completed review and reopen it for amendment-only review deltas. Not runtime-wired. |
+
+---
+
+## 5. REVIEW DIMENSIONS
+
+| ID | Dimension | Priority | Description |
+|----|-----------|----------|-------------|
+| D1 | Correctness | 1 | Logic errors, off-by-one, wrong return types, broken invariants |
+| D2 | Security | 2 | Injection, auth bypass, secrets exposure, unsafe deserialization |
+| D3 | Traceability | 3 | Spec/code alignment, checklist evidence, cross-reference integrity |
+| D4 | Maintainability | 4 | Patterns, clarity, documentation quality, ease of safe follow-on changes |
+
+---
+
+## 6. REVIEW VERDICTS
+
+| Verdict | Condition | Meaning | Next Command |
+|---------|-----------|---------|--------------|
+| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
+| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
+| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+
+### Release Readiness
+
+`releaseReadinessState` is the canonical config/report field for review readiness tracking.
+
+| State | Meaning |
+|-------|---------|
+| `in-progress` | Review still running or required coverage incomplete |
+| `converged` | All 4 dimensions covered and the stabilization pass found no new P0/P1 findings |
+| `release-blocking` | At least one unresolved P0 remains active |
+
+---
+
+## 7. REVIEW QUALITY GUARDS
+
+| Gate | Rule |
+|------|------|
+| Evidence | Every active finding has file:line evidence and is not inference-only |
+| Scope | Findings and reviewed files stay within declared review scope |
+| Coverage | Configured dimensions plus required traceability protocols are covered before STOP |
+
+---
+
+## 8. REVIEW CONVERGENCE
+
+| Signal | Weight | Description |
+|--------|--------|-------------|
+| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `0.08` |
+| MAD Noise Floor | 0.25 | Latest ratio within noise floor |
+| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+
+**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+
+**P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
+
+---
+
+## 9. AGENT ITERATION CHECKLIST
+
+Each @deep-review iteration:
+1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+2. Determine focus dimension from strategy "Next Focus"
+3. Execute 3-5 review actions (Read, Grep, Glob, code_graph_query + Grep)
+4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+6. Update `deep-review-strategy.md` (findings, coverage, next focus)
+7. Append iteration record to `deep-review-state.jsonl`
+
+---
+
+## 10. REVIEW REPORT SECTIONS
+
+| # | Section | Purpose |
+|---|---------|---------|
+| 1 | Executive Summary | Verdict, active P0/P1/P2 counts, scope, `hasAdvisories` |
+| 2 | Planning Trigger | Why the verdict routes to planning or changelog follow-up |
+| 3 | Active Finding Registry | Deduped active findings with evidence and final severity |
+| 4 | Remediation Workstreams | Grouped action lanes derived from active findings |
+| 5 | Spec Seed | Minimal spec delta derived from review results |
+| 6 | Plan Seed | Action-ready plan starter for remediation |
+| 7 | Traceability Status | Core vs overlay protocol status and unresolved gaps |
+| 8 | Deferred Items | P2 advisories, blocked checks, and follow-up items |
+| 9 | Audit Appendix | Coverage, replay validation, and convergence evidence |
+
+exec
+/bin/zsh -lc "rg --files .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout | rg '/00[1-6]-["'^/]+/(spec'"\\.md|implementation-summary\\.md|graph-metadata\\.json)"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json
+
+exec
+/bin/zsh -lc 'rg -n "(Status|status|Complete|complete|Completion|completion|171|tasks?|Tasks?|validation|Validation|continuity|current_state|finished|done|PASS|FAIL|implementation-summary|implementation summary)" .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md:14:    recent_action: "Phase 6 complete — fan-out flags + policy in both command docs; deep-loop-runtime/SKILL.md script table; deep-research + deep-review SKILL.md carve-outs; parity gate confirmed structural (skip_when guards + if_absent resolver branch)"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md:15:    next_safe_action: "Packet 123 complete — all 6 phases done; run git status + commit"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/decision-record.md:25:| **Status** | Accepted |
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md:14:    recent_action: "Phase 4 complete — fanout-salvage.cjs + 11 tests (salvage + coverage isolation) green; 187/187 full suite"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json:32:    "status": "planned",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json:32:    "status": "planned",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:2:title: "Phase 002: Capped worker pool + status ledger"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:3:description: "New deep-loop-runtime/scripts/fanout-pool.cjs implementing runCappedPool (generalize council multi-seat-dispatch with a concurrency cap) + orchestration-status.log JSONL + orchestration-summary.json."
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:11:    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:14:    recent_action: "Phase 2 complete — fanout-pool.cjs (runCappedPool, settleItem, buildPoolSummary, appendStatusLedger, writeOrchestrationSummary) + 10 unit tests green; 171/171 full suite"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:15:    next_safe_action: "Phase 003 done; packet 123 fully shipped"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:24:# Phase 002 — Capped worker pool + status ledger
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:31:- `runCappedPool({items, concurrency, worker})`: ≤concurrency promises in flight; per-item try/catch (one failure never sinks the pool); allSettled-style results with timing/status (mirror `multi-seat-dispatch.cjs`).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md:32:- Status ledger: `{artifact_dir}/orchestration-status.log` (JSONL per-lineage events) + `{artifact_dir}/orchestration-summary.json` (`total/succeeded/failed/salvaged/perLineage[]`).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/description.json:2:  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/description.json:3:  "description": "Phase 002 — Capped worker pool + status ledger",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/description.json:10:    "status",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/description.json:15:  "folderSlug": "capped-pool-status-ledger",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md:14:    recent_action: "Phase 3 complete — decision-record.md + fanout-run.cjs + all 4 YAML overrides + 5 integration tests green (176/176 excl. known loop-lock flake)"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md:14:    recent_action: "Phase 5 complete — fanout-merge.cjs + step_fanout_merge in all 4 YAMLs + 10 tests; 196/197 (loop-lock flake only)"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md:33:  - review: severity rollup, **strongest-restriction** (any-lineage active P0 ⇒ merged FAIL) → consolidated `deep-review-findings-registry.json` → existing synthesis emits 9-section `review-report.md` + verdict.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md:37:- Unit: research dedup/attribution; review rollup + strongest-restriction (A clean, B P0 ⇒ merged FAIL).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md:14:    recent_action: "Phase 1 complete — lineageExecutorSchema + fanoutConfigSchema + parseFanoutConfig + expandLineages + optional lineageId in executor-audit; 36 tests green (27 original + 9 fan-out)"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md:15:    next_safe_action: "Phase 002 done; Phase 003 done; packet 123 fully shipped"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md:35:- New unit tests cover fan-out parse / both-present conflict / count-expansion / per-entry kind validation reuse.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/tasks.md:4:# Tasks — Phase 002: Capped worker pool + status ledger
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/tasks.md:8:- [x] T3: Add `appendStatusLedger` + `writeOrchestrationSummary` (JSONL ledger + summary JSON).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/tasks.md:10:- [x] T5: Fix the cap-not-exceeded test (macrotask flush + entered/in-flight tracking; pool code was correct).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/tasks.md:11:- [x] T6: Run fanout-pool suite (10/10) + full unit suite (171/171) — green, no regressions.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json:32:    "status": "planned",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/plan.md:4:# Plan — Phase 002: Capped worker pool + status ledger
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/plan.md:17:2. Add `settleItem`, `buildPoolSummary`, and ledger helpers `appendStatusLedger` (JSONL lifecycle events)
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/plan.md:18:   + `writeOrchestrationSummary` (pretty-JSON run summary), generalizing packet-122's `orchestration-status.log`.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json:35:    "status": "planned",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/tasks.md:4:# Tasks — Phase 001: Fan-out schema + config plumbing
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md:12:3. Extend `executor-config.vitest.ts` with fan-out parse/expand/validation cases.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:16:      "123 phase 001 implementation summary",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:17:      "fanout schema done"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:28:      "done",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:34:    "status": "complete",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:41:      "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:42:      "implementation-summary.md"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:76:        "name": "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:78:        "path": "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:82:        "name": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:84:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:162:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:168:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:174:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:180:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:186:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:198:      "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json:199:      "implementation-summary.md"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:5:  - "123 phase 001 implementation summary"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:6:  - "fanout schema done"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:14:    recent_action: "Phase 001 complete: fan-out schema + audit lineageId + 9 tests; suite 161/161 green"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:15:    next_safe_action: "Phase 002: author scripts/fanout-pool.cjs runCappedPool + status ledger"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:27:> "lineageId 4 refs") from edits that had SILENTLY FAILED to apply (wrong anchor strings, masked by a
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:61:## Spec-folder validation note
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:62:The 001 child still FAILS `validate.sh --strict` (missing `checklist.md`; lean hand-authored docs lack full SPECKIT template anchors — same pattern as packet 122 children). Template-scaffolding only, not code; to reconcile before the packet's overall completion claim.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:3:  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:4:  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:16:      "123 phase 002 implementation summary",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:17:      "fanout-pool capped pool done"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:29:      "done",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:34:    "status": "complete",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:40:      "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:41:      "implementation-summary.md"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:69:        "name": "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:71:        "path": "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:75:        "name": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:77:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:155:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:161:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:167:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:173:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:177:        "name": "macrotask",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:179:        "path": "implementation-summary.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:191:      "tasks.md",
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json:192:      "implementation-summary.md"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:2:title: "Implementation Summary: Phase 002 — Capped worker pool + status ledger"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:3:description: "New scripts/fanout-pool.cjs implementing runCappedPool (concurrency-capped generalization of council multi-seat-dispatch with never-throws per-item settlement + ordered results) plus settleItem, buildPoolSummary, appendStatusLedger, writeOrchestrationSummary. 10/10 new unit tests pass."
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:5:  - "123 phase 002 implementation summary"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:6:  - "fanout-pool capped pool done"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:10:  continuity:
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:11:    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:14:    recent_action: "Phase 002 complete: fanout-pool.cjs + 10 tests; full suite 171/171 green"
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:17:    completion_pct: 100
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:24:# Implementation Summary — Phase 002: Capped worker pool + status ledger
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:30:   - `settleItem(...)` — per-item settlement that never throws (worker rejection captured as a `rejected` result with normalized `{name,message}`), mirroring council `settleSeat`; emits optional `started`/`completed`/`failed` ledger events via `onEvent`.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:32:   - `appendStatusLedger(path, entry)` — append one JSONL lifecycle event (generalizes packet-122 `orchestration-status.log`).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:37:   - `runCappedPool`: cap-not-exceeded (deterministic gated worker via macrotask flush + entered/in-flight tracking), input-order preserved under out-of-order completion, single-failure isolation, all-failed summary, empty pool, concurrency<1 clamps to 1, per-item ledger events (started+completed / started+failed), invalid-args TypeErrors.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:38:   - status ledger: JSONL append (incl. mkdir of nested dir), pretty-JSON summary write (round-trips via tmpdir).
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:41:The cap-not-exceeded test first FAILED (9/10) due to a races-the-pump assertion (counted microtask ticks). Fixed the TEST (not the pool): switched to a macrotask `flush()` and asserted on an append-only `entered` list + live `inFlight` set. The pool code was correct throughout. Re-run: 10/10 pass.
+.opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:45:- Full `deep-loop-runtime/tests/unit/`: **171/171 pass, 18 files, 0 failures** (EXIT 0) — no regressions; the `loop-lock` cross-process flake did not recur in this run. `fanout-pool.cjs` is a new standalone module no existing file imports; only it + its new test changed.
+
+codex
+The main pattern is not in the code at all; it’s in packet bookkeeping. Several child specs claim `completion_pct: 100`, but their generated graph metadata still advertises `"status": "planned"`, and `003`-`006` do not have implementation summaries in the file inventory.
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/spec.md | sed -n '1,45p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 003: Per-lineage spawn + sub-packet isolation"
+     3	description: "Pool spawn path (Option B: shell existing command per lineage into {artifact_dir}/lineages/{label}/) + --artifact-dir-override branch in step_resolve_artifact_root across all 4 deep-loop YAMLs; recursion-guard verification."
+     4	trigger_phrases:
+     5	  - "123 phase 003 spawn isolation"
+     6	  - "artifact-dir-override lineages"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 3 complete — decision-record.md + fanout-run.cjs + all 4 YAML overrides + 5 integration tests green (176/176 excl. known loop-lock flake)"
+    15	    next_safe_action: "Phase 4: salvage sweep + per-lineage session_id in coverage-graph (004-salvage-coverage-graph)"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 003 — Per-lineage spawn + sub-packet isolation
+    25	
+    26	## Purpose
+    27	Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet.
+    28	
+    29	## Scope
+    30	- `fanout-pool.cjs` spawn path: existing deep-loop command, single synthesized `config.executor` per lineage, `--max-iterations {lineage.iterations ?? default}`, env `SPECKIT_FANOUT_LINEAGE_ID={label}`, capture stdout to `{sub-packet}/logs/iter-NNN.out`.
+    31	- `--artifact-dir-override` branch in `step_resolve_artifact_root` for all 4 YAMLs: `deep_start-{research,review}-loop_{auto,confirm}.yaml` (override → use it; else `resolveArtifactRoot`). Sub-packets at `{artifact_dir}/lineages/{label}/`.
+    32	- Recursion-guard check: distinct kinds safe; same-kind replicas verify loop-lock/ancestry (`SPECKIT_<KIND>_STATE_DIR`).
+    33	
+    34	## Success
+    35	- Integration: pool spawns a stub command twice into two `lineages/{label}/` trees; distinct trees + distinct sessionIds + no lock contention.
+    36	
+    37	## Out of scope
+    38	Salvage (004); merge (005).
+
+ succeeded in 0ms:
+     1	---
+     2	title: "Implementation Summary: Phase 001 — Fan-out schema + config plumbing"
+     3	description: "Added opt-in multi-executor fan-out config schema (lineageExecutorSchema, fanoutConfigSchema, parseFanoutConfig, expandLineages) to deep-loop-runtime executor-config.ts + optional lineageId in executor-audit (buildExecutorAuditRecord + input type + record type); single-executor path unchanged; deep-loop-runtime unit suite 161/161 green (1 pre-existing loop-lock cross-process flake, unrelated)."
+     4	trigger_phrases:
+     5	  - "123 phase 001 implementation summary"
+     6	  - "fanout schema done"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 001 complete: fan-out schema + audit lineageId + 9 tests; suite 161/161 green"
+    15	    next_safe_action: "Phase 002: author scripts/fanout-pool.cjs runCappedPool + status ledger"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Implementation Summary — Phase 001: Fan-out schema + config plumbing
+    25	
+    26	> Process honesty note: an earlier draft of this file claimed numbers ("163/163", "+9 tests",
+    27	> "lineageId 4 refs") from edits that had SILENTLY FAILED to apply (wrong anchor strings, masked by a
+    28	> flaky shell transport). The edits were then re-applied with verified anchors and the numbers below are
+    29	> grep/git/test-run verified.
+    30	
+    31	## What changed (verified on disk + by test run)
+    32	
+    33	1. **`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`** (git: +118 lines):
+    34	   - `lineageExecutorSchema` = `executorConfigSchema.extend({ label (dir-safe /^[a-z0-9][a-z0-9-]*$/), count (int≥1, default 1), iterations (int≥1|null, default null) })`.
+    35	   - `fanoutConfigSchema` = `{ executors: lineageExecutorSchema[] (min 1), concurrency: int≥1 (default 2) }`.
+    36	   - `parseFanoutConfig(raw)` — validates the array, routes each entry's executor subset through the EXISTING `parseExecutorConfig` (reuses all kind/model/flag rules), enforces unique labels + non-colliding expanded labels.
+    37	   - `expandLineages(config)` — count→labels (count 1 keeps base; count N → `label-1…label-N`, each single-replica, count reset to 1).
+    38	   - `executorConfigSchema` / `parseExecutorConfig` / `resolveExecutorConfig` **untouched**. (6 fan-out exports confirmed by grep.)
+    39	
+    40	2. **`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`** (optional `lineageId`, 3 refs confirmed):
+    41	   - `lineageId?: string` added to `RunAuditedExecutorCommandInput`.
+    42	   - `buildExecutorAuditRecord(executor, lineageId?)` conditionally spreads `lineageId` only when provided ⇒ **records byte-identical when absent**.
+    43	   - NOTE: field DEFINED here, first CONSUMED in Phase 003 (spawn) / Phase 005 (merge attribution). No call site passes it yet.
+    44	
+    45	3. **`.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts`** (36 `it()` confirmed = 27 original + 9 new):
+    46	   - +7 `parseFanoutConfig` cases (parse+defaults; concurrency/count/iterations; cli-codex model reuse; cli-gemini flag reuse; empty-array reject; non-dir-safe-label reject; duplicate-label reject).
+    47	   - +2 `expandLineages` cases (count-1 base; count>1 numbered).
+    48	
+    49	## Backward-compat rule
+    50	Config carries EITHER `config.executor` (single, default, unchanged) OR `config.fanout` (multi). No call site writes both yet; the both-present guard lands with the command surface in Phase 006.
+    51	
+    52	## Verification (observed, clean runs)
+    53	- `executor-config.vitest.ts`: **36/36 pass** (isolated).
+    54	- `executor-config` + `executor-audit` together: **60/60 pass**.
+    55	- Full `deep-loop-runtime/tests/unit/`: **161/161 pass** (EXIT 0). Parity preserved — pre-existing single-executor tests unchanged and green.
+    56	- One UNRELATED flake observed in a later full-suite run: `loop-lock.vitest.ts > allows exactly one fresh cross-process acquire to win` (a cross-process timing test). Confirmed flaky — passed 7/7 in one isolated run, failed 1/7 in another; `loop-lock.ts` is NOT in this phase's diff (git-verified). Not caused by Phase 001.
+    57	
+    58	## Scope (git)
+    59	Exactly 3 files changed under `deep-loop-runtime/`: `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `tests/unit/executor-config.vitest.ts`.
+    60	
+    61	## Spec-folder validation note
+    62	The 001 child still FAILS `validate.sh --strict` (missing `checklist.md`; lean hand-authored docs lack full SPECKIT template anchors — same pattern as packet 122 children). Template-scaffolding only, not code; to reconcile before the packet's overall completion claim.
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json | sed -n '1,70p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json | sed -n '1,65p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	{
+     2	  "schema_version": 1,
+     3	  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+     4	  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+     5	  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+     6	  "children_ids": [],
+     7	  "manual": {
+     8	    "depends_on": [],
+     9	    "supersedes": [],
+    10	    "related_to": []
+    11	  },
+    12	  "derived": {
+    13	    "trigger_phrases": [
+    14	      "123 phase 003 spawn isolation",
+    15	      "artifact-dir-override lineages",
+    16	      "123 fanout executor dispatch",
+    17	      "fanout native dispatch decision",
+    18	      "4A executor fan-out strategy"
+    19	    ],
+    20	    "key_topics": [
+    21	      "123",
+    22	      "phase",
+    23	      "003",
+    24	      "spawn",
+    25	      "isolation",
+    26	      "artifact-dir-override",
+    27	      "lineages",
+    28	      "fanout",
+    29	      "executor",
+    30	      "dispatch",
+    31	      "native",
+    32	      "decision"
+    33	    ],
+    34	    "importance_tier": "important",
+    35	    "status": "planned",
+    36	    "key_files": [
+    37	      "spec.md",
+    38	      "decision-record.md"
+    39	    ],
+    40	    "entities": [
+    41	      {
+    42	        "name": "spec.md",
+    43	        "kind": "doc",
+    44	        "path": "spec.md",
+    45	        "source": "derived"
+    46	      },
+    47	      {
+    48	        "name": "decision-record.md",
+    49	        "kind": "doc",
+    50	        "path": "decision-record.md",
+    51	        "source": "derived"
+    52	      },
+    53	      {
+    54	        "name": "Purpose Run",
+    55	        "kind": "proper_noun",
+    56	        "path": "spec.md",
+    57	        "source": "derived"
+    58	      },
+    59	      {
+    60	        "name": "Purpose",
+    61	        "kind": "heading",
+    62	        "path": "spec.md",
+    63	        "source": "derived"
+    64	      },
+    65	      {
+    66	        "name": "Scope",
+    67	        "kind": "heading",
+    68	        "path": "spec.md",
+    69	        "source": "derived"
+    70	      },
+
+ succeeded in 0ms:
+     1	{
+     2	  "schema_version": 1,
+     3	  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph",
+     4	  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph",
+     5	  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+     6	  "children_ids": [],
+     7	  "manual": {
+     8	    "depends_on": [],
+     9	    "supersedes": [],
+    10	    "related_to": []
+    11	  },
+    12	  "derived": {
+    13	    "trigger_phrases": [
+    14	      "123 phase 004 salvage",
+    15	      "coverage-graph per-session isolation"
+    16	    ],
+    17	    "key_topics": [
+    18	      "123",
+    19	      "phase",
+    20	      "004",
+    21	      "salvage",
+    22	      "coverage-graph",
+    23	      "per-session",
+    24	      "isolation",
+    25	      "make",
+    26	      "every",
+    27	      "iteration",
+    28	      "yield",
+    29	      "usable"
+    30	    ],
+    31	    "importance_tier": "important",
+    32	    "status": "planned",
+    33	    "key_files": [
+    34	      "spec.md"
+    35	    ],
+    36	    "entities": [
+    37	      {
+    38	        "name": "spec.md",
+    39	        "kind": "doc",
+    40	        "path": "spec.md",
+    41	        "source": "derived"
+    42	      },
+    43	      {
+    44	        "name": "Purpose Make",
+    45	        "kind": "proper_noun",
+    46	        "path": "spec.md",
+    47	        "source": "derived"
+    48	      },
+    49	      {
+    50	        "name": "Purpose",
+    51	        "kind": "heading",
+    52	        "path": "spec.md",
+    53	        "source": "derived"
+    54	      },
+    55	      {
+    56	        "name": "Scope",
+    57	        "kind": "heading",
+    58	        "path": "spec.md",
+    59	        "source": "derived"
+    60	      },
+    61	      {
+    62	        "name": "Success",
+    63	        "kind": "heading",
+    64	        "path": "spec.md",
+    65	        "source": "derived"
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/spec.md | sed -n '1,45p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 004: Salvage sweep + coverage-graph per-sessionId"
+     3	description: "Salvage fallback in fanout-pool.cjs (reuse post-dispatch-validate; recover executor stdout reply -> missing iteration md + salvaged event) + confirm per-lineage session_id isolates the shared coverage-graph SQLite (no schema change)."
+     4	trigger_phrases:
+     5	  - "123 phase 004 salvage"
+     6	  - "coverage-graph per-session isolation"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 4 complete — fanout-salvage.cjs + 11 tests (salvage + coverage isolation) green; 187/187 full suite"
+    15	    next_safe_action: "Phase 5: fanout-merge.cjs + step_fanout_merge in phase_synthesis of all 4 YAMLs (005-consumer-merges-synthesis)"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 004 — Salvage sweep + coverage-graph per-sessionId
+    25	
+    26	## Purpose
+    27	Make every iteration yield a usable artifact even when an executor doesn't write its file (weak CLIs / sandboxed writes), and ensure parallel lineages don't collide on the shared coverage SQLite.
+    28	
+    29	## Scope
+    30	- `fanout-pool.cjs` salvage step: after each lineage sub-loop, sweep with `post-dispatch-validate.ts#validateIterationOutputs`; on `iteration_file_missing/empty`, parse `{sub-packet}/logs/iter-NNN.out` (opencode `--format json` text parts, else raw) → write missing `iterations/iteration-NNN.md` + append `salvaged_from_stdout` event; re-validate; still-missing ⇒ failed marker (loop's stuck-recovery handles persistence).
+    31	- Coverage-graph: confirm each lineage's own `session_id` scopes `convergence.cjs` + coverage writes (PK/UNIQUE already include session_id) — no schema change; rely on WAL + existing writer lock.
+    32	
+    33	## Success
+    34	- Unit: missing-md+stdout ⇒ salvaged; still-missing ⇒ failed marker.
+    35	- Integration: two lineages, distinct sessionIds, shared `deep-loop-graph.sqlite`, explicit no-collision assertion.
+    36	
+    37	## Out of scope
+    38	Merge (005); docs (006).
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json | sed -n '1,65p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/spec.md | sed -n '1,50p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 005: Consumer-specific merges + synthesis hooks"
+     3	description: "New deep-loop-runtime/scripts/fanout-merge.cjs (research: dedup + cross-model attribution; review: severity rollup + strongest-restriction any-lineage-P0-blocks) + step_fanout_merge atop both phase_synthesis; fanout-attribution.md."
+     4	trigger_phrases:
+     5	  - "123 phase 005 merge"
+     6	  - "fanout-merge.cjs synthesis"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 5 complete — fanout-merge.cjs + step_fanout_merge in all 4 YAMLs + 10 tests; 196/197 (loop-lock flake only)"
+    15	    next_safe_action: "Phase 6: command surface + docs + final parity gate (006-command-surface-docs-parity)"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 005 — Consumer-specific merges + synthesis hooks
+    25	
+    26	## Purpose
+    27	Consolidate the N isolated lineage packets into ONE canonical output per consumer, reusing the existing synthesis compilers.
+    28	
+    29	## Scope
+    30	- New `deep-loop-runtime/scripts/fanout-merge.cjs` (`--loop-type research|review`), reads every `{artifact_dir}/lineages/{label}/` registry + iterations + state log.
+    31	- New `step_fanout_merge` at the TOP of each `phase_synthesis` (4 YAMLs), gated on `config.fanout`:
+    32	  - research: dedup (reuse reducer content-hash) + cross-model attribution → consolidated `deep-research-findings-registry.json` → existing `step_compile_research` emits canonical 17-section `research.md`.
+    33	  - review: severity rollup, **strongest-restriction** (any-lineage active P0 ⇒ merged FAIL) → consolidated `deep-review-findings-registry.json` → existing synthesis emits 9-section `review-report.md` + verdict.
+    34	  - Both write `{artifact_dir}/fanout-attribution.md` (per-lineage convergence, iters, salvage events, model attribution).
+    35	
+    36	## Success
+    37	- Unit: research dedup/attribution; review rollup + strongest-restriction (A clean, B P0 ⇒ merged FAIL).
+    38	- Integration: 2-lineage fixture → merged registry → existing synthesis → canonical report unchanged in shape.
+    39	
+    40	## Out of scope
+    41	Command flags + docs + final parity (006).
+
+ succeeded in 0ms:
+     1	{
+     2	  "schema_version": 1,
+     3	  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity",
+     4	  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity",
+     5	  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+     6	  "children_ids": [],
+     7	  "manual": {
+     8	    "depends_on": [],
+     9	    "supersedes": [],
+    10	    "related_to": []
+    11	  },
+    12	  "derived": {
+    13	    "trigger_phrases": [
+    14	      "123 phase 006 command docs parity",
+    15	      "fan-out command flags"
+    16	    ],
+    17	    "key_topics": [
+    18	      "123",
+    19	      "phase",
+    20	      "006",
+    21	      "command",
+    22	      "docs",
+    23	      "parity",
+    24	      "fan-out",
+    25	      "flags",
+    26	      "expose",
+    27	      "via",
+    28	      "entrypoints",
+    29	      "opt-in"
+    30	    ],
+    31	    "importance_tier": "important",
+    32	    "status": "planned",
+    33	    "key_files": [
+    34	      "spec.md"
+    35	    ],
+    36	    "entities": [
+    37	      {
+    38	        "name": "spec.md",
+    39	        "kind": "doc",
+    40	        "path": "spec.md",
+    41	        "source": "derived"
+    42	      },
+    43	      {
+    44	        "name": "Purpose Expose",
+    45	        "kind": "proper_noun",
+    46	        "path": "spec.md",
+    47	        "source": "derived"
+    48	      },
+    49	      {
+    50	        "name": "Default Resolution Table",
+    51	        "kind": "proper_noun",
+    52	        "path": "spec.md",
+    53	        "source": "derived"
+    54	      },
+    55	      {
+    56	        "name": "Out Convergence",
+    57	        "kind": "proper_noun",
+    58	        "path": "spec.md",
+    59	        "source": "derived"
+    60	      },
+    61	      {
+    62	        "name": "the",
+    63	        "kind": "key_phrase",
+    64	        "path": "spec.md",
+    65	        "source": "derived"
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/spec.md | sed -n '1,50p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 006: Command surface + docs + final parity"
+     3	description: "Command flag parsing (--executor repeatable, --executors json, --concurrency) + default policy (single-executor default) in both deep command entrypoints; SKILL/convergence/runtime doc updates permitting command-driven fan-out (wave stays deferred); final byte-identical single-executor parity gate."
+     4	trigger_phrases:
+     5	  - "123 phase 006 command docs parity"
+     6	  - "fan-out command flags"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 6 complete — fan-out flags + policy in both command docs; deep-loop-runtime/SKILL.md script table; deep-research + deep-review SKILL.md carve-outs; parity gate confirmed structural (skip_when guards + if_absent resolver branch)"
+    15	    next_safe_action: "Packet 123 complete — all 6 phases done; run git status + commit"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 006 — Command surface + docs + final parity
+    25	
+    26	## Purpose
+    27	Expose fan-out via the command entrypoints (opt-in), document it for both consumers, and prove single-executor parity.
+    28	
+    29	## Scope
+    30	- `commands/deep/start-research-loop.md` + `start-review-loop.md` §0: repeatable `--executor` (groups trailing `--model/--reasoning-effort/--service-tier/--executor-timeout/--iters/--label/--count`), `--executors <json>` escape hatch, `--concurrency N`; Default Resolution Table + PRE-BOUND SETUP ANSWERS additions; fan-out EXAMPLES.
+    31	- Default policy: 0–1 executor & no `--executors` ⇒ `config.executor` (single, recommended default, unchanged); 2+ / `--executors` / `count>1` ⇒ `config.fanout`.
+    32	- Docs: `deep-research/SKILL.md` (§4 NEVER #9 + EXPERIMENTAL) + `deep-review/SKILL.md` (FORBIDDEN INVOCATION PATTERNS) carve-out permitting command-driven fan-out (ad-hoc shell + intra-lineage wave stay forbidden/deferred); "Fan-Out Convergence" in both `references/convergence/convergence.md`; `deep-loop-runtime/SKILL.md` script table adds `fanout-pool.cjs`/`fanout-merge.cjs`.
+    33	
+    34	## Success
+    35	- **Final parity gate (non-negotiable):** single-executor run byte-identical to pre-change `main` (config, state.jsonl modulo timestamps, iteration md, research.md/review-report.md).
+    36	- Docs accurate; full vitest green; `validate.sh --strict` green for parent + children.
+    37	
+    38	## Out of scope
+    39	Wave-within-lineage (deferred).
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json | sed -n '1,65p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	{
+     2	  "schema_version": 1,
+     3	  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis",
+     4	  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis",
+     5	  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+     6	  "children_ids": [],
+     7	  "manual": {
+     8	    "depends_on": [],
+     9	    "supersedes": [],
+    10	    "related_to": []
+    11	  },
+    12	  "derived": {
+    13	    "trigger_phrases": [
+    14	      "123 phase 005 merge",
+    15	      "fanout-merge.cjs synthesis"
+    16	    ],
+    17	    "key_topics": [
+    18	      "123",
+    19	      "phase",
+    20	      "005",
+    21	      "merge",
+    22	      "fanout-merge",
+    23	      "cjs",
+    24	      "synthesis",
+    25	      "consolidate",
+    26	      "isolated",
+    27	      "lineage",
+    28	      "packets",
+    29	      "one"
+    30	    ],
+    31	    "importance_tier": "important",
+    32	    "status": "planned",
+    33	    "key_files": [
+    34	      "spec.md"
+    35	    ],
+    36	    "entities": [
+    37	      {
+    38	        "name": "spec.md",
+    39	        "kind": "doc",
+    40	        "path": "spec.md",
+    41	        "source": "derived"
+    42	      },
+    43	      {
+    44	        "name": "Purpose Consolidate",
+    45	        "kind": "proper_noun",
+    46	        "path": "spec.md",
+    47	        "source": "derived"
+    48	      },
+    49	      {
+    50	        "name": "Purpose",
+    51	        "kind": "heading",
+    52	        "path": "spec.md",
+    53	        "source": "derived"
+    54	      },
+    55	      {
+    56	        "name": "Scope",
+    57	        "kind": "heading",
+    58	        "path": "spec.md",
+    59	        "source": "derived"
+    60	      },
+    61	      {
+    62	        "name": "Success",
+    63	        "kind": "heading",
+    64	        "path": "spec.md",
+    65	        "source": "derived"
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md | sed -n '1,60p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Implementation Summary: Phase 002 — Capped worker pool + status ledger"
+     3	description: "New scripts/fanout-pool.cjs implementing runCappedPool (concurrency-capped generalization of council multi-seat-dispatch with never-throws per-item settlement + ordered results) plus settleItem, buildPoolSummary, appendStatusLedger, writeOrchestrationSummary. 10/10 new unit tests pass."
+     4	trigger_phrases:
+     5	  - "123 phase 002 implementation summary"
+     6	  - "fanout-pool capped pool done"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 002 complete: fanout-pool.cjs + 10 tests; full suite 171/171 green"
+    15	    next_safe_action: "Phase 003: spawn worker + --artifact-dir-override YAML branch"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Implementation Summary — Phase 002: Capped worker pool + status ledger
+    25	
+    26	## What changed (verified)
+    27	
+    28	1. **`.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs`** (NEW):
+    29	   - `runCappedPool({ items, concurrency, worker, now?, onEvent? })` — runs items through an async `worker` with at most `concurrency` in flight (clamped >=1). Generalizes council `dispatchCouncilSeats` by adding the concurrency cap (the `xargs -P K` shape) while keeping its never-throws settlement + ordered results. Returns `{ results: [...ordered], summary: { total, succeeded, failed, all_failed } }`. Empty pool => `all_failed:false`.
+    30	   - `settleItem(...)` — per-item settlement that never throws (worker rejection captured as a `rejected` result with normalized `{name,message}`), mirroring council `settleSeat`; emits optional `started`/`completed`/`failed` ledger events via `onEvent`.
+    31	   - `buildPoolSummary(results)` — ordered-results + summary envelope.
+    32	   - `appendStatusLedger(path, entry)` — append one JSONL lifecycle event (generalizes packet-122 `orchestration-status.log`).
+    33	   - `writeOrchestrationSummary(path, summary)` — pretty-JSON run summary.
+    34	   - The `worker` is INJECTED (pure primitive); the real per-lineage spawn worker + the CLI entry (arg parse / JSON-out / exit codes via `cli-guards.cjs`) are Phase 003.
+    35	
+    36	2. **`.opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts`** (NEW, 10 tests):
+    37	   - `runCappedPool`: cap-not-exceeded (deterministic gated worker via macrotask flush + entered/in-flight tracking), input-order preserved under out-of-order completion, single-failure isolation, all-failed summary, empty pool, concurrency<1 clamps to 1, per-item ledger events (started+completed / started+failed), invalid-args TypeErrors.
+    38	   - status ledger: JSONL append (incl. mkdir of nested dir), pretty-JSON summary write (round-trips via tmpdir).
+    39	
+    40	## Note on a fixed test bug
+    41	The cap-not-exceeded test first FAILED (9/10) due to a races-the-pump assertion (counted microtask ticks). Fixed the TEST (not the pool): switched to a macrotask `flush()` and asserted on an append-only `entered` list + live `inFlight` set. The pool code was correct throughout. Re-run: 10/10 pass.
+    42	
+    43	## Verification
+    44	- `fanout-pool.vitest.ts`: 10/10 pass.
+    45	- Full `deep-loop-runtime/tests/unit/`: **171/171 pass, 18 files, 0 failures** (EXIT 0) — no regressions; the `loop-lock` cross-process flake did not recur in this run. `fanout-pool.cjs` is a new standalone module no existing file imports; only it + its new test changed.
+    46	
+    47	## Out of scope (Phase 003+)
+    48	Per-lineage spawn worker (Option B: shell the existing command into `{artifact_dir}/lineages/{label}/`); `--artifact-dir-override` YAML branch; salvage; coverage-graph per-sessionId; consumer merges; command flags; docs.
+
+codex
+One more narrow check: I’m comparing the “final validation green” claim against the child docs that would make it true. The strongest issue seems to be doc state drift, not implementation behavior.
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/spec.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 001: Fan-out schema + config plumbing"
+     3	description: "Add multi-executor fan-out config schema (lineageExecutorSchema, fanoutConfigSchema, parseFanoutConfig, expandLineages) to deep-loop-runtime executor-config.ts + optional lineageId in executor-audit; no behavior change; single-executor parity preserved."
+     4	trigger_phrases:
+     5	  - "123 phase 001 schema"
+     6	  - "fanout config schema"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 1 complete — lineageExecutorSchema + fanoutConfigSchema + parseFanoutConfig + expandLineages + optional lineageId in executor-audit; 36 tests green (27 original + 9 fan-out)"
+    15	    next_safe_action: "Phase 002 done; Phase 003 done; packet 123 fully shipped"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 001 — Fan-out schema + config plumbing
+    25	
+    26	## Purpose
+    27	Add the opt-in multi-executor config representation without changing any behavior. Foundation for all later phases.
+    28	
+    29	## Scope
+    30	- `deep-loop-runtime/lib/deep-loop/executor-config.ts`: add `lineageExecutorSchema` (= `executorConfigSchema` + dir-safe `label`, `count`, nullable `iterations`), `fanoutConfigSchema` (`executors[]`, `concurrency` default 2), `parseFanoutConfig` (delegates per-entry to existing `parseExecutorConfig`), `expandLineages` (count→labels). Do NOT modify `executorConfigSchema`/`parseExecutorConfig`.
+    31	- Backward-compat: config carries EITHER `config.executor` OR `config.fanout`, never both; both-present fails fast.
+    32	- `deep-loop-runtime/lib/deep-loop/executor-audit.ts`: optional `lineageId` on `buildExecutorAuditRecord` + `RunAuditedExecutorCommandInput` (absent ⇒ unchanged records).
+    33	
+    34	## Success
+    35	- New unit tests cover fan-out parse / both-present conflict / count-expansion / per-entry kind validation reuse.
+    36	- **Parity gate:** existing single-executor `parseExecutorConfig` tests byte-identical; full vitest green.
+    37	
+    38	## Out of scope
+    39	Pool, spawn, merge, YAML, docs (later phases).
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/graph-metadata.json | sed -n '25,50p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/graph-metadata.json | sed -n '25,50p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+    25	      "cjs",
+    26	      "capped",
+    27	      "implementation",
+    28	      "summary",
+    29	      "done",
+    30	      "provide",
+    31	      "concurrency-capped"
+    32	    ],
+    33	    "importance_tier": "important",
+    34	    "status": "complete",
+    35	    "key_files": [
+    36	      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+    37	      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+    38	      "spec.md",
+    39	      "plan.md",
+    40	      "tasks.md",
+    41	      "implementation-summary.md"
+    42	    ],
+    43	    "entities": [
+    44	      {
+    45	        "name": "fanout-pool.cjs",
+    46	        "kind": "file",
+    47	        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+    48	        "source": "derived"
+    49	      },
+    50	      {
+
+ succeeded in 0ms:
+    25	      "config",
+    26	      "implementation",
+    27	      "summary",
+    28	      "done",
+    29	      "add",
+    30	      "opt-in",
+    31	      "multi-executor"
+    32	    ],
+    33	    "importance_tier": "important",
+    34	    "status": "complete",
+    35	    "key_files": [
+    36	      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+    37	      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+    38	      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+    39	      "spec.md",
+    40	      "plan.md",
+    41	      "tasks.md",
+    42	      "implementation-summary.md"
+    43	    ],
+    44	    "entities": [
+    45	      {
+    46	        "name": "executor-config.ts",
+    47	        "kind": "code",
+    48	        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+    49	        "source": "derived"
+    50	      },
+
+exec
+/bin/zsh -lc "nl -ba .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/spec.md | sed -n '1,40p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	---
+     2	title: "Phase 002: Capped worker pool + status ledger"
+     3	description: "New deep-loop-runtime/scripts/fanout-pool.cjs implementing runCappedPool (generalize council multi-seat-dispatch with a concurrency cap) + orchestration-status.log JSONL + orchestration-summary.json."
+     4	trigger_phrases:
+     5	  - "123 phase 002 pool"
+     6	  - "fanout-pool.cjs capped pool"
+     7	importance_tier: "important"
+     8	contextType: "implementation"
+     9	_memory:
+    10	  continuity:
+    11	    packet_pointer: "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+    12	    last_updated_at: "2026-05-30T00:00:00Z"
+    13	    last_updated_by: "claude-opus"
+    14	    recent_action: "Phase 2 complete — fanout-pool.cjs (runCappedPool, settleItem, buildPoolSummary, appendStatusLedger, writeOrchestrationSummary) + 10 unit tests green; 171/171 full suite"
+    15	    next_safe_action: "Phase 003 done; packet 123 fully shipped"
+    16	    blockers: []
+    17	    completion_pct: 100
+    18	    open_questions: []
+    19	    answered_questions: []
+    20	---
+    21	<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+    22	<!-- SPECKIT_LEVEL: 2 -->
+    23	
+    24	# Phase 002 — Capped worker pool + status ledger
+    25	
+    26	## Purpose
+    27	Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks).
+    28	
+    29	## Scope
+    30	- New `deep-loop-runtime/scripts/fanout-pool.cjs` (script-entry contract like `scripts/convergence.cjs`: tsx bootstrap, JSON-out, exit 0/1/2/3 via `scripts/lib/cli-guards.cjs`).
+    31	- `runCappedPool({items, concurrency, worker})`: ≤concurrency promises in flight; per-item try/catch (one failure never sinks the pool); allSettled-style results with timing/status (mirror `multi-seat-dispatch.cjs`).
+    32	- Status ledger: `{artifact_dir}/orchestration-status.log` (JSONL per-lineage events) + `{artifact_dir}/orchestration-summary.json` (`total/succeeded/failed/salvaged/perLineage[]`).
+    33	
+    34	## Success
+    35	- New `tests/unit/fanout-pool.vitest.ts` (modeled on `tests/council/multi-seat-dispatch.vitest.ts`): cap respected; isolation on reject; all-fail summary; ledger shape. Full vitest green.
+    36	
+    37	## Out of scope
+    38	Per-lineage spawn (003); the `worker` is mockable here.
+
+codex
+## Focus
+spec-folder doc integrity
+
+## Findings
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:15, `next_safe_action` still points to Phase 002 work even though the child spec says Phase 002/003 are done and packet 123 is shipped. Fix: update the implementation-summary continuity block to the current resume action, then regenerate metadata.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:62, The same implementation summary says the child still fails `validate.sh --strict`, which contradicts its `completion_pct: 100` completion state and packet-level completion claim. Fix: either add the missing validation docs/template anchors and record evidence, or downgrade the completion state.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:15, `next_safe_action` still points to Phase 003 implementation work while the child spec says Phase 003 is done and the packet is shipped. Fix: refresh the implementation-summary continuity block to match the current shipped state.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json:35, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 3 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 4 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 5 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 6 complete with `completion_pct: 100`; this undercuts the final “packet complete” continuity claim. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+## Verdict
+Spec doc integrity is conditional: no P0s found, but completion/continuity metadata is materially inconsistent across the child specs.
+
+Review verdict: CONDITIONAL
+
+===FINDINGS_JSON===
+[{"id":"f-p123-i13-01","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md","line":15,"issue":"next_safe_action still points to Phase 002 work even though the child spec says Phase 002/003 are done and packet 123 is shipped.","fix":"Update the implementation-summary continuity block to the current resume action, then regenerate metadata."},{"id":"f-p123-i13-02","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md","line":62,"issue":"The implementation summary says the child still fails validate.sh --strict, contradicting its completion_pct: 100 completion state and packet-level completion claim.","fix":"Add the missing validation docs/template anchors and evidence, or downgrade the completion state."},{"id":"f-p123-i13-03","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md","line":15,"issue":"next_safe_action still points to Phase 003 implementation work while the child spec says Phase 003 is done and the packet is shipped.","fix":"Refresh the implementation-summary continuity block to match the current shipped state."},{"id":"f-p123-i13-04","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json","line":35,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 3 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-05","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 4 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-06","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 5 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-07","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 6 complete with completion_pct: 100, undercutting the final packet-complete continuity claim.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."}]
+===END_FINDINGS===
+hook: Stop
+hook: Stop Completed
+tokens used
+43,255
+## Focus
+spec-folder doc integrity
+
+## Findings
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:15, `next_safe_action` still points to Phase 002 work even though the child spec says Phase 002/003 are done and packet 123 is shipped. Fix: update the implementation-summary continuity block to the current resume action, then regenerate metadata.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md:62, The same implementation summary says the child still fails `validate.sh --strict`, which contradicts its `completion_pct: 100` completion state and packet-level completion claim. Fix: either add the missing validation docs/template anchors and record evidence, or downgrade the completion state.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md:15, `next_safe_action` still points to Phase 003 implementation work while the child spec says Phase 003 is done and the packet is shipped. Fix: refresh the implementation-summary continuity block to match the current shipped state.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json:35, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 3 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 4 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 5 complete with `completion_pct: 100`; this child also lacks an `implementation-summary.md` in the inspected file inventory. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+P1, .opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json:32, Graph metadata says `"status": "planned"` while the spec frontmatter claims Phase 6 complete with `completion_pct: 100`; this undercuts the final “packet complete” continuity claim. Fix: add the missing implementation summary and regenerate graph metadata to `complete`.
+
+## Verdict
+Spec doc integrity is conditional: no P0s found, but completion/continuity metadata is materially inconsistent across the child specs.
+
+Review verdict: CONDITIONAL
+
+===FINDINGS_JSON===
+[{"id":"f-p123-i13-01","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md","line":15,"issue":"next_safe_action still points to Phase 002 work even though the child spec says Phase 002/003 are done and packet 123 is shipped.","fix":"Update the implementation-summary continuity block to the current resume action, then regenerate metadata."},{"id":"f-p123-i13-02","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/implementation-summary.md","line":62,"issue":"The implementation summary says the child still fails validate.sh --strict, contradicting its completion_pct: 100 completion state and packet-level completion claim.","fix":"Add the missing validation docs/template anchors and evidence, or downgrade the completion state."},{"id":"f-p123-i13-03","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger/implementation-summary.md","line":15,"issue":"next_safe_action still points to Phase 003 implementation work while the child spec says Phase 003 is done and the packet is shipped.","fix":"Refresh the implementation-summary continuity block to match the current shipped state."},{"id":"f-p123-i13-04","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation/graph-metadata.json","line":35,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 3 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-05","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 4 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-06","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 5 complete with completion_pct: 100; implementation-summary.md is also absent from the inspected inventory.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."},{"id":"f-p123-i13-07","severity":"P1","file":".opencode/specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity/graph-metadata.json","line":32,"issue":"Graph metadata says status planned while the spec frontmatter claims Phase 6 complete with completion_pct: 100, undercutting the final packet-complete continuity claim.","fix":"Add the missing implementation summary and regenerate graph metadata to complete."}]
+===END_FINDINGS===

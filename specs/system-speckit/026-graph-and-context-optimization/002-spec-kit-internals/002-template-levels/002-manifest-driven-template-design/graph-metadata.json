@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template greenfield",
+      "capability flags",
+      "lazy addons",
+      "kill levels",
+      "template backend redesign",
+      "spec-kit greenfield",
+      "template greenfield plan",
+      "C+F hybrid plan",
+      "template greenfield tasks",
+      "C+F hybrid tasks",
+      "template greenfield checklist",
+      "C+F hybrid checklist"
+    ],
+    "key_topics": [
+      "template",
+      "greenfield",
+      "capability",
+      "flags",
+      "lazy",
+      "addons",
+      "kill",
+      "levels",
+      "backend",
+      "redesign",
+      "spec-kit",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "plan.md",
+      "decision-record.md",
+      "spec.md",
+      "research/resource-map.md",
+      "scripts/templates/inline-gate-renderer.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+      "tasks.md",
+      "checklist.md",
+      "templates/manifest/spec-kit-docs.json",
+      "mcp_server/lib/templates/level-contract-resolver.ts",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "scripts/spec/create.sh",
+      "scripts/rules/check-files.sh",
+      "scripts/rules/check-sections.sh",
+      "mcp_server/lib/validation/spec-doc-structure.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.ts",
+        "kind": "code",
+        "path": "scripts/templates/inline-gate-renderer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/manifest/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-sections.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-sections.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Backend Greenfield Redesign",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminate Levels",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lazy Addons",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Manifest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
+    "created_at": "2026-05-01T09:15:39Z",
+    "last_save_at": "2026-07-17T17:19:16.294Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:1e9f57b99ed5f8b597e11a109d167dc97fbb6be8c0a00dc934c9957565818bc3",
+    "source_doc_hashes": {
+      "spec.md": "467a160da2981ec91a91ee0bb016890b0a2ea23e08927e79e4bb51d488e5c516",
+      "plan.md": "8c4f388350926fdc71b2f2c7b13f8aa650b5bebecb439aeecd566d33066486ef",
+      "tasks.md": "8673ff0a9e25a6d3536485cb497e0d81f758b988fbc40a9e56409fa15de73270",
+      "checklist.md": "d2ddd1c083e25078690928864b5090b04189bc55a8def1b7ceec497cb0c46667",
+      "decision-record.md": "dfeba78cdbbc22343f43550f1213a5583d58839b9e8ceb0f368ab902b9570f63",
+      "implementation-summary.md": "d214eeba212c5b35006abeddf8edf517bd4747dc77fcab934a42a4ca36f13648",
+      "research/research.md": "f2fa6e3369d6825c8d9ff1d3af5c095994dbfa0ea8970d0cbb6a6e9027cec8bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

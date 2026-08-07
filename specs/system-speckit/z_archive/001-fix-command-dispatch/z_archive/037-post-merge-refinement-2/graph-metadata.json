@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post",
+      "merge",
+      "refinement",
+      "phase",
+      "library",
+      "spec",
+      "037",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "key_topics": [
+      "post",
+      "merge",
+      "refinement",
+      "phase",
+      "library",
+      "spec",
+      "plan",
+      "tasks",
+      "checklist",
+      "split-brain",
+      "issue",
+      "two"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Refinemen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Refinement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Library Unification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Ranking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Content Extraction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Analysis (Diff v11 vs v12)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation (Port features, fix paths)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Integration (Update scripts to use shared lib)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merge Refinement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task List",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Port Smart Ranking",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task 1: Analyze code differences",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task 2: Update server library",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist [037-post-merge-refinement-2/checklist]",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "-",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "contextType:",
+        "kind": "quoted",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "We have a \\\"Split-Brain\\\" issue with two versions of vector-index.js",
+    "created_at": "2026-04-12T09:02:53.524Z",
+    "last_save_at": "2026-07-10T06:21:48.781Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:c726d26548c66697f74fcfd752a3f051e560b93312931b3fe54b6518797786ac",
+    "source_doc_hashes": {
+      "spec.md": "034a14f699d11af3771042c14fe18f5c1ac8244f0895a43024d892f86cf33487",
+      "plan.md": "51f1b435d4907db6653d0175eb741c8fac635779cdfab465519404a283c5fb27",
+      "tasks.md": "83d6880308a7b1fb61f91d3da808784a40433c445dccfb137ff4aa33714ed8c6",
+      "checklist.md": "36fd4f5820f0fc3cfda713b4f9bc6338340eee9c73584501bab026b4b3d234da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

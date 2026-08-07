@@ -1,1 +1,0 @@
-SUMMARY files_examined=39 entries_examined=256 failures=0 excluded_anchor=1 excluded_external=22

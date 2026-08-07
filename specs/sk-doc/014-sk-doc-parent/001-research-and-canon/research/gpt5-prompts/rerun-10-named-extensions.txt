@@ -1,0 +1,11 @@
+You are settling ONE angle of the sk-doc monolith -> WORKFLOW-ONLY parent-hub conversion. Repo root is CWD. Ground claims in file:line. BE FAST: a pre-computed search result file is provided — read it FIRST, then read at most 2 extra files. Do NOT run your own broad grep.
+
+SEED: converting sk-doc (6-mode monolith) into a WORKFLOW-ONLY parent hub with a shared/ doc-quality backbone; ONE graph-metadata.json at the hub; two tiers; NO surface axis; ZERO named extensions (base case); root facade symlinks preserve ~151 external refs for zero external edits. Reference hub: sk-code. Over-decomposition lesson (124/022): fold generic doctrine into shared/.
+
+ANGLE (named-extensions): Confirm the base-case ZERO named extensions for sk-doc (no surface-axis, no runtime-loop, no transform-verbs, no advisor-projection — the doc-quality pipeline is universal doctrine, not orthogonal stack-evidence). Rule whether deprecated-modes is the ONE optional extension needed to shim a retired flat-sk-doc public entry point during migration.
+
+PRE-COMPUTED SEARCH RESULTS (read this file — it already contains the grep/ls output you would otherwise compute): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon/research/precomputed/named-extensions.txt
+Extra file to read if useful: none — the ctx file has the extensions matrix
+
+Output ONLY a JSON object: {"angle":"named-extensions","rulings":[{"question":"...","ruling":"...","rationale":"...","evidence":"path:line","confidence":"high|med|low"}],"risks":["..."],"open":["..."]}
+Nothing except the JSON.

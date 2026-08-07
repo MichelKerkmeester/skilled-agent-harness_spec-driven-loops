@@ -1,0 +1,13 @@
+.opencode/commands/create/assets/create_feature_catalog_auto.yaml
+.opencode/commands/create/assets/create_feature_catalog_confirm.yaml
+.opencode/commands/create/assets/create_testing_playbook_auto.yaml
+.opencode/commands/create/assets/create_testing_playbook_confirm.yaml
+.opencode/commands/create/feature-catalog.md
+.opencode/commands/create/testing-playbook.md
+.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
+.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md
+.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
+.opencode/skills/sk-doc/references/feature_catalog_creation.md
+.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
+.opencode/skills/sk-doc/scripts/validate_document.py

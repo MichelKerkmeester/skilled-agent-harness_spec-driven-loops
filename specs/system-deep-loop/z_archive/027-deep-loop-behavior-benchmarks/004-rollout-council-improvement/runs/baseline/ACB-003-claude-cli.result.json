@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "ACB-003",
+  "leg": "claude-cli",
+  "startedAt": "2026-07-02T18:36:46.411Z",
+  "endedAt": "2026-07-02T18:38:10.981Z",
+  "checkpoints": {
+    "tFirstOutputMs": 1814,
+    "tSetupMs": null,
+    "tFirstDispatchMs": null,
+    "tTerminalMs": 84570
+  },
+  "delegation": {
+    "taskEvents": [],
+    "routeProofRecords": [],
+    "seatArtifacts": 0,
+    "candidateArtifacts": 0,
+    "guardWarnings": []
+  },
+  "isolation": {
+    "clean": false,
+    "violations": [
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/behavior-bench-run.cjs",
+      "opencode/skills/deep-loop-workflows/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs"
+    ]
+  },
+  "terminal": {
+    "exitCode": 0,
+    "killedBy": "none"
+  },
+  "classification": "partial",
+  "dimensions": {
+    "d1": 2,
+    "d2": 2,
+    "d3": 0,
+    "d4": 2,
+    "d5": null
+  },
+  "singleSample": true,
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/033-deep-loop-behavior-benchmarks/004-rollout-council-improvement/runs/baseline/ACB-003-claude-cli.transcript.jsonl"
+}

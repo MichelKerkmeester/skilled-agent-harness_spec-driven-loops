@@ -1,0 +1,10 @@
+{"type":"event","event":"session_start","sessionId":"rvw-002-20260518-100857","timestamp":"2026-05-18T10:08:57Z"}
+{"type":"iteration","iteration":1,"dimension":"correctness","findingsByP0":0,"findingsByP1":1,"findingsByP2":1,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":59,"exitCode":0,"timestamp":"2026-05-18T10:09:56Z"}
+{"type":"iteration","iteration":2,"dimension":"security","findingsByP0":0,"findingsByP1":0,"findingsByP2":2,"verdict":"PASS","newFindingsRatio":1.0,"durationSec":56,"exitCode":0,"timestamp":"2026-05-18T10:10:52Z"}
+{"type":"iteration","iteration":3,"dimension":"traceability","findingsByP0":0,"findingsByP1":0,"findingsByP2":1,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":95,"exitCode":0,"timestamp":"2026-05-18T10:12:27Z"}
+{"type":"iteration","iteration":4,"dimension":"maintainability","findingsByP0":0,"findingsByP1":0,"findingsByP2":3,"verdict":"PASS","newFindingsRatio":1.0,"durationSec":81,"exitCode":0,"timestamp":"2026-05-18T10:13:48Z"}
+{"type":"iteration","iteration":5,"dimension":"correctness","findingsByP0":0,"findingsByP1":0,"findingsByP2":0,"verdict":"CONDITIONAL","newFindingsRatio":0.0,"durationSec":62,"exitCode":0,"timestamp":"2026-05-18T10:14:50Z"}
+{"type":"iteration","iteration":6,"dimension":"security","findingsByP0":0,"findingsByP1":0,"findingsByP2":1,"verdict":"CONDITIONAL","newFindingsRatio":1.0,"durationSec":78,"exitCode":0,"timestamp":"2026-05-18T10:16:08Z"}
+{"type":"iteration","iteration":7,"dimension":"traceability","findingsByP0":0,"findingsByP1":0,"findingsByP2":0,"verdict":"PASS","newFindingsRatio":0.0,"durationSec":85,"exitCode":0,"timestamp":"2026-05-18T10:17:33Z"}
+{"type":"iteration","iteration":8,"dimension":"maintainability","findingsByP0":0,"findingsByP1":0,"findingsByP2":0,"verdict":"PASS","newFindingsRatio":0.0,"durationSec":77,"exitCode":0,"timestamp":"2026-05-18T10:18:50Z"}
+{"type":"event","event":"session_complete","sessionId":"rvw-002-20260518-100857","itersUsed":8,"itersAllocated":8,"converged":1,"verdict":"CONDITIONAL","timestamp":"2026-05-18T10:18:50Z"}

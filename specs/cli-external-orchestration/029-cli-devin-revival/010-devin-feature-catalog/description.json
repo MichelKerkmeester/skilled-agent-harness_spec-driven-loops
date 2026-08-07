@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog",
+  "description": "No sibling mode has a feature-catalog package today",
+  "keywords": [
+    "sibling",
+    "mode",
+    "feature-catalog",
+    "package",
+    "today"
+  ],
+  "lastUpdated": "2026-07-25T10:10:41.986Z",
+  "specId": "010",
+  "folderSlug": "devin-feature-catalog",
+  "parentChain": [
+    "cli-external-orchestration",
+    "029-cli-devin-revival"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

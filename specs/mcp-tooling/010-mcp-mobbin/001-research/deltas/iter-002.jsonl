@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":2,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.8,"status":"complete","focus":"official skills workflow, search_screens contract, and installation","findingsCount":6}
+{"type":"finding","id":"f-iter002-skill","label":"Official skills repo documents mobbin-search","iteration":2,"source":"https://github.com/mobbin/skills"}
+{"type":"finding","id":"f-iter002-search-screens","label":"mobbin-search documents search_screens with metadata and inline images","iteration":2,"source":"https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md"}
+{"type":"finding","id":"f-iter002-query","label":"App/screen/flow/element intent is expressed through query terms","iteration":2,"source":"https://github.com/mobbin/skills/blob/main/skills/mobbin-search/SKILL.md"}
+{"type":"finding","id":"f-iter002-install","label":"Official install path is npx skills add mobbin/skills","iteration":2,"source":"https://github.com/mobbin/skills"}
+{"type":"ruled_out","direction":"four separately confirmed app/screen/flow/element tool names","reason":"Public skill documents one concrete search_screens operation and query dimensions","iteration":2}
+{"type":"ruled_out","direction":"automatic evidence-board persistence","reason":"Board writing is optional and outside the read-only transport boundary","iteration":2}
+{"type":"edge","id":"e-iter002-skill-source","relation":"SUPPORTS","source":"s-mobbin-search-skill","target":"f-iter002-search-screens","iteration":2}
+

@@ -164,7 +164,7 @@ node_modules/
 # Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
 .opencode/skills/barter-copywriter
 
-.opencode/specs/anobel.com
+specs/anobel.com
 .claude/specs/anobel.com
 .codex/specs/anobel.com
 .agents/specs/anobel.com
@@ -261,10 +261,10 @@ _sandbox
 # Project-specific specs (all providers)
 # ───────────────────────────────────────────
 .opencode/barter
-.opencode/specs/ai-systems
-.opencode/specs/anobel.com
-.opencode/specs/barter
-.opencode/specs/z-future
+specs/ai-systems
+specs/anobel.com
+specs/barter
+specs/z-future
 
 .claude/specs/ai-systems
 .claude/specs/anobel.com

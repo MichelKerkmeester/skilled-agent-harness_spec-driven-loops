@@ -1,0 +1,14 @@
+### deep-research/scripts/runtime-capabilities.cjs (no-arg) ###
+{
+  "capabilityPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/dlw-build-wt/.opencode/skills/deep-research/assets/runtime_capabilities.json",
+  "runtimeIds": [
+exit=0
+### deep-review/scripts/runtime-capabilities.cjs (no-arg) ###
+{
+  "capabilityPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/dlw-build-wt/.opencode/skills/deep-review/assets/runtime_capabilities.json",
+  "runtimeIds": [
+exit=0
+### loop-host valid modes ###
+loop-host: agent-improvement: missing required --candidate=<path>
+### convergence loopType guard ###
+{"status":"error","error":"specFolder is required","code":"INPUT_VALIDATION"}

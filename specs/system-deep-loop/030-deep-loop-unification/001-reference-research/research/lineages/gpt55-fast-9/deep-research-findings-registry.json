@@ -1,0 +1,120 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "question": "Is the proposed system-deep-loop/runtime layout structurally coherent without duplicate skill identity or mode ambiguity?",
+      "answeredIn": 1,
+      "answer": "Yes, if system-deep-loop remains the single public hub and runtime is demoted to backend infrastructure without routable skill metadata."
+    },
+    {
+      "question": "Are bidirectional path-coupling repair rules complete after the move?",
+      "answeredIn": 2,
+      "answer": "The repair directions are correct, but the current table is incomplete and should explicitly include runtime-capability shims, council orchestrate-session, council replay graph, and classified runtime tests."
+    },
+    {
+      "question": "Is the system-spec-kit tooling-borrow repair complete beyond package and tsconfig files?",
+      "answeredIn": 3,
+      "answer": "The four planned edits are necessary, but phase 002 should also cover artifact-root, artifact-root tests, and test:council anchor fixtures; broader system-spec-kit references belong to child 003 unless their suites are run in phase 002."
+    },
+    {
+      "question": "What command, agent, README, graph metadata, advisor-corpus, and model-prompt references must migrate or remain stable?",
+      "answeredIn": 4,
+      "answer": "Executable command YAML, generated contracts, agent helper paths, README navigation, graph metadata, and advisor corpus/parity fixtures must migrate; /deep:* command names, OpenCode agent slugs, and sk-prompt-models model IDs/profile files should remain stable."
+    },
+    {
+      "question": "Should fallback-router.ts be wired now for GLM-5.2 to MiMo-v2.5-Pro fallback?",
+      "answeredIn": 5,
+      "answer": "Fallback routing is useful optional hardening but not required for the core merge. Keep child 004 operator-gated unless GLM-heavy fan-out reruns need automatic substitution before closeout."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "gpt55-fast-9-f001",
+      "iteration": 1,
+      "summary": "The target layout is valid only with one public skill identity and a non-routable nested runtime.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/SKILL.md:14-17",
+        ".opencode/skills/deep-loop-workflows/SKILL.md:64-67"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f002",
+      "iteration": 2,
+      "summary": "Class A/Class B path-repair rules are directionally correct but child 002 needs a broader file inventory before the move.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs:16-18",
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:21-66",
+        ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs:4-19",
+        ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts:10-12"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f003",
+      "iteration": 3,
+      "summary": "System-spec-kit borrow repair needs hidden artifact-root and test:council fixture coverage beyond the four planned path edits.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16-19",
+        ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10-25",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:7-67"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f004",
+      "iteration": 4,
+      "summary": "Reference migration must preserve public /deep:* and agent surfaces while rewriting executable paths, graph/advisor identity, generated contracts, and README navigation to system-deep-loop.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:39-52",
+        ".opencode/agents/orchestrate.md:161-206",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json:525-531"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f005",
+      "iteration": 5,
+      "summary": "fallback-router wiring is a low-risk optional child, not a core merge blocker; if pursued, wire the existing router into fanout-pool retry exhaustion with registry-driven GLM-to-MiMo attribution.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628-653",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:69-105",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:55-94"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Blind global replacement of old skill names",
+      "reason": "Import depth, generated-contract literals, path expectation tests, and historical prose require separate handling.",
+      "iteration": 2
+    },
+    {
+      "approach": "Fully decouple runtime compiler/test tooling during the merge",
+      "reason": "Production dependency self-containment is already guarded; decoupling tooling would add unrelated failure modes.",
+      "iteration": 3
+    },
+    {
+      "approach": "Rename /deep:* commands or OpenCode agent slugs as part of the merge",
+      "reason": "Stable public entrypoints are registry-backed and should not change for an internal skill identity merge.",
+      "iteration": 4
+    },
+    {
+      "approach": "Make fallback routing mandatory for hub rename/runtime nesting",
+      "reason": "The current research packet accepts salvage/manual reroute and child 004 is optional/P2 hardening.",
+      "iteration": 5
+    }
+  ],
+  "coverageBySources": {},
+  "convergenceScore": 0,
+  "blockedStopHistory": [],
+  "graphConvergenceScore": null,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 5,
+    "convergenceScore": 1,
+    "coverageBySources": {}
+  },
+  "lastUpdated": "2026-07-08T05:29:02Z"
+}

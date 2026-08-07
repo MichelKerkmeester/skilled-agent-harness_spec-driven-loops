@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/032-relocate-specs-folder",
+  "description": "Phase parent: evaluate and, if approved, execute moving the root spec-kit folder from .opencode/specs/ to a top-level specs/ directory.",
+  "keywords": [
+    "phase",
+    "parent",
+    "evaluate",
+    "approved",
+    "execute",
+    "moving",
+    "root",
+    "spec-kit",
+    "folder",
+    "opencode",
+    "specs",
+    "top-level",
+    "directory"
+  ],
+  "lastUpdated": "2026-08-06T09:06:39.403Z",
+  "specId": "032",
+  "folderSlug": "relocate-specs-folder",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

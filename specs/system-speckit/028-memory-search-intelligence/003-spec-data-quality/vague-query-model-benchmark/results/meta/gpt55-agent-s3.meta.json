@@ -1,0 +1,14 @@
+{
+  "key": "gpt55-agent-s3",
+  "model": "gpt55",
+  "slug": "openai/gpt-5.5-fast",
+  "variant": "medium",
+  "query": "agent",
+  "queryClass": "aligned",
+  "sample": 3,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 201965,
+  "bytes": 97620,
+  "stderrTail": ""
+}

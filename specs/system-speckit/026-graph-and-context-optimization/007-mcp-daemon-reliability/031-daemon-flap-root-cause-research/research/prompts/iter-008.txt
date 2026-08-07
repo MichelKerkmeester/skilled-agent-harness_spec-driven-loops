@@ -1,0 +1,34 @@
+Act as a skeptical staff engineer doing an adversarial design review. READ-ONLY MODE: do NOT write/edit files. Final message IS the deliverable — use the skeleton. DEFAULT TO SKEPTICAL: your job is to find where this fix BREAKS, regresses, or is not worth it — not to praise it.
+
+# The recommendation under review (attack THIS)
+A layered fix for the daemon-flap root cause (daemon liveness is session-coupled; advisor/spec-memory die with stale sockets; only a fresh non-warm invocation resurrects them):
+- **Layer 1 (immediate, pure-Node, cross-platform):** C2 cold-start self-heal (warm-only probe fires a detached `kickBackgroundColdStart` then still returns 75; also kick on SessionStart) + B's uniform release/adopt for advisor+code-index (replace kill-on-shutdown with release/adopt; backend-only + launcher-side session proxy) + a proactive pre-bind stale-socket sweep + HF-sidecar refcounting + active-client fail-open + long/no idle for main daemons.
+- **Layer 2 (durable):** a single pure-Node supervisor (`mk-daemon-supervisor.cjs`) owning all 3 daemons + HF, bootstrapped by ONE OS unit (macOS LaunchAgent RunAtLoad+KeepAlive / Linux systemd --user Restart=always); session launchers become pure clients.
+- **Layer 3 (prevention):** calibrate + enable the HF RSS caps + a free-RAM preflight before model load.
+
+# READ for grounding (under .../031-daemon-flap-root-cause-research/research/)
+iterations/iteration-001..006.md, orchestrator-verifications.md, live-diagnosis.md. Also skim the launchers + model-server-supervision.cjs + the orphan sweeper for concrete attack surfaces.
+
+# Attack it — be specific (cite code/iteration where possible)
+1. MIGRATION SPLIT-BRAIN: during rollout, some sessions run OLD kill-on-shutdown launchers and some run NEW release/adopt or client-only. Enumerate the races: two owners, a client-only session whose supervisor is absent (daemon never spawned → who starts it?), an old session killing a daemon new client-only sessions depend on. How bad, how to gate.
+2. WARM-KICK STORM: with 7 concurrent runtimes all hitting warm-only prompt hooks against a dead daemon, does the 10-30s throttle lock actually prevent a launcher storm? Lock races, NFS/tmp quirks, stale lock after crash. Could C2 amplify load exactly when the machine is already OOM-pressured?
+3. SUPERVISOR AS NEW SPOF + SECURITY: the supervisor admin socket (`ensureService/restartService/shutdown`) is a new attack/SPOF surface. Auth? Any local process can hit it? Supervisor bug = all daemons down. Is one supervisor worse than independent launchers for blast radius?
+4. OS-UNIT FRICTION + PORTABILITY: machine-specific absolute paths in the plist; multi-repo/worktree (one supervisor per repo? collisions in /tmp socket dirs?); Windows native has no launchd/systemd; install/uninstall/upgrade lifecycle; what happens on `git pull` that changes the supervisor code (stale long-running supervisor).
+5. ALWAYS-WARM ⇒ WORSE OOM: making main daemons stay warm + a resident supervisor + the HF sidecar always up INCREASES baseline RSS — the very RC-1 pressure that causes OOM kills. Does Layer 1/2 make OOM MORE likely, partially self-defeating? Quantify the tension with Layer 3.
+6. REGRESSIONS vs SHIPPED PHASES: does this undo 017 (disposal-flap-guard), 028 (double-writer fix), 029 (cross-session-kill-scoping / ancestry re-proof)? Could client-only sessions + a supervisor REINTRODUCE a second-writer or a cross-session kill the phases closed? Does removing kill-on-shutdown orphan-leak processes the 021 sweeper (default-off) was meant to catch?
+7. OPERATOR-PREFERENCE CONFLICTS: memory says the operator rejected proactive orphan cleanup that kills opencode sessions, and prefers daemons NOT auto-restart without confirmation in some contexts. Does an always-on supervisor / auto-cold-start violate any of that?
+8. "DO NOTHING / SMALLER" ALTERNATIVES: is the whole layered fix over-engineered for a problem whose 80% is just "warm-only hooks don't cold-start"? Could the minimal fix be ONLY C2 (or even just a SessionStart non-warm kick), leaving the rest? Argue the cheapest defensible scope.
+
+# Output skeleton
+## IT8 — adversarial red-team of the layered fix
+### Top risks (ranked, with severity + likelihood + concrete trigger)
+### Migration split-brain analysis
+### Regressions against shipped phases (017/021/028/029) — does it undo them?
+### Always-warm vs OOM self-defeat tension
+### Supervisor SPOF/security + OS-unit portability
+### Operator-preference conflicts
+### Cheapest defensible scope (is the full fix over-engineered?)
+### Verdict: ship-as-is / ship-with-changes / descope — with the changes
+### Confidence + unknowns
+
+Be specific and skeptical. For each risk: a mitigation OR a kill-criterion.

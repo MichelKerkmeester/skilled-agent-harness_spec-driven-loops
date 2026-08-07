@@ -1,0 +1,71 @@
+{
+  "run_id": "1784833766851-nhdtp7",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-doc/019-skill-routing-refactor",
+  "base_artifact_dir": ".opencode/specs/sk-doc/019-skill-routing-refactor/research/round-2-multimodel",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 2,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "minimax",
+      "state_log": ".opencode/specs/sk-doc/019-skill-routing-refactor/research/round-2-multimodel/lineages/minimax/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-23T19:09:27.842Z",
+        "end_at_iso": "2026-07-23T19:36:59.934Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T21:09:00Z",
+          "deltaMs": 5400066
+        },
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T21:18:00Z",
+          "deltaMs": 5940066
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T21:32:00Z",
+          "deltaMs": 6780066
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T21:50:00Z",
+          "deltaMs": 7860066
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-23T22:02:00Z",
+          "deltaMs": 8580066
+        }
+      ]
+    }
+  ]
+}

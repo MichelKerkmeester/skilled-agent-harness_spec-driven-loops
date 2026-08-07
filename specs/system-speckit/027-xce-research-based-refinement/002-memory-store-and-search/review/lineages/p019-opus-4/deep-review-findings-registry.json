@@ -1,0 +1,25 @@
+{
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "traceability",
+      "finding_class": "docs-vs-code-drift",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection/spec.md:117",
+      "content_hash": "sha256:f001-specpath-bin-drift",
+      "summary": "spec/plan/tasks 'Files to Change' cite mcp_server/bin/lib/model-server-supervision.cjs and mcp_server/bin/mk-spec-memory-launcher.cjs, but the real files live at .opencode/bin/lib/... and .opencode/bin/... (no mcp_server/bin dir exists).",
+      "evidence": [".opencode/bin/lib/model-server-supervision.cjs", ".opencode/bin/mk-spec-memory-launcher.cjs"],
+      "iterations": [1]
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": 1,
+    "security": 1,
+    "traceability": 1,
+    "maintainability": 1
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 0, "P2": 1 },
+  "convergenceScore": 1.0
+}

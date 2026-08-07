@@ -1,0 +1,34 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
+  "description": "The sk-create-diff README at `.opencode/skills/sk-doc/sk-create-diff/README.md` still reads in the older tabular reference-card register and predates",
+  "keywords": [
+    "sk-create-diff",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "still",
+    "reads",
+    "older",
+    "tabular",
+    "reference-card",
+    "register",
+    "predates"
+  ],
+  "lastUpdated": "2026-08-04T14:51:21.040Z",
+  "specId": "026",
+  "folderSlug": "sk-create-diff",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "04-08-26_15-47__completed-the-sk-create-diff-readme-purpose-first.md",
+    "04-08-26_15-49__completed-the-sk-create-diff-readme-purpose-first.md",
+    "04-08-26_15-50__completed-the-sk-create-diff-readme-purpose-first.md",
+    "04-08-26_15-51__completed-the-sk-create-diff-readme-purpose-first.md"
+  ]
+}

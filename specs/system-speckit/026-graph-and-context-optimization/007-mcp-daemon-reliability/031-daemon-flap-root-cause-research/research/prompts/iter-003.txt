@@ -1,0 +1,31 @@
+Act as a senior systems engineer analyzing cross-runtime daemon lifecycle. READ-ONLY MODE: do NOT write or edit files. Final message IS the deliverable — use the skeleton at the end.
+
+# Context (build on prior findings — do not re-derive)
+Root cause so far (from iterations 001-002, READ them): daemon liveness is session-coupled with no always-on supervisor; only mk-spec-memory has owner-disposal re-election (adopt/reactive-respawn, NOT autonomous resurrect); mk-skill-advisor + mk-code-index kill-on-shutdown; stale sockets are reaped only reactively on a fresh NON-WARM launcher bind; warm CLI probes exit 75 without cold-spawning. Live state: in THIS Claude Code session, mk-skill-advisor + mk-spec-memory are dead with stale sockets; mk-code-index up via per-session proxies; 7 concurrent runtimes alive.
+
+# THIS iteration: pin the EXACT live failure sequence + the cross-runtime dimension
+# READ (use Read; --dir is repo root)
+- research/live-diagnosis.md ; research/iterations/iteration-001.md ; research/iterations/iteration-002.md  (paths under .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/)
+- .claude/mcp.json  (how Claude Code spawns the 3 mk- launchers)
+- opencode.json , .codex/config.toml  (the other two runtimes' launcher wiring)
+- .opencode/bin/README.md  (session/daemon/worktree notes; how a launcher behaves under each runtime)
+- The SessionStart hook + any prompt-time hook that probes daemons warm-only: grep .claude/ and .opencode/ for "SessionStart", "warm-only", "session_bootstrap", "prewarm", hook scripts.
+- ENV_REFERENCE.md (session bridging / cold-start policy)
+
+# Questions (cite file:line; mark CONFIRMED vs INFERRED)
+1. CLAUDE LIFECYCLE: how does Claude Code launch and manage a stdio MCP server (the mk- launchers) over a session — does it cold-start them at session start, keep the launcher process resident for the session, and SIGTERM them at session end? Does it restart on disconnect? Contrast with OpenCode and Codex.
+2. THE EXACT SEQUENCE: reconstruct the most likely precise sequence that left mk-skill-advisor + mk-spec-memory dead-with-stale-socket in THIS Claude session. Candidates to evaluate against the code/config: (a) launcher never started; (b) launcher started, saw a live owner-lease from a concurrent (OpenCode) session, bridged to a socket that later went dead, then this session's launcher exited; (c) the owning session exited and SIGTERM'd/idle-timed-out the daemon while this session only had a warm-only probe that refused cold-start; (d) ungraceful death (OOM/SIGKILL/crash-loop give-up). Rank them by code/config evidence.
+3. CROSS-RUNTIME INTERFERENCE: with 7 concurrent runtimes (Claude + OpenCode + Codex), how do they share/contend the single owner-lease + shared daemon? Can one runtime's exit kill a daemon the others need? Does the lease distinguish runtime, or just pid/ancestry? Is there a runtime that "owns" and others that "bridge", and what happens to bridgers when the owner dies?
+4. WARM-PROBE TRAP: confirm whether the prompt-time / SessionStart daemon probe is warm-only (won't cold-spawn), so a session that starts with the daemon already dead NEVER resurrects it and just reports "unavailable" all session. Cite the hook + the README/ENV policy.
+5. IS IT CLAUDE-SPECIFIC? Would the same failure happen in an OpenCode-only or Codex-only world, or is something about Claude's MCP management (e.g. not keeping launchers resident, or not cold-starting) making it worse here?
+
+# Output skeleton
+## IT3 — cross-runtime lifecycle + exact live-failure sequence
+### Claude vs OpenCode vs Codex daemon lifecycle (how each spawns/keeps/kills)
+### The exact live-failure sequence (ranked candidates with evidence)
+### Cross-runtime lease contention (who owns, who bridges, who kills)
+### The warm-probe trap (cold-start refusal -> never resurrects)
+### Claude-specific or universal?
+### Confidence + unknowns
+
+Cite file:line. If a hook/config can't be found, say so.

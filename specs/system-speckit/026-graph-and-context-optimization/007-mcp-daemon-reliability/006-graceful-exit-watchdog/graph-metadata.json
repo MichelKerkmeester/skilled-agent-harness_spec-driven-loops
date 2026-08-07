@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launcher RSS watchdog F1",
+      "graceful exit supervision daemon",
+      "process tree rss sidecar sampling",
+      "daemon child pid lease",
+      "launcher watchdog plan F1",
+      "graceful exit supervision plan",
+      "launcher watchdog tasks F1",
+      "launcher watchdog summary F1 implemented"
+    ],
+    "key_topics": [
+      "launcher",
+      "rss",
+      "watchdog",
+      "graceful",
+      "exit",
+      "supervision",
+      "daemon",
+      "process",
+      "tree",
+      "sidecar",
+      "sampling",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "mcp_server/tests/launcher-watchdog.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-watchdog.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-watchdog.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Supervisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-death",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "clean",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mk-spec-memory-launcher.cjs` spawns the daemon and, on child exit, clears the lease and exits with no respawn and no RSS sampling (RC-2)",
+    "created_at": "2026-05-28T18:43:49Z",
+    "last_save_at": "2026-07-17T17:19:34.001Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e86f0fae06fdcc1ec3db5e81f91eb475d12195d31a8bfee939b0a4a2e7510ec1",
+    "source_doc_hashes": {
+      "spec.md": "50c952b65ffa8b3397535cf44d66b195ef1564246f256bbcdfe98fc2e63cbfc0",
+      "plan.md": "96558dc520b3000f0ff8f61f8a3f81b395c488d52146033857553b420b733757",
+      "tasks.md": "bf3d8203f1a62760fc283dae13827d70268fd31fb52810be04e0078d88321ed5",
+      "implementation-summary.md": "0133e8c9c4dfe002abda91a09a00f7484ccb754984bc87364f4233ec3a60cebf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launcher concurrency spawn bridge investigation",
+      "hf-local spurious spawn probe demand",
+      "code-index advisor daemon bridge not serving",
+      "lease held by no bridge socket runtime",
+      "deep research launcher concurrency"
+    ],
+    "key_topics": [
+      "launcher",
+      "concurrency",
+      "spawn",
+      "bridge",
+      "investigation",
+      "hf-local",
+      "spurious",
+      "probe",
+      "demand",
+      "code-index",
+      "advisor",
+      "daemon"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/skills/system-code-graph/mcp_server/index.ts",
+      "research/research.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+      "references/memory/embedder_architecture.md",
+      "research/resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder_architecture.md",
+        "kind": "doc",
+        "path": "references/memory/embedder_architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Concurrency Spawn",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bridge Investigation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Arc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Under",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Validate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Two",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Question",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Validate",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Under concurrent multi-session use (currently 2 Claude + 4 codex sessions sharing this repo), two runtime defects appear:",
+    "created_at": "2026-06-04T18:16:47.573Z",
+    "last_save_at": "2026-07-17T17:19:32.144Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:01f91f6a1ec05b07df5c8ff94ba2676422e36366348137e59a7546cb3f0ff3ea",
+    "source_doc_hashes": {
+      "spec.md": "65c4a2ccaac07db80b3c26e9a9fcf56bbbbc9c1cb2b8e4a86428849173699f7d",
+      "research/research.md": "abbbfc84d81971ccad4132388cb2d0648e7a2d3b0e3952d46801c75eeec9a8bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

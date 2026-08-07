@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
+  "spec_folder": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity",
+  "parent_id": "system-deep-loop/z_archive/029-deep-loop-runtime/007-deep-review-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orchestrator validation parity",
+      "strict only rules skipped",
+      "file exists started work exemption",
+      "orchestrator parity plan",
+      "orchestrator parity tasks",
+      "orchestrator parity checklist",
+      "orchestrator parity decisions",
+      "decision record",
+      "orchestrator validation parity implementation",
+      "strict only registry filter evidence",
+      "started work exemption evidence"
+    ],
+    "key_topics": [
+      "orchestrator",
+      "validation",
+      "parity",
+      "strict",
+      "only",
+      "rules",
+      "skipped",
+      "file",
+      "exists",
+      "started",
+      "work",
+      "exemption"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md",
+      "validation/evidence-marker-lint.ts",
+      "scripts/evals/generate-known-item-ground-truth.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts",
+      "decision-record.md",
+      "plan.md",
+      "spec.md",
+      "scripts/dist/validation/evidence-marker-lint.js"
+    ],
+    "entities": [
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-marker-lint.ts",
+        "kind": "code",
+        "path": "validation/evidence-marker-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-known-item-ground-truth.cjs",
+        "kind": "file",
+        "path": "scripts/evals/generate-known-item-ground-truth.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validation-orchestrator-bridge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-marker-lint.js",
+        "kind": "code",
+        "path": "scripts/dist/validation/evidence-marker-lint.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestrator Validation Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Started Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Minimal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
+    "created_at": "2026-07-02T15:14:06.540Z",
+    "last_save_at": "2026-07-16T16:32:57.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4efe201765b1668f138fba9d050d93191409cd741af3c278195178e3d027217d",
+    "source_doc_hashes": {
+      "spec.md": "3e4b33200a2c4629678e92a4227ee20f95225b4de63e561656e0fcb9a46add41",
+      "plan.md": "0b2fa42a96a7abe0c90eebcf1b142001c33445408ca52eb41ff37be0359fd547",
+      "tasks.md": "3cd90d3573f6ae98defee6fa43ce2513c9eb8cb7491d954afa2572236af4a261",
+      "checklist.md": "b274a8d5b6ba2de34c99078e9ecd24699e6d96ffbc2bbbb67824c2cd139f62ed",
+      "decision-record.md": "a63b14f5fab8371886e9edfe7219bcbbd05f6f7fbea5b419bd57fc9c7c3bc90c",
+      "implementation-summary.md": "5e29b8f81fc22f131e28421f1ff27ce7d598f3fb40fb5aa034b019a38390e586"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

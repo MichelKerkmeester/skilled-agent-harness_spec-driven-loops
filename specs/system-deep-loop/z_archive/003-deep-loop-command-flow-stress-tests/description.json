@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
+  "description": "Phase-parent root spec.",
+  "keywords": [
+    "phase-parent",
+    "root",
+    "spec"
+  ],
+  "lastUpdated": "2026-07-21T05:58:27.089Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-command-flow-stress-tests",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

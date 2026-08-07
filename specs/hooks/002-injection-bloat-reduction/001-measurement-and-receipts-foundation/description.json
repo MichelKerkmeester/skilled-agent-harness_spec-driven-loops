@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation",
+  "description": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime",
+  "keywords": [
+    "canonical",
+    "cross-runtime",
+    "identity",
+    "exists",
+    "always-on",
+    "directive",
+    "route",
+    "gate",
+    "pi-dispatch",
+    "blocks",
+    "render",
+    "six",
+    "runtime"
+  ],
+  "lastUpdated": "2026-08-06T13:02:02.287Z",
+  "specId": "001",
+  "folderSlug": "measurement-and-receipts-foundation",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

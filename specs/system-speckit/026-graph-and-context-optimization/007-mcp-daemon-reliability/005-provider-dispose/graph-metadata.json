@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provider dispose native ONNX",
+      "invalidateProviderSingleton leak F2",
+      "embedding provider use-after-free gate",
+      "sidecar provider dispose on swap",
+      "provider dispose plan F2",
+      "native run gate dispose plan",
+      "provider dispose tasks F2",
+      "provider dispose summary F2 implemented"
+    ],
+    "key_topics": [
+      "provider",
+      "dispose",
+      "native",
+      "onnx",
+      "invalidateprovidersingleton",
+      "leak",
+      "embedding",
+      "use-after-free",
+      "gate",
+      "sidecar",
+      "swap",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings.ts",
+      "shared/types.ts",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "mcp_server/tests/embeddings.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Swap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s native ONNX/ORT session (held transitively via `extractor.model.sessions[].handler`) is orphaned on every provider swap — the native memory the GC cannot reclaim and `--max-old-space-size` cannot bound (RC-1)",
+    "created_at": "2026-05-28T18:43:48Z",
+    "last_save_at": "2026-07-17T17:19:34.002Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5d47c0379f72b08414d8c7eb0227c53b125a6748faf38bab3e2b1331d33e2c6",
+    "source_doc_hashes": {
+      "spec.md": "172730b2647979e7827dc7f1d8f19f5c90c3fa66b3a31612dc995b042a0ade18",
+      "plan.md": "ad2bee2c8ab24ffa9506e380a42f82032774b68516f292eb4d4303cad6e7a0df",
+      "tasks.md": "54954d90ae27e690c4692f1e018b2f2ad3d51af159257406246837bfdd90535d",
+      "implementation-summary.md": "d2235e66f087de00d39374665b3dcf272f7aa109d9042a7611b612faf2ea5d75"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

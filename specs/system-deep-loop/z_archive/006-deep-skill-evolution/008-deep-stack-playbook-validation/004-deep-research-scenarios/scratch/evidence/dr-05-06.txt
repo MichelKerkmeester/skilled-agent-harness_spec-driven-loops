@@ -1,0 +1,13 @@
+ORCHESTRATOR SPOT-VERIFICATION — deep-research / 05-06 pause-resume + synthesis (DR-015..018, 019, 026, 035)
+Date 2026-05-27 | Executor cli-devin SWE-1.6 | Raw log scratch/logs/dr-05-06.log
+Method §6: rg/anchor re-confirmation. 5 PASS / 2 PARTIAL.
+
+DR-015 PASS  pause_sentinel .deep-research-pause + step_check_pause_sentinel halt @ auto.yaml:104,401
+DR-016 PARTIAL  research-mode resume verified (on_resume + skip_to phase_loop @ auto.yaml:210-217); executor hedged on an irrelevant review-YAML cross-check — effectively PASS for the research scenario; non-critical
+DR-017 PARTIAL  fault-tolerant lenient-skip + strict-stop @ state_reducer_registry.md:94; explicit malformed-line defaults doc-gap — non-critical
+DR-018 PASS  JSONL reconstruction from iteration-NNN.md @ state_reducer_registry.md:96-102
+DR-019 PASS  final synthesis + LEAF-only memory-save guardrail @ deep-research.toml:27,38
+DR-026 PASS  Eliminated Alternatives (ruledOut + Dead Ends) @ loop_protocol.md:504
+DR-035 PASS  resource-map emission (emitResourceMap + config.resource_map.emit) @ reduce-state.cjs:898
+
+Verdict: 5 PASS / 2 PARTIAL / 0 FAIL / 0 SKIP. No remediation.

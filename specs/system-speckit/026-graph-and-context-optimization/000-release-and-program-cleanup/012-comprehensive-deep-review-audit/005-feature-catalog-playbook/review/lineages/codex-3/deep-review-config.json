@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "deep-review.lineage.v1",
+  "sessionId": "fanout-codex-3-1780594677741-z9tid3",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-3",
+  "artifactRootResolution": "bound-directly-from-config.fanout_lineage_artifact_dir",
+  "loopType": "review",
+  "createdAt": "2026-06-04T00:00:00+02:00",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "minStabilizationPasses": 1,
+  "resourceMapPresent": false,
+  "executor": {
+    "requested": "cli-codex",
+    "model": "gpt-5.5",
+    "actual": "current-codex-agent",
+    "selfInvocationGuardApplied": true
+  },
+  "lineage": {
+    "sessionId": "fanout-codex-3-1780594677741-z9tid3",
+    "parentSessionId": null,
+    "lineageMode": "fanout",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "dimensions": [
+    "correctness",
+    "security",
+    "spec_alignment_traceability",
+    "completeness_maintainability"
+  ],
+  "requiredTraceabilityProtocols": [
+    "spec_code",
+    "checklist_evidence",
+    "feature_catalog_code",
+    "playbook_capability"
+  ],
+  "reviewBoundaries": {
+    "readOnlyTargetFiles": true,
+    "writesRestrictedToArtifactDir": true,
+    "targetSpec": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md",
+    "primaryTargets": [
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md"
+    ]
+  }
+}

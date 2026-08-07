@@ -1,3 +1,0 @@
-FAIL .opencode/install-guides/MCP - Chrome Dev Tools.md: target does not exist
-FAIL .opencode/install-guides/install-scripts/install-chrome-devtools.sh: target does not exist
-SUMMARY guide_entries_examined=8 guide_resolvable=7 script_entries_examined=7 script_resolvable=6 entries_examined=15 failures=2 outside_root=0

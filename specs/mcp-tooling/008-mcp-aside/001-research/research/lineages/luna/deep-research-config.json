@@ -1,0 +1,51 @@
+{
+  "topic": "Aside browser developer surface for an mcp-tooling skill mode: the Aside CLI command surface and the Aside MCP server (tools, auth, transport, install, session/daemon model) per https://docs.aside.com/help/developers#use-mcp — AI-browser-automation workflows (navigate, DOM inspection, screenshots, console/network capture), contrast with Chrome DevTools bdg patterns, everything needed to author the mcp-aside-devtools packet (CLI-primary + Code Mode MCP fallback) and register an aside UTCP manual in .utcp_config.json",
+  "specFolder": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research",
+  "artifactDir": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/luna",
+  "fanout_lineage_artifact_dir": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/luna",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stop_policy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "medium",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1784196776045-jwfb3a",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "scopeBoundary": {
+    "writesOnlyUnder": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/luna",
+    "parentSpecMutation": "skipped-by-explicit-lineage-boundary",
+    "graphPersistence": "skipped-by-explicit-lineage-boundary",
+    "memorySave": "skipped-by-explicit-lineage-boundary"
+  },
+  "createdAt": "2026-07-16T10:17:45.892Z",
+  "completedAt": "2026-07-16T10:29:00Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "totalIterations": 3,
+  "synthesisPath": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/lineages/luna/research.md"
+}

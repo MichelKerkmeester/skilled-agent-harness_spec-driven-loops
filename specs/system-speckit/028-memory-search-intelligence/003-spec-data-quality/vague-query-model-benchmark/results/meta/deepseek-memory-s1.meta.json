@@ -1,0 +1,14 @@
+{
+  "key": "deepseek-memory-s1",
+  "model": "deepseek",
+  "slug": "deepseek/deepseek-v4-pro",
+  "variant": "high",
+  "query": "memory",
+  "queryClass": "aligned",
+  "sample": 1,
+  "exit": 0,
+  "attempts": 1,
+  "latencyMs": 100805,
+  "bytes": 83638,
+  "stderrTail": ""
+}

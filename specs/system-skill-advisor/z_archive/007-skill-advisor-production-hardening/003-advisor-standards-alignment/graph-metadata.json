@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
+  "spec_folder": "system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment",
+  "parent_id": "system-skill-advisor/007-skill-advisor-production-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor standards alignment",
+      "opencode plugin exemption tier",
+      "sk-code-opencode esm exemption",
+      "skill advisor jsdoc",
+      "skill advisor box header",
+      "026/009/009",
+      "026/009/009 plan",
+      "skill advisor standards alignment plan",
+      "026/009/009 tasks",
+      "skill advisor standards alignment tasks",
+      "skill advisor standards alignment complete",
+      "026/009/009 implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "standards",
+      "alignment",
+      "opencode",
+      "plugin",
+      "exemption",
+      "tier",
+      "sk-code-opencode",
+      "esm",
+      "jsdoc",
+      "box"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Exemption Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Standards Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test File Exemption Tier",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Criteria",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exempted Standards",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Still Applies",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two findings from the packet 008 audit:",
+    "created_at": "2026-04-23T10:30:00.000Z",
+    "last_save_at": "2026-07-15T11:59:23.959Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a79b17eba2ac5e330099cb2e76654409623d00ebb9792e82159179662283febd",
+    "source_doc_hashes": {
+      "spec.md": "01df2d3a688d0b74caa44bc7b54b7e9472b08bbbee81b2223e59fda6e5ab9bd9",
+      "plan.md": "ef0d225ef33eb87c43b1103c6fe8adbbb9eb666d4bedbeb868ec16976e24b6df",
+      "tasks.md": "ffac53019e56d0d24b93032df7e73fb3af749e3532eaf0da41e0ddf92b84fcaa",
+      "implementation-summary.md": "3ed026cdbefe7a25deeb19e26f2093050b471ec4456aa1363575160badf12df8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

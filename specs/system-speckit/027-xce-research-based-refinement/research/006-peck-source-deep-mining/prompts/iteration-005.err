@@ -1,0 +1,21 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/implementer.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/constitutional/verify-before-completion-claims.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/external/peck-master/src/assets/agents/acceptance-reviewer.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead CLAUDE.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "VERDICT|Verdict|verdict|Pass|Fail|FAIL|PASS|conditional|partial|truncate|truncating|report"[90m in .opencode/skills/deep-review · 863 matches[0m
+[0m✱ [0mGrep "COMPLETION VERIFICATION RULE|Do not frame partial|Never lie|UNKNOWN|conditional|partial|Fail|verdict|Verdict|report"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "conditional|partial|Fail|verdict|Verdict|completion|complete|done|UNKNOWN|good stopping point|Partially tested"[90m in .opencode/skills/system-spec-kit · 3798 matches[0m
+[0m→ [0mRead CLAUDE.md[90m [offset=220, limit=130][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=360, limit=170][0m
+[0m→ [0mRead .opencode/skills/deep-review/README.md[90m [offset=108, limit=18][0m
+[0m→ [0mRead .opencode/skills/deep-review/feature_catalog/04--severity-system/024-verdicts.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/deep-review/references/protocol/loop_protocol.md[90m [offset=460, limit=60][0m
+[0m→ [0mRead .opencode/skills/deep-review/SKILL.md[90m [offset=320, limit=50][0m
+[0m✱ [0mGrep "completion claim|Claim completion|complete|done|checklist|validate|lie|fabricate|UNKNOWN|partial progress|good stopping point|conditional"[90m in .opencode/skills/system-spec-kit · 34 matches[0m
+[0m→ [0mRead AGENTS.md[90m [offset=17, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/SKILL.md[90m [offset=396, limit=60][0m

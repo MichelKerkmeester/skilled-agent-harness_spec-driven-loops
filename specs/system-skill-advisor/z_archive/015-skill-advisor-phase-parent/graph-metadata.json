@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/z_archive/015-skill-advisor-phase-parent",
+  "spec_folder": "system-skill-advisor/z_archive/015-skill-advisor-phase-parent",
+  "parent_id": "system-skill-advisor",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-skill-advisor/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening",
+    "system-skill-advisor/z_archive/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 skill advisor implementation parent",
+      "skill advisor child phase map",
+      "advisor implementation planning",
+      "028 skill advisor candidate tail",
+      "skill advisor research to implementation",
+      "skill advisor external mining research",
+      "skill advisor fusion scorer research",
+      "skill advisor RRF query-class router"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "implementation",
+      "parent",
+      "child",
+      "phase",
+      "map",
+      "planning",
+      "candidate",
+      "tail",
+      "research",
+      "external"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "001-hard-rule-and-dispatch-preflight-hardening/spec.md",
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wired Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The Skill Advisor",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Catalog",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking",
+    "created_at": "2026-06-16T14:27:21.651Z",
+    "last_save_at": "2026-07-16T16:06:02.953Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b766e729982b7e7a18347dc8577acdba3adfcfa7b18fb25fc2c2b3651bf55f8c",
+    "source_doc_hashes": {
+      "spec.md": "304a11aeff1d6e26b07246e6360e66edeee0acf881e574a353780e7781d5d23b",
+      "research/research.md": "e059059c359a659407760183083cb505fa8eab8581cbd78e3b4ee50562efa8f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

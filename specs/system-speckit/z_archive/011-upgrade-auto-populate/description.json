@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/z_archive/011-upgrade-auto-populate",
+  "description": "This archived system-spec-kit archive folder captures work related to Upgrade Auto Populate",
+  "keywords": [
+    "archived",
+    "system-spec-kit",
+    "archive",
+    "folder",
+    "captures",
+    "work",
+    "related",
+    "upgrade",
+    "auto",
+    "populate"
+  ],
+  "lastUpdated": "2026-07-18T03:48:59.979Z",
+  "specId": "011",
+  "folderSlug": "upgrade-auto-populate",
+  "parentChain": [
+    "system-speckit",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,107 @@
+Dry-Run Verification: 028 deep-review non-interactive setup bypass
+Date: 2026-05-11
+Scope: Read-back and mental setup-phase dispatch traces only. The full deep-review YAML loop was not run.
+
+## Trace A - Tier 1 pass
+
+Dispatch input:
+
+`/deep:start-review-loop:auto "specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure" --max-iterations=5`
+
+Step-by-step trace:
+
+1. Attached suffix sets `execution_mode = AUTONOMOUS`, so §0 uses the three-tier `:auto` branch instead of the consolidated prompt.
+2. `$ARGUMENTS` positional target resolves to `specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure`.
+3. `$ARGUMENTS` flag `--max-iterations=5` resolves `maxIterations = 5`.
+4. No `PRE-BOUND SETUP ANSWERS:` block is present, so no marker values override the parsed arguments.
+5. Defaults fill the remaining values:
+   - `review_dimensions = "all"`
+   - `convergenceThreshold = 0.10`
+   - `executor = native`
+   - `executor_timeout = 900`
+   - `resource_map_emit = true`
+6. The target path is a spec path ending in `102-sk-doc-skill-readme-and-structure`, so `review_target_type = spec-folder`.
+7. Because the target itself is a spec folder, `spec_folder` resolves to the same path.
+8. All required values are bound, so Tier 1 persists setup values to `{spec_folder}/review/deep-review-config.json`, sets `STATUS: PASSED`, loads `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`, and emits no Q0..Q-Exec setup question.
+
+Verdict:
+
+EXPECTED OUTCOME REACHED: yes
+
+## Trace B - Tier 2 targeted ask
+
+Dispatch input:
+
+`/deep:start-review-loop:auto "some-ambiguous-target"`
+
+Step-by-step trace:
+
+1. Attached suffix sets `execution_mode = AUTONOMOUS`, so §0 uses the three-tier `:auto` branch.
+2. `$ARGUMENTS` positional target resolves to `some-ambiguous-target`.
+3. No flags and no `PRE-BOUND SETUP ANSWERS:` block are present.
+4. Defaults resolve:
+   - `review_dimensions = "all"`
+   - `maxIterations = 7`
+   - `convergenceThreshold = 0.10`
+   - `executor = native`
+   - `executor_timeout = 900`
+   - `resource_map_emit = true`
+5. Target-type auto-detection cannot classify the bare string confidently as `spec-folder`, `skill`, `agent`, `track`, or `files`.
+6. Tier 1 cannot pass because `review_target_type` is unresolved.
+7. Tier 2 sees one genuinely ambiguous required field. The ordering rule asks only for `review_target_type` first, because that answer may change how `spec_folder` resolves on the next Tier 1 pass.
+8. The emitted prompt is a single targeted question naming `review_target_type`. The full Q0..Q-Exec consolidated block is not emitted.
+
+Verdict:
+
+EXPECTED OUTCOME REACHED: yes
+
+## Trace C - Tier 3 fail fast
+
+Dispatch input:
+
+`/deep:start-review-loop:auto ""`
+
+Step-by-step trace:
+
+1. Attached suffix sets `execution_mode = AUTONOMOUS`, so §0 uses the three-tier `:auto` branch.
+2. `$ARGUMENTS` contains no non-empty positional target.
+3. No `PRE-BOUND SETUP ANSWERS:` block supplies `review_target`.
+4. Defaults resolve every optional/defaultable field, but `review_target` remains missing.
+5. Missing `review_target` is not ambiguous. Tier 2 explicitly excludes it.
+6. Tier 3 emits the named-missing-inputs error and exits non-zero without loading YAML:
+
+```
+[ERROR] /deep:start-review-loop:auto — required inputs unresolved under autonomous mode:
+  - review_target: no target supplied in $ARGUMENTS or PRE-BOUND SETUP ANSWERS
+Resolution: provide via $ARGUMENTS flags, PRE-BOUND SETUP ANSWERS: block, or switch to :confirm mode for interactive setup.
+```
+
+Verdict:
+
+EXPECTED OUTCOME REACHED: yes
+
+## Trace D - :confirm regression
+
+Dispatch input:
+
+`/deep:start-review-loop:confirm "specs/.../X"`
+
+Step-by-step trace:
+
+1. Attached suffix sets `execution_mode = INTERACTIVE`, so §0 does not enter the `:auto` three-tier branch.
+2. §0 routes to `### Consolidated Setup Prompt for :confirm and No-Suffix Mode`.
+3. The existing `STATUS: BLOCKED` consolidated prompt remains present.
+4. The prompt still checks mode suffix, parses target and flags, searches related spec folders, loads prior context, asks applicable Q0/Q1_type/Q_dims/Q1/Q3/Q-Exec setup questions, waits for user response, parses the response, then sets `STATUS: PASSED`.
+5. Because the target is present, Q0 can still be omitted under the existing logic, but the setup path remains the full consolidated question block rather than the `:auto` bypass.
+
+Verdict:
+
+EXPECTED OUTCOME REACHED: yes
+
+## Read-Back Check
+
+- Three-tier branch is present and clearly labeled: yes.
+- PRE-BOUND SETUP ANSWERS schema is documented: yes.
+- Per-field default-resolution table is present: yes.
+- Tier 3 error format is documented: yes.
+- `:confirm` mode behavior is unchanged: yes, the original consolidated prompt remains under the confirm/no-suffix branch.

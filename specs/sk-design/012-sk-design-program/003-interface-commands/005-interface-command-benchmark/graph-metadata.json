@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark",
+  "spec_folder": "sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark",
+  "parent_id": "sk-design/012-sk-design-program/003-interface-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "interface command benchmark structure live quality",
+      "deepseek mimo luna interface design benchmark",
+      "interface design command multi-model scorecard",
+      "interface benchmark plan structure live",
+      "three executor interface design benchmark plan",
+      "deepseek mimo luna benchmark plan",
+      "interface benchmark tasks",
+      "three leg benchmark task ledger",
+      "interface design benchmark tasks",
+      "interface benchmark results summary",
+      "deepseek mimo luna interface verdict",
+      "interface command benchmark executed"
+    ],
+    "key_topics": [
+      "interface",
+      "command",
+      "benchmark",
+      "structure",
+      "live",
+      "quality",
+      "deepseek",
+      "mimo",
+      "luna",
+      "design",
+      "multi-model",
+      "scorecard"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
+      ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+      "review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "interface-command-contract.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Route Proof",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Action",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a live output-quality axis running /interface:design on one shared brief across three executors — cli-opencode deepseek-v4-pro, cli-opencode mimo-v2.5-pro, and cli-codex gpt-5.6-luna high. Scores presentation-contract fidelity + design quality.",
+    "created_at": "2026-07-22T07:00:17.185Z",
+    "last_save_at": "2026-07-22T16:57:30.392Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4ecda97d5855602809278c647b7758d96dbf70e70ab90a2b279d3e63ed04bb39",
+    "source_doc_hashes": {
+      "spec.md": "91f61a40682cd5f7380377a21171be285378fb87b7000a41392185d5e0341582",
+      "plan.md": "f0db4b5c11c530fafdfd987cdb9cdd3a70a4ac215961fd66df4286f78ff83093",
+      "tasks.md": "415a27d6e2a3481a1ca6f69e7eecaef342fb3e1e87bd303d2614a99dddb74627",
+      "implementation-summary.md": "e47882e730d712a68e29d226562ba1b4c21101be29f97bcb24270cc660e34268"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

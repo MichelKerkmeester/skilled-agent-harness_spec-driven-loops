@@ -1,0 +1,124 @@
+{
+  "sessionId": "fanout-gpt-2-1781111094433-fahmna",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent inventory omits live phase 011 from authoritative child lists",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 127,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:127-140",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:27-38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:6-18",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:47-56"
+      ],
+      "finding_class": "spec-metadata-drift",
+      "content_hash": "sha256:f001-parent-child-inventory-drift",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "resource-map-coverage",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent resource map excludes phase 011 and its child scope",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
+      "line": 30,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:30-33",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:70-82",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:116-121"
+      ],
+      "finding_class": "resource-map-gap",
+      "content_hash": "sha256:f002-resource-map-omits-011",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Parent continuity next-safe-action is stale relative to shipped and scaffolded tracks",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 23,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:23-28",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:14-31",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/timeline.md:80-87"
+      ],
+      "finding_class": "stale-continuity-handoff",
+      "content_hash": "sha256:f003-stale-parent-continuity",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "protocolCoverage": {
+    "spec_code": "partial",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "partial",
+    "playbook_capability": "not_applicable"
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.76,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

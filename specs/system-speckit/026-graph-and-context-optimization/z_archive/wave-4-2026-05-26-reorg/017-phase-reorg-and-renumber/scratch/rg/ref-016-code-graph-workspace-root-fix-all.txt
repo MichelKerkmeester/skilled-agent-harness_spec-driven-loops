@@ -1,0 +1,7 @@
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/spec.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/plan.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/checklist.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/tasks.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/description.json
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/implementation-summary.md
+./.opencode/specs/system-spec-kit/026-graph-and-context-optimization/016-code-graph-workspace-root-fix/graph-metadata.json

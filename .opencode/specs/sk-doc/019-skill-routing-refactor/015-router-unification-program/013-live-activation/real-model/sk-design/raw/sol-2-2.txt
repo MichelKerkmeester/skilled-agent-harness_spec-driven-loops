@@ -1,4 +1,0 @@
-[0m
-> build · gpt-5.6-sol-fast
-[0m
-{"skill":"sk-design","reason":"Design audit covering accessibility, responsive behavior, and visual quality."}

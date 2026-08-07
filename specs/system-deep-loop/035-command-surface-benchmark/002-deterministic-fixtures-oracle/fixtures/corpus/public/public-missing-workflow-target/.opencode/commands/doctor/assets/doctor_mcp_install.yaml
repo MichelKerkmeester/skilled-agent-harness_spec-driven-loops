@@ -1,0 +1,8 @@
+subaction: install
+required_tools:
+  - Read
+  - Bash
+mutation_class: mutating
+requires_confirmation: true
+presentation_asset: ".opencode/commands/doctor/assets/doctor_mcp_presentation.txt"
+result: installed

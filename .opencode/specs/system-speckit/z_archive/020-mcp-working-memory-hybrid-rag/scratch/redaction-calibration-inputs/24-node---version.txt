@@ -1,5 +1,0 @@
-$ node --version
-exit_code: 0
-stdout:
-v25.2.1
-stderr: <empty>

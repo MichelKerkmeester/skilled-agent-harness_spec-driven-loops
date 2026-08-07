@@ -1,0 +1,47 @@
+{
+  "openQuestions": [
+    {
+      "id": "q3",
+      "text": "Ground the design in the actual current dispatch paths (cli-opencode, orchestrate, deep-review contracts).",
+      "status": "open",
+      "firstIteration": null
+    },
+    {
+      "id": "q4",
+      "text": "Review phase 012 benchmark-results.md for the exact GPT-5.5 enforcement-inconsistency evidence.",
+      "status": "open",
+      "firstIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Does the @opencode-ai/plugin SDK tool.execute.before hook expose or allow persisting session-scoped state?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "answer": "Yes — in-process closure Map (3 sibling plugins) and external file (mk-goal.js) both proven"
+    },
+    {
+      "id": "q2",
+      "text": "What should 'loop-like' mean mechanically?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "answer": "Same loop-executor identity (prompt-parsed) dispatched >=3 per session = block; N=2 = warn"
+    }
+  ],
+  "keyFindings": [
+    {"id": "f1.1", "finding": "tool.execute.before exposes input.sessionID and input.callID per call", "source": "index.d.ts:235-241"},
+    {"id": "f1.2", "finding": "In-process closure Map<sessionID,...> is established pattern (3 plugins)", "source": "mk-spec-memory.js:259-271, mk-code-graph.js:100,164, mk-skill-advisor.js:420-422"},
+    {"id": "f1.3", "finding": "External file state keyed by sessionID proven (mk-goal.js)", "source": "mk-goal.js:24,647-649"},
+    {"id": "f1.4", "finding": "In-process state is primary; external is defense-in-depth for edge cases", "source": "opencode run is one-shot; repeat detection needs same-process"},
+    {"id": "f2.1", "finding": "subagent_type is always 'general' — cannot discriminate loop executors", "source": "orchestrate.md:73-81,189"},
+    {"id": "f2.2", "finding": "Agent identity parsed from prompt: Agent:@X / Deep Route: mode=X / mode=X", "source": "orchestrate.md:187-188, mk-deep-loop-guard.js:43-46"},
+    {"id": "f2.3", "finding": "Threshold: N>=3 same-loop-executor dispatches per session = block", "source": "cli-opencode SKILL.md:293, orchestrate.md:566-569"},
+    {"id": "f2.4", "finding": "prompt-improver not in mode-registry.json — needs static set", "source": "mode-registry.json, cli-opencode SKILL.md:293"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Using subagent_type as discriminator", "reason": "always 'general' — no signal", "evidence": "orchestrate.md:73-81,189"},
+    {"approach": "Time-windowed detection", "reason": "session-scoped is the natural boundary; time windows add complexity", "evidence": "cli-opencode SKILL.md:293"},
+    {"approach": "Detecting repeat via callID patterns", "reason": "callID is unique-per-call, not correlated across calls", "evidence": "index.d.ts:235-241"}
+  ]
+}

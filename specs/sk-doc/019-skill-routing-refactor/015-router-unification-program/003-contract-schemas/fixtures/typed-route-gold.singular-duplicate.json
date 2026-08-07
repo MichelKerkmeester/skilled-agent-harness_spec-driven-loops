@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "V1",
+  "scenarioId": "singular-omission-and-duplicate-receipt",
+  "effectivePolicyHash": "200e69c9edc1bc4a68887a8f63c989bb9c7b395daeee31d6b33053ccb89e7167",
+  "decisionAction": "route",
+  "selectionKind": "single",
+  "targetQualifiedIds": [
+    "mcp-code-mode/code-mode"
+  ],
+  "observedIntents": [
+    "code-mode"
+  ],
+  "observedResources": [
+    {
+      "intent": "code-mode",
+      "resource": "canonical-leaf"
+    }
+  ],
+  "receiptAttempts": [
+    {
+      "idempotencyKey": "request-1:code-mode",
+      "receiptId": "receipt:1",
+      "effectApplied": true
+    },
+    {
+      "idempotencyKey": "request-1:code-mode",
+      "receiptId": "receipt:1",
+      "effectApplied": false
+    }
+  ],
+  "assertions": {
+    "rankCalls": 0,
+    "handoffEdges": [],
+    "duplicateIdempotencyKeyProducesSingleReceipt": true
+  },
+  "projectionHash": "5b1c393ae28b4493e621d4a3deae9d0d7d38f038c25d08fc4bce209f4d4d1c31"
+}

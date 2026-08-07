@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation",
+  "description": "The live sk-doc feature catalog still publishes pre-rename workflow keys, while closeout documents disagree about the current route-gold and",
+  "keywords": [
+    "live",
+    "sk-doc",
+    "feature",
+    "catalog",
+    "still",
+    "publishes",
+    "pre-rename",
+    "workflow",
+    "keys",
+    "while",
+    "closeout",
+    "documents",
+    "disagree",
+    "about",
+    "current",
+    "route-gold"
+  ],
+  "lastUpdated": "2026-07-29T13:48:05.304Z",
+  "specId": "010",
+  "folderSlug": "luna-review-remediation",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "030-mode-sk-prefix-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

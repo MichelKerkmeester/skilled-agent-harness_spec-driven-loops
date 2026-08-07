@@ -1,0 +1,60 @@
+{
+  "sessionId": "fanout-p019-deepseek-2-1781719527072-mk6no9",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Spec/implementation marker-shape drift: labels vs jobId",
+      "file": "spec.md",
+      "line": 103,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Spec describes jobId; implementation uses labels for reference-counted overlapping maintenance." }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "TTL divergence: spec 60s vs implementation 180s",
+      "file": "spec.md",
+      "line": 103,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Live-learned correction: 60s expired during ~79s blocking phase. 180s margin documented in implementation-summary." }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.30,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

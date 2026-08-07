@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "016/001 embedder adapter interface",
+      "EmbedderAdapter typescript",
+      "EmbedderRegistry lookup",
+      "016/001 plan",
+      "016/001 tasks",
+      "016/001 summary"
+    ],
+    "key_topics": [
+      "embedder",
+      "adapter",
+      "interface",
+      "embedderadapter",
+      "typescript",
+      "embedderregistry",
+      "lookup",
+      "plan",
+      "tasks",
+      "summary",
+      "phase",
+      "pluggable"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/lib/embedders/adapter.ts",
+      "mcp_server/lib/embedders/registry.ts",
+      "mcp_server/lib/embedders/types.ts",
+      "mcp_server/lib/embedders/index.ts",
+      "tests/embedder-registry.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-registry.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedder-registry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "correct",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Foundational",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ts",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup. Pure TypeScript design work — no runtime wiring yet.",
+    "created_at": "2026-05-17T06:35:17.033Z",
+    "last_save_at": "2026-07-17T17:19:21.075Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec0dede24b1b2f71b39f1d17d2367bbd293ebc622133956b67a0333d9319f5d6",
+    "source_doc_hashes": {
+      "spec.md": "c9e8dbf8fd24a577706267add63a57c75b74dc20e83964072f667f1adb358e7b",
+      "plan.md": "ae0633e2d7990373166634b1c40e241f7e0ad747a015e67c48bdf48260d7af79",
+      "tasks.md": "a712b32c3ad6c174455f2a1db12997b12883367786364c001ac91d7d9b784daa",
+      "implementation-summary.md": "295b024d94e705cbf739fbe030dea0caf05ed8580c4d0e656d8f1a4eff33daca"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

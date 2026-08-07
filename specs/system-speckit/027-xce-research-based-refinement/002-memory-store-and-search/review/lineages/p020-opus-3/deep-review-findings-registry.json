@@ -1,0 +1,44 @@
+{
+  "sessionId": "fanout-p020-opus-3-1781721166412-nlwse6",
+  "generatedBy": "deep-review-reducer (manual single-iteration fan-out)",
+  "totals": { "P0": 0, "P1": 0, "P2": 2 },
+  "active": [
+    {
+      "id": "P2-D1-01",
+      "severity": "P2",
+      "category": "robustness",
+      "dimension": "correctness",
+      "finding_class": "error-handling",
+      "title": "writeMarker ignores atomicWriteFile boolean failure signal",
+      "evidence": "maintenance-marker.ts:44",
+      "detail": "writeMarker() discards the boolean returned by atomicWriteFile (transaction-manager.ts:177). On a write failure the count is incremented and the timer runs while no marker file exists on disk. Impact is fail-open and self-healing (launcher may reap, the safe direction; 20s timer retries the write). atomicWriteFile already console.warn's on failure, so it is observable.",
+      "status": "active",
+      "riskScore": 0.15,
+      "content_hash": "p2-d1-01-writemarker-ignores-write-failure"
+    },
+    {
+      "id": "P2-D4-01",
+      "severity": "P2",
+      "category": "maintainability",
+      "dimension": "maintainability",
+      "finding_class": "by-design-advisory",
+      "title": "On-disk labels transiently lag the live holder set after a non-last end()",
+      "evidence": "maintenance-marker.vitest.ts:91",
+      "detail": "end() decrements the in-memory count but does not re-serialize the marker, so on-disk labels keep an ended holder's label until the next write event. Explicitly documented and asserted as intentional in the unit test; the launcher reads only presence + TTL, never labels. Cosmetic/advisory metadata, no behavior impact.",
+      "status": "active",
+      "riskScore": 0.05,
+      "content_hash": "p2-d4-01-transient-stale-labels-by-design"
+    }
+  ],
+  "refuted": [
+    {
+      "id": "REFUTED-D1-leak",
+      "severity": "P0-candidate",
+      "title": "Reference-count leak permanently shielding a wedged daemon",
+      "rationale": "Hypothesized that a throw inside beginMaintenance's writeMarker after activeCount++ could pin the count and, with the always-on refresh timer, defeat the 180s-TTL reap mitigation. Refuted: atomicWriteFile (transaction-manager.ts:177-200) wraps all fs work in try/catch, returns false, and never throws; beginMaintenance's other ops are an integer increment and an array push. The throw path does not exist.",
+      "evidence": "transaction-manager.ts:177"
+    }
+  ],
+  "resolved": [],
+  "deferred": []
+}

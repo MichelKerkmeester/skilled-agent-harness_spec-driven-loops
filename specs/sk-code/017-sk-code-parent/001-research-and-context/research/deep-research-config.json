@@ -1,0 +1,14 @@
+{
+  "executors": [
+    {
+      "label": "gpt55fast",
+      "kind": "cli-opencode",
+      "model": "openai/gpt-5.5-fast",
+      "reasoningEffort": "high",
+      "iterations": 12,
+      "count": 1,
+      "timeoutSeconds": 900
+    }
+  ],
+  "concurrency": 1
+}

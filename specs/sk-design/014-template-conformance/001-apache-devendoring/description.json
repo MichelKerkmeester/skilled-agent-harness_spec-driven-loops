@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/001-apache-devendoring",
+  "description": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the",
+  "keywords": [
+    "opencode",
+    "skills",
+    "sk-design",
+    "design-interface",
+    "license",
+    "txt",
+    "full",
+    "apache-2",
+    "text",
+    "committed",
+    "skill",
+    "first",
+    "commit",
+    "c9c2d381c34"
+  ],
+  "lastUpdated": "2026-07-27T18:38:23.864Z",
+  "specId": "001",
+  "folderSlug": "apache-devendoring",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

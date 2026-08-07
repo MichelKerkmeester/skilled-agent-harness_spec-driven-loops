@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/014-template-conformance/002-design-interface/008-manual-testing-playbook",
+  "description": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the",
+  "keywords": [
+    "manual-testing-playbook",
+    "category",
+    "subdirectories",
+    "find",
+    "maxdepth",
+    "type",
+    "count",
+    "dispatching",
+    "brief",
+    "cited",
+    "corrected"
+  ],
+  "lastUpdated": "2026-07-27T18:08:24.909Z",
+  "specId": "008",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-design",
+    "014-template-conformance",
+    "002-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

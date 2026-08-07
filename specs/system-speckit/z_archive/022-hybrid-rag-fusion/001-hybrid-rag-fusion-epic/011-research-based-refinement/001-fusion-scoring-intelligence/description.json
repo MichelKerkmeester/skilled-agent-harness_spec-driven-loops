@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
+  "description": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and",
+  "keywords": [
+    "current",
+    "fusion",
+    "pipeline",
+    "relies",
+    "flat",
+    "heuristic",
+    "constants",
+    "rrf",
+    "convergence",
+    "bonus",
+    "static",
+    "graph",
+    "boost"
+  ],
+  "lastUpdated": "2026-07-21T05:58:29.645Z",
+  "specId": "001",
+  "folderSlug": "fusion-scoring-intelligence",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "001-hybrid-rag-fusion-epic",
+    "011-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

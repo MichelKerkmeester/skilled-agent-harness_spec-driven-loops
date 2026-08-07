@@ -1,1 +1,0 @@
-{"type":"delta","iteration":3,"focus":"automation","findings":["F3.1 HIGH skill-root derived regenerator feasible+absent","F3.2 leaf-manifest.config 90% boilerplate","F3.3 command-metadata not auto-suggested","F3.4 HIGH graph-metadata validation split, advisor compiler not in CI","F3.5 rich derived has no template/generator"],"newInfoRatio":0.80}

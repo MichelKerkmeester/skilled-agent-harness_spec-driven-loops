@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-fix-claude-freshness-schema-harness",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-fix-claude-freshness-schema-harness",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude hook findings",
+      "advisor freshness stuck stale",
+      "sourcesignature null",
+      "settings.local.json schema mismatch",
+      "copilot bash field in claude hooks",
+      "hook regression harness",
+      "multi-turn stream-json testing",
+      "026/009/006",
+      "claude hook findings plan",
+      "freshness sourcesignature fix",
+      "settings.local.json normalization plan",
+      "multi-turn stream-json harness plan"
+    ],
+    "key_topics": [
+      "claude",
+      "hook",
+      "findings",
+      "advisor",
+      "freshness",
+      "stuck",
+      "stale",
+      "sourcesignature",
+      "null",
+      "settings",
+      "local",
+      "json"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Hook Findings Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Hook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Filesystem",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Spike",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Patch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hook testing surfaced three defects",
+    "created_at": "2026-04-23T10:15:00.000Z",
+    "last_save_at": "2026-07-17T17:19:32.457Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1a7e11b067b11ba6e56947986dcefbaf9ebea763a271085634ded975ba5c5ead",
+    "source_doc_hashes": {
+      "spec.md": "afc04a59709284cf1421b43f6c3fc29bba51e9f3a16d84f96802e614984eaf05",
+      "plan.md": "d6a557ea18e776eaa488376dcf173c81dca5366a89a44f92c597e77caa7c0415",
+      "tasks.md": "531d1aef20bb48b7714909b1e856ea93c0056f4497902ce73a144ef1ef88c831",
+      "checklist.md": "a0b1e151b602e44edc609b00cc87d05941d19bdf20671a0b48205d76bced2e3e",
+      "implementation-summary.md": "38d740a2e3120750b8910d6fb61b2870edfb0ddb5538548ff6db889b1f5e5f5d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
