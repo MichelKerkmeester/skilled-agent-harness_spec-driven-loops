@@ -15,7 +15,10 @@
       "input validation exit code deep loop",
       "aggregate suite double registration",
       "manual playbook dead runtime path",
-      "deep loop 031 silent failure"
+      "deep loop 031 silent failure",
+      "silent failure harness repair implementation",
+      "aggregate suite double registration fix",
+      "deep loop 031 implementation summary"
     ],
     "key_topics": [
       "silent",
@@ -32,7 +35,7 @@
       "suite"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,6 +52,7 @@
       ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/conformance-benchmark.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
     ],
@@ -144,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "reduce-state.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
@@ -190,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Twenty-three findings in three lanes share one shape",
     "created_at": "2026-07-31T01:25:21.556Z",
-    "last_save_at": "2026-07-31T01:25:21.556Z",
+    "last_save_at": "2026-08-07T23:13:10.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +212,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2a11f4e7bf8ee79c96b7094b96836efdd65cf4b0d87a26fd105be4854e370fd",
+    "source_fingerprint": "sha256:6269bcaeae0680bcd2f30e141d306a11a443090805eb503891442b90c1f3d4b2",
     "source_doc_hashes": {
-      "spec.md": "8e930bb4798ea40392c1109a168c27ac000e5122beb1537a757dc97fc11c4056",
+      "spec.md": "35db8956c39f3969d7e7bce3cba79682af03cecca186bf8cde153e0f63de8154",
       "plan.md": "f47c3ac02e23591c2a86151f870a052d5aa5d4b1569b98789d83bd66db29ea23",
-      "tasks.md": "6aa2c20e848043e42af32be74fa134c9f2bb9193f96d2a182fb8c755a3c24da6",
-      "checklist.md": "f1407e1b7ebd1a06c1dbd83764806fb210d9036efe7cae5285612598b352abaf",
-      "decision-record.md": "ee3c68270b3e325c9a1eff1434228761818c0f393fddb79849e64334b0aae530"
+      "tasks.md": "ebe0e420deb11e6a1967fedf05f2660f592128daa785522507670e1bc6e09a48",
+      "checklist.md": "9e1c2d086447fc120363695b95d64cab7fc58b5583b2e82882cadb5df18d0fc4",
+      "decision-record.md": "ee3c68270b3e325c9a1eff1434228761818c0f393fddb79849e64334b0aae530",
+      "implementation-summary.md": "bf57e63d275692c7a6383059dd2d485fa47929d3f7decd56b8f130b45c53ef8c"
     },
     "last_active_child_id": null,
     "last_active_at": null
