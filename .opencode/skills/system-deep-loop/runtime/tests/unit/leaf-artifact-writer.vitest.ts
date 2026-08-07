@@ -7,9 +7,10 @@
 // stamping, narrative synthesis, and the all-or-nothing fail-closed contract
 // (a malformed message writes nothing).
 
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -115,13 +116,13 @@ describe('synthesizeNarrative', () => {
 });
 
 describe('writeLeafArtifacts — happy path', () => {
-  it('writes all three artifacts from a nested {stateRecord, deltaFindings} payload', () => {
+  it('writes all three artifacts from a nested {stateRecord, deltaFindings} payload', async () => {
     const p = newPacket();
     const msg = JSON.stringify({
       stateRecord: validRecord,
       deltaFindings: [{ type: 'finding', laneId: validRecord.laneId, finding: { severity: 'P2' } }],
     });
-    const res = writeLeafArtifacts(msg, { iteration: 1, ...p });
+    const res = await writeLeafArtifacts(msg, { iteration: 1, ...p });
     expect(res.ok).toBe(true);
 
     // State log: exactly one canonical record line with route-proof.
@@ -142,9 +143,9 @@ describe('writeLeafArtifacts — happy path', () => {
     expect(existsSync(p.iterationMdPath)).toBe(true);
   });
 
-  it('accepts a top-level record (no stateRecord wrapper) and derives delta findings', () => {
+  it('accepts a top-level record (no stateRecord wrapper) and derives delta findings', async () => {
     const p = newPacket();
-    const res = writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 2, ...p });
+    const res = await writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 2, ...p });
     expect(res.ok).toBe(true);
     const deltaLines = readFileSync(p.deltaPath, 'utf8').trim().split('\n');
     // record + one finding derived from findingDetails
@@ -152,9 +153,9 @@ describe('writeLeafArtifacts — happy path', () => {
     expect(JSON.parse(deltaLines[1]).finding.severity).toBe('P2');
   });
 
-  it('rejects a complete record whose checked artifacts have no evidence', () => {
+  it('rejects a complete record whose checked artifacts have no evidence', async () => {
     const p = newPacket();
-    const res = writeLeafArtifacts(JSON.stringify({
+    const res = await writeLeafArtifacts(JSON.stringify({
       ...validRecord,
       artifactEvidence: [],
     }), { iteration: 1, ...p, dispatchedSlice: validRecord.dispatchedSlice });
@@ -163,10 +164,10 @@ describe('writeLeafArtifacts — happy path', () => {
     expect(existsSync(p.stateLogPath)).toBe(false);
   });
 
-  it('accepts live-render target identities with measured adapter evidence', () => {
+  it('accepts live-render target identities with measured adapter evidence', async () => {
     const p = newPacket();
     const target = { target: 'https://example.test/design', targetType: 'url' };
-    const res = writeLeafArtifacts(JSON.stringify({
+    const res = await writeLeafArtifacts(JSON.stringify({
       ...validRecord,
       artifactsChecked: [target],
       dispatchedSlice: [target],
@@ -186,27 +187,27 @@ describe('writeLeafArtifacts — happy path', () => {
 });
 
 describe('writeLeafArtifacts — fail-closed', () => {
-  it('writes nothing and reports failure on an unparseable message', () => {
+  it('writes nothing and reports failure on an unparseable message', async () => {
     const p = newPacket();
-    const res = writeLeafArtifacts('the audit went fine, trust me', { iteration: 1, ...p });
+    const res = await writeLeafArtifacts('the audit went fine, trust me', { iteration: 1, ...p });
     expect(res.ok).toBe(false);
     expect(existsSync(p.stateLogPath)).toBe(false);
     expect(existsSync(p.deltaPath)).toBe(false);
     expect(existsSync(p.iterationMdPath)).toBe(false);
   });
 
-  it('rejects a payload missing a required field, writing nothing', () => {
+  it('rejects a payload missing a required field, writing nothing', async () => {
     const p = newPacket();
     const { artifactsChecked, ...missing } = validRecord;
-    const res = writeLeafArtifacts(JSON.stringify(missing), { iteration: 1, ...p });
+    const res = await writeLeafArtifacts(JSON.stringify(missing), { iteration: 1, ...p });
     expect(res.ok).toBe(false);
     expect(res.error).toMatch(/artifactsChecked/);
     expect(existsSync(p.stateLogPath)).toBe(false);
   });
 
-  it('rejects an invalid status', () => {
+  it('rejects an invalid status', async () => {
     const p = newPacket();
-    const res = writeLeafArtifacts(
+    const res = await writeLeafArtifacts(
       JSON.stringify({ ...validRecord, status: 'made-up' }),
       { iteration: 1, ...p },
     );
@@ -220,9 +221,9 @@ describe('writeLeafArtifacts — fail-closed', () => {
     ['artifactClass', { artifactClass: ['code'] }],
     ['artifactsChecked', { artifactsChecked: ['ok', 3] }],
     ['findingsCount', { findingsCount: '1' }],
-  ])('rejects a wrong-typed authoritative field and names %s', (field, override) => {
+  ])('rejects a wrong-typed authoritative field and names %s', async (field, override) => {
     const p = newPacket();
-    const res = writeLeafArtifacts(JSON.stringify({ ...validRecord, ...override }), {
+    const res = await writeLeafArtifacts(JSON.stringify({ ...validRecord, ...override }), {
       iteration: 1,
       ...p,
     });
@@ -238,9 +239,9 @@ describe('writeLeafArtifacts — fail-closed', () => {
     'delta-published',
     'state-appended',
     'cleaned',
-  ] as const)('recovers a crash injected after %s', (crashStage: LeafPublicationStage) => {
+  ] as const)('recovers a crash injected after %s', async (crashStage: LeafPublicationStage) => {
     const p = newPacket();
-    const first = writeLeafArtifacts(JSON.stringify(validRecord), {
+    const first = await writeLeafArtifacts(JSON.stringify(validRecord), {
       iteration: 1,
       ...p,
       faultInjection: (stage) => {
@@ -249,19 +250,102 @@ describe('writeLeafArtifacts — fail-closed', () => {
     });
     expect(first.ok).toBe(false);
 
-    const retry = writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
+    const retry = await writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
     expect(retry.ok).toBe(true);
     expect(existsSync(p.deltaPath)).toBe(true);
     expect(existsSync(`${p.deltaPath}.staging-1`)).toBe(false);
     expect(readFileSync(p.stateLogPath, 'utf8').trim().split('\n')).toHaveLength(1);
   });
 
-  it('refuses to overwrite an existing (write-once) delta file', () => {
+  it('refuses to overwrite an existing (write-once) delta file', async () => {
     const p = newPacket();
-    const first = writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
+    const first = await writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
     expect(first.ok).toBe(true);
-    const second = writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
+    const second = await writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
     expect(second.ok).toBe(false);
     expect(second.error).toMatch(/write-once/);
+  });
+});
+
+describe('writeLeafArtifacts — cross-process single-winner claim', () => {
+  it('serializes two processes racing to publish conflicting content for the same iteration', async () => {
+    const p = newPacket();
+    // Two genuinely different leaf outputs contend for the same iteration
+    // slot; exactly one may win, the other must see a write-once conflict
+    // rather than corrupt the winner's staged files.
+    const messageA = JSON.stringify({ ...validRecord, findingsSummary: 'race-a' });
+    const messageB = JSON.stringify({ ...validRecord, findingsSummary: 'race-b' });
+    const runtimeRoot = resolve(import.meta.dirname, '../..');
+    const moduleUrl = new URL('../../lib/deep-loop/leaf-artifact-writer.ts', import.meta.url).href;
+    const barrierPath = join(dirname(p.deltaPath), 'go');
+    mkdirSync(dirname(barrierPath), { recursive: true });
+
+    const writerPath = join(dirname(barrierPath), 'race-writer.mjs');
+    writeFileSync(
+      writerPath,
+      [
+        "import fs from 'node:fs';",
+        `const atomicModulePath = ${JSON.stringify(moduleUrl)};`,
+        'const [, , messageArg, iterationMdPath, stateLogPath, deltaPath, barrierArg] = process.argv;',
+        'const waitBuffer = new SharedArrayBuffer(4);',
+        'const waitView = new Int32Array(waitBuffer);',
+        'const deadline = Date.now() + 5000;',
+        'while (!fs.existsSync(barrierArg)) {',
+        "  if (Date.now() > deadline) throw new Error('barrier timeout');",
+        '  Atomics.wait(waitView, 0, 0, 5);',
+        '}',
+        'const { writeLeafArtifacts } = await import(atomicModulePath);',
+        'const result = await writeLeafArtifacts(messageArg, {',
+        '  iteration: 1,',
+        '  iterationMdPath,',
+        '  stateLogPath,',
+        '  deltaPath,',
+        '});',
+        "process.stdout.write(JSON.stringify({ ok: result.ok, error: result.error ?? null }) + '\\n');",
+      ].join('\n'),
+      'utf8',
+    );
+
+    const runChild = (message: string): Promise<{ ok: boolean; error: string | null }> => new Promise((resolvePromise, reject) => {
+      const child = spawn(
+        process.execPath,
+        ['--import', 'tsx', writerPath, message, p.iterationMdPath, p.stateLogPath, p.deltaPath, barrierPath],
+        { cwd: runtimeRoot, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] },
+      );
+      let stdout = '';
+      let stderr = '';
+      child.stdout.setEncoding('utf8');
+      child.stderr.setEncoding('utf8');
+      child.stdout.on('data', (chunk: string) => { stdout += chunk; });
+      child.stderr.on('data', (chunk: string) => { stderr += chunk; });
+      child.on('error', reject);
+      child.on('close', (code) => {
+        if (code !== 0) {
+          reject(new Error(stderr || `child exited ${code}`));
+          return;
+        }
+        resolvePromise(JSON.parse(stdout.trim()));
+      });
+    });
+
+    const children = [runChild(messageA), runChild(messageB)];
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 50));
+    writeFileSync(barrierPath, 'go', 'utf8');
+    const results = await Promise.all(children);
+
+    expect(results.filter((result) => result.ok)).toHaveLength(1);
+    const losers = results.filter((result) => !result.ok);
+    expect(losers).toHaveLength(1);
+    expect(losers[0].error).toMatch(/write-once/);
+
+    const deltaLines = readFileSync(p.deltaPath, 'utf8').trim().split('\n');
+    expect(deltaLines).toHaveLength(2);
+    const winningRecord = JSON.parse(deltaLines[0]);
+    expect(['race-a', 'race-b']).toContain(winningRecord.findingsSummary);
+
+    const stateLines = readFileSync(p.stateLogPath, 'utf8').trim().split('\n');
+    expect(stateLines).toHaveLength(1);
+    expect(JSON.parse(stateLines[0]).findingsSummary).toBe(winningRecord.findingsSummary);
+    expect(existsSync(`${p.deltaPath}.staging-1`)).toBe(false);
   });
 });

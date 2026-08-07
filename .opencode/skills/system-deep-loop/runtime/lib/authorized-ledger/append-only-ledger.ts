@@ -306,6 +306,7 @@ function assertStoredDecisionLink(
 export class AppendOnlyLedger {
   public readonly ledgerId: string;
   public readonly registryDigest: string;
+  public readonly rootDirectory: string;
   readonly #options: AuthorizedLedgerOptions;
   readonly #registry: EventTypeRegistry;
   readonly #store: ImmutableFrameStore;
@@ -321,6 +322,7 @@ export class AppendOnlyLedger {
     this.#store = new ImmutableFrameStore(options);
     this.ledgerId = options.ledgerId;
     this.registryDigest = registry.digest;
+    this.rootDirectory = options.rootDirectory;
     this.#auditLedgerId = options.auditLedgerId ?? DEFAULT_AUDIT_LEDGER_ID;
     this.#now = options.now ?? (() => new Date());
     if (this.ledgerId === this.#auditLedgerId) {

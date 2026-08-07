@@ -44,6 +44,7 @@ export type {
   AuthoritySnapshot,
   AuthorityState,
   DurableAppendReceipt,
+  ExpectedTransitionIdentity,
   GatewayAllowProof,
   GatewayAuthorizationResult,
   LedgerHead,

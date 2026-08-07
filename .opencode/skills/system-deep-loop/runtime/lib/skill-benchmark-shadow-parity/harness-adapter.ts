@@ -1101,6 +1101,7 @@ function createLedgerBoundary(rootDirectory: string) {
     policyVersion: 1,
     evaluatorVersion: '1',
     ruleIds: ['shadow-only-write'],
+    capturedAuthorizationState: { state: authority.state, epoch: authority.epoch },
     evaluate: evaluateParityPolicy,
   }]);
   const ledger = new AppendOnlyLedger({

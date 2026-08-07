@@ -723,6 +723,10 @@ export class TransitionAuthorizationGateway {
         matchedRuleIds: [],
       };
     }
+    if (this.#options.identityResolver) {
+      const identityDenial = await this.#checkIdentity(request, context);
+      if (identityDenial) return identityDenial;
+    }
 
     let policy;
     try {
@@ -748,6 +752,35 @@ export class TransitionAuthorizationGateway {
         matchedRuleIds: [],
       };
     }
+  }
+
+  /**
+   * Resolve the deployment's expected identity and deny on any field it
+   * pins that the request does not match. Fields the resolver leaves
+   * undefined, or a null resolution, carry no opinion and are not checked.
+   */
+  async #checkIdentity(
+    request: TransitionAuthorizationRequest,
+    context: DecisionContext,
+  ): Promise<DecisionOutcome | null> {
+    const resolver = this.#options.identityResolver;
+    if (!resolver) return null;
+    const expected = await resolver({
+      mode: request.mode,
+      authority: context.authority,
+      evaluationInput: context.evaluationInput,
+    });
+    if (!expected) return null;
+    if (expected.actorId !== undefined && expected.actorId !== request.actorId) {
+      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:actorId'] };
+    }
+    if (expected.capabilityId !== undefined && expected.capabilityId !== request.capabilityId) {
+      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:capabilityId'] };
+    }
+    if (expected.evidenceDigest !== undefined && expected.evidenceDigest !== request.evidenceDigest) {
+      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:evidenceDigest'] };
+    }
+    return null;
   }
 
   #buildDecision(context: DecisionContext, outcome: DecisionOutcome): AuthorizationDecisionRecord {

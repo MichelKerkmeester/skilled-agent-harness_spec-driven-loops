@@ -494,7 +494,9 @@ workflow:
               '    "status": "complete",',
               '    "laneId": "<the Lane Id from this iteration>",',
               '    "authority": "<authority>", "artifactClass": "<artifactClass>", "scope": <the scope object>,',
+              '    "dispatchedSlice": <the exact artifactsSlice array supplied by partition-corpus>,',
               '    "artifactsChecked": ["<every artifact path you audited this iteration>"],',
+              '    "artifactEvidence": [{"artifact":"<checked artifact>","kind":"content-digest|finding|adapter-check", "...": "real evidence for that artifact"}],',
               '    "findingsCount": 0, "findingsSummary": "<one line>", "findingsNew": 0,',
               '    "findingDetails": [],',
               '    "newFindingsRatio": 0,',
@@ -505,7 +507,7 @@ workflow:
               '}',
               '```',
               '',
-              'Each findingDetails element is one finding object: severity (P0|P1|P2), summary, laneId, and a [SOURCE: path:line]. deltaFindings mirrors them - each a JSON object with type "finding", laneId, and finding (the raw finding object) - and both arrays are empty for a genuine zero-findings PASS. The route-proof fields (mode, target_agent, agent_definition_loaded, resolved_route, iteration) are stamped by the runtime; do not emit them. Report artifactsChecked and findings honestly.',
+              'Each findingDetails element is one finding object: severity (P0|P1|P2), summary, laneId, and a [SOURCE: path:line]. deltaFindings mirrors them - each a JSON object with type "finding", laneId, and finding (the raw finding object) - and both arrays are empty for a genuine zero-findings PASS. Every artifactsChecked entry must be inside dispatchedSlice and have artifactEvidence: a real content digest, finding evidence, or measured adapter-check receipt. A dispatch-boundary string alone is not a receipt. The route-proof fields (mode, target_agent, agent_definition_loaded, resolved_route, iteration) are stamped by the runtime; do not emit them. Report artifactsChecked and findings honestly.',
               '',
             ].join('\n');
             const promptBody = basePrompt + '\n' + readOnlyOverride;
@@ -546,11 +548,12 @@ workflow:
               leafMessage = readFileSync(lastMsgFile, 'utf8');
             } catch {}
             try { unlinkSync(lastMsgFile); } catch {}
-            const written = writeLeafArtifacts(leafMessage, {
+            const written = await writeLeafArtifacts(leafMessage, {
               iteration,
               iterationMdPath,
               stateLogPath,
               deltaPath,
+              dispatchedSlice: {slice_artifacts},
             });
             if (!written.ok) {
               const failEvent = {
@@ -823,7 +826,7 @@ workflow:
           REMEDIATE is never auto-invoked. If findings are FAIL/CONDITIONAL and the operator
           explicitly opts in on a SEPARATE follow-up invocation, that run would call
           .opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs -- today
-          that hook is intentionally a no-op proof-of-entry (ADR-005 invariant 4), not real
+          that hook is intentionally a no-op proof-of-entry for the empty-corpus invariant, not real
           remediation logic. This run performs no remediation action of any kind.
 
       step_next_step_routing:

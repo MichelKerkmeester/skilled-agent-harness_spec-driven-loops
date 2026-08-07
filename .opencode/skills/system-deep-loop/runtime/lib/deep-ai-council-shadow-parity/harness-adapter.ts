@@ -1746,11 +1746,13 @@ function evaluateParityPolicy(
 }
 
 function createPolicyRegistry(): TransitionPolicyRegistry {
+  const authority = createAuthority();
   return new TransitionPolicyRegistry([{
     policyId: PARITY_POLICY_ID,
     policyVersion: 1,
     evaluatorVersion: '1',
     ruleIds: ['shadow-only-write'],
+    capturedAuthorizationState: { state: authority.state, epoch: authority.epoch },
     evaluate: evaluateParityPolicy,
   }]);
 }

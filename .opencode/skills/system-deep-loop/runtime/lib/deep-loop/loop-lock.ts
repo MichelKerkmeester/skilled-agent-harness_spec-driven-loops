@@ -703,12 +703,28 @@ export function stopHeartbeat(): void {
  * @returns True if the lock was successfully released.
  */
 export function releaseLoopLock(lockPath: string, ownerPid: number, acquireNonce?: string): boolean {
-  const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
-  if (!holder || !lockIdentityMatches(holder, ownerPid, acquireNonce)) {
-    return false;
+  const claimPath = makeClaimPath(lockPath, 'releasing');
+  try {
+    renameSync(lockPath, claimPath);
+  } catch (error: unknown) {
+    if (errorCode(error) === 'ENOENT') return false;
+    throw error;
   }
 
-  unlinkSync(lockPath);
-  dropHostLocalSingleFlightLease(lockPath, ownerPid);
-  return true;
+  try {
+    const holder = readLoopLock(claimPath);
+    if (!holder || !lockIdentityMatches(holder, ownerPid, acquireNonce)) {
+      restoreClaimedLoopLock(lockPath, claimPath);
+      return false;
+    }
+    unlinkSync(claimPath);
+    try {
+      fsyncPath(dirname(lockPath));
+    } catch {
+    }
+    dropHostLocalSingleFlightLease(lockPath, ownerPid);
+    return true;
+  } finally {
+    rmSync(claimPath, { force: true });
+  }
 }

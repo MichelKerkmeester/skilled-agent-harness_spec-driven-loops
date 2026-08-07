@@ -14,7 +14,18 @@ import {
   writeStateAtomic,
   writeStateIfChangedAtomic,
 } from '../../lib/deep-loop/atomic-state.js';
+import { processAlive } from '../../lib/deep-loop/loop-lock.js';
 import { createHermeticEnv, runtimeRoot, type HermeticEnv } from '../helpers/spawn-cjs';
+
+/**
+ * Finds a known-dead PID to use as a stale lock owner.
+ */
+function knownDeadPid(): number {
+  for (let pid = 999_999; pid > 900_000; pid -= 1) {
+    if (!processAlive(pid)) return pid;
+  }
+  throw new Error('Could not find a known-dead pid for atomic-state test');
+}
 
 const hermeticEnvs: HermeticEnv[] = [];
 
@@ -162,6 +173,148 @@ async function releaseConcurrentAppendWriters(controlDir: string, writers: reado
   }
 
   throw new Error('Timed out waiting for concurrent append writers.');
+}
+
+interface DedupWriterResult extends ChildResult {
+  readonly appended: boolean | null;
+}
+
+/**
+ * Writes a child script that pauses right after it wins the append-lock
+ * acquisition, so the test can prove a second writer is genuinely blocked
+ * out rather than racing the diff-gate check in memory.
+ */
+function writeLockHoldingAppendWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'append-holder.mjs');
+  writeFileSync(
+    writerPath,
+    [
+      "import fs from 'node:fs';",
+      "import { syncBuiltinESMExports } from 'node:module';",
+      '',
+      'const [, , atomicModulePath, ledgerPath, controlDir] = process.argv;',
+      'const originalOpenSync = fs.openSync.bind(fs);',
+      'const originalFsyncSync = fs.fsyncSync.bind(fs);',
+      'const originalWriteFileSync = fs.writeFileSync.bind(fs);',
+      'const waitBuffer = new SharedArrayBuffer(4);',
+      'const waitView = new Int32Array(waitBuffer);',
+      'function waitBriefly() {',
+      '  Atomics.wait(waitView, 0, 0, 5);',
+      '}',
+      'function waitForFile(path) {',
+      '  const deadline = Date.now() + 5000;',
+      '  while (!fs.existsSync(path)) {',
+      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    waitBriefly();',
+      '  }',
+      '}',
+      'let lockFd = null;',
+      'let paused = false;',
+      'fs.openSync = (...args) => {',
+      '  const [target, flags] = args;',
+      '  const fd = originalOpenSync(...args);',
+      "  if (typeof target === 'string' && target.endsWith('.lock') && flags === 'wx') {",
+      '    lockFd = fd;',
+      '  }',
+      '  return fd;',
+      '};',
+      'fs.fsyncSync = (fd) => {',
+      '  originalFsyncSync(fd);',
+      '  if (!paused && fd === lockFd) {',
+      '    paused = true;',
+      "    originalWriteFileSync(`${controlDir}/holder.holding`, 'holding', 'utf8');",
+      "    waitForFile(`${controlDir}/release`);",
+      '  }',
+      '};',
+      'syncBuiltinESMExports();',
+      '',
+      'const { appendJsonlIfChangedAtomic } = await import(atomicModulePath);',
+      "originalWriteFileSync(`${controlDir}/holder.ready`, 'ready', 'utf8');",
+      "waitForFile(`${controlDir}/start`);",
+      'const appended = appendJsonlIfChangedAtomic(',
+      '  ledgerPath,',
+      "  { tag: 'dup', value: 1 },",
+      "  { diffField: 'state_hash', diffData: { tag: 'dup', value: 1 }, cache: new Map() },",
+      ');',
+      "originalWriteFileSync(`${controlDir}/holder.done`, JSON.stringify({ appended }), 'utf8');",
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+/**
+ * Writes a plain contender script with no synchronization hooks of its own;
+ * it relies entirely on the append lock to serialize against the holder.
+ */
+function writeContenderAppendWriter(tempDir: string): string {
+  const writerPath = join(tempDir, 'append-waiter.mjs');
+  writeFileSync(
+    writerPath,
+    [
+      "import fs from 'node:fs';",
+      '',
+      'const [, , atomicModulePath, ledgerPath, controlDir] = process.argv;',
+      'const waitBuffer = new SharedArrayBuffer(4);',
+      'const waitView = new Int32Array(waitBuffer);',
+      'function waitBriefly() {',
+      '  Atomics.wait(waitView, 0, 0, 5);',
+      '}',
+      'function waitForFile(path) {',
+      '  const deadline = Date.now() + 5000;',
+      '  while (!fs.existsSync(path)) {',
+      '    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${path}`);',
+      '    waitBriefly();',
+      '  }',
+      '}',
+      '',
+      'const { appendJsonlIfChangedAtomic } = await import(atomicModulePath);',
+      "fs.writeFileSync(`${controlDir}/waiter.ready`, 'ready', 'utf8');",
+      "waitForFile(`${controlDir}/start`);",
+      'const appended = appendJsonlIfChangedAtomic(',
+      '  ledgerPath,',
+      "  { tag: 'dup', value: 1 },",
+      "  { diffField: 'state_hash', diffData: { tag: 'dup', value: 1 }, cache: new Map() },",
+      ');',
+      "fs.writeFileSync(`${controlDir}/waiter.done`, JSON.stringify({ appended }), 'utf8');",
+    ].join('\n'),
+    'utf8',
+  );
+  return writerPath;
+}
+
+function spawnDedupChild(
+  writerPath: string,
+  atomicModulePath: string,
+  ledgerPath: string,
+  controlDir: string,
+): Promise<DedupWriterResult> {
+  return new Promise((resolvePromise, reject) => {
+    const child = spawn(
+      process.execPath,
+      ['--import', 'tsx', writerPath, atomicModulePath, ledgerPath, controlDir],
+      { cwd: runtimeRoot, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] },
+    );
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr.on('data', (chunk: string) => {
+      stderr += chunk;
+    });
+    child.on('error', reject);
+    child.on('close', (exitCode) => {
+      resolvePromise({ exitCode, stdout: stdout.trim(), stderr: stderr.trim(), appended: null });
+    });
+  });
+}
+
+function readDoneMarker(controlDir: string, name: string): boolean {
+  return (JSON.parse(readFileSync(join(controlDir, name), 'utf8')) as { appended: boolean }).appended;
 }
 
 afterEach(() => {
@@ -360,6 +513,83 @@ describe('atomic-state', () => {
       expect(readFileSync(ledgerPath, 'utf8').endsWith('\n')).toBe(true);
     });
   });
+
+  it('serializes identical concurrent diff-gated appends so exactly one row lands', async () => {
+    await withHermeticState('jsonl-dedup-race', async (_statePath, tempDir) => {
+      const ledgerPath = join(tempDir, 'dedup-status.log');
+      const controlDir = join(tempDir, 'control');
+      mkdirSync(controlDir, { recursive: true });
+      const atomicModulePath = join(runtimeRoot, 'lib', 'deep-loop', 'atomic-state.ts');
+
+      const holderPath = writeLockHoldingAppendWriter(tempDir);
+      const waiterPath = writeContenderAppendWriter(tempDir);
+
+      const holder = spawnDedupChild(holderPath, atomicModulePath, ledgerPath, controlDir);
+      while (!existsSync(join(controlDir, 'holder.ready'))) await sleep(10);
+      writeFileSync(join(controlDir, 'start'), 'start', 'utf8');
+      while (!existsSync(join(controlDir, 'holder.holding'))) await sleep(10);
+
+      // The holder now owns the append lock. Start a contender and give it
+      // time to hit EEXIST and enter its retry loop before releasing.
+      const waiter = spawnDedupChild(waiterPath, atomicModulePath, ledgerPath, controlDir);
+      while (!existsSync(join(controlDir, 'waiter.ready'))) await sleep(10);
+      await sleep(150);
+      expect(existsSync(join(controlDir, 'waiter.done'))).toBe(false);
+
+      writeFileSync(join(controlDir, 'release'), 'release', 'utf8');
+      const results = await Promise.all([holder, waiter]);
+
+      expect(results).toEqual([
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+        expect.objectContaining({ exitCode: 0, stderr: '' }),
+      ]);
+
+      const holderAppended = readDoneMarker(controlDir, 'holder.done');
+      const waiterAppended = readDoneMarker(controlDir, 'waiter.done');
+      expect([holderAppended, waiterAppended].filter(Boolean)).toHaveLength(1);
+
+      const lines = readFileSync(ledgerPath, 'utf8').trim().split('\n');
+      expect(lines).toHaveLength(1);
+      expect(JSON.parse(lines[0])).toMatchObject({ tag: 'dup', value: 1 });
+    });
+  });
+
+  it('reclaims an append lock abandoned by a dead process', () => {
+    withHermeticState('append-lock-dead-reclaim', (_statePath, tempDir) => {
+      const ledgerPath = join(tempDir, 'reclaim-status.log');
+      mkdirSync(tempDir, { recursive: true });
+      writeFileSync(`${ledgerPath}.lock`, JSON.stringify({
+        pid: knownDeadPid(),
+        nonce: 'stale-nonce',
+        acquiredAtIso: '2020-01-01T00:00:00.000Z',
+      }), 'utf8');
+
+      const appended = appendJsonlIfChangedAtomic(ledgerPath, { tag: 'after-dead-owner' }, {
+        cache: new Map(),
+      });
+
+      expect(appended).toBe(true);
+      expect(existsSync(`${ledgerPath}.lock`)).toBe(false);
+      expect(readFileSync(ledgerPath, 'utf8').trim().split('\n')).toHaveLength(1);
+    });
+  });
+
+  it('does not reclaim an append lock owned by a live process just because it looks old', () => {
+    withHermeticState('append-lock-live-owner', (_statePath, tempDir) => {
+      const ledgerPath = join(tempDir, 'live-owner-status.log');
+      mkdirSync(tempDir, { recursive: true });
+      writeFileSync(`${ledgerPath}.lock`, JSON.stringify({
+        pid: process.pid,
+        nonce: 'still-live',
+        acquiredAtIso: '1970-01-01T00:00:00.000Z',
+      }), 'utf8');
+
+      expect(() => appendJsonlIfChangedAtomic(ledgerPath, { tag: 'blocked' }, {
+        cache: new Map(),
+      })).toThrow(/Timed out acquiring append lock/);
+      expect(existsSync(ledgerPath)).toBe(false);
+    });
+  }, 10_000);
 
   it('stamps and verifies object state integrity', () => {
     withHermeticState('integrity-roundtrip', (statePath) => {

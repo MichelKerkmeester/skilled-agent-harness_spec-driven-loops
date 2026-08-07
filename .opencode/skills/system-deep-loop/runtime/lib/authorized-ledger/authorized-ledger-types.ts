@@ -309,6 +309,13 @@ export interface GatewayDenyResult {
 
 export type GatewayAuthorizationResult = GatewayAllowResult | GatewayDenyResult;
 
+/** Caller identity a resolver expects for one decision; omitted fields are not checked. */
+export interface ExpectedTransitionIdentity {
+  readonly actorId?: string;
+  readonly capabilityId?: string;
+  readonly evidenceDigest?: string;
+}
+
 /** Runtime dependencies that cannot be supplied by untrusted requests. */
 export interface AuthorizationGatewayOptions {
   readonly rootDirectory: string;
@@ -319,6 +326,19 @@ export interface AuthorizationGatewayOptions {
   readonly authorityProvider: (
     mode: string,
   ) => AuthoritySnapshot | Promise<AuthoritySnapshot>;
+  /**
+   * Optional identity binding. Deployments that need to pin a request's
+   * actorId/capabilityId/evidenceDigest to a known identity configure this;
+   * a mismatch on any field the resolver returns denies the request. Callers
+   * that never configure a resolver keep today's posture unchanged.
+   */
+  readonly identityResolver?: (
+    context: Readonly<{
+      mode: string;
+      authority: AuthoritySnapshot;
+      evaluationInput: PolicyEvaluationInput;
+    }>,
+  ) => ExpectedTransitionIdentity | null | Promise<ExpectedTransitionIdentity | null>;
 }
 
 // ───────────────────────────────────────────────────────────────────

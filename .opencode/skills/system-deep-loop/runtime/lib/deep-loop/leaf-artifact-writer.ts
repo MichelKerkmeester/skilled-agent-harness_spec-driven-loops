@@ -33,6 +33,16 @@ import {
 } from 'node:fs';
 import { dirname, join } from 'node:path';
 
+import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
+import {
+  AtomicityDomains,
+  FencedLeaseCoordinator,
+  ProtectedResourceKinds,
+  canonicalizeProtectedResource,
+} from '../locks-and-fencing/index.js';
+
+import type { LeaseGrant } from '../locks-and-fencing/index.js';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. CONSTANTS — the route-proof invariants the orchestrator's contract asserts.
 //    These are stamped by the writer, never read from the leaf's message.
@@ -65,6 +75,8 @@ const ALLOWED_STATUS = new Set([
 ]);
 const completedPublicationKeys = new Set<string>();
 const DIGEST_PATTERN = /^(?:sha256:)?[0-9a-f]{64}$/i;
+const LEAF_ARTIFACT_LEASE_TTL_MS = 30_000;
+const LEAF_ARTIFACT_LEASE_ACQUIRE_TIMEOUT_MS = 30_000;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TYPES
@@ -365,15 +377,26 @@ export function synthesizeNarrative(record: Record<string, unknown>): string {
 // 6. PUBLIC API
 // ─────────────────────────────────────────────────────────────────────────────
 
+/** Single-writer resource identity for one leaf's delta path. */
+function leafArtifactWriterResource(deltaPath: string): ReturnType<typeof canonicalizeProtectedResource> {
+  return canonicalizeProtectedResource({
+    kind: ProtectedResourceKinds.WRITER,
+    components: { writerId: sha256Bytes(canonicalBytes({ leafArtifactWriter: deltaPath })) },
+    atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+  });
+}
+
 /**
  * Persist the three per-iteration artifacts from a read-only leaf's final
  * message. All-or-nothing: on any parse/validation error NOTHING is written and
  * `ok:false` is returned so the caller can fail the iteration and redispatch.
+ * A cross-process lease serializes the stage-publish-append boundary so two
+ * writers racing the same iteration can never both believe they published.
  */
-export function writeLeafArtifacts(
+export async function writeLeafArtifacts(
   finalMessage: string,
   ctx: LeafArtifactContext,
-): LeafArtifactResult {
+): Promise<LeafArtifactResult> {
   const payload = extractLeafPayload(finalMessage);
   if (!payload) return { ok: false, error: 'no parseable JSON object in leaf final message' };
 
@@ -406,10 +429,25 @@ export function writeLeafArtifacts(
   const deltaBody = [recordLine, ...deltaFindings.map((d) => `${JSON.stringify(d)}\n`)].join('');
   const publicationKey = `${ctx.iterationMdPath}\0${ctx.stateLogPath}\0${ctx.deltaPath}\0${recordLine}`;
 
+  if (completedPublicationKeys.has(publicationKey)) {
+    return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
+  }
+
+  const coordinator = new FencedLeaseCoordinator({ rootDirectory: dirname(ctx.deltaPath) });
+  let lease: LeaseGrant;
   try {
-    if (completedPublicationKeys.has(publicationKey)) {
-      return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
-    }
+    lease = await coordinator.acquire({
+      resource: leafArtifactWriterResource(ctx.deltaPath),
+      ownerId: 'leaf-artifact-writer',
+      correlationId: `leaf-iteration-${ctx.iteration}`,
+      ttlMs: LEAF_ARTIFACT_LEASE_TTL_MS,
+      acquireTimeoutMs: LEAF_ARTIFACT_LEASE_ACQUIRE_TIMEOUT_MS,
+    });
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : String(error) };
+  }
+
+  try {
     const recovery = recoverPublication(ctx, narrative, deltaBody, recordLine);
     if (recovery === 'committed') {
       completedPublicationKeys.add(publicationKey);
@@ -420,7 +458,6 @@ export function writeLeafArtifacts(
     }
 
     ensureDir(ctx.iterationMdPath);
-    ensureDir(ctx.deltaPath);
     ensureDir(ctx.stateLogPath);
     if (existsSync(ctx.deltaPath)) {
       return { ok: false, error: `delta file already exists (write-once): ${ctx.deltaPath}` };
@@ -453,6 +490,8 @@ export function writeLeafArtifacts(
     completedPublicationKeys.add(publicationKey);
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : String(error) };
+  } finally {
+    await coordinator.release(lease).catch(() => undefined);
   }
   return { ok: true, record };
 }

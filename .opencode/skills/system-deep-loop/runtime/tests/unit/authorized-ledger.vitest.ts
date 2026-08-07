@@ -26,6 +26,7 @@ import {
   DarkLedgerAdapter,
   LEGACY_DARK_BOUNDARIES,
   TransitionAuthorizationGateway,
+  TransitionPolicyRegistry,
   TypedReducerRegistry,
   rebuildProjection,
   readAuthorizationAudit,
@@ -44,12 +45,12 @@ import {
 } from '../fixtures/authorized-ledger-fixtures.js';
 
 import type {
+  AuthorizationGatewayOptions,
   GatewayAllowProof,
   LedgerRecordFrame,
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type { EventTypeRegistry, EventWritePreflight, JsonObject } from '../../lib/event-envelope/index.js';
-import type { TransitionPolicyRegistry } from '../../lib/authorized-ledger/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -87,6 +88,7 @@ function createHarness(
     authorityProvider?: () => typeof FIXTURE_AUTHORITY | Promise<typeof FIXTURE_AUTHORITY>;
     beforeDomainCommit?: () => void;
     evaluatorTimeoutMs?: number;
+    identityResolver?: AuthorizationGatewayOptions['identityResolver'];
   }> = {},
 ): Harness {
   const registry = createFixtureEventRegistry();
@@ -106,6 +108,7 @@ function createHarness(
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
     evaluatorTimeoutMs: overrides.evaluatorTimeoutMs,
+    identityResolver: overrides.identityResolver,
   }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }
@@ -412,6 +415,100 @@ describe('coupled authorization and append boundary', () => {
   });
 });
 
+describe('identity resolver binding', () => {
+  it('stays fail-open with no identityResolver configured, matching shadow-parity harnesses by design', async () => {
+    const harness = createHarness();
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'no-resolver', {
+      actorId: 'anyone-claims-this',
+    });
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+  });
+
+  it('stays fail-open when the resolver has no opinion for a decision', async () => {
+    const harness = createHarness(undefined, { identityResolver: () => null });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'resolver-abstains');
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+  });
+
+  it('allows a request whose identity matches every field the resolver pins', async () => {
+    const harness = createHarness(undefined, {
+      identityResolver: () => ({
+        actorId: 'fixture-actor',
+        capabilityId: 'write',
+      }),
+    });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'resolver-matches');
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+  });
+
+  it('denies a forged actorId once the resolver pins the expected one', async () => {
+    const harness = createHarness(undefined, {
+      identityResolver: () => ({ actorId: 'fixture-actor' }),
+    });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'forged-actor', {
+      actorId: 'forged-actor',
+    });
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+      decision: expect.objectContaining({ matched_rule_ids: ['identity:actorId'] }),
+    });
+  });
+
+  it('denies a forged capabilityId once the resolver pins the expected one', async () => {
+    const harness = createHarness(undefined, {
+      identityResolver: () => ({ capabilityId: 'write' }),
+    });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'forged-capability', {
+      capabilityId: 'forged-capability',
+    });
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+      decision: expect.objectContaining({ matched_rule_ids: ['identity:capabilityId'] }),
+    });
+  });
+
+  it('denies a forged evidenceDigest once the resolver pins the expected one', async () => {
+    const harness = createHarness(undefined, {
+      identityResolver: () => ({ evidenceDigest: sha256Bytes(canonicalBytes({ fixture: 'evidence' })) }),
+    });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'forged-evidence', {
+      evidenceDigest: sha256Bytes(canonicalBytes({ fixture: 'forged' })),
+    });
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
+      verdict: 'deny',
+      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+      decision: expect.objectContaining({ matched_rule_ids: ['identity:evidenceDigest'] }),
+    });
+  });
+
+  it('does not check fields the resolver leaves undefined', async () => {
+    const harness = createHarness(undefined, {
+      // Only actorId is pinned; capabilityId is left to the policy layer.
+      identityResolver: () => ({ actorId: 'fixture-actor' }),
+    });
+    const event = createFixtureEvent(harness.registry, 1);
+    const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'partial-pin', {
+      capabilityId: 'write',
+    });
+
+    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 4. DARK LEGACY ISOLATION
 // ───────────────────────────────────────────────────────────────────
@@ -705,5 +802,68 @@ describe('verified replay and disposable projections', () => {
     );
     expect(report.unappliedAllowDecisionIds).toEqual([proof.decision.decision_id]);
     expect(report.appliedDecisionIds).toEqual([]);
+  });
+
+  it('replay parity holds when a policy binds captured authorization state into its digest', async () => {
+    const rootDirectory = temporaryRoot('captured-state-replay');
+    const registry = createFixtureEventRegistry();
+    const authority = Object.freeze({ state: 'shadowing' as const, epoch: 1 });
+    const buildPolicies = (): TransitionPolicyRegistry => new TransitionPolicyRegistry([{
+      policyId: 'captured-state-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['capability-write'],
+      capturedAuthorizationState: { state: authority.state, epoch: authority.epoch },
+      evaluate: (input) => (input.capabilityId === 'write'
+        ? { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['capability-write'] }
+        : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['capability-write'] }),
+    }]);
+    const policiesAtDecisionTime = buildPolicies();
+    const ledger = new AppendOnlyLedger({
+      rootDirectory,
+      ledgerId: FIXTURE_LEDGER_ID,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider: () => authority,
+    }, registry);
+    const gateway = new TransitionAuthorizationGateway({
+      rootDirectory,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider: () => authority,
+    }, ledger, policiesAtDecisionTime);
+
+    const event = createFixtureEvent(registry, 1);
+    const policy = policiesAtDecisionTime.resolve('captured-state-policy', 1);
+    const request: TransitionAuthorizationRequest = {
+      requestId: 'captured-state-request',
+      mode: 'research',
+      event,
+      priorHead: await ledger.getVerifiedHead(),
+      priorStateVersion: 'fixture-state@1',
+      priorStateFingerprint: sha256Bytes(canonicalBytes({ state: 'fixture' })),
+      actorId: 'fixture-actor',
+      capabilityId: 'write',
+      authorityEpoch: 1,
+      policy: { policyId: policy.policyId, policyVersion: policy.policyVersion, policyDigest: policy.digest },
+      evidenceDigest: sha256Bytes(canonicalBytes({ fixture: 'evidence' })),
+    };
+    const result = await gateway.authorize(request);
+    expect(result.verdict).toBe('allow');
+    if (result.verdict !== 'allow') throw new Error('Expected allow');
+    await ledger.appendAuthorized(event, result.proof);
+
+    // A freshly rebuilt registry (simulating a separate replay process) must
+    // re-derive the exact same digest from the same captured state, so the
+    // live-recomputed policy.digest matches the persisted decision.
+    const policiesAtReplayTime = buildPolicies();
+    expect(policiesAtReplayTime.resolve('captured-state-policy', 1).digest).toBe(policy.digest);
+
+    const report = await verifyAuthorizationReplay(
+      ledger,
+      rootDirectory,
+      policiesAtReplayTime,
+      FIXTURE_AUDIT_LEDGER_ID,
+    );
+    expect(report.policyDivergences).toEqual([]);
+    expect(report.appliedDecisionIds).toHaveLength(1);
   });
 });

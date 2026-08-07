@@ -375,6 +375,53 @@ describe('loop-lock', () => {
     }
   });
 
+  it('cannot delete a lock a reclaimer publishes in the instant after the release claim', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+    let claimed = false;
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+      return {
+        ...actual,
+        renameSync(from: Parameters<typeof readFileSync>[0], to: Parameters<typeof readFileSync>[0]) {
+          actual.renameSync(from as string, to as string);
+          // The claim-rename already moved the releaser's own file out of the
+          // way; a reclaimer publishing a brand-new lock at the now-vacant
+          // path must never be touched by the release's later cleanup.
+          if (!claimed && typeof from === 'string' && from === lockPath) {
+            claimed = true;
+            actual.writeFileSync(lockPath, `${JSON.stringify({
+              owner_pid: process.pid,
+              started_at_iso: new Date().toISOString(),
+              ttl_ms: 300_000,
+              last_heartbeat_iso: new Date().toISOString(),
+              packet_id: 'reclaimed-mid-release',
+              runtime_kind: 'main',
+            }, null, 2)}\n`, 'utf8');
+          }
+        },
+      };
+    });
+
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      const acquired = loopLock.acquireLoopLock(lockPath, lockData({ packetId: 'original' }));
+      expect(acquired).toMatchObject({ acquired: true });
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+
+      const released = loopLock.releaseLoopLock(lockPath, process.pid, acquired.lock.acquireNonce);
+      expect(released).toBe(true);
+
+      expect(existsSync(lockPath)).toBe(true);
+      expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe('reclaimed-mid-release');
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
   it('refreshes and releases legacy locks without acquire_nonce', () => {
     withTempLock((lockPath) => {
       writeSerializedLock(lockPath, lockData({ packetId: 'legacy-packet' }), false);

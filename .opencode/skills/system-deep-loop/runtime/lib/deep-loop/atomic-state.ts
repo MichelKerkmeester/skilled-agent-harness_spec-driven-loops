@@ -2,7 +2,7 @@
 // MODULE: Deep-Loop Atomic State
 // ───────────────────────────────────────────────────────────────────
 
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import {
   closeSync,
   existsSync,
@@ -15,6 +15,8 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+
+import { processAlive } from './loop-lock.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -125,6 +127,154 @@ function appendTextWithFsync(path: string, content: string): void {
   try {
     fsyncPath(dirname(path));
   } catch {
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 2a. APPEND LOCK — serializes the diff-gated read-modify-append section so
+//     two writers can never both decide "not a duplicate" for the same row.
+// ───────────────────────────────────────────────────────────────────
+
+interface AppendLockOwnerToken {
+  readonly pid: number;
+  readonly nonce: string;
+  readonly acquiredAtIso: string;
+}
+
+const APPEND_LOCK_DEADLINE_MS = 5_000;
+const appendLockWait = new Int32Array(new SharedArrayBuffer(4));
+
+function errorCode(error: unknown): string | undefined {
+  return error && typeof error === 'object' && 'code' in error
+    ? (error as NodeJS.ErrnoException).code
+    : undefined;
+}
+
+function makeAppendLockToken(): AppendLockOwnerToken {
+  return { pid: process.pid, nonce: randomUUID(), acquiredAtIso: new Date().toISOString() };
+}
+
+function readAppendLockOwner(lockPath: string): AppendLockOwnerToken | null {
+  try {
+    const parsed = JSON.parse(readFileSync(lockPath, 'utf8')) as unknown;
+    if (
+      isJsonRecord(parsed)
+      && Number.isInteger(parsed.pid)
+      && typeof parsed.nonce === 'string'
+      && parsed.nonce.length > 0
+      && typeof parsed.acquiredAtIso === 'string'
+    ) {
+      return { pid: parsed.pid as number, nonce: parsed.nonce, acquiredAtIso: parsed.acquiredAtIso };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/** Owner-less (unreadable/corrupt) or dead-pid locks are the only ones eligible for reclaim. */
+function isAppendLockReclaimable(owner: AppendLockOwnerToken | null): boolean {
+  return owner === null || !processAlive(owner.pid);
+}
+
+function writeAppendLockExclusive(lockPath: string, token: AppendLockOwnerToken): boolean {
+  let fd: number | undefined;
+  try {
+    fd = openSync(lockPath, 'wx');
+    writeFileSync(fd, `${JSON.stringify(token)}\n`, 'utf8');
+    fsyncSync(fd);
+  } catch (error: unknown) {
+    if (errorCode(error) === 'EEXIST') return false;
+    throw error;
+  } finally {
+    if (typeof fd === 'number') closeSync(fd);
+  }
+  return true;
+}
+
+function makeAppendLockClaimPath(lockPath: string, purpose: string): string {
+  return `${lockPath}.${purpose}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+}
+
+/**
+ * Atomically claim a dead-owner lock so exactly one reclaimer replaces it.
+ *
+ * rename() of a single inode succeeds for only the first caller; every other
+ * concurrent reclaimer finds the source already gone and loses the race, so
+ * two reclaimers can never both end up holding the lock.
+ */
+function tryReclaimDeadAppendLock(lockPath: string, token: AppendLockOwnerToken): boolean {
+  const reclaimPath = makeAppendLockClaimPath(lockPath, 'reclaiming');
+  try {
+    renameSync(lockPath, reclaimPath);
+  } catch (error: unknown) {
+    if (errorCode(error) === 'ENOENT') return false;
+    throw error;
+  }
+  try {
+    return writeAppendLockExclusive(lockPath, token);
+  } finally {
+    rmSync(reclaimPath, { force: true });
+  }
+}
+
+function acquireAppendLock(targetPath: string): AppendLockOwnerToken {
+  const lockPath = `${targetPath}.lock`;
+  mkdirSync(dirname(targetPath), { recursive: true });
+  const token = makeAppendLockToken();
+  const deadline = Date.now() + APPEND_LOCK_DEADLINE_MS;
+  while (true) {
+    if (writeAppendLockExclusive(lockPath, token)) return token;
+    if (isAppendLockReclaimable(readAppendLockOwner(lockPath)) && tryReclaimDeadAppendLock(lockPath, token)) {
+      return token;
+    }
+    if (Date.now() >= deadline) {
+      throw new Error(`Timed out acquiring append lock: ${lockPath}`);
+    }
+    Atomics.wait(appendLockWait, 0, 0, 2);
+  }
+}
+
+/** Compare-and-delete release: only the exact owner tuple that acquired the lock may drop it. */
+function releaseAppendLock(targetPath: string, token: AppendLockOwnerToken): void {
+  const lockPath = `${targetPath}.lock`;
+  const claimPath = makeAppendLockClaimPath(lockPath, 'releasing');
+  try {
+    renameSync(lockPath, claimPath);
+  } catch (error: unknown) {
+    if (errorCode(error) === 'ENOENT') return;
+    throw error;
+  }
+
+  const current = readAppendLockOwner(claimPath);
+  if (current !== null && current.pid === token.pid && current.nonce === token.nonce) {
+    rmSync(claimPath, { force: true });
+    try {
+      fsyncPath(dirname(lockPath));
+    } catch {
+    }
+    return;
+  }
+
+  // A reclaimer already replaced this lock with its own; restore it untouched
+  // rather than dropping a successor's live claim (compare-and-swap restore).
+  if (!existsSync(lockPath)) {
+    renameSync(claimPath, lockPath);
+    try {
+      fsyncPath(dirname(lockPath));
+    } catch {
+    }
+    return;
+  }
+  rmSync(claimPath, { force: true });
+}
+
+function withAppendLock<T>(targetPath: string, operation: () => T): T {
+  const token = acquireAppendLock(targetPath);
+  try {
+    return operation();
+  } finally {
+    releaseAppendLock(targetPath, token);
   }
 }
 
@@ -330,23 +480,25 @@ export function appendJsonlIfChangedAtomic(
     ? diffSerialized
     : computeSerializedHash(diffSerialized);
 
-  if (cache.get(cacheKey) === diffFingerprint) {
-    return false;
-  }
+  return withAppendLock(targetPath, () => {
+    if (cache.get(cacheKey) === diffFingerprint) {
+      return false;
+    }
 
-  if (readLastDiffFingerprint(targetPath, options.diffField) === diffFingerprint) {
+    if (readLastDiffFingerprint(targetPath, options.diffField) === diffFingerprint) {
+      cache.set(cacheKey, diffFingerprint);
+      return false;
+    }
+
+    const row = attachDiffField(data, options.diffField, diffFingerprint);
+    const serializedRow = serializeState(row);
+    const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
+    const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
+
+    appendTextWithFsync(targetPath, `${separator}${serializedRow}\n`);
     cache.set(cacheKey, diffFingerprint);
-    return false;
-  }
-
-  const row = attachDiffField(data, options.diffField, diffFingerprint);
-  const serializedRow = serializeState(row);
-  const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
-  const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
-
-  appendTextWithFsync(targetPath, `${separator}${serializedRow}\n`);
-  cache.set(cacheKey, diffFingerprint);
-  return true;
+    return true;
+  });
 }
 
 /**
