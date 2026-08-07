@@ -238,12 +238,6 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 | **3+**           | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs                  | Multi-agent, enterprise governance             |
 | **Phase Parent** | n/a            | spec.md, description.json, graph-metadata.json                         | Folder contains phase children with spec files |
 
-#### Optional Cross-Cutting Docs
-
-Available at any level — copy from `.opencode/skills/system-spec-kit/templates/` as needed:
-- `handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`
-- `context-index.md` — migration bridge for reorganized phase parents (optional, no template)
-
 ### Phase Parent Mode
 
 A folder is a phase parent when it has ≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` with `spec.md` OR `description.json`. The parent then needs ONLY the lean trio `{spec.md, description.json, graph-metadata.json}`; heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children. The parent `spec.md` documents root purpose only — no consolidation/merge/migration narration (use `context-index.md` for that). Resume follows `derived.last_active_child_id` from `graph-metadata.json`; when missing/null/stale it lists child phases with statuses for selection.
@@ -410,9 +404,7 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 
 ## 6. 🔄 STARTUP & RESUME RECOVERY
 
-Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook-system.md`. Feature-flag defaults: `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` ("Feature flags reference table").
-
-Before enabling any results-affecting path, check `ENV-REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
+Hook-capable runtimes (Claude, Codex, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skills/system-spec-kit/references/config/hook-system.md`. Before enabling any results-affecting path, check `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` ("Feature flags reference table") for the current schema baseline and the default-off / opt-in feature-flag gates.
 
 #### Directive Capsule
 
@@ -420,21 +412,21 @@ Hook-capable runtimes may restate the operating disposition on each turn, includ
 
 #### Recovery Flow (hooks unavailable or fail)
 
-| Step | Action |
-| ----| --------|
-| 1 | `/speckit:resume` → rebuild context: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md` → `tasks.md` → `plan.md` → `spec.md`) |
-| 2 | **Phase parent** (has `[0-9]{3}-name/` children): honor `graph-metadata.json.derived.last_active_child_id`, else list children with statuses. Lean trio policy — only `spec.md`, `description.json`, `graph-metadata.json` at parent; read chosen child's continuity ladder |
-| 3 | **Stale/missing context:** `session_bootstrap()`, then Grep/Glob + direct reads; the continuity ladder is source-of-truth |
-| 4 | Re-anchor on spec folder, current task, blockers, next steps before changes |
+| Step | Action                                                                                                                                                                                                                                                                      |
+| ------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | `/speckit:resume` → rebuild context: `handover.md` → `_memory.continuity` → canonical spec docs (`implementation-summary.md` → `tasks.md` → `plan.md` → `spec.md`)                                                                                                          |
+| 2    | **Phase parent** (has `[0-9]{3}-name/` children): honor `graph-metadata.json.derived.last_active_child_id`, else list children with statuses. Lean trio policy — only `spec.md`, `description.json`, `graph-metadata.json` at parent; read chosen child's continuity ladder |
+| 3    | **Stale/missing context:** `session_bootstrap()`, then Grep/Glob + direct reads; the continuity ladder is source-of-truth                                                                                                                                                   |
+| 4    | Re-anchor on spec folder, current task, blockers, next steps before changes                                                                                                                                                                                                 |
 
 #### Daemon CLI Transport Fallback
 
 Use a daemon's CLI only when MCP tools are missing, fail to initialize, or return transport errors while the daemon is expected warm. Prompt-time hooks MUST probe socket first and skip if absent — cold spawn only from SessionStart, explicit prewarm, or cron. Exit `75` = retryable daemon/IPC unavailability. Maintenance/mutation commands never run from prompt-time hooks; advisor mutations require `--trusted`.
 
-| Daemon | Warm read invocation |
-| --------| ----------------------|
-| Spec Memory | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000` |
-| Skill Advisor | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000` |
+| Daemon        | Warm read invocation                                                                                                                          |
+| ---------------| -----------------------------------------------------------------------------------------------------------------------------------------------|
+| Spec Memory   | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000` |
+| Skill Advisor | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`          |
 
 ---
 
@@ -461,7 +453,40 @@ Confidence stays <80% after two failed attempts → ask with 2-3 options. Blocke
 
 ---
 
-## 8. 🤖 AGENT & SKILL ROUTING
+## 8. 🗣️ COMMUNICATION QUALITY
+
+> How responses read to the user. These rules shape delivery — they complement §1 "Two registers" and §7, and never soften the honesty and verification standards elsewhere in this document.
+
+#### Writing
+
+- **One idea per sentence** — short, declarative, Subject-Verb-Object where it reads naturally. Split nested clauses into separate sentences rather than stacking them.
+- **Atomic paragraphs** — each chunk stands on its own. A point should not require reading the whole reply to land.
+- **Plain words by default** — reserve exact names for languages, frameworks, APIs, and dependencies. Introduce unavoidable jargon one term at a time, not in a wall.
+- **Cut filler** — no empty openers, restated summaries, vague warnings, or corporate/marketing language. Every sentence should carry information.
+- **Vary the rhythm** — vary sentence and paragraph length; prefer prose when a bulleted list would fragment a single point.
+- **Match length to the question** — a first answer rarely needs pages. Don't open with a wall of text when a few lines resolve it.
+- **Lead with the recommendation, but earn it** — state the verdict first, yet reach it by analysis. Do not optimize for early commitment; front-loading a conclusion must never bias which conclusion you reach. (Refines §1 "verdict first, then receipts.")
+
+#### Recommendations & Honesty
+
+- **Recommend one approach** — name the main trade-off; mention an alternative only when it could change the decision.
+- **Separate required from optional** — mark must-do work distinctly from nice-to-have.
+- **Name the failure a best practice prevents** — never cite a best practice, guardrail, or extra layer without stating the specific bug, cost, or user problem it avoids. No abstract "best practice."
+- **State assumptions when evidence is missing** — make the assumption visible instead of guessing silently.
+
+#### Turn Framing — Ask→Do
+
+For a complex or ambiguous request, preface the answer:
+
+1. **ASK** — restate the request in your own words (a paraphrase back, not a question back).
+2. **DO** — state your approach in 3-7 bullets.
+3. **THEN** — ask only the 1-2 clarifying questions that would change the approach (consolidate per §2 Consolidated Question Protocol; escalate per §7).
+
+> These shape delivery, not rigor. Over-constraining voice backfires — it makes answers hedged and timid. When honoring a rule here would weaken the answer, keep the answer.
+
+---
+
+## 9. 🤖 AGENT & SKILL ROUTING
 
 ### Agent Routing
 
@@ -496,38 +521,35 @@ Any agent writing authored spec-folder docs MUST:
 
 Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading `.opencode/skills/<skill-name>/SKILL.md` plus its bundled `references/`, `scripts/`, and `assets/` resources, then following its instructions to completion. A skill already in context is not re-invoked.
 
-**Advisor metadata placement (two schemas, same filenames).** `description.json` and `graph-metadata.json` exist in two unrelated schemas that are never the same file: spec-folder continuity metadata (§3; keys like `specFolder`/`parentChain`, or `packet`/`status`/`children_ids`) and skill-advisor hub-identity metadata under `.opencode/skills/<hub>/` (keys `{name, description, version, keywords, trigger_examples}` plus `{schema_version, skill_id, family, edges, intent_signals}`). The advisor pair lives ONLY at a parent-hub root or a standalone-skill root, never inside a mode/packet or `shared/` folder. Mode-level routing is hub-level, through `mode-registry.json` + `hub-router.json`. Canonical contract (which files each root class must/may/must-not carry): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`; hub doctrine: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`. Audit fleet-wide with `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`, per hub with `node .opencode/commands/doctor/scripts/parent-skill-check.cjs <hub-dir>` (rules 2a/2b/8a/8b/11).
+**Advisor metadata placement.** `description.json` and `graph-metadata.json` exist in two unrelated schemas that share those filenames and are never the same file: spec-folder continuity metadata (§3) and skill-advisor hub-identity metadata under `.opencode/skills/<hub>/`. Don't conflate them. The advisor pair lives ONLY at a parent-hub or standalone-skill root — never in a mode/packet or `shared/` — with mode routing through `mode-registry.json` + `hub-router.json`. Full contract (per-class required/forbidden files, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
 ---
 
-## 9. 📋 QUICK REFERENCE
+## 10. 📋 QUICK REFERENCE
 
 ### Quick Reference: Common Workflows
 
-| Task                              | Flow                                                                                                                                                                                        |                                                                                                                                                                          |
-| -----------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Resume prior work**             | `/speckit:resume` → Rebuild context from `handover.md` → `_memory.continuity` → canonical spec docs → Review → Continue                                                                     |                                                                                                                                                                          |
-| **New spec folder**               | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                                                                     |                                                                                                                                                                          |
-| **Code work**                     | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |                                                                                                                                                                          |
-| **UI / design work**              | `sk-design` (design judgment, required) → `design-mcp-open-design` (nested) or `mcp-figma` (external, via the `mcp-tooling` hub) as transport; `mcp-refero`/`mcp-mobbin` (mcp-tooling transports) supply real-app design references → hand the build to `sk-code`                                                              |                                                                                                                                                                          |
-| **File modification**             | Gate 3 (ask spec folder) → Gate 1 → Gate 2 → Load memory context → Execute                                                                                                                  |                                                                                                                                                                          |
-| **Code search**                   | Grep for concept/token discovery → Glob for file paths → Read for contents                                                                                                                 |                                                                                                                                                                          |
-| **Research/exploration**          | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                                                                                |                                                                                                                                                                          |
-| **Git workflow**                  | sk-git skill → Worktree setup / Commit / Finish (PR); see §5 Git Workspace Safety                                                                                                           |                                                                                                                                                                          |
-| **Prompt improvement**            | Prompt engineering via `sk-prompt`. Dispatched by `/prompt`                                                                                                                                 |                                                                                                                                                                          |
-| **Markdown writing**              | `@markdown` → general markdown/spec writing OR `/create:*` commands → `sk-doc` template → write artifact                                                                                    |                                                                                                                                                                          |
-| **Documentation quality**         | `sk-doc` skill → classify → template → validate → DQI score → verify                                                                                                                        |                                                                                                                                                                          |
-| **Phase workflow**                | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → Populate → Plan first child                                                                                  |                                                                                                                                                                          |
-| **Context retrieval**             | `@context` for one-shot codebase lookup and continuity recovery; `/deep:research` and `/deep:review` carry bounded context snapshots for iterative work                                      |                                                                                                                                                                          |
-| **Deep research**                 | `/deep:research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                                                                                          |                                                                                                                                                                          |
-| **Deep review**                   | `/deep:review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                                                                                     |                                                                                                                                                                          |
-| **Deep AI Council**               | `/deep:ai-council` → Seats deliberate → Critique → Converge → `ai-council/**` artifacts → Council test gate                                                                                 |                                                                                                                                                                          |
-| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` → evaluator-first loop → proposals → scoring → guarded promotion              |                                                                                                                                                                          |
-| **Machine-state task**            | Define objective checks → Implement the smallest complete result → Run and inspect → Repair against the same checks → Pass Final-State Verification                                       |                                                                                                                                                                          |
-| **Claim completion**              | Pass Final-State Verification → Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` when applicable → Load `checklist.md` → Verify ALL items → Mark with evidence → Reconcile completion metadata |                                                                                                                                                                          |
-| **Save context**                  | `/memory:save` OR compose JSON → `generate-context.js --json '<data>' [spec-folder]` → Auto-indexed                                                                                         |                                                                                                                                                                          |
-| **End session**                   | `/memory:save` → `handover_state` routing updates `handover.md` → Provide continuation prompt                                                                                               |                                                                                                                                                                          |
-| **Memory DB admin**               | `/memory:manage` → stats, health, cleanup, retention, validate, checkpoint, ingest, routing diagnostics                                                                                     |                                                                                                                                                                          |
-| **Analysis/evaluation**           | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history; inspect `memory_health.data.routing` for graph/degree channel utilization                             |                                                                                                                                                                          |
-| **Constitutional memory**         | `/memory:learn` → create, list, edit, remove, budget                                                                                                                                        |                                                                                                                                                                          |
-| **Doctor command surface**        | `/doctor <target>` argv-router for subsystem diagnostics/repairs (memory, embeddings, causal-graph, deep-loop, skill-advisor, skill-budget, runtime-mirrors); `/doctor:mcp install\              | debug` for MCP infra; `/doctor:update` for dependency-ordered alignment (snapshot/validate/rollback/run log). Don't route to deleted legacy `/doctor:<name>` colon-forms |
+| Task | Flow |
+| ---- | ---- |
+| **Resume prior work** | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs) |
+| **New spec folder** | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement |
+| **Code work** | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify |
+| **UI / design work** | `sk-design` (judgment, required) → `design-mcp-open-design` or `mcp-figma` transport; `mcp-refero`/`mcp-mobbin` references → build via `sk-code` |
+| **Research / exploration** | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted) |
+| **Git workflow** | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety |
+| **Prompt improvement** | `sk-prompt`, dispatched by `/prompt` |
+| **Markdown writing** | `@markdown` or `/create:*` → `sk-doc` template → write |
+| **Documentation quality** | `sk-doc` → classify → template → validate → DQI score |
+| **Phase workflow** | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child |
+| **Context retrieval** | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots |
+| **Deep research** | `/deep:research` → loop → convergence → synthesize → memory save |
+| **Deep review** | `/deep:review` → loop → convergence → `review-report.md` → memory save |
+| **Deep AI Council** | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate |
+| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` |
+| **Claim completion** | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
+| **Save context** | `/memory:save`, or compose JSON → `generate-context.js` |
+| **End session** | `/memory:save` → `handover.md` update → continuation prompt |
+| **Memory DB admin** | `/memory:manage` → stats, health, cleanup, retention, validate, ingest |
+| **Analysis / evaluation** | `/memory:search` → preflight, causal graph, ablation, dashboard, history |
+| **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget |
+| **Doctor surface** | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install\|debug`; `/doctor:update` |

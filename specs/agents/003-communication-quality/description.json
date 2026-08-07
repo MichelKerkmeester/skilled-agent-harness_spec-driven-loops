@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "agents/003-communication-quality",
+  "description": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and",
+  "keywords": [
+    "communication",
+    "guidance",
+    "root",
+    "agents",
+    "scattered",
+    "compressed",
+    "across",
+    "two",
+    "registers",
+    "documentation",
+    "honesty"
+  ],
+  "lastUpdated": "2026-08-07T09:17:10.452Z",
+  "specId": "003",
+  "folderSlug": "communication-quality",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
