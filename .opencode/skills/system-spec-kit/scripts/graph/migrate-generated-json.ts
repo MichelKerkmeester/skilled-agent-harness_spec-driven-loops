@@ -139,7 +139,7 @@ export interface MigrationDeps {
 }
 
 /**
- * Resolve the repo root by walking up to the nearest `.opencode/specs` anchor.
+ * Resolve the repo root by walking up to the nearest `specs` anchor.
  *
  * Prefers the current working directory so a run from the repo root resolves
  * immediately, and falls back to the module location for an out-of-tree call.
@@ -148,13 +148,13 @@ export interface MigrationDeps {
  */
 function resolveRepoRoot(): string {
   const cwdCandidate = path.resolve(process.cwd());
-  if (fs.existsSync(path.join(cwdCandidate, '.opencode', 'specs'))) {
+  if (fs.existsSync(path.join(cwdCandidate, 'specs'))) {
     return cwdCandidate;
   }
   let current = path.resolve(moduleDir);
   let lastMatch: string | null = null;
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'specs'))) {
+    if (fs.existsSync(path.join(current, 'specs'))) {
       lastMatch = current;
     }
     const parent = path.dirname(current);
@@ -594,7 +594,7 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
   let prune = false;
   let pruneReport = false;
   let pruneConfirm: string | undefined;
-  let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
+  let root = path.join(resolveRepoRoot(), 'specs');
   let limit: number | undefined;
   const only: string[] = [];
 

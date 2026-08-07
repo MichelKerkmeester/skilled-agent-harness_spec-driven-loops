@@ -261,7 +261,7 @@ export function checkJournalMode(db: { prepare: (sql: string) => { get: () => un
 function resolveWorkspaceSpecPath(workspacePath: string, markerPath: string): string | null {
   const resolvedWorkspace = path.resolve(workspacePath);
   const resolved = path.resolve(resolvedWorkspace, markerPath);
-  const specsRoot = path.join(resolvedWorkspace, '.opencode', 'specs');
+  const specsRoot = path.join(resolvedWorkspace, 'specs');
   return resolved === specsRoot || resolved.startsWith(specsRoot + path.sep) ? resolved : null;
 }
 
@@ -278,7 +278,7 @@ function resolveMovedFolder(workspacePath: string, entry: MemoryDriftMarkerEntry
   let cursor = fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()
     ? resolved
     : path.dirname(resolved);
-  const specsRoot = path.join(path.resolve(workspacePath), '.opencode', 'specs');
+  const specsRoot = path.join(path.resolve(workspacePath), 'specs');
   while (cursor === specsRoot || cursor.startsWith(specsRoot + path.sep)) {
     if (fs.existsSync(path.join(cursor, 'spec.md'))) {
       return cursor;

@@ -237,14 +237,14 @@ export function validatePruneConfirmation(
 
 function resolveRepoRoot(): string {
   const cwdCandidate = path.resolve(process.cwd());
-  if (fs.existsSync(path.join(cwdCandidate, '.opencode', 'specs'))) {
+  if (fs.existsSync(path.join(cwdCandidate, 'specs'))) {
     return cwdCandidate;
   }
 
   let current = path.resolve(moduleDir);
   let lastMatch: string | null = null;
   while (true) {
-    if (fs.existsSync(path.join(current, '.opencode', 'specs'))) {
+    if (fs.existsSync(path.join(current, 'specs'))) {
       lastMatch = current;
     }
     const parent = path.dirname(current);
@@ -316,7 +316,7 @@ export function planBackfill(argv: string[]): BackfillPlan {
   let pruneReport = false;
   let pruneConfirm: string | undefined;
   let all = false;
-  let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
+  let root = path.join(resolveRepoRoot(), 'specs');
   let scopedTarget: string | null = null;
   let sawPositional = false;
 

@@ -19,10 +19,6 @@ import {
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
 
-// Feature catalog: Workspace scanning and indexing (memory_index_scan)
-// Feature catalog: Spec folder description discovery
-
-
 /* ------- 2. CONSTANTS ------- */
 
 const SPEC_DISCOVERY_MAX_DEPTH = 20;
@@ -200,10 +196,10 @@ export function findSpecDocuments(workspacePath: string, options: SpecDiscoveryO
     }
   }
 
-  // Gate D canonical continuity makes .opencode/specs authoritative.
-  // Only fall back to the legacy specs/ root when the canonical root is absent.
-  const canonicalSpecsRoot = path.join(workspacePath, '.opencode', 'specs');
-  const legacySpecsRoot = path.join(workspacePath, 'specs');
+  // Gate D canonical continuity makes specs/ authoritative (top-level, post-flip).
+  // Only fall back to the legacy .opencode/specs symlink when the canonical root is absent.
+  const canonicalSpecsRoot = path.join(workspacePath, 'specs');
+  const legacySpecsRoot = path.join(workspacePath, '.opencode', 'specs');
   const specsRoots = fs.existsSync(canonicalSpecsRoot)
     ? [canonicalSpecsRoot]
     : [legacySpecsRoot];
@@ -310,8 +306,8 @@ export function findGraphMetadataFiles(workspacePath: string, options: SpecDisco
   const results: string[] = [];
   const seenCanonicalFiles = new Set<string>();
   const state = createDiscoveryState();
-  const canonicalSpecsRoot = path.join(workspacePath, '.opencode', 'specs');
-  const legacySpecsRoot = path.join(workspacePath, 'specs');
+  const canonicalSpecsRoot = path.join(workspacePath, 'specs');
+  const legacySpecsRoot = path.join(workspacePath, '.opencode', 'specs');
   const specsRoots = fs.existsSync(canonicalSpecsRoot)
     ? [canonicalSpecsRoot]
     : [legacySpecsRoot];

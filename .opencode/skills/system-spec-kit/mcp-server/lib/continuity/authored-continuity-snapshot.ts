@@ -59,8 +59,8 @@ function normalizeSpecFolder(specFolder: string | null | undefined): string | nu
 
 function resolveSpecFolderPath(workspacePath: string, specFolder: string): string | null {
   const candidates = [
-    path.join(workspacePath, '.opencode', 'specs', specFolder),
     path.join(workspacePath, 'specs', specFolder),
+    path.join(workspacePath, '.opencode', 'specs', specFolder),
   ];
   for (const candidate of candidates) {
     if (fs.existsSync(candidate) && fs.statSync(candidate).isDirectory()) {

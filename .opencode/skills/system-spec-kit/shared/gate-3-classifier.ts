@@ -133,7 +133,7 @@ interface WriteBoundaryResolution {
   absolutePath: string | null;
 }
 
-const SPEC_ROOTS: readonly SpecRoot['label'][] = ['.opencode/specs', 'specs'];
+const SPEC_ROOTS: readonly SpecRoot['label'][] = ['specs', '.opencode/specs'];
 const MANDATORY_SPEC_METADATA_FILES = ['spec.md', 'description.json', 'graph-metadata.json'] as const;
 const PHASE_CHILD_FOLDER_PATTERN = /^\d{3}-[a-z0-9-]+$/;
 

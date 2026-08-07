@@ -863,8 +863,8 @@ function isPathWithinRoot(candidatePath: string, rootPath: string): boolean {
 function resolveFromFolderPath(workspacePath: string, folderPath: string): string | null {
   const normalized = path.resolve(folderPath);
   const candidates = [
-    path.join(workspacePath, '.opencode', 'specs'),
     path.join(workspacePath, 'specs'),
+    path.join(workspacePath, '.opencode', 'specs'),
   ];
 
   for (const root of candidates) {
@@ -883,8 +883,8 @@ function resolveSpecFolder(options: ResumeLadderOptions, workspacePath: string):
   const fallbackSpecFolder = normalizeSpecFolder(options.fallbackSpecFolder);
 
   const allowedRoots = [
-    path.join(workspacePath, '.opencode', 'specs'),
     path.join(workspacePath, 'specs'),
+    path.join(workspacePath, '.opencode', 'specs'),
   ].map((root) => path.resolve(root));
 
   const resolveExistingFolder = (candidate: string | null): { folderPath: string; specFolder: string } | null => {
@@ -895,8 +895,8 @@ function resolveSpecFolder(options: ResumeLadderOptions, workspacePath: string):
     const rawCandidates = path.isAbsolute(candidate)
       ? [path.resolve(candidate)]
       : [
-        path.join(workspacePath, '.opencode', 'specs', candidate),
         path.join(workspacePath, 'specs', candidate),
+        path.join(workspacePath, '.opencode', 'specs', candidate),
       ];
 
     for (const candidatePath of rawCandidates) {
