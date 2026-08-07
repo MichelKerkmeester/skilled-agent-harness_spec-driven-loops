@@ -1,0 +1,493 @@
+{
+  "mergedFrom": [
+    "luna-max",
+    "sol-high"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F002--fc5fe3282ab1",
+      "severity": "P1",
+      "title": "Configured-but-unobserved delivery is treated as confirmed across policy and Gate 3 state machines",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The two independent confirmation predicates govern the policy and Gate 3 delivery consumers reviewed by phases 004 and 005.",
+      "affectedSurfaceHints": [
+        "Claude policy delivery",
+        "Gate 3 relay",
+        "future activation"
+      ],
+      "contentHash": "cae47e3c1960600b8c73e4ea5760093041070d82c3117322f428557390a5d25a",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--fc5fe3282ab1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--e7e4da185919",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--82b694b8d128",
+      "severity": "P1",
+      "title": "Delivery state is marked confirmed from session identity alone",
+      "file": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 153,
+      "description": "The Claude adapter and OpenCode observer can mark shadow delivery confirmed without a host receipt or pinned behavioral probe.",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "All cited producer and consumer files are in the configured scope.",
+      "affectedSurfaceHints": [
+        "Claude prompt-submit",
+        "OpenCode system transform",
+        "route-only activation evidence"
+      ],
+      "contentHash": "review-f001-delivery-confirmation-v1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Typed packet validated"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--82b694b8d128",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--c00cf58ad940",
+          "peerLineages": [
+            "sol-high"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--101174a65451",
+      "severity": "P2",
+      "title": "Gate-3 fallback fingerprints are delimiter-ambiguous",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "line": 186,
+      "description": "The Gate-3 task/scope fallback composition can hash two different component pairs as the same state.",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "The Gate-3 core and phase-005 plan are in the configured scope.",
+      "affectedSurfaceHints": [
+        "Gate-3 delivery key",
+        "task/scope change detection"
+      ],
+      "contentHash": "review-f004-gate3-separator-v1",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--101174a65451",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--e99d292614da",
+          "peerLineages": [
+            "sol-high"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Guardrail negative control assumes temporary fixture paths are outside a spec tree",
+      "file": ".opencode/specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/guardrail-negative-controls.test.mjs",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The failing case was reproduced with TMPDIR confined to the authorized lineage directory; the production validator was not implicated.",
+      "affectedSurfaceHints": [
+        "phase-007 test isolation",
+        "restricted CI environments"
+      ],
+      "contentHash": "052099b644bc0fd8f6ca2eed22539f50d0337db0d2523404517af0f524d58c70",
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F002--e7e4da185919",
+      "severity": "P1",
+      "title": "OpenCode identity keys collide on the U+001F separator",
+      "file": ".opencode/plugins/lib/opencode-message-identity.js",
+      "line": 149,
+      "description": "OpenCode dedup identity keys collide when an accepted identity component contains the U+001F join separator.",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "The identity helper and phase-003 contract are in the configured scope.",
+      "affectedSurfaceHints": [
+        "OpenCode transform dedup",
+        "shared transform state",
+        "distinct-message delivery"
+      ],
+      "contentHash": "review-f002-identity-separator-v1",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Typed packet validated"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--e7e4da185919",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--fc5fe3282ab1",
+          "peerLineages": [
+            "sol-high"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--1cf8d0bcad51",
+      "severity": "P1",
+      "title": "Parent and phase completion metadata contradict shipped implementation evidence",
+      "file": ".opencode/specs/hooks/002-injection-bloat-reduction/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The review target is the complete spec packet, making its parent/child status contract a direct traceability boundary.",
+      "affectedSurfaceHints": [
+        "resume routing",
+        "completion verification",
+        "phase map",
+        "operator handoff"
+      ],
+      "contentHash": "d59d3be012aa9d465bfec0db2b3432e99f70b07a0f05269b94e4022f94365b81",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--1cf8d0bcad51",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--d9c6aae6d3f9",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F003--d9c6aae6d3f9",
+      "severity": "P2",
+      "title": "Parent phase map leaves completed phase 007 marked Planned",
+      "file": ".opencode/specs/hooks/002-injection-bloat-reduction/spec.md",
+      "line": 91,
+      "description": "The parent phase map reports phase 007 Planned even though the child spec and graph report complete at 100 percent.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "All status sources are inside the target spec folder.",
+      "affectedSurfaceHints": [
+        "parent handoff",
+        "aggregate completion"
+      ],
+      "contentHash": "review-f003-parent-phase-map-v1",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna-max"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--d9c6aae6d3f9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--1cf8d0bcad51",
+          "peerLineages": [
+            "sol-high"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--e99d292614da",
+      "severity": "P1",
+      "title": "Phase 006 implementation executes a serializer candidate that its frozen scope says to design only",
+      "file": ".opencode/specs/hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The phase-006 frozen scope and its exact implementation consumer are both explicit review targets.",
+      "affectedSurfaceHints": [
+        "Pi prompt hook",
+        "phase scope governance",
+        "shadow computation"
+      ],
+      "contentHash": "cf7aa65ca8f39f80b38de4c8223852296625432388645018590765e2bf2f98e2",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--e99d292614da",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--101174a65451",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Public delivery-state inspection can advance lifecycle state once per block for direct callers",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The renderer integration is safe, while the exported state-machine API retains a narrower direct-caller hazard.",
+      "affectedSurfaceHints": [
+        "DeliveryStateMachine direct consumers",
+        "future adapters"
+      ],
+      "contentHash": "5d1bff8bafff2d699351d77ac81bc97a11606529719c8047a350c08fed7d0559",
+      "dimension": "correctness",
+      "firstSeen": 11,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F001--c00cf58ad940",
+      "severity": "P1",
+      "title": "Rendered policy receipts are discarded instead of entering the promised observation stream",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": "The receipt producer and the phase-001 acceptance evidence are both in the bounded review scope.",
+      "affectedSurfaceHints": [
+        "measurement foundation",
+        "activation evidence",
+        "all policy-plan consumers"
+      ],
+      "contentHash": "1c6836329c37fa2ca1a133952070bbfa51cd7af10ded15213f47853737f863e8",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--c00cf58ad940",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--82b694b8d128",
+          "peerLineages": [
+            "luna-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 4
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 6,
+  "activeP2": 4
+}
