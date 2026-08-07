@@ -6,7 +6,7 @@
   "discriminator": {
     "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
     "runtimeLoopType": "The graph-backed convergence loop key consumed by runtime/scripts/convergence.cjs. Validated against exactly research|review|council. Explicit null for improvement-host modes; NEVER inferred from workflowMode.",
-    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence) or improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode)."
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (runtime/ convergence), alignment-convergence (deep-alignment/scripts/check-convergence.cjs), or improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode)."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS DEEP_MODE_BY_CANONICAL only (alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its /deep:* command, not an advisor map entry.",
@@ -18,7 +18,7 @@
   },
   "extensions": {
     "runtime-loop": {
-      "description": "Declares the runtime-loop backend: modes with backendKind 'runtime-loop-type' converge over runtime/, keyed by runtimeLoopType (research|review|council). runtimeLoopType is explicit null for improvement-host modes and is never inferred from workflowMode.",
+      "description": "Declares the runtime-loop backend: modes with backendKind 'runtime-loop-type' converge over runtime/, keyed by runtimeLoopType (research|review|council). Custom backends carry an explicit null runtimeLoopType and name their backend path. runtimeLoopType is never inferred from workflowMode.",
       "runtimeLoopTypes": ["research", "review", "council"]
     },
     "advisor-projection": {
@@ -174,8 +174,9 @@
     },
     {
       "workflowMode": "alignment",
-      "runtimeLoopType": "review",
-      "backendKind": "runtime-loop-type",
+      "runtimeLoopType": null,
+      "backendKind": "alignment-convergence",
+      "convergenceBackend": "deep-alignment/scripts/check-convergence.cjs",
       "packetKind": "workflow",
       "grandfatheredFolderMismatch": false,
       "toolSurface": {
