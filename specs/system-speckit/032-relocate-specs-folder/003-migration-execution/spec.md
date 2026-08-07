@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-07T11:35:00Z"
+    last_updated_at: "2026-08-07T12:45:15Z"
     last_updated_by: "claude-code"
     recent_action: "All 11 steps executed and verified; step 9 dedup resolved via bulk-delete"
     next_safe_action: "T015: operator reviews the final state"
@@ -33,11 +33,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 002 accepted both ADRs — build a new topology-flip function on existing primitives (ADR-001), keep specs shared-by-default with an opt-in ownership override (ADR-002). This phase converted that design into a literal, ordered runbook, then executed it: `specs/` is now the real, canonical directory and `.opencode/specs` is the compat symlink. Steps 1-8 and 10 ran and verified clean; step 9 (Memory MCP reindex) is deferred — this session's MCP connection resolved to a daemon serving a different worktree, not the main repo; step 11's full verification sweep is in progress.
+Phase 002 accepted both ADRs — build a new topology-flip function on existing primitives (ADR-001), keep specs shared-by-default with an opt-in ownership override (ADR-002). This phase converted that design into a literal, ordered runbook, then executed it: `specs/` is now the real, canonical directory and `.opencode/specs` is the compat symlink. All 11 steps ran and verified clean, including step 9 (Memory MCP reindex) — worked around a daemon-workspace mismatch with a standalone reindex, then a verified bulk-delete of 10,459 stale-alias rows the reindex alone couldn't clean up.
 
-**Key Decisions**: The runbook executed as one atomic unit (symlink flip + `.gitignore` rebase together, in commit `606e55cb8a`, never split); every step had a pass/fail check before the next step ran; testing during step 10 surfaced 6 more hardcoded-direction call sites beyond the originally-named 12, fixed in the same pass.
+**Key Decisions**: The runbook executed as one atomic unit (symlink flip + `.gitignore` rebase together, in commit `606e55cb8a`, never split); every step had a pass/fail check before the next step ran; testing during step 10 surfaced 6 more hardcoded-direction call sites beyond the originally-named 12, fixed in the same pass; step 9's design gap (symlink makes old-alias rows unorphanable) got a verified bulk-delete rather than a deferred code-level fix.
 
-**Critical Dependencies**: None remaining for steps 1-8/10. Step 9 needs the operator to resolve the daemon-workspace mismatch before a reindex can target the right repo.
+**Critical Dependencies**: None remaining. Only T015 (operator final review) is open.
 
 ---
 
@@ -63,7 +63,7 @@ Phase 002 accepted both ADRs — build a new topology-flip function on existing 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the specs-folder relocation specification, and the last currently planned phase. It converted phase 002's accepted design into an executable runbook, then ran it: the symlink flip, the `.gitignore` rebase, all 12+ code call sites, and CI/docs updates all landed. The Memory MCP reindex (step 9) did not run — deferred on a daemon-workspace mismatch discovered mid-runbook.
+This is **Phase 3** of the specs-folder relocation specification, and the last currently planned phase. It converted phase 002's accepted design into an executable runbook, then ran it end to end: the symlink flip, the `.gitignore` rebase, all 12+ code call sites, CI/docs updates, and the Memory MCP reindex (step 9, including a bulk-delete dedup of stale-alias rows the reindex alone couldn't clean up).
 
 **Scope Boundary**: Produce the literal step sequence, exact verification commands, and rollback triggers, then execute steps 1-11 in order, halting on any failed check.
 
@@ -228,7 +228,7 @@ Produce a runbook precise enough that running it later is mechanical: follow the
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- None carried forward from phase 002 — both ADRs are Accepted and executed. The remaining open item is step 9 (Memory MCP reindex), deferred on a daemon-workspace mismatch this session's MCP connection hit — the operator needs to resolve that before a reindex can target the right repo.
+- None carried forward from phase 002 — both ADRs are Accepted and executed. All 11 runbook steps are complete. The only remaining open item is T015 — the operator's final review of the finished state.
 <!-- /ANCHOR:questions -->
 
 ---
