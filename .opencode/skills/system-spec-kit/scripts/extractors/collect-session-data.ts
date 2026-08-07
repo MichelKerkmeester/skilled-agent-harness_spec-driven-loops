@@ -1201,7 +1201,9 @@ async function collectSessionData(
   // Preserve the winning specs root from phase 1 for use in phase 2
   let folderName: string = specFolderName || '';
   let resolvedSpecsRoot: string | null = null;
+  const specsDirOverride = process.env.SPEC_KIT_SPECS_DIR?.trim() || process.env.SPECKIT_SPECS_DIR?.trim();
   const candidateSpecsDirs = Array.from(new Set([
+    ...(specsDirOverride ? [path.resolve(CONFIG.PROJECT_ROOT, specsDirOverride)] : []),
     findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs'),
     ...getSpecsDirectories(),
     path.join(CONFIG.PROJECT_ROOT, 'specs'),

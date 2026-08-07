@@ -1063,6 +1063,11 @@ export function isExemptTargetPath(filePath, projectDir) {
   const relative = absolute.slice(projectDirReal.length + 1);
   if (relative === '.opencode/specs' || relative.startsWith('.opencode/specs/')) return true;
   if (relative === 'specs' || relative.startsWith('specs/')) return true;
+  const specsDirOverride = (process.env.SPEC_KIT_SPECS_DIR || process.env.SPECKIT_SPECS_DIR || '').trim();
+  if (specsDirOverride) {
+    const overrideReal = realpathOrNearestExisting(resolve(resolvedProjectDir, specsDirOverride));
+    if (isPathWithin(overrideReal, absolute)) return true;
+  }
   if (relative === '.git' || relative.startsWith('.git/')) return true;
   if (relative.includes('/node_modules/') || relative.startsWith('node_modules/')) return true;
   if (relative === 'dist' || relative.startsWith('dist/') || relative.includes('/dist/')) return true;

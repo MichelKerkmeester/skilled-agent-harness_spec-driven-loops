@@ -81,13 +81,15 @@ async function loadCollectedData(options?: LoadOptions): Promise<LoadedData> {
     // Use os.tmpdir() for cross-platform temp directory support
     // Also include /tmp for macOS where /tmp symlinks to /private/tmp
     const tmpDir: string = os.tmpdir();
+    const specsDirOverride: string | undefined = process.env.SPEC_KIT_SPECS_DIR?.trim() || process.env.SPECKIT_SPECS_DIR?.trim();
     const dataFileAllowedBases: string[] = [
       tmpDir,
       '/tmp',           // macOS: symlink to /private/tmp
       '/private/tmp',   // macOS: actual tmp location
       process.cwd(),
       path.join(process.cwd(), 'specs'),
-      path.join(process.cwd(), '.opencode')
+      path.join(process.cwd(), '.opencode'),
+      ...(specsDirOverride ? [path.resolve(process.cwd(), specsDirOverride)] : [])
     ];
 
     let validatedDataFilePath: string;

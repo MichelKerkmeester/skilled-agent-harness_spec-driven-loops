@@ -1301,10 +1301,15 @@ function getStartupWorkspaceRoots(basePath: string): string[] {
 }
 
 function getPendingRecoveryLocations(basePath: string): string[] {
+  const specsDirOverride = process.env.SPEC_KIT_SPECS_DIR?.trim() || process.env.SPECKIT_SPECS_DIR?.trim();
   const scanLocations: string[] = [];
   for (const root of getStartupWorkspaceRoots(basePath)) {
-    scanLocations.push(path.join(root, 'specs'));
-    scanLocations.push(path.join(root, '.opencode', 'specs'));
+    if (specsDirOverride) {
+      scanLocations.push(path.resolve(root, specsDirOverride));
+    } else {
+      scanLocations.push(path.join(root, 'specs'));
+      scanLocations.push(path.join(root, '.opencode', 'specs'));
+    }
     const skillDir = path.join(root, '.opencode', 'skills');
     try {
       if (!fs.existsSync(skillDir)) continue;

@@ -74,17 +74,26 @@ function resolveSpecFolderPath(specFolder: string): string {
     return directCandidate;
   }
 
+  const specsDirOverride = process.env.SPEC_KIT_SPECS_DIR?.trim() || process.env.SPECKIT_SPECS_DIR?.trim();
+  if (specsDirOverride) {
+    const overrideCandidate = path.resolve(cwd, specsDirOverride, specFolder);
+    if (fs.existsSync(overrideCandidate)) {
+      return overrideCandidate;
+    }
+  }
+
   const discoveredDocs = findSpecDocuments(cwd, { specFolder });
   if (discoveredDocs.length > 0) {
     return path.dirname(discoveredDocs[0]!);
   }
 
-  const canonicalCandidate = path.resolve(cwd, '.opencode', 'specs', specFolder);
+  // specs/ is canonical (top-level, post-flip); .opencode/specs is the legacy compat symlink.
+  const canonicalCandidate = path.resolve(cwd, 'specs', specFolder);
   if (fs.existsSync(canonicalCandidate)) {
     return canonicalCandidate;
   }
 
-  const legacyCandidate = path.resolve(cwd, 'specs', specFolder);
+  const legacyCandidate = path.resolve(cwd, '.opencode', 'specs', specFolder);
   if (fs.existsSync(legacyCandidate)) {
     return legacyCandidate;
   }
