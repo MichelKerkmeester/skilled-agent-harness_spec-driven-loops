@@ -719,6 +719,8 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ## 16. COUNCIL PERSISTENCE PROTOCOL
 
+**Single writer authority:** The LEAF council is the sole writer authority for `ai-council/**` artifacts. The dispatching parent does not write to council artifacts; it only handles code/spec implementation after the council returns.
+
 The council writes packet artifacts directly through `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
 
 Scoped-write rules:
@@ -726,9 +728,6 @@ Scoped-write rules:
 1. **Allowed root**: `<packet>/ai-council/**` only.
 2. **Denied operations**: Bash and Patch remain denied. Do not shell out for persistence.
 3. **Out-of-scope writes**: any target outside `ai-council/**` must fail with `OUT_OF_SCOPE_WRITE` before touching the filesystem.
-4. **Helper fallback**: non-council callers may still invoke `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`. The helper is now a thin CLI wrapper around the same library exports.
-
-Depth-1 rule: the LEAF council owns writes to `ai-council/**` directly. The dispatching parent owns code/spec implementation after the council returns, but it does not need to invoke the helper for normal council artifact persistence.
 
 Forward-only scope: this convention applies to council dispatches from this point forward. Pre-080 outputs in earlier packets remain in their original locations and are not migrated retroactively.
 

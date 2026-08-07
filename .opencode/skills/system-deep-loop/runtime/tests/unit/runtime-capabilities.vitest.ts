@@ -107,7 +107,7 @@ describe('per-skill shims stay byte-compatible', () => {
 
   it('preserve the frozen baseline runtime id set', () => {
     expect(dr.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude']);
-    expect(drv.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude']);
+    expect(drv.listRuntimeCapabilityIds()).toEqual(['opencode', 'claude', 'codex']);
   });
 
   it('keep per-skill labels in the not-found error', () => {

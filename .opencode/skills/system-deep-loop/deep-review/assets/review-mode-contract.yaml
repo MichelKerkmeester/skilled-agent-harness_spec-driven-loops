@@ -443,6 +443,15 @@ authoredArtifacts:
       - severities
       - verdicts
     note: Hand-maintained Claude Code agent definition. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+  - id: agent-codex
+    path: .codex/agents/deep-review.toml
+    ownership: generated
+    format: toml
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+    note: Generated Codex TOML mirror. Its sandbox is derived from the canonical source permissions and its tool surface is not compared as Markdown frontmatter.
   - id: quick-reference-review-mode
     path: .opencode/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
     ownership: authored
@@ -460,7 +469,7 @@ validation:
     - id: schema
       description: Validate this manifest against the canonical review-mode contract schema.
     - id: render-verify
-      description: "Re-render the single review-contract-snapshot artifact (node render-contract-snapshot.cjs --check) and fail on drift. The five authoredArtifacts entries are hand-maintained and are not re-rendered by this check."
+      description: "Re-render the single review-contract-snapshot artifact (node render-contract-snapshot.cjs --check) and fail on drift. The six authoredArtifacts entries are maintained separately and are not re-rendered by this check."
     - id: marker-integrity
       description: Ensure the review-contract-snapshot artifact contains intact begin/end markers with no overlapping generated blocks.
     - id: enum-parity

@@ -8,6 +8,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const {
   canonicalize,
@@ -194,8 +196,6 @@ function assertNoCollapse(rows, registry) {
   const review = rowByMode.get('review');
   const alignment = rowByMode.get('alignment');
   if (!review || !alignment
-    || review.runtimeLoopType !== 'review'
-    || alignment.runtimeLoopType !== 'review'
     || review.packetRef === alignment.packetRef) {
     fail('RUNTIME_KEY_COLLAPSE', 'review runtime key no longer preserves distinct packets');
   }
@@ -295,6 +295,28 @@ function modeVocabulary(hubRouter, workflowMode) {
   return [...words].sort(compareText);
 }
 
+function launcherVocabularies(hubRouter) {
+  const policy = hubRouter.routerPolicy && typeof hubRouter.routerPolicy === 'object'
+    ? hubRouter.routerPolicy
+    : {};
+  const classNames = Array.isArray(policy.launcherVocabularyClasses)
+    ? [...new Set(policy.launcherVocabularyClasses)]
+    : [];
+  const classes = hubRouter.vocabularyClasses && typeof hubRouter.vocabularyClasses === 'object'
+    ? hubRouter.vocabularyClasses
+    : {};
+  return classNames.sort(compareText).map((className) => {
+    const vocabulary = classes[className];
+    if (!vocabulary || !Array.isArray(vocabulary.keywords)) {
+      fail('ROUTER_VOCABULARY_MISSING', `launcher vocabulary class is undefined: ${className}`);
+    }
+    return {
+      className,
+      keywords: [...new Set(vocabulary.keywords.map(String))].sort(compareText),
+    };
+  });
+}
+
 // The bespoke, hub-specific routing model the compiled router scores against
 // directly (mirrors sk-code's and sk-design's registry-compiler.cjs
 // routingModel). This sits alongside the generic detector/selector policy
@@ -319,13 +341,42 @@ function buildRoutingModel(registry, hubRouter, destinations) {
   return {
     ambiguityDelta: hubRouter.routerPolicy.ambiguityDelta,
     defaultMode: hubRouter.routerPolicy.defaultMode,
+    launcherVocabularies: launcherVocabularies(hubRouter),
     modes,
     tieBreak: [...hubRouter.routerPolicy.tieBreak],
   };
 }
 
-function compileManifestResources(leafManifest, registry) {
+function resolveWithinSkillRoot(skillRoot, relativePath, label) {
+  const root = path.resolve(skillRoot);
+  const resolved = path.resolve(root, relativePath);
+  if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) {
+    fail('AUTHORED_PATH_ESCAPE', `${label} escapes the skill root: ${relativePath}`);
+  }
+  return resolved;
+}
+
+function assertPacketAndLeafOnDisk(skillRoot, packet, leafResourceId, workflowMode) {
+  const packetPath = resolveWithinSkillRoot(skillRoot, packet, `${workflowMode} packet`);
+  if (!fs.existsSync(packetPath) || !fs.statSync(packetPath).isDirectory()) {
+    fail('PACKET_NOT_FOUND', `packet does not resolve on disk for ${workflowMode}: ${packet}`);
+  }
+  const skillPath = path.join(packetPath, 'SKILL.md');
+  if (!fs.existsSync(skillPath) || !fs.statSync(skillPath).isFile()) {
+    fail('PACKET_NOT_FOUND', `packet SKILL.md does not resolve on disk for ${workflowMode}: ${packet}`);
+  }
+  const leafPath = resolveWithinSkillRoot(packetPath, leafResourceId, `${workflowMode} leaf`);
+  if (!fs.existsSync(leafPath) || !fs.statSync(leafPath).isFile()) {
+    fail(
+      'LEAF_NOT_FOUND',
+      `leaf does not resolve on disk for ${workflowMode}: ${packet}/${leafResourceId}`,
+    );
+  }
+}
+
+function compileManifestResources(leafManifest, registry, skillRoot) {
   assertObject(leafManifest, 'leaf manifest');
+  assertString(skillRoot, 'compiler skill root');
   if (!Array.isArray(leafManifest.modes)) {
     fail('AUTHORED_INPUT_INVALID', 'leaf manifest must declare modes');
   }
@@ -346,6 +397,7 @@ function compileManifestResources(leafManifest, registry) {
     if (!Array.isArray(mode.leaves)) {
       fail('AUTHORED_INPUT_INVALID', `leaf manifest modes[${modeIndex}].leaves must be an array`);
     }
+    const packetChecked = new Set();
     mode.leaves.forEach((leafResourceId, leafIndex) => {
       assertString(
         leafResourceId,
@@ -359,6 +411,22 @@ function compileManifestResources(leafManifest, registry) {
         );
       }
       seen.add(key);
+      if (!packetChecked.has(mode.packet)) {
+        assertPacketAndLeafOnDisk(skillRoot, mode.packet, leafResourceId, mode.workflowMode);
+        packetChecked.add(mode.packet);
+      } else {
+        const leafPath = resolveWithinSkillRoot(
+          path.resolve(skillRoot, mode.packet),
+          leafResourceId,
+          `${mode.workflowMode} leaf`,
+        );
+        if (!fs.existsSync(leafPath) || !fs.statSync(leafPath).isFile()) {
+          fail(
+            'LEAF_NOT_FOUND',
+            `leaf does not resolve on disk for ${mode.workflowMode}: ${mode.packet}/${leafResourceId}`,
+          );
+        }
+      }
       identities.push({
         leafResourceId,
         resource: `${mode.packet}/${leafResourceId}`,
@@ -535,7 +603,11 @@ function compileRegistry(input) {
   const rows = input.registry.modes.map((mode) => projectionRow(input.registry.skill, mode));
   assertInjective(rows);
   assertNoCollapse(rows, input.registry);
-  const manifestResources = compileManifestResources(input.leafManifest, input.registry);
+  const manifestResources = compileManifestResources(
+    input.leafManifest,
+    input.registry,
+    input.skillRoot,
+  );
   const routeLeafSelections = compileRouteLeafSelections(
     input.smartRoutingMarkdown,
     manifestResources,
@@ -611,6 +683,10 @@ function compileRegistry(input) {
         ...mode,
         destinationId: Object.freeze(mode.destinationId),
         keywords: Object.freeze(mode.keywords),
+      }))),
+      launcherVocabularies: Object.freeze(routingModel.launcherVocabularies.map((vocabulary) => Object.freeze({
+        ...vocabulary,
+        keywords: Object.freeze(vocabulary.keywords),
       }))),
       tieBreak: Object.freeze(routingModel.tieBreak),
     }),

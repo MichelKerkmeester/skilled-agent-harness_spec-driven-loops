@@ -39,12 +39,10 @@ emits leaf paths, and this router never re-decides the mode.
 - **agent-improvement leaves** — the agent-candidate proposal format, score
   dimensions, and shared promotion-gate contract the agent-improvement lane loads.
 - **model-benchmark / skill-benchmark leaves** — the per-lane evaluator and
-  scoring references. NOTE: all three improvement lanes multiplex onto the single
-  `deep-improvement` packet, so the canonical dual-read binds any
-  `deep-improvement/…` path to the first-declared improvement mode
-  (`agent-improvement`); the model/skill-benchmark rows below are the disk truth
-  for those lanes but cannot emit a distinct observed workflowMode without a
-  per-lane packet split.
+  scoring references. The three lanes share the `deep-improvement` packet, but
+  each route remains the typed pair `(workflowMode, leafResourceId)`. A shared
+  packet path is storage context, not an identity substitute, so model- and
+  skill-benchmark observations retain their own workflow modes.
 - **alignment leaves** — the scoping protocol, discover contract, and lane-config
   schema a read-only conformance audit loads.
 
@@ -119,10 +117,9 @@ RESOURCE_MAP = {
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the ambiguity delta) route to both leaf sets; the
   union is deduped by canonical pair and capped at the selected-map union limit.
-- The three improvement lanes share the `deep-improvement` packet: their leaves
-  are distinct on disk, but the canonical dual-read attributes every
-  `deep-improvement/…` observation to `agent-improvement`. Author model/skill
-  benchmark typed gold from stated intent, and read observed-side collapse to
-  `agent-improvement` as the shared-packet fan-out, not a routing miss.
+- The three improvement lanes share the `deep-improvement` packet. Resolve and
+  compare every leaf as `(workflowMode, leafResourceId)`; never infer the mode
+  from the packet prefix or reinterpret a mismatched pair as successful fan-out.
+  A missing or mismatched typed pair is a routing miss and must remain visible.
 - No keyword match is the hub's UNKNOWN fallback: confirm the target deep-loop
   mode before loading anything.

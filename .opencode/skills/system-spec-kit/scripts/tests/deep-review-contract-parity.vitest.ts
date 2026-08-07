@@ -232,7 +232,7 @@ function readWorkspaceFile(relativePath: string): string {
   // Add executable coverage for deep-review runtime-capabilities.cjs
   it('exposes a machine-readable capability matrix for every supported deep-review runtime', () => {
     const runtimeIds = reviewCapabilityModule!.listRuntimeCapabilityIds();
-    expect(runtimeIds).toEqual(['opencode', 'claude']);
+    expect(runtimeIds).toEqual(['opencode', 'claude', 'codex']);
 
     const matrix = reviewCapabilityModule!.loadRuntimeCapabilities().matrix;
     for (const runtime of matrix.runtimes) {
@@ -244,9 +244,9 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('resolves individual deep-review runtime capabilities by ID', () => {
-    const { runtime } = reviewCapabilityModule!.resolveRuntimeCapability('claude');
-    expect(runtime.id).toBe('claude');
-    expect(runtime.mirrorPath).toContain('.claude/agents/deep-review');
+    const { runtime } = reviewCapabilityModule!.resolveRuntimeCapability('codex');
+    expect(runtime.id).toBe('codex');
+    expect(runtime.mirrorPath).toContain('.codex/agents/deep-review');
   });
 
   it('throws for unknown deep-review runtime IDs', () => {
@@ -254,7 +254,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   // Lightweight enum-parity tripwire for the review-mode contract's
-  // authoredArtifacts: these five docs are hand-maintained, not rendered, so
+  // authoredArtifacts: these six docs are maintained separately, not rendered, so
   // this does not diff full content — it only confirms each doc still
   // literally mentions the manifest's current ids for the enum families it
   // declares in enumParityChecked. Driven entirely by the manifest itself
@@ -282,7 +282,7 @@ function readWorkspaceFile(relativePath: string): string {
     };
 
     expect(contract.authoredArtifacts, 'manifest should declare authoredArtifacts').toBeDefined();
-    expect(contract.authoredArtifacts.length, 'manifest should declare the five authored artifacts').toBe(5);
+    expect(contract.authoredArtifacts.length, 'manifest should declare the six authored artifacts').toBe(6);
 
     for (const artifact of contract.authoredArtifacts) {
       const content = readWorkspaceFile(artifact.path);

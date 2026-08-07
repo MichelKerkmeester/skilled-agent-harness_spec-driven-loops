@@ -37,6 +37,23 @@
       "hookBootstrap": true,
       "schemaAdaptation": "low",
       "fallbackBridgeEligible": true
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "mirrorPath": ".codex/agents/deep-review.toml",
+      "toolSurface": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "toolSurfaceComparable": false,
+      "hookBootstrap": false,
+      "schemaAdaptation": "toml",
+      "fallbackBridgeEligible": false
     }
   ]
 }

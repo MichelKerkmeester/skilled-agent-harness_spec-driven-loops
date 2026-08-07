@@ -82,6 +82,7 @@ function loadSnapshot() {
       leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
       registry: JSON.parse(bytes['mode-registry.json'].toString('utf8')),
       skillMarkdown: bytes['SKILL.md'].toString('utf8'),
+      skillRoot: SKILL_ROOT,
       smartRoutingMarkdown: bytes['smart-routing.md'].toString('utf8'),
       sourceBytes: bytes,
     }),

@@ -10,7 +10,8 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const mirrors = [
   '.opencode/agents/ai-council.md',
   '.claude/agents/ai-council.md',
-  '.opencode/agents/ai-council.toml',
+  '.pi/agents/ai-council.md',
+  '.codex/agents/ai-council.toml',
 ];
 
 function stripMarkdownFrontmatter(text: string): string {
@@ -42,6 +43,8 @@ function markerPositions(body: string): Array<{ header: string; index: number }>
 
 function normalizeBody(body: string): string {
   return body
+    .replace(/\.(?:opencode|claude|pi)\/agents\/\*\.md/g, '<runtime-agent-path>')
+    .replace(/\.(?:opencode|claude|pi)\/agents\/[A-Za-z0-9_<>-]+\.md/g, '<runtime-agent-file>')
     .replace(/^##\s+((?:1[0-9]|[0-9])\.\s+.+)$/gm, (_full, heading) => `## ${heading.toLowerCase()}`)
     .replace(/\s+/g, ' ')
     .trim();
@@ -58,16 +61,16 @@ function firstHeaderDrift(expected: string[], actual: string[]): string {
 }
 
 describe('ai-council runtime mirror parity', () => {
-  // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('keeps section headers, markers, and body size aligned across repo-managed runtimes', () => {
+  it('keeps section headers, markers, and body size aligned across repo-managed runtimes', () => {
     const canonicalFile = mirrors[0];
     const canonicalBody = bodyFor(canonicalFile);
     const canonicalHeaders = sectionHeaders(canonicalBody);
     const canonicalMarkers = markerPositions(canonicalBody);
     const canonicalLength = normalizeBody(canonicalBody).length;
 
-    expect(canonicalHeaders.at(-2)).toBe('16. caller persistence protocol');
-    expect(canonicalHeaders.at(-1)).toBe('17. summary');
+    expect(canonicalHeaders.at(-3)).toBe('16. council persistence protocol');
+    expect(canonicalHeaders.at(-2)).toBe('17. rollback for operators');
+    expect(canonicalHeaders.at(-1)).toBe('18. summary');
 
     for (const file of mirrors.slice(1)) {
       const body = bodyFor(file);

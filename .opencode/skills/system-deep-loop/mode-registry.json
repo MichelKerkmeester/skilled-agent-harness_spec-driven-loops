@@ -190,7 +190,7 @@
       "command": "/deep:alignment",
       "agent": "deep-alignment",
       "artifactRoot": "alignment/",
-      "aliases": ["deep-alignment", "/deep:command-benchmark", "alignment lane", "conformance review", "standard authority check", "alignment conformance audit"],
+      "aliases": ["deep-alignment", "alignment lane", "conformance review", "standard authority check", "alignment conformance audit"],
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-alignment",

@@ -25,16 +25,22 @@ const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
 const WORKFLOWS = resolve(__dirname, '..', '..', '..');
 
 const RESOLVER_CONFORMANT = [
-  { label: 'deep-research', path: resolve(WORKFLOWS, 'deep-research', 'assets', 'runtime-capabilities.json') },
-  { label: 'deep-review', path: resolve(WORKFLOWS, 'deep-review', 'assets', 'runtime-capabilities.json') },
+  {
+    label: 'deep-research',
+    path: resolve(WORKFLOWS, 'deep-research', 'assets', 'runtime-capabilities.json'),
+    expectedRuntimeIds: ['opencode', 'claude'],
+  },
+  {
+    label: 'deep-review',
+    path: resolve(WORKFLOWS, 'deep-review', 'assets', 'runtime-capabilities.json'),
+    expectedRuntimeIds: ['opencode', 'claude', 'codex'],
+  },
 ];
 
 const COUNCIL_MATRIX = resolve(WORKFLOWS, 'deep-ai-council', 'assets', 'runtime-capabilities.json');
 
 // Every graph-backed mode mirrors the same supported runtime targets, so a matrix
 // that drops one (or grows an unannounced one) is per-mode drift.
-const EXPECTED_RUNTIME_IDS = ['opencode', 'claude'];
-
 describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
   it('every conformant matrix file exists on disk', () => {
     for (const { path } of RESOLVER_CONFORMANT) {
@@ -43,7 +49,7 @@ describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
     expect(existsSync(COUNCIL_MATRIX), `${COUNCIL_MATRIX} missing`).toBe(true);
   });
 
-  describe.each(RESOLVER_CONFORMANT)('$label matrix', ({ label, path }) => {
+  describe.each(RESOLVER_CONFORMANT)('$label matrix', ({ label, path, expectedRuntimeIds }) => {
     const api = createRuntimeCapabilities({ label, defaultCapabilityPath: path });
 
     it('loads through the resolver with an array runtimes shape', () => {
@@ -53,7 +59,7 @@ describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
     });
 
     it('exposes exactly the expected runtime id set', () => {
-      expect([...api.listRuntimeCapabilityIds()].sort()).toEqual([...EXPECTED_RUNTIME_IDS].sort());
+      expect([...api.listRuntimeCapabilityIds()].sort()).toEqual([...expectedRuntimeIds].sort());
     });
 
     it('resolves every declared runtime to a record carrying its own id', () => {
@@ -91,7 +97,7 @@ describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
 
     it('keys runtimes as an object, not the resolver array shape', () => {
       expect(Array.isArray(council.runtimes)).toBe(false);
-      expect([...Object.keys(council.runtimes)].sort()).toEqual([...EXPECTED_RUNTIME_IDS].sort());
+      expect([...Object.keys(council.runtimes)].sort()).toEqual(['claude', 'opencode']);
     });
 
     it('throws when forced through the array-only resolver (proves the divergence is real)', () => {

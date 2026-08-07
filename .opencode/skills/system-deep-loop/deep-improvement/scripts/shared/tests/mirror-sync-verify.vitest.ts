@@ -13,6 +13,10 @@ const mirrorSync = require(path.join(
   WORKSPACE_ROOT,
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
 )) as {
+  compareBodyTokens: (expectedBody: string, actualBody: string) => {
+    matches: boolean;
+    orderMatches?: boolean;
+  };
   verifyMirrorSync: (
     agentName: string,
     content: string,
@@ -95,5 +99,72 @@ describe('mirror-sync-verify', () => {
     expect(result.allInSync).toBe(false);
     expect(result.missingRuntimes).toEqual([]);
     expect(result.driftRuntimes).toEqual(['claude']);
+  });
+
+  it('rejects a reordered load-bearing instruction sequence', () => {
+    const expected = `# Deep Review
+
+1. READ STATE
+2. WRITE FINDINGS
+`;
+    const reordered = `# Deep Review
+
+1. WRITE FINDINGS
+2. READ STATE
+`;
+
+    const comparison = mirrorSync.compareBodyTokens(expected, reordered);
+
+    expect(comparison.matches).toBe(false);
+    expect(comparison.orderMatches).toBe(false);
+  });
+
+  it('rejects a mirror whose body requires a tool absent from its declared surface', () => {
+    const canonical = `---
+name: ${AGENT_NAME}
+description: Mirror sync fixture
+permission:
+  read: allow
+  detect_changes: allow
+---
+
+# Mirror Sync Fixture
+
+Use detect_changes before reporting structural impact.
+`;
+    const claude = `---
+name: ${AGENT_NAME}
+description: Mirror sync fixture
+tools: Read
+---
+
+# Mirror Sync Fixture
+
+Use detect_changes before reporting structural impact.
+`;
+    writeFile(`.opencode/agents/${AGENT_NAME}.md`, canonical);
+    writeFile(`.claude/agents/${AGENT_NAME}.md`, claude);
+
+    const result = mirrorSync.verifyMirrorSync(AGENT_NAME, canonical, { repoRoot: tmpDir });
+
+    expect(result.allInSync).toBe(false);
+    expect(result.driftRuntimes).toEqual(['claude']);
+  });
+
+  it('checks a Codex mirror only when that agent is actually shipped there', () => {
+    writeAllMirrors();
+    const withoutCodex = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
+    expect(withoutCodex.missingRuntimes).toEqual([]);
+
+    const codexBody = CANONICAL.replace(/^---[\s\S]*?---\n+/, '').trim();
+    writeFile(
+      `.codex/agents/${AGENT_NAME}.toml`,
+      `name = "${AGENT_NAME}"\ndescription = "Mirror sync fixture"\ndeveloper_instructions = '''\n${codexBody}\n'''\n`,
+    );
+    const withCodex = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
+
+    expect(withCodex.presentRuntimes.sort()).toEqual(['claude', 'codex', 'opencode']);
+    expect(withCodex.missingRuntimes).toEqual([]);
+    expect(withCodex.driftRuntimes).toEqual([]);
   });
 });

@@ -10,7 +10,8 @@
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"]
+    "defaultResource": ["shared/references/smart-routing.md", "mode-registry.json"],
+    "launcherVocabularyClasses": ["command-benchmark-aliases"]
   },
   "routerSignals": {
     "research": {
@@ -67,6 +68,10 @@
     },
     "skill-benchmark-aliases": {
       "keywords": ["/deep:skill-benchmark"]
+    },
+    "command-benchmark-aliases": {
+      "note": "Launcher vocabulary for the command-surface benchmark; it is not an alignment workflow signal.",
+      "keywords": ["/deep:command-benchmark"]
     },
     "alignment-aliases": {
       "keywords": ["deep-alignment", "alignment lane", "conformance audit", "conformance review", "named standard authority", "standard authority check", "alignment conformance audit"]
