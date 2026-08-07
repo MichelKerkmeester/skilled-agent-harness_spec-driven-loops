@@ -277,15 +277,25 @@ function readManifestDigest(skillRoot) {
 function loadFixtures(fixturesDir) {
   const out = [];
   if (!fs.existsSync(fixturesDir)) return out;
-  const publics = fs.readdirSync(fixturesDir).filter((f) => f.endsWith('.public.json'));
-  for (const pf of publics) {
+  const publicFiles = [];
+  const visit = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name));
+    for (const entry of entries) {
+      const entryPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) visit(entryPath);
+      else if (entry.isFile() && entry.name.endsWith('.public.json')) publicFiles.push({ dir, name: entry.name });
+    }
+  };
+  visit(fixturesDir);
+  for (const { dir, name: pf } of publicFiles) {
     const id = pf.replace(/\.public\.json$/, '');
     // A malformed fixture is operator error this tool exists to surface, not a
     // reason to crash the whole run. Degrade: record a load error and skip.
     let pub; let priv;
     try {
-      pub = JSON.parse(fs.readFileSync(path.join(fixturesDir, pf), 'utf8'));
-      const privPath = path.join(fixturesDir, `${id}.private.json`);
+      pub = JSON.parse(fs.readFileSync(path.join(dir, pf), 'utf8'));
+      const privPath = path.join(dir, `${id}.private.json`);
       priv = fs.existsSync(privPath) ? JSON.parse(fs.readFileSync(privPath, 'utf8')) : { expected: {} };
     } catch (err) {
       out.push({ scenarioId: id, loadError: err.message });

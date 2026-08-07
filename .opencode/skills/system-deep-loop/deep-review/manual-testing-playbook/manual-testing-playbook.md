@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 51 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (35 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 55 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (39 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -88,13 +88,12 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
 - `FAIL`: expected behavior missing, contradictory output, convergence misbehaves at a gate, P0 finding wrongly downgraded, or critical check failed
 
 ### Feature Verdict Rules
 
 - `PASS`: all mapped scenarios for the feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
+- `SKIP`: all mapped scenarios are `SKIP` because the required sandbox is unavailable
 - `FAIL`: any mapped scenario is `FAIL`
 
 Hard rule:
@@ -679,6 +678,13 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-027: [Final synthesis memory save and guardrail behavior](../manual-testing-playbook/synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md)
 - DRV-028: [Finding deduplication and registry](../manual-testing-playbook/synthesis-save-and-guardrails/finding-deduplication-and-registry.md)
 - DRV-029: [Resource map emission](../manual-testing-playbook/synthesis-save-and-guardrails/resource-map-emission.md)
+
+### INTRA-ROUTING RECALL
+
+- DV-R01: [Deep review setup routing](../manual-testing-playbook/intra-routing-recall/review-setup.md)
+- DV-R02: [Deep review iteration routing](../manual-testing-playbook/intra-routing-recall/review-iteration.md)
+- DV-R03: [Deep review convergence routing](../manual-testing-playbook/intra-routing-recall/review-convergence.md)
+- DV-R04: [Deep review report routing](../manual-testing-playbook/intra-routing-recall/review-report.md)
 
 ### COMMAND FLOW STRESS TESTS
 

@@ -92,7 +92,7 @@ JSONL repair matches the documented current reality, the source anchors are accu
 
 ### Adversarial Steps
 
-1. Run `cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
+1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
 2. Confirm `tests/unit/jsonl-repair.vitest.ts` asserts `appends records without rewriting existing content` and `strips corrupt trailing lines even when the corrupt line ends with a newline`.
 3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
 
@@ -112,4 +112,3 @@ JSONL repair matches the documented current reality, the source anchors are accu
 - Scenario file path: `manual-testing-playbook/state-safety/jsonl-repair.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min
-

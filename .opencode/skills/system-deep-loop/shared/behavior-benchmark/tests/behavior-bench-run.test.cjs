@@ -330,6 +330,17 @@ async function main() {
   assert.equal(probeResults[7].ok, false, 'changed_paths_within fails outside its prefix');
   assert.deepEqual(probeResults[8], { kind: 'not_allowlisted', ok: false, reason: 'unknown probe kind' });
 
+  const absoluteProbeResults = bench.evaluatePostconditions({
+    schema_version: 2,
+    postconditions: [
+      { kind: 'file_exists', path: path.join(probeTmp, 'allowed', 'report.txt') },
+      { kind: 'file_exists', path: path.join(`${probeTmp}-outside`, 'report.txt') },
+    ],
+  }, probeTmp, { repoRoot: probeTmp });
+  assert.equal(absoluteProbeResults[0].ok, true, 'absolute probes inside repo root remain valid');
+  assert.equal(absoluteProbeResults[1].ok, false, 'absolute probes outside repo root fail closed');
+  assert.match(absoluteProbeResults[1].reason, /within repo root/);
+
   const postconditionObs = {
     spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 1, stdoutText: 'done',
     taskEvents: [], routeProofRecords: [], fixtureGained: false, markerHits: [],

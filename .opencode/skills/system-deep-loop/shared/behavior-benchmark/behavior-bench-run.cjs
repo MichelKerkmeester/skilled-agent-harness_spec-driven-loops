@@ -148,7 +148,16 @@ function resolveProbePath(fixtureDir, rawPath, obs) {
   if (typeof rawPath !== 'string' || rawPath.length === 0) {
     throw new Error('path must be a non-empty string');
   }
-  if (path.isAbsolute(rawPath)) return path.resolve(rawPath);
+  if (path.isAbsolute(rawPath)) {
+    const resolved = path.resolve(rawPath);
+    const repoRoot = obs && obs.repoRoot;
+    if (!repoRoot) throw new Error('repo root is unavailable for absolute probe path');
+    const relative = path.relative(path.resolve(repoRoot), resolved);
+    if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+      throw new Error('absolute probe path must stay within repo root');
+    }
+    return resolved;
+  }
   const base = fixtureDir || (obs && obs.repoRoot);
   if (!base) throw new Error('fixture directory is unavailable');
   return path.resolve(base, rawPath);

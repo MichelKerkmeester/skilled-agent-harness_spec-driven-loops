@@ -6,10 +6,10 @@
   "mode": "reviewer",
   "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
   "fixtures": [
-    "reviewer_stale_verdict",
-    "reviewer_softened_fail",
-    "reviewer_over_read",
-    "reviewer_ac_coverage"
+    "reviewer-stale-verdict",
+    "reviewer-softened-fail",
+    "reviewer-over-read",
+    "reviewer-ac-coverage"
   ],
   "outputsDir": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}",
   "metrics": ["correctness", "verdict_match", "finding_match"],

@@ -92,7 +92,7 @@ Atomic-state integrity helpers matches the documented current reality, the sourc
 
 ### Adversarial Steps
 
-1. Run `cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
 2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `rejects non-representable top-level state without creating a file` and `rejects non-representable top-level state without replacing the prior file`.
 3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
 

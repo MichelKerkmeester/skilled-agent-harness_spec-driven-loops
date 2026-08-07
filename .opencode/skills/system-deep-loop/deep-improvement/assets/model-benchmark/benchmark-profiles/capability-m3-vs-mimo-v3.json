@@ -6,17 +6,17 @@
   "mode": "model-vs-model",
   "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
   "fixtures": [
-    "validate_ipv4",
-    "validate_date",
-    "validate_semver",
-    "hard_roman_to_int"
+    "validate-ipv4",
+    "validate-date",
+    "validate-semver",
+    "hard-roman-to-int"
   ],
   "fixtureSelection": {
     "include": [
-      "validate_ipv4",
-      "validate_date",
-      "validate_semver",
-      "hard_roman_to_int"
+      "validate-ipv4",
+      "validate-date",
+      "validate-semver",
+      "hard-roman-to-int"
     ],
     "filters": { "tier": ["T4"] }
   },

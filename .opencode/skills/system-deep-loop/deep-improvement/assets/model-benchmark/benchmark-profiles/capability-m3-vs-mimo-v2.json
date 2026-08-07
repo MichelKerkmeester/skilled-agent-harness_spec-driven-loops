@@ -6,17 +6,17 @@
   "mode": "model-vs-model",
   "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
   "fixtures": [
-    "harder_semver_compare",
-    "harder_normalize_path",
-    "harder_int_to_words",
-    "hard_roman_to_int"
+    "harder-semver-compare",
+    "harder-normalize-path",
+    "harder-int-to-words",
+    "hard-roman-to-int"
   ],
   "fixtureSelection": {
     "include": [
-      "harder_semver_compare",
-      "harder_normalize_path",
-      "harder_int_to_words",
-      "hard_roman_to_int"
+      "harder-semver-compare",
+      "harder-normalize-path",
+      "harder-int-to-words",
+      "hard-roman-to-int"
     ],
     "filters": { "tier": ["T4"] }
   },

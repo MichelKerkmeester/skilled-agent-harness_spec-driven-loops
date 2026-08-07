@@ -43,7 +43,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 1. Inspect `.opencode/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
 2. Inspect `lib/deep-loop/atomic-state.ts` for the implementation contract.
 3. Inspect `tests/unit/atomic-state.vitest.ts` for the matching regression coverage.
-4. Run `bash: cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+4. Run `bash: cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
 5. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 6. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 

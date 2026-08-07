@@ -34,6 +34,18 @@ const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const CONTRACT_RELATIVE_PATH = '.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml';
 const SNAPSHOT_ARTIFACT_ID = 'review-contract-snapshot';
 const MAPPING_KEY_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*):(?: (.*))?$/;
+const SNAPSHOT_FRONTMATTER = `---
+title: "Deep Review Review-Mode Contract Snapshot"
+description: "Human-readable snapshot of the deep-review contract: targets, dimensions, severities, gates, convergence, outputs, and validation."
+trigger_phrases:
+  - "deep-review contract snapshot"
+  - "review-mode contract"
+  - "review dimensions"
+  - "convergence gates"
+importance_tier: high
+contextType: implementation
+version: 1.11.0.0
+---`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. YAML SUBSET PARSER
@@ -472,7 +484,7 @@ function renderSnapshot(doc, snapshotArtifact) {
     snapshotArtifact.markers.end,
   ].join('\n');
 
-  return `${body.trimEnd()}\n`;
+  return `${SNAPSHOT_FRONTMATTER}\n\n${body.trimEnd()}\n`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

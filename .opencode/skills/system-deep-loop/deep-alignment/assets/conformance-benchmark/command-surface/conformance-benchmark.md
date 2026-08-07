@@ -8,7 +8,6 @@ trigger_phrases:
   - "opencode command surface validity gates"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.3
 ---
 
 # Command Surface Conformance Benchmark

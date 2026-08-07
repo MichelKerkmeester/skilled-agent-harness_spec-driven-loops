@@ -42,7 +42,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 1. Inspect `lib/coverage-graph/coverage-graph-query.ts` for the implementation contract.
 2. Inspect `tests/unit/coverage-graph-query.vitest.ts` for the matching regression coverage.
-3. Run `bash: cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/coverage-graph-query.vitest.ts` and require EXIT 0.
+3. Run `bash: cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/coverage-graph-query.vitest.ts` and require EXIT 0.
 4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
 5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
