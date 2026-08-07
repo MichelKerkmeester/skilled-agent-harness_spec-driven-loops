@@ -150,9 +150,11 @@ function testFullWiringConverges() {
     assert.ok(fs.existsSync(reportResult.registryPath));
     assert.equal(reportResult.registry.overall.verdict, 'PASS'); // only a P2 finding, no P0/P1
 
-    // REMEDIATE hook: enterable, safe, performs no action, mutates nothing.
+    // REMEDIATE hook: refuses to enter without explicit operator confirmation,
+    // then is enterable, safe, performs no action, mutates nothing.
+    assert.throws(() => enterRemediateHook(specFolder), /requires explicit operator confirmation/);
     const beforeFiles = fs.readdirSync(alignmentDir).sort();
-    const hookResult = enterRemediateHook(specFolder);
+    const hookResult = enterRemediateHook(specFolder, true);
     const afterFiles = fs.readdirSync(alignmentDir).sort();
     assert.equal(hookResult.status, 'not_implemented');
     assert.deepEqual(beforeFiles, afterFiles);

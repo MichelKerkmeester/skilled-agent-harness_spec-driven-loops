@@ -96,6 +96,8 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
 }
 
 function runPromote(p: ReturnType<typeof buildBenchmarkPacket>, extraArgs: string[] = []) {
+  const receiptPath = path.join(work, 'approval-receipt.json');
+  writeJson(receiptPath, { candidate: p.candidate, target: p.target, approved: true, approvedAt: new Date().toISOString() });
   return spawnSync(
     'node',
     [
@@ -106,7 +108,7 @@ function runPromote(p: ReturnType<typeof buildBenchmarkPacket>, extraArgs: strin
       `--config=${p.config}`,
       `--manifest=${p.manifest}`,
       `--archive-dir=${p.archiveDir}`,
-      '--approve',
+      `--approve=${receiptPath}`,
       ...extraArgs,
     ],
     { encoding: 'utf8', cwd: WORKSPACE_ROOT },
@@ -118,10 +120,14 @@ function runPromoteArgs(args: string[]) {
 }
 
 function runShip(acceptanceFile: string, extraArgs: string[] = []) {
+  const accepted = readJson(acceptanceFile);
+  const receiptPath = path.join(work, 'approval-receipt-ship.json');
+  const shipCandidate = accepted.candidateSnapshotPath || accepted.candidate;
+  writeJson(receiptPath, { candidate: shipCandidate, target: accepted.target, approved: true, approvedAt: new Date().toISOString() });
   return runPromoteArgs([
     `--phase=ship`,
     `--acceptance-file=${acceptanceFile}`,
-    '--approve',
+    `--approve=${receiptPath}`,
     ...extraArgs,
   ]);
 }

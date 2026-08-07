@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -141,8 +142,17 @@ function main() {
     process.exit(1);
   }
 
+  if (!fs.existsSync(backup)) {
+    process.stderr.write(`Cannot roll back: backup file not found: ${backup}\n`);
+    process.exit(1);
+  }
+
+  const preRestoreHash = fs.existsSync(target)
+    ? crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex')
+    : null;
+
   fs.copyFileSync(backup, target);
-  process.stdout.write(`${JSON.stringify({ status: 'rolled_back', target, backup }, null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify({ status: 'rolled_back', target, backup, preRestoreHash }, null, 2)}\n`);
 }
 
 main();

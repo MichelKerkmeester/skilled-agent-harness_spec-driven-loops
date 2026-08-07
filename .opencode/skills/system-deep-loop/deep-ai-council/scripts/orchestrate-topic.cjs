@@ -49,7 +49,11 @@ function normalizeTopicId(value) {
   if (typeof value !== 'string' || value.trim() === '') {
     throw new TypeError('topic_id must be a non-empty string');
   }
-  return value.trim();
+  const trimmed = value.trim();
+  if (trimmed.includes('..')) {
+    throw new TypeError('topic_id must not contain path traversal patterns');
+  }
+  return trimmed;
 }
 
 function normalizeOptions(input = {}) {

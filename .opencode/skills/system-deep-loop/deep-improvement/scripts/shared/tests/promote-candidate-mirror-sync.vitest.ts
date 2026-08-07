@@ -103,6 +103,7 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
     promotionEnabled: true,
     branchPreservationPolicy: 'preserve-on-failure',
     scoring: { thresholdDelta: 1 },
+    promotion: { allowedTargetRoots: [work] },
   });
 
   writeFile(
@@ -114,9 +115,8 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
 }
 
 function runPromote(p: ReturnType<typeof buildAgentPacket>) {
-  // cwd = the hermetic repo-root so isAgentDefinitionTarget() resolves the
-  // target as `.opencode/agents/...` and verifyMirrorSync() reads mirrors from
-  // this temp tree (repoRoot = process.cwd()).
+  const receiptPath = path.join(work, 'approval-receipt.json');
+  writeJson('approval-receipt.json', { candidate: p.candidate, target: p.target, approved: true, approvedAt: new Date().toISOString() });
   return spawnSync(
     'node',
     [
@@ -127,7 +127,7 @@ function runPromote(p: ReturnType<typeof buildAgentPacket>) {
       `--config=${p.config}`,
       `--manifest=${p.manifest}`,
       `--archive-dir=${p.archiveDir}`,
-      '--approve',
+      `--approve=${receiptPath}`,
     ],
     { encoding: 'utf8', cwd: work },
   );

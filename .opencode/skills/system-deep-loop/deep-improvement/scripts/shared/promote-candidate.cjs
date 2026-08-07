@@ -35,6 +35,10 @@ const PROMOTION_PHASES = Object.freeze({
 
 const DEFAULT_BRANCH_PRESERVATION_POLICY = 'preserve-on-failure';
 
+const ALLOWED_ARCHIVE_ROOTS = Object.freeze([
+  '.opencode/specs',
+]);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -87,6 +91,109 @@ function sha256File(filePath) {
 
 function safeTimestamp() {
   return new Date().toISOString().replace(/[:]/g, '-');
+}
+
+function finiteOrFail(value, label, failGate) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    failGate(`Cannot promote: ${label} is not a finite number (got ${JSON.stringify(value)})`, {
+      errorType: 'non_finite_score',
+    });
+  }
+  return value;
+}
+
+function scoreMatchesIdentity(score, candidate, target, benchmarkReportPath) {
+  if (!score) return true;
+  const mismatches = [];
+  if (score.candidate && score.candidate !== candidate) {
+    mismatches.push(`score.candidate (${score.candidate}) != requested candidate (${candidate})`);
+  }
+  if (score.target && score.target !== target) {
+    mismatches.push(`score.target (${score.target}) != requested target (${target})`);
+  }
+  if (score.inputHash && typeof score.inputHash === 'string') {
+    const actualInputHash = sha256File(benchmarkReportPath);
+    if (score.inputHash !== actualInputHash) {
+      mismatches.push(`score.inputHash (${score.inputHash}) != benchmark report hash (${actualInputHash})`);
+    }
+  }
+  return mismatches.length === 0 ? true : mismatches;
+}
+
+function requireApprovalReceipt(approveArg, candidate, target, failGate) {
+  if (approveArg === true || approveArg === 'true') {
+    failGate('Cannot promote: --approve requires a receipt path binding candidate and target, not a bare flag', {
+      errorType: 'approval_requires_receipt',
+    });
+  }
+  if (typeof approveArg !== 'string' || !approveArg.trim()) {
+    failGate('Cannot promote: --approve must be a path to an approval receipt', {
+      errorType: 'approval_requires_receipt',
+    });
+  }
+  if (!fs.existsSync(approveArg)) {
+    failGate(`Cannot promote: approval receipt not found: ${approveArg}`, {
+      errorType: 'approval_receipt_missing',
+    });
+  }
+  let receipt;
+  try {
+    receipt = readJson(approveArg);
+  } catch (err) {
+    failGate(`Cannot promote: approval receipt is not valid JSON: ${err.message}`, {
+      errorType: 'approval_receipt_invalid',
+    });
+  }
+  if (receipt.candidate !== candidate || receipt.target !== target) {
+    failGate(`Cannot promote: approval receipt does not bind this candidate (${candidate}) to this target (${target})`, {
+      errorType: 'approval_receipt_mismatch',
+    });
+  }
+  return receipt;
+}
+
+function createAcceptanceReceipt(acceptedState, acceptanceFile) {
+  const receiptPath = `${acceptanceFile}.receipt.json`;
+  const receipt = {
+    acceptanceFile,
+    acceptedAt: acceptedState.acceptedAt,
+    acceptanceHash: sha256File(acceptanceFile),
+    target: acceptedState.target,
+    candidate: acceptedState.candidate,
+    candidateSnapshotPath: acceptedState.candidateSnapshotPath,
+    candidateHash: acceptedState.candidateHash,
+    preAcceptBackupPath: acceptedState.preAcceptBackupPath,
+    preAcceptTargetHash: acceptedState.preAcceptTargetHash,
+    archiveDir: acceptedState.archiveDir,
+    scorePath: acceptedState.scorePath,
+    benchmarkReportPath: acceptedState.benchmarkReportPath,
+    repeatabilityReportPath: acceptedState.repeatabilityReportPath,
+    configPath: acceptedState.configPath,
+    manifestPath: acceptedState.manifestPath,
+  };
+  writeJson(receiptPath, receipt);
+  return receipt;
+}
+
+function assertArchiveContained(archiveDir, config, failGate) {
+  const absolute = realpathOrPlanned(archiveDir);
+  const configuredRoots = Array.isArray(config?.promotion?.allowedTargetRoots)
+    ? config.promotion.allowedTargetRoots
+    : [];
+  const allRoots = [...ALLOWED_ARCHIVE_ROOTS, ...configuredRoots].map((root) => {
+    const absoluteRoot = path.resolve(root);
+    try {
+      return fs.realpathSync(absoluteRoot);
+    } catch (error) {
+      return absoluteRoot;
+    }
+  });
+  const contained = allRoots.some((root) => absolute === root || absolute.startsWith(`${root}${path.sep}`));
+  if (!contained) {
+    failGate(`Cannot promote: archive dir ${archiveDir} is outside allowed roots`, {
+      errorType: 'archive_boundary_violation',
+    });
+  }
 }
 
 function normalizePhase(value) {
@@ -199,6 +306,7 @@ function createAcceptanceState(context) {
     acceptedAt: new Date().toISOString(),
   };
   writeJson(acceptanceFile, acceptedState);
+  createAcceptanceReceipt(acceptedState, acceptanceFile);
   return { acceptanceFile, acceptedState };
 }
 
@@ -206,6 +314,32 @@ function assertShipPreconditions(acceptedState, context, failGate) {
   if (!acceptedState || acceptedState.status !== 'accepted') {
     failGate('Cannot ship: acceptance file is not in accepted state', {
       errorType: 'acceptance_state_invalid',
+    });
+  }
+
+  const receiptPath = `${context.acceptanceFile}.receipt.json`;
+  if (!fs.existsSync(receiptPath)) {
+    failGate('Cannot ship: acceptance receipt not found; the acceptance may have been forged', {
+      errorType: 'acceptance_receipt_missing',
+    });
+  }
+  let receipt;
+  try {
+    receipt = readJson(receiptPath);
+  } catch (err) {
+    failGate(`Cannot ship: acceptance receipt is not valid JSON: ${err.message}`, {
+      errorType: 'acceptance_receipt_invalid',
+    });
+  }
+  const currentAcceptanceHash = sha256File(context.acceptanceFile);
+  if (receipt.acceptanceHash !== currentAcceptanceHash) {
+    failGate('Cannot ship: acceptance file has been modified since receipt was issued', {
+      errorType: 'acceptance_receipt_mismatch',
+    });
+  }
+  if (receipt.target !== acceptedState.target || receipt.candidate !== acceptedState.candidate) {
+    failGate('Cannot ship: acceptance receipt does not match the acceptance state target/candidate', {
+      errorType: 'acceptance_receipt_mismatch',
     });
   }
 
@@ -430,7 +564,7 @@ function main() {
   const configPath = args.config || acceptedState?.configPath;
   const manifestPath = args.manifest || acceptedState?.manifestPath;
   const archiveDir = args['archive-dir'] || acceptedState?.archiveDir;
-  const approve = args.approve === true || args.approve === 'true';
+  const approveReceipt = args.approve;
   const allowHurtFixtures = args['allow-hurt-fixtures'] === true || args['allow-hurt-fixtures'] === 'true';
   const noBaselineOk = args['no-baseline-ok'] === true || args['no-baseline-ok'] === 'true';
 
@@ -446,13 +580,20 @@ function main() {
   // definition mirror sync) apply to both modes.
   const benchmarkMode = !scorePath;
 
-  if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approve) {
-    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
-    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
+  if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approveReceipt) {
+    process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve=<receipt> [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
+    process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve=<receipt> [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
     process.exit(2);
   }
 
   const score = benchmarkMode ? null : readJson(scorePath);
+  if (!benchmarkMode && score) {
+    const identityResult = scoreMatchesIdentity(score, candidate, target, benchmarkReportPath);
+    if (identityResult !== true) {
+      process.stderr.write(`Cannot promote: score does not match candidate or target:\n${identityResult.join('\n')}\n`);
+      process.exit(1);
+    }
+  }
   const benchmarkReport = readJson(benchmarkReportPath);
   const resolvedRepeatabilityReportPath = repeatabilityReportPath || path.join(path.dirname(benchmarkReportPath), 'repeatability.json');
   const repeatabilityReport = readOptionalJson(resolvedRepeatabilityReportPath);
@@ -474,6 +615,7 @@ function main() {
     process.stderr.write(`${message}\n`);
     process.exit(1);
   };
+  requireApprovalReceipt(approveReceipt, candidate, target, failGate);
   let allowedCanonicalTarget;
   try {
     allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
@@ -515,7 +657,10 @@ function main() {
     failGate(`Cannot promote: benchmark recommendation is ${benchmarkReport.recommendation}`, { errorType: 'benchmark_gate_failed' });
   }
 
-  if (Number(benchmarkReport.aggregateScore || 0) < BENCHMARK_AGGREGATE_GATE) {
+  if (!Number.isFinite(benchmarkReport.aggregateScore)) {
+    failGate(`Cannot promote: benchmark aggregate is not a finite number (got ${JSON.stringify(benchmarkReport.aggregateScore)})`, { errorType: 'non_finite_aggregate' });
+  }
+  if (benchmarkReport.aggregateScore < BENCHMARK_AGGREGATE_GATE) {
     failGate(`Cannot promote: benchmark aggregate ${benchmarkReport.aggregateScore} below gate ${BENCHMARK_AGGREGATE_GATE}`, { errorType: 'benchmark_gate_failed' });
   }
 
@@ -579,6 +724,8 @@ function main() {
     failGate(error.message, { errorType: 'boundary_gate_failed' });
   }
 
+  assertArchiveContained(archiveDir, config, failGate);
+
   // The agent scored-file gates (candidate-better
   // recommendation, weighted score gate, 5-dimension gates, score delta) only
   // apply to Lane A. Lane B has no scored agent file, so it promotes on the
@@ -590,7 +737,10 @@ function main() {
       failGate(`Cannot promote: recommendation is ${score.recommendation}`, { errorType: 'score_gate_failed' });
     }
 
-    if (Number(score.score || 0) < WEIGHTED_SCORE_GATE) {
+    if (!Number.isFinite(score.score)) {
+      failGate(`Cannot promote: score is not a finite number (got ${JSON.stringify(score.score)})`, { errorType: 'non_finite_score' });
+    }
+    if (score.score < WEIGHTED_SCORE_GATE) {
       failGate(`Cannot promote: score ${score.score} below weighted gate ${WEIGHTED_SCORE_GATE}`, { errorType: 'score_gate_failed' });
     }
 
@@ -600,7 +750,10 @@ function main() {
     }
 
     scoreDelta = readScoreDelta(score);
-    if (Number(scoreDelta || 0) < threshold) {
+    if (scoreDelta === null || !Number.isFinite(scoreDelta)) {
+      failGate(`Cannot promote: delta is not a finite number (got ${JSON.stringify(scoreDelta)})`, { errorType: 'non_finite_delta' });
+    }
+    if (scoreDelta < threshold) {
       failGate(`Cannot promote: delta ${scoreDelta} below threshold ${threshold}`, { errorType: 'score_gate_failed' });
     }
   }
@@ -700,6 +853,7 @@ function main() {
     promotedCandidate = assertShipPreconditions(acceptedState, {
       target,
       candidate,
+      acceptanceFile: args['acceptance-file'] || null,
     }, failGate);
     effectiveBackupPath = acceptedState.preAcceptBackupPath || backupPath;
     try {

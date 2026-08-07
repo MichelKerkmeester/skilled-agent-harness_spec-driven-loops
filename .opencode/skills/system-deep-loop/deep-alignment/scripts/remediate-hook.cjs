@@ -53,7 +53,12 @@ function classifyExitCode(err) {
  * @param {string} specFolder
  * @returns {Object}
  */
-function enterRemediateHook(specFolder) {
+function enterRemediateHook(specFolder, confirmed) {
+  if (!confirmed) {
+    const err = new Error('REMEDIATE hook point requires explicit operator confirmation');
+    err.code = 'INPUT_VALIDATION';
+    throw err;
+  }
   return {
     status: 'not_implemented',
     state: 'REMEDIATE',
@@ -81,7 +86,7 @@ function parseArgs(argv) {
     if (token === '--spec-folder') { args.specFolder = argv[i + 1]; i += 1; }
     else if (token === '--json') { args.json = true; }
     else if (token === '--help' || token === '-h') { args.help = true; }
-    else if (token === '--confirm') { args.confirm = true; } // accepted, not yet actionable -- see module header
+    else if (token === '--confirm') { args.confirm = true; }
     else { throw inputError(`Unexpected argument: ${token}`); }
   }
   return args;
@@ -90,12 +95,13 @@ function parseArgs(argv) {
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {
-    process.stdout.write('Usage: remediate-hook.cjs --spec-folder <path> [--confirm] [--json]\n');
+    process.stdout.write('Usage: remediate-hook.cjs --spec-folder <path> --confirm [--json]\n');
     return 0;
   }
   if (!args.specFolder) throw inputError('--spec-folder is required');
+  if (!args.confirm) throw inputError('--confirm is required to enter the REMEDIATE hook point');
 
-  const result = enterRemediateHook(args.specFolder);
+  const result = enterRemediateHook(args.specFolder, args.confirm);
   if (args.json) {
     process.stdout.write(`${JSON.stringify(result)}\n`);
   } else {

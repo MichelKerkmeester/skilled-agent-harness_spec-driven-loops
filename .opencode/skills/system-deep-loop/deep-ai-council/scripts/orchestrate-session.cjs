@@ -674,6 +674,10 @@ async function orchestrateSession(options = {}) {
   for (let index = 0; index < sessionState.topics.length; index += 1) {
     const topicNumber = index + 1;
     const topic = sessionState.topics[index];
+    if (typeof topic.topic_id === 'string' && topic.topic_id.includes('..')) {
+      skippedTopicIds.push(topic.topic_id);
+      continue;
+    }
     const maxTopicDecision = evaluateCouncilCostGuards({
       topicNumber,
       guards,

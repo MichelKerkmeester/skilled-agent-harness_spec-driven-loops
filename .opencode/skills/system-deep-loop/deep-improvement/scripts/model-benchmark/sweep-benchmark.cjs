@@ -319,7 +319,7 @@ function dispatchCell(cell, promptText, opts) {
     // is a JSONL event stream; pull the assistant text out of it. Mock output and
     // plain-text executors return the assistant text directly on stdout.
     const stdout = res.stdout || '';
-    const assistantText = res.mock ? stdout : extractAssistantText(stdout) || stdout;
+    const assistantText = res.mock ? stdout : extractAssistantText(stdout);
 
     return {
       assistantText,

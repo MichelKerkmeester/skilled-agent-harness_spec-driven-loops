@@ -546,7 +546,7 @@ function main() {
   const manifestProfileId = inferProfileId(targetPath, args.profile, manifest);
   const resolvedProfileId = manifestProfileId !== 'dynamic' ? manifestProfileId : profile.id;
   const family = inferFamily(resolvedProfileId, manifest, targetPath);
-  const agentName = profile.id;
+  const agentName = manifestProfileId !== 'dynamic' ? manifestProfileId : profile.id;
 
   // Accept optional --weights=<json> to override DIMENSION_WEIGHTS
   let weightsOverride = null;
