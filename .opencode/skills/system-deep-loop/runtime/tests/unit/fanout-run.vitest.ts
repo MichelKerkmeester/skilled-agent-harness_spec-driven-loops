@@ -1928,6 +1928,24 @@ describe('fanout-run.cjs — module basics', () => {
     expect(result.exitCode).toBe(3);
   });
 
+  it('exits 3 (INPUT_VALIDATION) when the fan-out schema is invalid', async () => {
+    const baseDir = makeTempDir('fanout-run-invalid-schema-');
+
+    const { result } = await spawnFanout('module-invalid-schema', [
+      '--spec-folder',
+      'specs/test-fanout-run-invalid-schema',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      JSON.stringify({ executors: [{ kind: 'unsupported', label: 'invalid-kind' }] }),
+      '--base-artifact-dir',
+      baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('INPUT_VALIDATION');
+  });
+
   it('exits 1 (SCRIPT_ERROR) when required args are missing', async () => {
     const { result } = await spawnFanout('module-missing-args', ['--loop-type', 'research']);
 

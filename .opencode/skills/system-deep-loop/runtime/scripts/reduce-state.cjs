@@ -153,22 +153,25 @@ function parseJsonlDetailed(jsonlContent) {
 
 function loadDeltaPayloads(deltaDir) {
   if (!fs.existsSync(deltaDir)) {
-    return [];
+    return { payloads: [], corruptionWarnings: [] };
   }
 
-  return fs.readdirSync(deltaDir)
+  const deltaCorruptionWarnings = [];
+  const payloads = fs.readdirSync(deltaDir)
     .filter((fileName) => /^iter-\d+\.jsonl$/.test(fileName))
     .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }))
     .map((fileName) => {
-      const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(path.join(deltaDir, fileName)));
-      if (!corruptionWarnings.length) {
+      const { records, corruptionWarnings: parseWarnings } = parseJsonlDetailed(readUtf8(path.join(deltaDir, fileName)));
+      if (!parseWarnings.length) {
         return records;
       }
-      console.warn(
-        `[deep-review] resource-map extractor skipped ${corruptionWarnings.length} malformed delta row(s) from ${fileName}`,
-      );
-      return records.concat(new Array(corruptionWarnings.length).fill(null));
+      for (const warning of parseWarnings) {
+        deltaCorruptionWarnings.push({ ...warning, file: fileName });
+      }
+      return records;
     });
+
+  return { payloads, corruptionWarnings: deltaCorruptionWarnings };
 }
 
 function extractSection(markdown, heading) {
@@ -2092,7 +2095,11 @@ function reduceReviewState(specFolder, options = {}) {
 
   // Load delta payloads up-front so the finding registry can use structured
   // rows first while the resource-map emit path reuses the same parsed data.
-  const deltaPayloads = fs.existsSync(deltaDir) ? loadDeltaPayloads(deltaDir) : [];
+  const deltaLoad = fs.existsSync(deltaDir)
+    ? loadDeltaPayloads(deltaDir)
+    : { payloads: [], corruptionWarnings: [] };
+  const deltaPayloads = deltaLoad.payloads;
+  const allCorruptionWarnings = corruptionWarnings.concat(deltaLoad.corruptionWarnings);
   const flattenedDeltaRecords = deltaPayloads
     .flat()
     .filter((record) => record !== null && record !== undefined);
@@ -2103,7 +2110,7 @@ function reduceReviewState(specFolder, options = {}) {
     iterationFiles,
     records,
     config,
-    corruptionWarnings,
+    allCorruptionWarnings,
     flattenedDeltaRecords,
     records.concat(pivotEvents),
   );
@@ -2113,8 +2120,8 @@ function reduceReviewState(specFolder, options = {}) {
   let resourceMapSkipped = true;
   let resourceMapSkipReason = null;
 
-  if (corruptionWarnings.length > 0 && !lenient) {
-    throw createCorruptionError(stateLogPath, corruptionWarnings);
+  if (allCorruptionWarnings.length > 0 && !lenient) {
+    throw createCorruptionError(path.join(reviewDir, 'deep-review-state-and-deltas'), allCorruptionWarnings);
   }
 
   if (emitResourceMapOutput) {
@@ -2164,8 +2171,8 @@ function reduceReviewState(specFolder, options = {}) {
     resourceMap,
     resourceMapSkipped,
     resourceMapSkipReason,
-    corruptionWarnings,
-    hasCorruption: corruptionWarnings.length > 0,
+    corruptionWarnings: allCorruptionWarnings,
+    hasCorruption: allCorruptionWarnings.length > 0,
   };
 }
 
@@ -2174,29 +2181,51 @@ function reduceReviewState(specFolder, options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
-  const args = process.argv.slice(2);
-  const lenient = args.includes('--lenient');
-  const createMissingAnchors = args.includes('--create-missing-anchors');
-  const emitResourceMapOutput = args.includes('--emit-resource-map');
-  const artifactDirIndex = args.indexOf('--artifact-dir');
-  const artifactDir = artifactDirIndex === -1 ? undefined : args[artifactDirIndex + 1];
-  const positional = args.filter((arg) => !arg.startsWith('--'));
-  const specFolder = positional[0];
+  const inputError = (message) => Object.assign(new Error(message), { code: 'INPUT_VALIDATION' });
+  const booleanFlags = new Set(['lenient', 'createMissingAnchors', 'emitResourceMap']);
+  const valueFlags = new Set(['artifactDir']);
+  const parsedArgs = {};
+  let specFolder;
+  const cliArgs = process.argv.slice(2);
+  try {
+    for (let index = 0; index < cliArgs.length; index += 1) {
+      const token = cliArgs[index];
+      if (!token.startsWith('--')) {
+        if (specFolder !== undefined) throw inputError(`Unexpected positional argument: ${token}`);
+        specFolder = token;
+        continue;
+      }
+      const key = token.slice(2).replace(/-([a-z])/g, (_, character) => character.toUpperCase());
+      if (!booleanFlags.has(key) && !valueFlags.has(key)) throw inputError(`Unknown flag: ${token}`);
+      const next = cliArgs[index + 1];
+      if (booleanFlags.has(key)) {
+        if (next !== undefined && !next.startsWith('--')) throw inputError(`${token} does not take a value`);
+        parsedArgs[key] = true;
+        continue;
+      }
+      if (next === undefined || next.startsWith('--')) throw inputError(`${token} requires a value`);
+      parsedArgs[key] = next;
+      index += 1;
+    }
+  } catch (error) {
+    process.stderr.write(`${error.message}\n`);
+    process.exit(3);
+  }
 
-  if (!specFolder || (artifactDirIndex !== -1 && (!artifactDir || artifactDir.startsWith('--')))) {
+  if (!specFolder) {
     process.stderr.write(
       'Usage: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--create-missing-anchors] [--emit-resource-map]\n',
     );
-    process.exit(1);
+    process.exit(3);
   }
 
   try {
     const result = reduceReviewState(specFolder, {
       write: true,
-      lenient,
-      createMissingAnchors,
-      emitResourceMap: emitResourceMapOutput,
-      artifactDir,
+      lenient: Boolean(parsedArgs.lenient),
+      createMissingAnchors: Boolean(parsedArgs.createMissingAnchors),
+      emitResourceMap: Boolean(parsedArgs.emitResourceMap),
+      artifactDir: parsedArgs.artifactDir,
     });
     process.stdout.write(
       `${JSON.stringify(
@@ -2219,6 +2248,10 @@ if (require.main === module) {
       )}\n`,
     );
   } catch (error) {
+    if (error && error.code === 'INPUT_VALIDATION') {
+      process.stderr.write(`${error.message}\n`);
+      process.exit(3);
+    }
     if (error && error.code === 'STATE_CORRUPTION') {
       process.stderr.write(`${error.message}\n`);
       process.exit(2);

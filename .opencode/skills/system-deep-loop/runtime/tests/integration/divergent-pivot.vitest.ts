@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import {
@@ -431,5 +431,12 @@ describe('divergent pivot preflight and resume', () => {
     expect(events.filter((event) => event.event === 'pivot_seat_returned')).toHaveLength(3);
     expect(events.filter((event) => event.event === 'pivot_completed')).toHaveLength(1);
     expect(existsSync(resumed.paths.reportPath)).toBe(true);
+
+    const persistedConfig = JSON.parse(readFileSync(resumed.paths.configPath, 'utf8')) as Record<string, unknown>;
+    writeFileSync(resumed.paths.configPath, JSON.stringify({ ...persistedConfig, acceptedCandidates: [{}] }), 'utf8');
+    expect(() => finalizePivotTransaction({
+      paths: resumed.paths,
+      pivotId: derivePivotId(identity()),
+    })).toThrow('does not match the expected contract');
   });
 });

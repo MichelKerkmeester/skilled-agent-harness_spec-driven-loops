@@ -79,6 +79,17 @@ function ensureString(args, key) {
   return args[key];
 }
 
+function parseBoundedInteger(args, key, fallback, minimum, maximum) {
+  const raw = args[key];
+  if (raw === undefined) return fallback;
+  if (typeof raw !== 'string' || raw.trim() === '') throw inputError(`${key} must be an integer`);
+  const value = Number(raw);
+  if (!Number.isInteger(value) || value < minimum || value > maximum) {
+    throw inputError(`${key} must be an integer from ${minimum} through ${maximum}`);
+  }
+  return value;
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -97,7 +108,7 @@ async function main() {
   if (!queryType || typeof queryType !== 'string') throw inputError('queryType is required');
 
   const ns = { specFolder, loopType, sessionId };
-  const limit = Math.min(Math.max(Number(args.limit || 50), 1), 200);
+  const limit = parseBoundedInteger(args, 'limit', 50, 1, 200);
   let db = null;
 
   try {
@@ -215,7 +226,7 @@ async function main() {
       }
       case 'provenance_chain': {
         const nodeId = ensureString(args, 'nodeId');
-        const maxDepth = Math.min(Math.max(Number(args.maxDepth || 10), 1), 20);
+        const maxDepth = parseBoundedInteger(args, 'maxDepth', 10, 1, 20);
         const chain = query.findProvenanceChain(ns, nodeId, maxDepth);
         data = { queryType, namespace: ns, scopeMode: 'session', rootNodeId: nodeId, chain: chain.slice(0, limit), totalSteps: chain.length, maxDepth };
         break;

@@ -5,6 +5,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -239,8 +240,47 @@ function testSearchDebtReconciliationClearsResolvedBugClass() {
   assert.deepEqual(registry.candidateCoverage.blocked, ['xss']);
 }
 
+function testMalformedDeltaFailsClosed() {
+  const { root, specFolder, reviewDir } = makeSpecFolder('malformed-delta');
+  try {
+    writeBaseConfig(reviewDir);
+    writeJsonl(path.join(reviewDir, 'deep-review-state.jsonl'), [
+      { type: 'config', mode: 'review', sessionId: 'rvw-summary-fallback' },
+      iterationRecord(),
+    ]);
+    fs.writeFileSync(path.join(reviewDir, 'deltas', 'iter-001.jsonl'), `${JSON.stringify(iterationRecord())}\nnot-json\n`, 'utf8');
+    assert.throws(
+      () => reduceReviewState(specFolder, { write: false }),
+      (error) => error && error.code === 'STATE_CORRUPTION',
+    );
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
+function testInvalidReducerFlagsFailAsInputValidation() {
+  const { root, specFolder, reviewDir } = makeSpecFolder('invalid-flags');
+  try {
+    writeBaseConfig(reviewDir);
+    writeJsonl(path.join(reviewDir, 'deep-review-state.jsonl'), [
+      { type: 'config', mode: 'review', sessionId: 'rvw-summary-fallback' },
+      iterationRecord(),
+    ]);
+    writeJsonl(path.join(reviewDir, 'deltas', 'iter-001.jsonl'), [iterationRecord()]);
+    const script = path.join(__dirname, '../../../runtime/scripts/reduce-state.cjs');
+    const unknownFlag = spawnSync(process.execPath, [script, specFolder, '--misspelled-flag', 'value'], { encoding: 'utf8' });
+    const missingValue = spawnSync(process.execPath, [script, specFolder, '--artifact-dir'], { encoding: 'utf8' });
+    assert.equal(unknownFlag.status, 3);
+    assert.equal(missingValue.status, 3);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
 testSummaryOnlyFallback();
 testStructuredRowsDoNotDoubleCount();
 testTraceabilityRollupUnionsLatestPerProtocol();
 testSearchDebtReconciliationClearsResolvedBugClass();
+testMalformedDeltaFailsClosed();
+testInvalidReducerFlagsFailAsInputValidation();
 console.log('[deep-review] reduce-state summary fallback regression passed');

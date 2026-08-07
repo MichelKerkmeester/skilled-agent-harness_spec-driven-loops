@@ -117,6 +117,7 @@ describe('verify-iteration leaf-reliability check', () => {
     writeComplete(dir, 1);
     fs.appendFileSync(path.join(dir, 'deep-review-state.jsonl'), 'not json at all\n');
     const r = verify('review', dir, 1);
-    expect(r.ok).toBe(true);
+    expect(r.ok).toBe(false);
+    expect(r.reason).toBe(REASONS.STATE_LOG_MALFORMED);
   });
 });

@@ -1058,8 +1058,8 @@ async function main() {
   const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
   const loopType = ensureString(args, 'loopType');
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
-    throw inputError('loopType must be "research", "review", or "context"');
+  if (loopType !== 'research' && loopType !== 'review') {
+    throw inputError('loopType must be "research" or "review"');
   }
   const artifactDir = path.resolve(ensureString(args, 'artifactDir'));
   if (!fs.existsSync(artifactDir)) {

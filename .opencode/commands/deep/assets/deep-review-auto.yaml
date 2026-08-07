@@ -1877,18 +1877,21 @@ workflow:
           }
 
           function readJsonl(filePath) {
-            if (!hasFile(filePath)) return [];
-            return readFileSync(filePath, 'utf8')
+            if (!hasFile(filePath)) return { records: [], malformedLines: [] };
+            const records = [];
+            const malformedLines = [];
+            readFileSync(filePath, 'utf8')
               .split(/\r?\n/)
-              .map((line) => line.trim())
-              .filter(Boolean)
-              .flatMap((line) => {
+              .forEach((line, index) => {
+                const trimmed = line.trim();
+                if (!trimmed) return;
                 try {
-                  return [JSON.parse(line)];
+                  records.push(JSON.parse(trimmed));
                 } catch {
-                  return [];
+                  malformedLines.push(index + 1);
                 }
               });
+            return { records, malformedLines };
           }
 
           function countIterationFindings(record) {
@@ -1943,7 +1946,8 @@ workflow:
           const resolvedCount = Array.isArray(registry?.resolvedFindings) ? registry.resolvedFindings.length : 0;
           const repeatedCount = Array.isArray(registry?.repeatedFindings) ? registry.repeatedFindings.length : 0;
           const registryFindingCount = openCount === null ? null : openCount + resolvedCount + repeatedCount;
-          const stateRecords = readJsonl(paths.stateLog);
+          const stateLog = readJsonl(paths.stateLog);
+          const stateRecords = stateLog.records;
           const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
           const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
           const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
@@ -1955,6 +1959,7 @@ workflow:
             ['dashboard', paths.dashboard],
           ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
           const invariantFailures = [];
+          if (stateLog.malformedLines.length > 0) invariantFailures.push('state_jsonl_parse_failure');
           if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
           if (registryFindingCount === null) invariantFailures.push('registry_missing_openFindings');
           if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
@@ -1982,6 +1987,7 @@ workflow:
               iterationFindingCount,
               identifiableFindingCount,
               missingStructuredFindingCount,
+              stateParseFailureCount: stateLog.malformedLines.length,
               timestamp: '{ISO_8601_NOW}',
             });
           } else {

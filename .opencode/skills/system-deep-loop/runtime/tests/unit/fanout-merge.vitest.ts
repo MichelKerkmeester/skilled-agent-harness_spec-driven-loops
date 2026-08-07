@@ -1144,6 +1144,17 @@ describe('fanout-merge.cjs — script', () => {
     expect(existsSync(join(baseDir, 'findings-registry.json'))).toBe(false);
   });
 
+  it('rejects context artifacts instead of reading research-shaped state', async () => {
+    const baseDir = makeTempDir('fanout-merge-context-');
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'context',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.stdout).toContain('INPUT_VALIDATION');
+  });
+
   it('rejects symlinked lineage directories before reading external evidence', async () => {
     const baseDir = makeTempDir('fanout-merge-research-linked-lineage-');
     const outsideDir = makeTempDir('fanout-merge-research-outside-lineage-');

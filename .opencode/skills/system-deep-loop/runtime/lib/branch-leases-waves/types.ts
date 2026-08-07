@@ -369,6 +369,7 @@ export interface RunAuthorizedWaveOptions<TItem, TResult> {
   readonly getAttemptLiveness?: (attempt: unknown) => unknown;
   readonly now?: () => Date;
   readonly onEvent?: (event: Readonly<Record<string, unknown>>) => void;
+  readonly validatePoolItem: (value: unknown) => value is TItem;
   readonly worker: (
     item: TItem,
     context: DurablePoolWorkerContext,

@@ -284,8 +284,11 @@ export class ExecutorConfigError extends Error {
   constructor(input: { issues: ExecutorConfigIssue[] }) {
     super(input.issues.map((issue) => `${issue.path.map(String).join('.') || '<root>'}: ${issue.message}`).join('; '));
     this.name = 'ExecutorConfigError';
+    this.code = 'INPUT_VALIDATION';
     this.issues = input.issues;
   }
+
+  readonly code: 'INPUT_VALIDATION';
 }
 
 // ───────────────────────────────────────────────────────────────────

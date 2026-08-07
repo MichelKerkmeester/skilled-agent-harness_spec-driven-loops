@@ -34,6 +34,8 @@ const REASONS = {
   ROUTE_PROOF_MISSING: 'route_proof_missing',
   ROUTE_PROOF_MISMATCH: 'route_proof_mismatch',
   DELTA_FILE_MISSING: 'delta_file_missing',
+  STATE_LOG_MALFORMED: 'state_log_malformed',
+  DELTA_FILE_MALFORMED: 'delta_file_malformed',
 };
 
 function pad3(n) {
@@ -54,26 +56,32 @@ function parseArgs(argv) {
   return out;
 }
 
-// Read a JSONL file and return parsed objects, skipping blank/malformed lines so a
-// single corrupt append never crashes the gate.
+// Read a JSONL file and retain malformed-line evidence so the gate can fail closed.
 function readJsonlRecords(filePath) {
+  return readJsonlRecordsDetailed(filePath).records;
+}
+
+function readJsonlRecordsDetailed(filePath) {
   let raw;
   try {
     raw = fs.readFileSync(filePath, 'utf8');
   } catch (_) {
-    return null; // file absent/unreadable
+    return { records: null, malformedLines: [] };
   }
   const records = [];
+  const malformedLines = [];
+  let lineNumber = 0;
   for (const line of raw.split('\n')) {
+    lineNumber += 1;
     const trimmed = line.trim();
     if (!trimmed) continue;
     try {
       records.push(JSON.parse(trimmed));
     } catch (_) {
-      // skip malformed line
+      malformedLines.push(lineNumber);
     }
   }
-  return records;
+  return { records, malformedLines };
 }
 
 // The narrative file is written as iteration-NNN.md but the leaf may append a
@@ -145,7 +153,11 @@ function verify(loopType, artifactDir, iteration) {
   }
 
   // 2. Canonical state-log record for this iteration + route-proof.
-  const stateRecords = readJsonlRecords(path.join(artifactDir, stateLogName));
+  const stateLog = readJsonlRecordsDetailed(path.join(artifactDir, stateLogName));
+  if (stateLog.malformedLines.length > 0) {
+    return { ok: false, reason: REASONS.STATE_LOG_MALFORMED, detail: `${stateLogName} contains malformed JSONL at line(s) ${stateLog.malformedLines.join(', ')}` };
+  }
+  const stateRecords = stateLog.records;
   // Review/research key the iteration number as `iteration`; context keys it as `run`.
   // Match either so one shim covers all three modes (a non-numeric run-id yields NaN
   // and never false-matches). Take the LAST matching record, not the first: the state
@@ -164,7 +176,11 @@ function verify(loopType, artifactDir, iteration) {
   }
 
   // 3. Per-iteration delta file with at least one iteration record.
-  const deltaRecords = readJsonlRecords(path.join(artifactDir, 'deltas', `iter-${pad3(iteration)}.jsonl`));
+  const deltaLog = readJsonlRecordsDetailed(path.join(artifactDir, 'deltas', `iter-${pad3(iteration)}.jsonl`));
+  if (deltaLog.malformedLines.length > 0) {
+    return { ok: false, reason: REASONS.DELTA_FILE_MALFORMED, detail: `deltas/iter-${pad3(iteration)}.jsonl contains malformed JSONL at line(s) ${deltaLog.malformedLines.join(', ')}` };
+  }
+  const deltaRecords = deltaLog.records;
   if (!deltaRecords || !deltaRecords.some((r) => r && r.type === 'iteration')) {
     return { ok: false, reason: REASONS.DELTA_FILE_MISSING, detail: `deltas/iter-${pad3(iteration)}.jsonl missing or has no type=iteration record` };
   }
@@ -198,4 +214,4 @@ if (require.main === module) {
   process.exit(main());
 }
 
-module.exports = { verify, checkRouteProof, findIterationNarrative, readJsonlRecords, pad3, REASONS, LEAF_BY_LOOP, STATE_LOG_BY_LOOP };
+module.exports = { verify, checkRouteProof, findIterationNarrative, readJsonlRecords, readJsonlRecordsDetailed, pad3, REASONS, LEAF_BY_LOOP, STATE_LOG_BY_LOOP };

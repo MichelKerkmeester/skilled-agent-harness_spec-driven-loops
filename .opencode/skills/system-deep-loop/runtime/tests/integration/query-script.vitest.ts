@@ -81,6 +81,18 @@ describe('query.cjs direct invocation', () => {
     expect(result.json.error).toContain('sessionId is required');
   });
 
+  it('exits 3 with INPUT_VALIDATION for a non-numeric limit', () => {
+    const namespace = uniqueNamespace('query-limit');
+    const result = runScript('query', [
+      ...namespaceArgs(namespace),
+      '--query-type', 'coverage_gaps',
+      '--limit', 'not-a-number',
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+  });
+
   it('exits 2 for DB errors', () => {
     const namespace = uniqueNamespace('query');
     const result = runScript('query', [

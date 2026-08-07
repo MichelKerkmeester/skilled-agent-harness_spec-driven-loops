@@ -287,15 +287,6 @@ const DEFAULT_DIVERGENT_CONFIG: NormalizedDivergentConfig = {
   minRemainingIterations: 1,
   candidateSimilarityThreshold: DEFAULT_CANDIDATE_SIMILARITY_THRESHOLD,
 };
-const PIVOT_EVENT_NAMES = new Set<string>([
-  'pivot_started',
-  'pivot_candidate_rejected',
-  'pivot_seat_returned',
-  'pivot_deliberation_completed',
-  'pivot_selected',
-  'pivot_completed',
-  'pivot_failed',
-]);
 const PIVOT_LIFECYCLE_STATES = new Set<string>([
   'LEGAL_STOP',
   'PIVOT_PENDING',
@@ -395,6 +386,49 @@ function isLifecycleTransition(value: unknown): value is PivotLifecycleTransitio
   }
   return value.next === undefined
     || (typeof value.next === 'string' && PIVOT_LIFECYCLE_STATES.has(value.next));
+}
+
+function parsePivotEventName(value: unknown): PivotEventName | null {
+  switch (value) {
+    case 'pivot_started':
+    case 'pivot_candidate_rejected':
+    case 'pivot_seat_returned':
+    case 'pivot_deliberation_completed':
+    case 'pivot_selected':
+    case 'pivot_completed':
+    case 'pivot_failed':
+      return value;
+    default:
+      return null;
+  }
+}
+
+function parsePersistedPivotEvent(value: unknown, pivotId: string, index: number): PivotEvent {
+  if (!isRecord(value)
+    || value.schemaVersion !== 1
+    || typeof value.eventId !== 'string'
+    || value.eventId.trim() === ''
+    || value.pivotId !== pivotId
+    || typeof value.occurredAtIso !== 'string'
+    || value.occurredAtIso.trim() === ''
+    || !isLifecycleTransition(value.lifecycle)) {
+    throw new Error(`Pivot state line ${index + 1} does not match the pivot event contract.`);
+  }
+  const event = parsePivotEventName(value.event);
+  if (event === null || (event === 'pivot_failed'
+    && (typeof value.reason !== 'string' || !PIVOT_FAILURE_REASONS.has(value.reason)))) {
+    throw new Error(`Pivot state line ${index + 1} does not match the pivot event contract.`);
+  }
+  const parsed: PivotEvent = {
+    ...value,
+    schemaVersion: 1,
+    eventId: value.eventId.trim(),
+    event,
+    pivotId,
+    occurredAtIso: value.occurredAtIso.trim(),
+    lifecycle: value.lifecycle,
+  };
+  return parsed;
 }
 
 function resolveProspectiveRealPath(path: string): string {
@@ -512,20 +546,7 @@ function readEventStore(statePath: string, pivotId: string): EventStore {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`Pivot state line ${index + 1} is invalid JSON: ${message}`);
     }
-    if (!isRecord(parsed)
-      || parsed.schemaVersion !== 1
-      || typeof parsed.eventId !== 'string'
-      || parsed.eventId.trim() === ''
-      || typeof parsed.event !== 'string'
-      || !PIVOT_EVENT_NAMES.has(parsed.event)
-      || parsed.pivotId !== pivotId
-      || typeof parsed.occurredAtIso !== 'string'
-      || !isLifecycleTransition(parsed.lifecycle)
-      || (parsed.event === 'pivot_failed'
-        && (typeof parsed.reason !== 'string' || !PIVOT_FAILURE_REASONS.has(parsed.reason)))) {
-      throw new Error(`Pivot state line ${index + 1} does not match the pivot event contract.`);
-    }
-    const event = parsed as unknown as PivotEvent;
+    const event = parsePersistedPivotEvent(parsed, pivotId, index);
     const existing = byId.get(event.eventId);
     if (existing) {
       if (stableJson(eventSemanticPayload(existing)) !== stableJson(eventSemanticPayload(event))) {
@@ -984,15 +1005,174 @@ interface PersistedPivotConfig {
   readonly saturatedDirections: readonly string[];
 }
 
+function parsePersistedIdentity(value: unknown): PivotIdentityInput {
+  if (!isRecord(value)) throw new Error('Persisted pivot identity must be an object.');
+  const generation = typeof value.generation === 'number'
+    ? String(nonNegativeInteger(value.generation, 'identity.generation'))
+    : nonEmptyString(value.generation, 'identity.generation');
+  return {
+    sessionId: nonEmptyString(value.sessionId, 'identity.sessionId'),
+    generation,
+    loopType: nonEmptyString(value.loopType, 'identity.loopType'),
+    sourceIteration: nonNegativeInteger(value.sourceIteration, 'identity.sourceIteration'),
+    normalizedTrigger: normalizeTrigger(nonEmptyString(value.normalizedTrigger, 'identity.normalizedTrigger')),
+    ordinal: positiveInteger(value.ordinal, 'identity.ordinal'),
+  };
+}
+
+function parsePersistedLimits(value: unknown): NormalizedDivergentConfig {
+  if (!isRecord(value)) throw new Error('Persisted pivot limits must be an object.');
+  const required = ['maxPivots', 'maxCouncilSeatOutputs', 'minRemainingIterations', 'candidateSimilarityThreshold'];
+  if (required.some((key) => !Object.prototype.hasOwnProperty.call(value, key))) {
+    throw new Error('Persisted pivot limits are incomplete.');
+  }
+  return {
+    maxPivots: positiveInteger(value.maxPivots, 'limits.maxPivots'),
+    maxCouncilSeatOutputs: positiveInteger(value.maxCouncilSeatOutputs, 'limits.maxCouncilSeatOutputs'),
+    minRemainingIterations: nonNegativeInteger(value.minRemainingIterations, 'limits.minRemainingIterations'),
+    candidateSimilarityThreshold: finiteRatio(value.candidateSimilarityThreshold, 'limits.candidateSimilarityThreshold'),
+  };
+}
+
+function parsePersistedUsage(value: unknown): PivotUsage {
+  if (!isRecord(value)) throw new Error('Persisted pivot usage must be an object.');
+  return {
+    completedPivots: nonNegativeInteger(value.completedPivots, 'usageAtStart.completedPivots'),
+    councilSeatOutputs: nonNegativeInteger(value.councilSeatOutputs, 'usageAtStart.councilSeatOutputs'),
+    remainingIterations: nonNegativeInteger(value.remainingIterations, 'usageAtStart.remainingIterations'),
+    insidePivot: value.insidePivot === true,
+  };
+}
+
+function parsePersistedSeats(value: unknown): readonly PivotSeatMandate[] {
+  if (!Array.isArray(value)) throw new Error('Persisted pivot seats must be an array.');
+  return normalizeSeats(value.map((seat, index) => {
+    if (!isRecord(seat)) throw new Error(`Persisted seat at index ${index} must be an object.`);
+    return {
+      id: nonEmptyString(seat.id, `seats[${index}].id`),
+      mandate: nonEmptyString(seat.mandate, `seats[${index}].mandate`),
+    };
+  }));
+}
+
+function parsePersistedCandidates(value: unknown, field: string): readonly PivotCandidate[] {
+  if (!Array.isArray(value)) throw new Error(`Persisted ${field} must be an array.`);
+  return value.map((candidate, index) => {
+    const validation = validatePivotCandidate(candidate);
+    if (!validation.valid) {
+      throw new Error(`Persisted ${field}[${index}] is not a valid pivot candidate.`);
+    }
+    return validation.candidate;
+  });
+}
+
+function parsePersistedRejectedCandidates(value: unknown): readonly RejectedPivotCandidateDeduplication[] {
+  if (!Array.isArray(value)) throw new Error('Persisted rejectedCandidates must be an array.');
+  return value.map((entry, index) => {
+    if (!isRecord(entry)
+      || entry.accepted !== false
+      || typeof entry.maxSimilarity !== 'number'
+      || !Number.isFinite(entry.maxSimilarity)
+      || entry.maxSimilarity < 0
+      || entry.maxSimilarity > 1
+      || !Array.isArray(entry.rejections)) {
+      throw new Error(`Persisted rejectedCandidates[${index}] is invalid.`);
+    }
+    const rejections = entry.rejections.map((rejection, rejectionIndex) => {
+      if (!isRecord(rejection)
+        || typeof rejection.code !== 'string'
+        || typeof rejection.message !== 'string'
+        || rejection.message.trim() === '') {
+        throw new Error(`Persisted rejectedCandidates[${index}].rejections[${rejectionIndex}] is invalid.`);
+      }
+      const code = rejection.code;
+      if (code !== 'invalid_candidate'
+        && code !== 'invalid_prior_candidate'
+        && code !== 'duplicate_id'
+        && code !== 'exact_duplicate'
+        && code !== 'materially_similar') {
+        throw new Error(`Persisted rejectedCandidates[${index}] has an unknown rejection code.`);
+      }
+      if (rejection.similarity !== undefined
+        && (typeof rejection.similarity !== 'number'
+          || !Number.isFinite(rejection.similarity)
+          || rejection.similarity < 0
+          || rejection.similarity > 1)) {
+        throw new Error(`Persisted rejectedCandidates[${index}] has an invalid similarity.`);
+      }
+      const parsed: RejectedPivotCandidateDeduplication['rejections'][number] = {
+        code,
+        message: rejection.message.trim(),
+        ...(typeof rejection.field === 'string' ? { field: rejection.field } : {}),
+        ...(typeof rejection.priorCandidateId === 'string' ? { priorCandidateId: rejection.priorCandidateId } : {}),
+        ...(typeof rejection.similarity === 'number' && Number.isFinite(rejection.similarity)
+          ? { similarity: rejection.similarity }
+          : {}),
+      };
+      return parsed;
+    });
+    const candidate = entry.candidate === undefined ? undefined : parsePersistedCandidates([entry.candidate], 'candidate')[0];
+    const normalizedFingerprint = entry.normalizedFingerprint;
+    if (normalizedFingerprint !== undefined
+      && (typeof normalizedFingerprint !== 'string' || normalizedFingerprint.trim() === '')) {
+      throw new Error(`Persisted rejectedCandidates[${index}] has an invalid fingerprint.`);
+    }
+    return {
+      accepted: false,
+      maxSimilarity: entry.maxSimilarity,
+      rejections,
+      ...(candidate ? { candidate } : {}),
+      ...(typeof normalizedFingerprint === 'string' ? { normalizedFingerprint } : {}),
+    };
+  });
+}
+
+function parsePersistedPivotConfig(value: unknown, pivotId: string): PersistedPivotConfig {
+  if (!isRecord(value)
+    || value.schemaVersion !== 1
+    || value.pivotId !== pivotId
+    || typeof value.previousFocus !== 'string'
+    || !Array.isArray(value.saturatedDirections)) {
+    throw new Error(`Pivot config does not match the expected contract for "${pivotId}".`);
+  }
+  const saturatedDirections = value.saturatedDirections.map((direction, index) => {
+    if (typeof direction !== 'string' || direction.trim() === '') {
+      throw new Error(`Persisted saturatedDirections[${index}] is invalid.`);
+    }
+    return direction.trim();
+  });
+  if (!isRecord(value.invariants)
+    || value.invariants.rounds !== 1
+    || value.invariants.seats !== 3
+    || value.invariants.depth !== 1
+    || value.invariants.recursionAllowed !== false) {
+    throw new Error('Persisted pivot invariants do not match the one-round contract.');
+  }
+  return {
+    schemaVersion: 1,
+    pivotId,
+    identity: parsePersistedIdentity(value.identity),
+    invariants: { rounds: 1, seats: 3, depth: 1, recursionAllowed: false },
+    limits: parsePersistedLimits(value.limits),
+    usageAtStart: parsePersistedUsage(value.usageAtStart),
+    seats: parsePersistedSeats(value.seats),
+    acceptedCandidates: parsePersistedCandidates(value.acceptedCandidates, 'acceptedCandidates'),
+    rejectedCandidates: parsePersistedRejectedCandidates(value.rejectedCandidates),
+    previousFocus: value.previousFocus.trim(),
+    saturatedDirections,
+  };
+}
+
 function readPersistedConfig(configPath: string, pivotId: string): PersistedPivotConfig {
   if (!existsSync(configPath)) {
     throw new Error(`Pivot config not found for "${pivotId}"; run preparePivotTransaction first.`);
   }
-  const parsed = JSON.parse(readFileSync(configPath, 'utf8')) as unknown;
-  if (!isRecord(parsed) || parsed.pivotId !== pivotId || !Array.isArray(parsed.acceptedCandidates)) {
-    throw new Error(`Pivot config at "${configPath}" does not match the expected contract.`);
+  const parsed: unknown = JSON.parse(readFileSync(configPath, 'utf8'));
+  try {
+    return parsePersistedPivotConfig(parsed, pivotId);
+  } catch (error) {
+    throw new Error(`Pivot config at "${configPath}" does not match the expected contract: ${error instanceof Error ? error.message : String(error)}`);
   }
-  return parsed as unknown as PersistedPivotConfig;
 }
 
 /** Validate, dedupe, and persist through "which seats remain to dispatch" — no seat dispatch here. */

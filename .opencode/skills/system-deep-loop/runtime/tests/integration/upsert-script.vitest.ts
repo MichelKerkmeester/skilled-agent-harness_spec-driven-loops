@@ -69,6 +69,17 @@ describe('upsert.cjs direct invocation', () => {
     expect(result.json.error).toContain('seedSource and seedConfidence are required for seeding');
   });
 
+  it('exits 3 with INPUT_VALIDATION when the events file is unreadable', () => {
+    const namespace = uniqueNamespace('upsert-events');
+    const result = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--events', '/tmp/deep-loop-missing-events-file.json',
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+  });
+
   it('applies seed metadata from CLI flags to review seed nodes', () => {
     const namespace = uniqueNamespace('upsert');
     namespaces.push(namespace);

@@ -130,7 +130,13 @@ function parseSeedOptions(args, rawNodes, isCouncil) {
 
 function readEvents(arg) {
   if (!arg) return null;
-  const raw = arg === '-' ? fs.readFileSync(0, 'utf8') : fs.readFileSync(path.resolve(arg), 'utf8');
+  if (typeof arg !== 'string') throw inputError('--events requires a file path or -');
+  let raw;
+  try {
+    raw = arg === '-' ? fs.readFileSync(0, 'utf8') : fs.readFileSync(path.resolve(arg), 'utf8');
+  } catch (error) {
+    throw inputError(`events file is unreadable: ${error instanceof Error ? error.message : String(error)}`);
+  }
   return parseJsonValue(raw, [], 'events');
 }
 
