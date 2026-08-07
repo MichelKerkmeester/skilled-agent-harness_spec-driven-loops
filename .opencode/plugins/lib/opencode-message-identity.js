@@ -37,7 +37,12 @@ function firstDefined(values) {
 function normalizeIdentityPart(value) {
   if (typeof value === 'string') {
     const normalized = value.trim();
-    return normalized && normalized !== UNKNOWN_SESSION_ID ? normalized : null;
+    if (!normalized || normalized === UNKNOWN_SESSION_ID) return null;
+    // A part carrying the key separator would let two distinct identities collapse to
+    // the same joined key (e.g. {"a\x1fb","c"} vs {"a","b\x1fc"}). Rather than silently
+    // alias them, treat the part as unresolvable so the caller falls open to full delivery.
+    if (normalized.includes(IDENTITY_SEPARATOR)) return null;
+    return normalized;
   }
   if (typeof value === 'number' && Number.isFinite(value)) {
     return String(value);

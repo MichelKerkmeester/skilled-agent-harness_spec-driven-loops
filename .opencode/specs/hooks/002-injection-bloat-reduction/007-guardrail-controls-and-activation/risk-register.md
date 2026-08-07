@@ -15,3 +15,15 @@ This register carries the seven central rollout risks from the research into nam
 ## Control ownership
 
 The canonical directive block identities remain `policy.comment-hygiene.v1`, `policy.governor.v1`, and `policy.proof-over-appearance.v1`. The negative-control suite exercises the first through the live comment checker, the third through the live completion validator, and the second through the marker-preserving scored rubric. The activation matrix is the shared evidence boundary for candidates 002-006; it does not change any candidate flag.
+
+## Review-surfaced pre-activation controls
+
+A two-executor deep review of the shadow work surfaced additional preconditions. Each is harmless while every candidate ships flag-off, but each MUST hold before its cell may leave `emit`:
+
+| Review concern | Pre-activation control the gate must enforce | Cell that stays `emit` until proven |
+|---|---|---|
+| Delivery marked confirmed from configuration or session identity alone, with no evidence the host actually rendered the block | Suppression requires a host-observed delivery receipt for the exact epoch and block hash; a configured-but-unobserved block is never treated as delivered | Every candidate whose suppression path lacks an observed receipt |
+| Shadow policy receipts computed but never consumed into an observation stream | The measurement receipts must reach a durable observation sink the gate can read as `deliveryEvidence`; a discarded receipt counts as no evidence | 002-006 delivery cells |
+| Inspecting delivery state can advance lifecycle state once per block for a direct caller | State inspection is side-effect free; only an explicit delivery transition may advance lifecycle state | 004/005 delivery-state cells |
+| A negative-control fixture can inherit outer packet context when its temp dir sits inside a spec tree | Fixtures pin an isolated root outside any repository spec tree, or assert the inherited-context case explicitly | Guardrail behavioral-evidence cell |
+| OpenCode identity keys could alias across the join separator | Identity parts carrying the key separator resolve to no identity and fall open to full delivery (now guarded and adversarially tested) | Closed for 003; re-verify for any new identity component |

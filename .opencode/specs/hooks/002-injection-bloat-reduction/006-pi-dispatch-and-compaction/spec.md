@@ -79,7 +79,7 @@ Design, but do not yet execute, a semantic-preserving compact rewrite of the Pi 
 - Retain the existing full `PI_SUBAGENT_DISPATCH_DIRECTIVE` as the fail-open baseline on every Pi advisor-failure path
 
 ### Out of Scope
-- Executing or shipping the compact serializer itself — research confidence for this candidate is "Low-medium; prototype only"
+- Executing or shipping the compact serializer on any emitted or live dispatch path — research confidence for this candidate is "Low-medium; prototype only". The one-time shadow computation required to record its executed byte count is in scope and never reaches an emitted path
 - Citing the ~424 B modeled saving as realized before an executed measurement exists
 - Weakening or removing the dispatch guard on Pi advisor-failure paths
 - Copying the dispatch directive into child prompts — already excluded by existing policy, unchanged by this packet

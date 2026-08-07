@@ -624,6 +624,24 @@ test('malformed advisor identity fields resolve to no identity without throwing'
   assert.equal(identityModule.resolveMessageIdentity(malformedInput), null);
 });
 
+test('identity parts carrying the key separator resolve to no identity (no ambiguous-key collision)', async () => {
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const SEP = '\u001f';
+
+  // A part carrying the join separator is unresolvable, so the caller falls open to full delivery.
+  assert.equal(identityModule.resolveMessageIdentity({
+    sessionID: `sess${SEP}injected`,
+    messageID: 'msg',
+    transformCallOrdinal: 0,
+  }), null);
+
+  // The classic pair that would collide on a naive join must never share a live key:
+  // at least one side is null, so neither identity can alias the other's delivery state.
+  const a = identityModule.resolveMessageIdentity({ sessionID: `a${SEP}b`, messageID: 'c', transformCallOrdinal: 0 });
+  const b = identityModule.resolveMessageIdentity({ sessionID: 'a', messageID: `b${SEP}c`, transformCallOrdinal: 0 });
+  assert.ok(a === null || b === null || a.key !== b.key);
+});
+
 test('multi-transform receipts record both transform fires and their outcomes', async () => {
   const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
   const state = identityModule.createTransformDedupState();
