@@ -262,7 +262,7 @@ Every spec folder (Level 1+) MUST contain:
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Level selection**   | When in doubt → higher level. LOC is soft guidance (risk/complexity can override)                                                                                |
 | **Exemptions**        | Single typo/whitespace fixes (<5 characters in one file)                                                                                                          |
-| **Spec folder path**  | `.opencode/specs/[track]/[###-short-name]/` for tracked packets; phase children as `[001-phase]/`. Legacy `specs/[###-short-name]/` may exist                    |
+| **Spec folder path**  | `specs/[track]/[###-short-name]/` for tracked packets; phase children as `[001-phase]/`. Legacy `.opencode/specs/[###-short-name]/` symlink may exist                    |
 | **Templates**         | `.opencode/skills/system-spec-kit/templates/`                                                                                                                     |
 
 #### Naming Conventions

@@ -8,27 +8,33 @@ The **Public repo** is the source of truth for the OpenCode framework. Projects 
 
 ```text
 Public Repo (source of truth)
+  specs/                         ← Project specs (subfolders gitignored per-project), top-level, real
   .opencode/                    ← Framework: skills, agents, commands, scripts
      skill/
      agent/
      command/
      scripts/
-     specs/                     ← Project specs (subfolders gitignored per-project)
+     specs -> ../specs           ← Legacy compat symlink, kept for older references
      ...
   .claude/                      ← Claude Code runtime adapter (agents, mcp.json)
 
 your-project.com (consumer project)
-  .opencode -> Public/.opencode  ← SYMLINK (entire framework + specs)
+  .opencode -> Public/.opencode  ← SYMLINK (framework; specs reachable through the compat symlink)
 	  .opencode-local/               ← Project-specific runtime data
 	    database/
 	      context-index__<provider>__<safe-model>__<dim>__<dtype>.sqlite
-  opencode.json                  ← MCP config (sets SPEC_KIT_DB_DIR)
+	    specs/                      ← Optional: only if this project opted out via SPEC_KIT_SPECS_DIR
+  opencode.json                  ← MCP config (sets SPEC_KIT_DB_DIR, optionally SPEC_KIT_SPECS_DIR)
   AGENTS.md                      ← Project-specific AI instructions
 ```
 
 ### Key Design Decision: `SPEC_KIT_DB_DIR`
 
 When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the **real path** (Public), not the symlink path (project). The `SPEC_KIT_DB_DIR` environment variable in `opencode.json` overrides the database path to keep each project's database isolated in `.opencode-local/database/`.
+
+### Key Design Decision: `SPEC_KIT_SPECS_DIR` (opt-in)
+
+`specs/` is shared by default — a project's spec packets land in the Public repo's shared `specs/<project-name>/`, gitignored per-project (Section 3), exactly like today. A project that wants to own its specs in its own repo instead (not possible through the symlinked `.opencode`, since git cannot track anything behind a symlink) sets `SPEC_KIT_SPECS_DIR` (alias `SPECKIT_SPECS_DIR`) in its own `opencode.json` to a real, non-symlinked, project-local path — e.g. `.opencode-local/specs` — and adds a matching `!.opencode-local/specs/` negation to its own `.gitignore`. Mirrors the `SPEC_KIT_DB_DIR` mechanism above; resolved the same way (`path.resolve(process.cwd(), override)`).
 
 ---
 
@@ -55,14 +61,15 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 ### Project-Specific (gitignored per-subfolder in Public)
 
-| Component                   | Location        | Reason                           |
-| --------------------------- | --------------- | -------------------------------- |
-| `.opencode/specs/NNN-*/`    | Through symlink | Project-specific documentation   |
-| `.opencode-local/database/` | Project root    | Per-project SQLite databases     |
-| `opencode.json`             | Project root    | MCP config with SPEC_KIT_DB_DIR  |
-| `.utcp_config.json`         | Project root    | Code Mode configuration          |
-| `AGENTS.md`                 | Project root    | Project-specific AI instructions |
-| `src/`                      | Project root    | Project source code              |
+| Component                                       | Location                                | Reason                                                  |
+| ------------------------------------------------ | ---------------------------------------- | -------------------------------------------------------- |
+| `specs/NNN-*/` (default) or via `.opencode/specs/NNN-*/` compat symlink | Through symlink | Project-specific documentation, shared by default        |
+| `.opencode-local/specs/` (opt-in only, via `SPEC_KIT_SPECS_DIR`) | Project root, real (not symlinked) | Project owns its specs in its own repo instead of sharing |
+| `.opencode-local/database/`                     | Project root                            | Per-project SQLite databases                            |
+| `opencode.json`                                 | Project root                            | MCP config with `SPEC_KIT_DB_DIR`, optionally `SPEC_KIT_SPECS_DIR` |
+| `.utcp_config.json`                             | Project root                            | Code Mode configuration                                 |
+| `AGENTS.md`                                     | Project root                            | Project-specific AI instructions                        |
+| `src/`                                          | Project root                            | Project source code                                     |
 
 ---
 
@@ -227,15 +234,23 @@ mkdir -p .opencode-local/database
 # 3. Copy opencode.json (already has SPEC_KIT_DB_DIR set)
 cp ~/your-project/opencode.json .
 
-# 4. Create specs directory and first spec folder
-mkdir -p .opencode/specs
+# 4. Confirm the shared specs location resolves (specs/ is real in Public;
+#    .opencode/specs is a compat symlink to it, resolved through your own
+#    .opencode symlink -- no local directory to create)
+ls .opencode/specs
 
 # 5. Add spec subfolder to Public .gitignore (each project gets its own entry)
-# Edit Public/.gitignore and add: .opencode/specs/NNN-your-project/
+# Edit Public/.gitignore and add: specs/NNN-your-project/
 
 # 6. Add to project .gitignore
 echo ".opencode" >> .gitignore
 echo ".opencode-local/" >> .gitignore
+
+# 7. OPTIONAL -- opt out of the shared specs/ tree and own your specs in this
+#    repo instead (see "Key Design Decision: SPEC_KIT_SPECS_DIR" above):
+#    - Set SPEC_KIT_SPECS_DIR=".opencode-local/specs" in opencode.json
+#    - mkdir -p .opencode-local/specs
+#    - echo "!.opencode-local/specs/" >> .gitignore
 ```
 
 ---
@@ -386,5 +401,5 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 - **Source of truth**: Public repo contains the authoritative OpenCode framework
 - **Symlink model**: Projects consume the framework via `.opencode/` symlink
 - **Database isolation**: Each project has its own database in `.opencode-local/database/`
-- **Never shared**: Database files (`*.sqlite`) and project-specific spec subfolders (`.opencode/specs/NNN-*/` gitignored per-project)
+- **Never shared**: Database files (`*.sqlite`) and project-specific spec subfolders (`specs/NNN-*/` gitignored per-project by default; a project can opt out entirely via `SPEC_KIT_SPECS_DIR` -- see Section 1)
 - **Instant propagation**: Framework changes in Public are immediately available to all linked projects

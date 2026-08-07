@@ -113,10 +113,10 @@ export const DENY_CAPABLE_TOOLS = new Set(['write', 'edit']);
 // arrays into the TUI or injected context (see NFR-S01).
 export const GATE_3_QUESTION = [
   'SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:',
-  'A) Use an existing spec folder (reply with its path, e.g. .opencode/specs/<track>/<NNN-name>)',
-  'B) Create a new spec folder (reply with a new path, e.g. .opencode/specs/<track>/<NNN-name>)',
-  'C) Update a related spec folder (reply with its path, e.g. .opencode/specs/<track>/<NNN-name>)',
-  'D) Use a phase folder (reply with the child path, e.g. .opencode/specs/<parent>/<NNN-phase>)',
+  'A) Use an existing spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
+  'B) Create a new spec folder (reply with a new path, e.g. specs/<track>/<NNN-name>)',
+  'C) Update a related spec folder (reply with its path, e.g. specs/<track>/<NNN-name>)',
+  'D) Use a phase folder (reply with the child path, e.g. specs/<parent>/<NNN-phase>)',
   'E) Skip (no spec folder needed for this change)',
 ].join('\n');
 

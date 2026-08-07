@@ -52,7 +52,7 @@ jobs:
           set +e
           node --import .opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
             .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts \
-            --roots .opencode/specs \
+            --roots specs \
             --format json \
             "${baseline_args[@]}" > "$next_report_path"
           sweep_status=$?
