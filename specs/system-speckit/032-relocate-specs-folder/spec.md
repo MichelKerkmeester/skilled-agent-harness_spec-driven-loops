@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/032-relocate-specs-folder"
     last_updated_at: "2026-08-07T11:20:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 3 steps 1-8/10 done; phase 4 complete"
-    next_safe_action: "Finish phase 3 step 9 (Memory MCP reindex) and step 11 (full sweep), then close out the runbook"
+    recent_action: "Phases 3 and 4 both complete; T015 operator review open"
+    next_safe_action: "Operator reviews the final state (003's T015)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -99,7 +99,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 |-------|--------|-------|--------|
 | 1 | 001-relocation-implications-research/ | Dual-executor (GLM-5.2 High via cli-devin, Grok 4.5 High via cli-cursor) deep research: implications of moving the specs root outside .opencode | Complete — CONDITIONAL-GO |
 | 2 | 002-migration-plan/ | Design the topology-inversion migration: invert the 21-entry resolver registry, adapt the existing `spec-root-*` primitives, resolve the downstream-ownership policy decision | Complete — both ADRs Accepted |
-| 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | In Progress — steps 1-8/10 executed and verified, step 9 (Memory MCP reindex) in progress, step 11 (full sweep) in progress |
+| 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | Complete — all 11 steps executed and verified, T015 operator review open |
 | 4 | 004-code-graph-index-flag-deprecation/ | Remove the dead `SPECKIT_CODE_GRAPH_INDEX_*` maintainer-mode flag mechanism (git filter, config, doc, dead env-var fallback), discovered as a side effect of phase 3's `scripts/` cleanup | Complete |
 
 ### Phase Transition Rules

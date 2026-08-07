@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Specs-Root Migration Execution"
-description: "Scope and execute the literal, ordered runbook for the accepted specs-root topology flip. Steps 1-8 and 10 ran and verified clean; step 9 (Memory MCP reindex) is deferred on a daemon-workspace mismatch; step 11's full sweep is in progress."
+description: "Scope and execute the literal, ordered runbook for the accepted specs-root topology flip. All 11 steps ran and verified clean, including a bulk-delete dedup of 10,459 stale-alias Memory MCP rows step 9's reindex alone could not clean up. Only the operator's final review (T015) remains open."
 trigger_phrases:
   - "specs root migration execution"
   - "topology flip runbook"
@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
     last_updated_at: "2026-08-07T11:35:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Steps 1-8 and 10 verified; step 9 reindex running, dedup gap found; step 11 in progress"
-    next_safe_action: "Resolve step 9 dedup approach with operator, then finish step 11's sweep"
+    recent_action: "All 11 steps executed and verified; step 9 dedup resolved via bulk-delete"
+    next_safe_action: "T015: operator reviews the final state"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-system-speckit-032-relocate-003"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,14 +48,14 @@ Phase 002 accepted both ADRs — build a new topology-flip function on existing 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Steps 1-8/10 executed and verified; step 9 deferred; step 11 in progress |
+| **Status** | Steps 1-11 all executed and verified; T015 (operator final review) open |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 4 |
 | **Predecessor** | 002-migration-plan |
 | **Successor** | 004-code-graph-index-flag-deprecation |
-| **Handoff Criteria** | Operator resolves the step 9 daemon-workspace mismatch and reviews the final state |
+| **Handoff Criteria** | Operator reviews the final state (T015) |
 <!-- /ANCHOR:metadata -->
 
 ---

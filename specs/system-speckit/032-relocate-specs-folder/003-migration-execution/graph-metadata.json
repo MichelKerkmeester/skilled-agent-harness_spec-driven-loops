@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW — the literal commands, the exact order, the exact checks between steps",
     "created_at": "2026-08-06T17:53:46Z",
-    "last_save_at": "2026-08-07T09:15:17.339Z",
+    "last_save_at": "2026-08-07T09:54:39.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4f1c1c53bf5c434fcbe31b9266b49a026d1ba8660d9c46fa1da7f7bfddf7807",
+    "source_fingerprint": "sha256:fce69eec0b4edf40932821319eef2d0b4cf5f2bf499d36ef4ec993ab7f8e2704",
     "source_doc_hashes": {
-      "spec.md": "11d19c91ba236a122579269cb0e15d7aeff2822cc55670ada89502a7321d9881",
+      "spec.md": "52f48827efa7b1ba33b4b042f5a9ac57675a07b960065765d110093e9a0dae2a",
       "plan.md": "d0067c1e61325dd72bf419f1808707386822b2a227ddc600719e9fc17ab22780",
-      "tasks.md": "9172c7d199d68a559c858edfac22ac02a92acdcf3f51cd4f376f6a3d4f35aa65",
+      "tasks.md": "1549979fb35557ee1270f5b42d3354ad21e87b664bea39f14ae4da7b96414fb4",
       "checklist.md": "d4b6877102b85e77283bcd7c299c2508823d77ef13b19b4501926e0332be2def",
       "decision-record.md": "bf3685fd84b164967067de89a4bc057085464082f94dba77143f4bf5c2936d9e",
-      "implementation-summary.md": "7775ba192c974e8d865d9e6cca538cc917762c1aa20b01f772c623017db5467b"
+      "implementation-summary.md": "68f18c1bf65b6ba2f4d45b109506680b0130ef54b3933cfb2e435e35acf129ad"
     },
     "last_active_child_id": null,
     "last_active_at": null
