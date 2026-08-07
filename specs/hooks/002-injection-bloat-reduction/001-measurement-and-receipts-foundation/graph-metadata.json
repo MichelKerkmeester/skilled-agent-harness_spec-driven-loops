@@ -39,7 +39,7 @@
       "injection"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
       ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime adapters emit, and nothing records whether a block was actually delivered versus merely rendered",
     "created_at": "2026-08-06T10:59:21.547Z",
-    "last_save_at": "2026-08-06T18:36:10.917Z",
+    "last_save_at": "2026-08-07T04:23:28.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99b14e9201d6c4ba63953a8a03b739621ea0a6b8bacaafe62b3086a28d621c0b",
+    "source_fingerprint": "sha256:ad2f5ae0934f871f54a3554cd41b7f4549517998817085a651dfdb1291dfbbd4",
     "source_doc_hashes": {
-      "spec.md": "a4df08e898afd7842dc310a8334e859813675857445731872bdb5578f2461886",
+      "spec.md": "be4530ced94362a2e0b16a1f0d6df5dd739cdd0e27dd15021bba5af39fc04850",
       "plan.md": "89fbd725fa132a5deef27bd974f8280c672a8cae382d74de84f57a56dcf66c58",
-      "tasks.md": "5f05feae4085248dfaced662cee1d07cd68e20d49d5b674d00f126bce7195ba8",
-      "checklist.md": "b675501169ee8ddf07683ac00da0d4d0a13fe79ce135083f3433861cad92bdbb",
-      "implementation-summary.md": "c814dbb1db622bef4c23ff4d944b86c369d2d35e41d45848e28c22873e9167d7"
+      "tasks.md": "33ab58171fcba69999bba5244ded27968589e9ed0580dcb60b9b262b8dd09a2e",
+      "checklist.md": "25b44f40d1a1aa6d6c2429e9287781b7fb82fae1131c8af0e6af54a4b8203e9b",
+      "implementation-summary.md": "9b71e1c5237e2727fba893eb11486b0453d6262b32290f79c91e3c232279233c"
     },
     "last_active_child_id": null,
     "last_active_at": null

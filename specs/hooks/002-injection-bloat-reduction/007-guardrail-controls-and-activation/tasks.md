@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     session_dedup:
-      fingerprint: "sha256:a42b5d4b1e9af951d62d40a2ec85f1a8984d07b2cd1643d1a5972b33591e67bf"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100

@@ -187,7 +187,7 @@ function gate3StateFields(gateState = {}) {
   const taskFingerprint = normalizedGate3Fingerprint(gateState.taskFingerprint);
   const scopeFingerprint = normalizedGate3Fingerprint(gateState.scopeFingerprint);
   const taskScopeFingerprint = directTaskScopeFingerprint
-    ?? (taskFingerprint && scopeFingerprint ? `${taskFingerprint}|${scopeFingerprint}` : null);
+    ?? (taskFingerprint && scopeFingerprint ? JSON.stringify([taskFingerprint, scopeFingerprint]) : null);
   const answerState = normalizedGate3Fingerprint(gateState.answerState ?? 'awaiting-answer');
   const lifecycleState = normalizedGate3Fingerprint(gateState.lifecycleState ?? 'steady');
   if (!status || !taskScopeFingerprint || !answerState || !lifecycleState) return null;

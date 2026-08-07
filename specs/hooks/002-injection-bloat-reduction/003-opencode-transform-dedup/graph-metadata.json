@@ -38,7 +38,7 @@
       "task"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/plugins/mk-skill-advisor.js",
       ".opencode/plugins/mk-spec-memory.js",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to `output.system` for the same user message, with no shared coordination proving whether a policy/advisor block was already delivered for that exact message",
     "created_at": "2026-08-06T11:07:41.298Z",
-    "last_save_at": "2026-08-06T14:24:58.272Z",
+    "last_save_at": "2026-08-07T04:23:29.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6516a34d604f426c469c9669b4a87a463ff94a802b4958c80c2ff1d369b0fdbb",
+    "source_fingerprint": "sha256:fd091f627854407f15c3f9734c4d3e25fcfbd82028b8175662f9f3553871e220",
     "source_doc_hashes": {
-      "spec.md": "35fd982bf038f4b37e4a92169255d92d6ea85e5c6b72377e3d2945ffef9483ac",
+      "spec.md": "a1e929390b167879ee0e6526da13bc3c65f689ea311013735a953564da6ace13",
       "plan.md": "add6ca99393c23886564924aad7c4e26c2d6b8414e3f928301ab646d4920767f",
-      "tasks.md": "3c1122f40611046409d0b9f84013ad768e86cfddb47fecadd965d64f76e90b26",
-      "checklist.md": "10f809f51689c1572fbb98803b0bc6f2a67e8fe174c02c726c0052d00f7e7fb3",
-      "implementation-summary.md": "79e2655c0fe238d744a0c29576d4d93ad9962e46c536d60e0a4014eb88218910"
+      "tasks.md": "e54de428897cc291917be44f6366e600f450662670dc8802ec9cee7105a0f625",
+      "checklist.md": "0e872ef02e125b9f4cbabdde31d2114652ef5ef504415d4bc878d3770eb8a6b9",
+      "implementation-summary.md": "ab9f3cef4f5ae6fdd3731a315ec9d5690c863719b4912f5da87dc6837c8bf65a"
     },
     "last_active_child_id": null,
     "last_active_at": null

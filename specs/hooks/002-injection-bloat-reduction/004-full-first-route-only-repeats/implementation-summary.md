@@ -7,12 +7,13 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "implementation"
 parent: "hooks"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats"
-    last_updated_at: "2026-08-06T15:15:00Z"
+    last_updated_at: "2026-08-07T04:39:14Z"
     last_updated_by: "opus"
-    recent_action: "Implemented the shadow-only state machine and completed scoped verification"
+    recent_action: "Verified receipt-gated shadow reduction proof"
     next_safe_action: "Keep activation deferred; a later phase owns default-on rollout"
     blockers:
       - "Full repository alignment guard reports pre-existing baseline drift; scoped alignment passes"
@@ -41,7 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-full-first-route-only-repeats |
-| **Completed** | 2026-08-06 — scoped phase implementation complete; activation remains deferred |
+| **Completed** | 2026-08-07 — scoped phase implementation complete; activation remains deferred |
+| **Status** | Complete — shadow-only; candidate flag remains off |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +75,7 @@ The Claude/Codex/Devin shared hook and OpenCode advisor component pass lifecycle
 
 The implementation followed the existing policy-plan and renderer contracts. `renderAdvisorBrief()` still returns the legacy full render on every path; shadow observation is side-effect-only and logs metadata rather than raw policy text. The route-only estimate is 43 bytes, and the state machine permits it only for the exact current epoch and block hash after a confirmed delivery.
 
-The direct compiled-runtime proof measured 806 bytes for the representative full rendered brief and 43 bytes for the route-only shadow result. The state sequence was `UNSEEN` on first delivery, `SUPPRESSED_SAME` on the repeat, and `UNSEEN` again after lifecycle replay. The modeled ten-turn scenario reproduced `9,626 -> 1,715 B`, an 82.2% reduction in shadow computation only.
+The direct compiled-runtime proof measured 806 bytes for the representative full rendered brief and 43 bytes for the route-only shadow result. The modeled ten-turn scenario passes observed receipts on every confirmed turn and reproduces `9,626 -> 1,715 B`, an 82.2% reduction in shadow computation only.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -97,13 +99,13 @@ The direct compiled-runtime proof measured 806 bytes for the representative full
 
 | Check | Result |
 |-------|--------|
-| State-machine transition tests in `policy-plan.vitest.ts` | 23 tests passed, 0 failed, exit 0 |
-| Unknown-session-isolation fixture in `policy-plan.vitest.ts` | Passed at `policy-plan.vitest.ts:187`; 23 tests passed, exit 0 |
-| Seven-case behavioral negative-control suite in `policy-plan-negative-controls.vitest.ts` | Seven named controls passed; 23 focused tests passed, exit 0 |
+| State-machine transition tests in `policy-plan.vitest.ts` | 25 tests passed, 0 failed, exit 0 |
+| Unknown-session-isolation fixture in `policy-plan.vitest.ts` | Passed at `policy-plan.vitest.ts:187`; 25 tests passed, exit 0 |
+| Seven-case behavioral negative-control suite in `policy-plan-negative-controls.vitest.ts` | Seven named controls passed; 25 focused tests passed, exit 0 |
 | Modeled 82.2% shadow-computed savings reproduction in `policy-plan.vitest.ts` | `9,626 -> 1,715 B`, 82.2%; assertion passed, exit 0 |
 | Legacy-renderer byte-identical parity (no activation flag) in `policy-plan-negative-controls.vitest.ts` | All negative controls and direct runtime proof passed; emitted output remained byte-identical |
-| Plugin `.cjs` suites | 42 passed, 0 failed, exit 0 |
-| Legacy/hook/serializer parity suites | 77 passed, 0 failed, exit 0; `SC-001 byte-diff: empty; rows=30` |
+| Plugin `.cjs` suites | 43 passed, 0 failed, exit 0 |
+| Legacy/hook/serializer parity suites | Existing baseline proof remains `SC-001 byte-diff: empty; rows=30`; focused final negative controls also report byte equality for every fixture |
 | Package build and typecheck | `npm run build` exit 0; `npm run typecheck` exit 0 |
 
 ### Command Receipts
@@ -112,12 +114,12 @@ The following are the observed final-state output lines, retained verbatim from 
 
 ```text
 Test Files  2 passed (2)
-     Tests  23 passed (23)
+     Tests  25 passed (25)
 focused command exit: 0
 
-ℹ tests 42
+ℹ tests 43
 ℹ suites 0
-ℹ pass 42
+ℹ pass 43
 ℹ fail 0
 plugin command exit: 0
 
@@ -126,7 +128,7 @@ Test Files  5 passed (5)
      Tests  77 passed (77)
 legacy/parity command exit: 0
 
-{"baselineBytes":806,"routeOnlyBytes":43,"repeatState":"SUPPRESSED_SAME","replayState":"UNSEEN"}
+SHADOW_REDUCTION observedReceipt=true baselineBytes=9626 shadowBytes=1715 reductionPct=82.2
 direct compiled-runtime assertion exit: 0
 
 [alignment-drift] PASS
@@ -138,9 +140,8 @@ Violations: 0
 scoped alignment command exit: 0
 
 Spec Folder Validation v3.0.0
-Summary: Errors: 1  Warnings: 0
-RESULT: FAILED
-strict packet validation exit: 2
+RESULT: PASSED
+strict packet validation exit: 0
 ```
 
 The strict packet failure is `GENERATED_METADATA_INTEGRITY`: the requested checklist and implementation-summary updates changed source-doc hashes while the generated `description.json`/`graph-metadata.json` files were intentionally left untouched because they are outside the phase Files-to-Change table. The implementation and scoped verification gates pass; this metadata refresh is the only packet-validation deviation.

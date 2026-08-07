@@ -7,12 +7,13 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Verified terminal gate"
+    recent_action: "Verified guardrail controls"
     next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
     blockers: []
     key_files:
@@ -23,7 +24,7 @@ _memory:
       - "risk-register.md"
       - "rollback-procedure.md"
     session_dedup:
-      fingerprint: "sha256:fe0e52f9394a52790238bcf49430d4518846ab25260a64662f9397aa6dc44c9f"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100
@@ -60,7 +61,7 @@ This phase defines the terminal governance gate for candidates 002-006 without a
 
 | File | Result |
 |------|--------|
-| `guardrail-negative-controls.test.mjs` | Runs the real comment-hygiene guard, the real strict spec validator, and a behavior-scored governor rubric. Temporary malformed fixtures are created under the OS temp directory and removed in `finally`. |
+| `guardrail-negative-controls.test.mjs` | Runs the real comment-hygiene guard, the real strict spec validator, and a behavior-scored governor rubric. Fixtures are pinned to an isolated `/private/tmp` (or `/tmp`) root outside `.opencode/specs`, regardless of ambient `TMPDIR`, and removed in `finally`. |
 | `activation-matrix.json` | Enumerates all 30 runtime/candidate cells: six runtimes × candidates 002-006. It records 13 applicable cells as unproven `emit` and 17 inapplicable cells as `N/A`; no cell is `activated`. |
 | `activation-matrix.schema.json` | Defines the cell and evidence contract. Activation requires passing behavioral and delivery evidence; unknown, ambiguous, failed, or missing evidence stays fail-open. |
 | `activation-matrix.test.mjs` | Proves the matrix axes, applicability, evidence shape, fail-open behavior, and zero current activation. |
@@ -133,6 +134,7 @@ process_exit_code=0
 |-------|--------|----------|
 | Real forbidden-comment guard | PASS: exit 1 with stdout naming the temp fixture and `REQ-001`; clean fixture exit 0 | `guardrail-negative-controls.test.mjs:245-267`; combined `node --test` exit 0 |
 | Real unsupported-completion guard | PASS: `validate.sh --strict` exit 2 with `STATUS_COMPLETE_EVIDENCE_MISMATCH`; well-formed fixture exit 0 | `guardrail-negative-controls.test.mjs:271-315`; combined `node --test` exit 0 |
+| TMPDIR-independent fixture isolation | PASS: normal and hostile `TMPDIR=<phase-directory>` runs each pass 4/4; fixture root remains outside `.opencode/specs` | `guardrail-negative-controls.test.mjs:55-82`; both `node --test` commands exit 0 |
 | Governor scored scenarios | PASS: canonical 4/4, reworded 4/4, marker-dropped 0/4 | `guardrail-negative-controls.test.mjs:319-336`; combined `node --test` exit 0 |
 | Matrix fail-open proof | PASS: 30 cells, 13 applicable, 13 unproven `emit`, 17 `N/A`, 0 activated; fail/unknown/ambiguous synthetic evidence emits | `activation-matrix.test.mjs:61-113`; combined `node --test` exit 0 |
 | Evidence schema | PASS: required cell/evidence fields and statuses are consumed without candidate-phase changes | `activation-matrix.schema.json:76-140`, `activation-matrix.test.mjs:115-145`; exit 0 |

@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: OpenCode Transform Dedup"
 description: "Planning spec: stable-message-identity dedup of OpenCode same-message system transforms across mk-skill-advisor.js and mk-spec-memory.js, enabled only after phase 001 ships stable message identity and multi-transform receipts."
-status: planned
-completion_pct: 0
+status: in_progress
+completion_pct: 85
 trigger_phrases:
   - "opencode transform dedup"
   - "same message system transform dedup"
@@ -12,12 +12,12 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for OpenCode same-message transform dedup"
-    next_safe_action: "Author plan.md phase breakdown for the message-identity resolver and dedup gate"
+    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the verified identity/dedup implementation and residual adversarial coverage"
+    next_safe_action: "Complete the remaining adversarial-table and P1 evidence rows before activation review"
     blockers:
-      - "Blocked on phase 001 shipping stable message identity and multi-transform receipts"
+      - "The generic adversarial table remains incomplete beyond the covered fallback delimiter collision"
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
       - ".opencode/plugins/mk-spec-memory.js"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-003"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | In progress (identity/dedup verified; adversarial-table residual remains) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

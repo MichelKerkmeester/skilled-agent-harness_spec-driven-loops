@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 84
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Status: Planned - this packet documents the intended implementation; no code has been written yet. All tasks are pending.
+Status: In progress - the planner, receipt validation, render observer, and parity harness are shipped; Cursor/OpenCode/Pi owner wiring and the whole-package gate remain open.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -52,8 +52,8 @@ Status: Planned - this packet documents the intended implementation; no code has
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Inventory the six existing renderer/emitter call sites named in research.md §3 (`render.ts`, `spec-gate-core.mjs`, `session-prime.ts`, `prompt-advisor.ts`, `mk-skill-advisor.js`, `mk-spec-memory.js`) (research.md §3)
-- [ ] T002 Capture the pre-change byte-exact baseline output for representative fixtures across all six runtimes (negative control) (`tests/parity/fixtures/policy-plan/`)
+- [x] T001 Inventory the six existing renderer/emitter call sites named in research.md §3 (`render.ts`, `spec-gate-core.mjs`, `session-prime.ts`, `prompt-advisor.ts`, `mk-skill-advisor.js`, `mk-spec-memory.js`) (research.md §3)
+- [x] T002 Capture the pre-change byte-exact baseline output for representative fixtures across all six runtimes (negative control) (`tests/parity/fixtures/policy-plan/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,12 +61,12 @@ Status: Planned - this packet documents the intended implementation; no code has
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Create `policy-plan.ts` with the block registry and the four named immutable v1 IDs (`.opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts`)
-- [ ] T004 [P] Extend the registry to the remaining inventoried blocks (governor, proof-over-appearance, SessionStart, OpenCode continuity, OpenCode compiled route) under the same ID scheme (`policy-plan.ts`)
-- [ ] T005 Implement the content-hash function restricted to block ID + content (`policy-plan.ts`)
-- [ ] T006 Implement the ordered policy-set hash function over a full delivery's block sequence (`policy-plan.ts`)
-- [ ] T007 Implement the delivery-receipt type and builder (shadow ID, planned hash, emitted hash, byte count, lifecycle epoch, transform/message identity, host-receipt status) (`policy-plan.ts`)
-- [ ] T008 [P] Wire a shadow-only planner call into the Claude/Codex/Devin shared path (`render.ts`)
+- [x] T003 Create `policy-plan.ts` with the block registry and the four named immutable v1 IDs (`.opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts`)
+- [x] T004 [P] Extend the registry to the remaining inventoried blocks (governor, proof-over-appearance, SessionStart, OpenCode continuity, OpenCode compiled route) under the same ID scheme (`policy-plan.ts`)
+- [x] T005 Implement the content-hash function restricted to block ID + content (`policy-plan.ts`)
+- [x] T006 Implement the ordered policy-set hash function over a full delivery's block sequence (`policy-plan.ts`)
+- [x] T007 Implement the delivery-receipt type and builder (shadow ID, planned hash, emitted hash, byte count, lifecycle epoch, transform/message identity, host-receipt status) (`policy-plan.ts`)
+- [x] T008 [P] Wire a shadow-only planner call into the Claude/Codex/Devin shared path (`render.ts`)
 - [ ] T009 [P] Wire a shadow-only planner call into the Cursor prebind path (Cursor adapter)
 - [ ] T010 [P] Wire a shadow-only planner call into the OpenCode transform paths (`mk-skill-advisor.js`, `mk-spec-memory.js`)
 - [ ] T011 [P] Wire a shadow-only planner call into the Pi dispatch path (`prompt-advisor.ts`)
@@ -77,10 +77,10 @@ Status: Planned - this packet documents the intended implementation; no code has
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T012 Add planner unit tests for block ID stability, hash-input purity, and receipt shape (`tests/policy-plan.vitest.ts`)
-- [ ] T013 Add byte-stable parity fixtures per runtime x {first, repeat, Gate, read-only, failure} (`tests/parity/policy-plan-serializer-parity.vitest.ts`, `tests/parity/fixtures/policy-plan/`)
-- [ ] T014 Add the raw-data-leakage adversarial negative control (`tests/policy-plan.vitest.ts`)
-- [ ] T015 Confirm zero output diff across the full fixture matrix against the T002 baseline (`tests/parity/policy-plan-serializer-parity.vitest.ts`)
+- [x] T012 Add planner unit tests for block ID stability, hash-input purity, and receipt shape (`tests/policy-plan.vitest.ts`)
+- [x] T013 Add byte-stable parity fixtures per runtime x {first, repeat, Gate, read-only, failure} (`tests/parity/policy-plan-serializer-parity.vitest.ts`, `tests/parity/fixtures/policy-plan/`)
+- [x] T014 Add the raw-data-leakage adversarial negative control (`tests/policy-plan.vitest.ts`)
+- [x] T015 Confirm zero output diff across the full fixture matrix against the T002 baseline (`tests/parity/policy-plan-serializer-parity.vitest.ts`)
 - [ ] T016 Run the whole-package typecheck and full Vitest suite
 <!-- /ANCHOR:phase-3 -->
 

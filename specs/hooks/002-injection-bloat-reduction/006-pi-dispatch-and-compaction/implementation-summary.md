@@ -8,20 +8,20 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction"
-    last_updated_at: "2026-08-07T03:34:04.398Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Verified Pi compact shadow implementation"
+    recent_action: "Verified Pi shadow controls"
     next_safe_action: "Keep the prototype disabled until the activation phase reviews the executed candidate"
     blockers:
       - "Prototype activation remains deferred; the compact candidate is never emitted"
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:df3fd2ec91d81658d1ae21ea9043a3fb892c25d0a4331d455dbc97139c1a8019"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-006"
       parent_session_id: null
     completion_pct: 100
@@ -44,7 +44,7 @@ _memory:
 | **Spec Folder** | 006-pi-dispatch-and-compaction |
 | **Completed** | 2026-08-06 (implementation verified; activation deferred) |
 | **Level** | 2 |
-| **Status** | Planned (activation deferred) |
+| **Status** | Complete — shadow-only; candidate flag remains off |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -102,7 +102,7 @@ The required `sk-code` whole drift bundle had one unrelated repository-wide fail
 | Fail-open negative control (flag on/off, `prompt-advisor.ts`) | Both parameterized cases passed; standalone runtime proof passed, exit 0 |
 | Shadow-mode output diff vs. 554 B baseline | Full emitted suffix is byte-identical at 554 B with flag off and on; standalone proof passed, exit 0 |
 | Executed byte count vs. 177 B ceiling | Compact candidate measured at 165 B UTF-8; 12 B below ceiling; no realized saving claimed |
-| Compaction and resume reset | `SUPPRESSED_SAME` becomes `UNSEEN` after `session_compact` and resume; focused suite passed |
+| Compaction and resume reset | Without an observed host receipt, both compaction and resume/fork paths remain `UNSEEN` and emit the full directive; focused suite passed |
 | Typecheck and targeted alignment | mcp-server `npm run typecheck` exit 0; targeted alignment scan exit 0 |
 | Packet strict validation | Exit 2 only for stale generated `graph-metadata.json` source fingerprint; authored validation checks passed; generated file intentionally untouched |
 <!-- /ANCHOR:verification -->
@@ -115,7 +115,7 @@ The required `sk-code` whole drift bundle had one unrelated repository-wide fail
 1. **Shadow-only.** The compact candidate is measured and receipt-tracked but never selected for emission. Activation remains a later phase decision.
 2. **No realized saving.** The 165 B count is an executed candidate size, not a production reduction. The production directive remains 554 B.
 3. **Adjacent test path.** The existing Pi advisor coverage lives in `dispatch-preflight-lint.test.ts`; no separate `prompt-advisor.test.ts` file was present, so that adjacent file was extended.
-4. **Scope-limited documentation.** The requested checklist and implementation summary were updated. `spec.md`, `plan.md`, and `tasks.md` remain unchanged because they were outside the requested change list.
+4. **Scope-limited documentation.** The phase status and continuity metadata are reconciled; `plan.md` and `tasks.md` remain unchanged because the implementation scope did not require rewriting their authored plan.
 <!-- /ANCHOR:limitations -->
 
 ---

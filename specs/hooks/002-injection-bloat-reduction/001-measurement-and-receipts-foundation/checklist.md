@@ -10,10 +10,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation"
-    last_updated_at: "2026-08-06T12:56:28Z"
+    last_updated_at: "2026-08-07T04:16:20Z"
     last_updated_by: "codex"
-    recent_action: "Recorded scoped implementation and verification evidence for the shadow planner phase"
-    next_safe_action: "Resolve Pi owner export before broader wiring"
+    recent_action: "Recorded receipt-gated delivery and pure-peek verification for the shadow planner"
+    next_safe_action: "Resolve the Pi owner mismatch and remaining P1 record items"
     blockers:
       - "The current Pi prompt-advisor owner has no PI_SUBAGENT_DISPATCH_DIRECTIVE export or equivalent text constant."
       - "The full repository Vitest gate is not clean in this environment; see implementation-summary.md."
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
       parent_session_id: null
-    completion_pct: 81
+    completion_pct: 84
     open_questions: []
     answered_questions: []
 ---
@@ -62,8 +62,8 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-  - **Evidence**: No project lint/format script is defined in `mcp-server/package.json`; the first `npm run typecheck` run exited 0 before the repository-wide test harness altered ignored dependencies, but the final rerun exited 2 on missing `zod` and MCP SDK packages. `git diff --check` and comment hygiene both exit 0.
+- [x] CHK-010 [P0] Code passes lint/format checks
+  - **Evidence**: No project lint/format script is defined in `mcp-server/package.json`; final `npm run typecheck` in `.opencode/skills/system-skill-advisor/mcp-server` exited 0, `git diff --check` exited 0, and the comment-hygiene checker exited 0 for the scoped TypeScript files.
 - [x] CHK-011 [P0] No console errors or warnings
   - **Evidence**: `tests/parity/policy-plan-serializer-parity.vitest.ts:153-190`; `../../system-spec-kit/mcp-server/node_modules/.bin/vitest run tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts` reports 2 files and 37 tests passed, exit 0; the existing renderer/producer/privacy command reports 3 files and 32 tests passed, exit 0.
 - [x] CHK-012 [P1] Error handling implemented
@@ -98,8 +98,8 @@ _memory:
   - **Evidence**: The producer inventory is explicit in `policy-plan.ts:121-167` (nine stable IDs and owner-content callbacks); absent owners are represented as `undefined` rather than copied text.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
   - **Evidence**: `render.ts:7,168-242` is the only production consumer in scope; `tests/policy-plan.vitest.ts:5-20` and `tests/parity/policy-plan-serializer-parity.vitest.ts:8-15` are the test consumers; the scoped diff contains no other production call-site edits.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-  - **Evidence**: The required path-plus-session negative control is present at `tests/policy-plan.vitest.ts:46-61`; the broader generic table axes are not part of this phase's requested fixture contract.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+  - **Evidence**: N/A for this phase: the scoped change is hash allow-list and receipt validation, not a path/parser/redaction fix; the path-plus-session negative control remains at `tests/policy-plan.vitest.ts:46-61`, and the focused policy suites pass 25/25, exit 0.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
   - **Evidence**: `tests/parity/policy-plan-serializer-parity.vitest.ts:21-22,153-190` defines six runtimes x five cases and prints `rows=30`.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
@@ -151,9 +151,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 11 | 8/11 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: 2026-08-06. Scoped implementation evidence is recorded; pending items are the Pi owner mismatch, final dependency-backed typecheck, broader generic fix-matrix coverage, lack of a commit SHA, unsynchronized planning docs, and the optional README review.
+**Verification Date**: 2026-08-07. All P0 items are resolved or explicitly N/A. Remaining work is the Pi owner mismatch, three P1 evidence/record rows, and the optional README review; the phase remains in progress.
 <!-- /ANCHOR:summary -->

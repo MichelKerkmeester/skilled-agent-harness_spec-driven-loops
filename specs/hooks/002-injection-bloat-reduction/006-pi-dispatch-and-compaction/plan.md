@@ -20,7 +20,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:26a1925e4a152eeb128ec31b3798e3380a8d838b9eaf5ca733d5d8c2688a311b"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-006"
       parent_session_id: null
     completion_pct: 0

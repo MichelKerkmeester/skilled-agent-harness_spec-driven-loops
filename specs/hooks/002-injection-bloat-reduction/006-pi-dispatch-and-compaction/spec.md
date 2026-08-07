@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Pi Dispatch and Compaction"
 description: "Planning spec: design a semantic-preserving compact rewrite of Pi's subagent-dispatch directive and a compaction-aware dedup reset, behind a prototype flag, while retaining the full dispatch guard until an executed, size-proven, semantics-preserving replacement exists."
-status: planned
-completion_pct: 0
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "pi dispatch directive compaction"
   - "pi subagent dispatch shrink"
@@ -13,24 +13,23 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for Pi dispatch directive compaction"
-    next_safe_action: "Enumerate the five preserved dispatch semantics before any prototype code"
-    blockers:
-      - "001-measurement-and-receipts-foundation has not yet been built"
+    last_updated_at: "2026-08-07T04:31:31Z"
+    last_updated_by: "codex"
+    recent_action: "Verified Pi shadow controls"
+    next_safe_action: "Keep the prototype disabled pending activation review"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
       - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
     session_dedup:
-      fingerprint: "sha256:28d24fe8bf899e71cc0de1ea084ac4cb50ea372006859480a23e30ad547b4a13"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-006"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Can a Pi compact serializer preserve all five current dispatch semantics, with parent/child and explicit-user-override receipts, and what is its executed exact size?"
-      - "Does compaction reliably signal a fresh epoch for every Pi adapter path, or are there compaction variants that skip the reset?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The five semantic markers are covered by the focused Pi test matrix; the 165-byte candidate remains shadow-only and is never emitted."
+      - "The tested session_compact and resume/fork session_start paths reset the shadow epoch; without an observed host receipt, confirmation remains UNSEEN and fail-open."
 ---
 # Feature Specification: Pi Dispatch and Compaction
 
@@ -46,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete (shadow-only; candidate flag remains off) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

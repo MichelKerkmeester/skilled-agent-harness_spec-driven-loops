@@ -197,7 +197,7 @@
     ],
     "causal_summary": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely activate on byte savings alone",
     "created_at": "2026-08-06T11:10:46.674Z",
-    "last_save_at": "2026-08-06T18:29:53.674Z",
+    "last_save_at": "2026-08-07T04:40:30.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8cfbbcba57be1944133c6e04467132eb6b9881edb9ed8c4a8652284c70a0f401",
+    "source_fingerprint": "sha256:e06377a810d731ae509f7b3b87b882d124f29360f6bead90b627e635c69dc45c",
     "source_doc_hashes": {
-      "spec.md": "a294143754adcc173d795050b0ffbc4ee9d971accafd45fe1e03973d4a9d7d62",
-      "plan.md": "cc5964b54feada3afa6dae14401ea5812950515ab7465d4c37b89e07dab7a1ec",
-      "tasks.md": "e794e674c76226d77f42082faf3c48439d15661e65c40c675acf7bee8eee1648",
-      "checklist.md": "b84a9608e1fc3e70575a2941f25d3a22bfb08aca6bdfbb74308e28a160fd3ba4",
-      "implementation-summary.md": "dd066749855218b97e25d6731cb0cf4d0a6e062f15e9ecec1b53e4f074bdb75f"
+      "spec.md": "7095b5419754519f72bcf57623a86d877300e3f15dc5e743b85f0adf125b1b35",
+      "plan.md": "222627f1f36874b6c68c5d10fc30ad8aaf7970cc19e4470d25009857d40956b5",
+      "tasks.md": "a42b5d4b1e9af951d62d40a2ec85f1a8984d07b2cd1643d1a5972b33591e67bf",
+      "checklist.md": "924f210819640f7159f2da9fbd3ef5951d6b2e850f1cead3f3076effbb7a9378",
+      "implementation-summary.md": "3069d9548feec7495cfde90fa40b1dd461cbb7c1936571c6a58bd11f959ef3a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

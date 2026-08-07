@@ -10,7 +10,11 @@ import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
 } from '../lib/render.js';
-import { resetShadowDeliveryState } from '../lib/policy-plan.js';
+import {
+  buildAdvisorRenderPlan,
+  resetShadowDeliveryState,
+  ROUTE_ADVISOR_ID,
+} from '../lib/policy-plan.js';
 import type { AdvisorBriefRenderableResult, AdvisorBriefRenderOptions } from '../lib/render.js';
 
 interface NegativeControlCase {
@@ -116,10 +120,16 @@ describe('shadow delivery behavioral negative controls', () => {
       resetShadowDeliveryState();
       clearShadowRouteOnlyLog();
       const baseline = emittedResponse(result);
+      const routeBlock = buildAdvisorRenderPlan(baseline).blocks.find((block) => (
+        block.id === ROUTE_ADVISOR_ID
+      ));
       const deliveryState = {
         sessionId: `negative-control-${name}`,
         sessionIdentityConfirmed: true,
         deliveryConfirmed: true,
+        receipt: routeBlock
+          ? { plannedHash: routeBlock.contentHash, lifecycleEpoch: 0 }
+          : undefined,
       } as const;
       const shadowOptions: AdvisorBriefRenderOptions = { deliveryState };
 
@@ -134,6 +144,10 @@ describe('shadow delivery behavioral negative controls', () => {
       expect(Buffer.from(first, 'utf8').equals(Buffer.from(baseline, 'utf8'))).toBe(true);
       expect(Buffer.from(repeated, 'utf8').equals(Buffer.from(baseline, 'utf8'))).toBe(true);
       expect(Buffer.from(lifecycleReplay, 'utf8').equals(Buffer.from(baseline, 'utf8'))).toBe(true);
+      console.log(
+        `BYTE_PARITY name=${name} baselineBytes=${Buffer.byteLength(baseline, 'utf8')} `
+        + `firstEqual=true repeatedEqual=true lifecycleEqual=true`,
+      );
 
       const logs = getShadowRouteOnlyLog();
       expect(logs.length).toBeGreaterThan(0);
@@ -153,14 +167,21 @@ describe('shadow delivery behavioral negative controls', () => {
 
   it('keeps the shadow route-only result out of the returned response', () => {
     const result = advisorResult();
+    const baseline = emittedResponse(result);
+    const routeBlock = buildAdvisorRenderPlan(baseline).blocks.find((block) => (
+      block.id === ROUTE_ADVISOR_ID
+    ));
     const options: AdvisorBriefRenderOptions = {
       deliveryState: {
         sessionId: 'returned-response-control',
         sessionIdentityConfirmed: true,
         deliveryConfirmed: true,
+        receipt: {
+          plannedHash: routeBlock?.contentHash ?? '',
+          lifecycleEpoch: 0,
+        },
       },
     };
-    const baseline = emittedResponse(result);
     emittedResponse(result, options);
     const repeated = emittedResponse(result, options);
     const log = getShadowRouteOnlyLog().at(-1);

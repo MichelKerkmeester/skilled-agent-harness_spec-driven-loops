@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -37,6 +36,8 @@ const sourcePhaseDirectory = path.join(
   repositoryRoot,
   '.opencode/specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation',
 );
+const isolatedTemporaryRoot = process.platform === 'darwin' ? '/private/tmp' : '/tmp';
+const specTreeMarker = `${path.sep}.opencode${path.sep}specs${path.sep}`;
 
 function runCommand(command, args, environment = {}) {
   const result = spawnSync(command, args, {
@@ -52,13 +53,33 @@ function runCommand(command, args, environment = {}) {
 }
 
 function withTemporaryDirectory(callback) {
-  const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'guardrail-controls-'));
+  const temporaryRoot = fs.realpathSync(isolatedTemporaryRoot);
+  assert.equal(temporaryRoot.includes(specTreeMarker), false, 'The fixture root must stay outside repository spec trees');
+  const temporaryDirectory = fs.mkdtempSync(path.join(temporaryRoot, 'guardrail-controls-'));
   try {
     return callback(temporaryDirectory);
   } finally {
     fs.rmSync(temporaryDirectory, { recursive: true, force: true });
   }
 }
+
+test('fixture root ignores an ambient TMPDIR inside the repository spec tree', () => {
+  const previousTmpdir = process.env.TMPDIR;
+  process.env.TMPDIR = sourcePhaseDirectory;
+  try {
+    withTemporaryDirectory((temporaryDirectory) => {
+      const realTemporaryDirectory = fs.realpathSync(temporaryDirectory);
+      assert.equal(realTemporaryDirectory.includes(specTreeMarker), false);
+      assert.equal(path.dirname(realTemporaryDirectory), fs.realpathSync(isolatedTemporaryRoot));
+    });
+  } finally {
+    if (previousTmpdir === undefined) {
+      delete process.env.TMPDIR;
+    } else {
+      process.env.TMPDIR = previousTmpdir;
+    }
+  }
+});
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

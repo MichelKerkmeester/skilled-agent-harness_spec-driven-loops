@@ -10,16 +10,16 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction"
-    last_updated_at: "2026-08-06T17:42:17Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Recorded Pi compact shadow verification"
+    recent_action: "Recorded Pi compact shadow verification with receipt-gated fail-open replay"
     next_safe_action: "Keep the prototype disabled until the activation phase reviews the executed candidate"
     blockers:
       - "Prototype activation remains deferred; the compact candidate is never emitted"
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:b0bd7aedb93decdd25530eb0a843196ff2c3a0a2584305548c0a64d5604ceda6"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-006"
       parent_session_id: null
     completion_pct: 100
@@ -71,7 +71,7 @@ _memory:
 
 - [x] CHK-020 [P0] All acceptance criteria met — Evidence: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:218-315`; standalone proof reported `semantics:5`, `fullDirectiveBytes:554`, `failOpenFlags:2`, and `assertions:"all passed"`, exit 0.
 - [x] CHK-021 [P0] Manual testing complete — Evidence: `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:353-356`; local `.opencode/skills/system-skill-advisor/mcp-server/node_modules/.bin/vitest run .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` reported 1/1 files and 43/43 tests passed, exit 0.
-- [x] CHK-022 [P1] Edge cases tested — Evidence: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:284-315`; compaction and resume tests both assert `UNSEEN` replay after `SUPPRESSED_SAME`, with the focused suite 43/43 passed.
+- [x] CHK-022 [P1] Edge cases tested — Evidence: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:284-315`; compaction and resume tests assert the full directive remains `UNSEEN` without an observed host receipt across both lifecycle boundaries, with the focused suite 43/43 passed.
 - [x] CHK-023 [P1] Error scenarios validated — Evidence: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:274-282`; parameterized advisor-failure test covers flag off and on and asserts the full directive at 554 bytes.
 <!-- /ANCHOR:testing -->
 
@@ -129,9 +129,9 @@ _memory:
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-08-06
+**Verification Date**: 2026-08-07
 
 **Whole-gate deviation**: `bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exited 1 because the repository-wide alignment guard reported 472 pre-existing findings across 18,297 files. Stack-folder verification passed and router-sync passed 10/10; a targeted scan of the two changed directories passed with 0 findings.
 
-**Packet validation deviation**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction --strict --verbose` exited 2 with all authored checks passing; the only error is the stale `graph-metadata.json` source fingerprint and the related continuity-freshness warning. That generated file was outside the authorized change list and was not modified.
+**Packet validation**: Required generated metadata is refreshed after this record edit; final recursive strict validation is the authoritative completion gate.
 <!-- /ANCHOR:summary -->

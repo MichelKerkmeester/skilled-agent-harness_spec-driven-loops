@@ -39,18 +39,18 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
       ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
       ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
       ".opencode/specs/hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction/checklist.md",
       ".opencode/specs/hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction/implementation-summary.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
@@ -78,12 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -96,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +103,12 @@
       },
       {
         "name": "Pi Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,12 +127,6 @@
       },
       {
         "name": "Eliminated Alternatives",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Design",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`PISUBAGENTDISPATCHDIRECTIVE` in `prompt-advisor.ts` emits a 554-byte dispatch directive on every non-empty parent input, even on advisor failure, and by policy is never copied into child prompts",
     "created_at": "2026-08-06T11:07:29.467Z",
-    "last_save_at": "2026-08-07T03:34:04.549Z",
+    "last_save_at": "2026-08-07T04:38:36.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00343e24102934b9a5be20c0b6b8972c1766ed7ed5252b75143d8dc24531e536",
+    "source_fingerprint": "sha256:a2a3b8100291642c9d9cad2709a77e63278d6608e1644cb451202cdc3ef953b8",
     "source_doc_hashes": {
-      "spec.md": "733d1ca81c36ce2ae1246ade27699081667e120e3ae97ef8a0714cac94145907",
-      "plan.md": "deed6acda1d011a47b50c10183f094095166812fed6376f312096dddce7548f6",
-      "tasks.md": "2532902011d64a8ba5175f4fc8b1d4362fc741dfead7005e5dfcebe82e232764",
-      "checklist.md": "fd25518b3d9aee6780cb09f9e737f93ad3e1a36424734722b0976684702729b5",
-      "implementation-summary.md": "ce8d1ed93ce5b6fbf3b4441e900f4a83bd760463163809540ee27e311459290c"
+      "spec.md": "ac3367970a896d65c15c35e53097ae550cad25965316465f531df9b47ed3a27e",
+      "plan.md": "eec7eaf64c6adbbada841cf7cb612cab4954c4d7fcc492e6b0aec965309188eb",
+      "tasks.md": "ceebfd216bab0604b766689b64010da68be228be9684dfc87b97a0416d458ab5",
+      "checklist.md": "5e04b1615060dae41f0133086592248ca2f9cb6aa3e2bff1dda28468f25ca972",
+      "implementation-summary.md": "a36ec34c3bd120413f8943266998786d72b7f0911099f39213a02e121e614c5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

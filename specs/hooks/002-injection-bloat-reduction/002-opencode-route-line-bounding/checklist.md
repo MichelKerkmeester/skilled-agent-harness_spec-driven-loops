@@ -10,10 +10,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding"
-    last_updated_at: "2026-08-06T00:00:00Z"
+    last_updated_at: "2026-08-07T04:16:20Z"
     last_updated_by: "codex"
-    recent_action: "Recorded implementation and verification evidence for the bounded renderer"
-    next_safe_action: "Carry the off-by-default candidate into the later activation gate"
+    recent_action: "Reconciled the completed bounded-renderer evidence"
+    next_safe_action: "Keep the candidate flag off pending the activation gate"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
@@ -52,7 +52,7 @@ _memory:
 - [x] CHK-002 [P0] Technical approach defined in plan.md
   - **Evidence**: `plan.md:72-116`; `sed -n '72,116p' .opencode/specs/hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding/plan.md` (exit 0)
 - [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence**: `policy-plan.ts:127-179`; `npx vitest run tests/policy-plan.vitest.ts` — 1 file and 5 tests passed, exit 0
+  - **Evidence**: `policy-plan.ts:127-179`; focused policy command — 2 files and 25 tests passed, exit 0
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,7 +63,7 @@ _memory:
 - [x] CHK-010 [P0] Code passes lint/format checks
   - **Evidence**: `mk-skill-advisor.js:124-155`, `policy-plan.ts:217-272`; `node --check .opencode/plugins/mk-skill-advisor.js && node --check .opencode/plugins/tests/mk-skill-advisor.test.cjs && git diff --check` — exit 0
 - [x] CHK-011 [P0] No console errors or warnings
-  - **Evidence**: `mk-skill-advisor.test.cjs:191-305`; `node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs` — 19 passed, 0 failed, exit 0
+  - **Evidence**: `mk-skill-advisor.test.cjs:191-305`; plugin command — 43 passed, 0 failed, exit 0
 - [x] CHK-012 [P1] Error handling implemented
   - **Evidence**: `mk-skill-advisor.js:105-109,124-127`; `mk-skill-advisor.test.cjs:291-305`; plugin test command — 19 passed, exit 0
 - [x] CHK-013 [P1] Code follows project patterns
@@ -76,13 +76,13 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
-  - **Evidence**: `mk-skill-advisor.js:105-155`, `policy-plan.ts:169-176,217-272`, `mk-skill-advisor.test.cjs:215-305`; plugin + policy-plan commands — 19 + 5 tests passed, exit 0
+  - **Evidence**: `mk-skill-advisor.js:105-155`, `policy-plan.ts:169-176,217-272`, `mk-skill-advisor.test.cjs:215-305`; plugin + policy-plan commands — 43 + 25 tests passed, exit 0
 - [x] CHK-021 [P0] Manual/negative-control testing complete (flag-off byte-identical parity)
-  - **Evidence**: `mk-skill-advisor.test.cjs:236-255`; `node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs` — flag-off assertions passed, 19/19, exit 0
+  - **Evidence**: `mk-skill-advisor.test.cjs:236-255`; plugin command — flag-off assertions passed, 43/43, exit 0
 - [x] CHK-022 [P1] Edge cases tested (target list at exactly the cap boundary, empty target list)
-  - **Evidence**: `mk-skill-advisor.test.cjs:291-305`; plugin test command — boundary, empty, and null cases passed, exit 0
+  - **Evidence**: `mk-skill-advisor.test.cjs:291-305`; plugin command — boundary, empty, and null cases passed, exit 0
 - [x] CHK-023 [P1] Error scenarios validated (missing/malformed `compiledRouteSummary`)
-  - **Evidence**: `mk-skill-advisor.js:105-109,124-127`; `mk-skill-advisor.test.cjs:291-305`; plugin test command — malformed/null cases passed, exit 0
+  - **Evidence**: `mk-skill-advisor.js:105-109,124-127`; `mk-skill-advisor.test.cjs:291-305`; plugin command — malformed/null cases passed, exit 0
 <!-- /ANCHOR:testing -->
 
 ---

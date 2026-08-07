@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Full-First + Route-Only Repeats"
 description: "Planning spec: full policy on first delivery and verified lifecycle replay, route-only (~43 B) on eligible repeats for Claude/Codex/Devin and the OpenCode component, via a delivery-state machine gated shadow-first behind an independent flag until behavioral negative controls pass."
-status: planned
-completion_pct: 0
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "full first route only repeats"
   - "delivery state machine unseen delivered suppressed"
@@ -12,12 +12,11 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for the full-first route-only-repeats delivery state machine"
-    next_safe_action: "Author plan.md phase breakdown for the state machine and behavioral negative controls"
-    blockers:
-      - "Blocked on phases 001-003 shipping receipts, bounding, and dedup first"
+    last_updated_at: "2026-08-07T04:39:14Z"
+    last_updated_by: "codex"
+    recent_action: "Verified receipt-gated shadow reduction proof"
+    next_safe_action: "Keep route-only delivery disabled pending activation review"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
       - ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
@@ -25,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-004"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete (shadow-only; candidate flag remains off) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

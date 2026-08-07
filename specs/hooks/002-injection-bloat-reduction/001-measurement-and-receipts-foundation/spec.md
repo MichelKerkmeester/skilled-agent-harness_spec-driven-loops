@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Measurement & Receipts Foundation"
 description: "Planning spec: add a runtime-neutral shadow planner beside render.ts with canonical block IDs, privacy-safe content/policy-set hashes, and delivery-receipt fields, proven against byte-stable parity fixtures across all six runtime serializers with zero output change."
-status: planned
-completion_pct: 0
+status: in_progress
+completion_pct: 84
 trigger_phrases:
   - "measurement and receipts foundation"
   - "shadow planner canonical block ids"
@@ -12,10 +12,10 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for the measurement-and-receipts foundation phase"
-    next_safe_action: "Author plan.md phase breakdown for the shadow planner and parity fixtures"
+    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the scoped planner evidence and remaining phase-level blockers"
+    next_safe_action: "Resolve the Pi owner mismatch and remaining P1 record items"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 84
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In progress (scoped planner verified; Pi owner and P1 record items remain) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

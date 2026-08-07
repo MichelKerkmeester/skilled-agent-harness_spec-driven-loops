@@ -7,18 +7,19 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering"
-    last_updated_at: "2026-08-06T18:42:25.802Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the shadow-only Gate-3 delivery predicate and negative-control matrix"
+    recent_action: "Verified Gate-3 shadow controls"
     next_safe_action: "Keep suppression unconsumed until runtime-specific activation evidence exists"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
     session_dedup:
-      fingerprint: "sha256:1b942d977a250ecf2ea8ec677e9bf3e9b6ca737dfb34e8bebc85be744bef42fd"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-005"
       parent_session_id: null
     completion_pct: 100
@@ -39,7 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-gate3-relay-edge-triggering |
-| **Completed** | 2026-08-06 — shadow implementation and scoped verification complete; activation deferred |
+| **Completed** | 2026-08-07 — shadow implementation and scoped verification complete; activation deferred |
+| **Status** | Complete — shadow-only; candidate flag remains off |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -69,7 +71,7 @@ The core now exposes a delivery-only shadow predicate and observer. The candidat
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The observer returns the caller-supplied relay unchanged and reports `suppressionConsumed: false`. The full-mock core suite passes 81/81 with exit 0; the flag-off parity assertions compare UTF-8 bytes directly; the matrix records 11 rows with only `repeated unchanged positive` eligible; and the scoped `rg` checks find no predicate call inside `classifyIntent` or `evaluateMutation`.
+The observer returns the caller-supplied relay unchanged and reports `suppressionConsumed: false`. The full-mock core suite passes 79/82 with 3 skipped and exit 0; the flag-off parity assertions compare UTF-8 bytes directly; the matrix records 11 rows with only `repeated unchanged positive` eligible; and the scoped `rg` checks find no predicate call inside `classifyIntent` or `evaluateMutation`. The fallback state hash now composes task and scope fingerprints structurally, and the collision pair test passes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,13 +95,14 @@ The observer returns the caller-supplied relay unchanged and reports `suppressio
 
 | Check | Result |
 |-------|--------|
-| 11-row gate-matrix negative-control suite | 11 rows asserted; only repeated unchanged positive eligible; full suite 81 passed, 0 failed, 0 skipped, exit 0 |
+| 11-row gate-matrix negative-control suite | 11 rows asserted; only repeated unchanged positive eligible; full suite 82 tests, 79 passed, 0 failed, 3 skipped, exit 0 |
+| Delimiter-collision fallback identity | `{"a|b","c"}` and `{"a","b|c"}` produce different `buildGate3StateHash` values; test exit 0 |
 | Shadow-mode output diff vs. baseline | Flag-off and shadow-on assertions compare the full UTF-8 relay bytes; planned hash equals emitted hash; exit 0 |
 | `rg` proof of enforcement/classification isolation | Full call-site scan: definition at core:228 and observer call at core:293; classify slice: no matches, exit 1; enforcement slice: no matches, exit 1 |
 | `node --check` on both modified JavaScript files | Exit 0 |
 | OpenCode drift guards | Stack folders 6/6 pass; router sync 10/10 pass; repository alignment scan remains the known 472-finding backlog, exit 1 |
 | Codex hook installer check | Worktree-safe check reports existing user-global drift; no installer mutation performed |
-| Strict spec packet validation | Exit 2: generated metadata fingerprint is stale because `graph-metadata.json` is outside this phase's allowed files; continuity freshness also reports the expected dirty packet paths |
+| Strict spec packet validation | Pending final recursive run after required metadata regeneration |
 <!-- /ANCHOR:verification -->
 
 ---

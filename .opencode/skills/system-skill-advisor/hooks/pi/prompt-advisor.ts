@@ -79,7 +79,7 @@ interface PiDeliveryEpochSnapshot {
 }
 
 interface PiDeliveryStateMachine {
-  inspect(input: PiDeliveryStateRequest): PiDeliveryStateSnapshot;
+  decideSuppression(input: PiDeliveryStateRequest): PiDeliveryStateSnapshot;
   confirmDelivery(input: PiDeliveryStateRequest): PiDeliveryStateSnapshot;
   advanceEpoch(signals: PiDeliveryStateSignals): PiDeliveryEpochSnapshot;
   clear(): void;
@@ -231,7 +231,7 @@ async function observePiCompactDirective(
     blockId: policyPlan.RUNTIME_PI_DISPATCH_ID,
     contentHash: compactHash,
   };
-  const decision = machine.inspect(request);
+  const decision = machine.decideSuppression(request);
   machine.confirmDelivery({ ...request, deliveryConfirmed: true });
   updateShadowReceipt(store, {
     compactHash,

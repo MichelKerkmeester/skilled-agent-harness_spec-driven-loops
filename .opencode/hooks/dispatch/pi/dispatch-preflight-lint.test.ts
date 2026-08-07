@@ -281,7 +281,7 @@ describe("Pi compact directive shadow boundary", () => {
     },
   );
 
-  it("replays the full directive after a compaction reset", async () => {
+  it("keeps the full directive without a host receipt and resets after compaction", async () => {
     setCompactPrototypeFlag(true);
     const first = await invokePromptAdvisorInput("run the task", "session-compact");
     const firstReceipt = getPiDispatchShadowReceipt();
@@ -289,7 +289,7 @@ describe("Pi compact directive shadow boundary", () => {
     expect(dispatchDirectiveSuffix(first.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
 
     await invokePromptAdvisorInput("run the next task", "session-compact");
-    expect(getPiDispatchShadowReceipt()?.state).toBe("SUPPRESSED_SAME");
+    expect(getPiDispatchShadowReceipt()?.state).toBe("UNSEEN");
 
     await invokePromptLifecycle("session_compact", { type: "session_compact" }, "session-compact");
     const afterCompaction = await invokePromptAdvisorInput("run after compaction", "session-compact");
@@ -300,11 +300,11 @@ describe("Pi compact directive shadow boundary", () => {
     expect(dispatchDirectiveSuffix(afterCompaction.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
   });
 
-  it("replays the full directive after a resume session boundary", async () => {
+  it("keeps the full directive without a host receipt across a resume boundary", async () => {
     setCompactPrototypeFlag(true);
     await invokePromptAdvisorInput("run the task", "session-resume");
     await invokePromptAdvisorInput("run the next task", "session-resume");
-    expect(getPiDispatchShadowReceipt()?.state).toBe("SUPPRESSED_SAME");
+    expect(getPiDispatchShadowReceipt()?.state).toBe("UNSEEN");
 
     await invokePromptLifecycle("session_start", { reason: "resume" }, "session-resume");
     const afterResume = await invokePromptAdvisorInput("run after resume", "session-resume");

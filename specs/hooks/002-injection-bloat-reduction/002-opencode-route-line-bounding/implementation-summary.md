@@ -7,13 +7,14 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding"
-    last_updated_at: "2026-08-06T13:31:26Z"
+    last_updated_at: "2026-08-07T04:16:20Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the bounded renderer, reveal path, and compiled-route policy receipt"
-    next_safe_action: "Evaluate the off-by-default candidate before a later activation phase"
+    recent_action: "Reconciled the completed bounded renderer and flag-off parity evidence"
+    next_safe_action: "Keep the candidate flag off pending the activation gate"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
@@ -40,6 +41,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-opencode-route-line-bounding |
 | **Completed** | 2026-08-06 - implementation and verification complete |
+| **Status** | Complete — shadow-only; candidate flag remains off |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -132,11 +134,11 @@ The strict checklist completion output was `Summary: 26/26 items (100%)` and `RE
 
 | Check | Result |
 |-------|--------|
-| Bounded-line target recoverability fixture in `mk-skill-advisor.test.cjs` | Passed: 19/19, exit 0 |
+| Bounded-line target recoverability fixture in `mk-skill-advisor.test.cjs` | Passed: 43/43, exit 0 |
 | Flag-off byte-identical parity fixture in `mk-skill-advisor.test.cjs` | Passed: direct renderer and plugin transform assertions, exit 0 |
 | Digest-stability fixture pair in `mk-skill-advisor.test.cjs` | Passed: reorder stable and changed membership different, exit 0 |
-| Full `mk-skill-advisor.test.cjs` suite regression check | Passed: 19 tests, 19 passed, 0 failed, exit 0 |
-| Policy-plan registry and hash proof | Passed: 5 Vitest tests plus explicit ID/full-content/order-sensitivity assertions, exit 0 |
+| Full `mk-skill-advisor.test.cjs` suite regression check | Passed: 43 tests, 43 passed, 0 failed, exit 0 |
+| Policy-plan registry and hash proof | Passed: focused policy command with 25 tests, plus explicit ID/full-content/order-sensitivity assertions, exit 0 |
 | Strict packet validation | Passed: `RESULT: PASSED`, errors 0, warnings 0, exit 0 |
 <!-- /ANCHOR:verification -->
 

@@ -63,6 +63,8 @@ export interface DeliveryReceipt {
   readonly hostReceiptStatus: HostReceiptStatus;
 }
 
+export type DeliveryReceiptMatch = Pick<DeliveryReceipt, 'plannedHash' | 'lifecycleEpoch'>;
+export type DeliveryStateReceipt = DeliveryReceipt | DeliveryReceiptMatch | HostReceiptStatus;
 export type DeliveryReceiptInput = DeliveryReceipt;
 
 export type DeliveryStateName = 'UNSEEN' | 'DELIVERED' | 'SUPPRESSED_SAME';
@@ -90,7 +92,7 @@ export interface DeliveryStateRequest extends DeliveryStateSignals {
   readonly blockId: string;
   readonly contentHash: string;
   readonly deliveryConfirmed?: boolean;
-  readonly receipt?: DeliveryReceipt | HostReceiptStatus;
+  readonly receipt?: DeliveryStateReceipt;
 }
 
 export interface DeliveryStateSnapshot {
@@ -344,7 +346,7 @@ export function deliveryEpochReasons(
 }
 
 function receiptConfirmsDelivery(
-  receipt: DeliveryReceipt | HostReceiptStatus | undefined,
+  receipt: DeliveryStateReceipt | undefined,
 ): boolean {
   if (receipt === 'configured' || receipt === 'observed') {
     return true;
@@ -352,16 +354,17 @@ function receiptConfirmsDelivery(
   if (!receipt || typeof receipt !== 'object') {
     return false;
   }
-  return receipt.hostReceiptStatus === 'configured' || receipt.hostReceiptStatus === 'observed';
+  return 'hostReceiptStatus' in receipt
+    && (receipt.hostReceiptStatus === 'configured' || receipt.hostReceiptStatus === 'observed');
 }
 
 function receiptMatchesDelivery(
-  receipt: DeliveryReceipt | HostReceiptStatus | undefined,
+  receipt: DeliveryStateReceipt | undefined,
   contentHash: string,
   epoch: number,
 ): boolean {
   if (!receipt || typeof receipt !== 'object') {
-    return true;
+    return false;
   }
   return receipt.plannedHash === contentHash && receipt.lifecycleEpoch === epoch;
 }
@@ -453,8 +456,23 @@ export class DeliveryStateMachine {
     return this.sessionFor(signals, false)?.epoch ?? 0;
   }
 
-  /** Inspect and transition one block toward same-content suppression. */
-  public inspect(input: DeliveryStateRequest): DeliveryStateSnapshot {
+  /** Return the current block snapshot without creating or changing state. */
+  public peek(input: DeliveryStateRequest): DeliveryStateSnapshot {
+    const session = this.sessionFor(input, false);
+    if (!session || !validBlockRequest(input)) {
+      return snapshot(input, 'UNSEEN', session?.epoch ?? 0, Boolean(session));
+    }
+
+    const existing = session.blocks.get(input.blockId);
+    if (!existing || existing.epoch !== session.epoch || existing.contentHash !== input.contentHash) {
+      return snapshot(input, 'UNSEEN', session.epoch, true);
+    }
+
+    return snapshot(input, existing.state, session.epoch, true);
+  }
+
+  /** Resolve one block's suppression decision and advance its delivery state. */
+  public decideSuppression(input: DeliveryStateRequest): DeliveryStateSnapshot {
     const epochSnapshot = this.advanceForSignals(input);
     const session = this.sessionFor(input);
     if (!session || !validBlockRequest(input)) {
@@ -568,7 +586,7 @@ export function evaluateDeliveryState(
   input: DeliveryStateRequest,
   machine: DeliveryStateMachine = SHADOW_DELIVERY_STATE_MACHINE,
 ): DeliveryStateSnapshot {
-  return machine.inspect(input);
+  return machine.decideSuppression(input);
 }
 
 /** Confirm one full block delivery using the process-local shadow state. */

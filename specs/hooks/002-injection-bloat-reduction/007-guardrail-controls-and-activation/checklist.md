@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Guardrail Controls and Activation Gate"
-description: "Verification Date: 2026-08-06; all required controls and scope gates passed"
+description: "Verification Date: 2026-08-07; all required controls and scope gates passed"
 trigger_phrases:
   - "guardrail activation gate checklist"
   - "behavioral negative control verification"
@@ -10,15 +10,15 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Verified terminal controls and phase scope"
+    recent_action: "Verified terminal controls and TMPDIR-independent fixture isolation"
     next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     session_dedup:
-      fingerprint: "sha256:f81325c574e64c3ec2228a92573d71c75ccb11242887f15d88e2b721fd8472af"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100
@@ -82,9 +82,9 @@ _memory:
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. — Evidence: `risk-register.md:5-13` classifies each control boundary; `git diff --name-only -- .opencode/specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation` is phase-scoped.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. — Evidence: `activation-matrix.json:22-47` inventories all applicability producers; `node --test activation-matrix.test.mjs` exit 0.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. — Evidence: `activation-matrix.schema.json:96-140` defines cell consumers and `activation-matrix.test.mjs:115-145` consumes them; phase validator exit 0.
-- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. — Evidence: N/A for this phase: no production security/path/parser/redaction fix; `guardrail-negative-controls.test.mjs:53-59,207-272` confines all generated fixtures to a removed temp directory; combined `node --test` exit 0.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. — Evidence: N/A for this phase: no production security/path/parser/redaction fix; `guardrail-negative-controls.test.mjs:55-82` pins fixtures to an isolated root outside `.opencode/specs` even when `TMPDIR` points into the packet, and `:207-272` covers the real controls; combined `node --test` exit 0.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. — Evidence: `activation-matrix.json:6-14,49-80` lists 6 runtimes, 5 candidates, and 30 cells; `activation-matrix.test.mjs:61-75` asserts the same; exit 0.
-- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. — Evidence: `guardrail-negative-controls.test.mjs:277-285` invokes the real validator in an explicit subprocess environment; `node --test guardrail-negative-controls.test.mjs` exit 0.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. — Evidence: `guardrail-negative-controls.test.mjs:66-80` sets `TMPDIR` to the repository packet and proves the fixture remains isolated; `node --test guardrail-negative-controls.test.mjs` exits 0 in both normal and hostile-TMPDIR runs.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. — Evidence: the final scope command is the explicit phase path `git diff --name-only -- .opencode/specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation`; no commit or push is claimed.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -128,5 +128,5 @@ _memory:
 | P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-08-06 — all 20 checklist items verified with file/line and command evidence
+**Verification Date**: 2026-08-07 — all 20 checklist items verified with file/line and command evidence
 <!-- /ANCHOR:summary -->

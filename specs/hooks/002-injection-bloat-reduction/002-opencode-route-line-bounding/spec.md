@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: OpenCode Route-Line Bounding"
 description: "Planning spec: bound/digest OpenCode's uncapped compiled-route target list behind an independent flag, with an explicit reveal/clarification path, gated on phase 001's receipts."
-status: planned
-completion_pct: 0
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "opencode route line bounding"
   - "compiled route target cap"
@@ -12,10 +12,10 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for bounding the OpenCode compiled-route line"
-    next_safe_action: "Author plan.md phase breakdown for the bounded renderer and reveal path"
+    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the completed bounded-renderer evidence"
+    next_safe_action: "Keep the candidate flag off pending the activation gate"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete (shadow-only; candidate flag remains off) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |

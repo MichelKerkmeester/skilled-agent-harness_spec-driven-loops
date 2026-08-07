@@ -10,8 +10,8 @@ import {
   observeRenderedAdvisorPolicy,
   ROUTE_ADVISOR_ID,
   SHADOW_DELIVERY_STATE_MACHINE,
-  type DeliveryReceipt,
   type DeliveryStateMachine,
+  type DeliveryStateReceipt,
   type DeliveryStateName,
   type DeliveryStateSignals,
 } from './policy-plan.js';
@@ -36,7 +36,7 @@ export interface AdvisorBriefRenderOptions {
 export interface ShadowDeliveryRenderOptions extends DeliveryStateSignals {
   readonly stateMachine?: DeliveryStateMachine;
   readonly deliveryConfirmed?: boolean;
-  readonly receipt?: DeliveryReceipt | 'configured' | 'observed' | 'unobserved' | 'unknown';
+  readonly receipt?: DeliveryStateReceipt;
   readonly onShadowLog?: (record: ShadowRouteOnlyLogRecord) => void;
 }
 

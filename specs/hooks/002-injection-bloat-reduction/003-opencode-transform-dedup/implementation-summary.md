@@ -7,13 +7,14 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
+status: "in_progress"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup"
-    last_updated_at: "2026-08-06T14:16:00Z"
+    last_updated_at: "2026-08-07T04:16:20Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the shared identity resolver and two plugin dedup gates"
-    next_safe_action: "Review the downstream phase against the shipped helper API"
+    recent_action: "Reconciled the verified identity/dedup implementation and residual adversarial coverage"
+    next_safe_action: "Complete the remaining adversarial-table and P1 evidence rows before activation review"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-skill-advisor.js"
@@ -22,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-003"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-opencode-transform-dedup |
-| **Completed** | 2026-08-06 - scoped implementation complete in this worktree; packet metadata refresh remains blocked by file scope |
+| **Status** | In progress — identity/dedup implementation verified; adversarial-table and P1 evidence rows remain |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -95,25 +96,25 @@ The advisor maps its brief, fallback, and compiled-route entries to the canonica
 |-------|--------|
 | Same-message duplicate suppression in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:525-553` and `mk-spec-memory.test.cjs:411-451` |
 | Distinct-message-identical-text non-suppression in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:555-576` and `mk-spec-memory.test.cjs:452-482` |
-| Identity-resolution-failure fail-open in both plugins | PASS - full Node command: `ℹ tests 42`, `ℹ pass 42`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:597-625` and `mk-spec-memory.test.cjs:513-532` |
+| Identity-resolution-failure fail-open in both plugins | PASS - full Node command: `ℹ tests 43`, `ℹ pass 43`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:597-625` and `mk-spec-memory.test.cjs:513-532` |
 | Flag-off byte-identical parity in both plugins | PASS - focused Node command: `ℹ tests 6`, `ℹ pass 6`, `ℹ fail 0`; fixtures at `mk-skill-advisor.test.cjs:578-595` and `mk-spec-memory.test.cjs:484-511` |
 | Multi-transform receipt records both transforms and outcomes | PASS - `mk-skill-advisor.test.cjs:627-661`; direct state fixture records `mk-skill-advisor/delivered` and `mk-spec-memory/suppressed_duplicate` |
-| Canonical policy-plan regression | PASS - policy-plan Vitest: `Test Files 2 passed (2)`, `Tests 37 passed (37)` |
+| Canonical policy-plan regression | PASS - policy-plan Vitest: `Test Files 2 passed (2)`, `Tests 25 passed (25)` |
 <!-- /ANCHOR:verification -->
 
 ### Required Command Output
 
 ```text
 node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs .opencode/plugins/tests/mk-spec-memory.test.cjs
-ℹ tests 42
-ℹ pass 42
+ℹ tests 43
+ℹ pass 43
 ℹ fail 0
 
 npm test -- tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts
 > test
 > vitest run tests/policy-plan.vitest.ts tests/parity/policy-plan-serializer-parity.vitest.ts
 Test Files 2 passed (2)
-Tests 37 passed (37)
+Tests 25 passed (25)
 
 node --test --test-name-pattern='^(same-message advisor|distinct advisor|flag-off advisor|same-message continuity|distinct continuity|flag-off continuity)'
 ℹ tests 6
@@ -130,5 +131,5 @@ node --test --test-name-pattern='^(same-message advisor|distinct advisor|flag-of
 2. **Unresolvable OpenCode identity fails open.** The helper never falls back to prompt-text hashing, so some host shapes will continue to receive full delivery until they expose all three identity components.
 3. **Repository-wide drift guards remain noisy.** `run-all-drift-guards.sh` failed on 472 alignment findings outside this phase; the scoped alignment check over `.opencode/plugins` passed with `Findings: 0`, `Errors: 0`, `Warnings: 0`, router-sync passed 10/10, and stack-folder checks passed. The Codex hook installer also reports global hook drift (8 missing, 8 command mismatches, 7 orphaned); no hook files were changed.
 4. **No commit was created.** The requested result is left in the current worktree for the operator's existing branch workflow.
-5. **Strict packet validation is not green.** `validate.sh ... --strict` reports one `GENERATED_METADATA_INTEGRITY` violation because `description.json` and `graph-metadata.json` still contain hashes from before the required checklist and summary edits. Those generated metadata files are outside the requested change set and were not modified.
+5. **One generic adversarial-table row remains open.** The related Gate-3 fallback delimiter collision is covered by `spec-gate-core.test.mjs:368-386`; this phase does not claim joined-input, outside-root, or no-op coverage without dedicated evidence.
 <!-- /ANCHOR:limitations -->

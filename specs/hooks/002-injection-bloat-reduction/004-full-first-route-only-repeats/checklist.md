@@ -10,10 +10,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats"
-    last_updated_at: "2026-08-06T15:15:00Z"
+    last_updated_at: "2026-08-07T04:39:14Z"
     last_updated_by: "opus"
-    recent_action: "Implemented the shadow-only delivery state machine and recorded final verification evidence"
-    next_safe_action: "Keep route-only delivery disabled; activation is a later phase"
+    recent_action: "Verified receipt-gated shadow reduction proof"
+    next_safe_action: "Keep route-only delivery disabled pending activation review"
     blockers:
       - "Full repository alignment guard reports pre-existing baseline drift; scoped alignment passes"
       - "Global Codex hook installer check reports hook-file drift outside this worktree"
@@ -65,9 +65,9 @@ _memory:
 - [x] CHK-010 [P0] Code passes lint/format checks
   - **Evidence**: `policy-plan.ts:409`, `render.ts:292`; `npm run typecheck` exit 0, `node --check .opencode/plugins/mk-skill-advisor.js` exit 0, and `git diff --check` exit 0
 - [x] CHK-011 [P0] No console errors or warnings
-  - **Evidence**: `node --test .opencode/plugins/tests/mk-skill-advisor.test.cjs .opencode/plugins/tests/mk-spec-memory.test.cjs` — 42 passed, 0 failed, exit 0; focused Vitest — 23 passed, 0 failed, exit 0
+  - **Evidence**: plugin dedup command — tests 43 passed, 0 failed, exit 0; focused policy command — tests 25 passed, 0 failed, exit 0
 - [x] CHK-012 [P1] Error handling implemented (unresolved session identity always defaults to full delivery)
-  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:409`, `policy-plan.ts:457`; focused Vitest — 23 passed, 0 failed, exit 0
+  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:409`, `policy-plan.ts:457`; focused policy command — 25 passed, 0 failed, exit 0
 - [x] CHK-013 [P1] Code follows project patterns
   - **Evidence**: scoped `verify_alignment_drift.py` over the changed code roots — 130 files scanned, 0 findings, 0 errors, 0 warnings, exit 0; the full guard's unrelated baseline drift is recorded below
 <!-- /ANCHOR:code-quality -->
@@ -78,13 +78,13 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
-  - **Evidence**: `policy-plan.ts:409`, `render.ts:214`, `user-prompt-submit.ts:150`, `mk-skill-advisor.js:640`; focused Vitest — 23 passed, 0 failed, exit 0; legacy/hook/parity suite — 77 passed, 0 failed, exit 0
+  - **Evidence**: `policy-plan.ts:409`, `render.ts:214`, `user-prompt-submit.ts:150`, `mk-skill-advisor.js:640`; focused policy command — 25 passed, 0 failed, exit 0; emitted responses remain unchanged in the negative-control fixture matrix
 - [x] CHK-021 [P0] Manual/negative-control testing complete (all seven behavioral negative controls green)
-  - **Evidence**: `policy-plan-negative-controls.vitest.ts:40`, `policy-plan-negative-controls.vitest.ts:113`; focused Vitest — 7 named controls plus parity assertions, 23 total tests passed, exit 0
+  - **Evidence**: `policy-plan-negative-controls.vitest.ts:40`, `policy-plan-negative-controls.vitest.ts:113`; focused policy command — 7 named controls plus parity assertions, 25 total tests passed, exit 0
 - [x] CHK-022 [P1] Edge cases tested (dirty-marking, epoch advance, unknown-session isolation)
-  - **Evidence**: `policy-plan.vitest.ts:140`, `policy-plan.vitest.ts:163`, `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, 0 failed, exit 0
+  - **Evidence**: `policy-plan.vitest.ts:140`, `policy-plan.vitest.ts:163`, `policy-plan.vitest.ts:187`; focused policy command — 25 passed, 0 failed, exit 0
 - [x] CHK-023 [P1] Error scenarios validated (long-context, advisor failure, no-match, comment-writing, completion-proof, resume, compaction)
-  - **Evidence**: `policy-plan-negative-controls.vitest.ts:42`, `:65`, `:73`, `:77`, `:83`, `:89`, `:94`; focused Vitest — 23 passed, 0 failed, exit 0
+  - **Evidence**: `policy-plan-negative-controls.vitest.ts:42`, `:65`, `:73`, `:77`, `:83`, `:89`, `:94`; focused policy command — 25 passed, 0 failed, exit 0
 <!-- /ANCHOR:testing -->
 
 ---
@@ -99,11 +99,11 @@ _memory:
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
   - **Evidence**: consumer inventory covers `render.ts:292`, `user-prompt-submit.ts:273`, `mk-skill-advisor.js:955`, `skill-advisor-brief.ts:180`, and all relevant test suites; `rg` consumer inventory command exit 0
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-  - **Evidence**: Not applicable to this phase's non-security state machine; malformed, unresolved, and ambiguous identity handling is exercised at `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, exit 0
+  - **Evidence**: Not applicable to this phase's non-security state machine; malformed, unresolved, and ambiguous identity handling is exercised at `policy-plan.vitest.ts:187`; focused policy command — 25 passed, exit 0
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
   - **Evidence**: six epoch signals at `policy-plan.vitest.ts:163`, seven negative controls at `policy-plan-negative-controls.vitest.ts:40`, and 30 serializer parity rows (`SC-001 byte-diff: empty; rows=30`); all associated suites passed
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-  - **Evidence**: OpenCode runtime shadow observer at `mk-skill-advisor.js:640` is fail-open and non-consuming; plugin suite — 42 passed, 0 failed, exit 0
+  - **Evidence**: OpenCode runtime shadow observer at `mk-skill-advisor.js:640` is fail-open and non-consuming; plugin suite — 43 passed, 0 failed, exit 0
 - [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
   - **Evidence**: baseline SHA `7ebc12cd92a49cfce007d79f93e7ec30ea4e1efd`; final `git status --short` contains only the six requested code/test files plus the two explicitly requested record documents
 <!-- /ANCHOR:fix-completeness -->
@@ -116,7 +116,7 @@ _memory:
 - [x] CHK-030 [P0] No hardcoded secrets
   - **Evidence**: scoped diff review of the six implementation/test files; no credential material added; comment-hygiene checks exit 0 for all six files
 - [x] CHK-031 [P0] Input validation implemented (malformed lifecycle/session signals never crash the state machine)
-  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:326`, `policy-plan.vitest.ts:187`; focused Vitest — 23 passed, 0 failed, exit 0
+  - **Evidence**: `policy-plan.ts:294`, `policy-plan.ts:326`, `policy-plan.vitest.ts:187`; focused policy command — 25 passed, 0 failed, exit 0
 - [x] CHK-032 [P1] Auth/authz working correctly (not applicable - no auth surface in this module)
   - **Evidence**: No auth/authz surface is introduced; the changed boundary is the local shadow state machine at `policy-plan.ts:409`; focused Vitest exit 0
 <!-- /ANCHOR:security -->
@@ -156,5 +156,5 @@ _memory:
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-08-06. Scoped implementation checks pass. The full `run-all-drift-guards.sh` command remains red on the pre-existing repository-wide alignment backlog (472 findings: 268 errors, 204 warnings); its stack-folder and router-sync subguards pass.
+**Verification Date**: 2026-08-07. Scoped implementation checks pass. The full `run-all-drift-guards.sh` command remains red on the pre-existing repository-wide alignment backlog (472 findings: 268 errors, 204 warnings); its stack-folder and router-sync subguards pass.
 <!-- /ANCHOR:summary -->

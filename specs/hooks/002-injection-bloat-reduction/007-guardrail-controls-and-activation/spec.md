@@ -13,16 +13,16 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-06T18:24:04Z"
+    last_updated_at: "2026-08-07T04:31:31Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the terminal guardrail controls and fail-open activation matrix"
+    recent_action: "Verified guardrail controls"
     next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
       - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
     session_dedup:
-      fingerprint: "sha256:b639de51eec82cd687b402dbf87ffc8d4f9b836109b446fc23d30b01ddc23633"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100

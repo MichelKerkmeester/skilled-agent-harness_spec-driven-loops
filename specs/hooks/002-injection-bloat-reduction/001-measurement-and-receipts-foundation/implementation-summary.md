@@ -7,13 +7,14 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 parent: "hooks"
+status: "in_progress"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation"
-    last_updated_at: "2026-08-06T12:56:28Z"
+    last_updated_at: "2026-08-07T04:16:20Z"
     last_updated_by: "codex"
-    recent_action: "Implemented the scoped shadow planner and recorded verification receipts"
-    next_safe_action: "Resolve the missing Pi owner constant before extending planner wiring beyond render.ts"
+    recent_action: "Reconciled receipt-gated delivery and pure-peek verification for the shadow planner"
+    next_safe_action: "Resolve the missing Pi owner constant and remaining P1 record items"
     blockers:
       - "The current Pi prompt-advisor owner does not export the directive constant named by the research/spec."
       - "The repository-wide Vitest/drift gates have unrelated baseline or environment failures."
@@ -23,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-001"
       parent_session_id: null
-    completion_pct: 81
+    completion_pct: 84
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-measurement-and-receipts-foundation |
-| **Completed** | 2026-08-06 — scoped implementation verified; broader packet gates remain conditional |
+| **Status** | In progress — scoped implementation verified; Pi owner and P1 record items remain |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented the scoped shadow planner and its proof harness. `policy-plan.ts` now owns the stable ID registry, explicit hash-input allow-list, per-block and ordered policy-set hashes, seven-field receipt validation, and fail-open render observer. `render.ts` calls that observer after every existing success, fallback, and null-return path; the observer's `void` result cannot affect the emitted string.
+Implemented the scoped shadow planner and its proof harness. `policy-plan.ts` now owns the stable ID registry, explicit hash-input allow-list, per-block and ordered policy-set hashes, receipt validation, and fail-open render observer. Delivery confirmation requires an observed matching receipt; `peek()` is a pure read and `decideSuppression()` is the explicit state transition. `render.ts` calls the observer after every existing success, fallback, and null-return path; the observer's `void` result cannot affect the emitted string.
 
 The parity harness covers six native serializer shapes x five cases (first, repeat, Gate-emitting, read-only, and failure/fallback), for 30 byte comparisons. The unit suite covers the four required IDs, the extension registry, the adversarial path/session negative control, receipt-field rejection, and configured-vs-observed host status.
 
@@ -106,13 +107,13 @@ Tests 2 passed (2)
 |-------|--------|
 | SC-003 negative control before allow-list | **FAIL as required**, exit 1; raw path and session token appeared in the naïve serialization |
 | SC-003 negative control after allow-list | **PASS**, `Test Files 1 passed (1)`, `Tests 2 passed (2)`, exit 0 |
-| Scoped unit + parity Vitest | **PASS**, `Test Files 2 passed (2)`, `Tests 37 passed (37)`, exit 0; output included `SC-001 byte-diff: empty; rows=30` |
+| Scoped policy Vitest | **PASS**, `Test Files 2 passed (2)`, `Tests 25 passed (25)`, exit 0; output includes receipt-gated shadow reduction and byte-parity rows |
 | Existing renderer/producer/privacy Vitest | **PASS**, `Test Files 3 passed (3)`, `Tests 32 passed (32)`, exit 0 |
-| `npm run typecheck` | Initial run **PASS**, exit 0; final rerun **NOT CLEAN**, exit 2 after the repository-wide test harness left ignored dependency directories without `zod` and MCP SDK packages |
+| `npm run typecheck` | **PASS**, exit 0 from the final tree |
 | Requested bare `npx tsc --noEmit` | Exit 2 on baseline configuration errors: TS6059 rootDir violations and TS5101 `baseUrl` deprecation; no new error naming the scoped planner was observed. Generated build-info residue was removed. |
 | Comment hygiene checker on four scoped TypeScript files | **PASS**, exit 0 for each file |
 | `git diff --check` | **PASS**, exit 0 |
-| `validate.sh <phase> --strict` | **NOT CLEAN**, exit 2: generated `graph-metadata.json` source fingerprint is stale because the explicitly scoped checklist/summary edits were not accompanied by generated-metadata writes |
+| `validate.sh <phase> --strict` | Pending recursive final validation after the required metadata regeneration |
 | Repository-wide `npm test` | **NOT CLEAN**, terminated exit 130 after unrelated suite failures and missing dependency/preload errors; not attributable to the scoped files |
 | Repository-wide drift guard | **NOT CLEAN**, exit 1: 472 existing alignment findings plus router-sync network failure (`ENOTFOUND`); no scoped fix applied |
 <!-- /ANCHOR:verification -->
@@ -126,5 +127,5 @@ Tests 2 passed (2)
 2. **Runtime wiring is intentionally limited to `render.ts`.** The user required exact Files-to-Change scope; Cursor, OpenCode, and Pi production call sites were not modified.
 3. **No receipt sink was added.** The planner computes and validates the receipt, then drops it fail-open because a sink would be an additional out-of-scope file and could introduce persistence or output risk.
 4. **The requested bare compiler command is broken before this change.** The package's `tsconfig.json` includes files outside its inherited rootDir and trips TypeScript 6's `baseUrl` deprecation; the package-scoped `npm run typecheck` is green.
-5. **The final status is scoped-pass, not whole-packet completion.** The 30-row SC-001 parity proof and scoped suites pass; the broader repository gates, generated metadata refresh, and planning-doc synchronization remain pending and are marked in `checklist.md`.
+5. **The final status is phase-in-progress, not whole-packet completion.** The scoped planner and receipt proof pass; the Pi owner mismatch and remaining P1 record items are still marked in `checklist.md`.
 <!-- /ANCHOR:limitations -->

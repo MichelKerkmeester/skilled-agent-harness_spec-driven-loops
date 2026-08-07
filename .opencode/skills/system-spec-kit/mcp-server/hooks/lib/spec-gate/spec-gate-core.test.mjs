@@ -365,6 +365,27 @@ test('Gate-3 delivery state hash separates task/scope, answer, epoch, and sessio
   assert.equal(core.buildGate3DeliveryKey({ sessionID: core.UNKNOWN_SESSION_ID, lifecycleEpoch: 0, gateStateHash: baseHash }), null);
 });
 
+test('Gate-3 fallback state identity separates delimiter-colliding task and scope pairs', () => {
+  const first = core.buildGate3StateHash({
+    status: 'open',
+    taskFingerprint: 'a|b',
+    scopeFingerprint: 'c',
+    answerState: 'awaiting-answer',
+    lifecycleState: 'steady',
+  });
+  const second = core.buildGate3StateHash({
+    status: 'open',
+    taskFingerprint: 'a',
+    scopeFingerprint: 'b|c',
+    answerState: 'awaiting-answer',
+    lifecycleState: 'steady',
+  });
+
+  assert.ok(first);
+  assert.ok(second);
+  assert.notEqual(first, second);
+});
+
 test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for suppression', () => {
   const outcomes = [];
   const record = (label, result, baseline) => {

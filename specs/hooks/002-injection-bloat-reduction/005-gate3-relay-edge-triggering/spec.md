@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Gate-3 Relay Edge-Triggering"
 description: "Planning spec: suppress delivery of an unchanged, repeated Gate-3 relay while gate state remains open, preserving first-ask, invalid-answer re-ask, task/scope-change re-ask, and recovery-reset behavior, so identical re-asks stop consuming per-turn budget without touching classification or enforcement."
-status: planned
-completion_pct: 0
+status: complete
+completion_pct: 100
 trigger_phrases:
   - "gate 3 relay suppression"
   - "edge-triggered gate delivery"
@@ -13,24 +13,23 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the planning spec for Gate-3 relay edge-triggered delivery suppression"
-    next_safe_action: "Author plan.md Phase 1 (shadow instrumentation) once Phase 001 receipts land"
-    blockers:
-      - "001-measurement-and-receipts-foundation (canonical block IDs, hashes, delivery receipts) has not yet been built; this candidate depends on its shadow instrumentation"
+    last_updated_at: "2026-08-07T04:31:31Z"
+    last_updated_by: "codex"
+    recent_action: "Verified Gate-3 shadow controls"
+    next_safe_action: "Keep the consuming activation branch deferred pending runtime-specific delivery evidence"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
       - ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md"
     session_dedup:
-      fingerprint: "sha256:18070615fa61375dc26a687e22dacdde19627a30be9379aae78a12c3ddc4c846"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-hooks-002-005"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Is a session+epoch+gate-state-hash key sufficient, or does the suppression predicate also need turn/message identity to avoid cross-turn aliasing?"
-      - "Which of the 11 gate-matrix rows require a live host receipt vs. a pinned behavioral probe before delivered can be committed?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The scoped predicate uses confirmed session, lifecycle epoch, and a structured gate-state hash; the collision test proves the fallback components cannot alias."
+      - "The observer remains shadow-only, so no gate row commits a consuming suppression decision without later runtime-specific delivery evidence."
 ---
 # Feature Specification: Gate-3 Relay Edge-Triggering
 
@@ -46,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete (shadow-only; candidate flag remains off) |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
