@@ -139,45 +139,45 @@
         "source": "derived"
       },
       {
+        "name": "autonomous",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "sealed",
         "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "The ledger (confirmed)",
-        "kind": "heading",
+        "name": "commit-tree",
+        "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "Pending (inferred — no impl-summary + the standing WS1 goal; verify at resume)",
-        "kind": "heading",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion path (sequenced)",
-        "kind": "heading",
+        "name": "its   DIRECT",
+        "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-06T17:31:02.592Z",
+    "last_save_at": "2026-08-07T03:18:09.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:16415dad809f20a3d1c26159049e26a5f1d7a5fbd1a3c046cab6adac038573d7",
+    "source_fingerprint": "sha256:6824f44508bce076cb016a6cbd5b354ffb91663da5008fef89f14704450db49a",
     "source_doc_hashes": {
       "spec.md": "f6f55f0eddf20ee68c4b121b4d33bf3123a3b010deabe4e5bbceca4577afb3ce",
-      "handover.md": "e1f97597808c32af2fc5418ac01d1ab33d404ab5e8a2597a5ce48cd41688168a"
+      "handover.md": "1ebd13d87f17ba6d518573c1ac601b9c9a5e08b9fe2c86e4ca94cc524e2d9c34"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
-    "last_active_at": null
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary",
+    "last_active_at": "2026-08-07T03:06:29.393Z"
   }
 }

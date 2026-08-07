@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-06T17:31:02Z"
+    last_updated_at: "2026-08-07T03:18:09Z"
     last_updated_by: "claude-opus"
-    recent_action: "landed 024 + WS1 remediation; deferred 033; wrote epic roadmap"
-    next_safe_action: "reconcile stale 036 metadata, then resume WS1 child 026"
+    recent_action: "landed WS1 019/020/023 + 033-manifest via autonomous loop"
+    next_safe_action: "resume WS1 at child 026 (build-verify-land loop)"
     blockers:
       - "014 authority cutover blocked pending WS1 remediation clearing review findings"
     key_files:
@@ -52,7 +52,10 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   contracts (012), and the 8 per-mode migrations (013).
 - **014 authority cutover — BLOCKED** by the validation-gate review. The epic crux; WS1 de-risks it.
 - **Remediation WS1 — landed on `origin/skilled/v4.0.0.0`:** 018, 021, 022/001-002, 024
-  (`5c98e4654e`), 025/002-004.
+  (`5c98e4654e`), 025/002-004. **Autonomous-loop additions:** Step-0 033-manifest (`79870daa10`),
+  **019** runtime-code-readmes (`44cc6cdfc2`, 56 READMEs + 14 repairs), **020** sk-code-opencode-alignment
+  (`3372513722`, 13 comment-only MODULE headers), **023** legacy-compat-event-vocabulary
+  (`aa66365e78`, 6 upcasters + real-capture fixtures, T001 all confirmed + 1 sub-claim refuted).
 - **033 identity/lock hardening — DEFERRED** (3 non-converged passes; the last hung on the full
   aggregate's shared-graph SQLite append-lock). Design docs + postmortem landed (`2c39edddd1`,
   status Blocked). Launch brief: `/tmp/ks/build-036-033-reattempt.md` (root-cause-first; the
@@ -60,10 +63,11 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 
 ## Pending (inferred — no impl-summary + the standing WS1 goal; verify at resume)
 
-`019` runtime-code-readmes · `020` sk-code-opencode-alignment · `023` legacy-compat-event-vocabulary
-· `026` alignment-coverage-integrity · `027` mode-gate-and-contract-binding · `028`
-fanout-dispatch-integrity · `029` improvement-promotion-authority · `030`
-runtime-mirror-and-routing-parity · `031` silent-failure-and-harness-repair · `032` docs-drift-and-p2-batch.
+`026` alignment-coverage-integrity (NEXT — densest cluster, 15 confirmed findings, provability code) ·
+`027` mode-gate-and-contract-binding · `028` fanout-dispatch-integrity · `029`
+improvement-promotion-authority · `030` runtime-mirror-and-routing-parity · `031`
+silent-failure-and-harness-repair · `032` docs-drift-and-p2-batch · then the `033` re-attempt.
+(019/020/023 landed — see the ledger above.)
 
 ## Completion path (sequenced)
 
@@ -112,8 +116,19 @@ build+verify+land cycle and a mid-flight halt just leaves partial state.
   `--fileParallelism`; `git checkout -- database/` before isolation runs; better-sqlite3 ABI 141.
   **The full 168-file aggregate can hang on append-lock contention — run the per-mode matrix
   per-mode, not the whole suite in one process** (this is what killed the last 033 pass).
-- **Landed-024 clean anchor:** commit `5c98e4654e`. Recover runtime with
+- **Landed-024 clean anchor + verification baseline:** commit `5c98e4654e`. Recover runtime with
   `git checkout 5c98e4654e -- runtime/lib runtime/tests` + `git clean -fd -- runtime/lib runtime/tests`.
+  **VERIFY a build's changes against `5c98e4654e` (a real ancestor), NEVER `git diff FETCH_HEAD`** —
+  the leak-guard lands via commit-tree without updating the local index, so origin-tracked files
+  (landed READMEs, 024 code) false-report as spurious deletions/additions vs FETCH_HEAD (this
+  false-alarmed a whole 020 verification pass before I traced it). A child's runtime `.ts`/fixture
+  diff vs `5c98e4654e`, minus prior-child files, isolates its true change.
+- **Shadow-parity/certificate suites HANG even in small groups** (append-lock), not just the full
+  aggregate — but the ledger-schema/reducer/direct suites run fine. So verify a code child via its
+  DIRECT suites + tsc + scoped diff; for the hang-prone shadow-parity/certificate suites you cannot
+  cheaply re-run, rely on the build's per-mode-matrix claim (and its honesty signals — real
+  SHA-documented fixtures, refuted sub-claims). This limits independent verification for the
+  provability-heavy children (026 especially) — weigh it.
 - **Headless deep-review:** direct `runtime/scripts/fanout-run.cjs --loop-type review
   --fanout-config-json '<cfg>'` with `AI_SESSION_CHILD=1 MK_SPEC_GATE_ENFORCE=0`
   (`opencode run --command deep/review` does NOT execute headlessly). Config + cost-cap details in
