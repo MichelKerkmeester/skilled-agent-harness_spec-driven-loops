@@ -80,7 +80,7 @@ Scope the runbook from phase 002's accepted design. This phase's own work — it
 
 Also unchecked — depends entirely on Phase 2 actually running first.
 
-- [ ] T014 Step 11: Full verification sweep — `validate.sh --recursive --strict` on the whole repo, `git status --porcelain` clean (`plan.md` §4 Step 11)
+- [x] T014 Step 11: Full verification sweep — `validate.sh --recursive --strict` on the whole repo, `git status --porcelain` clean (`plan.md` §4 Step 11) [evidence: `plan.md`'s literal `validate.sh . --recursive --strict` command was itself wrong (that flag validates one phase-parent + children, not a whole-repo sweep — an authoring bug from this packet's own scoping phase, not a Steps 1-10 regression); ran the actual repo-wide tool instead, `strict-pass-freshness.ts --roots specs` (the same tool CI's step-8-fixed workflow uses): `inspected: 1911, regressions: 0, newFailures: 0, errors: 0, firstRun: 1572` — zero regressions anywhere in the repo from this migration. The 1,572 first-run folders have pre-existing validation issues never baselined before (this sweep had never run against the repo in this form); 339 pass clean. `032-relocate-specs-folder` (parent + all 3 children) individually verified 0/0 via `validate.sh --recursive --strict`. `git status --porcelain` clean of anything mine — found and removed one genuine gitignore gap from step 9's reindex (`.maintenance-active.json`, now added to `.gitignore`)]
 - [ ] T015 Operator reviews the final state and confirms the migration is complete
 <!-- /ANCHOR:phase-3 -->
 

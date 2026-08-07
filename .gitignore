@@ -135,6 +135,7 @@ node_modules/
 .opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.json
 .opencode/skills/system-spec-kit/mcp-server/database/.mk-spec-memory-launcher.lockdir/
 .opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
+.opencode/skills/system-spec-kit/mcp-server/database/.maintenance-active.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json
 .opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json.processing-*
 .opencode/skills/system-spec-kit/mcp-server/dist/database/
