@@ -1,18 +1,18 @@
 ---
 title: cli-pi
-description: Cross-AI dispatcher for Pi's terminal coding agent with guarded print, JSON event, RPC, and community-extension workflows.
+description: Cross-AI dispatcher for Pi's terminal coding agent with guarded print, JSON event, RPC and community-extension workflows.
 trigger_phrases:
   - "pi cli"
   - "pi agent"
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.2.0.0
+version: 1.4.0.0
 ---
 
 # cli-pi
 
-> Dispatch a scoped task to Pi's terminal coding agent and return validated code, analysis, JSON events, or RPC results to the calling runtime.
+> Dispatch a scoped task to Pi's terminal coding agent and return validated code, analysis, JSON events or RPC results to the calling runtime.
 
 ---
 
@@ -20,10 +20,10 @@ version: 1.2.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Headless Pi coding, read-only tool-constrained review, JSON event output, RPC integration, and Pi resource inspection |
-| **Invoke with** | "pi cli", "pi agent", "pi.dev cli", "delegate to pi", or "pi coding agent" |
+| **Use it for** | Headless Pi coding, read-only tool-constrained review, JSON event output, RPC integration and Pi resource inspection |
+| **Invoke with** | "pi cli", "pi agent", "pi.dev cli", "delegate to pi" or "pi coding agent" |
 | **Works on** | An external runtime that can reach the pi binary and the shared deep-loop executor |
-| **Produces** | Validated text, JSONL event output, RPC handback, or workspace changes |
+| **Produces** | Validated text, JSONL event output, RPC handback or workspace changes |
 
 ---
 
@@ -31,11 +31,21 @@ version: 1.2.0.0
 
 ### Why This Skill Exists
 
-A calling AI needs a stable way to reach Pi without hand-building flags, accidentally dispatching from Pi, or treating a failed provider call as successful. Pi has more than one headless surface, and its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, accidental self-invocation, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+
+That is the whole reason this skill exists. It makes Pi reachable as a controlled headless surface: probe the binary, guard against self-invocation, pick the output contract and delegate execution to the shared deep-loop runtime. The calling AI stays the conductor and validates what comes back. The skill is not a launcher for one command. Matching the consumer to the right surface is the point.
 
 ### What It Does
 
-cli-pi probes for the binary, guards against likely self-invocation, chooses the requested headless surface, and delegates process execution to the shared deep-loop runtime. It keeps Pi-native skills, prompt templates, extensions, MCP, and community packages in separate references so documentation-only behavior is not mistaken for live verification.
+cli-pi probes for the pi binary, guards against likely self-invocation, selects the requested headless surface and delegates process execution to the shared deep-loop runtime. It keeps Pi-native skills, prompt templates, extensions, MCP and community packages in separate references, so documentation-only behavior is not mistaken for live verification.
+
+### The Output Contract Layer
+
+| Contract | What the skill returns | When it earns its place |
+|---|---|---|
+| **Print** | Validated text from a one-shot headless run | A single task with read-only tool constraints |
+| **JSON** | One JSON object per line as an event stream | A consumer that parses structured output |
+| **RPC** | A persistent stdin/stdout JSONL protocol | A long-lived integration with a JSONL client |
 
 ---
 
@@ -69,13 +79,17 @@ JSON mode emits one JSON object per line. For a persistent integration, use pi -
 
 ## 4. HOW IT WORKS
 
-The calling AI remains the conductor. It classifies the task, selects print, JSON, or RPC, composes a scoped prompt, and sends it to the shared runtime. The runtime launches Pi and returns output. The caller checks provider errors, extension errors, changed files, and tests.
+### The Conductor Model
 
-Pi print mode is the one-shot path. JSON mode is an event stream. RPC is a long-lived stdin/stdout protocol. The pinned contract confirms these distinctions, while native skills and prompt-template discovery remain documented but unconfirmed for this packet. The exact source links and confidence labels live in [native-skills-and-extensions.md](./references/native-skills-and-extensions.md).
+The calling AI remains the conductor. It classifies the task, selects the output contract, composes a scoped prompt and sends it to the shared runtime. The runtime launches Pi and returns output. The caller checks provider errors, extension errors, changed files and tests. Print mode is the one-shot path. JSON mode is an event stream. RPC is a long-lived stdin/stdout protocol.
 
-The packet's guard is conservative. Process ancestry is checked first, then a .pi project-directory heuristic is checked. Neither absence of a signal nor the presence of a directory proves that a session is active. A detected signal stops dispatch.
+The pinned contract confirms these distinctions, while native skills and prompt-template discovery remain documented but unconfirmed for this packet. The exact source links and confidence labels live in [native-skills-and-extensions.md](./references/native-skills-and-extensions.md).
 
 Prompt quality follows the shared three-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt/sk-prompt-models and adds only Pi dispatch mechanics.
+
+### The Conservative Guard
+
+The packet's guard is conservative. Process ancestry is checked first, then a .pi project-directory heuristic is checked. Neither the absence of a signal nor the presence of a directory proves that a session is active. A detected signal stops dispatch.
 
 ---
 
@@ -83,17 +97,17 @@ Prompt quality follows the shared three-tier rule in [prompt-quality-card.md](./
 
 ### When To Use This Skill
 
-Use cli-pi when the request names Pi, needs Pi's native model/provider surface, or specifically asks for Pi JSON or RPC output. Use a sibling packet when the user names another CLI or the task needs that provider's unique runtime.
+Use cli-pi when the request names Pi, needs Pi's native model or provider surface or asks for Pi JSON or RPC output. Use a sibling packet when the user names another CLI or the task needs that provider's unique runtime.
 
 ### Sibling Boundaries
 
 | Skill | Relationship |
 |---|---|
-| cli-opencode | Full OpenCode runtime, plugins, memory stack, and detached sessions |
+| cli-opencode | Full OpenCode runtime, plugins, memory stack and detached sessions |
 | cli-claude-code | Anthropic-backed CLI dispatch and structured Claude Code output |
-| cli-codex | OpenAI-backed coding, review, and web research |
-| cli-cursor | Cursor Composer, plan/ask modes, and shared editor configuration |
-| cli-devin | Devin models, subagents, and cloud handoff |
+| cli-codex | OpenAI-backed coding, review and web research |
+| cli-cursor | Cursor Composer, plan/ask modes and shared editor configuration |
+| cli-devin | Devin models, subagents and cloud handoff |
 
 ### Resource Map
 
@@ -112,7 +126,7 @@ Use cli-pi when the request names Pi, needs Pi's native model/provider surface, 
 | What you see | Why | Fix |
 |---|---|---|
 | pi is not found | The binary is absent from PATH | Install the Pi package, refresh PATH, then rerun command -v pi |
-| Missing provider API key | Pi cannot reach the selected model | Configure provider auth and retry; do not rely on the exit code |
+| Missing provider API key | Pi cannot reach the selected model | Configure provider auth and retry, then inspect the output text. Do not rely on the exit code |
 | Different failure exit codes | The pinned contract observed exit 0 and exit 1 for similar unauthenticated runs | Inspect output text and classify the failure |
 | Extension load failure | An extension can block the session when its export is invalid | Remove or fix the extension, then rerun with the required validation |
 | JSON consumer hangs or misparses | JSON mode is line-delimited and RPC is persistent | Choose one contract and parse JSONL records correctly |
@@ -148,9 +162,11 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 | Availability | command -v pi prints a path before dispatch |
 | CLI contract | cli-reference.md matches the pinned implementation summary |
 | Self-invocation | Guard refuses detected ancestry or project heuristic |
-| Output handling | Text, JSON, and RPC consumers use the matching parser |
+| Output handling | Text, JSON and RPC consumers use the matching parser |
 | Workspace safety | Returned changes pass the calling workflow's verification gates |
 | Package safety | Community packages remain explicitly labeled and trust-gated |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-pi/README.md --type readme` reports zero issues |
+| Manual playbook | `manual-testing-playbook/manual-testing-playbook.md` runs every scenario behind these checks |
 
 ---
 
@@ -158,13 +174,13 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 | Document | Purpose |
 |---|---|
-| [SKILL.md](./SKILL.md) | Runtime instructions, smart routing, and hard rules |
-| [references/cli-reference.md](./references/cli-reference.md) | Pi flags, commands, modes, environment, and failure handling |
+| [SKILL.md](./SKILL.md) | Runtime instructions, smart routing and hard rules |
+| [references/cli-reference.md](./references/cli-reference.md) | Pi flags, commands, modes, environment and failure handling |
 | [references/pi-tools.md](./references/pi-tools.md) | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
-| [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle, cross-validation, and anti-patterns |
+| [references/integration-patterns.md](./references/integration-patterns.md) | Cross-AI dispatch lifecycle, cross-validation and anti-patterns |
 | [references/agent-delegation.md](./references/agent-delegation.md) | Built-in boundary and community subagent package guidance |
 | [references/native-skills-and-extensions.md](./references/native-skills-and-extensions.md) | Native resource discovery with confidence labels |
 | [references/mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) | MCP and community package boundaries |
 | [assets/prompt-quality-card.md](./assets/prompt-quality-card.md) | Thin prompt-quality delegator |
 | [assets/prompt-templates.md](./assets/prompt-templates.md) | Reusable Pi dispatch templates |
-
+| [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |

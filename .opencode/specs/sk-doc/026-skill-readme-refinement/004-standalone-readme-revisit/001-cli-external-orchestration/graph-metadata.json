@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli external orchestration readme",
+      "cli-external-orchestration readme rewrite",
+      "hub readme revisit",
+      "external cli dispatch readme",
+      "phase 1 plan",
+      "cli external orchestration readme plan",
+      "hub readme rewrite plan",
+      "phase 1 tasks",
+      "cli external orchestration readme tasks",
+      "hub readme rewrite tasks",
+      "phase 1 checklist",
+      "cli external orchestration readme verification"
+    ],
+    "key_topics": [
+      "cli",
+      "external",
+      "orchestration",
+      "readme",
+      "cli-external-orchestration",
+      "rewrite",
+      "hub",
+      "revisit",
+      "dispatch",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/README.md",
+      ".opencode/skills/cli-external-orchestration/changelog/v1.3.0.0.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/checklist.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.3.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a WHY THIS HUB EXISTS",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-mode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Hub Exists",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-external-orchestration README still carries the older tabular reference-card style: a dense AT A GLANCE table, a feature-heavy pitch blockquote and numbered sections that read as an inventory of dispatch surfaces",
+    "created_at": "2026-08-04T08:34:34.992Z",
+    "last_save_at": "2026-08-04T12:54:13.491Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca298bae842c76d2e4dfde8a58e4266ed22baf25df56252d69a043a96cad3756",
+    "source_doc_hashes": {
+      "spec.md": "d23352c2b2b52e1bc0536dc97529d69fa269639f62fb8f46c30b414fa7a0bf62",
+      "plan.md": "9c4bee1a71ff46524e990ce67e49bb723760bbc3a063aac9de6e516707cccf05",
+      "tasks.md": "a5f1435462e0ee89f872d6da50b624cc54d9279d5e398105246adfbc53c56d7f",
+      "checklist.md": "1dc75d129088e577dd6e3bb14ae71f2cbabe8f9cb7105f555121fb79873c3763",
+      "implementation-summary.md": "3ac3b62c228311abd7656c5719e13b4d8bf9e9fc1b82b66a7bcffc0b680ecb73"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

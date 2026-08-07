@@ -96,7 +96,6 @@
         "references/graph/skill-graph-drift.md",
         "references/graph/skill-graph-extraction-plan.md",
         "references/graph/skill-graph-query-cookbook.md",
-        "hooks/skill-advisor-hook.md",
         "references/runtime/daemon-lease-contract.md",
         "references/runtime/freshness-contract.md",
         "references/runtime/legacy-tool-bridge.md",

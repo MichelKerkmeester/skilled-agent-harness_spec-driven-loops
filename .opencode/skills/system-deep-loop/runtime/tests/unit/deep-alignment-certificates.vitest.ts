@@ -2,8 +2,6 @@
 // MODULE: Deep Alignment Certificate Contract Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -573,7 +571,7 @@ async function authorizedLedger(events: readonly DeepAlignmentLedgerEvent[]) {
     if (authorization.verdict !== 'allow') {
       throw new Error('Expected fixture authorization');
     }
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
+  "description": "Phase 032: purpose-first rewrite of the sk-create-skill README on the refined template, version bump to 1.1.1.0 with matching changelog entry, all gat",
+  "keywords": [
+    "phase",
+    "purpose-first",
+    "rewrite",
+    "sk-create-skill",
+    "readme",
+    "refined",
+    "template",
+    "version",
+    "bump",
+    "matching",
+    "changelog",
+    "entry",
+    "gates",
+    "green"
+  ],
+  "lastUpdated": "2026-08-04T14:44:58.985Z",
+  "specId": "032",
+  "folderSlug": "sk-create-skill",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

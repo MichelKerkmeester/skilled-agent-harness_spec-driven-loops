@@ -1,0 +1,14 @@
+{
+  "iteration": 2,
+  "sessionId": "fanout-luna-max-1785922353061-yt4m7p",
+  "resolvedRoute": "Resolved route: mode=review target_agent=deep-review",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "sandboxMode": "workspace-write"
+  },
+  "artifactDir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max",
+  "status": "complete",
+  "focus": "security",
+  "timestamp": "2026-08-05T09:52:00.000Z"
+}

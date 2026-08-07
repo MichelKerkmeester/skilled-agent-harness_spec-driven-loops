@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
+  "description": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome before the tooling,",
+  "keywords": [
+    "mcp-obsidian",
+    "pilot",
+    "set",
+    "standard",
+    "standalone",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "state",
+    "outcome",
+    "tooling"
+  ],
+  "lastUpdated": "2026-08-04T13:25:31.093Z",
+  "specId": "008",
+  "folderSlug": "sk-prompt",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/002-runtime-surface-coverage",
+  "spec_folder": "agents/002-runtime-surface-coverage",
+  "parent_id": "agents",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime surface coverage",
+      "AGENTS.md runtimes",
+      "pi devin cursor support",
+      "runtime enumeration",
+      "runtime agent directory",
+      "six runtime surfaces",
+      "runtime enum",
+      "verification",
+      "checklist",
+      "runtime enumeration audit"
+    ],
+    "key_topics": [
+      "runtime",
+      "surface",
+      "coverage",
+      "agents",
+      "runtimes",
+      "devin",
+      "cursor",
+      "support",
+      "enumeration",
+      "agent",
+      "directory",
+      "six"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tools/advisor-validate.ts",
+      ".opencode/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".pi/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".opencode/skills/system-spec-kit/references/config/hook-system.md",
+      ".opencode/hooks/dispatch/README.md",
+      ".opencode/skills/system-deep-loop/runtime/README.md",
+      ".claude/SYNC.md",
+      ".cursor/SYNC.md"
+    ],
+    "entities": [
+      {
+        "name": "advisor-runtime-values.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-manifest.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tools/advisor-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/config/hook-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Surface Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Across Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Support Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root framework doc (`AGENTS.md`) and its mirrors still enumerate three supported runtimes — Claude Code, Codex CLI, OpenCode — while the repo actively ships six runtime surfaces: `.opencode/`, `.claude/`, `.codex/`, `.cursor/`, `.pi/`, and `.devin/`",
+    "created_at": "2026-08-04T06:25:07Z",
+    "last_save_at": "2026-08-04T08:06:25.606Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f1aeb7f32660145321eb9747a5015f4a8f05a45f20eda5512ebadba9a2668c7",
+    "source_doc_hashes": {
+      "spec.md": "f0988a70b90cb80e2d819e881c17a637224bb9eecdf5cfaec76870a5732bf605",
+      "plan.md": "2a28b9a0e5db896841a25c8002a49bf9e544b9dbf8de78d443ce2a257d463493",
+      "tasks.md": "a2780d22f43daf36b4d18bb044b7de0de745a35c48eb985c257e6f8a19e623fa",
+      "checklist.md": "c157b4ff59cadd63807fac1aa31b979faa5c44246a4ed82724e163d526cf2eec",
+      "implementation-summary.md": "f0e21109f9207939705f366395988197b8f2307fee3e1901ac61f2e2782ae56b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

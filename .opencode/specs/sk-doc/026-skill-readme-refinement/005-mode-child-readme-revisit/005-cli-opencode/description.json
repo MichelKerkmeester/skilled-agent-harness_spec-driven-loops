@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
+  "description": "The cli-opencode mode README at `.opencode/skills/cli-external-orchestration/cli-opencode/README.md` still carries the older tabular reference-card",
+  "keywords": [
+    "cli-opencode",
+    "mode",
+    "readme",
+    "opencode",
+    "skills",
+    "cli-external-orchestration",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card"
+  ],
+  "lastUpdated": "2026-08-04T13:56:04.094Z",
+  "specId": "005",
+  "folderSlug": "cli-opencode",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

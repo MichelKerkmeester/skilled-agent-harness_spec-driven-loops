@@ -1,0 +1,81 @@
+{
+  "topic": "Review: .opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "sessionId": "fanout-luna-max-1785922353061-yt4m7p",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "requestedLineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "artifactDir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max",
+  "fanoutLineageArtifactDir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max",
+  "createdAt": "2026-08-05T09:42:23.477Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "resource_map": {"emit": false},
+  "reviewScopeRoots": [
+    ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+    ".opencode/skills/mcp-tooling/mcp-obsidian"
+  ],
+  "reviewScopeFiles": [
+    ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review-report.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/**/*.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/**/*",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/**/*.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/**/*.md",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/examples/**/*",
+    ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/**/*"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

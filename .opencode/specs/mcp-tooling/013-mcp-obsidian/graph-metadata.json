@@ -20,7 +20,13 @@
     "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation",
     "mcp-tooling/013-mcp-obsidian/015-health-md-fixtures-and-blocks",
     "mcp-tooling/013-mcp-obsidian/016-health-md-catalog-and-playbook",
-    "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout"
+    "mcp-tooling/013-mcp-obsidian/017-health-md-live-validation-closeout",
+    "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology",
+    "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement",
+    "mcp-tooling/013-mcp-obsidian/021-plugin-installation-batch",
+    "mcp-tooling/013-mcp-obsidian/022-plugin-skill-support-references",
+    "mcp-tooling/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
+    "mcp-tooling/013-mcp-obsidian/024-plugin-routing-integration-validation"
   ],
   "manual": {
     "depends_on": [],
@@ -201,17 +207,17 @@
     ],
     "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
     "created_at": "2026-08-02T05:50:25Z",
-    "last_save_at": "2026-08-03T15:19:04.388Z",
+    "last_save_at": "2026-08-04T12:12:43.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:44fb5d895e33265d833a1f6c53c2e96442375ce0dcf995adf27b942f6162fca6",
+    "source_fingerprint": "sha256:971af089e6d740b5467c0ba2adf96bcea2239951350679cc345ba4808dc8a9a5",
     "source_doc_hashes": {
-      "spec.md": "1792c64aa56b0c5f23fe3493dd94feda2cc8c444a7b53318c33847e1c472c695",
-      "handover.md": "0c761e5604752140ffd2afc8471f9b8ab160b10e579eb25101b4b70d627b6fad"
+      "spec.md": "cfcb16e3e42a7eba6bbb7084732f87901aecf8bb982d7f8072983113460a351c",
+      "handover.md": "468617e6f7407ded26a6f4205c6ae6d0d2a77b1eeb5786d4b71f0cd5a85274a3"
     },
     "last_active_child_id": "mcp-tooling/013-mcp-obsidian/012-skill-support-extension",
     "last_active_at": "2026-08-02T11:17:14.270Z"

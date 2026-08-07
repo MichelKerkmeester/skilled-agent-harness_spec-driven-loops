@@ -1,0 +1,22 @@
+{
+  "run_id": "1786019208170-r5nald",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

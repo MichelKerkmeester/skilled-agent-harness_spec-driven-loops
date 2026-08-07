@@ -255,7 +255,7 @@ Aggregate verdict:
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Originating spec packet: [012-literal-spec-folder-names](../../../../specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/)
+- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
 
 ---
 

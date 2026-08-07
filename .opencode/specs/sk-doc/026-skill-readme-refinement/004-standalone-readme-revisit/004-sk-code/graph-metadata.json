@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code readme rewrite",
+      "sk-code readme revisit",
+      "sk-code readme",
+      "standalone readme sk-code",
+      "sk-code changelog entry",
+      "phase 004-sk-code plan",
+      "sk-code readme plan",
+      "standalone readme rewrite plan",
+      "phase 004-sk-code tasks",
+      "sk-code readme tasks",
+      "standalone readme rewrite tasks",
+      "phase 004-sk-code checklist"
+    ],
+    "key_topics": [
+      "sk-code",
+      "readme",
+      "rewrite",
+      "revisit",
+      "standalone",
+      "changelog",
+      "entry",
+      "phase",
+      "004-sk-code",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/changelog/v4.2.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/changelog/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pitch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code is the hub skill for code work with modes for quality, review, webflow and opencode routing",
+    "created_at": "2026-08-04T08:34:36.138Z",
+    "last_save_at": "2026-08-04T12:49:59.771Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78551f358fceb812c8f8ee7588f038626981bd1c88fabf3c20dd0329818defbd",
+    "source_doc_hashes": {
+      "spec.md": "0f0adda07c2a9b70342d511a8a56fc594640cd10206691416ad75260e6d0e99a",
+      "plan.md": "b269d77decec95cc9f4427b98d3a4375ab44e64586c2993daaa343bf089dcbdf",
+      "tasks.md": "b7e9c59541259bf4044eb7502b967355d7f594d0ccae1ba1126adf7a0817d64b",
+      "checklist.md": "85f7112ef66aee7c2ad758cc888e7203dfd24254191e25fa1d4f43e0a0664f5c",
+      "implementation-summary.md": "44577b0caa9f2d93e72107b3d07e0784ca0eb82ef1620b13e87361cfa5c0639e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

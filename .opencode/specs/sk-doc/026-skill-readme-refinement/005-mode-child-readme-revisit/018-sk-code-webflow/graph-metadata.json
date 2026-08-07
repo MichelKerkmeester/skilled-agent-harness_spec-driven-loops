@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code webflow readme rewrite",
+      "webflow readme revisit",
+      "sk-code-webflow readme",
+      "mode child readme rewrite",
+      "phase 18 plan",
+      "sk code webflow readme plan",
+      "webflow readme rewrite plan",
+      "phase 18 tasks",
+      "sk code webflow readme tasks",
+      "webflow readme rewrite tasks",
+      "phase 18 checklist",
+      "sk code webflow readme verification"
+    ],
+    "key_topics": [
+      "code",
+      "webflow",
+      "readme",
+      "rewrite",
+      "revisit",
+      "sk-code-webflow",
+      "mode",
+      "child",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/sk-code-webflow/README.md",
+      ".opencode/skills/sk-code/sk-code-webflow/changelog/v1.1.0.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Plugin Knowledge Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Frontend Evidence Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code-webflow README still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set",
+    "created_at": "2026-08-04T08:34:45.561Z",
+    "last_save_at": "2026-08-04T14:50:14.391Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b13d65b3ac22b7c16ed9916f6569d9001e13300d68d849b2dbcfcdffdae04d6c",
+    "source_doc_hashes": {
+      "spec.md": "371e8b0d19dd89a818a90406c5e3617dd51d25fe455ae8c21b4b781430b7c3dd",
+      "plan.md": "311aa6030b01b5ca681bade18ca17faf674dd19f5f5e6d7de658b72414b58d74",
+      "tasks.md": "25d397432997e42b6a8cd4c48f662188c60ae3c76507cb494c3f10c139336249",
+      "checklist.md": "8fc411d60881a0a4ff9faab064dd8f239b0033328589fb6cdb4253b12519c9a8",
+      "implementation-summary.md": "a215e56a2ad4988b2569539da7ebc5eedf3e6afb272cabb7e5aba834f01cada0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

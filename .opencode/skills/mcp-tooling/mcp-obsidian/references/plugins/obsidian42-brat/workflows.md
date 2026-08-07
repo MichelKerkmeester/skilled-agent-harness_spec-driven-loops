@@ -1,5 +1,5 @@
 ---
-title: BRAT File-Layer Workflows
+title: "BRAT File-Layer Workflows"
 description: "Goal-driven file operations for staging, registering, activating, pinning, updating, removing, and troubleshooting BRAT-managed Obsidian plugins and themes."
 trigger_phrases:
   - "brat headless plugin install"
@@ -18,8 +18,6 @@ version: 0.1.0.0
 
 These recipes operate on a vault's files when Obsidian commands cannot be invoked. They mirror BRAT's release-asset installation and registration behavior while keeping staging, registration, and activation as separate, verifiable stages.
 
----
-
 ## 1. OVERVIEW
 
 BRAT is the installer and updater for GitHub beta plugins and themes. Its source flow is in [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts) and its command surface is centralized in [`src/ui/PluginCommands.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts).
@@ -33,8 +31,6 @@ BRAT is the installer and updater for GitHub beta plugins and themes. Its source
 The BRAT policy file is `<vault>/.obsidian/plugins/obsidian42-brat/data.json`. Plugin activation is `<vault>/.obsidian/community-plugins.json`, an array of plugin IDs. A file-layer agent should edit these files while Obsidian is closed, retain backups of each file, and reopen or reload Obsidian only after every stage verifies successfully.
 
 Before any recipe, confirm the vault root, the BRAT policy path, the target repository, the intended release tag, and whether activation is requested. Roll back by restoring the two JSON backups and removing only the newly staged target folder if verification fails.
-
----
 
 ## 2. INSTALL A MOVING BETA PLUGIN
 
@@ -128,8 +124,6 @@ jq -e --arg id "$PLUGIN_ID" 'any(.[]; . == $id)' "$COMMUNITY" >/dev/null
 
 If the manifest is present but Obsidian does not show the plugin, reload Obsidian after the file-layer transaction. A reload does not replace registration: `data.json` and `community-plugins.json` still need the entries above.
 
----
-
 ## 3. INSTALL A FROZEN RELEASE TAG
 
 ### Goal
@@ -175,8 +169,6 @@ jq empty "$VAULT/.obsidian/plugins/obsidian42-brat/data.json"
 
 Activate the manifest ID in `.obsidian/community-plugins.json` only if the goal includes enabling it. Verify the policy record contains the exact tag and that the staged manifest version is the intended release. The frozen behavior is implemented by [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
 
----
-
 ## 4. UPDATE ALL AND HANDLE FROZEN SKIPS
 
 ### Goal
@@ -201,8 +193,6 @@ A file-layer update-all recipe is:
 6. Re-parse `data.json`, every changed manifest, and `community-plugins.json`; reload Obsidian when files changed.
 
 Do not “unfreeze” a repository as part of update-all. To update a pinned plugin, run the frozen-install recipe with a new explicit tag, or change its policy record intentionally and record the new release before rerunning the moving flow. BRAT exposes both check-only and update commands through its [`PluginCommands`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/ui/PluginCommands.ts) surface; file-layer automation should keep checking, updating, reinstalling, and restarting as separate actions.
-
----
 
 ## 5. INSTALL A BETA THEME
 
@@ -236,8 +226,6 @@ Upsert `{repo: REPO, lastUpdate: CSS_HASH}` in `themesList`. Do not add the them
 
 Verify both theme files exist, the CSS hash is recorded, `themesList` parses, and the theme appears under the manifest name. If the CSS file is written to a plugin directory or the theme manifest is given a plugin ID, the path contract is wrong; use section 6.
 
----
-
 ## 6. REMOVE REGISTRATION WITHOUT UNINSTALLING FILES
 
 ### Goal
@@ -259,8 +247,6 @@ jq empty "$BRAT_DATA"
 ```
 
 For a theme, remove the matching object from `themesList` and leave `.obsidian/themes/<manifest.name>/` unchanged. This is registration removal, not uninstall. Deleting plugin or theme files is a separate destructive operation and requires an explicit target plus a backup.
-
----
 
 ## 7. INSTALL THE TWO SIBLING MODE PLUGINS THROUGH BRAT
 
@@ -293,8 +279,6 @@ test -s "/path/to/vault/.obsidian/plugins/tables/main.js"
 
 This recipe is the file-layer bridge between BRAT's release installer and the two sibling plugin references. It does not modify their plugin files or their own references.
 
----
-
 ## 8. SOURCES AND RELATED RESOURCES
 
 - [`TfTHacker/obsidian42-brat`](https://github.com/TfTHacker/obsidian42-brat)
@@ -303,4 +287,4 @@ This recipe is the file-layer bridge between BRAT's release installer and the tw
 - [`src/features/themes.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/themes.ts)
 - [`BRAT data model`](data-model.md)
 - [`BRAT troubleshooting`](troubleshooting.md)
-- [`brat-data-entry.example.json`](../../../assets/plugins/obsidian42-brat/brat-data-entry.example.json)
+- [`brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json)

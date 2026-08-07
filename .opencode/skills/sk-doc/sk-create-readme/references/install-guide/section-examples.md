@@ -135,5 +135,5 @@ Include platform-specific configuration only when it is real for the tool.
 ## 4. CROSS-REFERENCES
 
 - [quality-and-standards.md](../install-guide/quality-and-standards.md) - Troubleshooting standards, quality criteria and checklist
-- [install-guide-template.md](../../assets/readme/install-guide-template.md) - Full install-guide scaffold
+- [install-guide-template.md](../../assets/install-guide-template.md) - Full install-guide scaffold
 - [core-standards.md](../../../shared/references/core-standards.md) - Document formatting rules

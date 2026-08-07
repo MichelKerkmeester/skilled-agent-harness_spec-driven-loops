@@ -1,5 +1,5 @@
 ---
-title: Excalidraw Plugin Index (`obsidian-excalidraw-plugin`)
+title: "Excalidraw File-Layer Index"
 description: "Entry point for operating the Excalidraw Obsidian plugin (zsviczian) at the file layer: drawing notes, embedded JSON documents, settings, scripts, templates and embeds."
 trigger_phrases:
   - "excalidraw obsidian plugin"
@@ -12,16 +12,15 @@ trigger_phrases:
   - "excalidrawautomate"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Excalidraw Plugin Index (`obsidian-excalidraw-plugin`)
 
 The `mcp-obsidian` mode operates Excalidraw through its **drawing files and settings JSON**. It never drives the drawing UI headlessly.
 
----
+## 1. IDENTITY
 
-## 1. OVERVIEW
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian plugin ID | `obsidian-excalidraw-plugin` | Plugin directory name + enablement entry |
@@ -32,8 +31,6 @@ The `mcp-obsidian` mode operates Excalidraw through its **drawing files and sett
 | minAppVersion | 1.8.7 | Verified from manifest.json |
 | Desktop only | No | Verified from manifest.json |
 | Settings file | `<vault>/.obsidian/plugins/obsidian-excalidraw-plugin/data.json` | Absent in the vault, defaults apply |
-
----
 
 ## 2. WHAT IT DOES
 
@@ -51,8 +48,6 @@ The plugin surface includes more than the canvas.
 
 The AI operates the note layer and the settings JSON only.
 
----
-
 ## 3. FILE-LAYER SURFACE (what the AI edits)
 
 | Layer | Path / artifact | Operable by AI |
@@ -63,8 +58,6 @@ The AI operates the note layer and the settings JSON only.
 | Drawing template | `<templateFilePath>` (default `Excalidraw/Template.excalidraw`) | **Yes**: copy into new drawings |
 | Shape library | `<libraryFolderPath>/<libraryFileName>.excalidrawLib` (default `Excalidraw/Libraries/local-library`) | Read-only for the AI |
 | In-app drawing UI | Excalidraw view | **No**: out of reach headlessly |
-
----
 
 ## 4. DRAWING FILE CONTRACT (summary)
 
@@ -94,8 +87,6 @@ tags: [excalidraw]
 %%
 ~~~
 
----
-
 ## 5. DATA ARTIFACT QUICK MAP
 
 | Artifact | Path / location | Shape | Full detail |
@@ -106,8 +97,6 @@ tags: [excalidraw]
 | Drawing template | `<templateFilePath>` | A normal drawing note | `data-model.md` section 7 |
 | Shape library | `<libraryFolderPath>/<libraryFileName>.excalidrawLib` | JSON library file, read-only | `data-model.md` section 7 |
 | Embeds | Any Markdown note | `![[...]]` links with block references | `data-model.md` section 6 |
-
----
 
 ## 6. SETTINGS LOCATION
 
@@ -129,8 +118,6 @@ The settings object has 200+ top-level keys. Documented defaults verified from `
 
 See `data-model.md` section 5 for the full verified setting contract.
 
----
-
 ## 7. WHEN TO USE THIS REFERENCE SET
 
 Use this reference set when the request involves any of these actions at the file layer.
@@ -144,8 +131,6 @@ Use this reference set when the request involves any of these actions at the fil
 
 Do not use this set for pure UI questions about drawing tools or the canvas. Those are user-facing interactions the AI cannot perform. Do not use this set to author automation scripts without verifying each API call against the official reference. The file layer does not prove that a script runs.
 
----
-
 ## 8. REFERENCE SET MAP
 
 | File | Purpose |
@@ -153,8 +138,6 @@ Do not use this set for pure UI questions about drawing tools or the canvas. Tho
 | [`data-model.md`](data-model.md) | Exact data artifacts: drawing note structure, frontmatter keys, embedded JSON schema, settings keys, embed syntax, scripts and templates |
 | [`workflows.md`](workflows.md) | Numbered operational workflows: read, validate, create, modify with backup discipline, embed, add scripts |
 | [`troubleshooting.md`](troubleshooting.md) | Failure modes and fixes with named validation checkpoints |
-
----
 
 ## 9. OPERATING PRINCIPLES
 

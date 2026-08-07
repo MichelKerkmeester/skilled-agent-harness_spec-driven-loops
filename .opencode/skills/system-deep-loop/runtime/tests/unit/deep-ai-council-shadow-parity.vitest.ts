@@ -2,9 +2,6 @@
 // MODULE: Deep AI Council Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-import { FencedLedgerWriter } from '../../lib/locks-and-fencing/index.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -803,7 +800,7 @@ describe('deep-ai-council typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
+      const receipt = await harness.ledger.appendAuthorized(event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(proof.decision.decision_id);
       priorHash = receipt.recordHash;
     }
@@ -1047,7 +1044,7 @@ describe('deep-ai-council typed ledger schema', () => {
       data: first.data,
     } as DeepAiCouncilEventInput<'ai_council.round_started'>, harness.registry);
     const proof = await authorize(harness, event, 'legacy-request');
-    await expect(appendAuthorizedForTest(harness.ledger, event, proof)).resolves.toMatchObject({
+    await expect(harness.ledger.appendAuthorized(event, proof)).resolves.toMatchObject({
       event_id: 'event-1',
     });
   });
@@ -1448,7 +1445,7 @@ describe('deep-ai-council shadow parity', () => {
   it('drives distinct real paths through replay, certificate issuance, and mode-gate evidence', async () => {
     const fixture = parityFixture();
     const sealed = await createParitySealedBoundary();
-    const appendSpy = vi.spyOn(FencedLedgerWriter.prototype, 'append');
+    const appendSpy = vi.spyOn(AppendOnlyLedger.prototype, 'appendAuthorized');
     const caseRun = await parityCaseRun(fixture, sealed);
     const manifest = targetedParityManifest(fixture);
     const outcome = await runDeepAiCouncilParityCase({ manifest, caseRun });
@@ -1477,7 +1474,7 @@ describe('deep-ai-council shadow parity', () => {
       cutoverAuthorized: false,
     });
 
-    const appendedTypes = appendSpy.mock.calls.map(([request]) => request.event.identity.eventType);
+    const appendedTypes = appendSpy.mock.calls.map(([event]) => event.identity.eventType);
     const evidence = caseRun.executors.evidence();
     expect(caseRun.executors.legacy).not.toBe(caseRun.executors.ledger);
     expect(caseRun.executors.legacyOracleKind).toBe('independent-legacy-model');

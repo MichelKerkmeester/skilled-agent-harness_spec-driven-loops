@@ -1,6 +1,7 @@
 ---
 title: "Agent-Discipline Stress Tests: deep-improvement adversarial scenarios"
 description: "Sandboxed CP-03x scenarios validating deep-improvement discipline boundaries against a differential generic implementer."
+version: 1.17.0.1
 ---
 
 # Agent-Discipline Stress Tests

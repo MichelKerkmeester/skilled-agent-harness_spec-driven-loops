@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
+  "description": "The fleet has parent hubs with READMEs of inconsistent shape",
+  "keywords": [
+    "fleet",
+    "parent",
+    "hubs",
+    "readmes",
+    "inconsistent",
+    "shape"
+  ],
+  "lastUpdated": "2026-08-04T12:30:47.617Z",
+  "specId": "002",
+  "folderSlug": "parent-skill-readme-template",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

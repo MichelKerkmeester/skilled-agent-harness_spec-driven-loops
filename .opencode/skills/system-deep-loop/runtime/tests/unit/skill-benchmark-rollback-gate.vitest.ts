@@ -2,8 +2,6 @@
 // MODULE: Skill Benchmark Rollback Gate Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import { createHash } from 'node:crypto';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -839,7 +837,7 @@ describe('skill benchmark rollback switch caller boundary', () => {
     if (firstAuthorization.verdict !== 'allow') {
       throw new Error(`Expected the anchor event to be authorized, got ${firstAuthorization.reasonCode}`);
     }
-    await appendAuthorizedForTest(fixture.harness.ledger, firstEvent, firstAuthorization.proof);
+    await fixture.harness.ledger.appendAuthorized(firstEvent, firstAuthorization.proof);
 
     const event = createFixtureEvent(fixture.harness.registry, 2);
     const request = await createFixtureRequest(

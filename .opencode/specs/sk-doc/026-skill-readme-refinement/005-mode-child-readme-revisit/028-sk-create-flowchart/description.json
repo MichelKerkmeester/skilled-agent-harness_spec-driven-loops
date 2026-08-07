@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
+  "description": "The skill README at `.opencode/skills/sk-doc/sk-create-flowchart/README.md` still carries the older tabular reference-card style and predates the",
+  "keywords": [
+    "skill",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "sk-create-flowchart",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates"
+  ],
+  "lastUpdated": "2026-08-04T17:59:09.846Z",
+  "specId": "028",
+  "folderSlug": "sk-create-flowchart",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

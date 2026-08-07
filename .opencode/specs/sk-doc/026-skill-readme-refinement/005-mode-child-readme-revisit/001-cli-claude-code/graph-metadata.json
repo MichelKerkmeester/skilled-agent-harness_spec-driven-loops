@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli claude code readme rewrite",
+      "mode readme revisit",
+      "phase 1 readme rewrite",
+      "phase 1 plan",
+      "cli claude code readme plan",
+      "mode readme revisit plan",
+      "phase 1 tasks",
+      "cli claude code readme tasks",
+      "mode readme revisit tasks",
+      "phase 1 checklist",
+      "cli claude code readme verification",
+      "mode readme revisit verification"
+    ],
+    "key_topics": [
+      "cli",
+      "claude",
+      "code",
+      "readme",
+      "rewrite",
+      "mode",
+      "revisit",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/changelog/v1.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-claude-code README at `.opencode/skills/cli-external-orchestration/cli-claude-code/README.md` still carries the older tabular reference-card style",
+    "created_at": "2026-08-04T08:34:39.087Z",
+    "last_save_at": "2026-08-04T13:52:15.075Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9ae16b041c24f010890f5645983024688534c64f9bd843f737f63b9f74118e49",
+    "source_doc_hashes": {
+      "spec.md": "08aa42435347e97a97e56098e11a72a2d4f7760f2cf1c9f4194ad0c1967590ab",
+      "plan.md": "84ecd95d7e81028ee8295a4305695c275fe99f0f3dc0bd50426de404f72b7d88",
+      "tasks.md": "a0d093591bd191c811fbc4bd6afaf7a0498f45595f230a795db830aa6ab4fe88",
+      "checklist.md": "62b31168c2bb7e09e03e0415aa544f57a024c69cce3e1d980cda1f827cfd95b3",
+      "implementation-summary.md": "a4d453f2fbd28e810c07e8dd1c2da0baae91ab41eb4074264dc74a0b7e156002"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
+  "description": "The create-skill workflow at `.opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` predates the README refinement program",
+  "keywords": [
+    "create-skill",
+    "workflow",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "sk-create-skill",
+    "references",
+    "skill",
+    "creation-workflow",
+    "predates",
+    "readme",
+    "refinement",
+    "program"
+  ],
+  "lastUpdated": "2026-08-04T20:10:31.433Z",
+  "specId": "003",
+  "folderSlug": "creation-workflow-update",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

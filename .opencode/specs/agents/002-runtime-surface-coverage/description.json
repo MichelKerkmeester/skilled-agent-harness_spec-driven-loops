@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "agents/002-runtime-surface-coverage",
+  "description": "The root framework doc (`AGENTS.md`) and its mirrors still enumerate three supported runtimes — Claude Code, Codex CLI, OpenCode — while the repo",
+  "keywords": [
+    "root",
+    "framework",
+    "doc",
+    "agents",
+    "mirrors",
+    "still",
+    "enumerate",
+    "three",
+    "supported",
+    "runtimes",
+    "claude",
+    "code",
+    "codex",
+    "cli",
+    "opencode",
+    "while",
+    "repo"
+  ],
+  "lastUpdated": "2026-08-04T07:18:25.127Z",
+  "specId": "002",
+  "folderSlug": "runtime-surface-coverage",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

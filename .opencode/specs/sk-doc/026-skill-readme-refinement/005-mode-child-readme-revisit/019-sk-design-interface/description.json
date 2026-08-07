@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface",
+  "description": "The skill README at `.opencode/skills/sk-design/sk-design-interface/README.md` still carries the older tabular reference-card style and predates the",
+  "keywords": [
+    "skill",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-design",
+    "sk-design-interface",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates"
+  ],
+  "lastUpdated": "2026-08-04T18:00:38.782Z",
+  "specId": "019",
+  "folderSlug": "sk-design-interface",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

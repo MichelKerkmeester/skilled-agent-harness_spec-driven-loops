@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/013-mcp-obsidian/022-plugin-skill-support-references",
+  "description": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
+  "keywords": [
+    "mode",
+    "now",
+    "ships",
+    "six",
+    "community",
+    "artifacts",
+    "five",
+    "plugins",
+    "minimal",
+    "theme",
+    "whose",
+    "file",
+    "layers",
+    "documented",
+    "cataloged",
+    "routed"
+  ],
+  "lastUpdated": "2026-08-04T12:04:09.613Z",
+  "specId": "022",
+  "folderSlug": "plugin-skill-support-references",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

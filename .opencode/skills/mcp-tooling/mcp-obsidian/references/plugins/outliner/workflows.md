@@ -1,5 +1,5 @@
 ---
-title: Outliner File-Layer Workflows
+title: "Outliner File-Layer Workflows"
 description: "Numbered operational workflows for the Outliner plugin: verify installation, read settings, validate schema, modify with backup discipline, reset, restore and inspect list markdown."
 trigger_phrases:
   - "outliner workflows"
@@ -10,22 +10,14 @@ trigger_phrases:
   - "outliner restore data json"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Outliner File-Layer Workflows
 
 Every operation below runs at the file layer. The mode cannot drive the Obsidian UI headlessly, so all changes happen in `data.json` and take effect after Obsidian reloads the plugin.
 
----
-
-## 1. OVERVIEW
-
-This reference documents file-layer workflows for verifying, validating, changing, restoring, and inspecting Outliner plugin state. It keeps operations scoped to `data.json` and records the checks needed to confirm each change.
-
----
-
-## 2. WORKFLOW DISCIPLINE
+## 1. WORKFLOW DISCIPLINE
 
 - Backup before every write.
 - Read `data.json` fresh before any merge.
@@ -35,9 +27,7 @@ This reference documents file-layer workflows for verifying, validating, changin
 
 Backup name convention: `data.json.bak-YYYYMMDD-HHMMSS` in the same folder.
 
----
-
-## 3. VERIFY INSTALLATION AND VERSION
+## 2. VERIFY INSTALLATION AND VERSION
 
 1. Read `<vault>/.obsidian/plugins/obsidian-outliner/manifest.json`.
 2. Record `version` and `minAppVersion`.
@@ -46,9 +36,7 @@ Backup name convention: `data.json.bak-YYYYMMDD-HHMMSS` in the same folder.
 
 Checkpoint: the recorded version matches the manifest exactly and the plugin is enabled. Expected in the active vault: version 4.10.2, minimum 1.11.7, enabled.
 
----
-
-## 4. READ CURRENT SETTINGS
+## 3. READ CURRENT SETTINGS
 
 1. Check whether `<vault>/.obsidian/plugins/obsidian-outliner/data.json` exists.
 2. If absent, report that defaults apply.
@@ -56,9 +44,7 @@ Checkpoint: the recorded version matches the manifest exactly and the plugin is 
 
 Checkpoint: the read result states file presence and the parsed JSON or the default values. In the active vault the file is absent, so defaults apply.
 
----
-
-## 5. VALIDATE SETTINGS
+## 4. VALIDATE SETTINGS
 
 1. Parse `data.json` as JSON.
 2. Check every key against the schema in `data-model.md`.
@@ -87,9 +73,7 @@ After:
 
 Checkpoint: every key is known and every enum value is valid.
 
----
-
-## 6. MODIFY A SETTING
+## 5. MODIFY A SETTING
 
 Example: enable vertical indentation lines while keeping the click action on folding. The `zoom-in` action would need the Zoom plugin, which the active vault does not have.
 
@@ -121,9 +105,7 @@ After:
 
 Checkpoint: the diff touches only the target keys and the backup exists.
 
----
-
-## 7. RESET A SETTING TO DEFAULT
+## 6. RESET A SETTING TO DEFAULT
 
 1. Back up `data.json`.
 2. Remove the key or set it to the schema default.
@@ -133,9 +115,7 @@ Before: `"dnd": false`. After: the key is removed, or `"dnd": true`.
 
 Checkpoint: the resulting file equals the schema default for that key.
 
----
-
-## 8. RESTORE FROM BACKUP
+## 7. RESTORE FROM BACKUP
 
 1. List `data.json.bak-*` files newest first.
 2. Diff the newest backup against the current file.
@@ -144,9 +124,7 @@ Checkpoint: the resulting file equals the schema default for that key.
 
 Checkpoint: the restored file parses and matches the backup byte for byte.
 
----
-
-## 9. INSPECT LIST MARKDOWN COMPATIBILITY
+## 8. INSPECT LIST MARKDOWN COMPATIBILITY
 
 Read-only check on a note the user reports as misbehaving.
 
@@ -173,9 +151,7 @@ After (consistent):
 
 Checkpoint: the list uses one indent character throughout and valid task markers. This is note hygiene, not a plugin transformation.
 
----
-
-## 10. MAP INTENT TO SETTINGS
+## 9. MAP INTENT TO SETTINGS
 
 The mode cannot run in-app commands, so it translates user intent into settings where possible.
 
@@ -191,9 +167,7 @@ The mode cannot run in-app commands, so it translates user intent into settings 
 
 Checkpoint: every proposed change uses only documented keys and respects the dependency gate.
 
----
-
-## 11. POST-WRITE VERIFICATION
+## 10. POST-WRITE VERIFICATION
 
 1. Re-read the written `data.json`.
 2. Confirm the JSON parses.
@@ -202,9 +176,7 @@ Checkpoint: every proposed change uses only documented keys and respects the dep
 
 Checkpoint: file valid, diff scoped, backup present, plugin folder clean.
 
----
-
-## 12. PLUGIN RELOAD AND SIDE EFFECTS
+## 11. PLUGIN RELOAD AND SIDE EFFECTS
 
 - Obsidian reads plugin `data.json` when the plugin loads.
 - In-app setting changes write the file back through the plugin storage.
@@ -212,11 +184,3 @@ Checkpoint: file valid, diff scoped, backup present, plugin folder clean.
 - A reloaded plugin never rewrites note content, so reloads are safe for notes.
 - A concurrent in-app change can overwrite a file-layer write. Warn the user not to change settings during an edit.
 - Re-read `data.json` after any user action before merging again.
-
----
-
-## 13. RELATED RESOURCES
-
-- [Outliner data model](data-model.md)
-- [Outliner troubleshooting](./troubleshooting.md)
-- [Outliner reference overview](./outliner.md)

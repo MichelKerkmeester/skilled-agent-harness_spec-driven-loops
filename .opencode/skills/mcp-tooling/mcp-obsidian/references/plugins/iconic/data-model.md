@@ -1,5 +1,5 @@
 ---
-title: Iconic File-Layer Data Model
+title: "Iconic File-Layer Data Model"
 description: "Complete file-layer contract for the Iconic plugin: data.json keys, rulebook schema, visibility toggles, per-item icon maps, and the safe-merge discipline."
 trigger_phrases:
   - "iconic data model"
@@ -36,8 +36,6 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 - Rendering is in-app only; the AI edits the JSON and the app reflects it after reload.
 - Safe-merge discipline (from the Iconic-Setup bundle's `merge_rules.py`): back up `data.json` before any change, merge only what was requested, preserve everything else.
 
----
-
 ## 2. TOP-LEVEL KEYS (from the live vault rulebook)
 
 | Key | Type | Meaning |
@@ -57,8 +55,6 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 | `appIcons` / `tabIcons` / `fileIcons` / `bookmarkIcons` / `tagIcons` / `propertyIcons` / `ribbonIcons` | dict | Per-item icon overrides (empty in the stock rulebook) |
 | `fileRules` | list | 21 rules by file extension |
 | `folderRules` | list | 11 rules by folder name |
-
----
 
 ## 3. RULEBOOK SCHEMA
 
@@ -101,8 +97,6 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 - `assets/plugins/iconic/iconic-rules.full.md` is the template-conformant usage companion: rule-class coverage and the safe-merge contract, with the full JSON as the exact source.
 - `assets/plugins/iconic/iconic-rules.example.json` remains the compact schema sample (2 file + 1 folder rules).
 
----
-
 ## 4. SAFE-MERGE DISCIPLINE (mandatory)
 
 1. **Read** `data.json` fresh.
@@ -110,8 +104,6 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable. When applying the canonical asset, update matching ids and append missing ids only.
 4. **Write** valid JSON; re-parse to verify.
 5. **Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
-
----
 
 ## 5. WHAT THE AI MUST NOT DO
 

@@ -5,7 +5,6 @@
 import {
   AuthorizationVerdicts,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   EventTypeRegistry,
@@ -229,5 +228,5 @@ export async function commitFanInDecision(
   if (authorization.verdict !== AuthorizationVerdicts.ALLOW) {
     throw new TypeError(`Fan-in decision authorization denied: ${authorization.reasonCode}`);
   }
-  return appendFencedLedgerRecord(input.ledger, event, authorization.proof);
+  return input.ledger.appendAuthorized(event, authorization.proof);
 }

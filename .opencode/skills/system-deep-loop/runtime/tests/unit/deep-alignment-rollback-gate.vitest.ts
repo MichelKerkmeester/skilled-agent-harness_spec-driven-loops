@@ -2,8 +2,6 @@
 // MODULE: Deep Alignment Rollback Gate Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -506,7 +504,7 @@ async function authorizedLedger(events: readonly DeepAlignmentLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected certificate authorization');
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({ rootDirectory, operationTimeoutMs: 5_000 });
   const ledgerLease = coordinator.acquire({

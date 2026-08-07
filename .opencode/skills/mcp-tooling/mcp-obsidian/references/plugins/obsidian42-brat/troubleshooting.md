@@ -1,5 +1,5 @@
 ---
-title: BRAT Troubleshooting
+title: "BRAT Troubleshooting"
 description: "Cause, detection, and file-layer recovery for BRAT release, asset, tag, compatibility, update, rate-limit, SecretStorage, theme, and vault-state failures."
 trigger_phrases:
   - "brat no release error"
@@ -18,8 +18,6 @@ version: 0.1.0.0
 # BRAT Troubleshooting
 
 BRAT failures usually occur at one of three boundaries: GitHub release discovery, release-asset and manifest validation, or vault-state registration and activation. Use the evidence files first, then repair only the failing stage described in [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
-
----
 
 ## 1. OVERVIEW
 
@@ -42,8 +40,6 @@ Triage in this order:
 | Theme files | `.obsidian/themes/<manifest.name>/theme.css` and `manifest.json`; no community-plugin activation entry. |
 
 BRAT's persisted defaults and token-name boundary are documented in [`data-model.md`](data-model.md). Its repository is [`TfTHacker/obsidian42-brat`](https://github.com/TfTHacker/obsidian42-brat); the source of release and compatibility behavior is [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
-
----
 
 ## 2. FAILURE CATALOG
 
@@ -69,8 +65,6 @@ BRAT's persisted defaults and token-name boundary are documented in [`data-model
 | Corrupt or overwritten JSON | A partial write, invalid merge, or concurrent Obsidian write damaged `data.json` or `community-plugins.json`. | `jq empty` fails, the top-level type is wrong, or unrelated entries disappeared. | Stop, restore the most recent backup, close Obsidian, merge only the intended field, write through a temporary file, and re-parse before reopening. |
 
 The asset, manifest, release, and compatibility behavior above follows [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts). The persisted key and SecretStorage boundary follow [`src/settings.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts).
-
----
 
 ## 3. PLUGIN FAILURE RECIPES
 
@@ -109,8 +103,6 @@ A successful JSON parse does not prove that the file is a compatible Obsidian pl
 
 Record three independent values in the diagnostic output: requested release tag, API `tag_name`, and manifest `version`. Then record the target Obsidian version and `minAppVersion`, plus `isDesktopOnly` when present. Repair the release selection or target environment before changing `allowIncompatiblePlugins`.
 
----
-
 ## 4. UPDATE AND REGISTRATION DIAGNOSTICS
 
 ### Frozen-skip surprise
@@ -137,8 +129,6 @@ After any operation, check all three stages: plugin files, BRAT registration, an
 
 If the goal is to stop future BRAT updates, remove the repository from `pluginList` and matching policy records. If the goal is to disable the plugin, separately remove its manifest ID from `community-plugins.json`. If the goal is to uninstall, separately identify and remove the plugin folder after a backup. Keep these operations distinct so a registration repair does not delete working files.
 
----
-
 ## 5. PRIVATE-REPOSITORY DIAGNOSTICS
 
 BRAT v2.0+ separates GitHub token values from `data.json`. Check only these persisted names:
@@ -149,8 +139,6 @@ jq '{globalTokenName, pluginSubListFrozenVersion: [.pluginSubListFrozenVersion[]
 
 Then confirm through Obsidian's SecretStorage boundary that the named entry exists and the token can read the target repository. A `ghp_` or `github_pat_` prefix is accepted by BRAT's token handling, but the secret itself must not be copied into shell logs, source files, or `data.json`. If the repository is private and the token is missing or under-scoped, no amount of JSON registration repair can make the release API request succeed.
 
----
-
 ## 6. THEME VERSUS PLUGIN PATH
 
 | Item | Release/file contract | Registration/activation |
@@ -160,8 +148,6 @@ Then confirm through Obsidian's SecretStorage boundary that the named entry exis
 
 If a troubleshooting report says “installed but not visible,” resolve the item type before changing either JSON file. The theme-specific source is [`src/features/themes.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/themes.ts); the plugin-specific source is [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
 
----
-
 ## 7. SOURCES AND RELATED RESOURCES
 
 - [`TfTHacker/obsidian42-brat`](https://github.com/TfTHacker/obsidian42-brat)
@@ -170,4 +156,4 @@ If a troubleshooting report says “installed but not visible,” resolve the it
 - [`src/features/themes.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/themes.ts)
 - [`BRAT data model`](data-model.md)
 - [`BRAT workflows`](workflows.md)
-- [`brat-data-entry.example.json`](../../../assets/plugins/obsidian42-brat/brat-data-entry.example.json)
+- [`brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json)

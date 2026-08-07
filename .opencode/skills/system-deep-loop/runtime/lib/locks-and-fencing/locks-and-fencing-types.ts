@@ -87,17 +87,9 @@ export interface FencingCoordinatorSnapshot {
   readonly isExpired: boolean;
 }
 
-declare const fenceCapabilityBrand: unique symbol;
-
-/** Opaque capability minted only after a coordinator validates a current lease. */
-export interface FenceCapability {
-  readonly [fenceCapabilityBrand]: true;
-}
-
 export interface FencedMutationContext {
   readonly resources: readonly CanonicalProtectedResource[];
   readonly fenceTokens: readonly number[];
-  readonly fenceCapabilities: readonly FenceCapability[];
 }
 
 /** Side effect executed only after the coordinator revalidates the current fence. */

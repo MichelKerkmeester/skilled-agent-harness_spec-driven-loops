@@ -9,344 +9,201 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # cli-devin
 
-> Dispatch a task to Cognition's `devin` CLI and get back multi-model coding, subagent delegation, cloud handoff or a second-model opinion, without leaving your current runtime.
+> Delegates focused tasks to Cognition's Devin CLI: multi-model coding, subagent delegation, cloud handoff and a second opinion, all from inside your current runtime.
 
 ---
 
-## 1. OVERVIEW
+## 1. AT A GLANCE
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Multi-model coding, subagent delegation, cloud handoff, and cross-model validation through Cognition's `devin` CLI |
-| **Invoke with** | "devin", "cognition", "cloud handoff", "subagent", "second opinion" or auto-routing on Devin keywords |
-| **Works on** | Any external runtime (Claude Code, Codex, Cursor, OpenCode, raw shell) that needs to reach the `devin` binary |
-| **Produces** | Code edits, text responses, subagent task results, cloud handoff sessions, and web-enriched research |
+| **Use it for** | Cross-AI delegation: coding, review, research, subagent tasks or cloud handoff through Cognition's Devin CLI, with a second-model opinion on demand |
+| **Invoke with** | "devin", "cognition", "cloud handoff", "subagent delegation", "second opinion" or "cross-validate", plus the router intent keywords |
+| **Works on** | Any external runtime (Claude Code, Codex, Cursor, OpenCode or raw shell) that can reach the `devin` binary |
+| **Produces** | Code edits, structured reviews, subagent task results, cloud sessions with their own VM and web-enriched research |
 
 ---
 
-## 2. PREREQUISITES
+## 2. OVERVIEW
 
-### Install Devin CLI
+### Why This Skill Exists
 
-```bash
-# Interactive setup wizard (auth + MCP configuration)
-devin setup
+A long generation, an independent review, a browser-heavy task or a security audit can drain your context window and bias your own judgment. cli-devin hands such tasks to Cognition's Devin CLI, which runs its own agent in its own context with a model of your choice. The calling AI stays the conductor. The skill exists so a second AI can work on your codebase without you switching runtimes or babysitting a session.
 
-# Or install directly
-curl -fsSL https://devin.ai/install | bash
-```
+### What It Does
 
-### Authenticate
+The skill routes a request through the smart router, picks a curated model and a permission mode, then dispatches with `devin -p`. It can delegate to Devin's native subagents through `run_subagent`, move a session to the cloud with `/handoff`, attach MCP servers with `devin mcp add` and continue or resume past sessions with `devin -c` and `devin -r`. Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. SKILL.md owns the routing contract and the hard rules.
 
-```bash
-# Browser-based OAuth login
-devin auth login
+### The Delegation Layer
 
-# For SSH/remote sessions
-devin auth login --force-manual-token-flow
+| Capability | What the skill can operate |
+|---|---|
+| **Multi-model dispatch** | a curated roster of four families (GLM-5.2, SWE-1.7, Grok 4.5 and DeepSeek V4 Pro) chosen per dispatch with `--model` |
+| **Subagent delegation** | read-only and full-access workers through `run_subagent`, plus custom `.devin/agents/<name>/AGENT.md` profiles |
+| **Cloud handoff** | a cloud VM with its own shell, browser and repo access via `/handoff` |
+| **Session management** | continue and resume workflows with `devin -c` and `devin -r <session-id>` |
+| **MCP integration** | external MCP servers attached with `devin mcp add` and listed with `devin mcp list` |
 
-# Verify authentication
-devin auth status
-```
+Subagents take a profile, not a model. `subagent_explore` runs on the cheap default and `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, define a custom profile with a `model:` field. The full roster and dispatch shapes live in `references/providers-and-models.md`.
 
-A Devin account (free, team, or enterprise) is required. The CLI authenticates through Cognition's OAuth flow — it does not use an API key.
+### What This Skill Does Not Own
 
-### Verify Installation
-
-```bash
-command -v devin      # Should print the binary path
-devin --version       # Should print the version (e.g. 3000.2.17)
-```
+- It does not replace the calling runtime. The calling AI stays the conductor and verifies every result.
+- It does not build a second execution adapter. The shared deep-loop runtime owns process construction. SKILL.md owns routing and prompt construction.
+- It never dispatches into a session already running inside Devin. A running CLI skill never dispatches itself.
+- It does not own application-code standards. Dispatched sessions load `sk-code` for surface standards and verification.
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Verify the CLI is installed.**
+**Step 1: Confirm the binary and the login.**
 
 ```bash
 command -v devin
+devin auth status
 ```
 
-If nothing prints, install it with `devin setup` or `curl -fsSL https://devin.ai/install | bash`.
+`command -v` prints the binary path. `devin auth status` prints the logged-in state. When the login is missing, complete it before dispatching.
 
-**Step 2: Run the default dispatch.**
+**Step 2: Install and authenticate when missing.**
 
 ```bash
-devin -p \
-  --model adaptive \
-  --permission-mode accept-edits \
-  "Add input validation to src/utils.ts" \
-  2>&1
+devin setup
+curl -fsSL https://devin.ai/install | bash
+devin auth login
+devin --version
 ```
 
-You get the file edited in place inside your workspace. For a read-only task like review or research, swap the permission mode to `auto`.
+`devin setup` runs the interactive wizard and the one-liner installs without it. `devin auth login` opens the browser OAuth flow. The CLI does not use an API key. Use `--force-manual-token-flow` on SSH-only machines. `devin --version` prints the installed version, for example `3000.2.17`.
 
-**Step 3: Dispatch a subagent for parallel exploration.**
+**Step 3: Run the default dispatch.**
 
 ```bash
-devin -p \
-  --model adaptive \
-  --permission-mode auto \
-  "Research how the authentication module works using a subagent_explore subagent. Report the key files and data flow." \
-  2>&1
+devin -p --model swe --permission-mode accept-edits -- "Add input validation to src/utils.ts" 2>&1
 ```
 
-You get a structured research summary from a read-only subagent running on the cheap default subagent model (SWE-1.6), not your primary model.
+The default model is `swe` (alias for `swe-1-7-lightning`) and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
 
-**Step 4: Hand off a long-running task to the cloud.**
+**Step 4: Hand a long-running task to the cloud.**
 
 ```bash
-devin --permission-mode accept-edits -- "Fix the flaky integration tests in CI, then run the full suite to confirm"
-# Inside the REPL session:
-/handoff fix the flaky integration tests in CI
+devin -- "Fix the flaky integration tests in CI, then run the full suite to confirm"
 ```
 
-The cloud session gets its own VM with a shell, browser, and full repo access. Track its progress from your terminal or in the Devin web app.
+Inside the session, type `/handoff fix the flaky integration tests in CI`. The cloud session gets its own VM with a shell, browser and full repo access. It keeps working after you disconnect. Track it from the terminal or the Devin web app.
 
 ---
 
-## 4. COMMON PATTERNS
+## 4. HOW IT WORKS
 
-### Code Review (Read-Only)
+### The Smart Router
 
-```bash
-devin -p \
-  --model opus \
-  --permission-mode auto \
-  "Review src/auth/handler.ts for security vulnerabilities and code quality. Report findings as a structured list with severity ratings." \
-  2>&1
-```
+The router scores the request against weighted intent signals (generation, review, research, architecture, delegation, handoff, templates, patterns) and loads the matching references. `references/cli-reference.md` and `assets/prompt-quality-card.md` load on every invocation. Two hard rules gate every dispatch: the `command -v devin` availability probe and the self-invocation guard.
 
-Use `auto` (read-only auto-approve) for review tasks. Use `opus` for deep security analysis.
+### The Dispatch Envelope
 
-### Code Generation (Workspace Edits)
+A non-interactive dispatch is one command with four load-bearing parts: the model, the permission mode, the `--` separator before the prompt and `2>&1` so errors surface. `devin -p` exits after one turn, so multi-turn work uses `devin -c` or `devin -r <session-id>`. In scripts, pass the model explicitly every time and redirect stdin from `/dev/null` inside loops so the child does not drain the loop's input.
 
-```bash
-devin -p \
-  --model adaptive \
-  --permission-mode accept-edits \
-  "Generate a rate limiter middleware with sliding window algorithm in src/middleware/rate-limiter.ts. Include types, error handling, and JSDoc." \
-  2>&1
-```
+### Permission Modes as the Autonomy Lever
 
-Use `accept-edits` for generation tasks so file writes are auto-approved within the workspace.
+Devin has no headless reasoning-effort flag. Autonomy is set through the permission mode. `devin -p` defaults to `auto`, which is read-only, so file-modification tasks silently prompt or no-op without a higher mode.
 
-### Subagent-Delegated Research
+| Mode | Flag value | What it approves | Use for |
+|---|---|---|---|
+| **Auto** | `auto` | read-only tools, prompting for writes and shell commands | review, analysis, research or security work (`devin -p` default) |
+| **Accept Edits** | `accept-edits` | workspace edits plus read-only tools, prompting for shell | code generation and refactoring (skill default) |
+| **Smart** | `smart` | actions a fast model judges safe | trusted workflows with judgment calls |
+| **Dangerous** | `dangerous` | every tool without prompting | full trust, explicit user approval required |
 
-```bash
-devin -p \
-  --model adaptive \
-  --permission-mode auto \
-  "Use a subagent_explore subagent to map all authentication-related files and their dependencies. Report the dependency graph and any circular imports." \
-  2>&1
-```
+The `--sandbox` flag wraps the session in OS-enforced filesystem and network boundaries. On Linux it needs `devin sandbox setup`, which installs `bwrap` and `socat`. macOS works out of the box.
 
-The explore subagent runs on SWE-1.6 (cheap and fast), keeping your primary model's spend low.
+### The Self-Invocation Guard
 
-### Session Continuation
+The skill refuses to load when the calling session is itself running inside Devin. Detection reads `$DEVIN_PROJECT_DIR` and the process ancestry, then probes for active-session credentials. A circular dispatch burns tokens and never converges, so the refusal is a hard rule.
 
-```bash
-# Continue the most recent session in the current directory
-devin -c
+### Safety Invariants
 
-# Resume a specific session by ID
-devin -r brisk-otter
-
-# Non-interactive continuation
-devin -c -p "Continue implementing the rate limiter from where we left off" 2>&1
-```
-
-### Multi-Model Selection
-
-```bash
-# Use Claude Opus for complex refactoring
-devin -p --model opus --permission-mode accept-edits "Refactor the auth module to use a strategy pattern" 2>&1
-
-# Use SWE-1.6 Fast for quick edits
-devin -p --model swe-1-6-fast --permission-mode accept-edits "Fix the typo in the error message at line 42" 2>&1
-
-# Use GPT for OpenAI-model strengths
-devin -p --model gpt --permission-mode accept-edits "Generate comprehensive tests for the webhook handler" 2>&1
-```
+- Run `command -v devin` before every dispatch and refuse the route when the binary is missing.
+- Capture stderr with `2>&1` so rate-limit messages and errors surface.
+- Verify Devin output before applying it with syntax checks, lint, type checks or the project test suite.
+- Include the active spec folder in the dispatch prompt so the delegated agent skips the interactive gate question.
+- Never use `--permission-mode dangerous` without explicit user approval.
+- Never send secrets (API keys, passwords, tokens or credentials) inside a dispatch prompt.
 
 ---
 
-## 5. ADVANCED PATTERNS
+## 5. INTEGRATION & NAVIGATION
 
-### Cloud Handoff for CI-Like Validation
+### When To Use This Skill
 
-```bash
-# Start a session, then hand off to cloud for long-running validation
-devin -- "Run the full integration test suite, fix any failures, and verify the build passes"
-# Inside the REPL:
-/handoff run the full test suite and fix all failures
-```
+Use cli-devin when the task benefits from a second AI perspective: an independent code review, a security audit, a generation pass, parallel research or a long-running task that should keep working after you disconnect. Do not use it for quick tasks the calling agent can finish faster, nor for interactive refinement that needs the full-screen REPL (run `devin` directly instead).
 
-The cloud session runs in its own VM with shell, browser, and repo access. It keeps working after you close your laptop. Track progress in the terminal or the Devin web app.
+### Related Skills
 
-### Custom Subagent Profiles
-
-Define a specialized subagent in `.devin/agents/reviewer/AGENT.md`:
-
-```markdown
----
-name: reviewer
-description: Reviews code changes for correctness and style
-model: sonnet
-allowed-tools:
-  - read
-  - grep
-  - glob
-  - exec
-permissions:
-  allow:
-    - Exec(git diff)
-    - Exec(git log)
-  deny:
-    - write
-    - edit
----
-
-You are a code review subagent. Review code changes thoroughly
-and report findings back to the parent agent with specific file
-paths and line numbers.
-```
-
-Then ask Devin to use it: "review this code using the reviewer subagent."
-
-### OS-Level Sandbox for Autonomous Execution
-
-```bash
-# Autonomous mode with OS-enforced sandbox limits
-devin --sandbox --permission-mode autonomous -p "Run the test suite and fix any failures" 2>&1
-```
-
-Autonomous is the only mode available with `--sandbox`. Shell commands and fetches auto-approve because the sandbox enforces filesystem and network boundaries.
-
-### MCP Server Integration
-
-```bash
-# Add an MCP server
-devin mcp add my-server -- npx @company/mcp-server --port 3000
-
-# List configured MCP servers
-devin mcp list
-
-# Use MCP tools in a dispatch
-devin -p "Use the database MCP tool to query user records and summarize the schema" 2>&1
-```
-
-### Background Subagent Fan-Out
-
-```bash
-# Dispatch multiple explore subagents in parallel for independent research
-devin -p \
-  --model adaptive \
-  --permission-mode auto \
-  "Spawn three subagent_explore subagents in the background: one to map the API layer, one to map the database layer, and one to map the auth layer. Summarize all three findings when they complete." \
-  2>&1
-```
-
-Background subagents run in parallel; the parent agent is notified when each completes.
+| Skill | Relationship |
+|---|---|
+| `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` and `cli-pi` | sibling dispatchers in the cli-* family, one dispatch at a time unless the operator authorizes parallel |
+| `sk-code` | owns the application-code standards a dispatched session loads for review or generation |
+| `system-deep-loop` | owns the shared fan-out runtime that executes orchestrated cli-devin dispatches |
+| `sk-prompt` | owns per-model prompt-craft when the target model has a profile |
 
 ---
 
-## 6. CONFIGURATION
-
-### Permission Modes
-
-| Mode | Flag value | Behavior | Best for |
-|------|-----------|----------|----------|
-| **Auto** | `auto` | Auto-approves read-only tools | Review, analysis, research |
-| **Accept Edits** | `accept-edits` | Auto-approves workspace edits + read-only | Code generation, bug fixing |
-| **Smart** | `smart` | Auto-runs actions a fast model judges safe | Trusted workflows with judgment |
-| **Dangerous** | `dangerous` | Auto-approves all tools | Full trust, explicit approval required |
-| **Autonomous** | `autonomous` | Sandbox-enforced, only with `--sandbox` | Unattended execution with OS limits |
-
-### Config File
-
-Set defaults in `~/.config/devin/config.json` (or `.devin/config.json` for project-level):
-
-```json
-{
-  "agent": {
-    "model": "adaptive"
-  },
-  "permissions": {
-    "allow": [
-      "Read(**)",
-      "Write(src/**)",
-      "Exec(git)",
-      "Exec(npm run)"
-    ],
-    "deny": [
-      "Exec(rm -rf)",
-      "Exec(sudo)"
-    ]
-  }
-}
-```
-
-### Model Short Names
-
-Short names always resolve to the latest version in that family:
-
-| Short name | Resolves to |
-|------------|-------------|
-| `adaptive` | Intelligent model router (auto-selects per task) |
-| `opus` | Latest Claude Opus |
-| `sonnet` | Latest Claude Sonnet |
-| `swe` | Latest SWE-1.6 |
-| `gpt` | Latest GPT model |
-| `codex` | Latest OpenAI Codex |
-| `gemini` | Latest Gemini |
-
----
-
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: devin` | CLI not installed or PATH not updated | Run `devin setup` or `curl -fsSL https://devin.ai/install \| bash`, then restart your terminal |
-| `not authenticated` or auth error | Devin account OAuth not configured or expired | Run `devin auth login` (browser flow; or `--force-manual-token-flow` for SSH) |
-| Task ran but no files changed | `devin -p` defaulted to `auto` (read-only) permission mode | Add `--permission-mode accept-edits` or `dangerous` |
-| Agent asks for spec folder or approval | Non-interactive `-p` mode cannot answer prompts | Include `(pre-approved, skip Gate 3)` in the prompt and use `--permission-mode accept-edits` |
-| `Self-invocation refused` | The caller is already inside Devin (`DEVIN_PROJECT_DIR` set, `devin` ancestry, or active credentials) | Use a different runtime or exit the current Devin session first |
-| Cloud handoff fails | Network issue or uncommitted changes blocking transfer | Commit or stash unwanted changes; verify network connectivity to `app.devin.ai` |
-| Subagent denied tools | Background subagent cannot prompt for new permissions | Resume the subagent in the foreground to approve the necessary permissions |
-| Slow response | Large context or complex task | Break task into smaller steps; use `auto` for analysis; use `swe-1-6-fast` for quick lookups |
-| `--sandbox` not available | Platform prerequisites missing | Run `devin sandbox setup` for platform requirements (Linux needs `bwrap` + `socat`; macOS works out of the box) |
+| `command not found: devin` | CLI not installed or PATH not updated | Run `devin setup` or the install one-liner, then restart the terminal |
+| Auth error on dispatch | Devin account OAuth not configured or expired | Run `devin auth login` (browser flow) or `devin auth login --force-manual-token-flow` on SSH machines |
+| Task ran but no files changed | `devin -p` defaults to `auto`, which is read-only | Pass `--permission-mode accept-edits` or higher |
+| Delegated agent stalls on a spec-folder prompt | `devin -p` cannot answer interactive questions | Pass the active spec folder with the pre-approved marker, otherwise ask the user before dispatching |
+| Self-invocation refused | The calling session is already inside Devin | Use a different runtime or exit the Devin session first |
+| Cloud handoff fails | Network issue or uncommitted changes block the transfer | Commit or stash the changes and verify connectivity to `app.devin.ai` |
+| Background subagent denied tools | Background workers cannot prompt for new permissions | Pre-approve the tools in the session or resume the subagent in the foreground |
+| Slow response | Large context or complex task | Split the task, pin `swe-1-7-lightning` for quick edits, use `auto` for pure analysis or raise the model tier for hard reasoning |
+| `--sandbox` not available | Platform prerequisites missing | Run `devin sandbox setup` (Linux needs `bwrap` and `socat`). macOS works out of the box |
+
+Full recovery procedures live in `references/cli-reference.md` and `references/integration-patterns.md`.
 
 ---
 
-## 8. PERFORMANCE NOTES
+## 7. FAQ
 
-### Subagent Cost Management
+**Q: When should I dispatch to Devin instead of doing the work myself?**
 
-Subagents run as their own agent sessions with independent context windows and inference calls. `subagent_explore` runs on the cheap default subagent model (SWE-1.6), while `subagent_general` inherits the parent's model — potentially expensive if the parent runs a premium model. Use `subagent_explore` for research; use custom AGENT.md profiles with a pinned `model:` for write-capable subagents that should not run on the parent's premium model.
+A: When the task benefits from a second AI perspective or a fresh context window: independent review, generation at scale, subagent research or long-running work. If the calling agent already holds the context and can finish quickly, doing it directly is faster.
 
-### Model Selection for Cost
+**Q: Which model should I pick?**
 
-- `adaptive` — the router picks the cheapest model that handles each subtask well
-- `swe-1-6-fast` — fastest and cheapest for straightforward edits
-- `swe` — reasonable intelligence at low cost
-- `sonnet` — balanced for most coding tasks
-- `opus` — reserve for complex refactoring and deep reasoning
-- `gpt` / `codex` — when OpenAI-model strengths fit the task
+A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `grok-4-5-high` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
 
-### Background Subagent Parallelism
+**Q: Can Devin keep working after I close my laptop?**
 
-Background subagents run in parallel with the parent agent. Any tool not pre-approved during the session is automatically denied for background subagents — they cannot prompt for new permissions. Pre-approve the tools they need before dispatching, or resume a failed background subagent in the foreground to grant permissions.
+A: Yes, with `/handoff`. The session moves to a cloud VM with its own shell and browser plus full repo access. It keeps running after you disconnect. Track it from the terminal or the Devin web app. Hand off only long-running, browser-dependent, CI-like or high-parallelism work.
 
-### Cloud Handoff Efficiency
+**Q: Where do dispatch defaults live?**
 
-Cloud handoff transfers the conversation context, current git branch, and uncommitted changes to a cloud VM. The cloud session can run long after you disconnect. Use it for tasks that need a VM, browser, or extended execution time — not for quick edits that complete faster locally.
+A: User defaults live in `~/.config/devin/config.json` and project defaults in `.devin/config.json`. Pass `--model` and `--permission-mode` explicitly in scripts so the caller's config cannot change the dispatch.
+
+**Q: Does this skill run Devin directly?**
+
+A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run.cjs`, executor kind `cli-devin`), the single execution adapter for this skill. The skill owns routing and prompt construction plus the availability probe. Direct `devin -p` snippets in this README are operator reference and manual-testing examples.
+
+---
+
+## 8. VERIFICATION
+
+| Check | How to run it |
+|---|---|
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-devin/README.md --type readme` reports zero issues |
+| Voice and punctuation | the em dash, semicolon, Oxford comma and banned-word greps return zero prose matches |
+| Manual scenarios | `manual-testing-playbook/manual-testing-playbook.md` runs every dispatch scenario in the catalog |
 
 ---
 
@@ -354,11 +211,13 @@ Cloud handoff transfers the conversation context, current git branch, and uncomm
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, permission modes, models, and config reference |
-| [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
-| [`references/devin-tools.md`](./references/devin-tools.md) | Built-in capabilities: run_subagent, /handoff, MCP, Fetch, session management |
-| [`references/agent-delegation.md`](./references/agent-delegation.md) | Subagent profile roster, routing table, and custom AGENT.md patterns |
-| [`references/cloud-handoff.md`](./references/cloud-handoff.md) | /handoff cloud-handoff mechanics, use cases, and state transfer |
+| [`SKILL.md`](./SKILL.md) | Runtime router, hard rules and the full rule set |
+| [`references/cli-reference.md`](./references/cli-reference.md) | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the curated model families, aliases and defaults |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | Dispatch shapes and the failure-mode matrix |
+| [`references/devin-tools.md`](./references/devin-tools.md) | Built-in capabilities: `run_subagent`, `/handoff`, MCP and session management |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Subagent profile roster, routing table and custom AGENT.md patterns |
+| [`references/cloud-handoff.md`](./references/cloud-handoff.md) | `/handoff` mechanics, use cases and state transfer |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Devin-native manual validation scenarios |

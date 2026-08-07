@@ -2,8 +2,6 @@
 // MODULE: Agent Improvement Certificate Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   chmodSync,
   mkdtempSync,
@@ -496,7 +494,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1561,7 +1559,7 @@ async function authorizedAgentLedger(events: readonly AgentImprovementLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected agent fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({ rootDirectory, operationTimeoutMs: 5_000 });
   const lease = coordinator.acquire({

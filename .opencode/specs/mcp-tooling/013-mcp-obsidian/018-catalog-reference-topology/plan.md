@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology"
-    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_at: "2026-08-03T20:32:51Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 18 implementation plan"
     next_safe_action: "Execute the approved move map"
@@ -47,6 +47,8 @@ Apply the approved compact catalog structure: 14 CLI cards under `cli/`, 6 MCP c
 | Heading normalization | No decimal H3–H6 forms remain in references | rg |
 | Content preservation | Only heading prefixes/path metadata change in reference/card docs | git diff review |
 | Skill packaging | mcp-tooling leaf manifest fresh | ci-skill-root-metadata |
+| Catalog validation | mcp-obsidian package validator passes with canonical taxonomy | validate_catalog_package.py |
+| Reference links | Zero broken relative links in mcp-obsidian reference indexes | check-markdown-links.cjs |
 | Phase docs | Phase validation has no errors | validate.sh |
 <!-- /ANCHOR:quality-gates -->
 

@@ -2,8 +2,6 @@
 // MODULE: Deep Review Resume Adapter Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -280,7 +278,7 @@ async function appendReviewEvent<TStem extends DeepReviewEventStem>(
     prepared,
     `review-request-${sequence}`,
   );
-  await appendAuthorizedForTest(scenario.ledger, prepared, proof);
+  await scenario.ledger.appendAuthorized(prepared, proof);
   const events = await scenario.ledger.readVerifiedEvents();
   return events.at(-1)!;
 }
@@ -548,7 +546,7 @@ async function appendEffect(
     prepared,
     `effect-request-${sequence}`,
   );
-  await appendAuthorizedForTest(scenario.effectLedger, prepared, proof);
+  await scenario.effectLedger.appendAuthorized(prepared, proof);
   return (await scenario.effectLedger.readVerifiedEvents()).at(-1)!;
 }
 

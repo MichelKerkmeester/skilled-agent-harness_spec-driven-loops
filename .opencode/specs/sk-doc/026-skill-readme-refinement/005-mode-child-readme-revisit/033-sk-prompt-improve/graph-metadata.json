@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt-improve readme",
+      "prompt improve readme revisit",
+      "mode readme rewrite",
+      "prompt-improve readme validation",
+      "phase 033 plan",
+      "sk-prompt-improve readme plan",
+      "prompt improve readme rewrite plan",
+      "phase 033 tasks",
+      "sk-prompt-improve readme tasks",
+      "prompt improve readme rewrite tasks",
+      "phase 033 checklist",
+      "sk-prompt-improve readme verification"
+    ],
+    "key_topics": [
+      "sk-prompt-improve",
+      "readme",
+      "prompt",
+      "improve",
+      "revisit",
+      "mode",
+      "rewrite",
+      "prompt-improve",
+      "validation",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/sk-prompt-improve/README.md",
+      ".opencode/skills/sk-prompt/sk-prompt-improve/changelog/v2.3.1.0.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/sk-prompt-improve/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/sk-prompt-improve/changelog/v2.3.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rewrite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewrite Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README at `.opencode/skills/sk-prompt/sk-prompt-improve/README.md` still carries the older tabular reference-card style: AT A GLANCE, QUICK START and HOW IT WORKS tables come before any narrative about why the skill exists",
+    "created_at": "2026-08-04T08:34:51.229Z",
+    "last_save_at": "2026-08-04T18:30:02.766Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:585e3ab830685aff4d9f14f5475106e593927741163d4b8c9c6bfc5ba103bd11",
+    "source_doc_hashes": {
+      "spec.md": "9c108ab2b824c2553e696e5525c7248a36afdbf15f9e4a997c6515228396703e",
+      "plan.md": "81c66fbbcfd402cc85a46cd942d9867ddab4db69979f0c28fff311369bcae832",
+      "tasks.md": "4375cdc27bd08c59038eeb0c650b9558f6e9f2b70880cdb7d04ebb606933bc9e",
+      "checklist.md": "0478d89387cb0fd56b804c139ffc368bd4234ab05c36c41daa868f0c97c46f4c",
+      "implementation-summary.md": "50daa4b56d49514e3fb48d0841e95c5f805e3ee69c52eb7e4290977dfced09eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

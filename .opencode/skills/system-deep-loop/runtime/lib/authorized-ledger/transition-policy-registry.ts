@@ -24,7 +24,6 @@ export interface RegisteredTransitionPolicy {
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
   readonly implementationDigest: string;
-  readonly authorizationStateDigest: string;
   readonly digest: string;
   readonly evaluate: (
     input: Readonly<PolicyEvaluationInput>,
@@ -37,7 +36,6 @@ export interface TransitionPolicyInspectionEntry {
   readonly evaluatorVersion: string;
   readonly ruleIds: readonly string[];
   readonly implementationDigest: string;
-  readonly authorizationStateDigest: string;
   readonly digest: string;
 }
 
@@ -93,17 +91,12 @@ function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTrans
   const implementationDigest = sha256Bytes(
     canonicalBytes(Function.prototype.toString.call(definition.evaluate)),
   );
-  const authorizationState = definition.capturedAuthorizationState
-    ?? definition.authorizationState
-    ?? null;
-  const authorizationStateDigest = sha256Bytes(canonicalBytes(authorizationState));
   const digest = sha256Bytes(canonicalBytes({
     policyId,
     policyVersion: definition.policyVersion,
     evaluatorVersion,
     ruleIds,
     implementationDigest,
-    authorizationStateDigest,
   }));
   return Object.freeze({
     policyId,
@@ -111,7 +104,6 @@ function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTrans
     evaluatorVersion,
     ruleIds: Object.freeze(ruleIds),
     implementationDigest,
-    authorizationStateDigest,
     digest,
     evaluate: definition.evaluate,
   });
@@ -158,7 +150,6 @@ export class TransitionPolicyRegistry {
           evaluatorVersion: policy.evaluatorVersion,
           ruleIds: Object.freeze([...policy.ruleIds]),
           implementationDigest: policy.implementationDigest,
-          authorizationStateDigest: policy.authorizationStateDigest,
           digest: policy.digest,
         })),
     );

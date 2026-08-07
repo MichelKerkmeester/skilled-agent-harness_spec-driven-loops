@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
+  "description": "The cli-pi README at `.opencode/skills/cli-external-orchestration/cli-pi/README.md` still carries the older tabular reference-card style and predates",
+  "keywords": [
+    "cli-pi",
+    "readme",
+    "opencode",
+    "skills",
+    "cli-external-orchestration",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates"
+  ],
+  "lastUpdated": "2026-08-04T20:37:25.702Z",
+  "specId": "006",
+  "folderSlug": "cli-pi",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

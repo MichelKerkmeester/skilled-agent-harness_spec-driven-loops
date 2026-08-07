@@ -1,4 +1,3 @@
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 import {
   mkdtempSync,
   rmSync,
@@ -192,7 +191,7 @@ async function authorizedHistory(
   if (authorization.verdict !== 'allow') {
     throw new Error(`Fixture authorization failed: ${authorization.reasonCode}`);
   }
-  await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+  await ledger.appendAuthorized(prepared, authorization.proof);
   return {
     ledger,
     event: prepared.envelope as AgentImprovementLedgerEvent,

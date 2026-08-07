@@ -6,7 +6,6 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -317,7 +316,7 @@ export async function recordGaugeEvidence(
     );
   }
   try {
-    const receipt = await appendFencedLedgerRecord(ledger, input.event, authorization.proof);
+    const receipt = await ledger.appendAuthorized(input.event, authorization.proof);
     return Object.freeze({ status: 'appended', receipt, event: input.event });
   } catch (error: unknown) {
     throw new StreamFoldGaugeError(

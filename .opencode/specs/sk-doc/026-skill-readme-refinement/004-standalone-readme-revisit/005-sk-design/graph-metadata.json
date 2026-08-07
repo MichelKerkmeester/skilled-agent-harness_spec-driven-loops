@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk design readme rewrite",
+      "sk design readme revisit",
+      "design readme template",
+      "design readme hvr",
+      "sk design readme validation",
+      "phase 005 plan",
+      "sk design readme plan",
+      "sk design readme rewrite plan",
+      "design readme validation plan",
+      "phase 005 tasks",
+      "sk design readme tasks",
+      "sk design readme rewrite tasks"
+    ],
+    "key_topics": [
+      "design",
+      "readme",
+      "rewrite",
+      "revisit",
+      "template",
+      "hvr",
+      "validation",
+      "phase",
+      "plan",
+      "tasks",
+      "sk-design",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-design/README.md",
+      ".opencode/skills/sk-design/changelog/v1.7.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/changelog/v1.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "What It Does",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewrite Draft",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-design README at `.opencode/skills/sk-design/README.md` still carries the older tabular reference-card style",
+    "created_at": "2026-08-04T08:34:36.577Z",
+    "last_save_at": "2026-08-04T13:21:18.157Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3dcbae2ef14ac32e19c8a279a164a3bcda5bb74e9254ecde6d74f5e943949d1e",
+    "source_doc_hashes": {
+      "spec.md": "46fb8a774dc50ae63159d0d9351dbb4606480479467cf6f75a2ef1d01b8554c6",
+      "plan.md": "716fa54d7fffb822205d1a5354d6f307596c4d786674b3bdbb62436e1c1bb5f1",
+      "tasks.md": "d4d35ee7fca632e68751c531bd786a15fcdaa17eb99ba5fabb08ea84e087cd21",
+      "checklist.md": "3f71b83c5d29e01d45aaa665ba5cd760b4012103f73b910483b0a7e4d63f97a9",
+      "implementation-summary.md": "064a7f664d20f5552e0a68d22d7e5cfb5d16a447127dc8f422ad105b38ff377e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

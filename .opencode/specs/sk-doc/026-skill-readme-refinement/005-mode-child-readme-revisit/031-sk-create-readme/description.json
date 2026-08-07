@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
+  "description": "The skill README at `.opencode/skills/sk-doc/sk-create-readme/README.md` still carries the older tabular reference-card style with an AT A GLANCE",
+  "keywords": [
+    "skill",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "sk-create-readme",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "glance"
+  ],
+  "lastUpdated": "2026-08-04T08:16:49.404Z",
+  "specId": "031",
+  "folderSlug": "sk-create-readme",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

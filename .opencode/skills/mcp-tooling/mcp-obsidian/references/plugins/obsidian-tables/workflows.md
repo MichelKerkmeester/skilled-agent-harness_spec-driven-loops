@@ -1,5 +1,5 @@
 ---
-title: Tables File-Layer Workflows
+title: "Tables File-Layer Workflows"
 description: "Safe file-layer recipes for creating and editing Tables .table.md files, preserving stable IDs, formulas, named views, text-only CSV imports, and current sort behavior."
 trigger_phrases:
   - "create tables table md"
@@ -59,7 +59,7 @@ Create one portable table that Tables can open and render without any UI-driven 
 ### Exact `.table.md` edit
 
 1. Create a uniquely named `<name>.table.md` file.
-2. Copy [`example.table.md`](../../../assets/plugins/obsidian-tables/sample.example.table.md) or the complete skeleton in [data-model.md](data-model.md).
+2. Copy [`example.table.md`](../../../assets/plugins/obsidian-tables/example.table.md) or the complete skeleton in [data-model.md](data-model.md).
 3. Change `metadata.title`, the Markdown heading, and the row/column content together. Keep every `col_` ID unique within the file; row IDs may be any unique opaque strings.
 4. Retain `json-table-plugin: true`, the single `json-table` fence, and `table-links` consistent with every non-empty `link` cell.
 
@@ -336,5 +336,5 @@ Additional sort objects can be stored, but current `SortHandler.getSortedRows()`
 
 - [Data model](data-model.md) — canonical JSON contract and all-type skeleton.
 - [Troubleshooting](troubleshooting.md) — malformed wrappers, IDs, formulas, constrained selects, migration, sorting, and CSV failures.
-- [Starter table asset](../../../assets/plugins/obsidian-tables/sample.example.table.md) — valid ready-to-copy `.table.md`.
+- [Starter table asset](../../../assets/plugins/obsidian-tables/example.table.md) — valid ready-to-copy `.table.md`.
 - [Tables source repository](https://github.com/aztekgold/obsidian-tables) — current implementation boundary.

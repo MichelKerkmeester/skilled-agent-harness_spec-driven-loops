@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
+  "description": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and",
+  "keywords": [
+    "mcp-obsidian",
+    "readme",
+    "pilot",
+    "proved",
+    "standard",
+    "mode",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "written",
+    "human",
+    "voice",
+    "rules"
+  ],
+  "lastUpdated": "2026-08-04T19:03:38.745Z",
+  "specId": "010",
+  "folderSlug": "mcp-figma",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-08-26_14-45__phase-010-mcp-figma-readme-rewrite-complete.md"
+  ]
+}

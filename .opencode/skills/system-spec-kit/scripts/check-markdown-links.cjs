@@ -31,7 +31,7 @@ const ROOTS = [
 // and test fixtures (some are deliberately broken to exercise validators).
 const EXCLUDE_SEGMENTS = [
   'node_modules', 'z_archive', 'z-future', '.worktrees', '_archive', 'review-archive',
-  '/research/', '/deltas/', '/prompts/', '/iterations/', '/changelog/', '/tests/fixtures/',
+  '/research/', '/deltas/', '/prompts/', '/iterations/', '/changelog/', '/tests/fixtures/', '/scripts/tests/', '/scripts/fixtures/',
 ];
 
 // Intentional broken links: template fill-in placeholders the author replaces when copying
@@ -39,11 +39,21 @@ const EXCLUDE_SEGMENTS = [
 // Adding a genuinely-new broken link still fails — these specific pairs are the only waivers.
 const ALLOWLIST = new Set([
   // benchmark report template — sibling artifacts the report author creates
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./SOURCE.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./source.md',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./per-probe.jsonl',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./runtime-measurements.md',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::../README.md',
+  // behavior benchmark index template — destination package resources
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/framework.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../../shared/behavior-benchmark/behavior-bench-run.cjs',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::./baselines/claude-baseline.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../README.md',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../SKILL.md',
+  // conformance benchmark contract template — destination package inputs
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::./lane-config.json',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::./fixtures/fixture-manifest.json',
+  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::../README.md',
   // skill_md_template — fill-in names the author replaces per skill
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',
@@ -55,6 +65,9 @@ const ALLOWLIST = new Set([
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::./scripts/workflow_router.py',
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../scripts/',
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md::../assets/',
+  // install guide template — optional sibling examples
+  '.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md',
+  '.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Code%20Mode.md',
   // illustrative client-domain example path
   '.opencode/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
 ]);

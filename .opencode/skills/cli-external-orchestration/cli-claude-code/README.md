@@ -8,12 +8,12 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.1.0.20
+version: 1.5.0.0
 ---
 
 # cli-claude-code
 
-> Dispatch a task to Anthropic's `claude` CLI and get back deep reasoning, surgical edits or schema-validated output, without leaving your current runtime.
+> Get deep reasoning, surgical code edits, schema-validated output and agent delegation from Anthropic's `claude` CLI, without leaving your current runtime.
 
 ---
 
@@ -32,13 +32,37 @@ version: 1.1.0.20
 
 ### Why This Skill Exists
 
-A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis, diff-based edits or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial, or skips the capability. Auth handling, model selection and permission modes all become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, runs an auth pre-flight and guards against self-invocation, so the caller never builds its own CLI wrapper.
+A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial or skips the capability. Auth handling and model selection become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value.
+
+This skill standardizes the dispatch and guards against self-invocation, so the caller never builds its own CLI wrapper. It runs an auth pre-flight before the first call.
 
 ### What It Does
 
-cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code. The default dispatch is `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text`, and deep-reasoning work overrides to `claude-opus-4-6 --effort high`.
+cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
 
-It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-claude-code dispatches to Claude Code and hands the result back to the caller.
+The default dispatch is `claude -p "<prompt>" --model claude-sonnet-4-6 --output-format text`. Deep-reasoning work overrides to `claude-opus-4-6 --effort high`.
+
+It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders and session continuity. cli-claude-code dispatches to Claude Code and hands the result back to the caller.
+
+### The Agent Roster
+
+The skill routes to a roster of specialized `.claude/agents/*.md` definitions with `--agent <name>`. Each agent covers one delegation target.
+
+| Agent | What the skill can delegate to it |
+|---|---|
+| **ai-council** | multi-strategy planning with scoped council artifacts |
+| **code** | application-code implementation via `sk-code`, orchestrator-only |
+| **context** | codebase exploration and architecture mapping |
+| **debug** | systematic debugging and root-cause analysis |
+| **deep-alignment** | per-lane conformance audits against a named authority standard |
+| **deep-improvement** | proposal-only deep-improvement candidate generation, command-owned |
+| **deep-research** | single-iteration deep research execution, command-owned |
+| **deep-review** | single-iteration deep review execution, command-owned |
+| **design** | UI and design work via `sk-design` |
+| **markdown** | template-first markdown and documentation execution |
+| **orchestrate** | multi-agent coordination |
+| **prompt-improver** | dispatch-ready prompt package generation, command-owned |
+| **review** | code review and security audit, paired with `--permission-mode plan` |
 
 ---
 
@@ -92,7 +116,7 @@ You get a JSON object that conforms to the schema you passed, ready to pipe down
 
 ### The Dispatch Lifecycle
 
-The calling AI composes a prompt and passes it to `claude -p` with the right model, permission mode and output format. Claude Code processes it with its built-in tools (Edit, Agent, Read, Bash) and returns the result. The caller validates the output and integrates it. The whole round-trip is non-interactive: send the prompt, get the response, exit.
+The calling AI composes a prompt and passes it to `claude -p` with the right model, permission mode, output format and budget cap. Claude Code processes it with its built-in tools (Edit, Agent, Read, Bash) and returns the result. The caller validates the output and integrates it. The whole round-trip is non-interactive: a prompt goes in, a response comes back and the caller integrates it.
 
 ### The Self-Invocation Guard
 
@@ -106,28 +130,23 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Agent Delegation
 
-Route to a specialized agent with `--agent <name>`. In this repo, Claude Code agent definitions resolve from `.claude/agents/<name>.md` and shape how Claude Code processes the task. The current roster includes:
+Route to a specialized agent with `--agent <name>`. Agent definitions resolve from `.claude/agents/<name>.md`. For read-only review, pair the flag with `--permission-mode plan`.
 
-| Agent | Purpose |
-|---|---|
-| `ai-council` | Multi-strategy planning with scoped council artifacts |
-| `code` | Application-code implementation via `sk-code`; orchestrator-only |
-| `context` | Codebase exploration and architecture mapping |
-| `debug` | Systematic debugging and root-cause analysis |
-| `deep-improvement` | Proposal-only deep-improvement candidate generation (command-owned by `/deep:agent-improvement`) |
-| `deep-research` | Single-iteration deep research execution (command-owned by `/deep:research`) |
-| `deep-review` | Single-iteration deep review execution (command-owned by `/deep:review`) |
-| `design` | UI/design work via `sk-design` |
-| `markdown` | Template-first markdown and documentation execution |
-| `orchestrate` | Multi-agent coordination |
-| `prompt-improver` | Dispatch-ready prompt package generation (command-owned by `/prompt-improve`) |
-| `review` | Code review and security audit (pair with `--permission-mode plan`) |
+```bash
+claude -p "Review @src/auth.ts for security issues" \
+  --agent review \
+  --permission-mode plan \
+  --output-format text \
+  2>&1
+```
 
-Example: `claude -p "Review @src/auth.ts for security issues" --agent review --permission-mode plan --output-format text 2>&1`
+You get a structured review with findings, no file writes.
 
 ### Auth Pre-Flight And Memory Handback
 
-cli-claude-code authenticates through the Claude subscription OAuth only. Before the first dispatch the skill checks whether the CLI is authenticated; if it is not, it surfaces the login command and waits rather than dispatching. It does not use an `ANTHROPIC_API_KEY`. The two OAuth options are `claude auth login` (interactive browser flow) and `claude setup-token` (a non-interactive OAuth token for CI/CD). When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory-handback.md`).
+cli-claude-code authenticates through the Claude subscription OAuth only. Before the first dispatch the skill checks the CLI auth state. If no session exists, it surfaces the login command and waits rather than dispatching. It does not use an `ANTHROPIC_API_KEY`. The two OAuth options are `claude auth login` (interactive browser flow) and `claude setup-token` (a non-interactive OAuth token for CI/CD).
+
+When the caller needs to keep a Claude Code session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md).
 
 ---
 
@@ -135,7 +154,9 @@ cli-claude-code authenticates through the Claude subscription OAuth only. Before
 
 ### When To Use This Skill
 
-Reach for cli-claude-code when a task benefits from extended thinking, surgical diff-based edits, schema-validated JSON or agent delegation through Claude Code's built-in agents. Reach for it too when you want a second-AI opinion on code quality or architecture. Skip it for simple tasks the caller can answer directly, for interactive terminal work (use `claude` directly) and for real-time web search (Claude Code has no `--search` flag, so use OpenCode).
+Reach for cli-claude-code when a task benefits from extended thinking, surgical diff-based edits, schema-validated JSON or agent delegation through Claude Code's built-in agents. Reach for it too when you want a second-AI opinion on code quality or architecture.
+
+Skip it for simple tasks the caller can answer directly and for interactive terminal work (use `claude` directly). For real-time web search, Claude Code has no `--search` flag, so route that to cli-opencode.
 
 ### Sibling Boundaries
 
@@ -144,8 +165,11 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | Skill | Provider | When to reach for it |
 |---|---|---|
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
-| `cli-opencode` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
+| `cli-codex` | OpenAI-backed | Sandboxed coding, repo analysis, PR review, web research |
 | `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
+| `cli-cursor` | Cursor | Composer-model dispatch, read-only plan and ask exploration |
+| `cli-devin` | Cognition-backed | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
+| `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 
@@ -168,7 +192,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `Self-invocation refused` | The caller is already inside Claude Code (`$CLAUDECODE` set, `claude` ancestry or a state lock) | Use a different runtime or exit the current Claude Code session first |
 | Session ends with a budget warning | The `--max-budget-usd` cap was too low for the task | Raise the cap or switch to Haiku for batch work |
 | "Context too large" or truncated output | The prompt references broad paths instead of specific files | Name files with `@./path/to/file` and split large tasks |
-| Output does not match the schema | No `--json-schema` passed, or the schema was malformed | Pass a valid `--json-schema '<schema>'` with `--output-format json` |
+| Output does not match the schema | No `--json-schema` passed or the schema was malformed | Pass a valid `--json-schema '<schema>'` with `--output-format json` |
 
 ---
 
@@ -180,11 +204,11 @@ A: You can. This skill exists for when an external AI assistant (OpenCode, Copil
 
 **Q: Sonnet or Opus?**
 
-A: Default to `claude-sonnet-4-6`, which balances speed and cost for most tasks. Switch to `claude-opus-4-6` with `--effort high` when the task needs deep chain-of-thought reasoning, like architecture trade-offs, subtle bug root causes or multi-dimensional analysis.
+A: Default to `claude-sonnet-4-6`, which balances speed and cost for most tasks. Switch to `claude-opus-4-6` with `--effort high` when the task needs deep chain-of-thought reasoning, like architecture trade-offs or subtle bug root causes.
 
 **Q: When do I use `--permission-mode plan` versus the default?**
 
-A: `plan` mode is read-only. Claude Code explores, analyzes and recommends but cannot write or execute. Use it for review, architecture exploration and audits. The default mode asks before each write. `bypassPermissions` auto-approves everything and needs explicit user consent first.
+A: `plan` mode is read-only. Claude Code explores and analyzes but cannot write or execute. Use it for review and architecture exploration. The default mode asks before each write. `bypassPermissions` auto-approves everything and needs explicit user consent first.
 
 **Q: How does `--json-schema` guarantee output structure?**
 
@@ -192,7 +216,7 @@ A: You define a JSON schema and Claude Code validates its response against it be
 
 **Q: What happens if I dispatch to Claude Code from inside Claude Code?**
 
-A: The self-invocation guard detects it (via `$CLAUDECODE`, process ancestry or lock files) and refuses to load. You get a message telling you to use a different runtime, and no tokens are spent on a circular dispatch.
+A: The self-invocation guard detects it (via `$CLAUDECODE`, process ancestry or lock files) and refuses to load. You get a message telling you to use a different runtime. No tokens are spent on a circular dispatch.
 
 ---
 
@@ -213,6 +237,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of Anthropic model ids, the default pin and the `--effort` mapping |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI flags, commands, models and authentication |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns, where the external AI conducts and Claude Code executes |
 | [`references/claude-tools.md`](./references/claude-tools.md) | Unique capabilities and a comparison with OpenCode |

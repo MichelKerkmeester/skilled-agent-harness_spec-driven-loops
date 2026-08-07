@@ -8,6 +8,7 @@ trigger_phrases:
   - "peer adapter benchmark readme"
 importance_tier: "important"
 contextType: "general"
+version: 1.0.0.4
 ---
 
 # Deep Alignment Conformance Benchmarks

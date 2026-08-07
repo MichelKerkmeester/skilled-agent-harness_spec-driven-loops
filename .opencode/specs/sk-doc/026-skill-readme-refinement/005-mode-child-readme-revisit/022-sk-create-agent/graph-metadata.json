@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create agent readme revisit",
+      "create agent readme rewrite",
+      "sk-doc packet readme",
+      "agent mode readme",
+      "phase 022 plan",
+      "sk create agent readme plan",
+      "create agent readme rewrite plan",
+      "phase 022 tasks",
+      "sk create agent readme tasks",
+      "create agent readme rewrite tasks",
+      "phase 022 checklist",
+      "sk create agent readme verification"
+    ],
+    "key_topics": [
+      "agent",
+      "readme",
+      "revisit",
+      "rewrite",
+      "sk-doc",
+      "packet",
+      "mode",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-agent/README.md",
+      ".opencode/skills/sk-doc/sk-create-agent/changelog/v1.0.1.2.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.1.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/changelog/v1.0.1.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-create-agent README predates the pilot standard in the concrete ways this phase measures",
+    "created_at": "2026-08-04T08:34:47.033Z",
+    "last_save_at": "2026-08-04T15:08:05.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30951cbcd90343f2fe5bd917810204186b8549f245124d7012afbd2cfae8f5b3",
+    "source_doc_hashes": {
+      "spec.md": "e6669b676d22f805240b61967bec71f4c3bea166863dcc3b60259cc73c9e4cd3",
+      "plan.md": "b9a5ade88e97d375a7641f4642cc781f7147782c9cd393b0c0058b28c7862328",
+      "tasks.md": "ddd9b0893cbb04f4578a95e65e1dd1f27fa71b6da4f83fcc62f1c1ee1ba24fc0",
+      "checklist.md": "990314611715a2a787e15de88beba04d4f792aa0b6d2411afe3f9c65d839fda9",
+      "implementation-summary.md": "4c206e6df11524bf6a7a64afdcd0810d15ea353e8ef8615d26933167ad1a0d1f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

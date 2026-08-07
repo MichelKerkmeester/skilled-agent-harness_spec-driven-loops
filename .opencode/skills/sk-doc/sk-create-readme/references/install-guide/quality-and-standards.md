@@ -107,6 +107,6 @@ An install guide is judged on whether users succeed on the first attempt and can
 ## 5. CROSS-REFERENCES
 
 - [section-examples.md](../install-guide/section-examples.md) - Section and configuration examples
-- [install-guide-template.md](../../assets/readme/install-guide-template.md) - Full install-guide scaffold
+- [install-guide-template.md](../../assets/install-guide-template.md) - Full install-guide scaffold
 - [validation.md](../../../shared/references/validation.md) - DQI scoring methodology
 - [core-standards.md](../../../shared/references/core-standards.md) - Document formatting rules

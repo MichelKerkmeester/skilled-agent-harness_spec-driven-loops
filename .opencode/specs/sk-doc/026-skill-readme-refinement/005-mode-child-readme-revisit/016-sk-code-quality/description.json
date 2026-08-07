@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+  "description": "The sk-code-quality mode README rewritten purpose-first on the refined template from phase 001 with a version bump and a changelog entry",
+  "keywords": [
+    "sk-code-quality",
+    "mode",
+    "readme",
+    "rewritten",
+    "purpose-first",
+    "refined",
+    "template",
+    "phase",
+    "version",
+    "bump",
+    "changelog",
+    "entry"
+  ],
+  "lastUpdated": "2026-08-04T14:42:53.568Z",
+  "specId": "016",
+  "folderSlug": "sk-code-quality",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

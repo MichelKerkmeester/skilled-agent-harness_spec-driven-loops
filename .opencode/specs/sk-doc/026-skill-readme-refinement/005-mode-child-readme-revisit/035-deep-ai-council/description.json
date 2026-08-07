@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
+  "description": "The deep-ai-council README at `.opencode/skills/system-deep-loop/deep-ai-council/README.md` predates the full pilot standard",
+  "keywords": [
+    "deep-ai-council",
+    "readme",
+    "opencode",
+    "skills",
+    "system-deep-loop",
+    "predates",
+    "full",
+    "pilot",
+    "standard"
+  ],
+  "lastUpdated": "2026-08-04T18:36:27.170Z",
+  "specId": "035",
+  "folderSlug": "deep-ai-council",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "04-08-26_19-22__rewrote-the-deep-ai-council-readme-purpose-first.md",
+    "04-08-26_19-28__rewrote-the-deep-ai-council-readme-purpose-first.md",
+    "04-08-26_19-32__rewrote-the-deep-ai-council-readme-purpose-first.md",
+    "04-08-26_19-34__rewrote-the-deep-ai-council-readme-purpose-first.md",
+    "04-08-26_19-36__rewrote-the-deep-ai-council-readme-purpose-first.md"
+  ]
+}

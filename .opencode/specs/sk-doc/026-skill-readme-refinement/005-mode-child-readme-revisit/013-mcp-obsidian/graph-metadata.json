@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp obsidian readme verify",
+      "obsidian readme revisit",
+      "exemplar readme verification",
+      "mcp obsidian readme",
+      "phase 13 plan",
+      "mcp obsidian readme plan",
+      "exemplar verify plan",
+      "phase 13 tasks",
+      "mcp obsidian readme tasks",
+      "exemplar verify tasks",
+      "phase 13 checklist",
+      "mcp obsidian readme verification"
+    ],
+    "key_topics": [
+      "mcp",
+      "obsidian",
+      "readme",
+      "verify",
+      "revisit",
+      "exemplar",
+      "verification",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "mcp-obsidian"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.6.0.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conformance Check Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Rewrite On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closeout Revalidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian README is the pilot that set the purpose-first standard for mode skill READMEs",
+    "created_at": "2026-08-04T08:34:43.761Z",
+    "last_save_at": "2026-08-04T14:01:22.520Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ed385a6f9b0aa381b2236e51fd088d4ae8e15039d29729dca5d05c3de6505110",
+    "source_doc_hashes": {
+      "spec.md": "58914f43b601760f7d017dd39390c6df299ee4a19268907127e6e8511d0e4209",
+      "plan.md": "547acf7090651eecd34b224ac48b5074ff16e1a1cf293b5019c8e2378a57f46b",
+      "tasks.md": "10574bf09b7e96017c0db140724f76e85e0c2e30fe2e29d14989ff8795932f14",
+      "checklist.md": "5520c6645b55b78ebea9ef1818c985c52778ed94d36078cea11ce0009dd2f84f",
+      "implementation-summary.md": "7c7bd771d080f0b82b360f86d83908b4bf75909fdbcfc22c3034fc5c563f7d47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

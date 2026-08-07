@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git readme revisit",
+      "sk-git readme rewrite",
+      "git skill readme",
+      "worktree readme update",
+      "sk-git changelog entry",
+      "phase 7 plan",
+      "sk-git readme plan",
+      "git readme rewrite plan",
+      "phase 7 tasks",
+      "sk-git readme tasks",
+      "git readme rewrite tasks",
+      "phase 7 checklist"
+    ],
+    "key_topics": [
+      "sk-git",
+      "readme",
+      "revisit",
+      "rewrite",
+      "git",
+      "skill",
+      "worktree",
+      "changelog",
+      "entry",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Git Workspace Safety Layer",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and validated by the sk-doc readme validator",
+    "created_at": "2026-08-04T08:34:37.362Z",
+    "last_save_at": "2026-08-04T13:28:11.519Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d69a0df57349967465fc465bb11836e9846a71cd934b425bb0c1599f0be3a40",
+    "source_doc_hashes": {
+      "spec.md": "ebc1ed9f665b90bc487d26900e62931f8701048a1099b1d34317d7afd4318cc8",
+      "plan.md": "a5ebc814bf7574d2173f7108cac8ad83ddb6382057c884a6be4af69ea855ed4d",
+      "tasks.md": "dc25900c959bd80d771555dc3ade377aae25ec3c56963ee67c3571349f38cd85",
+      "checklist.md": "cff3061789524ef2fdd2768bc309879ba2da154c6ca3b918f240210f255efa1b",
+      "implementation-summary.md": "df87dad303b07098af529f86a9f6c1ef7a8543f68bf2f2e74d5a3cec1b8ac85c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

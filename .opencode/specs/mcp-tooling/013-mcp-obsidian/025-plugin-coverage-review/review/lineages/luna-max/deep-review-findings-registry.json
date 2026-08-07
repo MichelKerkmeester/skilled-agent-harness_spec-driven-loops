@@ -1,0 +1,268 @@
+{
+  "sessionId": "fanout-luna-max-1785922353061-yt4m7p",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-08-05T10:04:59.382Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Spec-folder target lacks normative review inputs",
+      "file": null,
+      "line": null,
+      "description": "A spec-folder review target lacks the normative inputs needed to validate scope and acceptance evidence.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "A generic request matching `PLUGINS` loads only `plugin-operation-logic.md` plus the Finance, Tables, BRAT, and Iconic indexes, while six newer plugin/theme references are available only through specific intents. The generic signal is defined at `.opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md:238-240`, and the incomplete generic resource set is at `.opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md:326-330`; the newer specific resource maps begin at `.opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md:291-325`. A generic “community plugin” request can therefore omit Charts, Dataview, Excalidraw, Git, Outliner, Minimal, and Health.md.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "MCP preflight sends bearer token with TLS verification disabled",
+      "file": null,
+      "line": null,
+      "description": "The MCP preflight example can transmit the bearer token to an environment-selected endpoint with TLS verification disabled.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "BRAT derives `PLUGIN_ID` from a downloaded release manifest and interpolates it into the vault plugin path after only checking that it is non-empty and not `null`. The flow is at `.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/obsidian42-brat/workflows.md:66-76` and is copied into the manual scenario at `.opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/brat-headless-install.md:64-70`. No safe-ID validation or resolved-path containment check prevents `..` path segments from escaping `.obsidian/plugins/`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "The documented Code Mode round-trip catches every error from `obsidian_get_note`, treats all failures as a missing note, and then writes a replacement body. The catch-all is at `.opencode/skills/mcp-tooling/mcp-obsidian/examples/mcp-roundtrip.sh:64-70`, while the comment only claims to handle a 404. An auth, transport, or server error can therefore turn a failed read into an empty-content write.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Human resource-loading index omits newer plugin references",
+      "file": null,
+      "line": null,
+      "description": "The human-facing resource-loading index omits six plugin/theme reference sets that the executable router supports.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Newer plugin data models retain explicit verification debt",
+      "file": null,
+      "line": null,
+      "description": "Seventeen explicit verification boundaries remain in the six newer plugin data models, leaving maintainability debt for copyable schema and API details.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 2
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

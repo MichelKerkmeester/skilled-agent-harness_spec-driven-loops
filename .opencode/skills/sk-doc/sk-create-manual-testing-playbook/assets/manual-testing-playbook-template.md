@@ -521,6 +521,6 @@ Validation:
 ## 10. RELATED RESOURCES
 
 - [manual-testing-playbook-snippet-template.md](./manual-testing-playbook-snippet-template.md) - Per-feature file template
-- [template-rules.json](../../../shared/assets/template-rules.json) - Machine-readable validation rules
-- [core-standards.md](../../../shared/references/core-standards.md) - Document formatting standards
+- [template-rules.json](../../shared/assets/template-rules.json) - Machine-readable validation rules
+- [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
 - [sk-doc SKILL.md](../../SKILL.md) - Mode 5: Playbook Creation

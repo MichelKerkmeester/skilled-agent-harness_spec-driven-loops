@@ -1,5 +1,5 @@
 ---
-title: Outliner File-Layer Data Model
+title: "Outliner File-Layer Data Model"
 description: "Complete settings schema for the Outliner plugin: storage keys, defaults, value enums, the no-note-format contract and the dependency contract."
 trigger_phrases:
   - "outliner data model"
@@ -10,14 +10,12 @@ trigger_phrases:
   - "outliner zoom dependency"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Outliner File-Layer Data Model
 
 Outliner stores configuration only. Its whole file-layer contract is one optional settings file plus enablement.
-
----
 
 ## 1. OVERVIEW
 
@@ -39,8 +37,6 @@ Outliner stores configuration only. Its whole file-layer contract is one optiona
 - The active vault has no `data.json`, so all defaults apply.
 - The plugin folder contains `main.js`, `manifest.json` and `styles.css` only.
 
----
-
 ## 2. SETTINGS CONTRACT
 
 The plugin loads settings with `Object.assign({}, DEFAULT_SETTINGS, loadedData)`. A missing key falls back to its default. A partial `data.json` is valid. An unknown key is stored but never read, so it is inert.
@@ -60,8 +56,6 @@ The plugin loads settings with `Object.assign({}, DEFAULT_SETTINGS, loadedData)`
 | `previousRelease` | `null` | string or null | Release bookkeeping |
 
 Legacy values `true` and `false` for `stickCursor` map to `bullet-and-checkbox` and `never`. The plugin keeps this mapping for users migrating from an older version.
-
----
 
 ## 3. SETTINGS SCHEMA DETAIL
 
@@ -131,8 +125,6 @@ Type: string or null. Default: `null`.
 
 Bookkeeping for update notices. It is not user-configurable. Never set it.
 
----
-
 ## 4. NOTE-FORMAT CONTRACT
 
 - None. Outliner defines no note format and writes nothing to notes.
@@ -140,8 +132,6 @@ Bookkeeping for update notices. It is not user-configurable. Never set it.
 - Plugin operations use the vault default indent characters for new indentation.
 - When the plugin rewrites list lines during an operation, it preserves existing task markers and text content.
 - Fold state lives in Obsidian session state, not in note text (VERIFY per Obsidian version).
-
----
 
 ## 5. DEPENDENCY CONTRACT
 
@@ -161,8 +151,6 @@ Bookkeeping for update notices. It is not user-configurable. Never set it.
 - The Tab and Enter overrides skip while an input method editor is composing text.
 - This is deliberate, so typing with an IME never triggers list operations.
 
----
-
 ## 6. WHAT THE AI MUST NOT DO
 
 - Never invent settings keys or values beyond this schema.
@@ -172,8 +160,6 @@ Bookkeeping for update notices. It is not user-configurable. Never set it.
 - Never assert keyboard shortcuts beyond the confirmed defaults.
 - Never edit `main.js` or `styles.css`.
 - Never fabricate note formats or data artifacts that the plugin does not have.
-
----
 
 ## 7. EXAMPLE FILE STATES
 

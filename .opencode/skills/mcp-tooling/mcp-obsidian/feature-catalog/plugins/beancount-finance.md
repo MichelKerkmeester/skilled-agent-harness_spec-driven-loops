@@ -46,8 +46,8 @@ The safe workflow is read → patch the smallest ledger file → run a syntax/le
 |---|---|---|
 | [`../../manual-testing-playbook/plugin-tie-ins/beancount-transaction.md`](../../manual-testing-playbook/plugin-tie-ins/beancount-transaction.md) | Manual playbook | Appends and checks a balanced scratch transaction. |
 | [`../../examples/beancount-transaction.sh`](../../examples/beancount-transaction.sh) | Reference | Runs the scratch-ledger append and optional `bean-check` flow. |
-| [`../../assets/plugins/beancount-finance/ledger.example.beancount`](../../assets/plugins/beancount-finance/ledger.example.beancount) | Fixture | Provides a small valid ledger fixture. |
-| [`../../assets/plugins/beancount-finance/beancount-data.example.json`](../../assets/plugins/beancount-finance/beancount-data.example.json) | Fixture | Provides a complete example settings payload. |
+| [`../../assets/plugins/beancount-finance/example.beancount`](../../assets/plugins/beancount-finance/example.beancount) | Fixture | Provides a small valid ledger fixture. |
+| [`../../assets/plugins/beancount-finance/example.data.json`](../../assets/plugins/beancount-finance/example.data.json) | Fixture | Provides a complete example settings payload. |
 
 ---
 

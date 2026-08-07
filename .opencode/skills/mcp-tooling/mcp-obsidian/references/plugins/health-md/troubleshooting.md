@@ -1,5 +1,5 @@
 ---
-title: Health.md File-Layer Troubleshooting
+title: "Health.md File-Layer Troubleshooting"
 description: "Cause, detection, and recovery for Health.md data-folder misses (including the bundled mock-data trap), format mismatches, schema-version drift, empty charts, platform gaps, and settings misconfigurations."
 trigger_phrases:
   - "health md chart empty"
@@ -31,8 +31,6 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 | Platform-specific surface missing | iOS-only feature on Android, or a known Android gap (see §3) |
 | Plugin settings lost | `data.json` edited into invalid JSON |
 
----
-
 ## 2. DIAGNOSIS SEQUENCE
 
 1. Read the plugin settings file (`.obsidian/plugins/health-md/data.json`) — folder, structure, pattern, format. After export-setting changes, run the explicit diagnostic: Settings → Health.md Visualizations → Health.md schema compatibility → **Scan now**.
@@ -43,8 +41,6 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 6. Check the note's render block — is `type` a registered renderer, and does the referenced metric resolve (see `_healthmd_data_dictionary.json`)?
 7. Check the platform dimension — an iOS-only surface on Android is expected behavior, not a bug.
 
----
-
 ## 3. PLATFORM DISTINCTIONS
 
 - Mood/State of Mind and HealthKit-style medication catalog/dose events are **iOS-only**; an empty chart for them on Android is expected.
@@ -53,8 +49,6 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 - Routes and sample charts require granular data plus permission/consent — check both, not just the files.
 - Missing data is ordinarily absent, not zero; an empty chart does not imply a zero measurement.
 - Empty-chart causes to distinguish: no records, denied permission, disabled export selection, absent platform capability, unsupported visualization.
-
----
 
 ## 4. RECOVERY
 
@@ -69,8 +63,6 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 | iOS-only surface on Android | Expected — no fix; document the platform gap |
 | Permission/consent missing (routes, samples) | User must grant granular data permission/consent, then re-export |
 | Invalid `data.json` | Restore from backup or re-create with the known defaults, then reload Obsidian |
-
----
 
 ## 5. LIMITS
 

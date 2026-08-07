@@ -1,0 +1,94 @@
+{
+  "openQuestions": [
+    "Operator decision on downstream project-local specs ownership"
+  ],
+  "resolvedQuestions": [
+    "Runtime mirror and symlink behavior",
+    "Git and global-ignore behavior",
+    "Tooling root assumptions",
+    "Memory MCP path resolution and index identity",
+    "Reference scale and classification",
+    "Migration sequence, rollback boundary, and verification"
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "iteration": 1,
+      "finding": "create.sh defaults new packet creation to .opencode/specs while accepting both roots for existing parents",
+      "sources": ["scripts/spec/create.sh:713", "scripts/spec/create.sh:811"]
+    },
+    {
+      "id": "f-iter001-002",
+      "iteration": 1,
+      "finding": "The maintained spec-root registry inventories 21 resolver call sites with explicit precedence contracts",
+      "sources": ["scripts/core/spec-root-registry.ts:24"]
+    },
+    {
+      "id": "f-iter002-001",
+      "iteration": 2,
+      "finding": "The root specs path is the only live specs symlink; no runtime-specific specs paths exist",
+      "sources": ["filesystem", ".claude/SYNC.md:28"]
+    },
+    {
+      "id": "f-iter002-002",
+      "iteration": 2,
+      "finding": "Runtime mirror synchronization does not manage specs links",
+      "sources": ["scripts/runtime-mirrors/sync-runtime-mirrors.cjs:100"]
+    },
+    {
+      "id": "f-iter003-001",
+      "iteration": 3,
+      "finding": "The source repo negates global ignores for both roots, while downstream repos globally ignore both roots",
+      "sources": [".gitignore:10-11", "~/.gitignore_global:11-16"]
+    },
+    {
+      "id": "f-iter003-002",
+      "iteration": 3,
+      "finding": "The tracked specs entry is a relative mode-120000 symlink and must become a real tree",
+      "sources": ["git ls-files -s -- specs", "git show :specs"]
+    },
+    {
+      "id": "f-iter004-001",
+      "iteration": 4,
+      "finding": "Memory MCP readers use mixed root precedence, so cutover must be coordinated by consumer",
+      "sources": ["mcp-server/handlers/memory-index-discovery.ts:203", "mcp-server/lib/search/folder-discovery.ts:1369"]
+    },
+    {
+      "id": "f-iter004-002",
+      "iteration": 4,
+      "finding": "Logical spec_folder identity can stay stable, but physical indexed paths require reindexing",
+      "sources": ["mcp-server/lib/config/spec-doc-paths.ts:308", "mcp-server/context-server.ts:1611"]
+    },
+    {
+      "id": "f-iter005-001",
+      "iteration": 5,
+      "finding": "The active-surface old-root inventory is 300 files: 54 source, 87 tests, and 159 documentation/configuration",
+      "sources": ["rg classification command"]
+    },
+    {
+      "id": "f-iter005-002",
+      "iteration": 5,
+      "finding": "Existing migration safeguards can be directionally inverted and reused",
+      "sources": ["scripts/core/spec-root-migration.ts:219", "scripts/core/spec-root-migration-manifest.ts:105"]
+    }
+  ],
+  "ruledOutDirections": [
+    {"approach":"blind string replacement","reason":"resolver sites have intentionally different precedence contracts","iteration":1},
+    {"approach":"repoint runtime-specific specs symlinks","reason":"no such live symlinks exist","iteration":2},
+    {"approach":"preserve the tracked specs object unchanged","reason":"it is a symlink blob, not a directory tree","iteration":3},
+    {"approach":"trust the alias runbook absolute-link premise","reason":"the index and live payload are relative","iteration":3},
+    {"approach":"move the Memory MCP database","reason":"database storage configuration is independent of spec roots","iteration":4},
+    {"approach":"skip reindexing because spec_folder is stable","reason":"physical file paths and canonical file paths change","iteration":4},
+    {"approach":"blind replacement of every old-root literal","reason":"source tests current docs history and negative fixtures require different treatment","iteration":5},
+    {"approach":"symlink-only rollback after new writes","reason":"new canonical data and indexed paths require transactional reversal","iteration":5}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 7,
+    "keyFindings": 10,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  },
+  "lastUpdated": "2026-08-06T12:40:15Z"
+}

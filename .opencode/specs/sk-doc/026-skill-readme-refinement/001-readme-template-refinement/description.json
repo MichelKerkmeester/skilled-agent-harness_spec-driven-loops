@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
+  "description": "The shared standalone README template at `sk-create-skill/assets/skill/skill-readme-template.md` predates the mcp-obsidian pilot",
+  "keywords": [
+    "shared",
+    "standalone",
+    "readme",
+    "template",
+    "sk-create-skill",
+    "assets",
+    "skill",
+    "skill-readme-template",
+    "predates",
+    "mcp-obsidian",
+    "pilot"
+  ],
+  "lastUpdated": "2026-08-04T12:30:47.616Z",
+  "specId": "001",
+  "folderSlug": "readme-template-refinement",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

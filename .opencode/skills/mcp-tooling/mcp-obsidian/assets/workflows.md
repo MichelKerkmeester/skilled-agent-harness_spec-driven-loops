@@ -1,5 +1,5 @@
 ---
-title: mcp-obsidian Shared File-Layer Workflows
+title: "mcp-obsidian Shared File-Layer Workflows"
 description: "Shared cross-plugin workflow index for editing the plain files that Obsidian plugins render, with the Beancount Ledger procedure and extension points for table and BRAT workflows."
 trigger_phrases:
   - "obsidian file-layer workflow"
@@ -59,8 +59,8 @@ The plugin's `-q` query path can hide load errors, and a missing GUI `PATH` can 
 
 ### Starter files
 
-- [`plugins/beancount-finance/ledger.example.beancount`](plugins/beancount-finance/ledger.example.beancount)
-- [`plugins/beancount-finance/beancount-data.example.json`](plugins/beancount-finance/beancount-data.example.json)
+- [`plugins/beancount-finance/example.beancount`](plugins/beancount-finance/example.beancount)
+- [`plugins/beancount-finance/example.data.json`](plugins/beancount-finance/example.data.json)
 
 ---
 
@@ -100,7 +100,7 @@ Rows use `cells[column.id]`, so headers can be renamed without moving data. Curr
 - [`obsidian-tables/data-model.md`](../references/plugins/obsidian-tables/data-model.md) — exact schema, canonical identity, all ten user-facing kinds, formulas, views, settings, migration, and a copyable skeleton.
 - [`obsidian-tables/workflows.md`](../references/plugins/obsidian-tables/workflows.md) — detailed create, column, row, formula, view, CSV, and sort recipes.
 - [`obsidian-tables/troubleshooting.md`](../references/plugins/obsidian-tables/troubleshooting.md) — malformed wrappers, IDs, formulas, constrained selects, legacy saves, sort limits, and CSV recovery.
-- [`plugins/obsidian-tables/sample.example.table.md`](plugins/obsidian-tables/sample.example.table.md) — valid complete table asset.
+- [`plugins/obsidian-tables/example.table.md`](plugins/obsidian-tables/example.table.md) — valid complete table asset.
 
 ---
 
@@ -121,7 +121,7 @@ Keep the three file-layer stages separate:
 
 For a moving release, use `version: "latest"`; for a frozen install, use the exact GitHub release tag. BRAT update-all skips a policy record with a truthy version other than `latest`. Registration removal removes the repository from `pluginList` and its policy record; it does not delete staged plugin files unless that separate operation is requested.
 
-Use the deep references for exact file operations and recovery: [`BRAT data model`](../references/plugins/obsidian42-brat/data-model.md), [`BRAT workflows`](../references/plugins/obsidian42-brat/workflows.md), [`BRAT troubleshooting`](../references/plugins/obsidian42-brat/troubleshooting.md), and the valid [`BRAT data entry example`](plugins/obsidian42-brat/brat-data-entry.example.json).
+Use the deep references for exact file operations and recovery: [`BRAT data model`](../references/plugins/obsidian42-brat/data-model.md), [`BRAT workflows`](../references/plugins/obsidian42-brat/workflows.md), [`BRAT troubleshooting`](../references/plugins/obsidian42-brat/troubleshooting.md), and the valid [`BRAT data entry example`](brat-data-entry.example.json).
 
 ---
 

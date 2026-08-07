@@ -1,0 +1,1595 @@
+{
+  "sessionId": "fanout-luna-max-1786010864634-ls9fw0",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 20,
+    "answeredCount": 4,
+    "totalQuestions": 4,
+    "timestamp": "2026-08-06T10:54:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-are-the-reasonix-99-8-cache-hit-and-61-12-cost-claims-independently-documented-a",
+      "inboxId": null,
+      "text": "Are the Reasonix ~99.8% cache-hit and ~$61→$12 cost claims independently documented and reproducible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-prompt-caching-behavior-does-pi-actually-implement-and-what-do-deepseek-and",
+      "inboxId": null,
+      "text": "What prompt-caching behavior does Pi actually implement, and what do DeepSeek and Anthropic expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-3-does-an-official-or-verifiable-pi-cache-optimizer-extension-exist-and-what-does-",
+      "inboxId": null,
+      "text": "Does an official or verifiable `pi-cache-optimizer` extension exist, and what does Pi's extension surface permit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-claimed-pi-feature-gaps-are-real-and-what-is-the-smallest-feasible-reasoni",
+      "inboxId": null,
+      "text": "Which claimed Pi feature gaps are real, and what is the smallest feasible Reasonix-style plugin scope?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-are-the-reasonix-99-8-cache-hit-and-61-12-cost-claims-independently-documented-a",
+      "inboxId": null,
+      "text": "Are the Reasonix ~99.8% cache-hit and ~$61→$12 cost claims independently documented and reproducible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-2-what-prompt-caching-behavior-does-pi-actually-implement-and-what-do-deepseek-and",
+      "inboxId": null,
+      "text": "What prompt-caching behavior does Pi actually implement, and what do DeepSeek and Anthropic expose?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-3-does-an-official-or-verifiable-pi-cache-optimizer-extension-exist-and-what-does-",
+      "inboxId": null,
+      "text": "Does an official or verifiable `pi-cache-optimizer` extension exist, and what does Pi's extension surface permit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-4-which-claimed-pi-feature-gaps-are-real-and-what-is-the-smallest-feasible-reasoni",
+      "inboxId": null,
+      "text": "Which claimed Pi feature gaps are real, and what is the smallest feasible Reasonix-style plugin scope?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Are the reported hit rate and cost reduction arithmetically and operationally reproducible from provider telemetry?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which portions of Pi's current provider and extension surface already cover the proposed plugin?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exactly does DeepSeek guarantee, and which parts are best effort?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How much of prefix construction is already handled by Pi's provider adapters?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Pi surface provider usage and cache counters without an extension rewrite?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What are DeepSeek's exact cache-unit and eviction semantics?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which providers use different cache-control mechanisms from DeepSeek?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which Pi provider adapters already serialize stable prefixes and expose retention settings?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Pi's extension hook expose enough request and response metadata to measure hit/miss tokens reliably?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can a plugin preserve stable prefixes without fighting session compaction and provider adapter normalization?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the existing community optimizer implement these provider distinctions or flatten them?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What provider-level identity and affinity controls does Pi expose for OpenAI-compatible caches?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `pi-cache-optimizer` merely expose these provider controls, or does it add a distinct stable-prefix policy?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What security and lifecycle boundaries does Pi apply to third-party packages?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What security and maintenance risks would justify a separate plugin rather than adopting or contributing to this package?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which claimed Pi feature gaps are real after separating core, extension, and package capabilities?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can concurrent Pi agents safely share an affinity namespace?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should session persistence, branching, and compaction interact with stable-prefix fingerprints?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the smallest plugin contract that remains useful with default isolation?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are the claimed Pi feature gaps about core functionality, package availability, or this specific cache policy?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What cache diagnostics survive compaction without exposing prompt contents?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is a cache-oriented compaction policy better expressed as a separate extension or as a contribution to Pi's existing compaction hooks?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are checkpoint and rewind gaps similarly filled by packages?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is native plan mode absent only from core, or already covered by maintained packages?",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which feature-gap claims should be marked “core gap, ecosystem covered” in the synthesis?",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does Pi core have checkpoint/rewind support, or only session branching and package extensions?",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What performance and invalidation risks remain for an opt-in prefix policy?",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What cache diagnostics should be retained across compaction or rewind boundaries?",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which performance claims can be tested without implementing the plugin?",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exact minimal plugin data model supports these segments without coupling to provider-specific usage schemas?",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which benchmark scenarios are required before approving a Phase 2 implementation?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which provider usage fields can be normalized safely in a plugin?",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which capabilities should be opt-in versus safe by default?",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the smallest persistence format for invalidation and provider diagnostics?",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is adopting/contributing to `pi-cache-optimizer` lower risk than a separate package?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which parts of this architecture need live provider tests before implementation approval?",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which lumo claims remain unknown rather than false?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which recommendation should the final synthesis make: adopt/audit the existing package, contribute upstream, or build a separate narrow plugin?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can the existing `pi-cache-optimizer` package meet the required security, maintenance, and provider-coverage bar after a pinned source audit?",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What savings and overhead appear in controlled DeepSeek, Anthropic, and OpenAI-compatible runs with and without the extension?",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-lumo-md-makes-two-separate-reasonix-claims-a-reported-approximately-99-8-prompt-",
+      "text": "`lumo.md` makes two separate Reasonix claims: a reported approximately 99.8% prompt-cache hit rate and a reported cost change from roughly $61 to $12. The same local source also describes stable prefixes, repository/docs context, and intermediate reasoning as the cached material. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-5]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-19`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://pi.dev/packages/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-1-3-reasonix-s-architecture-documentation-narrows-the-implementation-claim-it-is-dee",
+      "text": "Reasonix's architecture documentation narrows the implementation claim: it is DeepSeek-specific, depends on exact byte-stable prefixes, and uses immutable prefix material plus an append-only log and volatile scratch. This conflicts with treating Reasonix as a provider-neutral cache abstraction. [SOURCE: https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-19`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://pi.dev/packages/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-pi-package-page-for-pi-cache-optimizer-shows-a-real-community-package-but-id",
+      "text": "The Pi package page for `pi-cache-optimizer` shows a real community package, but identifies `freescheme` as its author and does not identify it as a Pi first-party feature. Its README describes provider-side, best-effort cache optimization rather than a local KV-cache implementation. [SOURCE: https://pi.dev/packages/pi-cache-optimizer]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-19`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://pi.dev/packages/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-reasonix-readme-documents-a-concrete-one-day-user-report-of-435m-input-token",
+      "text": "The Reasonix README documents a concrete one-day user report of 435M input tokens, 99.82% cache hit, and approximately $12 rather than $61. That verifies that the numbers are published by the project, not that the report is independently reproducible. [SOURCE: https://github.com/esengine/deepseek-reasonix]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-19`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://pi.dev/packages/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-2-4-a-pi-plugin-can-reproduce-the-stable-prefix-policy-only-for-the-material-it-cont",
+      "text": "A Pi plugin can reproduce the stable-prefix policy only for the material it controls. It cannot guarantee that provider-side tokenization, cache eviction, model routing, or an upstream proxy will preserve a hit. This is an inference from the provider contract and Reasonix's own invariants. [INFERENCE: https://api-docs.deepseek.com/guides/kv_cache; https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/reasonix.md`",
+        "`https://reasonix.io/docs/`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-2-1-reasonix-s-architecture-document-says-deepseek-caching-is-prefix-based-and-requi",
+      "text": "Reasonix's architecture document says DeepSeek caching is prefix-based and requires the serialized prefix to remain byte-identical. Agent loops can accidentally reorder messages or inject timestamps, so the project keeps a stable immutable prefix, an append-only log, and volatile scratch. [SOURCE: https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/reasonix.md`",
+        "`https://reasonix.io/docs/`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-2-3-reasonix-s-public-documentation-advertises-deterministic-serialization-and-long-",
+      "text": "Reasonix's public documentation advertises deterministic serialization and long-lived sessions as the means to sustain high cache reuse. Those are application-level context-management policies layered on top of provider caching, not a client-side cache of model KV tensors. [SOURCE: https://reasonix.io/docs/]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/reasonix.md`",
+        "`https://reasonix.io/docs/`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-official-deepseek-integration-note-describes-reasonix-as-a-deepseek-native-c",
+      "text": "The official DeepSeek integration note describes Reasonix as a DeepSeek-native, cache-first loop that uses the direct DeepSeek API and a Flash-first strategy. The note supports the product's DeepSeek orientation, not a general Pi-compatible caching protocol. [SOURCE: https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/reasonix.md]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/reasonix.md`",
+        "`https://reasonix.io/docs/`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-3-4-current-deepseek-pricing-is-provider-and-model-specific-with-separate-cache-hit-",
+      "text": "Current DeepSeek pricing is provider- and model-specific, with separate cache-hit and cache-miss rates. Historical Reasonix prose may have used a different price sheet, so the $61/$12 comparison needs a dated model, price table, and token accounting before it can support a forward-looking savings estimate. [SOURCE: https://api-docs.deepseek.com/quick_start/pricing-details-usd]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/quick_start/pricing-details-usd`"
+      ]
+    },
+    {
+      "id": "finding-3-3-deepseek-exposes-prompt-cache-hit-tokens-and-prompt-cache-miss-tokens-in-usage-w",
+      "text": "DeepSeek exposes `prompt_cache_hit_tokens` and `prompt_cache_miss_tokens` in usage, which is the minimum telemetry needed to recompute a token-level hit ratio. A plugin should preserve these counters per request rather than infer hits from elapsed time or estimated cost. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/quick_start/pricing-details-usd`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-arithmetic-reduction-from-61-to-12-is-about-80-3-1-12-61-that-is-not-the-sam",
+      "text": "The arithmetic reduction from $61 to $12 is about 80.3% (`1 - 12/61`). That is not the same quantity as a 99.82% cache-hit rate. A hit rate counts tokens or cache units, while total spend also includes cache misses, output tokens, model mix, and any uncached requests. [INFERENCE: https://github.com/esengine/deepseek-reasonix; https://api-docs.deepseek.com/quick_start/pricing-details-usd]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/quick_start/pricing-details-usd`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-reasonix-readme-gives-the-435m-input-token-and-99-82-figures-as-a-single-use",
+      "text": "The Reasonix README gives the 435M-input-token and 99.82% figures as a single user report but does not expose the hit/miss token counters, output-token total, request sequence, model, or baseline run. The report is therefore documented but not independently reproducible from the public artifact. [SOURCE: https://github.com/esengine/deepseek-reasonix]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/quick_start/pricing-details-usd`"
+      ]
+    },
+    {
+      "id": "finding-4-2-deepseek-describes-caching-in-fixed-token-units-and-reports-hit-and-miss-token-c",
+      "text": "DeepSeek describes caching in fixed token units and reports hit and miss token counts in the response usage object. This makes cache optimization an ordering and serialization problem at the request boundary, not a promise that an extension can force a hit. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/news/news0802/`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-4-1-deepseek-prompt-caching-is-enabled-by-default-and-requires-no-api-side-cache-con",
+      "text": "DeepSeek prompt caching is enabled by default and requires no API-side cache-control request. A later request benefits when its prompt begins with the same cached prefix; changing an earlier prefix prevents reuse beyond the common prefix. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/news/news0802/`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-official-guide-describes-the-cache-as-best-effort-cached-content-can-expire-",
+      "text": "The official guide describes the cache as best effort: cached content can expire or be evicted, and the provider does not guarantee a 100% hit rate. This is the operational caveat missing from the absolute tone of `lumo.md`'s savings discussion. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/news/news0802/`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-safe-plugin-invariant-is-therefore-keep-stable-material-first-and-measure-th",
+      "text": "The safe plugin invariant is therefore “keep stable material first and measure the returned counters.” It is not “pin the cache,” “share KV state,” or “guarantee 70–90% savings.” [INFERENCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://api-docs.deepseek.com/news/news0802/`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-5-2-pi-exposes-pi-cache-retention-long-for-extended-provider-caching-where-supported",
+      "text": "Pi exposes `PI_CACHE_RETENTION=long` for extended provider caching where supported, and its release notes describe different retention windows for Anthropic and OpenAI. The setting changes provider retention behavior; it does not create a local cache or make unsupported providers cacheable. [SOURCE: https://pi.dev/docs/latest/environment-variables; https://pi.dev/news/releases/0.50.2]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`"
+      ]
+    },
+    {
+      "id": "finding-5-4-pi-s-extension-api-has-before-provider-request-which-can-inspect-or-replace-the-",
+      "text": "Pi's extension API has `before_provider_request`, which can inspect or replace the final provider payload, and `before_agent_start` exposes structured system-prompt inputs. These hooks are sufficient to prototype stable-prefix enforcement and diagnostics, but payload rewrites can diverge from Pi's internal system-prompt view. [SOURCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`"
+      ]
+    },
+    {
+      "id": "finding-5-1-pi-s-model-configuration-includes-provider-specific-cache-fields-anthropic-style",
+      "text": "Pi's model configuration includes provider-specific cache fields: Anthropic-style `cache_control` markers, OpenAI prompt-cache retention, and optional session-affinity headers for OpenAI-compatible providers. This is a real provider-aware layer, but it is configuration per adapter rather than a universal cache algorithm. [SOURCE: https://pi.dev/docs/latest/models]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`"
+      ]
+    },
+    {
+      "id": "finding-5-3-pi-s-official-settings-include-showcachemissnotices-which-supports-user-visible-",
+      "text": "Pi's official settings include `showCacheMissNotices`, which supports user-visible diagnostics for cache misses. Combined with provider usage data, that is closer to observability than to Reasonix's context-rewriting policy. [SOURCE: https://pi.dev/docs/latest/settings]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`"
+      ]
+    },
+    {
+      "id": "finding-6-4-a-feasible-cross-provider-plugin-should-record-provider-specific-cache-mode-and-",
+      "text": "A feasible cross-provider plugin should record provider-specific cache mode and counters, then apply only the provider's existing retention/marker configuration. It should not normalize all providers to a single “cache key” abstraction. [INFERENCE: https://pi.dev/docs/latest/models; https://docs.anthropic.com/en/docs/about-claude/pricing]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-6-1-anthropic-prompt-caching-is-explicitly-marked-with-cache-control-breakpoints-and",
+      "text": "Anthropic prompt caching is explicitly marked with `cache_control` breakpoints and has distinct cache-write and cache-read accounting. The official pricing documentation describes 5-minute and 1-hour durations, with cache reads priced below ordinary input. [SOURCE: https://docs.anthropic.com/en/docs/about-claude/pricing]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-6-2-pi-s-model-compatibility-layer-exposes-cachecontrolformat-anthropic-and-places-a",
+      "text": "Pi's model compatibility layer exposes `cacheControlFormat: \"anthropic\"` and places Anthropic-style markers on the system prompt, the last tool definition, and the last relevant content block. It also exposes long-retention behavior through the model configuration and `PI_CACHE_RETENTION`. [SOURCE: https://pi.dev/docs/latest/models; https://pi.dev/docs/latest/environment-variables]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-anthropic-path-is-not-equivalent-to-deepseek-s-exact-common-prefix-rule-a-pl",
+      "text": "The Anthropic path is not equivalent to DeepSeek's exact common-prefix rule. A plugin that blindly reorders or rewrites messages to optimize DeepSeek could move cache breakpoints or change the intended TTL semantics for Anthropic. [INFERENCE: https://api-docs.deepseek.com/guides/kv_cache; https://pi.dev/docs/latest/models]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/environment-variables`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-7-4-a-reasonix-style-pi-plugin-could-choose-a-deterministic-cache-namespace-per-proj",
+      "text": "A Reasonix-style Pi plugin could choose a deterministic cache namespace per project/session and expose it as an opt-in setting, but automatic cross-agent sharing would risk cross-task contamination unless the stable prefix and model/provider identity are part of the namespace. [INFERENCE: https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta; https://pi.dev/docs/latest/models]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/providers`"
+      ]
+    },
+    {
+      "id": "finding-7-1-openai-documents-prompt-cache-key-as-a-stable-identifier-used-to-improve-cache-h",
+      "text": "OpenAI documents `prompt_cache_key` as a stable identifier used to improve cache-hit rates, `prompt_cache_retention` for extended retention up to 24 hours, and `cached_tokens` in usage. These controls are provider semantics, not a client-side map of prompt text to KV tensors. [SOURCE: https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/providers`"
+      ]
+    },
+    {
+      "id": "finding-7-3-pi-also-documents-provider-specific-session-affinity-for-cloudflare-workers-ai-t",
+      "text": "Pi also documents provider-specific session affinity for Cloudflare Workers AI. The existence of that adapter behavior reinforces that routing affinity is integration-specific rather than a universal Pi cache guarantee. [SOURCE: https://pi.dev/docs/latest/providers]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/providers`"
+      ]
+    },
+    {
+      "id": "finding-7-2-pi-s-model-configuration-includes-sendsessionaffinityheaders-for-openai-compatib",
+      "text": "Pi's model configuration includes `sendSessionAffinityHeaders` for OpenAI-compatible APIs and says the default is false. This can help a gateway route requests consistently, but it does not guarantee that a provider accepts or honors the header. [SOURCE: https://pi.dev/docs/latest/models]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/providers`"
+      ]
+    },
+    {
+      "id": "finding-8-1-pi-cache-optimizer-is-a-verifiable-package-whose-catalog-metadata-identifies-aut",
+      "text": "`pi-cache-optimizer` is a verifiable package whose catalog metadata identifies author `freescheme`; the version/publication fields are volatile across catalog snapshots. The package page does not present it as a Pi core feature or as an official `pi.dev` component. [SOURCE: https://pi.dev/packages/pi-cache-optimizer]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:8-19`"
+      ]
+    },
+    {
+      "id": "finding-8-4-the-lumo-md-label-official-pi-cache-optimizer-is-not-supported-by-the-package-me",
+      "text": "The `lumo.md` label “official pi-cache-optimizer” is not supported by the package metadata reviewed here. The defensible wording is “community Pi package with a verifiable implementation,” subject to source audit and version pinning. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:8-19; https://pi.dev/packages/pi-cache-optimizer]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:8-19`"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-package-readme-describes-a-stable-prompt-front-optional-openai-compatible-pr",
+      "text": "The package README describes a stable prompt front, optional OpenAI-compatible `prompt_cache_key`, provider-side/best-effort operation, proxy warnings, and footer statistics. Those features overlap materially with the lumo proposal's diagnostics and prefix-stability ideas. [SOURCE: https://github.com/jiangge/pi-cache-optimizer]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:8-19`"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-package-s-documented-behavior-still-depends-on-provider-support-and-routing-",
+      "text": "The package's documented behavior still depends on provider support and routing. It cannot force a provider cache hit or provide raw KV persistence, so it is a reference implementation of an extension-layer optimization, not evidence that Pi has a first-party cache engine. [INFERENCE: https://github.com/jiangge/pi-cache-optimizer; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:8-19`"
+      ]
+    },
+    {
+      "id": "finding-9-1-before-agent-start-exposes-structured-system-prompt-inputs-including-selected-to",
+      "text": "`before_agent_start` exposes structured system-prompt inputs, including selected tools, tool snippets, context files, and skills. A plugin can use this to identify stable versus volatile inputs without rediscovering Pi's resource loader state. [SOURCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-9-3-before-provider-headers-can-add-or-override-headers-while-after-provider-respons",
+      "text": "`before_provider_headers` can add or override headers, while `after_provider_response` can inspect response status and headers before the stream is consumed. These hooks support routing and timing diagnostics, but the public hook contract does not promise a normalized response-usage object across providers. [SOURCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-9-2-before-provider-request-fires-after-pi-builds-a-provider-specific-payload-and-ca",
+      "text": "`before_provider_request` fires after Pi builds a provider-specific payload and can inspect or replace that payload. This is sufficient for payload fingerprinting, provider-specific diagnostics, and narrowly scoped policy checks; it also means a plugin can accidentally diverge from `ctx.getSystemPrompt()` if it rewrites the payload. [SOURCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-9-4-the-documented-extension-surface-has-no-raw-provider-kv-cache-handle-the-smalles",
+      "text": "The documented extension surface has no raw provider KV-cache handle. The smallest safe plugin is therefore a policy/observability layer: stable-prefix checks, request fingerprints, opt-in affinity configuration, and provider-specific hit/miss reporting where the payload or response exposes it. [INFERENCE: https://pi.dev/docs/latest/extensions; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-10-1-pi-persists-sessions-as-jsonl-trees-and-supports-fork-clone-operations-separate-",
+      "text": "Pi persists sessions as JSONL trees and supports fork/clone operations. Separate sessions provide a durable coordination boundary, but the session tree itself is not a provider prompt-cache namespace. [SOURCE: https://pi.dev/docs/latest/sessions; https://pi.dev/docs/latest/session-format]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/session-format`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:12-19`"
+      ]
+    },
+    {
+      "id": "finding-10-2-pi-s-openai-compatible-affinity-option-and-the-package-readme-s-proxy-guidance-c",
+      "text": "Pi's OpenAI-compatible affinity option and the package README's proxy guidance can improve the chance that requests reach a compatible cache locality. Neither source establishes that two concurrent agents with different mutable tails will receive shared cached tokens. [SOURCE: https://pi.dev/docs/latest/models; https://github.com/jiangge/pi-cache-optimizer]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/session-format`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:12-19`"
+      ]
+    },
+    {
+      "id": "finding-10-3-sharing-a-stable-prefix-across-agents-is-technically-plausible-when-provider-mod",
+      "text": "Sharing a stable prefix across agents is technically plausible when provider, model, serialization, tool definitions, and cache namespace all match. Any agent-specific prompt content inserted before that prefix, or any provider routing change, can reduce the common cached region. [INFERENCE: https://api-docs.deepseek.com/guides/kv_cache; https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/session-format`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:12-19`"
+      ]
+    },
+    {
+      "id": "finding-10-4-the-lumo-statement-that-concurrent-agents-share-a-cache-should-be-treated-as-a-c",
+      "text": "The lumo statement that concurrent agents share a cache should be treated as a conditional design goal, not a Pi capability claim. A plugin can offer explicit namespaces and warnings, but it should default to isolation to avoid cross-task leakage and misleading hit-rate attribution. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:12-19; INFERENCE: https://pi.dev/docs/latest/sessions]",
+      "addedAtIteration": 10,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/session-format`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:12-19`"
+      ]
+    },
+    {
+      "id": "finding-11-3-extensions-can-intercept-session-before-compact-and-session-before-tree-inspect-",
+      "text": "Extensions can intercept `session_before_compact` and `session_before_tree`, inspect preparation data, cancel, or provide a custom summary with usage and custom details. That makes a context-policy extension feasible without replacing Pi's session manager. [SOURCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-11-1-pi-already-has-two-native-context-management-mechanisms-compaction-for-long-sess",
+      "text": "Pi already has two native context-management mechanisms: compaction for long sessions and branch summarization when navigating the session tree. Both track file operations and use structured summaries. [SOURCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-11-2-pi-s-compaction-and-branch-summary-requests-use-fresh-routing-session-ids-and-wh",
+      "text": "Pi's compaction and branch-summary requests use fresh routing session IDs and, where supported, disable prompt-cache writes because one-off summaries are unlikely to be reused. This is a deliberate cache-aware behavior, not an absence of context-engine logic. [SOURCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-11-4-the-lumo-context-engine-v2-proposal-is-therefore-not-a-description-of-a-missing-",
+      "text": "The lumo “Context Engine v2” proposal is therefore not a description of a missing Pi primitive. It is a possible policy layer for stable-prefix preservation and cache diagnostics around existing compaction; its value depends on improving provider cache reuse without degrading summary correctness. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32; INFERENCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 11,
+      "sources": [
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-12-4-mcp-is-not-necessary-for-a-prompt-cache-optimizer-adding-it-would-enlarge-the-tr",
+      "text": "MCP is not necessary for a prompt-cache optimizer. Adding it would enlarge the trust, lifecycle, and configuration surface without improving prefix stability or provider cache telemetry. It is a separate integration choice, not part of the minimal plugin contract. [INFERENCE: https://pi.dev/docs/latest/usage; https://pi.dev/docs/latest/rpc]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`.opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-12-2-pi-rpc-is-a-headless-json-protocol-over-stdin-stdout-for-embedding-pi-or-buildin",
+      "text": "Pi RPC is a headless JSON protocol over stdin/stdout for embedding Pi or building custom UIs. It is a process-control surface, not an MCP client/server implementation. [SOURCE: https://pi.dev/docs/latest/rpc]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`.opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-12-1-pi-s-official-usage-documentation-explicitly-describes-the-core-as-intentionally",
+      "text": "Pi's official usage documentation explicitly describes the core as intentionally small and says it does not include built-in MCP, sub-agents, plan mode, to-dos, permission popups, or background bash. These workflows can be built or installed as extensions or packages. [SOURCE: https://pi.dev/docs/latest/usage]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`.opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-12-3-the-local-cli-pi-integration-references-preserve-the-same-boundary-third-party-m",
+      "text": "The local cli-pi integration references preserve the same boundary: third-party MCP packages and Pi RPC should not be conflated with first-party core features. [SOURCE: .opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md]",
+      "addedAtIteration": 12,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/docs/latest/rpc`",
+        "`.opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-13-1-pi-s-official-usage-page-says-plan-mode-is-intentionally-absent-from-core-this-v",
+      "text": "Pi's official usage page says plan mode is intentionally absent from core. This validates the narrow claim that Pi core does not provide a built-in plan-mode gate. [SOURCE: https://pi.dev/docs/latest/usage]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/%40pandi-coding-agent/plan`",
+        "`https://pi.dev/packages/%40narumitw/pi-plan-mode`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-13-2-pi-s-package-catalog-contains-independently-installable-plan-mode-extensions-inc",
+      "text": "Pi's package catalog contains independently installable plan-mode extensions, including `@pandi-coding-agent/plan` and `@narumitw/pi-plan-mode`. These packages demonstrate ecosystem coverage but do not turn plan mode into a first-party core capability. [SOURCE: https://pi.dev/packages/%40pandi-coding-agent/plan; https://pi.dev/packages/%40narumitw/pi-plan-mode]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/%40pandi-coding-agent/plan`",
+        "`https://pi.dev/packages/%40narumitw/pi-plan-mode`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-13-4-the-lumo-plan-mode-gap-is-accurate-only-when-scoped-to-pi-core-and-it-is-irrelev",
+      "text": "The lumo plan-mode gap is accurate only when scoped to Pi core, and it is irrelevant to a provider-cache plugin unless the plugin also claims to enforce read-only research or implementation gates. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32; INFERENCE: https://pi.dev/docs/latest/usage]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/%40pandi-coding-agent/plan`",
+        "`https://pi.dev/packages/%40narumitw/pi-plan-mode`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-13-3-the-package-documentation-emphasizes-that-third-party-packages-execute-code-and-",
+      "text": "The package documentation emphasizes that third-party packages execute code and should be reviewed. A cache plugin should not bundle a plan-mode implementation merely to match another agent's workflow; it should use Pi's documented extension hooks and leave planning orthogonal. [SOURCE: https://pi.dev/packages/%40pandi-coding-agent/plan]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/%40pandi-coding-agent/plan`",
+        "`https://pi.dev/packages/%40narumitw/pi-plan-mode`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-14-2-pi-rewind-is-a-verifiable-community-extension-that-creates-git-based-snapshots-s",
+      "text": "`pi-rewind` is a verifiable community extension that creates git-based snapshots, supports `/rewind`, and integrates with fork/tree flows. Its package metadata identifies it as an extension with a non-core author, so it fills an ecosystem gap rather than proving native Pi support. [SOURCE: https://pi.dev/packages/pi-rewind]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/packages/pi-rewind`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-14-1-pi-core-documents-session-trees-forks-clones-and-branch-summarization-but-those-",
+      "text": "Pi core documents session trees, forks, clones, and branch summarization, but those features navigate conversation history and do not by themselves restore the working tree or pin provider cache state. [SOURCE: https://pi.dev/docs/latest/sessions; https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/packages/pi-rewind`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-14-3-pi-s-compaction-page-exposes-session-before-compact-and-session-before-tree-whic",
+      "text": "Pi's compaction page exposes `session_before_compact` and `session_before_tree`, which a cache-oriented plugin could observe to mark a prefix generation boundary. Restoring files or conversation state remains a separate responsibility and should not be hidden inside a cache optimizer. [SOURCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/packages/pi-rewind`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-14-4-the-lumo-checkpoint-rewind-proposal-is-therefore-a-separate-workflow-feature-it-",
+      "text": "The lumo checkpoint/rewind proposal is therefore a separate workflow feature. It may affect cache continuity after a rewind, but implementing snapshots is outside the smallest Reasonix-style caching scope. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32; INFERENCE: https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`https://pi.dev/docs/latest/sessions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/packages/pi-rewind`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:23-32`"
+      ]
+    },
+    {
+      "id": "finding-15-1-deepseek-reports-prompt-cache-hit-and-miss-tokens-in-usage-while-openai-compatib",
+      "text": "DeepSeek reports prompt-cache hit and miss tokens in usage, while OpenAI-compatible responses report cached tokens and Anthropic usage reports cache creation/read tokens. These counters are provider-specific and should remain provider-labeled in diagnostics. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache; https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta; https://docs.anthropic.com/en/docs/about-claude/pricing]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-15-2-pi-exposes-showcachemissnotices-provider-payload-hooks-and-compaction-lifecycle-",
+      "text": "Pi exposes `showCacheMissNotices`, provider payload hooks, and compaction lifecycle hooks. A plugin can persist compact metadata such as provider/model, prefix fingerprint, namespace, cache counters, and invalidation reason without persisting raw prompts. [SOURCE: https://pi.dev/docs/latest/settings; https://pi.dev/docs/latest/extensions; https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-15-3-pi-s-documented-compaction-path-replaces-older-messages-with-a-generated-summary",
+      "text": "Pi's documented compaction path replaces older messages with a generated summary and keeps later messages from a cut point. Since the serialized prefix changes, a provider-side exact-prefix cache should be treated as invalidated or partially reusable after compaction; the plugin should start a new prefix generation rather than claim continuity. [INFERENCE: https://pi.dev/docs/latest/compaction; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-15-4-the-lumo-performance-target-and-cache-persistence-language-need-an-explicit-inva",
+      "text": "The lumo performance target and cache-persistence language need an explicit invalidation model. Without one, a plugin could report a high lifetime hit rate while hiding misses after compaction, model changes, branch navigation, or provider routing changes. [INFERENCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`",
+        "`https://docs.anthropic.com/en/docs/about-claude/pricing`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:50-64`"
+      ]
+    },
+    {
+      "id": "finding-16-3-a-valid-benchmark-needs-paired-enabled-disabled-runs-with-the-same-model-provide",
+      "text": "A valid benchmark needs paired enabled/disabled runs with the same model, provider, prompt sequence, session lifecycle, proxy route, and price sheet. It should report hit/miss tokens, output tokens, latency, and total cost segmented by prefix generation. No public source supplies those paired results for the lumo figures. [INFERENCE: https://api-docs.deepseek.com/guides/kv_cache; https://pi.dev/news]",
+      "addedAtIteration": 16,
+      "sources": [
+        "`https://pi.dev/news`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:35-48,66-78`"
+      ]
+    },
+    {
+      "id": "finding-16-1-pi-s-recent-release-notes-describe-request-wide-input-pricing-tiers-and-opt-in-c",
+      "text": "Pi's recent release notes describe request-wide input pricing tiers and opt-in cache-miss visibility, which are useful for cost accounting and user diagnostics. Pi also documents provider-specific cached-token usage for at least some providers, so performance measurement is not limited to wall-clock timing. [SOURCE: https://pi.dev/news; https://pi.dev/news/releases/0.50.2]",
+      "addedAtIteration": 16,
+      "sources": [
+        "`https://pi.dev/news`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:35-48,66-78`"
+      ]
+    },
+    {
+      "id": "finding-16-2-the-community-optimizer-exposes-local-provider-model-counters-and-a-verify-effec",
+      "text": "The community optimizer exposes local provider/model counters and a verify-effect workflow that compares repeated similar turns. This is a practical measurement pattern, but its counters are package-owned and should not be treated as provider billing evidence unless tied to response usage fields. [SOURCE: https://pi.dev/packages/pi-cache-optimizer]",
+      "addedAtIteration": 16,
+      "sources": [
+        "`https://pi.dev/news`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:35-48,66-78`"
+      ]
+    },
+    {
+      "id": "finding-16-4-the-lumo-target-of-less-than-5-overhead-and-70-90-savings-is-an-unverified-accep",
+      "text": "The lumo target of less than 5% overhead and 70–90% savings is an unverified acceptance target, not an observed result in the sources reviewed. It should remain a hypothesis until a controlled benchmark measures both CPU/runtime overhead and provider billing. [SOURCE: .opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:35-48,66-78]",
+      "addedAtIteration": 16,
+      "sources": [
+        "`https://pi.dev/news`",
+        "`https://pi.dev/news/releases/0.50.2`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:35-48,66-78`"
+      ]
+    },
+    {
+      "id": "finding-17-2-anthropic-cache-breakpoints-and-ttl-ordering-are-provider-specific-the-community",
+      "text": "Anthropic cache breakpoints and TTL ordering are provider-specific. The community optimizer documents downgrade/fallback behavior for invalid short-to-long transitions and warns that proxies may insert hidden breakpoints. Automatic payload repair is therefore a compatibility policy with a provider-specific failure path, not a universal rewrite. [SOURCE: https://github.com/jiangge/pi-cache-optimizer; https://pi.dev/docs/latest/models]",
+      "addedAtIteration": 17,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/sessions`"
+      ]
+    },
+    {
+      "id": "finding-17-4-compaction-branch-navigation-model-switching-and-concurrent-namespace-changes-ar",
+      "text": "Compaction, branch navigation, model switching, and concurrent namespace changes are lifecycle invalidations. A plugin that rewrites prompts without tracking these boundaries can produce false attribution, cross-task sharing, or a cache miss loop. [INFERENCE: https://pi.dev/docs/latest/compaction; https://pi.dev/docs/latest/sessions]",
+      "addedAtIteration": 17,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/sessions`"
+      ]
+    },
+    {
+      "id": "finding-17-1-deepseek-cache-reuse-is-exact-prefix-and-best-effort-any-earlier-prompt-change-e",
+      "text": "DeepSeek cache reuse is exact-prefix and best effort; any earlier prompt change, eviction, or provider route change can reduce hits. The plugin must treat a prefix fingerprint change as an invalidation event and never claim that the old generation remains warm. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 17,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/sessions`"
+      ]
+    },
+    {
+      "id": "finding-17-3-openai-compatible-proxies-can-route-a-session-across-upstream-backends-or-reject",
+      "text": "OpenAI-compatible proxies can route a session across upstream backends or reject unsupported `prompt_cache_retention`; Pi exposes explicit compatibility flags for these cases. A plugin should fail open—preserve the request and emit a warning—when capability is unknown, rather than inject parameters optimistically. [SOURCE: https://pi.dev/docs/latest/models; https://github.com/jiangge/pi-cache-optimizer]",
+      "addedAtIteration": 17,
+      "sources": [
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/sessions`"
+      ]
+    },
+    {
+      "id": "finding-18-2-prompt-mutation-should-be-an-explicit-policy-mode-not-the-default-in-observe-onl",
+      "text": "Prompt mutation should be an explicit policy mode, not the default. In observe-only mode the plugin reports unstable prefix causes and provider capability gaps; in opt-in mode it can apply narrowly scoped stable-content ordering after provider/model compatibility is confirmed. [INFERENCE: https://pi.dev/docs/latest/extensions; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 18,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-18-4-the-first-version-should-explicitly-exclude-raw-kv-access-guaranteed-hit-rates-u",
+      "text": "The first version should explicitly exclude raw KV access, guaranteed hit rates, universal cross-provider cache keys, MCP, plan mode, filesystem checkpoints, and custom compaction. Those are either outside Pi's extension boundary, provider-specific, or already covered by separate packages/workflows. [INFERENCE: https://pi.dev/docs/latest/usage; https://pi.dev/docs/latest/compaction; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 18,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-18-1-the-minimum-extension-can-be-organized-into-five-responsibilities-observe-system",
+      "text": "The minimum extension can be organized into five responsibilities: observe system-prompt inputs, compute non-reversible fingerprints for stable/volatile sections, delegate provider-specific retention/key/affinity settings, normalize available usage counters, and record lifecycle invalidations. Pi's documented `before_agent_start`, `before_provider_request`, response, compaction, and tree hooks cover these boundaries. [SOURCE: https://pi.dev/docs/latest/extensions; https://pi.dev/docs/latest/compaction]",
+      "addedAtIteration": 18,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-18-3-the-persistence-model-should-store-provider-model-cache-namespace-hash-prefix-ge",
+      "text": "The persistence model should store provider/model, cache namespace hash, prefix generation, fingerprint, counters, and invalidation reason. It should not store raw prompts, response bodies, API keys, or model output. [INFERENCE: https://pi.dev/docs/latest/extensions; https://pi.dev/packages/pi-cache-optimizer]",
+      "addedAtIteration": 18,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`"
+      ]
+    },
+    {
+      "id": "finding-19-3-high-risk-or-out-of-scope-raw-kv-persistence-guaranteed-cache-sharing-across-age",
+      "text": "High-risk or out of scope: raw KV persistence, guaranteed cache sharing across agents, universal provider-neutral cache semantics, and guaranteed 70–90% savings. No reviewed API exposes the needed guarantees, and provider documentation explicitly retains best-effort behavior. [SOURCE: https://api-docs.deepseek.com/guides/kv_cache; https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`"
+      ]
+    },
+    {
+      "id": "finding-19-1-low-risk-and-directly-supported-provider-model-namespace-diagnostics-stable-pref",
+      "text": "Low-risk and directly supported: provider/model/namespace diagnostics, stable-prefix fingerprints, cache-generation invalidation, provider usage capture where exposed, and read-only stats. These fit Pi's documented extension and session hooks. [SOURCE: https://pi.dev/docs/latest/extensions; https://pi.dev/docs/latest/compaction; https://pi.dev/docs/latest/settings]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`"
+      ]
+    },
+    {
+      "id": "finding-19-2-medium-risk-and-test-dependent-stable-content-reordering-openai-compatible-cache",
+      "text": "Medium-risk and test-dependent: stable-content reordering, OpenAI-compatible cache-key fallback, long-retention requests, session-affinity headers, and Anthropic TTL repair. Pi and the existing package expose the controls, but each requires provider/proxy compatibility tests and a fail-open path. [SOURCE: https://pi.dev/docs/latest/models; https://github.com/jiangge/pi-cache-optimizer]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`"
+      ]
+    },
+    {
+      "id": "finding-19-4-the-proof-plan-should-include-repeated-identical-prefix-requests-dynamic-tail-ch",
+      "text": "The proof plan should include repeated identical-prefix requests, dynamic-tail changes, compaction, branch navigation, model/provider switches, concurrent namespaces, unsupported proxy parameters, and cost reconciliation. A successful extension build is not evidence of savings; provider usage and controlled comparisons are required. [INFERENCE: https://pi.dev/docs/latest/compaction; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/settings`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://github.com/jiangge/pi-cache-optimizer`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://platform.openai.com/docs/api-reference/responses-streaming/response/refusal/delta`"
+      ]
+    },
+    {
+      "id": "finding-20-4-pi-cache-optimizer-is-a-verifiable-community-extension-with-material-overlap-not",
+      "text": "`pi-cache-optimizer` is a verifiable community extension with material overlap, not an official Pi feature. Concurrent sharing, 70–90% savings, roadmap duration, and a general provider-agnostic cache engine remain conditional or unverified. The smallest feasible scope is an opt-in, observe-first extension for fingerprints, provider-aware controls, counters, namespaces, and invalidation; adopt or audit the existing package before building a competing implementation. [SOURCE: https://pi.dev/packages/pi-cache-optimizer; https://github.com/jiangge/pi-cache-optimizer; INFERENCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 20,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-78`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-20-3-pi-has-a-real-provider-aware-caching-surface-retention-settings-anthropic-cache-",
+      "text": "Pi has a real provider-aware caching surface: retention settings, Anthropic cache markers, OpenAI-compatible cache keys/affinity, cache-miss notices, and extension hooks. It does not have one universal cache protocol or raw KV-cache access. [SOURCE: https://pi.dev/docs/latest/models; https://pi.dev/docs/latest/extensions; https://pi.dev/docs/latest/settings]",
+      "addedAtIteration": 20,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-78`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-20-1-reasonix-s-99-82-hit-rate-and-approximately-61-to-12-report-is-verified-as-proje",
+      "text": "Reasonix's 99.82% hit-rate and approximately $61-to-$12 report is verified as project-published, not independently reproduced. The arithmetic reduction is about 80.3%, and the missing request ledger prevents deriving it from the hit rate alone. [SOURCE: https://github.com/esengine/deepseek-reasonix; INFERENCE: https://api-docs.deepseek.com/quick_start/pricing-details-usd]",
+      "addedAtIteration": 20,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-78`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-20-2-reasonix-s-deepseek-native-exact-prefix-deterministic-serialization-design-is-ve",
+      "text": "Reasonix's DeepSeek-native, exact-prefix, deterministic-serialization design is verified. DeepSeek's official contract is automatic, prefix-based, usage-visible, and best effort, so a Pi plugin can improve prefix stability and telemetry but cannot guarantee provider cache residency or savings. [SOURCE: https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md; https://api-docs.deepseek.com/guides/kv_cache]",
+      "addedAtIteration": 20,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-78`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`"
+      ]
+    },
+    {
+      "id": "finding-20-5-the-feature-gap-claims-are-mixed-pi-core-intentionally-omits-mcp-plan-mode-and-b",
+      "text": "The feature-gap claims are mixed: Pi core intentionally omits MCP, plan mode, and built-in checkpoint/rewind, but core does include sessions, compaction, and branch summarization; community packages cover several omitted workflows. None of those workflow packages is required for a caching plugin. [SOURCE: https://pi.dev/docs/latest/usage; https://pi.dev/docs/latest/compaction; https://pi.dev/packages/pi-rewind]",
+      "addedAtIteration": 20,
+      "sources": [
+        "`.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/lumo.md:1-78`",
+        "`https://github.com/esengine/deepseek-reasonix`",
+        "`https://github.com/esengine/DeepSeek-Reasonix/blob/v1/docs/ARCHITECTURE.md`",
+        "`https://api-docs.deepseek.com/guides/kv_cache`",
+        "`https://pi.dev/docs/latest/models`",
+        "`https://pi.dev/docs/latest/extensions`",
+        "`https://pi.dev/docs/latest/compaction`",
+        "`https://pi.dev/docs/latest/usage`",
+        "`https://pi.dev/packages/pi-cache-optimizer`",
+        "`https://github.com/jiangge/pi-cache-optimizer`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-d362bd3e9c27",
+      "text": "Search-result snippets alone cannot establish cache semantics or first-party ownership; they were retained only as discovery pointers.",
+      "contentHash": "d362bd3e9c27",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e1782f3adcc5",
+      "text": "The claim that Reasonix's published metrics are already an independent benchmark is ruled out; the available evidence is a project README report without request traces, model configuration, or a reproducible baseline.",
+      "contentHash": "e1782f3adcc5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-73ac11567992",
+      "text": "A portable implementation that assumes all providers accept the same cache marker, retention policy, or prefix semantics is ruled out by Reasonix's DeepSeek-specific architecture and Pi's provider-specific configuration fields.",
+      "contentHash": "73ac11567992",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d8d08a5869f9",
+      "text": "No public Reasonix document exposes a client-side KV store that could be transplanted into Pi; pursuing raw KV reuse would exceed the documented API boundary.",
+      "contentHash": "d8d08a5869f9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4869773ff0f0",
+      "text": "A web search cannot reconstruct the missing request-level accounting. Only provider usage data or a controlled replay can close that gap.",
+      "contentHash": "4869773ff0f0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ac782f5700d1",
+      "text": "Inferring an 80.3% cost saving directly from a 99.82% cache-hit ratio is ruled out; the variables do not match and the published report omits the required ledger.",
+      "contentHash": "ac782f5700d1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-efcc46b450d4",
+      "text": "A plugin-level guarantee of cache persistence or a 100% hit rate is ruled out by DeepSeek's best-effort eviction contract.",
+      "contentHash": "efcc46b450d4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-38348c35e4c6",
+      "text": "Treating cache keys as an API-controlled object is a dead end for native DeepSeek caching; the documented interface is the serialized prompt plus response usage counters.",
+      "contentHash": "38348c35e4c6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c9c9576d0718",
+      "text": "A provider-agnostic claim that all Pi models share one cache protocol is unsupported. The documented fields explicitly vary by provider API and model compatibility.",
+      "contentHash": "c9c9576d0718",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-27c7e82320c0",
+      "text": "Reimplementing provider cache markers in a plugin's first version is ruled out; Pi already owns provider-specific cache-control serialization and retention settings.",
+      "contentHash": "27c7e82320c0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6690ac93d935",
+      "text": "A generic TTL field independent of provider adapter configuration would conceal billing and expiration differences rather than solve them.",
+      "contentHash": "6690ac93d935",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4087325afc68",
+      "text": "Treating Anthropic `cache_control` and DeepSeek implicit prefix reuse as interchangeable mechanisms is ruled out.",
+      "contentHash": "4087325afc68",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ef47a4e98c44",
+      "text": "Assuming that one `prompt_cache_key` works across providers, models, or proxies is ruled out; the key is defined by the OpenAI-compatible API and Pi only forwards provider-specific configuration.",
+      "contentHash": "ef47a4e98c44",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-bf0356b9e5b1",
+      "text": "Treating session affinity as evidence of cache sharing is a dead end. Affinity affects routing and may improve locality, but cache reuse still depends on the serialized prompt and provider policy.",
+      "contentHash": "bf0356b9e5b1",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-bd10e8db5d80",
+      "text": "Rebuilding the same stable-prefix and footer-stat features without first auditing the existing package would duplicate an available implementation.",
+      "contentHash": "bd10e8db5d80",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b3ccdff6b258",
+      "text": "The assertion that `pi-cache-optimizer` is an official Pi feature is ruled out by the package's listed author and package-level presentation.",
+      "contentHash": "b3ccdff6b258",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-22797a0e891c",
+      "text": "Implementing a client-side KV cache through ordinary Pi extension hooks is ruled out; the hooks operate on prompts, payloads, headers, and responses, not model-internal tensors.",
+      "contentHash": "22797a0e891c",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-98ed6866bf09",
+      "text": "Logging complete prompts as cache keys is a privacy and storage dead end. A production plugin should hash or structurally summarize stable sections and make raw logging opt-in.",
+      "contentHash": "98ed6866bf09",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-0085618141b2",
+      "text": "A global cache namespace shared by all projects and agents is a dead end for correctness and privacy; sharing must be explicit and scoped.",
+      "contentHash": "0085618141b2",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b76ee70f75d9",
+      "text": "Assuming that Pi session persistence alone makes concurrent agents share provider cache state is ruled out.",
+      "contentHash": "b76ee70f75d9",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e6892d75adf0",
+      "text": "Claiming that Pi lacks any native context engine or compaction path is ruled out by the official compaction documentation.",
+      "contentHash": "e6892d75adf0",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-5a9cf446a6e5",
+      "text": "Replacing Pi's compaction implementation solely to improve cache reuse is a dead end until a controlled benchmark shows the native path causes material cache loss.",
+      "contentHash": "5a9cf446a6e5",
+      "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-26094b72e578",
+      "text": "Including MCP as a required dependency of the caching plugin is ruled out for the minimal scope.",
+      "contentHash": "26094b72e578",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-4c9a9aa79422",
+      "text": "Searching RPC docs for cache-sharing primitives is a dead end; RPC transports agent control messages and does not define provider prompt caching.",
+      "contentHash": "4c9a9aa79422",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-286391f55e0c",
+      "text": "Treating “Pi has RPC” as evidence that Pi has first-party MCP is ruled out.",
+      "contentHash": "286391f55e0c",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-de33798be0e4",
+      "text": "Describing plan mode as unavailable in the Pi ecosystem is ruled out; it is available through packages even though it is not core.",
+      "contentHash": "de33798be0e4",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-5da28eb7f444",
+      "text": "Making plan mode a dependency of the caching plugin is ruled out.",
+      "contentHash": "5da28eb7f444",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-14735d52a36e",
+      "text": "Using plan-mode package features as evidence of prompt-cache behavior is a category error; the package controls tool permissions and workflow, not provider caching.",
+      "contentHash": "14735d52a36e",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-d05dd1571c33",
+      "text": "Adding git snapshot/restore logic to the first cache-plugin scope is ruled out.",
+      "contentHash": "d05dd1571c33",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-3c3606e68c5e",
+      "text": "Measuring cache performance through rewind features alone is a dead end; rewind changes history and files but supplies no provider cache usage evidence.",
+      "contentHash": "3c3606e68c5e",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-406799ab2376",
+      "text": "Treating Pi's native `/tree` and session branching as filesystem checkpoint/rewind is ruled out.",
+      "contentHash": "406799ab2376",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-921cfa439a44",
+      "text": "Persisting full prompt text in a cache ledger is a dead end for privacy and storage; fingerprints and counters are sufficient for first-pass diagnostics.",
+      "contentHash": "921cfa439a44",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-570788f0efbd",
+      "text": "Treating one cumulative session hit rate as sufficient performance evidence is ruled out; rates must be segmented by prefix generation, provider, model, and cache namespace.",
+      "contentHash": "570788f0efbd",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-93962ede210f",
+      "text": "A latency-only benchmark is insufficient; cache reads can alter cost and input processing without mapping cleanly to end-to-end latency.",
+      "contentHash": "93962ede210f",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-2357991346a8",
+      "text": "Treating footer counters or a single session's hit percentage as proof of cost savings is ruled out without provider usage and price reconciliation.",
+      "contentHash": "2357991346a8",
+      "addedAtIteration": 16
+    },
+    {
+      "id": "ruled-out-63e253ba0e1a",
+      "text": "Retrying every miss with a modified payload is a dead end: it can double cost and alter model behavior while still not guaranteeing a cache hit.",
+      "contentHash": "63e253ba0e1a",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-1036218a3849",
+      "text": "Silent automatic mutation of unsupported provider payloads is ruled out as a safe default.",
+      "contentHash": "1036218a3849",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-4875ca27760d",
+      "text": "Treating a cache miss as a correctness failure is ruled out; misses are normal provider behavior and must remain observable without blocking the request.",
+      "contentHash": "4875ca27760d",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-073e57255032",
+      "text": "A monolithic “Context Engine v2” that owns Pi session persistence, MCP, plan mode, rewind, provider adapters, and cache state is ruled out as an unnecessarily broad scope.",
+      "contentHash": "073e57255032",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-9ef0d087ccac",
+      "text": "Importing or coupling directly to another router/package's internal globals is a dead end for a durable plugin; use documented Pi hooks and optional versioned integrations only.",
+      "contentHash": "9ef0d087ccac",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-daa00424fbb0",
+      "text": "A single “works on DeepSeek” smoke test is insufficient for the proposed provider-agnostic wording and would not test Pi's Anthropic/OpenAI compatibility paths.",
+      "contentHash": "daa00424fbb0",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-e9420e2fa16d",
+      "text": "Approving the lumo roadmap's time/overhead targets as commitments is ruled out; no implementation estimate or benchmark evidence was found in the reviewed sources.",
+      "contentHash": "e9420e2fa16d",
+      "addedAtIteration": 19
+    },
+    {
+      "id": "ruled-out-512ea71e56bb",
+      "text": "A GO decision based only on the lumo percentages is ruled out; live provider benchmarks and a package/source audit remain prerequisites.",
+      "contentHash": "512ea71e56bb",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-66a892b897cf",
+      "text": "A universal “Reasonix for Pi” implementation that promises raw KV reuse, guaranteed cross-provider sharing, or guaranteed savings is unsupported by every primary provider contract reviewed.",
+      "contentHash": "66a892b897cf",
+      "addedAtIteration": 20
+    },
+    {
+      "id": "ruled-out-b9abc45802ae",
+      "text": "Early synthesis before iteration 20 is ruled out by the max-iterations policy; the observed convergence telemetry never changed the stop policy.",
+      "contentHash": "b9abc45802ae",
+      "addedAtIteration": 20
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 40,
+    "keyFindings": 81,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5478,
+    "coverageBySources": {
+      "api-docs.deepseek.com": 3,
+      "code": 40,
+      "docs.anthropic.com": 1,
+      "github.com": 4,
+      "other": 2,
+      "pi.dev": 16,
+      "platform.openai.com": 1,
+      "reasonix.io": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/001-research/research/lineages/luna-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

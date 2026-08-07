@@ -1,5 +1,5 @@
 ---
-title: Excalidraw File-Layer Workflows
+title: "Excalidraw File-Layer Workflows"
 description: "Numbered operational workflows for the Excalidraw Obsidian plugin at the file layer: read, validate, create, modify with backup discipline, embed, add scripts and set export frontmatter."
 trigger_phrases:
   - "excalidraw read drawing"
@@ -11,7 +11,7 @@ trigger_phrases:
   - "excalidraw export frontmatter workflow"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Excalidraw File-Layer Workflows
@@ -20,13 +20,7 @@ Every workflow below runs at the file layer: reading notes, validating structure
 
 ---
 
-## 1. OVERVIEW
-
-These workflows define file-layer procedures for operating Excalidraw notes and settings in Obsidian. They keep file-layer evidence separate from claims about in-app rendering.
-
----
-
-## 2. READ A DRAWING
+## 1. READ A DRAWING
 
 Goal: extract the drawing state without changing anything.
 
@@ -57,9 +51,7 @@ elements: 12
 links: none
 ```
 
----
-
-## 3. VALIDATE A DRAWING
+## 2. VALIDATE A DRAWING
 
 Goal: prove a drawing note is loadable before any edit.
 
@@ -97,9 +89,7 @@ INVALID: Architecture.excalidraw.md
 - action: restore from backup or ask the user to repair in-app
 ```
 
----
-
-## 4. CREATE A DRAWING FROM TEMPLATE
+## 3. CREATE A DRAWING FROM TEMPLATE
 
 Goal: create a new drawing note that the plugin can open.
 
@@ -127,9 +117,7 @@ created: Excalidraw/Drawing 2026-01-01 10.00.00.excalidraw.md
 json: valid, elements 0
 ```
 
----
-
-## 5. MODIFY DRAWING JSON WITH BACKUP DISCIPLINE
+## 4. MODIFY DRAWING JSON WITH BACKUP DISCIPLINE
 
 Goal: change element or appState data with a safe rollback path.
 
@@ -160,9 +148,7 @@ After (one element added by copy):
 
 - The added element must come from a verified source. If no verified source exists, do not write the element and report the gap.
 
----
-
-## 6. EMBED A DRAWING IN A NOTE
+## 5. EMBED A DRAWING IN A NOTE
 
 Goal: render a drawing or a single element inside another Markdown note.
 
@@ -192,9 +178,7 @@ Group embed:
 
 - The `#^` anchor id must match a real element id or group id in the drawing. Verify it by reading the drawing JSON first.
 
----
-
-## 7. ADD OR UPDATE A SCRIPT NOTE
+## 6. ADD OR UPDATE A SCRIPT NOTE
 
 Goal: make a script available in the Script Engine menu.
 
@@ -221,9 +205,7 @@ Excalidraw/Scripts/
   My New Script.md
 ```
 
----
-
-## 8. SET DRAWING-LEVEL EXPORT FRONTMATTER
+## 7. SET DRAWING-LEVEL EXPORT FRONTMATTER
 
 Goal: change export behavior for one drawing only.
 
@@ -255,9 +237,7 @@ excalidraw-export-pngscale: 2
 
 - Only use keys from the verified registry in `data-model.md` section 3.
 
----
-
-## 9. EDIT SETTINGS IN DATA.JSON
+## 8. EDIT SETTINGS IN DATA.JSON
 
 Goal: change plugin defaults without the UI.
 
@@ -281,9 +261,7 @@ After:
 
 - The plugin reads settings at load. The user must reload Obsidian or toggle the plugin off and on for the change to take effect.
 
----
-
-## 10. BACKUP AND ROLLBACK PATTERN
+## 9. BACKUP AND ROLLBACK PATTERN
 
 Goal: keep every edit reversible.
 
@@ -299,11 +277,3 @@ Example:
 backup:  Excalidraw/Architecture.excalidraw.md.bak-20260101-100000
 restore: cp backup to note, then validate
 ```
-
----
-
-## 11. RELATED RESOURCES
-
-- [Excalidraw plugin index](excalidraw.md)
-- [Excalidraw data model](data-model.md)
-- [Drawing note example](../../../assets/plugins/excalidraw/drawing-note.example.excalidraw.md)

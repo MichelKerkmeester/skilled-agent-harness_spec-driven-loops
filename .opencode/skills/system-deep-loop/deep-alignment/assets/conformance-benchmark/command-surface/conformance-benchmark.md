@@ -8,6 +8,7 @@ trigger_phrases:
   - "opencode command surface validity gates"
 importance_tier: "important"
 contextType: "general"
+version: 1.0.0.3
 ---
 
 # Command Surface Conformance Benchmark
@@ -35,7 +36,7 @@ implement or run the check.
 | Out of scope | Command runtime behavior, natural-language router prose (which never triggers S5), parameterized targets that resolve only at run time, and non-command skill or agent artifacts. |
 | Canonical corpus source | `.opencode/commands/` (the live command tree, discovered by the adapter) |
 | Corpus selection rule | Every command source the adapter's `discover(scope)` resolves under the lane scope, together with the generated mirrors and declared workflow/presentation assets each source references. Membership is decided by discovery, never by a fixed count. |
-| Corpus refresh / verification command | `node .opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/fixtures/fixture-manifest.json` (the `--manifest` argument resolves against the oracle's `.opencode`-anchored repo root, so it omits the leading `.opencode/`) |
+| Corpus refresh / verification command | `node .opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs --verify --manifest skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/fixtures/fixture-manifest.json` (the `--manifest` argument resolves against the oracle's `.opencode`-anchored repo root, so it omits the leading `.opencode/`) |
 | Expected corpus state | Fixture root hash `sha256:0d1e6ab84ad9214a0ad6eabeb5147e99499cfea640326aeeb66503f24e537bf8`, with every per-fixture hash recorded in the manifest. |
 
 The canonical source and selection rule decide membership. A copied artifact
@@ -115,14 +116,14 @@ the oracle implementation remains spec- or lane-owned.
 | Contract | `.opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/conformance-benchmark.md` | Filled, validated, and linked from the family README |
 | Lane config | [`lane-config.json`](./lane-config.json) | Valid JSON; peer adapter allowlisted for the named authority |
 | Fixture manifest | [`fixtures/fixture-manifest.json`](./fixtures/fixture-manifest.json) | Valid JSON; root and fixture hashes verified |
-| Fixture root | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus` | Clean control plus declared public and held-out fixtures present |
+| Fixture root | `.opencode/specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus` | Clean control plus declared public and held-out fixtures present |
 | Canonical corpus source | `.opencode/commands` | Refresh / verification command exits 0 |
-| Executing spec phase | `.opencode/specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration` | Writable evidence location and deep-alignment state directory available |
+| Executing spec phase | `.opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration` | Writable evidence location and deep-alignment state directory available |
 
 Execution command:
 
 ```bash
-/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration
+/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration
 ```
 
 ## 7. VALIDITY GATES
@@ -142,7 +143,7 @@ The run is `instrument-valid` only when all of the following are true:
    mirrors, and its declared workflow/presentation assets, and the clean control
    yields zero findings.
 4. Raw finding deltas are parseable and agree with the reduced evidence under
-   `.opencode/specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment/`
+   `.opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment/`
    according to the reducer's delta-to-reduced agreement in
    `reduce-alignment-state.cjs`.
 5. Fixture and corpus hashes match the recorded execution inputs.
@@ -161,7 +162,7 @@ mismatch is an instrument failure, never a subject finding.
 ## 8. EVIDENCE LOCATION
 
 Stable inputs live in this mode-owned package. Run evidence lives at
-[`004-command-lane-integration/alignment/`](../../../../../../specs/system-deep-loop/066-command-surface-benchmark/004-command-lane-integration/alignment)
+[`004-command-lane-integration/alignment/`](../../../../../../specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment)
 inside the executing spec phase, including transcripts, state, raw deltas, reduced
 reports, and generated scorecards. The executing phase already holds a completed
 live convergence run over this lane (overall verdict FAIL, with open findings); a
@@ -191,4 +192,4 @@ measurement contracts here.
 - [`fixtures/fixture-manifest.json`](./fixtures/fixture-manifest.json) — oracle provenance, fixture classes, hashes, mutations, and expected findings.
 - [`sk-doc-command-adapter.md`](../../../references/adapters/sk-doc-command-adapter.md) — adapter-owned dimensions, severities, finding codes, and known-deviation boundary.
 - [`Autonomous Deep Alignment Loop`](../../../SKILL.md) — engine-owned discovery through reduction.
-- `.opencode/specs/system-deep-loop/066-command-surface-benchmark/` — source requirements and the executing evidence phase.
+- `.opencode/specs/system-deep-loop/035-command-surface-benchmark/` — source requirements and the executing evidence phase.

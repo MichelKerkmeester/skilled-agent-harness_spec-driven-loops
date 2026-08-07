@@ -64,7 +64,8 @@ Use this reference when:
 
 ---
 
-## 4. WHEN TO USE MCP VS NOTESMD-CLI
+## 4. WHEN TO USE MCP VS notesmd-cli
+
 Use the **Obsidian MCP** when:
 - A **running app + Local REST API** is available and you want to operate the live vault
 - You need the server's structured note read/write/search/tag surface over the REST API
@@ -81,7 +82,7 @@ Use **`notesmd-cli`** (the headless CLI) when:
 
 The server reports **14 tools total**. The five below are the confirmed `obsidian_*` core; the remaining nine are **not enumerated in this pass** — run `list_tools()` to enumerate them and `tool_info()` to confirm each signature before use.
 
-> **Two different MCP servers — do not conflate the tool names.** This catalog is the **cyanheads `obsidian-mcp-server`** (`obsidian_*` tools, launched via `npx`). The `obsidian-local-rest-api` plugin (v5.1.0+) ALSO ships its **own** built-in MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read` / `vault_write` / `vault_patch` / `vault_move` / `search_simple` / `search_query` / `tag_list` / `command_list` / … — validated live). If `OBSIDIAN_BASE_URL` points at the plugin's own `/mcp/`, expect `vault_*` names, not `obsidian_*`. Same Local REST API core, different server + tool surface — always confirm with `list_tools()`. Full REST-endpoint + built-in-MCP reference: [`lra-rest-surface.md`](lra-rest-surface.md).
+> **Two different MCP servers — do not conflate the tool names.** This catalog is the **cyanheads `obsidian-mcp-server`** (`obsidian_*` tools, launched via `npx`). The `obsidian-local-rest-api` plugin (v5.1.0+) ALSO ships its **own** built-in MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read` / `vault_write` / `vault_patch` / `vault_move` / `search_simple` / `search_query` / `tag_list` / `command_list` / … — validated live). If `OBSIDIAN_BASE_URL` points at the plugin's own `/mcp/`, expect `vault_*` names, not `obsidian_*`. Same Local REST API core, different server + tool surface — always confirm with `list_tools()`.
 
 ### Confirmed core (5 tools)
 
@@ -191,7 +192,8 @@ try {
 
 ---
 
-## 9. MCP VS NOTESMD-CLI: QUICK DECISION
+## 9. MCP VS notesmd-cli: QUICK DECISION
+
 | Need | Use | Reason |
 |------|-----|--------|
 | Read a note (app running) | MCP | `obsidian_get_note` over Local REST API |

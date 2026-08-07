@@ -1,16 +1,16 @@
 ---
 title: sk-code
-description: The single advisor-routable code skill: a two-axis hub that routes to two workflow modes (sk-code-quality, sk-code-review) and bundles two read-only surface evidence packets (sk-code-webflow, sk-code-opencode), each carrying the implement/debug/verify workflow doctrine.
+description: The single advisor-routable entry point for code work: one hub that routes each request to the focused quality or review mode it needs, bundles the matching surface evidence and keeps one graph identity for the whole code family.
 trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 4.1.0.0
+version: 4.2.0.0
 ---
 
 # sk-code
 
-> Route code work to focused sk-code-quality and sk-code-review modes and to Webflow/OpenCode surface evidence — each surface carrying the implement → debug → verify workflow doctrine — over one shared surface-detection router.
+> Code work is more than one activity. sk-code is the single entry point that routes each request to the quality or review mode it needs, with the surface evidence to back it up, under one advisor identity.
 
 ---
 
@@ -18,10 +18,10 @@ version: 4.1.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Code-family work: implementation, quality, debugging, verification, and findings-first review. |
-| **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:`. |
-| **Works on** | The shared surface-detection router for WEBFLOW, OPENCODE, and MOTION_DEV context. |
-| **Produces** | A routed mode or surface packet with the right code-work contract and tool surface. |
+| **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
+| **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
+| **Works on** | The shared surface-detection router for WEBFLOW and OPENCODE context, plus the Motion.dev animation overlay |
+| **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface |
 
 ---
 
@@ -29,37 +29,56 @@ version: 4.1.0.0
 
 ### Why This Skill Exists
 
-Code work needs distinct contracts for quality gating and findings-first review, and it needs surface-specific evidence and workflow doctrine for implementation, debugging, and verification. Those contracts still share the same surface identity rules. sk-code keeps one advisor identity, centralizes surface detection once, and routes each kind of code work to a focused packet.
+Code work is not one activity. Writing code needs author-side quality gates and comment hygiene. Reviewing it needs a findings-first baseline with security and correctness checks. Frontend work needs browser and performance evidence. System work needs hook and alignment verification. Each kind of code work carries its own contract, yet they all share the same surface identity rules.
+
+Without one routing point, every contract would duplicate surface detection and a request that touches several kinds of code work would have no ordered way to resolve. sk-code exists so one advisor identity covers the whole code family: the hub centralizes surface detection once and routes each request to the focused packet that owns the work.
 
 ### What It Does
 
-`Skill(sk-code)` loads the hub, and the hub routes the request through `mode-registry.json` to one of two workflow modes or bundles one of two surface evidence packets. Each mode or surface holds its own code-work contract and the hub itself is routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
+`Skill(sk-code)` loads the hub. The hub routes the request through `mode-registry.json` to one of two workflow modes, bundling zero or more surface evidence packets alongside it. Each mode and surface holds its own code-work contract while the hub itself stays routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
+
+The boundary is deliberate: sk-code routes code work. Documentation quality, git workflow, spec discipline and browser evidence belong to sibling skills that sk-code hands off to.
+
+### The Code Work Contract Grid
+
+**Workflow modes (act):**
+
+| Mode | Owns |
+|---|---|
+| `sk-code-quality` | Author-side quality gates, comment hygiene and surface checklists |
+| `sk-code-review` | Findings-first review, security and correctness baseline, review output cache |
+
+**Surface evidence packets (read-only and advisor-invisible, bundled alongside a workflow mode):**
+
+| Surface | Carries |
+|---|---|
+| `sk-code-webflow` | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug and verify, plus the Motion.dev animation overlay |
+| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
 
 ---
 
 ## 3. HOW IT WORKS
 
-A code request resolves through the hub to a primary workflow mode and/or one-or-more bundled surface packets. A request that spans intents stays at the hub for ordered routing or disambiguation.
+### How A Request Resolves
 
-**Workflow modes** (act):
+A code request resolves through the hub to a primary workflow mode and one or more bundled surface packets. A request that spans intents stays at the hub for ordered routing or disambiguation. Two examples show the shape of a resolution:
 
-| Mode | Owns |
+| Request | Resolves to |
 |---|---|
-| `sk-code-quality` | Author-side quality gates, comment hygiene, and surface checklists. |
-| `sk-code-review` | Findings-first review, security/correctness baseline, and review output cache. |
+| "review my webflow animation for jank" | `[sk-code-review, sk-code-webflow]` |
+| "run my implementation through the author-side quality gates" | `[sk-code-quality]` |
 
-**Surface evidence packets** (read-only, advisor-invisible — bundled alongside a workflow mode):
+### The Implement To Verify Doctrine
 
-| Surface | Carries |
-|---|---|
-| `sk-code-webflow` | Frontend evidence (CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify) plus the Motion.dev animation overlay. |
-| `sk-code-opencode` | System-code evidence (TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists). |
+The implement → debug → verify phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/`, symlinked into each surface so the active surface carries the full workflow without duplicating it:
 
-The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, symlinked into each surface, so the active surface carries the full workflow. "review my webflow animation for jank" resolves to `[sk-code-review, sk-code-webflow]`.
+- `workflow-implement.md` for the authoring pass
+- `workflow-debug.md` for the repair pass
+- `workflow-verify.md` for the proof pass
 
-### One advisor identity
+### One Advisor Identity
 
-The mode packets and `shared/` carry no `graph-metadata.json` of their own. The hub root keeps the single graph identity for the whole family. `mode-registry.json` is the routing source of truth, and `hub-router.json` preserves the vocabulary that helps code prompts resolve to the right mode.
+The mode packets and `shared/` carry no `graph-metadata.json` of their own. The hub root keeps the single graph identity for the whole family. `mode-registry.json` is the routing source of truth while `hub-router.json` preserves the vocabulary that helps code prompts resolve to the right mode.
 
 ---
 
@@ -67,29 +86,52 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 
 ### When To Use This Skill
 
-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification, or review. The shared router keeps WEBFLOW, OPENCODE, and MOTION_DEV surface identity consistent across every mode and surface.
+Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. The shared router keeps surface identity consistent across every mode and surface for WEBFLOW and OPENCODE work, plus the Motion.dev animation overlay. Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-design` | Designs UI direction, systems, motion, and design audits that sk-code may implement. |
-| `sk-doc` | Owns markdown and documentation quality. |
-| `sk-git` | Owns branches, commits, PRs, and finish workflow. |
-| `system-spec-kit` | Owns spec folders, memory, continuity, and packet validation. |
-| `mcp-chrome-devtools` | Provides browser evidence for frontend runtime behavior. |
+| `sk-design` | Designs UI direction, systems, motion and design audits that sk-code may implement |
+| `sk-doc` | Owns markdown and documentation quality |
+| `sk-git` | Owns branches, commits, PRs and the finish workflow |
+| `system-spec-kit` | Owns spec folders, memory, continuity and packet validation |
+| `mcp-chrome-devtools` | Provides browser evidence for frontend runtime behavior |
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 5. FAQ
+
+**Q: Why does the advisor see only one code skill when the hub contains five packets?**
+
+A: The mode packets and `shared/` carry no `graph-metadata.json` of their own. The hub root holds the single graph identity for the whole family, so prompts resolve to one entry point and the hub routes from there.
+
+**Q: What happens when a request spans intents, like review plus implementation?**
+
+A: The request stays at the hub. The hub orders the routing and asks for disambiguation instead of guessing a single mode.
+
+---
+
+## 6. VERIFICATION
+
+| Check | Result |
+|---|---|
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/README.md --type readme` reports zero issues |
+| Routing scenarios | The manual testing playbook runs every routing and disambiguation scenario behind the hub |
+
+---
+
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime hub instructions and routing rules. |
-| [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map. |
-| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals. |
-| [`shared/README.md`](./shared/README.md) | Shared surface detection, cross-mode helpers, and the implement/debug/verify workflow doctrine. |
-| [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet. |
-| [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet. |
-| [`sk-code-webflow/SKILL.md`](./sk-code-webflow/SKILL.md) | Webflow surface packet. |
-| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet. |
+| [`SKILL.md`](./SKILL.md) | Runtime hub instructions and routing rules |
+| [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
+| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals |
+| [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |
+| [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
+| [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
+| [`sk-code-webflow/SKILL.md`](./sk-code-webflow/SKILL.md) | Webflow surface packet |
+| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |

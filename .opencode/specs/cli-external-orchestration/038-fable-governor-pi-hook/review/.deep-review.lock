@@ -1,0 +1,11 @@
+{
+  "owner_pid": 35222,
+  "started_at_iso": "2026-08-05T07:41:32.867Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-08-05T07:41:32.867Z",
+  "packet_id": ".opencode/specs/cli-external-orchestration/038-fable-governor-pi-hook",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-08-05T07:41:32.867Z",
+  "acquire_nonce": "35222-1785915692867-b52302f0-10c0-43f0-838f-9f0e6cb18c72"
+}

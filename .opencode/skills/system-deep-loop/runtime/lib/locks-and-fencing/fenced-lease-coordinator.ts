@@ -40,7 +40,6 @@ import type {
   AcquireLeaseRequest,
   CanonicalProtectedResource,
   FencedCommit,
-  FenceCapability,
   FencedLease,
   FencedLeaseCoordinatorOptions,
   FencedMutationContext,
@@ -50,53 +49,6 @@ import type {
   LockLifecycleDecision,
   ProtectedResourceIdentity,
 } from './locks-and-fencing-types.js';
-
-interface FenceCapabilityState {
-  readonly resourceKey: string;
-  readonly fenceToken: number;
-  readonly assertCurrent: () => void;
-}
-
-const fenceCapabilityStates = new WeakMap<object, FenceCapabilityState>();
-
-function mintFenceCapability(
-  lease: FencedLease,
-  assertCurrent: () => void,
-): FenceCapability {
-  const capability = Object.freeze({}) as FenceCapability;
-  fenceCapabilityStates.set(capability as object, {
-    resourceKey: lease.resource.resourceKey,
-    fenceToken: lease.fenceToken,
-    assertCurrent,
-  });
-  return capability;
-}
-
-/** Validate an opaque capability and recheck the durable lease that minted it. */
-export function assertFenceCapability(
-  capability: unknown,
-  resourceKey: string,
-): number {
-  if (capability === null || typeof capability !== 'object') {
-    throw new LocksAndFencingError(
-      LocksAndFencingErrorCodes.STALE_FENCE,
-      'mutation',
-      'Ledger mutation requires a coordinator-issued fence capability',
-      { resourceKey },
-    );
-  }
-  const state = fenceCapabilityStates.get(capability);
-  if (!state || state.resourceKey !== resourceKey) {
-    throw new LocksAndFencingError(
-      LocksAndFencingErrorCodes.STALE_FENCE,
-      'mutation',
-      'Fence capability does not match the protected ledger resource',
-      { resourceKey, suppliedResourceKey: state?.resourceKey ?? null },
-    );
-  }
-  state.assertCurrent();
-  return state.fenceToken;
-}
 
 // ───────────────────────────────────────────────────────────────────
 // 1. STORAGE TYPES
@@ -510,14 +462,6 @@ export class FencedLeaseCoordinator {
         const context: FencedMutationContext = Object.freeze({
           resources: Object.freeze(leases.map((lease) => lease.resource)),
           fenceTokens: Object.freeze(leases.map((lease) => lease.fenceToken)),
-          fenceCapabilities: Object.freeze(leases.map((lease) => mintFenceCapability(
-            lease,
-            () => this.#assertCurrentLease(
-              this.#loadState(lease.resource),
-              lease,
-              'mutation',
-            ),
-          ))),
         });
         const commit: FencedCommit<TResult> = await prepare(context);
         if (typeof commit !== 'function') {
@@ -1155,7 +1099,7 @@ export class FencedLeaseCoordinator {
   #assertCurrentLease(
     state: StoredCoordinatorState,
     lease: FencedLease,
-    phase: 'guard' | 'mutation' | 'release' | 'renew',
+    phase: 'guard' | 'release' | 'renew',
     requireUnexpired = true,
   ): void {
     const current = state.activeLease;

@@ -1,9 +1,0 @@
-The deep-research fan-out lineage is complete. All 3 phases executed:
-
-- **phase_init**: config.json, state.jsonl, strategy.md, findings-registry.json created in the glm lineage dir
-- **phase_main_loop**: 5 iterations (max-iterations stop policy), each with a distinct focus track, `rg --hidden --no-ignore` sweeps, iteration-NNN.md files, and JSONL delta records. Convergence before max was treated as telemetry only; angles were broadened each iteration.
-- **phase_synthesis**: research.md (300 lines, 17-section format), resource-map.md (111 lines), dashboard, config status → complete, synthesis_complete JSONL event
-
-**Key results:** 5/5 questions answered. 3 runtime registrations, 8 MCP tool ids, 32 agent tool grants, 11 command grants, 3 freshness hooks, 2 plugins, 2 session reapers, 1 CI job, 1 /doctor surface (6 files), 2 SHARED launcher infra files (HIGH risk — must strip not delete), 11-phase ordering graph, 19 per-consumer remove-vs-fallback recommendations. All findings confirmed with file:line evidence. No repository files modified outside the lineage dir.
-
-FANOUT_LINEAGE_COMPLETE:glm

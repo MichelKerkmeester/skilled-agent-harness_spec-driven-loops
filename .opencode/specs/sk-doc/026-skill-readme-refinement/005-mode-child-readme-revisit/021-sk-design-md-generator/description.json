@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
+  "description": "The sk-design-md-generator mode skill generates markdown from design artifacts",
+  "keywords": [
+    "sk-design-md-generator",
+    "mode",
+    "skill",
+    "markdown",
+    "design",
+    "artifacts"
+  ],
+  "lastUpdated": "2026-08-04T17:59:04.347Z",
+  "specId": "021",
+  "folderSlug": "sk-design-md-generator",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "04-08-26_16-01__executed-phase-021-rewrote-the-sk-design-md.md",
+    "04-08-26_16-07__closed-phase-021-readme-rewritten-purpose-first.md"
+  ]
+}

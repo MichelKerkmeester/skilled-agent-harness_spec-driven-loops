@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create command readme revisit",
+      "command readme rewrite",
+      "create command readme",
+      "sk-doc command mode readme",
+      "phase 25 plan",
+      "sk create command readme plan",
+      "command readme rewrite plan",
+      "phase 25 tasks",
+      "sk create command readme tasks",
+      "command readme rewrite tasks",
+      "phase 25 checklist",
+      "sk create command readme verification"
+    ],
+    "key_topics": [
+      "command",
+      "readme",
+      "revisit",
+      "rewrite",
+      "sk-doc",
+      "mode",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "sk-create-command"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-command/README.md",
+      ".opencode/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
+      "plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "checklist.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-create-command skill README still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README",
+    "created_at": "2026-08-04T08:34:48.121Z",
+    "last_save_at": "2026-08-04T14:51:48.868Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d8f32304399cf3b8af6a6e15fc0b81de1bc372988c0346a19bb31695c799ca03",
+    "source_doc_hashes": {
+      "spec.md": "efc1bd13ec34cc819ed686a901b84031d5eddb60105792fdf60ce32e7319ed39",
+      "plan.md": "2445f80c2bd57a61574bb37c404424debdee88fa4e80404904ba097fe49585e8",
+      "tasks.md": "cff681f17a7716131e6c9c0a592824d95ec94b5e6fad4d9583c81ccbd6366676",
+      "checklist.md": "a5f1db6d83540e8c4b3b8a1c53aebff0b82d951dbe974aca9bd00fa228501754",
+      "implementation-summary.md": "0612fc1541fbbfaf06af9ac05cf6e1594bbcab04c006906b0968edb249ef439b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

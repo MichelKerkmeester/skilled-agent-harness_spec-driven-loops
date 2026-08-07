@@ -7,7 +7,6 @@ import {
   AuthorizedLedgerErrorCodes,
   GENESIS_RECORD_HASH,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import {
   BudgetEventTypes,
@@ -1246,7 +1245,7 @@ export class HierarchicalBudgetAuthority {
       );
     }
     try {
-      const receipt = await appendFencedLedgerRecord(this.#options.ledger, event, authorization.proof);
+      const receipt = await this.#options.ledger.appendAuthorized(event, authorization.proof);
       return Object.freeze({ decision: result, receipt, isIdempotent: false });
     } catch (error: unknown) {
       const reason = error instanceof AuthorizedLedgerError

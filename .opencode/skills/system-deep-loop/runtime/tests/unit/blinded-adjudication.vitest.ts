@@ -2,8 +2,6 @@
 // MODULE: Blinded Adjudication Contract Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -567,7 +565,7 @@ describe('request, registry, and blinding boundaries', () => {
       payload,
     }, harness.service.eventRegistry);
     expect((harness.service.ledger as unknown as { append?: unknown }).append).toBeUndefined();
-    await expect(appendAuthorizedForTest(harness.service.ledger, event, undefined as never))
+    await expect(harness.service.ledger.appendAuthorized(event, undefined as never))
       .rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED });
     expect(await harness.service.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
   });

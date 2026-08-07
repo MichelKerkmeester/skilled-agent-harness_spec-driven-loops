@@ -16,7 +16,9 @@
       "health-md research findings implementation",
       "phase 14 plan",
       "health-md remediation plan",
-      "phase 14 tasks"
+      "phase 14 tasks",
+      "phase 14 results",
+      "mcp-obsidian v1.2.1.0"
     ],
     "key_topics": [
       "health-md",
@@ -30,14 +32,15 @@
       "phase",
       "plan",
       "tasks",
-      "deep"
+      "results"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,6 +59,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -153,23 +162,49 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The health-md deep research (phase 012, `research/lineages/codex/research.md`, 6 iterations, all questions answered) found the mode's health-md reference set partly accurate but not safe to use unchanged: quick-start examples use the wrong `health-md` fence and invented keys (`type: chart`, `dateRange`), the framing is Apple-only (Android export profiles exist), and the validation path misses the plugin's deterministic bundled mock-data fallback",
     "created_at": "2026-08-03T14:17:59.502Z",
-    "last_save_at": "2026-08-03T14:17:59.502Z",
+    "last_save_at": "2026-08-04T12:16:10.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59919791f95f311cef56d7ee799ee7f11b5ccf076fa4566c9f6311e6c69f866d",
+    "source_fingerprint": "sha256:dec67e9f5213f0f0efb3072978bffb2159b1578670ecd17195800485fa93898a",
     "source_doc_hashes": {
       "spec.md": "b4ddd5a014678ab7cccb97863710af943f570e40e860606a796635a061ca2076",
       "plan.md": "22215f7c2d624f6e6d9def78c430f7ef9e8999d947227fb3094ee7a1202b066b",
-      "tasks.md": "0455092d03d8998e50d62e92a9fb1c33de0b7f881c731e6a8344fc4a56276a8b"
+      "tasks.md": "0455092d03d8998e50d62e92a9fb1c33de0b7f881c731e6a8344fc4a56276a8b",
+      "implementation-summary.md": "3044bcdf144a0f15e4cb0bfaccd5df2765054b2142c7dc7ca54838b88adaa33c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -136,6 +136,12 @@ Aggregate file scope. Per-phase detail lives in each child plan.
 | 15 | 015-health-md-fixtures-and-blocks/ | Replace the example fixture with a schema-true v7 artifact and add tested `health-viz` render-block examples; changelog v1.4.0.0. | Completed |
 | 16 | 016-health-md-catalog-and-playbook/ | Rework OBS-014 (health-viz contract, mock-fallback guard, authentic-source verification) + the health-md feature-catalog card. | Completed |
 | 17 | 017-health-md-live-validation-closeout/ | Execute the remediated OBS-014 live (mock-fallback guard + authentic verification), validate phases 014-017, close out. | Completed |
+| 18 | 018-catalog-reference-topology/ | Three-folder catalog topology (cli/mcp/plugins), decimal-heading removal, validation-taxonomy normalization, reference-index link repairs, plugin-operation-logic template alignment. | Completed |
+| 20 | 020-readme-and-message-refinement/ | Purpose correction (effective AI use inside Obsidian with plugin knowledge) + narrative README rewrite and SKILL.md message refinement; mode release v1.4.1.0. | Completed |
+| 21 | 021-plugin-installation-batch/ | Install + enable obsidian-charts, dataview, excalidraw, obsidian-git, outliner (five plugins) and the Minimal theme across all three vaults; record versions. | Completed |
+| 22 | 022-plugin-skill-support-references/ | Research the six artifacts and author per-plugin reference sets (index/data-model/workflows/troubleshooting) + plugin-operation-logic data-map rows. | Completed |
+| 23 | 023-plugin-assets-catalog-playbook/ | Example assets, six feature-catalog plugin cards, six playbook tie-in scenarios (OBS-016..021), README plugin-knowledge update, changelog. | Completed |
+| 24 | 024-plugin-routing-integration-validation/ | Six plugin intents in SKILL.md router + resource map, leaf manifest + hub metadata regen, live throwaway-vault validation per plugin, closeout of 021-024. | Completed |
 
 ### Phase Transition Rules
 

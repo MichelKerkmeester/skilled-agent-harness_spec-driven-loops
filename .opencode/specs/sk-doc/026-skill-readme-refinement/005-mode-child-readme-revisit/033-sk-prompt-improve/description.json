@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+  "description": "The README at `.opencode/skills/sk-prompt/sk-prompt-improve/README.md` still carries the older tabular reference-card style: AT A GLANCE, QUICK START",
+  "keywords": [
+    "readme",
+    "opencode",
+    "skills",
+    "sk-prompt",
+    "sk-prompt-improve",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "glance",
+    "quick",
+    "start"
+  ],
+  "lastUpdated": "2026-08-04T18:29:55.605Z",
+  "specId": "033",
+  "folderSlug": "sk-prompt-improve",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

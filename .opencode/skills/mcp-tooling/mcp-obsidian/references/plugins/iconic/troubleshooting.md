@@ -1,5 +1,5 @@
 ---
-title: Iconic File-Layer Troubleshooting
+title: "Iconic File-Layer Troubleshooting"
 description: "Cause, detection, and recovery for Iconic data.json failures: invalid JSON, lost rules, missing icons, stale reads, and version drift."
 trigger_phrases:
   - "iconic icons not showing"
@@ -29,8 +29,6 @@ Diagnose the JSON, the rule, and the app separately. A valid `data.json` can sti
 | Rules missing after an edit | A replace-style write overwrote the user's rulebook |
 | Unknown keys after update | Plugin version newer than 1.1.10 added settings |
 
----
-
 ## 2. DIAGNOSIS SEQUENCE
 
 1. Parse `data.json` — is it valid JSON?
@@ -38,8 +36,6 @@ Diagnose the JSON, the rule, and the app separately. A valid `data.json` can sti
 3. Check the toggle set: `showAllFileIcons` / `showAllFolderIcons`.
 4. Check the specific rule: exists, `enabled`, `conditions.value` matches the target, `icon` is a known `lucide-*` name.
 5. Check for per-item overrides (`fileIcons`/`folderIcons`-adjacent maps) shadowing the rule.
-
----
 
 ## 3. RECOVERY
 
@@ -51,8 +47,6 @@ Diagnose the JSON, the rule, and the app separately. A valid `data.json` can sti
 | Rule shadowed by override | Remove/update the per-item override entry |
 | Stale read | Re-read `data.json` before concluding — the user may have changed icons in-app |
 | App not reloaded | Ask the user to fully quit (Cmd+Q) and reopen Obsidian |
-
----
 
 ## 4. LIMITS
 

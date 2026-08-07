@@ -1,18 +1,18 @@
 ---
 title: sk-design-md-generator
-description: Live-site CSS extraction mode that writes measured tokens and validates a v3 Style Reference DESIGN.md.
+description: Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md so AI agents build against ground truth instead of hallucinated values.
 trigger_phrases:
   - "extract design system"
   - "generate design.md"
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
-# md-generator
+# sk-design-md-generator
 
-> Extract a live website's real, measured CSS into a v3 **Style Reference** `DESIGN.md` your AI agents build against without hallucinating colors, fonts, spacing, or shadows.
+> Point this mode at any live website and get a measured v3 Style Reference `DESIGN.md`, so agents build against ground truth instead of invented colors, fonts, spacing and shadows.
 
 ---
 
@@ -21,9 +21,9 @@ version: 1.0.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Extracting verified design tokens from any live URL into a machine-readable `DESIGN.md` that replaces guesswork with ground truth |
-| **Invoke with** | "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", or auto-routing on extraction keywords |
-| **Works on** | Any publicly accessible URL that renders JavaScript. Needs Node 20 or newer, Playwright, and Chromium (~500 MB one-time install) |
-| **Produces** | A `tokens.json` with every measured CSS value and a v3 **Style Reference** `DESIGN.md` — a named, role-driven design-system handoff with copy-paste CSS + Tailwind — plus optional HTML reports and fidelity proofs |
+| **Invoke with** | "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", "validate design.md" or auto-routing on extraction keywords |
+| **Works on** | Any publicly accessible URL that renders JavaScript. Needs Node 20 or newer, Playwright and Chromium (~500 MB one-time install) |
+| **Produces** | A `tokens.json` with every measured CSS value and a v3 **Style Reference** `DESIGN.md` (a named, role-driven design-system handoff with copy-paste CSS and Tailwind), plus optional HTML reports and fidelity proofs |
 
 ---
 
@@ -31,15 +31,34 @@ version: 1.0.0.0
 
 ### Why This Skill Exists
 
-AI agents invent colors, guess font sizes, and approximate shadows. When you tell an agent "build me a page that looks like Stripe," it fills in the gaps with plausible-sounding values that do not match the real site. A `DESIGN.md` extracted from the live CSS eliminates that problem: every hex code, font weight, border radius, box shadow, and spacing value is copied verbatim from the running page. The agent codes against measured ground truth instead of hallucinating.
+AI agents invent colors, guess font sizes, approximate shadows and round spacing to plausible values. When you tell an agent to build a page that looks like Stripe, it fills the gaps with values that do not match the real site. A `DESIGN.md` extracted from the live CSS removes that failure: every hex code, font weight, border radius, box shadow and spacing value is copied verbatim from the running page. The agent codes against measured ground truth instead of hallucinating.
 
 ### What It Does
 
-The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a v3 **Style Reference** `DESIGN.md`: the value-bearing token sections (Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`. The AI authors the prose sections (intro, the Tokens — Typography section, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands), and every value it writes comes from a pre-rendered section or the FACTS block of locked values — it never invents or concretizes a number. **Validate** checks hex accuracy, the v3 section set, and a Quick-Start fidelity check. A fourth optional phase renders HTML previews and visual-diff reports.
+The skill ships an embedded Playwright crawler that runs a three-phase pipeline:
 
-The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention. Because the formatter emits the value tables and the typography/component numbers come verbatim from the FACTS block, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff — not the old mechanical extraction report — but the hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
+- **Extract.** Crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E and classifies each token by temporal stability (L1 permanent through L4 content).
+- **Write.** Produces a v3 **Style Reference** `DESIGN.md`. The value-bearing token sections (`Tokens - Colors`, `Tokens - Spacing & Shapes`, `Surfaces` and the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`. The AI authors the prose sections (intro, `Tokens - Typography`, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). Every value it writes comes from a pre-rendered section or the FACTS block of locked values, so it never invents or concretizes a number.
+- **Validate.** Checks hex accuracy, the v3 section set and a Quick-Start fidelity check.
 
-The authoring boundary keeps that cardinal rule enforceable by inspection. A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables, and they enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent, inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on, while absent values are stamped or omitted rather than backfilled. [`references/authoring-boundary.md`](./references/authoring-boundary.md) draws this line in full, and [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability: authoring a design from a brief alone with no live site to measure is forward-authoring, and it stays OUT OF SCOPE for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here.
+A fourth optional phase renders HTML previews and visual-diff reports.
+
+### The Cardinal Rule
+
+Every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention and no approximation. Because the formatter emits the value tables and the typography and component numbers come verbatim from the FACTS block, the old "100rem where tokens say 100%" fabrication cannot happen. The Style Reference is a named, confident, restrained design-system handoff rather than the old mechanical extraction report. The hard guard is unchanged: never assert a system the data contradicts (no gradient-as-depth, no "focus is consistent" when it is not).
+
+### The Design-System Knowledge Layer
+
+| Capability | What the skill knows how to operate |
+|---|---|
+| **Token extraction** | crawl any public URL across five viewports and record every computed CSS value into `tokens.json` with an L1-L4 stability class |
+| **Value-bearing sections** | pre-render `Tokens - Colors`, `Tokens - Spacing & Shapes`, `Surfaces` and the Quick Start CSS + Tailwind deterministically from `tokens.json` |
+| **Prose authorship** | author intro, `Tokens - Typography`, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide and Similar Brands strictly from pre-rendered sections or the FACTS block |
+| **Fidelity validation** | verify every hex against `tokens.json`, the v3 section set and the Quick-Start fidelity check before any completion claim |
+
+### The Authoring Boundary
+
+A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables. They enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent. Inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. [`references/authoring-boundary.md`](./references/authoring-boundary.md) draws this line in full. [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability. Authoring a design from a brief alone, with no live site to measure, is forward-authoring and it stays out of scope for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here.
 
 ---
 
@@ -53,33 +72,34 @@ npm install
 npx playwright install chromium   # ~500 MB, one-time
 ```
 
-**Step 2: Extract tokens from a live site.** Run this from the **repo root** (not from `backend/`): `extract.ts` refuses any `--output` that resolves inside the skill, so a relative spec-folder path only resolves correctly from the repo root.
+`npm install` finishes and the Chromium binary download completes. Expect about 500 MB on the first run.
+
+**Step 2: Extract tokens from a live site.** Run this from the repo root, not from `backend/`. `extract.ts` refuses any `--output` that resolves inside the skill, so a relative spec-folder path resolves correctly only from the repo root.
 
 ```bash
 npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design-md-format.md` and `references/writing-style-guide.md`. The value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first); you author the prose sections — including Tokens — Typography — taking every value from those pre-rendered sections or the FACTS block, never typing a number by hand. Every hex, pixel, font-weight, shadow, and radius still traces to `tokens.json`.
+Success means `tokens.json` exists under the output directory with the measured values.
+
+**Step 3: Write the v3 Style Reference `DESIGN.md`.** Read `references/design-md-format.md` and `references/writing-style-guide.md`. The value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pre-rendered by `backend/scripts/build-write-prompt.ts` (which runs `formatters-v3.ts` first). You author the prose sections, including `Tokens - Typography`, taking every value from those pre-rendered sections or the FACTS block, never typing a number by hand. Every hex, pixel, font-weight, shadow and radius still traces to `tokens.json`.
 
 **Step 4: Validate before claiming completion.** Run from the repo root with the full script path:
 
 ```bash
 npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
-# Expected: zero hex mismatches, all required v3 sections present,
-# and the Quick-Start fidelity check passing (every Quick Start hex
-# traces to tokens; --page-max-width matches tokens).
 ```
+
+Expected: zero hex mismatches, all required v3 sections present and the Quick-Start fidelity check passing (every Quick Start hex traces to tokens, with `--page-max-width` matching tokens).
 
 ---
 
 ## 4. HOW IT WORKS
 
-### Styles-Library Utilization
+### The Schema and Study Layer
 
-The generator resolves section requiredness, capability groups, semantic roles, formatter emission, prompt instructions and validation from one versioned `V3_SCHEMA`. Corpus signals can inform advisory strata, but they cannot change locked target facts or downgrade target, schema or provenance failures.
-
-The optional STUDY step queries bounded cards, hydrates one generation-bound bundle and transforms it into inert structural observations before WRITE. Instruction-like content and source-specific literals are removed. Exact-value and normalized-span leak checks run at the draft boundary, and any hit discards the draft before a production retry without STUDY. Authority remains user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output.
+The generator resolves section requiredness, capability groups, semantic roles, formatter emission, prompt instructions and validation from one versioned `V3_SCHEMA`. Corpus signals can inform advisory strata, but they cannot change locked target facts and cannot downgrade target, schema, provenance or output failures. The optional STUDY step queries bounded cards, hydrates one generation-bound bundle and transforms it into inert structural observations before WRITE. Instruction-like content and source-specific literals are removed. Exact-value and normalized-span leak checks run at the draft boundary. Any hit discards the draft before a production retry without STUDY. Authority remains user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output.
 
 ### The Three-Phase Pipeline
 
@@ -88,18 +108,18 @@ EXTRACT (Phase 1)
   Playwright crawls the URL across 5 viewports (mobile through wide desktop).
   Collects computed CSS: colors, typography, shadows, radii, spacing, CSS variables.
   Detects dark-mode palette, framework markers, icon system, motion tokens, a11y data.
-  Each token tagged with a 4-layer stability class (L1 permanent → L4 content).
+  Each token tagged with a 4-layer stability class (L1 permanent through L4 content).
   Output: tokens.json at <--output>/.
 
 WRITE (Phase 2)
   build-write-prompt.ts runs formatters-v3.ts to PRE-RENDER the value-bearing
-  token sections deterministically (a hue+lightness color-namer + token emitters):
-  Tokens — Colors / Spacing & Shapes / Surfaces and the Quick Start CSS + Tailwind.
-  The AI authors the prose sections (intro, Tokens — Typography, Components,
+  token sections deterministically (a hue+lightness color-namer plus token emitters):
+  Tokens - Colors / Spacing & Shapes / Surfaces and the Quick Start CSS + Tailwind.
+  The AI authors the prose sections (intro, Tokens - Typography, Components,
   Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands),
-  taking every value from a pre-rendered section or the FACTS block — never by hand.
+  taking every value from a pre-rendered section or the FACTS block, never by hand.
   Result: a v3 Style Reference DESIGN.md.
-  L1 + L2 tokens go in main sections. L3 tokens get a "Subject to change" note.
+  L1 and L2 tokens go in main sections. L3 tokens get a "Subject to change" note.
   L4 tokens excluded entirely.
 
 VALIDATE (Phase 3)
@@ -117,14 +137,14 @@ Each extracted token gets a stability classification that governs its presence i
 
 | Class | Name | Description | In DESIGN.md? |
 |---|---|---|---|
-| L1 | Permanent | Brand identity — logo colors, brand typeface, core radii | Main sections |
-| L2 | System | Design-system tokens — semantic colors, spacing scale | Main sections |
-| L3 | Campaign | Temporary — hero gradients, seasonal accents | With "Subject to change" annotation |
+| L1 | Permanent | Brand identity (logo colors, brand typeface, core radii) | Main sections |
+| L2 | System | Design-system tokens (semantic colors, spacing scale) | Main sections |
+| L3 | Campaign | Temporary (hero gradients, seasonal accents) | With "Subject to change" annotation |
 | L4 | Content | Image-derived, one-off, article-specific | Excluded |
 
 The classifier in `backend/scripts/cluster.ts` is deterministic. Boundary tokens get the higher (more restrictive) class.
 
-### Private Procedure Card
+### The Private Procedure Card
 
 The maintainer-facing card in [`procedures/design-system-extraction.md`](./procedures/design-system-extraction.md) supports extraction evidence after the public `md-generator` mode is chosen. It is not a user-selectable route.
 
@@ -135,18 +155,18 @@ Run from the repo root with the full script path so a relative `--output` resolv
 ```
 npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output .opencode/specs/<track>/<packet>/output
 
-  --fast                 5 pages, 8 concurrency (still captures interaction; recommended)
+  --fast                 5 pages, 8 concurrency (still captures interaction, recommended)
   --max-pages <n>        Max pages to crawl (default: 8)
   --concurrency <n>      Playwright concurrency (default: 5)
-  --with-interaction     Capture hover/focus/active states (this is the default)
+  --with-interaction     Capture hover, focus and active states (this is the default)
   --no-interaction       Opt out of interaction capture
-  --fast-no-interaction  Fast crawl AND skip interaction (the old --fast behavior)
+  --fast-no-interaction  Fast crawl and skip interaction (the old --fast behavior)
   --no-dark-mode         Skip dark mode detection
   --wait-for <strategy>  Wait strategy: networkidle | css | selector:<css>
   --extra-urls           Additional URLs to crawl
-  --merge-with <path>    Merge into existing tokens.json
-  --output <dir>         Output directory (REQUIRED; must resolve to a spec folder outside the skill)
-  --insecure             Ignore HTTPS certificate errors (self-signed / staging hosts)
+  --merge-with <path>    Merge into an existing tokens.json
+  --output <dir>         Output directory (REQUIRED, must resolve to a spec folder outside the skill)
+  --insecure             Ignore HTTPS certificate errors (self-signed or staging hosts)
   --verbose              Detailed logging
 ```
 
@@ -163,22 +183,30 @@ npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/pr
 
 ---
 
-## 5. INTEGRATION AND NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
-Reach for this skill when you need to extract a live website's real CSS into a `DESIGN.md`. Use it when building a hallucination-proof design reference for AI agents, when re-extracting after a redesign, or when validating an existing `DESIGN.md` against its source tokens.
+Reach for this skill when you need to extract a live website's real CSS into a `DESIGN.md`. Use it for:
 
-Skip it when you are **inventing** a new design direction (palette, type scale, anti-default critique). That is `interface`. This skill captures what exists; that skill creates what does not.
+- Building a hallucination-proof design reference for AI agents.
+- Re-extracting after a redesign.
+- Validating an existing `DESIGN.md` against its source tokens.
 
-Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project (`design-mcp-open-design`, nested inside `sk-design`). Skip it for a screenshot or visual preview (`mcp-chrome-devtools`). Skip it when the URL is not publicly accessible or cannot render JavaScript.
+Skip it in these situations:
+
+- You are **inventing** a new design direction (palette, type scale, anti-default critique). That is `interface`. This skill captures what exists. That skill creates what does not.
+- The source is a Figma file (`mcp-figma`).
+- The source is an Open Design project (`design-mcp-open-design`, nested inside `sk-design`).
+- The need is a screenshot or a visual preview (`mcp-chrome-devtools`).
+- The URL is not publicly accessible or cannot render JavaScript.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `interface` | The design-judgment sibling. It invents new direction; this skill provides the measured ground truth it consumes. |
-| `sk-code` | Consumes `DESIGN.md` as the implementation contract. The hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii. |
+| `interface` | The design-judgment sibling. It invents new direction. This skill provides the measured ground truth it consumes. |
+| `sk-code` | Consumes `DESIGN.md` as the implementation contract. The hallucination-proof source of truth for colors, fonts, spacing, shadows and radii. |
 | `mcp-figma` | Extracts from Figma Desktop, not live URLs. Use when the source is a Figma file. |
 | `design-mcp-open-design` | Extracts from Open Design projects (nested inside `sk-design`). Use when the source is an Open Design project. |
 | `mcp-chrome-devtools` | Browser inspection and visual preview. Not a structured extraction tool. |
@@ -189,8 +217,8 @@ Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project 
 
 | What you see | Why | Fix |
 |---|---|---|
-| `chromium is not installed` or Playwright error | Chromium binary not downloaded | Run `npx playwright install chromium` from `backend/` (~500 MB, one-time) |
-| Extraction times out or returns empty tokens | Site blocks automated crawlers or requires authentication | Try `--wait-for networkidle` or `--wait-for css`. If the site requires login, it is out of scope |
+| `chromium is not installed` or a Playwright error | Chromium binary not downloaded | Run `npx playwright install chromium` from `backend/` (~500 MB, one-time) |
+| Extraction times out or returns empty tokens | Site blocks automated crawlers or requires authentication | Try `--wait-for networkidle` or `--wait-for css`. A site that requires login is out of scope |
 | Dark-mode section is missing | The site has no `prefers-color-scheme` media query or dark-mode CSS variables | This is expected. Include a dark-mode section only when `tokens.json` contains a detected dark palette |
 | Validation reports hex mismatches | `DESIGN.md` contains values not in `tokens.json` | Re-read `tokens.json` and fix the mismatched values. Every hex must match verbatim |
 | `ts-node: command not found` | Dev dependencies not installed | Run `npm install` from `backend/` |
@@ -201,7 +229,7 @@ Skip it when the source is a Figma file (`mcp-figma`) or an Open Design project 
 
 **Q: How is this different from curated design-system template libraries?**
 
-A: Curated libraries cover ~70 fixed brands. This tool works on any URL you point it at, including your own product. The values are pixel-verified against the live CSS, not hand-written approximations. And every token gets a stability classification so you know which values are permanent and which are campaign-level.
+A: Curated libraries cover about 70 fixed brands. This mode works on any URL you point it at, including your own product. The values are pixel-verified against the live CSS, not hand-written approximations. Every token gets a stability classification, so you know which values are permanent and which are campaign-level.
 
 **Q: Can I extract from a site that requires login?**
 
@@ -209,11 +237,11 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design-md-format.md`. `build-write-prompt.ts` pre-renders the value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts` and hands the agent a FACTS block of locked values (including the type scale). The agent writes the prose sections — including Tokens — Typography — but takes every number from a pre-rendered section or the FACTS block, so no value is ever hand-copied. The skill validates the result.
+A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent's job, working from `tokens.json` and the v3 Style Reference specification in `references/design-md-format.md`. `build-write-prompt.ts` pre-renders the value-bearing token sections (Colors, Spacing & Shapes, Surfaces, Quick Start) via `formatters-v3.ts` and hands the agent a FACTS block of locked values (including the type scale). The agent writes the prose sections, including `Tokens - Typography`, but takes every number from a pre-rendered section or the FACTS block, so no value is ever hand-copied. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 
-A: Run `validate.ts` standalone. It checks hex accuracy against `tokens.json`, the v3 Style Reference section set, and the Quick-Start fidelity check (every Quick Start hex traces to tokens; `--page-max-width` matches tokens). No re-extraction needed.
+A: Run `validate.ts` standalone. It checks hex accuracy against `tokens.json`, the v3 Style Reference section set and the Quick-Start fidelity check (every Quick Start hex traces to tokens, with `--page-max-width` matching tokens). No re-extraction needed.
 
 **Q: How does this relate to `interface`?**
 
@@ -236,10 +264,10 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`references/design-md-format.md`](./references/design-md-format.md) | The authoritative v3 Style Reference section specification (Header + intro, Tokens — Colors / Typography / Spacing & Shapes, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
-| [`references/writing-style-guide.md`](./references/writing-style-guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and references |
+| [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Node.js, Playwright and Chromium setup plus a first-extraction walkthrough |
+| [`references/design-md-format.md`](./references/design-md-format.md) | The authoritative v3 Style Reference section specification (Header and intro, `Tokens - Colors`, `Tokens - Typography`, `Tokens - Spacing & Shapes`, Components, Do's and Don'ts, Surfaces, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands, Quick Start) |
+| [`references/writing-style-guide.md`](./references/writing-style-guide.md) | Voice, tone and section-composition rules for DESIGN.md prose |
 | [`references/authoring-boundary.md`](./references/authoring-boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
 | [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
 | [`procedures/design-system-extraction.md`](./procedures/design-system-extraction.md) | Maintainer-facing procedure card for extraction evidence after `md-generator` is selected |

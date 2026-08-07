@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
+  "description": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and",
+  "keywords": [
+    "mcp-obsidian",
+    "pilot",
+    "set",
+    "standard",
+    "standalone",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "written",
+    "human",
+    "voice",
+    "rules"
+  ],
+  "lastUpdated": "2026-08-04T13:27:58.437Z",
+  "specId": "007",
+  "folderSlug": "sk-git",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

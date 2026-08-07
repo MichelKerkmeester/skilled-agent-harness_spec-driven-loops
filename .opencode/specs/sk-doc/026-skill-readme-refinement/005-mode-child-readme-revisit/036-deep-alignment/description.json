@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
+  "description": "Phase 036: deep-alignment mode README revisit on the refined template with version bump and changelog entry",
+  "keywords": [
+    "phase",
+    "deep-alignment",
+    "mode",
+    "readme",
+    "revisit",
+    "refined",
+    "template",
+    "version",
+    "bump",
+    "changelog",
+    "entry"
+  ],
+  "lastUpdated": "2026-08-04T18:35:02.827Z",
+  "specId": "036",
+  "folderSlug": "deep-alignment",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

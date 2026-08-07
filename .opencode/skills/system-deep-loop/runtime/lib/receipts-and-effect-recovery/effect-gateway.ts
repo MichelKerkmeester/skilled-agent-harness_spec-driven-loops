@@ -9,8 +9,6 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import {
   EFFECT_CONFIRMATION_EVENT_TYPE,
   EFFECT_CONFLICT_EVENT_TYPE,
@@ -24,12 +22,6 @@ import {
   ReceiptEffectError,
   ReceiptEffectErrorCodes,
 } from './errors.js';
-import {
-  AtomicityDomains,
-  FencedLeaseCoordinator,
-  ProtectedResourceKinds,
-  canonicalizeProtectedResource,
-} from '../locks-and-fencing/index.js';
 
 import type { VerifiedLedgerEvent } from '../authorized-ledger/index.js';
 import type {
@@ -83,7 +75,6 @@ const SECRET_VALUE_PATTERNS = [
   /-----BEGIN [A-Z ]*PRIVATE KEY-----/u,
 ] as const;
 const SECRET_REFERENCE_PATTERN = /^(env|keychain|provider|vault):[A-Za-z0-9_./:@-]+$/u;
-const DEFAULT_SINGLE_WINNER_ROOT_DIRECTORY = join(tmpdir(), 'deep-loop-effect-single-winners');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. DERIVATION AND SECURITY
@@ -367,7 +358,6 @@ export class EffectRecoveryGateway {
   readonly #intentRaceWaitMs: number;
   readonly #intentRacePollMs: number;
   readonly #faults: EffectGatewayFaultInjection;
-  readonly #singleWinnerRootDirectory: string;
   readonly #locks = new Map<string, Promise<void>>();
 
   public constructor(options: EffectRecoveryGatewayOptions) {
@@ -377,9 +367,6 @@ export class EffectRecoveryGateway {
     this.#intentRaceWaitMs = options.intentRaceWaitMs ?? DEFAULT_INTENT_RACE_WAIT_MS;
     this.#intentRacePollMs = options.intentRacePollMs ?? DEFAULT_INTENT_RACE_POLL_MS;
     this.#faults = options.faultInjection ?? {};
-    this.#singleWinnerRootDirectory = options.singleWinnerRootDirectory
-      ?? options.writer.rootDirectory
-      ?? DEFAULT_SINGLE_WINNER_ROOT_DIRECTORY;
     if (!Number.isSafeInteger(this.#maxRecoveryAttempts) || this.#maxRecoveryAttempts <= 0) {
       throw new ReceiptEffectError(
         ReceiptEffectErrorCodes.INVALID_INPUT,
@@ -1303,28 +1290,7 @@ export class EffectRecoveryGateway {
     this.#locks.set(key, chained);
     await prior;
     try {
-      const coordinator = new FencedLeaseCoordinator({
-        rootDirectory: this.#singleWinnerRootDirectory,
-      });
-      const resource = canonicalizeProtectedResource({
-        kind: ProtectedResourceKinds.WRITER,
-        atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-        components: {
-          writerId: `effect-${sha256Bytes(canonicalBytes(key))}`,
-        },
-      });
-      const lease = await coordinator.acquire({
-        resource,
-        ownerId: `effect-gateway:${process.pid}`,
-        correlationId: `effect-${sha256Bytes(canonicalBytes(key))}`,
-        ttlMs: 60_000,
-        acquireTimeoutMs: 5_000,
-      });
-      try {
-        return await coordinator.withFence(lease, () => async () => operation());
-      } finally {
-        await coordinator.release(lease).catch(() => undefined);
-      }
+      return await operation();
     } finally {
       release();
       if (this.#locks.get(key) === chained) this.#locks.delete(key);

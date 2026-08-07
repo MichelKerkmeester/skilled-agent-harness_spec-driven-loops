@@ -2,12 +2,9 @@
 // MODULE: Replay Fingerprint Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
-import { spawn, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import {
   cpSync,
-  existsSync,
   mkdtempSync,
   readFileSync,
   renameSync,
@@ -16,7 +13,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -266,14 +263,6 @@ function createHarness(
   return { rootDirectory, registry, policies, ledger, gateway };
 }
 
-async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promise<void> {
-  const deadline = Date.now() + timeoutMs;
-  while (!paths.every((path) => existsSync(path))) {
-    if (Date.now() >= deadline) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
-    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
-  }
-}
-
 function reopenHarness(harness: Harness, registry: EventTypeRegistryType): Harness {
   return createHarness(registry, harness.rootDirectory);
 }
@@ -303,7 +292,7 @@ async function appendFixtures(harness: Harness, count = 3): Promise<void> {
   for (let index = 1; index <= count; index += 1) {
     const event = createFixtureEvent(harness.registry, index);
     const proof = await authorize(harness, event, 'fixture-request-' + String(index));
-    await appendAuthorizedForTest(harness.ledger, event, proof);
+    await harness.ledger.appendAuthorized(event, proof);
   }
 }
 
@@ -464,91 +453,6 @@ async function deriveAndRecord(
   return { derived, event, proof, write, versionRegistry };
 }
 
-function runAttestationProcess(input: Readonly<{
-  rootDirectory: string;
-  readyPath: string;
-  startPath: string;
-  resultPath: string;
-  proof: GatewayAllowProof;
-}>): Promise<{ exitCode: number | null; stdout: string; stderr: string }> {
-  const testPath = fileURLToPath(import.meta.url);
-  const testDirectory = dirname(testPath);
-  const runtimeDirectory = resolve(testDirectory, '../..');
-  const vitestCli = join(runtimeDirectory, 'node_modules/vitest/vitest.mjs');
-  return new Promise((resolveProcess, rejectProcess) => {
-    const child = spawn(process.execPath, [
-      vitestCli,
-      'run',
-      '--no-coverage',
-      testPath,
-      '-t',
-      'attestation process worker',
-    ], {
-      cwd: runtimeDirectory,
-      env: {
-        ...process.env,
-        ATTESTATION_RACE_ROOT: input.rootDirectory,
-        ATTESTATION_RACE_READY: input.readyPath,
-        ATTESTATION_RACE_START: input.startPath,
-        ATTESTATION_RACE_RESULT: input.resultPath,
-        ATTESTATION_RACE_PROOF: Buffer.from(JSON.stringify(input.proof), 'utf8').toString('base64'),
-      },
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    let stdout = '';
-    let stderr = '';
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
-    child.stdout.on('data', (chunk: string) => { stdout += chunk; });
-    child.stderr.on('data', (chunk: string) => { stderr += chunk; });
-    child.once('error', rejectProcess);
-    child.once('close', (exitCode) => resolveProcess({ exitCode, stdout, stderr }));
-  });
-}
-
-if (process.env.ATTESTATION_RACE_ROOT) {
-  describe('attestation race process helper', () => {
-    it('attestation process worker', async () => {
-      const rootDirectory = process.env.ATTESTATION_RACE_ROOT as string;
-      const readyPath = process.env.ATTESTATION_RACE_READY as string;
-      const startPath = process.env.ATTESTATION_RACE_START as string;
-      const resultPath = process.env.ATTESTATION_RACE_RESULT as string;
-      const proof = JSON.parse(Buffer.from(
-        process.env.ATTESTATION_RACE_PROOF as string,
-        'base64',
-      ).toString('utf8')) as GatewayAllowProof;
-      const harness = createHarness(createEventRegistry(), rootDirectory);
-      const versionRegistry = createReplayFingerprintVersionRegistry();
-      const derived = await derive(harness, { versionRegistry });
-      const event = prepareReplayFingerprintAttestation(
-        derived,
-        harness.registry,
-        versionRegistry,
-        attestationEnvelope(1),
-      );
-      writeFileSync(readyPath, 'ready', 'utf8');
-      await waitForFiles([startPath]);
-      try {
-        const result = await recordReplayFingerprintAttestation(
-          harness.ledger,
-          event,
-          proof,
-          derived,
-          versionRegistry,
-        );
-        writeFileSync(resultPath, JSON.stringify({ status: result.status }), 'utf8');
-      } catch (error: unknown) {
-        writeFileSync(resultPath, JSON.stringify({
-          status: 'rejected',
-          errorCode: error && typeof error === 'object' && 'code' in error
-            ? String(error.code)
-            : 'UNEXPECTED_FAILURE',
-        }), 'utf8');
-      }
-    });
-  });
-}
-
 async function appendRawAttestation(
   harness: Harness,
   derived: DerivedReplayFingerprint<CountProjection>,
@@ -568,7 +472,7 @@ async function appendRawAttestation(
     payload,
   }, harness.registry);
   const proof = await authorize(harness, event, 'raw-fingerprint-attestation-request');
-  await appendAuthorizedForTest(harness.ledger, event, proof);
+  await harness.ledger.appendAuthorized(event, proof);
 }
 
 function verificationInput(
@@ -906,7 +810,7 @@ describe('replay contract and result drift', () => {
       attestationEnvelope(1),
     );
     const proof = await authorize(harness, event, 'authorized-false-effective-claim');
-    await appendAuthorizedForTest(harness.ledger, event, proof);
+    await harness.ledger.appendAuthorized(event, proof);
 
     const result = await verifyReplayFingerprint(verificationInput(harness));
     expectFailure(result, 'effective');
@@ -1123,7 +1027,7 @@ describe('fingerprint version and attestation rules', () => {
       payload,
     }, lax.registry);
     const proof = await authorize(lax, event, 'missing-fingerprint-version-request');
-    await appendAuthorizedForTest(lax.ledger, event, proof);
+    await lax.ledger.appendAuthorized(event, proof);
 
     const result = await verifyReplayFingerprint(verificationInput(lax));
     expectFailure(result, 'fingerprint_version');
@@ -1210,49 +1114,6 @@ describe('fingerprint version and attestation rules', () => {
       recorded.write.receipt.recordHash,
     );
   });
-
-  it('F-004-03 converges exact attestations from two independent processes', async () => {
-    const harness = await committedHarness();
-    const versionRegistry = createReplayFingerprintVersionRegistry();
-    const derived = await derive(harness, { versionRegistry });
-    const event = prepareReplayFingerprintAttestation(
-      derived,
-      harness.registry,
-      versionRegistry,
-      attestationEnvelope(1),
-    );
-    const proof = await authorize(harness, event, 'concurrent-attestation-request');
-    const startPath = join(harness.rootDirectory, 'attestation.start');
-    const readyA = join(harness.rootDirectory, 'attestation-a.ready');
-    const readyB = join(harness.rootDirectory, 'attestation-b.ready');
-    const resultA = join(harness.rootDirectory, 'attestation-a.result.json');
-    const resultB = join(harness.rootDirectory, 'attestation-b.result.json');
-    const first = runAttestationProcess({
-      rootDirectory: harness.rootDirectory,
-      readyPath: readyA,
-      startPath,
-      resultPath: resultA,
-      proof,
-    });
-    const second = runAttestationProcess({
-      rootDirectory: harness.rootDirectory,
-      readyPath: readyB,
-      startPath,
-      resultPath: resultB,
-      proof,
-    });
-    await waitForFiles([readyA, readyB]);
-    writeFileSync(startPath, 'start', 'utf8');
-    const processes = await Promise.all([first, second]);
-    await waitForFiles([resultA, resultB]);
-    const results = [resultA, resultB].map((path) => (
-      JSON.parse(readFileSync(path, 'utf8')) as { status: string; errorCode?: string }
-    ));
-
-    expect(processes.every((process) => process.exitCode === 0), JSON.stringify(processes)).toBe(true);
-    expect(results.map((result) => result.status).sort()).toEqual(['appended', 'idempotent']);
-    expect((await harness.ledger.getVerifiedHead()).sequence).toBe(4);
-  }, 30_000);
 
   it('rejects conflicting attestations for one run, range, and version', async () => {
     const harness = await committedHarness();

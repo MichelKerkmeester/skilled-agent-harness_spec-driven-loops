@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "children_ids": [
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode readme revisit",
+      "child skill readme revisit",
+      "readme fleet revisit"
+    ],
+    "key_topics": [
+      "mode",
+      "readme",
+      "revisit",
+      "child",
+      "skill",
+      "fleet",
+      "phase",
+      "parent",
+      "one",
+      "per",
+      "revisiting",
+      "against"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/README.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/README.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/README.md",
+      ".opencode/skills/mcp-tooling/mcp-figma/README.md",
+      ".opencode/skills/mcp-tooling/mcp-magnific/README.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/README.md",
+      ".opencode/skills/sk-code/sk-code-opencode/README.md",
+      ".opencode/skills/sk-code/sk-code-quality/README.md",
+      ".opencode/skills/sk-code/sk-code-review/README.md",
+      ".opencode/skills/sk-code/sk-code-webflow/README.md",
+      ".opencode/skills/sk-design/sk-design-interface/README.md",
+      ".opencode/skills/sk-design/sk-design-mcp-open-design/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar.",
+    "created_at": "2026-08-04T07:12:17.718Z",
+    "last_save_at": "2026-08-04T18:47:15.566Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bbc2b81d5ca34fd7844f6c0f3a3a787b8b0e2b5484f1af02762a814d4e2991a0",
+    "source_doc_hashes": {
+      "spec.md": "2c3c4d64b88bd0778148fad944bc8f37ee461fbdb72ddc8d0cc1146d09ed9c99"
+    },
+    "last_active_child_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
+    "last_active_at": "2026-08-04T18:47:15.566Z"
+  }
+}

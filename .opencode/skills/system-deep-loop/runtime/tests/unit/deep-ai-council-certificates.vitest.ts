@@ -2,8 +2,6 @@
 // MODULE: Deep AI Council Certificate Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -594,7 +592,7 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

@@ -6,7 +6,6 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from './fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   EventTypeRegistry,
@@ -249,7 +248,7 @@ export async function recordLockLifecycleEvidence(
       { reasonCode: authorization.reasonCode },
     );
   }
-  const receipt = await appendFencedLedgerRecord(ledger, event, authorization.proof);
+  const receipt = await ledger.appendAuthorized(event, authorization.proof);
   return Object.freeze({
     decisionId: authorization.decision.decision_id,
     receipt,

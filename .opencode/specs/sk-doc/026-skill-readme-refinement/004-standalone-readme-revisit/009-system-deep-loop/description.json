@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
+  "description": "The system-deep-loop skill README still carries the older tabular reference-card style",
+  "keywords": [
+    "system-deep-loop",
+    "skill",
+    "readme",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style"
+  ],
+  "lastUpdated": "2026-08-04T13:37:51.730Z",
+  "specId": "009",
+  "folderSlug": "system-deep-loop",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

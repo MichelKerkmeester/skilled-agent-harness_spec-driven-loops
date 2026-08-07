@@ -1,6 +1,6 @@
 ---
 title: cli-external-orchestration
-description: Parent hub for external CLI dispatch, routing to cli-opencode (OpenCode CLI orchestration), cli-claude-code (Claude Code CLI orchestration), cli-codex (Codex CLI orchestration), cli-cursor (Cursor CLI orchestration), cli-devin (Devin CLI orchestration), and cli-pi (Pi CLI orchestration) through mode-registry.json.
+description: One hub that routes cross-AI work to the external CLI that fits it best: OpenCode, Claude Code, Codex, Cursor, Devin or Pi, each dispatched as a nested workflow packet under a single advisor identity.
 trigger_phrases:
   - "opencode cli"
   - "claude cli"
@@ -15,12 +15,12 @@ trigger_phrases:
   - "delegate to pi"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # cli-external-orchestration
 
-> One advisor identity, six workflow modes: dispatch the OpenCode CLI for full-runtime and parallel sessions, the Claude Code CLI for Anthropic-backed reasoning and structured cross-AI handoff, the Codex CLI for OpenAI-backed coding, review, and web research, the Cursor CLI for Composer-model dispatch and read-only plan/ask exploration, the Devin CLI for Cognition-backed multi-model coding, subagent delegation, cloud handoff, and cross-model validation, or the Pi CLI for guarded headless coding, JSON-event output, RPC integration, and native-resource and community-package workflows.
+> Cross-AI work means more than one external CLI runtime on your machine. This hub routes each coding, review, research or delegation request to the CLI that fits it best, dispatched as a nested workflow packet under one advisor identity.
 
 ---
 
@@ -28,87 +28,106 @@ version: 1.2.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Cross-AI CLI dispatch. Full-runtime OpenCode orchestration (parallel and detached sessions, small-model dispatch), Claude Code orchestration (extended thinking, surgical edits, structured output, agent delegation), Codex orchestration (OpenAI-backed coding, review, web research, and cross-model validation), Cursor orchestration (Composer-model dispatch, read-only plan/ask exploration, native worktree/cloud-worker escape hatches), Devin orchestration (Cognition-backed multi-model coding, subagent delegation, cloud handoff, and cross-model validation), or Pi orchestration (guarded print, JSON-event and RPC dispatch, native skills/extensions, and community packages) |
-| **Invoke with** | Keyword routing through Gate 2. None of the six modes has a bound slash command (`command: null`) |
-| **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/`, or `cli-pi/` (all mutating workflow packets, `mutatesWorkspace: true`) via `mode-registry.json` |
-| **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin, or Pi CLI session whose writes land in this repo's workspace. Each mode's self-invocation guard blocks a runtime from dispatching itself |
+| **Use it for** | Cross-AI CLI dispatch: coding, review, research, delegation and second opinions through six external CLI runtimes |
+| **Invoke with** | Gate 2 keyword routing such as "cli dispatch" or "delegate to codex". No mode has a bound slash command (`command: null`) |
+| **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/` or `cli-pi/` via `mode-registry.json` (all mutating packets, `mutatesWorkspace: true`) |
+| **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin or Pi session whose writes land in this repo's workspace. Each mode's self-invocation guard blocks a runtime from dispatching itself |
 
 ---
 
 ## 2. OVERVIEW
 
-`cli-external-orchestration` is a parent hub: it holds no packet-local logic and routes every request to exactly one of six nested workflow packets through `mode-registry.json` and `hub-router.json`.
+### Why This Hub Exists
 
-- **`cli-opencode/`**: OpenCode CLI orchestration. Covers external dispatch, in-OpenCode parallel and detached sessions, the full plugin, skill, MCP and Spec-Kit-Memory runtime, small-model dispatch (DeepSeek, Kimi, MiniMax, MiMo, GLM). Small-model prompt-craft profiles: [`../sk-prompt/sk-prompt-models/README.md`](../sk-prompt/sk-prompt-models/README.md). Dispatch contract: [`cli-opencode/SKILL.md`](cli-opencode/SKILL.md). Setup and orientation: [`cli-opencode/README.md`](cli-opencode/README.md).
-- **`cli-claude-code/`**: Claude Code CLI orchestration. Covers Anthropic-backed extended thinking, surgical code editing, structured JSON-schema output, agent delegation, cross-AI second opinions. Dispatch contract: [`cli-claude-code/SKILL.md`](cli-claude-code/SKILL.md). Setup and orientation: [`cli-claude-code/README.md`](cli-claude-code/README.md).
-- **`cli-codex/`**: Codex CLI orchestration. Covers OpenAI-backed coding, repo analysis, PR review, web research, cross-model validation, and fail-closed availability/self-invocation guards. Dispatch contract: [`cli-codex/SKILL.md`](cli-codex/SKILL.md). Setup and orientation: [`cli-codex/README.md`](cli-codex/README.md).
-- **`cli-cursor/`**: Cursor CLI orchestration. Covers Composer-model dispatch (Cursor's own native model), read-only `--mode plan`/`--mode ask` exploration, native git worktree isolation, a cloud `worker`, and a shared `.cursor/` hooks/MCP/rules config surface with the Cursor editor. Dispatch contract: [`cli-cursor/SKILL.md`](cli-cursor/SKILL.md). Setup and orientation: [`cli-cursor/README.md`](cli-cursor/README.md).
-- **`cli-devin/`**: Devin CLI orchestration. Covers Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration, multi-model dispatch, and availability-gated routing on `command -v devin`. Dispatch contract: [`cli-devin/SKILL.md`](cli-devin/SKILL.md). Setup and orientation: [`cli-devin/README.md`](cli-devin/README.md).
-- **`cli-pi/`**: Pi CLI orchestration. Covers guarded headless print, JSON-event, and RPC dispatch, native skills/extensions, community-package dispatch, and availability-gated routing on `command -v pi`; failure exit codes are unreliable, so callers inspect output. Dispatch contract: [`cli-pi/SKILL.md`](cli-pi/SKILL.md). Setup and orientation: [`cli-pi/README.md`](cli-pi/README.md).
+Your machine runs more than one external AI runtime, each with its own CLI and its own failure modes. Picking one by habit is guesswork: the session runs, but it may not fit the task. The hub makes the choice deliberate. One advisor identity reads the request and picks the external CLI that fits it best. Then it dispatches the matching workflow packet.
 
-Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity, tool surface and advisor routing. `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi` when multiple are explicitly requested (an `orderedBundle` outcome), and `defaultMode` is `cli-opencode`, but genuinely unclear or contradictory dispatch intent still defers to disambiguation instead of defaulting silently.
+### What It Does
 
-All six packets keep their own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Each mode's `references/` includes a dedicated `providers-and-models.md` — the single-source catalog of that mode's providers, model ids, personas/effort tiers, and dispatch shapes. The hub carries the single `graph-metadata.json` advisor identity for all six, unioning their intent signals, trigger phrases, domains and outward edges.
+The hub holds no packet-local logic. Every request routes to exactly one of six nested workflow packets through `hub-router.json` and `mode-registry.json`. The hub itself keeps just its `SKILL.md` and the registry files. Each mode packet keeps its own contract, references, playbook and changelog.
+
+### The Mode Roster
+
+| Mode | What the packet dispatches |
+|---|---|
+| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax, MiMo and GLM. Small-model prompt profiles: [`../sk-prompt/sk-prompt-models/README.md`](../sk-prompt/sk-prompt-models/README.md) |
+| **`cli-claude-code`** ([README](./cli-claude-code/README.md), [SKILL.md](./cli-claude-code/SKILL.md)) | Claude Code CLI dispatch: Anthropic-backed extended thinking, surgical code edits, structured JSON-schema output, agent delegation and cross-AI second opinions |
+| **`cli-codex`** ([README](./cli-codex/README.md), [SKILL.md](./cli-codex/SKILL.md)) | Codex CLI dispatch: OpenAI-backed coding, repo analysis, PR review, web research and cross-model validation. Fails closed when the `codex` binary is absent |
+| **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |
+| **`cli-devin`** ([README](./cli-devin/README.md), [SKILL.md](./cli-devin/SKILL.md)) | Devin CLI dispatch: Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration and multi-model dispatch. Availability-gated on `command -v devin` |
+| **`cli-pi`** ([README](./cli-pi/README.md), [SKILL.md](./cli-pi/SKILL.md)) | Pi CLI dispatch: guarded headless print, JSON-event and RPC dispatch, native skills and extensions plus community packages. Availability-gated on `command -v pi`, with failure exit codes that are unreliable so callers inspect output |
 
 ---
 
 ## 3. QUICK START
 
-**OpenCode CLI dispatch:**
+**Step 1: Invoke it.** Gate 2 keyword routing matches trigger phrases such as "cli dispatch" or "delegate to codex". No slash command exists for any of the six modes (`command: null`).
 
-```text
-Run this task through opencode run with the deepseek provider.
-```
+**Step 2: Dispatch the mode that fits the request.**
 
-**Claude Code CLI dispatch:**
+| Mode | Example prompt |
+|---|---|
+| `cli-opencode` | `Run this task through opencode run with the deepseek provider.` |
+| `cli-claude-code` | `Use cli-claude-code to get an Anthropic-backed second opinion.` |
+| `cli-codex` | `Use cli-codex for an OpenAI-backed code review and web-research pass.` |
+| `cli-cursor` | `Use cli-cursor to get Composer's opinion on this diff.` |
+| `cli-devin` | `Use cli-devin for a Cognition-backed multi-model code review.` |
+| `cli-pi` | `Use cli-pi for a guarded headless JSON-event review.` |
 
-```text
-Use cli-claude-code to get an Anthropic-backed second opinion.
-```
-
-**Codex CLI dispatch:**
-
-```text
-Use cli-codex for an OpenAI-backed code review and web-research pass.
-```
-
-**Cursor CLI dispatch:**
-
-```text
-Use cli-cursor to get Composer's opinion on this diff.
-```
-
-**Devin CLI dispatch:**
-
-```text
-Use cli-devin for a Cognition-backed multi-model code review.
-```
-
-**Pi CLI dispatch:**
-
-```text
-Use cli-pi for a guarded headless JSON-event review.
-```
+**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
 
 ---
 
-## 4. RELATED SKILLS
+## 4. HOW IT WORKS
+
+### The Routing Chain
+
+Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface. The registry also carries the advisor routing fields. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` as an `orderedBundle`. `defaultMode` is `cli-opencode`. Genuinely unclear or contradictory intent still defers to disambiguation instead of defaulting silently.
+
+### The Guard Rails
+
+Four behaviors keep dispatch honest:
+
+- `cli-codex` fails closed when the binary is absent. `cli-devin` and `cli-pi` gate routing on `command -v`.
+- The self-invocation guard blocks a runtime from dispatching itself.
+- One `graph-metadata.json` carries the single advisor identity for all six modes, unioning their intent signals, trigger phrases, domains and outward edges.
+- Each mode keeps its own `SKILL.md`, `README.md`, `references/`, `assets/`, `manual-testing-playbook/` and `changelog/`. Its `references/providers-and-models.md` is the single source for that mode's providers, model ids, effort tiers and dispatch shapes.
+
+---
+
+## 5. INTEGRATION & NAVIGATION
+
+### When To Use This Hub
+
+Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding or a guarded headless Pi run. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
+
+### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt` | Enhances edge (weight 0.5). `cli-opencode`'s small-model dispatch is a sentinel for `sk-prompt/sk-prompt-models` profiles |
+| `sk-prompt` | `cli-opencode` small-model dispatch is a sentinel for `sk-prompt/sk-prompt-models` profiles (enhances edge, weight 0.5) |
 | `system-spec-kit` | Manual dependency. A full-runtime `cli-opencode` dispatch carries the Spec-Kit-Memory runtime |
-| `sk-code` | Code implementation, review and debugging, not CLI dispatch. This hub orchestrates the dispatch, `sk-code` owns the work inside it |
-| `system-deep-loop` | Related. Ablation-suite and worker-farm patterns that dispatch parallel `cli-opencode` sessions |
-| `mcp-code-mode` | Related. The MCP execution substrate a dispatched CLI session can reach once running |
-| `sk-doc` | Documentation and component authoring, the sibling parent hub this one's structure mirrors |
+| `sk-code` | Owns code implementation, review and debugging inside the dispatched session |
+| `system-deep-loop` | Related. Ablation-suite and worker-farm patterns dispatch parallel `cli-opencode` sessions |
+| `mcp-code-mode` | Related. The MCP execution substrate a dispatched session can reach once running |
+| `sk-doc` | Sibling parent hub whose structure this hub mirrors |
 
 ---
 
-## 5. VERIFICATION
+## 6. VERIFICATION
 
-```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/cli-external-orchestration
-```
+| Check | How to run it |
+|---|---|
+| Hub structure | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/cli-external-orchestration` exits 0 with 0 invariant failures and 0 warnings |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/README.md --type readme` exits 0 and reports zero issues |
 
-Expected: 0 invariant failures, 0 warnings.
+---
+
+## 7. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Hub runtime instructions and routing logic |
+| [`mode-registry.json`](./mode-registry.json) | Packet identity, tool surface and advisor routing for the six modes |
+| [`hub-router.json`](./hub-router.json) | Signal and vocabulary routing that precedes the registry |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of hub dispatch capabilities |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate hub routing |

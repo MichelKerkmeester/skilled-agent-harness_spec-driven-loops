@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+  "spec_folder": "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+  "parent_id": "system-speckit/032-relocate-specs-folder",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocation implications research",
+      "specs folder research",
+      "glm grok specs relocation",
+      "relocation research plan",
+      "dual executor deep research",
+      "relocation research tasks",
+      "relocation research summary"
+    ],
+    "key_topics": [
+      "relocation",
+      "implications",
+      "research",
+      "specs",
+      "folder",
+      "glm",
+      "grok",
+      "plan",
+      "dual",
+      "executor",
+      "deep",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".pi/modes.json",
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".claude/SYNC.md",
+      ".github/workflows/strict-pass-freshness-sweep.yml",
+      ".opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/spec-root-write-guard.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/spec-root-validation-matrix.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/spec-root-fault-injection.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/api/indexing.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts"
+    ],
+    "entities": [
+      {
+        "name": "modes.json",
+        "kind": "config",
+        "path": ".pi/modes.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-sweep.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-migration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-migration-manifest.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-write-guard.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/core/spec-root-write-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-validation-matrix.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/spec-root-validation-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-fault-injection.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/spec-root-fault-injection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "indexing.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/api/indexing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-alias.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-path.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relocation Implications Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
+    "created_at": "2026-08-06T09:09:30Z",
+    "last_save_at": "2026-08-06T13:28:58.771Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:00258052455fefa804e11d03bd00c9970fa030c8593ebe73d9d896d8620928f3",
+    "source_doc_hashes": {
+      "spec.md": "b18b2ade2cc6473afdfee48f7f5f82172c98d8924aedb2244cc0f3ec5a7829cb",
+      "plan.md": "f939eeb0d1a6a6ca523c8456d32be5a395c17867aed2bdaed755a32aedcec092",
+      "tasks.md": "9470dfac3b9f1ff8faf5a5aeee42774e493c966b04e933208d33a9a91dc06447",
+      "implementation-summary.md": "9cc5d8e1cf686e1a2c06c7a56ed35090be2b3d8b8f32350b749d59a0ac4b5d12",
+      "research/research.md": "0ca2f4b04a4e59e991294367c4ada6ded69a1f4ecba5a9b0bedcf9e5bb40e33d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

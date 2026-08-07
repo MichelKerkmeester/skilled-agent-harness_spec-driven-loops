@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/002-synthesis-and-decision",
+  "description": "Phase 1 produces verified findings, a claims ledger, and a feasibility picture, but no decision",
+  "keywords": [
+    "phase",
+    "produces",
+    "verified",
+    "findings",
+    "claims",
+    "ledger",
+    "feasibility",
+    "picture",
+    "decision"
+  ],
+  "lastUpdated": "2026-08-06T11:53:10.054Z",
+  "specId": "002",
+  "folderSlug": "synthesis-and-decision",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

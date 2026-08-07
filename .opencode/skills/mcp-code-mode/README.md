@@ -1,18 +1,18 @@
 ---
 title: mcp-code-mode
-description: MCP orchestration engine that lets an agent call hundreds of external tools by writing TypeScript that runs in one execution, discovering tool schemas on demand so the context stays flat.
+description: Lets an agent reach every external MCP tool registered in `.utcp_config.json` through one TypeScript execution, with schemas discovered on demand so the context stays flat no matter how many servers are configured.
 trigger_phrases:
   - "code mode"
   - "call_tool_chain"
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.0.30
+version: 1.0.0.31
 ---
 
 # mcp-code-mode
 
-> Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json`, discovering tool schemas on demand so the agent context stays roughly 98% smaller regardless of how many servers are configured.
+> Reach every external MCP tool you have registered through one TypeScript execution, with schemas discovered on demand so the context stays flat no matter how many servers you add.
 
 ---
 
@@ -20,9 +20,9 @@ version: 1.0.0.30
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Calling ClickUp, Figma, MyService, Notion, Chrome DevTools and any other external MCP tool through a single TypeScript execution layer |
+| **Use it for** | Calling ClickUp, Figma, MyService, Notion, Chrome DevTools and any other external MCP tool through one TypeScript execution layer |
 | **Invoke with** | "code mode", "call_tool_chain", "mcp tools", "tool orchestration" or automatic routing on external-tool keywords |
-| **Works on** | External tools registered in `.utcp_config.json` at the project root with environment variables in `.env` |
+| **Works on** | External tools registered in `.utcp_config.json` at the project root, with environment variables in `.env` |
 | **Produces** | Typed tool results, captured console logs and structured state returned from a single execution |
 
 ---
@@ -31,35 +31,46 @@ version: 1.0.0.30
 
 ### Why This Skill Exists
 
-Native MCP loads every tool schema into the context window before the agent does anything. With a few dozen tools across several servers that is a large fixed tax on every turn, and it grows with each server you add. The agent pays for tool definitions it will never call on this turn, and a multi-step flow across two or three services means several separate tool round-trips. At roughly 47 tools the traditional approach consumes about 141,000 tokens before any real work begins, hitting the practical wall somewhere around two or three MCP servers.
+Native MCP loads every tool schema into the context window before the agent does anything. With a few dozen tools across several servers, that is a large fixed tax on every turn and it grows with each server you add. The agent pays for tool definitions it will never call on this turn. A multi-step flow across two or three services also means several separate tool round-trips. At roughly 47 tools the traditional approach consumes about 141,000 tokens before any real work begins, hitting the practical wall somewhere around two or three MCP servers.
 
-Code Mode replaces that upfront load with progressive disclosure. The AI sees only the Code Mode meta-tools. It discovers tool schemas on demand, so the context stays flat at about 1,600 tokens no matter how many servers are configured. A whole multi-tool workflow runs in one TypeScript execution with state held in local variables, saving the round trips and the re-parsing cost between steps.
+Code Mode replaces that upfront load with progressive disclosure. The AI sees only the Code Mode meta-tools and discovers tool schemas on demand, so the context stays flat at about 1,600 tokens no matter how many servers are configured. A whole multi-tool workflow runs in one TypeScript execution with state held in local variables, saving the round trips and the re-parsing cost between steps.
 
 ### What It Does
 
-Code Mode is the execution engine that all the other `mcp-*` skills build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks.
+Code Mode is the execution engine that all the other `mcp-*` skills build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
 
 Code Mode does not reach native MCP servers registered in `opencode.json`. Spec Kit Memory, Skill Advisor, Sequential Thinking and Code Graph are called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
+
+### The Tool Surface
+
+| Tool family | What Code Mode operates |
+|---|---|
+| **ClickUp** | task management calls through the registered `clickup_official` manual |
+| **Figma** | design file calls through the registered `figma` manual |
+| **MyService** | CMS operations through the registered `myservice` manual |
+| **Notion** | documentation calls through its registered manual |
+| **Chrome DevTools** | browser automation through its registered manual |
+| **Third-party servers** | any other tool registered in `.utcp_config.json`, discovered with `search_tools` |
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Discover tools with search_tools.** Before calling any external tool, search by task description to get the registered name. Never guess tool names.
+**Step 1: Discover tools with `search_tools`.** Before calling any external tool, search by task description to get the registered name. Never guess tool names.
 
 ```typescript
 search_tools({ task_description: "ClickUp task management", limit: 10 })
 // Returns matching tool names and descriptions
 ```
 
-**Step 2: Confirm the callable signature with tool_info.** Use the registered dotted name returned by `list_tools()` to get the TypeScript interface before writing parameterised code.
+**Step 2: Confirm the callable signature with `tool_info`.** Use the registered dotted name returned by `list_tools()` to get the TypeScript interface before writing parameterised code.
 
 ```typescript
 tool_info({ tool_name: "clickup_official.clickup_official.create_task" })
 // Returns the full TypeScript function signature with parameter types
 ```
 
-**Step 3: Execute with call_tool_chain.** Every external tool call goes inside a `call_tool_chain({ code: "..." })` block. The naming pattern is `{manual_name}.{manual_name}_{tool_name}`.
+**Step 3: Execute with `call_tool_chain`.** Every external tool call goes inside a `call_tool_chain({ code: "..." })` block. The naming pattern is `{manual_name}.{manual_name}_{tool_name}`.
 
 ```typescript
 call_tool_chain({
@@ -68,9 +79,9 @@ call_tool_chain({
       name: "New Feature",
       listName: "Development Sprint",
       description: "Implement user authentication"
-    });
-    console.log("Task created:", task.id);
-    return task;
+    })
+    console.log("Task created:", task.id)
+    return task
   `
 })
 // Returns { result: { id: "...", name: "New Feature", ... }, logs: ["Task created: ..."] }
@@ -81,12 +92,12 @@ call_tool_chain({
 ```typescript
 call_tool_chain({
   code: `
-    const design = await figma.figma_get_file({ fileId: "abc123" });
+    const design = await figma.figma_get_file({ fileId: "abc123" })
     const task = await clickup_official.clickup_official_create_task({
       name: \`Implement: \${design.name}\`,
       listName: "Frontend Sprint"
-    });
-    return { design: design.name, taskId: task.id };
+    })
+    return { design: design.name, taskId: task.id }
   `,
   timeout: 60000
 })
@@ -117,7 +128,7 @@ The most common error is the naming translation mismatch. `list_tools()` returns
 
 State persists across all tool calls inside a single `call_tool_chain` execution. A variable set by the first call is available to every subsequent call in the same block. You can fetch a Figma design, extract the component count, create a ClickUp task with that data and update a MyService CMS item, all without leaving the execution or manually passing state between tool calls.
 
-An unhandled exception stops the entire execution. Wrap multi-step flows in `try/catch` and return structured results with a `success` boolean. For parallel work where partial success is acceptable use `Promise.allSettled` instead of `Promise.all`. The execution is sandboxed in a V8 isolate with configurable timeouts (30 seconds default, extendable to 120 seconds or more for complex workflows) and output size limits (200,000 characters default).
+An unhandled exception stops the entire execution. Wrap multi-step flows in `try/catch` and return structured results with a `success` boolean. For parallel work where partial success is acceptable, use `Promise.allSettled` instead of `Promise.all`. The execution is sandboxed in a V8 isolate with configurable timeouts (30 seconds default, extendable to 120 seconds or more for complex workflows) and output size limits (200,000 characters default).
 
 ### The .env Prefix Rule
 
@@ -131,11 +142,11 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 
 Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
 
-Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill Advisor, Sequential Thinking, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them because Code Mode only sees what is in `.utcp_config.json`.
+Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill Advisor, Sequential Thinking, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
 
 ### Related Skills
 
-All three MCP tool skills below now nest under the `mcp-tooling` parent hub as workflow modes (dispatched via `mcp-tooling/mode-registry.json`); each still consumes Code Mode as its transport.
+All three MCP tool skills below nest under the `mcp-tooling` parent hub as workflow modes dispatched via `mcp-tooling/mode-registry.json`. Each one still consumes Code Mode as its transport.
 
 | Skill | Relationship |
 |---|---|
@@ -170,11 +181,11 @@ A: Those are native MCP tools in `opencode.json`. Code Mode discovery tools only
 
 **Q: How do I add a new MCP server without restarting?**
 
-A: Use `register_manual` with the full UTCP call template to add a server at runtime. It is available immediately inside `call_tool_chain`. To remove it call `deregister_manual` with the manual name. For persistent registration across sessions add the entry to `.utcp_config.json` and restart.
+A: Use `register_manual` with the full UTCP call template to add a server at runtime. It is available immediately inside `call_tool_chain`. To remove it, call `deregister_manual` with the manual name. For persistent registration across sessions, add the entry to `.utcp_config.json` and restart.
 
 **Q: What happens when one tool fails in a multi-step workflow?**
 
-A: Without error handling an unhandled exception stops the entire `call_tool_chain` execution. Wrap critical sections in `try/catch` and return structured results with a `success` boolean. For workflows where partial success is acceptable use `Promise.allSettled` instead of `Promise.all`.
+A: Without error handling, an unhandled exception stops the entire `call_tool_chain` execution. Wrap critical sections in `try/catch` and return structured results with a `success` boolean. For workflows where partial success is acceptable, use `Promise.allSettled` instead of `Promise.all`.
 
 ---
 

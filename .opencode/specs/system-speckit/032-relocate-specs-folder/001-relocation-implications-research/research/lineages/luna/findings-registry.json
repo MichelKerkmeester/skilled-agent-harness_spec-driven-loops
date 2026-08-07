@@ -1,0 +1,727 @@
+{
+  "sessionId": "fanout-luna-1786019208170-r5nald",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-08-06T12:55:00.000Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-in-repo-tools-hard-code-the-current-specs-root-and-which-resolve-it-dynami",
+      "inboxId": null,
+      "text": "Which in-repo tools hard-code the current specs root, and which resolve it dynamically?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-breaks-or-stays-stable-across-runtime-mirrors-generated-symlinks-and-shared",
+      "inboxId": null,
+      "text": "What breaks or stays stable across runtime mirrors, generated symlinks, and shared assets?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-do-git-symlinks-ignore-negations-and-global-ignore-rules-affect-relocation-a",
+      "inboxId": null,
+      "text": "How do Git, symlinks, ignore negations, and global ignore rules affect relocation and downstream repos?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-does-spec-kit-memory-resolve-spec-paths-and-what-boundary-changes-would-it-r",
+      "inboxId": null,
+      "text": "How does Spec Kit Memory resolve spec paths, and what boundary changes would it require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-measured-reference-count-and-the-safest-migration-shape-under-these-",
+      "inboxId": null,
+      "text": "What is the measured reference count and the safest migration shape under these constraints?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-in-repo-tools-hard-code-the-current-specs-root-and-which-resolve-it-dynami",
+      "inboxId": null,
+      "text": "Which in-repo tools hard-code the current specs root, and which resolve it dynamically?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-breaks-or-stays-stable-across-runtime-mirrors-generated-symlinks-and-shared",
+      "inboxId": null,
+      "text": "What breaks or stays stable across runtime mirrors, generated symlinks, and shared assets?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-how-do-git-symlinks-ignore-negations-and-global-ignore-rules-affect-relocation-a",
+      "inboxId": null,
+      "text": "How do Git, symlinks, ignore negations, and global ignore rules affect relocation and downstream repos?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-how-does-spec-kit-memory-resolve-spec-paths-and-what-boundary-changes-would-it-r",
+      "inboxId": null,
+      "text": "How does Spec Kit Memory resolve spec paths, and what boundary changes would it require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-5-what-is-the-measured-reference-count-and-the-safest-migration-shape-under-these-",
+      "inboxId": null,
+      "text": "What is the measured reference count and the safest migration shape under these constraints?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What exact root does the Memory MCP server use for indexing, context, and graph/FTS recovery paths?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the measured reference count after excluding documentation, fixtures, archives, and generated output?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which generated runtime mirrors and symlinked command surfaces copy or rewrite `.opencode/specs` references?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do repository-local and global ignore rules interact with the existing `specs` symlink and a real top-level `specs/` directory?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which runtime mirrors actually carry a specs link today, and which only document or generate agent/command mirrors?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should compatibility retain a root symlink, or should downstream repositories adopt an explicit local negation before the cutover?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What root does the Memory MCP server use for indexing, context, and graph/FTS recovery paths?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which in-repo path references remain after the tooling, Git, and mirror-specific references are classified?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the measured reference count and the safest migration shape under these constraints?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No key research questions remain. Implementation details, exact patch ownership, and downstream operator communication are follow-up work outside this lineage.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f1-1-create-sh-is-only-partially-dual-root-aware-its-parent-validation-accepts-b",
+      "text": "**F1.1 — `create.sh` is only partially dual-root aware.** Its parent validation accepts both `$REPO_ROOT/specs` and `$REPO_ROOT/.opencode/specs`, but the default `SPECS_DIR` remains `$REPO_ROOT/.opencode/specs`. Its graph-metadata relative-path fallback also strips only the `.opencode/specs` prefix, so a root `specs/` target can retain an unwanted `specs/` segment. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:412-415] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:712-727] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/create.sh:811-815]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-1-2-f1-2-validate-sh-is-argument-driven-at-its-front-door-but-contains-a-silent-path",
+      "text": "**F1.2 — `validate.sh` is argument-driven at its front door, but contains a silent path-specific exception.** Rules and validator assets are resolved relative to the script, and the folder argument is accepted as any existing directory. However, the child-manifest fallback matches one canonical parent ending in `/.opencode/specs/...`; after relocation that case returns without applying the manifest. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:121-139] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:212-221]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-1-3-f1-3-generate-description-delegates-identity-to-a-shared-resolver-and-enforces-r",
+      "text": "**F1.3 — `generate-description` delegates identity to a shared resolver and enforces real-path containment.** The implementation receives folder and base paths, checks that the real folder is under the real base, then calls `resolveSpecFolderIdentity`; it does not itself select `.opencode/specs` as the root. This makes the generator comparatively relocation-tolerant if its caller passes the new base and the identity resolver recognizes it. [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-49] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:59-77] [SOURCE: .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:99-103]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-1-4-f1-4-backfill-graph-metadata-has-a-caller-discovery-risk-with-an-explicit-overri",
+      "text": "**F1.4 — `backfill-graph-metadata` has a caller/discovery risk, with an explicit override.** Repository-root discovery checks `.opencode/specs`, the default scan root is `path.join(resolveRepoRoot(), '.opencode', 'specs')`, and `--root` can override it. Scoped targets still pass through the shared identity and writer-path checks. A move therefore requires changing the default/discovery contract or ensuring every caller supplies `--root specs`. [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-260] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:278-298] [SOURCE: .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:319-367]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-1-5-f1-5-shared-artifact-routing-already-supports-both-roots-normalizespecfolderrefe",
+      "text": "**F1.5 — shared artifact routing already supports both roots.** `normalizeSpecFolderReference` strips either `/.opencode/specs/` or `/specs/`, and approved artifact roots include both repository locations. This reduces migration risk for deep-loop artifact routing, but it does not repair tooling that independently defaults to `.opencode/specs`. [SOURCE: .opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88] [SOURCE: .opencode/skills/system-spec-kit/shared/review-research-paths.cjs:256-281] [SOURCE: .opencode/skills/system-spec-kit/shared/review-research-paths.cjs:335-365]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-1-6-f1-6-relocation-leaves-operator-facing-and-diagnostic-literals-behind-the-memory",
+      "text": "**F1.6 — relocation leaves operator-facing and diagnostic literals behind.** The Memory MCP context server embeds a runbook path under `.opencode/specs`, and the Gate 3 question examples repeatedly direct users to `.opencode/specs/...`. These are not root discovery algorithms, but they would produce stale links and misleading paths after a move. [SOURCE: .opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242] [SOURCE: .opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/spec/create.sh:400-420,700-735,800-817`",
+        "`.opencode/skills/system-spec-kit/scripts/spec/validate.sh:20-33,121-139,205-223`",
+        "`.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:39-77,99-103`",
+        "`.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:238-319,359-375`",
+        "`.opencode/skills/system-spec-kit/shared/review-research-paths.cjs:58-88,256-365`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts:240-242`",
+        "`.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:105-112`"
+      ]
+    },
+    {
+      "id": "finding-2-1-f2-1-specs-is-a-tracked-symlink-not-an-untracked-convenience-alias-the-index-rec",
+      "text": "**F2.1 — `specs` is a tracked symlink, not an untracked convenience alias.** The index records mode `120000` for `specs`, and its target is `.opencode/specs`; the link currently resolves to a directory. Replacing the root with a real directory is therefore a Git object/topology change, not only a path rename. [SOURCE: command: `git ls-files --stage -- specs`] [SOURCE: command: `readlink specs; test -L specs; test -d specs`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.gitignore:1-16,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:7-16`",
+        "`git ls-files --stage -- specs`",
+        "`git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`",
+        "`readlink specs; test -L specs; test -d specs`"
+      ]
+    },
+    {
+      "id": "finding-2-2-f2-2-this-source-repository-explicitly-negates-the-global-ignores-the-local-giti",
+      "text": "**F2.2 — this source repository explicitly negates the global ignores.** The local `.gitignore` explains that the global file hides `/.opencode/` for symlinked repositories and then negates both `.opencode/` and `specs`. The global file itself contains anchored `/specs` and `/.opencode/` ignores. The source repo therefore has different visibility from downstream repositories that do not carry the local negations. [SOURCE: .gitignore:5-11] [SOURCE: /Users/michelkerkmeester/.gitignore_global:7-16]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.gitignore:1-16,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:7-16`",
+        "`git ls-files --stage -- specs`",
+        "`git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`",
+        "`readlink specs; test -L specs; test -d specs`"
+      ]
+    },
+    {
+      "id": "finding-2-3-f2-3-downstream-real-specs-directories-remain-exposed-to-the-global-specs-rule-u",
+      "text": "**F2.3 — downstream real `specs/` directories remain exposed to the global `/specs` rule unless their local policy changes.** A downstream repository using the shared global file will ignore a top-level `specs/` path by default; a local `!specs` rule or a global-policy change is required before a real relocated tree can be tracked there. This is an inference from the anchored global pattern and the source repository's explicit override. [SOURCE: /Users/michelkerkmeester/.gitignore_global:10-16] [SOURCE: .gitignore:5-11] [INFERENCE: downstream repositories without the local negations inherit the global ignore]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.gitignore:1-16,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:7-16`",
+        "`git ls-files --stage -- specs`",
+        "`git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`",
+        "`readlink specs; test -L specs; test -d specs`"
+      ]
+    },
+    {
+      "id": "finding-2-4-f2-4-provider-specific-ignore-entries-still-encode-the-old-topology-the-local-fi",
+      "text": "**F2.4 — provider-specific ignore entries still encode the old topology.** The local file excludes selected projects under `.opencode/specs`, plus stale/provider-specific `.claude/specs`, `.codex/specs`, and `.agents/specs` paths. A move to root `specs/` would leave those exclusions unmatched unless they are deliberately repointed, so ignore behavior for those projects can change during migration. [SOURCE: .gitignore:260-279]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.gitignore:1-16,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:7-16`",
+        "`git ls-files --stage -- specs`",
+        "`git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`",
+        "`readlink specs; test -L specs; test -d specs`"
+      ]
+    },
+    {
+      "id": "finding-2-5-f2-5-symlink-traversal-makes-pre-migration-checks-less-representative-git-check-",
+      "text": "**F2.5 — symlink traversal makes pre-migration checks less representative.** `git check-ignore --no-index` can report the root `specs` negation, but a child such as `specs/system-speckit` fails with “beyond a symbolic link.” Once `specs/` is a real directory, child-path ignore checks become directly observable; tests must cover both the current symlink topology and the target real-directory topology. [SOURCE: command: `git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.gitignore:1-16,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:7-16`",
+        "`git ls-files --stage -- specs`",
+        "`git check-ignore -v --no-index -- specs specs/system-speckit .opencode/specs .opencode/specs/system-speckit`",
+        "`readlink specs; test -L specs; test -d specs`"
+      ]
+    },
+    {
+      "id": "finding-3-1-f3-1-the-claude-manifest-documents-a-specs-symlink-that-is-absent-in-the-current",
+      "text": "**F3.1 — the Claude manifest documents a specs symlink that is absent in the current tree.** `.claude/SYNC.md` says `specs` is a whole-directory symlink to `../.opencode/specs`, but the working-tree inventory has no `.claude/specs` entry; the actual root alias is the tracked repository-level `specs` symlink. This is a documentation/topology mismatch that relocation would make more visible. [SOURCE: .claude/SYNC.md:14-30] [SOURCE: command: `ls -la .claude; ls -ld .claude/specs specs .opencode/specs`]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/SYNC.md:12-65`",
+        "`.codex/SYNC.md:12-70`",
+        "`.cursor/SYNC.md:12-75`",
+        "`.devin/SYNC.md:1-115`",
+        "`.pi/SYNC.md:1-122`",
+        "`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:1-151`",
+        "Read-only mirror and roster checks listed in F3.5"
+      ]
+    },
+    {
+      "id": "finding-3-2-f3-2-the-shared-runtime-mirror-generator-does-not-own-a-specs-mirror-its-expecte",
+      "text": "**F3.2 — the shared runtime-mirror generator does not own a specs mirror.** Its expected-link set covers Cursor and Devin agents/commands plus hook mirrors, with relative targets; it has no `.claude/specs`, `.codex/specs`, `.cursor/specs`, `.devin/specs`, or `.pi/specs` generation path. A specs relocation therefore is not automatically propagated by this generator. [SOURCE: .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:27-38] [SOURCE: .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:100-128] [SOURCE: .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:131-151]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/SYNC.md:12-65`",
+        "`.codex/SYNC.md:12-70`",
+        "`.cursor/SYNC.md:12-75`",
+        "`.devin/SYNC.md:1-115`",
+        "`.pi/SYNC.md:1-122`",
+        "`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:1-151`",
+        "Read-only mirror and roster checks listed in F3.5"
+      ]
+    },
+    {
+      "id": "finding-3-3-f3-3-cursor-and-devin-mirror-agent-command-discovery-not-specs-cursor-symlinks-a",
+      "text": "**F3.3 — Cursor and Devin mirror agent/command discovery, not specs.** Cursor symlinks agents from `.claude/agents` and commands from `.opencode/commands`; Devin nests symlinks to `.claude/agents` and has no mirrored command surface. Their relative symlink targets remain valid when the repository moves, but neither runtime supplies a second specs root to repoint. [SOURCE: .cursor/SYNC.md:27-39] [SOURCE: .devin/SYNC.md:25-38]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/SYNC.md:12-65`",
+        "`.codex/SYNC.md:12-70`",
+        "`.cursor/SYNC.md:12-75`",
+        "`.devin/SYNC.md:1-115`",
+        "`.pi/SYNC.md:1-122`",
+        "`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:1-151`",
+        "Read-only mirror and roster checks listed in F3.5"
+      ]
+    },
+    {
+      "id": "finding-3-4-f3-4-codex-and-pi-generated-surfaces-also-do-not-consume-specs-paths-their-manif",
+      "text": "**F3.4 — Codex and Pi generated surfaces also do not consume specs paths.** Their manifests and generators describe generated agents/prompts from `.opencode/agents` and `.opencode/commands`; the targeted generator search found no `.opencode/specs` dependency. Relocating specs should not require regeneration for path reasons, though the normal drift checks remain part of post-migration verification. [SOURCE: .codex/SYNC.md:24-36] [SOURCE: .pi/SYNC.md:22-35] [SOURCE: command: `rg -n 'specs|\\.opencode/commands|\\.opencode/agents' .opencode/skills/system-spec-kit/scripts/codex .opencode/skills/system-spec-kit/scripts/pi`]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/SYNC.md:12-65`",
+        "`.codex/SYNC.md:12-70`",
+        "`.cursor/SYNC.md:12-75`",
+        "`.devin/SYNC.md:1-115`",
+        "`.pi/SYNC.md:1-122`",
+        "`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:1-151`",
+        "Read-only mirror and roster checks listed in F3.5"
+      ]
+    },
+    {
+      "id": "finding-3-5-f3-5-the-current-mirror-baseline-is-not-clean-independently-of-relocation-the-sh",
+      "text": "**F3.5 — the current mirror baseline is not clean, independently of relocation.** The shared mirror check reports a missing Cursor hook; Codex agent check reports a stale `orchestrate.toml`; Pi agent check reports nine stale generated agents. Codex and Pi prompts pass, and the all-runtime roster check reports 13/13 coverage. These existing findings must be separated from any relocation regression. [SOURCE: command: `sync-runtime-mirrors.cjs --check`] [SOURCE: command: `sync-agents.cjs --check`] [SOURCE: command: `sync-prompts.cjs --check`] [SOURCE: command: `sync-agents-pi.cjs --check`] [SOURCE: command: `sync-prompts-pi.cjs --check`] [SOURCE: command: `agent-roster-mirror-check.cjs`]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.claude/SYNC.md:12-65`",
+        "`.codex/SYNC.md:12-70`",
+        "`.cursor/SYNC.md:12-75`",
+        "`.devin/SYNC.md:1-115`",
+        "`.pi/SYNC.md:1-122`",
+        "`.opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs:1-151`",
+        "Read-only mirror and roster checks listed in F3.5"
+      ]
+    },
+    {
+      "id": "finding-4-1-f4-1-spec-identity-and-broad-path-classification-accept-both-roots-with-canonica",
+      "text": "**F4.1 — Spec identity and broad path classification accept both roots, with canonical-pair preference when both appear.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:78-81,275-334`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-2-f4-2-memory-document-and-graph-metadata-discovery-scans-opencode-specs-when-it-e",
+      "text": "**F4.2 — Memory document and graph-metadata discovery scans `.opencode/specs` when it exists and falls back to `specs` only when the canonical root is absent; realpath deduplication collapses a compatibility symlink.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-3-f4-3-explicit-indexing-generic-base-discovery-resume-and-the-maintained-resolver",
+      "text": "**F4.3 — Explicit indexing, generic base discovery, resume, and the maintained resolver inventory support both roots or direct paths, but precedence varies across resolver call sites.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts:66-92`] [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts:1364-1379`] [SOURCE: `.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-4-f4-4-pending-recovery-scans-both-roots-while-startup-drift-marker-and-moved-fold",
+      "text": "**F4.4 — Pending recovery scans both roots while startup drift-marker and moved-folder recovery accept only `.opencode/specs`, creating a canonical-only blind spot after relocation.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/context-server.ts:1293-1321`] [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-5-f4-5-alias-conflict-analysis-and-canonical-path-realpath-handling-support-a-tran",
+      "text": "**F4.5 — Alias conflict analysis and canonical-path realpath handling support a transition bridge but do not make two independent roots discoverable simultaneously.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`] [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-4-6-f4-6-graph-repair-defaults-to-opencode-specs-and-the-context-server-description-",
+      "text": "**F4.6 — Graph repair defaults to `.opencode/specs`, and the context-server description refresh supplies that old root as the generator base; both require a migration decision when the bridge is removed.** [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`] [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/context-server.ts:1978-1984`]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/api/indexing.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/context-server.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts`",
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs`"
+      ]
+    },
+    {
+      "id": "finding-5-1-f5-1-the-production-shaped-spec-kit-source-filter-measured-100-literal-opencode-",
+      "text": "**F5.1 — The production-shaped Spec Kit source filter measured 100 literal `.opencode/specs` occurrences across 96 lines and 42 files; the resolver inventory has 21 entries, deep workflow YAML has 12 dual-root mentions across 10 files, deep-loop runtime has six static literals in two files, mirror code has zero, and root `.gitignore` has 18 specs-related matches.** [MEASUREMENT: iteration-local `rg` receipts] [SOURCE: `.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`",
+        "`.gitignore:5-11,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:10-16`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:129-145,186-187`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:44-57`",
+        "Iteration-local `rg` and Git count receipts"
+      ]
+    },
+    {
+      "id": "finding-5-2-f5-2-the-references-mix-default-selection-containment-aliases-operator-guidance-",
+      "text": "**F5.2 — The references mix default selection, containment, aliases, operator guidance, graph repair, and static contract census paths, so a blind string replacement would change behavior rather than only locations.** [SOURCE: `.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`",
+        "`.gitignore:5-11,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:10-16`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:129-145,186-187`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:44-57`",
+        "Iteration-local `rg` and Git count receipts"
+      ]
+    },
+    {
+      "id": "finding-5-3-f5-3-a-top-level-authoritative-topology-with-a-temporary-opencode-specs-symlink-",
+      "text": "**F5.3 — A top-level-authoritative topology with a temporary `.opencode/specs` symlink bridge is the safest inferred migration shape; divergent real roots are unsafe under canonical-first discovery.** [INFERENCE: iterations 2 and 4] [SOURCE: `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`",
+        "`.gitignore:5-11,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:10-16`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:129-145,186-187`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:44-57`",
+        "Iteration-local `rg` and Git count receipts"
+      ]
+    },
+    {
+      "id": "finding-5-4-f5-4-git-and-downstream-global-ignore-behavior-require-a-separate-cutover-gate-b",
+      "text": "**F5.4 — Git and downstream global-ignore behavior require a separate cutover gate because source local negations and tracked symlink mode do not predict downstream clone behavior.** [SOURCE: `.gitignore:5-11`] [SOURCE: `/Users/michelkerkmeester/.gitignore_global:10-16`]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`",
+        "`.gitignore:5-11,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:10-16`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:129-145,186-187`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:44-57`",
+        "Iteration-local `rg` and Git count receipts"
+      ]
+    },
+    {
+      "id": "finding-5-5-f5-5-a-six-case-validation-matrix-must-cover-root-topology-git-ignore-context-to",
+      "text": "**F5.5 — A six-case validation matrix must cover root topology, Git ignore context, tooling, Memory discovery/recovery/repair, and mirror baseline drift before the bridge is removed.** [INFERENCE: iterations 1–4 evidence]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts:29-169`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-discovery.ts:203-221,308-379`",
+        "`.opencode/skills/system-spec-kit/mcp-server/startup-checks.ts:261-292`",
+        "`.opencode/skills/system-spec-kit/mcp-server/handlers/memory-index-alias.ts:114-134,220-270`",
+        "`.opencode/skills/system-spec-kit/mcp-server/lib/utils/canonical-path.ts:18-75`",
+        "`.opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:14-22`",
+        "`.gitignore:5-11,260-279`",
+        "`/Users/michelkerkmeester/.gitignore_global:10-16`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:129-145,186-187`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts:44-57`",
+        "Iteration-local `rg` and Git count receipts"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f5abe0312a54",
+      "text": "Coverage-graph convergence was unavailable because the local `better-sqlite3` binary does not match the active Node ABI. Inline convergence remains the available signal.",
+      "contentHash": "f5abe0312a54",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-21eb41d90e85",
+      "text": "No complete migration direction is ruled out. The evidence rules out the assumption that all four named scripts need the same kind of patch: their failure modes differ between default selection, discovery, special cases, and caller-provided paths.",
+      "contentHash": "21eb41d90e85",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3ea2938fa2e6",
+      "text": "The YAML executor branch was attempted twice and produced no leaf artifact because `cli-codex` was already present in `SPECKIT_CLI_DISPATCH_STACK`. The direct-mode fallback is bounded to this detached lineage and is recorded in `deep-research-state.jsonl`.",
+      "contentHash": "3ea2938fa2e6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c555dd1bf8fe",
+      "text": "Direct child-path ignore inspection through the tracked `specs` symlink is not available because Git treats the path as beyond a symbolic link. The root-level index and ignore evidence remain usable.",
+      "contentHash": "c555dd1bf8fe",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-155da5f7e612",
+      "text": "The claim that the current source repository's local ignore result predicts downstream behavior is ruled out; the configured global ignore source creates a different contract for downstream symlinked repositories.",
+      "contentHash": "155da5f7e612",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-46f3fe0d5ff3",
+      "text": "A broad “regenerate all five runtime surfaces because specs moved” requirement is ruled out by the generator contracts: the generated surfaces do not consume the specs root directly.",
+      "contentHash": "46f3fe0d5ff3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-90c5993d512a",
+      "text": "The shared mirror check is not a clean migration baseline because it already reports unrelated drift. Its output is still useful as a pre-existing-state receipt.",
+      "contentHash": "90c5993d512a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2d1bfccb224e",
+      "text": "A live database/index scan was not confirmed because the memory daemon IPC endpoint was unavailable; source-level behavior is the evidence for this iteration.",
+      "contentHash": "2d1bfccb224e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-beaa7d52ce63",
+      "text": "Treating Memory MCP as uniformly dual-root-aware is ruled out by the different discovery, recovery, and repair implementations.",
+      "contentHash": "beaa7d52ce63",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-30e625b876f9",
+      "text": "A live Memory database migration result was not confirmed because the daemon IPC endpoint and coverage graph native module were unavailable.",
+      "contentHash": "30e625b876f9",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0e5bcbf48add",
+      "text": "Blindly replacing every `.opencode/specs` literal with `specs` is ruled out because references have different contracts and precedence.",
+      "contentHash": "0e5bcbf48add",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-250ff1d7b4f2",
+      "text": "Regenerating all runtime mirrors as a relocation step is ruled out by the zero source-reference result and the generator ownership audit; existing mirror drift still requires a separate baseline.",
+      "contentHash": "250ff1d7b4f2",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 10,
+    "keyFindings": 27,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {
+      "code": 25,
+      "other": 50
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

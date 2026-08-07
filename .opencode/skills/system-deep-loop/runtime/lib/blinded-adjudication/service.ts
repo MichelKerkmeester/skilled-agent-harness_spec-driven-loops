@@ -6,7 +6,6 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -709,7 +708,7 @@ export class BlindedAdjudicationService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await appendFencedLedgerRecord(this.ledger, event, authorization.proof);
+    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
     this.#receipts.set(eventKey, receipt);
     return receipt;
   }

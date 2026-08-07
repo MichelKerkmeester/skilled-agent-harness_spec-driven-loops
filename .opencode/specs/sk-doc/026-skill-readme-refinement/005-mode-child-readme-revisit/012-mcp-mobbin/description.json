@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin",
+  "description": "The skill README at `.opencode/skills/mcp-tooling/mcp-mobbin/README.md` still carries the older tabular reference-card style and predates the pilot",
+  "keywords": [
+    "skill",
+    "readme",
+    "opencode",
+    "skills",
+    "mcp-tooling",
+    "mcp-mobbin",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates",
+    "pilot"
+  ],
+  "lastUpdated": "2026-08-04T13:52:42.223Z",
+  "specId": "012",
+  "folderSlug": "mcp-mobbin",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

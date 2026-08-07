@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement",
+  "spec_folder": "sk-doc/026-skill-readme-refinement",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
+    "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
+    "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
+    "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+    "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+    "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
+    "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
+    "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill readme refinement",
+      "readme fleet revisit",
+      "parent skill readme template",
+      "skill readme template update"
+    ],
+    "key_topics": [
+      "skill",
+      "readme",
+      "refinement",
+      "fleet",
+      "revisit",
+      "parent",
+      "template",
+      "phase",
+      "every",
+      "repo",
+      "standalone",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "handover.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".pi/settings.json",
+      ".pi/agents/markdown.md",
+      "006-validation-and-closeout/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".pi/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Knowledge Layer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Beancount Ledger",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Obsidian Tables",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routes Obsidian",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README template, adding a parent-skill README template, and updating the creation workflow.",
+    "created_at": "2026-08-04T07:12:18.255Z",
+    "last_save_at": "2026-08-05T11:48:45.787Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:76dd3258f3f89bd5b71277f877b731a7c19bd8cdfe9a719d51008d73babb702a",
+    "source_doc_hashes": {
+      "spec.md": "97b1d172cab1355359c4c2177ef265f5d5e73b8bc6021b08ae13ef1ce3cea5b9",
+      "handover.md": "7f5a1fe9b43bbcccb2cbf3c7478cbdfdd97a768527db7ac830600cd44c4ce0af"
+    },
+    "last_active_child_id": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
+    "last_active_at": null
+  }
+}

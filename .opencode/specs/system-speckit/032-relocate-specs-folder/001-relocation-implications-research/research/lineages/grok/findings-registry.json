@@ -1,0 +1,51 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "What path assumptions do validate.sh, create.sh, generate-description, and backfill-graph-metadata hardcode versus dual-accept (specs/ and .opencode/specs)?",
+    "How do cross-runtime mirrors (.claude, .codex, .cursor, .devin, .pi) and shared hooks reference specs roots?",
+    "What happens to the root specs symlink, repo .gitignore !specs/!.opencode/ negations, and ~/.gitignore_global /specs + /.opencode/ rules if the real tree moves to top-level specs/?",
+    "How does Spec Kit Memory MCP resolve specs roots and packet pointers today?",
+    "What is the measured scale and risk class of repointing in-repo .opencode/specs path references?"
+  ],
+  "keyFindings": [
+    "create.sh defaults writes to .opencode/specs while validators dual-accept",
+    "Memory discovery prefers .opencode/specs whenever present (shadow hazard)",
+    "startup-checks hard-lock .opencode/specs",
+    "Root specs is tracked symlink 120000; SOURCE !specs/!.opencode/; global /specs + /.opencode/",
+    "Runtime rewrite surface ~117 files; docs dominate counts",
+    "Lean NO-GO for raw move; CONDITIONAL-GO behind dual-root cutover"
+  ],
+  "ruledOutDirections": [
+    "Symlink-only migration sufficient",
+    "Mirror-first migration",
+    "Memory MCP already fully dual-root",
+    "Blanket sed as primary tactic",
+    "Immediate raw relocate"
+  ],
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 6,
+    "convergenceScore": 0.72,
+    "coverageBySources": {
+      "tooling": 1,
+      "mirrors": 1,
+      "gitignore": 1,
+      "memory": 1,
+      "scale": 1
+    }
+  },
+  "divergence": {
+    "saturatedDirections": ["tooling", "mirrors", "gitignore", "memory-mcp", "path-ref-scale"],
+    "pivots": [],
+    "failures": [],
+    "overrides": [],
+    "remainingFrontier": []
+  },
+  "terminalStop": {
+    "stopReason": "converged",
+    "reason": "all_questions_answered",
+    "iteration": 6
+  }
+}

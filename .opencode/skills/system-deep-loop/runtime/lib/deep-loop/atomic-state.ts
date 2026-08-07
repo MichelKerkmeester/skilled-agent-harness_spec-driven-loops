@@ -12,8 +12,6 @@ import {
   readFileSync,
   renameSync,
   rmSync,
-  statSync,
-  unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -127,45 +125,6 @@ function appendTextWithFsync(path: string, content: string): void {
   try {
     fsyncPath(dirname(path));
   } catch {
-  }
-}
-
-const appendLockWait = new Int32Array(new SharedArrayBuffer(4));
-
-function withAppendLock<T>(targetPath: string, operation: () => T): T {
-  const lockPath = `${targetPath}.lock`;
-  mkdirSync(dirname(targetPath), { recursive: true });
-  const deadline = Date.now() + 5_000;
-  let lockFd: number | undefined;
-  while (lockFd === undefined) {
-    try {
-      lockFd = openSync(lockPath, 'wx');
-      writeFileSync(lockFd, `${process.pid}\n`, 'utf8');
-      fsyncSync(lockFd);
-    } catch (error: unknown) {
-      if (!(error instanceof Error) || !('code' in error && error.code === 'EEXIST')) {
-        throw error;
-      }
-      if (existsSync(lockPath) && Date.now() - statSync(lockPath).mtimeMs > 30_000) {
-        rmSync(lockPath, { force: true });
-        continue;
-      }
-      if (Date.now() >= deadline) {
-        throw new Error(`Timed out acquiring append lock: ${lockPath}`);
-      }
-      Atomics.wait(appendLockWait, 0, 0, 2);
-    }
-  }
-
-  try {
-    return operation();
-  } finally {
-    closeSync(lockFd);
-    unlinkSync(lockPath);
-    try {
-      fsyncPath(dirname(targetPath));
-    } catch {
-    }
   }
 }
 
@@ -371,25 +330,23 @@ export function appendJsonlIfChangedAtomic(
     ? diffSerialized
     : computeSerializedHash(diffSerialized);
 
-  return withAppendLock(targetPath, () => {
-    if (cache.get(cacheKey) === diffFingerprint) {
-      return false;
-    }
+  if (cache.get(cacheKey) === diffFingerprint) {
+    return false;
+  }
 
-    if (readLastDiffFingerprint(targetPath, options.diffField) === diffFingerprint) {
-      cache.set(cacheKey, diffFingerprint);
-      return false;
-    }
-
-    const row = attachDiffField(data, options.diffField, diffFingerprint);
-    const serializedRow = serializeState(row);
-    const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
-    const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
-
-    appendTextWithFsync(targetPath, `${separator}${serializedRow}\n`);
+  if (readLastDiffFingerprint(targetPath, options.diffField) === diffFingerprint) {
     cache.set(cacheKey, diffFingerprint);
-    return true;
-  });
+    return false;
+  }
+
+  const row = attachDiffField(data, options.diffField, diffFingerprint);
+  const serializedRow = serializeState(row);
+  const currentContent = existsSync(targetPath) ? readFileSync(targetPath, 'utf8') : '';
+  const separator = currentContent === '' || currentContent.endsWith('\n') ? '' : '\n';
+
+  appendTextWithFsync(targetPath, `${separator}${serializedRow}\n`);
+  cache.set(cacheKey, diffFingerprint);
+  return true;
 }
 
 /**

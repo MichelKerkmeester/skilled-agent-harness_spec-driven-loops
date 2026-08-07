@@ -429,7 +429,7 @@ A guide to installing the MCP server.
 - **Specific over vague**: "Python 3.9+" not "recent Python version"
 - **Test everything**: Every command you write should be copy-pasteable and work
 - **Evergreen references**: Do not mention spec or phase packet numbers. Point to current commands, config keys, files, or reference docs.
-- **Human Voice Rules (HVR)**: Follow the full HVR ruleset in [hvr-rules.md](../../../shared/references/hvr-rules.md). Key points: no em dashes (use commas or periods), no semicolons, no banned words (leverage, robust, seamless, utilize, holistic), active voice throughout
+- **Human Voice Rules (HVR)**: Follow the full HVR ruleset in [hvr-rules.md](../../shared/references/hvr-rules.md). Key points: no em dashes (use commas or periods), no semicolons, no banned words (leverage, robust, seamless, utilize, holistic), active voice throughout
 
 ### Placeholder Format
 
@@ -981,12 +981,12 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 ## 14. RELATED RESOURCES
 
 ### Templates
-- [skill-asset-template.md](../../../sk-create-skill/assets/skill/skill-asset-template.md) - Pattern reference for this document
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - YAML frontmatter examples
+- [skill-asset-template.md](../../sk-create-skill/assets/skill/skill-asset-template.md) - Pattern reference for this document
+- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - YAML frontmatter examples
 
 ### Standards
-- [README.md](../../references/README.md) - Reference map for install-guide section examples and quality standards
-- [core-standards.md](../../../shared/references/core-standards.md) - Document formatting standards
+- [SKILL.md](../SKILL.md) - Install-guide workflow and reference map
+- [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
 
 ### Examples
 - [MCP - Spec Kit Memory.md](../../../../../install-guides/MCP%20-%20Spec%20Kit%20Memory.md) - MCP server example

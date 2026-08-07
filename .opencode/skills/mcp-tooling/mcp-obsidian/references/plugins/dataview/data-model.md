@@ -1,5 +1,5 @@
 ---
-title: Dataview File-Layer Data Model
+title: "Dataview File-Layer Data Model"
 description: "Exact file-layer contract for Dataview: settings data.json schema, frontmatter and inline field syntax, implicit file fields, query block formats and the verified DQL grammar."
 trigger_phrases:
   - "dataview data model"
@@ -11,7 +11,7 @@ trigger_phrases:
   - "dataview dql grammar"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Dataview File-Layer Data Model
@@ -40,8 +40,6 @@ Dataview reads note content and renders it. The AI operates the note content and
 - Inline expressions use the `=` prefix (DQL) and the `$=` prefix (JavaScript).
 - The plugin persists nothing except its settings file. It never writes to notes.
 - This vault has no `data.json`, so all documented defaults apply until the plugin writes settings.
-
----
 
 ## 2. SETTINGS CONTRACT
 
@@ -116,8 +114,6 @@ This JSON mirrors the defaults. Write it only to restore a broken settings file,
 - Merge edits key by key. Never replace the whole file with an unrelated object.
 - After writing, validate JSON parse and confirm the changed keys.
 
----
-
 ## 3. METADATA LAYER: FRONTMATTER FIELDS
 
 YAML frontmatter at the top of a note becomes queryable fields.
@@ -140,8 +136,6 @@ amount: 1250
 - Numbers stay numeric for `WHERE` comparisons and aggregation functions.
 - Lists become arrays you can test with `contains(...)`.
 
----
-
 ## 4. METADATA LAYER: INLINE FIELDS
 
 Inline fields live in the note body. The parser splits on the `::` separator, so the key is the text before it and the value is the text after it.
@@ -157,8 +151,6 @@ Progress:: 70
 - Inline fields merge with frontmatter fields into one field space. A plain query references the field name without any prefix.
 - `prettyRenderInlineFields` controls how the raw `Key:: Value` text displays in reading view.
 - The same key in frontmatter and inline body is ambiguous. Keep one source per key to avoid confusion.
-
----
 
 ## 5. METADATA LAYER: IMPLICIT FILE FIELDS
 
@@ -189,8 +181,6 @@ Every note exposes a `file` object. The keys below were verified in the installe
 
 - `file.day` appears only when a day can be derived from the note's folder or name. Do not assume it exists.
 - Fields in frontmatter or the body never override the `file` object keys.
-
----
 
 ## 6. QUERY BLOCK FORMATS
 
@@ -239,8 +229,6 @@ dv.list(dv.pages('"Journal"').map(p => p.file.link))
 
 - Verified API methods in the installed build: `dv.pages(query)`, `dv.current()`, `dv.list(...)`, `dv.table(...)`, `dv.taskList(tasks, groupByFile)`.
 - Full API semantics beyond these methods: VERIFY against the official documentation before writing a copyable example.
-
----
 
 ## 7. DQL GRAMMAR
 
@@ -326,8 +314,6 @@ FLATTEN tags
 ```
 ````
 
----
-
 ## 8. VERIFIED FUNCTION SUBSET
 
 Each function below exists in the installed `main.js`. Signatures follow the official documentation. Keep examples minimal and test them against real notes before promising output.
@@ -357,8 +343,6 @@ Each function below exists in the installed `main.js`. Signatures follow the off
 | `min(...)` / `max(...)` | `min(rows.amount)` | Extrema over a list |
 | `average(...)` | `average(rows.amount)` | Mean over a list |
 | `total(...)` | `total(rows.amount)` | Sum over a list |
-
----
 
 ## 9. WHAT THE AI MUST NOT DO
 

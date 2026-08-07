@@ -1,0 +1,60 @@
+{
+  "sessionId": "fanout-glm-1786009077472-i5lfbh",
+  "lineage": "glm",
+  "iterationsCompleted": 5,
+  "keyFindings": 23,
+  "openQuestions": 0,
+  "resolvedQuestions": 5,
+  "metrics": {
+    "convergenceScore": 0.66,
+    "coverageBySources": 0.8,
+    "avgNewInfoRatio": 0.66,
+    "lastRatios": [1.0, 0.7, 0.65, 0.6, 0.35],
+    "stopReason": "all_questions_answered"
+  },
+  "questions": [
+    {"id": "Q1", "text": "Which spec-kit tooling scripts hardcode the .opencode/specs path?", "track": "tooling", "status": "answered", "answeredAt": 1},
+    {"id": "Q2", "text": "How do the cross-runtime mirrors resolve or mirror the specs folder?", "track": "cross-runtime", "status": "answered", "answeredAt": 5, "note": "No mirror has a specs symlink; back-symlink covers them; 2 prose refs only"},
+    {"id": "Q3", "text": "What are the git/.gitignore interactions?", "track": "git", "status": "answered", "answeredAt": 3},
+    {"id": "Q4", "text": "How does the Spec Kit Memory MCP server resolve the specs path?", "track": "memory-mcp", "status": "answered", "answeredAt": 2},
+    {"id": "Q5", "text": "What is the scale and risk of repointing in-repo path references?", "track": "scale-risk", "status": "answered", "answeredAt": 4}
+  ],
+  "findings": [
+    {"id": "F1.1", "iteration": 1, "track": "tooling", "severity": "medium", "summary": "create.sh dual-root validation but default+strip hardcoded"},
+    {"id": "F1.2", "iteration": 1, "track": "tooling", "severity": "high", "summary": "validate.sh:214 silent validation skip"},
+    {"id": "F1.3", "iteration": 1, "track": "memory-mcp", "severity": "low", "summary": "context-server.ts:242 runbook (superseded by F2.5)"},
+    {"id": "F1.4", "iteration": 1, "track": "tooling", "severity": "low", "summary": "spec-gate-core.mjs Gate 3 prompt hardcoded examples"},
+    {"id": "F1.5", "iteration": 1, "track": "tooling", "severity": "info", "summary": "backfill-graph-metadata.ts path-agnostic; risk in discovery caller"},
+    {"id": "F1.6", "iteration": 1, "track": "tooling", "severity": "info", "summary": "dist generate-description.js no literal; source unverified"},
+    {"id": "F2.1", "iteration": 2, "track": "memory-mcp", "severity": "info", "summary": "MCP config cwd-relative+env-var"},
+    {"id": "F2.2", "iteration": 2, "track": "memory-mcp", "severity": "info", "summary": "Indexer dual-root scan L1306-1307"},
+    {"id": "F2.3", "iteration": 2, "track": "memory-mcp", "severity": "info", "summary": "gate-3-classifier SPEC_ROOTS dual-root"},
+    {"id": "F2.4", "iteration": 2, "track": "memory-mcp", "severity": "medium", "summary": "context-server.ts:1979 moved-folder description base hardcoded"},
+    {"id": "F2.5", "iteration": 2, "track": "memory-mcp", "severity": "low", "summary": "context-server.ts:242 FTS runbook"},
+    {"id": "F3.1", "iteration": 3, "track": "git", "severity": "info", "summary": "specs tracked symlink mode 120000 -> .opencode/specs"},
+    {"id": "F3.2", "iteration": 3, "track": "git", "severity": "info", "summary": "!specs/!.opencode/ negations form-agnostic, both unignored"},
+    {"id": "F3.3", "iteration": 3, "track": "git", "severity": "info", "summary": "~/.gitignore_global /specs and /.opencode/ path-keyed for downstream"},
+    {"id": "F3.4", "iteration": 3, "track": "git", "severity": "low", "summary": "symlink->real-dir large but non-breaking, atomic, reversible"},
+    {"id": "F3.5", "iteration": 3, "track": "git", "severity": "info", "summary": "no .gitattributes symlink handling"},
+    {"id": "F3.6", "iteration": 3, "track": "git", "severity": "high", "summary": "relocation decision hinges on reference scale, not git"},
+    {"id": "F4.1", "iteration": 4, "track": "scale-risk", "severity": "info", "summary": "15020 files / 476239 lines reference .opencode/specs"},
+    {"id": "F4.2", "iteration": 4, "track": "scale-risk", "severity": "info", "summary": "99.6% (474283 lines) specs self-refs; non-specs ~1901 lines / ~607 files"},
+    {"id": "F4.3", "iteration": 4, "track": "scale-risk", "severity": "info", "summary": "non-specs break = 159 code (functional) + 448 md (cosmetic)"},
+    {"id": "F4.4", "iteration": 4, "track": "scale-risk", "severity": "info", "summary": "specs self-refs 2382 code/json + 9578 md"},
+    {"id": "F4.5", "iteration": 4, "track": "scale-risk", "severity": "high", "summary": "DECISIVE: back-symlink .opencode/specs -> ../specs neutralizes 99.6%; Option A/B converge; real work = symlink flip + ~5-7 literal patches"},
+    {"id": "F4.6", "iteration": 4, "track": "scale-risk", "severity": "info", "summary": "risk ranking: validate.sh:214 high, create.sh:414/811 + context-server.ts:1979 medium, runbook+UX low, 448 md cosmetic"},
+    {"id": "F5.1", "iteration": 5, "track": "cross-runtime", "severity": "info", "summary": "no mirror carries a specs symlink; skills/commands/manual-testing-playbook only"},
+    {"id": "F5.2", "iteration": 5, "track": "cross-runtime", "severity": "info", "summary": "sync-runtime-mirrors.cjs has no specs logic"},
+    {"id": "F5.3", "iteration": 5, "track": "cross-runtime", "severity": "low", "summary": "2 mirror prose refs only (.claude/SYNC.md L28, .devin/hooks/README.md L52), cosmetic"},
+    {"id": "F5.4", "iteration": 5, "track": "cross-runtime", "severity": "info", "summary": "back-symlink covers mirrors automatically; resolves spec §7: no mirror needs its own specs symlink"}
+  ],
+  "deadEnds": [],
+  "divergence": {
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "auditedOverrides": 0,
+    "saturatedDirections": [],
+    "remainingFrontier": ["Q1-discovery-caller", "Q1-source-generate-description", "downstream-repo-verification", "spec-gate-core.mjs:852"]
+  },
+  "recommendation": "PROCEED-WITH-CAVEATS: flip architecture (real tree at specs/, back-symlink .opencode/specs -> ../specs) + patch ~5-7 hardcoded literals (validate.sh:214 high, create.sh:414/811 + context-server.ts:1979 medium, context-server.ts:242 + spec-gate-core.mjs:107-110 low)"
+}

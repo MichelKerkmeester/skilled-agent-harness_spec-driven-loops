@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "description": "Phase parent: one child phase per standalone skill root, each revisiting that skill's README against the refined template from phase 001,",
+  "keywords": [
+    "phase",
+    "parent",
+    "one",
+    "child",
+    "per",
+    "standalone",
+    "skill",
+    "root",
+    "revisiting",
+    "readme",
+    "against",
+    "refined",
+    "template"
+  ],
+  "lastUpdated": "2026-08-04T07:36:39.210Z",
+  "specId": "004",
+  "folderSlug": "standalone-readme-revisit",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

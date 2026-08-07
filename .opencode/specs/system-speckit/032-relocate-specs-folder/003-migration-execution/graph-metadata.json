@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+  "spec_folder": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+  "parent_id": "system-speckit/032-relocate-specs-folder",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "specs root migration execution",
+      "topology flip runbook",
+      "execute the specs flip",
+      "migration execution runbook",
+      "topology flip steps",
+      "migration execution tasks",
+      "migration execution checklist",
+      "migration execution decision record",
+      "migration execution summary"
+    ],
+    "key_topics": [
+      "specs",
+      "root",
+      "migration",
+      "execution",
+      "topology",
+      "flip",
+      "runbook",
+      "execute",
+      "steps",
+      "tasks",
+      "checklist",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "decision-record.md",
+      "checklist.md",
+      ".github/workflows/strict-pass-freshness-sweep.yml",
+      "scratch/.gitkeep",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-sweep.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Migration Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reindex Memory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Also",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW — the literal commands, the exact order, the exact checks between steps",
+    "created_at": "2026-08-06T17:53:46Z",
+    "last_save_at": "2026-08-06T19:32:15.561Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64762da0a2c268e5f5129c804e946667c15d350392db48386157667a2b74df77",
+    "source_doc_hashes": {
+      "spec.md": "4f203e9a1fc8be7d2a4b810f93b6737a73390fea6342b9534a99673593d13410",
+      "plan.md": "2941f70dae32d75eb40fecb1ef2d3f1314dd7528b17326985cee41b4c0ee2f9d",
+      "tasks.md": "015531d24823c7509b98a051f803b6abd05e08ad2d82ae22b42452e88387ed74",
+      "checklist.md": "8ef7dcb23fcb1f1182026431ca9f1dfc527d81950ed61ee4539ee9d9d864b3ca",
+      "decision-record.md": "5b8935e4aa97332350b82a9992e3a7a938eedb7fa679dfc5eacead84719b4d55",
+      "implementation-summary.md": "645301d101fdce115053b1283a92ba7f58bd8ca6198d34f2f36a9c44639d5ab5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

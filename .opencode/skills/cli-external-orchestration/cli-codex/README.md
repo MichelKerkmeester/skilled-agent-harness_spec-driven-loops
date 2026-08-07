@@ -9,12 +9,12 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.5.0.0
+version: 1.9.1.0
 ---
 
 # cli-codex
 
-> Dispatch a task to OpenAI's `codex` CLI and get back sandboxed code generation, live web research or a diff-aware review, without leaving your current runtime.
+> Get OpenAI-grade coding work into any AI runtime: sandboxed file edits, live web research, diff-aware reviews and a second opinion on your code, all delivered through the `codex` CLI without leaving your current session.
 
 ---
 
@@ -33,13 +33,24 @@ version: 1.5.0.0
 
 ### Why This Skill Exists
 
-A non-Codex assistant has no built-in way to reach the `codex` binary. When a task wants OpenAI-model strengths, like sandboxed file edits, live web browsing mid-execution or the diff-aware review workflow, the caller either hand-builds fragile `codex exec` invocations and picks flags by trial, or skips the capability. The worst trap: `codex exec` defaults to a read-only sandbox, so edit tasks fail silently. Auth handling, service-tier selection and reasoning effort all become guesswork. If the calling assistant is itself Codex, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, runs an auth pre-flight and guards against self-invocation, so the caller never builds its own CLI wrapper.
+A non-Codex assistant has no built-in way to reach the `codex` binary. When a task wants OpenAI-model strengths, like sandboxed file edits, live web browsing mid-execution, the diff-aware review workflow or a second model's opinion, the caller either hand-builds fragile `codex exec` invocations and picks flags by trial or skips the capability. The worst trap: `codex exec` defaults to a read-only sandbox, so edit tasks fail silently. Auth handling, service-tier selection, sandbox mapping and reasoning effort all become guesswork. If the calling assistant is itself Codex, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, the auth pre-flight, the self-invocation guard and the readiness check. The caller never builds its own CLI wrapper.
 
 ### What It Does
 
-cli-codex is the single routing point for external runtimes that need Codex CLI. A smart router scores the task against intent signals (code generation, review, web research, architecture exploration, agent delegation) and loads only the references that match. It fails closed when `command -v codex` cannot resolve the binary, and a three-layer self-invocation guard refuses to load if the caller is already inside Codex. Orchestrated execution delegates to the shipped deep-loop runtime; this packet does not build a second adapter.
+cli-codex is the single routing point for external runtimes that need Codex CLI. A smart router scores the task against intent signals (code generation, review, web research, architecture exploration, agent delegation) and loads only the references that match. It fails closed when `command -v codex` cannot resolve the binary. A three-layer self-invocation guard refuses to load if the caller is already inside Codex. Orchestrated execution delegates to the shipped deep-loop runtime. This packet does not build a second adapter.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-codex dispatches to Codex and hands the result back to the caller.
+
+### The Dispatch Capabilities
+
+| Capability | What the skill can operate |
+|---|---|
+| **Sandboxed coding** | file edits inside the caller's workspace through `codex exec` with `workspace-write` sandboxing |
+| **Repo analysis** | codebase mapping and architecture exploration through read-only `codex exec` prompts |
+| **Diff-aware review** | the `codex exec review` subcommand scoped to a commit's diff, with a named focus area |
+| **Live web research** | the `codex --search exec` flag for answers sourced from current web results |
+| **Agent delegation** | the repo-local `.codex/agents/` roster through `[agents.<name>]` config entries |
+| **Cross-model validation** | a second OpenAI model opinion on code quality, routed with a `--model` override |
 
 ---
 
@@ -95,13 +106,13 @@ You get a structured review of the latest commit's diff, scoped to the focus are
 
 ### The Dispatch Lifecycle
 
-The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox. The shared deep-loop runtime constructs and runs the `codex exec` process, Codex returns the result, and the caller validates and integrates it. The packet owns routing and availability checks; `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
+The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox. The shared deep-loop runtime constructs and runs the `codex exec` process. Codex returns the result. The caller validates and integrates it. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
 
 ### The Two Silent Traps
 
 Two `codex exec` defaults punish operators who do not know them. A reader who learns them here never hits them.
 
-**Trap 1: the read-only default sandbox.** `codex exec` without an explicit `--sandbox` runs in `read-only` with auto-approve. A task that asks for file edits reads the code, plans the changes and returns a confident summary. No files change, no warnings. Pass `--sandbox workspace-write` for edit tasks, or `--full-auto`, which combines workspace-write with `on-request` approval. Read-only tasks (review, research, exploration) are fine with the default.
+**Trap 1: the read-only default sandbox.** `codex exec` without an explicit `--sandbox` runs in `read-only` with auto-approve. A task that asks for file edits reads the code, plans the changes, writes nothing and returns a confident summary. No files change, no warnings. Pass `--sandbox workspace-write` for edit tasks or `--full-auto`, which combines workspace-write with `on-request` approval. Read-only tasks are fine with the default.
 
 **Trap 2: the silent service-tier fallback.** Without `-c service_tier="fast"`, Codex falls back to whatever the caller's `~/.codex/config.toml` sets as default, which may be a slower tier. Pass it explicitly every time so the dispatch is reproducible.
 
@@ -117,7 +128,7 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Agent Routing And Reasoning Effort
 
-Route to a specialized Codex agent through the repo-local agent surface. `.codex/config.toml` declares `[agents.<name>]` entries whose `config_file` values point at `.codex/agents/<name>.toml`; the `.codex/agents/` directory holds the Codex-side agent files. The roster is larger than the old six-profile set.
+Route to a specialized Codex agent through the repo-local agent surface. `.codex/config.toml` declares `[agents.<name>]` entries whose `config_file` values point at `.codex/agents/<name>.toml`. The `.codex/agents/` directory holds the Codex-side agent files. The roster is larger than the old six-profile set.
 
 | Agent | Task | Pair with |
 |---|---|---|
@@ -133,11 +144,20 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `review` | Code review and security audit | `--sandbox read-only` |
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
 
-`gpt-5.5` at `medium` is the skill default, but four GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-terra`, and `gpt-5.6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max`, and `ultra`, with a per-model ceiling: `gpt-5.5` ≤ `xhigh`, `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`, `gpt-5.6-sol` ≤ `ultra`. There is no `--reasoning-effort` flag. The `.codex/agents/*.toml` roster above pins `gpt-5.5`; override per dispatch with `--model` when a GPT-5.6 model fits the task better (e.g. `gpt-5.6-luna max` for implementation, `gpt-5.6-sol ultra` for verification).
+`gpt-5.5` at `medium` is the skill default. Four GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-terra` and `gpt-5.6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
+
+| Model | Effort ceiling |
+|---|---|
+| `gpt-5.5` | `xhigh` |
+| `gpt-5.6-luna` | `max` |
+| `gpt-5.6-terra` | `max` |
+| `gpt-5.6-sol` | `ultra` |
+
+The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch with `--model` when a GPT-5.6 model fits the task better, for example `gpt-5.6-luna max` for implementation or `gpt-5.6-sol ultra` for verification.
 
 ### Auth Pre-Flight And Memory Handback
 
-cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed; if it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js` (full procedure in `system-spec-kit/references/cli/memory-handback.md`).
+cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
 
 ---
 
@@ -145,7 +165,7 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
 
 ### When To Use This Skill
 
-Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly, for interactive terminal work (use `codex` directly) and for deep extended-thinking analysis (use `cli-claude-code` instead).
+Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
 
 ### Sibling Boundaries
 
@@ -156,6 +176,9 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
 | `cli-opencode` | OpenCode | Full OpenCode runtime dispatch, in-OpenCode parallel sessions |
+| `cli-cursor` | Cursor | Composer-model dispatch, read-only plan and ask exploration |
+| `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
+| `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 
@@ -174,7 +197,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | What you see | Why | Fix |
 |---|---|---|
 | `command not found: codex` | CLI not installed or PATH not updated | `npm i -g @openai/codex`, then restart your terminal |
-| `401 Unauthorized` or `not authenticated` | ChatGPT OAuth not configured or expired | Run `codex login` (browser flow; requires a ChatGPT Plus/Pro/Business/Edu/Enterprise account) |
+| `401 Unauthorized` or `not authenticated` | ChatGPT OAuth not configured or expired | Run `codex login` (browser flow) with a ChatGPT Plus/Pro/Business/Edu/Enterprise account |
 | Task ran but no files changed | `codex exec` defaulted to the read-only sandbox | Add `--sandbox workspace-write` or `--full-auto` |
 | Agent asks for spec folder or approval | Non-interactive `exec` cannot answer prompts | Include `(pre-approved, skip Gate 3)` in the prompt and use `--full-auto` |
 | `Self-invocation refused` | The caller is already inside Codex (`CODEX_*` env set, `codex` ancestry or a state lock) | Use a different runtime or exit the current Codex session first |
@@ -192,11 +215,11 @@ A: You can. This skill exists for when an external AI assistant (Claude Code, Co
 
 **Q: What reasoning effort do I pick?**
 
-A: Default to `medium`, which balances speed and depth for most tasks. Raise to `high` for architecture trade-offs, security audits or complex planning, and `xhigh` for the hardest problems. Drop to `low` or `minimal` for trivial lookups.
+A: Default to `medium`, which balances speed and depth for most tasks. Raise to `high` for architecture trade-offs and security audits. Complex planning also earns `high`, while the hardest problems take `xhigh`. Drop to `low` or `minimal` for trivial lookups.
 
 **Q: The task ran but nothing changed. What happened?**
 
-A: You hit the read-only default sandbox trap. `codex exec` without `--sandbox` defaults to read-only. Codex read your files, planned the changes and reported success, but never wrote a byte. Add `--sandbox workspace-write` or `--full-auto` for any task that edits files.
+A: You hit the read-only default sandbox trap. `codex exec` without `--sandbox` defaults to read-only. Codex read your files, planned the changes, reported success and never wrote a byte. Add `--sandbox workspace-write` or `--full-auto` for any task that edits files.
 
 **Q: `codex exec review` versus a read-only review prompt. Which do I use?**
 
@@ -204,7 +227,7 @@ A: `codex exec review --commit HEAD` runs the built-in diff-aware subcommand, wh
 
 **Q: When do I pick Codex over Claude Code?**
 
-A: Reach for Codex when the task needs sandboxed edits, live web search or diff-aware review. Reach for cli-claude-code when it needs deep extended thinking or `--json-schema` output.
+A: Reach for Codex when the task needs sandboxed edits, live web search, a diff-aware review or a second opinion on your code. Reach for cli-claude-code when it needs deep extended thinking or `--json-schema` output.
 
 ---
 
@@ -226,6 +249,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, sandbox modes and config reference |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
 | [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
 | [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit Memory startup wiring |

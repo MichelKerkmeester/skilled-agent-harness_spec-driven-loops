@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-benchmark readme",
+      "benchmark skill readme revisit",
+      "sk-create-benchmark readme",
+      "benchmark readme rewrite",
+      "phase 023 plan",
+      "create-benchmark readme plan",
+      "benchmark readme rewrite plan",
+      "phase 023 tasks",
+      "create-benchmark readme tasks",
+      "benchmark readme rewrite tasks",
+      "phase 023 checklist",
+      "create-benchmark readme verification"
+    ],
+    "key_topics": [
+      "create-benchmark",
+      "readme",
+      "benchmark",
+      "skill",
+      "revisit",
+      "sk-create-benchmark",
+      "rewrite",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
+      ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pitch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-benchmark/README.md` predates the pilot standard",
+    "created_at": "2026-08-04T08:34:47.400Z",
+    "last_save_at": "2026-08-04T14:52:02.418Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5133a530636b855c5833c727f41bcc1663c5787f2a3a11f87ed8af19f86c86e",
+    "source_doc_hashes": {
+      "spec.md": "2e80bede8b129d1191d6823855ee37e9b81931837fb8d1175e69457a23dd1f32",
+      "plan.md": "b0cf4a624ad9b1132297f23d90b3b1abfb955a6c43a4d34533b564fedaa1ea67",
+      "tasks.md": "66e1dd653d3b7c2052ecfa6f6bf1492341e5782c808705d7a7c7c9e988876a9c",
+      "checklist.md": "8dea3284fd63bf0731e35dac47960e2083683ba33e0dcb918f69f0a33fcbba03",
+      "implementation-summary.md": "423b19c3755ea7d0fed74d5e6e9f9adaf7dcf74cafb4b62004d093397f8a8788"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

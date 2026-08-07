@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks",
+  "spec_folder": "hooks",
+  "parent_id": null,
+  "children_ids": [
+    "hooks/001-per-prompt-injection-audit",
+    "hooks/001-hook-docs-relocation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "hooks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder consolidating hooks packets.",
+    "created_at": "2026-08-06T00:00:00.000Z",
+    "last_save_at": "2026-08-06T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:40dbf3e5dafb7008021ea6e50acd33ab0d6f32481c256e824554d629f6105028",
+    "source_doc_hashes": {},
+    "last_active_child_id": "hooks/001-per-prompt-injection-audit",
+    "last_active_at": "2026-08-06T00:00:00.000Z"
+  }
+}

@@ -73,7 +73,6 @@ interface DecisionContext {
   readonly evaluatorVersion: string;
   readonly authority: AuthoritySnapshot;
   readonly authorityAvailable: boolean;
-  readonly identityFailureField: string | null;
 }
 
 interface DecisionOutcome {
@@ -610,13 +609,7 @@ export class TransitionAuthorizationGateway {
   }
 
   async #prepareContext(input: unknown): Promise<DecisionContext> {
-    let validRequest = false;
-    try {
-      validRequest = isTransitionRequest(input);
-    } catch {
-      validRequest = false;
-    }
-    if (!validRequest) {
+    if (!isTransitionRequest(input)) {
       const evaluationInput = invalidEvaluationInput();
       const requestId = `invalid-request-${randomUUID()}`;
       return Object.freeze({
@@ -638,80 +631,46 @@ export class TransitionAuthorizationGateway {
         evaluatorVersion: 'unknown',
         authority: Object.freeze({ state: 'legacy_authoritative', epoch: 1 }),
         authorityAvailable: false,
-        identityFailureField: null,
       });
     }
-
-    const request = input as TransitionAuthorizationRequest;
 
     let authority: AuthoritySnapshot;
     let authorityAvailable = true;
     try {
-      authority = await this.#options.authorityProvider(request.mode);
+      authority = await this.#options.authorityProvider(input.mode);
     } catch {
       authority = Object.freeze({ state: 'legacy_authoritative', epoch: 1 });
       authorityAvailable = false;
     }
-    let identityFailureField: string | null = null;
-    if (authorityAvailable) {
-      try {
-        const resolved = await this.#options.identityResolver?.(request, authority);
-        const expectedActorId = resolved?.actorId ?? authority.actorId;
-        const expectedCapabilityId = resolved?.capabilityId
-          ?? (authority.capabilityIds?.length === 1 ? authority.capabilityIds[0] : undefined);
-        const expectedEvidenceDigest = resolved?.evidenceDigest
-          ?? (authority.evidenceDigests?.length === 1 ? authority.evidenceDigests[0] : undefined);
-        if (expectedActorId !== undefined && request.actorId !== expectedActorId) {
-          identityFailureField = 'actorId';
-        } else if (
-          expectedCapabilityId !== undefined
-          && (authority.capabilityIds !== undefined
-            ? !authority.capabilityIds.includes(request.capabilityId)
-            : request.capabilityId !== expectedCapabilityId)
-        ) {
-          identityFailureField = 'capabilityId';
-        } else if (
-          expectedEvidenceDigest !== undefined
-          && (authority.evidenceDigests !== undefined
-            ? !authority.evidenceDigests.includes(request.evidenceDigest)
-            : request.evidenceDigest !== expectedEvidenceDigest)
-        ) {
-          identityFailureField = 'evidenceDigest';
-        }
-      } catch {
-        identityFailureField = 'identity';
-      }
-    }
-    const evaluationInput = requestEvaluationInput(request, authority);
+    const evaluationInput = requestEvaluationInput(input, authority);
     let evaluatorVersion = 'unknown';
     try {
       evaluatorVersion = this.#policies.resolve(
-        request.policy.policyId,
-        request.policy.policyVersion,
+        input.policy.policyId,
+        input.policy.policyVersion,
       ).evaluatorVersion;
     } catch {
       // Unknown policy identity is recorded as a denial below.
     }
     return Object.freeze({
-      request,
+      request: input,
       evaluationInput,
-      requestId: request.requestId,
+      requestId: input.requestId,
       requestDigest: requestDigest(
-        request.requestId,
+        input.requestId,
         this.#ledger.ledgerId,
         this.#ledger.registryDigest,
         evaluationInput,
-        request.policy.policyId,
-        request.policy.policyVersion,
-        request.policy.policyDigest,
+        input.policy.policyId,
+        input.policy.policyVersion,
+        input.policy.policyDigest,
       ),
-      policyId: request.policy.policyId,
-      policyVersion: request.policy.policyVersion,
-      policyDigest: request.policy.policyDigest,
+      policyId: input.policy.policyId,
+      policyVersion: input.policy.policyVersion,
+      policyDigest: input.policy.policyDigest,
       evaluatorVersion,
       authority,
       authorityAvailable,
-      identityFailureField,
     });
   }
 
@@ -722,13 +681,6 @@ export class TransitionAuthorizationGateway {
     }
     if (!context.authorityAvailable) {
       return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.GATEWAY_FAILURE, matchedRuleIds: [] };
-    }
-    if (context.identityFailureField !== null) {
-      return {
-        verdict: 'deny',
-        reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-        matchedRuleIds: [`identity:${context.identityFailureField}`],
-      };
     }
     if (request.event.identity.eventType === AUTHORIZATION_DECISION_EVENT_TYPE) {
       return {

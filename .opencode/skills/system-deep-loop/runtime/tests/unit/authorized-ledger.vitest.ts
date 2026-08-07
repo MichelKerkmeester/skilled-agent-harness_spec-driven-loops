@@ -3,16 +3,9 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
-  appendAuthorizedWithCapabilityForTest,
-  appendAuthorizedForTest,
-  appendAuthorizedWithoutFenceForTest,
-} from '../fixtures/authorized-ledger-test-helper.js';
-
-import {
   chmodSync,
   cpSync,
   mkdtempSync,
-  mkdirSync,
   readFileSync,
   readdirSync,
   rmSync,
@@ -33,24 +26,15 @@ import {
   DarkLedgerAdapter,
   LEGACY_DARK_BOUNDARIES,
   TransitionAuthorizationGateway,
-  TransitionPolicyRegistry,
   TypedReducerRegistry,
   rebuildProjection,
   readAuthorizationAudit,
   verifyAuthorizationReplay,
 } from '../../lib/authorized-ledger/index.js';
-import * as authorizedLedgerPublicSurface from '../../lib/authorized-ledger/index.js';
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
-import {
-  AtomicityDomains,
-  FencedLeaseCoordinator,
-  ProtectedResourceKinds,
-  canonicalizeProtectedResource,
-} from '../../lib/locks-and-fencing/index.js';
 import {
   FIXTURE_AUDIT_LEDGER_ID,
   FIXTURE_AUTHORITY,
-  FIXTURE_EVIDENCE_DIGEST,
   FIXTURE_EVENT_TYPE,
   FIXTURE_LEDGER_ID,
   createFixtureEvent,
@@ -60,14 +44,12 @@ import {
 } from '../fixtures/authorized-ledger-fixtures.js';
 
 import type {
-  AuthorizationGatewayOptions,
-  AuthoritySnapshot,
   GatewayAllowProof,
   LedgerRecordFrame,
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type { EventTypeRegistry, EventWritePreflight, JsonObject } from '../../lib/event-envelope/index.js';
-import type { FenceCapability } from '../../lib/locks-and-fencing/index.js';
+import type { TransitionPolicyRegistry } from '../../lib/authorized-ledger/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -102,8 +84,7 @@ function temporaryRoot(label: string): string {
 function createHarness(
   rootDirectory = temporaryRoot('case'),
   overrides: Readonly<{
-    authorityProvider?: () => AuthoritySnapshot | Promise<AuthoritySnapshot>;
-    identityResolver?: AuthorizationGatewayOptions['identityResolver'];
+    authorityProvider?: () => typeof FIXTURE_AUTHORITY | Promise<typeof FIXTURE_AUTHORITY>;
     beforeDomainCommit?: () => void;
     evaluatorTimeoutMs?: number;
   }> = {},
@@ -125,7 +106,6 @@ function createHarness(
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
     evaluatorTimeoutMs: overrides.evaluatorTimeoutMs,
-    identityResolver: overrides.identityResolver,
   }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }
@@ -155,7 +135,7 @@ async function appendFixture(
 ): Promise<{ readonly event: EventWritePreflight; readonly proof: GatewayAllowProof }> {
   const event = createFixtureEvent(harness.registry, index);
   const proof = await authorize(harness, event, `request-${index}`);
-  await appendAuthorizedForTest(harness.ledger, event, proof);
+  await harness.ledger.appendAuthorized(event, proof);
   return { event, proof };
 }
 
@@ -240,42 +220,6 @@ function runWorker(rootDirectory: string, index: number): Promise<Record<string,
   });
 }
 
-function runFencedWorker(
-  rootDirectory: string,
-  role: 'stale' | 'successor',
-  controlDirectory: string,
-): Promise<Record<string, unknown>> {
-  const tsxLoader = resolve(
-    import.meta.dirname,
-    '../../../../system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs',
-  );
-  const worker = resolve(import.meta.dirname, '../fixtures/authorized-ledger-fenced-worker.ts');
-  return new Promise((resolveWorker, rejectWorker) => {
-    const child = spawn(
-      process.execPath,
-      ['--import', tsxLoader, worker, rootDirectory, role, controlDirectory],
-      {
-        cwd: resolve(import.meta.dirname, '../..'),
-        stdio: ['ignore', 'pipe', 'pipe'],
-      },
-    );
-    let output = '';
-    let errorOutput = '';
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
-    child.stdout.on('data', (chunk: string) => { output += chunk; });
-    child.stderr.on('data', (chunk: string) => { errorOutput += chunk; });
-    child.on('error', rejectWorker);
-    child.on('close', (code) => {
-      if (code !== 0) {
-        rejectWorker(new Error(`Fenced writer ${role} exited ${code}: ${errorOutput}`));
-        return;
-      }
-      resolveWorker(JSON.parse(output) as Record<string, unknown>);
-    });
-  });
-}
-
 afterEach(() => {
   while (temporaryRoots.length > 0) {
     const root = temporaryRoots.pop();
@@ -288,208 +232,12 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('coupled authorization and append boundary', () => {
-  it('does not expose a direct append symbol from the package public entry', () => {
-    expect(Reflect.get(authorizedLedgerPublicSurface, 'appendAuthorized')).toBeUndefined();
-    expect(Reflect.get(authorizedLedgerPublicSurface, 'appendAuthorizedInternal')).toBeUndefined();
-  });
-
-  it('hard-private primitive rejects a constructed-ledger append without a current fence', async () => {
-    const harness = createHarness();
-    const event = createFixtureEvent(harness.registry, 1);
-    const proof = await authorize(harness, event, 'no-fence');
-    const directAppend = (harness.ledger as unknown as {
-      appendAuthorized?: unknown;
-    }).appendAuthorized;
-
-    expect(directAppend).toBeUndefined();
-    await expect(appendAuthorizedWithoutFenceForTest(harness.ledger, event, proof))
-      .rejects.toMatchObject({
-        code: 'STALE_FENCE',
-        phase: 'mutation',
-      });
-    expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
-  });
-
-  it('primitive rejects an unexpired proof paired with a superseded fence capability', async () => {
-    const harness = createHarness();
-    const event = createFixtureEvent(harness.registry, 1);
-    const proof = await authorize(harness, event, 'stale-capability');
-    const coordinator = new FencedLeaseCoordinator({
-      rootDirectory: harness.rootDirectory,
-      retryIntervalMs: 1,
-      operationTimeoutMs: 5_000,
-    });
-    const resource = canonicalizeProtectedResource({
-      kind: ProtectedResourceKinds.LEDGER,
-      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
-      components: { ledgerId: harness.ledger.ledgerId },
-    });
-    const staleLease = await coordinator.acquire({
-      resource,
-      ownerId: 'stale-primitive-test',
-      correlationId: 'stale-capability',
-      ttlMs: 60_000,
-      acquireTimeoutMs: 5_000,
-    });
-    let staleCapability: FenceCapability | undefined;
-    await coordinator.withFence(staleLease, (context) => () => {
-      staleCapability = context.fenceCapabilities[0];
-    });
-    await coordinator.release(staleLease);
-    const successor = await coordinator.acquire({
-      resource,
-      ownerId: 'successor-primitive-test',
-      correlationId: 'stale-capability',
-      ttlMs: 60_000,
-      acquireTimeoutMs: 5_000,
-    });
-    try {
-      if (!staleCapability) throw new Error('Fence capability was not captured');
-      await expect(appendAuthorizedWithCapabilityForTest(
-        harness.ledger,
-        event,
-        proof,
-        staleCapability,
-      )).rejects.toMatchObject({
-        code: 'STALE_FENCE',
-        phase: 'mutation',
-      });
-      expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
-    } finally {
-      await coordinator.release(successor);
-    }
-  });
-
-  it('rejects a superseded writer in two processes with a fencing-specific error', async () => {
-    const root = temporaryRoot('superseded-writer');
-    const controlDirectory = join(root, 'control');
-    mkdirSync(controlDirectory, { recursive: true });
-    const [stale, successor] = await Promise.all([
-      runFencedWorker(root, 'stale', controlDirectory),
-      runFencedWorker(root, 'successor', controlDirectory),
-    ]);
-
-    expect(stale).toEqual({ status: 'rejected', code: 'STALE_FENCE' });
-    expect(successor).toMatchObject({ status: 'successor-acquired', fenceToken: 2 });
-  });
-
-  it('rejects a forged actor identity with the failing field named in the durable denial', async () => {
-    const harness = createHarness(undefined, {
-      authorityProvider: () => Object.freeze({
-        ...FIXTURE_AUTHORITY,
-        actorId: 'trusted-actor',
-        capabilityIds: ['write'],
-        evidenceDigests: [FIXTURE_EVIDENCE_DIGEST],
-      }),
-    });
-    const event = createFixtureEvent(harness.registry, 1);
-    const request = await createFixtureRequest(
-      harness.ledger,
-      event,
-      harness.policies,
-      'forged-actor',
-      { actorId: 'forged-actor' },
-    );
-
-    const result = await harness.gateway.authorize(request);
-    expect(result).toMatchObject({
-      verdict: 'deny',
-      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-      decision: { matched_rule_ids: ['identity:actorId'] },
-    });
-    expect((await readAuthorizationAudit(harness.rootDirectory, FIXTURE_AUDIT_LEDGER_ID)).entries)
-      .toHaveLength(1);
-  });
-
-  it.each([
-    ['capabilityId', { capabilityId: 'read' }, 'identity:capabilityId'],
-    ['evidenceDigest', { evidenceDigest: '0'.repeat(64) }, 'identity:evidenceDigest'],
-  ] as const)('rejects a forged %s with the failing field named', async (_field, override, ruleId) => {
-    const harness = createHarness(undefined, {
-      authorityProvider: () => Object.freeze({
-        ...FIXTURE_AUTHORITY,
-        actorId: 'trusted-actor',
-        capabilityIds: ['write'],
-        evidenceDigests: [FIXTURE_EVIDENCE_DIGEST],
-      }),
-    });
-    const event = createFixtureEvent(harness.registry, 1);
-    const request = await createFixtureRequest(
-      harness.ledger,
-      event,
-      harness.policies,
-      `forged-${_field}`,
-      { actorId: 'trusted-actor', ...override },
-    );
-
-    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
-      verdict: 'deny',
-      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-      decision: { matched_rule_ids: [ruleId] },
-    });
-  });
-
-  it('turns cyclic request data into a durable typed denial', async () => {
-    const harness = createHarness();
-    const event = createFixtureEvent(harness.registry, 1);
-    const request = await createFixtureRequest(
-      harness.ledger,
-      event,
-      harness.policies,
-      'cyclic-request',
-    );
-    const cyclicPayload: Record<string, unknown> = {};
-    cyclicPayload.self = cyclicPayload;
-    const cyclicRequest = {
-      ...request,
-      event: {
-        ...request.event,
-        envelope: { ...request.event.envelope, payload: cyclicPayload },
-      },
-    } as unknown;
-
-    await expect(harness.gateway.authorize(cyclicRequest)).resolves.toMatchObject({
-      verdict: 'deny',
-      reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-    });
-    expect((await readAuthorizationAudit(harness.rootDirectory, FIXTURE_AUDIT_LEDGER_ID)).entries)
-      .toHaveLength(1);
-  });
-
-  it('changes the policy digest when captured authorization state changes', () => {
-    const evaluate = () => ({
-      verdict: 'allow' as const,
-      reasonCode: AuthorizationReasonCodes.ALLOWED,
-      matchedRuleIds: ['state-bound'],
-    });
-    const first = new TransitionPolicyRegistry([{
-      policyId: 'state-bound-policy',
-      policyVersion: 1,
-      evaluatorVersion: '1',
-      ruleIds: ['state-bound'],
-      capturedAuthorizationState: { authorityEpoch: 1, capability: 'write' },
-      evaluate,
-    }]);
-    const second = new TransitionPolicyRegistry([{
-      policyId: 'state-bound-policy',
-      policyVersion: 1,
-      evaluatorVersion: '1',
-      ruleIds: ['state-bound'],
-      capturedAuthorizationState: { authorityEpoch: 2, capability: 'write' },
-      evaluate,
-    }]);
-
-    expect(first.digest).not.toBe(second.digest);
-    expect(first.resolve('state-bound-policy', 1).authorizationStateDigest)
-      .not.toBe(second.resolve('state-bound-policy', 1).authorizationStateDigest);
-  });
-
   it('rejects direct domain append when no durable allow proof exists', async () => {
     const harness = createHarness();
     const event = createFixtureEvent(harness.registry, 1);
 
     expect((harness.ledger as unknown as { append?: unknown }).append).toBeUndefined();
-    await expect(appendAuthorizedForTest(harness.ledger, event, undefined as never)).rejects.toMatchObject({
+    await expect(harness.ledger.appendAuthorized(event, undefined as never)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED,
     });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
@@ -499,8 +247,8 @@ describe('coupled authorization and append boundary', () => {
     const harness = createHarness();
     const event = createFixtureEvent(harness.registry, 1);
     const proof = await authorize(harness, event, 'allow-once');
-    const first = await appendAuthorizedForTest(harness.ledger, event, proof);
-    const retry = await appendAuthorizedForTest(harness.ledger, event, proof);
+    const first = await harness.ledger.appendAuthorized(event, proof);
+    const retry = await harness.ledger.appendAuthorized(event, proof);
     expect(retry).toEqual(first);
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
 
@@ -510,7 +258,7 @@ describe('coupled authorization and append boundary', () => {
     });
     const conflictingProof = await authorize(harness, conflicting, 'conflicting-event-id');
     await expect(
-      appendAuthorizedForTest(harness.ledger, conflicting, conflictingProof),
+      harness.ledger.appendAuthorized(conflicting, conflictingProof),
     ).rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.EVENT_ID_CONFLICT });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
   });
@@ -521,7 +269,7 @@ describe('coupled authorization and append boundary', () => {
     const differentEvent = createFixtureEvent(harness.registry, 2);
     const proof = await authorize(harness, event, 'bound-allow');
 
-    await expect(appendAuthorizedForTest(harness.ledger, differentEvent, proof)).rejects.toMatchObject({
+    await expect(harness.ledger.appendAuthorized(differentEvent, proof)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID,
     });
 
@@ -531,7 +279,7 @@ describe('coupled authorization and append boundary', () => {
       auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
       authorityProvider: () => FIXTURE_AUTHORITY,
     }, harness.registry);
-    await expect(appendAuthorizedForTest(otherLedger, event, proof)).rejects.toMatchObject({
+    await expect(otherLedger.appendAuthorized(event, proof)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID,
     });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
@@ -842,7 +590,7 @@ describe('locked ordering and immutable integrity', () => {
     expect(sha256Bytes(readFileSync(join(quarantineDirectory, quarantined[0]))))
       .toBe(sha256Bytes(torn));
 
-    const receipt = await appendAuthorizedForTest(harness.ledger, appends[2].event, appends[2].proof);
+    const receipt = await harness.ledger.appendAuthorized(appends[2].event, appends[2].proof);
     expect(receipt.sequence).toBe(3);
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 3 });
   });
@@ -944,7 +692,7 @@ describe('verified replay and disposable projections', () => {
     });
     const event = createFixtureEvent(harness.registry, 1);
     const proof = await authorize(harness, event, 'crash-before-domain');
-    await expect(appendAuthorizedForTest(harness.ledger, event, proof)).rejects.toThrow(
+    await expect(harness.ledger.appendAuthorized(event, proof)).rejects.toThrow(
       'simulated crash before domain commit',
     );
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });

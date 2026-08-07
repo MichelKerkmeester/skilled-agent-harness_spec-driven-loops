@@ -112,7 +112,7 @@ async function waitForFiles(paths: readonly string[], timeoutMs = 10_000): Promi
   const deadlineMs = Date.now() + timeoutMs;
   while (!paths.every((path) => existsSync(path))) {
     if (Date.now() >= deadlineMs) throw new Error(`Timed out waiting for ${paths.join(', ')}`);
-    await new Promise<void>((resolveWait) => setImmediate(resolveWait));
+    await new Promise((resolveWait) => setTimeout(resolveWait, 5));
   }
 }
 
@@ -904,10 +904,6 @@ describe('fenced authorized ledger append', () => {
     ]);
     expect(appends.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
     expect(appends.filter((result) => result.status === 'rejected')).toHaveLength(1);
-    const winner = appends.find((result) => result.status === 'fulfilled') as PromiseFulfilledResult<{
-      readonly authorizationRef: { readonly fence_token?: number };
-    }>;
-    expect(winner.value.authorizationRef.fence_token).toBe(lease.fenceToken);
     expect((appends.find((result) => result.status === 'rejected') as PromiseRejectedResult).reason)
       .toMatchObject({ code: LocksAndFencingErrorCodes.HEAD_CONFLICT });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });

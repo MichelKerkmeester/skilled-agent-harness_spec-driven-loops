@@ -2,8 +2,6 @@
 // MODULE: Agent Improvement Ledger Schema Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -932,7 +930,7 @@ describe('agent-improvement typed ledger schema', () => {
         harness.registry,
       );
       const proof = await authorize(harness, event, `request-${index}`);
-      const receipt = await appendAuthorizedForTest(harness.ledger, event, proof);
+      const receipt = await harness.ledger.appendAuthorized(event, proof);
       expect(receipt.authorizationRef.decision_id).toBe(
         proof.decision.decision_id,
       );
@@ -1099,7 +1097,7 @@ describe('agent-improvement typed ledger schema', () => {
       correctPrepared,
       'correct-variant',
     );
-    await expect(appendAuthorizedForTest(harness.ledger,
+    await expect(harness.ledger.appendAuthorized(
       foreignPrepared,
       correctProof,
     )).rejects.toMatchObject({
@@ -1110,7 +1108,7 @@ describe('agent-improvement typed ledger schema', () => {
     });
     await expect(harness.ledger.readVerifiedEvents()).resolves.toHaveLength(0);
 
-    await appendAuthorizedForTest(harness.ledger, correctPrepared, correctProof);
+    await harness.ledger.appendAuthorized(correctPrepared, correctProof);
     await expect(harness.ledger.getVerifiedHead()).resolves.toMatchObject({
       sequence: 1,
     });
@@ -1313,7 +1311,7 @@ describe('agent-improvement typed ledger schema', () => {
       await authorizationRequest(harness, event, 'denied-request', 'read-only'),
     );
     expect(denied.verdict).toBe('deny');
-    await expect(appendAuthorizedForTest(harness.ledger,
+    await expect(harness.ledger.appendAuthorized(
       event,
       undefined as unknown as GatewayAllowProof,
     )).rejects.toMatchObject({
@@ -1339,7 +1337,7 @@ describe('agent-improvement typed ledger schema', () => {
     };
     mutableData.traceRef = 'trace:mutated-after-prepare';
     const proof = await authorize(harness, event, 'immutable-event-request');
-    await appendAuthorizedForTest(harness.ledger, event, proof);
+    await harness.ledger.appendAuthorized(event, proof);
     const [verified] = await harness.ledger.readVerifiedEvents();
     expect(verified.event.stored.envelope.payload.data).toEqual(originalData);
   });

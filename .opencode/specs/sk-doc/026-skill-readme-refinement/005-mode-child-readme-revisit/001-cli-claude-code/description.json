@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
+  "description": "The cli-claude-code README at `.opencode/skills/cli-external-orchestration/cli-claude-code/README.md` still carries the older tabular reference-card",
+  "keywords": [
+    "cli-claude-code",
+    "readme",
+    "opencode",
+    "skills",
+    "cli-external-orchestration",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card"
+  ],
+  "lastUpdated": "2026-08-04T13:52:15.075Z",
+  "specId": "001",
+  "folderSlug": "cli-claude-code",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_14-48__phase-1-cli-claude-code-readme-rewrite-complete.md",
+    "04-08-26_14-50__phase-1-cli-claude-code-readme-rewrite-complete.md",
+    "04-08-26_14-52__phase-1-cli-claude-code-readme-rewrite-complete.md"
+  ]
+}

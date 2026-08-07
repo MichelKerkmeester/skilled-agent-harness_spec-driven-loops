@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
+  "description": "Purpose-first README rewrite of the sk-code-webflow mode skill on the refined template, version 1.1.0.0, with changelog entry and validation evidence.",
+  "keywords": [
+    "purpose-first",
+    "readme",
+    "rewrite",
+    "sk-code-webflow",
+    "mode",
+    "skill",
+    "refined",
+    "template",
+    "version",
+    "changelog",
+    "entry",
+    "validation",
+    "evidence"
+  ],
+  "lastUpdated": "2026-08-04T14:43:04.583Z",
+  "specId": "018",
+  "folderSlug": "sk-code-webflow",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

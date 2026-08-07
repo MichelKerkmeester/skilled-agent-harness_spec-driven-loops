@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
+  "description": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the",
+  "keywords": [
+    "opencode",
+    "skills",
+    "system-spec-kit",
+    "readme",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates",
+    "pilot",
+    "standard"
+  ],
+  "lastUpdated": "2026-08-04T13:28:19.577Z",
+  "specId": "011",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "04-08-26_14-26__rewrote-the-readme-purpose-first-bumped-version.md",
+    "04-08-26_14-28__rewrote-the-readme-purpose-first-bumped-version.md"
+  ]
+}

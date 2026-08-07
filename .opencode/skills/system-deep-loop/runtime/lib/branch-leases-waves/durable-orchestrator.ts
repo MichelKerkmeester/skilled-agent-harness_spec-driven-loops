@@ -26,7 +26,6 @@ import {
   ProtectedResourceKinds,
   canonicalizeProtectedResource,
 } from '../locks-and-fencing/index.js';
-import { appendFencedLedgerRecordUnderHeldFence } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   BranchOrchestrationError,
   BranchOrchestrationErrorCodes,
@@ -898,7 +897,7 @@ export class DurableBranchOrchestrator {
       const proof = await this.#authorize(event, fold.ledgerHead, fold.digest);
       await this.#coordinator.withFences(
         sortLeases(branchGrant ? [ledgerLease, branchGrant.lease] : [ledgerLease]),
-        (context) => async () => {
+        () => async () => {
           const currentHead = await this.#ledger.getVerifiedHead();
           if (
             currentHead.sequence !== fold.ledgerHead.sequence
@@ -915,23 +914,7 @@ export class DurableBranchOrchestrator {
             );
           }
           previewBranchOrchestrationRecord(fold.state, record, occurredAt);
-          const ledgerCapabilityIndex = context.resources.findIndex(
-            (resource) => resource.resourceKey === ledgerLease.resource.resourceKey,
-          );
-          if (ledgerCapabilityIndex < 0) {
-            throw new LocksAndFencingError(
-              LocksAndFencingErrorCodes.INVALID_RESOURCE,
-              'mutation',
-              'Ledger fence capability was not included in the guarded mutation',
-            );
-          }
-          await appendFencedLedgerRecordUnderHeldFence(
-            this.#ledger,
-            event,
-            proof,
-            fold.ledgerHead,
-            context.fenceCapabilities[ledgerCapabilityIndex],
-          );
+          await this.#ledger.appendAuthorized(event, proof);
         },
       );
     } catch (error: unknown) {

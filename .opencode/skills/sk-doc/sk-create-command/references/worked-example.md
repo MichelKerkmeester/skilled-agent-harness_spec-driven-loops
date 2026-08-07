@@ -185,5 +185,5 @@ For `:auto`, do not show the mode prompt. Ask only if the spec folder is missing
 
 - [README.md](README.md) - command-creation reference map
 - [router-presentation-split.md](router-presentation-split.md) - the separation rules this example follows
-- [command-template.md](../assets/command/command-template.md) - command templates, gates, dispatch, modes, and validation checklist
-- [command-presentation-template.md](../assets/command/command-presentation-template.md) - full presentation asset skeleton
+- [command-template.md](../assets/command-template.md) - command templates, gates, dispatch, modes, and validation checklist
+- [command-presentation-template.md](../assets/command-presentation-template.md) - full presentation asset skeleton

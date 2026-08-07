@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
+  "description": "The mcp-obsidian README is the pilot that set the purpose-first standard for mode skill READMEs",
+  "keywords": [
+    "mcp-obsidian",
+    "readme",
+    "pilot",
+    "set",
+    "purpose-first",
+    "standard",
+    "mode",
+    "skill",
+    "readmes"
+  ],
+  "lastUpdated": "2026-08-04T14:01:22.520Z",
+  "specId": "013",
+  "folderSlug": "mcp-obsidian",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_14-51__hvr-gate-failed-on-2-prose-semicolons-in-the.md",
+    "04-08-26_14-54__conformance-verdict-fail-on-hvr-and-version.md",
+    "04-08-26_15-01__conformance-verdict-fail-on-hvr-and-version.md"
+  ]
+}

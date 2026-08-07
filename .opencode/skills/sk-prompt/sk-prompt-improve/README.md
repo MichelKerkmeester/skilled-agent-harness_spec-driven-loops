@@ -1,5 +1,5 @@
 ---
-title: prompt-improve
+title: sk-prompt-improve
 description: Prompt engineering engine that turns a vague request into a structured, high-quality prompt through seven frameworks, a five-phase DEPTH thinking pass and CLEAR quality scoring.
 trigger_phrases:
   - "improve prompt"
@@ -7,12 +7,12 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 2.3.0.21
+version: 2.3.1.0
 ---
 
-# prompt-improve (sk-prompt hub)
+# sk-prompt-improve
 
-> Turn a vague ask into a structured prompt, auto-selected from seven frameworks, shaped by a five-phase thinking pass and scored so nothing ships below the threshold.
+> Turn a vague ask into a structured prompt that clears a fixed quality bar: the best framework chosen from seven options, a five-phase thinking pass, a CLEAR score against a fixed threshold and a transparency report that shows the reasoning.
 
 ---
 
@@ -21,7 +21,7 @@ version: 2.3.0.21
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Transforming a rough or under-specified request into a prompt that clears a fixed quality bar |
-| **Invoke with** | The `/prompt:improve` command, the `@prompt-improver` agent or keyword routing through Gate 2 |
+| **Invoke with** | The `/prompt:improve` command, the `@prompt-improver` agent, keyword routing through Gate 2 or a framework name stated directly |
 | **Works on** | Any text task that benefits from structure: generation, review, research, editing and analysis |
 | **Produces** | An enhanced prompt with a transparency report naming the framework, the rounds, the CLEAR breakdown and any flagged assumptions |
 
@@ -31,11 +31,25 @@ version: 2.3.0.21
 
 ### Why This Skill Exists
 
-A vague prompt gets a vague answer. People under-specify the role, skip the constraints, bury the real ask and leave the model to guess, then blame the model when the output misses. Picking a structure by feel does not help, because different tasks want different shapes and there is no signal for when a prompt is actually good enough to send. This skill scores the task against seven frameworks and picks the best fit. It runs a structured thinking pass that surfaces assumptions and engineers the prompt. It scores the result against a fixed rubric so a prompt ships only when it clears the bar.
+A vague prompt gets a vague answer. People under-specify the role, skip the constraints, bury the real ask and leave the model to guess, then blame the output when it misses. Picking a structure by feel does not help, because different tasks want different shapes and nothing signals when a prompt is actually good enough to send. This skill scores the task against seven frameworks, picks the best fit, runs a structured thinking pass that surfaces assumptions and scores the result against a fixed rubric so a prompt ships only when it clears the bar.
 
 ### What It Does
 
-The `prompt-improve` packet (part of the sk-prompt hub) is the prompt-engineering engine. It evaluates the task across seven frameworks, runs the selected prompt through DEPTH (a five-phase thinking pass of Discover, Engineer, Prototype, Test and Harmonize), scores every dimension of the output with the CLEAR rubric and delivers the result with a transparency report. You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
+The `sk-prompt-improve` packet is the prompt-engineering engine of the sk-prompt hub. It evaluates the task across seven frameworks, runs the selected prompt through DEPTH (a five-phase thinking pass of Discover, Engineer, Prototype, Test and Harmonize), scores every dimension of the output with the CLEAR rubric and delivers the result with a transparency report. You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
+
+### The Framework Layer
+
+The skill operates a library of seven prompt frameworks, each one a proven shape for a task family.
+
+| Framework | Elements | What it operates best |
+|---|---|---|
+| **RCAF** | Role, Context, Action, Format | General tasks, 80% of prompts |
+| **COSTAR** | Context, Objective, Style, Tone, Audience, Response | Content creation, communication |
+| **RACE** | Role, Action, Context, Execute | Urgent tasks, quick iterations |
+| **CIDI** | Context, Instructions, Details, Input | Process documentation, tutorials |
+| **TIDD-EC** | Task, Instructions, Dos, Donts, Examples, Context | Quality-critical work, compliance |
+| **CRISPE** | Capacity, Insight, Statement, Personality, Experiment | Strategy, creative exploration |
+| **CRAFT** | Context, Role, Action, Format, Target | Complex projects, planning |
 
 ---
 
@@ -65,10 +79,12 @@ ASSUMPTIONS FLAGGED: audience title inferred from "mid-market sales leaders"
 /prompt:improve $short "Rephrase this PR description for a non-technical reviewer: ..."
 ```
 
-**Step 4: Verify the README structure before you rely on it.**
+The transparency report shows `DEPTH ROUNDS: 3` for `$short` and no DEPTH phases at all for `$raw`.
+
+**Step 4: Verify before you rely on it.**
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt:improve/README.md --type readme
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/sk-prompt-improve/README.md --type readme
 ```
 
 Zero issues means the README matches the house template.
@@ -79,19 +95,7 @@ Zero issues means the README matches the house template.
 
 ### Framework Selection
 
-The skill evaluates seven frameworks against five task characteristics: complexity, urgency, audience specificity, creative need and precision. It scores at least three frameworks before choosing a primary and an alternative. The definitions live in `references/patterns-evaluation.md`.
-
-| Framework | Elements | Best for |
-|---|---|---|
-| RCAF | Role, Context, Action, Format | General tasks, 80% of prompts |
-| COSTAR | Context, Objective, Style, Tone, Audience, Response | Content creation, communication |
-| RACE | Role, Action, Context, Execute | Urgent tasks, quick iterations |
-| CIDI | Context, Instructions, Details, Input | Process documentation, tutorials |
-| TIDD-EC | Task, Instructions, Dos, Donts, Examples, Context | Quality-critical work, compliance |
-| CRISPE | Capacity, Insight, Statement, Personality, Experiment | Strategy, creative exploration |
-| CRAFT | Context, Role, Action, Format, Target | Complex projects, planning |
-
-You can name a framework directly and the skill will use it. The selection algorithm still runs so the transparency report shows why that framework fits.
+The selection step evaluates the seven frameworks against five task characteristics: complexity, urgency, audience specificity, creative need and precision. It scores at least three frameworks before choosing a primary and an alternative. You can name a framework directly and the skill will use it. The selection algorithm still runs so the transparency report shows why that framework fits. The definitions live in `references/patterns-evaluation.md`.
 
 ### The DEPTH Thinking Pass
 
@@ -100,7 +104,7 @@ DEPTH runs five phases. The round count is mode-driven: zero for raw, three for 
 | Phase | What happens |
 |---|---|
 | Discover | The prompt is mapped from multiple perspectives, assumptions are surfaced and the best framework is selected |
-| Engineer | Several enhancement approaches are generated and evaluated, and the strongest is chosen |
+| Engineer | Several enhancement approaches are generated and evaluated, then the strongest is chosen |
 | Prototype | The structured draft is built, mechanism-first, with the selected framework and format applied |
 | Test | CLEAR scoring runs against all five dimensions and quality gates are checked |
 | Harmonize | Final polish, format verification and the transparency report are assembled |
@@ -109,7 +113,7 @@ Every phase carries an exit gate. Discover requires at least three perspectives 
 
 ### The CLEAR Rubric
 
-CLEAR scores out of fifty points across five dimensions. The pass threshold is forty, and each dimension has a floor that blocks a pass even when the total clears forty.
+CLEAR scores out of fifty points across five dimensions. The pass threshold is forty. Each dimension has a floor that blocks a pass even when the total clears forty.
 
 | Dimension | Max | Floor | What it measures |
 |---|---|---|---|
@@ -119,7 +123,7 @@ CLEAR scores out of fifty points across five dimensions. The pass threshold is f
 | Arrangement | 10 | 7 | Framework adherence, flow, organization |
 | Reusability | 5 | 3 | Adaptable to similar tasks, template-ready |
 
-Scoring bands are pass at forty and up, revision at thirty to thirty-nine, rejected below thirty. The improvement cycle caps at three iterations. After that the best version ships with a scored note.
+Scores of forty and up pass. Scores from thirty to thirty-nine go back for revision. Scores below thirty are rejected. The improvement cycle caps at three iterations, then the best version ships with a scored note.
 
 ### The Operating Modes
 
@@ -136,7 +140,9 @@ The mode is detected from the command prefix. An absent prefix defaults to the i
 | YAML | `$yaml` | 10 | The output must be YAML, ready for config |
 | Raw | `$raw` | 0 | Skip all phases. Passthrough with no scoring |
 
-The `@prompt-improver` agent is the fresh-context escalation surface. It loads the same references, applies the same rules and returns a structured block (framework, CLEAR score, rationale, enhanced prompt and escalation notes) that a caller can inject into a CLI dispatch without loading the full skill.
+### The Agent Escalation Path
+
+The `@prompt-improver` agent is the fresh-context escalation surface. It loads the same references and applies the same rules. It returns a structured block (framework, CLEAR score, rationale, enhanced prompt and escalation notes) that a caller can inject into a CLI dispatch without loading the full skill.
 
 ---
 
@@ -144,18 +150,17 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ### When To Use This Skill
 
-Reach for sk-prompt when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value.
+Reach for `sk-prompt-improve` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief: a grounded anti-default prompt, a seed-of-thought variation technique, a discovery-form pre-answer and a handoff note to `sk-code`. It owns the prompt only. `sk-design` owns the design judgment and `mcp-open-design` owns the run transport.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt/sk-prompt-models` | Decides which of sk-prompt's seven frameworks a given small model wants and adds model-specific scaffold and gotchas. sk-prompt owns the definitions and the rubric. `sk-prompt/sk-prompt-models` owns the per-model mapping. |
-| `cli-claude-code` | Consumes the prompt quality card that sk-prompt produces and handles the executor mechanics. sk-prompt does not own invocation flags or dispatch rules. |
-| `cli-opencode` | Same boundary as cli-claude-code. Consumes the prompt card, owns the mechanics. |
-| `cli-opencode` | Same boundary. Receives the enhanced prompt and runs the session. |
-| `system-skill-advisor` | Routes non-trivial tasks to sk-prompt at Gate 2 when the prompt carries prompt-engineering keywords. |
-| `sk-doc` | Owns the documentation output. sk-prompt hands off when the final artifact is a spec doc or README. |
+| `sk-prompt/sk-prompt-models` | Decides which of the seven frameworks a given small model wants and adds model-specific scaffold and gotchas. This skill owns the definitions and the rubric. `sk-prompt-models` owns the per-model mapping |
+| `cli-claude-code` | Consumes the prompt quality card this skill produces and handles the executor mechanics. This skill does not own invocation flags or dispatch rules |
+| `cli-opencode` | Same boundary as cli-claude-code. Consumes the prompt card, owns the mechanics |
+| `system-skill-advisor` | Routes non-trivial tasks to this skill at Gate 2 when the prompt carries prompt-engineering keywords |
+| `sk-doc` | Owns the documentation output. This skill hands off when the final artifact is a spec doc or README |
 
 ---
 
@@ -163,7 +168,7 @@ Reach for sk-prompt when a prompt you are about to send feels vague or unstructu
 
 | What you see | Why | Fix |
 |---|---|---|
-| CLEAR score below forty after the full pass | The input lacked enough context or the framework did not fit the task | Add more context about your audience and constraints, or name a framework directly |
+| CLEAR score below forty after the full pass | The input lacked enough context or the framework did not fit the task | Add more context about your audience and constraints. Name a framework directly when you already know the right shape |
 | The wrong framework was selected | An ambiguous task underscored its complexity and the selector picked a suboptimal match | State the complexity level or name the framework you want applied |
 | JSON output arrived wrapped in Markdown | The `$json` prefix was not used, so the skill delivered in the default format | Use the `$json` prefix explicitly |
 | Too many rounds for a simple task | The default mode runs ten rounds, which is heavy for a quick refinement | Use `$short` for three rounds or `$raw` for zero |
@@ -176,23 +181,23 @@ Reach for sk-prompt when a prompt you are about to send feels vague or unstructu
 
 **Q: What is the difference between `$improve` and `$refine`?**
 
-A: `$improve` is the standard enhancement path. Ten rounds, framework selection and CLEAR scoring. `$refine` runs the same pipeline but targets maximum optimization. Reach for `$refine` when a prompt scored 35 to 39 and you need to push it over forty, or when the prompt is heading to a high-stakes dispatch.
+A: `$improve` is the standard enhancement path. Ten rounds, framework selection, CLEAR scoring and a transparency report. `$refine` runs the same pipeline but targets maximum optimization. Reach for `$refine` when a prompt scored 35 to 39 and you need it to cross forty. It is also the right mode for a prompt heading to a high-stakes dispatch.
 
 **Q: Can I name a framework directly instead of letting the skill pick one?**
 
-A: Yes. State the framework name in your request, and the skill runs the full DEPTH pass through that framework. The selection algorithm still fires in the background so the transparency report confirms the fit.
+A: Yes. State the framework name in your request and the skill runs the full DEPTH pass through that framework. The selection algorithm still fires in the background, so the transparency report confirms the fit.
 
 **Q: What happens when CLEAR cannot reach forty after three iterations?**
 
-A: The skill delivers the highest-scoring version with an explicit escalation note. It tells you why the score stalled, which dimensions blocked the pass and how to add context or switch frameworks to get across the line.
+A: The skill delivers the highest-scoring version with an explicit escalation note. It tells you why the score stalled, which dimensions blocked the pass, how to add context and how to switch frameworks to get across the line.
 
 **Q: Does the skill change my intent when it reworks a prompt?**
 
-A: No. An intent-preservation check runs during Prototype. The skill must preserve your stated goal, audience and constraints unless you explicitly ask it to broaden or narrow scope. Flagged assumptions appear in the transparency report so you can spot where inference filled a gap.
+A: No. An intent-preservation check runs during Prototype. The skill keeps the goal, the audience, the constraints and the intended format you stated unless you explicitly ask it to broaden or narrow scope. Flagged assumptions appear in the transparency report so you can spot where inference filled a gap.
 
 **Q: How does this differ from `sk-prompt/sk-prompt-models`?**
 
-A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR rubric. It answers "what is RCAF" and "how do I score a prompt." `sk-prompt/sk-prompt-models` owns the per-model mapping. It answers "which framework should MiniMax use" and adds the model-specific scaffold and gotchas. When you dispatch to a small model, `sk-prompt/sk-prompt-models` reads sk-prompt's framework set, picks the best fit for that model and layers on the prompt-craft profile.
+A: This skill owns the framework definitions, the DEPTH methodology, the CLEAR rubric and the operating modes. It answers "what is RCAF" and "how do I score a prompt." `sk-prompt-models` owns the per-model mapping. It answers "which framework should MiniMax use" and adds the model-specific scaffold and gotchas. When you dispatch to a small model, `sk-prompt-models` picks the best framework fit from this skill's framework set and adds the model-specific scaffold and gotchas.
 
 ---
 
@@ -200,7 +205,7 @@ A: sk-prompt owns the framework definitions, the DEPTH methodology and the CLEAR
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/prompt:improve/README.md --type readme` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt/sk-prompt-improve/README.md --type readme` reports zero issues |
 | Manual testing playbook | Scenarios under `manual-testing-playbook/` cover mode detection, smart routing, the DEPTH-CLEAR loop, CLEAR scoring, framework selection, escalation tiers and format modes |
 | Agent contract | The `@prompt-improver` output block contract lives in `SKILL.md` Section 7. Validate with the playbook scenarios under `manual-testing-playbook/escalation-tiers/` |
 

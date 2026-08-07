@@ -3,10 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
-  durableReceipt,
   rebuildProjection,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   parseDeepAlignmentCertificateBundle,
   verifyDeepAlignmentCertificateOffline,
@@ -1496,12 +1494,7 @@ export class DeepAlignmentResumeAdapter {
     if (authorization.verdict !== 'allow') {
       throw new TypeError(`Resume decision authorization was denied: ${authorization.reasonCode}`);
     }
-    // Replaying an already-committed resume returns the durable receipt from the
-    // committed frame. Re-entering the fenced writer would reject the replay as a
-    // head conflict because the live head has advanced past the recorded prior head.
-    const appendReceipt = existing.length === 1
-      ? durableReceipt(existing[0].frame)
-      : await appendFencedLedgerRecord(this.#options.ledger, prepared, authorization.proof);
+    const appendReceipt = await this.#options.ledger.appendAuthorized(prepared, authorization.proof);
     let dispatchedBranches = 0;
     if (existing.length === 0
       && this.#options.enableDarkDispatch === true

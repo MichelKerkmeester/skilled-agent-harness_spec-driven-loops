@@ -1,0 +1,17 @@
+{
+  "executors": [
+    {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max",
+      "serviceTier": "fast",
+      "label": "luna-max",
+      "iterations": 10
+    }
+  ],
+  "assignment_model": "flat_pool",
+  "concurrency": 1,
+  "maxRetries": 5,
+  "lagCeilingMs": 300000,
+  "progressHeartbeatSeconds": 60
+}

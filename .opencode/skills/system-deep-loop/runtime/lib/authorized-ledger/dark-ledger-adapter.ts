@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { AppendOnlyLedger } from './append-only-ledger.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import { AuthorizedLedgerError } from './authorized-ledger-errors.js';
 import { TransitionAuthorizationGateway } from './transition-authorization-gateway.js';
 
@@ -154,7 +153,7 @@ export class DarkLedgerAdapter {
         return legacyResult;
       }
 
-      const receipt = await appendFencedLedgerRecord(this.#ledger, event, authorization.proof);
+      const receipt = await this.#ledger.appendAuthorized(event, authorization.proof);
       this.#record({
         boundaryId,
         status: 'appended',

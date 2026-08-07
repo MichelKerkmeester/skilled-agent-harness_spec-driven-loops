@@ -1,0 +1,14 @@
+{
+  "specFolder": "hooks",
+  "description": "Track folder for hooks packets — per-prompt injection hooks, advisor-brief/directive rendering, spec-gate, and cross-runtime hook adapters.",
+  "keywords": [
+    "track"
+  ],
+  "lastUpdated": "2026-08-06T00:00:00.000Z",
+  "specId": "hooks",
+  "folderSlug": "hooks",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

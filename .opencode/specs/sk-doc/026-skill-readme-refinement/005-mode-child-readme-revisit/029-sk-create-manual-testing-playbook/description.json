@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
+  "description": "The current README at `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md` predates the pilot standard that the mcp-obsidian README",
+  "keywords": [
+    "current",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "sk-create-manual-testing-playbook",
+    "predates",
+    "pilot",
+    "standard",
+    "mcp-obsidian"
+  ],
+  "lastUpdated": "2026-08-04T20:45:13.686Z",
+  "specId": "029",
+  "folderSlug": "sk-create-manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "04-08-26_16-07__phase-029-execution-readme-rewritten-purpose.md",
+    "04-08-26_16-10__phase-029-complete-readme-v1-0-1-2-purpose-first.md"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "topic": "Verify the lumo.md Reasonix vs Pi prompt-caching claims and scope feasibility of a Reasonix-style Pi caching plugin",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 20,
+    "convergenceMode": "telemetry-only",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/001-research",
+  "fanout_lineage_artifact_dir": ".opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/001-research/research/lineages/terra-max",
+  "artifactDir": ".opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/001-research/research/lineages/terra-max",
+  "createdAt": "2026-08-06T10:13:20Z",
+  "status": "initialized",
+  "executionMode": "detached-fanout",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "executorProvenance": {
+    "requested": "cli-codex model=gpt-5.6-terra",
+    "nestedInvocation": "not-run",
+    "reason": "The cli-codex contract prohibits nested Codex invocation when CODEX_* runtime markers are present; no alternate executor was substituted.",
+    "stateProtocol": "executed by the enclosing detached fan-out session"
+  },
+  "lineage": {
+    "sessionId": "fanout-terra-max-1786010864634-ls9fw0",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "fanout": true,
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "reason": "The standard reducer resolves the parent research root and would violate the caller's lineage-only write boundary. Derived outputs are materialized within this bound lineage."
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

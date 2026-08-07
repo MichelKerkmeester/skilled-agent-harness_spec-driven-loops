@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
+  "description": "The sk-create-agent README predates the pilot standard in the concrete ways this phase measures",
+  "keywords": [
+    "sk-create-agent",
+    "readme",
+    "predates",
+    "pilot",
+    "standard",
+    "concrete",
+    "ways",
+    "phase",
+    "measures"
+  ],
+  "lastUpdated": "2026-08-04T15:07:51.461Z",
+  "specId": "022",
+  "folderSlug": "sk-create-agent",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

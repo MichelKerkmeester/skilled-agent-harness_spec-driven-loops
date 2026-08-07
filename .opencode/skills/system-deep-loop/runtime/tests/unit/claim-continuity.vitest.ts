@@ -2,8 +2,6 @@
 // MODULE: Claim Continuity Contract Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -288,7 +286,7 @@ async function appendRelationship(
   };
   const authorization = await harness.claims.gateway.authorize(request);
   if (authorization.verdict !== 'allow') throw new Error(authorization.reasonCode);
-  await appendAuthorizedForTest(harness.claims.ledger, event, authorization.proof);
+  await harness.claims.ledger.appendAuthorized(event, authorization.proof);
 }
 
 function relationshipBase(relationshipId: string): JsonObject {

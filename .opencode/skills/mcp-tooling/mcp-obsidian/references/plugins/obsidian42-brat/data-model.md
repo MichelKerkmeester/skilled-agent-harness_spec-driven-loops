@@ -1,5 +1,5 @@
 ---
-title: BRAT data.json Data Model
+title: "BRAT data.json Data Model"
 description: "Complete file-layer contract for BRAT data.json, including defaults, repository policy records, theme records, SecretStorage token names, and release-pin semantics."
 trigger_phrases:
   - "brat data json schema"
@@ -16,15 +16,11 @@ version: 0.1.0.0
 
 BRAT (Beta Reviewers Auto-update Tool) persists its beta-plugin policy in the BRAT plugin directory. This reference describes the complete persisted shape used by the v2.2.0+ settings source and beta-plugin feature code.
 
----
-
 ## 1. OVERVIEW
 
 BRAT's persisted file is `<vault>/.obsidian/plugins/obsidian42-brat/data.json`. The plugin loads that file over `DEFAULT_SETTINGS`; omitted keys therefore take the documented defaults. The implementation sources are [`src/settings.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts) and [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts) in [`TfTHacker/obsidian42-brat`](https://github.com/TfTHacker/obsidian42-brat).
 
 BRAT has two different kinds of persisted policy. `pluginList` is the membership list of GitHub repository paths. `pluginSubListFrozenVersion` is the optional per-repository release policy list; a truthy version other than `latest` is a frozen exact tag and is skipped by update sweeps.
-
----
 
 ## 2. TOP-LEVEL SETTINGS SCHEMA
 
@@ -50,8 +46,6 @@ The table is the complete top-level key set. Defaults apply when a key is omitte
 | `allowIncompatiblePlugins` | boolean | `false` | Allows installation when BRAT's compatibility checks identify an incompatibility. |
 
 The settings and defaults are defined by [`src/settings.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts); repository selection, release fetching, installation, and frozen-policy handling are implemented in [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
-
----
 
 ## 3. REPOSITORY AND THEME RECORDS
 
@@ -89,8 +83,6 @@ Each theme record has this shape:
 ```
 
 `repo` identifies the GitHub theme repository. `lastUpdate` is BRAT's remembered checksum for the installed theme CSS, allowing a later theme check to detect a changed file. Themes are not plugin records: they are written below `.obsidian/themes/<manifest.name>/` and are not activated through `.obsidian/community-plugins.json`.
-
----
 
 ## 4. ANNOTATED JSON SKELETON
 
@@ -135,9 +127,7 @@ The following is valid JSON. The moving plugin and frozen plugin demonstrate tha
 }
 ```
 
-For a populated example using the two sibling mode plugins, see [`../../../assets/plugins/obsidian42-brat/brat-data-entry.example.json`](../../../assets/plugins/obsidian42-brat/brat-data-entry.example.json).
-
----
+For a populated example using the two sibling mode plugins, see [`../../../assets/brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json).
 
 ## 5. FILE-LAYER MERGE INVARIANTS
 
@@ -152,8 +142,6 @@ When editing BRAT state without running Obsidian:
 
 The file is only BRAT's registration and update policy. It does not stage plugin assets and it does not activate a plugin; those are separate file-layer stages described in [`workflows.md`](workflows.md).
 
----
-
 ## 6. SOURCES AND RELATED RESOURCES
 
 - [`TfTHacker/obsidian42-brat`](https://github.com/TfTHacker/obsidian42-brat)
@@ -161,4 +149,4 @@ The file is only BRAT's registration and update policy. It does not stage plugin
 - [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts)
 - [`BRAT workflows`](workflows.md)
 - [`BRAT troubleshooting`](troubleshooting.md)
-- [`brat-data-entry.example.json`](../../../assets/plugins/obsidian42-brat/brat-data-entry.example.json)
+- [`brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json)

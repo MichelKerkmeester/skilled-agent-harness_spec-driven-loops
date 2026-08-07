@@ -1,5 +1,5 @@
 ---
-title: Health.md File-Layer Data Model
+title: "Health.md File-Layer Data Model"
 description: "Complete file-layer contract for the Health.md Visualizations plugin: data folder and settings contract, supported formats, schema versions, roll-ups, metric dictionary, lossless archives, entry notes, and Apple/Android profiles."
 trigger_phrases:
   - "health md data model"
@@ -39,8 +39,6 @@ Health.md Visualizations renders Apple and Android health data from **plain data
 - A `health-viz` fenced code block in any note renders a chart from the loaded data.
 - When the data folder is missing or empty, the plugin renders deterministic bundled example data instead.
 
----
-
 ## 2. SETTINGS CONTRACT
 
 The full contract covers folder, structure, pattern, and format **plus** theme/palette/appearance defaults, chart dimensions, and click behavior. Read the configured values; do not assume defaults.
@@ -58,8 +56,6 @@ The full contract covers folder, structure, pattern, and format **plus** theme/p
 | Schema compatibility | — | Diagnostic: Settings → Health.md Visualizations → Health.md schema compatibility → Scan now; run after export-setting changes |
 
 Nested structures still load files directly under the data folder, so flat exports can migrate gradually.
-
----
 
 ## 3. FILE LAYERS
 
@@ -94,8 +90,6 @@ Distinct layers must never be treated as one stream: daily summaries, separately
 - Detailed workouts, vitals, and platform-specific entries live in notes discoverable by declared frontmatter/tags — a separate discovery path.
 - Do not merge them into daily summaries.
 
----
-
 ## 4. PLATFORM PROFILES
 
 | Profile | Version | Notes |
@@ -113,8 +107,6 @@ Format names are shared between Apple and Android, but version and semantic diff
 - Routes and sample charts require granular data plus permission/consent.
 - Missing data is ordinarily absent, not zero.
 
----
-
 ## 5. FORMAT NOTES
 
 | Format | Capabilities | Limits |
@@ -124,8 +116,6 @@ Format names are shared between Apple and Android, but version and semantic diff
 | Markdown frontmatter | Schema, units, timezone, completeness | Requires YAML frontmatter (Bases-style) |
 | Markdown without frontmatter | Granular tables | No schema/units/timezone/completeness |
 | Bases | Full frontmatter path | Same as Markdown frontmatter |
-
----
 
 ## 6. WHAT THE AI MUST NOT DO
 

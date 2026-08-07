@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+  "description": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style",
+  "keywords": [
+    "cli-devin",
+    "mode",
+    "readme",
+    "opencode",
+    "skills",
+    "cli-external-orchestration",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style"
+  ],
+  "lastUpdated": "2026-08-04T07:54:37.139Z",
+  "specId": "004",
+  "folderSlug": "cli-devin",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

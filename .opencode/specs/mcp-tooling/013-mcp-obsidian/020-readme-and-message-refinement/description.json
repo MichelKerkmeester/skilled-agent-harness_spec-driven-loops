@@ -1,0 +1,27 @@
+{
+  "specFolder": "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement",
+  "description": "The mcp-obsidian README and SKILL.md state the skill's reason for being as routing between two CLI profiles and the MCP",
+  "keywords": [
+    "mcp-obsidian",
+    "readme",
+    "skill",
+    "state",
+    "reason",
+    "routing",
+    "between",
+    "two",
+    "cli",
+    "profiles",
+    "mcp"
+  ],
+  "lastUpdated": "2026-08-04T05:41:57.014Z",
+  "specId": "020",
+  "folderSlug": "readme-and-message-refinement",
+  "parentChain": [
+    "mcp-tooling",
+    "013-mcp-obsidian"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

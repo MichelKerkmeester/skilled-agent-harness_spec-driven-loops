@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review readme",
+      "mode readme rewrite",
+      "deep-review readme",
+      "readme revisit deep review",
+      "hvr readme check",
+      "phase 039 plan",
+      "deep review readme plan",
+      "mode readme rewrite plan",
+      "phase 039 tasks",
+      "deep review readme tasks",
+      "mode readme rewrite tasks",
+      "phase 039 checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "readme",
+      "mode",
+      "rewrite",
+      "deep-review",
+      "revisit",
+      "hvr",
+      "check",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-review/README.md",
+      ".opencode/skills/system-deep-loop/deep-review/changelog/v1.11.0.36.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/checklist.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.0.36.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.11.0.36.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-obsidian",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Dimension Coverage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review README at `.opencode/skills/system-deep-loop/deep-review/README.md` still carries the older tabular reference-card style and predates the pilot standard",
+    "created_at": "2026-08-04T08:34:53.459Z",
+    "last_save_at": "2026-08-04T18:54:46.050Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e7e054f37dbb5034859da7749e193b2dbc86e31a79bb744d9b36718fae23c58",
+    "source_doc_hashes": {
+      "spec.md": "cadb443e87a4490453b3a91be4c20968a39858d35545561aaff49c421ebbfc9c",
+      "plan.md": "64534903f16a0614934625923b59d9aeabf4aae7223e9a155b3c979952d1ec31",
+      "tasks.md": "0caccf202b65a3c5643b0f40262da2cc4e05a897c35bac289f2bd8dea5dc41aa",
+      "checklist.md": "2e8f5fee627fe9c5a0fd6e03a17f3003d52878e5fa6ff22d70c8e10000ad1151",
+      "implementation-summary.md": "3b5350e0675b779e275cfd31a265221cf9d4d22cd5a5318f92a51f4dde744626"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

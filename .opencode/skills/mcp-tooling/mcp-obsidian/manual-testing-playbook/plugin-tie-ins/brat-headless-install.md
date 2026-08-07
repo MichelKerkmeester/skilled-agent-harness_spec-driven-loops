@@ -9,7 +9,7 @@ version: 0.1.0.0
 
 ## 1. OVERVIEW
 
-This scenario validates a BRAT-managed beta-plugin install without invoking Obsidian's plugin UI. It stages the exact GitHub release assets, registers the repository and release policy in BRAT's data.json, and activates the manifest ID in community-plugins.json. It runs fully offline against the shipped release fixture (`assets/plugins/obsidian42-brat/release.example.json` plus the `sample-beta-plugin/` stand-in assets), or against a live GitHub release when network access is available.
+This scenario validates a BRAT-managed beta-plugin install without invoking Obsidian's plugin UI. It stages the exact GitHub release assets, registers the repository and release policy in BRAT's data.json, and activates the manifest ID in community-plugins.json.
 
 ### Why This Matters
 
@@ -35,7 +35,7 @@ BRAT installation has three distinct file-layer contracts: plugin files must exi
 
 ### Recommended Orchestration Process
 
-Use a throwaway or operator-owned vault, close Obsidian before writing its JSON files, and keep backups of BRAT data.json and community-plugins.json. For a fully offline run, stage from the shipped release fixture (see Fixture mode below) — no network required. For a live run, choose a real GitHub beta-plugin repository plus an exact release tag with network access.
+Use a throwaway or operator-owned vault, close Obsidian before writing its JSON files, and choose a real GitHub beta-plugin repository plus an exact release tag. Keep backups of BRAT data.json and community-plugins.json; network access or a captured release fixture is required for staging.
 
 ### Prompt
 
@@ -71,27 +71,6 @@ Install a tagged beta plugin headlessly through BRAT by staging its release asse
    cp "$STAGE_DIR/main.js" "$VAULT/.obsidian/plugins/$PLUGIN_ID/main.js"
    cp "$STAGE_DIR/manifest.json" "$VAULT/.obsidian/plugins/$PLUGIN_ID/manifest.json"
    if [ -f "$STAGE_DIR/styles.css" ]; then cp "$STAGE_DIR/styles.css" "$VAULT/.obsidian/plugins/$PLUGIN_ID/styles.css"; fi
-   ~~~
-
-   **Fixture mode (no network).** To run OBS-013 fully offline, stage from the shipped fixture instead of `curl`. `$SKILL` is the mcp-obsidian skill root; the register and activate steps below are identical in both modes.
-
-   ~~~sh
-   FIXTURE="$SKILL/assets/plugins/obsidian42-brat"
-   REPO="sample-owner/obsidian-sample-beta"
-   STAGE_DIR="$(mktemp -d)"
-   cp "$FIXTURE/release.example.json" "$STAGE_DIR/release.json"
-   TAG="$(jq -r '.tag_name' "$STAGE_DIR/release.json")"
-   jq -e --arg tag "$TAG" '.tag_name == $tag' "$STAGE_DIR/release.json" >/dev/null
-   for ASSET in main.js manifest.json; do
-     jq -e --arg name "$ASSET" '.assets[] | select(.name == $name)' "$STAGE_DIR/release.json" >/dev/null
-     cp "$FIXTURE/sample-beta-plugin/$ASSET" "$STAGE_DIR/$ASSET"
-   done
-   jq empty "$STAGE_DIR/manifest.json"
-   PLUGIN_ID="$(jq -r '.id // empty' "$STAGE_DIR/manifest.json")"
-   jq -e '.id and .version' "$STAGE_DIR/manifest.json" >/dev/null
-   printf '%s' "$PLUGIN_ID" | grep -qE '^[A-Za-z0-9._-]+$' || { echo "unsafe plugin id: $PLUGIN_ID" >&2; exit 1; }
-   mkdir -p "$VAULT/.obsidian/plugins/$PLUGIN_ID"
-   cp "$STAGE_DIR/main.js" "$STAGE_DIR/manifest.json" "$VAULT/.obsidian/plugins/$PLUGIN_ID/"
    ~~~
 
 2. Register: back up BRAT data.json, then upsert REPO in pluginList and {repo: REPO, version: TAG} in pluginSubListFrozenVersion; write through a temporary file, run jq empty, and preserve all unrelated settings and policy records.
@@ -165,9 +144,7 @@ Capture the release response and selected asset names, manifest identity/version
 
 | File | Role |
 |---|---|
-| [../../assets/plugins/obsidian42-brat/brat-data-entry.example.json](../../assets/plugins/obsidian42-brat/brat-data-entry.example.json) | Populated BRAT policy fixture without credentials |
-| [../../assets/plugins/obsidian42-brat/release.example.json](../../assets/plugins/obsidian42-brat/release.example.json) | Captured GitHub release response for offline fixture-mode staging |
-| [../../assets/plugins/obsidian42-brat/sample-beta-plugin/manifest.json](../../assets/plugins/obsidian42-brat/sample-beta-plugin/manifest.json) | Fixture beta-plugin manifest + `main.js` staged by fixture mode |
+| [../../assets/brat-data-entry.example.json](../../assets/brat-data-entry.example.json) | Populated BRAT policy fixture without credentials |
 | [../../references/plugins/obsidian42-brat/troubleshooting.md](../../references/plugins/obsidian42-brat/troubleshooting.md) | Release, asset, compatibility, token, and path diagnosis |
 | [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
 

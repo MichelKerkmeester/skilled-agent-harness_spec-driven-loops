@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries"
-    last_updated_at: "2026-08-03T06:05:31Z"
-    last_updated_by: "codex"
-    recent_action: "Recorded the hard-private primitive and coordinator-issued fence capability hardening"
-    next_safe_action: "Run strict validation after metadata regeneration"
+    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
+    next_safe_action: "Enumerate the exported mutation surface before any edit"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
@@ -76,15 +76,15 @@ Enumerate every exported mutation entry point first, because the operator ruling
 Single authorized mutation gateway with fencing, plus atomic staged publication
 
 ### Key Components
-- **Fenced append gateway**: The only exported domain mutation capability; supplies a coordinator-issued capability and enforces the current lease at the append boundary
-- **Hard-private append primitive**: `#appendAuthorized` is unreachable through casts; a module-scoped capability-gated bridge is used only by the fenced writer and the designated test helper
+- **Fenced append gateway**: The only exported domain mutation capability; enforces fencing tokens and a high-water mark
+- **Internal `appendAuthorized`**: Retained as an internal primitive the gateway calls, no longer part of the public surface
 - **Gateway identity resolution**: Resolves and verifies `actorId`, `capabilityId` and `evidenceDigest` instead of trusting them
 - **Policy identity**: A digest that covers captured authorization state, not only `evaluate.toString()`
 - **Single-winner primitive**: The contended-path mechanism shared by effect recovery, operator-decision commit and attestation convergence
 - **Staged leaf publication**: Narrative, delta and state record published atomically with a closed record parser
 
 ### Data Flow
-Caller -> fenced gateway (resolve identity, evaluate policy) -> coordinator-issued fence capability -> hard-private append primitive -> frame store. The primitive rechecks the current lease before any durable work. Denials are made durable before the caller observes the rejection. Leaf publication stages into a temporary location and promotes atomically, so a crash leaves either the prior state or the complete new state.
+Caller -> fenced gateway (resolve identity, check fence and high-water mark, evaluate policy) -> internal `appendAuthorized` -> frame store. Denials are made durable before the caller observes the rejection. Leaf publication stages into a temporary location and promotes atomically, so a crash leaves either the prior state or the complete new state.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -187,7 +187,7 @@ Required inventories (run before implementation, record the output):
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `021` honest baselines | Internal | Red (not started) | Evidence issued against dishonest counts repeats Blocker 4 |
-| `runtime` vitest + tsc | Internal | Yellow | Package scripts are unavailable; fallback tsc and targeted Vitest are green, but broad runners remained live without aggregate totals |
+| `runtime` vitest + tsc | Internal | Green | No verification possible |
 | Two-process test harness | Internal | Yellow (to be built) | Concurrency claims become assertions without evidence |
 | `026` needs the closed leaf record parser | Internal | Downstream | `026` cannot start its slice-binding layer |
 <!-- /ANCHOR:dependencies -->
@@ -320,34 +320,6 @@ Phase 4 (Concurrency family) ──────► Phase 5 (Leaf publication)
 
 ---
 
-<!-- ANCHOR:ai-execution-protocol -->
-## AI EXECUTION PROTOCOL
-
-### Pre-Task Checklist
-
-- Confirm the scoped finding classification and call-site inventory before source edits.
-- Capture the full pre-edit typecheck and test baseline at the candidate SHA.
-- Keep production migration ordered: fenced path, production callers, then public export demotion.
-
-### Execution Rules
-
-| Rule | Requirement |
-|------|-------------|
-| TASK-SEQ | Do not demote the public append surface before production callers have a fenced path. |
-| TASK-SCOPE | Modify only the files listed in this child and its evidence records. |
-| TASK-VERIFY | Run targeted tests after each boundary change and the whole runtime gate before closeout. |
-
-### Status Reporting Format
-
-Every update records the command, exit code, discovered counts where applicable, and whether the result is confirmed or deferred. Completion remains `In Progress` until the checklist, whole-gate delta, and strict validator are reconciled.
-
-### Blocked Task Protocol
-
-Mark a task `BLOCKED` with the exact command or external dependency, preserve the last confirmed receipt, and do not claim a green closeout. Runtime package absence, native-module ABI failures, and missing independent verification are reported as blockers with an owner and next safe action.
-<!-- /ANCHOR:ai-execution-protocol -->
-
----
-
 <!-- ANCHOR:milestones -->
 ## L3: MILESTONES
 
@@ -369,13 +341,8 @@ Mark a task `BLOCKED` with the exact command or external dependency, preserve th
 | ADR | Decision | Status |
 |-----|----------|--------|
 | ADR-001 | Gateway-only mutation: the fenced append gateway is the only exported domain mutation capability | Accepted |
-| ADR-002 | Identity-bearing gateway inputs are resolved and verified, never trusted | Accepted |
-| ADR-003 | Leaf artifact publication is staged and promoted atomically behind a closed parser | Accepted |
-| ADR-004 | Carry the fencing token with the authorization proof | Accepted |
-| ADR-005 | Use a zero-length deprecation window | Accepted |
-| ADR-006 | Share one durable single-winner primitive | Accepted |
-| ADR-007 | Derive the effect single-winner root from the ledger context by default | Accepted |
-| ADR-008 | Enforce the fence with an opaque capability at the primitive boundary | Accepted |
+| ADR-002 | Identity-bearing gateway inputs are resolved and verified, never trusted | Proposed |
+| ADR-003 | Leaf artifact publication is staged and promoted atomically behind a closed parser | Proposed |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->

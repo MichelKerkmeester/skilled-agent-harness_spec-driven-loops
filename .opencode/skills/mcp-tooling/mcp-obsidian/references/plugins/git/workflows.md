@@ -1,5 +1,5 @@
 ---
-title: Git Plugin File-Layer Workflows
+title: "Git Plugin File-Layer Workflows"
 description: "Safe file-layer recipes for the Git plugin (obsidian-git): read plugin state, validate settings, edit with backup discipline, preview commit messages, manage ignore rules, inspect repository health and report conflicts."
 trigger_phrases:
   - "read obsidian git settings"
@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian git conflict file check"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Git Plugin File-Layer Workflows
@@ -42,8 +42,6 @@ git diff --stat
 ```
 
 Anything outside this allowlist counts as state-changing and moves to a throwaway repository.
-
----
 
 ## 2. RECIPES
 
@@ -166,8 +164,6 @@ The mode never rewrites existing entries and never deletes the file.
 4. Run `git remote -v` and confirm the remote matches user intent.
 5. Report findings. When the repository is missing, the plugin can initialize it through its own commands, which the user triggers in the app.
 
----
-
 ## 3. BACKUP DISCIPLINE
 
 Every settings write follows this pattern.
@@ -179,8 +175,6 @@ Every settings write follows this pattern.
 
 The same rule applies to `.gitignore`: copy before appending.
 
----
-
 ## 4. VERIFYING
 
 - After any write: read the file back and validate the JSON parse.
@@ -191,8 +185,6 @@ The same rule applies to `.gitignore`: copy before appending.
 - Confirm the rendered commit message preview contains no unresolved placeholder tokens.
 - Confirm no file outside the scoped write target changed.
 - State clearly which outcomes still need the app: push success, view rendering, credential prompts.
-
----
 
 ## 5. LIMITS
 

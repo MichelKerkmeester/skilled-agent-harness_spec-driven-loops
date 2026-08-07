@@ -13,7 +13,6 @@ import {
   AuthorizedLedgerError,
   AuthorizedLedgerErrorCodes,
 } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import { validateNextFocusCandidate } from './next-focus-candidates.js';
 import { NextFocusError, NextFocusErrorCodes } from './next-focus-errors.js';
 import {
@@ -383,7 +382,7 @@ export async function recordNextFocusDecision(
   }
 
   try {
-    const receipt = await appendFencedLedgerRecord(ledger, event, proof);
+    const receipt = await ledger.appendAuthorized(event, proof);
     return Object.freeze({ receipt, idempotent: false });
   } catch (error: unknown) {
     if (

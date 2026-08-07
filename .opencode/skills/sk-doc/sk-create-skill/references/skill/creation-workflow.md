@@ -14,15 +14,15 @@ version: 1.8.0.3
 
 # Skill Creation Process
 
-The step-by-step workflow from concept to packaged skill: understanding, planning, initialization, editing, packaging, and iteration.
+The step-by-step workflow from concept to packaged skill: understanding, planning, initialization, editing, packaging and iteration.
 
 ---
 
 ## 1. OVERVIEW
 
-This reference is the core create workflow for a skill. It walks the six ordered steps from understanding the skill's purpose through iterating on real usage, and includes the SKILL.md authoring questions and the frontmatter completion contract.
+This reference is the core create workflow for a skill. It walks the six ordered steps from understanding the skill's purpose through iterating on real usage and includes the SKILL.md authoring questions and the frontmatter completion contract.
 
-**Core Principle**: Build the skill for another AI agent instance to use — favor information that is beneficial and non-obvious.
+**Core Principle**: Build the skill for another AI agent instance to use. Favor information that is beneficial and non-obvious.
 
 **When to Use**:
 - Creating a brand new skill from scratch
@@ -57,7 +57,7 @@ Follow these steps in order, skipping only if there is a clear reason they are n
 - "Can you give examples of how this would be used?"
 - "What would a user say that should trigger this skill?"
 
-**Best Practice**: Avoid overwhelming users—ask most important questions first, follow up as needed.
+**Best Practice**: Avoid overwhelming users. Ask the most important questions first, then follow up as needed.
 
 **Conclude when**: Clear sense of functionality the skill should support.
 
@@ -75,11 +75,11 @@ User: Convert documentation to question-answering format, remove metadata.
 
 ### Step 2: Planning Reusable Skill Contents (~5 min)
 
-**Objective**: Identify scripts, references, and assets that will be reused across skill invocations.
+**Objective**: Identify scripts, references and assets that will be reused across skill invocations.
 
 **Process**:
 1. Consider how to execute each example from scratch
-2. Identify scripts, references, and assets helpful for repeated execution
+2. Identify scripts, references and assets helpful for repeated execution
 3. Categorize resources by type (scripts/references/assets)
 
 **Example 1: PDF Editor Skill**
@@ -152,13 +152,13 @@ scripts/init_skill.py markdown-optimizer --path .opencode/skill
 
 #### Start with Reusable Skill Contents
 
-Begin with resources identified in Step 2: `scripts/`, `references/`, and `assets/` files.
+Begin with resources identified in Step 2: `scripts/`, `references/` and `assets/` files.
 
 **Process**:
 1. Create scripts identified in planning phase
-2. Add reference documentation — start each `references/*.md` from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) so it ships the full 5-field + `version` frontmatter block; emit kebab-case filenames
-3. Include asset files — start each `assets/*.md` from [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so it ships the full 5-field + `version` frontmatter block; emit kebab-case filenames
-4. Add procedure cards only when the skill has multiple distinct, individually-triggered internal procedures — start each from [skill-procedure-template.md](../../assets/skill/skill-procedure-template.md), placed under `references/procedures/`; skip this step entirely for a skill with one dominant workflow
+2. Add reference documentation. Start each `references/*.md` from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) so it ships the full 5-field + `version` frontmatter block. Emit kebab-case filenames.
+3. Include asset files. Start each `assets/*.md` from [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so it ships the full 5-field + `version` frontmatter block. Emit kebab-case filenames.
+4. Add procedure cards only when the skill has multiple distinct, individually-triggered internal procedures. Start each from [skill-procedure-template.md](../../assets/skill/skill-procedure-template.md) and place it under `references/procedures/`. Skip this step entirely for a skill with one dominant workflow.
 5. Delete example files generated during initialization
 
 **Note**: May require user input (e.g., brand assets, documentation templates).
@@ -183,6 +183,27 @@ assets/
   ├── frontmatter-templates.md  # Created
   └── example-asset.txt         # DELETE
 ```
+
+#### Author the README
+
+Choose the README template before writing the file.
+
+**Template choice rule**:
+
+- **Standalone skill**: use [skill-readme-template.md](../../assets/skill/skill-readme-template.md). Keep its purpose-first identity, `AT A GLANCE` table, numbered narrative sections, required `OVERVIEW` and `title`, `description` and `version` frontmatter.
+- **Parent hub**: use [parent-skill-readme-template.md](../../assets/parent-skill/parent-skill-readme-template.md). Include the hub pitch, purpose, modes and packets, registry and manifest navigation, changelog, scripts and commands and verification.
+- **Child mode**: use the standalone template for the child README unless the child phase contract names a more specific README template. The child mode remains responsible for its own README and changelog.
+
+The decision is based on the skill directory role, not on the number of files. A hub that owns nested modes uses the parent template. A standalone skill and a child mode use the standalone family unless their documented contract says otherwise.
+
+**Post-authoring README gate, run before packaging**:
+
+1. Run `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <skill>/README.md --type readme` and require zero issues.
+2. Run the HVR checks for em dashes, semicolons, Oxford commas and banned words on the README prose.
+3. Run `node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs` and confirm the README links resolve.
+4. Run `rg -n '^version:' <skill>/README.md` and require a four-part version field. Confirm a matching changelog entry exists.
+
+Only after all four checks pass should the workflow continue to Step 5.
 
 #### Update SKILL.md
 
@@ -216,9 +237,9 @@ Answer these questions in SKILL.md:
 
 3. **How should the agent route to the right resources?**
    - Section 2: SMART ROUTING
-   - Follow the SMART ROUTING template generated in Step 3. Populate the five subsections: Primary Detection Signal, Phase Detection, Resource Domains, Resource Loading Levels, and Smart Router Pseudocode.
+   - Follow the SMART ROUTING template generated in Step 3. Populate the five subsections: Primary Detection Signal, Phase Detection, Resource Domains, Resource Loading Levels and Smart Router Pseudocode.
    - **Seed the pseudocode from the canonical resilience pattern**: copy the four patterns from [skill-smart-router.md](../../assets/skill/skill-smart-router.md) §2 (runtime discovery, existence-check-before-load, extensible routing key, multi-tier fallback) into the Smart Router Pseudocode subsection, then adapt the routing key and resource map to this skill's domain. A SKILL.md with an empty or missing Smart Router Pseudocode subsection is incomplete.
-   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables; do NOT ship a SMART ROUTING section without the resilience pseudocode
+   - **Anti-pattern**: Do NOT duplicate routing logic in separate lookup tables. Do NOT ship a SMART ROUTING section without the resilience pseudocode.
 
 4. **How should bundled resources be organized for routing clarity?**
    - Keep domain structure explicit (for example `references/backend/go/`)
@@ -238,7 +259,7 @@ Answer these questions in SKILL.md:
 
 7. **What references should the skill expose explicitly?**
    - Section 5: REFERENCES
-   - Include core references and templates, or use combined `SMART ROUTING & REFERENCES` if preferred.
+   - Include core references and templates or use combined `SMART ROUTING & REFERENCES` if preferred.
 
 **Writing Style Reminders**:
 - Use imperative/infinitive form (verb-first: "Run validation", "Check structure")
@@ -248,29 +269,29 @@ Answer these questions in SKILL.md:
 
 **Frontmatter Completion**:
 
-SKILL.md requires all four fields. `package_skill.py --check` hard-fails when any is missing — `version` is **not** optional.
+SKILL.md requires all four fields. `package_skill.py --check` hard-fails when any is missing. `version` is **not** optional.
 
 | Field           | Required | Quick Note                                     |
 | --------------- | -------- | ---------------------------------------------- |
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
-| `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 in [common-pitfalls.md](../shared/common-pitfalls.md) for trim rules |
+| `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command). See Pitfall 1 in [common-pitfalls.md](../shared/common-pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
-| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`); see [frontmatter-versioning.md](../../../shared/references/frontmatter-versioning.md) |
+| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`). See [frontmatter-versioning.md](../../../shared/references/frontmatter-versioning.md) |
 
 ```yaml
 ---
 name: markdown-optimizer
-description: Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance
+description: Complete document quality pipeline with structure enforcement, content optimization (AI-friendly) and style guide compliance
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0.0
 ---
 ```
 
-**Every authored `.md` carries `version`** — not just SKILL.md:
-- **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) / [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so the block is present by construction. Emit kebab-case filenames and directory slugs. Python filenames, Python import-package directories, and tool-mandated names remain exempt.
-- **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description`, and `version` per [skill-readme-template.md](../../assets/skill/skill-readme-template.md).
+**Every authored `.md` carries `version`**: not just SKILL.md.
+- **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) / [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so the block is present by construction. Emit kebab-case filenames and directory slugs. Python filenames, Python import-package directories and tool-mandated names remain exempt.
+- **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description` and `version` per [skill-readme-template.md](../../assets/skill/skill-readme-template.md).
 
-> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md)
+> **Complete Reference**: For validation rules, format specifications and all document types, see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md)
 
 ### Step 5: Packaging a Skill (~2 min)
 
@@ -280,7 +301,7 @@ version: 1.0.0.0
 ```bash
 scripts/package_skill.py <path/to/skill-folder> --check --strict
 ```
-`--check --strict` runs validation only (no zip). It is the authoritative gate: it hard-fails on a missing `version` (or non-4-part `X.Y.Z.W`), a `name` that does not match the folder, a missing required SKILL.md section, and any non-exempt generated package path that is not kebab-case. Do not claim the skill is complete until strict validation passes.
+`--check --strict` runs validation only (no zip). It is the authoritative gate. It hard-fails on a missing `version`, a non-4-part `X.Y.Z.W`, a `name` that does not match the folder, a missing required SKILL.md section or a non-exempt generated package path that is not kebab-case. Do not claim the skill is complete until strict validation passes.
 
 **Command** (validate + package into a zip):
 ```bash
@@ -305,12 +326,12 @@ scripts/package_skill.py <path/to/skill-folder> ./dist
 1. SKILL.md exists
 2. Frontmatter starts with `---`
 3. Frontmatter has closing `---`
-4. Required SKILL.md fields present: `name`, `description`, `allowed-tools`, `version` (all four — `version` is required)
+4. Required SKILL.md fields present: `name`, `description`, `allowed-tools`, `version` (all four: `version` is required)
 5. `version` is 4-part `X.Y.Z.W`
 6. Name is hyphen-case (lowercase, hyphens, no underscores) and matches the folder name
-7. Name doesn't start/end with hyphen; no consecutive hyphens
-8. No angle brackets in description (e.g., `<skill-name>`); description is complete (not just a TODO placeholder)
-9. Generated package paths are kebab-case; Python files/package directories and tool-mandated names are exempt
+7. Name does not start or end with a hyphen. No consecutive hyphens.
+8. No angle brackets in description (e.g., `<skill-name>`). The description is complete, not just a TODO placeholder.
+9. Generated package paths are kebab-case. Python files, Python package directories and tool-mandated names are exempt
 
 **Phase 2: Packaging** (if validation passes):
 - Creates zip file named after skill (e.g., `markdown-optimizer.zip`)
@@ -378,7 +399,7 @@ Initial Version:
 - Problem: Too generic, skill didn't trigger
 
 Iteration 1:
-- Updated description: "Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance"
+- Updated description: "Complete document quality pipeline with structure enforcement, content optimization (AI-friendly) and style guide compliance"
 - Result: Better triggering, but users confused about modes
 
 Iteration 2:

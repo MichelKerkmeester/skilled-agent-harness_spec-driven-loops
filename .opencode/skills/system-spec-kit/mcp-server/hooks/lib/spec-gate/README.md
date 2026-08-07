@@ -30,9 +30,9 @@ description: "Shared classify and enforce logic that turns the spec-folder-befor
 
 ## 4. CONSUMERS
 
-- [`runtime/hooks/claude`](../../hooks/claude/README.md)
-- [`runtime/hooks/codex`](../../hooks/codex/README.md)
-- [`runtime/hooks/cursor`](../../hooks/cursor/README.md)
+- [`runtime/hooks/claude`](../../claude/README.md)
+- [`runtime/hooks/codex`](../../codex/README.md)
+- [`runtime/hooks/cursor`](../../cursor/README.md)
 - The OpenCode spec-gate plugin
 
 ## 5. VALIDATION
@@ -43,4 +43,4 @@ node --test .opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec
 
 ## 6. RELATED
 
-- [`shared/gate-3-classifier.ts`](../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.
+- [`shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.

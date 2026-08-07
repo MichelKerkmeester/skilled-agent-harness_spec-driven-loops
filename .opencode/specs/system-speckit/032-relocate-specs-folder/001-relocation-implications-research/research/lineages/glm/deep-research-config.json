@@ -1,0 +1,59 @@
+{
+  "topic": "Implications of relocating the root .opencode/specs folder to a top-level specs/ directory outside .opencode: spec-kit tooling path assumptions (validate.sh, create.sh, generate-description.js, backfill-graph-metadata.js), cross-runtime mirror behavior (.claude, .codex, .cursor, .devin, .pi), git and .gitignore interactions (the existing root specs symlink, the !specs and !.opencode/ negation rules, and ~/.gitignore_global's /specs and /.opencode/ ignores for downstream symlinked repos), Spec Kit Memory MCP server path resolution, and the scale/risk of repointing in-repo path references",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research/research/lineages/glm",
+  "createdAt": "2026-08-06T11:18:00+02:00",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "glm-5-2",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1786009077472-i5lfbh",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions", "answered-questions", "what-worked", "what-failed",
+      "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"
+    ]
+  },
+  "stopPolicy": "convergence",
+  "loopType": "research",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

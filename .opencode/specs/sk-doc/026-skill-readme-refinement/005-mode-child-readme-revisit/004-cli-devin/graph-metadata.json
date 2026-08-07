@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli devin readme",
+      "devin mode readme rewrite",
+      "cli-external-orchestration devin",
+      "devin readme revisit",
+      "mode readme rewrite cli-devin",
+      "phase 004 plan",
+      "cli devin readme plan",
+      "devin mode readme plan",
+      "cli-devin rewrite plan",
+      "phase 004 tasks",
+      "cli devin readme tasks",
+      "devin mode readme tasks"
+    ],
+    "key_topics": [
+      "cli",
+      "devin",
+      "readme",
+      "mode",
+      "rewrite",
+      "cli-external-orchestration",
+      "revisit",
+      "cli-devin",
+      "phase",
+      "plan",
+      "tasks",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/checklist.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
+    "created_at": "2026-08-04T08:34:40.125Z",
+    "last_save_at": "2026-08-04T13:46:05.380Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:160ad67ce2116406b6dca170fb81f14b8a1068440932c439638d1a243b2dd406",
+    "source_doc_hashes": {
+      "spec.md": "056573d86659638c8b1706f12f418b9535e55d26d49e941734949853aaa3bd06",
+      "plan.md": "0d02541a8e75aaaee52f691aaf4651bf4af975441fe88324e5f5a38b680b3f61",
+      "tasks.md": "67682e4ed1c44a4f1e7c0c4dc2eaff6c6bc0edad85cac254c268f81f93a3b6be",
+      "checklist.md": "d6aaf423d4084b2dc3591022d3560e3e2a21a1fb43795e7163fd6935a0218c09",
+      "implementation-summary.md": "255e8937f1ac94133909affd2b018acf6174c44218dcc928317eae1f0e576768"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

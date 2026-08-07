@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
+  "description": "The deep-review README at `.opencode/skills/system-deep-loop/deep-review/README.md` still carries the older tabular reference-card style and predates",
+  "keywords": [
+    "deep-review",
+    "readme",
+    "opencode",
+    "skills",
+    "system-deep-loop",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "predates"
+  ],
+  "lastUpdated": "2026-08-04T18:54:40.797Z",
+  "specId": "039",
+  "folderSlug": "deep-review",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

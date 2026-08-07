@@ -1,4 +1,3 @@
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -942,7 +941,7 @@ async function appendTerminal(harness: FanInLedgerHarness): Promise<void> {
     evidenceDigest: DIGEST_B,
   });
   if (authorization.verdict !== 'allow') throw new Error('Fixture authorization failed');
-  await appendAuthorizedForTest(harness.ledger, event, authorization.proof);
+  await harness.ledger.appendAuthorized(event, authorization.proof);
 }
 
 function genesisDecision(harness: FanInLedgerHarness) {

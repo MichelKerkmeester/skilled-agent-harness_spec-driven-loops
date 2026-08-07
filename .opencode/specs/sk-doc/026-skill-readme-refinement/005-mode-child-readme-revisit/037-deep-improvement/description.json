@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
+  "description": "The deep-improvement README at `.opencode/skills/system-deep-loop/deep-improvement/README.md` still carries the older tabular reference-card style,",
+  "keywords": [
+    "deep-improvement",
+    "readme",
+    "opencode",
+    "skills",
+    "system-deep-loop",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style"
+  ],
+  "lastUpdated": "2026-08-04T18:47:15.478Z",
+  "specId": "037",
+  "folderSlug": "deep-improvement",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "04-08-26_19-35__rewrote-the-deep-improvement-readme-purpose-first.md",
+    "04-08-26_19-43__rewrote-the-deep-improvement-readme-purpose-first.md",
+    "04-08-26_19-44__rewrote-the-deep-improvement-readme-purpose-first.md",
+    "04-08-26_19-47__rewrote-the-deep-improvement-readme-purpose-first.md"
+  ]
+}

@@ -33,7 +33,7 @@ These are the writing patterns that make a README scannable and consistent: what
 
 ## 2. SECTION WRITING STANDARDS
 
-Workflow guidance for the sections you choose to include. The fillable scaffold is [readme-template.md](../../assets/readme/readme-template.md) Section 6.
+Workflow guidance for the sections you choose to include. The fillable scaffold is [readme-template.md](../../assets/readme-template.md) Section 6.
 
 ### Overview
 
@@ -200,6 +200,6 @@ Use `[PLACEHOLDER]` format with descriptive names:
 
 - [types-and-voice.md](types-and-voice.md) - README types, progressive disclosure and two-tier voice
 - [quality-and-checklist.md](quality-and-checklist.md) - Quality criteria and pre-publish checklist
-- [readme-template.md](../../assets/readme/readme-template.md) - Fillable general README scaffold
-- [readme-code-template.md](../../assets/readme/readme-code-template.md) - Code-folder README scaffold
+- [readme-template.md](../../assets/readme-template.md) - Fillable general README scaffold
+- [readme-code-template.md](../../assets/readme-code-template.md) - Code-folder README scaffold
 - [core-standards.md](../../../shared/references/core-standards.md) - Document formatting rules

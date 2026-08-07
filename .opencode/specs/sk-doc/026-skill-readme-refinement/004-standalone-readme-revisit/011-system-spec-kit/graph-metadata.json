@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system spec kit readme",
+      "spec kit readme revisit",
+      "spec folder readme rewrite",
+      "spec kit readme validation",
+      "phase 011 plan",
+      "system spec kit readme plan",
+      "spec kit readme rewrite plan",
+      "phase 011 tasks",
+      "system spec kit readme tasks",
+      "spec kit readme rewrite tasks",
+      "phase 011 checklist",
+      "system spec kit readme verification"
+    ],
+    "key_topics": [
+      "system",
+      "spec",
+      "kit",
+      "readme",
+      "revisit",
+      "folder",
+      "rewrite",
+      "validation",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/README.md",
+      "changelog/v3.8.0.0.md",
+      ".opencode/skills/system-spec-kit/changelog/v3.8.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.8.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v3.8.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Skill Exists",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set and the refined template from phase 001",
+    "created_at": "2026-08-04T08:34:38.721Z",
+    "last_save_at": "2026-08-04T13:28:19.577Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:87e7769a286bbb87ab8ca48712e455f77b3c2df9c988f487611739a2ddf7e09f",
+    "source_doc_hashes": {
+      "spec.md": "a98e856b5687af0584442c9d9e7844bda7ad461a0fc71ed3d9fedadfe7905e8e",
+      "plan.md": "af9202d20b2f436d2e585fdb46bfc0ccc32797620928c4cc0f4ff5abe021ba40",
+      "tasks.md": "01f13f5637d190d25479ffc930ef72ab1677051b8b696e9a03336d4aeee1db3f",
+      "checklist.md": "abaa5d9e34e78922e7ac8de35731c535900972caf3c3986ce262bbd0a0d6b4bd",
+      "implementation-summary.md": "5f423526e82b1aaa9e1eed2ff59741f01d35c3ecffb6fb3b970667a8338dfc1c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

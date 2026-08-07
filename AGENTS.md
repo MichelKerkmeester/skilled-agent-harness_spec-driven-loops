@@ -476,6 +476,7 @@ Use the agent directory that matches the active runtime/provider profile:
 | **Opencode**      | `.opencode/agents/` |
 | **Claude Code**   | `.claude/agents/`   |
 | **Codex CLI**     | `.codex/agents/`    |
+| **Pi**            | `.pi/agents/`       |
 
 **Resolution rule:** Pick one directory by runtime and stay consistent for that workflow phase.
 

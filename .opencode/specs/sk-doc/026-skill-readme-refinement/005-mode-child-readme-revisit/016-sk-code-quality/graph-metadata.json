@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code quality readme",
+      "quality mode readme rewrite",
+      "code quality readme revisit",
+      "quality gate readme",
+      "phase 16 plan",
+      "sk code quality readme plan",
+      "quality mode rewrite plan",
+      "phase 16 tasks",
+      "sk code quality readme tasks",
+      "quality mode rewrite tasks",
+      "phase 16 checklist",
+      "sk code quality readme verification"
+    ],
+    "key_topics": [
+      "code",
+      "quality",
+      "readme",
+      "mode",
+      "rewrite",
+      "revisit",
+      "gate",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/sk-code-quality/README.md",
+      ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-quality/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dividers",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist Router",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code-quality README still carries the older tabular reference-card style and predates the pilot standard",
+    "created_at": "2026-08-04T08:34:44.799Z",
+    "last_save_at": "2026-08-04T14:49:12.147Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c808d1632a328c00ff4d63110fee4abe9c6edfa9143982b1cc57eb28c55e4adc",
+    "source_doc_hashes": {
+      "spec.md": "97e683a2157cabeeef1560b17adbdbd43e02895fb0442d29ef01d8b822bc4a32",
+      "plan.md": "9b26927ba542486bc3c2e15493b9a1e9b9d224aa8275e54e76b1c31a07460621",
+      "tasks.md": "f5976b5e2152d77c4dcc1fa21603ec70a728ef383ac86b56b1d1ca8aba587edc",
+      "checklist.md": "a0ba6ae01d9a24d5c2d4abd90391bf6880b2e69238dc04764e75531c851a3c63",
+      "implementation-summary.md": "d1ac2add5740a03f7766ef3987a7c895ab4ca09426f89ea6cefcf17775adfd11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

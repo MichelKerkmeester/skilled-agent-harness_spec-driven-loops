@@ -1,5 +1,5 @@
 ---
-title: Minimal Theme File-Layer Troubleshooting
+title: "Minimal Theme File-Layer Troubleshooting"
 description: "Failure modes for the Minimal theme: missing package, inactive cssTheme, snippet syntax errors, disabled snippets, stale reads and theme-versus-plugin confusion, with named validation checkpoints."
 trigger_phrases:
   - "minimal theme not applying"
@@ -17,8 +17,6 @@ version: 0.10.0.0
 
 Diagnose the package, the activation key and the snippet separately. A valid install can still render nothing when the `cssTheme` value is wrong, the theme folder name mismatches or Obsidian has not reloaded. Start from the file layer and never guess a version.
 
----
-
 ## 1. OVERVIEW
 
 | Symptom | Most likely cause |
@@ -30,8 +28,6 @@ Diagnose the package, the activation key and the snippet separately. A valid ins
 | Theme looks broken after an update | Stale theme cache or a partial theme folder |
 | User expects settings | Confusion between theme and plugin or a missing companion plugin |
 | Settings panel missing | Companion plugin not installed. The theme alone exposes no settings |
-
----
 
 ## 2. DIAGNOSIS SEQUENCE
 
@@ -97,8 +93,6 @@ print('open', s.count('{'), 'close', s.count('}'))
 
 Adjust the filename to the real snippet. Matching counts pass the **Snippet file valid** checkpoint. A snippet with unbalanced braces never applies.
 
----
-
 ## 3. RECOVERY
 
 | Problem | Fix |
@@ -130,8 +124,6 @@ Snippet files follow the same rule. The backup lives beside the original inside 
 - Re-read `appearance.json` before every conclusion about activation.
 - Ask the user to restart Obsidian after any snippet change before diagnosing a render issue.
 
----
-
 ## 4. NAMED VALIDATION CHECKPOINTS
 
 Use these named checkpoints in every diagnosis. They are descriptive names, not tracking ids.
@@ -158,8 +150,6 @@ ls /Users/michelkerkmeester/MEGA/Documents/Obsidian/.obsidian/themes/
 ```
 
 Read every output line. A clean sweep shows two theme files, version `9.0.2`, `cssTheme` set to `Minimal` and the theme folders listed. Report each checkpoint as passed only when its output matches.
-
----
 
 ## 5. LIMITS
 

@@ -1,0 +1,22 @@
+{
+  "run_id": "1785922353061-yt4m7p",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+  "base_artifact_dir": ".opencode/specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

@@ -9,7 +9,6 @@ import {
 } from 'node:zlib';
 
 import { AuthorizationVerdicts } from '../authorized-ledger/index.js';
-import { appendFencedLedgerRecord } from '../locks-and-fencing/fenced-ledger-writer.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   EventTypeRegistry,
@@ -336,5 +335,5 @@ export async function commitVocAllocationDecision(
   if (authorization.verdict !== AuthorizationVerdicts.ALLOW) {
     throw new TypeError(`VOC allocation authorization denied: ${authorization.reasonCode}`);
   }
-  return appendFencedLedgerRecord(input.ledger, event, authorization.proof);
+  return input.ledger.appendAuthorized(event, authorization.proof);
 }

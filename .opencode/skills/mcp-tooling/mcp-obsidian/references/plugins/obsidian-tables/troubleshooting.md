@@ -1,5 +1,5 @@
 ---
-title: Tables File-Layer Troubleshooting
+title: "Tables File-Layer Troubleshooting"
 description: "Cause, detection, and recovery for Tables .table.md wrapper failures, ID integrity, formulas, constrained selects, legacy canonicalization, sort limits, and CSV text coercion."
 trigger_phrases:
   - "tables table md error"
@@ -147,4 +147,4 @@ Import into a `.table.md` or `.table.json` table first, then run a separate type
 6. Re-read the written file and validate the exact intended change.
 7. Reload the table only after file-layer checks pass.
 
-Related references: [data model](data-model.md), [workflows](workflows.md), and the valid [starter asset](../../../assets/plugins/obsidian-tables/sample.example.table.md).
+Related references: [data model](data-model.md), [workflows](workflows.md), and the valid [starter asset](../../../assets/plugins/obsidian-tables/example.table.md).

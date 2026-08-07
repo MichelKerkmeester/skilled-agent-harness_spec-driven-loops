@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
+  "description": "Fleet-wide validation and closeout of the skill README program",
+  "keywords": [
+    "fleet-wide",
+    "validation",
+    "closeout",
+    "skill",
+    "readme",
+    "program"
+  ],
+  "lastUpdated": "2026-08-05T08:09:10.461Z",
+  "specId": "006",
+  "folderSlug": "validation-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

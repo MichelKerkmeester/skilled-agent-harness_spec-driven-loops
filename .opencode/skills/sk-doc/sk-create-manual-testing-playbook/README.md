@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.0.0
+version: 1.0.1.2
 ---
 
 # create-manual-testing-playbook
@@ -19,7 +19,7 @@ version: 1.0.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Authoring `manual-testing-playbook/` packages: deterministic operator scenarios, evidence, pass/fail criteria |
+| **Use it for** | Authoring `manual-testing-playbook/` packages: deterministic operator scenarios, evidence capture, pass/fail criteria |
 | **Invoke with** | `/create:manual-testing-playbook`, "manual testing playbook", "testing playbook", "release readiness" |
 | **Works on** | Skills and systems that need operator-facing manual validation ahead of a release |
 | **Produces** | One root `manual-testing-playbook.md` index plus one per-feature scenario file per feature ID |
@@ -30,17 +30,35 @@ version: 1.0.0.0
 
 ### Why This Skill Exists
 
-A skill ships, and the only proof it works is a checklist row someone wrote at the last minute that nobody can rerun. Automated tests cover internals, not what an operator sees when they type a real prompt at a real CLI. When a release decision depends on structured evidence and a bullet list is the only artifact, two operators run "the same" test and reach two different verdicts, because the prompt, the command and the pass bar were never pinned down. Writing fifteen near-identical scenario write-ups by hand also just doesn't happen, so testing scope quietly shrinks to whatever fits in a paragraph.
+When a skill ships, the only proof it works is a checklist row someone wrote at the last minute that nobody can rerun. Automated tests cover internals, not what an operator sees when they type a real prompt at a real CLI. A release decision depends on structured evidence, but a bullet list is often the only artifact, so two operators run "the same" test and reach two different verdicts. The prompt, the command and the pass bar were never pinned down. Writing fifteen near-identical scenario write-ups by hand also just doesn't happen, so testing scope quietly shrinks to whatever fits in a paragraph.
+
+The skill exists to replace that memory-based proof with a package a different operator or a different agent can rerun and reach the same verdict on.
 
 ### What It Does
 
-`create-manual-testing-playbook` authors a `manual-testing-playbook/` package: one root `manual-testing-playbook.md` that holds shared policy, review protocol and orchestration guidance, plus one file per feature scenario with the exact prompt, the exact command sequence, expected signals, evidence to capture and a binary pass or fail bar. Every scenario is deterministic enough that a different operator, or a different agent, reproduces the same result. The canonical entry point is `/create:manual-testing-playbook`. If the ask is a capability inventory instead of executable scenarios, that is `create-feature-catalog`. If the ask is to audit or score a playbook that already exists, that is `create-quality-control`.
+`create-manual-testing-playbook` authors a `manual-testing-playbook/` package: one root `manual-testing-playbook.md` that holds shared policy, review protocol and orchestration guidance, plus one file per feature scenario with the exact prompt, the exact command sequence, expected signals, evidence to capture and a binary pass or fail bar. Every scenario is deterministic enough that a different operator or a different agent reproduces the same result. The canonical entry point is `/create:manual-testing-playbook`. If the ask is a capability inventory instead of executable scenarios, that is `create-feature-catalog`. If the ask is to audit or score a playbook that already exists, that is `create-quality-control`.
+
+### The Scenario Contract
+
+The headline strength of this skill is the nine-field contract every per-feature file must fill. Each field pins down one thing an operator needs to reproduce the scenario without guessing.
+
+| Contract field | What the skill pins down |
+|---|---|
+| **Feature ID** | a stable `{PREFIX}-{NNN}` label that ties the scenario to one catalog entry or file |
+| **Feature Name** | the one-line name an operator can restate without reading further |
+| **Scenario Objective** | the outcome the scenario proves, in one sentence |
+| **Exact Prompt** | the verbatim prompt an operator or agent types, word for word |
+| **Exact Command Sequence** | the ordered commands with no step left to interpretation |
+| **Expected Signals** | the observable outputs that say the scenario is progressing |
+| **Evidence** | the files, captures or transcripts the operator records |
+| **Pass/Fail Criteria** | the binary bar that decides the verdict |
+| **Failure Triage** | the next step when the scenario fails |
 
 ---
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** `/create:manual-testing-playbook`, or read `SKILL.md` directly for the full contract.
+**Step 1: Invoke it.** Run `/create:manual-testing-playbook`. To read the full contract directly, open `SKILL.md`.
 
 **Step 2: Scaffold the root file.**
 
@@ -65,15 +83,15 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
 
 ## 4. HOW IT WORKS
 
-Confirm the target skill or system, its feature set, and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID from `assets/manual-testing-playbook-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions, and fill each scenario contract with the nine required fields: Feature ID, Feature Name, Scenario Objective, Exact Prompt, Exact Command Sequence, Expected Signals, Evidence, Pass/Fail Criteria and Failure Triage. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists, and explicitly note when it doesn't. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order, feature ID counts and prompt synchronization before delivery.
+Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID from `assets/manual-testing-playbook-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order, feature ID counts and prompt synchronization before delivery.
 
 ### Key Concept: Prompt Synchronization
 
-A scenario's prompt lives in three places: the `SCENARIO CONTRACT`'s `Exact Prompt` field, the `Exact Prompt` column in the root's execution table, and any root category summary that previews it. All three must read identically, word for word. For example, if a scenario's contract sets `Exact Prompt: "Use memory_context in auto mode for the flaky index scan retry issue, capture the returned bounded context and return a concise pass/fail verdict"`, that exact sentence has to appear unchanged in the root playbook's execution-table row for the same feature ID. Tighten the wording in one place and forget the other, and the playbook now describes two different tests under one ID, so an operator reproducing the scenario from the root table alone gets a different result than the one who read the per-feature file.
+A scenario's prompt lives in three places: the `SCENARIO CONTRACT`'s `Exact Prompt` field, the `Exact Prompt` column in the root's execution table and any root category summary that previews it. All three must read identically, word for word. For example, if a scenario's contract sets `Exact Prompt: "Use memory_context in auto mode for the flaky index scan retry issue, capture the returned bounded context and return a concise pass/fail verdict"`, that exact sentence has to appear unchanged in the root playbook's execution-table row for the same feature ID. Tighten the wording in one place and forget the other and the playbook now describes two different tests under one ID, so an operator reproducing the scenario from the root table alone gets a different result than the one who read the per-feature file.
 
 ### Verdict Discipline
 
-Every scenario resolves to one of three states: `PASS`, `FAIL`, or `SKIP` with a specific sandbox blocker named. There is no `UNAUTOMATABLE` state. A scenario that can't run in the current sandbox still gets a `SKIP` and a reason, so the gap is visible in the playbook instead of quietly vanishing from coverage.
+Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a specific sandbox blocker named. There is no `UNAUTOMATABLE` state. A scenario that can't run in the current sandbox still gets a `SKIP` and a reason, so the gap is visible in the playbook instead of quietly vanishing from coverage.
 
 ---
 
@@ -81,7 +99,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL`, or `SKIP` with a
 
 ### When To Use This Skill
 
-Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time," or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
+Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
 
 ### Related Skills
 
@@ -109,7 +127,7 @@ Reach for this packet when five or more distinct features need manual validation
 
 **Q: Why not just add rows to a spec-folder `checklist.md`?**
 
-A: Checklist rows work for small, Level 1 or 2 changes. A playbook exists for when the validation surface is big enough, or release-critical enough, that reproducibility and captured evidence matter more than a quick pass/fail line.
+A: Checklist rows work for small, Level 1 or 2 changes. A playbook exists for when the validation surface is big enough or release-critical enough that reproducibility and captured evidence matter more than a quick pass/fail line.
 
 **Q: Why doesn't this packet's validator also check per-feature files automatically?**
 
@@ -121,7 +139,7 @@ A: Yes, when no stable catalog exists. Document that exception explicitly in the
 
 **Q: What if a scenario needs live production access or privileged credentials?**
 
-A: Escalate rather than design around it. This packet expects sandboxed, reproducible execution, and a scenario that only works with external credentials or privileged tool execution needs an explicit decision before it ships.
+A: Escalate rather than design around it. This packet expects sandboxed, reproducible execution. A scenario that only works with external credentials or privileged tool execution needs an explicit decision before it ships.
 
 ---
 

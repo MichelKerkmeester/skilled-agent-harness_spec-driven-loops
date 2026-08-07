@@ -140,6 +140,6 @@ Related references:
 
 - [../SKILL.md](../SKILL.md) - root-catalog and per-feature requirements this example illustrates
 - [common-pitfalls.md](common-pitfalls.md) - the defects this example avoids, with fixes
-- [../assets/feature-catalog/feature-catalog-template.md](../assets/feature-catalog/feature-catalog-template.md) - the empty root-catalog shape
-- [../assets/feature-catalog/feature-catalog-snippet-template.md](../assets/feature-catalog/feature-catalog-snippet-template.md) - the empty per-feature shape
+- [../assets/feature-catalog-template.md](../assets/feature-catalog-template.md) - the empty root-catalog shape
+- [../assets/feature-catalog-snippet-template.md](../assets/feature-catalog-snippet-template.md) - the empty per-feature shape
 - `.opencode/skills/system-spec-kit/feature-catalog/` - the full live catalog read here

@@ -2,6 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
+version: 3.8.0.16
 ---
 
 # 23 — Doctor Commands

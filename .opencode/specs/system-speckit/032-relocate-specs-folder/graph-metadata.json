@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/032-relocate-specs-folder",
+  "spec_folder": "system-speckit/032-relocate-specs-folder",
+  "parent_id": "system-speckit",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
+    "system-speckit/032-relocate-specs-folder/002-migration-plan",
+    "system-speckit/032-relocate-specs-folder/003-migration-execution"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocate specs folder",
+      "specs folder outside opencode",
+      "root specs directory",
+      "move .opencode/specs"
+    ],
+    "key_topics": [
+      "relocate",
+      "specs",
+      "folder",
+      "outside",
+      "opencode",
+      "root",
+      "directory",
+      "move",
+      "canonical",
+      "spec-kit",
+      "tree",
+      "currently"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "001-relocation-implications-research/research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relocate Specs Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The canonical spec-kit tree currently lives at `.opencode/specs/`",
+    "created_at": "2026-08-06T07:50:00.000Z",
+    "last_save_at": "2026-08-06T17:59:54.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:351501259b391c9d90a6b6c4cd16faa25a22b69f1c4da2808598bed49f69d2a6",
+    "source_doc_hashes": {
+      "spec.md": "be330a4bb800674d8670baae128f535bf048a4378d404cdc6dfb5b3b281ba8b0"
+    },
+    "last_active_child_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
+    "last_active_at": null
+  }
+}

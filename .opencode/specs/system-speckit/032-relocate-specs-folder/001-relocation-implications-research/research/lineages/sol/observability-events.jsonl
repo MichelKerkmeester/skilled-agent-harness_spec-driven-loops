@@ -1,0 +1,2 @@
+{"type":"deep_research_started","timestamp":"2026-08-06T12:29:36.930Z","sessionId":"fanout-sol-1786019208170-r5nald","lineage":"sol"}
+{"type":"deep_research_terminal","timestamp":"2026-08-06T12:40:15Z","sessionId":"fanout-sol-1786019208170-r5nald","lineage":"sol","status":"complete","iterations":5,"stopReason":"maxIterationsReached"}

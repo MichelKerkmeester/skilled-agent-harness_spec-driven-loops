@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli opencode readme",
+      "opencode mode readme rewrite",
+      "cli-external-orchestration opencode",
+      "opencode readme revisit",
+      "mode readme rewrite cli-opencode",
+      "phase 005 plan",
+      "cli opencode readme plan",
+      "opencode mode readme plan",
+      "cli-opencode rewrite plan",
+      "phase 005 tasks",
+      "cli opencode readme tasks",
+      "opencode mode readme tasks"
+    ],
+    "key_topics": [
+      "cli",
+      "opencode",
+      "readme",
+      "mode",
+      "rewrite",
+      "cli-external-orchestration",
+      "revisit",
+      "cli-opencode",
+      "phase",
+      "plan",
+      "tasks",
+      "skills"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Dispatch Surface",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode mode README at `.opencode/skills/cli-external-orchestration/cli-opencode/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
+    "created_at": "2026-08-04T08:34:40.499Z",
+    "last_save_at": "2026-08-04T13:56:09.396Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34fbaab87de388cc68f7885f68f71c7eda05df33174d9812d65efdd3d1c76401",
+    "source_doc_hashes": {
+      "spec.md": "4e82a66fb878c575bfdf9ac3432be48e7bd7b5ba91dff2672c0e1029dd231a62",
+      "plan.md": "1dcc45b5bd0088aa166092d26f177f77b400718cc007c641e9ada4d78f1d682e",
+      "tasks.md": "2b57c40a16ab07fc64e1e629d1a9c056b88d52486e41f02096d4e15f97684c37",
+      "checklist.md": "f26b09b811c9879b80509cfe4e94ff88dce109117f0048aee664889c848f0926",
+      "implementation-summary.md": "66a9be4d85b8451a87935c82a1bd818c26d4a7e960b0d7001129d9247840d765"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

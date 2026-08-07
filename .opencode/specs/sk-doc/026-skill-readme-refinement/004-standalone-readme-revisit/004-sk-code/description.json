@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code",
+  "description": "sk-code is the hub skill for code work with modes for quality, review, webflow and opencode routing",
+  "keywords": [
+    "sk-code",
+    "hub",
+    "skill",
+    "code",
+    "work",
+    "modes",
+    "quality",
+    "review",
+    "webflow",
+    "opencode",
+    "routing"
+  ],
+  "lastUpdated": "2026-08-04T12:49:59.771Z",
+  "specId": "004",
+  "folderSlug": "sk-code",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_13-46__purpose-first-readme-rewrite-for-the-sk-code-hub.md",
+    "04-08-26_13-47__purpose-first-readme-rewrite-for-the-sk-code-hub.md",
+    "04-08-26_13-49__purpose-first-readme-rewrite-for-the-sk-code-hub.md"
+  ]
+}

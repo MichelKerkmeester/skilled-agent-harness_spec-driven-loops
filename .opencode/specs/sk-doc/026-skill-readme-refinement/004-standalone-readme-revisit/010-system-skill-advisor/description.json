@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
+  "description": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome the skill delivers,",
+  "keywords": [
+    "mcp-obsidian",
+    "pilot",
+    "set",
+    "standard",
+    "standalone",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "state",
+    "outcome",
+    "delivers"
+  ],
+  "lastUpdated": "2026-08-04T12:55:43.976Z",
+  "specId": "010",
+  "folderSlug": "system-skill-advisor",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "04-08-26_13-52__phase-010-executed-system-skill-advisor-readme.md",
+    "04-08-26_13-52__phase-010-executed-system-skill-advisor-readme.md",
+    "04-08-26_13-54__phase-010-executed-system-skill-advisor-readme.md",
+    "04-08-26_13-55__phase-010-executed-system-skill-advisor-readme.md"
+  ]
+}

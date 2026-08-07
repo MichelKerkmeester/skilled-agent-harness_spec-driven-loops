@@ -51,7 +51,6 @@ The skill that makes AI use inside Obsidian effective. It operates notes and vau
 ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/obsidian-cli-commands.md          (notesmd-cli + official obsidian CLI command details)
            references/mcp-tools.md                      (cyanheads MCP tool catalog + invocation)
-           references/lra-rest-surface.md               (Local REST API REST endpoints + built-in MCP)
            references/troubleshooting.md                (error, auth, REST API, or install issue detected)
            Plugin operation logic:
              references/plugins/plugin-operation-logic.md (plugin-driven note automation)
@@ -298,8 +297,7 @@ INTENT_SIGNALS = {
 # PLUGINS / INSTALL / TROUBLESHOOT routes.
 RESOURCE_MAP = {
     "NOTES_CLI":     ["references/obsidian-cli-commands.md"],
-    "MCP_ADVANCED":  ["references/mcp-tools.md",
-                     "references/lra-rest-surface.md"],
+    "MCP_ADVANCED":  ["references/mcp-tools.md"],
     "PLUGIN_FINANCE": ["references/plugins/plugin-operation-logic.md",
                        "references/plugins/beancount-finance/beancount-finance.md",
                        "references/plugins/beancount-finance/data-model.md",

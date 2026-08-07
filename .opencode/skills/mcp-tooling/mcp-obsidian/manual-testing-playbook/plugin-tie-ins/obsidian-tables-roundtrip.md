@@ -23,7 +23,7 @@ The mode operates plugin data, not plugin UI. A valid Markdown wrapper and Agent
 - Feature Name: Obsidian Tables file-layer round-trip
 - Scenario Objective: Create or edit a .table.md at the file layer, validate its stable-ID payload, and verify that Obsidian renders the changed table.
 - Exact Prompt: Create or update a scratch Obsidian Tables .table.md at the file layer, then verify the edited table renders in Obsidian.
-- Exact Command Sequence: 1. TEST_TABLE="$TEST_VAULT/Playbook/OBS-012.table.md"; cp .opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/obsidian-tables/sample.example.table.md "$TEST_TABLE" 2. Patch row_atlas.cells.col_task while preserving the Markdown wrapper, then parse the json-table fence 3. Open or reload "$TEST_TABLE" with the locally help-confirmed official obsidian CLI and capture the rendered table
+- Exact Command Sequence: 1. TEST_TABLE="$TEST_VAULT/Playbook/OBS-012.table.md"; cp .opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/obsidian-tables/example.table.md "$TEST_TABLE" 2. Patch row_atlas.cells.col_task while preserving the Markdown wrapper, then parse the json-table fence 3. Open or reload "$TEST_TABLE" with the locally help-confirmed official obsidian CLI and capture the rendered table
 - Expected Signals: The copied file retains json-table-plugin: true and one json-table fence, the edited row_atlas cell uses col_task, the payload reparses, and Obsidian displays the table with the changed row rather than raw JSON or an error.
 - Evidence: Vault/table path, before-and-after file diff, payload parse output, exact CLI help or action transcript, and a screenshot or visible app-state record of the rendered table.
 - Pass/Fail Criteria: PASS if the wrapper and payload remain valid, the targeted row changes by stable ID, and the opened table renders the changed value; FAIL if the file is malformed, the cell key is header-based or missing, or the app shows raw JSON/an error after reload.
@@ -43,7 +43,7 @@ Create or update a scratch Obsidian Tables .table.md at the file layer, then ver
 
 ### Commands
 
-1. TEST_TABLE="$TEST_VAULT/Playbook/OBS-012.table.md"; mkdir -p "$(dirname "$TEST_TABLE")"; cp .opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/obsidian-tables/sample.example.table.md "$TEST_TABLE"
+1. TEST_TABLE="$TEST_VAULT/Playbook/OBS-012.table.md"; mkdir -p "$(dirname "$TEST_TABLE")"; cp .opencode/skills/mcp-tooling/mcp-obsidian/assets/plugins/obsidian-tables/example.table.md "$TEST_TABLE"
 2. Read the complete file, locate the single json-table fence, and update rows[] by id == "row_atlas", setting cells["col_task"] to "Round-trip verified". Serialize only the fenced JSON payload and parse the written file again. A compact implementation is:
 
    ~~~sh
@@ -110,7 +110,7 @@ Capture the original asset hash or diff, final table path, JSON parse result, CL
 
 | File | Role |
 |---|---|
-| [../../assets/plugins/obsidian-tables/sample.example.table.md](../../assets/plugins/obsidian-tables/sample.example.table.md) | Canonical test fixture |
+| [../../assets/plugins/obsidian-tables/example.table.md](../../assets/plugins/obsidian-tables/example.table.md) | Canonical test fixture |
 | [../../references/plugins/obsidian-tables/troubleshooting.md](../../references/plugins/obsidian-tables/troubleshooting.md) | Failure diagnosis and recovery |
 | [../../references/plugins/plugin-operation-logic.md](../../references/plugins/plugin-operation-logic.md) | File-layer versus UI boundary |
 

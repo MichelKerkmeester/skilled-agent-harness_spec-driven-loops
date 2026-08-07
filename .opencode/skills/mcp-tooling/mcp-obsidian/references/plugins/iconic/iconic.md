@@ -1,5 +1,5 @@
 ---
-title: Iconic Plugin Index (`iconic`)
+title: "Iconic File-Layer Index"
 description: "Lean entry point for operating the Iconic Obsidian plugin (gfxholo/iconic) through its single data.json rulebook in the vault."
 trigger_phrases:
   - "iconic obsidian plugin"
@@ -17,9 +17,8 @@ version: 0.7.0.0
 
 The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook** — never by driving the icon-picker UI.
 
----
+## 1. IDENTITY
 
-## 1. OVERVIEW
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian plugin ID | `iconic` | Plugin directory name + enablement entry |
@@ -28,13 +27,9 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
 | Version installed | 1.1.10 (all 3 vaults) | Verified on-disk |
 | State file | `<vault>/.obsidian/plugins/iconic/data.json` | The ENTIRE configuration surface |
 
----
-
 ## 2. WHAT IT DOES
 
 Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
-
----
 
 ## 3. FILE-LAYER SURFACE (what the AI edits)
 
@@ -54,8 +49,6 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 
 - The full asset contains **only the two mergeable rule arrays** — no `data.json` settings, no `dialogState`, no per-item override maps.
 - It is **never a whole-`data.json` replacement**: merge it by stable rule `id` into a freshly-read vault `data.json` (update matching ids, append missing ids), preserving unrelated settings and user overrides.
-
----
 
 ## 4. RULE SHAPE (one rule)
 
@@ -77,8 +70,6 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 - `operator`: `is` / `contains` (per the live vault rulebook).
 - `match`: `any` (any condition matches) — `all` is supported by the schema.
 - `icon`: `lucide-*` names; `color`: hex.
-
----
 
 ## 5. GOTCHAS
 

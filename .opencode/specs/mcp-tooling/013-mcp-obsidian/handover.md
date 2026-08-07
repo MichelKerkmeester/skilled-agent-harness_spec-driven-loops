@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/013-mcp-obsidian"
-    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_at: "2026-08-04T12:10:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Applied validation-driven doc fixes (v1.1.0.1) and pushed to origin/skilled/v4.0.0.0 (ef61926475)"
-    next_safe_action: "Finalize 009/010 completion fingerprints once the spec-memory daemon is healthy; decide on the failed live-benchmark report"
+    recent_action: "Applied validation-driven doc fixes and pushed v4.0.0.0"
+    next_safe_action: "Finalize 009/010 fingerprints when spec-memory daemon is healthy"
     blockers:
       - "spec-memory daemon down (socket ENOENT) — blocks memory_save fingerprint finalization for 009 + 010"
     key_files:

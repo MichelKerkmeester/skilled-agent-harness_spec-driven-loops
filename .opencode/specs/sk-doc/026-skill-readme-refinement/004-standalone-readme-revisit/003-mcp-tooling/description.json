@@ -1,0 +1,37 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
+  "description": "`.opencode/skills/mcp-tooling/README.md` still carries the older tabular reference-card style: an AT A GLANCE table, a QUICK START block and a short",
+  "keywords": [
+    "opencode",
+    "skills",
+    "mcp-tooling",
+    "readme",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "glance",
+    "table",
+    "quick",
+    "start",
+    "block",
+    "short"
+  ],
+  "lastUpdated": "2026-08-04T12:50:26.104Z",
+  "specId": "003",
+  "folderSlug": "mcp-tooling",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_13-44__baseline-version-field-1-0-0-0.md",
+    "04-08-26_13-49__implementation-summary-md-created-from-impl.md",
+    "04-08-26_13-50__spec-folder-metadata-aligned-to-folder-basename.md"
+  ]
+}

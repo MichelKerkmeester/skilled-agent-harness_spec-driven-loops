@@ -1,5 +1,5 @@
 ---
-title: Health.md File-Layer Workflows
+title: "Health.md File-Layer Workflows"
 description: "Safe file-layer recipes for Health.md: resolve the configured data folder, add authentic export files, place health-viz chart blocks, adjust folder structure, verify real data (mock-fallback escape), and discover entry notes."
 trigger_phrases:
   - "create health md chart"
@@ -27,8 +27,6 @@ These recipes change the **data files** Health.md renders. The plugin invalidate
 3. Write/append data files using an existing authentic file's shape as the template.
 4. Place/adjust the `health-viz` render block in the target note.
 5. Verify the file layer by reading the files back — the visual itself renders in-app only.
-
----
 
 ## 2. RECIPES
 
@@ -84,8 +82,6 @@ last: 7
 
 - Keep lossless/raw archives out of ingestion, broad search indexing, and indiscriminate sync; large inputs get bounded previews.
 - Treat exact timestamps, routes, clinical/FHIR content, medication events, source/device identity, and attachments as highly sensitive.
-
----
 
 ## 3. VERIFYING
 

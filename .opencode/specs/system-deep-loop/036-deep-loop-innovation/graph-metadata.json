@@ -165,7 +165,7 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-07T03:18:09.642Z",
+    "last_save_at": "2026-08-07T03:30:27.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,7 +177,7 @@
       "spec.md": "f6f55f0eddf20ee68c4b121b4d33bf3123a3b010deabe4e5bbceca4577afb3ce",
       "handover.md": "1ebd13d87f17ba6d518573c1ac601b9c9a5e08b9fe2c86e4ca94cc524e2d9c34"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary",
-    "last_active_at": "2026-08-07T03:06:29.393Z"
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
+    "last_active_at": "2026-08-07T03:30:27.886Z"
   }
 }

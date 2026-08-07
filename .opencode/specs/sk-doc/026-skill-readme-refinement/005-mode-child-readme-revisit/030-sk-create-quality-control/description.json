@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
+  "description": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents in the Human Voice Rules, validated by",
+  "keywords": [
+    "mcp-obsidian",
+    "readme",
+    "pilot",
+    "proved",
+    "standard",
+    "mode",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "human",
+    "voice",
+    "rules",
+    "validated"
+  ],
+  "lastUpdated": "2026-08-04T18:01:39.199Z",
+  "specId": "030",
+  "folderSlug": "sk-create-quality-control",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-08-26_16-10__rewrote-the-sk-create-quality-control-skill.md"
+  ]
+}

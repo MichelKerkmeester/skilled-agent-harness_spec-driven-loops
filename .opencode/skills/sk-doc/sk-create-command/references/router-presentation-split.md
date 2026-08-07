@@ -83,4 +83,4 @@ Moving display text into the presentation asset must not change routing semantic
 
 - [README.md](README.md) - command-creation reference map
 - [worked-example.md](worked-example.md) - a complete router plus presentation asset following these rules
-- [command-presentation-template.md](../assets/command/command-presentation-template.md) - full presentation asset skeleton
+- [command-presentation-template.md](../assets/command-presentation-template.md) - full presentation asset skeleton

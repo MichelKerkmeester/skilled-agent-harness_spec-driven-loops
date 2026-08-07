@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
+  "parent_id": "sk-doc/026-skill-readme-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fleet validation",
+      "readme closeout",
+      "phase 006 validation",
+      "readme program closeout",
+      "phase 006 plan",
+      "fleet validation plan",
+      "readme closeout plan",
+      "phase 006 tasks",
+      "fleet validation tasks",
+      "readme closeout tasks",
+      "phase 006 checklist",
+      "fleet validation checklist"
+    ],
+    "key_topics": [
+      "fleet",
+      "validation",
+      "readme",
+      "closeout",
+      "phase",
+      "program",
+      "plan",
+      "tasks",
+      "checklist",
+      "phases",
+      "refined",
+      "shared"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+      "implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/checklist.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/description.json",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/graph-metadata.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/006-validation-and-closeout/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 through 005 refined the shared README template, created the parent-skill README template, updated the creation workflow, and rewrote every standalone and child-mode skill README on the new standard",
+    "created_at": "2026-08-04T07:12:18.076Z",
+    "last_save_at": "2026-08-05T08:09:10.645Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb3278e8164935bfa82611780195305648cb3f21be77dc08c8e405097a1d1061",
+    "source_doc_hashes": {
+      "spec.md": "dbf5daef35d43b80438645144d0f0c859553e782239536df5fcc0367f95eb9c7",
+      "plan.md": "10f862503266e1d35b3ee59d75ca9d20a12718d8b2439371b771d673606502ca",
+      "tasks.md": "61bf8bbd0d7dde1768ccbf8f791ef0eff1485a380b683c9689222f5f4aa05766",
+      "checklist.md": "059034f5228aca354f6590d1692e2de7025e918314ee46f67b194c3c0ba37f9a",
+      "implementation-summary.md": "37d135b2496252609860a4edf8a75adcbcbf9c32b1498532e90fd49d54fc3aab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

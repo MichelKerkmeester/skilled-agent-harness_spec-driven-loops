@@ -1,6 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-review CP-05x scenarios"
 description: "Sandboxed scenarios validating the /deep:review command-level entrypoint, write boundary and leaf refusal behavior."
+version: 1.11.0.1
 ---
 
 # Command-Flow Stress Tests

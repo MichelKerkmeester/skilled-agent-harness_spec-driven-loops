@@ -106,5 +106,5 @@ In short: templates answer "what does the file look like?"; `SKILL.md` and these
 
 - [../SKILL.md](../SKILL.md) - the Common Mistakes table this reference expands, and the full rules
 - [examples.md](examples.md) - a live catalog that avoids these pitfalls
-- [../assets/feature-catalog/feature-catalog-snippet-template.md](../assets/feature-catalog/feature-catalog-snippet-template.md) - per-feature scaffold with its own authoring notes
+- [../assets/feature-catalog-snippet-template.md](../assets/feature-catalog-snippet-template.md) - per-feature scaffold with its own authoring notes
 - [create-manual-testing-playbook references](../../sk-create-manual-testing-playbook/references/README.md) - the playbook side of the catalog/playbook boundary

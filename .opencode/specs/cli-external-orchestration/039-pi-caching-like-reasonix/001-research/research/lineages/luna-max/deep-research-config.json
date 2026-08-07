@@ -1,0 +1,56 @@
+{
+  "researchTopic": "Verify the lumo.md Reasonix vs Pi prompt-caching claims and scope feasibility of a Reasonix-style Pi caching plugin",
+  "topic": "Verify the lumo.md Reasonix vs Pi prompt-caching claims and scope feasibility of a Reasonix-style Pi caching plugin",
+  "specFolder": ".opencode/specs/cli-external-orchestration/039-pi-caching-like-reasonix/001-research",
+  "maxIterations": 20,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "stop_policy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "liveTools": { "webSearch": "live" }
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-max-1786010864634-ls9fw0",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "status": "initialized",
+  "createdAt": "2026-08-06T10:11:39.936Z",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

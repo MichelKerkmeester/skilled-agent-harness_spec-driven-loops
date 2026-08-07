@@ -1,5 +1,5 @@
 ---
-title: Excalidraw File-Layer Troubleshooting
+title: "Excalidraw File-Layer Troubleshooting"
 description: "Failure modes and fixes for the Excalidraw Obsidian plugin at the file layer: render failures, frontmatter drift, corrupt JSON, compressed bodies, embed gaps, missing scripts and settings staleness."
 trigger_phrases:
   - "excalidraw drawing not rendering"
@@ -12,7 +12,7 @@ trigger_phrases:
   - "excalidraw file extension wrong"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Excalidraw File-Layer Troubleshooting
@@ -21,13 +21,7 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 
 ---
 
-## 1. OVERVIEW
-
-This guide maps common Excalidraw file-layer failures to checkpoints and repairs. It keeps troubleshooting evidence separate from in-app rendering confirmation.
-
----
-
-## 2. DRAWING DOES NOT RENDER
+## 1. DRAWING DOES NOT RENDER
 
 ### Symptoms
 
@@ -51,9 +45,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run all four checkpoints. Report pass or fail per checkpoint.
 
----
-
-## 3. FRONTMATTER DRIFT
+## 2. FRONTMATTER DRIFT
 
 ### Symptoms
 
@@ -76,9 +68,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run the three checkpoints. The note must show as a drawing again.
 
----
-
-## 4. CORRUPT OR TRUNCATED JSON BODY
+## 3. CORRUPT OR TRUNCATED JSON BODY
 
 ### Symptoms
 
@@ -102,9 +92,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run all four checkpoints. A pass proves file-layer validity only.
 
----
-
-## 5. COMPRESSED DRAWING SECTION IS UNREADABLE
+## 4. COMPRESSED DRAWING SECTION IS UNREADABLE
 
 ### Symptoms
 
@@ -127,9 +115,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run the decompress check. The section must parse as JSON.
 
----
-
-## 6. EMBED DOES NOT SHOW
+## 5. EMBED DOES NOT SHOW
 
 ### Symptoms
 
@@ -153,9 +139,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run all four checkpoints. The last mile is a render in the Obsidian UI, which the file layer cannot prove.
 
----
-
-## 7. SCRIPT MISSING FROM THE SCRIPT MENU
+## 6. SCRIPT MISSING FROM THE SCRIPT MENU
 
 ### Symptoms
 
@@ -179,9 +163,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run the four checkpoints. Menu appearance is an in-app result the file layer cannot prove.
 
----
-
-## 8. SETTINGS CHANGES DO NOT APPLY
+## 7. SETTINGS CHANGES DO NOT APPLY
 
 ### Symptoms
 
@@ -205,9 +187,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run the four checkpoints. Behavior confirmation needs the app reloaded.
 
----
-
-## 9. WRONG FILE EXTENSION
+## 8. WRONG FILE EXTENSION
 
 ### Symptoms
 
@@ -230,9 +210,7 @@ This guide maps common Excalidraw file-layer failures to checkpoints and repairs
 
 - Re-run the three checkpoints. The drawing mark is the durable recognition signal.
 
----
-
-## 10. GENERAL REPAIR SEQUENCE
+## 9. GENERAL REPAIR SEQUENCE
 
 Use this order when the root cause is unclear.
 
@@ -242,11 +220,3 @@ Use this order when the root cause is unclear.
 4. Apply the matching fix with a timestamped backup.
 5. Re-run the failing checkpoint and the full validation.
 6. Report the checkpoint results and the backup path.
-
----
-
-## 11. RELATED RESOURCES
-
-- [Excalidraw plugin index](excalidraw.md)
-- [Excalidraw data model](data-model.md)
-- [Excalidraw file-layer workflows](workflows.md)

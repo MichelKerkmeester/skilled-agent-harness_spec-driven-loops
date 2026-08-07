@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 2.4.0.0
+version: 2.4.1.0
 ---
 
 # deep-ai-council
@@ -22,7 +22,7 @@ version: 2.4.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Comparing two or more plans when the trade-offs matter and a single answer hides what got ruled out |
-| **Invoke with** | "ai council", "multi-seat planning", "compare strategies", or the `@ai-council` agent |
+| **Invoke with** | "ai council", "multi-seat planning", "compare strategies" or the `@ai-council` agent |
 | **Works on** | Your packet folder and its context, dispatching 2-3 seats with distinct reasoning lenses inside one CLI per round |
 | **Produces** | A recommended plan, an append-only state log, per-seat proposals, critiques, failed-round forensics and a final report under `ai-council/` |
 
@@ -36,7 +36,7 @@ When a plan carries real trade-offs, one AI answer is one confident guess with n
 
 ### What It Does
 
-`deep-ai-council` runs a planning-only multi-seat council. Two or three seats, each with a distinct reasoning lens from six available (Analytical, Creative, Critical, Pragmatic, Holistic, Research), propose independently. Then three critique roles (Hunter, Skeptic and Referee) attack the leading plan before anything is declared settled. Convergence follows a two-of-three rule: two seats must agree on the material plan and critique must find no new high-severity blocker. The council never implements. It hands the recommended plan plus the full artifact trail to you or your implementation agent.
+`deep-ai-council` runs a planning-only multi-seat council. Two or three seats, each with a distinct reasoning lens from six available, propose independently. The critique pass then attacks the leading plan with three adversarial roles before anything is declared settled. Convergence follows a two-of-three rule: two seats must agree on the material plan and critique must find no new high-severity blocker. The council never implements. It hands the recommended plan plus the full artifact trail to you or your implementation agent.
 
 ---
 
@@ -66,7 +66,7 @@ For an iterative multi-topic session, use the deep mode commands.
 /deep:ai-council:confirm
 ```
 
-Deep mode iterates over multiple topics, each with its own rounds, and converges per topic before moving on. Default guards cap at 3 rounds per topic and 5 topics per session.
+Deep mode iterates over multiple topics with rounds per topic and converges per topic before moving on. Default guards cap at 3 rounds per topic and 5 topics per session.
 
 **Step 2: Persist the report.** The `@ai-council` agent is scoped-write and persists the canonical packet-local `ai-council/**` artifact set directly. The CLI helper remains available as a fallback for non-council callers that already have a captured report.
 
@@ -91,21 +91,39 @@ Expected result: confirmation that `ai-council-state.jsonl` ends with a `council
 
 ### The Council Round
 
-A council run moves through three steps. First, resolve the target packet folder and select 2-3 seats, each assigned a distinct reasoning lens. When real external executors are available you can add a different AI vantage in a second round, but all seats inside one round always use the same CLI. Simulated vantages stay labeled as simulated. The default and most common run is a single in-CLI round. Add external rounds only when a fresh vantage adds value.
+1. **Resolve and select.** Target the packet folder and choose 2-3 seats, each with a distinct reasoning lens. When real external executors are available you can add a different AI vantage in a second round, but all seats inside one round always use the same CLI. Simulated vantages stay labeled as simulated. The default and most common run is a single in-CLI round. Add external rounds only when a fresh vantage adds value.
+2. **Deliberate.** Each seat proposes independently. The adversarial critique pass then tries to break the leading proposal before agreement is allowed. If the council hits its round cap without convergence, the run completes as non-converged rather than fabricating consensus. Non-converged is an honest answer: it means the evidence did not settle toward one plan.
+3. **Persist and hand off.** The council produces a report with sections mandated by the output schema and writes the canonical packet-local `ai-council/` artifacts when running as the scoped-write agent. The CLI helper is a fallback for non-council callers with a captured report. Failed rounds move under `failed/` so the forensic trail survives. Implementation passes to an implementation agent or the caller.
 
-Second, deliberate. Each seat proposes independently. Then the adversarial critique pass tries to break the leading proposal before agreement is allowed. If the council hits its round cap without convergence, the run completes as non-converged rather than fabricating consensus. Non-converged is an honest answer: it means the evidence did not settle toward one plan.
+### The Six Strategy Lenses
 
-Third, persist and hand off. The council produces a report with sections mandated by the output schema and writes the canonical packet-local `ai-council/` artifacts when running as the scoped-write agent. The CLI helper is a fallback for non-council callers with a captured report. Failed rounds move under `failed/` so the forensic trail survives. Implementation passes to an implementation agent or the caller.
+Each seat draws from one of six lenses so no two seats repeat the same reasoning path.
 
-### Six Strategy Lenses
+| Lens | What the lens applies |
+|---|---|
+| **Analytical** | decomposes the problem into components and dependencies |
+| **Creative** | explores unconventional shapes for the plan |
+| **Critical** | pressure-tests failure modes and edge cases |
+| **Pragmatic** | scores for implementation cost and incremental value |
+| **System fit** | checks system fit and long-range consequences |
+| **Research** | gathers external evidence and tests source quality |
 
-Each seat draws from one of six lenses so no two seats repeat the same reasoning path. Analytical decomposes the problem into components and dependencies. Creative explores unconventional shapes. Critical pressure-tests failure modes and edge cases. Pragmatic scores for implementation cost and incremental value. Holistic checks system fit and long-range consequences. Research gathers external evidence and tests source quality.
+A round uses 2 or 3 seats and never more. The task type drives the lens recommendation.
 
-A round uses 2 or 3 seats and never more. The task type drives the lens recommendation: a bug fix benefits from analytical, critical and pragmatic. A feature call benefits from creative, analytical and holistic.
+| Task type | Recommended lenses |
+|---|---|
+| Bug fix | analytical, critical and pragmatic |
+| Feature call | creative, analytical and system fit |
 
 ### Three Critique Roles
 
-Before convergence is allowed, three roles test the leading plan. The Hunter attacks for missed edge cases and weak evidence. The Skeptic defends, separating real flaws from intended trade-offs. The Referee adjusts scores based on both arguments and records the adjustments so the reasoning stays auditable. No plan passes without surviving this pass.
+Before convergence is allowed, three roles test the leading plan.
+
+- The **Hunter** attacks for missed edge cases and weak evidence.
+- The **Skeptic** defends and separates real flaws from intended trade-offs.
+- The **Referee** adjusts scores based on both arguments and records the adjustments so the reasoning stays auditable.
+
+No plan passes without surviving this pass.
 
 ### The Two-of-Three Convergence Rule
 
@@ -125,17 +143,17 @@ The council is planning only. It recommends a plan and persists the reasoning. I
 
 ### Sibling Deep Loops
 
-The council shares the `runtime/` with the other active deep-loop families. The current active roster is research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. Use `@context` or `/speckit:plan` for codebase context before council work.
+The council shares the `runtime/` with the other active deep-loop families. The current active roster is research, review, ai-council and improvement. Each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. Use `@context` or `/speckit:plan` for codebase context before council work.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates evidence and answers research questions. The council uses research seats to gather evidence but does not run deep-research loops itself. |
-| `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan, and a review checks the result after implementation. |
-| `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark`, and `skill-benchmark` command lanes. |
+| `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan and a review checks the result after implementation. |
+| `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark` and `skill-benchmark` command lanes. |
 
 ### Behavior Benchmark
 
-`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
+`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague and concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls and its latency versus a Claude baseline. Contracts and baselines live here. Run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
 
 ### Related Skills
 
@@ -154,7 +172,7 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 | `persist-artifacts.cjs` exits 1 during capture | The report is missing a required section from the output schema | Compare the report against `references/structure/output-schema.md` and add the missing section. Run with `--strict-output` to enforce the full contract. |
 | Per-seat files are absent from a persisted run | The report used a composition-table fallback instead of per-seat headings | Confirm the report uses valid per-seat headings or a composition table the parser accepts. |
 | Seats produce nearly identical proposals | Seat diversity was too low and the council repeated the same reasoning path | Assign distinct lenses per seat. Check the task-type-to-lens mapping in `references/patterns/seat-diversity-patterns.md` and re-run with more divergent seats. |
-| `advise-council-completion.cjs` reports no `council_complete` event | The final event was never appended to the state log | Re-open the council context and append the completion event, or re-persist from a completed report. |
+| `advise-council-completion.cjs` reports no `council_complete` event | The final event was never appended to the state log | Re-open the council context and append the completion event, otherwise re-persist from a completed report. |
 | Advisor does not route "ai council" prompts | Stale or missing skill graph | Rebuild the skill-advisor graph, then retry the routing query. |
 
 ---
@@ -171,19 +189,19 @@ A: Use a single model when the direction is clear. Use the council when the trad
 
 **Q: What does the two-of-three rule actually mean?**
 
-A: Two of three seats must agree on the material plan direction, and the critique pass must find no new high-severity blocker. If critique surfaces a blocker, the leading plan is not converged regardless of seat agreement. The rule prevents both false consensus and popularity contests.
+A: Two of three seats must agree on the material plan direction. The critique pass must also find no new high-severity blocker. If critique surfaces a blocker, the leading plan is not converged regardless of seat agreement. The rule prevents both false consensus and popularity contests.
 
 **Q: Where does the audit trail live?**
 
-A: Inside your packet folder under `ai-council/`. The append-only `ai-council-state.jsonl` records every event. Per-seat proposals live under `seats/round-NNN/`. Deliberations and critiques live in their own folders. Failed rounds move under `failed/`. Nothing is deleted, and nothing is rewritten.
+A: Inside your packet folder under `ai-council/`. The append-only `ai-council-state.jsonl` records every event. Per-seat proposals live under `seats/round-NNN/`. Deliberations and critiques live in their own folders. Failed rounds move under `failed/`. Nothing is deleted and nothing is rewritten.
 
 **Q: Can I run a council with seats from different AI providers in the same round?**
 
-A: No. All seats inside one round must use the same CLI executor. Seat diversity within a round comes from different models or reasoning lenses on that CLI, not from mixing providers. If you want a different provider's vantage, add a second dedicated round. This keeps each round's sandbox, tool surface and output schema consistent.
+A: No. All seats inside one round must use the same CLI executor. Seat diversity within a round comes from different models or reasoning lenses on that CLI, not from mixing providers. If you want a different provider's vantage, add a second dedicated round. This keeps each round's sandbox and tool surface consistent, with one output schema applied to every seat.
 
 **Q: What happens when the council does not converge?**
 
-A: The run completes as `non-converged`. This is an honest answer: the evidence did not settle toward one plan. The failed-round forensics show you what blocked convergence. You can inspect them, adjust lenses or the scope and re-run, or accept the partial result and decide yourself.
+A: The run completes as `non-converged`. This is an honest answer: the evidence did not settle toward one plan. The failed-round forensics show you what blocked convergence. You can inspect them and adjust the lenses or the scope. Then re-run the council or accept the partial result and decide yourself.
 
 ---
 

@@ -2,8 +2,6 @@
 // MODULE: Deep AI Council Resume Adapter Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
-
 import {
   mkdtempSync,
   rmSync,
@@ -627,7 +625,7 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
+    await ledger.appendAuthorized(prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -676,8 +674,6 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     policies,
     registry: evidenceRegistry,
     receiptSubstrate,
-    certificateFenceCoordinator: coordinator,
-    certificateFenceLease: lease,
   };
 }
 
@@ -1079,8 +1075,6 @@ async function scenario(options: ScenarioOptions = {}): Promise<Scenario> {
     policies,
     registry,
     receiptSubstrate,
-    certificateFenceCoordinator,
-    certificateFenceLease,
   } = await authorizedLedger(events);
   const { artifactStore, bindings } = await sealedBindings(events, options);
   const providers = certificationProviders();
@@ -1143,11 +1137,6 @@ async function scenario(options: ScenarioOptions = {}): Promise<Scenario> {
     issuer: 'deep-ai-council-certificate-issuer',
     issuedAt: TIMESTAMP,
   });
-  // The certificate writer holds the ledger fence only to issue the run
-  // certificate above; release it so the resume adapter's own fenced append to
-  // the same ledger can acquire the lease instead of timing out against a setup
-  // lease that is never used again.
-  await certificateFenceCoordinator.release(await certificateFenceLease);
   return {
     bundle,
     artifactStore,
@@ -1415,7 +1404,7 @@ async function appendEffectEvent(
   );
   const authorization = await harness.effectGateway.authorize(request);
   if (authorization.verdict !== 'allow') throw new Error('Effect fixture denied');
-  await appendAuthorizedForTest(harness.effectLedger,
+  await harness.effectLedger.appendAuthorized(
     prepared,
     authorization.proof,
   );
@@ -1471,7 +1460,7 @@ async function appendCouncilHistoryProbe(
   if (authorization.verdict !== 'allow') {
     throw new Error('Council history probe authorization was denied');
   }
-  await appendAuthorizedForTest(harness.scenario.ledger, prepared, authorization.proof);
+  await harness.scenario.ledger.appendAuthorized(prepared, authorization.proof);
 }
 
 async function appendForgedConfirmation(

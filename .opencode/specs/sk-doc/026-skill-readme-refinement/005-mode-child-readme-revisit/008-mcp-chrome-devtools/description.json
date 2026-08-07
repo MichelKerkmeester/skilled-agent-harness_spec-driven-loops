@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools",
+  "description": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and",
+  "keywords": [
+    "mcp-obsidian",
+    "readme",
+    "pilot",
+    "proved",
+    "standard",
+    "mode",
+    "skill",
+    "readmes",
+    "narrative",
+    "purpose-first",
+    "documents",
+    "written",
+    "human",
+    "voice",
+    "rules"
+  ],
+  "lastUpdated": "2026-08-04T14:19:47.018Z",
+  "specId": "008",
+  "folderSlug": "mcp-chrome-devtools",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_15-10__readme-rewritten-with-one-line-pitch-blockquote.md",
+    "04-08-26_15-16__readme-rewritten-with-one-line-pitch-blockquote.md",
+    "04-08-26_15-19__readme-rewritten-with-one-line-pitch-blockquote.md"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
+  "description": "Phase 003 cli-cursor README rewrite: purpose-first README on the refined template, version 1.2.0.0, changelog entry, HVR-clean.",
+  "keywords": [
+    "phase",
+    "cli-cursor",
+    "readme",
+    "rewrite",
+    "purpose-first",
+    "refined",
+    "template",
+    "version",
+    "changelog",
+    "entry",
+    "hvr-clean"
+  ],
+  "lastUpdated": "2026-08-04T13:51:58.599Z",
+  "specId": "003",
+  "folderSlug": "cli-cursor",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

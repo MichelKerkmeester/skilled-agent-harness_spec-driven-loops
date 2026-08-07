@@ -1,3 +1,0 @@
-Grok lineage finished: 5/5 iterations (`max_iterations`), synthesis in `research/lineages/grok` (`research.md`, `resource-map.md`, state/deltas). Critical path: disable hooks → stub `code-graph-boundary` → unregister 4 MCP configs → retire bins → doctor/advisor/agents → delete skill. No writes outside the lineage dir.
-
-FANOUT_LINEAGE_COMPLETE:grokThe registration sweep finished successfully and was already folded into the grok lineage: symlink dedupe confirmed, four physical MCP configs found, and the live-vs-archival hit lists written under `research/lineages/grok/logs/`. The full fan-out loop is complete.

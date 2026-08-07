@@ -328,7 +328,6 @@ export interface EffectRecoveryGatewayOptions {
     append(event: EventWritePreflight): Promise<AuthorizedEvidenceAppendResult>;
     findEvent(eventId: string): Promise<VerifiedLedgerEvent | null>;
     readVerifiedEvents(): Promise<readonly VerifiedLedgerEvent[]>;
-    readonly rootDirectory?: string;
   };
   readonly registry: EventTypeRegistry;
   readonly producer: EventProducer;
@@ -336,8 +335,6 @@ export interface EffectRecoveryGatewayOptions {
   readonly maxRecoveryAttempts?: number;
   readonly intentRaceWaitMs?: number;
   readonly intentRacePollMs?: number;
-  /** Root directory for the durable per-effect single-winner fence. */
-  readonly singleWinnerRootDirectory?: string;
   readonly validateRecoveryClaim: (
     claim: Readonly<EffectRecoveryClaim>,
     intent: Readonly<EffectIntentPayload>,

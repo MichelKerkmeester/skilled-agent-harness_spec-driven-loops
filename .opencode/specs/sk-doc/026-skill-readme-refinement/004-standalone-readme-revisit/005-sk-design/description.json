@@ -1,0 +1,42 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
+  "description": "Phase 005 rewrote the sk-design README purpose-first on the refined template: one-line pitch, problem-first OVERVIEW, verification close, version bump",
+  "keywords": [
+    "phase",
+    "rewrote",
+    "sk-design",
+    "readme",
+    "purpose-first",
+    "refined",
+    "template",
+    "one-line",
+    "pitch",
+    "problem-first",
+    "overview",
+    "verification",
+    "close",
+    "version",
+    "bumped",
+    "changelog",
+    "hvr",
+    "clean",
+    "validator",
+    "zero",
+    "issues"
+  ],
+  "lastUpdated": "2026-08-04T13:21:18.157Z",
+  "specId": "005",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "04-08-26_13-56__executed-phase-005-rewrote-the-sk-design-readme.md",
+    "04-08-26_14-12__executed-phase-005-rewrote-the-sk-design-readme.md",
+    "04-08-26_14-21__executed-phase-005-rewrote-the-sk-design-readme.md"
+  ]
+}

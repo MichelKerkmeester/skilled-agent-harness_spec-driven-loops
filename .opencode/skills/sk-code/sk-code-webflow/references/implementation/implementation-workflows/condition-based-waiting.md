@@ -276,7 +276,7 @@ const particle_loop = create_raf_loop((timestamp) => {
 }, 64);  // 64ms = ~15fps
 ```
 
-See [performance-patterns.js](../../assets/patterns/performance-patterns.js) for production-ready RAF utilities.
+See [performance-patterns.js](../../../assets/patterns/performance-patterns.js) for production-ready RAF utilities.
 
 ### Rules
 
@@ -297,6 +297,6 @@ See [performance-patterns.js](../../assets/patterns/performance-patterns.js) for
 - Assume elements exist without checking
 - Chain multiple arbitrary timeouts
 
-**See also:** [wait-patterns.js](../../assets/patterns/wait-patterns.js) for production-ready code templates
+**See also:** [wait-patterns.js](../../../assets/patterns/wait-patterns.js) for production-ready code templates
 
 ---

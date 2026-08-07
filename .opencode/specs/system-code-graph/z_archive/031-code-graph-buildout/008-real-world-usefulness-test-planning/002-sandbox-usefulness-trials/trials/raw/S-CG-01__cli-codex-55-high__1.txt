@@ -1,3 +1,0 @@
-SQL callers query for scoreLexicalLane
-
-[{"caller":"buildLaneScores","caller_kind":"function","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts","line":161}]

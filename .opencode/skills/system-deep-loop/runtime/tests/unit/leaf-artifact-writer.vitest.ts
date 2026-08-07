@@ -19,7 +19,6 @@ import {
   synthesizeNarrative,
   writeLeafArtifacts,
 } from '../../lib/deep-loop/leaf-artifact-writer.js';
-import type { LeafPublicationStage } from '../../lib/deep-loop/leaf-artifact-writer.js';
 
 const tempRoots: string[] = [];
 
@@ -175,48 +174,6 @@ describe('writeLeafArtifacts — fail-closed', () => {
     );
     expect(res.ok).toBe(false);
     expect(res.error).toMatch(/status/);
-  });
-
-  it.each([
-    ['laneId', { laneId: 7 }],
-    ['authority', { authority: false }],
-    ['artifactClass', { artifactClass: ['code'] }],
-    ['artifactsChecked', { artifactsChecked: ['ok', 3] }],
-    ['findingsCount', { findingsCount: '1' }],
-  ])('rejects a wrong-typed authoritative field and names %s', (field, override) => {
-    const p = newPacket();
-    const res = writeLeafArtifacts(JSON.stringify({ ...validRecord, ...override }), {
-      iteration: 1,
-      ...p,
-    });
-    expect(res.ok).toBe(false);
-    expect(res.error).toContain(field);
-    expect(existsSync(p.stateLogPath)).toBe(false);
-    expect(existsSync(p.deltaPath)).toBe(false);
-  });
-
-  it.each([
-    'staged',
-    'narrative-published',
-    'delta-published',
-    'state-appended',
-    'cleaned',
-  ] as const)('recovers a crash injected after %s', (crashStage: LeafPublicationStage) => {
-    const p = newPacket();
-    const first = writeLeafArtifacts(JSON.stringify(validRecord), {
-      iteration: 1,
-      ...p,
-      faultInjection: (stage) => {
-        if (stage === crashStage) throw new Error(`injected crash at ${stage}`);
-      },
-    });
-    expect(first.ok).toBe(false);
-
-    const retry = writeLeafArtifacts(JSON.stringify(validRecord), { iteration: 1, ...p });
-    expect(retry.ok).toBe(true);
-    expect(existsSync(p.deltaPath)).toBe(true);
-    expect(existsSync(`${p.deltaPath}.staging-1`)).toBe(false);
-    expect(readFileSync(p.stateLogPath, 'utf8').trim().split('\n')).toHaveLength(1);
   });
 
   it('refuses to overwrite an existing (write-once) delta file', () => {

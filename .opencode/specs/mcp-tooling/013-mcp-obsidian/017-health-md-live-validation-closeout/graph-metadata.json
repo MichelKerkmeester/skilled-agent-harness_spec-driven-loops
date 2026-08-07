@@ -16,7 +16,9 @@
       "health-md closeout",
       "phase 17 plan",
       "health-md closeout plan",
-      "phase 17 tasks"
+      "phase 17 tasks",
+      "phase 17 results",
+      "obs-014 live run"
     ],
     "key_topics": [
       "health-md",
@@ -28,9 +30,9 @@
       "phase",
       "plan",
       "tasks",
+      "results",
       "phases",
-      "ship",
-      "remediated"
+      "ship"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -38,7 +40,8 @@
       "spec.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/health-md-data.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,6 +66,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -160,23 +169,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 14-16 ship remediated docs, assets, and a scenario — but none of it has run against a real vault",
     "created_at": "2026-08-03T14:18:00.416Z",
-    "last_save_at": "2026-08-03T14:18:00.416Z",
+    "last_save_at": "2026-08-04T12:16:52.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29b8c63a9de089d2661789c313089b0d61d0cbfeb46ad7701c7d9ea6a0441938",
+    "source_fingerprint": "sha256:b806e9f0eed4af5202f833e1f5a1dc84e3ffda28f3c4e7a14b9c31afc6110323",
     "source_doc_hashes": {
       "spec.md": "4772ddac0339de785fdc01b7bca4ba50632e40b815ceca1689a6a3fd57bd7a05",
       "plan.md": "91796397478ac3e7a805cbd97a7ff3b520acd54c7e516fb11fd7fd4aefd9b886",
-      "tasks.md": "8774a59d548183bfed75c7110d3c6f980ba38f855e13fe2ec4e6550a01a9320e"
+      "tasks.md": "8774a59d548183bfed75c7110d3c6f980ba38f855e13fe2ec4e6550a01a9320e",
+      "implementation-summary.md": "44d6a915b822d884895addbfd75fb79e7c31f5247935b97e2820af3f63da5802"
     },
     "last_active_child_id": null,
     "last_active_at": null

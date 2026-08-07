@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/032-relocate-specs-folder/002-migration-plan",
+  "description": "Design the specs-root topology inversion: invert the 21-entry resolver registry and adapt the existing spec-root-* primitives for a symlink-topology f",
+  "keywords": [
+    "design",
+    "specs-root",
+    "topology",
+    "inversion",
+    "invert",
+    "21-entry",
+    "resolver",
+    "registry",
+    "adapt",
+    "existing",
+    "spec-root",
+    "primitives",
+    "symlink-topology",
+    "flip",
+    "without",
+    "executing",
+    "change"
+  ],
+  "lastUpdated": "2026-08-06T13:21:33.954Z",
+  "specId": "002",
+  "folderSlug": "migration-plan",
+  "parentChain": [
+    "system-speckit",
+    "032-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

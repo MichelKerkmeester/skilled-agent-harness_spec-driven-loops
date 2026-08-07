@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
+  "parent_id": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor readme",
+      "advisor readme rewrite",
+      "gate 2 routing readme",
+      "readme revisit phase 010",
+      "skill advisor readme validation",
+      "phase 010 plan",
+      "system skill advisor readme plan",
+      "advisor readme rewrite plan",
+      "phase 010 tasks",
+      "system skill advisor readme tasks",
+      "advisor readme rewrite tasks",
+      "phase 010 checklist"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "readme",
+      "rewrite",
+      "gate",
+      "routing",
+      "revisit",
+      "phase",
+      "validation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/README.md",
+      ".opencode/skills/system-skill-advisor/changelog/v0.11.0.0.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/checklist.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/implementation-summary.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/plan.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.11.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/changelog/v0.11.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome the skill delivers, written in the Human Voice Rules and validated by the sk-doc README validator",
+    "created_at": "2026-08-04T08:34:38.389Z",
+    "last_save_at": "2026-08-04T12:55:43.976Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e71d6128d680ffe1649853ac4360774939963c50e7053a1f88986d00d606df8e",
+    "source_doc_hashes": {
+      "spec.md": "6fc332dedf9aec89c9f5bbcab1e5ad59ac55f3d9ff132bc7c68554f3fba3a3cb",
+      "plan.md": "a817ee7ae836e9f65fa5a342bc88c156d8ddee3fe5c3dee5e9b7d515a9d1fceb",
+      "tasks.md": "e976fb4468b9ff8e05c98315c2b855df98cba8a2d479fcd53c50522e71aa8a1e",
+      "checklist.md": "dd559fd92974a0b1f71b6cfbe453c619560aaa55cc692fde1b99fce72997b05c",
+      "implementation-summary.md": "6643aad914d8e293253a36a1d29619c204d49687bf6ba7cea4b66215dd5108e8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

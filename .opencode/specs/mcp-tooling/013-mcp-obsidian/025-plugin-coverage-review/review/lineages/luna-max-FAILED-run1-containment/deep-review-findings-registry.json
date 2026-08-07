@@ -1,0 +1,382 @@
+{
+  "sessionId": "fanout-luna-max-1785917006985-pf8wgr",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Core data models retain ungrounded VERIFY markers",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/charts/data-model.md",
+      "line": 133,
+      "description": "Six in-scope core data models retain explicit VERIFY markers in schema or schema-adjacent assertions.",
+      "findingClass": "coverage_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "436c51d6047c268462861a1b4a39f920dd9241b16e92338f7ec5be28400504ec",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Beancount playbook does not exercise a throwaway vault",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/beancount-transaction.md",
+      "line": 24,
+      "description": "The OBS-011 Beancount playbook does not run against a throwaway vault.",
+      "findingClass": "boundary_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cf0afcfccfaa4ba55ec917f60df85b439d5bf416cd6f30057e8ea83171e8d2d8",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Health.md has no dedicated router intent or resource mapping",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      "line": 163,
+      "description": "Health.md has no dedicated router intent or resource mapping.",
+      "findingClass": "routing_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "26819133f09860bdd656bc6fd9b81b54944f615da0c92516c5d2a2d5c2c4334f",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Core data models retain ungrounded VERIFY markers",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/charts/data-model.md",
+      "line": 133,
+      "description": "Six in-scope core data models retain explicit VERIFY markers in schema or schema-adjacent assertions.",
+      "findingClass": "coverage_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "436c51d6047c268462861a1b4a39f920dd9241b16e92338f7ec5be28400504ec",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Beancount playbook does not exercise a throwaway vault",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/beancount-transaction.md",
+      "line": 24,
+      "description": "The OBS-011 Beancount playbook does not run against a throwaway vault.",
+      "findingClass": "boundary_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cf0afcfccfaa4ba55ec917f60df85b439d5bf416cd6f30057e8ea83171e8d2d8",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Health.md has no dedicated router intent or resource mapping",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      "line": 163,
+      "description": "Health.md has no dedicated router intent or resource mapping.",
+      "findingClass": "routing_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "26819133f09860bdd656bc6fd9b81b54944f615da0c92516c5d2a2d5c2c4334f",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Core data models retain ungrounded VERIFY markers",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/charts/data-model.md",
+      "line": 133,
+      "description": "Six in-scope core data models retain explicit VERIFY markers in schema or schema-adjacent assertions.",
+      "findingClass": "coverage_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "436c51d6047c268462861a1b4a39f920dd9241b16e92338f7ec5be28400504ec",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Beancount playbook does not exercise a throwaway vault",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/beancount-transaction.md",
+      "line": 24,
+      "description": "The OBS-011 Beancount playbook does not run against a throwaway vault.",
+      "findingClass": "boundary_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "cf0afcfccfaa4ba55ec917f60df85b439d5bf416cd6f30057e8ea83171e8d2d8",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Health.md has no dedicated router intent or resource mapping",
+      "file": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      "line": 163,
+      "description": "Health.md has no dedicated router intent or resource mapping.",
+      "findingClass": "routing_gap",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "26819133f09860bdd656bc6fd9b81b54944f615da0c92516c5d2a2d5c2c4334f",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 2,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "evidence": [
+          ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md:23-27"
+        ],
+        "findingRefs": []
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "evidence": [
+          ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/beancount-transaction.md:24-50"
+        ],
+        "findingRefs": [
+          "F002"
+        ]
+      },
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "evidence": [
+          ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md:163-235"
+        ],
+        "findingRefs": [
+          "F003"
+        ]
+      },
+      {
+        "protocolId": "link_integrity",
+        "status": "pass",
+        "evidence": [
+          "132 Markdown files; 458 relative links; zero missing targets"
+        ],
+        "findingRefs": []
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 0,
+      "rule": "type-required",
+      "detail": "record is missing a string `type` field"
+    }
+  ],
+  "corruptionWarnings": []
+}

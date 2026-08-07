@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "description": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using",
+  "keywords": [
+    "phase",
+    "parent",
+    "one",
+    "child",
+    "per",
+    "mode",
+    "skill",
+    "revisiting",
+    "readme",
+    "against",
+    "refined",
+    "template"
+  ],
+  "lastUpdated": "2026-08-04T07:36:39.210Z",
+  "specId": "005",
+  "folderSlug": "mode-child-readme-revisit",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

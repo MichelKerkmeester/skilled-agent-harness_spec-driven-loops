@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/013-mcp-obsidian/018-catalog-reference-topology"
-    last_updated_at: "2026-08-03T00:00:00Z"
+    last_updated_at: "2026-08-03T20:32:51Z"
     last_updated_by: "spec-author"
     recent_action: "Author Phase 18 migration specification"
     next_safe_action: "Move catalog cards into the approved three-folder topology and normalize reference subheadings"
@@ -69,6 +69,8 @@ Consolidate feature cards into the approved three-folder surface topology (`cli/
 - Move 14 CLI cards from command-specific folders into `feature-catalog/cli/`.
 - Move 6 MCP cards from priority folders into `feature-catalog/mcp/`.
 - Keep the 5 plugin cards in `feature-catalog/plugins/`.
+- Normalize the six off-taxonomy validation Type values in the three untouched plugin cards (`beancount-finance`, `obsidian-tables`, `obsidian42-brat`) to the canonical taxonomy (`Asset` → `Fixture`, `Validation reference` → `Reference`) so the catalog package validator passes.
+- Repair fifteen pre-existing relative link errors in the three plugin reference index files (`beancount-finance.md`, `obsidian-tables.md`, `obsidian42-brat.md`) so the Markdown link guard reports zero mcp-obsidian breakage.
 - Update the root catalog's topology explanation, counts, headings, and all moved-card links.
 - Update every affected inbound link and each moved card's canonical-path metadata.
 - Replace all decimal H3–H6 headings in `mcp-obsidian/references/**/*.md` with descriptive unnumbered headings; replace any numeric subsection prose reference with a durable descriptive reference.
@@ -89,6 +91,8 @@ Consolidate feature cards into the approved three-folder surface topology (`cli/
 | `.opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/feature-catalog.md` | Modify | Accurate counts, surface-group navigation, moved-card links |
 | `.opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/**/*.md` | Modify | Repair moved-card links only where present |
 | `.opencode/skills/mcp-tooling/mcp-obsidian/references/**/*.md` | Modify | Remove decimal subheadings and numeric-subsection prose references |
+| `.opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/{beancount-finance,obsidian-tables,obsidian42-brat}.md` | Modify | Normalize validation Type values to the canonical taxonomy (user-approved) |
+| `.opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/{beancount-finance,obsidian-tables,obsidian42-brat}/*.md` | Modify | Repair pre-existing relative link errors (user-approved) |
 | `.opencode/skills/mcp-tooling/leaf-manifest.json` | Regenerate | Reflect moved/added skill resources |
 <!-- /ANCHOR:scope -->
 
@@ -112,6 +116,7 @@ Consolidate feature cards into the approved three-folder surface topology (`cli/
 |----|-------------|---------------------|
 | REQ-005 | Root catalog reflects current surface | Root catalog states 25 entries across 14 CLI, 6 MCP, and 5 plugin cards without stale category totals |
 | REQ-006 | Generated and document gates are fresh | Skill manifest freshness, catalog validation, Markdown link validation, and phase validation provide evidence |
+| REQ-007 | Plugin card validation types are canonical | `validate_catalog_package.py --package mcp-tooling/mcp-obsidian` reports PASS with zero violations; the mcp-obsidian reference indexes show zero broken relative links in the Markdown link guard |
 <!-- /ANCHOR:requirements -->
 
 ---

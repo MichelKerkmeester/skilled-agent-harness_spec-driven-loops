@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
+  "description": "The mcp-code-mode skill README still carries the older tabular reference-card style with an AT A GLANCE table as its spine",
+  "keywords": [
+    "mcp-code-mode",
+    "skill",
+    "readme",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style",
+    "glance",
+    "table",
+    "spine"
+  ],
+  "lastUpdated": "2026-08-04T12:51:46.890Z",
+  "specId": "002",
+  "folderSlug": "mcp-code-mode",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "004-standalone-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

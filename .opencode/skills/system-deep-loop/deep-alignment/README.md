@@ -8,7 +8,7 @@ trigger_phrases:
   - "standard authority check"
   - "known-deviation suppression"
   - "/deep:alignment"
-version: 1.0.0.1
+version: 1.0.0.2
 ---
 
 # deep-alignment
@@ -22,7 +22,7 @@ version: 1.0.0.1
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Auditing whether docs, code, designs or git history follow a *named authority's* own creation standards (sk-doc, sk-git, sk-design, sk-code): conformance, not general correctness |
-| **Invoke with** | `/deep:alignment :auto "target"` / `:confirm` (built and registered, with a full live run as the remaining acceptance step), supplying lanes via `--lane-config <file.json>` or the interactive three-axis scoping question. The engine scripts are also runnable directly. Keyword triggers include "deep alignment", "alignment lane" and "conformance review" |
+| **Invoke with** | `/deep:alignment :auto "target"` or `:confirm`, with lanes via `--lane-config <file.json>` or the interactive three-axis scoping question. Keyword triggers include "deep alignment", "alignment lane" and "conformance review" |
 | **Works on** | Four artifact classes across four registered authorities: `docs` (sk-doc), `code` (sk-code), `designs` (sk-design) and `git-history` (sk-git), one or many in a single run |
 | **Produces** | One `alignment-report.md` with a dedicated section per lane plus a `deep-alignment-findings-registry.json`, both under `{spec_folder}/alignment/`, every finding carrying a P0/P1/P2 severity and a per-lane and overall verdict (PASS, CONDITIONAL, FAIL or NOT_APPLICABLE) |
 
@@ -40,6 +40,17 @@ Three different questions get confused for one. "Is this code correct?" is a gen
 
 It is not `deep-review`, which audits general code and doc correctness across arbitrary dimensions. It is not `parent-skill-check.cjs`, which checks hub structure, not artifact content. The runtime-backed deep-loop families share `runtime/` for state handling, coverage graphs and the convergence philosophy this mode reuses.
 
+### The Alignment Guarantees
+
+The four invariants below are the capability the loop is built around. Each one holds for every lane, every iteration and every adapter.
+
+| Invariant | What the loop guarantees |
+|---|---|
+| **Verify-first** | Every finding is re-probed against the real validator, CLI or registry before it is asserted |
+| **Known-deviation suppression** | The authority's documented intentional conventions are never flagged as drift |
+| **Read-only by default** | The audited artifacts are never modified |
+| **Gated remediation** | Fixing findings is a separate, operator-approved pass that performs no action today |
+
 ---
 
 ## 3. QUICK START
@@ -53,7 +64,7 @@ It is not `deep-review`, which audits general code and doc correctness across ar
 /deep:alignment :confirm --lane-config path/to/lanes.json
 ```
 
-The target can be a spec folder path, a skill name, an interactively scoped set of lanes or a `--lane-config` file.
+Expected output: the run opens with a resolved lane set. `:auto` proceeds through every iteration without pausing, `:confirm` stops for approval before each iteration. The target can be a spec folder path, a skill name, an interactively scoped set of lanes or a `--lane-config` file.
 
 **Step 2: Run the primary workflow.**
 
@@ -61,7 +72,7 @@ The target can be a spec folder path, a skill name, an interactively scoped set 
 /deep:alignment :auto --lane-config lanes.json --max-iterations=6 --coverage-threshold=1.0
 ```
 
-The workflow resolves lanes, discovers each lane's artifact corpus, audits slices per iteration and stops once coverage and stability both clear their thresholds.
+Expected output: the workflow resolves lanes, discovers each lane's artifact corpus, audits slices per iteration and stops once coverage and stability both clear their thresholds.
 
 **Step 3: Verify the reducer output after the loop finishes.**
 
@@ -117,13 +128,19 @@ Convergence requires two signals to hold together, always AND and never OR:
 - **Artifact coverage**: the fraction of discovered artifacts checked at least once, across all applicable lanes, must reach the coverage threshold (default `1.0`, every discovered artifact). A lane that discovered zero artifacts is excluded from both sides of the ratio rather than folded into a false pass.
 - **Dry-run stability**: the last N iteration records (default window `2`), across all lanes in append order, must all report zero new findings. Fewer than N iterations recorded yet fails closed to "not stable," so a fresh run can never converge on its first iteration by construction.
 
-Full coverage with unstable findings is not done, because something is still drifting. Stability with incomplete coverage is not done either, because large parts of the corpus were never looked at. `max-iterations` (default `10`) is an independent hard stop applied regardless of the AND-pair. A lane that never stabilizes still terminates. The `check-convergence.cjs` decision is one of CONVERGED, CONTINUE, STOP_MAX_ITERATIONS, NOTHING_TO_CONVERGE, DISCOVERY_INCOMPLETE, or INTEGRITY_FAILURE; the last two fail closed when authoritative discovery or packet integrity is unavailable.
+Full coverage with unstable findings is not done, because something is still drifting. Stability with incomplete coverage is not done either, because large parts of the corpus were never looked at. `max-iterations` (default `10`) is an independent hard stop applied regardless of the AND-pair. A lane that never stabilizes still terminates. The `check-convergence.cjs` decision is one of CONVERGED, CONTINUE, STOP_MAX_ITERATIONS, NOTHING_TO_CONVERGE, DISCOVERY_INCOMPLETE or INTEGRITY_FAILURE. The last two fail closed when authoritative discovery or packet integrity is unavailable.
 
 ### Corpus Partitioning And Verdicts
 
 `partition-corpus.cjs` walks the lanes in declaration order and wraps back to the start when it reaches the end. It returns the next lane with unaudited artifacts remaining, sliced to `batchSize` (default `5`) per iteration. A lane whose corpus is empty or fully checked is skipped without ending the walk.
 
-The reducer aggregates findings per lane, weighting severities P0 (10), P1 (5) and P2 (1). Each lane earns a verdict: `FAIL` (a P0 remains), `CONDITIONAL` (a P1 remains, no P0), `PASS` (clean), or `NOT_APPLICABLE` (nothing discovered). The overall verdict is the **worst** per-lane verdict present. A single FAIL lane fails the run and is never averaged away by clean lanes.
+The reducer aggregates findings per lane and weights them by severity:
+
+- P0 findings weigh 10 points and force a `FAIL` verdict while any remains
+- P1 findings weigh 5 points and force a `CONDITIONAL` verdict while any remains
+- P2 findings weigh 1 point
+
+Each lane earns a verdict: `FAIL` (a P0 remains), `CONDITIONAL` (a P1 remains, no P0), `PASS` (clean) or `NOT_APPLICABLE` (nothing discovered). The overall verdict is the **worst** per-lane verdict present. A single FAIL lane fails the run and is never averaged away by clean lanes.
 
 ### The Lane Model
 
@@ -157,7 +174,7 @@ Any validation failure fails the whole file before `DISCOVER` starts (exit `3`),
 
 Never hand-roll a bash or shell dispatcher to parallelize lanes, invoke a CLI executor in a loop to simulate iterations, `Task`-dispatch the `@deep-alignment` LEAF agent for iteration loops, write ad-hoc state outside the bound `alignment/` directory or run remediation without an explicit, separate operator opt-in. Each of these five is a distinct failure mode the engine is designed to prevent.
 
-**Build state (v1.0.0.0).** The scoping engine, the five per-authority adapters and the SCOPE/DISCOVER/ITERATE/CONVERGE/REPORT scripts are shipped and independently runnable. Each has its own CLI and can be dry-run directly. The `remediate-hook.cjs` state is an intentionally unimplemented, operator-gated stub. The `/deep:alignment` command workflow and `@deep-alignment` LEAF agent, the orchestration layer that drives these scripts end to end, are built and registered. The command renders and the cutover gates pass. A full live end-to-end run against a real lane is the remaining acceptance step.
+**Build state.** The scoping engine, the five per-authority adapters and the SCOPE/DISCOVER/ITERATE/CONVERGE/REPORT scripts are shipped and independently runnable. Each has its own CLI and can be dry-run directly. The `remediate-hook.cjs` state is an intentionally unimplemented, operator-gated stub. The `/deep:alignment` command workflow and `@deep-alignment` LEAF agent, the orchestration layer that drives these scripts end to end, are built and registered. The command renders and the cutover gates pass. A full live end-to-end run against a real lane is the remaining acceptance step.
 
 ---
 
@@ -229,6 +246,8 @@ The state-machine wiring ships its own test that pins the state-to-script contra
 node .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs
 ```
 
+Expected output: the test prints its assertions and exits 0.
+
 ### Manual Testing Playbook
 
 The `manual-testing-playbook/` runs 31 deterministic scenarios across 8 categories:
@@ -269,7 +288,7 @@ Expected output: zero blocking errors.
 | [`references/adapters/sk-code-adapter.md`](./references/adapters/sk-code-adapter.md) | The sk-code adapter specification |
 | [`references/adapters/sk-design-live-render-adapter.md`](./references/adapters/sk-design-live-render-adapter.md) | The sk-design live-render adapter specification |
 | [`references/adapters/sk-doc-known-deviations.md`](./references/adapters/sk-doc-known-deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_design, sk_code variants) |
-| [`scripts/scoping.cjs`](./scripts/scoping.cjs) | Lane resolution: `AUTHORITY_ARTIFACT_CLASSES`, `validateLane`, `resolveLanesFromConfig`/`FromSelections` |
+| [`scripts/scoping.cjs`](./scripts/scoping.cjs) | Lane resolution: the `AUTHORITY_ARTIFACT_CLASSES` map, the `validateLane()` choke point and the `resolveLanesFromConfig`/`FromSelections` entry points |
 | [`scripts/check-convergence.cjs`](./scripts/check-convergence.cjs) | The coverage-AND-stability-AND-max-iterations CONVERGE decision |
 | [`scripts/partition-corpus.cjs`](./scripts/partition-corpus.cjs) | Round-robin lane slicing for the next iteration |
 | [`scripts/remediate-hook.cjs`](./scripts/remediate-hook.cjs) | The gated, intentionally-unimplemented REMEDIATE hook point |
@@ -279,4 +298,4 @@ Expected output: zero blocking errors.
 | [`feature-catalog/`](./feature-catalog/) | Feature inventory across lane resolution, the adapter contract, loop lifecycle and the alignment contract |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
 | [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark: scenario contracts for what the model does at the `/deep:alignment` command surface under realistic prompts |
-| [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | The mode-packet establishment changelog |
+| [`changelog/v1.0.0.2.md`](./changelog/v1.0.0.2.md) | The current release changelog |

@@ -1,5 +1,5 @@
 ---
-title: Excalidraw File-Layer Data Model
+title: "Excalidraw File-Layer Data Model"
 description: "Complete file-layer contract for the Excalidraw Obsidian plugin: drawing note structure, frontmatter keys, embedded JSON schema, settings keys, embed syntax, scripts and templates."
 trigger_phrases:
   - "excalidraw data model"
@@ -12,7 +12,7 @@ trigger_phrases:
   - "excalidraw library file"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.10.0.0
+version: "0.10.0.0"
 ---
 
 # Excalidraw File-Layer Data Model
@@ -41,8 +41,6 @@ Excalidraw stores every drawing as a **Markdown note** with frontmatter and an e
 - The JSON document may be deflate-compressed when the `compress` setting is on.
 - The vault has no `data.json`, so all documented setting defaults apply.
 
----
-
 ## 2. DRAWING NOTE STRUCTURE
 
 A default new drawing note in the installed version looks like this shape (verified from the `FRONTMATTER` and `getMarkdownDrawingSection` code in `main.js`).
@@ -69,8 +67,6 @@ tags: [excalidraw]
 - When `compress` is on, the fence language is `compressed-json` and the block holds one long deflate-compressed string.
 - The command `Decompress current Excalidraw file` rewrites the compressed block to plain JSON.
 - The reader also accepts a raw JSON line after the section header without a fence. Older files use that legacy shape.
-
----
 
 ## 3. FRONTMATTER KEYS
 
@@ -104,8 +100,6 @@ All keys below are verified from the `FRONTMATTER_KEYS` registry in the installe
 
 The legacy key `excalidraw-iframe-theme` exists in the registry and is marked deprecated. Do not write it into new files.
 
----
-
 ## 4. EMBEDDED JSON DOCUMENT
 
 The body document is the Excalidraw scene file. Its top-level shape is stable.
@@ -129,8 +123,6 @@ The body document is the Excalidraw scene file. Its top-level shape is stable.
 - With `compress: true` the plugin deflates the JSON document and writes it in a `compressed-json` fenced block under the `## Drawing` header.
 - A compressed block is not human-readable. Validate it by decompressing with the plugin command, not by eyeballing the string.
 - Only the command `Decompress current Excalidraw file` is verified to exist in the installed version. VERIFY the exact names of compress commands before quoting them.
-
----
 
 ## 5. SETTINGS CONTRACT
 
@@ -162,8 +154,6 @@ Settings live in `data.json` with 200+ top-level keys. The vault has no `data.js
 - Unknown keys in an existing `data.json` are user or feature settings. Preserve them on any merge.
 - Never enumerate or invent settings keys beyond what `main.js` confirms.
 - Editing `data.json` takes effect when Obsidian reloads the plugin. The user must reload the app or disable and enable the plugin.
-
----
 
 ## 6. EMBED SYNTAX
 
@@ -223,8 +213,6 @@ Links to PDF pages and crops use fragment parameters on the embedded file.
 - `#page=N` selects a PDF page.
 - `#rect=left,bottom,right,top` crops a rectangle in PDF units.
 
----
-
 ## 7. SCRIPTS AND TEMPLATES
 
 ### Script Engine notes
@@ -252,8 +240,6 @@ Links to PDF pages and crops use fragment parameters on the embedded file.
 
 - The library is a vault file at `<libraryFolderPath>/<libraryFileName>.excalidrawLib`, default `Excalidraw/Libraries/local-library`.
 - Library content is user-created shape collections. Treat it as read-only.
-
----
 
 ## 8. WHAT THE AI MUST NOT DO
 

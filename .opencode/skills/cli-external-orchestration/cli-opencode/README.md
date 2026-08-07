@@ -1,6 +1,6 @@
 ---
 title: cli-opencode
-description: OpenCode CLI orchestrator that dispatches a task into the project's full plugin, skill, MCP and Spec Kit Memory runtime in one shot, plus parallel detached sessions and cross-AI handback.
+description: Gives an external AI assistant the project's full runtime in one dispatch: every plugin, skill, MCP server and the Spec Kit Memory database, plus parallel detached sessions for ablation and worker farms.
 trigger_phrases:
   - "delegate to opencode"
   - "opencode run"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.3.0.29
+version: 1.4.2.0
 ---
 
 # cli-opencode
 
-> Dispatch a task into OpenCode's full project runtime in one shot from any external AI assistant, or spawn a parallel detached session for ablation and worker farms.
+> Give any external AI assistant the project's full runtime in one dispatch: every plugin, skill, MCP server and the Spec Kit Memory database, plus parallel detached sessions for ablation and worker farms.
 
 ---
 
@@ -21,7 +21,7 @@ version: 1.3.0.29
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | One-shot dispatch into OpenCode's full plugin, skill, MCP and Spec Kit Memory runtime, parallel detached sessions and cross-AI handback |
+| **Use it for** | One-shot dispatch into the project's full plugin, skill, MCP and Spec Kit Memory runtime, plus parallel detached sessions and cross-AI handback |
 | **Invoke with** | "delegate to opencode", "opencode run", "parallel detached", "cross-ai handback" or auto-routing on OpenCode keywords |
 | **Works on** | Any external runtime (Claude Code, OpenCode, raw shell) and from inside OpenCode for parallel detached workers |
 | **Produces** | Structured JSON event streams, code changes with full project context, parallel research sessions and cross-AI handback results |
@@ -32,13 +32,23 @@ version: 1.3.0.29
 
 ### Why This Skill Exists
 
-A Claude Code or OpenCode session that needs the project's whole runtime has no native path to get it. The memory database, the code graph, every plugin and skill, the MCP toolset: none of that loads from outside. You would hand-build an `opencode run` invocation, pick a model and provider, and hit the non-obvious traps. The dispatch hangs at zero percent CPU if you forget to close stdin. The current OpenCode rejects a top-level `--agent general` without telling you why. If the caller is itself OpenCode, a self-dispatch loops and burns tokens. This skill standardizes the dispatch across three documented use cases and refuses self-invocation.
+An external session that needs the project's whole runtime has no native path to get it. The memory database, the code graph, every plugin and skill, the MCP toolset: none of that loads from outside. Hand-building an `opencode run` invocation hits the non-obvious traps. The dispatch hangs at zero percent CPU when stdin stays open. The current OpenCode rejects a top-level `--agent general` without saying why. A caller that is itself OpenCode risks a self-dispatch loop that burns tokens. This skill standardizes the dispatch across the documented use cases and refuses self-invocation.
 
 ### What It Does
 
 cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. The default dispatch is `opencode run --model deepseek/deepseek-v4-pro --variant high --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
+
+### The Dispatch Surface
+
+| Capability | What the skill can operate |
+|---|---|
+| **One-shot full-runtime dispatch** | `opencode run` loads every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the Spec Kit Memory database |
+| **Parallel detached sessions** | separate session ids and state in the shared `~/.local/share/opencode/` database for ablation suites and worker farms |
+| **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
+| **Provider and model surface** | reaches the `deepseek`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
+| **Agent delegation** | routes to project-local agents under `.opencode/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
 ---
 
@@ -72,11 +82,11 @@ opencode run \
   </dev/null
 ```
 
-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review`, `debug`, and `ai-council` are subagents that route through a primary/orchestrate path (or, for `ai-council`, through its own `/deep:ai-council` command), and direct top-level `--agent` use is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead — as this example does ("Act as a context-retrieval agent…").
+You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
 
 **Step 4: Spawn a parallel detached session (inside OpenCode only).**
 
-> **Confirm before you share.** `--share` publishes the session and exposes its contents at a browser-accessible URL — get operator confirmation first, per this skill's `share-requires-confirmation` hard_rule.
+> **Confirm before you share.** `--share` publishes the session and exposes its contents at a browser-accessible URL. Get operator confirmation first, per the skill's `share-requires-confirmation` hard rule.
 
 ```bash
 opencode run --share --port 4096 \
@@ -85,7 +95,7 @@ opencode run --share --port 4096 \
   </dev/null &
 ```
 
-The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`) — inspectable independently via `opencode export <session_id>`, not via a per-session directory — and `--share` publishes a browser-accessible URL.
+The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`), inspectable independently via `opencode export <session_id>`. `--share` publishes a browser-accessible URL.
 
 ---
 
@@ -103,9 +113,9 @@ This is what sets cli-opencode apart from every sibling in the cli-* family. A s
 
 Two `opencode run` defaults punish operators who learn them the hard way.
 
-**Rule 1: use `--agent` deliberately.** The live dispatch contract does not support direct top-level routing to `context`, `review` or `debug`; those are documented as subagents, not directly invokable top-level `opencode run --agent` routes. Do not pass `--agent general`: the default/general path is selected by omitting `--agent`, and some small-model paths documented in `SKILL.md` also carry narrower omit-agent caveats.
+**Rule 1: use `--agent` deliberately.** The live dispatch contract does not support direct top-level routing to `context`, `review`, `debug` or the other subagents the roster names. None of them is directly invokable as a top-level `opencode run --agent` route. Do not pass `--agent general`. The default path is selected by omitting `--agent`. Some small-model paths documented in `SKILL.md` carry narrower omit-agent caveats.
 
-**Rule 2: append `</dev/null` to every non-interactive run.** Without closed stdin, `opencode run` hangs at zero percent CPU after the snapshot-cleanup line. A foreground `| tail` happens to bypass this because the upstream pipe stage provides closed stdin, but `> stdout.log 2> stderr.log` does not. Position `</dev/null` after the prompt argument, before the redirects.
+**Rule 2: append `</dev/null` to every non-interactive run.** Without closed stdin, `opencode run` hangs at zero percent CPU after the snapshot-cleanup line. A foreground `| tail` bypasses this because the upstream pipe stage provides closed stdin, but `> stdout.log 2> stderr.log` does not. Position `</dev/null` after the prompt argument, before the redirects.
 
 ### The Self-Invocation Guard
 
@@ -113,17 +123,17 @@ If the agent reading this skill is already inside OpenCode, the skill refuses to
 
 1. The `$OPENCODE_CONFIG_DIR` env var and any `OPENCODE_*`-prefixed vars, which OpenCode sets on session start.
 2. Process ancestry, where an `opencode` parent in the tree trips the guard.
-3. A best-effort lock-file probe under `~/.opencode/state/<id>/lock` — a third layer on top of the two above; that path does not exist on every install, so this layer is a heuristic, not a guaranteed signal.
+3. A best-effort lock-file probe under `~/.opencode/state/<id>/lock`, a heuristic layer since that path does not exist on every install.
 
-The one exception is an explicit parallel detached request. When the prompt contains "parallel detached", "ablation suite", "worker farm" or "spawn detached", the guard allows the dispatch through because it spawns a separate session id, not a self-dispatch.
+The one exception is an explicit parallel detached request. When the prompt contains "parallel detached", "ablation suite", "worker farm" or "spawn detached", the guard allows the dispatch because it spawns a separate session id, not a self-dispatch.
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill runs `opencode providers list`. Seven providers are documented: `deepseek` (direct API, the default), `minimax-coding-plan` (MiniMax Token Plan, the default MiniMax path), `minimax` (MiniMax Direct API), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `xiaomi` (Xiaomi Direct API), `kimi-for-coding` (Kimi For Coding plan; model `kimi-for-coding/k2p7`) and `openai` (paid premium). If the default `deepseek` is missing the skill asks before falling back, and it never substitutes a model you did not approve.
+Before the first dispatch in a session the skill runs `opencode providers list`. Four providers are documented: `deepseek` (direct API, the default), `minimax` (MiniMax-M3), `xiaomi` (mimo-v2.5-pro and -ultraspeed) and `openai` (paid premium, the GPT-5.6 family). If the default `deepseek` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 
-OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, but the live dispatch contract is narrower than file presence alone: `context`, `review` and `debug` are subagents and should not be presented as direct specialist `opencode run --agent` slugs. Use `orchestrate` for generic subagent routing when help-verified, omit `--agent` for the default/general path and never pass `--agent general`. Some small-model paths documented in `SKILL.md` still carry narrower omit-agent caveats. The full roster lives in `references/agent-delegation.md`.
+OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, but the live dispatch contract is narrower than file presence alone. Subagents such as `context`, `review`, `debug` and the rest of the roster are invoked through a primary path, never as direct specialist `opencode run --agent` slugs. Use `orchestrate` for generic subagent routing when help-verified, omit `--agent` for the default path and never pass `--agent general`. Some small-model paths documented in `SKILL.md` carry narrower omit-agent caveats. The full roster lives in `references/agent-delegation.md`.
 
 ---
 
@@ -131,7 +141,7 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
 
 ### When To Use This Skill
 
-Reach for cli-opencode when a task needs the project's full runtime (the memory database, the code graph, every plugin, skill and MCP tool), when you want a parallel detached session for ablation or worker-farm work, or when a non-Anthropic CLI needs OpenCode as a bridge to a project subsystem like spec-kit, memory or code-graph. Skip it for simple tasks the caller can answer directly, for raw model dispatch where a sibling cli-* is leaner and for the interactive OpenCode TUI.
+Reach for cli-opencode when a task needs the project's full runtime: the memory database, the code graph, every plugin, skill and MCP tool. Use it too for a parallel detached session on ablation or worker-farm work. A non-Anthropic CLI that needs OpenCode as a bridge to a project subsystem such as spec-kit, memory, the code graph and the skill advisor also lands here. Skip it for simple tasks the caller can answer directly, for raw model dispatch where a sibling cli-* is leaner, for the interactive OpenCode TUI and for anything a plain shell command already covers.
 
 ### Sibling Boundaries
 
@@ -141,6 +151,10 @@ The cli-X skills each dispatch to a different provider and never overlap.
 |---|---|---|
 | `cli-opencode` | OpenCode | Full project runtime, parallel detached sessions, cross-AI handback |
 | `cli-claude-code` | Anthropic | Deep reasoning, diff-based edits, `--json-schema` output, agent delegation |
+| `cli-codex` | OpenAI | Sandboxed coding, repo analysis, PR review, web research |
+| `cli-cursor` | Cursor | Composer-model dispatch, read-only plan and ask exploration |
+| `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
+| `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 
@@ -161,7 +175,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|---|
 | `command not found: opencode` | CLI not installed or PATH not updated | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart your terminal |
 | Dispatch hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` before any `> stdout.log 2> stderr.log` redirect |
-| `--agent general` fails or warns | The default/general path is selected by omitting `--agent` | Omit `--agent general`; use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug`, and `ai-council` through the documented primary/Task path (or, for `ai-council`, `/deep:ai-council`) instead of direct top-level `--agent` examples. |
+| `--agent general` fails or warns | The default path is selected by omitting `--agent` | Omit `--agent general`. Use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug` and `ai-council` through the documented primary path (or, for `ai-council`, `/deep:ai-council`) instead of a direct top-level `--agent`. |
 | `provider/model not found` or `401 Unauthorized` | The default `deepseek` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
@@ -174,11 +188,11 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 **Q: What does the full-runtime dispatch buy over a sibling cli-* skill?**
 
-A: A sibling cli-* skill dispatches to a single provider's binary. cli-opencode dispatches into a session that loads every plugin, skill, MCP server and the Spec Kit Memory database for the project. When the task needs the code graph, memory search or a project-specific plugin, only cli-opencode provides all of them in one shot. When it only needs a model, a sibling is leaner.
+A: A sibling cli-* skill dispatches to a single provider's binary. cli-opencode dispatches into a session that loads every plugin, skill, MCP server and the Spec Kit Memory database for the project. When the task needs the code graph, memory search, a project-specific plugin or the skill advisor, only cli-opencode provides all of them in one shot. When it only needs a model, a sibling is leaner.
 
 **Q: When do I need a parallel detached session?**
 
-A: When you are inside OpenCode and want a second session with its own state and session id. Common patterns are an ablation suite across sessions, a worker farm for parallel research and a `--share` URL for browser inspection. The prompt must contain explicit parallel-session keywords or the self-invocation guard blocks the dispatch.
+A: When you are inside OpenCode and want a second session with its own state and session id. Common patterns are an ablation suite across sessions, a worker farm for parallel research, a `--share` URL for browser inspection and a cross-repo research branch. The prompt must contain explicit parallel-session keywords or the self-invocation guard blocks the dispatch.
 
 **Q: Why no top-level `--agent`?**
 
@@ -190,7 +204,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `deepseek/deepseek-v4-pro --variant high` via the direct DeepSeek API, which gives elevated reasoning at low cost. Switch to `minimax-coding-plan/MiniMax-M3` for the MiniMax Token Plan or `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` for MiMo through the Xiaomi Token Plan. Use `openai/gpt-5.6-sol` for paid premium dispatches.
+A: Default to `deepseek/deepseek-v4-pro --variant high` via the direct DeepSeek API, which gives elevated reasoning at low cost. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `xiaomi/mimo-v2.5-pro` for MiMo, `xiaomi/mimo-v2.5-pro-ultraspeed` for low latency or `openai/gpt-5.6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 
@@ -211,10 +225,12 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, models, auth and version drift handling |
-| [`references/integration-patterns.md`](./references/integration-patterns.md) | The three use cases, the self-invocation guard and the silent-stdin trap |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider, model, `--variant` effort and dispatch-shape catalog |
+| [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and version drift handling |
+| [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases, the self-invocation guard and the silent-stdin trap |
 | [`references/opencode-tools.md`](./references/opencode-tools.md) | Unique value versus sibling cli-* skills |
 | [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster, primary versus subagent routing and leaf-agent constraints |
+| [`references/self-invocation-guard.md`](./references/self-invocation-guard.md) | The three-layer guard and the parallel-detached exception |
 | [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md) | The RM-8 incident and the four-layer prevention playbook |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Executor-specific model overrides and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for each use case and agent |

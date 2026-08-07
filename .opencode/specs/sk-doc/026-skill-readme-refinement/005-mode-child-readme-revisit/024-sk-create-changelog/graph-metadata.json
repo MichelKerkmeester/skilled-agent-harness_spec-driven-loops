@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
+  "spec_folder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
+  "parent_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create changelog readme rewrite",
+      "mode readme revisit",
+      "phase 24 readme rewrite",
+      "changelog readme rewrite",
+      "phase 24 plan",
+      "sk create changelog readme plan",
+      "changelog readme rewrite plan",
+      "phase 24 tasks",
+      "sk create changelog readme tasks",
+      "changelog readme rewrite tasks",
+      "phase 24 checklist",
+      "sk create changelog readme verification"
+    ],
+    "key_topics": [
+      "changelog",
+      "readme",
+      "rewrite",
+      "mode",
+      "revisit",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "sk-create-changelog",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-changelog/README.md",
+      ".opencode/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/spec.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/plan.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks.md",
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/checklist.md",
+      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.1.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-obsidian",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-create-changelog README at `.opencode/skills/sk-doc/sk-create-changelog/README.md` still carries the older tabular reference-card style",
+    "created_at": "2026-08-04T08:34:47.756Z",
+    "last_save_at": "2026-08-04T14:50:13.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0818105c16cce5d62eef53364ed93cbc0e254dc0aa7a9ec0c9017d025b3790c",
+    "source_doc_hashes": {
+      "spec.md": "456001d9f68141f8642bf6969a56748a4f628902ef20542441b92249f01aaa83",
+      "plan.md": "a24c5ae98b258afe7f4f6ed792b8ad4f65cbb3e215b79d189a017a03f13abeb1",
+      "tasks.md": "997bb9fa99e1b710f8155c707424e841a10a325ef366273cc0a6ae30e4d74922",
+      "checklist.md": "d88c63cfe19f64d1d92626c2af0877a4d44670f2bad287f889f112b0c1de386d",
+      "implementation-summary.md": "1e4a353e282fd0b13b534160fead030450e10e12d9aab87888f0485647ff2582"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

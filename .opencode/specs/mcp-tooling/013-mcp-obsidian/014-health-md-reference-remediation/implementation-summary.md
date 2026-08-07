@@ -7,6 +7,22 @@ trigger_phrases:
   - "mcp-obsidian v1.2.1.0"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/014-health-md-reference-remediation"
+    last_updated_at: "2026-08-04T12:12:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Wrote phase docs"
+    next_safe_action: "Finalize fingerprint when spec-memory daemon is healthy"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/014-health-md-reference-remediation"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary — Phase 14 — Health.md reference remediation
