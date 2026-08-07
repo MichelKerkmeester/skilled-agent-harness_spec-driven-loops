@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder"
-    last_updated_at: "2026-08-07T11:20:00Z"
+    last_updated_at: "2026-08-07T17:36:19Z"
     last_updated_by: "claude-code"
-    recent_action: "Phases 3 and 4 both complete; T015 operator review open"
-    next_safe_action: "Operator reviews the final state (003's T015)"
+    recent_action: "Phase 5 scoped (README migration audit); T015 operator review open"
+    next_safe_action: "Launch phase 5's deep-review dispatch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -102,6 +102,8 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 | 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | Complete — all 11 steps executed and verified, T015 operator review open |
 | 4 | 004-code-graph-index-flag-deprecation/ | Remove the dead `SPECKIT_CODE_GRAPH_INDEX_*` maintainer-mode flag mechanism (git filter, config, doc, dead env-var fallback), discovered as a side effect of phase 3's `scripts/` cleanup | Complete |
 
+| 5 | 005-readme-migration-audit/ | 10-iter multi-executor `/deep:review` (deepseek-v4-flash + GLM-5.2-high) auditing every README (including the repo root) for content that's logically stale after the specs-root topology flip | Pending |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -116,6 +118,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 | 001-relocation-implications-research | 002-migration-plan | Research converged with a ranked implication list and an explicit recommendation | `research/research.md` present with findings; operator reviewed and confirmed proceeding to a migration plan |
 | 002-migration-plan | 003-migration-execution | Both ADRs Accepted; operator explicitly confirmed proceeding to execution scoping | `decision-record.md` ADR-001 and ADR-002 both status Accepted |
 | 003-migration-execution | 004-code-graph-index-flag-deprecation | Not a sequential dependency — 004 is a self-contained cleanup discovered mid-phase-3, scoped and run independently | `004/tasks.md` T001-T008 all `[x]` with evidence |
+| 004-code-graph-index-flag-deprecation | 005-readme-migration-audit | Not a sequential dependency — 005 audits documentation drift from the same migration, scoped and run independently | `005/review/review-report.md` present with a verdict |
 <!-- /ANCHOR:phase-map -->
 
 ---

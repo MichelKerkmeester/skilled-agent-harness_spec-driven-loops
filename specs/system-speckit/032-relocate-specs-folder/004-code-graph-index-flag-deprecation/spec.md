@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
-    last_updated_at: "2026-08-07T10:47:41Z"
+    last_updated_at: "2026-08-07T17:37:51Z"
     last_updated_by: "claude-code"
     recent_action: "Scoped from a repo-wide grep for every remnant"
     next_safe_action: "Execute the removal per plan.md, then verify"
@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 4 |
 | **Predecessor** | 003-migration-execution |
-| **Successor** | None |
+| **Successor** | 005-readme-migration-audit |
 | **Handoff Criteria** | All 4 in-scope files updated, tests green, no remaining `SPECKIT_CODE_GRAPH_INDEX` hits outside historical spec docs |
 <!-- /ANCHOR:metadata -->
 

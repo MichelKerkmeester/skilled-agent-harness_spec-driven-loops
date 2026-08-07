@@ -8,7 +8,8 @@
     "system-speckit/032-relocate-specs-folder/001-relocation-implications-research",
     "system-speckit/032-relocate-specs-folder/002-migration-plan",
     "system-speckit/032-relocate-specs-folder/003-migration-execution",
-    "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
+    "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
+    "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -90,15 +91,15 @@
     ],
     "causal_summary": "The canonical spec-kit tree currently lives at `.opencode/specs/`",
     "created_at": "2026-08-06T07:50:00.000Z",
-    "last_save_at": "2026-08-07T09:55:10.885Z",
+    "last_save_at": "2026-08-07T17:36:39.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e8bbf7534f802bf64204ab2175c7989c0112562a79bbe3a54d7fcb203502a31b",
+    "source_fingerprint": "sha256:6a990974e7d830ce1a1eae5b4c5053ef11da0f47ba2e4d2eeb11c88e86482eeb",
     "source_doc_hashes": {
-      "spec.md": "84580f690157ee1a40e13a531c8739acc150599e99e6d53d13e06a2be9d07411"
+      "spec.md": "39d726eb02525abd99c399dd3c951c9f44f780f58f242532148bf7257e9743e9"
     },
     "last_active_child_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
     "last_active_at": null

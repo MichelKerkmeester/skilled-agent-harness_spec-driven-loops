@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/032-relocate-specs-folder/005-readme-migration-audit",
+  "description": "Dual-executor deep review (deepseek-v4-flash + GLM-5.2-max) auditing every non-worktree README for content stale after the specs-root topology flip",
+  "keywords": [
+    "dual-executor",
+    "deep",
+    "review",
+    "deepseek-v4-flash",
+    "glm-5",
+    "2-max",
+    "auditing",
+    "every",
+    "non-worktree",
+    "readme",
+    "content",
+    "stale",
+    "specs-root",
+    "topology",
+    "flip"
+  ],
+  "lastUpdated": "2026-08-07T17:34:35.215Z",
+  "specId": "005",
+  "folderSlug": "readme-migration-audit",
+  "parentChain": [
+    "system-speckit",
+    "032-relocate-specs-folder"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

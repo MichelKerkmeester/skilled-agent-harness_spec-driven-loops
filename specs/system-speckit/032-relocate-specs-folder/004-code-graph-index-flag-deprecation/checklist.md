@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
-    last_updated_at: "2026-08-07T10:47:41Z"
+    last_updated_at: "2026-08-07T17:37:51Z"
     last_updated_by: "claude-code"
     recent_action: "Checklist scoped, awaiting execution"
     next_safe_action: "Execute plan.md steps, then verify each item"

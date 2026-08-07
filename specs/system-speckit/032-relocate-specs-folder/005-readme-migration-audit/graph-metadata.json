@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
-  "spec_folder": "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
+  "packet_id": "system-speckit/032-relocate-specs-folder/005-readme-migration-audit",
+  "spec_folder": "system-speckit/032-relocate-specs-folder/005-readme-migration-audit",
   "parent_id": "system-speckit/032-relocate-specs-folder",
   "children_ids": [],
   "manual": {
@@ -11,55 +11,44 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code graph index flag deprecation",
-      "SPECKIT_CODE_GRAPH_INDEX cleanup",
-      "maintainer flags filter removal",
-      "code graph index flag deprecation plan",
-      "code graph index flag deprecation tasks",
-      "code graph index flag deprecation checklist",
-      "code graph index flag deprecation summary"
+      "readme migration audit",
+      "readme deep review",
+      "post-migration documentation drift",
+      "readme migration audit plan",
+      "dual executor deep review dispatch",
+      "readme migration audit tasks",
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
     ],
     "key_topics": [
-      "code",
-      "graph",
-      "index",
-      "flag",
-      "deprecation",
-      "cleanup",
-      "maintainer",
-      "flags",
-      "filter",
-      "removal",
+      "readme",
+      "migration",
+      "audit",
+      "deep",
+      "review",
+      "post-migration",
+      "documentation",
+      "drift",
       "plan",
-      "tasks"
+      "dual",
+      "executor",
+      "dispatch"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
       "plan.md",
-      "checklist.md",
       "spec.md",
-      "scratch/.gitkeep",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -69,9 +58,9 @@
         "source": "derived"
       },
       {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -87,7 +76,7 @@
         "source": "derived"
       },
       {
-        "name": "Flag Remnants",
+        "name": "Migration Audit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,19 +118,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Four",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Targeted",
+        "name": "Overview Dispatch",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Loop",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -171,43 +160,53 @@
         "source": "derived"
       },
       {
-        "name": "it",
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "`scripts/setup-maintainer-filters.sh` (removed in this session's step-11 cleanup) installed a git clean/smudge filter keeping `SPECKITCODEGRAPHINDEX{SKILLS,AGENTS,COMMANDS,SPECS,PLUGINS}` `\"true\"` locally for maintainers while committing `\"false\"`",
-    "created_at": "2026-08-07T08:47:41Z",
-    "last_save_at": "2026-08-07T17:37:57.706Z",
+    "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
+    "created_at": "2026-08-07T17:29:17Z",
+    "last_save_at": "2026-08-07T17:35:42.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6b3406a232193ac8090b9a2c941666b0c94c09a517f90bb98c2f87b789976df",
+    "source_fingerprint": "sha256:5ba71ff0d9a4a1632f3ee73ff5a1ff985e64fe26abc88d7d5d977645bdfffa78",
     "source_doc_hashes": {
-      "spec.md": "33ffbc088b692f036031115fa8d1e1f7a27bef4f0936bbe237a44f9e060b908f",
-      "plan.md": "3288c8a9933524af0fb2e052516f64cfbca5afdc43846493c5eae19656ebaa47",
-      "tasks.md": "9c502bc8bb2ca79872647f50823a8c3644ea58055d36190e17e2d61ae063ac83",
-      "checklist.md": "36d0e1587500879dfdb5dd0d7fda758e54701b6f4faa6ef702432bde740365ba",
-      "implementation-summary.md": "203c784a59ecbdc5b555a4dc083cb9353c00e9fad827c68a1c8a925bbd9bf33a"
+      "spec.md": "f7254040ab4ac08d613a7b3d70c9e6ffdb5fc78f9293d6459518b9257630958f",
+      "plan.md": "01a4c250d00e13e47b9d40ce15841ebd81c495c37c19f0f6d311e4fb873a517b",
+      "tasks.md": "f11622312600e585ad4a49e4ac570e2aaa1cb2d63c4de35c64546216ac1ec164",
+      "implementation-summary.md": "ded73c7781080c72da2efe9a19d76e002dbd15ccdc9277386ef55f3e61d781fb"
     },
     "last_active_child_id": null,
     "last_active_at": null
