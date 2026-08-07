@@ -48,7 +48,22 @@ function seedLane(alignmentDir, artifacts) {
 }
 
 function appendState(alignmentDir, line) {
-  fs.appendFileSync(path.join(alignmentDir, 'deep-alignment-state.jsonl'), `${line}\n`, 'utf8');
+  let output = line;
+  try {
+    const record = JSON.parse(line);
+    if (Array.isArray(record.artifactsChecked) && !Object.prototype.hasOwnProperty.call(record, 'artifactEvidence')) {
+      output = JSON.stringify({
+        ...record,
+        dispatchedSlice: record.artifactsChecked,
+        artifactEvidence: record.artifactsChecked.map((artifact) => ({
+          artifact,
+          kind: 'content-digest',
+          contentDigest: `sha256:${'a'.repeat(64)}`,
+        })),
+      });
+    }
+  } catch {}
+  fs.appendFileSync(path.join(alignmentDir, 'deep-alignment-state.jsonl'), `${output}\n`, 'utf8');
 }
 
 // 1. Non-empty corpus + a first pass that checked nothing MUST NOT be PASS.

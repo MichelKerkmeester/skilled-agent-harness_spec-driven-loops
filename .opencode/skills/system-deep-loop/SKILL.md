@@ -51,8 +51,8 @@ The hub's own routing logic is read-only (classify, guard a path, load a packet)
 
 ### The three-tier discriminator
 - **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, `alignment`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`.
-- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for all three improvement lanes; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`, while `alignment` maps to `runtimeLoopType: review`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council/alignment) or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
+- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom and improvement backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`, while alignment uses its named `convergenceBackend`.
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council), `alignment-convergence` (the alignment packet's `check-convergence.cjs`), or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
 
 ### Routing rule
 ```
@@ -60,7 +60,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm whether this is research, review, ai-council, alignment, or one improvement lane (agent-improvement, model-benchmark, skill-benchmark) work",
     "Confirm the target artifact: research.md, a review verdict, ai-council deliberation artifacts, alignment findings, or an improvement candidate",
     "Confirm the matching /deep:* command or agent type when one is already known",
-    "Confirm the backend expectations: runtimeLoopType (research/review/council/alignment) or the improvement-host lane",
+    "Confirm the backend expectations: runtimeLoopType (research/review/council), the alignment convergence backend, or the improvement-host lane",
 ]
 
 classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
@@ -75,6 +75,7 @@ else:
        e.g. registry["alignment"].packet → system-deep-loop/deep-alignment/SKILL.md
        (the 3 improvement modes all share the system-deep-loop/deep-improvement/ packet)
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
+     else if registry[mode].backendKind == "alignment-convergence": backend = registry[mode].convergenceBackend
      else: backend = improvement loop-host (--mode), per backendKind
 ```
 

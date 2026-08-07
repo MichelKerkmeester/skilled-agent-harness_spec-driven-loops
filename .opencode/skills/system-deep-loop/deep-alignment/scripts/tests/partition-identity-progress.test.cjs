@@ -8,8 +8,8 @@
 // prefix cursor. Before this guard, a lane whose iteration reported a non-prefix
 // or duplicated set of checked artifacts advanced artifactsChecked as a bare
 // count, so slice(count, count+batch) could re-offer an already-checked artifact
-// and skip a never-checked one. A bare-count emitter still falls back to the
-// prefix cursor (back-compat with simple emitters and fixtures).
+// and skip a never-checked one. A bare-count emitter remains diagnostic only;
+// without credited identities the complete corpus stays eligible.
 
 'use strict';
 
@@ -48,7 +48,16 @@ function seedLane(alignmentDir, artifacts, adapter) {
 }
 
 function appendState(alignmentDir, obj) {
-  fs.appendFileSync(path.join(alignmentDir, 'deep-alignment-state.jsonl'), `${JSON.stringify(obj)}\n`, 'utf8');
+  const record = { ...obj };
+  if (Array.isArray(record.artifactsChecked) && !Object.prototype.hasOwnProperty.call(record, 'artifactEvidence')) {
+    record.dispatchedSlice = record.artifactsChecked;
+    record.artifactEvidence = record.artifactsChecked.map((artifact) => ({
+      artifact,
+      kind: 'content-digest',
+      contentDigest: `sha256:${'a'.repeat(64)}`,
+    }));
+  }
+  fs.appendFileSync(path.join(alignmentDir, 'deep-alignment-state.jsonl'), `${JSON.stringify(record)}\n`, 'utf8');
 }
 
 const CORPUS = ['docs/a.md', 'docs/b.md', 'docs/c.md', 'docs/d.md', 'docs/e.md'].map((p) => ({ path: p }));
@@ -67,7 +76,7 @@ function testIdentityProgressReoffersSkipped() {
   assert.deepEqual(paths, ['docs/b.md', 'docs/d.md', 'docs/e.md'], 'next slice must be the unchecked set by identity (b re-offered, a/c excluded)');
 }
 
-// 2. Bare-count emitter: the prefix cursor is preserved (back-compat).
+// 2. Bare-count emitter: without evidence the full corpus remains eligible.
 function testCountOnlyFallbackKeepsPrefixCursor() {
   const { specFolder, alignmentDir } = makeSpecFolder('countfallback');
   const laneId = seedLane(alignmentDir, CORPUS);
@@ -76,7 +85,19 @@ function testCountOnlyFallbackKeepsPrefixCursor() {
   const slice = partitionCorpus(specFolder, { batchSize: 5 });
   assert.equal(slice.done, false);
   const paths = slice.artifactsSlice.map((a) => a.path);
-  assert.deepEqual(paths, ['docs/c.md', 'docs/d.md', 'docs/e.md'], 'bare-count emitter falls back to the prefix cursor');
+  assert.deepEqual(paths, CORPUS.map((artifact) => artifact.path), 'bare-count emitter cannot advance the credited cursor');
+}
+
+// A count without credited identities must not move the cursor or report a lane
+// exhausted. The next dispatch must re-offer the complete corpus slice.
+function testCountOnlyDoesNotAdvanceCreditedCursor() {
+  const { specFolder, alignmentDir } = makeSpecFolder('count-no-credit');
+  const laneId = seedLane(alignmentDir, CORPUS);
+  appendState(alignmentDir, { type: 'iteration', laneId, artifactsChecked: 5, newFindingsRatio: 0, status: 'complete' });
+
+  const slice = partitionCorpus(specFolder, { batchSize: 5 });
+  assert.equal(slice.done, false);
+  assert.deepEqual(slice.artifactsSlice, CORPUS);
 }
 
 // 3. Pure-function guard on resolveNextSlice: duplicate/out-of-order checked ids
@@ -106,6 +127,7 @@ function testPeerAdapterLaneWalksPartition() {
 
 testIdentityProgressReoffersSkipped();
 testCountOnlyFallbackKeepsPrefixCursor();
+testCountOnlyDoesNotAdvanceCreditedCursor();
 testResolveNextSliceUnit();
 testPeerAdapterLaneWalksPartition();
 console.log('[deep-alignment] partition identity-progress regression passed');

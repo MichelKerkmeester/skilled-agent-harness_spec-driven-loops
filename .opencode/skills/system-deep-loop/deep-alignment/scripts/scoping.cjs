@@ -233,7 +233,7 @@ function resolveLanesFromConfig(config) {
  * invoked exclusively through its own command workflow, so there is no
  * terminal session for a readline prompt to attach to.
  *
- * @param {unknown} selections - Array of `{artifactClass, authorities, scope}`.
+ * @param {unknown} selections - Array of `{artifactClass, authorities, adapter?, scope}`.
  * @returns {Array<{authority:string, artifactClass:string, scope:object}>}
  * @throws {Error} With code INPUT_VALIDATION on any malformed selection.
  */
@@ -252,7 +252,12 @@ function resolveLanesFromSelections(selections) {
     }
     selection.authorities.forEach((authority, authorityIndex) => {
       lanes.push(validateLane(
-        { authority, artifactClass: selection.artifactClass, scope: selection.scope },
+        {
+          authority,
+          artifactClass: selection.artifactClass,
+          adapter: selection.adapter,
+          scope: selection.scope,
+        },
         `${selectionLabel}.authorities[${authorityIndex}]`,
       ));
     });

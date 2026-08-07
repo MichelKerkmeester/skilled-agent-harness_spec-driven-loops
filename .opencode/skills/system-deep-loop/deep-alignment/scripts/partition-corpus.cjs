@@ -10,7 +10,7 @@
 //
 // Single-shot "what should the next iteration check?" resolver -- reads the
 // DISCOVER-state corpus (deep-alignment-corpus.json) and the reducer's
-// per-lane artifactsChecked count, then returns the next lane's next
+// per-lane credited artifact identities, then returns the next lane's next
 // unaudited slice, rotating lanes round-robin. Distinct from deep-review's
 // fixed four-dimension rotation: deep-alignment's lanes are N-many and
 // variable in artifact count, so "next dimension" becomes "next lane with
@@ -32,6 +32,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const { reduceAlignmentState, laneKey } = require('../../runtime/scripts/reduce-alignment-state.cjs');
+const { artifactIdentity, artifactIdentityCandidates } = require('../../runtime/lib/deep-loop/alignment-identity.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,36 +81,16 @@ function readCorpus(alignmentDir) {
 }
 
 /**
- * The stable identity of one corpus artifact, matching the path string an
- * iteration reports in its artifactsChecked array. `{path}` (paths/globs) and
- * `{path, ref}` (branchRange) both identify by path; a ref-only entry falls
- * back to its ref. An unidentifiable artifact returns null and is treated as
- * never-checked, so a malformed corpus entry is re-offered rather than skipped.
- *
- * @param {Object} artifact
- * @returns {string|null}
- */
-function artifactIdentity(artifact) {
-  if (artifact && typeof artifact === 'object') {
-    if (typeof artifact.path === 'string' && artifact.path) return artifact.path;
-    if (typeof artifact.ref === 'string' && artifact.ref) return artifact.ref;
-  }
-  return null;
-}
-
-/**
  * Resolve the next lane + slice to check, given each lane's discovered corpus
  * and the reducer's per-lane progress. Lanes are visited in corpus-declaration
  * order, wrapping; a lane whose entire corpus is already checked is skipped
  * without ending the search.
  *
  * Progress is identity-based when the reducer exposes checkedArtifactIds: the
- * next slice is the corpus artifacts whose identity was not already reported as
- * checked (a set difference), so a duplicate or out-of-order re-check can never
- * advance a numeric cursor past a genuinely-unchecked artifact. When only a bare
- * count is available (checkedArtifactIds null — simple emitters, fixtures), it
- * falls back to the original prefix cursor over the first `artifactsChecked`
- * entries.
+ * next slice is the corpus artifacts whose identity was not already credited by
+ * evidence (a set difference), so a duplicate or out-of-order re-check can never
+ * advance a numeric cursor past a genuinely-unchecked artifact. A bare count has
+ * no artifact evidence, so it cannot advance the cursor.
  *
  * @param {Array<Object>} corpusLanes - readCorpus() output
  * @param {Array<Object>} laneEntries - registry.lanes from reduceAlignmentState()
@@ -128,14 +109,13 @@ function resolveNextSlice(corpusLanes, laneEntries, batchSize) {
 
     let unchecked;
     if (checkedIds) {
-      const checkedSet = new Set(checkedIds);
+      const checkedSet = new Set(checkedIds.flatMap((value) => artifactIdentityCandidates(value)));
       unchecked = artifacts.filter((artifact) => {
-        const id = artifactIdentity(artifact);
-        return id === null ? true : !checkedSet.has(id);
+        const ids = artifactIdentityCandidates(artifact);
+        return ids.length === 0 || !ids.some((id) => checkedSet.has(id));
       });
     } else {
-      const alreadyChecked = entry ? (entry.artifactsChecked || 0) : 0;
-      unchecked = artifacts.slice(alreadyChecked);
+      unchecked = artifacts;
     }
 
     if (unchecked.length === 0) continue; // this lane's corpus is exhausted

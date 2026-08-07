@@ -45,8 +45,11 @@ const path = require('node:path');
 const {
   reduceAlignmentState,
   isSuccessfulIterationRecord,
-  normalizeLaneId,
 } = require('../../runtime/scripts/reduce-alignment-state.cjs');
+const {
+  artifactIdentity,
+  normalizeLaneId,
+} = require('../../runtime/lib/deep-loop/alignment-identity.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -107,11 +110,11 @@ function readJsonlIterationRecords(stateLogPath) {
  *
  * @param {string} alignmentDir
  * @param {Set<string>} [expectedLaneIds]
- * @returns {{sizes: Record<string, number>, corpusPresent: boolean, integrityFault: Object|null}}
+ * @returns {{sizes: Record<string, number>, corpusPresent: boolean, corpusState: string, integrityFault: Object|null}}
  */
 function readCorpusSizes(alignmentDir, expectedLaneIds = null) {
   const corpusPath = path.join(alignmentDir, 'deep-alignment-corpus.json');
-  const empty = { sizes: {}, corpusPresent: false, integrityFault: null };
+  const empty = { sizes: {}, corpusPresent: false, corpusState: 'absent', integrityFault: null };
   if (!fs.existsSync(corpusPath)) return empty;
   let parsed;
   try {
@@ -120,6 +123,7 @@ function readCorpusSizes(alignmentDir, expectedLaneIds = null) {
     return {
       ...empty,
       corpusPresent: true,
+      corpusState: 'present-malformed',
       integrityFault: {
         code: 'CORPUS_JSON_PARSE_ERROR',
         path: corpusPath,
@@ -138,6 +142,7 @@ function readCorpusSizes(alignmentDir, expectedLaneIds = null) {
     return {
       ...empty,
       corpusPresent: true,
+      corpusState: 'present-malformed',
       integrityFault: {
         code: 'CORPUS_SCHEMA_INVALID',
         path: corpusPath,
@@ -185,14 +190,60 @@ function readCorpusSizes(alignmentDir, expectedLaneIds = null) {
     return {
       ...empty,
       corpusPresent: true,
+      corpusState: laneIntegrityFault.code === 'CORPUS_CONFIG_LANE_MISSING'
+        ? 'configured-lane-missing'
+        : 'present-malformed',
       integrityFault: laneIntegrityFault,
+    };
+  }
+  let artifactIntegrityFault = null;
+  for (const lane of parsed.lanes) {
+    const seenArtifactIds = new Set();
+    for (let index = 0; index < lane.artifacts.length; index += 1) {
+      const identity = artifactIdentity(lane.artifacts[index]);
+      if (identity === null) {
+        artifactIntegrityFault = {
+          code: 'CORPUS_ARTIFACT_ID_INVALID',
+          path: corpusPath,
+          laneId: normalizeLaneId(lane.laneId),
+          artifactIndex: index,
+          message: 'every corpus artifact must expose a path, ref, or target identity',
+        };
+        break;
+      }
+      if (seenArtifactIds.has(identity)) {
+        artifactIntegrityFault = {
+          code: 'CORPUS_DUPLICATE_ARTIFACT_ID',
+          path: corpusPath,
+          laneId: normalizeLaneId(lane.laneId),
+          artifactIndex: index,
+          message: 'corpus contains duplicate artifact identity within a lane',
+        };
+        break;
+      }
+      seenArtifactIds.add(identity);
+    }
+    if (artifactIntegrityFault) break;
+  }
+  if (artifactIntegrityFault) {
+    return {
+      ...empty,
+      corpusPresent: true,
+      corpusState: 'present-malformed',
+      integrityFault: artifactIntegrityFault,
     };
   }
   const sizes = {};
   for (const lane of parsed.lanes) {
     sizes[normalizeLaneId(lane.laneId)] = lane.artifacts.length;
   }
-  return { sizes, corpusPresent: true, integrityFault: null };
+  const totalDiscovered = Object.values(sizes).reduce((sum, count) => sum + count, 0);
+  return {
+    sizes,
+    corpusPresent: true,
+    corpusState: totalDiscovered === 0 ? 'present-valid-zero-artifacts' : 'present-valid',
+    integrityFault: null,
+  };
 }
 
 /**
@@ -315,6 +366,7 @@ function checkConvergence(specFolder, options = {}) {
         corpusIntegrityFault,
         configLanesIntegrityFault,
         corpusPresent: corpusRead.corpusPresent,
+        corpusState: corpusRead.corpusState,
         discoveryIncomplete,
         integrityFault,
         unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
@@ -346,6 +398,7 @@ function checkConvergence(specFolder, options = {}) {
         corpusIntegrityFault,
         configLanesIntegrityFault,
         corpusPresent: false,
+        corpusState: corpusRead.corpusState,
         discoveryIncomplete: true,
         integrityFault,
         unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
@@ -370,6 +423,7 @@ function checkConvergence(specFolder, options = {}) {
         corpusIntegrityFault,
         configLanesIntegrityFault,
         corpusPresent: corpusRead.corpusPresent,
+        corpusState: corpusRead.corpusState,
         discoveryIncomplete,
         integrityFault,
         unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],
@@ -447,6 +501,7 @@ function checkConvergence(specFolder, options = {}) {
       corpusIntegrityFault,
       configLanesIntegrityFault,
       corpusPresent: corpusRead.corpusPresent,
+      corpusState: corpusRead.corpusState,
       discoveryIncomplete,
       integrityFault,
       unknownCheckedIds: registry.integrity?.unknownCheckedIds || [],

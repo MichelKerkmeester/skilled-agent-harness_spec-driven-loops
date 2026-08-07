@@ -87,6 +87,11 @@ function testCompletedIterationUnsealedThenSealed() {
     type: 'iteration',
     laneId,
     artifactsChecked: ['src/a.mjs', 'src/b.mjs'],
+    dispatchedSlice: ['src/a.mjs', 'src/b.mjs'],
+    artifactEvidence: [
+      { artifact: 'src/a.mjs', kind: 'content-digest', contentDigest: `sha256:${'a'.repeat(64)}` },
+      { artifact: 'src/b.mjs', kind: 'content-digest', contentDigest: `sha256:${'b'.repeat(64)}` },
+    ],
     newFindingsRatio: 0,
     status: 'complete',
   });
@@ -119,10 +124,35 @@ function testBuildOverallRollupSealFlag() {
     [],
     [],
   );
-  const preliminary = buildOverallRollup([lane], { totalDiscovered: 3, hasCorruption: false });
+  const preliminary = buildOverallRollup([lane], {
+    corpusPresent: true,
+    totalDiscovered: 3,
+    hasCorruption: false,
+  });
   assert.equal(preliminary.sealed, false, 'sealed defaults to false');
-  const sealed = buildOverallRollup([lane], { totalDiscovered: 3, hasCorruption: false, sealed: true });
+  const sealed = buildOverallRollup([lane], {
+    corpusPresent: true,
+    totalDiscovered: 3,
+    hasCorruption: false,
+    sealed: true,
+  });
   assert.equal(sealed.sealed, true, 'seal:true propagates to overall.sealed');
+}
+
+function testSealRequiresCompletedDiscovery() {
+  const lane = buildLaneEntry(
+    { laneId: 'a::b::c', authority: 'a', artifactClass: 'b', scope: {} },
+    [],
+    [],
+  );
+  const preDiscovery = buildOverallRollup([lane], {
+    corpusPresent: false,
+    discoveryIncomplete: false,
+    totalDiscovered: 3,
+    hasCorruption: false,
+    sealed: true,
+  });
+  assert.equal(preDiscovery.sealed, false);
 }
 
 // 5. The CLI --seal flag flows through to the written registry and stdout JSON;
@@ -147,5 +177,6 @@ testSeedIsPreliminaryFailClosed();
 testCompletedIterationUnsealedThenSealed();
 testSealDoesNotLaunderFailClosed();
 testBuildOverallRollupSealFlag();
+testSealRequiresCompletedDiscovery();
 testCliSealFlag();
 console.log('[deep-alignment] reducer seal-state regression passed');

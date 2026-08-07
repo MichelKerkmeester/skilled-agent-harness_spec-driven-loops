@@ -18,6 +18,7 @@ const {
   laneKey,
   reduceAlignmentState,
 } = require('../../../runtime/scripts/reduce-alignment-state.cjs');
+const liveRenderAdapter = require('../adapters/sk-design-live-render.cjs');
 
 function makeSpecFolder(slug) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), `align-coverage-${slug}-`)));
@@ -46,9 +47,23 @@ function seedConfigForDescriptors(alignmentDir, descriptors) {
   return lanes;
 }
 
+function addArtifactEvidence(record, artifactsChecked, options) {
+  if (!Array.isArray(artifactsChecked)) return;
+  const hasEvidence = Object.prototype.hasOwnProperty.call(options, 'artifactEvidence');
+  record.dispatchedSlice = options.dispatchedSlice ?? artifactsChecked;
+  record.artifactEvidence = hasEvidence
+    ? options.artifactEvidence
+    : artifactsChecked.map((artifact) => ({
+      artifact,
+      kind: 'content-digest',
+      contentDigest: `sha256:${'a'.repeat(64)}`,
+    }));
+}
+
 function appendIteration(alignmentDir, laneId, artifactsChecked, options = {}) {
   const { status = 'complete', includeStatus = true, newFindingsRatio = 0 } = options;
   const record = { type: 'iteration', laneId, artifactsChecked, newFindingsRatio };
+  addArtifactEvidence(record, artifactsChecked, options);
   if (includeStatus) record.status = status;
   fs.writeFileSync(
     path.join(alignmentDir, 'deep-alignment-state.jsonl'),
@@ -60,6 +75,7 @@ function appendIteration(alignmentDir, laneId, artifactsChecked, options = {}) {
 function appendIterationRecord(alignmentDir, laneId, artifactsChecked, options = {}) {
   const { status = 'complete', includeStatus = true, newFindingsRatio = 0 } = options;
   const record = { type: 'iteration', laneId, artifactsChecked, newFindingsRatio };
+  addArtifactEvidence(record, artifactsChecked, options);
   if (includeStatus) record.status = status;
   fs.appendFileSync(
     path.join(alignmentDir, 'deep-alignment-state.jsonl'),
@@ -84,6 +100,7 @@ test('applicable lanes with an absent corpus stay at zero coverage', () => {
 
     const corpus = readCorpusSizes(alignmentDir);
     assert.deepEqual(corpus.sizes, {});
+    assert.equal(corpus.corpusState, 'absent');
     assert.equal(corpus.integrityFault, null);
 
     const decision = checkConvergence(specFolder, { stabilityWindow: 1 });
@@ -105,6 +122,7 @@ test('malformed corpus is reported as an integrity fault and fails closed', () =
 
     const corpus = readCorpusSizes(alignmentDir);
     assert.equal(corpus.integrityFault.code, 'CORPUS_JSON_PARSE_ERROR');
+    assert.equal(corpus.corpusState, 'present-malformed');
 
     const reduced = reduceAlignmentState(specFolder, { write: false });
     const decision = checkConvergence(specFolder, { stabilityWindow: 1 });
@@ -226,9 +244,9 @@ test('unknown checked identifiers do not credit coverage and are surfaced', () =
     assert.equal(entry.artifactsChecked, 2);
     assert.equal(entry.creditedArtifactsChecked, 1);
     assert.deepEqual(entry.unknownCheckedIds, ['docs/ghost.md']);
-    assert.equal(entry.unidentifiableArtifactCount, 1);
+    assert.equal(entry.unidentifiableArtifactCount, 0);
     assert.equal(reduced.registry.overall.unknownCheckedIdCount, 1);
-    assert.equal(reduced.registry.overall.unidentifiableArtifactCount, 1);
+    assert.equal(reduced.registry.overall.unidentifiableArtifactCount, 0);
     assert.equal(decision.coverage.checked, 1);
     assert.equal(decision.coverage.discovered, 3);
     assert.equal(decision.coverage.ratio, 0.333);
@@ -292,6 +310,7 @@ test('a configured lane missing from a non-empty corpus is an integrity fault', 
 
     const expectedLaneIds = new Set(lanes.map(laneKey));
     assert.equal(readCorpusSizes(alignmentDir, expectedLaneIds).integrityFault.code, 'CORPUS_CONFIG_LANE_MISSING');
+    assert.equal(readCorpusSizes(alignmentDir, expectedLaneIds).corpusState, 'configured-lane-missing');
     const reduced = reduceAlignmentState(specFolder, { write: false });
     const decision = checkConvergence(specFolder, { stabilityWindow: 1 });
     assert.equal(reduced.registry.integrity.corpusIntegrityFault.code, 'CORPUS_CONFIG_LANE_MISSING');
@@ -320,6 +339,27 @@ test('duplicate corpus laneIds are typed integrity faults in both readers', () =
     assert.equal(decision.integrity.corpusIntegrityFault.code, 'CORPUS_DUPLICATE_LANE_ID');
     assert.equal(decision.integrityFault, true);
     assert.notEqual(decision.decision, DECISIONS.CONVERGED);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('duplicate lane IDs remain typed faults when the scope contains a comma', () => {
+  const { root, specFolder, alignmentDir } = makeSpecFolder('duplicate-comma-scope');
+  try {
+    const lane = seedConfigForDescriptors(alignmentDir, [
+      { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a, docs/b'] } },
+    ])[0];
+    const laneId = laneKey(lane);
+    const entry = { laneId, ...lane, artifacts: [{ path: 'docs/a, docs/b/index.md' }] };
+    writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), { lanes: [entry, entry] });
+    appendIteration(alignmentDir, laneId, ['docs/a, docs/b/index.md']);
+
+    const expectedLaneIds = new Set([laneId]);
+    assert.notEqual(laneId, laneKey({ ...lane, scope: { type: 'paths', values: ['docs/a', 'docs/b'] } }));
+    assert.equal(readCorpusSizes(alignmentDir, expectedLaneIds).integrityFault.code, 'CORPUS_DUPLICATE_LANE_ID');
+    assert.equal(reduceAlignmentState(specFolder, { write: false }).registry.integrity.corpusIntegrityFault.code, 'CORPUS_DUPLICATE_LANE_ID');
+    assert.equal(checkConvergence(specFolder, { stabilityWindow: 1 }).integrity.corpusIntegrityFault.code, 'CORPUS_DUPLICATE_LANE_ID');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -386,6 +426,7 @@ test('a present valid corpus with zero artifacts remains NOTHING_TO_CONVERGE', (
     const reduced = reduceAlignmentState(specFolder, { write: false });
     const decision = checkConvergence(specFolder);
     assert.equal(reduced.registry.integrity.corpusPresent, true);
+    assert.equal(reduced.registry.integrity.corpusState, 'present-valid-zero-artifacts');
     assert.equal(reduced.registry.overall.nothingToConverge, true);
     assert.equal(decision.decision, DECISIONS.NOTHING_TO_CONVERGE);
     assert.equal(decision.integrity.discoveryIncomplete, false);
@@ -421,8 +462,8 @@ test('repeated internal scope spaces produce one honest lane ID for both readers
     const lane = seedConfigForDescriptors(alignmentDir, [
       { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/with  repeated spaces/'] } },
     ])[0];
-    const honestLaneId = `${lane.authority}::${lane.artifactClass}::${lane.scope.values.join(', ')}`;
-    assert.equal(laneKey(lane), honestLaneId);
+    const honestLaneId = laneKey(lane);
+    assert.match(honestLaneId, /^alignment-lane-v1:[0-9a-f]{64}$/);
     writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
       lanes: [{ laneId: honestLaneId, ...lane, artifacts: [{ path: 'docs/with  repeated spaces/a.md' }] }],
     });
@@ -439,6 +480,85 @@ test('repeated internal scope spaces produce one honest lane ID for both readers
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
+});
+
+test('lane identity separates adapter, scope type, and comma-containing values', () => {
+  const lanes = resolveLanesFromDescriptorsForIdentity();
+  const ids = lanes.map(laneKey);
+  assert.equal(new Set(ids).size, lanes.length);
+});
+
+function resolveLanesFromDescriptorsForIdentity() {
+  return resolveLanesFromConfig([
+    { authority: 'sk-design', artifactClass: 'designs', scope: { type: 'paths', values: ['docs/'] } },
+    { authority: 'sk-design', artifactClass: 'designs', adapter: 'sk-design-live-render', scope: { type: 'paths', values: ['docs/'] } },
+    { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a', 'docs/b'] } },
+    { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a, docs/b'] } },
+    { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'globs', values: ['docs/'] } },
+  ]);
+}
+
+test('a full-corpus claim without per-artifact evidence earns zero coverage', () => {
+  const { root, specFolder, alignmentDir } = makeSpecFolder('unearned-evidence');
+  try {
+    const lane = seedConfig(alignmentDir);
+    const id = laneKey(lane);
+    writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
+      lanes: [{ laneId: id, ...lane, artifacts: [{ path: 'docs/a.md' }, { path: 'docs/b.md' }] }],
+    });
+    appendIteration(alignmentDir, id, ['docs/a.md', 'docs/b.md'], {
+      artifactEvidence: [],
+      dispatchedSlice: ['docs/a.md', 'docs/b.md'],
+    });
+
+    const reduced = reduceAlignmentState(specFolder, { write: false });
+    assert.equal(reduced.registry.lanes[0].creditedArtifactsChecked, 0);
+    assert.equal(reduced.registry.overall.identityVerified, false);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('live-render check without measured data is not a clean result', () => {
+  const findings = liveRenderAdapter.check(
+    { target: 'https://example.test/dashboard', targetType: 'url' },
+    { knownDeviations: [] },
+    { renderResult: { dispatchedThrough: 'sk-design-mcp-open-design' } },
+  );
+  assert.ok(findings.length > 0);
+});
+
+test('live-render check returns a measured receipt when structured measurements exist', () => {
+  const findings = liveRenderAdapter.check(
+    { target: 'https://example.test/dashboard', targetType: 'url' },
+    { knownDeviations: [] },
+    {
+      renderResult: {
+        dispatchedThrough: 'sk-design-mcp-open-design',
+        renderedAt: '2026-08-07T00:00:00.000Z',
+        measurements: { coreWebVitals: { lcpMs: 1000, inpMs: 50, cls: 0.01 } },
+      },
+    },
+  );
+  assert.equal(findings.length, 0);
+  assert.equal(findings.checkReceipt.measured, true);
+  assert.equal(findings.checkReceipt.adapter, 'sk-design-live-render');
+  assert.match(findings.checkReceipt.measurementDigest, /^sha256:[0-9a-f]{64}$/);
+});
+
+test('alignment registry names its actual convergence backend', () => {
+  const registry = JSON.parse(fs.readFileSync(path.resolve(
+    __dirname,
+    '..', '..', '..', '..', '..', '..', '.opencode', 'skills', 'system-deep-loop', 'mode-registry.json',
+  ), 'utf8'));
+  const alignment = registry.modes.find((mode) => mode.workflowMode === 'alignment');
+  assert.equal(alignment.runtimeLoopType, null);
+  assert.equal(alignment.backendKind, 'alignment-convergence');
+  assert.equal(alignment.convergenceBackend, 'deep-alignment/scripts/check-convergence.cjs');
+  assert.equal(fs.existsSync(path.resolve(
+    __dirname,
+    '..', '..', '..', '..', '..', '..', '.opencode', 'skills', 'system-deep-loop', alignment.convergenceBackend,
+  )), true);
 });
 
 test('duplicate and orphan corpus bytes produce identical typed verdicts in both readers', () => {
@@ -780,6 +900,77 @@ test('failed or unknown iteration statuses provide no coverage or stability evid
     } finally {
       fs.rmSync(root, { recursive: true, force: true });
     }
+  }
+});
+
+test('failed iteration delta findings do not enter the rollup', () => {
+  const { root, specFolder, alignmentDir } = makeSpecFolder('failed-delta-finding');
+  try {
+    const lane = seedConfig(alignmentDir);
+    const id = laneKey(lane);
+    const failedIteration = {
+      type: 'iteration',
+      laneId: id,
+      status: 'error',
+      artifactsChecked: ['docs/a.md'],
+      dispatchedSlice: ['docs/a.md'],
+      artifactEvidence: [{
+        artifact: 'docs/a.md',
+        kind: 'content-digest',
+        contentDigest: `sha256:${'a'.repeat(64)}`,
+      }],
+      findingDetails: [{ severity: 'P1', summary: 'failed iteration finding' }],
+    };
+    writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
+      lanes: [{ laneId: id, ...lane, artifacts: [{ path: 'docs/a.md' }] }],
+    });
+    fs.writeFileSync(
+      path.join(alignmentDir, 'deep-alignment-state.jsonl'),
+      `${JSON.stringify(failedIteration)}\n`,
+      'utf8',
+    );
+    fs.writeFileSync(
+      path.join(alignmentDir, 'deltas', 'iter-001.jsonl'),
+      `${JSON.stringify(failedIteration)}\n${JSON.stringify({
+        type: 'finding',
+        laneId: id,
+        finding: { severity: 'P1', summary: 'failed delta finding' },
+      })}\n`,
+      'utf8',
+    );
+
+    const reduced = reduceAlignmentState(specFolder, { write: false });
+    assert.equal(reduced.registry.overall.findingsBySeverity.P1, 0);
+    assert.equal(reduced.registry.overall.verdict, 'FAIL');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('status-less delta findings inherit the failed status of their iteration', () => {
+  const { root, specFolder, alignmentDir } = makeSpecFolder('failed-statusless-delta');
+  try {
+    const lane = seedConfig(alignmentDir);
+    const id = laneKey(lane);
+    writeJson(path.join(alignmentDir, 'deep-alignment-corpus.json'), {
+      lanes: [{ laneId: id, ...lane, artifacts: [{ path: 'docs/a.md' }] }],
+    });
+    appendIteration(alignmentDir, id, ['docs/a.md'], { status: 'error' });
+    fs.writeFileSync(
+      path.join(alignmentDir, 'deltas', 'iter-001.jsonl'),
+      `${JSON.stringify({
+        type: 'finding',
+        laneId: id,
+        finding: { severity: 'P1', summary: 'status-less failed delta finding' },
+      })}\n`,
+      'utf8',
+    );
+
+    const reduced = reduceAlignmentState(specFolder, { write: false });
+    assert.equal(reduced.registry.overall.findingsBySeverity.P1, 0);
+    assert.equal(reduced.registry.overall.verdict, 'FAIL');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
   }
 });
 

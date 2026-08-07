@@ -16,7 +16,11 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { resolveLanesFromConfig, registeredAdapters } = require('../scoping.cjs');
+const {
+  resolveLanesFromConfig,
+  resolveLanesFromSelections,
+  registeredAdapters,
+} = require('../scoping.cjs');
 
 const SKILL_PATH = path.resolve(__dirname, '..', '..', 'SKILL.md');
 
@@ -53,6 +57,18 @@ function testCommandAdapterSelectable() {
     { authority: 'sk-doc', artifactClass: 'docs', adapter: 'sk-doc-command', scope: { type: 'paths', values: ['.opencode/commands'] } },
   ]);
   assert.equal(lane.adapter, 'sk-doc-command', 'the command adapter must be selectable via the adapter discriminator');
+}
+
+function testInteractiveSelectionRetainsAdapter() {
+  const [lane] = resolveLanesFromSelections([
+    {
+      artifactClass: 'designs',
+      authorities: ['sk-design'],
+      adapter: 'sk-design-live-render',
+      scope: { type: 'paths', values: ['DESIGN.md'] },
+    },
+  ]);
+  assert.equal(lane.adapter, 'sk-design-live-render');
 }
 
 // 4. The prompt pack follows the selected adapter and preserves the default.
@@ -92,6 +108,7 @@ function testUnknownAdapterRejected() {
 testAdapterDefaultsToAuthority();
 testLiveRenderSelectable();
 testCommandAdapterSelectable();
+testInteractiveSelectionRetainsAdapter();
 testPromptPackUsesSelectedAdapter();
 testUnknownAdapterRejected();
 console.log('[deep-alignment] scoping adapter-discriminator regression passed');

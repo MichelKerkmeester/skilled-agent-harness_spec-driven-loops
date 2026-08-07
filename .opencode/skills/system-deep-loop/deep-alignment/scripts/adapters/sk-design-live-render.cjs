@@ -67,6 +67,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -327,6 +328,28 @@ function normalizeArtifact(artifact) {
   throw new Error('check(artifact, rules, options): artifact must be a target string or a discover()-shaped object with a "target" field');
 }
 
+function hasMeasuredMeasurements(renderResult) {
+  const measurements = renderResult && renderResult.measurements;
+  return Boolean(
+    measurements
+      && typeof measurements === 'object'
+      && !Array.isArray(measurements)
+      && Object.keys(measurements).length > 0,
+  );
+}
+
+function makeCheckReceipt(artifact, renderResult) {
+  const measurementBytes = JSON.stringify(renderResult.measurements);
+  return {
+    measured: true,
+    adapter: 'sk-design-live-render',
+    artifact: { target: artifact.target, targetType: artifact.targetType || null },
+    measuredAt: typeof renderResult.renderedAt === 'string' ? renderResult.renderedAt : null,
+    measurements: renderResult.measurements,
+    measurementDigest: `sha256:${crypto.createHash('sha256').update(measurementBytes).digest('hex')}`,
+  };
+}
+
 /**
  * Deterministic sub-checks over whatever structured `measurements` fields are present
  * on the caller-supplied renderResult — never fabricated when a field is absent.
@@ -468,7 +491,7 @@ function check(artifact, rules, options) {
       type: 'dispatch-boundary-violation',
       producedBy: 'unavailable',
       evidenceLabel: 'unavailable',
-      message: `renderResult.dispatchedThrough must equal "${REQUIRED_DISPATCH_BOUNDARY}" (ADR-009); got ${JSON.stringify(renderResult.dispatchedThrough || null)}`,
+      message: `renderResult.dispatchedThrough must equal "${REQUIRED_DISPATCH_BOUNDARY}" (dispatch-boundary contract); got ${JSON.stringify(renderResult.dispatchedThrough || null)}`,
       artifact: normalizedArtifact,
     })], knownDeviations);
   }
@@ -495,6 +518,17 @@ function check(artifact, rules, options) {
     })], knownDeviations);
   }
 
+  if (renderResult.measured === false || !hasMeasuredMeasurements(renderResult)) {
+    return suppressKnownDeviations([makeFinding({
+      severity: 'P1',
+      type: 'render-evidence-incomplete',
+      producedBy: 'unavailable',
+      evidenceLabel: 'unavailable',
+      message: 'The render dispatch completed without structured measurements; a dispatch boundary string alone cannot establish a clean check.',
+      artifact: normalizedArtifact,
+    })], knownDeviations);
+  }
+
   // Freshness is a caller contract this function cannot mechanically prove (adapter spec
   // Section 5) — presence of a parseable renderedAt only raises the evidence label from
   // 'inferred' to 'confirmed', reusing evidence_capture.md's own vocabulary.
@@ -503,7 +537,9 @@ function check(artifact, rules, options) {
 
   const findings = checkThresholds(normalizedArtifact, renderResult, evidenceLabel)
     .concat(checkJudgmentFindings(normalizedArtifact, renderResult, evidenceLabel));
-  return suppressKnownDeviations(findings, knownDeviations);
+  const result = suppressKnownDeviations(findings, knownDeviations);
+  result.checkReceipt = makeCheckReceipt(normalizedArtifact, renderResult);
+  return result;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

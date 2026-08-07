@@ -37,7 +37,21 @@ function writeJson(filePath, value) {
 }
 
 function appendJsonl(filePath, records) {
-  const line = `${records.map((r) => JSON.stringify(r)).join('\n')}\n`;
+  const boundRecords = records.map((record) => {
+    if (!Array.isArray(record.artifactsChecked) || Object.prototype.hasOwnProperty.call(record, 'artifactEvidence')) {
+      return record;
+    }
+    return {
+      ...record,
+      dispatchedSlice: record.artifactsChecked,
+      artifactEvidence: record.artifactsChecked.map((artifact) => ({
+        artifact,
+        kind: 'content-digest',
+        contentDigest: `sha256:${'a'.repeat(64)}`,
+      })),
+    };
+  });
+  const line = `${boundRecords.map((r) => JSON.stringify(r)).join('\n')}\n`;
   fs.appendFileSync(filePath, line, 'utf8');
 }
 
