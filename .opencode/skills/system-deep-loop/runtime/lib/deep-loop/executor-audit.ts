@@ -827,6 +827,12 @@ export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: s
     model: executor.model,
     reasoningEffort: executor.reasoningEffort,
     serviceTier: executor.serviceTier,
+    sandboxMode: executor.sandboxMode,
+    timeoutSeconds: executor.timeoutSeconds,
+    webSearch: executor.liveTools?.webSearch ?? null,
+    configDir: executor.configDir,
+    governor: executor.governor,
+    executable: executor.kind,
     ...(lineageId !== undefined ? { lineageId } : {}),
   };
 }

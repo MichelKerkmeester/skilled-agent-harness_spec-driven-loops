@@ -68,6 +68,44 @@ function normalizeSubject(payload, meta) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 3b. SINK ALLOWLIST
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SINK_ALLOWLIST_KEYS = new Set([
+  'event', 'status', 'type', 'label', 'producer', 'stream', 'subject',
+  'model', 'effort', 'tier', 'sandbox', 'target', 'context',
+  'mode', 'loop', 'lineage', 'iteration', 'delta', 'bucket',
+  'duration_ms', 'at', 'gauges', 'round_id', 'session_id',
+  'severity', 'timestamp', 'reason', 'detail', 'path',
+  'lag', 'pending', 'failed', 'ok', 'count', 'total',
+  'salvaged', 'salvage',
+]);
+
+const SINK_REDACT_PATTERNS = [
+  /api[_-]?key/i, /token/i, /secret/i, /password/i, /credential/i,
+  /private[_-]?key/i, /prompt/i, /stdout/i, /stderr/i, /stack/i, /body/i,
+];
+
+function isSinkAllowed(key) {
+  if (SINK_ALLOWLIST_KEYS.has(key)) return true;
+  const parts = key.split('/');
+  return parts.some((part) => SINK_ALLOWLIST_KEYS.has(part));
+}
+
+function sinkAllowlist(obj, depth = 0) {
+  if (!isRecord(obj)) return obj;
+  if (depth > 5) return {};
+  const result = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (!isSinkAllowed(key)) continue;
+    const isBlocked = SINK_REDACT_PATTERNS.some((r) => r.test(key));
+    if (isBlocked) continue;
+    result[key] = isRecord(value) ? sinkAllowlist(value, depth + 1) : value;
+  }
+  return result;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -106,7 +144,7 @@ function normalizeObservabilityEvent(payload, meta = {}) {
     event,
     status,
     observed_at_iso: nonEmptyString(meta.observedAtIso) ?? new Date().toISOString(),
-    payload: { ...payload },
+    payload: sinkAllowlist(payload),
   };
 }
 
@@ -133,8 +171,7 @@ function appendObservabilityEvent(eventPath, payload, meta = {}) {
   fs.appendFileSync(eventPath, `${JSON.stringify(envelope)}\n`, 'utf8');
   if (LOUD_OBSERVABILITY_EVENTS.has(envelope.event)) {
     try {
-      const label = envelope.payload && envelope.payload.label;
-      process.stderr.write(`[deep-loop] ${envelope.event}${label ? ` lineage=${label}` : ''}\n`);
+      process.stderr.write(`[deep-loop] ${envelope.event}\n`);
     } catch { /* a stderr write must never break event persistence */ }
   }
   return envelope;

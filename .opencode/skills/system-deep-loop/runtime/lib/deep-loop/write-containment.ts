@@ -73,9 +73,14 @@ export interface ContainmentOptions {
   env?: NodeJS.ProcessEnv;
 }
 
+export interface DirtyPathEntry {
+  path: string;
+  hash: string;
+}
+
 export interface DetectOptions extends ContainmentOptions {
   /** Dirty out-of-scope paths captured BEFORE the dispatch (the baseline). */
-  preDispatchDirtyPaths: string[];
+  preDispatchDirtyPaths: DirtyPathEntry[];
 }
 
 export interface ContainmentViolationEvent {
@@ -182,6 +187,28 @@ function readStatusEntries(opts: GitCallOptions): StatusEntry[] {
   return parseStatusPorcelain(stdout);
 }
 
+/** Compute the git blob hash of a tracked file for content-identity comparison. */
+function gitHashObject(repoRoot: string, filePath: string, env?: NodeJS.ProcessEnv): string {
+  const { ok, stdout } = gitOutput(['hash-object', '--', filePath], { repoRoot, env });
+  if (!ok) return '';
+  return stdout.trim();
+}
+
+/** Compute the git blob hash from stdin without writing to the object store. */
+function gitHashStdin(repoRoot: string, content: string, env?: NodeJS.ProcessEnv): string {
+  try {
+    const result = spawnSync('git', ['-C', repoRoot, 'hash-object', '--stdin'], {
+      encoding: 'utf8',
+      input: content,
+      env: env ?? process.env,
+    });
+    if (result.error || result.status !== 0) return '';
+    return (typeof result.stdout === 'string' ? result.stdout : '').trim();
+  } catch {
+    return '';
+  }
+}
+
 /** True when the path exists in HEAD (it is a tracked file that checkout can restore). */
 function pathInHead(repoRoot: string, pathSpec: string, env?: NodeJS.ProcessEnv): boolean {
   const { ok } = gitOutput(['cat-file', '-e', `HEAD:${pathSpec}`], { repoRoot, env });
@@ -274,18 +301,22 @@ function isUnattributable(repoRelativePath: string, unattributableRelPosix: stri
  * Returns [] (no-op) when git is unavailable, repoRoot is not a worktree, or
  * artifactDir is outside the worktree.
  */
-export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): string[] {
+export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPathEntry[] {
   const scope = resolveArtifactScope(opts);
   if (!scope) return [];
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
-  const out: string[] = [];
+  const out: DirtyPathEntry[] = [];
   for (const entry of entries) {
     if (isUnattributable(entry.path, scope.unattributableRelPosix)) continue;
     if (!isInsideArtifact(entry.path, scope.artifactRelPosix)) {
-      out.push(toPosix(entry.path));
+      const entryPath = toPosix(entry.path);
+      const hash = pathInHead(opts.repoRoot, entryPath, opts.env)
+        ? gitHashObject(opts.repoRoot, entryPath, opts.env)
+        : '';
+      out.push({ path: entryPath, hash });
     }
   }
-  return Array.from(new Set(out)).sort();
+  return Array.from(new Map(out.map((e) => [e.path, e])).values()).sort((a, b) => a.path.localeCompare(b.path));
 }
 
 /**
@@ -294,15 +325,26 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): string[]
  */
 export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentViolation[] {
   const scope = resolveArtifactScope(opts);
-  if (!scope) return [];
+  if (!scope) {
+    // Artifact outside worktree: hard failure, not an empty violation list.
+    if (resolveGitToplevel(opts.repoRoot, opts.env)) {
+      throw new Error(`artifact scope ${opts.artifactDir} is outside the git worktree — containment cannot be enforced`);
+    }
+    return [];
+  }
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
-  const preSet = new Set(opts.preDispatchDirtyPaths.map(toPosix));
+  const preMap = new Map(opts.preDispatchDirtyPaths.map((e) => [toPosix(e.path), e.hash]));
   const violations: ContainmentViolation[] = [];
   for (const entry of entries) {
     const p = toPosix(entry.path);
     if (isInsideArtifact(p, scope.artifactRelPosix)) continue;
     if (isUnattributable(p, scope.unattributableRelPosix)) continue;
-    if (preSet.has(p)) continue;
+    if (preMap.has(p)) {
+      const preHash = preMap.get(p) || '';
+      if (!preHash) continue;
+      const curHash = gitHashObject(opts.repoRoot, p, opts.env);
+      if (curHash && preHash && curHash === preHash) continue;
+    }
     violations.push({
       path: p,
       absolutePath: resolve(opts.repoRoot, p),

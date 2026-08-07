@@ -556,6 +556,12 @@ function expectedLineageArtifactPaths(loopType, lineageDir) {
   return [path.join(lineageDir, 'research.md')];
 }
 
+function requiredLineageStateLogPath(loopType, lineageDir) {
+  const name = lineageStateLogName(loopType);
+  if (!name) return null;
+  return path.join(lineageDir, name);
+}
+
 function hasNonEmptyFile(filePath) {
   try {
     return fs.statSync(filePath).isFile() && fs.statSync(filePath).size > 0;
@@ -564,9 +570,27 @@ function hasNonEmptyFile(filePath) {
   }
 }
 
+function countIterationFiles(lineageDir) {
+  try {
+    const iterDir = path.join(lineageDir, 'iterations');
+    if (!fs.statSync(iterDir).isDirectory()) return 0;
+    return fs.readdirSync(iterDir).filter((name) => /^iteration-\d+\.md$/.test(name)).length;
+  } catch {
+    return 0;
+  }
+}
+
 function findMissingLineageArtifacts(loopType, lineageDir) {
   return expectedLineageArtifactPaths(loopType, lineageDir)
     .filter((artifactPath) => !hasNonEmptyFile(artifactPath));
+}
+
+function findMissingLineageStateLog(loopType, lineageDir) {
+  const stateLogPath = requiredLineageStateLogPath(loopType, lineageDir);
+  if (stateLogPath && !hasNonEmptyFile(stateLogPath)) {
+    return stateLogPath;
+  }
+  return null;
 }
 
 function parseJsonlRecords(filePath) {
@@ -686,8 +710,8 @@ function findMaxIterationsPolicyViolation({ loopType, stateRead, lineage, stopPo
     return `missing synthesis event and ${evidence.reason} for max-iterations stop-policy validation`;
   }
 
-  const totalIterations = Number.isFinite(Number(synthesis.totalIterations))
-    ? Number(synthesis.totalIterations)
+  const totalIterations = lineageDir
+    ? countIterationFiles(lineageDir)
     : iterationCount;
   if (totalIterations !== lineage.iterations) {
     return `expected ${lineage.iterations} iterations, got ${totalIterations}`;
@@ -1494,6 +1518,10 @@ function buildInvocationFingerprintPayload(input) {
 }
 
 function finalizeLineageCommand(input) {
+  let effectiveSandbox = input.resolvedSandbox;
+  if (input.kind === 'cli-opencode' && effectiveSandbox && effectiveSandbox !== 'danger-full-access') {
+    effectiveSandbox = `advisory-${effectiveSandbox}`;
+  }
   const effectiveConfig = {
     kind: input.kind,
     executable: input.command,
@@ -1501,7 +1529,7 @@ function finalizeLineageCommand(input) {
     model: input.model,
     reasoningEffort: input.reasoningEffort,
     serviceTier: input.serviceTier,
-    sandboxMode: input.resolvedSandbox,
+    sandboxMode: effectiveSandbox,
     permissionMode: input.resolvedPermission,
     webSearch: input.webSearch,
   };
@@ -1588,17 +1616,18 @@ function buildClaudeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 }
 
 function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
-  // Native fan-out uses the command host so the workflow owns init, loop, and synthesis.
   const args = [
     'run',
     '--format',
     'json',
-    '--dangerously-skip-permissions',
     '--dir',
     process.cwd(),
     '--command',
     `deep/${options.loopType || 'review'}`,
   ];
+  if (resolvedSandbox === 'danger-full-access' || resolvedSandbox === 'workspace-write') {
+    args.splice(1, 0, '--dangerously-skip-permissions');
+  }
   const commandInput = buildNativeCommandInput(
     options.loopType || 'review',
     options.specFolder || '',
@@ -2271,7 +2300,7 @@ async function main() {
       const effectiveSandbox = resolvedSandbox;
       const effectivePermission = resolvedPermission;
 
-      const { command, args: cmdArgs, input } = buildLineageCommand(
+      const { command, args: cmdArgs, input, effectiveConfig, invocationFingerprint } = buildLineageCommand(
         lineage,
         prompt,
         effectiveSandbox,
@@ -2285,6 +2314,13 @@ async function main() {
           stopPolicy,
           researchTopic,
         },
+      );
+
+      // Persist invocation provenance before dispatch so the worker can read it.
+      fs.writeFileSync(
+        path.join(lineageDir, 'invocation-metadata.json'),
+        JSON.stringify({ effectiveConfig, invocationFingerprint }) + '\n',
+        'utf8',
       );
 
       // Advertise a per-replica state dir hint to the child via SPECKIT_<KIND>_STATE_DIR.
@@ -2430,22 +2466,18 @@ async function main() {
           iteration: attempt,
           label: lineage.label,
         });
-        // Log the containment event whenever anything was detected, including preserved
-        // advisories (unattributable not-in-HEAD paths) that must NOT fail the iteration --
-        // so out-of-scope activity on a dirty, multi-actor tree stays visible without
-        // deleting a concurrent writer's work or failing an otherwise-successful run.
-        if (containment.event) {
-          appendFanoutStatusLedger(ledgerPath, {
-            ...containment.event,
-            at: new Date().toISOString(),
-            label: lineage.label,
-            run_id: runId,
-            loop_type: loopType,
-            spec_folder: specFolder,
-            gauges: latestGauges,
-          });
-        }
         if (containment.violations.length > 0) {
+          if (containment.event) {
+            appendFanoutStatusLedger(ledgerPath, {
+              ...containment.event,
+              at: new Date().toISOString(),
+              label: lineage.label,
+              run_id: runId,
+              loop_type: loopType,
+              spec_folder: specFolder,
+              gauges: latestGauges,
+            });
+          }
           const failure = new Error(
             `lineage ${lineage.label} violated write containment: reverted `
               + `${containment.violations.length} out-of-scope path(s): `

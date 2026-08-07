@@ -91,4 +91,25 @@ describe('observability event envelope', () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
+
+  it('confines the persisted payload to allowlisted keys and drops secret-bearing fields', () => {
+    const envelope = normalizeObservabilityEvent(
+      {
+        event: 'completed',
+        label: 'opencode-a',
+        duration_ms: 42,
+        api_key: 'sk-should-not-persist',
+        prompt: 'raw instruction text',
+        stdout: 'noisy child output',
+        arbitrary_unknown_field: 'x',
+      },
+      { producer: 'fanout-run', stream: 'orchestration-status' },
+    );
+
+    expect(envelope.payload).toEqual({
+      event: 'completed',
+      label: 'opencode-a',
+      duration_ms: 42,
+    });
+  });
 });

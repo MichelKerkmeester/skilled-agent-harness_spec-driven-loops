@@ -21,6 +21,7 @@ import {
   buildContainmentViolationEvent,
   classifyViolation,
 } from '../../lib/deep-loop/write-containment.js';
+import type { DirtyPathEntry } from '../../lib/deep-loop/write-containment';
 
 const tempRoots: string[] = [];
 
@@ -187,11 +188,11 @@ describe('write-containment — regression case (b): out-of-artifact write is de
     expect(readFileSync(join(root, 'deep/file.txt'), 'utf8')).toBe('ORIGINAL_DEEP\n');
   });
 
-  it('preserves (never deletes) an untracked file outside artifactDir — unattributable to the leaf', () => {
+  it('detects and removes an untracked file the leaf created outside artifactDir', () => {
     const { root, artifactDir } = baselineRepo();
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
-    writeFileSync(join(root, 'concurrent-new-file.txt'), 'CONCURRENT\n');
+    writeFileSync(join(root, 'evil-new-file.txt'), 'EVIL\n');
 
     const violations = detectNewOutOfScopeViolations({
       repoRoot: root,
@@ -199,16 +200,13 @@ describe('write-containment — regression case (b): out-of-artifact write is de
       preDispatchDirtyPaths: preDispatch,
     });
     expect(violations).toHaveLength(1);
-    expect(violations[0].path).toBe('concurrent-new-file.txt');
+    expect(violations[0].path).toBe('evil-new-file.txt');
     expect(violations[0].kind).toBe('untracked');
 
     const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
-    expect(revert.reverted[0].action).toBe('preserved_untracked');
+    expect(revert.reverted[0].action).toBe('removed_untracked');
     expect(revert.reverted[0].ok).toBe(true);
-    // A not-in-HEAD path cannot be proven the leaf's (a concurrent writer looks identical),
-    // and deletion is irreversible — so it is preserved on disk, never removed.
-    expect(existsSync(join(root, 'concurrent-new-file.txt'))).toBe(true);
-    expect(readFileSync(join(root, 'concurrent-new-file.txt'), 'utf8')).toBe('CONCURRENT\n');
+    expect(existsSync(join(root, 'evil-new-file.txt'))).toBe(false);
   });
 });
 
@@ -219,7 +217,7 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
     // Pre-existing dirty work unrelated to the leaf (present BEFORE dispatch).
     writeFileSync(join(root, 'tracked-outside.txt'), 'PRE_EXISTING_DIRTY\n');
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
-    expect(preDispatch).toContain('tracked-outside.txt');
+    expect(dirtyPathIncluded(preDispatch, 'tracked-outside.txt')).toBe(true);
 
     // The leaf then makes its OWN new out-of-scope violation (different file).
     writeFileSync(join(root, 'evil-new-file.txt'), 'EVIL\n');
@@ -235,67 +233,11 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
     const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
     expect(revert.reverted).toHaveLength(1);
     expect(revert.reverted[0].path).toBe('evil-new-file.txt');
-    expect(revert.reverted[0].action).toBe('preserved_untracked');
 
     // The pre-existing dirty file is PRESERVED exactly as the developer left it.
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('PRE_EXISTING_DIRTY\n');
-    // And the leaf's new untracked file is ALSO preserved — never irreversibly deleted.
-    expect(existsSync(join(root, 'evil-new-file.txt'))).toBe(true);
-  });
-});
-
-// Regression: on a dirty, multi-actor working tree, files created during the dispatch
-// window by the parent orchestrator or a concurrent session are indistinguishable from
-// the leaf's own untracked writes. The old guard `rmSync`-deleted them (irreversible data
-// loss). A not-in-HEAD out-of-scope path is now preserved and reported as a non-fatal
-// advisory; only in-HEAD (recoverable) modifications remain fatal.
-describe('write-containment — concurrent-writer safety (never delete unattributable files)', () => {
-  it('preserves a not-in-HEAD out-of-scope file as a non-fatal advisory, never deleting it', () => {
-    const { root, artifactDir } = baselineRepo();
-    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
-
-    // A concurrent actor writes an untracked file outside the leaf's artifact dir.
-    writeFileSync(join(root, 'concurrent.json'), '{"parallel":true}\n');
-
-    const result = enforceWriteContainment({
-      repoRoot: root,
-      artifactDir,
-      preDispatchDirtyPaths: preDispatch,
-      label: 'sol',
-    });
-
-    // Non-fatal: no fatal violations, so the caller does not fail the iteration.
-    expect(result.violations).toEqual([]);
-    // Recorded as an advisory, and the file survives on disk untouched.
-    expect(result.advisories.map((v) => v.path)).toEqual(['concurrent.json']);
-    expect(existsSync(join(root, 'concurrent.json'))).toBe(true);
-    expect(readFileSync(join(root, 'concurrent.json'), 'utf8')).toBe('{"parallel":true}\n');
-    // The event still logs it for visibility.
-    expect(result.event).not.toBeNull();
-    expect(result.event!.violations.map((v) => v.path)).toContain('concurrent.json');
-  });
-
-  it('keeps a real tracked-source breach fatal while preserving a concurrent untracked file', () => {
-    const { root, artifactDir } = baselineRepo();
-    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
-
-    // Genuine breach (in HEAD → recoverable → fatal) + concurrent untracked write.
-    writeFileSync(join(root, 'tracked-outside.txt'), 'CLOBBERED\n');
-    writeFileSync(join(root, 'concurrent.txt'), 'parallel\n');
-
-    const result = enforceWriteContainment({
-      repoRoot: root,
-      artifactDir,
-      preDispatchDirtyPaths: preDispatch,
-      label: 'sol',
-    });
-
-    // The tracked breach is fatal and reverted from HEAD...
-    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
-    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
-    // ...while the concurrent untracked file is a preserved advisory, not deleted.
-    expect(result.advisories.map((v) => v.path)).toEqual(['concurrent.txt']);
-    expect(existsSync(join(root, 'concurrent.txt'))).toBe(true);
+    // And the leaf's new file is gone.
+    expect(existsSync(join(root, 'evil-new-file.txt'))).toBe(false);
   });
 });
 
@@ -477,6 +419,10 @@ describe('write-containment — concurrent sibling lineages', () => {
   });
 });
 
-function dirtySorted(arr: string[]): string[] {
-  return [...arr].sort();
+function dirtySorted(arr: DirtyPathEntry[]): string[] {
+  return arr.map((e) => e.path).sort();
+}
+
+function dirtyPathIncluded(arr: DirtyPathEntry[], targetPath: string): boolean {
+  return arr.some((e) => e.path === targetPath);
 }

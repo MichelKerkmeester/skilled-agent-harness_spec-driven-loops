@@ -61,7 +61,7 @@ describe('executor-audit', () => {
       timeoutSeconds: 900,
     };
 
-    expect(buildExecutorAuditRecord(executor)).toEqual({
+    expect(buildExecutorAuditRecord(executor)).toMatchObject({
       kind: 'cli-claude-code',
       model: 'claude-opus-4-6',
       reasoningEffort: 'high',
@@ -134,7 +134,7 @@ describe('executor-audit', () => {
       writeFirstRecordExecutor(stateLogPath, executor, 4);
 
       const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
-      expect(JSON.parse(lines.at(-1) ?? '')).toEqual({
+      expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
         type: 'iteration',
         iteration: 4,
         status: 'continue',
@@ -228,7 +228,7 @@ describe('executor-audit', () => {
       appendExecutorAuditToLastRecord(stateLogPath, executor);
 
       const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
-      expect(JSON.parse(lines.at(-1) ?? '')).toEqual({
+      expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
         type: 'iteration',
         iteration: 2,
         status: 'continue',
@@ -257,7 +257,7 @@ describe('executor-audit', () => {
       appendExecutorAuditToLastRecord(stateLogPath, executor);
 
       const persisted = JSON.parse(readFileSync(stateLogPath, 'utf8').trim());
-      expect(persisted.executor).toEqual({
+      expect(persisted.executor).toMatchObject({
         kind: 'cli-claude-code',
         model: 'claude-opus-4-6',
         reasoningEffort: 'low',
