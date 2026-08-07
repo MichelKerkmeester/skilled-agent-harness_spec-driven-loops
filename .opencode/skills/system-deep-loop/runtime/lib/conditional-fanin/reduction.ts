@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Reduction
+// ───────────────────────────────────────────────────────────────────
+
 import { isLeafResultPayload } from '../result-envelopes/index.js';
 import { reducerInputDigest } from './decision.js';
 

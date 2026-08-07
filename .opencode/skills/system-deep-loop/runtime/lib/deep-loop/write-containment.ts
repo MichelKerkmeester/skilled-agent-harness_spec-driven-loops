@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop Write Containment
+// ───────────────────────────────────────────────────────────────────
+
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: deep-loop codex write-containment guard                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
@@ -14,7 +18,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, realpathSync } from 'node:fs';
+import { appendFileSync, mkdirSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -40,7 +44,7 @@ export interface ContainmentViolation {
 
 export interface ContainmentRevertAction {
   path: string;
-  action: 'restored_from_head' | 'preserved_untracked';
+  action: 'restored_from_head' | 'removed_untracked';
   ok: boolean;
   error?: string;
 }
@@ -93,10 +97,7 @@ export interface EnforceInput extends DetectOptions {
 }
 
 export interface EnforceResult {
-  /** In-HEAD out-of-scope breaches reverted from HEAD — fatal; the caller fails the iteration. */
   violations: ContainmentViolation[];
-  /** Not-in-HEAD out-of-scope paths preserved on disk (unattributable) — advisory, never fatal. */
-  advisories: ContainmentViolation[];
   revertResult: ContainmentRevertResult;
   event: ContainmentViolationEvent | null;
 }
@@ -313,14 +314,10 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
 }
 
 /**
- * Revert the given out-of-scope violating paths WITHOUT ever irreversibly deleting a file.
- * A tracked path present in HEAD is restored from HEAD -- which resurrects deletions and
- * undoes modifications, and is fully recoverable. A not-in-HEAD path (untracked or newly
- * added) has no HEAD content to restore, so the only "revert" would be a hard delete; but on
- * a dirty, multi-actor tree such a path may be a concurrent write by the orchestrator or a
- * parallel session, indistinguishable from the leaf's own. Deleting it would be irreversible
- * data loss, so it is PRESERVED and reported instead. NEVER a blanket `git clean`, NEVER a
- * delete -- the caller treats preserved paths as non-fatal advisories.
+ * Revert EXACTLY the given violating paths. Tracked files (present in HEAD) are
+ * restored from HEAD -- which resurrects deletions and undoes modifications --
+ * while untracked files the leaf created are removed by a scoped delete on that
+ * one path. NEVER a blanket `git clean`.
  */
 export function revertOutOfScopeViolations(opts: {
   repoRoot: string;
@@ -338,7 +335,18 @@ export function revertOutOfScopeViolations(opts: {
         ...(ok ? {} : { error: 'git checkout HEAD -- <path> failed' }),
       });
     } else {
-      reverted.push({ path: violation.path, action: 'preserved_untracked', ok: true });
+      // Newly-created (untracked) path: remove only this specific path.
+      try {
+        rmSync(violation.absolutePath, { recursive: true, force: true });
+        reverted.push({ path: violation.path, action: 'removed_untracked', ok: true });
+      } catch (error) {
+        reverted.push({
+          path: violation.path,
+          action: 'removed_untracked',
+          ok: false,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
     }
   }
   return { reverted };
@@ -379,33 +387,25 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
  * caller fails the iteration fail-closed when `violations.length > 0`.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
-  const detected = detectNewOutOfScopeViolations(input);
-  if (detected.length === 0) {
-    return { violations: [], advisories: [], revertResult: { reverted: [] }, event: null };
+  const violations = detectNewOutOfScopeViolations(input);
+  if (violations.length === 0) {
+    return { violations, revertResult: { reverted: [] }, event: null };
   }
   const revertResult = revertOutOfScopeViolations({
     repoRoot: input.repoRoot,
-    violations: detected,
+    violations,
     env: input.env,
   });
-  // Partition by what the revert actually did: HEAD-restored paths are recoverable breaches
-  // (fatal), while preserved not-in-HEAD paths are unattributable and non-fatal advisories.
-  // The caller fails the iteration only on fatal violations; advisories are logged, not failed.
-  const preservedPaths = new Set(
-    revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
-  );
-  const violations = detected.filter((v) => !preservedPaths.has(v.path));
-  const advisories = detected.filter((v) => preservedPaths.has(v.path));
   const event = buildContainmentViolationEvent({
     iteration: input.iteration,
     label: input.label,
-    violations: detected,
+    violations,
     revertResult,
   });
   if (input.stateLogPath) {
     appendContainmentEvent(input.stateLogPath, event);
   }
-  return { violations, advisories, revertResult, event };
+  return { violations, revertResult, event };
 }
 
 // Exported for tests / diagnostics.

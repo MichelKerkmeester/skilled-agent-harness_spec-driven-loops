@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Decision Event
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AuthorizationVerdicts,
 } from '../authorized-ledger/index.js';

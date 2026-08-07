@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Sufficiency
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   AcceptedResultAtCut,
   ConditionalFanInPolicy,

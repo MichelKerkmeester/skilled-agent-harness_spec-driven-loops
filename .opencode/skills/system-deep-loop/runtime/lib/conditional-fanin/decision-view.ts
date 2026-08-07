@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Decision View
+// ───────────────────────────────────────────────────────────────────
+
 import { isLeafResultPayload } from '../result-envelopes/index.js';
 import { conditionalFanInPolicyDigest } from './policy.js';
 

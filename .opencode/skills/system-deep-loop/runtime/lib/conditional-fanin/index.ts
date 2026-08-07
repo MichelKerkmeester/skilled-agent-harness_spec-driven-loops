@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Public API
+// ───────────────────────────────────────────────────────────────────
+
 export * from './budget-continuation.js';
 export * from './decision-event.js';
 export * from './decision-view.js';

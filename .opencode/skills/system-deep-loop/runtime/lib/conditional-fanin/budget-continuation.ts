@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Budget Continuation
+// ───────────────────────────────────────────────────────────────────
+
 import {
   BudgetReasonCodes,
   addBudgetVectors,

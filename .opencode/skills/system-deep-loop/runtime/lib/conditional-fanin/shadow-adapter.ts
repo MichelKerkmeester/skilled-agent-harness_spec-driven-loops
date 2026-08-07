@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Conditional Fan-In Shadow Adapter
+// ───────────────────────────────────────────────────────────────────
+
 import { evaluateAwaitPredicate, finalizeFanInDecisionCandidate } from './decision.js';
 
 import type {
