@@ -61,9 +61,9 @@ Scope the runbook from phase 002's accepted design. This phase's own work — it
 
 **Intentionally unchecked.** These are the actual runbook steps — none have been run. This section stays `[ ]` until the operator gives a separate, explicit approval to execute, per `spec.md` REQ-007.
 
-- [ ] T004 Step 1: Pre-flight checks (`plan.md` §4 Step 1)
-- [ ] T005 Step 2: Baseline manifest via `buildMigrationManifest`, confirm zero divergent-duplicates (`plan.md` §4 Step 2)
-- [ ] T006 Step 3: Write and unit-test the topology-flip function against a fixture, not the real repo (`plan.md` §4 Step 3)
+- [x] T004 Step 1: Pre-flight checks (`plan.md` §4 Step 1) [evidence: `git status --porcelain` empty, both ADRs `Accepted` — required a prior detour to commit+push 3,308 unrelated dirty files (`257f709732`, rebased to `2666012cfe`) plus the system-code-graph skill-folder removal (`df852e2930`) before the tree was clean]
+- [x] T005 Step 2: Baseline manifest via `buildMigrationManifest`, confirm zero divergent-duplicates (`plan.md` §4 Step 2) [evidence: `divergentCount: 0`, all 3,561 entries `same-inode-alias`]
+- [x] T006 Step 3: Write and unit-test the topology-flip function against a fixture, not the real repo (`plan.md` §4 Step 3) [evidence: `flipToTopLevelCanonical` added to `spec-root-migration.ts`, not wired into any caller; 2 new fixture tests in `spec-root-migration.vitest.ts` pass (`flips specs/...`, `refuses to run when a divergent-duplicate...`); `tsc --noEmit` shows 0 errors in this file]
 - [ ] T007 Step 4: THE ATOMIC STEP — flip + `.gitignore` rebase in one commit, verified before committing (`plan.md` §4 Step 4)
 - [ ] T008 Step 5: Invert the 7 registry entries (`plan.md` §4 Step 5)
 - [ ] T009 Step 6: Add the `SPEC_KIT_SPECS_DIR` override across 5 call sites (`plan.md` §4 Step 6)

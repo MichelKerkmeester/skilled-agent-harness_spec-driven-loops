@@ -9,6 +9,7 @@ import * as path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
+  flipToTopLevelCanonical,
   migrateLegacyOnlyToCanonical,
   restoreFromQuarantine,
 } from '../core/spec-root-migration.js';
@@ -119,6 +120,76 @@ describe('spec root migration', () => {
       .toBe('# Canonical packet\n');
     expect(fs.readFileSync(path.join(fixture.legacyPacketPath, 'spec.md'), 'utf8'))
       .toBe('# Legacy packet\n');
+    expect(fs.existsSync(fixture.quarantinePath)).toBe(false);
+  });
+});
+
+describe('flipToTopLevelCanonical', () => {
+  interface FlipFixture {
+    readonly tempDirectory: string;
+    readonly workspacePath: string;
+    readonly canonicalRoot: string;
+    readonly legacyRoot: string;
+    readonly quarantinePath: string;
+  }
+
+  function createFlipFixture(): FlipFixture {
+    const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'spec-root-flip-'));
+    const workspacePath = path.join(tempDirectory, 'workspace');
+    const canonicalRoot = path.join(workspacePath, '.opencode', 'specs');
+    const legacyRoot = path.join(workspacePath, 'specs');
+    const quarantinePath = path.join(tempDirectory, 'quarantine');
+
+    tempDirectories.push(tempDirectory);
+    fs.mkdirSync(canonicalRoot, { recursive: true });
+
+    return { tempDirectory, workspacePath, canonicalRoot, legacyRoot, quarantinePath };
+  }
+
+  it('flips specs/ to a real directory and .opencode/specs to a relative symlink', () => {
+    const fixture = createFlipFixture();
+    const relativePacketPath = path.join(...PACKET_ID.split('/'));
+    const canonicalPacketPath = path.join(fixture.canonicalRoot, relativePacketPath);
+    const originalBytes = writePacket(canonicalPacketPath, 'Pre-flip packet');
+    fs.symlinkSync(path.join('.opencode', 'specs'), fixture.legacyRoot);
+
+    flipToTopLevelCanonical(fixture.workspacePath, { quarantinePath: fixture.quarantinePath });
+
+    expect(fs.lstatSync(fixture.legacyRoot).isSymbolicLink()).toBe(false);
+    expect(fs.lstatSync(fixture.legacyRoot).isDirectory()).toBe(true);
+    expect(
+      fs.readFileSync(path.join(fixture.legacyRoot, relativePacketPath, 'nested', 'payload.bin')),
+    ).toEqual(originalBytes);
+
+    expect(fs.lstatSync(fixture.canonicalRoot).isSymbolicLink()).toBe(true);
+    expect(fs.readlinkSync(fixture.canonicalRoot)).toBe(path.join('..', 'specs'));
+
+    const quarantinePacketPath = path.join(fixture.quarantinePath, relativePacketPath);
+    expect(
+      fs.readFileSync(path.join(quarantinePacketPath, 'nested', 'payload.bin')),
+    ).toEqual(originalBytes);
+  });
+
+  it('refuses to run when a divergent-duplicate packet exists, and mutates nothing', () => {
+    const fixture = createFlipFixture();
+    const relativePacketPath = path.join(...PACKET_ID.split('/'));
+    const canonicalPacketPath = path.join(fixture.canonicalRoot, relativePacketPath);
+    writePacket(canonicalPacketPath, 'Canonical packet');
+    // `specs` is deliberately a real, divergent directory here (not a symlink) to exercise the
+    // manifest's divergent-duplicate guard, which must fire before the symlink-shape check.
+    const legacyPacketPath = path.join(fixture.legacyRoot, relativePacketPath);
+    writePacket(legacyPacketPath, 'Divergent legacy packet');
+
+    expect(() => flipToTopLevelCanonical(fixture.workspacePath, {
+      quarantinePath: fixture.quarantinePath,
+    })).toThrow(/divergent-duplicate/);
+
+    expect(fs.existsSync(fixture.canonicalRoot)).toBe(true);
+    expect(fs.readFileSync(path.join(canonicalPacketPath, 'spec.md'), 'utf8'))
+      .toBe('# Canonical packet\n');
+    expect(fs.lstatSync(fixture.legacyRoot).isSymbolicLink()).toBe(false);
+    expect(fs.readFileSync(path.join(legacyPacketPath, 'spec.md'), 'utf8'))
+      .toBe('# Divergent legacy packet\n');
     expect(fs.existsSync(fixture.quarantinePath)).toBe(false);
   });
 });

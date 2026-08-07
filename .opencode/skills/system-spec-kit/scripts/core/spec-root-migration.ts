@@ -7,6 +7,7 @@ import * as path from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 import { classifySpecRootCollision } from './spec-root-collision-classifier.js';
+import { buildMigrationManifest } from './spec-root-migration-manifest.js';
 
 import type { PhysicalRoot } from './spec-root-collision-classifier.js';
 
@@ -296,4 +297,64 @@ export function restoreFromQuarantine(
       fs.rmSync(canonicalPacketPath, { recursive: true });
     }
   }
+}
+
+/**
+ * Flips which physical location is canonical: `specs/` becomes a real directory and
+ * `.opencode/specs` becomes a relative symlink pointing at it. NOT wired into any caller yet —
+ * additive-only, exercised by its own fixture tests until a runbook step invokes it for real.
+ */
+export function flipToTopLevelCanonical(
+  workspacePath: string,
+  opts: MigrationOptions,
+): void {
+  const workspace = assertWorkspaceDirectory(workspacePath);
+  const canonicalRoot = path.join(workspace, '.opencode', 'specs');
+  const legacyRoot = path.join(workspace, 'specs');
+
+  // Refuse on any divergent-duplicate packet -- the flip assumes a clean same-inode-alias
+  // baseline (today's actual state), not conflicting content sitting in both roots.
+  const manifest = buildMigrationManifest(workspace);
+  if (manifest.divergentCount > 0) {
+    throw new Error(
+      `Refusing to flip: ${manifest.divergentCount} divergent-duplicate packet(s) found. `
+      + 'Resolve divergence before running the topology flip.',
+    );
+  }
+
+  const quarantineRoot = assertQuarantineLocation(opts.quarantinePath, canonicalRoot, legacyRoot);
+
+  if (!pathExists(canonicalRoot) || !fs.statSync(canonicalRoot).isDirectory()) {
+    throw new Error(`Canonical root is not a directory, refusing to flip: ${canonicalRoot}`);
+  }
+  const legacyStats = fs.lstatSync(legacyRoot);
+  if (!legacyStats.isSymbolicLink()) {
+    throw new Error(`Expected ${legacyRoot} to be a symlink before flipping; refusing to run.`);
+  }
+
+  // Step 1: materialize the new `specs/` tree as a byte-verified copy of `.opencode/specs/`.
+  // `specs` is currently occupied by the legacy symlink, so stage the copy at a temporary
+  // sibling path first -- copyDirectoryVerified refuses to write over an existing path.
+  const flipTemporaryPath = path.join(workspace, `.specs.flip-incoming-${randomUUID()}`);
+  copyDirectoryVerified(canonicalRoot, flipTemporaryPath);
+  if (!directoriesMatch(canonicalRoot, flipTemporaryPath)) {
+    fs.rmSync(flipTemporaryPath, { recursive: true, force: true });
+    throw new Error('Flip copy did not verify byte-for-byte; aborting before touching anything live.');
+  }
+
+  // Step 2: preserve the pre-flip canonical tree in quarantine before removing it, mirroring
+  // migrateLegacyOnlyToCanonical's copy-before-mutate discipline.
+  copyDirectoryVerified(canonicalRoot, quarantineRoot);
+
+  // Step 3: remove the old `.opencode/specs` directory now that both copies verified byte-for-byte.
+  fs.rmSync(canonicalRoot, { recursive: true });
+
+  // Retire the legacy symlink and swap in the verified real tree at that path.
+  fs.unlinkSync(legacyRoot);
+  fs.renameSync(flipTemporaryPath, legacyRoot);
+
+  // Step 4: create `.opencode/specs` as a RELATIVE symlink to `../specs`.
+  fs.symlinkSync(path.join('..', 'specs'), canonicalRoot);
+
+  // Step 5: `specs/` is now the source of truth -- nothing after this point may touch it again.
 }
