@@ -31,7 +31,7 @@ run.
 over the command surface (overall verdict FAIL, with open findings); a formally
 accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 **Owning mode:** `deep-alignment`.
-**Source specification:** `.opencode/specs/system-deep-loop/035-command-surface-benchmark/`.
+**Source specification:** `specs/system-deep-loop/035-command-surface-benchmark/`.
 
 ## 2. BENCHMARK-ID INDEX
 
@@ -63,7 +63,7 @@ Run from the repository root after `sk-doc-command` is registered for
 `sk-doc` in deep-alignment's `AUTHORITY_ADAPTERS` allowlist:
 
 ```bash
-/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration
+/deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration
 ```
 
 Expected stable inputs:

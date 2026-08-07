@@ -136,7 +136,7 @@ This name reads as "migration number one, add the provenance column to the `vec_
 
 ### Architectural Baseline
 
-These ADRs set the architecture future migrations must preserve. All three live in the `003-embedder-testing-and-architecture` umbrella under `.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/`.
+These ADRs set the architecture future migrations must preserve. All three live in the `003-embedder-testing-and-architecture` umbrella under `specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/`.
 
 | ADR | Location | Topic |
 |---|---|---|

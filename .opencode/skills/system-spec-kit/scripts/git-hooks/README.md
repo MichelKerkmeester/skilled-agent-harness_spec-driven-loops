@@ -1,6 +1,6 @@
 ---
 title: "Git Hooks Source: memory-index drift marker writer"
-description: "TypeScript source for the drift marker that git lifecycle hooks write after a rename or delete under .opencode/specs."
+description: "TypeScript source for the drift marker that git lifecycle hooks write after a rename or delete under specs."
 ---
 
 # Git Hooks Source
@@ -15,7 +15,7 @@ description: "TypeScript source for the drift marker that git lifecycle hooks wr
 
 | File | Purpose |
 |------|---------|
-| `drift-marker-write.ts` | Reads `MEMORY_DRIFT_DIFF` and `MEMORY_DRIFT_REPO_ROOT` from the environment, parses renamed and deleted `.opencode/specs` paths out of a `git diff-tree --name-status` diff and merges them into a lock-guarded, atomically written drift-marker JSON file so the memory index can reconcile stale paths. |
+| `drift-marker-write.ts` | Reads `MEMORY_DRIFT_DIFF` and `MEMORY_DRIFT_REPO_ROOT` from the environment, parses renamed and deleted `specs` paths out of a `git diff-tree --name-status` diff and merges them into a lock-guarded, atomically written drift-marker JSON file so the memory index can reconcile stale paths. |
 
 ## 3. CONSUMERS
 

@@ -23,7 +23,14 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const SPECS_ROOT = path.join(REPO_ROOT, '.opencode', 'specs');
+// specs/ is the canonical physical tree; .opencode/specs is a compat symlink
+// alias to it. path.resolve() is lexical and never follows symlinks, so an
+// import written against either form must be checked against its own root —
+// checking only one root lets an import through the other spelling.
+const SPECS_ROOTS = [
+  path.join(REPO_ROOT, 'specs'),
+  path.join(REPO_ROOT, '.opencode', 'specs'),
+];
 
 // Runtime directories that must never import from the spec tree.
 const DEFAULT_ROOTS = [path.join(REPO_ROOT, '.opencode', 'bin')];
@@ -72,12 +79,14 @@ function walk(dir, out) {
 }
 
 function underSpecs(abs) {
-  const rel = path.relative(SPECS_ROOT, abs);
-  return rel === '' || (Boolean(rel) && !rel.startsWith('..') && !path.isAbsolute(rel));
+  return SPECS_ROOTS.some((root) => {
+    const rel = path.relative(root, abs);
+    return rel === '' || (Boolean(rel) && !rel.startsWith('..') && !path.isAbsolute(rel));
+  });
 }
 
 function targetResolvesUnderSpecs(fileDir, target) {
-  if (target.includes('.opencode/specs')) return true;
+  if (target.includes('.opencode/specs') || target.includes('/specs/')) return true;
   if (!target.startsWith('.')) return false; // bare module id, not a path import
   const resolved = path.resolve(fileDir, target);
   return underSpecs(resolved);

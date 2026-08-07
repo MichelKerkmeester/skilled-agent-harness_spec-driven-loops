@@ -109,4 +109,4 @@ without writing to any real style folder. Raise `--delay-ms` if the site returns
 
 - [`../library/bundles/cursor/`](../library/bundles/cursor/) — the reference style; the output template every capture mirrors.
 - [`../README.md`](../README.md) — the extracted-styles index.
-- `.opencode/specs/sk-design/010-sk-design-styles-from-refero/` — the spec packet (harness + pilot phases).
+- `specs/sk-design/010-sk-design-styles-from-refero/` — the spec packet (harness + pilot phases).

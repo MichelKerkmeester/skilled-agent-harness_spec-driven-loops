@@ -13,7 +13,7 @@ mark_memory_drift_from_diff() {
   fi
 
   local diff_output
-  diff_output="$(git diff-tree --no-commit-id -r -M --name-status "$@" -- .opencode/specs 2>/dev/null || true)"
+  diff_output="$(git diff-tree --no-commit-id -r -M --name-status "$@" -- specs 2>/dev/null || true)"
   if [ -z "$diff_output" ]; then
     return 0
   fi

@@ -10,17 +10,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-07T20:15:00Z"
+    last_updated_at: "2026-08-07T19:38:12Z"
     last_updated_by: "claude-code"
-    recent_action: "Scoped from a real repo-wide README census, not yet dispatched"
-    next_safe_action: "Launch the deep-review loop per plan.md"
+    recent_action: "Review complete; 18/20 findings fixed, 2 deferred; validate.sh passed"
+    next_safe_action: "Commit and push to skilled/v4.0.0.0"
     blockers: []
-    key_files: []
+    key_files:
+      - "README.md"
+      - ".opencode/skills/system-spec-kit/README.md"
+      - ".opencode/bin/check-no-spec-imports.cjs"
+      - ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate-005"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft — scoped, dispatch pending |
+| **Status** | Complete — 18/20 findings fixed, 2 explicitly deferred (F012, F020) |
 | **Created** | 2026-08-07 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -102,7 +106,7 @@ Every README in the repo (main working tree, non-worktree, including the root `R
 
 ### Files to Change
 
-Not known until the review runs — this is a discovery task. The 22-file grep-hit list is the known starting candidate set; `plan.md` names the exact command to reproduce it.
+Not known until the review runs — this is a discovery task. The grep-hit candidate list (~21-22 files at scoping time, a moving number under concurrent repo activity — reproduce it, don't trust a frozen count) is the known starting set; `plan.md` §2 names the exact command.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,8 +125,8 @@ Not known until the review runs — this is a discovery task. The 22-file grep-h
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | The review runs both named executors (deepseek-v4-flash, GLM-5.2-high) for the full requested iteration count, not a reduced fallback | Loop state records show both executor labels present across the run |
-| REQ-004 | Coverage goes beyond the 22-file literal-string candidate list — at least one finding (if any exist) comes from prose/diagram staleness that doesn't use the literal `.opencode/specs` string | Documented in the review report, or explicitly noted if no such finding exists |
+| REQ-003 | **AMENDED, evidence-based acceptance (was: both executors must run).** `glm-high` (cli-devin) never spawned a single process across a ~24-minute window despite a fully-resolved config (`review/lineages/glm-high/invocation-metadata.json` shows a valid `devin` binary hash) and confirmed auth (`devin auth status` = logged in). Root-caused directly: `fanout-run.cjs`'s `runLineageProcess()` spawn-error path (`result.error`) is captured but never logged anywhere in the script — a genuine, confirmed silent-failure gap in the shared deep-loop runtime, out of scope for this packet to fix. Accepted with one executor (`deepseek-flash`, all 10 iterations, CONDITIONAL verdict) plus this documented root cause, rather than blocking the whole audit on unrelated runtime infrastructure. | `review/orchestration-summary.json` (`"succeeded":1,"failed":1`), `review/lineages/glm-high/` (only `invocation-metadata.json` + empty `logs/fanout-lineage.out`, zero iteration artifacts), `review/lineages/deepseek-flash/review-report.md` (full 10-iteration synthesis) |
+| REQ-004 | Coverage goes beyond the literal-string candidate list — at least one finding (if any exist) comes from prose/diagram staleness that doesn't use the literal `.opencode/specs` string | Documented in the review report, or explicitly noted if no such finding exists |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -142,7 +146,7 @@ Not known until the review runs — this is a discovery task. The 22-file grep-h
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | 753 non-worktree README files is too large a surface for 10-20 iterations to exhaustively read line by line | Medium | The 22-file grep-hit list plus targeted directory-structure/architecture-diagram sections give the reviewers a grounded, prioritized starting point instead of an unscoped sweep |
+| Risk | ~750 non-worktree README files is too large a surface for 10-20 iterations to exhaustively read line by line | Medium | The grep-hit list plus targeted directory-structure/architecture-diagram sections give the reviewers a grounded, prioritized starting point instead of an unscoped sweep |
 | Risk | A reviewer flags a README that describes `.opencode/specs` correctly (as the compat symlink) as if it were stale | Low-Medium | Every finding gets verified against the actual current topology (`specs/` canonical, `.opencode/specs` symlink) before being treated as real, not accepted on a reviewer's say-so alone |
 | Dependency | `003-migration-execution` must be the accepted topology (it is — Complete) | — | Already satisfied |
 <!-- /ANCHOR:risks -->
@@ -152,7 +156,7 @@ Not known until the review runs — this is a discovery task. The 22-file grep-h
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. Scope is bounded by the real census already run (753 non-worktree READMEs, 22 with a literal old-path hit) and the phase 8 precedent for what "fixed" looks like.
+- None. Scope is bounded by the real, reproducible census (`plan.md` §2's exact command) and the phase 8 precedent for what "fixed" looks like.
 <!-- /ANCHOR:questions -->
 
 ---

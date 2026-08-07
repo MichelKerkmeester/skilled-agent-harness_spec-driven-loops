@@ -77,7 +77,7 @@ npx playwright install chromium   # ~500 MB, one-time
 **Step 2: Extract tokens from a live site.** Run this from the repo root, not from `backend/`. `extract.ts` refuses any `--output` that resolves inside the skill, so a relative spec-folder path resolves correctly only from the repo root.
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts https://stripe.com --fast --output specs/<track>/<packet>/output
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
@@ -88,7 +88,7 @@ Success means `tokens.json` exists under the output directory with the measured 
 **Step 4: Validate before claiming completion.** Run from the repo root with the full script path:
 
 ```bash
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md .opencode/specs/<track>/<packet>/output/tokens.json
+npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/validate.ts DESIGN.md specs/<track>/<packet>/output/tokens.json
 ```
 
 Expected: zero hex mismatches, all required v3 sections present and the Quick-Start fidelity check passing (every Quick Start hex traces to tokens, with `--page-max-width` matching tokens).
@@ -153,7 +153,7 @@ The maintainer-facing card in [`procedures/design-system-extraction.md`](./proce
 Run from the repo root with the full script path so a relative `--output` resolves outside the skill:
 
 ```
-npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output .opencode/specs/<track>/<packet>/output
+npx ts-node .opencode/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> [options] --output specs/<track>/<packet>/output
 
   --fast                 5 pages, 8 concurrency (still captures interaction, recommended)
   --max-pages <n>        Max pages to crawl (default: 8)

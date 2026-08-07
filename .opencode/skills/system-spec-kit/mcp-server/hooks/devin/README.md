@@ -59,5 +59,5 @@ This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (
 - [`../README.md`](../README.md)
 - [`../codex/README.md`](../codex/README.md) -- structural precedent; Devin's envelope shape matches Codex's, unlike Cursor's distinct `{permission, user_message, agent_message}` shape.
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
-- [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md) -- canonical current and superseded test evidence.
-- [`.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md) -- ADRs for `session-stop.ts`, `completion-evidence-stop.cjs`, `post-compaction.cjs`.
+- [`specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md`](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/hook-testing-results.md) -- canonical current and superseded test evidence.
+- [`specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md`](../../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record.md) -- ADRs for `session-stop.ts`, `completion-evidence-stop.cjs`, `post-compaction.cjs`.

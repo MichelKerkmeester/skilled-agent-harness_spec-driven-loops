@@ -1,0 +1,2337 @@
+{
+  "sessionId": "fanout-deepseek-flash-1786124587346-0du5cu",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-08-07T20:40:00Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "system-spec-kit flagship README teaches `.opencode/specs/` as the canonical spec-folder root, `.opencode/skills/system-spec-kit/README.md:128` (also `:661`,`:662`,`:663`,`:701`,`:702`,`:748`,`:846`)",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "core/README config resolution description contradicts shipped code, `.opencode/skills/system-spec-kit/scripts/core/README.md:142`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P1",
+      "title": "bin/README durable-invariant claim no longer matches post-flip root coverage, `.opencode/bin/README.md:28` + `.opencode/bin/check-no-spec-imports.cjs:26`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "title": "REQ-003 dual-executor requirement is not satisfiable as planned",
+      "file": null,
+      "line": null,
+      "description": "the GLM lineage failed terminally, `spec.md:124` (REQ-003), observed in `review/orchestration-status.log`",
+      "dimension": "[traceability]",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[traceability]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F017",
+      "severity": "P1",
+      "title": "drift-marker watcher has a functional blind spot post-flip (upgrades F009), `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh:16`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "sweep README inverts legacy labels, `.opencode/skills/system-spec-kit/scripts/sweep/README.md:12`",
+      "file": null,
+      "line": null,
+      "description": "calls `specs` the \"legacy\" root while `.opencode/specs` is now the legacy alias; the sweep code `strict-pass-freshness.ts:83` itself still lists `.opencode/specs` first (code-level staleness mirrors into the doc).",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "KPI README teaches spec-folder args relative to `.opencode/specs/`, `.opencode/skills/system-spec-kit/scripts/kpi/README.md:67`",
+      "file": null,
+      "line": null,
+      "description": "`quality-kpi.sh:59` still joins `.opencode/specs`; doc mirrors un-migrated code.",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "MCP server README + benchmarks README describe spec-doc scan/authority under `.opencode/specs/`, `.opencode/skills/system-spec-kit/mcp-server/README.md:109` and `.opencode/skills/system-spec-kit/mcp-server/benchmarks/README.md:3`",
+      "file": "scan-scope and \"Authoritative spec packets live under\" claims use the legacy root.",
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "sk-design-md-generator READMEs teach `--output .opencode/specs/<track>/<packet>/output`, `.opencode/skills/sk-design/sk-design-md-generator/README.md:80,91,156` and `backend/README.md:52,55,58,122,126,130,131`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "sk-create-benchmark shared README points audit trail to `.opencode/specs/`, `.opencode/skills/sk-doc/sk-create-benchmark/references/shared/README.md:23`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "bin/lib README teaches changing the authored program under `.opencode/specs/`, `.opencode/bin/lib/README.md:58`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "git-hooks + drift-marker READMEs describe watch logic on `.opencode/specs` (stale root), `.opencode/scripts/git-hooks/lib/README.md:28,37`, `.opencode/scripts/git-hooks/README.md:27,108`, `.opencode/skills/system-spec-kit/scripts/git-hooks/README.md:3,18`",
+      "file": null,
+      "line": null,
+      "description": "READMEs accurately mirror code that still diffs `.opencode/specs` (post-flip a drift marker watching the legacy alias may miss renames under canonical `specs/`).",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "root README links via legacy alias (REQ-001 target), `README.md:1303`",
+      "file": null,
+      "line": null,
+      "description": "the link resolves via the symlink (functional), but uses the legacy alias; recommend canonicalizing to `specs/...`.",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "deep-alignment + styles/scripts + mcp-server hooks (cursor/devin) + migrations READMEs use/teach `.opencode/specs/` packet pointers, `deep-alignment/assets/conformance-benchmark/README.md:34,66`, `styles/scripts/README.md:112`, `mcp-server/hooks/cursor/README.md:71`, `mcp-server/hooks/devin/README.md:62,63`, `mcp-server/database/migrations/README.md:139`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "command help files teach `.opencode/specs/` (outside literal README.md boundary, same defect class), `.opencode/commands/create/README.txt:160`, `.opencode/commands/memory/README.txt:323`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness]",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Census numbers in spec.md/tasks.md are not exactly reproducible, `spec.md:78,94,145,155` and `tasks.md:50` (claims 753 non-worktree READMEs / 742 under `.opencode/` / 22 literal hits)",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[traceability]",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[traceability]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "title": "spec.md cross-reference claim \"plan.md names the exact command\" is not satisfied, `spec.md:105`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[traceability]",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[traceability]"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F018",
+      "severity": "P2",
+      "title": "system-spec-kit doc family is internally inconsistent",
+      "file": null,
+      "line": null,
+      "description": "main README uses legacy `.opencode/specs`, sibling templates/README already uses canonical `specs/`, `.opencode/skills/system-spec-kit/README.md:846` vs `.opencode/skills/system-spec-kit/templates/README.md:69,180,202,237`",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F019",
+      "severity": "P2",
+      "title": "No live (non-`specs/`, non-`z_archive`) README anywhere describes `.opencode/specs` as the compat symlink",
+      "file": "the migration's \"some may correctly describe it as the compat symlink\" hypothesis has zero confirmations, repo-wide scan",
+      "line": null,
+      "description": "",
+      "dimension": "[correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F020",
+      "severity": "P2",
+      "title": "`specs/**` README hits that look historical contain live-command `.opencode/specs` usage worth a follow-up confirmation, `specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/README.md` (12 literal hits)",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "[correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "[correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-014",
+      "severity": "P2",
+      "title": "Summary P2 finding 14",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-015",
+      "severity": "P2",
+      "title": "Summary P2 finding 15",
+      "file": null,
+      "line": null,
+      "description": "historical-classification+root-split",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "[correctness",
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "[correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-014",
+      "severity": "P2",
+      "title": "Summary P2 finding 14",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-015",
+      "severity": "P2",
+      "title": "Summary P2 finding 15",
+      "file": null,
+      "line": null,
+      "description": "historical-classification+root-split",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "[correctness",
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "[correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "security",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "traceability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-014",
+      "severity": "P2",
+      "title": "Summary P2 finding 14",
+      "file": null,
+      "line": null,
+      "description": "symlink-correctness-negative-baseline",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-015",
+      "severity": "P2",
+      "title": "Summary P2 finding 15",
+      "file": null,
+      "line": null,
+      "description": "historical-classification+root-split",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "[correctness",
+      "firstSeen": 6,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "[correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 10,
+    "P2": 30
+  },
+  "openFindingsCount": 40,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1
+        },
+        "evidence": [
+          "system-spec-kit/README.md:846",
+          "config.ts:321"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002"
+        ],
+        "summary": "5/5 P1 evidence re-reads confirm; no false positives"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No checklist.md"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

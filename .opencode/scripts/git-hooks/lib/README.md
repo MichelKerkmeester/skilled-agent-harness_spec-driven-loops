@@ -25,7 +25,7 @@ The helpers protect recoverable autostashes and report spec-document path drift 
 | File | Purpose |
 |---|---|
 | [`autostash-orphan-guard.sh`](autostash-orphan-guard.sh) | Finds autostash entries, anchors each stash commit under `refs/autostash-rescue/`, prints recovery instructions and records an alert in `.opencode/logs/autostash-orphan-alerts.log`. |
-| [`memory-drift-marker.sh`](memory-drift-marker.sh) | Diffs commit ranges for changes under `.opencode/specs` and passes matching rename or deletion data to the built drift-marker writer. |
+| [`memory-drift-marker.sh`](memory-drift-marker.sh) | Diffs commit ranges for changes under `specs` and passes matching rename or deletion data to the built drift-marker writer. |
 
 ---
 
@@ -34,7 +34,7 @@ The helpers protect recoverable autostashes and report spec-document path drift 
 | File | Function | Consumers |
 |---|---|---|
 | `autostash-orphan-guard.sh` | `autostash_orphan_guard()` protects matching stash commits from garbage collection and makes unapplied work visible. It always returns successfully. | [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
-| `memory-drift-marker.sh` | `mark_memory_drift_from_diff()` collects `.opencode/specs` changes with `git diff-tree` and invokes `drift-marker-write.js`. It skips work when no relevant diff, Node.js or built writer exists. | [`post-commit`](../post-commit), [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
+| `memory-drift-marker.sh` | `mark_memory_drift_from_diff()` collects `specs` changes with `git diff-tree` and invokes `drift-marker-write.js`. It skips work when no relevant diff, Node.js or built writer exists. | [`post-commit`](../post-commit), [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
 
 `post-merge` calls both guards after a merge. `post-rewrite` calls both guards for amend and rebase rewrites. `post-commit` uses only the memory-drift marker after a commit.
 

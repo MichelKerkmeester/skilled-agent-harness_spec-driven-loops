@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-07T20:15:00Z"
+    last_updated_at: "2026-08-07T19:38:12Z"
     last_updated_by: "claude-code"
-    recent_action: "Planned the dispatch; CLI-to-model mapping verified against both SKILL.md files"
-    next_safe_action: "Launch via the system-deep-loop skill"
+    recent_action: "Dispatch executed, findings fixed, verification gate passed"
+    next_safe_action: "Commit and push to skilled/v4.0.0.0"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate-005"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,11 @@ Dispatch a 20-iteration (10 per executor) deep-review loop scoped to README migr
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Real README census run (753 non-worktree files, 22 with a literal `.opencode/specs` hit) — the review isn't unscoped
+- [x] Real README census run — the review isn't unscoped. Exact reproducible command (counts drift with concurrent repo activity; re-run this rather than trust a frozen number):
+  ```bash
+  find . -iname "README.md" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/.worktrees/*" -not -path "./specs/*" | wc -l
+  find . -iname "README.md" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/.worktrees/*" -not -path "./specs/*" | xargs grep -l "\.opencode/specs" | wc -l
+  ```
 - [x] Both CLI SKILL.md files read per the HARD dispatch rule before composing any prompt
 - [x] Model-to-CLI mapping verified against each CLI's own `references/providers-and-models.md`, not assumed from memory
 

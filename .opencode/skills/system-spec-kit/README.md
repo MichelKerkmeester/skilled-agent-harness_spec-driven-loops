@@ -125,7 +125,7 @@ The system reads the question, classifies the task intent and routes to the righ
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-  .opencode/specs/[project]/042-my-feature/
+  specs/[project]/042-my-feature/
 ```
 
 The default validation set runs the non-strict rules from the 45-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error.
@@ -658,9 +658,9 @@ The save completes but the record is rejected by the semantic sufficiency gate o
 `validate.sh` reports missing files such as `spec.md` or `plan.md`. This happens when the folder was created manually without `create.sh` or when wrong level templates were applied.
 
 ```bash
-ls -la .opencode/specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh .opencode/specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/[project]/NNN-feature/ [target-level]
+ls -la specs/[project]/NNN-feature/
+bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh specs/[project]/NNN-feature/
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
 ```
 
 ### Memory Search Returns Poor Results
@@ -698,8 +698,8 @@ A standalone script save and a live daemon session can conflict when both try to
 ### Diagnostic Commands
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh .opencode/specs/[project]/NNN-feature/
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/[project]/NNN-feature/ --verbose
+bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/[project]/NNN-feature/
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/[project]/NNN-feature/ --verbose
 bash .opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
 # memory_health({ reportMode: "full" })
 ```
@@ -745,7 +745,7 @@ A: Constitutional memories are rules that always surface in every retrieval, reg
 A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh .opencode/specs/[project]/NNN-feature/ 2
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[project]/NNN-feature/ 2
 ```
 
 ---
@@ -843,7 +843,7 @@ The manual testing playbook runs every scenario behind these checks.
 | Resource | Purpose |
 |---|---|
 | `AGENTS.md` (project root) | gate definitions, AI behavior framework and mandatory workflow rules |
-| `.opencode/specs/` | all spec folders created by Spec Kit |
+| `specs/` | all spec folders created by Spec Kit (`.opencode/specs` is a compat symlink to this same tree) |
 | `.opencode/commands/speckit/` | speckit command definitions |
 | `.opencode/commands/memory/` | memory command definitions |
 

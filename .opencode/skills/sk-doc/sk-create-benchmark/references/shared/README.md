@@ -20,7 +20,7 @@ Overflow depth for the `create-benchmark` packet. The authoritative workflow, re
 
 ## 1. OVERVIEW
 
-Skill-local benchmark folders are curated entry points. The full audit trail (ADRs, fixture surgery, rollback history) stays in the spec packet under `.opencode/specs/`. The skill-local folder gives a future engineer a fast answer plus a pointer back to the packet.
+Skill-local benchmark folders are curated entry points. The full audit trail (ADRs, fixture surgery, rollback history) stays in the spec packet under `specs/`. The skill-local folder gives a future engineer a fast answer plus a pointer back to the packet.
 
 **Core principle**: the skill-local folder is the look-here-first surface, not the archive. When an engineer asks "which embedder won? what fixture? when?" they find the answer there without hunting through `specs/`.
 

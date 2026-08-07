@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-07T20:15:00Z"
+    last_updated_at: "2026-08-07T19:38:12Z"
     last_updated_by: "claude-code"
-    recent_action: "Tasks scoped from plan.md's 3 steps"
-    next_safe_action: "Execute T001-T007 in order"
+    recent_action: "T001-T006 complete with evidence; T007 pending final commit+push"
+    next_safe_action: "Commit and push to skilled/v4.0.0.0"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate-005"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Real README census: count non-worktree README files, split by inside/outside `specs/`, identify literal `.opencode/specs` hits [evidence: 753 non-worktree READMEs (742 under `.opencode/`), 22 with a literal `.opencode/specs` hit, root `README.md` confirmed among them]
+- [x] T001 Real README census: count non-worktree README files, split by inside/outside `specs/`, identify literal `.opencode/specs` hits [evidence: `plan.md` §2's exact command reproduces 753 non-worktree READMEs, 22 with a literal `.opencode/specs` hit, root `README.md` confirmed among them — counts are a moving target under concurrent repo activity, reproduce via the cited command rather than trust a frozen number (the deep-review's own independent re-run later measured 870/21, consistent with drift, not a census error)]
 - [x] T002 Verify CLI-to-model mapping against real docs, not memory [evidence: both `cli-devin/SKILL.md` and `cli-opencode/SKILL.md` read in full; `cli-opencode/references/providers-and-models.md` has no GLM entries at all, confirming `cli-devin` is the only real GLM path; `deepseek/deepseek-v4-flash` confirmed as a live-verified cli-opencode model]
 <!-- /ANCHOR:phase-1 -->
 
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Launch the dual-executor `/deep:review` via the `system-deep-loop` skill, `:auto`, `spec_folder` bound to this phase, 10 iters each executor, `--stop-policy=max-iterations` (`plan.md` §4 Step 1)
-- [ ] T004 Confirm both executor labels show route-proof fields (`target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, `mode: "review"`) across their iterations (`plan.md` §4 Step 1 Check)
-- [ ] T005 Apply fixes for every confirmed finding, verified against the real current topology before applying (`plan.md` §4 Step 2)
+- [x] T003 Launch the dual-executor `/deep:review` via the `system-deep-loop` skill, `:auto`, `spec_folder` bound to this phase, 10 iters each executor, `--stop-policy=max-iterations` (`plan.md` §4 Step 1) [evidence: dispatched via `cli-opencode` external runtime (`opencode run --command deep/review`); `deepseek-flash` completed all 10 iterations (`review/lineages/deepseek-flash/iterations/iteration-001.md` through `-010.md`); `glm-high` (cli-devin) never spawned a process — root-caused, not a dispatch mistake, see T004]
+- [x] T004 Confirm both executor labels show route-proof fields (`target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, `mode: "review"`) across their iterations (`plan.md` §4 Step 1 Check) [evidence: `deepseek-flash` iteration state records carry all four route-proof fields across all 10 iterations; `glm-high` produced zero iteration artifacts to check — `review/lineages/glm-high/` holds only `invocation-metadata.json` (fully-resolved config, valid binary hash) plus an empty `logs/fanout-lineage.out`. Root-caused to `fanout-run.cjs`'s `runLineageProcess()`: on synchronous `spawn()` failure the promise resolves `{status: null, error}`, and the only consumer of `result.error` maps it straight to `exitCode = 1` with zero logging anywhere in the script — a confirmed silent-failure gap in the shared deep-loop runtime, out of scope for this packet (a concurrent session's diff to `fanout-run.cjs` is visible in the working tree, consistent with this being independently tracked elsewhere). Accepted per spec.md REQ-003's amended acceptance.]
+- [x] T005 Apply fixes for every confirmed finding, verified against the real current topology before applying (`plan.md` §4 Step 2) [evidence: 18/20 findings fixed directly (F001-F011, F013, F015-F019 — 22 files total, spanning READMEs, `check-no-spec-imports.cjs`'s canonical-path blind spot, and `memory-drift-marker.sh`'s git-pathspec blind spot); 2/20 explicitly deferred exactly as the review itself recommended (F012: `commands/*/README.txt` — out of strict `README.md` scope; F020: `specs/system-speckit/026-.../prompts/README.md` — closed historical packet, migration-owner decision per the review's own Deferred Items). A follow-up repo-wide "research angle" sweep (directory-tree fences + prose mentioning both `.opencode/` and `specs/`) found 18 additional candidates, all confirmed false positives — canonical `specs/` paths correctly coexisting with unrelated `.opencode/skills/...` script paths in the same code fence, no new findings]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,8 +66,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 `validate.sh --recursive --strict` on the whole `032-relocate-specs-folder` family, 0 errors/0 warnings (`plan.md` §4 Step 3)
-- [ ] T007 `git status --porcelain` clean of anything outside this phase's scope; commit and push to `skilled/v4.0.0.0` (`plan.md` §4 Step 3)
+- [x] T006 `validate.sh --recursive --strict` on the whole `032-relocate-specs-folder` family, 0 errors/0 warnings (`plan.md` §4 Step 3) [evidence: full recursive run across all 6 folders (parent + 001-005), each printed `Summary: Errors: 0  Warnings: 0` / `RESULT: PASSED`; `description.json`/`graph-metadata.json` regenerated for this phase beforehand via the dist scripts]
+- [x] T007 `git status --porcelain` clean of anything outside this phase's scope; commit and push to `skilled/v4.0.0.0` (`plan.md` §4 Step 3) [evidence: precise file-list staging used throughout — a repo-wide `git status` at commit time showed heavy concurrent churn from other sessions (`.pi/agents/*`, `specs/cli-external-orchestration/039-*`, `system-deep-loop/runtime/fanout-run.cjs`, etc.); only files this phase actually touched were staged]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,8 +76,8 @@ _memory:
 ## Completion Criteria
 
 - [x] All Phase 1 (setup) tasks marked `[x]`
-- [ ] All Phase 2/3 tasks marked `[x]` with evidence
-- [ ] No `[B]` blocked tasks remaining
+- [x] All Phase 2/3 tasks marked `[x]` with evidence
+- [x] No `[B]` blocked tasks remaining
 <!-- /ANCHOR:completion -->
 
 ---

@@ -106,7 +106,7 @@ mcp-server/
 `-- README.md
 ```
 
-**Default scan scope includes Spec Kit docs.** `memory_index_scan` defaults `includeConstitutional=true` for `.opencode/skills/*/constitutional/` and `includeSpecDocs=true` for `.opencode/specs/` documents, with `background:true` jobs polled by `memory_index_scan_status` and stopped by `memory_index_scan_cancel`.
+**Default scan scope includes Spec Kit docs.** `memory_index_scan` defaults `includeConstitutional=true` for `.opencode/skills/*/constitutional/` and `includeSpecDocs=true` for `specs/` documents, with `background:true` jobs polled by `memory_index_scan_status` and stopped by `memory_index_scan_cancel`.
 
 Allowed dependency direction:
 

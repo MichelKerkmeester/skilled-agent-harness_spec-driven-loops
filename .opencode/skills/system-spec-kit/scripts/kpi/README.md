@@ -64,7 +64,7 @@ bash .opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh \
   "system-spec-kit/022-hybrid-rag-fusion"
 ```
 
-The optional argument is a spec-folder path relative to `.opencode/specs/`.
+The optional argument is a spec-folder path relative to `specs/`.
 
 ---
 

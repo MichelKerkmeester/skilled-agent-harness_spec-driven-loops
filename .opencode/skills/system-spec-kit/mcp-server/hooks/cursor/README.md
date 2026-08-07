@@ -68,4 +68,4 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 
 - [`../README.md`](../README.md)
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
-- [`.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md`](../../../../../../.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md) — ADR-001 (registration scope) and ADR-002 (event mapping + the live-verification methodology and results above)
+- [`specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md`](../../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/decision-record.md) — ADR-001 (registration scope) and ADR-002 (event mapping + the live-verification methodology and results above)

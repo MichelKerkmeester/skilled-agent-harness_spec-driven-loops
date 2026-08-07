@@ -1,6 +1,6 @@
 ---
 title: "mk-spec-memory — benchmarks index"
-description: "Index of curated, skill-local benchmark runs for the mk-spec-memory MCP server. One dated folder per benchmark run. Authoritative spec packets live under .opencode/specs/."
+description: "Index of curated, skill-local benchmark runs for the mk-spec-memory MCP server. One dated folder per benchmark run. Authoritative spec packets live under specs/."
 trigger_phrases:
   - "spec memory benchmarks"
   - "mk-spec-memory benchmark index"
@@ -65,7 +65,7 @@ Open each folder's `benchmark-report.md` for the full headline, methodology, per
 
 ### What this folder is NOT
 
-- It is **not** the authoritative audit trail. ADRs, fixture rationale, and rollback history live in the spec packet under `.opencode/specs/`.
+- It is **not** the authoritative audit trail. ADRs, fixture rationale, and rollback history live in the spec packet under `specs/`.
 - It is **not** a draft area. In-progress experiments stay in the spec packet's `evidence/` directory until they ship.
 - It is **not** a place for single-data-point measurements. Promote only when there is enough rigor to warrant skill-local visibility.
 - It is **not** a place to cross-reference numbers with sibling MCP benchmarks. Stack differences (TypeScript and Ollama here versus Python and `sentence-transformers` in CocoIndex) make cross-stack numeric comparisons unsafe. See Section 4.

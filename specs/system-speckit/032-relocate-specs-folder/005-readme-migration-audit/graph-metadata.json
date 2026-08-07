@@ -17,10 +17,7 @@
       "readme migration audit plan",
       "dual executor deep review dispatch",
       "readme migration audit tasks",
-      "implementation",
-      "summary",
-      "template",
-      "impl summary core"
+      "readme migration audit summary"
     ],
     "key_topics": [
       "readme",
@@ -39,12 +36,22 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
       "spec.md",
+      "plan.md",
+      "review/lineages/glm-high/invocation-metadata.json",
+      "review/orchestration-summary.json",
+      "review/lineages/deepseek-flash/review-report.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/lineages/deepseek-flash/iterations/iteration-001.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -52,9 +59,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "invocation-metadata.json",
+        "kind": "config",
+        "path": "review/lineages/glm-high/invocation-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "review/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "review/lineages/deepseek-flash/review-report.md",
         "source": "derived"
       },
       {
@@ -67,6 +86,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/lineages/deepseek-flash/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -148,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "Deferred Items",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -158,41 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
     "created_at": "2026-08-07T17:29:17Z",
-    "last_save_at": "2026-08-07T17:35:42.566Z",
+    "last_save_at": "2026-08-07T19:40:22.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ba71ff0d9a4a1632f3ee73ff5a1ff985e64fe26abc88d7d5d977645bdfffa78",
+    "source_fingerprint": "sha256:be9a696f0ad925ec5d1f2f6f38cfba200284045f6434206f96c3089a9f0dddc6",
     "source_doc_hashes": {
-      "spec.md": "f7254040ab4ac08d613a7b3d70c9e6ffdb5fc78f9293d6459518b9257630958f",
-      "plan.md": "01a4c250d00e13e47b9d40ce15841ebd81c495c37c19f0f6d311e4fb873a517b",
-      "tasks.md": "f11622312600e585ad4a49e4ac570e2aaa1cb2d63c4de35c64546216ac1ec164",
-      "implementation-summary.md": "ded73c7781080c72da2efe9a19d76e002dbd15ccdc9277386ef55f3e61d781fb"
+      "spec.md": "8f76111bbd4ee50a52645f520a6698972a3a3a0386b5fc22af4e9ff644ebe8c1",
+      "plan.md": "1211c258be42bc2ce2d2dec6e7b9289f357d20e52c6526f61c3a20083c0ed56f",
+      "tasks.md": "4a0f2568fecb04f93f518ff5992b410aa7782d86c58cdafdb64d6d1ff529196a",
+      "implementation-summary.md": "756d64fa83639bc1ba0387199842103299626a5f7c199be3fa6c576f9677dacb"
     },
     "last_active_child_id": null,
     "last_active_at": null

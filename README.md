@@ -1300,7 +1300,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
 - **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Memory API reference and runtime support docs
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
-- **[→ Orphan MCP Leak Prevention Packet](.opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
+- **[→ Orphan MCP Leak Prevention Packet](specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `mk_skill_advisor` server, nine advisor/skill-graph tools and routing docs
 - **[→ Install Guide](.opencode/skills/system-spec-kit/mcp-server/INSTALL-GUIDE.md)** - MCP server setup, embedding providers
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag

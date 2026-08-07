@@ -139,7 +139,7 @@ scripts/core/
 | File | Responsibility |
 |---|---|
 | `workflow.ts` | Runs the context-save flow from parsed input through generated continuity artifacts; serializes runs with an in-process queue plus filesystem lock and gates Step 11.5 auto-indexing on daemon liveness. |
-| `config.ts` | Loads `config.jsonc`, validates and normalizes workflow limits, freezes the `CONFIG` object, and resolves the active specs directories canonical-first (`.opencode/specs` before legacy `specs`, with legacy read fallback). |
+| `config.ts` | Loads `config.jsonc`, validates and normalizes workflow limits, freezes the `CONFIG` object, and resolves the active specs directories canonical-first (`specs` before legacy `.opencode/specs`, with legacy read fallback). |
 | `daemon-detect.ts` | Reports whether the `mk-spec-memory` daemon is alive by combining the launcher lease with live process probing, so a standalone save never opens a second SQLite writer. |
 | `subfolder-utils.ts` | Resolves spec folders, child folders and subfolder-aware save targets. |
 | `save-context-path.ts` | Computes canonical save paths for generated context output. |

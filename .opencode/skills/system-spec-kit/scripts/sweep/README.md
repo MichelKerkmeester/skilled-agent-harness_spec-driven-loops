@@ -9,7 +9,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
 
 ## 1. OVERVIEW
 
-`scripts/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `.opencode/specs` (and legacy `specs`), runs `scripts/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that failed with no baseline record is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. This distinguishes genuinely new breakage from a folder that was already failing.
+`scripts/sweep/` holds the strict-pass freshness sweep, a CI gate that walks every spec folder under `specs` (and legacy `.opencode/specs`), runs `scripts/spec/validate.sh --strict` on each and classifies the result against a prior baseline. A folder that failed with no baseline record is `first-run`, not a regression. A folder that passed before and fails now is a `regression`. This distinguishes genuinely new breakage from a folder that was already failing.
 
 ## 2. CONTENTS
 
