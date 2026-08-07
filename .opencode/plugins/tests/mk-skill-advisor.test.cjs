@@ -678,3 +678,29 @@ test('multi-transform receipts record both transform fires and their outcomes', 
     { transform: 'mk-spec-memory', blockId, outcome: 'suppressed_duplicate' },
   ]);
 });
+
+test('a hostile pre-populated shared dedup state cannot falsely suppress a fresh identity', async () => {
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const shared = identityModule.getSharedTransformDedupState();
+  identityModule.clearTransformDedupState(shared);
+  try {
+    const blockId = identityModule.POLICY_BLOCK_IDS.ADVISOR_ROUTE;
+    const contentHash = identityModule.hashPolicyBlockContent(blockId, 'shared block', 0);
+
+    // Pollute the process-global dedup state with a delivered block for one identity.
+    const polluter = identityModule.resolveMessageIdentity({ sessionID: 'polluter', messageID: 'm', transformCallOrdinal: 0 });
+    identityModule.recordTransformContribution({ identity: polluter, blockId, contentHash, transform: 't', state: shared });
+
+    // A distinct fresh identity's first contribution must still deliver — the polluted global cannot leak across identities.
+    const fresh = identityModule.resolveMessageIdentity({ sessionID: 'fresh', messageID: 'm', transformCallOrdinal: 0 });
+    assert.equal(identityModule.recordTransformContribution({
+      identity: fresh,
+      blockId,
+      contentHash,
+      transform: 't',
+      state: shared,
+    }).shouldDeliver, true);
+  } finally {
+    identityModule.clearTransformDedupState(shared);
+  }
+});
