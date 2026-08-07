@@ -320,7 +320,7 @@ The scan re-indexes all previously indexed continuity artifacts and canonical sp
 | "No results" from knowledge | Query too narrow or no matching memories | Broaden query or try different intent |
 | Save fails | Spec folder path invalid or missing | Verify path exists under `specs/` |
 | Resume finds no session | No saved context from prior session | Use `/speckit:plan` to start fresh or `/memory:search` with a manual query |
-| Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `.opencode/specs/` and constitutional rules under `.opencode/skills/*/constitutional/` |
+| Manage scan finds 0 files | No continuity sources found in expected directories | Check canonical spec docs under `specs/` and constitutional rules under `.opencode/skills/*/constitutional/` |
 | Learn file not found | Wrong filename for edit/remove | Run `/memory:learn list` to see available files |
 | Search ablation fails | `SPECKIT_ABLATION=true` not set | Set environment variable and retry |
 | Ablation warns about missing IDs | `groundTruthQueryIds` do not exist in the active static dataset | Fix the requested IDs or rerun `scripts/evals/map-ground-truth-ids.ts` after DB rebuild/swap |

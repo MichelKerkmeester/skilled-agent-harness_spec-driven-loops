@@ -157,7 +157,7 @@ The documentation-package commands preserve the live `sk-doc` contracts:
 /create:readme install my-tool --platforms opencode,claude-code :confirm
 
 # Create a changelog from a completed spec folder
-/create:changelog .opencode/specs/01--system-spec-kit/042-memory-upgrade :auto
+/create:changelog specs/01--system-spec-kit/042-memory-upgrade :auto
 
 # Create a changelog for a specific component
 /create:changelog sk-doc --bump minor :confirm

@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-07T19:38:12Z"
+    last_updated_at: "2026-08-07T21:24:11Z"
     last_updated_by: "claude-code"
-    recent_action: "Review complete; 18/20 findings fixed, 2 deferred; validate.sh passed"
+    recent_action: "All 20 findings fixed; F012/F020 deferrals reversed on request"
     next_safe_action: "Commit and push to skilled/v4.0.0.0"
     blockers: []
     key_files:
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Complete — 18/20 findings fixed, 2 explicitly deferred (F012, F020) |
+| **Status** | Complete — 20/20 findings fixed (F012 and F020 initially deferred, then fixed on operator request) |
 | **Created** | 2026-08-07 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
