@@ -229,4 +229,34 @@ describe('memory_index_scan same-path re-index supersede', () => {
     // The active projection points at the surviving active row only.
     expect(activeProjectionTargets()).toEqual([survivor.id]);
   });
+
+  it('does not mint a duplicate row when unchanged content is re-scanned against an already-deprecated predecessor', async () => {
+    writeFixtureDoc('v1', 'Content that will be reindexed unchanged after its row is retired.');
+    await handler.index_memory_file_from_scan(FIXTURE_DOC_PATH, { force: true, qualityGateMode: 'warn-only' });
+
+    const afterFirst = fixtureRows();
+    expect(afterFirst).toHaveLength(1);
+    const firstId = afterFirst[0].id;
+
+    // Simulate a predecessor that is already retired for any reason (manual
+    // reclassification, an earlier supersede event, etc.) — not depending on
+    // how it got there, matching a real corpus where deprecated rows persist.
+    const db = vectorIndex.getDb();
+    db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?').run('deprecated', firstId);
+
+    // Re-scan the SAME path with UNCHANGED content. The only prior row for
+    // this logical key is now tier-exempted from the active-row uniqueness
+    // guard, so nothing at the DB level blocks a second insert if the
+    // same-path branch conflates "no existing row" with "existing row,
+    // unchanged content" the way it currently does.
+    await handler.index_memory_file_from_scan(FIXTURE_DOC_PATH, { force: true, qualityGateMode: 'warn-only' });
+
+    const afterSecond = fixtureRows();
+    // Exactly one row must exist for this path: the original, still
+    // deprecated, unchanged. An unchanged re-scan must never mint a new row
+    // just because its only prior row happens to sit in an exempted tier.
+    expect(afterSecond).toHaveLength(1);
+    expect(afterSecond[0].id).toBe(firstId);
+    expect(afterSecond[0].importance_tier).toBe('deprecated');
+  });
 });

@@ -1,26 +1,26 @@
 ---
 title: "Implementation Plan: Memory-Index Scan-Path Same-Path Dedup Gap"
-description: "Confirm the missing no-op branch with a red-before test, add the branch, verify the three pre-existing same-path outcomes are unchanged."
+description: "Confirm-first plan executed as designed: T004's red-before test came back green, refuting the hypothesis; a second hypothesis (a TOCTOU race) was also checked against audit-trail evidence and didn't hold up either. Closed without a source fix."
 trigger_phrases:
   - "memory scan dedup gap plan"
-  - "same-path no-op branch"
+  - "confirm-first investigation closed"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-memory-scan-dedup-gap"
-    last_updated_at: "2026-08-07T19:00:00Z"
+    last_updated_at: "2026-08-07T19:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Planned the confirm-then-fix sequence from the confirmed root cause"
-    next_safe_action: "Execute steps 1-5 in order"
+    recent_action: "Executed as planned; stop condition fired at Step 1"
+    next_safe_action: "None — packet closed"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/tests/memory-save-supersede-reindex.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-033-memory-scan-dedup-gap"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,10 +58,10 @@ The same-path insert branch in `memory-save.ts` (~line 2696-2731) has a two-way 
 - [x] Confirmed `checkContentHashDedup`'s same-path exclusion and the unique index's tier exemption are both intentional, correct, and not the bug
 
 ### Definition of Done
-- [ ] T001's controlled repro fails against current `HEAD` (red), confirming the gap is live
-- [ ] The no-op branch is added and the same repro test goes green
-- [ ] The three pre-existing same-path outcomes (new/changed/unchanged-active) pass unmodified
-- [ ] `tsc --noEmit` clean
+- [x] T001's controlled repro was run against current `HEAD` — it did NOT go red, it passed. Per this plan's own designed stop condition (§4 Step 1), this refutes the hypothesis rather than confirming the gap
+- [x] No no-op branch was added — nothing to fix once the hypothesis was refuted; a second hypothesis (TOCTOU race) was checked against `memory_history` audit-trail evidence and also didn't hold up
+- [x] The pre-existing same-path outcome test (`'supersedes a changed doc...'`) still passes unmodified — no source change means no regression risk existed to begin with
+- [x] `tsc --noEmit` not applicable — no source file was modified
 <!-- /ANCHOR:quality-gates -->
 
 ---
