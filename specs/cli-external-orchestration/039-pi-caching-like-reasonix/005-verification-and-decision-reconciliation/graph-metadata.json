@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/039-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+  "spec_folder": "cli-external-orchestration/039-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+  "parent_id": "cli-external-orchestration/039-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cache split verification",
+      "superseding decision record deepseek",
+      "deepseek cache overlap check",
+      "cache split verification plan",
+      "cache split verification tasks",
+      "cache split verification checklist",
+      "fork-and-split deepseek cache split",
+      "supersede pi caching build gate",
+      "cache split verification status"
+    ],
+    "key_topics": [
+      "cache",
+      "split",
+      "verification",
+      "superseding",
+      "decision",
+      "record",
+      "deepseek",
+      "overlap",
+      "check",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extension Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Superseding Decision Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview With",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Composition Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Decision Reconciliation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
+    "created_at": "2026-08-07T05:55:45Z",
+    "last_save_at": "2026-08-07T15:29:34.164Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2987c3aa644a182833b2646a4f02a931192c511ea66a6b6be9050a2191a168bc",
+    "source_doc_hashes": {
+      "spec.md": "bd162a83a408f26d8bca28c589d3b983f42474136783d1e6fd0b433f29596c92",
+      "plan.md": "1eee196cc01d3a7885f5619673a0ce65767d125ee6255d31b713c052cc921928",
+      "tasks.md": "9d81a0ebf3ceffec143044eb08c32d6f61a0069df74dbe6f19f4ec422b0a914c",
+      "checklist.md": "54798f764db8b04a26dddf397f174b609f7229479a03c3dd2827095f4be0c69c",
+      "decision-record.md": "4ac051c3678c70f4f6531ed14ea03be9e47aedfbfeed3e0ac8765469277e2dd1",
+      "implementation-summary.md": "3eee031edbff98784018c5f1eb609520e1fca74ef8411b322261a131212132b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

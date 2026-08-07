@@ -98,6 +98,12 @@
         "source": "derived"
       },
       {
+        "name": "Updated Successor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -111,12 +117,6 @@
       },
       {
         "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Turn Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 1 produces verified findings, a claims ledger, and a feasibility picture, but no decision",
     "created_at": "2026-08-06T09:15:11.712Z",
-    "last_save_at": "2026-08-06T11:53:20.372Z",
+    "last_save_at": "2026-08-07T06:22:13.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49253ab171343748e7f0150890a474b7412144d70efd08b21581eee6108c729c",
+    "source_fingerprint": "sha256:48293d4ac1657167bd7577a2dd03b20884b4693b70768f24cb68fb37e98f0bc3",
     "source_doc_hashes": {
-      "spec.md": "2b0e8aa1751cdb48ee8f992bd4952689e9dc5da17f57a761dd8ccdd5d0f8b60d",
-      "plan.md": "2b3418bd13a3c997365ee1e0ea37100c991e639a4d6e825e3fee5c3b105d6944",
-      "tasks.md": "2ceb10fa9cd68b14607de95c31afeaa72804604df2ec9f62881930cf412cde5f",
-      "checklist.md": "549da9063154c3886d68906c928e35189a1203fcbd811d420096b59b2ff77e83",
-      "decision-record.md": "5c26d31d89dc06154a4800b0d9638f8093acef1eeda85c9c601f8ca953bf053e",
-      "implementation-summary.md": "4b86053b1fd507a6271babb38080fdb2c68b24699efc46d1e188f21d58e6b20d"
+      "spec.md": "3f40bfe373ac01ec9978baa802002050cc5e380d6f7f9ef8e6af841a8c9d6a09",
+      "plan.md": "bd14890d34282fab7f915e1b06285906e43155176f7365f92b573d2fb2b028fb",
+      "tasks.md": "b95375510678bdc3adf092242e0115b3f098a477510dce96dfb4de97f672aaab",
+      "checklist.md": "9b7c822b7526d3c9522eef4d30f85f1679920db4dc5d45b8ea3b97270a6de13d",
+      "decision-record.md": "e8982f451afa8340bb746245f3304b7c966b7ac3dbf6c6512b23195bf93cf5cd",
+      "implementation-summary.md": "07fc86b52636eb952e168fe9707ce16e666ebc20aa7fb0461bebd45a4fbf5bac"
     },
     "last_active_child_id": null,
     "last_active_at": null

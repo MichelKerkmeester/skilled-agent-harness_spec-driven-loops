@@ -1,0 +1,61 @@
+{
+  "name": "@arter/deep-pi",
+  "version": "1.0.0",
+  "description": "Direct DeepSeek cache economics, prefix stability, and retry reduction for the Pi coding agent.",
+  "license": "Apache-2.0",
+  "author": "Christopher Arter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherarter/deep-pi.git"
+  },
+  "homepage": "https://github.com/christopherarter/deep-pi#readme",
+  "bugs": {
+    "url": "https://github.com/christopherarter/deep-pi/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "deepseek",
+    "prompt-cache",
+    "cache-telemetry",
+    "hashline-editing"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/deeppi.ts"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "extensions",
+    "tsconfig.json"
+  ],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.4",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.7"
+  },
+  "scripts": {
+    "test": "vitest --run",
+    "typecheck": "tsc --noEmit",
+    "pack:dry": "npm pack --dry-run",
+    "verify": "npm run typecheck && npm test && npm run pack:dry",
+    "benchmark:live": "node scripts/live-benchmark.mjs"
+  },
+  "contributors": [
+    "Jason Rimmer"
+  ]
+}

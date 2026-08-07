@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+  "description": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
+  "keywords": [
+    "phases",
+    "verify",
+    "own",
+    "piece",
+    "isolation",
+    "fork",
+    "diff",
+    "scope",
+    "deep-pi",
+    "self-gating"
+  ],
+  "lastUpdated": "2026-08-07T19:42:22.808Z",
+  "specId": "005",
+  "folderSlug": "verification-and-decision-reconciliation",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

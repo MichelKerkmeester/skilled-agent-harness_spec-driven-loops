@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision"
-description: "Phased packet investigating whether Pi should gain Reasonix-style prompt-cache discipline via a plugin, and building it only if research says GO. Phase 1 runs a 20-iteration, non-converging deep-research pass across three GPT-5.6 executors (SOL high fast, TERRA max fast, LUNA max fast) to verify the lumo.md caching claims and scope the real feature gap; Phase 2 synthesizes findings into a Go/No-Go decision. Downstream design/implement/verify phases are added only if Phase 2 returns GO."
+description: "Phased packet investigating whether Pi should gain Reasonix-style prompt-cache discipline via a plugin. Phase 1 runs a 20-iteration, non-converging deep-research pass across three GPT-5.6 executors (SOL high fast, TERRA max fast, LUNA max fast) to verify the lumo.md caching claims and scope the real feature gap; Phase 2 synthesizes findings into a NO-GO on a new plugin. Phases 3-5 re-enter under ADR-001's documented contract (a new phase child + superseding ADR) to fork-and-split ownership of two existing packages instead — not the rejected greenfield build."
 trigger_phrases:
   - "pi caching reasonix"
   - "pi prompt cache plugin"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/039-pi-caching-like-reasonix"
-    last_updated_at: "2026-08-06T11:48:24Z"
+    last_updated_at: "2026-08-07T14:44:33Z"
     last_updated_by: "spec-author"
-    recent_action: "Both phases complete; NO-GO recorded, build gate closed"
-    next_safe_action: "Close the packet or author a pi-cache-optimizer audit spike"
+    recent_action: "Core (1-5) closed; phase 6 (deep-pi hardening) drafted, awaiting SOL review"
+    next_safe_action: "Dispatch SOL xhigh review of phase 6, then await go-ahead"
     blockers: []
     key_files:
       - "spec.md"
@@ -54,14 +54,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Complete for the core scope (phases 1-5, re-entered and closed 2026-08-07 under ADR-001's documented re-entry contract, live-verified end to end); phase 6 is an optional, separately-scoped hardening pass, currently Draft |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | cli-external-orchestration |
 | **Predecessor** | None |
-| **Successor** | None (Phase 2 returned NO-GO; build phases not authored) |
-| **Handoff Criteria** | Phase 1 logs all research iterations with evidence; Phase 2 records a Go/No-Go decision with cited cost/benefit; parent validates under `validate.sh --recursive --strict` |
+| **Successor** | 003-fork-and-guard-cache-optimizer (re-entry; see Phase Documentation Map) |
+| **Handoff Criteria** | Phase 1 logs all research iterations with evidence; Phase 2 records a Go/No-Go decision with cited cost/benefit; phases 3-5 verified end-to-end with a payload-diff harness; parent validates under `validate.sh --recursive --strict` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -113,8 +113,11 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-research/` | 20-iteration non-converging deep research (3 GPT-5.6 lineages) verifying the lumo.md claims and scoping the real Pi-vs-Reasonix caching gap | Complete |
-| 2 | `002-synthesis-and-decision/` | Synthesize the research into a verified findings set + a Go/No-Go build decision that gates all downstream phases | Complete (NO-GO) |
-| 3+ | _(not authored)_ | Design / Implement / Verify a Reasonix-style Pi caching plugin — gated on a GO, which did not occur | Not authored (gate closed) |
+| 2 | `002-synthesis-and-decision/` | Synthesize the research into a verified findings set + a Go/No-Go build decision that gates all downstream phases | Complete (NO-GO on a new plugin; conditional GO for an audit/split of the existing packages) |
+| 3 | `003-fork-and-guard-cache-optimizer/` | Fork `pi-cache-optimizer` and add a narrow `deepseek-v4-flash`/`deepseek-v4-pro` ownership guard across its 6 model-specific hooks (corrected after review from an earlier 2-hook, broader-match draft), re-entering ADR-001 under its documented "new phase child + superseding ADR" contract | Complete |
+| 4 | `004-adopt-deep-pi-deepseek/` | Install `deep-pi` as the exclusive extension for `deepseek-v4-flash`/`deepseek-v4-pro` (cache stability + storm-breaker + hashline edits), self-gated | Complete |
+| 5 | `005-verification-and-decision-reconciliation/` | Verify zero overlap live and no non-DeepSeek regression against a fresh A/B baseline; author the superseding decision record (this phase's own ADR-001), honestly grounded in materially increased DeepSeek usage | Complete |
+| 6 | `006-fork-and-improve-deep-pi/` | Optional hardening pass on `deep-pi` (phase 004's exclusive DeepSeek-direct extension): fix three source-confirmed gaps found by a full source read (silent failure counter, hardcoded model allowlist with an unused fallback utility, unguarded telemetry cost math) | Draft (planning only; not yet implemented) |
 
 ### Phase Transition Rules
 
@@ -122,7 +125,9 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as an integrated unit
-- **Build gate:** phases 3+ are authored only after `002-synthesis-and-decision` records a GO verdict
+- **Build gate (original):** phases 3+ were gated on `002-synthesis-and-decision` recording a GO verdict, which did not occur for a new plugin
+- **Re-entry (2026-08-07):** phases 3-5 re-entered under ADR-001's own documented contract ("a new phase child and a superseding ADR") for a narrower fork-and-split of the existing packages, not the rejected greenfield plugin — see `005-verification-and-decision-reconciliation/decision-record.md` (this file's own ADR-001, superseding `002-synthesis-and-decision`'s ADR-001; Accepted after live composition verification). A fresh independent review caught a nonexistent-field bug in the original guard proposal and an internal ADR-numbering contradiction before implementation began; both were corrected and independently re-verified live (fork pushed to `github.com/MichelKerkmeester/pi-cache-optimizer`, `deep-pi` installed, both confirmed active on exactly their intended models with zero overlap).
+- **Delivery mechanism update (2026-08-07):** at operator request, the patched guard now lives in-repo at `.pi/extensions/pi-cache-optimizer/` (vendored from the `MichelKerkmeester/pi-cache-optimizer` fork commit, patch content unchanged) instead of a separately-hosted git repo. `.pi/settings.json` resolves it via Pi's local package-source type (`extensions/pi-cache-optimizer`, no `git:`/`npm:` prefix), which needs no network and no separate repository to stay in sync — see `003-fork-and-guard-cache-optimizer/spec.md` §OPEN QUESTIONS for the re-verified evidence. The external fork remains published as the historical origin of the patch, but is no longer the operational source.
 
 ### Phase Handoff Criteria
 
@@ -130,6 +135,10 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 |------|-----|----------|--------------|
 | 001-research | 002-synthesis-and-decision | All research iterations logged with per-iteration evidence; no lineage truncated by early convergence | `research/lineages/*/iterations/` show full iteration counts across all three lineages |
 | 002-synthesis-and-decision | Build phases (3+) | Go/No-Go decision recorded with cited cost/benefit and verified/refuted status for each lumo.md claim | `decision-record.md` states GO or NO-GO with evidence; on GO, build phases are authored |
+| 002-synthesis-and-decision | 003-fork-and-guard-cache-optimizer | Re-entry conditions met: a new phase child exists and a superseding ADR is drafted | `003-fork-and-guard-cache-optimizer/spec.md` exists; `005-verification-and-decision-reconciliation/decision-record.md` (superseding decision record) drafted |
+| 003-fork-and-guard-cache-optimizer | 004-adopt-deep-pi-deepseek | Patched fork hosted and active (local Pi install resolves it, not npm) | `003-fork-and-guard-cache-optimizer/checklist.md` CHK-020 passes |
+| 004-adopt-deep-pi-deepseek | 005-verification-and-decision-reconciliation | `deep-pi` installed and confirmed self-gated to DeepSeek-matched models | `004-adopt-deep-pi-deepseek/checklist.md` CHK-020/021 pass |
+| 005-verification-and-decision-reconciliation | 006-fork-and-improve-deep-pi | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

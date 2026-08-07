@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
+  "spec_folder": "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
+  "parent_id": "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-pi fix and test",
+      "deep-pi patch",
+      "deep-pi fix and test plan",
+      "deep-pi fix and test tasks",
+      "deep-pi fix and test checklist",
+      "deep-pi fix and test status"
+    ],
+    "key_topics": [
+      "deep-pi",
+      "test",
+      "patch",
+      "plan",
+      "tasks",
+      "checklist",
+      "status",
+      "full",
+      "read",
+      "installed",
+      "source",
+      "lines"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fork",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files — `deeppi.ts`, `eligibility.ts`, `stability.ts`, `stormbreaker.ts`, `telemetry.ts`, `hashlines.ts`, `utils.ts`) surfaced source-level gaps",
+    "created_at": "2026-08-07T16:34:28Z",
+    "last_save_at": "2026-08-07T20:30:52.606Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8e1974710af965518c0527c283a78edd1cfcf3597cc0c641faac1cba659a16be",
+    "source_doc_hashes": {
+      "spec.md": "e6d40a5e23166f2db9cb008d95e9dc370858f55cd86d09941dc76fb1277be205",
+      "plan.md": "9f69954f734d342bcbf642eae8f114acb0bf93e60dbb06000d0e2c7de1af1aa5",
+      "tasks.md": "9a1c7283534451f1988211b7d87bd2240f4d260df4d4a15123e23924dc1981c2",
+      "checklist.md": "b6c3bfb5e121fa4a69c034dd995ebf252e4c310fcf732fe1c5e517b25955feee",
+      "implementation-summary.md": "0fd92dfd7f628ab063c862a3f0866bfc1ece7797d41f672ddf4357a1d2a4db05"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

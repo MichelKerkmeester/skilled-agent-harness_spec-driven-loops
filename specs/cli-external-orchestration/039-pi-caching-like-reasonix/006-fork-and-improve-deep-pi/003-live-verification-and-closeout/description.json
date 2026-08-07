@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
+  "description": "Unit tests prove fixes #1 and #2 work against synthetic inputs in isolation",
+  "keywords": [
+    "unit",
+    "tests",
+    "prove",
+    "work",
+    "against",
+    "synthetic",
+    "inputs",
+    "isolation"
+  ],
+  "lastUpdated": "2026-08-07T20:28:39.834Z",
+  "specId": "003",
+  "folderSlug": "live-verification-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix",
+    "006-fork-and-improve-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/039-pi-caching-like-reasonix/002-synthesis-and-decision"
-    last_updated_at: "2026-08-06T11:48:24Z"
+    last_updated_at: "2026-08-07T06:21:10Z"
     last_updated_by: "spec-author"
-    recent_action: "Recorded NO-GO decision; build gate closed"
+    recent_action: "Updated Successor field for 003 re-entry"
     next_safe_action: "Close the packet or author a pi-cache-optimizer audit spike"
     blockers: []
     key_files:
@@ -50,7 +50,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 2 of N |
 | **Predecessor** | 001-research |
-| **Successor** | Build phases 3+ (authored only on GO) — else None |
+| **Successor** | 003-fork-and-guard-cache-optimizer (re-entry per this phase's ADR-001, not the originally-scoped "build phases 3+ on GO") |
 | **Handoff Criteria** | `decision-record.md` records GO or NO-GO with cited cost/benefit and a verified/refuted status for each load-bearing lumo.md claim; on GO, the recommended build-phase shape is listed |
 <!-- /ANCHOR:metadata -->
 

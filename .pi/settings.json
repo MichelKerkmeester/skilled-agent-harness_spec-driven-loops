@@ -24,12 +24,13 @@
   ],
   "packages": [
     "npm:pi-blackhole",
-    "npm:pi-cache-optimizer",
+    "extensions/pi-cache-optimizer",
     "npm:pi-gpt-fast-mode",
     "npm:pi-omplike-advisor",
     "npm:pi-plan",
     "npm:pi-statusline",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "extensions/deep-pi"
   ],
   "hideThinkingBlock": false,
   "compaction": {

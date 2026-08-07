@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+  "description": "The operator intends to route more work through DeepSeek going forward",
+  "keywords": [
+    "operator",
+    "intends",
+    "route",
+    "work",
+    "deepseek",
+    "going",
+    "forward"
+  ],
+  "lastUpdated": "2026-08-07T19:42:22.806Z",
+  "specId": "004",
+  "folderSlug": "adopt-deep-pi-deepseek",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

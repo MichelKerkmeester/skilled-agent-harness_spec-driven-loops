@@ -5,7 +5,11 @@
   "parent_id": null,
   "children_ids": [
     "cli-external-orchestration/039-pi-caching-like-reasonix/001-research",
-    "cli-external-orchestration/039-pi-caching-like-reasonix/002-synthesis-and-decision"
+    "cli-external-orchestration/039-pi-caching-like-reasonix/002-synthesis-and-decision",
+    "cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
+    "cli-external-orchestration/039-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+    "cli-external-orchestration/039-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
+    "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +43,11 @@
     "key_files": [
       "spec.md",
       "001-research/research/research.md",
-      "002-synthesis-and-decision/decision-record.md"
+      "002-synthesis-and-decision/decision-record.md",
+      "005-verification-and-decision-reconciliation/decision-record.md",
+      "003-fork-and-guard-cache-optimizer/spec.md",
+      "003-fork-and-guard-cache-optimizer/checklist.md",
+      "004-adopt-deep-pi-deepseek/checklist.md"
     ],
     "entities": [
       {
@@ -87,17 +95,17 @@
     ],
     "causal_summary": "A captured external-AI conversation (`lumo.md`) claims that Reasonix — a DeepSeek-native CLI agent — is engineered around prefix caching (asserting a ~99.8% cache-hit rate and a single-day cost drop from ~$61 to ~$12), while Pi offers provider-agnostic caching plus a `pi-cache-optimizer` extension",
     "created_at": "2026-08-06T09:15:11.929Z",
-    "last_save_at": "2026-08-06T11:49:28.096Z",
+    "last_save_at": "2026-08-07T19:52:44.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b4e8322a22f1bcdf573fb9df34aa13fe202e4ab97aceeefbd043965d0cb3b7a6",
+    "source_fingerprint": "sha256:3380daf6b23362b7071d09b305c38d0451bd5824132fd2c3861e4f243f2c196f",
     "source_doc_hashes": {
-      "spec.md": "342daa1c16bfe20f4828aa1676b1e1c249cbb78129ffba94575d71a261f285b7"
+      "spec.md": "6d2bcda0848b0430663c3781643c0ce28921023502a6ad7e63a3acc7b325e918"
     },
-    "last_active_child_id": "cli-external-orchestration/039-pi-caching-like-reasonix/002-synthesis-and-decision",
+    "last_active_child_id": "cli-external-orchestration/039-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
     "last_active_at": null
   }
 }
