@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-memory-scan-dedup-gap",
+  "description": "Fix a missing no-op branch in memory-save.ts's same-path insert logic that lets unchanged re-scans of tier-exempted rows (deprecated/archived) mint du",
+  "keywords": [
+    "missing",
+    "no-op",
+    "branch",
+    "memory-save",
+    "same-path",
+    "insert",
+    "logic",
+    "lets",
+    "unchanged",
+    "re-scans",
+    "tier-exempted",
+    "rows",
+    "deprecated",
+    "archived",
+    "mint",
+    "duplicate"
+  ],
+  "lastUpdated": "2026-08-07T16:39:23.298Z",
+  "specId": "033",
+  "folderSlug": "memory-scan-dedup-gap",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
