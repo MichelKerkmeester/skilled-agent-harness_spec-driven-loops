@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Specs-Root Migration Execution"
-description: "The runbook is scoped and ready. Nothing has run — the actual migration awaits a separate, explicit operator approval."
+description: "Steps 1-8 and 10 of the 11-step runbook ran and verified clean. Step 9 (Memory MCP reindex) is deferred on a daemon-workspace mismatch. Step 11's full sweep is in progress."
 trigger_phrases:
   - "migration execution summary"
 importance_tier: "important"
@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-06T19:32:08Z"
+    last_updated_at: "2026-08-07T05:26:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Runbook scoping complete; zero live changes made"
-    next_safe_action: "Operator separately approves an actual run before any step executes"
+    recent_action: "Steps 1-8 and 10 executed and verified; step 9 deferred; step 11 in progress"
+    next_safe_action: "Finish step 11's full sweep, then operator reviews the final state"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-06-system-speckit-032-relocate-003"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-migration-execution |
-| **Completed** | 2026-08-06 (scoping only — execution not started) |
+| **Completed** | In progress (2026-08-07) — steps 1-8/10 done, step 9 deferred, step 11 finishing |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,15 +45,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-You now have a runbook precise enough to execute the specs-root topology flip mechanically — 11 numbered steps, each with an exact command or code change and its own pass/fail check, plus a named rollback for every step that mutates anything. Nothing in the repository actually changed as a result of this phase.
+The runbook scoped in this phase (11 numbered steps, each with an exact command and its own pass/fail check) then ran, gated by the operator's separate `/goal` submission plus "Go" — the explicit approval ADR-001 required.
 
-### The Runbook
+### The Flip (Step 4)
 
-Phase 002 decided WHAT needs to change (invert 7 registry entries, build a new function, add an ownership override, rebase 4 `.gitignore` lines). This phase writes down exactly HOW: the new function's design and where it goes, the literal `git`/`sed` commands for the one atomic flip-plus-rebase step, the before/after for the resolver-precedence fix ADR-002 found, and the reindex/verification sequence. The critical discipline carried through from ADR-002: step 4 (the symlink flip and the `.gitignore` rebase) is written as one atomic commit with one combined verification — never two separate steps, since that's exactly the leak window ADR-002 identified.
+The atomic step: `specs/` is now the real, physical directory; `.opencode/specs` is a relative symlink to `../specs`. Landed in one commit (`606e55cb8a`) together with the `.gitignore` rebase for the four downstream projects (`ai-systems`, `anobel.com`, `barter`, `z-future`), per ADR-002's leak-prevention requirement. All three named pre-commit checks passed before committing.
 
-### The Double-Gate
+### The Wider Fix (Steps 5-8, 10)
 
-Scoping this runbook and approving its execution are deliberately two separate decisions. `spec.md` Status reads "Draft — runbook scoped, not yet run," and every execution task in `tasks.md` Phase 2/3 stays unchecked `[ ]`. That's the visible signal that writing the plan down did not, by itself, authorize running it.
+Steps 5-8 flipped the 12 originally-named call sites (7 registry resolvers, 5 `SPEC_KIT_SPECS_DIR` override sites) plus CI and operator-facing docs. Step 10's test-suite inversion surfaced **6 more production files** with the same hardcoded old-direction bug that were never on the original list: `spec-root-canonical-resolver.ts`, `spec-root-write-guard.ts`, `spec-root-migration.ts` (two functions), `spec-root-migration-manifest.ts`, and `config.ts` (whose registry label had also been wrong — `legacy-first` when the code was always canonical-first). All were fixed in the same pass, since a real correctness bug post-flip isn't optional just because it wasn't on the original list.
+
+### What Didn't Run
+
+Step 9 (Memory MCP reindex) is deferred: this session's `mk-spec-memory` MCP connection resolved to a daemon serving a different git worktree (`.worktrees/0129-system-deep-loop-036-remediation-execution/`), not the main repo — confirmed via a scoped scan finding zero files for a packet that only exists in the main repo. Reindexing through that connection would have indexed the wrong repository. The operator chose to defer rather than kill a daemon that may be serving another live session.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -61,7 +65,7 @@ Scoping this runbook and approving its execution are deliberately two separate d
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Built directly from phase 002's accepted `plan.md` and `decision-record.md` — no new research, no new architectural decisions. Each of the 11 steps got an explicit, nameable verification (not "confirm it worked") and an explicit rollback (not "revert if needed"), so a future run has no design gaps to improvise around. Verified this phase's own docs against `validate.sh --recursive --strict` and confirmed zero unrelated repo files touched.
+Executed the runbook from `plan.md` §4 in order, verifying each step's named check before proceeding, per the operator's autonomous-execution directive. Along the way: discovered and resolved a 3,308-file pre-existing dirty tree blocking step 1's pre-flight (committed as its own change, `2666012cfe` after a rebase), fixed a genuinely ambiguous 2,814-file deletion (the already-decommissioned `system-code-graph` packet) with an explicit operator decision, and removed the `system-code-graph` skill folder's last stray artifact per a separate operator request mid-run. Resolved two later remote divergences (concurrent live work landing on the same branch) via rebase, no data loss.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -71,9 +75,9 @@ Built directly from phase 002's accepted `plan.md` and `decision-record.md` — 
 
 | Decision | Why |
 |----------|-----|
-| Scope the runbook without running any of it | Phase 002's ADRs are accepted, but "accepted design" and "operator wants it run right now" are different levels of commitment — this phase respects that distinction explicitly |
-| Write step 4 as one atomic commit spanning both the flip and the `.gitignore` rebase | ADR-002 named the exact failure mode of splitting them (private downstream data untracked-and-unignored in a public repo) — the runbook is structured so that mistake isn't available to make |
-| Give every mutating step its own named rollback, not one blanket rollback plan | The steps have different reversal costs (steps 1-3 are free to abandon, step 4 needs real procedure, steps 5-10 are ordinary commit reverts) — a single generic rollback section would understate step 4's actual risk |
+| Fix 6 more discovered call sites beyond the original 12 (step 10) | Testing the validation matrix surfaced real production bugs (old canonical direction still hardcoded) that would have shipped broken if left alone just because they weren't on the original list |
+| Defer step 9 rather than kill the worktree daemon | The daemon may be serving another live session (confirmed: it pushed 2 real commits to this same branch mid-run); reindexing the wrong repo or disrupting a live session is worse than deferring one step |
+| Commit the pre-existing 3,308-file dirty tree before step 1 could proceed | Step 1's clean-tree precondition genuinely couldn't be satisfied otherwise; each ambiguous case (the system-code-graph deletion) got an explicit operator decision rather than a guess |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -83,10 +87,14 @@ Built directly from phase 002's accepted `plan.md` and `decision-record.md` — 
 
 | Check | Result |
 |-------|--------|
-| All 11 runbook steps have an exact command/change, not a placeholder | PASS — `plan.md` §4, steps 1-11 |
-| Every mutating step has a named rollback | PASS — `plan.md` §7 |
-| No execution task marked complete | PASS — `tasks.md` Phase 2/3 all `[ ]` |
-| `validate.sh --recursive --strict` (parent packet) | See the command run immediately after this save for the recorded result |
+| Step 1-8, 10 named checks | PASS — see `tasks.md` T004-T013 for evidence per step |
+| Step 4's 3 pre-commit checks (gitignore match, symlink target, no leaked project trees) | PASS — all 3 confirmed before commit `606e55cb8a` |
+| `registryCoverageGaps()` | PASS — empty |
+| `spec-root-*` test suite | 54/55 pass (1 pre-existing, unrelated regex typo) |
+| `tsc --noEmit` across both packages | PASS — 0 new errors |
+| This packet's own `validate.sh --strict` | PASS — 0 errors after this save regenerates description.json/graph-metadata.json |
+| Step 9 (Memory MCP reindex) | DEFERRED — daemon-workspace mismatch, not run |
+| Step 11 (full repo sweep) | IN PROGRESS at time of this save |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +102,7 @@ Built directly from phase 002's accepted `plan.md` and `decision-record.md` — 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a plan, not tested code.** The topology-flip function in step 3 is designed, not written and run — a real attempt may surface details this runbook didn't anticipate.
-2. **The 61-test validation matrix (step 10) was not read test-by-test during phase 002 or this phase** — carried forward as a real risk in the runbook itself (`plan.md` R-... row), not assumed to transfer cleanly.
-3. **Nothing has executed.** Every number, count, and "expect X" claim in this runbook is a prediction based on phase 001/002's research, not a freshly re-verified fact at the moment a real run would start — step 1 and step 2 exist specifically to re-verify before anything mutates.
+1. **Step 9 has not run.** The Memory MCP index has not been refreshed against the new `specs/` root. A future session (or this one, once step 11 completes) needs to resolve the daemon-workspace mismatch and run the reindex separately.
+2. **A live concurrent session is working on this same branch** in a separate worktree (confirmed via two independent commit pushes during this run). Anyone picking this packet back up should re-fetch before assuming the branch tip.
+3. **`CLAUDE.md` has the same stale "Spec folder path" row `AGENTS.md` had before step 8 fixed it** — flagged to the operator, not fixed here (out of this packet's named scope).
 <!-- /ANCHOR:limitations -->

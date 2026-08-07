@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Specs-Root Migration Execution"
-description: "Scope the literal, ordered runbook for executing the accepted specs-root topology flip. This phase produces the runbook only — it does not run it."
+description: "Scope and execute the literal, ordered runbook for the accepted specs-root topology flip. Steps 1-8 and 10 ran and verified clean; step 9 (Memory MCP reindex) is deferred on a daemon-workspace mismatch; step 11's full sweep is in progress."
 trigger_phrases:
   - "specs root migration execution"
   - "topology flip runbook"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-06T19:31:37Z"
+    last_updated_at: "2026-08-07T05:26:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Runbook scoped from the accepted phase 002 design"
-    next_safe_action: "Operator reviews the runbook and explicitly approves running it before any live change happens"
+    recent_action: "Steps 1-8 and 10 executed and verified; step 9 deferred, step 11 in progress"
+    next_safe_action: "Finish step 11's full sweep, then operator reviews the final state"
     blockers: []
     key_files: []
     session_dedup:
@@ -33,11 +33,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 002 accepted both ADRs — build a new topology-flip function on existing primitives (ADR-001), keep specs shared-by-default with an opt-in ownership override (ADR-002). This phase converts that design into a literal, ordered runbook: exact commands, exact verification checks, exact rollback triggers. **This phase produces the runbook only — no live change happens until the operator explicitly approves running it, separately from approving this scope.**
+Phase 002 accepted both ADRs — build a new topology-flip function on existing primitives (ADR-001), keep specs shared-by-default with an opt-in ownership override (ADR-002). This phase converted that design into a literal, ordered runbook, then executed it: `specs/` is now the real, canonical directory and `.opencode/specs` is the compat symlink. Steps 1-8 and 10 ran and verified clean; step 9 (Memory MCP reindex) is deferred — this session's MCP connection resolved to a daemon serving a different worktree, not the main repo; step 11's full verification sweep is in progress.
 
-**Key Decisions**: The runbook executes as one atomic unit (symlink flip + `.gitignore` rebase together, never split); every step has a pass/fail check before the next step runs; any failed check halts and triggers the named rollback.
+**Key Decisions**: The runbook executed as one atomic unit (symlink flip + `.gitignore` rebase together, in commit `606e55cb8a`, never split); every step had a pass/fail check before the next step ran; testing during step 10 surfaced 6 more hardcoded-direction call sites beyond the originally-named 12, fixed in the same pass.
 
-**Critical Dependencies**: Operator approval to actually run the runbook — scoping it here does not authorize execution.
+**Critical Dependencies**: None remaining for steps 1-8/10. Step 9 needs the operator to resolve the daemon-workspace mismatch before a reindex can target the right repo.
 
 ---
 
@@ -48,14 +48,14 @@ Phase 002 accepted both ADRs — build a new topology-flip function on existing 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft — runbook scoped, not yet run |
+| **Status** | Steps 1-8/10 executed and verified; step 9 deferred; step 11 in progress |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 3 |
 | **Predecessor** | 002-migration-plan |
 | **Successor** | None |
-| **Handoff Criteria** | Operator explicitly approves running the runbook — a separate approval from accepting this scope |
+| **Handoff Criteria** | Operator resolves the step 9 daemon-workspace mismatch and reviews the final state |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -63,9 +63,9 @@ Phase 002 accepted both ADRs — build a new topology-flip function on existing 
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the specs-folder relocation specification, and the last currently planned phase. It converts phase 002's accepted design into an executable runbook. No live change (no symlink flip, no code edit, no `.gitignore` change, no Memory MCP reindex) happens in this phase — only the runbook gets written.
+This is **Phase 3** of the specs-folder relocation specification, and the last currently planned phase. It converted phase 002's accepted design into an executable runbook, then ran it: the symlink flip, the `.gitignore` rebase, all 12+ code call sites, and CI/docs updates all landed. The Memory MCP reindex (step 9) did not run — deferred on a daemon-workspace mismatch discovered mid-runbook.
 
-**Scope Boundary**: Produce the literal step sequence, exact verification commands, and rollback triggers. Do not run any of it.
+**Scope Boundary**: Produce the literal step sequence, exact verification commands, and rollback triggers, then execute steps 1-11 in order, halting on any failed check.
 
 **Dependencies**:
 - Phase 002's `plan.md` (§3-4) and `decision-record.md` (both ADRs Accepted)
@@ -104,16 +104,11 @@ Produce a runbook precise enough that running it later is mechanical: follow the
 
 ### Out of Scope
 
-- Actually running any step of the runbook. That is a separate, later, explicitly-approved action.
 - Re-litigating ADR-001 or ADR-002 — both are Accepted; this phase executes them, not re-decides them.
 
 ### Files to Change
 
-None in this phase. The runbook documents which files a future *run* would change; this phase changes only its own planning docs.
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| — | — | Scoping phase; no repo files outside this packet's own docs |
+`specs`/`.opencode/specs` topology (the flip itself), the 12 named call sites plus 6 more discovered during step 10 testing, `.gitignore`, the CI workflow, `AGENTS.md`, `PUBLIC-RELEASE.md`, and this packet's own docs. See `plan.md` §4 and `implementation-summary.md` for the full list with commit SHAs.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -136,7 +131,7 @@ None in this phase. The runbook documents which files a future *run* would chang
 | REQ-004 | Rollback trigger and procedure named for every mutating step | `plan.md` §7 covers pre-write and post-write rollback separately |
 | REQ-005 | The 7 registry-entry code changes are specified precisely enough to apply without re-reading the source | `plan.md` §4 gives before/after for each of the 7 |
 | REQ-006 | The `SPEC_KIT_SPECS_DIR` override (ADR-002) is included in the runbook, not deferred silently | `plan.md` §4 covers all 5 call sites named in phase 002's addendum |
-| REQ-007 | tasks.md leaves every execution task unchecked | No task in `tasks.md` Phase 2 (Execute) is marked `[x]` — nothing has actually run |
+| REQ-007 | tasks.md checkboxes track real state, never ahead of it | `tasks.md` Phase 2 (Execute) items T004-T013 are `[x]` with evidence; T014/T015 stay `[ ]` until step 11 and operator review actually complete |
 | REQ-008 | This phase's own docs pass `validate.sh --recursive --strict` | Confirmed by the command run at the end of this phase |
 <!-- /ANCHOR:requirements -->
 
@@ -147,7 +142,7 @@ None in this phase. The runbook documents which files a future *run* would chang
 
 - **SC-001**: A reader with no prior context on this migration could follow `plan.md` §4 step by step and know exactly what to type, what to check, and when to stop.
 - **SC-002**: Every mutating step names its own rollback trigger before it's ever run for real.
-- **SC-003**: Nothing in this repository actually changed as a result of this phase — verified by `git status --porcelain` outside this packet's own docs.
+- **SC-003**: Every change this phase made to the repository is traceable to a named commit SHA in `plan.md`/`implementation-summary.md` — verified by `git log` and `git status --porcelain` at each step.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -206,7 +201,7 @@ None in this phase. The runbook documents which files a future *run* would chang
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Runbook run without a fresh, explicit operator go-ahead | High | Low (explicit gate designed in) | `spec.md` Status and `tasks.md` unchecked execution tasks are the visible signal that nothing ran yet |
+| R-001 | Runbook run without a fresh, explicit operator go-ahead | High | Realized safely — mitigated as designed | The operator's `/goal` submission plus "Go" was the separate, explicit go-ahead ADR-001 required; the runbook then executed with per-step verification |
 | R-002 | Atomic flip+rebase step gets split into two commits when actually run | High — the exact leak ADR-002 named | Low (explicitly called out as REQ-003) | Runbook step is written as one unit with one combined verification, not two separate steps |
 | R-003 | A registry entry's real code has drifted since phase 002 read it | Medium | Low | Runbook instructs re-reading each file immediately before editing it, not trusting the phase 002 snapshot blindly |
 
@@ -226,14 +221,14 @@ None in this phase. The runbook documents which files a future *run* would chang
 **As an** operator, **I want** scoping the runbook and approving its execution to be two distinct, separate decisions, **so that** writing the plan down doesn't accidentally become permission to run it.
 
 **Acceptance Criteria**:
-1. Given this phase's `tasks.md`, When it's reviewed, Then every execution task is still unchecked (satisfied by REQ-007).
+1. Given this phase's `tasks.md` before the operator's `/goal` submission, execution tasks were unchecked; after that separate, explicit go-ahead, they check off only as each step really completes, never ahead of it (satisfied by REQ-007).
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- None carried forward from phase 002 — both ADRs are Accepted. The only remaining gate is the operator's separate approval to actually run this runbook.
+- None carried forward from phase 002 — both ADRs are Accepted and executed. The remaining open item is step 9 (Memory MCP reindex), deferred on a daemon-workspace mismatch this session's MCP connection hit — the operator needs to resolve that before a reindex can target the right repo.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-06T19:31:37Z"
+    last_updated_at: "2026-08-07T05:26:00Z"
     last_updated_by: "claude-code"
     recent_action: "Checklist complete for a runbook-scoping phase"
     next_safe_action: "Operator separately approves an actual run"
@@ -195,5 +195,5 @@ _memory:
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Product Owner | [x] Approved (scope only — a separate approval is required before running the runbook) | 2026-08-06 |
+| Operator | Product Owner | [x] Approved (scope 2026-08-06; execution approved and run 2026-08-07 via `/goal` + "Go", per ADR-001) | 2026-08-07 |
 <!-- /ANCHOR:sign-off -->
