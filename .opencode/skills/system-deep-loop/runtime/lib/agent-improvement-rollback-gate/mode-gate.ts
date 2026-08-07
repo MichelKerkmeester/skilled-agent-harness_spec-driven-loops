@@ -22,7 +22,13 @@ import {
   DeepImprovementCommonModeMigrationGate,
   evaluateDeepImprovementCommonRollbackWindow,
 } from '../deep-improvement-common-rollback-gate/index.js';
-import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
+import { AGENT_IMPROVEMENT_EVENT_VERSION } from '../agent-improvement-ledger-schema/index.js';
+import {
+  AGENT_IMPROVEMENT_PROJECTION_SCHEMA_VERSION,
+  AGENT_IMPROVEMENT_REDUCER_VERSION,
+} from '../agent-improvement-reducers/index.js';
+import { canonicalBytes, CURRENT_ENVELOPE_VERSION, sha256Bytes } from '../event-envelope/index.js';
+import { matchesArtifactClaimSet, matchesInstalledVersionBindings } from '../mode-contracts/index.js';
 
 import {
   AGENT_IMPROVEMENT_ROLLBACK_GATE_SCHEMA_VERSION,
@@ -110,6 +116,12 @@ const VERSION_BINDING_KEYS = Object.freeze([
   'reducerVersion',
   'projectionVersion',
 ] as const);
+const INSTALLED_VERSION_BINDINGS = Object.freeze({
+  eventEnvelopeVersion: CURRENT_ENVELOPE_VERSION,
+  eventSchemaVersion: `agent-improvement-event@${AGENT_IMPROVEMENT_EVENT_VERSION}`,
+  reducerVersion: AGENT_IMPROVEMENT_REDUCER_VERSION,
+  projectionVersion: AGENT_IMPROVEMENT_PROJECTION_SCHEMA_VERSION,
+});
 const INPUT_ORDER: readonly AgentImprovementGateInputKind[] = Object.freeze([
   'shadow_parity',
   'sealed_artifacts',
@@ -205,7 +217,7 @@ function overallVerdict(
 
 function malformedResult(): AgentImprovementModeGateResult {
   const dispositions = Object.freeze(INPUT_ORDER.map((input) => fail(input, 'EVIDENCE_MALFORMED')));
-  return Object.freeze({ verdict: overallVerdict(dispositions), dispositions, certificate: null });
+  return Object.freeze({ verdict: 'blocked', dispositions, certificate: null });
 }
 
 function validateTopLevel<TState extends JsonObject>(
@@ -224,6 +236,7 @@ function validateTopLevel<TState extends JsonObject>(
     && isToken(input.versions.eventSchemaVersion)
     && isToken(input.versions.reducerVersion)
     && isToken(input.versions.projectionVersion)
+    && matchesInstalledVersionBindings(input.versions, INSTALLED_VERSION_BINDINGS)
     && isToken(input.verifierIdentity)
     && isToken(input.verifierVersion)
     && isPlainRecord(input.authority)
@@ -577,11 +590,12 @@ async function evaluateSealed<TState extends JsonObject>(
     const artifactDigests = verified.map(
       (artifact) => artifact.binding.reference.qualified_digest,
     ).sort();
-    const claimDigests = certificates.bundle.certificate.body.artifactClaims.map(
-      (claim) => claim.binding.reference.qualified_digest,
-    ).sort();
     if (
-      digest(artifactDigests) !== digest(claimDigests)
+      !matchesArtifactClaimSet(
+        artifactDigests,
+        certificates.bundle.certificate.body.artifactClaims,
+        certificates.bundle.certificate.body.artifactSetDigest,
+      )
       || proposal.candidateId !== body.candidateId
       || proposal.candidateAgentIrDigest !== body.agentIrDigest
       || coverage.evaluationEpochId !== body.evaluationEpochId

@@ -15,6 +15,11 @@ export {
 } from './substrate-ports.js';
 export { resolveModeInterfaceCompatibility } from './compatibility-policy.js';
 export {
+  matchesArtifactClaimSet,
+  matchesInstalledVersionBindings,
+  matchesPreparedAuthorizationDecision,
+} from './strict-gate-validator.js';
+export {
   evaluateModeEventWrite,
   modeWorkstreamsFromManifest,
   runModeConformance,
@@ -24,3 +29,4 @@ export type * from './mode-contract-types.js';
 export type * from './substrate-ports.js';
 export type * from './compatibility-policy.js';
 export type * from './conformance.js';
+export type * from './strict-gate-validator.js';

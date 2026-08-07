@@ -735,10 +735,12 @@ function runReducerFixtures(
     if (!contract) continue;
     let outcome: 'accept' | 'reject' = 'accept';
     let ownershipInvariantViolated = false;
+    let eventBindingInvariantViolated = false;
     try {
       const firstInput = deepFreeze(cloneJson(fixture.initialState));
       const secondInput = deepFreeze(cloneJson(fixture.initialState));
       const initialDigest = canonicalJson(firstInput);
+      const fixtureEventId = fixture.event.event.effective.envelope.event_id;
       const first = contract.reduce(fixture.event, firstInput);
       const second = contract.reduce(fixture.event, secondInput);
       const firstReducer = contract.reducers.definitions.find((definition) => (
@@ -754,6 +756,9 @@ function runReducerFixtures(
       const secondOwnershipViolation = secondReducer === undefined
         || secondChangedFields.some((field) => !secondReducer.ownedFields.includes(field));
       ownershipInvariantViolated = firstOwnershipViolation || secondOwnershipViolation;
+      eventBindingInvariantViolated = typeof fixtureEventId !== 'string'
+        || first.appliedEventId !== fixtureEventId
+        || second.appliedEventId !== fixtureEventId;
       if (
         canonicalJson(first.state) !== canonicalJson(second.state)
         || canonicalJson(firstInput) !== initialDigest
@@ -766,6 +771,7 @@ function runReducerFixtures(
         || secondReducer === undefined
         || firstOwnershipViolation
         || secondOwnershipViolation
+        || eventBindingInvariantViolated
       ) {
         outcome = 'reject';
       }
@@ -777,6 +783,15 @@ function runReducerFixtures(
         issues,
         'REDUCER_OWNERSHIP_INVARIANT',
         'Mode reducer output must change only fields owned by the returned reducer',
+        fixture.modeId,
+        fixture.fixtureId,
+      );
+    }
+    if (eventBindingInvariantViolated) {
+      pushIssue(
+        issues,
+        'REDUCER_EVENT_BINDING',
+        'Mode reducer output must identify the verified fixture event',
         fixture.modeId,
         fixture.fixtureId,
       );
@@ -851,13 +866,19 @@ function runCertificateFixtures(
     if (!contract) continue;
     let outcome: 'accept' | 'reject' = 'accept';
     let authorityInvariantViolated = false;
+    let evidenceBindingInvariantViolated = false;
     try {
       const certificate = contract.issueCertificate(fixture.evidence);
       authorityInvariantViolated = !hasClosedObjectShape(certificate, ModeCertificateFieldSet)
         || certificate.authorityEffect !== 'none'
         || certificate.legacyAuthority !== 'unchanged';
+      evidenceBindingInvariantViolated = !hasExactMembers(
+        certificate.evidenceReferences,
+        fixture.evidence.evidenceReferences,
+      );
       if (
         authorityInvariantViolated
+        || evidenceBindingInvariantViolated
         || certificate.evidenceReferences.length === 0
         || certificate.invalidationConditions.length === 0
       ) {
@@ -871,6 +892,15 @@ function runCertificateFixtures(
         issues,
         'CERTIFICATE_AUTHORITY_INVARIANT',
         'Mode certificate output must remain authority-neutral',
+        fixture.modeId,
+        fixture.fixtureId,
+      );
+    }
+    if (evidenceBindingInvariantViolated) {
+      pushIssue(
+        issues,
+        'CERTIFICATE_EVIDENCE_BINDING',
+        'Mode certificate output must identify exactly the supplied evidence',
         fixture.modeId,
         fixture.fixtureId,
       );

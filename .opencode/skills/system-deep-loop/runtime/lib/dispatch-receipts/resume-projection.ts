@@ -211,14 +211,7 @@ export async function resumeDispatchFromVerifiedLedger(
           reasonCode: 'RESULT_BINDING_MISMATCH',
         });
       }
-      return Object.freeze({
-        authority: 'ledger',
-        classification: 'result_recorded',
-        eligibleForFirstDispatch: false,
-        evidence: projection.evidence,
-        macVerification: projection.macVerification,
-        result: input.result,
-      });
+      // Caller-provided result evidence is not ledger authority; only a verified successor event records completion.
     }
 
     const handoff = unresolvedDispatchHandoff(projection.evidence);

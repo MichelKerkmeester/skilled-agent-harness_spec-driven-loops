@@ -17,9 +17,15 @@ import {
   DEEP_RESEARCH_ARTIFACT_KIND_REGISTRY,
   readDeepResearchArtifact,
 } from '../deep-research-sealed-artifacts/index.js';
-import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
+import { DEEP_RESEARCH_EVENT_VERSION } from '../deep-research-ledger-schema/index.js';
+import {
+  DEEP_RESEARCH_PROJECTION_SCHEMA_VERSION,
+  DEEP_RESEARCH_REDUCER_VERSION,
+} from '../deep-research-reducers/index.js';
+import { canonicalBytes, CURRENT_ENVELOPE_VERSION, sha256Bytes } from '../event-envelope/index.js';
 import { HealthAggregateStates } from '../health-degeneration-harness/index.js';
 import { verifyClassificationManifest } from '../inflight-state-classification/index.js';
+import { matchesArtifactClaimSet, matchesInstalledVersionBindings } from '../mode-contracts/index.js';
 import { verifyPhase014RollbackEvidence } from '../rollback-drills/index.js';
 
 import {
@@ -78,6 +84,30 @@ const VERSION_BINDING_KEYS = Object.freeze([
   'reducerVersion',
   'projectionVersion',
 ] as const);
+const GATE_INPUT_KEYS = Object.freeze([
+  'candidateSha',
+  'baseSha',
+  'sharedContractDigest',
+  'writeSetDigest',
+  'versions',
+  'verifierIdentity',
+  'verifierVersion',
+  'authority',
+  'parity',
+  'sealedArtifacts',
+  'certificates',
+  'resumeEvidence',
+  'lifecycle',
+  'rollback',
+  'rollbackWindow',
+  'unresolvedRiskIds',
+] as const);
+const INSTALLED_VERSION_BINDINGS = Object.freeze({
+  eventEnvelopeVersion: CURRENT_ENVELOPE_VERSION,
+  eventSchemaVersion: `deep-research-event@${DEEP_RESEARCH_EVENT_VERSION}`,
+  reducerVersion: DEEP_RESEARCH_REDUCER_VERSION,
+  projectionVersion: DEEP_RESEARCH_PROJECTION_SCHEMA_VERSION,
+});
 const SAFE_RESUME_COMPATIBILITY_OUTCOMES = new Set<
   DeepResearchResumeDecision['compatibilityOutcome']
 >(['exact', 'compatible', 'migrate']);
@@ -101,6 +131,12 @@ function isToken(value: unknown): value is string {
 
 function isDigest(value: unknown): value is string {
   return typeof value === 'string' && HEX_64.test(value);
+}
+
+function isPlainRecord<T>(value: T): value is T & Record<string, unknown> {
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
 function hasExactKeys(value: object, keys: readonly string[]): boolean {
@@ -239,7 +275,9 @@ function overallVerdict(
 }
 
 function validateTopLevel<TState extends JsonObject>(input: DeepResearchModeGateInput<TState>): boolean {
-  return HEX_40.test(input.candidateSha)
+  return isPlainRecord(input)
+    && hasExactKeys(input, GATE_INPUT_KEYS)
+    && HEX_40.test(input.candidateSha)
     && HEX_40.test(input.baseSha)
     && isDigest(input.sharedContractDigest)
     && isDigest(input.writeSetDigest)
@@ -249,12 +287,18 @@ function validateTopLevel<TState extends JsonObject>(input: DeepResearchModeGate
     && isToken(input.versions.eventSchemaVersion)
     && isToken(input.versions.reducerVersion)
     && isToken(input.versions.projectionVersion)
+    && matchesInstalledVersionBindings(input.versions, INSTALLED_VERSION_BINDINGS)
     && isToken(input.verifierIdentity)
     && isToken(input.verifierVersion)
     && input.authority.state === 'legacy_authoritative'
     && Number.isSafeInteger(input.authority.epoch)
     && input.authority.epoch > 0
     && input.unresolvedRiskIds.every(isToken);
+}
+
+function malformedResult(): DeepResearchModeGateResult {
+  const dispositions = Object.freeze(INPUT_ORDER.map((input) => fail(input, 'EVIDENCE_MALFORMED')));
+  return Object.freeze({ verdict: 'blocked', dispositions, certificate: null });
 }
 
 async function evaluateParity<TState extends JsonObject>(
@@ -427,6 +471,8 @@ async function evaluateCertificates<TState extends JsonObject>(
   disposition: DeepResearchGateInputDisposition;
   receiptDigests: readonly string[];
   certificateDigest: string | null;
+  artifactClaims: readonly import('../mode-contracts/index.js').ArtifactClaimDigest[];
+  artifactSetDigest: string | null;
   replayFingerprint: string | null;
   lifecycleEvidenceIdentities: readonly LifecycleEvidenceIdentity[];
 }>> {
@@ -435,6 +481,8 @@ async function evaluateCertificates<TState extends JsonObject>(
       disposition: fail('certificates_receipts', 'EVIDENCE_MISSING'),
       receiptDigests: [],
       certificateDigest: null,
+      artifactClaims: [],
+      artifactSetDigest: null,
       replayFingerprint: null,
       lifecycleEvidenceIdentities: [],
     };
@@ -448,6 +496,8 @@ async function evaluateCertificates<TState extends JsonObject>(
         disposition: fail('certificates_receipts', 'CERTIFICATE_RECEIPT_INVALID'),
         receiptDigests: [],
         certificateDigest: null,
+        artifactClaims: [],
+        artifactSetDigest: null,
         replayFingerprint: null,
         lifecycleEvidenceIdentities: [],
       };
@@ -465,6 +515,8 @@ async function evaluateCertificates<TState extends JsonObject>(
         disposition: fail('certificates_receipts', 'EVIDENCE_STALE'),
         receiptDigests: [],
         certificateDigest: null,
+        artifactClaims: [],
+        artifactSetDigest: null,
         replayFingerprint: null,
         lifecycleEvidenceIdentities: [],
       };
@@ -481,6 +533,8 @@ async function evaluateCertificates<TState extends JsonObject>(
       ),
       receiptDigests,
       certificateDigest: result.certificateDigest,
+      artifactClaims: bundle.certificate.body.artifactClaims,
+      artifactSetDigest: result.artifactSetDigest,
       replayFingerprint: result.replayFingerprint,
       lifecycleEvidenceIdentities: bundle.receipts.map((entry) => Object.freeze({
         eventDigest: entry.facts.resultEventDigest,
@@ -492,6 +546,8 @@ async function evaluateCertificates<TState extends JsonObject>(
       disposition: fail('certificates_receipts', 'EVIDENCE_MALFORMED'),
       receiptDigests: [],
       certificateDigest: null,
+      artifactClaims: [],
+      artifactSetDigest: null,
       replayFingerprint: null,
       lifecycleEvidenceIdentities: [],
     };
@@ -683,18 +739,37 @@ export class DeepResearchModeMigrationGate {
   public async evaluate<TState extends JsonObject>(
     input: DeepResearchModeGateInput<TState>,
   ): Promise<DeepResearchModeGateResult> {
+    if (!isPlainRecord(input) || !hasExactKeys(input, GATE_INPUT_KEYS)) {
+      return malformedResult();
+    }
     let window: DeepResearchRollbackWindowEvaluation | null = null;
     try {
       window = evaluateDeepResearchRollbackWindow(input.rollbackWindow);
     } catch {
       window = null;
     }
-    const [parity, sealed, certificates, rollback] = await Promise.all([
+    const [parity, rawSealed, certificates, rollback] = await Promise.all([
       evaluateParity(input),
       evaluateSealed(input),
       evaluateCertificates(input),
       evaluateRollback(input),
     ]);
+    let sealed = rawSealed;
+    if (
+      sealed.disposition.disposition === 'ready'
+      && certificates.disposition.disposition === 'ready'
+      && certificates.artifactSetDigest !== null
+      && !matchesArtifactClaimSet(
+        sealed.artifactDigests,
+        certificates.artifactClaims,
+        certificates.artifactSetDigest,
+      )
+    ) {
+      sealed = Object.freeze({
+        ...sealed,
+        disposition: fail('sealed_artifacts', 'EVIDENCE_CONTRADICTORY'),
+      });
+    }
     const lifecycle = evaluateLifecycle(input, [
       ...parity.lifecycleEvidenceIdentities,
       ...sealed.lifecycleEvidenceIdentities,

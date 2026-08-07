@@ -124,6 +124,7 @@ export interface DeepReviewRollbackWindowInput {
   readonly openedAt: string;
   readonly evaluatedAt: string;
   readonly executions: readonly DeepReviewRollbackWindowExecution[];
+  readonly authenticatedExecutions: readonly DeepReviewRollbackWindowExecution[];
   readonly unresolvedEvidenceCount: number;
   readonly lowTraffic: boolean;
 }

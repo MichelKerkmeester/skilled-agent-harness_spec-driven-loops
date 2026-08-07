@@ -13,6 +13,9 @@ import {
   ModeProvidedCapabilities,
   REQUIRED_MODE_SUBSTRATE_PORTS,
   evaluateModeEventWrite,
+  matchesArtifactClaimSet,
+  matchesInstalledVersionBindings,
+  matchesPreparedAuthorizationDecision,
   modeWorkstreamsFromManifest,
   resolveModeInterfaceCompatibility,
   runModeConformance,
@@ -342,7 +345,9 @@ function validFixtures(entries: readonly ModeContractEntry[]): ModeConformanceFi
       fixtureId: `${modeId}:deterministic-reducer`,
       modeId,
       initialState: Object.freeze({ value: 0 }),
-      event: {} as VerifiedLedgerEvent,
+      event: {
+        event: { effective: { envelope: { event_id: 'fixture-event' } } },
+      } as unknown as VerifiedLedgerEvent,
       expected: 'accept',
     }))),
     certificates: Object.freeze(entries.map(({ modeId }) => Object.freeze({
@@ -596,6 +601,74 @@ describe('shared mode contract conformance', () => {
     expect(report.issues).toContainEqual(expect.objectContaining({
       code: 'REDUCER_FIXTURE_MISMATCH', modeId,
     }));
+  });
+
+  it('rejects a reducer result bound to an event outside the fixture', () => {
+    const entries = createEntries();
+    const modeId = modeIds[0];
+    const contract = entries[0].contract;
+    const unrelatedEvent = Object.freeze({
+      ...contract,
+      reduce: (_event: VerifiedLedgerEvent, state: Readonly<JsonObject>) => Object.freeze({
+        reducerId: `${modeId}:state-reducer`,
+        stateVersion: '1',
+        appliedEventId: 'unrelated-event',
+        state: Object.freeze({ ...state, value: Number(state.value ?? 0) + 1 }),
+      }),
+    });
+    const altered = replaceContract(entries, modeId, unrelatedEvent);
+    const report = runModeConformance(inputWith(altered, validFixtures(altered)));
+
+    expect(report.passed).toBe(false);
+    expect(report.issues).toContainEqual(expect.objectContaining({
+      code: 'REDUCER_EVENT_BINDING', modeId,
+    }));
+  });
+
+  it('rejects certificate references that are unrelated to fixture evidence', () => {
+    const entries = createEntries();
+    const modeId = modeIds[0];
+    const contract = entries[0].contract;
+    const unrelatedCertificate = Object.freeze({
+      ...contract,
+      issueCertificate: (evidence: Parameters<ModeContract['issueCertificate']>[0]) => (
+        Object.freeze({
+          ...contract.issueCertificate(evidence),
+          evidenceReferences: Object.freeze(['unrelated-evidence']),
+        })
+      ),
+    });
+    const altered = replaceContract(entries, modeId, unrelatedCertificate);
+    const report = runModeConformance(inputWith(altered, validFixtures(altered)));
+
+    expect(report.passed).toBe(false);
+    expect(report.issues).toContainEqual(expect.objectContaining({
+      code: 'CERTIFICATE_EVIDENCE_BINDING', modeId,
+    }));
+  });
+
+  it('shares strict installed-version, artifact, and authorization binding predicates', () => {
+    const versions = {
+      eventEnvelopeVersion: 1,
+      eventSchemaVersion: 'deep-research-event@1',
+      reducerVersion: 'deep-research-reducer@1',
+      projectionVersion: 'deep-research-projection@1',
+    };
+    expect(matchesInstalledVersionBindings(versions, versions)).toBe(true);
+    expect(matchesInstalledVersionBindings(
+      { ...versions, reducerVersion: 'stale-reducer@1' },
+      versions,
+    )).toBe(false);
+    expect(matchesArtifactClaimSet(
+      ['a'.repeat(64)],
+      [{ contentDigest: 'b'.repeat(64) }],
+      'c'.repeat(64),
+    )).toBe(false);
+    expect(matchesPreparedAuthorizationDecision(
+      {} as never,
+      {} as never,
+      'deep-research',
+    )).toBe(false);
   });
 
   it('rejects a reducer that adds an undeclared state field', () => {

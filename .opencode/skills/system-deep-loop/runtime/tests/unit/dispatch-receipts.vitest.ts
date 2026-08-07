@@ -835,7 +835,7 @@ describe('secret exclusion and verifier honesty', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('verified three-valued resume', () => {
-  it('classifies no receipt, receipt-only, exact result, and desired-fingerprint conflict', async () => {
+  it('classifies no receipt, receipt-only, caller result evidence, and desired-fingerprint conflict', async () => {
     const harness = createHarness('resume-states');
     const invocation = resolvedInvocation();
     await expect(resumeDispatchFromVerifiedLedger({
@@ -876,9 +876,12 @@ describe('verified three-valued resume', () => {
       ledger: harness.ledger,
       result: verifiedResult(invocation),
     })).resolves.toMatchObject({
-      classification: 'result_recorded',
+      classification: 'unresolved',
       eligibleForFirstDispatch: false,
-      result: { resultId: 'result-1', verified: true },
+      handoff: {
+        effectRecovery: { action: 'reconcile' },
+        successorSalvage: { action: 'inspect-and-salvage' },
+      },
     });
 
     await expect(resumeDispatchFromVerifiedLedger({

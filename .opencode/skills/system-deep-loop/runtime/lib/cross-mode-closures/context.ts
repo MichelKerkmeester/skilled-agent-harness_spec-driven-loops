@@ -35,6 +35,21 @@ function requireMethod(value: unknown, field: string): void {
   }
 }
 
+function deepFreeze<T>(value: T, seen = new WeakSet<object>()): T {
+  if (value === null || typeof value !== 'object') return value;
+  if (ArrayBuffer.isView(value)) return value;
+  if (seen.has(value)) return value;
+  seen.add(value);
+  for (const child of Object.values(value as Record<string, unknown>)) {
+    deepFreeze(child, seen);
+  }
+  return Object.freeze(value);
+}
+
+function cloneAndFreeze<T>(value: T): T {
+  return deepFreeze(structuredClone(value));
+}
+
 /** Create the single immutable context shared by all five closure owners. */
 export function createCrossModeClosureContext(
   input: CrossModeClosureContextInput,
@@ -164,11 +179,11 @@ export function createCrossModeClosureContext(
     modeContract: input.modeContract,
     modeIdentity: descriptor.modeId as CrossModeClosureContext['modeIdentity'],
     interfaceVersion: descriptor.interfaceVersion,
-    lifecycleEvent: input.lifecycleEvent,
+    lifecycleEvent: cloneAndFreeze(input.lifecycleEvent),
     continuityIdentity: input.continuityIdentity,
-    sealedReferences: Object.freeze([...input.sealedReferences]),
-    budgetScope: input.budgetScope,
-    writeSet: Object.freeze(input.writeSet.map((binding) => Object.freeze({
+    sealedReferences: cloneAndFreeze(input.sealedReferences),
+    budgetScope: cloneAndFreeze(input.budgetScope),
+    writeSet: cloneAndFreeze(input.writeSet.map((binding) => Object.freeze({
       modeResource: binding.modeResource,
       protectedResource: Object.freeze({
         ...binding.protectedResource,
@@ -176,7 +191,7 @@ export function createCrossModeClosureContext(
       }),
     }))),
     posture: LEGACY_SHADOW_POSTURE,
-    correlation: Object.freeze({ ...input.correlation }),
+    correlation: cloneAndFreeze(input.correlation),
   });
   bindClosureServicePorts(context, services);
   return context;

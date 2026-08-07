@@ -4,6 +4,7 @@
 
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { verifyClassificationManifest } from '../inflight-state-classification/index.js';
+import { matchesPreparedAuthorizationDecision } from '../mode-contracts/index.js';
 import {
   AtomicityDomains,
   ProtectedResourceKinds,
@@ -296,6 +297,11 @@ export class DeepAiCouncilRollbackSwitch {
         gatewayDecisionId: authorization.decision?.decision_id ?? null,
       });
     }
+    if (!matchesPreparedAuthorizationDecision(
+      authorization.decision,
+      prepared.authorizationRequest,
+      'deep-ai-council',
+    )) return denied('EVIDENCE_INCOMPLETE');
 
     let writerFenceToken: number;
     try {

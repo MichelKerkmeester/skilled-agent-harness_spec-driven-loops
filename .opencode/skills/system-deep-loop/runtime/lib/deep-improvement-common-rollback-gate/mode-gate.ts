@@ -19,9 +19,15 @@ import {
   parseDeepImprovementCommonModeGateInput,
   parseDeepImprovementCommonParityReceipt,
 } from '../deep-improvement-common-shadow-parity/index.js';
-import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
+import { DEEP_IMPROVEMENT_COMMON_EVENT_VERSION } from '../deep-improvement-common-ledger-schema/index.js';
+import {
+  DEEP_IMPROVEMENT_COMMON_PROJECTION_SCHEMA_VERSION,
+  DEEP_IMPROVEMENT_COMMON_REDUCER_VERSION,
+} from '../deep-improvement-common-reducers/index.js';
+import { canonicalBytes, CURRENT_ENVELOPE_VERSION, sha256Bytes } from '../event-envelope/index.js';
 import { HealthAggregateStates } from '../health-degeneration-harness/index.js';
 import { verifyClassificationManifest } from '../inflight-state-classification/index.js';
+import { matchesArtifactClaimSet, matchesInstalledVersionBindings } from '../mode-contracts/index.js';
 import { verifyPhase014RollbackEvidence } from '../rollback-drills/index.js';
 
 import {
@@ -108,6 +114,12 @@ const VERSION_BINDING_KEYS = Object.freeze([
   'reducerVersion',
   'projectionVersion',
 ] as const);
+const INSTALLED_VERSION_BINDINGS = Object.freeze({
+  eventEnvelopeVersion: CURRENT_ENVELOPE_VERSION,
+  eventSchemaVersion: `deep-improvement-common-event@${DEEP_IMPROVEMENT_COMMON_EVENT_VERSION}`,
+  reducerVersion: DEEP_IMPROVEMENT_COMMON_REDUCER_VERSION,
+  projectionVersion: DEEP_IMPROVEMENT_COMMON_PROJECTION_SCHEMA_VERSION,
+});
 const WINDOW_KEYS = Object.freeze([
   'openedAt',
   'evaluatedAt',
@@ -298,7 +310,7 @@ function overallVerdict(
 function malformedResult(): DeepImprovementCommonModeGateResult {
   const dispositions = Object.freeze(INPUT_ORDER.map((input) => fail(input, 'EVIDENCE_MALFORMED')));
   return Object.freeze({
-    verdict: overallVerdict(dispositions),
+    verdict: 'blocked',
     dispositions,
     certificate: null,
   });
@@ -320,6 +332,7 @@ function validateTopLevel<TState extends JsonObject>(
     && isToken(input.versions.eventSchemaVersion)
     && isToken(input.versions.reducerVersion)
     && isToken(input.versions.projectionVersion)
+    && matchesInstalledVersionBindings(input.versions, INSTALLED_VERSION_BINDINGS)
     && isToken(input.verifierIdentity)
     && isToken(input.verifierVersion)
     && isPlainRecord(input.authority)
@@ -722,9 +735,11 @@ async function evaluateSealed<TState extends JsonObject>(
       || body.baselineId !== (baseline.material as { baselineId: string }).baselineId
       || body.canaryEpochId !== (canary.material as { canaryEpochId: string }).canaryEpochId
       || body.evaluatorEpochId !== (promotion.material as { evaluatorEpochId: string }).evaluatorEpochId
-      || digest(artifactDigests) !== digest(body.artifactClaims.map(
-        (entry) => entry.binding.reference.qualified_digest,
-      ).sort())
+      || !matchesArtifactClaimSet(
+        artifactDigests,
+        body.artifactClaims,
+        body.artifactSetDigest,
+      )
     ) {
       return {
         disposition: fail('sealed_artifacts', 'EVIDENCE_STALE'),

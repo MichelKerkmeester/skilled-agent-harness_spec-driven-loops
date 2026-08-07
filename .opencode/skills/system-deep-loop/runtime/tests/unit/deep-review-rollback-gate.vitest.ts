@@ -2,6 +2,8 @@
 // MODULE: Deep Review Rollback Gate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import { createHash } from 'node:crypto';
 import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -661,7 +663,7 @@ async function authorizedLedger(events: readonly DeepReviewLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1511,6 +1513,7 @@ async function buildValidModeGateInput(): Promise<DeepReviewModeGateInput<Replay
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions: successfulWindowExecutions(),
+      authenticatedExecutions: successfulWindowExecutions(),
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     },
@@ -1867,13 +1870,16 @@ describe('rollback window', () => {
       authorityEpoch: 2, result: result as 'trusted-completion' | 'incomplete' | 'abstained',
       certificateDigest: hash(`execution-${index}`) }));
     const early = evaluateDeepReviewRollbackWindow({ openedAt: '2026-07-01T00:00:00Z',
-      evaluatedAt: '2026-07-15T00:00:00Z', executions, unresolvedEvidenceCount: 0, lowTraffic: false });
+      evaluatedAt: '2026-07-15T00:00:00Z', executions, authenticatedExecutions: executions,
+      unresolvedEvidenceCount: 0, lowTraffic: false });
     expect(early).toMatchObject({ state: 'open', elapsedCalendarDays: 14,
       successfulAuthoritativeExecutions: 4, windowClosed: false });
-    const ready = evaluateDeepReviewRollbackWindow({ openedAt: '2026-07-01T00:00:00Z',
-      evaluatedAt: '2026-07-15T00:00:00Z', executions: [...executions, {
+    const readyExecutions = [...executions, {
         executionId: 'execution-6', authorityState: 'new_authoritative_reversible', authorityEpoch: 2,
-        result: 'trusted-completion', certificateDigest: hash('execution-6') }],
+        result: 'trusted-completion', certificateDigest: hash('execution-6') }];
+    const ready = evaluateDeepReviewRollbackWindow({ openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z', executions: readyExecutions,
+      authenticatedExecutions: readyExecutions,
       unresolvedEvidenceCount: 0, lowTraffic: false });
     expect(ready.state).toBe('eligible_to_close');
     expect(ready.windowClosed).toBe(false);
@@ -1885,6 +1891,7 @@ describe('rollback window', () => {
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions: Array.from({ length: 5 }, () => ({ ...execution })),
+      authenticatedExecutions: [execution],
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -1905,6 +1912,7 @@ describe('rollback window', () => {
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions,
+      authenticatedExecutions: executions,
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -1925,6 +1933,7 @@ describe('rollback window', () => {
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions,
+      authenticatedExecutions: executions,
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -1935,11 +1944,30 @@ describe('rollback window', () => {
     });
   });
 
+  it('does not count execution rows without matching authenticated evidence', () => {
+    const executions = successfulWindowExecutions(2);
+    const result = evaluateDeepReviewRollbackWindow({
+      openedAt: '2026-07-01T00:00:00Z',
+      evaluatedAt: '2026-07-15T00:00:00Z',
+      executions,
+      authenticatedExecutions: [],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    } as never);
+
+    expect(result).toMatchObject({
+      state: 'open',
+      successfulAuthoritativeExecutions: 0,
+      windowClosed: false,
+    });
+  });
+
   it('closes neither authority nor evidence while five distinct executions become eligible', () => {
     const result = evaluateDeepReviewRollbackWindow({
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions: successfulWindowExecutions(),
+      authenticatedExecutions: successfulWindowExecutions(),
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -1955,6 +1983,7 @@ describe('rollback window', () => {
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions: successfulWindowExecutions(),
+      authenticatedExecutions: successfulWindowExecutions(),
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -1962,6 +1991,11 @@ describe('rollback window', () => {
       openedAt: '2026-07-01T00:00:00Z',
       evaluatedAt: '2026-07-15T00:00:00Z',
       executions: successfulWindowExecutions().map((entry, index) => ({
+        ...entry,
+        executionId: `replacement-execution-${index + 1}`,
+        certificateDigest: hash(`replacement-certificate-${index + 1}`),
+      })),
+      authenticatedExecutions: successfulWindowExecutions().map((entry, index) => ({
         ...entry,
         executionId: `replacement-execution-${index + 1}`,
         certificateDigest: hash(`replacement-certificate-${index + 1}`),
@@ -2016,6 +2050,16 @@ describe('independent parity authentication', () => {
           reasonCode: 'CERTIFICATE_RECEIPT_INVALID' }),
         expect.objectContaining({ input: 'rollback_readiness', disposition: 'rollback_required',
           reasonCode: 'EVIDENCE_MALFORMED' }),
+      ]),
+    });
+  });
+
+  it('returns a typed blocked result for a null top-level caller value', async () => {
+    await expect(new DeepReviewModeMigrationGate().evaluate(null as never)).resolves.toMatchObject({
+      verdict: 'blocked',
+      certificate: null,
+      dispositions: expect.arrayContaining([
+        expect.objectContaining({ reasonCode: 'EVIDENCE_MALFORMED' }),
       ]),
     });
   });

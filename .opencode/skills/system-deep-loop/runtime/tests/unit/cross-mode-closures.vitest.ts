@@ -438,6 +438,16 @@ describe('cross-mode closures', () => {
     expect(harness.services.authorization.append).not.toHaveBeenCalled();
   });
 
+  it('copies and freezes identity-bearing inputs before exposing the closure context', () => {
+    const harness = contextHarness();
+    const scope = harness.context.budgetScope.scope as { scopeId: string };
+
+    expect(Object.isFrozen(harness.context.budgetScope)).toBe(true);
+    expect(Object.isFrozen(harness.context.budgetScope.scope)).toBe(true);
+    expect(() => { scope.scopeId = 'caller-mutated-scope'; }).toThrow(TypeError);
+    expect(harness.context.budgetScope.scope.scopeId).toBe('mode-scope');
+  });
+
   it('rejects a mode attempt to re-reduce shared adjudication evidence', async () => {
     const harness = contextHarness();
     const localReduction = defineModeDataPolicyOverride({

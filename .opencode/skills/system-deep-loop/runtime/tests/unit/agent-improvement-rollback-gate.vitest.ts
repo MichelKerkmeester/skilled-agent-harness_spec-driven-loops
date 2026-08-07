@@ -393,7 +393,22 @@ describe('independent fail-closed gate', () => {
         ['certificates_receipts', 'blocked', 'EVIDENCE_MISSING'],
         ['lifecycle_resume', 'blocked', 'RESUME_INVALID'],
         ['rollback_readiness', 'rollback_required', 'COMMON_GATE_INVALID'],
-      ]);
+    ]);
+  });
+
+  it('rejects a token-valid version tuple that does not name the installed agent contract', async () => {
+    const input = emptyModeGateInput();
+    const result = await new AgentImprovementModeMigrationGate().evaluate({
+      ...input,
+      versions: {
+        ...input.versions,
+        eventSchemaVersion: 'deep-improvement-common-event@1',
+      },
+    });
+
+    expect(result.certificate).toBeNull();
+    expect(result.dispositions.every((entry) => entry.reasonCode === 'EVIDENCE_MALFORMED'))
+      .toBe(true);
   });
 
   it('drives the real offline verifier and preserves its failure as a typed denial', async () => {

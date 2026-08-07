@@ -2,6 +2,8 @@
 // MODULE: Deep Research Rollback Gate Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
+
 import { createHash } from 'node:crypto';
 import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -480,7 +482,7 @@ async function certificateLedger(events: readonly DeepResearchLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected certificate fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({ rootDirectory, operationTimeoutMs: 5_000 });
   const ledgerLease = coordinator.acquire({
@@ -1697,6 +1699,16 @@ describe('complete mode migration gate', () => {
     ]);
     expect(result).toMatchObject({ verdict: 'pass' });
     expect(result.certificate?.versions).toEqual(input.versions);
+  });
+
+  it('returns a typed blocked result for a null top-level caller value', async () => {
+    await expect(new DeepResearchModeMigrationGate().evaluate(null as never)).resolves.toMatchObject({
+      verdict: 'blocked',
+      certificate: null,
+      dispositions: expect.arrayContaining([
+        expect.objectContaining({ reasonCode: 'EVIDENCE_MALFORMED' }),
+      ]),
+    });
   });
 
   it.each([
