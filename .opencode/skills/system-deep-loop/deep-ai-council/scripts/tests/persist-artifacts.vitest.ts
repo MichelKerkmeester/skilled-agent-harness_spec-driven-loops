@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, parse } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const {
@@ -19,6 +21,8 @@ const {
   writeStrategyMd,
   writeReport,
   parseStateLog,
+  councilRootFor,
+  assertMemorySavePayloadOutSafe,
 } = require('../lib/persist-artifacts.cjs') as {
   buildMemorySavePayload: (parsed: Record<string, unknown>, packetSpecFolder: string) => Record<string, unknown>;
   parseCouncilReport: (markdown: string) => Record<string, unknown>;
@@ -32,7 +36,11 @@ const {
   writeStrategyMd: (packetSpecFolder: string, content: string, options?: Record<string, unknown>) => string;
   writeReport: (packetSpecFolder: string, content: string, options?: Record<string, unknown>) => string;
   parseStateLog: (jsonl: string) => Record<string, unknown>[];
+  councilRootFor: (packetSpecFolder: string) => { packetRoot: string; aiCouncilRoot: string };
+  assertMemorySavePayloadOutSafe: (payloadOutPath: string) => string;
 };
+
+const HELPER_PATH = join(dirname(fileURLToPath(import.meta.url)), '../persist-artifacts.cjs');
 
 /**
  * Creates a temporary directory and runs the callback within it, cleaning up afterwards.
@@ -407,6 +415,111 @@ Trade-off: the full report sections arrive later, not atomically with the seat.
           effective: { model: string | null };
         }).effective.model,
       ).toBeNull();
+    });
+  });
+
+  // ── packet-root authorization (councilRootFor) ────────────────────
+
+  describe('councilRootFor packet-root authorization', () => {
+    it('refuses a packet root that resolves to the filesystem root, before any mkdir', () => {
+      const fsRoot = parse(process.cwd()).root;
+      expect(() => councilRootFor(fsRoot)).toThrow(/filesystem root/);
+    });
+
+    it('refuses a packet root that is itself a symlink, before any mkdir', () => {
+      const decoyDir = mkdtempSync(join(tmpdir(), 'council-root-decoy-'));
+      const parentDir = mkdtempSync(join(tmpdir(), 'council-root-symlink-'));
+      const symlinkedPacket = join(parentDir, 'packet-link');
+      try {
+        symlinkSync(decoyDir, symlinkedPacket, 'dir');
+        expect(() => councilRootFor(symlinkedPacket)).toThrow(/symlink/);
+        // The rejection must happen before any write — the decoy target
+        // must never see an `ai-council` directory appear.
+        expect(existsSync(join(decoyDir, 'ai-council'))).toBe(false);
+      } finally {
+        rmSync(symlinkedPacket, { force: true });
+        rmSync(parentDir, { recursive: true, force: true });
+        rmSync(decoyDir, { recursive: true, force: true });
+      }
+    });
+
+    it('still accepts a real, non-symlinked out-of-cwd packet root (OS tmpdir), unaffected by the authorization gate', async () => {
+      await withTempPacket(async (packetSpecFolder) => {
+        const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
+        expect(aiCouncilRoot).toBe(join(packetSpecFolder, 'ai-council'));
+      });
+    });
+  });
+
+  // ── --memory-save-payload-out symlink safety ───────────────────────
+
+  describe('--memory-save-payload-out refuses to write through a symlink', () => {
+    it('assertMemorySavePayloadOutSafe refuses an existing symlink target', () => {
+      const dir = mkdtempSync(join(tmpdir(), 'council-payload-symlink-'));
+      const decoy = join(dir, 'decoy.json');
+      const linkPath = join(dir, 'payload-out.json');
+      try {
+        writeFileSync(decoy, '{"untouched":true}\n', 'utf8');
+        symlinkSync(decoy, linkPath);
+        expect(() => assertMemorySavePayloadOutSafe(linkPath)).toThrow(/symlink/);
+        expect(readFileSync(decoy, 'utf8')).toBe('{"untouched":true}\n');
+      } finally {
+        rmSync(dir, { recursive: true, force: true });
+      }
+    });
+
+    it('the CLI refuses to overwrite an attacker-planted symlink through --memory-save-payload-out', () => {
+      const packet = mkdtempSync(join(tmpdir(), 'council-payload-cli-'));
+      const decoyDir = mkdtempSync(join(tmpdir(), 'council-payload-cli-decoy-'));
+      const decoy = join(decoyDir, 'secret.json');
+      const payloadOutLink = join(packet, 'payload-out.json');
+      try {
+        writeFileSync(decoy, '{"untouched":true}\n', 'utf8');
+        symlinkSync(decoy, payloadOutLink);
+
+        const reportMarkdown = `# Multi-AI Council Report
+
+## Council Composition
+| Seat | Strategy Lens | AI Vantage Target | Distinct Mandate |
+|------|---------------|-------------------|-----------------|
+| seat-001 | Architectural | System Design | Focus on modularity |
+
+## Recommended Plan
+- Extend runtime with council primitives
+
+## Plan Confidence
+**Overall**: 85/100
+`;
+        expect(parseCouncilReport(reportMarkdown).ok).toBe(true);
+        const inputFile = join(packet, 'council-report.md');
+        writeFileSync(inputFile, reportMarkdown, 'utf8');
+
+        let result: { status: number | null; stdout: string; stderr: string };
+        try {
+          const stdout = execFileSync('node', [
+            HELPER_PATH,
+            packet,
+            '--input-file',
+            inputFile,
+            '--memory-save-payload-out',
+            payloadOutLink,
+          ], { encoding: 'utf8', stdio: 'pipe' });
+          result = { status: 0, stdout, stderr: '' };
+        } catch (error) {
+          const spawnError = error as { status: number | null; stdout: string; stderr: string };
+          result = spawnError;
+        }
+
+        // Partial-write-failure semantics: artifacts still land, but the
+        // payload write is refused and reported (exit 2), and the symlinked
+        // decoy must never be overwritten with council payload content.
+        expect(result.status).toBe(2);
+        expect(result.stderr).toMatch(/symlink/);
+        expect(readFileSync(decoy, 'utf8')).toBe('{"untouched":true}\n');
+      } finally {
+        rmSync(packet, { recursive: true, force: true });
+        rmSync(decoyDir, { recursive: true, force: true });
+      }
     });
   });
 });

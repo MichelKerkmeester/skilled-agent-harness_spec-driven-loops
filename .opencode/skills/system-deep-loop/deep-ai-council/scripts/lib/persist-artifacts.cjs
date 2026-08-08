@@ -529,9 +529,27 @@ function writeFileScoped(aiCouncilRoot, relativePath, content, options = {}) {
   return targetPath;
 }
 
+// aiCouncilRoot is always path.resolve(packetRoot, 'ai-council'), so
+// assertInside(packetRoot, aiCouncilRoot) alone can never fail — it proves
+// nothing about what packetRoot itself is allowed to be. This closes the two
+// concretely reachable degenerate cases before any mkdir: a root with no
+// parent directory (the filesystem root) and a root that is itself a
+// symlink, either of which lets a caller-chosen positional argument redirect
+// every council write.
+function assertAuthorizedPacketRoot(packetSpecFolder, packetRoot) {
+  const parent = path.dirname(packetRoot);
+  if (parent === packetRoot) {
+    throw new Error(`[ai-council] packet spec folder resolves to a filesystem root, refusing: ${packetSpecFolder}`);
+  }
+  if (fs.existsSync(packetRoot) && fs.lstatSync(packetRoot).isSymbolicLink()) {
+    throw new Error(`[ai-council] packet spec folder is a symlink, refusing to write through it: ${packetSpecFolder}`);
+  }
+}
+
 function councilRootFor(packetSpecFolder) {
   if (!packetSpecFolder) throw new Error('[ai-council] packet spec folder is required');
   const packetRoot = path.resolve(packetSpecFolder);
+  assertAuthorizedPacketRoot(packetSpecFolder, packetRoot);
   const aiCouncilRoot = path.resolve(packetRoot, 'ai-council');
   assertInside(packetRoot, aiCouncilRoot);
   return { packetRoot, aiCouncilRoot };
@@ -960,6 +978,24 @@ function readInput(inputFile) {
   return fs.readFileSync(0, 'utf8');
 }
 
+// --memory-save-payload-out is documented and used to write outside the
+// packet (a caller-chosen scratch path for a downstream generate-context.js
+// call), so it cannot be confined to the council root the way in-packet
+// artifacts are. The write must still refuse to follow an existing symlink
+// at the target or its parent directory, or a planted symlink silently
+// redirects the payload write onto a file the caller never named.
+function assertMemorySavePayloadOutSafe(payloadOutPath) {
+  const resolved = path.resolve(payloadOutPath);
+  if (fs.existsSync(resolved) && fs.lstatSync(resolved).isSymbolicLink()) {
+    throw new Error(`[ai-council] --memory-save-payload-out refuses to write through an existing symlink: ${resolved}`);
+  }
+  const parentDir = path.dirname(resolved);
+  if (fs.existsSync(parentDir) && fs.lstatSync(parentDir).isSymbolicLink()) {
+    throw new Error(`[ai-council] --memory-save-payload-out parent directory is a symlink: ${parentDir}`);
+  }
+  return resolved;
+}
+
 /**
  * Run the council artifact persistence CLI.
  *
@@ -1007,8 +1043,9 @@ function main(argv = process.argv.slice(2)) {
     if (args.memorySavePayloadOut) {
       try {
         const payload = buildMemorySavePayload(parsed, args.packetSpecFolder);
-        fs.mkdirSync(path.dirname(path.resolve(args.memorySavePayloadOut)), { recursive: true });
-        fs.writeFileSync(path.resolve(args.memorySavePayloadOut), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+        const payloadOutPath = assertMemorySavePayloadOutSafe(args.memorySavePayloadOut);
+        fs.mkdirSync(path.dirname(payloadOutPath), { recursive: true });
+        fs.writeFileSync(payloadOutPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
       } catch (payloadError) {
         console.warn(`[ai-council] Failed to write memory-save payload: ${payloadError instanceof Error ? payloadError.message : String(payloadError)}`);
         return 2;
@@ -1049,6 +1086,8 @@ module.exports = {
   writeReport,
   writeArtifacts,
   appendStateLine,
+  councilRootFor,
+  assertMemorySavePayloadOutSafe,
   main,
 };
 

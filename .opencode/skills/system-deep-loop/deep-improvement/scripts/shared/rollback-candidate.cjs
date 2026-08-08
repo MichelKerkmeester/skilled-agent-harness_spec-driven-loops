@@ -174,6 +174,35 @@ function fail(message) {
   process.exit(1);
 }
 
+// The acceptance file rollback reads is a bare mutable JSON with no
+// authenticity check of its own, so a forged or stale copy could carry
+// fabricated hash fields the guard below would otherwise trust outright.
+// promote-candidate.cjs writes a sidecar receipt at accept time
+// (createAcceptanceReceipt) binding the acceptance file's content hash and
+// its candidate/target identity; this mirrors the same check promotion's
+// ship phase already runs (assertShipPreconditions) so rollback trusts the
+// acceptance file's fields only when they still match what was recorded at
+// accept time.
+function assertAcceptanceReceipt(acceptanceFilePath, acceptedState) {
+  const receiptPath = `${acceptanceFilePath}.receipt.json`;
+  if (!fs.existsSync(receiptPath)) {
+    fail('Cannot roll back: acceptance receipt not found; the acceptance file may have been forged');
+  }
+  let receipt;
+  try {
+    receipt = readJson(receiptPath);
+  } catch (error) {
+    fail(`Cannot roll back: acceptance receipt is not valid JSON: ${error.message}`);
+    return;
+  }
+  if (receipt.acceptanceHash !== sha256File(acceptanceFilePath)) {
+    fail('Cannot roll back: acceptance file has been modified since the receipt was issued');
+  }
+  if (receipt.target !== acceptedState.target || receipt.candidate !== acceptedState.candidate) {
+    fail('Cannot roll back: acceptance receipt does not match the acceptance file target/candidate');
+  }
+}
+
 function expectedRollbackSourceHashes(acceptedState) {
   if (!acceptedState) {
     return [];
@@ -220,7 +249,11 @@ function assertRollbackHashGuard(acceptedState, target, backup) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const acceptedState = args['acceptance-file'] ? readJson(args['acceptance-file']) : null;
+  const acceptanceFilePath = args['acceptance-file'];
+  const acceptedState = acceptanceFilePath ? readJson(acceptanceFilePath) : null;
+  if (acceptedState) {
+    assertAcceptanceReceipt(acceptanceFilePath, acceptedState);
+  }
   const target = args.target || acceptedState?.target;
   const backup = args.backup || acceptedState?.preAcceptBackupPath;
   const configPath = args.config || acceptedState?.configPath;
