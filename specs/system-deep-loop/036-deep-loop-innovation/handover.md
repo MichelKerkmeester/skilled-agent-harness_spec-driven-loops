@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "029 closed 13/13 (f6cdf604a2+ab6aae0a71); 024 build-spec.md written; needs fresh worktree"
-    next_safe_action: "Execute 024/build-spec.md in a FRESH worktree at origin tip (largest blast, fab-prone)"
+    recent_action: "024 T001 done: B5/B6 REFUTED (spec over-scoped); GO=B1/B2/B3/B4/F-018-03/B7"
+    next_safe_action: "Build 024 GO-set per t001-disposition.md in a FRESH worktree; skip refuted B5/B6"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -66,6 +66,15 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   origin `5410a4bfcb`). P0 sets reconciled (complementary; B1-B7 canonical set; 5 findings
   LUNA-REFUTED → T001-gate before any fix — the anti-fabrication guard). Execute it in a FRESH
   worktree at origin tip (this tree is too messy for the atomic migration). Do NOT rush it.
+- **024 T001 confirm-first DONE** (`024/t001-disposition.md` — AUTHORITATIVE over build-spec).
+  Re-graded every finding vs live origin code: **B5 (append-lock reclaim) + B6 (leaf publication)
+  are REFUTED — already remediated, do NOT build them** (build-spec over-scoped; verified
+  `atomic-state.ts:177` pid-liveness reclaim + `leaf-artifact-writer.ts:439` cross-process
+  FencedLease). Also refuted: F-004-01/02/03, F-002-02. **GO-to-build: B1, B2, B3, B4, F-018-03,
+  B7** — the atomic fencing core (`#appendAuthorized` + gateway + 32-caller codemod + fence_token
+  persistence) + identity/policy digest + loop-lock atomic publish + honest metadata. F-002-01 =
+  benign, operator-elected. The concurrency-defect surface ~halved; the highest-fabrication-risk
+  "two-process single-winner" tests for already-correct code are GONE.
 - **Leak-guard mechanics gap (NEW, important):** `land-wt0129.sh`'s 0-deletion guard only catches
   full-file `D` status, NOT content REMOVED from a still-present (modified) file. The
   partial-checkout `specs/` copies in this worktree are near-empty stubs — landing one directly

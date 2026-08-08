@@ -1,5 +1,12 @@
 # 024 Durable-Write-Boundaries — Grounded Build Specification
 
+> **⚠ PARTIALLY SUPERSEDED — read `t001-disposition.md` FIRST; it is authoritative.** The T001
+> confirm-first pass re-graded every finding against the live code and found this spec's
+> **B5 (append-lock reclaim) and B6 (leaf publication) are REFUTED — already remediated in the
+> tree, do NOT build them.** Confirmed GO set: B1, B2, B3, B4, F-018-03, B7. Also refuted:
+> F-004-01/02/03, F-002-02. NEEDS-DESIGN: F-002-01. §2 caller census + §3 fence-API + §6 codemod
+> below remain valid; §1/§4's B5/B6 gradings do not.
+
 > Produced by a read-only prep pass grounded against origin `skilled/v4.0.0.0` tip
 > `5410a4bfcb` (the code state), not the stale worktree HEAD. **Every finding here is a
 > hypothesis until T001 re-confirms it at the build-time HEAD** — the last build of this
