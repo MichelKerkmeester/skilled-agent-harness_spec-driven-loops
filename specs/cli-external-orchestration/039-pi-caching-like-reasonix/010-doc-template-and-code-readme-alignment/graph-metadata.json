@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/039-pi-caching-like-reasonix/010-doc-template-and-code-readme-alignment",
+  "spec_folder": "cli-external-orchestration/039-pi-caching-like-reasonix/010-doc-template-and-code-readme-alignment",
+  "parent_id": "cli-external-orchestration/039-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "changes from upstream readme shape",
+      "code folder readme deep-pi",
+      "code folder readme pi-cache-optimizer",
+      "sk-code opencode alignment",
+      "doc template code readme alignment plan",
+      "doc template code readme alignment tasks",
+      "doc template code readme alignment checklist",
+      "doc template code readme alignment implementation",
+      "glm-5.2 cli-devin dispatch"
+    ],
+    "key_topics": [
+      "changes",
+      "upstream",
+      "readme",
+      "shape",
+      "code",
+      "folder",
+      "deep-pi",
+      "pi-cache-optimizer",
+      "sk-code",
+      "opencode",
+      "alignment",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "How This Compares",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Resources",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any `sk-doc` document template, so they read differently from every other authored doc in this repo",
+    "created_at": "2026-08-08T12:24:19.875Z",
+    "last_save_at": "2026-08-08T15:44:09.691Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e99794b94fd5439f491c7fcd6f12a12667f46382118b4e47eac3f94b4bcc1cf7",
+    "source_doc_hashes": {
+      "spec.md": "6c8feaf1a4c6212f01a7855ae05c2a77328aed2f181f9b0bb90cf5607a04ff0b",
+      "plan.md": "b49bb39b5aef0b0201b4cbc3c570859db88f1841870f155616a2913ce4598794",
+      "tasks.md": "2a604990f20310b3bcd09de4ffb77e5723c1e0b1da717dea49e69b2c35f46019",
+      "checklist.md": "a0e680940fb0b04196bf1eb181b2610b2779919ff7ed2b054f28242695488e60",
+      "implementation-summary.md": "999696b5a8db3b29b0a3160059e0cbeea38a653578070ff8f5cd1ab17be6b3a3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

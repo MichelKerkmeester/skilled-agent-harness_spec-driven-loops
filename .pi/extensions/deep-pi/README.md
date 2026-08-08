@@ -58,3 +58,7 @@ DeepPi's additions are its exact direct-V4 boundary, measured Pi cache/cost
 telemetry, prefix-churn diagnostics, batch-aware retry guards, atomic hashline
 edits, removal of destructive rewind behavior, and tests against current Pi
 event shapes.
+
+## Fork
+
+The copy of `deep-pi` in this repository was vendored from `christopherarter/deep-pi` at commit `0f1cbd8124b4fb35df97f85aa943d730f4aae549`. It has since diverged through local patches documented in [CHANGES-FROM-UPSTREAM.md](./CHANGES-FROM-UPSTREAM.md). The vendored copy at `.pi/extensions/deep-pi/` is the version Pi runs in this repository. The README command `pi install git:github.com/christopherarter/deep-pi` installs the original, unmodified upstream and does not include these local changes.

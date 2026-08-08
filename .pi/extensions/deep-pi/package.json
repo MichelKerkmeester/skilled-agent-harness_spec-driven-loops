@@ -37,6 +37,7 @@
     "LICENSE",
     "README.md",
     "extensions",
+    "scripts",
     "tsconfig.json"
   ],
   "peerDependencies": {

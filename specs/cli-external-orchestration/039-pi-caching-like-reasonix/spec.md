@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision"
-description: "Phased packet investigating whether Pi should gain Reasonix-style prompt-cache discipline via a plugin. Phase 1 runs a 20-iteration, non-converging deep-research pass across three GPT-5.6 executors (SOL high fast, TERRA max fast, LUNA max fast) to verify the lumo.md caching claims and scope the real feature gap; Phase 2 synthesizes findings into a NO-GO on a new plugin. Phases 3-5 re-enter under ADR-001's documented contract (a new phase child + superseding ADR) to fork-and-split ownership of two existing packages instead — not the rejected greenfield build."
+description: "Phased packet investigating whether Pi should gain Reasonix-style prompt-cache discipline via a plugin. Phase 1 runs a 20-iteration, non-converging deep-research pass across three GPT-5.6 executors (SOL high fast, TERRA max fast, LUNA max fast) to verify the lumo.md caching claims and scope the real feature gap; Phase 2 synthesizes findings into a NO-GO on a new plugin. Phases 3-5 re-enter under ADR-001's documented contract (a new phase child + superseding ADR) to fork-and-split ownership of two existing packages instead — not the rejected greenfield build. Phase 6 hardens the deep-pi fork; phase 7 runs a 4-executor research pass over both forks; phase 8 turns those findings into a planning-only, sequenced 3-child fix plan that changes no code."
 trigger_phrases:
   - "pi caching reasonix"
   - "pi prompt cache plugin"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/039-pi-caching-like-reasonix"
-    last_updated_at: "2026-08-07T14:44:33Z"
+    last_updated_at: "2026-08-08T07:03:28Z"
     last_updated_by: "spec-author"
-    recent_action: "Core (1-5) closed; phase 6 (deep-pi hardening) drafted, awaiting SOL review"
-    next_safe_action: "Dispatch SOL xhigh review of phase 6, then await go-ahead"
+    recent_action: "Phase 8 authored as a planning-only 3-child decomposition"
+    next_safe_action: "Operator selects which 008 child phase to implement first"
     blockers: []
     key_files:
       - "spec.md"
@@ -31,6 +31,9 @@ _memory:
     answered_questions:
       - "Iteration distribution resolved: runtime ran 3 independent lineages x 20 iterations (60 dispatches)."
       - "Go/No-Go: NO-GO on a new plugin; the useful scope already ships as pi-cache-optimizer."
+      - "Phase 6 (deep-pi hardening) shipped Complete 2026-08-07, including a HANDOFF SOL review whose confirmed findings were all fixed — this doc's own frontmatter was stale about that until this update."
+      - "Phase 7 (007-research-fork-improvements) ran a 4-executor, 24-iteration deep-research pass finding concrete improvement opportunities for both forks; research/research.md holds the priority-ranked synthesis."
+      - "Phase 8 (008-implement-fork-improvements) turns 7's 13-item action list into 3 planning-only child phases matching its own P0/P1/P2 tiers. It authored specs, not code — zero changes to either fork. Implementing any child is a separate operator decision."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -54,14 +57,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete for the core scope (phases 1-5, re-entered and closed 2026-08-07 under ADR-001's documented re-entry contract, live-verified end to end); phase 6 is an optional, separately-scoped hardening pass, currently Draft |
+| **Status** | Complete through phase 7; phase 8 is Draft by design. Phases 1-5 (research → decision → fork/adopt/verify) closed 2026-08-07 under ADR-001's re-entry contract; phase 6 (deep-pi hardening, including a HANDOFF SOL review round) shipped Complete the same day; phase 7 (4-executor research on further improvements to both forks) shipped Complete 2026-08-08. Phase 8 was authored the same day as a planning-only decomposition of phase 7's action list — its parent and all 3 children are Draft, and they change no code in either fork. Whether any child is implemented is an open operator decision, not a gap |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | cli-external-orchestration |
 | **Predecessor** | None |
 | **Successor** | 003-fork-and-guard-cache-optimizer (re-entry; see Phase Documentation Map) |
-| **Handoff Criteria** | Phase 1 logs all research iterations with evidence; Phase 2 records a Go/No-Go decision with cited cost/benefit; phases 3-5 verified end-to-end with a payload-diff harness; parent validates under `validate.sh --recursive --strict` |
+| **Handoff Criteria** | Phase 1 logs all research iterations with evidence; Phase 2 records a Go/No-Go decision with cited cost/benefit; phases 3-5 verified end-to-end with a payload-diff harness; phase 6 hardens deep-pi with a HANDOFF review round closed; phase 7 researches further improvements across a 4-executor fan-out; phase 8 turns those findings into 3 sequenced, planning-only child phases carrying the original file:line evidence; parent validates under `validate.sh --recursive --strict` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -117,7 +120,9 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 | 3 | `003-fork-and-guard-cache-optimizer/` | Fork `pi-cache-optimizer` and add a narrow `deepseek-v4-flash`/`deepseek-v4-pro` ownership guard across its 6 model-specific hooks (corrected after review from an earlier 2-hook, broader-match draft), re-entering ADR-001 under its documented "new phase child + superseding ADR" contract | Complete |
 | 4 | `004-adopt-deep-pi-deepseek/` | Install `deep-pi` as the exclusive extension for `deepseek-v4-flash`/`deepseek-v4-pro` (cache stability + storm-breaker + hashline edits), self-gated | Complete |
 | 5 | `005-verification-and-decision-reconciliation/` | Verify zero overlap live and no non-DeepSeek regression against a fresh A/B baseline; author the superseding decision record (this phase's own ADR-001), honestly grounded in materially increased DeepSeek usage | Complete |
-| 6 | `006-fork-and-improve-deep-pi/` | Optional hardening pass on `deep-pi` (phase 004's exclusive DeepSeek-direct extension): fix three source-confirmed gaps found by a full source read (silent failure counter, hardcoded model allowlist with an unused fallback utility, unguarded telemetry cost math) | Draft (planning only; not yet implemented) |
+| 6 | `006-fork-and-improve-deep-pi/` | Hardening pass on `deep-pi` (phase 004's exclusive DeepSeek-direct extension): fixed three source-confirmed gaps (silent failure counters, hardcoded model allowlist with a warning-only drift signal, unguarded telemetry cost math). A HANDOFF `gpt-5.6-sol` review found 12 findings; 11 confirmed and fixed, 1 was a reviewer-side evidentiary gap. Split into 3 child phases (fix-and-test, vendor-and-repoint, live-verification-and-closeout) | Complete |
+| 7 | `007-research-fork-improvements/` | 4-executor, 24-iteration deep-research pass (`gpt-5.6-sol` high and `gpt-5.6-luna` max via cli-codex; Grok 4.5 via cli-cursor; `deepseek-v4-flash` via cli-opencode added afterward to corroborate or refute the first synthesis — 7/7/6/4 iterations, forced to full depth) finding concrete improvement opportunities for both forks across correctness, test coverage, observability, cost-economics, and maintainability. `research/research.md` holds the priority-ranked, cross-executor-validated synthesis, including one correction the 4th lineage issued against the first pass | Complete |
+| 8 | `008-implement-fork-improvements/` | Turns phase 7's 13-item priority-ranked action list into 3 sequenced child phases whose boundaries are the research's own tiers: `001-correctness-floor/` (the 4 P0 items — deep-pi's dropped cold-start telemetry turn, a single-sourced DeepSeek ownership boundary plus a combined-host composition test with the test-runner mismatch resolved, hook-level guard tests for pi-cache-optimizer, and the `/deeppi` report command's state mutation), `002-observability-and-economics/` (the 5 P1 items — persistent atomic stats, structured report data, honest cost labeling with cache-write accounting, the stopReason guard, and the hot-path digest investigation), and `003-maintainability-and-provenance/` (the 4 P2 items — staged seam-characterized extraction gated behind 001 and 002, fork provenance and drift checks, a credential-independent boundary fixture, and deep-pi's doubly-broken `benchmark:live` packaging). **Planning only: the parent and all 3 children are Draft and change no code in either fork** | Draft |
 
 ### Phase Transition Rules
 
@@ -138,7 +143,9 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 | 002-synthesis-and-decision | 003-fork-and-guard-cache-optimizer | Re-entry conditions met: a new phase child exists and a superseding ADR is drafted | `003-fork-and-guard-cache-optimizer/spec.md` exists; `005-verification-and-decision-reconciliation/decision-record.md` (superseding decision record) drafted |
 | 003-fork-and-guard-cache-optimizer | 004-adopt-deep-pi-deepseek | Patched fork hosted and active (local Pi install resolves it, not npm) | `003-fork-and-guard-cache-optimizer/checklist.md` CHK-020 passes |
 | 004-adopt-deep-pi-deepseek | 005-verification-and-decision-reconciliation | `deep-pi` installed and confirmed self-gated to DeepSeek-matched models | `004-adopt-deep-pi-deepseek/checklist.md` CHK-020/021 pass |
-| 005-verification-and-decision-reconciliation | 006-fork-and-improve-deep-pi | [Criteria TBD] | [Verification TBD] |
+| 005-verification-and-decision-reconciliation | 006-fork-and-improve-deep-pi | Live-verified split holds with no regression | `005-verification-and-decision-reconciliation/checklist.md` pass |
+| 006-fork-and-improve-deep-pi | 007-research-fork-improvements | Hardened fork shipped, committed, and pushed; HANDOFF review's confirmed findings closed | `006-fork-and-improve-deep-pi/003-live-verification-and-closeout/checklist.md` pass; `git log` shows the shipped commits on `origin/skilled/v4.0.0.0` |
+| 007-research-fork-improvements | 008-implement-fork-improvements | All 24 iterations logged across 4 lineages; a cross-validated P0/P1/P2 action list produced with real citations, so there is something concrete to decompose | `007-research-fork-improvements/research/research.md` closing section; every P0 citation re-read against the live source while authoring phase 8 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -146,9 +153,9 @@ Turn the raw capture into an evidence-backed build decision. First establish gro
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Iteration distribution: does "20 iterations" mean 20 loop iterations each fanning out to all three executors (~60 dispatches), or 20 dispatches total split across the three executors? Authored as fan-out; confirm on review.
-- Are SOL / TERRA / LUNA all GPT-5.6 personas dispatched through cli-codex, or does any route through a different runtime? Authored as cli-codex; confirm before the run.
-- Does the environment have Reasonix and DeepSeek primary docs reachable for claim verification, or must Phase 1 rely on web sources?
+None remaining from the original planning pass — all three resolved during execution: iteration distribution ran as fan-out (3 lineages x 20 iterations = 60 dispatches, phase 1); SOL/TERRA/LUNA all dispatched via cli-codex as GPT-5.6 personas, confirmed; Phase 1 relied on a mix of local source reads and web sources for claim verification, recorded per-claim in `001-research/research/research.md`.
+
+Phase 7's carried-forward question is resolved: its findings did warrant an implementation phase, and `008-implement-fork-improvements/` now holds the sequenced decomposition. What remains open is narrower and belongs there rather than here — which of the three child phases the operator authorizes for implementation, and in what order beyond the P0-before-P1-before-P2 constraint all four research lineages independently agreed on. Phase 8 is planning only until that decision is made, so no code in either fork has changed.
 <!-- /ANCHOR:questions -->
 
 ---

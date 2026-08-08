@@ -84,15 +84,15 @@
     ],
     "causal_summary": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files) surfaced real, source-confirmed gaps: two silent failure counters nothing ever reads, a hardcoded model allowlist with no drift signal when DeepSeek ships a new model id, and unguarded telemetry cost math",
     "created_at": "2026-08-07T14:44:32Z",
-    "last_save_at": "2026-08-07T20:29:46.235Z",
+    "last_save_at": "2026-08-08T05:00:50.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ca791245f572c53bc92c66002c86cdb032fa4516a945cca6070bfc1982e6b798",
+    "source_fingerprint": "sha256:9fcb1c6f888eb0d07f341af9dda2829485e18ea420842793bf70356f62a5c050",
     "source_doc_hashes": {
-      "spec.md": "5a56ddc9d7a9098ff3a57c6b36818fca7f9b52186154a3ea757efa6086406e69"
+      "spec.md": "81dfe81211a086cf5c75e6c2b198f80c42c656a942e94ac49ca767f034dab0dd"
     },
     "last_active_child_id": "cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
     "last_active_at": null

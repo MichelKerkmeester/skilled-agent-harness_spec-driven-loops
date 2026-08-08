@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "sessionId": "fanout-luna-1786163355542-f6htbk",
+  "specFolder": "specs/cli-external-orchestration/039-pi-caching-like-reasonix/007-research-fork-improvements",
+  "artifactDir": "specs/cli-external-orchestration/039-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages/luna",
+  "loopType": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 7,
+  "iterationsCompleted": 7,
+  "convergenceThreshold": 0.05,
+  "noveltyRatios": [0.95, 0.84, 0.78, 0.68, 0.57, 0.43, 0.29],
+  "convergenceTelemetry": 0.6486,
+  "convergedEarly": false,
+  "maxIterationsReached": true,
+  "findings": 28,
+  "openQuestions": 0,
+  "status": "complete",
+  "interpretation": "The declining novelty ratios are telemetry only. The configured max-iterations policy required all seven iterations and synthesis was deferred until iteration 7 completed."
+}

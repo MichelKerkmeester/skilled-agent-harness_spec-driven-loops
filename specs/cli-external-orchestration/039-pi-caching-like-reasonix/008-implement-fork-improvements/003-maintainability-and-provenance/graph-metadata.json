@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/039-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance",
+  "spec_folder": "cli-external-orchestration/039-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance",
+  "parent_id": "cli-external-orchestration/039-pi-caching-like-reasonix/008-implement-fork-improvements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "maintainability and provenance",
+      "pi-cache-optimizer monolith extraction",
+      "vendored fork drift check",
+      "maintainability and provenance plan",
+      "maintainability and provenance tasks",
+      "maintainability and provenance checklist",
+      "maintainability provenance implementation",
+      "vendored fork provenance check",
+      "deep-pi benchmark packaging"
+    ],
+    "key_topics": [
+      "maintainability",
+      "provenance",
+      "pi-cache-optimizer",
+      "monolith",
+      "extraction",
+      "vendored",
+      "fork",
+      "drift",
+      "check",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Fork Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "isolated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "10",
+    "created_at": "2026-08-08T07:01:48.414Z",
+    "last_save_at": "2026-08-08T11:08:07.099Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:42b3bb23074beef96abf668fdb96109afaa674b7a2dbd0b525dae4b227c37707",
+    "source_doc_hashes": {
+      "spec.md": "533b3870a3e13c4e415a7ad3e47eebb2e7b9ce972e6077b9ee2a6cc7d9d46f6d",
+      "plan.md": "d4f517d66edd02e025d7a2e1b4e6fafa03b1a26270762c6b728eea0560cd01e0",
+      "tasks.md": "89689f460e264a869ade591d33a1345147da7f1037473f36b43d8b9d65f939e8",
+      "checklist.md": "67c7cb5889b6983a621a3b808d4c491e7a3cff21c83f9c18aecff3a420bf1f05",
+      "implementation-summary.md": "27a1c8fae36f189af3b111d59c0097911112f952154b69f486f0521762b0f436"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

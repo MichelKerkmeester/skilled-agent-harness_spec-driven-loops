@@ -4,14 +4,17 @@
 [![npm downloads](https://img.shields.io/npm/dm/pi-cache-optimizer.svg)](https://www.npmjs.com/package/pi-cache-optimizer)
 [![license](https://img.shields.io/npm/l/pi-cache-optimizer.svg)](./LICENSE)
 
-[中文说明](./README.zh-CN.md)
-
 Pi extension for improving provider-side KV / prompt cache hit rates. It keeps stable prompt content near the front, adds a conservative OpenAI-compatible `prompt_cache_key` fallback, warns about common proxy cache-routing gaps, and shows read-only footer cache stats.
 
 > Renamed from `pi-deepseek-cache-optimizer`. Existing footer counters migrate automatically. The extension does **not** touch Pi's `models.json` during normal operation (default: `~/.pi/agent/models.json`; custom agent dirs use `PI_CODING_AGENT_DIR`); only `/cache-optimizer fix` can edit it, and only after an explicit interactive preview + confirmation with an automatic timestamped backup.
 
+## Fork
+
+This package is a fork of `jiangge/pi-cache-optimizer` v2.8.0. The fork is published on GitHub as `MichelKerkmeester/pi-cache-optimizer`. The copy vendored at `.pi/extensions/pi-cache-optimizer/` is the actual runtime source used by Pi; the GitHub fork records provenance and is not the live install source. The fork excludes the two DeepSeek-direct models owned by the sibling `deep-pi` extension while leaving all other provider and model behavior unchanged. The MIT license is unchanged. See [CHANGES-FROM-UPSTREAM.md](./CHANGES-FROM-UPSTREAM.md) for the complete patch and verification record.
+
 ## Contents
 
+- [Fork](#fork)
 - [What it does](#what-it-does)
 - [Install](#install)
 - [Commands](#commands)

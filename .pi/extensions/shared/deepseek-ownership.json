@@ -1,0 +1,10 @@
+{
+  "owned": [
+    { "provider": "deepseek", "id": "deepseek-v4-flash" },
+    { "provider": "deepseek", "id": "deepseek-v4-pro" }
+  ],
+  "excluded": [
+    { "provider": "opencode", "id": "deepseek-v4-flash-free" },
+    { "provider": "opencode-go", "id": "deepseek-v4-flash" }
+  ]
+}

@@ -58,7 +58,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | cli-external-orchestration/039-pi-caching-like-reasonix |
 | **Predecessor** | 005-verification-and-decision-reconciliation |
-| **Successor** | None |
+| **Successor** | 007-research-fork-improvements |
 | **Handoff Criteria** | Phase 1 delivers a patched, tested fork; phase 2 vendors it in-repo; phase 3 proves it live and reconciles all docs — met |
 <!-- /ANCHOR:metadata -->
 

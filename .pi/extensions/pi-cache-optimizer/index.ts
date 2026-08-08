@@ -1,25 +1,46 @@
-import { createHash } from "node:crypto";
-import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/promises";
-import { readFileSync } from "node:fs";
-import { homedir } from "node:os";
-import { dirname, join } from "node:path";
-import { getAgentDir, type BuildSystemPromptOptions, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Cache Optimizer Extension
+// ───────────────────────────────────────────────────────────────────
 
-type MutableEnv = Record<string, string | undefined>;
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
-type CacheRetentionEnvSnapshot = {
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { copyFile, mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
+import { homedir } from 'node:os';
+import { dirname, join } from 'node:path';
+
+import { getAgentDir } from '@earendil-works/pi-coding-agent';
+import type {
+  BuildSystemPromptOptions,
+  CommandContext,
+  ExtensionAPI,
+  ExtensionContext,
+} from '@earendil-works/pi-coding-agent';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. RETENTION INITIALIZATION
+// ───────────────────────────────────────────────────────────────────
+
+interface MutableEnv {
+  [key: string]: string | undefined;
+}
+
+interface CacheRetentionEnvSnapshot {
   wasSet: boolean;
   value?: string;
-};
+}
 
-const PI_CACHE_RETENTION_ENV = "PI_CACHE_RETENTION";
-const LONG_CACHE_RETENTION_VALUE = "long";
-const PI_CACHE_RETENTION_BASELINE_SYMBOL = Symbol.for("pi.cache.optimizer.retention-baseline.v1");
+const PI_CACHE_RETENTION_ENV = 'PI_CACHE_RETENTION';
+const LONG_CACHE_RETENTION_VALUE = 'long';
+const PI_CACHE_RETENTION_BASELINE_SYMBOL = Symbol.for('pi.cache.optimizer.retention-baseline.v1');
 
-type CacheRetentionBaselineV1 = {
+interface CacheRetentionBaselineV1 {
   version: 1;
   snapshot: CacheRetentionEnvSnapshot;
-};
+}
 
 function captureCacheRetentionEnv(env: MutableEnv = process.env): CacheRetentionEnvSnapshot {
   return {
@@ -34,7 +55,10 @@ function requestLongCacheRetention(env: MutableEnv = process.env): void {
   }
 }
 
-function restoreCacheRetentionEnv(snapshot: CacheRetentionEnvSnapshot, env: MutableEnv = process.env): void {
+function restoreCacheRetentionEnv(
+  snapshot: CacheRetentionEnvSnapshot,
+  env: MutableEnv = process.env,
+): void {
   if (snapshot.wasSet) {
     env[PI_CACHE_RETENTION_ENV] = snapshot.value;
   } else {
@@ -43,14 +67,22 @@ function restoreCacheRetentionEnv(snapshot: CacheRetentionEnvSnapshot, env: Muta
 }
 
 function isCacheRetentionBaselineV1(value: unknown): value is CacheRetentionBaselineV1 {
-  if (typeof value !== "object" || value === null) return false;
+  if (typeof value !== 'object' || value === null) return false;
+  // The guards above establish a non-null object, but the versioned
+  // persistence envelope is intentionally read from unknown JSON.
   const record = value as { version?: unknown; snapshot?: unknown };
-  if (record.version !== 1 || typeof record.snapshot !== "object" || record.snapshot === null) return false;
+  if (record.version !== 1 || typeof record.snapshot !== 'object' || record.snapshot === null) {
+    return false;
+  }
+  // The envelope guard establishes an object snapshot; its fields still need
+  // runtime checks before the baseline can be restored.
   const snapshot = record.snapshot as { wasSet?: unknown; value?: unknown };
-  return typeof snapshot.wasSet === "boolean" &&
-    (snapshot.value === undefined || typeof snapshot.value === "string");
+  return typeof snapshot.wasSet === 'boolean' &&
+    (snapshot.value === undefined || typeof snapshot.value === 'string');
 }
 
+// The baseline is stored under a symbol on the process global; TypeScript's
+// standard global type does not expose symbol-indexed extension state.
 function getOrCaptureCacheRetentionBaseline(
   env: MutableEnv = process.env,
   globals: Record<symbol, unknown> = globalThis as Record<symbol, unknown>,
@@ -78,56 +110,65 @@ const STARTUP_CACHE_RETENTION_ENV = getOrCaptureCacheRetentionBaseline();
  * the odds of cache hits; it cannot guarantee hits, especially through proxies.
  */
 
-// ============================================================
-// Automatically request long prompt-cache retention when Pi supports it.
-// /cache-optimizer disable restores the startup value for this Pi process.
-// ============================================================
+// Keep the process-level value reversible so the disable command can restore
+// exactly what Pi inherited before the extension loaded.
 requestLongCacheRetention();
 
-type PiModel = NonNullable<ExtensionContext["model"]>;
-type UnknownRecord = Record<string, unknown>;
-type CacheProviderId = "deepseek" | "openai" | "claude" | "gemini";
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS AND CONFIGURATION
+// ───────────────────────────────────────────────────────────────────
 
-const LOG_PREFIX = "pi-cache-optimizer";
-const STATUS_KEY = "pi-cache-stats";
+type PiModel = NonNullable<ExtensionContext['model']>;
+type UnknownRecord = Record<string, unknown>;
+type CacheProviderId = 'deepseek' | 'openai' | 'claude' | 'gemini';
+
+const LOG_PREFIX = 'pi-cache-optimizer';
+const STATUS_KEY = 'pi-cache-stats';
 
 /** Use Pi core's resolver so rebranded config names and env semantics stay aligned. */
 const STATE_DIR = getAgentDir();
-const STATE_FILE_PATH = join(STATE_DIR, "pi-cache-optimizer-stats.json");
-const LEGACY_STATE_FILE_PATH = join(STATE_DIR, "deepseek-cache-optimizer-stats.json");
-const CONFIG_FILE_PATH = join(STATE_DIR, "pi-cache-optimizer-config.json");
-const CACHE_PROVIDER_IDS: CacheProviderId[] = ["deepseek", "openai", "claude", "gemini"];
-const OPENAI_CACHE_KEY_ENV = "PI_CACHE_OPTIMIZER_OPENAI_CACHE_KEY";
-const NO_OPENAI_CACHE_KEY_ENV = "PI_CACHE_OPTIMIZER_NO_OPENAI_CACHE_KEY";
+const STATE_FILE_PATH = join(STATE_DIR, 'pi-cache-optimizer-stats.json');
+const LEGACY_STATE_FILE_PATH = join(STATE_DIR, 'deepseek-cache-optimizer-stats.json');
+const CONFIG_FILE_PATH = join(STATE_DIR, 'pi-cache-optimizer-config.json');
+const CACHE_PROVIDER_IDS: CacheProviderId[] = ['deepseek', 'openai', 'claude', 'gemini'];
+const OPENAI_CACHE_KEY_ENV = 'PI_CACHE_OPTIMIZER_OPENAI_CACHE_KEY';
+const NO_OPENAI_CACHE_KEY_ENV = 'PI_CACHE_OPTIMIZER_NO_OPENAI_CACHE_KEY';
 const OPENAI_PROMPT_CACHE_KEY_MAX_LENGTH = 64;
-const NO_SKILL_COMPRESSION_ENV = "PI_CACHE_OPTIMIZER_NO_SKILL_COMPRESSION";
-const NO_PROMPT_REWRITE_ENV = "PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE";
-const FOOTER_MODE_ENV = "PI_CACHE_OPTIMIZER_FOOTER_MODE";
-type FooterStatsMode = "session" | "total" | "process";
-type FooterStatsModeSource = "config" | "env" | "default";
-type PersistedCacheOptimizerConfigV1 = {
+const NO_SKILL_COMPRESSION_ENV = 'PI_CACHE_OPTIMIZER_NO_SKILL_COMPRESSION';
+const NO_PROMPT_REWRITE_ENV = 'PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE';
+const FOOTER_MODE_ENV = 'PI_CACHE_OPTIMIZER_FOOTER_MODE';
+type FooterStatsMode = 'session' | 'total' | 'process';
+type FooterStatsModeSource = 'config' | 'env' | 'default';
+interface PersistedCacheOptimizerConfigV1 {
   version: 1;
   footerMode?: FooterStatsMode;
-};
-const PI_ROUTING_REGISTRY_SYMBOL = Symbol.for("pi.routing.registry.v1");
-const PI_CACHE_HINTS_SYMBOL = Symbol.for("pi.cache.hints.v1");
-const PI_CACHE_HINTS_OWNER_SYMBOL = Symbol.for("pi.cache.optimizer.hints-owner.v1");
-const ANTHROPIC_TTL_FALLBACK_SYMBOL = Symbol.for("pi.cache.optimizer.anthropic-ttl-fallback.v1");
+}
+const PI_ROUTING_REGISTRY_SYMBOL = Symbol.for('pi.routing.registry.v1');
+const PI_CACHE_HINTS_SYMBOL = Symbol.for('pi.cache.hints.v1');
+const PI_CACHE_HINTS_OWNER_SYMBOL = Symbol.for('pi.cache.optimizer.hints-owner.v1');
+const ANTHROPIC_TTL_FALLBACK_SYMBOL = Symbol.for('pi.cache.optimizer.anthropic-ttl-fallback.v1');
 
-type AnthropicTtlFallbackStateV1 = {
+interface AnthropicTtlFallbackStateV1 {
   version: 1;
   modelKeys: Set<string>;
   warnedModelKeys: Set<string>;
-};
+}
 
 function getAnthropicTtlFallbackState(): AnthropicTtlFallbackStateV1 {
+  // Symbol-keyed process state is an untyped runtime protocol shared with the
+  // provider adapter, so the standard global type cannot describe this lookup.
   const globals = globalThis as Record<symbol, unknown>;
-  const existing = globals[ANTHROPIC_TTL_FALLBACK_SYMBOL] as Partial<AnthropicTtlFallbackStateV1> | undefined;
+  // Read the untyped protocol as a partial versioned record before accepting
+  // its complete runtime shape below.
+  const existing = globals[ANTHROPIC_TTL_FALLBACK_SYMBOL] as
+    | Partial<AnthropicTtlFallbackStateV1>
+    | undefined;
   if (
     existing?.version === 1 &&
     existing.modelKeys instanceof Set &&
     existing.warnedModelKeys instanceof Set
   ) {
+    // The version and Set checks above establish the complete state shape.
     return existing as AnthropicTtlFallbackStateV1;
   }
   const state: AnthropicTtlFallbackStateV1 = {
@@ -188,7 +229,7 @@ const SKILL_COMPRESSION_MIN_COUNT = 4;
 // dynamic-remainder path still includes it untouched.
 const MIN_STABLE_CANDIDATE_LENGTH = 8;
 
-const ASSISTANT_MESSAGE_MODEL_TOKEN_KEYS = ["model", "name"];
+const ASSISTANT_MESSAGE_MODEL_TOKEN_KEYS = ['model', 'name'];
 const OPENAI_REASONING_MODEL_PATTERN = /(^|[/\s:_-])o[1345]($|[-_.:/\s])/;
 const XAI_MODEL_PATTERN = /(^|[/\s:_-])xai($|[-_.:/\s])/;
 const MIMO_MODEL_PATTERN = /(^|[/\s:_-])mi-?mo($|[-_.:/\s])/i;
@@ -202,45 +243,46 @@ const ARCTIC_MODEL_PATTERN = /(^|[\/\s:_-])arctic($|[\-_.:\/\s])/i;
 const AYA_MODEL_PATTERN = /(^|[\/\s:_-])aya($|[\-_.:\/\s])/i;
 const ORION_MODEL_PATTERN = /(^|[\/\s:_-])orion($|[\-_.:\/\s])/i;
 
-type CacheCompat = {
+interface CacheCompat {
+  [key: string]: unknown;
   supportsStore?: boolean;
   supportsDeveloperRole?: boolean;
   supportsReasoningEffort?: boolean;
   supportsUsageInStreaming?: boolean;
   supportsStrictMode?: boolean;
-  maxTokensField?: "max_completion_tokens" | "max_tokens";
+  maxTokensField?: 'max_completion_tokens' | 'max_tokens';
   sendSessionAffinityHeaders?: boolean;
-  sessionAffinityFormat?: "openai" | "openai-nosession" | "openrouter";
+  sessionAffinityFormat?: 'openai' | 'openai-nosession' | 'openrouter';
   supportsLongCacheRetention?: boolean;
   thinkingFormat?: string;
   requiresReasoningContentOnAssistantMessages?: boolean;
   cacheControlFormat?: string;
   forceAdaptiveThinking?: boolean;
   allowEmptySignature?: boolean;
-};
+}
 
-type CacheStats = {
+interface CacheStats {
   day: string;
   totalRequests: number;
   hitRequests: number;
   cachedInputTokens: number;
   cacheWriteInputTokens: number;
   totalInputTokens: number;
-};
+}
 
-type PersistedCacheStatsV2 = {
+interface PersistedCacheStatsV2 {
   version: 2;
   statsByProvider: Partial<Record<CacheProviderId, CacheStats>>;
-};
+}
 
 /** Per-model-key scoped state. Used in memory and for v3 persistence. */
-type PersistedRoutedModelRef = {
+interface PersistedRoutedModelRef {
   provider: string;
   id: string;
   name?: string;
-};
+}
 
-type PiRouteSnapshot = {
+interface PiRouteSnapshot {
   virtualProvider: string;
   virtualModelId: string;
   provider: string;
@@ -248,18 +290,18 @@ type PiRouteSnapshot = {
   api?: string;
   canonicalModelId?: string;
   routeLabel?: string;
-  status?: "planned" | "trying" | "selected" | "success" | "failed";
+  status?: 'planned' | 'trying' | 'selected' | 'success' | 'failed';
   sessionIdHash?: string;
   requestId?: string;
   timestamp: number;
-};
+}
 
-type PiRouteResolveHint = {
+interface PiRouteResolveHint {
   sessionIdHash?: string;
   requestId?: string;
-};
+}
 
-type PiRouterAdapterV1 = {
+interface PiRouterAdapterV1 {
   virtualProvider: string;
   resolveActiveRoute(
     virtualModelId: string,
@@ -267,65 +309,65 @@ type PiRouterAdapterV1 = {
   ): PiRouteSnapshot | undefined;
   resolveCandidateRoutes?(virtualModelId: string): PiRouteSnapshot[];
   subscribe?(listener: (event: PiRouteSnapshot) => void): () => void;
-};
+}
 
-type PiRoutingRegistryV1 = {
+interface PiRoutingRegistryV1 {
   version: 1;
   registerRouter(adapter: PiRouterAdapterV1): () => void;
   getRouter(virtualProvider: string): PiRouterAdapterV1 | undefined;
-};
+}
 
-type PiCacheHintsInput = {
+interface PiCacheHintsInput {
   sessionIdHash?: string;
   virtualProvider?: string;
   virtualModelId?: string;
   upstreamProvider?: string;
   upstreamModelId?: string;
   api?: string;
-};
+}
 
-type PiCacheHintsOutput = {
+interface PiCacheHintsOutput {
   systemPrompt?: string;
   promptCacheKey?: string;
-  cacheRetention?: "long";
-};
+  cacheRetention?: 'long';
+}
 
-type PiCacheHintSnapshot = PiCacheHintsInput & PiCacheHintsOutput & {
+interface PiCacheHintSnapshot extends PiCacheHintsInput, PiCacheHintsOutput {
   timestamp: number;
-};
+}
 
-type PiCacheHintsV1 = {
+interface PiCacheHintsV1 {
   version: 1;
   getHints(input: PiCacheHintsInput): PiCacheHintsOutput | undefined;
-};
+}
 
-type ProtocolGlobal = typeof globalThis & Record<symbol, unknown> & {
+interface ProtocolGlobal extends Record<symbol, unknown> {
   __piCacheOptimizerRouter?: unknown;
   __piCacheOptimizerCacheKey__?: unknown;
-};
+}
 
-type ModelRegistryLike = {
+interface ModelRegistryLike {
   find?(provider: string, modelId: string): PiModel | undefined;
   getAvailable?(): PiModel[];
   getAll?(): PiModel[];
-};
+}
 
-type ContextWithOptionalModelRegistry = Pick<ExtensionContext, "sessionManager"> & {
+interface ContextWithOptionalModelRegistry extends Pick<ExtensionContext, 'sessionManager'> {
   modelRegistry?: ModelRegistryLike;
-};
+}
 
-type CacheStatsState = {
+interface CacheStatsState {
   statsByModel: Record<string, CacheStats>;
   totalsByModel: Record<string, CacheStats>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
   lastRoutedModelBySession?: Record<string, PersistedRoutedModelRef>;
-};
+}
 
-type PersistedCacheStatsV3 = {
+interface PersistedCacheStatsV3 {
   version: 3;
   statsByModel: Record<string, CacheStats>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
-};
+}
 
 /**
  * V4 format: session-scoped stats buckets.
@@ -334,57 +376,57 @@ type PersistedCacheStatsV3 = {
  * sessions: sessionHash → modelKey (provider/id) → CacheStats
  * legacyFamily: unchanged from v3 (migration/fallback when ctx.model is unknown)
  */
-type PersistedCacheStatsV4 = {
+interface PersistedCacheStatsV4 {
   version: 4;
   sessions: Record<string, Record<string, CacheStats>>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
-};
+}
 
-type PersistedCacheStatsV5 = {
+interface PersistedCacheStatsV5 {
   version: 5;
   sessions: Record<string, Record<string, CacheStats>>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
   lastRoutedModelBySession?: Record<string, PersistedRoutedModelRef>;
-};
+}
 
-type PersistedCacheStatsV6 = {
+interface PersistedCacheStatsV6 {
   version: 6;
   sessions: Record<string, Record<string, CacheStats>>;
   totalsByModel: Record<string, CacheStats>;
   legacyFamily: Partial<Record<CacheProviderId, CacheStats>>;
   lastRoutedModelBySession?: Record<string, PersistedRoutedModelRef>;
-};
+}
 
-type UsageSnapshot = {
+interface UsageSnapshot {
   cacheRead: number;
   cacheWrite: number;
   totalInput: number;
-};
+}
 
-type OptimizedSystemPrompt = {
+interface OptimizedSystemPrompt {
   systemPrompt: string;
   stablePrefix: string;
   changed: boolean;
-};
+}
 
 /**
  * Per-request sample stored for trend analysis and usage-field-missing detection.
  * Contains only numeric counters and booleans — never message content, prompts,
  * payloads, headers, API keys, or model outputs.
  */
-type CacheUsageSample = {
+interface CacheUsageSample {
   timestamp: number;
   hit: boolean;
   cachedInputTokens: number;
   cacheWriteInputTokens: number;
   totalInputTokens: number;
   missingUsageFields: boolean;
-};
+}
 
 /** Maximum number of recent samples kept per model key (in-memory only, not persisted). */
 const MAX_RECENT_SAMPLES = 50;
 
-type CacheProviderAdapter = {
+interface CacheProviderAdapter {
   id: CacheProviderId;
   label: string;
   showCacheWrite?: boolean;
@@ -392,53 +434,123 @@ type CacheProviderAdapter = {
   matchesAssistantMessage(message: unknown, model: PiModel | undefined): boolean;
   normalizeUsage(message: unknown): UsageSnapshot | undefined;
   warningText?(model: PiModel): string | undefined;
-};
+}
+
+interface CacheHintsInstallOptions {
+  discardPrevious?: (value: unknown) => boolean;
+}
+
+interface UsageNormalizationOptions {
+  allowInputOnlyPiUsage?: boolean;
+}
+
+interface FooterStatsModeResolution {
+  mode: FooterStatsMode;
+  source: FooterStatsModeSource;
+}
+
+interface RouterStatsEntry {
+  model: PiModel;
+  adapter: CacheProviderAdapter;
+  stats: CacheStats;
+}
+
+interface RouterStatsCandidate extends RouterStatsEntry {
+  total: number;
+}
+
+interface PersistedStatsWriteOptions {
+  deleteModelKeys?: string[];
+  replaceTotals?: boolean;
+}
+
+interface JsonStringLiteral {
+  value: string;
+  end: number;
+}
+
+interface JsonObjectKeyLocation {
+  keyStart: number;
+  valueStart: number;
+}
+
+interface FixInsertionResult {
+  modifiedText: string;
+  placementLabel: string;
+}
+
+type FixPlacement = 'provider' | 'model' | 'modelOverride';
+
+interface FixPlacementDecision {
+  placement: Exclude<FixPlacement, 'modelOverride'>;
+  reason: string;
+}
+
+interface FixPlacementChoice {
+  placement: FixPlacement;
+  reason: string;
+}
+
+interface OpenAIProxyCompatAdviceOptions extends CompatAdvicePlacement {
+  includeJsonIntro?: boolean;
+}
+
+interface DoctorDiagnosisOptions {
+  promptCacheRetention400?: boolean;
+  anthropicTtlOrderError?: boolean;
+  sessionAffinity403?: boolean;
+  openAISdkHeader403?: boolean;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. PROMPT OPTIMIZATION HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function escapeXml(value: string): string {
   return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 function isStableContextFilePath(filePath: string): boolean {
-  const normalized = filePath.replace(/\\/g, "/").toLowerCase();
-  const name = normalized.split("/").pop();
+  const normalized = filePath.replace(/\\/g, '/').toLowerCase();
+  const name = normalized.split('/').pop();
 
   return (
-    name === "agents.md" ||
-    name === "claude.md" ||
-    name === "gemini.md" ||
-    name === "cursor.md" ||
-    normalized.startsWith(".trellis/spec/") ||
-    normalized.includes("/.trellis/spec/")
+    name === 'agents.md' ||
+    name === 'claude.md' ||
+    name === 'gemini.md' ||
+    name === 'cursor.md' ||
+    normalized.startsWith('.trellis/spec/') ||
+    normalized.includes('/.trellis/spec/')
   );
 }
 
-function formatSkillsForPrompt(skills: NonNullable<BuildSystemPromptOptions["skills"]>): string {
+function formatSkillsForPrompt(skills: NonNullable<BuildSystemPromptOptions['skills']>): string {
   const visibleSkills = skills.filter((skill) => !skill.disableModelInvocation);
-  if (visibleSkills.length === 0) return "";
+  if (visibleSkills.length === 0) return '';
 
   const lines = [
-    "\n\nThe following skills provide specialized instructions for specific tasks.",
+    '\n\nThe following skills provide specialized instructions for specific tasks.',
     "Use the read tool to load a skill's file when the task matches its description.",
-    "When a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.",
-    "",
-    "<available_skills>",
+    'When a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.',
+    '',
+    '<available_skills>',
   ];
 
   for (const skill of visibleSkills) {
-    lines.push("  <skill>");
+    lines.push('  <skill>');
     lines.push(`    <name>${escapeXml(skill.name)}</name>`);
     lines.push(`    <description>${escapeXml(skill.description)}</description>`);
     lines.push(`    <location>${escapeXml(skill.filePath)}</location>`);
-    lines.push("  </skill>");
+    lines.push('  </skill>');
   }
 
-  lines.push("</available_skills>");
-  return lines.join("\n");
+  lines.push('</available_skills>');
+  return lines.join('\n');
 }
 
 /**
@@ -469,10 +581,10 @@ function formatSkillsForPrompt(skills: NonNullable<BuildSystemPromptOptions["ski
  * alphabetically within each group for determinism (cache stability).
  */
 function formatSkillsForPromptCompressed(
-  skills: NonNullable<BuildSystemPromptOptions["skills"]>,
+  skills: NonNullable<BuildSystemPromptOptions['skills']>,
 ): string {
   const visibleSkills = skills.filter((skill) => !skill.disableModelInvocation);
-  if (visibleSkills.length === 0) return "";
+  if (visibleSkills.length === 0) return '';
 
   const groups = new Map<string, string[]>();
   for (const skill of visibleSkills) {
@@ -489,26 +601,24 @@ function formatSkillsForPromptCompressed(
   // same roots must always produce the same string, otherwise the
   // provider prompt-prefix cache loses on prompt builder runs that
   // happened to iterate the underlying Map in different orders.
-  const sortedGroups = [...groups.entries()].sort(([a], [b]) =>
-    a < b ? -1 : a > b ? 1 : 0,
-  );
+  const sortedGroups = [...groups.entries()].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
 
   const lines: string[] = [
-    "",
-    "",
-    "The following skills provide specialized instructions for specific tasks. When a skill name matches the task you are doing, read the SKILL.md at the listed location to load the full instructions. When a SKILL.md references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.",
+    '',
+    '',
+    'The following skills provide specialized instructions for specific tasks. When a skill name matches the task you are doing, read the SKILL.md at the listed location to load the full instructions. When a SKILL.md references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.',
   ];
 
   for (const [root, names] of sortedGroups) {
     names.sort();
-    lines.push("");
+    lines.push('');
     lines.push(`Skills under ${root}/<name>/SKILL.md:`);
     // Wrap the name list at ~80 columns for readability without
     // affecting determinism. Each line is `  name1, name2, name3,`.
-    let buf = "  ";
+    let buf = '  ';
     for (let i = 0; i < names.length; i++) {
       const name = names[i];
-      const piece = (buf === "  " ? "" : ", ") + name;
+      const piece = (buf === '  ' ? '' : ', ') + name;
       if (buf.length > 2 && buf.length + piece.length > 80) {
         lines.push(`${buf},`);
         buf = `  ${name}`;
@@ -519,7 +629,7 @@ function formatSkillsForPromptCompressed(
     if (buf.length > 2) lines.push(buf);
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 /**
@@ -562,12 +672,12 @@ function buildStableCandidates(opts: BuildSystemPromptOptions): string[] {
   if (opts.customPrompt) candidates.push(opts.customPrompt);
   if (opts.appendSystemPrompt) candidates.push(opts.appendSystemPrompt);
 
-  const tools = opts.selectedTools ?? ["read", "bash", "edit", "write"];
+  const tools = opts.selectedTools ?? ['read', 'bash', 'edit', 'write'];
   const toolLines = tools
     .filter((name) => opts.toolSnippets?.[name])
     .map((name) => `- ${name}: ${opts.toolSnippets?.[name]}`);
   if (toolLines.length > 0) {
-    candidates.push(`Available tools:\n${toolLines.join("\n")}`);
+    candidates.push(`Available tools:\n${toolLines.join('\n')}`);
   }
 
   for (const guideline of opts.promptGuidelines ?? []) {
@@ -620,8 +730,8 @@ function buildStableCandidates(opts: BuildSystemPromptOptions): string[] {
  * owns the prompt).
  */
 function stripSessionOverviewChurn(prompt: string): string {
-  const startTag = "<session-overview>";
-  const endTag = "</session-overview>";
+  const startTag = '<session-overview>';
+  const endTag = '</session-overview>';
 
   const startIdx = prompt.indexOf(startTag);
   if (startIdx === -1) return prompt;
@@ -637,11 +747,11 @@ function stripSessionOverviewChurn(prompt: string): string {
     // Drop the RECENT COMMITS section (from the heading through the
     // next heading or end of inner). The model sees commit history
     // via `git log`; carrying it in every system prompt is redundant.
-    .replace(/\n## RECENT COMMITS\n[\s\S]*?(?=\n## |$)/, "")
+    .replace(/\n## RECENT COMMITS\n[\s\S]*?(?=\n## |$)/, '')
     // Drop "Working directory: ..." (Git status tail churn).
-    .replace(/\nWorking directory:[^\n]*/g, "")
+    .replace(/\nWorking directory:[^\n]*/g, '')
     // Drop "Line count: N / NNNN" (Journal tail churn).
-    .replace(/\nLine count:[^\n]*/g, "");
+    .replace(/\nLine count:[^\n]*/g, '');
 
   return before + cleaned + after;
 }
@@ -749,18 +859,17 @@ function optimizeSystemPrompt(
     rest = rest.slice(0, firstOccurrence) + rest.slice(firstOccurrence + part.length);
   }
 
-  const stablePrefix = stableParts.join("\n\n");
+  const stablePrefix = stableParts.join('\n\n');
 
   // Dynamic layer: git status, active task context, recent session context, etc.
   const dynamicRemainder = rest.trim();
 
   if (stableParts.length === 0) {
-    return { systemPrompt: original, stablePrefix: "", changed: false };
+    return { systemPrompt: original, stablePrefix: '', changed: false };
   }
 
-  const systemPrompt =
-    stablePrefix +
-    (dynamicRemainder.length > 0 ? "\n\n---\n\n" + dynamicRemainder : "");
+  const systemPrompt = stablePrefix +
+    (dynamicRemainder.length > 0 ? '\n\n---\n\n' + dynamicRemainder : '');
 
   // Sanity check: scan ALL structural markers (XML tags + HTML comment
   // boundary markers) in the original and verify each one survives the
@@ -786,7 +895,7 @@ function optimizeSystemPrompt(
 
   if (missing) {
     promptTruncationDetected = true;
-    return { systemPrompt: original, stablePrefix: "", changed: false };
+    return { systemPrompt: original, stablePrefix: '', changed: false };
   }
 
   return {
@@ -796,13 +905,17 @@ function optimizeSystemPrompt(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. ROUTING, MODEL DETECTION, AND COMPATIBILITY HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function clampPromptCacheKey(key: string | undefined): string | undefined {
   const normalized = key?.trim();
   if (!normalized) return undefined;
 
   const chars = Array.from(normalized);
   if (chars.length <= OPENAI_PROMPT_CACHE_KEY_MAX_LENGTH) return normalized;
-  return chars.slice(0, OPENAI_PROMPT_CACHE_KEY_MAX_LENGTH).join("");
+  return chars.slice(0, OPENAI_PROMPT_CACHE_KEY_MAX_LENGTH).join('');
 }
 
 function getSessionPromptCacheKey(ctx: ExtensionContext): string | undefined {
@@ -815,10 +928,12 @@ function getSessionPromptCacheKey(ctx: ExtensionContext): string | undefined {
  * suitable for scoping stats buckets without exposing the raw session id.
  */
 function hashSessionId(sessionId: string): string {
-  return createHash("sha256").update(sessionId).digest("hex").slice(0, 16);
+  return createHash('sha256').update(sessionId).digest('hex').slice(0, 16);
 }
 
 function getProtocolGlobal(): ProtocolGlobal {
+  // Symbol-keyed routing and cache-hints state is intentionally outside the
+  // host declaration; this assertion is the bridge to that shared protocol.
   return globalThis as ProtocolGlobal;
 }
 
@@ -829,19 +944,21 @@ function firstNonEmptyString(...values: unknown[]): string | undefined {
   return undefined;
 }
 
-function sessionHashFromContext(ctx: Pick<ExtensionContext, "sessionManager">): string | undefined {
+function sessionHashFromContext(ctx: Pick<ExtensionContext, 'sessionManager'>): string | undefined {
   const sessionId = ctx.sessionManager.getSessionId();
   return sessionId ? hashSessionId(sessionId) : undefined;
 }
 
 function isPiRouterAdapterV1(value: unknown): value is PiRouterAdapterV1 {
   const record = asRecord(value);
-  return !!record && isNonEmptyString(record.virtualProvider) && typeof record.resolveActiveRoute === "function";
+  return !!record && isNonEmptyString(record.virtualProvider) &&
+    typeof record.resolveActiveRoute === 'function';
 }
 
 function isRoutingRegistryV1(value: unknown): value is PiRoutingRegistryV1 {
   const record = asRecord(value);
-  return !!record && record.version === 1 && typeof record.registerRouter === "function" && typeof record.getRouter === "function";
+  return !!record && record.version === 1 && typeof record.registerRouter === 'function' &&
+    typeof record.getRouter === 'function';
 }
 
 function createRoutingRegistry(): PiRoutingRegistryV1 {
@@ -876,8 +993,9 @@ function ensureRoutingRegistry(): PiRoutingRegistryV1 {
   return created;
 }
 
-function parseRouteStatus(value: unknown): PiRouteSnapshot["status"] | undefined {
-  return value === "planned" || value === "trying" || value === "selected" || value === "success" || value === "failed"
+function parseRouteStatus(value: unknown): PiRouteSnapshot['status'] | undefined {
+  return value === 'planned' || value === 'trying' || value === 'selected' || value === 'success' ||
+      value === 'failed'
     ? value
     : undefined;
 }
@@ -891,9 +1009,22 @@ function parseRouteSnapshot(
   if (!record) return undefined;
 
   const virtualProvider = firstNonEmptyString(record.virtualProvider, fallbackVirtualProvider);
-  const virtualModelId = firstNonEmptyString(record.virtualModelId, record.virtualModel, fallbackVirtualModelId);
-  const provider = firstNonEmptyString(record.provider, record.upstreamProvider, record.targetProvider);
-  const modelId = firstNonEmptyString(record.modelId, record.upstreamModelId, record.targetModelId, record.responseModel);
+  const virtualModelId = firstNonEmptyString(
+    record.virtualModelId,
+    record.virtualModel,
+    fallbackVirtualModelId,
+  );
+  const provider = firstNonEmptyString(
+    record.provider,
+    record.upstreamProvider,
+    record.targetProvider,
+  );
+  const modelId = firstNonEmptyString(
+    record.modelId,
+    record.upstreamModelId,
+    record.targetModelId,
+    record.responseModel,
+  );
   if (!virtualProvider || !virtualModelId || !provider || !modelId) return undefined;
 
   const timestamp = getNumber(record.timestamp) ?? Date.now();
@@ -914,10 +1045,12 @@ function parseRouteSnapshot(
 
 function resolveActiveRouteSnapshot(
   model: PiModel | undefined,
-  ctx?: Pick<ExtensionContext, "sessionManager">,
+  ctx?: Pick<ExtensionContext, 'sessionManager'>,
 ): PiRouteSnapshot | undefined {
   if (!model) return undefined;
-  const hint: PiRouteResolveHint | undefined = ctx ? { sessionIdHash: sessionHashFromContext(ctx) } : undefined;
+  const hint: PiRouteResolveHint | undefined = ctx
+    ? { sessionIdHash: sessionHashFromContext(ctx) }
+    : undefined;
 
   const adapter = getRoutingRegistry()?.getRouter(model.provider);
   if (adapter) {
@@ -928,7 +1061,7 @@ function resolveActiveRouteSnapshot(
         model.id,
       );
       if (snapshot) return snapshot;
-    } catch (error) {
+    } catch (error: unknown) {
       console.warn(`${LOG_PREFIX}: routing registry adapter failed`, error);
     }
   }
@@ -936,33 +1069,35 @@ function resolveActiveRouteSnapshot(
   // Temporary migration shim for the prototype global used by early router PRs.
   // New integrations should use Symbol.for("pi.routing.registry.v1") instead.
   const legacy = getProtocolGlobal().__piCacheOptimizerRouter;
-  if (!legacy || !lower(model.provider).includes("router")) return undefined;
+  if (!legacy || !lower(model.provider).includes('router')) return undefined;
   try {
-    if (typeof legacy === "function") {
+    if (typeof legacy === 'function') {
       return parseRouteSnapshot(legacy(model.provider, model.id, hint), model.provider, model.id);
     }
     const legacyRecord = asRecord(legacy);
     const resolver = legacyRecord?.resolveActiveRoute;
-    if (typeof resolver === "function") {
+    if (typeof resolver === 'function') {
       return parseRouteSnapshot(resolver.call(legacy, model.id, hint), model.provider, model.id);
     }
     return parseRouteSnapshot(legacy, model.provider, model.id);
-  } catch (error) {
+  } catch (error: unknown) {
     console.warn(`${LOG_PREFIX}: legacy routing global failed`, error);
     return undefined;
   }
 }
 
 function routeSnapshotToPiModel(snapshot: PiRouteSnapshot, fallback?: PiModel): PiModel {
+  // Route snapshots intentionally synthesize a minimal model for downstream
+  // adapter selection; the snapshot lacks several host-model fields.
   return {
     ...(fallback ?? {}),
     id: snapshot.modelId,
     name: snapshot.canonicalModelId ?? snapshot.modelId,
     provider: snapshot.provider,
-    api: snapshot.api ?? fallback?.api ?? "",
-    baseUrl: fallback?.baseUrl ?? "",
+    api: snapshot.api ?? fallback?.api ?? '',
+    baseUrl: fallback?.baseUrl ?? '',
     reasoning: fallback?.reasoning ?? false,
-    input: fallback?.input ?? ["text"],
+    input: fallback?.input ?? ['text'],
     cost: fallback?.cost ?? { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: fallback?.contextWindow ?? 0,
     maxTokens: fallback?.maxTokens ?? 0,
@@ -970,12 +1105,18 @@ function routeSnapshotToPiModel(snapshot: PiRouteSnapshot, fallback?: PiModel): 
   } as PiModel;
 }
 
-function findModelInRegistry(registry: ModelRegistryLike | undefined, provider: string, id: string): PiModel | undefined {
+function findModelInRegistry(
+  registry: ModelRegistryLike | undefined,
+  provider: string,
+  id: string,
+): PiModel | undefined {
   const found = registry?.find?.(provider, id);
   if (found) return found;
 
   const available = registry?.getAvailable?.() ?? [];
-  const availableMatch = available.find((candidate) => candidate.provider === provider && candidate.id === id);
+  const availableMatch = available.find((candidate) =>
+    candidate.provider === provider && candidate.id === id
+  );
   if (availableMatch) return availableMatch;
 
   const all = registry?.getAll?.() ?? [];
@@ -989,18 +1130,22 @@ function resolveRouteModel(
   const snapshot = resolveActiveRouteSnapshot(model, ctx);
   if (!snapshot) return undefined;
 
-  return findModelInRegistry(ctx?.modelRegistry, snapshot.provider, snapshot.modelId)
-    ?? routeSnapshotToPiModel(snapshot, model);
+  return findModelInRegistry(ctx?.modelRegistry, snapshot.provider, snapshot.modelId) ??
+    routeSnapshotToPiModel(snapshot, model);
 }
 
-function isVirtualRoutingModel(model: PiModel | undefined, ctx?: Pick<ExtensionContext, "sessionManager">): boolean {
+function isVirtualRoutingModel(
+  model: PiModel | undefined,
+  ctx?: Pick<ExtensionContext, 'sessionManager'>,
+): boolean {
   if (!model) return false;
-  return isRouterModel(model) || !!getRoutingRegistry()?.getRouter(model.provider) || !!resolveActiveRouteSnapshot(model, ctx);
+  return isRouterModel(model) || !!getRoutingRegistry()?.getRouter(model.provider) ||
+    !!resolveActiveRouteSnapshot(model, ctx);
 }
 
 function isCacheHintsServiceV1(value: unknown): value is PiCacheHintsV1 {
   const record = asRecord(value);
-  return !!record && record.version === 1 && typeof record.getHints === "function";
+  return !!record && record.version === 1 && typeof record.getHints === 'function';
 }
 
 function getCacheHintsService(): PiCacheHintsV1 | undefined {
@@ -1009,18 +1154,21 @@ function getCacheHintsService(): PiCacheHintsV1 | undefined {
 }
 
 function markOptimizerOwnedCacheHintsService(service: PiCacheHintsV1): PiCacheHintsV1 {
+  // The owner marker is private symbol metadata, not part of the public
+  // cache-hints service contract.
   (service as PiCacheHintsV1 & Record<symbol, unknown>)[PI_CACHE_HINTS_OWNER_SYMBOL] = true;
   return service;
 }
 
 function isOptimizerOwnedCacheHintsService(value: unknown): boolean {
-  return typeof value === "object" && value !== null &&
+  // The symbol-keyed owner marker is private metadata added at runtime.
+  return typeof value === 'object' && value !== null &&
     (value as Record<symbol, unknown>)[PI_CACHE_HINTS_OWNER_SYMBOL] === true;
 }
 
 function installCacheHintsService(
   service: PiCacheHintsV1,
-  options: { discardPrevious?: (value: unknown) => boolean } = {},
+  options: CacheHintsInstallOptions = {},
 ): () => void {
   const globals = getProtocolGlobal();
   const previous = globals[PI_CACHE_HINTS_SYMBOL];
@@ -1048,21 +1196,23 @@ function makeSessionModelKey(sessionHash: string, provider: string, id: string):
  * "abc123:otokapi/gpt-5.5" → "otokapi/gpt-5.5"
  */
 function modelKeyFromSessionKey(sessionModelKey: string): string {
-  const idx = sessionModelKey.indexOf(":");
+  const idx = sessionModelKey.indexOf(':');
   return idx >= 0 ? sessionModelKey.slice(idx + 1) : sessionModelKey;
 }
 
 function asRecord(value: unknown): UnknownRecord | undefined {
-  if (typeof value !== "object" || value === null || Array.isArray(value)) return undefined;
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return undefined;
+  // The checks above exclude null and arrays, leaving the object shape
+  // represented by the shared unknown-record alias.
   return value as UnknownRecord;
 }
 
 function lower(value: unknown): string {
-  return typeof value === "string" ? value.toLowerCase() : "";
+  return typeof value === 'string' ? value.toLowerCase() : '';
 }
 
 function getNumber(value: unknown): number | undefined {
-  return typeof value === "number" && Number.isFinite(value) ? value : undefined;
+  return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
 }
 
 function getNonNegativeNumber(record: UnknownRecord, key: string): number | undefined {
@@ -1076,12 +1226,14 @@ function getNonNegativeNumber(record: UnknownRecord, key: string): number | unde
  * This matches Pi's model-registry.js mergeCompat behavior.
  */
 function getCompat(model: PiModel | undefined): CacheCompat {
-  if (!model) return {} as CacheCompat;
+  if (!model) return {};
 
   // Pi merges provider.compat with model.compat (model wins on conflicts)
   // We approximate this by reading from ctx.model which should already have merged compat
   // However, for safety, we check both levels if available
-  const modelCompat = (model.compat ?? {}) as CacheCompat;
+  // Pi exposes compat as an open record; the interface documents known fields
+  // while preserving provider-specific keys used by routing integrations.
+  const modelCompat = model.compat ?? {};
 
   // Note: ctx.model from Pi should already contain merged compat,
   // but we document the two-level structure for clarity
@@ -1090,8 +1242,8 @@ function getCompat(model: PiModel | undefined): CacheCompat {
 
 /** Join display-only path fragments without resolving them for I/O. */
 function joinDisplayPath(base: string, child: string, platform: string = process.platform): string {
-  const sep = platform.startsWith("win") ? "\\" : "/";
-  return `${base.replace(/[\\/]+$/, "")}${sep}${child}`;
+  const sep = platform.startsWith('win') ? '\\' : '/';
+  return `${base.replace(/[\\/]+$/, '')}${sep}${child}`;
 }
 
 /**
@@ -1106,14 +1258,14 @@ function getAgentDirDisplayPath(
   agentDir: string = getAgentDir(),
   homeDir: string = homedir(),
 ): string {
-  const sep = platform.startsWith("win") ? "\\" : "/";
+  const sep = platform.startsWith('win') ? '\\' : '/';
   const normalizedAgentDir = agentDir.replace(/[\\/]+/g, sep);
-  const normalizedHomeDir = homeDir.replace(/[\\/]+/g, sep).replace(/[\\/]+$/, "");
+  const normalizedHomeDir = homeDir.replace(/[\\/]+/g, sep).replace(/[\\/]+$/, '');
   const homePrefix = `${normalizedHomeDir}${sep}`;
 
   if (normalizedAgentDir === normalizedHomeDir || normalizedAgentDir.startsWith(homePrefix)) {
-    const relative = normalizedAgentDir.slice(normalizedHomeDir.length).replace(/^[\\/]+/, "");
-    const homeLabel = platform.startsWith("win") ? "%USERPROFILE%" : "~";
+    const relative = normalizedAgentDir.slice(normalizedHomeDir.length).replace(/^[\\/]+/, '');
+    const homeLabel = platform.startsWith('win') ? '%USERPROFILE%' : '~';
     return relative ? `${homeLabel}${sep}${relative}` : homeLabel;
   }
 
@@ -1131,22 +1283,30 @@ function getModelsJsonDisplayPath(
   agentDir: string = getAgentDir(),
   homeDir: string = homedir(),
 ): string {
-  return joinDisplayPath(getAgentDirDisplayPath(platform, agentDir, homeDir), "models.json", platform);
+  return joinDisplayPath(
+    getAgentDirDisplayPath(platform, agentDir, homeDir),
+    'models.json',
+    platform,
+  );
 }
 
 function isEnabledEnv(value: string | undefined): boolean {
   if (!value) return false;
   const normalized = value.trim().toLowerCase();
-  return normalized === "1" || normalized === "true" || normalized === "yes" || normalized === "on";
+  return normalized === '1' || normalized === 'true' || normalized === 'yes' || normalized === 'on';
 }
 
 function parseFooterStatsMode(value: unknown): FooterStatsMode | undefined {
-  if (typeof value !== "string") return undefined;
+  if (typeof value !== 'string') return undefined;
   const normalized = value.trim().toLowerCase();
-  return normalized === "session" || normalized === "total" || normalized === "process" ? normalized : undefined;
+  return normalized === 'session' || normalized === 'total' || normalized === 'process'
+    ? normalized
+    : undefined;
 }
 
-function parsePersistedCacheOptimizerConfig(value: unknown): PersistedCacheOptimizerConfigV1 | undefined {
+function parsePersistedCacheOptimizerConfig(
+  value: unknown,
+): PersistedCacheOptimizerConfigV1 | undefined {
   const record = asRecord(value);
   if (!record || record.version !== 1) return undefined;
   const footerMode = parseFooterStatsMode(record.footerMode);
@@ -1154,14 +1314,19 @@ function parsePersistedCacheOptimizerConfig(value: unknown): PersistedCacheOptim
   return { version: 1, ...(footerMode ? { footerMode } : {}) };
 }
 
-function readPersistedFooterMode(configPath: string = CONFIG_FILE_PATH): FooterStatsMode | undefined {
+function readPersistedFooterMode(
+  configPath: string = CONFIG_FILE_PATH,
+): FooterStatsMode | undefined {
   try {
-    const parsed = parsePersistedCacheOptimizerConfig(JSON.parse(readFileSync(configPath, "utf8")));
-    if (!parsed) throw new Error("invalid footer config schema");
+    const parsed = parsePersistedCacheOptimizerConfig(JSON.parse(readFileSync(configPath, 'utf8')));
+    if (!parsed) throw new Error('invalid footer config schema');
     return parsed.footerMode;
-  } catch (error) {
-    if (getErrorCode(error) !== "ENOENT") {
-      console.warn(`${LOG_PREFIX}: failed to read footer config; using environment/default mode`, error);
+  } catch (error: unknown) {
+    if (getErrorCode(error) !== 'ENOENT') {
+      console.warn(
+        `${LOG_PREFIX}: failed to read footer config; using environment/default mode`,
+        error,
+      );
     }
     return undefined;
   }
@@ -1174,17 +1339,17 @@ async function writePersistedFooterMode(
   await mkdir(dirname(configPath), { recursive: true });
   const payload: PersistedCacheOptimizerConfigV1 = { version: 1, footerMode: mode };
   const tempPath = `${configPath}.${process.pid}.${Date.now()}.tmp`;
-  await writeFile(tempPath, JSON.stringify(payload, null, 2) + "\n", "utf8");
+  await writeFile(tempPath, JSON.stringify(payload, null, 2) + '\n', 'utf8');
   await rename(tempPath, configPath);
 }
 
 function resolveFooterStatsMode(
   configuredMode: FooterStatsMode | undefined,
   env: MutableEnv = process.env,
-): { mode: FooterStatsMode; source: FooterStatsModeSource } {
-  if (configuredMode) return { mode: configuredMode, source: "config" };
+): FooterStatsModeResolution {
+  if (configuredMode) return { mode: configuredMode, source: 'config' };
   const envMode = parseFooterStatsMode(env[FOOTER_MODE_ENV]);
-  return envMode ? { mode: envMode, source: "env" } : { mode: "total", source: "default" };
+  return envMode ? { mode: envMode, source: 'env' } : { mode: 'total', source: 'default' };
 }
 
 function footerStatsMode(
@@ -1199,7 +1364,8 @@ let persistedFooterStatsMode = readPersistedFooterMode();
 function isDisabledEnv(value: string | undefined): boolean {
   if (!value) return false;
   const normalized = value.trim().toLowerCase();
-  return normalized === "0" || normalized === "false" || normalized === "no" || normalized === "off";
+  return normalized === '0' || normalized === 'false' || normalized === 'no' ||
+    normalized === 'off';
 }
 
 function shouldInjectOpenAIPromptCacheKey(): boolean {
@@ -1223,33 +1389,43 @@ function isRuntimeOptimizerEnabled(): boolean {
 }
 
 function getOptimizerRuntimeModeLines(): string[] {
-  const state = runtimeOptimizerEnabled ? "enabled" : "disabled";
+  const state = runtimeOptimizerEnabled ? 'enabled' : 'disabled';
   const lines: string[] = [];
   lines.push(`Runtime state: ${state}`);
-  lines.push(`• Prompt rewrite: ${runtimeOptimizerEnabled && !isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV]) ? "on" : "off"}`);
-  lines.push(`• OpenAI prompt_cache_key fallback: ${shouldInjectOpenAIPromptCacheKey() ? "on" : "off"}`);
-  lines.push(`• Footer cache stats: on${runtimeOptimizerEnabled ? "" : " (comparison mode)"}`);
-  lines.push(`• Compat warnings: ${runtimeOptimizerEnabled ? "on" : "off"}`);
-  lines.push(`• ${PI_CACHE_RETENTION_ENV}: ${process.env[PI_CACHE_RETENTION_ENV] ?? "(unset)"}`);
+  lines.push(
+    `• Prompt rewrite: ${
+      runtimeOptimizerEnabled && !isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV]) ? 'on' : 'off'
+    }`,
+  );
+  lines.push(
+    `• OpenAI prompt_cache_key fallback: ${shouldInjectOpenAIPromptCacheKey() ? 'on' : 'off'}`,
+  );
+  lines.push(`• Footer cache stats: on${runtimeOptimizerEnabled ? '' : ' (comparison mode)'}`);
+  lines.push(`• Compat warnings: ${runtimeOptimizerEnabled ? 'on' : 'off'}`);
+  lines.push(`• ${PI_CACHE_RETENTION_ENV}: ${process.env[PI_CACHE_RETENTION_ENV] ?? '(unset)'}`);
   if (!runtimeOptimizerEnabled) {
-    lines.push("This is a current-process switch. Run /reload or restart Pi to return to startup behavior.");
-  } else if (isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV]) || !shouldInjectOpenAIPromptCacheKey()) {
-    lines.push("Some features are still disabled by environment variables.");
+    lines.push(
+      'This is a current-process switch. Run /reload or restart Pi to return to startup behavior.',
+    );
+  } else if (
+    isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV]) || !shouldInjectOpenAIPromptCacheKey()
+  ) {
+    lines.push('Some features are still disabled by environment variables.');
   }
   return lines;
 }
 
 function formatOptimizerRuntimeMode(): string {
-  return getOptimizerRuntimeModeLines().join("\n");
+  return getOptimizerRuntimeModeLines().join('\n');
 }
 
 function isAssistantMessage(message: unknown): boolean {
-  return asRecord(message)?.role === "assistant";
+  return asRecord(message)?.role === 'assistant';
 }
 
 function getAssistantRecord(message: unknown): UnknownRecord | undefined {
   const record = asRecord(message);
-  return record?.role === "assistant" ? record : undefined;
+  return record?.role === 'assistant' ? record : undefined;
 }
 
 function getModelIdNameTokenValues(model: PiModel | undefined): string[] {
@@ -1268,51 +1444,61 @@ function hasAnyTokenContaining(tokens: string[], needles: string[]): boolean {
   return tokens.some((token) => needles.some((needle) => token.includes(needle)));
 }
 
-function modelOrAssistantMessageHas(message: unknown, model: PiModel | undefined, needles: string[]): boolean {
-  return hasAnyTokenContaining([...getModelIdNameTokenValues(model), ...getAssistantMessageModelTokenValues(message)], needles);
+function modelOrAssistantMessageHas(
+  message: unknown,
+  model: PiModel | undefined,
+  needles: string[],
+): boolean {
+  return hasAnyTokenContaining([
+    ...getModelIdNameTokenValues(model),
+    ...getAssistantMessageModelTokenValues(message),
+  ], needles);
 }
 
 function isDeepSeekLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["deepseek"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['deepseek']);
 }
 
 function isDeepPiOwned(model: PiModel | undefined): boolean {
-  return model?.provider === "deepseek" && (model.id === "deepseek-v4-flash" || model.id === "deepseek-v4-pro");
+  return model?.provider === 'deepseek' &&
+    (model.id === 'deepseek-v4-flash' || model.id === 'deepseek-v4-pro');
 }
 
 function isDeepSeekLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["deepseek"]);
+  return modelOrAssistantMessageHas(message, model, ['deepseek']);
 }
 
 function isOpenAICompatibleApi(api: unknown): boolean {
   const value = lower(api);
-  return value === "openai-completions" || value === "openai-responses";
+  return value === 'openai-completions' || value === 'openai-responses';
 }
 
 function isAnthropicMessagesApi(api: unknown): boolean {
-  return lower(api) === "anthropic-messages";
+  return lower(api) === 'anthropic-messages';
 }
 
 function isOpenAICompatibleProxyApi(api: unknown): boolean {
-  return lower(api) === "openai-completions";
+  return lower(api) === 'openai-completions';
 }
 
 function isPiBuiltInLlamaCppModel(model: PiModel | undefined): boolean {
-  if (lower(model?.provider) !== "llama.cpp" || !isOpenAICompatibleProxyApi(model?.api)) return false;
+  if (lower(model?.provider) !== 'llama.cpp' || !isOpenAICompatibleProxyApi(model?.api)) {
+    return false;
+  }
 
   // Pi's built-in llama.cpp provider supplies this exact explicit compat
   // fingerprint. Provider ids are extension-overridable and models.json can add
   // cache/routing overrides, so provider id alone must never imply exemption.
   const compat = getCompat(model);
-  return compat.supportsStore === false
-    && compat.supportsDeveloperRole === false
-    && compat.supportsReasoningEffort === false
-    && compat.supportsUsageInStreaming === false
-    && compat.supportsStrictMode === false
-    && compat.maxTokensField === "max_tokens"
-    && compat.sendSessionAffinityHeaders === undefined
-    && compat.sessionAffinityFormat === undefined
-    && compat.supportsLongCacheRetention === undefined;
+  return compat.supportsStore === false &&
+    compat.supportsDeveloperRole === false &&
+    compat.supportsReasoningEffort === false &&
+    compat.supportsUsageInStreaming === false &&
+    compat.supportsStrictMode === false &&
+    compat.maxTokensField === 'max_tokens' &&
+    compat.sendSessionAffinityHeaders === undefined &&
+    compat.sessionAffinityFormat === undefined &&
+    compat.supportsLongCacheRetention === undefined;
 }
 
 function shouldInjectOpenAIPromptCacheKeyForModel(model: PiModel | undefined): boolean {
@@ -1326,7 +1512,7 @@ function collectAnthropicCacheControlsInWireOrder(payload: unknown): UnknownReco
   const controls: UnknownRecord[] = [];
   const collectFromBlock = (value: unknown): void => {
     const cacheControl = asRecord(asRecord(value)?.cache_control);
-    if (cacheControl?.type === "ephemeral") controls.push(cacheControl);
+    if (cacheControl?.type === 'ephemeral') controls.push(cacheControl);
   };
 
   // Anthropic processes cache breakpoints in tools → system → messages order.
@@ -1356,7 +1542,7 @@ function collectAnthropicCacheControlsInWireOrder(payload: unknown): UnknownReco
 function downgradeAnthropicLongCacheControls(payload: unknown): boolean {
   let changed = false;
   for (const control of collectAnthropicCacheControlsInWireOrder(payload)) {
-    if (control.ttl === "1h") {
+    if (control.ttl === '1h') {
       delete control.ttl;
       changed = true;
     }
@@ -1366,13 +1552,13 @@ function downgradeAnthropicLongCacheControls(payload: unknown): boolean {
 
 function hasAnthropicCacheTtlOrderError(message: unknown): boolean {
   const record = getAssistantRecord(message);
-  if (record?.stopReason !== "error" || typeof record.errorMessage !== "string") return false;
+  if (record?.stopReason !== 'error' || typeof record.errorMessage !== 'string') return false;
 
   const error = lower(record.errorMessage);
-  return error.includes("cache_control") &&
+  return error.includes('cache_control') &&
     error.includes("ttl='1h'") &&
     error.includes("ttl='5m'") &&
-    error.includes("must not come after");
+    error.includes('must not come after');
 }
 
 function normalizeAnthropicCacheControlTtlOrder(payload: unknown): boolean {
@@ -1382,9 +1568,9 @@ function normalizeAnthropicCacheControlTtlOrder(payload: unknown): boolean {
 
   for (const control of controls) {
     const ttl = control.ttl;
-    if (ttl === undefined || ttl === "5m") {
+    if (ttl === undefined || ttl === '5m') {
       seenShort = true;
-    } else if (ttl === "1h" && seenShort) {
+    } else if (ttl === '1h' && seenShort) {
       hasInvalidLongAfterShort = true;
       break;
     }
@@ -1396,15 +1582,17 @@ function normalizeAnthropicCacheControlTtlOrder(payload: unknown): boolean {
 
 function isResponsesPromptRewriteBypassApi(api: unknown): boolean {
   const value = lower(api);
-  return value === "openai-codex-responses" || value === "openai-responses" || value === "azure-openai-responses";
+  return value === 'openai-codex-responses' || value === 'openai-responses' ||
+    value === 'azure-openai-responses';
 }
 
 function isMistralConversationsApi(api: unknown): boolean {
-  return lower(api) === "mistral-conversations";
+  return lower(api) === 'mistral-conversations';
 }
 
 function isOpenAIFamilyToken(token: string): boolean {
-  return token.includes("gpt-") || token.includes("chatgpt") || OPENAI_REASONING_MODEL_PATTERN.test(token);
+  return token.includes('gpt-') || token.includes('chatgpt') ||
+    OPENAI_REASONING_MODEL_PATTERN.test(token);
 }
 
 function isOpenAIFamilyModel(model: PiModel | undefined): boolean {
@@ -1412,23 +1600,24 @@ function isOpenAIFamilyModel(model: PiModel | undefined): boolean {
 }
 
 function isOpenAIFamilyAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return [...getModelIdNameTokenValues(model), ...getAssistantMessageModelTokenValues(message)].some(isOpenAIFamilyToken);
+  return [...getModelIdNameTokenValues(model), ...getAssistantMessageModelTokenValues(message)]
+    .some(isOpenAIFamilyToken);
 }
 
 function isClaudeLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["anthropic", "claude"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['anthropic', 'claude']);
 }
 
 function isClaudeLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["anthropic", "claude"]);
+  return modelOrAssistantMessageHas(message, model, ['anthropic', 'claude']);
 }
 
 function isGeminiLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["gemini", "vertex"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['gemini', 'vertex']);
 }
 
 function isGeminiLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["gemini", "vertex"]);
+  return modelOrAssistantMessageHas(message, model, ['gemini', 'vertex']);
 }
 
 // ── Adaptive generation model detection ────────────────────────────
@@ -1445,206 +1634,229 @@ function isGeminiLikeAssistantMessage(message: unknown, model: PiModel | undefin
  * We match broadly: opus >= 4-6, sonnet >= 4-6, fable >= 5.
  * Ids may carry date-stamp or size suffixes like "[1M]".
  */
-const ADAPTIVE_OPUS_PATTERN = /(^|[\/\s:_-])(opus-4[.-][6-9]|opus-4-[1-9][0-9]|opus-([5-9]|[1-9][0-9]))($|[-_.:\/\s\[])/i;
-const ADAPTIVE_SONNET_PATTERN = /(^|[\/\s:_-])(sonnet-4[.-][6-9]|sonnet-4-[1-9][0-9]|sonnet-([5-9]|[1-9][0-9]))($|[-_.:\/\s\[])/i;
+const ADAPTIVE_OPUS_PATTERN =
+  /(^|[\/\s:_-])(opus-4[.-][6-9]|opus-4-[1-9][0-9]|opus-([5-9]|[1-9][0-9]))($|[-_.:\/\s\[])/i;
+const ADAPTIVE_SONNET_PATTERN =
+  /(^|[\/\s:_-])(sonnet-4[.-][6-9]|sonnet-4-[1-9][0-9]|sonnet-([5-9]|[1-9][0-9]))($|[-_.:\/\s\[])/i;
 const ADAPTIVE_FABLE_PATTERN = /(^|[\/\s:_-])fable-([5-9]|[1-9][0-9])($|[-_.:\/\s\[])/i;
 
 function isAdaptiveGenerationModel(model: PiModel | undefined): boolean {
   if (!model) return false;
   const tokens = getModelIdNameTokenValues(model);
-  return tokens.some((t) => ADAPTIVE_OPUS_PATTERN.test(t) || ADAPTIVE_SONNET_PATTERN.test(t) || ADAPTIVE_FABLE_PATTERN.test(t));
+  return tokens.some((t) =>
+    ADAPTIVE_OPUS_PATTERN.test(t) || ADAPTIVE_SONNET_PATTERN.test(t) ||
+    ADAPTIVE_FABLE_PATTERN.test(t)
+  );
 }
 
 function isKimiCodingAdaptiveModel(model: PiModel | undefined): boolean {
   if (!model) return false;
   const provider = lower(model.provider);
   const baseUrl = lower(model.baseUrl);
-  const isKimiCodingChannel = provider.includes("kimi-coding") || baseUrl.includes("api.kimi.com/coding");
+  const isKimiCodingChannel = provider.includes('kimi-coding') ||
+    baseUrl.includes('api.kimi.com/coding');
   if (!isKimiCodingChannel) return false;
 
   const tokens = getModelIdNameTokenValues(model);
   return tokens.some((token) =>
-    token === "k3"
-    || token.includes("kimi-k3")
-    || token.includes("kimi k3")
-    || token.includes("kimi-for-coding")
-    || token.includes("kimi for coding")
+    token === 'k3' ||
+    token.includes('kimi-k3') ||
+    token.includes('kimi k3') ||
+    token.includes('kimi-for-coding') ||
+    token.includes('kimi for coding')
   );
 }
 
 function isKimiCodingEmptySignatureModel(model: PiModel | undefined): boolean {
   if (!isKimiCodingAdaptiveModel(model)) return false;
   return getModelIdNameTokenValues(model).some((token) =>
-    token === "k3"
-    || token === "kimi-k3"
-    || token.startsWith("kimi-k3-")
-    || token === "kimi k3"
-    || token === "kimi-for-coding"
-    || token === "kimi for coding"
+    token === 'k3' ||
+    token === 'kimi-k3' ||
+    token.startsWith('kimi-k3-') ||
+    token === 'kimi k3' ||
+    token === 'kimi-for-coding' ||
+    token === 'kimi for coding'
   );
 }
 
 function isAdaptiveThinkingCompatApplicable(model: PiModel): boolean {
-  return lower(model.api) === "anthropic-messages"
-    && (isAdaptiveGenerationModel(model) || isKimiCodingAdaptiveModel(model));
+  return lower(model.api) === 'anthropic-messages' &&
+    (isAdaptiveGenerationModel(model) || isKimiCodingAdaptiveModel(model));
 }
 
 function describeMissingAdaptiveThinkingCompat(model: PiModel): string[] {
   const compat = getCompat(model);
   const missing: string[] = [];
   if (compat.forceAdaptiveThinking !== true) {
-    missing.push("forceAdaptiveThinking");
+    missing.push('forceAdaptiveThinking');
   }
   if (isKimiCodingEmptySignatureModel(model) && compat.allowEmptySignature !== true) {
-    missing.push("allowEmptySignature");
+    missing.push('allowEmptySignature');
   }
   return missing;
 }
 
 function buildAdaptiveThinkingCompatSuggestion(missing: string[]): Record<string, unknown> {
   const suggestion: Record<string, unknown> = {};
-  if (missing.includes("forceAdaptiveThinking")) {
+  if (missing.includes('forceAdaptiveThinking')) {
     suggestion.forceAdaptiveThinking = true;
   }
-  if (missing.includes("allowEmptySignature")) {
+  if (missing.includes('allowEmptySignature')) {
     suggestion.allowEmptySignature = true;
   }
   return suggestion;
 }
 
-function appendAdaptiveThinkingCompatAdviceLines(lines: string[], missing: string[], placement: CompatAdvicePlacement = {}): void {
+function appendAdaptiveThinkingCompatAdviceLines(
+  lines: string[],
+  missing: string[],
+  placement: CompatAdvicePlacement = {},
+): void {
   const suggestion = buildAdaptiveThinkingCompatSuggestion(missing);
   if (Object.keys(suggestion).length > 0) {
-    lines.push("Suggested fix:");
+    lines.push('Suggested fix:');
     lines.push(JSON.stringify(suggestion, null, 2));
   }
-  lines.push("- forceAdaptiveThinking: true tells Pi to use adaptive thinking format");
+  lines.push('- forceAdaptiveThinking: true tells Pi to use adaptive thinking format');
   lines.push("  (thinking: {type: 'adaptive'}) instead of legacy budget tokens format.");
-  lines.push("  Without this flag, Pi sends legacy thinking which adaptive-only upstreams reject.");
-  if (missing.includes("allowEmptySignature")) {
-    lines.push("- allowEmptySignature: true preserves Kimi Coding K3 thinking blocks whose replay signature is empty.");
+  lines.push('  Without this flag, Pi sends legacy thinking which adaptive-only upstreams reject.');
+  if (missing.includes('allowEmptySignature')) {
+    lines.push(
+      '- allowEmptySignature: true preserves Kimi Coding K3 thinking blocks whose replay signature is empty.',
+    );
   }
   appendCredentialSafeProviderGuidance(lines, placement, suggestion);
 }
 
 function buildAdaptiveThinkingCompatWarningText(key: string, missing: string[]): string {
-  const slashIdx = key.indexOf("/");
+  const slashIdx = key.indexOf('/');
   const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
   const modelId = slashIdx > 0 ? key.slice(slashIdx + 1) : undefined;
   const modelsJsonPath = getModelsJsonDisplayPath();
   const lines: string[] = [
-    `💡 pi-cache-optimizer: ${key} is an adaptive-generation model but merged compat lacks ${missing.join(" and ")}.`,
+    `💡 pi-cache-optimizer: ${key} is an adaptive-generation model but merged compat lacks ${
+      missing.join(' and ')
+    }.`,
     `Without the required compat, Pi may send legacy thinking or replay thinking blocks incorrectly.`,
     `Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat (at the same level as baseUrl/api/apiKey/models).`,
-    "",
+    '',
   ];
   appendAdaptiveThinkingCompatAdviceLines(lines, missing, { providerLabel, modelId });
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 // ── Non-GPT OpenAI-compatible model detection ──────────────────────
 
 function isKimiLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["kimi"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['kimi']);
 }
 function isKimiLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["kimi"]);
+  return modelOrAssistantMessageHas(message, model, ['kimi']);
 }
 
 function isQwenLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["qwen"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['qwen']);
 }
 function isQwenLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["qwen"]);
+  return modelOrAssistantMessageHas(message, model, ['qwen']);
 }
 
 function isGLMLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["glm"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['glm']);
 }
 function isGLMLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["glm"]);
+  return modelOrAssistantMessageHas(message, model, ['glm']);
 }
 
 function isMiniMaxLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["minimax"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['minimax']);
 }
 function isMiniMaxLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["minimax"]);
+  return modelOrAssistantMessageHas(message, model, ['minimax']);
 }
 
 function isMimoLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["xiaomimimo"]) || tokens.some((t) => MIMO_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['xiaomimimo']) ||
+    tokens.some((t) => MIMO_MODEL_PATTERN.test(t));
 }
 function isMimoLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["xiaomimimo"]) || allTokens.some((t) => MIMO_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['xiaomimimo']) ||
+    allTokens.some((t) => MIMO_MODEL_PATTERN.test(t));
 }
 
 function isHunyuanLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["hunyuan"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['hunyuan']);
 }
 function isHunyuanLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["hunyuan"]);
+  return modelOrAssistantMessageHas(message, model, ['hunyuan']);
 }
 
 // ── Additional OpenAI-compatible model detection ──────────────────
 
 function isMistralLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["mistral", "mixtral", "codestral"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'mistral',
+    'mixtral',
+    'codestral',
+  ]);
 }
 function isMistralLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["mistral", "mixtral", "codestral"]);
+  return modelOrAssistantMessageHas(message, model, ['mistral', 'mixtral', 'codestral']);
 }
 
 function isGrokLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["grok"]) || tokens.some((t) => XAI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['grok']) || tokens.some((t) => XAI_MODEL_PATTERN.test(t));
 }
 function isGrokLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["grok"]) || allTokens.some((t) => XAI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['grok']) ||
+    allTokens.some((t) => XAI_MODEL_PATTERN.test(t));
 }
 
 function isLlamaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["llama"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['llama']);
 }
 function isLlamaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["llama"]);
+  return modelOrAssistantMessageHas(message, model, ['llama']);
 }
 
 function isNemotronLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["nemotron"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['nemotron']);
 }
 function isNemotronLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["nemotron"]);
+  return modelOrAssistantMessageHas(message, model, ['nemotron']);
 }
 
 function isCohereLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["cohere", "command-r"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['cohere', 'command-r']);
 }
 function isCohereLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["cohere", "command-r"]);
+  return modelOrAssistantMessageHas(message, model, ['cohere', 'command-r']);
 }
 
 const YI_MODEL_PATTERN = /(^|[\/\s:_-])yi($|[\-_.:\/\s])/;
 
 function isYiLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["yi-", "01-ai", "zero-one"]) || tokens.some((t) => YI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['yi-', '01-ai', 'zero-one']) ||
+    tokens.some((t) => YI_MODEL_PATTERN.test(t));
 }
 function isYiLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["yi-", "01-ai", "zero-one"]) || allTokens.some((t) => YI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['yi-', '01-ai', 'zero-one']) ||
+    allTokens.some((t) => YI_MODEL_PATTERN.test(t));
 }
 
 // ── More OpenAI-compatible model detection (batch 2) ───────────────
@@ -1653,7 +1865,13 @@ const DOUBAO_SEED_PATTERN = /(^|[\/\s:_-])seed($|[\-_.:\/\s])/i;
 
 function isDoubaoLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["doubao", "豆包", "volcengine", "bytedance", "byte-dance"]) ||
+  return hasAnyTokenContaining(tokens, [
+    'doubao',
+    '豆包',
+    'volcengine',
+    'bytedance',
+    'byte-dance',
+  ]) ||
     tokens.some((t) => DOUBAO_SEED_PATTERN.test(t));
 }
 function isDoubaoLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
@@ -1661,78 +1879,111 @@ function isDoubaoLikeAssistantMessage(message: unknown, model: PiModel | undefin
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["doubao", "豆包", "volcengine", "bytedance", "byte-dance"]) ||
+  return hasAnyTokenContaining(allTokens, [
+    'doubao',
+    '豆包',
+    'volcengine',
+    'bytedance',
+    'byte-dance',
+  ]) ||
     allTokens.some((t) => DOUBAO_SEED_PATTERN.test(t));
 }
 
 function isErnieLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["ernie", "wenxin", "文心", "yiyan", "一言", "baidu"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'ernie',
+    'wenxin',
+    '文心',
+    'yiyan',
+    '一言',
+    'baidu',
+  ]);
 }
 function isErnieLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["ernie", "wenxin", "文心", "yiyan", "一言", "baidu"]);
+  return modelOrAssistantMessageHas(message, model, [
+    'ernie',
+    'wenxin',
+    '文心',
+    'yiyan',
+    '一言',
+    'baidu',
+  ]);
 }
 
 function isBaichuanLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["baichuan", "百川"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['baichuan', '百川']);
 }
 function isBaichuanLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["baichuan", "百川"]);
+  return modelOrAssistantMessageHas(message, model, ['baichuan', '百川']);
 }
 
 function isStepFunLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["stepfun", "step-"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['stepfun', 'step-']);
 }
 function isStepFunLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["stepfun", "step-"]);
+  return modelOrAssistantMessageHas(message, model, ['stepfun', 'step-']);
 }
 
 function isSparkLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["spark", "xinghuo", "星火", "iflytek", "讯飞"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'spark',
+    'xinghuo',
+    '星火',
+    'iflytek',
+    '讯飞',
+  ]);
 }
 function isSparkLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["spark", "xinghuo", "星火", "iflytek", "讯飞"]);
+  return modelOrAssistantMessageHas(message, model, [
+    'spark',
+    'xinghuo',
+    '星火',
+    'iflytek',
+    '讯飞',
+  ]);
 }
 
 function isInternLMLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["internlm", "intern-lm", "书生"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['internlm', 'intern-lm', '书生']);
 }
 function isInternLMLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["internlm", "intern-lm", "书生"]);
+  return modelOrAssistantMessageHas(message, model, ['internlm', 'intern-lm', '书生']);
 }
 
 function isGemmaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["gemma"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['gemma']);
 }
 function isGemmaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["gemma"]);
+  return modelOrAssistantMessageHas(message, model, ['gemma']);
 }
 
 const PHI_MODEL_PATTERN = /(^|[\/\s:_-])phi($|[\-_.:\/\s])/i;
 
 function isPhiLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["phi-"]) || tokens.some((t) => PHI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['phi-']) || tokens.some((t) => PHI_MODEL_PATTERN.test(t));
 }
 function isPhiLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["phi-"]) || allTokens.some((t) => PHI_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['phi-']) ||
+    allTokens.some((t) => PHI_MODEL_PATTERN.test(t));
 }
 
 function isJambaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["jamba", "ai21"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['jamba', 'ai21']);
 }
 function isJambaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["jamba", "ai21"]);
+  return modelOrAssistantMessageHas(message, model, ['jamba', 'ai21']);
 }
 
 function isSolarLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["solar", "upstage"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['solar', 'upstage']);
 }
 function isSolarLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["solar", "upstage"]);
+  return modelOrAssistantMessageHas(message, model, ['solar', 'upstage']);
 }
 
 // ── New OpenAI-compatible model detection (batch 3, 12 families) ──────
@@ -1740,278 +1991,330 @@ function isSolarLikeAssistantMessage(message: unknown, model: PiModel | undefine
 // Perplexity / Sonar
 function isPerplexityLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["sonar", "perplexity"]) || tokens.some((t) => PPLX_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['sonar', 'perplexity']) ||
+    tokens.some((t) => PPLX_MODEL_PATTERN.test(t));
 }
 function isPerplexityLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["sonar", "perplexity"]) || allTokens.some((t) => PPLX_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['sonar', 'perplexity']) ||
+    allTokens.some((t) => PPLX_MODEL_PATTERN.test(t));
 }
 
 // Amazon Nova
 function isNovaLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["amazon-nova"]) || tokens.some((t) => NOVA_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['amazon-nova']) ||
+    tokens.some((t) => NOVA_MODEL_PATTERN.test(t));
 }
 function isNovaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["amazon-nova"]) || allTokens.some((t) => NOVA_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['amazon-nova']) ||
+    allTokens.some((t) => NOVA_MODEL_PATTERN.test(t));
 }
 
 // Reka
 function isRekaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["reka"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['reka']);
 }
 function isRekaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["reka"]);
+  return modelOrAssistantMessageHas(message, model, ['reka']);
 }
 
 // Falcon / TII
 function isFalconLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["falcon", "tiiuae"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['falcon', 'tiiuae']);
 }
 function isFalconLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["falcon", "tiiuae"]);
+  return modelOrAssistantMessageHas(message, model, ['falcon', 'tiiuae']);
 }
 
 // Databricks DBRX
 function isDbrxLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["dbrx", "databricks"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['dbrx', 'databricks']);
 }
 function isDbrxLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["dbrx", "databricks"]);
+  return modelOrAssistantMessageHas(message, model, ['dbrx', 'databricks']);
 }
 
 // MosaicML MPT
 function isMptLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["mosaicml", "mpt-"]) || tokens.some((t) => MPT_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['mosaicml', 'mpt-']) ||
+    tokens.some((t) => MPT_MODEL_PATTERN.test(t));
 }
 function isMptLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["mosaicml", "mpt-"]) || allTokens.some((t) => MPT_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['mosaicml', 'mpt-']) ||
+    allTokens.some((t) => MPT_MODEL_PATTERN.test(t));
 }
 
 // StableLM / Stability AI
 function isStableLMLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["stablelm", "stable-lm", "stability-ai"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'stablelm',
+    'stable-lm',
+    'stability-ai',
+  ]);
 }
 function isStableLMLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["stablelm", "stable-lm", "stability-ai"]);
+  return modelOrAssistantMessageHas(message, model, ['stablelm', 'stable-lm', 'stability-ai']);
 }
 
 // BAAI / Aquila
 function isAquilaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["aquila", "baai"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['aquila', 'baai']);
 }
 function isAquilaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["aquila", "baai"]);
+  return modelOrAssistantMessageHas(message, model, ['aquila', 'baai']);
 }
 
 // LG EXAONE
 function isExaoneLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["exaone"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['exaone']);
 }
 function isExaoneLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["exaone"]);
+  return modelOrAssistantMessageHas(message, model, ['exaone']);
 }
 
 // Naver HyperCLOVA X (conservative: hyperclova, clova-x only)
 function isHyperCLOVALikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["hyperclova", "clova-x"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['hyperclova', 'clova-x']);
 }
 function isHyperCLOVALikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["hyperclova", "clova-x"]);
+  return modelOrAssistantMessageHas(message, model, ['hyperclova', 'clova-x']);
 }
 
 // Aleph Alpha Luminous
 function isLuminousLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["luminous", "aleph-alpha"]) || tokens.some((t) => ALEPH_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['luminous', 'aleph-alpha']) ||
+    tokens.some((t) => ALEPH_MODEL_PATTERN.test(t));
 }
 function isLuminousLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["luminous", "aleph-alpha"]) || allTokens.some((t) => ALEPH_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['luminous', 'aleph-alpha']) ||
+    allTokens.some((t) => ALEPH_MODEL_PATTERN.test(t));
 }
 
 // Nous / Hermes / OpenHermes
 function isHermesLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["nous", "hermes", "openhermes"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['nous', 'hermes', 'openhermes']);
 }
 function isHermesLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["nous", "hermes", "openhermes"]);
+  return modelOrAssistantMessageHas(message, model, ['nous', 'hermes', 'openhermes']);
 }
 
 // ── More OpenAI-compatible model detection (batch 4, 18 families) ──
 
 // IBM Granite
 function isGraniteLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["granite", "ibm-granite"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['granite', 'ibm-granite']);
 }
 function isGraniteLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["granite", "ibm-granite"]);
+  return modelOrAssistantMessageHas(message, model, ['granite', 'ibm-granite']);
 }
 
 // Snowflake Arctic
 function isArcticLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["snowflake-arctic"]) || tokens.some((t) => ARCTIC_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['snowflake-arctic']) ||
+    tokens.some((t) => ARCTIC_MODEL_PATTERN.test(t));
 }
 function isArcticLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["snowflake-arctic"]) || allTokens.some((t) => ARCTIC_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['snowflake-arctic']) ||
+    allTokens.some((t) => ARCTIC_MODEL_PATTERN.test(t));
 }
 
 // Huawei Pangu / 盘古
 function isPanguLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["pangu", "pan-gu", "盘古", "huawei-pangu"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'pangu',
+    'pan-gu',
+    '盘古',
+    'huawei-pangu',
+  ]);
 }
 function isPanguLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["pangu", "pan-gu", "盘古", "huawei-pangu"]);
+  return modelOrAssistantMessageHas(message, model, ['pangu', 'pan-gu', '盘古', 'huawei-pangu']);
 }
 
 // SenseTime SenseNova / 商汤
 function isSenseNovaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["sensenova", "sense-nova", "sensechat", "商汤"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'sensenova',
+    'sense-nova',
+    'sensechat',
+    '商汤',
+  ]);
 }
 function isSenseNovaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["sensenova", "sense-nova", "sensechat", "商汤"]);
+  return modelOrAssistantMessageHas(message, model, [
+    'sensenova',
+    'sense-nova',
+    'sensechat',
+    '商汤',
+  ]);
 }
 
 // 360 Zhinao / 智脑
 function isZhinaoLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["360gpt", "360-gpt", "zhinao", "智脑"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    '360gpt',
+    '360-gpt',
+    'zhinao',
+    '智脑',
+  ]);
 }
 function isZhinaoLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["360gpt", "360-gpt", "zhinao", "智脑"]);
+  return modelOrAssistantMessageHas(message, model, ['360gpt', '360-gpt', 'zhinao', '智脑']);
 }
 
 // OpenBMB MiniCPM
 function isMiniCPMLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["minicpm", "mini-cpm", "openbmb"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'minicpm',
+    'mini-cpm',
+    'openbmb',
+  ]);
 }
 function isMiniCPMLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["minicpm", "mini-cpm", "openbmb"]);
+  return modelOrAssistantMessageHas(message, model, ['minicpm', 'mini-cpm', 'openbmb']);
 }
 
 // XVERSE
 function isXVerseLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["xverse"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['xverse']);
 }
 function isXVerseLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["xverse"]);
+  return modelOrAssistantMessageHas(message, model, ['xverse']);
 }
 
 // OrionStar Orion
 function isOrionLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["orionstar", "orion-star"]) || tokens.some((t) => ORION_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['orionstar', 'orion-star']) ||
+    tokens.some((t) => ORION_MODEL_PATTERN.test(t));
 }
 function isOrionLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["orionstar", "orion-star"]) || allTokens.some((t) => ORION_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['orionstar', 'orion-star']) ||
+    allTokens.some((t) => ORION_MODEL_PATTERN.test(t));
 }
 
 // OpenChat
 function isOpenChatLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["openchat"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['openchat']);
 }
 function isOpenChatLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["openchat"]);
+  return modelOrAssistantMessageHas(message, model, ['openchat']);
 }
 
 // Vicuna
 function isVicunaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["vicuna"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['vicuna']);
 }
 function isVicunaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["vicuna"]);
+  return modelOrAssistantMessageHas(message, model, ['vicuna']);
 }
 
 // WizardLM / WizardCoder
 function isWizardLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["wizardlm", "wizard-lm", "wizardcoder", "wizard-coder"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), [
+    'wizardlm',
+    'wizard-lm',
+    'wizardcoder',
+    'wizard-coder',
+  ]);
 }
 function isWizardLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["wizardlm", "wizard-lm", "wizardcoder", "wizard-coder"]);
+  return modelOrAssistantMessageHas(message, model, [
+    'wizardlm',
+    'wizard-lm',
+    'wizardcoder',
+    'wizard-coder',
+  ]);
 }
 
 // Zephyr
 function isZephyrLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["zephyr"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['zephyr']);
 }
 function isZephyrLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["zephyr"]);
+  return modelOrAssistantMessageHas(message, model, ['zephyr']);
 }
 
 // Dolphin
 function isDolphinLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["dolphin"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['dolphin']);
 }
 function isDolphinLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["dolphin"]);
+  return modelOrAssistantMessageHas(message, model, ['dolphin']);
 }
 
 // OpenOrca
 function isOpenOrcaLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["openorca", "open-orca"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['openorca', 'open-orca']);
 }
 function isOpenOrcaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["openorca", "open-orca"]);
+  return modelOrAssistantMessageHas(message, model, ['openorca', 'open-orca']);
 }
 
 // Starling
 function isStarlingLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["starling"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['starling']);
 }
 function isStarlingLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["starling"]);
+  return modelOrAssistantMessageHas(message, model, ['starling']);
 }
 
 // BLOOM / BigScience
 function isBloomLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["bloom", "bigscience"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['bloom', 'bigscience']);
 }
 function isBloomLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["bloom", "bigscience"]);
+  return modelOrAssistantMessageHas(message, model, ['bloom', 'bigscience']);
 }
 
 // RWKV
 function isRwkvLikeModel(model: PiModel | undefined): boolean {
-  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ["rwkv"]);
+  return hasAnyTokenContaining(getModelIdNameTokenValues(model), ['rwkv']);
 }
 function isRwkvLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
-  return modelOrAssistantMessageHas(message, model, ["rwkv"]);
+  return modelOrAssistantMessageHas(message, model, ['rwkv']);
 }
 
 // Cohere Aya
 function isAyaLikeModel(model: PiModel | undefined): boolean {
   const tokens = getModelIdNameTokenValues(model);
-  return hasAnyTokenContaining(tokens, ["aya-expanse"]) || tokens.some((t) => AYA_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(tokens, ['aya-expanse']) ||
+    tokens.some((t) => AYA_MODEL_PATTERN.test(t));
 }
 function isAyaLikeAssistantMessage(message: unknown, model: PiModel | undefined): boolean {
   const allTokens = [
     ...getModelIdNameTokenValues(model),
     ...getAssistantMessageModelTokenValues(message),
   ];
-  return hasAnyTokenContaining(allTokens, ["aya-expanse"]) || allTokens.some((t) => AYA_MODEL_PATTERN.test(t));
+  return hasAnyTokenContaining(allTokens, ['aya-expanse']) ||
+    allTokens.some((t) => AYA_MODEL_PATTERN.test(t));
 }
 
 // ── Model key ──────────────────────────────────────────────────────
@@ -2021,25 +2324,29 @@ function modelKey(model: PiModel): string {
 }
 
 function isRouterModel(model: PiModel | undefined): boolean {
-  return lower(model?.provider) === "router";
+  return lower(model?.provider) === 'router';
 }
 
-function modelFromAssistantMessage(message: unknown, fallback: PiModel | undefined): PiModel | undefined {
+function modelFromAssistantMessage(
+  message: unknown,
+  fallback: PiModel | undefined,
+): PiModel | undefined {
   const record = getAssistantRecord(message);
   if (!record) return fallback;
 
   const id = firstNonEmptyString(record.responseModel, record.model, fallback?.id);
   const provider = firstNonEmptyString(record.provider, fallback?.provider);
-  const api = firstNonEmptyString(record.api, fallback?.api) ?? "";
+  const api = firstNonEmptyString(record.api, fallback?.api) ?? '';
   if (!id || !provider) return fallback;
 
   const fallbackName = isNonEmptyString(fallback?.name) ? fallback.name : undefined;
-  const preservesFallbackIdentity =
-    !isVirtualRoutingModel(fallback) &&
+  const preservesFallbackIdentity = !isVirtualRoutingModel(fallback) &&
     provider === fallback?.provider &&
     id === fallback?.id &&
     fallbackName !== undefined;
 
+  // Message metadata is normalized into the minimal model shape needed by
+  // stats routing; the host declaration does not model these fallback defaults.
   return {
     ...(fallback ?? {}),
     id,
@@ -2050,16 +2357,16 @@ function modelFromAssistantMessage(message: unknown, fallback: PiModel | undefin
     name: preservesFallbackIdentity ? fallbackName : id,
     provider,
     api,
-    baseUrl: fallback?.baseUrl ?? "",
+    baseUrl: fallback?.baseUrl ?? '',
     reasoning: fallback?.reasoning ?? false,
-    input: fallback?.input ?? ["text"],
+    input: fallback?.input ?? ['text'],
     cost: fallback?.cost ?? { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: fallback?.contextWindow ?? 0,
     maxTokens: fallback?.maxTokens ?? 0,
   } as PiModel;
 }
 
-function keyForModelExt(model: { provider: string; id: string }): string {
+function keyForModelExt(model: PersistedRoutedModelRef): string {
   return `${model.provider}/${model.id}`;
 }
 
@@ -2083,7 +2390,7 @@ function keyForModelExt(model: { provider: string; id: string }): string {
 function consolidateDirectProviderStatsModel(
   statsModel: PiModel | undefined,
   ctxModel: PiModel | undefined,
-  ctx?: Pick<ExtensionContext, "sessionManager">,
+  ctx?: Pick<ExtensionContext, 'sessionManager'>,
 ): PiModel | undefined {
   if (!statsModel || !ctxModel) return statsModel;
   // Virtual routing providers keep message-local stats identity.
@@ -2112,7 +2419,10 @@ function usageRecordFromAssistant(message: unknown): UnknownRecord | undefined {
   return asRecord(getAssistantRecord(message)?.usage);
 }
 
-function getNestedRecord(record: UnknownRecord | undefined, key: string): UnknownRecord | undefined {
+function getNestedRecord(
+  record: UnknownRecord | undefined,
+  key: string,
+): UnknownRecord | undefined {
   return asRecord(record?.[key]);
 }
 
@@ -2148,9 +2458,9 @@ function getPiNormalizedUsage(message: unknown, allowInputOnly = false): UsageSn
   const usage = usageRecordFromAssistant(message);
   if (!usage) return undefined;
 
-  const input = getNonNegativeNumber(usage, "input");
-  const cacheRead = getNonNegativeNumber(usage, "cacheRead");
-  const cacheWrite = getNonNegativeNumber(usage, "cacheWrite");
+  const input = getNonNegativeNumber(usage, 'input');
+  const cacheRead = getNonNegativeNumber(usage, 'cacheRead');
+  const cacheWrite = getNonNegativeNumber(usage, 'cacheWrite');
   const hasCacheSignal = cacheRead !== undefined || cacheWrite !== undefined;
 
   if (!hasCacheSignal && (input === undefined || !allowInputOnly)) return undefined;
@@ -2193,12 +2503,16 @@ function getOpenAIRawUsage(message: unknown): UsageSnapshot | undefined {
   const usage = usageRecordFromAssistant(message);
   if (!usage) return undefined;
 
-  const promptDetails = getNestedRecord(usage, "prompt_tokens_details") ?? getNestedRecord(usage, "promptTokensDetails");
-  const inputDetails = getNestedRecord(usage, "input_tokens_details") ?? getNestedRecord(usage, "inputTokensDetails");
-  const cacheRead = readCachedTokensFromDetails(promptDetails) ?? readCachedTokensFromDetails(inputDetails);
+  const promptDetails = getNestedRecord(usage, 'prompt_tokens_details') ??
+    getNestedRecord(usage, 'promptTokensDetails');
+  const inputDetails = getNestedRecord(usage, 'input_tokens_details') ??
+    getNestedRecord(usage, 'inputTokensDetails');
+  const cacheRead = readCachedTokensFromDetails(promptDetails) ??
+    readCachedTokensFromDetails(inputDetails);
   if (cacheRead === undefined) return undefined;
 
-  const cacheWrite = readCacheWriteFromDetails(promptDetails) ?? readCacheWriteFromDetails(inputDetails) ?? 0;
+  const cacheWrite = readCacheWriteFromDetails(promptDetails) ??
+    readCacheWriteFromDetails(inputDetails) ?? 0;
   const totalInput = getFirstNonNegativeNumber(
     usage.prompt_tokens,
     usage.promptTokens,
@@ -2216,8 +2530,14 @@ function getAnthropicRawUsage(message: unknown): UsageSnapshot | undefined {
   const usage = usageRecordFromAssistant(message);
   if (!usage) return undefined;
 
-  const cacheRead = getFirstNonNegativeNumber(usage.cache_read_input_tokens, usage.cacheReadInputTokens);
-  const cacheWrite = getFirstNonNegativeNumber(usage.cache_creation_input_tokens, usage.cacheCreationInputTokens);
+  const cacheRead = getFirstNonNegativeNumber(
+    usage.cache_read_input_tokens,
+    usage.cacheReadInputTokens,
+  );
+  const cacheWrite = getFirstNonNegativeNumber(
+    usage.cache_creation_input_tokens,
+    usage.cacheCreationInputTokens,
+  );
   if (cacheRead === undefined && cacheWrite === undefined) return undefined;
 
   // Anthropic input_tokens = tokens after the last cache breakpoint (neither read nor written).
@@ -2237,11 +2557,10 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
   if (!record) return undefined;
 
   const usage = asRecord(record.usage);
-  const metadata =
-    getNestedRecord(record, "usageMetadata") ??
-    getNestedRecord(record, "usage_metadata") ??
-    getNestedRecord(usage, "usageMetadata") ??
-    getNestedRecord(usage, "usage_metadata") ??
+  const metadata = getNestedRecord(record, 'usageMetadata') ??
+    getNestedRecord(record, 'usage_metadata') ??
+    getNestedRecord(usage, 'usageMetadata') ??
+    getNestedRecord(usage, 'usage_metadata') ??
     usage;
   if (!metadata) return undefined;
 
@@ -2272,12 +2591,15 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
 function normalizeWithFallback(
   message: unknown,
   rawNormalizer: (message: unknown) => UsageSnapshot | undefined,
-  options: { allowInputOnlyPiUsage?: boolean } = {},
+  options: UsageNormalizationOptions = {},
 ): UsageSnapshot | undefined {
   return getPiNormalizedUsage(message, options.allowInputOnlyPiUsage) ?? rawNormalizer(message);
 }
 
-function addOpenAIPromptCacheKey(payload: unknown, cacheKey: string | undefined): unknown | undefined {
+function addOpenAIPromptCacheKey(
+  payload: unknown,
+  cacheKey: string | undefined,
+): unknown | undefined {
   const record = asRecord(payload);
   const normalizedCacheKey = clampPromptCacheKey(cacheKey);
   if (!record || !normalizedCacheKey) return undefined;
@@ -2294,19 +2616,19 @@ function hasEffectivePromptCacheKey(record: UnknownRecord): boolean {
 }
 
 function isNonEmptyString(value: unknown): value is string {
-  return typeof value === "string" && value.trim().length > 0;
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 function isOfficialOpenAIBaseUrl(model: PiModel): boolean {
   const value = lower(model.baseUrl).trim();
   if (!value) {
-    return lower(model.provider) === "openai";
+    return lower(model.provider) === 'openai';
   }
 
   try {
-    return new URL(value).hostname === "api.openai.com";
+    return new URL(value).hostname === 'api.openai.com';
   } catch {
-    return value === "api.openai.com" || value.startsWith("api.openai.com/");
+    return value === 'api.openai.com' || value.startsWith('api.openai.com/');
   }
 }
 
@@ -2319,7 +2641,7 @@ function describeMissingOpenAIFamilyProxyCompat(model: PiModel): string[] {
   if (isOfficialOpenAIBaseUrl(model)) return missing;
 
   if (compat.sendSessionAffinityHeaders !== true) {
-    missing.push("sendSessionAffinityHeaders");
+    missing.push('sendSessionAffinityHeaders');
   }
 
   return missing;
@@ -2340,7 +2662,7 @@ function describeMissingOpenAICompatibleProxyCompat(model: PiModel): string[] {
   if (isPiBuiltInLlamaCppModel(model)) return missing;
 
   if (compat.sendSessionAffinityHeaders === undefined) {
-    missing.push("sendSessionAffinityHeaders");
+    missing.push('sendSessionAffinityHeaders');
   }
 
   // Explicit `sendSessionAffinityHeaders: false` is a valid safe opt-out for
@@ -2368,7 +2690,7 @@ function describeOptionalOpenAICompatibleProxyCompat(model: PiModel): string[] {
   if (isPiBuiltInLlamaCppModel(model)) return optional;
 
   if (compat.supportsLongCacheRetention !== true) {
-    optional.push("supportsLongCacheRetention");
+    optional.push('supportsLongCacheRetention');
   }
 
   return optional;
@@ -2376,7 +2698,7 @@ function describeOptionalOpenAICompatibleProxyCompat(model: PiModel): string[] {
 
 function buildSafeOpenAIProxyCompatSuggestion(missing: string[]): Record<string, boolean> {
   const suggestion: Record<string, boolean> = {};
-  if (missing.includes("sendSessionAffinityHeaders")) {
+  if (missing.includes('sendSessionAffinityHeaders')) {
     suggestion.sendSessionAffinityHeaders = true;
   }
   // supportsLongCacheRetention is NOT suggested here — per spec it is
@@ -2386,36 +2708,41 @@ function buildSafeOpenAIProxyCompatSuggestion(missing: string[]): Record<string,
 }
 
 function getPromptCacheRetentionUnsupportedHint(): string {
-  return "If this channel returns `400 Unsupported parameter: prompt_cache_retention`, remove/avoid `supportsLongCacheRetention`; this extension does not write that field directly, but Pi may send it when long retention is requested and compat says the proxy supports it.";
+  return 'If this channel returns `400 Unsupported parameter: prompt_cache_retention`, remove/avoid `supportsLongCacheRetention`; this extension does not write that field directly, but Pi may send it when long retention is requested and compat says the proxy supports it.';
 }
 
-function hasPromptCacheRetentionUnsupportedSignal(headers: Record<string, string> | undefined): boolean {
+function hasPromptCacheRetentionUnsupportedSignal(
+  headers: Record<string, string> | undefined,
+): boolean {
   if (!headers) return false;
 
   const normalized = Object.entries(headers)
     .map(([key, value]) => `${lower(key)}: ${lower(value)}`)
-    .join("\n");
-  if (!normalized.includes("prompt_cache_retention")) return false;
+    .join('\n');
+  if (!normalized.includes('prompt_cache_retention')) return false;
 
   return [
-    "unsupported parameter",
-    "unsupported_parameter",
-    "unknown parameter",
-    "not supported",
-    "unsupported field",
-    "extra inputs",
-    "not permitted",
-    "unrecognized",
-    "bad request",
+    'unsupported parameter',
+    'unsupported_parameter',
+    'unknown parameter',
+    'not supported',
+    'unsupported field',
+    'extra inputs',
+    'not permitted',
+    'unrecognized',
+    'bad request',
   ].some((needle) => normalized.includes(needle));
 }
 
-type CompatAdvicePlacement = {
+interface CompatAdvicePlacement {
   providerLabel?: string;
   modelId?: string;
-};
+}
 
-function buildProviderCompatOverride(providerLabel: string, compat: Record<string, unknown>): Record<string, unknown> {
+function buildProviderCompatOverride(
+  providerLabel: string,
+  compat: Record<string, unknown>,
+): Record<string, unknown> {
   return {
     providers: {
       [providerLabel]: {
@@ -2425,7 +2752,11 @@ function buildProviderCompatOverride(providerLabel: string, compat: Record<strin
   };
 }
 
-function buildModelCompatOverride(providerLabel: string, modelId: string, compat: Record<string, unknown>): Record<string, unknown> {
+function buildModelCompatOverride(
+  providerLabel: string,
+  modelId: string,
+  compat: Record<string, unknown>,
+): Record<string, unknown> {
   return {
     providers: {
       [providerLabel]: {
@@ -2439,51 +2770,69 @@ function buildModelCompatOverride(providerLabel: string, modelId: string, compat
   };
 }
 
-function appendCredentialSafeProviderGuidance(lines: string[], placement: CompatAdvicePlacement, compatSuggestion: Record<string, unknown>): void {
+function appendCredentialSafeProviderGuidance(
+  lines: string[],
+  placement: CompatAdvicePlacement,
+  compatSuggestion: Record<string, unknown>,
+): void {
   const providerLabel = placement.providerLabel;
   if (!providerLabel) return;
 
-  lines.push("");
-  lines.push("If this channel has no models.json provider entry yet:");
-  lines.push("- Keep existing authentication as-is; do not copy credentials, tokens, or API keys.");
+  lines.push('');
+  lines.push('If this channel has no models.json provider entry yet:');
+  lines.push('- Keep existing authentication as-is; do not copy credentials, tokens, or API keys.');
   lines.push(`- Add only cache/routing compat overrides in ${getModelsJsonDisplayPath()}.`);
 
   if (Object.keys(compatSuggestion).length === 0) {
-    lines.push("- No safe copyable override is available for the missing flags shown above.");
+    lines.push('- No safe copyable override is available for the missing flags shown above.');
     return;
   }
 
-  lines.push("Provider-level minimal override:");
+  lines.push('Provider-level minimal override:');
   lines.push(JSON.stringify(buildProviderCompatOverride(providerLabel, compatSuggestion), null, 2));
 
   if (placement.modelId) {
-    lines.push("Single-model override (use this if only this model should change):");
-    lines.push(JSON.stringify(buildModelCompatOverride(providerLabel, placement.modelId, compatSuggestion), null, 2));
+    lines.push('Single-model override (use this if only this model should change):');
+    lines.push(
+      JSON.stringify(
+        buildModelCompatOverride(providerLabel, placement.modelId, compatSuggestion),
+        null,
+        2,
+      ),
+    );
   }
 }
 
-function appendOpenAIProxyCompatAdviceLines(lines: string[], missing: string[], options: { includeJsonIntro?: boolean } & CompatAdvicePlacement = {}): void {
+function appendOpenAIProxyCompatAdviceLines(
+  lines: string[],
+  missing: string[],
+  options: OpenAIProxyCompatAdviceOptions = {},
+): void {
   const suggestion = buildSafeOpenAIProxyCompatSuggestion(missing);
   const hasSafeSuggestion = Object.keys(suggestion).length > 0;
 
   if (hasSafeSuggestion) {
     if (options.includeJsonIntro !== false) {
-      lines.push("Safe default suggestion:");
+      lines.push('Safe default suggestion:');
     }
     lines.push(JSON.stringify(suggestion, null, 2));
   }
 
-  if (missing.includes("sendSessionAffinityHeaders")) {
-    lines.push("- sendSessionAffinityHeaders: recommended for third-party proxies when supported; it helps keep one Pi session on the same upstream/backend.");
+  if (missing.includes('sendSessionAffinityHeaders')) {
+    lines.push(
+      '- sendSessionAffinityHeaders: recommended for third-party proxies when supported; it helps keep one Pi session on the same upstream/backend.',
+    );
   }
   appendCredentialSafeProviderGuidance(lines, options, suggestion);
 }
 
 function appendOptionalOpenAIProxyCompatAdviceLines(lines: string[], optional: string[]): void {
-  if (!optional.includes("supportsLongCacheRetention")) return;
-  lines.push("");
-  lines.push("Optional (not required, not auto-fixed):");
-  lines.push("- supportsLongCacheRetention: enable only after your endpoint/proxy explicitly supports OpenAI long prompt cache retention.");
+  if (!optional.includes('supportsLongCacheRetention')) return;
+  lines.push('');
+  lines.push('Optional (not required, not auto-fixed):');
+  lines.push(
+    '- supportsLongCacheRetention: enable only after your endpoint/proxy explicitly supports OpenAI long prompt cache retention.',
+  );
   lines.push(`- ${getPromptCacheRetentionUnsupportedHint()}`);
 }
 
@@ -2502,20 +2851,22 @@ function appendOptionalOpenAIProxyCompatAdviceLines(lines: string[], optional: s
 function buildOpenAIProxyCompatWarningText(key: string, missing: string[]): string {
   // Extract provider id from the model key (e.g. "otokapi/gpt-5.5" -> "otokapi").
   // If no slash is found, fall back to the key itself.
-  const slashIdx = key.indexOf("/");
+  const slashIdx = key.indexOf('/');
   const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
   const modelId = slashIdx > 0 ? key.slice(slashIdx + 1) : undefined;
 
   const modelsJsonPath = getModelsJsonDisplayPath();
   const lines: string[] = [
-    `💡 pi-cache-optimizer: ${key} is a third-party GPT/OpenAI-compatible proxy but merged compat lacks ${missing.join(" and ")}.`,
+    `💡 pi-cache-optimizer: ${key} is a third-party GPT/OpenAI-compatible proxy but merged compat lacks ${
+      missing.join(' and ')
+    }.`,
     `Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat (at the same level as baseUrl/api/apiKey/models).`,
     ``,
   ];
 
   appendOpenAIProxyCompatAdviceLines(lines, missing, { providerLabel, modelId });
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 function describeMissingDeepSeekCompat(model: PiModel): string[] {
@@ -2523,23 +2874,24 @@ function describeMissingDeepSeekCompat(model: PiModel): string[] {
   const missing: string[] = [];
 
   if (compat.supportsLongCacheRetention !== true) {
-    missing.push("supportsLongCacheRetention");
+    missing.push('supportsLongCacheRetention');
   }
-  if (model.api !== "openai-responses" && compat.sendSessionAffinityHeaders !== true) {
-    missing.push("sendSessionAffinityHeaders");
+  if (model.api !== 'openai-responses' && compat.sendSessionAffinityHeaders !== true) {
+    missing.push('sendSessionAffinityHeaders');
   }
   if (compat.requiresReasoningContentOnAssistantMessages !== true) {
-    missing.push("requiresReasoningContentOnAssistantMessages");
+    missing.push('requiresReasoningContentOnAssistantMessages');
   }
-  if (compat.thinkingFormat !== "deepseek") {
-    missing.push("thinkingFormat");
+  if (compat.thinkingFormat !== 'deepseek') {
+    missing.push('thinkingFormat');
   }
 
   return missing;
 }
 
 function isDeepSeekCompatCheckApplicable(model: PiModel): boolean {
-  return isDeepSeekLikeModel(model) && isOpenAICompatibleApi(model.api) && !isPiBuiltInLlamaCppModel(model);
+  return isDeepSeekLikeModel(model) && isOpenAICompatibleApi(model.api) &&
+    !isPiBuiltInLlamaCppModel(model);
 }
 
 function describeMissingCacheCompatForModel(model: PiModel): string[] {
@@ -2555,65 +2907,83 @@ function describeMissingCacheCompatForModel(model: PiModel): string[] {
 function buildDeepSeekCompatSuggestion(missing: string[]): Record<string, unknown> {
   const suggestion: Record<string, unknown> = {};
 
-  if (missing.includes("supportsLongCacheRetention")) {
+  if (missing.includes('supportsLongCacheRetention')) {
     suggestion.supportsLongCacheRetention = true;
   }
-  if (missing.includes("sendSessionAffinityHeaders")) {
+  if (missing.includes('sendSessionAffinityHeaders')) {
     suggestion.sendSessionAffinityHeaders = true;
   }
-  if (missing.includes("requiresReasoningContentOnAssistantMessages")) {
+  if (missing.includes('requiresReasoningContentOnAssistantMessages')) {
     suggestion.requiresReasoningContentOnAssistantMessages = true;
   }
-  if (missing.includes("thinkingFormat")) {
-    suggestion.thinkingFormat = "deepseek";
+  if (missing.includes('thinkingFormat')) {
+    suggestion.thinkingFormat = 'deepseek';
   }
 
   return suggestion;
 }
 
-function appendDeepSeekCompatAdviceLines(lines: string[], missing: string[], placement: CompatAdvicePlacement = {}): void {
+function appendDeepSeekCompatAdviceLines(
+  lines: string[],
+  missing: string[],
+  placement: CompatAdvicePlacement = {},
+): void {
   const suggestion = buildDeepSeekCompatSuggestion(missing);
   if (Object.keys(suggestion).length > 0) {
-    lines.push("Recommended DeepSeek compat snippet:");
+    lines.push('Recommended DeepSeek compat snippet:');
     lines.push(JSON.stringify(suggestion, null, 2));
   }
 
-  if (missing.includes("requiresReasoningContentOnAssistantMessages")) {
-    lines.push('- requiresReasoningContentOnAssistantMessages: true keeps replayed assistant turns compatible with DeepSeek reasoning_content requirements.');
+  if (missing.includes('requiresReasoningContentOnAssistantMessages')) {
+    lines.push(
+      '- requiresReasoningContentOnAssistantMessages: true keeps replayed assistant turns compatible with DeepSeek reasoning_content requirements.',
+    );
   }
-  if (missing.includes("thinkingFormat")) {
-    lines.push('- thinkingFormat: "deepseek" tells Pi to use DeepSeek reasoning/thinking parameter format.');
+  if (missing.includes('thinkingFormat')) {
+    lines.push(
+      '- thinkingFormat: "deepseek" tells Pi to use DeepSeek reasoning/thinking parameter format.',
+    );
   }
-  if (missing.includes("sendSessionAffinityHeaders")) {
-    lines.push("- sendSessionAffinityHeaders: recommended for OpenAI-compatible DeepSeek proxies when supported; it helps keep one Pi session on the same upstream/backend.");
+  if (missing.includes('sendSessionAffinityHeaders')) {
+    lines.push(
+      '- sendSessionAffinityHeaders: recommended for OpenAI-compatible DeepSeek proxies when supported; it helps keep one Pi session on the same upstream/backend.',
+    );
   }
-  if (missing.includes("supportsLongCacheRetention")) {
-    lines.push("- supportsLongCacheRetention: enable for DeepSeek-compatible endpoints that support long cache retention.");
+  if (missing.includes('supportsLongCacheRetention')) {
+    lines.push(
+      '- supportsLongCacheRetention: enable for DeepSeek-compatible endpoints that support long cache retention.',
+    );
   }
 
   appendCredentialSafeProviderGuidance(lines, placement, suggestion);
 }
 
 function buildDeepSeekCompatWarningText(key: string, missing: string[]): string {
-  const slashIdx = key.indexOf("/");
+  const slashIdx = key.indexOf('/');
   const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
   const modelId = slashIdx > 0 ? key.slice(slashIdx + 1) : undefined;
   const modelsJsonPath = getModelsJsonDisplayPath();
   const lines: string[] = [
-    `💡 pi-cache-optimizer: ${key} is DeepSeek-like but merged compat lacks ${missing.join(" and ")}.`,
+    `💡 pi-cache-optimizer: ${key} is DeepSeek-like but merged compat lacks ${
+      missing.join(' and ')
+    }.`,
     `Proxies may reduce or hide cache hits. Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat (at the same level as baseUrl/api/apiKey/models).`,
-    "",
+    '',
   ];
 
   appendDeepSeekCompatAdviceLines(lines, missing, { providerLabel, modelId });
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CACHE PROVIDER ADAPTERS
+// ───────────────────────────────────────────────────────────────────
 
 const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   {
-    id: "deepseek",
-    label: "DS cache",
+    id: 'deepseek',
+    label: 'DS cache',
     matchesModel: isDeepSeekLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2633,8 +3003,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "claude",
-    label: "Claude cache",
+    id: 'claude',
+    label: 'Claude cache',
     showCacheWrite: true,
     matchesModel: isClaudeLikeModel,
     matchesAssistantMessage(message, model) {
@@ -2645,18 +3015,23 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
       return normalizeWithFallback(message, getAnthropicRawUsage);
     },
     warningText(model) {
-      if (!isClaudeLikeModel(model) || !isOpenAICompatibleApi(model.api) || isPiBuiltInLlamaCppModel(model)) return undefined;
-      if (getCompat(model).cacheControlFormat === "anthropic") return undefined;
+      if (
+        !isClaudeLikeModel(model) || !isOpenAICompatibleApi(model.api) ||
+        isPiBuiltInLlamaCppModel(model)
+      ) return undefined;
+      if (getCompat(model).cacheControlFormat === 'anthropic') return undefined;
 
       return (
-        `💡 Cache optimizer: ${modelKey(model)} looks Claude/Anthropic-like but OpenAI-compatible compat lacks cacheControlFormat: "anthropic". ` +
-        "Pi may not place Anthropic cache_control breakpoints unless this endpoint supports and enables that compat flag."
+        `💡 Cache optimizer: ${
+          modelKey(model)
+        } looks Claude/Anthropic-like but OpenAI-compatible compat lacks cacheControlFormat: "anthropic". ` +
+        'Pi may not place Anthropic cache_control breakpoints unless this endpoint supports and enables that compat flag.'
       );
     },
   },
   {
-    id: "openai",
-    label: "OpenAI cache",
+    id: 'openai',
+    label: 'OpenAI cache',
     matchesModel: isOpenAIFamilyModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2672,8 +3047,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "gemini",
-    label: "Gemini cache",
+    id: 'gemini',
+    label: 'Gemini cache',
     matchesModel: isGeminiLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2685,8 +3060,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   },
   // ── Non-GPT OpenAI-compatible adapters ──────────────────────
   {
-    id: "openai" as CacheProviderId,
-    label: "Kimi cache",
+    id: 'openai',
+    label: 'Kimi cache',
     matchesModel: isKimiLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2702,8 +3077,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Qwen cache",
+    id: 'openai',
+    label: 'Qwen cache',
     matchesModel: isQwenLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2719,8 +3094,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "GLM cache",
+    id: 'openai',
+    label: 'GLM cache',
     matchesModel: isGLMLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2736,8 +3111,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "MiniMax cache",
+    id: 'openai',
+    label: 'MiniMax cache',
     matchesModel: isMiniMaxLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2753,8 +3128,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Mimo cache",
+    id: 'openai',
+    label: 'Mimo cache',
     matchesModel: isMimoLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2770,8 +3145,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Hunyuan cache",
+    id: 'openai',
+    label: 'Hunyuan cache',
     matchesModel: isHunyuanLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2788,8 +3163,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   },
   // ── More OpenAI-compatible adapters ──────────────────────────
   {
-    id: "openai" as CacheProviderId,
-    label: "Mistral cache",
+    id: 'openai',
+    label: 'Mistral cache',
     matchesModel: isMistralLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2805,8 +3180,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Grok cache",
+    id: 'openai',
+    label: 'Grok cache',
     matchesModel: isGrokLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2822,8 +3197,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Llama cache",
+    id: 'openai',
+    label: 'Llama cache',
     matchesModel: isLlamaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2839,8 +3214,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Nemotron cache",
+    id: 'openai',
+    label: 'Nemotron cache',
     matchesModel: isNemotronLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2856,8 +3231,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Cohere cache",
+    id: 'openai',
+    label: 'Cohere cache',
     matchesModel: isCohereLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2873,8 +3248,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Yi cache",
+    id: 'openai',
+    label: 'Yi cache',
     matchesModel: isYiLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2891,8 +3266,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   },
   // ── More OpenAI-compatible adapters (batch 2) ───────────────────
   {
-    id: "openai" as CacheProviderId,
-    label: "Doubao cache",
+    id: 'openai',
+    label: 'Doubao cache',
     matchesModel: isDoubaoLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2908,8 +3283,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "ERNIE cache",
+    id: 'openai',
+    label: 'ERNIE cache',
     matchesModel: isErnieLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2925,8 +3300,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Baichuan cache",
+    id: 'openai',
+    label: 'Baichuan cache',
     matchesModel: isBaichuanLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2942,8 +3317,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "StepFun cache",
+    id: 'openai',
+    label: 'StepFun cache',
     matchesModel: isStepFunLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2959,8 +3334,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Spark cache",
+    id: 'openai',
+    label: 'Spark cache',
     matchesModel: isSparkLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2976,8 +3351,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "InternLM cache",
+    id: 'openai',
+    label: 'InternLM cache',
     matchesModel: isInternLMLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -2993,8 +3368,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Gemma cache",
+    id: 'openai',
+    label: 'Gemma cache',
     matchesModel: isGemmaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3010,8 +3385,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Phi cache",
+    id: 'openai',
+    label: 'Phi cache',
     matchesModel: isPhiLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3027,8 +3402,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Jamba cache",
+    id: 'openai',
+    label: 'Jamba cache',
     matchesModel: isJambaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3044,8 +3419,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Solar cache",
+    id: 'openai',
+    label: 'Solar cache',
     matchesModel: isSolarLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3062,8 +3437,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   },
   // ── New OpenAI-compatible adapters (batch 3, 12 families) ────────
   {
-    id: "openai" as CacheProviderId,
-    label: "Sonar cache",
+    id: 'openai',
+    label: 'Sonar cache',
     matchesModel: isPerplexityLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3079,8 +3454,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Nova cache",
+    id: 'openai',
+    label: 'Nova cache',
     matchesModel: isNovaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3096,8 +3471,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Reka cache",
+    id: 'openai',
+    label: 'Reka cache',
     matchesModel: isRekaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3113,8 +3488,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Falcon cache",
+    id: 'openai',
+    label: 'Falcon cache',
     matchesModel: isFalconLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3130,8 +3505,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "DBRX cache",
+    id: 'openai',
+    label: 'DBRX cache',
     matchesModel: isDbrxLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3147,8 +3522,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "MPT cache",
+    id: 'openai',
+    label: 'MPT cache',
     matchesModel: isMptLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3164,8 +3539,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "StableLM cache",
+    id: 'openai',
+    label: 'StableLM cache',
     matchesModel: isStableLMLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3181,8 +3556,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Aquila cache",
+    id: 'openai',
+    label: 'Aquila cache',
     matchesModel: isAquilaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3198,8 +3573,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "EXAONE cache",
+    id: 'openai',
+    label: 'EXAONE cache',
     matchesModel: isExaoneLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3215,8 +3590,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "HyperCLOVA cache",
+    id: 'openai',
+    label: 'HyperCLOVA cache',
     matchesModel: isHyperCLOVALikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3232,8 +3607,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Luminous cache",
+    id: 'openai',
+    label: 'Luminous cache',
     matchesModel: isLuminousLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3249,8 +3624,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Hermes cache",
+    id: 'openai',
+    label: 'Hermes cache',
     matchesModel: isHermesLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3267,8 +3642,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   },
   // ── More OpenAI-compatible adapters (batch 4, 18 families) ────────
   {
-    id: "openai" as CacheProviderId,
-    label: "Granite cache",
+    id: 'openai',
+    label: 'Granite cache',
     matchesModel: isGraniteLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3284,8 +3659,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Arctic cache",
+    id: 'openai',
+    label: 'Arctic cache',
     matchesModel: isArcticLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3301,8 +3676,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Pangu cache",
+    id: 'openai',
+    label: 'Pangu cache',
     matchesModel: isPanguLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3318,8 +3693,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "SenseNova cache",
+    id: 'openai',
+    label: 'SenseNova cache',
     matchesModel: isSenseNovaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3335,8 +3710,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Zhinao cache",
+    id: 'openai',
+    label: 'Zhinao cache',
     matchesModel: isZhinaoLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3352,8 +3727,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "MiniCPM cache",
+    id: 'openai',
+    label: 'MiniCPM cache',
     matchesModel: isMiniCPMLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3369,8 +3744,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "XVERSE cache",
+    id: 'openai',
+    label: 'XVERSE cache',
     matchesModel: isXVerseLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3386,8 +3761,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Orion cache",
+    id: 'openai',
+    label: 'Orion cache',
     matchesModel: isOrionLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3403,8 +3778,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "OpenChat cache",
+    id: 'openai',
+    label: 'OpenChat cache',
     matchesModel: isOpenChatLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3420,8 +3795,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Vicuna cache",
+    id: 'openai',
+    label: 'Vicuna cache',
     matchesModel: isVicunaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3437,8 +3812,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Wizard cache",
+    id: 'openai',
+    label: 'Wizard cache',
     matchesModel: isWizardLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3454,8 +3829,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Zephyr cache",
+    id: 'openai',
+    label: 'Zephyr cache',
     matchesModel: isZephyrLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3471,8 +3846,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Dolphin cache",
+    id: 'openai',
+    label: 'Dolphin cache',
     matchesModel: isDolphinLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3488,8 +3863,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "OpenOrca cache",
+    id: 'openai',
+    label: 'OpenOrca cache',
     matchesModel: isOpenOrcaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3505,8 +3880,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Starling cache",
+    id: 'openai',
+    label: 'Starling cache',
     matchesModel: isStarlingLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3522,8 +3897,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "BLOOM cache",
+    id: 'openai',
+    label: 'BLOOM cache',
     matchesModel: isBloomLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3539,8 +3914,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "RWKV cache",
+    id: 'openai',
+    label: 'RWKV cache',
     matchesModel: isRwkvLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3556,8 +3931,8 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
     },
   },
   {
-    id: "openai" as CacheProviderId,
-    label: "Aya cache",
+    id: 'openai',
+    label: 'Aya cache',
     matchesModel: isAyaLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3578,12 +3953,17 @@ function selectAdapterForModel(model: PiModel | undefined): CacheProviderAdapter
   return CACHE_PROVIDER_ADAPTERS.find((adapter) => adapter.matchesModel(model));
 }
 
-function selectAdapterForAssistantMessage(message: unknown, model: PiModel | undefined): CacheProviderAdapter | undefined {
+function selectAdapterForAssistantMessage(
+  message: unknown,
+  model: PiModel | undefined,
+): CacheProviderAdapter | undefined {
   // Assistant message metadata is request-local and authoritative for virtual
   // routing providers. Use it first for every model; direct providers normally
   // echo the same provider/model and therefore remain unchanged.
   const responseModel = modelFromAssistantMessage(message, model);
-  return CACHE_PROVIDER_ADAPTERS.find((adapter) => adapter.matchesAssistantMessage(message, responseModel));
+  return CACHE_PROVIDER_ADAPTERS.find((adapter) =>
+    adapter.matchesAssistantMessage(message, responseModel)
+  );
 }
 
 function notifyCacheCompatIfNeeded(
@@ -3602,7 +3982,7 @@ function notifyCacheCompatIfNeeded(
       const key = `adaptive-thinking:${modelKey(model)}`;
       if (!warnedModels.has(key)) {
         warnedModels.add(key);
-        ctx.ui.notify(buildAdaptiveThinkingCompatWarningText(modelKey(model), missing), "warning");
+        ctx.ui.notify(buildAdaptiveThinkingCompatWarningText(modelKey(model), missing), 'warning');
       }
     }
     // Still check adapter warnings for other compat issues.
@@ -3616,14 +3996,18 @@ function notifyCacheCompatIfNeeded(
   if (warnedModels.has(key)) return;
   warnedModels.add(key);
 
-  ctx.ui.notify(text, "warning");
+  ctx.ui.notify(text, 'warning');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. CACHE STATS AND PERSISTENCE
+// ───────────────────────────────────────────────────────────────────
 
 function currentLocalDay(): string {
   const now = new Date();
   const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
 
@@ -3639,7 +4023,11 @@ function emptyCacheStats(day = currentLocalDay()): CacheStats {
 }
 
 function emptyAllCacheStats(day = currentLocalDay()): Partial<Record<CacheProviderId, CacheStats>> {
-  return Object.fromEntries(CACHE_PROVIDER_IDS.map((id) => [id, emptyCacheStats(day)])) as Partial<Record<CacheProviderId, CacheStats>>;
+  // Object.fromEntries widens dynamic keys to string; CACHE_PROVIDER_IDS is
+  // the validated provider-id set used by the partial persistence shape.
+  return Object.fromEntries(CACHE_PROVIDER_IDS.map((id) => [id, emptyCacheStats(day)])) as Partial<
+    Record<CacheProviderId, CacheStats>
+  >;
 }
 
 function addUsageToCacheStats(stats: CacheStats, usage: UsageSnapshot): void {
@@ -3652,7 +4040,7 @@ function addUsageToCacheStats(stats: CacheStats, usage: UsageSnapshot): void {
 
 function formatTokenCount(value: number): string {
   const millions = Math.max(0, Math.round(value)) / 1_000_000;
-  if (millions === 0) return "0M";
+  if (millions === 0) return '0M';
   if (millions < 0.001) return `${millions.toFixed(4)}M`;
   if (millions < 0.01) return `${millions.toFixed(3)}M`;
   if (millions >= 10) return `${millions.toFixed(1)}M`;
@@ -3662,12 +4050,14 @@ function formatTokenCount(value: number): string {
 function formatCacheStats(adapter: CacheProviderAdapter, stats: CacheStats): string {
   const percent = stats.totalInputTokens > 0
     ? ` (${Math.round((stats.cachedInputTokens / stats.totalInputTokens) * 100)}%)`
-    : "";
+    : '';
   const writeText = adapter.showCacheWrite && stats.cacheWriteInputTokens > 0
     ? ` · write ${formatTokenCount(stats.cacheWriteInputTokens)} tok`
-    : "";
+    : '';
 
-  return `${adapter.label} ${stats.hitRequests}/${stats.totalRequests} · ${formatTokenCount(stats.cachedInputTokens)}/${formatTokenCount(stats.totalInputTokens)} tok${percent}${writeText}`;
+  return `${adapter.label} ${stats.hitRequests}/${stats.totalRequests} · ${
+    formatTokenCount(stats.cachedInputTokens)
+  }/${formatTokenCount(stats.totalInputTokens)} tok${percent}${writeText}`;
 }
 
 /**
@@ -3675,7 +4065,7 @@ function formatCacheStats(adapter: CacheProviderAdapter, stats: CacheStats): str
  * Returns e.g. "75%", "0%", "100%", or "N/A" for zero total.
  */
 function formatHitRatio(hits: number, total: number): string {
-  if (total <= 0) return "N/A";
+  if (total <= 0) return 'N/A';
   return `${Math.round((hits / total) * 100)}%`;
 }
 
@@ -3685,7 +4075,7 @@ function formatHitRatio(hits: number, total: number): string {
  */
 function formatTokenM(value: number): string {
   const millions = Math.max(0, Math.round(value)) / 1_000_000;
-  if (millions === 0) return "0";
+  if (millions === 0) return '0';
   if (millions < 0.01) return millions.toFixed(4);
   if (millions >= 10) return millions.toFixed(1);
   return millions.toFixed(2);
@@ -3702,9 +4092,9 @@ function hasMissingUsageFields(message: unknown, adapter: CacheProviderAdapter):
   if (!usage) return true;
 
   // Check Pi-normalized fields
-  const input = getNonNegativeNumber(usage, "input");
-  const cacheRead = getNonNegativeNumber(usage, "cacheRead");
-  const cacheWrite = getNonNegativeNumber(usage, "cacheWrite");
+  const input = getNonNegativeNumber(usage, 'input');
+  const cacheRead = getNonNegativeNumber(usage, 'cacheRead');
+  const cacheWrite = getNonNegativeNumber(usage, 'cacheWrite');
 
   // If Pi-normalized fields exist with non-zero values, usage is present
   if (cacheRead !== undefined || cacheWrite !== undefined || (input !== undefined && input > 0)) {
@@ -3713,7 +4103,10 @@ function hasMissingUsageFields(message: unknown, adapter: CacheProviderAdapter):
 
   // Check raw usage for the adapter's provider family
   const rawUsage = adapter.normalizeUsage(message);
-  if (!rawUsage || (rawUsage.cacheRead === 0 && rawUsage.cacheWrite === 0 && rawUsage.totalInput === 0)) {
+  if (
+    !rawUsage ||
+    (rawUsage.cacheRead === 0 && rawUsage.cacheWrite === 0 && rawUsage.totalInput === 0)
+  ) {
     return true;
   }
 
@@ -3734,9 +4127,10 @@ function formatRecentTrendSummary(samples: CacheUsageSample[], maxCount: number)
   const missingCount = recent.filter((s) => s.missingUsageFields).length;
 
   const hitRatio = formatHitRatio(hits, recent.length);
-  const tokenRatio = totalInput > 0 ? formatHitRatio(totalCached, totalInput) : "N/A";
+  const tokenRatio = totalInput > 0 ? formatHitRatio(totalCached, totalInput) : 'N/A';
 
-  let result = `Recent ${recent.length}/${maxCount}: ${hits}/${recent.length} hits · ${tokenRatio} tok cached`;
+  let result =
+    `Recent ${recent.length}/${maxCount}: ${hits}/${recent.length} hits · ${tokenRatio} tok cached`;
   if (missingCount > 0) {
     result += ` · ${missingCount} missing usage`;
   }
@@ -3746,12 +4140,19 @@ function formatRecentTrendSummary(samples: CacheUsageSample[], maxCount: number)
 /**
  * Build the output for `/cache-optimizer stats`.
  */
-function buildStatsOutput(model: PiModel | undefined, adapter: CacheProviderAdapter | undefined, stats: CacheStats | undefined, recentSamples: CacheUsageSample[]): string {
+function buildStatsOutput(
+  model: PiModel | undefined,
+  adapter: CacheProviderAdapter | undefined,
+  stats: CacheStats | undefined,
+  recentSamples: CacheUsageSample[],
+): string {
   const lines: string[] = [];
 
   if (!model || !adapter) {
-    lines.push("ℹ️ No cache-adapter-matched model active. Select a model with a recognized provider family.");
-    return lines.join("\n");
+    lines.push(
+      'ℹ️ No cache-adapter-matched model active. Select a model with a recognized provider family.',
+    );
+    return lines.join('\n');
   }
 
   const key = modelKey(model);
@@ -3759,47 +4160,65 @@ function buildStatsOutput(model: PiModel | undefined, adapter: CacheProviderAdap
 
   lines.push(`Model key: ${key}`);
   lines.push(`Adapter:   ${adapter.label}`);
-  lines.push("");
-  lines.push("── Today ──");
-  lines.push(`Requests:      ${currentStats.hitRequests} hit / ${currentStats.totalRequests} total · ${formatHitRatio(currentStats.hitRequests, currentStats.totalRequests)}`);
-  lines.push(`Cached tokens: ${formatTokenM(currentStats.cachedInputTokens)}M / ${formatTokenM(currentStats.totalInputTokens)}M input · ${currentStats.totalInputTokens > 0 ? `${Math.round((currentStats.cachedInputTokens / currentStats.totalInputTokens) * 100)}%` : "N/A"}`);
+  lines.push('');
+  lines.push('── Today ──');
+  lines.push(
+    `Requests:      ${currentStats.hitRequests} hit / ${currentStats.totalRequests} total · ${
+      formatHitRatio(currentStats.hitRequests, currentStats.totalRequests)
+    }`,
+  );
+  lines.push(
+    `Cached tokens: ${formatTokenM(currentStats.cachedInputTokens)}M / ${
+      formatTokenM(currentStats.totalInputTokens)
+    }M input · ${
+      currentStats.totalInputTokens > 0
+        ? `${Math.round((currentStats.cachedInputTokens / currentStats.totalInputTokens) * 100)}%`
+        : 'N/A'
+    }`,
+  );
   if (currentStats.cacheWriteInputTokens > 0) {
     lines.push(`Cache write:   ${formatTokenM(currentStats.cacheWriteInputTokens)}M tok`);
   }
 
-  lines.push("");
-  lines.push("── Recent trend ──");
+  lines.push('');
+  lines.push('── Recent trend ──');
   lines.push(formatRecentTrendSummary(recentSamples, 10));
   lines.push(formatRecentTrendSummary(recentSamples, 30));
 
   // Check if any sample has missingUsageFields flagged
   const missingAny = recentSamples.some((s) => s.missingUsageFields);
   if (missingAny) {
-    lines.push("");
-    lines.push("⚠️ Some recent responses had missing or empty cache usage fields. Footer may under-report hits.");
-    lines.push("   The proxy may not return prompt_cache_hit_tokens or usage.input/cacheRead in responses.");
+    lines.push('');
+    lines.push(
+      '⚠️ Some recent responses had missing or empty cache usage fields. Footer may under-report hits.',
+    );
+    lines.push(
+      '   The proxy may not return prompt_cache_hit_tokens or usage.input/cacheRead in responses.',
+    );
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 function getErrorCode(error: unknown): string | undefined {
-  return typeof error === "object" && error !== null && "code" in error
+  // The `in` guard establishes an object with a runtime code property, but
+  // the catch boundary intentionally keeps the error value as unknown.
+  return typeof error === 'object' && error !== null && 'code' in error
     ? String((error as { code?: unknown }).code)
     : undefined;
 }
 
 function parseCacheStats(value: unknown): CacheStats | undefined {
   const stats = asRecord(value);
-  if (!stats || typeof stats.day !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(stats.day)) {
+  if (!stats || typeof stats.day !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(stats.day)) {
     return undefined;
   }
 
-  const totalRequests = getNonNegativeNumber(stats, "totalRequests");
-  const hitRequests = getNonNegativeNumber(stats, "hitRequests");
-  const cachedInputTokens = getNonNegativeNumber(stats, "cachedInputTokens");
-  const cacheWriteInputTokens = getNonNegativeNumber(stats, "cacheWriteInputTokens") ?? 0;
-  const totalInputTokens = getNonNegativeNumber(stats, "totalInputTokens");
+  const totalRequests = getNonNegativeNumber(stats, 'totalRequests');
+  const hitRequests = getNonNegativeNumber(stats, 'hitRequests');
+  const cachedInputTokens = getNonNegativeNumber(stats, 'cachedInputTokens');
+  const cacheWriteInputTokens = getNonNegativeNumber(stats, 'cacheWriteInputTokens') ?? 0;
+  const totalInputTokens = getNonNegativeNumber(stats, 'totalInputTokens');
 
   if (
     totalRequests === undefined ||
@@ -3835,7 +4254,10 @@ function addCacheStatsTotals(target: CacheStats, source: CacheStats): void {
   target.totalInputTokens += source.totalInputTokens;
 }
 
-function mergeCacheStatsForTotal(existing: CacheStats | undefined, incoming: CacheStats): CacheStats {
+function mergeCacheStatsForTotal(
+  existing: CacheStats | undefined,
+  incoming: CacheStats,
+): CacheStats {
   if (!existing) return cloneCacheStats(incoming);
   if (incoming.day > existing.day) return cloneCacheStats(incoming);
   if (incoming.day < existing.day) return existing;
@@ -3843,7 +4265,9 @@ function mergeCacheStatsForTotal(existing: CacheStats | undefined, incoming: Cac
   return existing;
 }
 
-function deriveTotalsByModelFromSessionStats(statsByModel: Record<string, CacheStats>): Record<string, CacheStats> {
+function deriveTotalsByModelFromSessionStats(
+  statsByModel: Record<string, CacheStats>,
+): Record<string, CacheStats> {
   const totals: Record<string, CacheStats> = {};
   for (const [fullKey, stats] of Object.entries(statsByModel)) {
     totals[modelKeyFromSessionKey(fullKey)] = mergeCacheStatsForTotal(
@@ -3881,14 +4305,16 @@ function parsePersistedRoutedModelRef(value: unknown): PersistedRoutedModelRef |
 }
 
 function routedModelRefToPiModel(ref: PersistedRoutedModelRef): PiModel {
+  // Footer-only routed refs synthesize the minimal Pi model shape needed by
+  // adapter selection; the persisted ref intentionally stores less detail.
   return {
     id: ref.id,
     name: ref.name ?? ref.id,
     provider: ref.provider,
-    api: "",
-    baseUrl: "",
+    api: '',
+    baseUrl: '',
     reasoning: false,
-    input: ["text"],
+    input: ['text'],
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: 0,
     maxTokens: 0,
@@ -3900,11 +4326,11 @@ function selectFooterStatsForModel(
   sessionHash: string | undefined,
   statsByModel: Record<string, CacheStats>,
   totalsByModel: Record<string, CacheStats>,
-  model: { provider: string; id: string },
+  model: PersistedRoutedModelRef,
   processByModel: Record<string, CacheStats> = {},
 ): CacheStats | undefined {
-  if (mode === "total") return totalsByModel[modelKey(model)];
-  if (mode === "process") return processByModel[modelKey(model)];
+  if (mode === 'total') return totalsByModel[modelKey(model)];
+  if (mode === 'process') return processByModel[modelKey(model)];
   if (!sessionHash) return undefined;
   return statsByModel[makeSessionModelKey(sessionHash, model.provider, model.id)];
 }
@@ -3914,9 +4340,9 @@ function buildExactRouterStatusEntry(
   statsByModel: Record<string, CacheStats>,
   lastRoutedModel: PersistedRoutedModelRef | undefined,
   totalsByModel: Record<string, CacheStats> = {},
-  mode: FooterStatsMode = "total",
+  mode: FooterStatsMode = 'total',
   processByModel: Record<string, CacheStats> = {},
-): { model: PiModel; adapter: CacheProviderAdapter; stats: CacheStats } | undefined {
+): RouterStatsEntry | undefined {
   if (!sessionHash || !lastRoutedModel) return undefined;
 
   const model = routedModelRefToPiModel(lastRoutedModel);
@@ -3926,7 +4352,14 @@ function buildExactRouterStatusEntry(
   return {
     model,
     adapter,
-    stats: selectFooterStatsForModel(mode, sessionHash, statsByModel, totalsByModel, model, processByModel) ?? emptyCacheStats(),
+    stats: selectFooterStatsForModel(
+      mode,
+      sessionHash,
+      statsByModel,
+      totalsByModel,
+      model,
+      processByModel,
+    ) ?? emptyCacheStats(),
   };
 }
 
@@ -3936,20 +4369,22 @@ function findBestRouterModelStats(
   statsByModel: Record<string, CacheStats>,
   totalsByModel: Record<string, CacheStats>,
   processByModel: Record<string, CacheStats> = {},
-): { model: PiModel; adapter: CacheProviderAdapter; stats: CacheStats } | undefined {
-  const entries = mode === "total"
+): RouterStatsEntry | undefined {
+  const entries = mode === 'total'
     ? Object.entries(totalsByModel)
-    : mode === "process"
-      ? Object.entries(processByModel)
+    : mode === 'process'
+    ? Object.entries(processByModel)
     : sessionHash
-      ? Object.entries(statsByModel)
-        .filter(([key]) => key.startsWith(`${sessionHash}:`))
-        .map(([key, stats]) => [key.slice(sessionHash.length + 1), stats] as const)
-      : [];
-  let best: { model: PiModel; adapter: CacheProviderAdapter; stats: CacheStats; total: number } | undefined;
+    ? Object.entries(statsByModel)
+      .filter(([key]) => key.startsWith(`${sessionHash}:`))
+      // Keep each mapped pair as a tuple so Object.fromEntries preserves the
+      // intended key/value entry shape instead of widening it to an array.
+      .map(([key, stats]) => [key.slice(sessionHash.length + 1), stats] as const)
+    : [];
+  let best: RouterStatsCandidate | undefined;
 
   for (const [modelKeyPart, stats] of entries) {
-    const slashIdx = modelKeyPart.indexOf("/");
+    const slashIdx = modelKeyPart.indexOf('/');
     if (slashIdx < 1 || slashIdx >= modelKeyPart.length - 1) continue;
     const model = routedModelRefToPiModel({
       provider: modelKeyPart.slice(0, slashIdx),
@@ -4038,7 +4473,11 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
       }
     }
 
-    return { statsByModel, totalsByModel: deriveTotalsByModelFromSessionStats(statsByModel), legacyFamily };
+    return {
+      statsByModel,
+      totalsByModel: deriveTotalsByModelFromSessionStats(statsByModel),
+      legacyFamily,
+    };
   }
 
   // version 2: migrate statsByProvider into legacyFamily
@@ -4057,7 +4496,9 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
   // version 1: single DeepSeek stats -> migrate to legacyFamily.deepseek
   if (record.version === 1) {
     const migrated = parseCacheStats(record.stats);
-    return migrated ? { statsByModel: {}, totalsByModel: {}, legacyFamily: { deepseek: migrated } } : undefined;
+    return migrated
+      ? { statsByModel: {}, totalsByModel: {}, legacyFamily: { deepseek: migrated } }
+      : undefined;
   }
 
   return undefined;
@@ -4065,10 +4506,10 @@ function parsePersistedCacheStats(value: unknown): CacheStatsState | undefined {
 
 async function readPersistedCacheStats(): Promise<CacheStatsState | undefined> {
   try {
-    const raw = await readFile(STATE_FILE_PATH, "utf8");
+    const raw = await readFile(STATE_FILE_PATH, 'utf8');
     return parsePersistedCacheStats(JSON.parse(raw));
-  } catch (error) {
-    if (getErrorCode(error) !== "ENOENT") {
+  } catch (error: unknown) {
+    if (getErrorCode(error) !== 'ENOENT') {
       console.warn(`${LOG_PREFIX}: failed to read persisted cache stats`, error);
       return undefined;
     }
@@ -4076,7 +4517,7 @@ async function readPersistedCacheStats(): Promise<CacheStatsState | undefined> {
 
   // New path missing: try one-shot migration from the old (pre-rename) path.
   try {
-    const raw = await readFile(LEGACY_STATE_FILE_PATH, "utf8");
+    const raw = await readFile(LEGACY_STATE_FILE_PATH, 'utf8');
     const parsed = parsePersistedCacheStats(JSON.parse(raw));
     if (parsed) {
       try {
@@ -4084,18 +4525,18 @@ async function readPersistedCacheStats(): Promise<CacheStatsState | undefined> {
         // Best-effort delete; if the unlink fails the new path is still authoritative.
         try {
           await unlink(LEGACY_STATE_FILE_PATH);
-        } catch (unlinkError) {
-          if (getErrorCode(unlinkError) !== "ENOENT") {
+        } catch (unlinkError: unknown) {
+          if (getErrorCode(unlinkError) !== 'ENOENT') {
             console.warn(`${LOG_PREFIX}: failed to remove legacy stats file`, unlinkError);
           }
         }
-      } catch (writeError) {
+      } catch (writeError: unknown) {
         console.warn(`${LOG_PREFIX}: failed to migrate legacy cache stats`, writeError);
       }
       return parsed;
     }
-  } catch (error) {
-    if (getErrorCode(error) !== "ENOENT") {
+  } catch (error: unknown) {
+    if (getErrorCode(error) !== 'ENOENT') {
       console.warn(`${LOG_PREFIX}: failed to read legacy cache stats`, error);
     }
   }
@@ -4114,12 +4555,12 @@ function filterRestorableStatsForSession(
   for (const [fullKey, stats] of Object.entries(persisted.statsByModel)) {
     if (fullKey.startsWith(prefix)) {
       filteredModelStats[fullKey] = stats;
-    } else if (!fullKey.includes(":")) {
+    } else if (!fullKey.includes(':')) {
       // Legacy v3-style key without session hash — migrate to current session.
       filteredModelStats[`${currentSessionHash}:${fullKey}`] = stats;
-    } else if (fullKey.startsWith("_nosession:")) {
+    } else if (fullKey.startsWith('_nosession:')) {
       // Transitional _nosession bucket — migrate to current session.
-      filteredModelStats[`${currentSessionHash}:${fullKey.slice("_nosession:".length)}`] = stats;
+      filteredModelStats[`${currentSessionHash}:${fullKey.slice('_nosession:'.length)}`] = stats;
     }
   }
 
@@ -4185,7 +4626,7 @@ function mergeCacheSessions(
     // under an authoritative session hash, those entries have already been
     // consumed and migrated into memory by restoreCacheStats. Delete to
     // prevent resurrection of reset stats on the next reload.
-    delete sessions["_nosession"];
+    delete sessions['_nosession'];
   } else {
     // No-hash mode: group entries by their existing hash prefix to avoid
     // collapsing multiple sessions into one bucket. Keys without a hash
@@ -4193,7 +4634,7 @@ function mergeCacheSessions(
     // migrate them to the current session on next load.
     const nosessionMap: Record<string, CacheStats> = {};
     for (const [fullKey, stats] of Object.entries(state.statsByModel)) {
-      const idx = fullKey.indexOf(":");
+      const idx = fullKey.indexOf(':');
       if (idx >= 0) {
         const hash = fullKey.slice(0, idx);
         const modelKey = fullKey.slice(idx + 1);
@@ -4205,7 +4646,7 @@ function mergeCacheSessions(
       }
     }
     if (Object.keys(nosessionMap).length > 0) {
-      sessions["_nosession"] = nosessionMap;
+      sessions['_nosession'] = nosessionMap;
     }
   }
 
@@ -4224,7 +4665,7 @@ function createSerializedAsyncRunner(): <T>(operation: () => Promise<T>) => Prom
 function mergeCacheTotals(
   existingTotalsByModel: Record<string, CacheStats>,
   stateTotalsByModel: Record<string, CacheStats>,
-  options: { deleteModelKeys?: string[]; replaceTotals?: boolean } = {},
+  options: PersistedStatsWriteOptions = {},
 ): Record<string, CacheStats> {
   const totals = options.replaceTotals
     ? { ...stateTotalsByModel }
@@ -4264,7 +4705,7 @@ function mergeLastRoutedModels(
 async function writePersistedCacheStats(
   state: CacheStatsState,
   currentSessionHash?: string,
-  options: { deleteModelKeys?: string[]; replaceTotals?: boolean } = {},
+  options: PersistedStatsWriteOptions = {},
 ): Promise<void> {
   await mkdir(STATE_DIR, { recursive: true });
 
@@ -4273,13 +4714,13 @@ async function writePersistedCacheStats(
   let existingTotalsByModel: Record<string, CacheStats> = {};
   let existingLastRoutedModelBySession: Record<string, PersistedRoutedModelRef> = {};
   try {
-    const raw = await readFile(STATE_FILE_PATH, "utf8");
+    const raw = await readFile(STATE_FILE_PATH, 'utf8');
     const parsed = parsePersistedCacheStats(JSON.parse(raw));
     if (parsed) {
       // Reconstruct sessions from statsByModel keys.
       // Each key has form `${hash}:${provider}/${id}`; group by hash.
       for (const [fullKey, stats] of Object.entries(parsed.statsByModel)) {
-        const idx = fullKey.indexOf(":");
+        const idx = fullKey.indexOf(':');
         if (idx >= 0) {
           const hash = fullKey.slice(0, idx);
           const modelKey = fullKey.slice(idx + 1);
@@ -4311,14 +4752,17 @@ async function writePersistedCacheStats(
   };
   const tempPath = `${STATE_FILE_PATH}.${process.pid}.${Date.now()}.tmp`;
 
-  await writeFile(tempPath, JSON.stringify(payload, null, 2) + "\n", "utf8");
+  await writeFile(tempPath, JSON.stringify(payload, null, 2) + '\n', 'utf8');
   await rename(tempPath, STATE_FILE_PATH);
 }
 
-
+// ───────────────────────────────────────────────────────────────────
+// 8. DIAGNOSTICS AND JSONC EDITING
+// ───────────────────────────────────────────────────────────────────
 
 function isCompatCheckApplicable(model: PiModel): boolean {
-  return isOpenAICompatibleProxyApi(model.api) && !isOfficialOpenAIBaseUrl(model) && !isPiBuiltInLlamaCppModel(model);
+  return isOpenAICompatibleProxyApi(model.api) && !isOfficialOpenAIBaseUrl(model) &&
+    !isPiBuiltInLlamaCppModel(model);
 }
 
 function isPromptCacheRetention400Applicable(model: PiModel): boolean {
@@ -4385,13 +4829,16 @@ function isOpenAISdkHeader403Applicable(model: PiModel): boolean {
 function describeRouterChannelDiagnostics(model: PiModel): string[] {
   const notes: string[] = [];
   const api = lower(model.api);
-  const baseUrl = lower(model.baseUrl || "");
+  const baseUrl = lower(model.baseUrl || '');
   const provider = lower(model.provider);
 
   // Router/channel diagnostics only apply to OpenAI-compatible proxy APIs.
   // Native APIs like mistral-conversations, azure-openai-responses,
   // anthropic-messages, or bedrock-converse-stream are intentionally excluded.
-  if (api === "azure-openai-responses" || isMistralConversationsApi(api) || !isOpenAICompatibleApi(api)) {
+  if (
+    api === 'azure-openai-responses' || isMistralConversationsApi(api) ||
+    !isOpenAICompatibleApi(api)
+  ) {
     return notes;
   }
 
@@ -4409,35 +4856,35 @@ function describeRouterChannelDiagnostics(model: PiModel): string[] {
 
   // ── 1. OpenRouter ────────────────────────────────────────────────
   if (
-    baseUrl.includes("openrouter.ai") ||
-    baseUrl.includes("openrouter") ||
-    provider.includes("openrouter")
+    baseUrl.includes('openrouter.ai') ||
+    baseUrl.includes('openrouter') ||
+    provider.includes('openrouter')
   ) {
     const compat = getCompat(model);
-    const routing = asRecord((compat as Record<string, unknown>)["openRouterRouting"]);
+    const routing = asRecord(compat['openRouterRouting']);
     const hasOnly = !!routing?.only;
     const hasOrder = !!routing?.order;
 
     notes.push(
-      "🔀 Router/channel: OpenRouter detected. OpenRouter is a multi-provider router; " +
-      "low cache hit rates are common when each turn lands on a different upstream provider.",
+      '🔀 Router/channel: OpenRouter detected. OpenRouter is a multi-provider router; ' +
+        'low cache hit rates are common when each turn lands on a different upstream provider.',
     );
 
     if (!hasOnly && !hasOrder) {
       notes.push(
-        "   Suggestion: Add an openRouterRouting config to fix the upstream provider. " +
-        "Example for models.json -> providers[\"<providerId>\"] -> compat:",
+        '   Suggestion: Add an openRouterRouting config to fix the upstream provider. ' +
+          'Example for models.json -> providers["<providerId>"] -> compat:',
       );
       notes.push(
         `   { "sendSessionAffinityHeaders": true, "supportsLongCacheRetention": true, ` +
-        `"openRouterRouting": { "only": ["<provider-slug>"] } }`,
+          `"openRouterRouting": { "only": ["<provider-slug>"] } }`,
       );
       notes.push(
         '   Replace <provider-slug> with the actual OpenRouter provider slug (e.g. "openai", "anthropic").',
       );
       notes.push(
-        "   Alternatively, use openRouterRouting.order: [\"<provider-slug>\", \"...\"] for fallback order. " +
-        "Only set supportsLongCacheRetention if your upstream supports long cache retention.",
+        '   Alternatively, use openRouterRouting.order: ["<provider-slug>", "..."] for fallback order. ' +
+          'Only set supportsLongCacheRetention if your upstream supports long cache retention.',
       );
     }
 
@@ -4446,34 +4893,34 @@ function describeRouterChannelDiagnostics(model: PiModel): string[] {
 
   // ── 2. Vercel AI Gateway ─────────────────────────────────────────
   if (
-    baseUrl.includes("ai-gateway.vercel.sh") ||
-    provider.includes("vercel") ||
-    provider.includes("vercel-ai-gateway")
+    baseUrl.includes('ai-gateway.vercel.sh') ||
+    provider.includes('vercel') ||
+    provider.includes('vercel-ai-gateway')
   ) {
     const compat = getCompat(model);
-    const routing = asRecord((compat as Record<string, unknown>)["vercelGatewayRouting"]);
+    const routing = asRecord(compat['vercelGatewayRouting']);
     const hasOnly = !!routing?.only;
     const hasOrder = !!routing?.order;
 
     notes.push(
-      "🔀 Router/channel: Vercel AI Gateway detected. The gateway may route to different " +
-      "provider endpoints per request, reducing cache locality.",
+      '🔀 Router/channel: Vercel AI Gateway detected. The gateway may route to different ' +
+        'provider endpoints per request, reducing cache locality.',
     );
 
     if (!hasOnly && !hasOrder) {
       notes.push(
-        "   Suggestion: Add a vercelGatewayRouting config to fix the upstream. " +
-        "Example for models.json -> providers[\"<providerId>\"] -> compat:",
+        '   Suggestion: Add a vercelGatewayRouting config to fix the upstream. ' +
+          'Example for models.json -> providers["<providerId>"] -> compat:',
       );
       notes.push(
         `   { "sendSessionAffinityHeaders": true, "supportsLongCacheRetention": true, ` +
-        `"vercelGatewayRouting": { "only": ["<provider-id>"] } }`,
+          `"vercelGatewayRouting": { "only": ["<provider-id>"] } }`,
       );
       notes.push(
-        "   Replace <provider-id> with the actual Vercel provider ID (e.g. \"openai\").",
+        '   Replace <provider-id> with the actual Vercel provider ID (e.g. "openai").',
       );
       notes.push(
-        "   Only set supportsLongCacheRetention if your upstream supports it.",
+        '   Only set supportsLongCacheRetention if your upstream supports it.',
       );
     }
 
@@ -4481,26 +4928,34 @@ function describeRouterChannelDiagnostics(model: PiModel): string[] {
   }
 
   // ── 3. LiteLLM / OneAPI / NewAPI / VoAPI (self-hosted aggregation) ──
-  const aggregationPatterns = ["litellm", "oneapi", "one-api", "newapi", "new-api", "voapi", "vo-api"];
+  const aggregationPatterns = [
+    'litellm',
+    'oneapi',
+    'one-api',
+    'newapi',
+    'new-api',
+    'voapi',
+    'vo-api',
+  ];
   if (
     aggregationPatterns.some((p) => baseUrl.includes(p)) ||
     aggregationPatterns.some((p) => provider.includes(p))
   ) {
     notes.push(
-      "🔀 Router/channel: Self-hosted aggregation proxy detected (LiteLLM / OneAPI / NewAPI / VoAPI). " +
-      "These proxies route to multiple upstream accounts or instances, which can split the cache.",
+      '🔀 Router/channel: Self-hosted aggregation proxy detected (LiteLLM / OneAPI / NewAPI / VoAPI). ' +
+        'These proxies route to multiple upstream accounts or instances, which can split the cache.',
     );
     notes.push(
-      "   Suggestions:",
+      '   Suggestions:',
     );
     notes.push(
-      "   • Ensure the proxy can fix to a single upstream per session (session_id affinity).",
+      '   • Ensure the proxy can fix to a single upstream per session (session_id affinity).',
     );
     notes.push(
-      "   • Forward prompt_cache_key and session-affinity headers to the upstream.",
+      '   • Forward prompt_cache_key and session-affinity headers to the upstream.',
     );
     notes.push(
-      "   • Return cache usage fields (prompt_cache_hit_tokens, etc.) in the response.",
+      '   • Return cache usage fields (prompt_cache_hit_tokens, etc.) in the response.',
     );
     notes.push(
       `   Safe compat default: { "sendSessionAffinityHeaders": true }`,
@@ -4513,23 +4968,23 @@ function describeRouterChannelDiagnostics(model: PiModel): string[] {
   }
 
   // ── 4. Generic third-party OpenAI-compatible proxy ─────────────────
-  if (api === "openai-completions" && baseUrl) {
+  if (api === 'openai-completions' && baseUrl) {
     const missing = describeMissingCacheCompatForModel(model);
     notes.push(
-      "🔀 Router/channel: Third-party OpenAI-compatible proxy. If cache hit rates are low:",
+      '🔀 Router/channel: Third-party OpenAI-compatible proxy. If cache hit rates are low:',
     );
     notes.push(
-      "   • Verify the proxy routes to the same upstream account/instance per session.",
+      '   • Verify the proxy routes to the same upstream account/instance per session.',
     );
     notes.push(
-      "   • Ensure the proxy forwards prompt_cache_key and sends session-affinity headers.",
+      '   • Ensure the proxy forwards prompt_cache_key and sends session-affinity headers.',
     );
     notes.push(
-      "   • Check that the proxy returns cache usage fields (prompt_cache_hit_tokens etc.).",
+      '   • Check that the proxy returns cache usage fields (prompt_cache_hit_tokens etc.).',
     );
     if (missing.length > 0) {
       notes.push(
-        `   • The compat flags above (${missing.join(", ")}) are recommended for cache stability.`,
+        `   • The compat flags above (${missing.join(', ')}) are recommended for cache stability.`,
       );
     }
 
@@ -4544,35 +4999,38 @@ function getCompatCheckNotApplicableLines(model: PiModel): string[] {
 
   if (isMistralConversationsApi(api)) {
     return [
-      "ℹ️ Compat check not applicable for this model.",
-      "   Native Mistral `mistral-conversations` uses provider-native transport; OpenAI-compatible proxy compat flags do not apply.",
+      'ℹ️ Compat check not applicable for this model.',
+      '   Native Mistral `mistral-conversations` uses provider-native transport; OpenAI-compatible proxy compat flags do not apply.',
     ];
   }
 
-  if (api === "azure-openai-responses") {
+  if (api === 'azure-openai-responses') {
     return [
-      "ℹ️ Compat check not applicable for this model.",
-      "   Native Azure OpenAI Responses uses the Responses transport; OpenAI-compatible proxy compat flags do not apply.",
+      'ℹ️ Compat check not applicable for this model.',
+      '   Native Azure OpenAI Responses uses the Responses transport; OpenAI-compatible proxy compat flags do not apply.',
     ];
   }
 
-  if (api === "openai-codex-responses" || (api === "openai-responses" && isOfficialOpenAIBaseUrl(model))) {
+  if (
+    api === 'openai-codex-responses' ||
+    (api === 'openai-responses' && isOfficialOpenAIBaseUrl(model))
+  ) {
     return [
-      "ℹ️ Compat check not applicable for this model.",
-      "   Native Responses transports already use Pi core request handling; OpenAI-compatible proxy compat flags do not apply.",
+      'ℹ️ Compat check not applicable for this model.',
+      '   Native Responses transports already use Pi core request handling; OpenAI-compatible proxy compat flags do not apply.',
     ];
   }
 
-  return ["ℹ️ Compat check not applicable for this model."];
+  return ['ℹ️ Compat check not applicable for this model.'];
 }
 
-function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400?: boolean; anthropicTtlOrderError?: boolean; sessionAffinity403?: boolean; openAISdkHeader403?: boolean } = {}): string {
+function buildDoctorDiagnosis(model: PiModel, options: DoctorDiagnosisOptions = {}): string {
   const lines: string[] = [];
   lines.push(`Provider: ${model.provider}`);
   lines.push(`Model:    ${model.id}`);
   if (model.name && model.name !== model.id) lines.push(`Name:     ${model.name}`);
   lines.push(`API:      ${model.api}`);
-  lines.push(`Base URL: ${model.baseUrl || "(default)"}`);
+  lines.push(`Base URL: ${model.baseUrl || '(default)'}`);
 
   const compat = getCompat(model);
   lines.push(`Compat:   ${JSON.stringify(compat)}`);
@@ -4585,21 +5043,23 @@ function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400
     : [];
   const fixSug = buildFixSuggestion(model);
   const safeFixableMissing = fixSug ? Object.keys(fixSug.compatKeys) : [];
-  const advisoryMissing = missing.filter(m => !safeFixableMissing.includes(m));
+  const advisoryMissing = missing.filter((m) => !safeFixableMissing.includes(m));
 
   if (safeFixableMissing.length > 0) {
-    lines.push(`⚠️  Missing compat flags: ${safeFixableMissing.join(", ")}`);
+    lines.push(`⚠️  Missing compat flags: ${safeFixableMissing.join(', ')}`);
   }
   if (advisoryMissing.length > 0) {
-    lines.push(`ℹ️  Optional: ${advisoryMissing.join(", ")} (enable only if needed)`);
+    lines.push(`ℹ️  Optional: ${advisoryMissing.join(', ')} (enable only if needed)`);
   }
 
   if (missing.length > 0) {
     const key = modelKey(model);
-    const slashIdx = key.indexOf("/");
+    const slashIdx = key.indexOf('/');
     const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
     const modelsJsonPath = getModelsJsonDisplayPath();
-    lines.push(`Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat (same level as baseUrl/api/apiKey/models).`);
+    lines.push(
+      `Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat (same level as baseUrl/api/apiKey/models).`,
+    );
     if (adaptiveThinkingApplicable) {
       appendAdaptiveThinkingCompatAdviceLines(lines, missing, { providerLabel, modelId: model.id });
     } else if (deepSeekCompatApplicable) {
@@ -4608,17 +5068,19 @@ function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400
       appendOpenAIProxyCompatAdviceLines(lines, missing, { providerLabel, modelId: model.id });
       appendOptionalOpenAIProxyCompatAdviceLines(lines, optionalOpenAIProxyCompat);
     }
-  } else if (adaptiveThinkingApplicable || deepSeekCompatApplicable || isCompatCheckApplicable(model)) {
-    lines.push("✅ Compat fully configured.");
+  } else if (
+    adaptiveThinkingApplicable || deepSeekCompatApplicable || isCompatCheckApplicable(model)
+  ) {
+    lines.push('✅ Compat fully configured.');
     appendOptionalOpenAIProxyCompatAdviceLines(lines, optionalOpenAIProxyCompat);
   } else {
     lines.push(...getCompatCheckNotApplicableLines(model));
   }
 
   if (isPromptCacheRetention400Applicable(model)) {
-    lines.push("");
+    lines.push('');
     if (options.promptCacheRetention400) {
-      lines.push("⚠️  A 400 response was observed while supportsLongCacheRetention is enabled.");
+      lines.push('⚠️  A 400 response was observed while supportsLongCacheRetention is enabled.');
       lines.push(`   ${getPromptCacheRetentionUnsupportedHint()}`);
     } else {
       lines.push(`ℹ️ Long retention is enabled. ${getPromptCacheRetentionUnsupportedHint()}`);
@@ -4626,10 +5088,12 @@ function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400
   }
 
   if (options.anthropicTtlOrderError) {
-    lines.push("");
-    lines.push("⚠️  An Anthropic cache-control TTL ordering error was observed for this model.");
-    lines.push("   Runtime requests now fall back from 1h to the default 5-minute cache TTL.");
-    lines.push(`   Run /cache-optimizer fix to set model-level supportsLongCacheRetention: false in ${getModelsJsonDisplayPath()}.`);
+    lines.push('');
+    lines.push('⚠️  An Anthropic cache-control TTL ordering error was observed for this model.');
+    lines.push('   Runtime requests now fall back from 1h to the default 5-minute cache TTL.');
+    lines.push(
+      `   Run /cache-optimizer fix to set model-level supportsLongCacheRetention: false in ${getModelsJsonDisplayPath()}.`,
+    );
   }
 
   // ── Session affinity 403 diagnostics ──
@@ -4638,37 +5102,47 @@ function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400
   // headers (session_id, x-client-request-id, x-session-affinity) and return
   // 403. If a 403 was already observed for this model, show a stronger hint.
   if (isSessionAffinity403Applicable(model)) {
-    lines.push("");
+    lines.push('');
     if (options.sessionAffinity403) {
-      lines.push("⚠️  A 403 response was observed while sendSessionAffinityHeaders is enabled.");
-      lines.push("   The proxy/CDN likely blocks Pi's custom session-affinity headers (session_id,");
-      lines.push("   x-client-request-id, x-session-affinity). Run /cache-optimizer fix to");
+      lines.push('⚠️  A 403 response was observed while sendSessionAffinityHeaders is enabled.');
+      lines.push(
+        "   The proxy/CDN likely blocks Pi's custom session-affinity headers (session_id,",
+      );
+      lines.push('   x-client-request-id, x-session-affinity). Run /cache-optimizer fix to');
       lines.push(`   set sendSessionAffinityHeaders: false in ${getModelsJsonDisplayPath()}.`);
     } else {
-      lines.push("ℹ️ Session affinity headers are enabled. Some CDNs/WAFs block custom headers");
-      lines.push("   (session_id, x-client-request-id, x-session-affinity) and return 403. If you");
-      lines.push("   see 403 errors, run /cache-optimizer fix to set sendSessionAffinityHeaders: false.");
+      lines.push('ℹ️ Session affinity headers are enabled. Some CDNs/WAFs block custom headers');
+      lines.push('   (session_id, x-client-request-id, x-session-affinity) and return 403. If you');
+      lines.push(
+        '   see 403 errors, run /cache-optimizer fix to set sendSessionAffinityHeaders: false.',
+      );
     }
   } else if (isOpenAISdkHeader403Applicable(model)) {
-    lines.push("");
+    lines.push('');
     if (options.openAISdkHeader403) {
-      lines.push("⚠️  A 403 response was observed while sendSessionAffinityHeaders is not enabled.");
-      lines.push("   The proxy/CDN may be blocking the OpenAI JS SDK request fingerprint");
-      lines.push("   (for example User-Agent: OpenAI/JS ... or X-Stainless-* headers). This");
-      lines.push("   is provider/WAF-specific; /cache-optimizer fix will not auto-write headers.");
-      lines.push(`   Manual workaround: add a provider-level headers.User-Agent override in ${getModelsJsonDisplayPath()}`);
-      lines.push("   only after testing the value with the affected provider.");
+      lines.push(
+        '⚠️  A 403 response was observed while sendSessionAffinityHeaders is not enabled.',
+      );
+      lines.push('   The proxy/CDN may be blocking the OpenAI JS SDK request fingerprint');
+      lines.push('   (for example User-Agent: OpenAI/JS ... or X-Stainless-* headers). This');
+      lines.push('   is provider/WAF-specific; /cache-optimizer fix will not auto-write headers.');
+      lines.push(
+        `   Manual workaround: add a provider-level headers.User-Agent override in ${getModelsJsonDisplayPath()}`,
+      );
+      lines.push('   only after testing the value with the affected provider.');
     } else {
-      lines.push("ℹ️ If 403 persists after disabling sendSessionAffinityHeaders, some CDNs/WAFs");
-      lines.push("   may block the OpenAI JS SDK User-Agent / X-Stainless-* headers. Test the");
-      lines.push("   provider manually before adding a provider-level headers.User-Agent override.");
+      lines.push('ℹ️ If 403 persists after disabling sendSessionAffinityHeaders, some CDNs/WAFs');
+      lines.push('   may block the OpenAI JS SDK User-Agent / X-Stainless-* headers. Test the');
+      lines.push(
+        '   provider manually before adding a provider-level headers.User-Agent override.',
+      );
     }
   }
 
   // ── Router/channel diagnostics ──
   const routerNotes = describeRouterChannelDiagnostics(model);
   if (routerNotes.length > 0) {
-    lines.push("");
+    lines.push('');
     for (const note of routerNotes) {
       lines.push(note);
     }
@@ -4679,19 +5153,25 @@ function buildDoctorDiagnosis(model: PiModel, options: { promptCacheRetention400
     const ago = Date.now() - lastPromptIntegrityWarningAt;
     const mins = Math.floor(ago / 60000);
     if (mins < 5) {
-      lines.push("");
-      lines.push("⚠️  Recent prompt integrity issue detected:");
-      lines.push(`   Last detected ${mins > 0 ? `${mins} min` : `${Math.floor(ago / 1000)}s`} ago. The prompt reorder was`);
+      lines.push('');
+      lines.push('⚠️  Recent prompt integrity issue detected:');
+      lines.push(
+        `   Last detected ${
+          mins > 0 ? `${mins} min` : `${Math.floor(ago / 1000)}s`
+        } ago. The prompt reorder was`,
+      );
       lines.push(`   skipped on that turn to preserve structural markers.`);
       lines.push(`   Common causes: extension system prompt format change, substring collision.`);
       lines.push(`   Steps:`);
       lines.push(`     1. Run /reload to reset (may clear transient issues).`);
-      lines.push(`     2. Set PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE=1 & /reload to disable reorder.`);
+      lines.push(
+        `     2. Set PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE=1 & /reload to disable reorder.`,
+      );
       lines.push(`     3. If persistent, file an issue with this doctor output.`);
     }
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 /**
@@ -4742,7 +5222,7 @@ function buildLowHitDiagnosis(
   const hasActualIssues = hasMissingCompat || hasUsageMissing ||
     // Low hit trend (today total > 3 and hit ratio < 30%)
     (todayStats.totalRequests > 3 && todayStats.totalInputTokens > 0 &&
-     (todayStats.cachedInputTokens / todayStats.totalInputTokens) < 0.3) ||
+      (todayStats.cachedInputTokens / todayStats.totalInputTokens) < 0.3) ||
     // Low hit rate in recent samples (recent10Total >= 3 and all misses)
     (recent10Total >= 3 && recent10Hits === 0);
 
@@ -4751,41 +5231,51 @@ function buildLowHitDiagnosis(
     return lines;
   }
 
-  lines.push("");
-  lines.push("── Cache diagnosis ──");
+  lines.push('');
+  lines.push('── Cache diagnosis ──');
 
   // Priority 1: missing compat flags
   if (hasMissingCompat) {
-    lines.push(`⚠️  Missing compat flags: ${safeFixableMissingLHD.join(", ")}`);
-    lines.push("   These flags enable prompt caching and session-affinity routing.");
-    lines.push("   Run /cache-optimizer compat for edit instructions.");
+    lines.push(`⚠️  Missing compat flags: ${safeFixableMissingLHD.join(', ')}`);
+    lines.push('   These flags enable prompt caching and session-affinity routing.');
+    lines.push('   Run /cache-optimizer compat for edit instructions.');
   }
 
   // Priority 2: router/channel risk (only flag when there are other issues)
   // Router notes are already shown in the main doctor output, so we only
   // mention them in the diagnosis section when they compound a problem.
   if (hasRouterRisk && (hasMissingCompat || hasUsageMissing || hasActualIssues)) {
-    lines.push("🔀 Router/channel proxy detected — see routing notes above.");
+    lines.push('🔀 Router/channel proxy detected — see routing notes above.');
   }
 
   // Priority 3: usage fields missing
   if (hasUsageMissing) {
-    lines.push(`⚠️  ${missingUsageSamples}/${samples.length} recent responses had missing/empty usage fields.`);
-    lines.push("   Footer may under-report cache hit rate.");
-    lines.push("   Verify the proxy returns prompt-level usage (prompt_tokens, input_tokens_details).");
+    lines.push(
+      `⚠️  ${missingUsageSamples}/${samples.length} recent responses had missing/empty usage fields.`,
+    );
+    lines.push('   Footer may under-report cache hit rate.');
+    lines.push(
+      '   Verify the proxy returns prompt-level usage (prompt_tokens, input_tokens_details).',
+    );
   }
 
   // Priority 4: recent trend low
   if (recent10Total > 0) {
     const hitRatio = recent10Input > 0 ? Math.round((recent10Cached / recent10Input) * 100) : 0;
     if (recent10Hits === 0 && todayStats.totalRequests > 3 && todayHitRatio < 30) {
-      lines.push(`📉 Cache hit rate is low: ${todayHitRatio}% today (${recent10Total} recent samples).`);
-      lines.push("   Likely causes: proxy routing to different backends per request,");
-      lines.push("   or prompt prefix changes across turns.");
-      lines.push("   Verify session affinity (sendSessionAffinityHeaders) and long cache retention.");
+      lines.push(
+        `📉 Cache hit rate is low: ${todayHitRatio}% today (${recent10Total} recent samples).`,
+      );
+      lines.push('   Likely causes: proxy routing to different backends per request,');
+      lines.push('   or prompt prefix changes across turns.');
+      lines.push(
+        '   Verify session affinity (sendSessionAffinityHeaders) and long cache retention.',
+      );
     } else if (todayHitRatio < 30 && todayStats.totalRequests > 3) {
-      lines.push(`📉 Cache hit rate is low: ${todayHitRatio}% today (${todayStats.totalRequests} total requests).`);
-      lines.push("   Check compat flags and proxy upstream routing.");
+      lines.push(
+        `📉 Cache hit rate is low: ${todayHitRatio}% today (${todayStats.totalRequests} total requests).`,
+      );
+      lines.push('   Check compat flags and proxy upstream routing.');
     }
 
     // Show brief trend summary if there are enough samples
@@ -4797,10 +5287,12 @@ function buildLowHitDiagnosis(
 
   // For fully configured but low hit models, emphasize sticky routing
   if (!hasMissingCompat && !hasRouterRisk && todayStats.totalRequests > 3 && todayHitRatio < 30) {
-    lines.push("💡 Compat is configured but cache hit rate remains low.");
-    lines.push("   Possible causes:");
-    lines.push("   • Proxy still routes to multiple backends — check session affinity on the proxy side.");
-    lines.push("   • Prompt prefix varies per turn — check dynamic context in system prompt.");
+    lines.push('💡 Compat is configured but cache hit rate remains low.');
+    lines.push('   Possible causes:');
+    lines.push(
+      '   • Proxy still routes to multiple backends — check session affinity on the proxy side.',
+    );
+    lines.push('   • Prompt prefix varies per turn — check dynamic context in system prompt.');
     lines.push("   • Provider does not return cache usage fields — footer can't measure hits.");
   }
 
@@ -4811,7 +5303,7 @@ function buildCompatDiagnosis(model: PiModel): string | undefined {
   const missing = describeMissingCacheCompatForModel(model);
   const fixSugC = buildFixSuggestion(model);
   const safeFixableMissingC = fixSugC ? Object.keys(fixSugC.compatKeys) : [];
-  const advisoryMissingC = missing.filter(m => !safeFixableMissingC.includes(m));
+  const advisoryMissingC = missing.filter((m) => !safeFixableMissingC.includes(m));
   const adaptiveThinkingApplicable = isAdaptiveThinkingCompatApplicable(model);
   const deepSeekCompatApplicable = isDeepSeekCompatCheckApplicable(model);
   const optionalOpenAIProxyCompat = (!adaptiveThinkingApplicable && !deepSeekCompatApplicable)
@@ -4819,23 +5311,25 @@ function buildCompatDiagnosis(model: PiModel): string | undefined {
     : [];
   const routerNotes = describeRouterChannelDiagnostics(model);
 
-  if (missing.length === 0 && routerNotes.length === 0 && optionalOpenAIProxyCompat.length === 0) return undefined;
+  if (missing.length === 0 && routerNotes.length === 0 && optionalOpenAIProxyCompat.length === 0) {
+    return undefined;
+  }
 
   const key = modelKey(model);
   const lines: string[] = [];
 
   if (missing.length > 0) {
-    const slashIdx = key.indexOf("/");
+    const slashIdx = key.indexOf('/');
     const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
     const modelsJsonPath = getModelsJsonDisplayPath();
     lines.push(`Active model: ${key}`);
     if (safeFixableMissingC.length > 0) {
-      lines.push(`Safe-fixable: ${safeFixableMissingC.join(", ")}`);
+      lines.push(`Safe-fixable: ${safeFixableMissingC.join(', ')}`);
     }
     if (advisoryMissingC.length > 0) {
-      lines.push(`Optional: ${advisoryMissingC.join(", ")} (enable only if needed)`);
+      lines.push(`Optional: ${advisoryMissingC.join(', ')} (enable only if needed)`);
     }
-    lines.push("");
+    lines.push('');
     lines.push(`Edit ${modelsJsonPath} -> providers["${providerLabel}"] -> compat`);
     lines.push(`(at the same level as baseUrl/api/apiKey/models).`);
     if (adaptiveThinkingApplicable) {
@@ -4851,7 +5345,7 @@ function buildCompatDiagnosis(model: PiModel): string | undefined {
   // When compat is fully configured but router/optional notes exist, prefix the status.
   if ((routerNotes.length > 0 || optionalOpenAIProxyCompat.length > 0) && missing.length === 0) {
     if (adaptiveThinkingApplicable || deepSeekCompatApplicable || isCompatCheckApplicable(model)) {
-      lines.push("✅ Compat fully configured.");
+      lines.push('✅ Compat fully configured.');
       if (isPromptCacheRetention400Applicable(model)) {
         lines.push(getPromptCacheRetentionUnsupportedHint());
       }
@@ -4859,31 +5353,31 @@ function buildCompatDiagnosis(model: PiModel): string | undefined {
       // or OpenAI SDK header/User-Agent blocking after session affinity is disabled.
       if (isSessionAffinity403Applicable(model)) {
         lines.push(
-          "ℹ️ Session affinity headers are enabled. If you see 403 \"blocked\" errors,",
+          'ℹ️ Session affinity headers are enabled. If you see 403 "blocked" errors,',
           "   the proxy/CDN may be blocking Pi's custom headers. Set sendSessionAffinityHeaders: false.",
         );
       } else if (isOpenAISdkHeader403Applicable(model)) {
         lines.push(
-          "ℹ️ If 403 persists with sendSessionAffinityHeaders disabled, the proxy/CDN may",
-          "   be blocking the OpenAI JS SDK User-Agent / X-Stainless-* headers. Test a",
-          "   provider-level headers.User-Agent override manually; /fix does not auto-write it.",
+          'ℹ️ If 403 persists with sendSessionAffinityHeaders disabled, the proxy/CDN may',
+          '   be blocking the OpenAI JS SDK User-Agent / X-Stainless-* headers. Test a',
+          '   provider-level headers.User-Agent override manually; /fix does not auto-write it.',
         );
       }
       appendOptionalOpenAIProxyCompatAdviceLines(lines, optionalOpenAIProxyCompat);
     } else {
       lines.push(...getCompatCheckNotApplicableLines(model));
     }
-    lines.push("");
+    lines.push('');
   }
 
   if (routerNotes.length > 0) {
-    if (missing.length > 0) lines.push("");
+    if (missing.length > 0) lines.push('');
     for (const note of routerNotes) {
       lines.push(note);
     }
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 // ============================================================
@@ -4891,7 +5385,7 @@ function buildCompatDiagnosis(model: PiModel): string | undefined {
 // ============================================================
 
 /** The real models.json path used for I/O. */
-const MODELS_JSON_PATH = join(STATE_DIR, "models.json");
+const MODELS_JSON_PATH = join(STATE_DIR, 'models.json');
 
 // ── String-aware JSONC scanning primitives ─────────────────────────
 //
@@ -4902,7 +5396,7 @@ const MODELS_JSON_PATH = join(STATE_DIR, "models.json");
 // corrupt depth tracking.
 
 function isJsonWhitespace(ch: string): boolean {
-  return ch === " " || ch === "\n" || ch === "\r" || ch === "\t";
+  return ch === ' ' || ch === '\n' || ch === '\r' || ch === '\t';
 }
 
 function skipJsonWhitespace(text: string, pos: number): number {
@@ -4915,26 +5409,26 @@ function skipJsonWhitespace(text: string, pos: number): number {
  * Returns the decoded value and the offset just past the closing quote,
  * or undefined when the literal is unterminated/malformed.
  */
-function readJsonStringLiteral(text: string, pos: number): { value: string; end: number } | undefined {
+function readJsonStringLiteral(text: string, pos: number): JsonStringLiteral | undefined {
   if (text[pos] !== '"') return undefined;
   let i = pos + 1;
-  let value = "";
+  let value = '';
   while (i < text.length) {
     const ch = text[i];
-    if (ch === "\\") {
+    if (ch === '\\') {
       const next = text[i + 1];
       if (next === undefined) return undefined;
-      if (next === "u") {
+      if (next === 'u') {
         const hex = text.slice(i + 2, i + 6);
         if (!/^[0-9a-fA-F]{4}$/.test(hex)) return undefined;
         value += String.fromCharCode(parseInt(hex, 16));
         i += 6;
       } else {
-        if (next === "n") value += "\n";
-        else if (next === "t") value += "\t";
-        else if (next === "r") value += "\r";
-        else if (next === "b") value += "\b";
-        else if (next === "f") value += "\f";
+        if (next === 'n') value += '\n';
+        else if (next === 't') value += '\t';
+        else if (next === 'r') value += '\r';
+        else if (next === 'b') value += '\b';
+        else if (next === 'f') value += '\f';
         else value += next; // ", \\, / and lenient passthrough
         i += 2;
       }
@@ -4953,7 +5447,7 @@ function readJsonStringLiteral(text: string, pos: number): { value: string; end:
  */
 function findMatchingBracket(text: string, openPos: number): number | undefined {
   const open = text[openPos];
-  if (open !== "{" && open !== "[") return undefined;
+  if (open !== '{' && open !== '[') return undefined;
   let depth = 0;
   let i = openPos;
   while (i < text.length) {
@@ -4964,8 +5458,8 @@ function findMatchingBracket(text: string, openPos: number): number | undefined 
       i = str.end;
       continue;
     }
-    if (ch === "{" || ch === "[") depth++;
-    else if (ch === "}" || ch === "]") {
+    if (ch === '{' || ch === '[') depth++;
+    else if (ch === '}' || ch === ']') {
       depth--;
       if (depth === 0) return i;
     }
@@ -4982,12 +5476,12 @@ function skipJsonValue(text: string, pos: number): number | undefined {
     const str = readJsonStringLiteral(text, pos);
     return str?.end;
   }
-  if (ch === "{" || ch === "[") {
+  if (ch === '{' || ch === '[') {
     const end = findMatchingBracket(text, pos);
     return end === undefined ? undefined : end + 1;
   }
   let i = pos;
-  while (i < text.length && !",}]".includes(text[i]) && !isJsonWhitespace(text[i])) i++;
+  while (i < text.length && !',}]'.includes(text[i]) && !isJsonWhitespace(text[i])) i++;
   return i > pos ? i : undefined;
 }
 
@@ -5001,13 +5495,13 @@ function findJsonObjectKey(
   text: string,
   openBracePos: number,
   targetKey: string,
-): { keyStart: number; valueStart: number } | undefined {
-  if (text[openBracePos] !== "{") return undefined;
+): JsonObjectKeyLocation | undefined {
+  if (text[openBracePos] !== '{') return undefined;
   let i = openBracePos + 1;
   while (i < text.length) {
     i = skipJsonWhitespace(text, i);
-    if (i >= text.length || text[i] === "}") return undefined;
-    if (text[i] === ",") {
+    if (i >= text.length || text[i] === '}') return undefined;
+    if (text[i] === ',') {
       i++;
       continue;
     }
@@ -5016,7 +5510,7 @@ function findJsonObjectKey(
     const key = readJsonStringLiteral(text, i);
     if (!key) return undefined;
     i = skipJsonWhitespace(text, key.end);
-    if (text[i] !== ":") return undefined;
+    if (text[i] !== ':') return undefined;
     i = skipJsonWhitespace(text, i + 1);
     if (key.value === targetKey) return { keyStart, valueStart: i };
     const after = skipJsonValue(text, i);
@@ -5028,10 +5522,10 @@ function findJsonObjectKey(
 
 /** Leading whitespace of the line containing offset `pos` (up to `pos`). */
 function lineIndentOf(text: string, pos: number): string {
-  let lineStart = text.lastIndexOf("\n", pos - 1);
+  let lineStart = text.lastIndexOf('\n', pos - 1);
   lineStart = lineStart < 0 ? 0 : lineStart + 1;
   const m = text.slice(lineStart, pos).match(/^[ \t]*/);
-  return m ? m[0] : "";
+  return m ? m[0] : '';
 }
 
 /**
@@ -5040,17 +5534,17 @@ function lineIndentOf(text: string, pos: number): string {
  * opener's line indent plus two spaces for single-line objects.
  */
 function deriveInnerIndent(text: string, openBrace: number, closeBrace: number): string {
-  const nl = text.indexOf("\n", openBrace + 1);
+  const nl = text.indexOf('\n', openBrace + 1);
   if (nl >= 0 && nl < closeBrace) {
     let i = nl + 1;
-    let ws = "";
-    while (i < text.length && (text[i] === " " || text[i] === "\t")) {
+    let ws = '';
+    while (i < text.length && (text[i] === ' ' || text[i] === '\t')) {
       ws += text[i];
       i++;
     }
     if (ws.length > 0) return ws;
   }
-  return lineIndentOf(text, openBrace) + "  ";
+  return lineIndentOf(text, openBrace) + '  ';
 }
 
 interface FixSuggestion {
@@ -5082,7 +5576,7 @@ function buildFixSuggestion(model: PiModel): FixSuggestion | undefined {
   if (Object.keys(compatKeys).length === 0) return undefined;
 
   const key = modelKey(model);
-  const slashIdx = key.indexOf("/");
+  const slashIdx = key.indexOf('/');
   const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
 
   return {
@@ -5163,7 +5657,7 @@ function stripJsoncComments(text: string): string {
  * gives JSON.parse a tolerant JSONC surface without affecting diagnostics.
  */
 function stripJsoncTrailingCommas(text: string): string {
-  const chars = text.split("");
+  const chars = text.split('');
   let i = 0;
   while (i < chars.length) {
     if (chars[i] === '"') {
@@ -5187,7 +5681,7 @@ function parseJsonc(text: string): unknown {
   return JSON.parse(stripJsoncTrailingCommas(stripJsoncComments(text)));
 }
 
-type ExplicitCompatSource = "modelOverride" | "model" | "provider";
+type ExplicitCompatSource = 'modelOverride' | 'model' | 'provider';
 
 interface ExplicitCompatValue {
   source: ExplicitCompatSource;
@@ -5212,20 +5706,20 @@ function resolveExplicitCompatValue(
   const override = asRecord(asRecord(provider.modelOverrides)?.[modelId]);
   const overrideCompat = asRecord(override?.compat);
   if (overrideCompat && Object.prototype.hasOwnProperty.call(overrideCompat, compatKey)) {
-    return { source: "modelOverride", value: overrideCompat[compatKey] };
+    return { source: 'modelOverride', value: overrideCompat[compatKey] };
   }
 
   if (Array.isArray(provider.models)) {
     const model = provider.models.find((entry: unknown) => asRecord(entry)?.id === modelId);
     const modelCompat = asRecord(asRecord(model)?.compat);
     if (modelCompat && Object.prototype.hasOwnProperty.call(modelCompat, compatKey)) {
-      return { source: "model", value: modelCompat[compatKey] };
+      return { source: 'model', value: modelCompat[compatKey] };
     }
   }
 
   const providerCompat = asRecord(provider.compat);
   if (providerCompat && Object.prototype.hasOwnProperty.call(providerCompat, compatKey)) {
-    return { source: "provider", value: providerCompat[compatKey] };
+    return { source: 'provider', value: providerCompat[compatKey] };
   }
 
   return undefined;
@@ -5240,7 +5734,7 @@ function hasExplicitLongRetentionOptInFromConfig(
     config,
     providerLabel,
     modelId,
-    "supportsLongCacheRetention",
+    'supportsLongCacheRetention',
   )?.value === true;
 }
 
@@ -5300,17 +5794,17 @@ function locateModelOverrideInJsonc(
 ): ModelOverrideNodeLocation | undefined {
   const clean = stripJsoncComments(text);
   const rootBrace = skipJsonWhitespace(clean, 0);
-  if (clean[rootBrace] !== "{") return undefined;
-  const providersKey = findJsonObjectKey(clean, rootBrace, "providers");
+  if (clean[rootBrace] !== '{') return undefined;
+  const providersKey = findJsonObjectKey(clean, rootBrace, 'providers');
   if (!providersKey) return undefined;
   const providersBrace = skipJsonWhitespace(clean, providersKey.valueStart);
-  if (clean[providersBrace] !== "{") return undefined;
+  if (clean[providersBrace] !== '{') return undefined;
   const providersEnd = findMatchingBracket(clean, providersBrace);
   if (providersEnd === undefined) return undefined;
   const providerKey = findJsonObjectKey(clean, providersBrace, providerLabel);
   if (!providerKey || providerKey.keyStart > providersEnd) return undefined;
   const providerObjectBrace = skipJsonWhitespace(clean, providerKey.valueStart);
-  if (clean[providerObjectBrace] !== "{") return undefined;
+  if (clean[providerObjectBrace] !== '{') return undefined;
   const providerObjectEnd = findMatchingBracket(clean, providerObjectBrace);
   if (providerObjectEnd === undefined || providerObjectEnd > providersEnd) return undefined;
 
@@ -5320,10 +5814,10 @@ function locateModelOverrideInJsonc(
   let modelOverrideObjectEnd = -1;
   let modelOverrideCompatBrace = -1;
   let modelOverrideCompatEnd = -1;
-  const overridesKey = findJsonObjectKey(clean, providerObjectBrace, "modelOverrides");
+  const overridesKey = findJsonObjectKey(clean, providerObjectBrace, 'modelOverrides');
   if (overridesKey && overridesKey.keyStart < providerObjectEnd) {
     const brace = skipJsonWhitespace(clean, overridesKey.valueStart);
-    if (clean[brace] !== "{") return undefined;
+    if (clean[brace] !== '{') return undefined;
     const end = findMatchingBracket(clean, brace);
     if (end === undefined || end > providerObjectEnd) return undefined;
     modelOverridesObjectBrace = brace;
@@ -5332,16 +5826,16 @@ function locateModelOverrideInJsonc(
     const overrideKey = findJsonObjectKey(clean, brace, modelId);
     if (overrideKey && overrideKey.keyStart < end) {
       const entryBrace = skipJsonWhitespace(clean, overrideKey.valueStart);
-      if (clean[entryBrace] !== "{") return undefined;
+      if (clean[entryBrace] !== '{') return undefined;
       const entryEnd = findMatchingBracket(clean, entryBrace);
       if (entryEnd === undefined || entryEnd > end) return undefined;
       modelOverrideObjectBrace = entryBrace;
       modelOverrideObjectEnd = entryEnd;
 
-      const compatKey = findJsonObjectKey(clean, entryBrace, "compat");
+      const compatKey = findJsonObjectKey(clean, entryBrace, 'compat');
       if (compatKey && compatKey.keyStart < entryEnd) {
         const compatBrace = skipJsonWhitespace(clean, compatKey.valueStart);
-        if (clean[compatBrace] !== "{") return undefined;
+        if (clean[compatBrace] !== '{') return undefined;
         const compatEnd = findMatchingBracket(clean, compatBrace);
         if (compatEnd === undefined || compatEnd > entryEnd) return undefined;
         modelOverrideCompatBrace = compatBrace;
@@ -5382,19 +5876,19 @@ function locateModelInJsonc(
   // braces, brackets, comment markers, or escaped quotes inside strings do
   // not corrupt offsets.
   const rootBrace = skipJsonWhitespace(clean, 0);
-  if (clean[rootBrace] !== "{") return undefined;
+  if (clean[rootBrace] !== '{') return undefined;
 
-  const providersKey = findJsonObjectKey(clean, rootBrace, "providers");
+  const providersKey = findJsonObjectKey(clean, rootBrace, 'providers');
   if (!providersKey) return undefined;
   const providersBrace = skipJsonWhitespace(clean, providersKey.valueStart);
-  if (clean[providersBrace] !== "{") return undefined;
+  if (clean[providersBrace] !== '{') return undefined;
   const providersEnd = findMatchingBracket(clean, providersBrace);
   if (providersEnd === undefined) return undefined;
 
   const providerKey = findJsonObjectKey(clean, providersBrace, providerLabel);
   if (!providerKey || providerKey.keyStart > providersEnd) return undefined;
   const providerBrace = skipJsonWhitespace(clean, providerKey.valueStart);
-  if (clean[providerBrace] !== "{") return undefined;
+  if (clean[providerBrace] !== '{') return undefined;
   const providerEndBrace = findMatchingBracket(clean, providerBrace);
   if (providerEndBrace === undefined || providerEndBrace > providersEnd) return undefined;
 
@@ -5402,10 +5896,10 @@ function locateModelInJsonc(
   // compat objects are intentionally skipped whole by findJsonObjectKey.
   let providerCompatBrace = -1;
   let providerCompatEnd = -1;
-  const providerCompatKey = findJsonObjectKey(clean, providerBrace, "compat");
+  const providerCompatKey = findJsonObjectKey(clean, providerBrace, 'compat');
   if (providerCompatKey && providerCompatKey.keyStart < providerEndBrace) {
     const brace = skipJsonWhitespace(clean, providerCompatKey.valueStart);
-    if (clean[brace] === "{") {
+    if (clean[brace] === '{') {
       const end = findMatchingBracket(clean, brace);
       if (end !== undefined && end <= providerEndBrace) {
         providerCompatBrace = brace;
@@ -5420,11 +5914,11 @@ function locateModelInJsonc(
   const modelOverrideCompatBrace = overrideLocation?.modelOverrideCompatBrace ?? -1;
   const modelOverrideCompatEnd = overrideLocation?.modelOverrideCompatEnd ?? -1;
 
-  const modelsKey = findJsonObjectKey(clean, providerBrace, "models");
+  const modelsKey = findJsonObjectKey(clean, providerBrace, 'models');
   if (!modelsKey || modelsKey.keyStart > providerEndBrace) return undefined;
 
   let modelsScan = skipJsonWhitespace(clean, modelsKey.valueStart);
-  if (clean[modelsScan] !== "[") return undefined;
+  if (clean[modelsScan] !== '[') return undefined;
   const modelsEnd = findMatchingBracket(clean, modelsScan);
   if (modelsEnd === undefined || modelsEnd > providerEndBrace) return undefined;
   modelsScan++; // Skip `[`
@@ -5450,7 +5944,7 @@ function locateModelInJsonc(
     const elementEnd = findMatchingBracket(clean, elementBrace);
     if (elementEnd === undefined || elementEnd > modelsEnd) return undefined;
 
-    const idKey = findJsonObjectKey(clean, elementBrace, "id");
+    const idKey = findJsonObjectKey(clean, elementBrace, 'id');
     let elementId: string | undefined;
     if (idKey && idKey.keyStart < elementEnd) {
       const idValueStart = skipJsonWhitespace(clean, idKey.valueStart);
@@ -5468,11 +5962,11 @@ function locateModelInJsonc(
       modelBrace = elementBrace;
       modelEndBrace = elementEnd;
 
-      const compatKey = findJsonObjectKey(clean, modelBrace, "compat");
+      const compatKey = findJsonObjectKey(clean, modelBrace, 'compat');
       if (compatKey && compatKey.keyStart < modelEndBrace) {
         compatKeyStartClean = compatKey.keyStart;
         const brace = skipJsonWhitespace(clean, compatKey.valueStart);
-        if (clean[brace] === "{") {
+        if (clean[brace] === '{') {
           const end = findMatchingBracket(clean, brace);
           if (end !== undefined && end <= modelEndBrace) {
             compatBrace = brace;
@@ -5520,9 +6014,14 @@ function locateModelInJsonc(
  * `locateModelInJsonc` cannot find the target provider/model.
  */
 type MissingEntryDiagnosis =
-  | { scenario: "provider_missing"; providersBrace: number; providersEnd: number }
-  | { scenario: "model_missing"; modelsEnd: number; providerBrace: number; providerEndBrace: number }
-  | { scenario: "provider_without_models"; providerBrace: number; providerEndBrace: number };
+  | { scenario: 'provider_missing'; providersBrace: number; providersEnd: number }
+  | {
+    scenario: 'model_missing';
+    modelsEnd: number;
+    providerBrace: number;
+    providerEndBrace: number;
+  }
+  | { scenario: 'provider_without_models'; providerBrace: number; providerEndBrace: number };
 
 /**
  * Light second-pass scan that determines *why* `locateModelInJsonc` failed.
@@ -5537,43 +6036,43 @@ function analyzeModelsJsonForMissingEntry(
 ): MissingEntryDiagnosis | undefined {
   const clean = stripJsoncComments(text);
   const rootBrace = skipJsonWhitespace(clean, 0);
-  if (clean[rootBrace] !== "{") return undefined;
+  if (clean[rootBrace] !== '{') return undefined;
 
-  const providersKey = findJsonObjectKey(clean, rootBrace, "providers");
+  const providersKey = findJsonObjectKey(clean, rootBrace, 'providers');
   if (!providersKey) {
     // Root has no "providers" key at all — we don't auto-create one.
     return undefined;
   }
   const providersBrace = skipJsonWhitespace(clean, providersKey.valueStart);
-  if (clean[providersBrace] !== "{") return undefined;
+  if (clean[providersBrace] !== '{') return undefined;
   const providersEnd = findMatchingBracket(clean, providersBrace);
   if (providersEnd === undefined) return undefined;
 
   const providerKey = findJsonObjectKey(clean, providersBrace, providerLabel);
   if (!providerKey || providerKey.keyStart > providersEnd) {
-    return { scenario: "provider_missing", providersBrace, providersEnd };
+    return { scenario: 'provider_missing', providersBrace, providersEnd };
   }
 
   // Provider exists. Check for a models array so we know where to append.
   const providerBrace = skipJsonWhitespace(clean, providerKey.valueStart);
-  if (clean[providerBrace] !== "{") return undefined;
+  if (clean[providerBrace] !== '{') return undefined;
   const providerEndBrace = findMatchingBracket(clean, providerBrace);
   if (providerEndBrace === undefined || providerEndBrace > providersEnd) return undefined;
 
-  const modelsKey = findJsonObjectKey(clean, providerBrace, "models");
+  const modelsKey = findJsonObjectKey(clean, providerBrace, 'models');
   if (modelsKey && modelsKey.keyStart < providerEndBrace) {
     let mScan = skipJsonWhitespace(clean, modelsKey.valueStart);
-    if (clean[mScan] === "[") {
+    if (clean[mScan] === '[') {
       const modelsEnd = findMatchingBracket(clean, mScan);
       if (modelsEnd !== undefined && modelsEnd <= providerEndBrace) {
-        return { scenario: "model_missing", modelsEnd, providerBrace, providerEndBrace };
+        return { scenario: 'model_missing', modelsEnd, providerBrace, providerEndBrace };
       }
     }
   }
 
   // Provider exists, but there's no discoverable models array — treat as
   // a provider that needs one.
-  return { scenario: "provider_without_models", providerBrace, providerEndBrace };
+  return { scenario: 'provider_without_models', providerBrace, providerEndBrace };
 }
 
 /**
@@ -5589,17 +6088,19 @@ function formatMissingEntryManualSnippet(
 ): string {
   const lines: string[] = [];
   const sorted = Object.entries(compatKeys).sort(([a], [b]) => a.localeCompare(b));
-  const compatItems = sorted.map(([k, v]) => `          ${JSON.stringify(k)}: ${JSON.stringify(v)}`);
+  const compatItems = sorted.map(([k, v]) =>
+    `          ${JSON.stringify(k)}: ${JSON.stringify(v)}`
+  );
   lines.push(`"${providerLabel}": {`);
   lines.push(`    "modelOverrides": {`);
   lines.push(`      ${JSON.stringify(modelId)}: {`);
   lines.push(`        "compat": {`);
-  lines.push(compatItems.join(",\n"));
+  lines.push(compatItems.join(',\n'));
   lines.push(`        }`);
   lines.push(`      }`);
   lines.push(`    }`);
   lines.push(`  }`);
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 /**
@@ -5612,7 +6113,7 @@ function composeModelOverrideInsertion(
   providerLabel: string,
   modelId: string,
   compatKeys: Record<string, unknown>,
-): { modifiedText: string; placementLabel: string } | undefined {
+): FixInsertionResult | undefined {
   const location = locateModelOverrideInJsonc(originalText, providerLabel, modelId);
 
   if (location?.modelOverrideObjectBrace !== undefined && location.modelOverrideObjectBrace >= 0) {
@@ -5622,7 +6123,7 @@ function composeModelOverrideInsertion(
       compatKeyStart: -1,
       compatObjectBrace: -1,
       compatObjectEnd: -1,
-      indent: "",
+      indent: '',
       providerObjectBrace: location.providerObjectBrace,
       providerObjectEnd: location.providerObjectEnd,
       providerCompatBrace: -1,
@@ -5634,7 +6135,7 @@ function composeModelOverrideInsertion(
       allModelIds: [],
     };
     return {
-      modifiedText: composeFixInsertion(originalText, modelLocation, compatKeys, "modelOverride"),
+      modifiedText: composeFixInsertion(originalText, modelLocation, compatKeys, 'modelOverride'),
       placementLabel: `providers["${providerLabel}"] -> modelOverrides["${modelId}"] -> compat`,
     };
   }
@@ -5645,14 +6146,14 @@ function composeModelOverrideInsertion(
     const compatIndent = propertyIndent + unit;
     const compatLines = sortedEntries
       .map(([key, value]) => `${compatIndent}${JSON.stringify(key)}: ${JSON.stringify(value)}`)
-      .join(",\n");
+      .join(',\n');
     return `${keyIndent}${JSON.stringify(modelId)}: {\n` +
       `${propertyIndent}"compat": {\n${compatLines}\n${propertyIndent}}\n${keyIndent}}`;
   };
   const previousTokenNeedsComma = (clean: string, closeBrace: number): boolean => {
     let pos = closeBrace - 1;
     while (pos >= 0 && isJsonWhitespace(clean[pos])) pos--;
-    return clean[pos] !== "{" && clean[pos] !== ",";
+    return clean[pos] !== '{' && clean[pos] !== ',';
   };
 
   if (location) {
@@ -5666,45 +6167,57 @@ function composeModelOverrideInsertion(
       );
       const unit = keyIndent.length > containerIndent.length
         ? keyIndent.slice(containerIndent.length)
-        : "  ";
-      const comma = previousTokenNeedsComma(clean, location.modelOverridesObjectEnd) ? "," : "";
+        : '  ';
+      const comma = previousTokenNeedsComma(clean, location.modelOverridesObjectEnd) ? ',' : '';
       const insertion = `${comma}\n${formatOverrideEntry(keyIndent, unit)}\n${containerIndent}`;
       return {
-        modifiedText: originalText.slice(0, location.modelOverridesObjectEnd) + insertion + originalText.slice(location.modelOverridesObjectEnd),
-        placementLabel: `providers["${providerLabel}"] -> modelOverrides -> (new entry "${modelId}")`,
+        modifiedText: originalText.slice(0, location.modelOverridesObjectEnd) + insertion +
+          originalText.slice(location.modelOverridesObjectEnd),
+        placementLabel:
+          `providers["${providerLabel}"] -> modelOverrides -> (new entry "${modelId}")`,
       };
     }
 
     const providerIndent = lineIndentOf(originalText, location.providerObjectBrace);
-    const propertyIndent = deriveInnerIndent(originalText, location.providerObjectBrace, location.providerObjectEnd);
+    const propertyIndent = deriveInnerIndent(
+      originalText,
+      location.providerObjectBrace,
+      location.providerObjectEnd,
+    );
     const unit = propertyIndent.length > providerIndent.length
       ? propertyIndent.slice(providerIndent.length)
-      : "  ";
+      : '  ';
     const entryIndent = propertyIndent + unit;
     const block = `\n${propertyIndent}"modelOverrides": {\n` +
       `${formatOverrideEntry(entryIndent, unit)}\n${propertyIndent}},`;
     return {
-      modifiedText: originalText.slice(0, location.providerObjectBrace + 1) + block + originalText.slice(location.providerObjectBrace + 1),
+      modifiedText: originalText.slice(0, location.providerObjectBrace + 1) + block +
+        originalText.slice(location.providerObjectBrace + 1),
       placementLabel: `providers["${providerLabel}"] -> (new modelOverrides entry "${modelId}")`,
     };
   }
 
   const diagnosis = analyzeModelsJsonForMissingEntry(originalText, providerLabel, modelId);
-  if (!diagnosis || diagnosis.scenario !== "provider_missing") return undefined;
+  if (!diagnosis || diagnosis.scenario !== 'provider_missing') return undefined;
   const clean = stripJsoncComments(originalText);
   const providersIndent = lineIndentOf(originalText, diagnosis.providersEnd);
-  const providerIndent = deriveInnerIndent(originalText, diagnosis.providersBrace, diagnosis.providersEnd);
+  const providerIndent = deriveInnerIndent(
+    originalText,
+    diagnosis.providersBrace,
+    diagnosis.providersEnd,
+  );
   const unit = providerIndent.length > providersIndent.length
     ? providerIndent.slice(providersIndent.length)
-    : "  ";
+    : '  ';
   const overridesIndent = providerIndent + unit;
   const entryIndent = overridesIndent + unit;
-  const comma = previousTokenNeedsComma(clean, diagnosis.providersEnd) ? "," : "";
+  const comma = previousTokenNeedsComma(clean, diagnosis.providersEnd) ? ',' : '';
   const block = `${comma}\n${providerIndent}${JSON.stringify(providerLabel)}: {\n` +
     `${overridesIndent}"modelOverrides": {\n${formatOverrideEntry(entryIndent, unit)}\n` +
     `${overridesIndent}}\n${providerIndent}}\n${providersIndent}`;
   return {
-    modifiedText: originalText.slice(0, diagnosis.providersEnd) + block + originalText.slice(diagnosis.providersEnd),
+    modifiedText: originalText.slice(0, diagnosis.providersEnd) + block +
+      originalText.slice(diagnosis.providersEnd),
     placementLabel: `providers -> (new modelOverrides-only entry "${providerLabel}/${modelId}")`,
   };
 }
@@ -5724,7 +6237,7 @@ function composeMissingEntryInsertion(
   providerLabel: string,
   modelId: string,
   compatKeys: Record<string, unknown>,
-): { modifiedText: string; placementLabel: string } {
+): FixInsertionResult {
   // Comments preserve length when stripped (`stripJsoncComments` replaces
   // comment bytes 1-for-1 with spaces), so offsets derived from the
   // comment-stripped text map cleanly back to the original. However,
@@ -5741,10 +6254,10 @@ function composeMissingEntryInsertion(
   // Resolve a sensible indentation step from an arbitrary byte offset in
   // the original file.
   const indentUnitAt = (offset: number): string => {
-    const ls = originalText.lastIndexOf("\n", offset);
+    const ls = originalText.lastIndexOf('\n', offset);
     const line = originalText.slice(ls < 0 ? 0 : ls + 1, offset);
     const m = line.match(/^(\s+)/);
-    return m ? m[1] : "  ";
+    return m ? m[1] : '  ';
   };
 
   // Figure out the base indent from the insertion point's own line.
@@ -5757,15 +6270,15 @@ function composeMissingEntryInsertion(
       return `{ ${JSON.stringify(k)}: ${JSON.stringify(v)} }`;
     }
     return (
-      "{\n" +
-      sorted.map(([k, v]) => `${indent}${JSON.stringify(k)}: ${JSON.stringify(v)}`).join(",\n") +
-      "\n" +
+      '{\n' +
+      sorted.map(([k, v]) => `${indent}${JSON.stringify(k)}: ${JSON.stringify(v)}`).join(',\n') +
+      '\n' +
       indent.slice(0, -2) +
-      "}"
+      '}'
     );
   };
 
-  if (diagnosis.scenario === "model_missing") {
+  if (diagnosis.scenario === 'model_missing') {
     // Append to the provider's models array, right before `]`.
     const unit = indentUnitAt(diagnosis.modelsEnd);
     const inner0 = unit + unit; // indent of model object's own keys
@@ -5776,20 +6289,20 @@ function composeMissingEntryInsertion(
     // Search for the models `[` on the comment-stripped text so a `[` inside
     // a comment cannot be mistaken for the array opener.
     const arrayInterior = cleanText.slice(
-      cleanText.lastIndexOf("[", diagnosis.modelsEnd) + 1,
+      cleanText.lastIndexOf('[', diagnosis.modelsEnd) + 1,
       diagnosis.modelsEnd,
     ).trim();
     const hasExistingElements = arrayInterior.length > 0;
 
     const compatBlock = formatCompactCompat(inner2);
     const modelBlock = [
-      hasExistingElements ? "," : "",
-      inner0 + "{",
+      hasExistingElements ? ',' : '',
+      inner0 + '{',
       inner1 + `"id": ${JSON.stringify(modelId)},`,
       inner1 + `"compat": ` + compatBlock,
-      inner0 + "}",
+      inner0 + '}',
       unit,
-    ].filter(Boolean).join("\n");
+    ].filter(Boolean).join('\n');
 
     const insertionPoint = diagnosis.modelsEnd;
     const prefix = originalText.slice(0, insertionPoint);
@@ -5800,7 +6313,7 @@ function composeMissingEntryInsertion(
     };
   }
 
-  if (diagnosis.scenario === "provider_missing") {
+  if (diagnosis.scenario === 'provider_missing') {
     // Append a new provider entry to the root `providers` object, right
     // before its closing `}`.
     const unit = indentUnitAt(diagnosis.providersEnd);
@@ -5813,23 +6326,23 @@ function composeMissingEntryInsertion(
     // Search for the providers `{` on the comment-stripped text so a `{`
     // inside a comment cannot be mistaken for the providers object opener.
     const providersInterior = cleanText.slice(
-      cleanText.lastIndexOf("{", diagnosis.providersEnd) + 1,
+      cleanText.lastIndexOf('{', diagnosis.providersEnd) + 1,
       diagnosis.providersEnd,
     ).trim();
     const hasExisting = providersInterior.length > 0;
 
     const providerBlock = [
-      hasExisting ? "," : "",
+      hasExisting ? ',' : '',
       inner0 + `"${providerLabel}": {`,
       inner1 + `"models": [`,
-      inner2 + "{",
+      inner2 + '{',
       inner3 + `"id": ${JSON.stringify(modelId)},`,
       inner3 + `"compat": ` + compatBlock,
-      inner2 + "}",
-      inner1 + "]",
-      inner0 + "}",
+      inner2 + '}',
+      inner1 + ']',
+      inner0 + '}',
       unit,
-    ].filter(Boolean).join("\n");
+    ].filter(Boolean).join('\n');
 
     const insertionPoint = diagnosis.providersEnd;
     const prefix = originalText.slice(0, insertionPoint);
@@ -5850,15 +6363,15 @@ function composeMissingEntryInsertion(
   const compatBlock = formatCompactCompat(inner2);
   const afterBrace = diagnosis.providerBrace + 1;
   const modelsBlock = [
-    "",
+    '',
     inner0 + `"models": [`,
-    inner1 + "{",
+    inner1 + '{',
     inner2 + `"id": ${JSON.stringify(modelId)},`,
     inner2 + `"compat": ` + compatBlock,
-    inner1 + "}",
-    inner0 + "],",
+    inner1 + '}',
+    inner0 + '],',
     unit,
-  ].join("\n");
+  ].join('\n');
 
   return {
     modifiedText: originalText.slice(0, afterBrace) + modelsBlock + originalText.slice(afterBrace),
@@ -5884,7 +6397,7 @@ function selfCheckMissingEntryInsertion(
     const origParsed = parseJsonc(originalText);
     const modParsed = parseJsonc(modifiedText);
     const providers = asRecord(asRecord(modParsed)?.providers);
-    if (!providers) return "Modified file: providers object missing or invalid";
+    if (!providers) return 'Modified file: providers object missing or invalid';
     const provider = asRecord(providers[providerLabel]);
     if (!provider) return `Modified file: provider "${providerLabel}" not found`;
     const models = provider.models;
@@ -5900,18 +6413,22 @@ function selfCheckMissingEntryInsertion(
       const effective = resolveExplicitCompatValue(modParsed, providerLabel, modelId, k);
       if (!effective) return `Modified file: effective compat.${k} not found`;
       if (effective.value !== v) {
-        return `Modified file: effective compat.${k} wrong value: expected ${JSON.stringify(v)}, got ${JSON.stringify(effective.value)} from ${effective.source}`;
+        return `Modified file: effective compat.${k} wrong value: expected ${
+          JSON.stringify(v)
+        }, got ${JSON.stringify(effective.value)} from ${effective.source}`;
       }
     }
 
     // Normalize only the intended override edit back to its original shape,
     // then require the complete parsed structure to match. This catches data
     // loss while allowing legitimate shorter repairs such as false -> true.
+    // JSONC parsing has already validated the root shape; cloning it through
+    // JSON preserves the self-check's plain-record view without mutation.
     const normalized = JSON.parse(JSON.stringify(modParsed)) as Record<string, unknown>;
     const origProviders = asRecord(asRecord(origParsed)?.providers);
     const origProvider = asRecord(origProviders?.[providerLabel]);
     const normalizedProviders = asRecord(normalized.providers);
-    if (!normalizedProviders) return "Modified file: normalized providers object missing";
+    if (!normalizedProviders) return 'Modified file: normalized providers object missing';
 
     if (!origProvider) {
       delete normalizedProviders[providerLabel];
@@ -5935,7 +6452,9 @@ function selfCheckMissingEntryInsertion(
         if (!origCompat) {
           delete normalizedOverride.compat;
         } else {
-          if (!normalizedCompat) return `Modified file: modelOverrides["${modelId}"].compat invalid`;
+          if (!normalizedCompat) {
+            return `Modified file: modelOverrides["${modelId}"].compat invalid`;
+          }
           for (const key of Object.keys(compatKeys)) {
             if (Object.prototype.hasOwnProperty.call(origCompat, key)) {
               normalizedCompat[key] = origCompat[key];
@@ -5961,18 +6480,19 @@ function selfCheckMissingEntryInsertion(
     }
 
     if (!deepEqualIgnoringKeys(normalized, origParsed, [])) {
-      return "Modified file: original structure was altered (data loss detected)";
+      return 'Modified file: original structure was altered (data loss detected)';
     }
 
     const modClean = stripJsoncComments(modifiedText);
     const rootStart = skipJsonWhitespace(modClean, 0);
     const rootEnd = findMatchingBracket(modClean, rootStart);
-    if (rootEnd === undefined) return "Modified file: root bracket mismatch";
-    if (skipJsonWhitespace(modClean, rootEnd + 1) !== modClean.length)
-      return "Modified file: trailing content after root object";
+    if (rootEnd === undefined) return 'Modified file: root bracket mismatch';
+    if (skipJsonWhitespace(modClean, rootEnd + 1) !== modClean.length) {
+      return 'Modified file: trailing content after root object';
+    }
 
     return null;
-  } catch (e) {
+  } catch (e: unknown) {
     return `Self-check error: ${e instanceof Error ? e.message : String(e)}`;
   }
 }
@@ -5992,16 +6512,20 @@ function deepEqualIgnoringKeys(a: unknown, b: unknown, extraKeys: string[]): boo
     return true;
   }
   if (typeof a === 'object' && a !== null && typeof b === 'object' && b !== null) {
-    const aKeys = Object.keys(a as Record<string, unknown>).filter(k => !extraKeys.includes(k));
+    // The guards above exclude null and arrays on the paths that reach these
+    // expressions, so both values can be inspected as JSON object records.
+    const aKeys = Object.keys(a as Record<string, unknown>).filter((k) => !extraKeys.includes(k));
     const bKeys = Object.keys(b as Record<string, unknown>);
     if (aKeys.length !== bKeys.length) return false;
     for (const k of aKeys) {
       if (!(k in (b as Record<string, unknown>))) return false;
-      if (!deepEqualIgnoringKeys(
-        (a as Record<string, unknown>)[k],
-        (b as Record<string, unknown>)[k],
-        extraKeys,
-      )) return false;
+      if (
+        !deepEqualIgnoringKeys(
+          (a as Record<string, unknown>)[k],
+          (b as Record<string, unknown>)[k],
+          extraKeys,
+        )
+      ) return false;
     }
     return true;
   }
@@ -6024,11 +6548,13 @@ function deepEqualIgnoringKeys(a: unknown, b: unknown, extraKeys: string[]): boo
  * per-model request semantics.
  */
 const PROVIDER_LEVEL_SAFE_COMPAT_KEYS = new Set<string>([
-  "sendSessionAffinityHeaders",
-  "supportsLongCacheRetention",
+  'sendSessionAffinityHeaders',
+  'supportsLongCacheRetention',
 ]);
 
 function syntheticModelForId(providerLabel: string, id: string): PiModel {
+  // Fix diagnostics need only a model identity; the host model type requires
+  // additional fields that are irrelevant to this synthetic lookup.
   return { provider: providerLabel, id, name: id } as PiModel;
 }
 
@@ -6050,13 +6576,14 @@ function decideFixPlacement(
   compatKeys: Record<string, unknown>,
   providerLabel: string,
   allModelIds: string[],
-): { placement: "provider" | "model"; reason: string } {
+): FixPlacementDecision {
   const siblings = allModelIds.filter(Boolean);
 
   if (siblings.length <= 1) {
     return {
-      placement: "provider",
-      reason: "this provider has only one model — provider-level compat is equivalent and easier to maintain",
+      placement: 'provider',
+      reason:
+        'this provider has only one model — provider-level compat is equivalent and easier to maintain',
     };
   }
 
@@ -6064,7 +6591,7 @@ function decideFixPlacement(
   for (const key of Object.keys(compatKeys)) {
     if (PROVIDER_LEVEL_SAFE_COMPAT_KEYS.has(key)) continue;
 
-    if (key === "forceAdaptiveThinking") {
+    if (key === 'forceAdaptiveThinking') {
       const allAdaptive = siblings.every((id) => {
         const sibling = syntheticModelForId(providerLabel, id);
         return isAdaptiveGenerationModel(sibling) || isKimiCodingAdaptiveModel(sibling);
@@ -6072,13 +6599,17 @@ function decideFixPlacement(
       if (!allAdaptive) unsafeKeys.push(key);
       continue;
     }
-    if (key === "allowEmptySignature") {
-      const allKimiCodingAdaptive = siblings.every((id) => isKimiCodingAdaptiveModel(syntheticModelForId(providerLabel, id)));
+    if (key === 'allowEmptySignature') {
+      const allKimiCodingAdaptive = siblings.every((id) =>
+        isKimiCodingAdaptiveModel(syntheticModelForId(providerLabel, id))
+      );
       if (!allKimiCodingAdaptive) unsafeKeys.push(key);
       continue;
     }
-    if (key === "thinkingFormat" || key === "requiresReasoningContentOnAssistantMessages") {
-      const allDeepSeek = siblings.every((id) => isDeepSeekLikeModel(syntheticModelForId(providerLabel, id)));
+    if (key === 'thinkingFormat' || key === 'requiresReasoningContentOnAssistantMessages') {
+      const allDeepSeek = siblings.every((id) =>
+        isDeepSeekLikeModel(syntheticModelForId(providerLabel, id))
+      );
       if (!allDeepSeek) unsafeKeys.push(key);
       continue;
     }
@@ -6088,13 +6619,15 @@ function decideFixPlacement(
 
   if (unsafeKeys.length === 0) {
     return {
-      placement: "provider",
+      placement: 'provider',
       reason: `all ${siblings.length} models in this provider are compatible with these flags`,
     };
   }
   return {
-    placement: "model",
-    reason: `${unsafeKeys.join(", ")} could break sibling models in this provider (${siblings.length} models total) — scoping to this model only`,
+    placement: 'model',
+    reason: `${
+      unsafeKeys.join(', ')
+    } could break sibling models in this provider (${siblings.length} models total) — scoping to this model only`,
   };
 }
 
@@ -6118,18 +6651,19 @@ function chooseFixPlacement(
   compatKeys: Record<string, unknown>,
   providerLabel: string,
   forceModelLevel = false,
-): { placement: "provider" | "model" | "modelOverride"; reason: string } {
+): FixPlacementChoice {
   if (location.modelOverrideObjectBrace >= 0) {
     return {
-      placement: "modelOverride",
-      reason: "an existing modelOverrides entry has Pi's highest precedence — repairing it directly",
+      placement: 'modelOverride',
+      reason:
+        "an existing modelOverrides entry has Pi's highest precedence — repairing it directly",
     };
   }
 
   if (forceModelLevel) {
     return {
-      placement: "model",
-      reason: "runtime-observed provider/model failure — scoping the repair to the affected model",
+      placement: 'model',
+      reason: 'runtime-observed provider/model failure — scoping the repair to the affected model',
     };
   }
 
@@ -6145,10 +6679,12 @@ function chooseFixPlacement(
   // merge order is provider.compat then model.compat. If the active model already
   // has one of the keys we need to repair (e.g. thinkingFormat: "legacy"), write
   // at model level even when the key would otherwise be provider-safe.
-  if (decision.placement === "provider" && existingModelKeys.length > 0) {
+  if (decision.placement === 'provider' && existingModelKeys.length > 0) {
     return {
-      placement: "model",
-      reason: `model-level compat already contains ${existingModelKeys.join(", ")} — repairing the active model override directly`,
+      placement: 'model',
+      reason: `model-level compat already contains ${
+        existingModelKeys.join(', ')
+      } — repairing the active model override directly`,
     };
   }
 
@@ -6159,24 +6695,24 @@ function composeFixInsertion(
   original: string,
   location: ModelNodeLocation,
   compatKeys: Record<string, unknown>,
-  placement: "provider" | "model" | "modelOverride" = "model",
+  placement: FixPlacement = 'model',
 ): string {
   // Resolve the target compat object and its container based on placement.
-  const targetCompatBrace = placement === "provider"
+  const targetCompatBrace = placement === 'provider'
     ? location.providerCompatBrace
-    : placement === "modelOverride"
-      ? location.modelOverrideCompatBrace
-      : location.compatObjectBrace;
-  const targetCompatEnd = placement === "provider"
+    : placement === 'modelOverride'
+    ? location.modelOverrideCompatBrace
+    : location.compatObjectBrace;
+  const targetCompatEnd = placement === 'provider'
     ? location.providerCompatEnd
-    : placement === "modelOverride"
-      ? location.modelOverrideCompatEnd
-      : location.compatObjectEnd;
-  const containerBrace = placement === "provider"
+    : placement === 'modelOverride'
+    ? location.modelOverrideCompatEnd
+    : location.compatObjectEnd;
+  const containerBrace = placement === 'provider'
     ? location.providerObjectBrace
-    : placement === "modelOverride"
-      ? location.modelOverrideObjectBrace
-      : location.modelObjectBrace;
+    : placement === 'modelOverride'
+    ? location.modelOverrideObjectBrace
+    : location.modelObjectBrace;
 
   // Helper: format key/value pairs as lines with the given indent,
   // alphabetically sorted for stable previews and deterministic edits.
@@ -6234,14 +6770,21 @@ function composeFixInsertion(
       if (hasContent) {
         edits.push({ start: interiorStart, end: interiorStart, text: `\n${keysFormatted},` });
       } else {
-        edits.push({ start: interiorStart, end: targetCompatEnd, text: `\n${keysFormatted}\n${braceLineIndent}` });
+        edits.push({
+          start: interiorStart,
+          end: targetCompatEnd,
+          text: `\n${keysFormatted}\n${braceLineIndent}`,
+        });
       }
     }
 
     // Apply later edits first so earlier offsets remain valid.
     return edits
       .sort((a, b) => b.start - a.start)
-      .reduce((text, edit) => text.slice(0, edit.start) + edit.text + text.slice(edit.end), original);
+      .reduce(
+        (text, edit) => text.slice(0, edit.start) + edit.text + text.slice(edit.end),
+        original,
+      );
   }
 
   // ── No compat object yet: create one right after the container `{`. ──
@@ -6257,12 +6800,15 @@ function composeFixInsertion(
   const keyIndent = siblingMatch ? siblingMatch[1] : containerLineIndent + '  ';
 
   // One more level for keys inside compat: reuse the file's own indent unit.
-  const unit = keyIndent.startsWith(containerLineIndent) && keyIndent.length > containerLineIndent.length
-    ? keyIndent.slice(containerLineIndent.length)
-    : '  ';
+  const unit =
+    keyIndent.startsWith(containerLineIndent) && keyIndent.length > containerLineIndent.length
+      ? keyIndent.slice(containerLineIndent.length)
+      : '  ';
   const innerIndent = keyIndent + unit;
 
-  const compatBlock = `\n${keyIndent}"compat": {\n${formatEntries(innerIndent, sortedEntries)}\n${keyIndent}},`;
+  const compatBlock = `\n${keyIndent}"compat": {\n${
+    formatEntries(innerIndent, sortedEntries)
+  }\n${keyIndent}},`;
   return original.slice(0, afterBrace) + compatBlock + suffix;
 }
 
@@ -6278,7 +6824,7 @@ function selfCheckFix(
   providerLabel: string,
   modelId: string,
   compatKeys: Record<string, unknown>,
-  placement: "provider" | "model" | "modelOverride" = "model",
+  placement: FixPlacement = 'model',
 ): string | null {
   try {
     // Step 1: Parse both versions as JSONC (comments + trailing commas allowed).
@@ -6288,7 +6834,7 @@ function selfCheckFix(
     // Step 2: Validate modified file has correct structure
     const providers = asRecord(asRecord(modParsed)?.providers);
     if (!providers) {
-      return "Modified file: providers object missing or invalid";
+      return 'Modified file: providers object missing or invalid';
     }
     const provider = asRecord(providers[providerLabel]);
     if (!provider) {
@@ -6325,14 +6871,20 @@ function selfCheckFix(
     // Step 5: Compute the EFFECTIVE merged compat using Pi's precedence:
     // provider, custom model, then modelOverrides. The fix may have written any
     // level, so validation must check what Pi will actually use.
-    const provCompatRaw = (provider as Record<string, unknown>).compat;
-    const provCompat = (provCompatRaw && typeof provCompatRaw === 'object' && !Array.isArray(provCompatRaw))
-      ? provCompatRaw as Record<string, unknown>
-      : {};
+    const provCompatRaw = provider.compat;
+    const provCompat = asRecord(provCompatRaw) ?? {};
+    // The model came from the validated models array; its open JSON shape is
+    // represented as a record for the compat lookup below.
     const modelCompatRaw = (targetModel as Record<string, unknown>).compat;
-    if (modelCompatRaw !== undefined && (typeof modelCompatRaw !== 'object' || modelCompatRaw === null || Array.isArray(modelCompatRaw))) {
+    if (
+      modelCompatRaw !== undefined &&
+      (typeof modelCompatRaw !== 'object' || modelCompatRaw === null ||
+        Array.isArray(modelCompatRaw))
+    ) {
       return `Modified file: model "${modelId}" compat is not an object`;
     }
+    // The validation above establishes a non-array object when compat exists;
+    // retain that validated JSON object as the merged-compat record.
     const mdlCompat = (modelCompatRaw ?? {}) as Record<string, unknown>;
     const override = asRecord(asRecord(provider.modelOverrides)?.[modelId]);
     const overrideCompatRaw = override?.compat;
@@ -6340,7 +6892,11 @@ function selfCheckFix(
       return `Modified file: modelOverrides["${modelId}"].compat is not an object`;
     }
     const overrideCompat = asRecord(overrideCompatRaw) ?? {};
-    const mergedCompat: Record<string, unknown> = { ...provCompat, ...mdlCompat, ...overrideCompat };
+    const mergedCompat: Record<string, unknown> = {
+      ...provCompat,
+      ...mdlCompat,
+      ...overrideCompat,
+    };
 
     // Step 6: Validate all inserted keys are effective in the merged compat
     for (const [k, v] of Object.entries(compatKeys)) {
@@ -6348,7 +6904,9 @@ function selfCheckFix(
         return `Modified file: compat.${k} not found at provider or model level (insertion failed)`;
       }
       if (mergedCompat[k] !== v) {
-        return `Modified file: effective compat.${k} has wrong value: expected ${JSON.stringify(v)}, got ${JSON.stringify(mergedCompat[k])}`;
+        return `Modified file: effective compat.${k} has wrong value: expected ${
+          JSON.stringify(v)
+        }, got ${JSON.stringify(mergedCompat[k])}`;
       }
     }
 
@@ -6364,6 +6922,8 @@ function selfCheckFix(
         return origVal.every((_, i) => isSubset(origVal[i], modVal[i], `${path}[${i}]`));
       }
       // Both objects: check that every key in orig is in mod with same value
+      // The guards above establish object-like JSON values; this record view
+      // gives the subset comparison keyed access without changing the values.
       const origObj = origVal as Record<string, unknown>;
       const modObj = modVal as Record<string, unknown>;
       for (const key of Object.keys(origObj)) {
@@ -6375,6 +6935,8 @@ function selfCheckFix(
           if (typeof origObj[key] !== 'object' || typeof modObj[key] !== 'object') {
             if (origObj[key] !== modObj[key]) return false;
           } else {
+            // Compat values are compared as nested JSON records so inserted
+            // keys can be allowed only at the selected edit location.
             const origCompat = origObj[key] as Record<string, unknown>;
             const modCompat = modObj[key] as Record<string, unknown>;
             // Only the compat object at the level ACTUALLY edited may have
@@ -6386,17 +6948,19 @@ function selfCheckFix(
             // breaking provider.compat.sendSessionAffinityHeaders while
             // the fix was a model-level repair). Track placement — only
             // the placement-resolved object's own compat may be exempt.
-            const mayRepairThisCompat =
-              (placement === "provider" && origObj === origProvider) ||
-              (placement === "model" && origObj === origTargetModelRecord) ||
-              (placement === "modelOverride" && origObj === asRecord(asRecord(origProvider.modelOverrides)?.[modelId]));
+            const mayRepairThisCompat = (placement === 'provider' && origObj === origProvider) ||
+              (placement === 'model' && origObj === origTargetModelRecord) ||
+              (placement === 'modelOverride' &&
+                origObj === asRecord(asRecord(origProvider.modelOverrides)?.[modelId]));
             for (const ck of Object.keys(origCompat)) {
               if (!(ck in modCompat)) return false;
               // The fix may repair an existing wrong compat value (for example
               // thinkingFormat: "legacy" -> "deepseek"), but only on the
               // target provider/model compat objects. Sibling compat blocks must
               // remain structure-equivalent.
-              if (mayRepairThisCompat && Object.prototype.hasOwnProperty.call(compatKeys, ck)) continue;
+              if (mayRepairThisCompat && Object.prototype.hasOwnProperty.call(compatKeys, ck)) {
+                continue;
+              }
               if (!isSubset(origCompat[ck], modCompat[ck], `${path}.${ck}`)) return false;
             }
           }
@@ -6408,7 +6972,7 @@ function selfCheckFix(
     }
 
     if (!isSubset(origParsed, modParsed)) {
-      return "Modified file: original structure was altered (data loss detected)";
+      return 'Modified file: original structure was altered (data loss detected)';
     }
 
     // Note: we intentionally do NOT enforce `modified.length >= original.length`.
@@ -6426,14 +6990,14 @@ function selfCheckFix(
     const rootStart = skipJsonWhitespace(modifiedClean, 0);
     const rootEnd = findMatchingBracket(modifiedClean, rootStart);
     if (rootEnd === undefined) {
-      return "Modified file: root bracket mismatch";
+      return 'Modified file: root bracket mismatch';
     }
     if (skipJsonWhitespace(modifiedClean, rootEnd + 1) !== modifiedClean.length) {
-      return "Modified file: trailing non-whitespace content after root object";
+      return 'Modified file: trailing non-whitespace content after root object';
     }
 
     return null;
-  } catch (e) {
+  } catch (e: unknown) {
     return `Self-check error: ${e instanceof Error ? e.message : String(e)}`;
   }
 }
@@ -6465,9 +7029,17 @@ function backupTimestamp(): string {
   return `${y}${m}${d}T${h}${min}${s}Z`;
 }
 
-// Internal helpers exported only so the task verification script
-// (.trellis/tasks/.../verify.ts) can exercise them. They are not part of the
-// extension's public API; pi only invokes the default export below.
+// ───────────────────────────────────────────────────────────────────
+// 9. TESTING SURFACE
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Expose pure helpers for the extension's automated verification surface.
+ *
+ * @remarks
+ * Pi invokes the default export at runtime. Keeping these helpers together
+ * lets tests exercise behavior without requiring a live Pi host.
+ */
 export const __internals_for_tests = {
   buildStableCandidates,
   optimizeSystemPrompt,
@@ -6751,7 +7323,17 @@ export const __internals_for_tests = {
   appendAdaptiveThinkingCompatAdviceLines,
 };
 
-export default function (pi: ExtensionAPI) {
+// ───────────────────────────────────────────────────────────────────
+// 10. HOOK REGISTRATION AND COMMANDS
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Register Pi Cache Optimizer lifecycle hooks and the `/cache-optimizer` command.
+ *
+ * @param pi - Pi extension API used to register hooks and commands.
+ * @returns Nothing; registration occurs as a side effect.
+ */
+export default function (pi: ExtensionAPI): void {
   const warnedModels = new Set<string>();
   const promptCacheRetention400Models = new Set<string>();
   const warnedPromptCacheRetention400Models = new Set<string>();
@@ -6774,8 +7356,8 @@ export default function (pi: ExtensionAPI) {
   let forceReplaceTotalsAfterFailure = false;
   const pendingDeletedTotalModelKeys = new Set<string>();
   let integrityNotificationShown = false;
-  let currentSessionId = "";
-  let currentSessionHash = "";
+  let currentSessionId = '';
+  let currentSessionHash = '';
   let currentSessionHashSet = false;
   let lastActualRoutedModel: PersistedRoutedModelRef | undefined;
   let latestCacheHint: PiCacheHintSnapshot | undefined;
@@ -6783,7 +7365,7 @@ export default function (pi: ExtensionAPI) {
 
   function buildObservedRuntimeFixSuggestion(model: PiModel): FixSuggestion | undefined {
     const key = modelKey(model);
-    const slashIdx = key.indexOf("/");
+    const slashIdx = key.indexOf('/');
     const providerLabel = slashIdx > 0 ? key.slice(0, slashIdx) : key;
 
     if (
@@ -6798,7 +7380,11 @@ export default function (pi: ExtensionAPI) {
       };
     }
     if (isSessionAffinity403Applicable(model) && sendSessionAffinityHeaders403Models.has(key)) {
-      return { providerLabel, modelId: model.id, compatKeys: { sendSessionAffinityHeaders: false } };
+      return {
+        providerLabel,
+        modelId: model.id,
+        compatKeys: { sendSessionAffinityHeaders: false },
+      };
     }
     return undefined;
   }
@@ -6818,7 +7404,7 @@ export default function (pi: ExtensionAPI) {
   /** In-memory recent usage samples per model key (not persisted, cleared on reload). */
   const recentSamplesByModelKey = new Map<string, CacheUsageSample[]>();
 
-  function syncSessionHash(ctx: Pick<ExtensionContext, "sessionManager">): void {
+  function syncSessionHash(ctx: Pick<ExtensionContext, 'sessionManager'>): void {
     const sid = ctx.sessionManager.getSessionId();
     if (sid && (sid !== currentSessionId || !currentSessionHashSet)) {
       currentSessionId = sid;
@@ -6828,33 +7414,52 @@ export default function (pi: ExtensionAPI) {
     }
   }
 
-  const uninstallCacheHintsService = installCacheHintsService(markOptimizerOwnedCacheHintsService({
-    version: 1,
-    getHints(input: PiCacheHintsInput): PiCacheHintsOutput | undefined {
-      if (!runtimeOptimizerEnabled || isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV])) return undefined;
-      const hint = latestCacheHint;
-      if (!hint) return undefined;
-      if (input.sessionIdHash && hint.sessionIdHash && input.sessionIdHash !== hint.sessionIdHash) return undefined;
-      if (input.virtualProvider && hint.virtualProvider && input.virtualProvider !== hint.virtualProvider) return undefined;
-      if (input.virtualModelId && hint.virtualModelId && input.virtualModelId !== hint.virtualModelId) return undefined;
-      if (input.upstreamProvider && hint.upstreamProvider && input.upstreamProvider !== hint.upstreamProvider) return undefined;
-      if (input.upstreamModelId && hint.upstreamModelId && input.upstreamModelId !== hint.upstreamModelId) return undefined;
-      if (input.api && hint.api && input.api !== hint.api) return undefined;
+  const uninstallCacheHintsService = installCacheHintsService(
+    markOptimizerOwnedCacheHintsService({
+      version: 1,
+      getHints(input: PiCacheHintsInput): PiCacheHintsOutput | undefined {
+        if (
+          !runtimeOptimizerEnabled || isEnabledEnv(process.env[NO_PROMPT_REWRITE_ENV])
+        ) return undefined;
+        const hint = latestCacheHint;
+        if (!hint) return undefined;
+        if (
+          input.sessionIdHash && hint.sessionIdHash && input.sessionIdHash !== hint.sessionIdHash
+        ) return undefined;
+        if (
+          input.virtualProvider && hint.virtualProvider &&
+          input.virtualProvider !== hint.virtualProvider
+        ) return undefined;
+        if (
+          input.virtualModelId && hint.virtualModelId &&
+          input.virtualModelId !== hint.virtualModelId
+        ) return undefined;
+        if (
+          input.upstreamProvider && hint.upstreamProvider &&
+          input.upstreamProvider !== hint.upstreamProvider
+        ) return undefined;
+        if (
+          input.upstreamModelId && hint.upstreamModelId &&
+          input.upstreamModelId !== hint.upstreamModelId
+        ) return undefined;
+        if (input.api && hint.api && input.api !== hint.api) return undefined;
 
-      return {
-        systemPrompt: hint.systemPrompt,
-        promptCacheKey: hint.promptCacheKey,
-        cacheRetention: hint.cacheRetention,
-      };
-    },
-  }), { discardPrevious: isOptimizerOwnedCacheHintsService });
+        return {
+          systemPrompt: hint.systemPrompt,
+          promptCacheKey: hint.promptCacheKey,
+          cacheRetention: hint.cacheRetention,
+        };
+      },
+    }),
+    { discardPrevious: isOptimizerOwnedCacheHintsService },
+  );
 
   /**
    * Build a session-scoped stats key from the current session hash + model key.
    * Returns `${sessionHash}:${provider}/${id}`.
    */
-  function sessionModelKey(model: { provider: string; id: string }): string {
-    const hash = currentSessionHash || "_nosession";
+  function sessionModelKey(model: PersistedRoutedModelRef): string {
+    const hash = currentSessionHash || '_nosession';
     return `${hash}:${model.provider}/${model.id}`;
   }
 
@@ -6863,11 +7468,15 @@ export default function (pi: ExtensionAPI) {
    * "abc123:otokapi/gpt-5.5" → "otokapi/gpt-5.5"
    */
   function modelKeyFromSessionScoped(sKey: string): string {
-    const idx = sKey.indexOf(":");
+    const idx = sKey.indexOf(':');
     return idx >= 0 ? sKey.slice(idx + 1) : sKey;
   }
 
-  function recordRecentSample(modelKeyStr: string, usage: UsageSnapshot, missingUsageFields: boolean): void {
+  function recordRecentSample(
+    modelKeyStr: string,
+    usage: UsageSnapshot,
+    missingUsageFields: boolean,
+  ): void {
     let samples = recentSamplesByModelKey.get(modelKeyStr);
     if (!samples) {
       samples = [];
@@ -6969,7 +7578,7 @@ export default function (pi: ExtensionAPI) {
   }
 
   function resetCurrentSessionStats(): void {
-    const prefix = `${currentSessionHash || "_nosession"}:`;
+    const prefix = `${currentSessionHash || '_nosession'}:`;
     for (const key of Object.keys(cacheStatsByModel)) {
       if (key.startsWith(prefix)) delete cacheStatsByModel[key];
     }
@@ -7022,7 +7631,7 @@ export default function (pi: ExtensionAPI) {
           replaceTotals: replaceTotals || recoverFromEarlierFailure,
         });
         if (recoverFromEarlierFailure) forceReplaceTotalsAfterFailure = false;
-      } catch (error) {
+      } catch (error: unknown) {
         // The next queued write must replace totals authoritatively so a failed
         // reset/delete cannot merge stale persisted counters back into state.
         forceReplaceTotalsAfterFailure = true;
@@ -7031,7 +7640,7 @@ export default function (pi: ExtensionAPI) {
           persistenceWarningShown = true;
           ctx?.ui.notify(
             `${LOG_PREFIX}: failed to persist footer stats; using in-memory stats for this process.`,
-            "warning",
+            'warning',
           );
         }
       }
@@ -7110,7 +7719,7 @@ export default function (pi: ExtensionAPI) {
   async function restoreCacheStats(reason: string, ctx: ExtensionContext): Promise<void> {
     syncSessionHash(ctx);
 
-    if (reason === "reload") {
+    if (reason === 'reload') {
       // /reload: preserve session-scoped stats (same session hash).
       // Pi extension reload creates a fresh closure, so cacheStatsByModel
       // starts empty. Read persisted data and filter for current session.
@@ -7153,7 +7762,10 @@ export default function (pi: ExtensionAPI) {
     await rollOverStatsIfNeeded(ctx);
   }
 
-  async function publishStatus(ctx: ExtensionContext, model: PiModel | undefined = ctx.model): Promise<void> {
+  async function publishStatus(
+    ctx: ExtensionContext,
+    model: PiModel | undefined = ctx.model,
+  ): Promise<void> {
     syncSessionHash(ctx);
     await rollOverStatsIfNeeded(ctx);
 
@@ -7198,7 +7810,14 @@ export default function (pi: ExtensionAPI) {
       // Footer mode defaults to daily provider/model totals. Users may select
       // current-session counters through persistent command config or the env var.
       const stats = displayModel
-        ? selectFooterStatsForModel(mode, sessionHash, cacheStatsByModel, cacheStatsTotalsByModel, displayModel, cacheStatsProcessByModel)
+        ? selectFooterStatsForModel(
+          mode,
+          sessionHash,
+          cacheStatsByModel,
+          cacheStatsTotalsByModel,
+          displayModel,
+          cacheStatsProcessByModel,
+        )
         : undefined;
       const statsText = formatCacheStats(adapter, stats ?? emptyCacheStats());
       statusText = runtimeOptimizerEnabled ? statsText : `Cache Optimizer disabled · ${statsText}`;
@@ -7209,7 +7828,7 @@ export default function (pi: ExtensionAPI) {
     // /reload before continuing. The flag resets after emission so a
     // single-turn glitch does not permanently taint the footer.
     if (promptTruncationDetected && statusText !== undefined) {
-      statusText = statusText + " ⚠️ integrity";
+      statusText = statusText + ' ⚠️ integrity';
       promptTruncationDetected = false;
       lastPromptIntegrityWarningAt = Date.now();
 
@@ -7218,12 +7837,12 @@ export default function (pi: ExtensionAPI) {
         integrityNotificationShown = true;
         ctx.ui.notify(
           `⚠️ ${LOG_PREFIX}: A prompt structural marker was lost during reorder on this turn. ` +
-          `The original prompt was used instead to preserve integrity.\n\n` +
-          `Recovery steps:\n` +
-          `1. Run /reload to reset (may clear transient issues).\n` +
-          `2. Set PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE=1 and /reload to disable reorder.\n` +
-          `3. If persistent, run /cache-optimizer doctor and file an issue (no API keys/prompts).`,
-          "warning",
+            `The original prompt was used instead to preserve integrity.\n\n` +
+            `Recovery steps:\n` +
+            `1. Run /reload to reset (may clear transient issues).\n` +
+            `2. Set PI_CACHE_OPTIMIZER_NO_PROMPT_REWRITE=1 and /reload to disable reorder.\n` +
+            `3. If persistent, run /cache-optimizer doctor and file an issue (no API keys/prompts).`,
+          'warning',
         );
       }
     }
@@ -7241,7 +7860,7 @@ export default function (pi: ExtensionAPI) {
       // OpenAI-compatible proxies) do NOT trigger the marker — the doctor/compat
       // commands still mention them as optional guidance.
       if (buildFixSuggestion(displayModel) !== undefined) {
-        statusText = statusText + " ⚠️ compat";
+        statusText = statusText + ' ⚠️ compat';
       }
     }
 
@@ -7268,7 +7887,7 @@ export default function (pi: ExtensionAPI) {
    */
   function hasExplicitLongRetentionOptIn(model: PiModel): boolean {
     try {
-      const text = readFileSync(MODELS_JSON_PATH, "utf8");
+      const text = readFileSync(MODELS_JSON_PATH, 'utf8');
       const parsed = parseJsonc(text);
       return hasExplicitLongRetentionOptInFromConfig(parsed, model.provider, model.id);
     } catch {
@@ -7276,14 +7895,14 @@ export default function (pi: ExtensionAPI) {
     }
   }
 
-  pi.on("session_start", async (event, ctx) => {
+  pi.on('session_start', async (event, ctx) => {
     if (isDeepPiOwned(ctx.model)) return;
     if (runtimeOptimizerEnabled) requestLongCacheRetention();
     await restoreCacheStats(event.reason, ctx);
     await publishStatus(ctx);
   });
 
-  pi.on("session_shutdown", async (_event, ctx) => {
+  pi.on('session_shutdown', async (_event, ctx) => {
     try {
       await flushPersistCacheStats(ctx);
     } finally {
@@ -7294,13 +7913,19 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
-  pi.on("model_select", async (event, ctx) => {
+  pi.on('model_select', async (event, ctx) => {
     if (isDeepPiOwned(resolveRouteModel(event.model, ctx) ?? event.model)) return;
-    if (runtimeOptimizerEnabled) notifyCacheCompatIfNeeded(resolveRouteModel(event.model, ctx) ?? event.model, ctx, warnedModels);
+    if (runtimeOptimizerEnabled) {
+      notifyCacheCompatIfNeeded(
+        resolveRouteModel(event.model, ctx) ?? event.model,
+        ctx,
+        warnedModels,
+      );
+    }
     await publishStatus(ctx, event.model);
   });
 
-  pi.on("before_agent_start", async (event, _ctx) => {
+  pi.on('before_agent_start', async (event, _ctx) => {
     if (isDeepPiOwned(resolveRouteModel(_ctx.model, _ctx) ?? _ctx.model)) return;
     latestCacheHint = undefined;
     // Clear the legacy global before any bypass/disable early return. A valid
@@ -7309,7 +7934,8 @@ export default function (pi: ExtensionAPI) {
     delete getProtocolGlobal().__piCacheOptimizerCacheKey__;
     const routeSnapshot = resolveActiveRouteSnapshot(_ctx.model, _ctx);
     const routedModel = routeSnapshot
-      ? findModelInRegistry(_ctx.modelRegistry, routeSnapshot.provider, routeSnapshot.modelId) ?? routeSnapshotToPiModel(routeSnapshot, _ctx.model)
+      ? findModelInRegistry(_ctx.modelRegistry, routeSnapshot.provider, routeSnapshot.modelId) ??
+        routeSnapshotToPiModel(routeSnapshot, _ctx.model)
       : undefined;
 
     // ────────────────────────────────────────────────────────────────
@@ -7377,7 +8003,9 @@ export default function (pi: ExtensionAPI) {
     const optimized = optimizeSystemPrompt(compressedPrompt, event.systemPromptOptions);
 
     const promptCacheKey = getSessionPromptCacheKey(_ctx);
-    const cacheRetention = process.env[PI_CACHE_RETENTION_ENV] === LONG_CACHE_RETENTION_VALUE ? LONG_CACHE_RETENTION_VALUE : undefined;
+    const cacheRetention = process.env[PI_CACHE_RETENTION_ENV] === LONG_CACHE_RETENTION_VALUE
+      ? LONG_CACHE_RETENTION_VALUE
+      : undefined;
     const publishHint = (systemPrompt: string): void => {
       latestCacheHint = {
         sessionIdHash: currentSessionHashSet ? currentSessionHash : sessionHashFromContext(_ctx),
@@ -7421,7 +8049,7 @@ export default function (pi: ExtensionAPI) {
     return {};
   });
 
-  pi.on("before_provider_request", (event, ctx) => {
+  pi.on('before_provider_request', (event, ctx) => {
     if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     const requestModel = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
 
@@ -7451,6 +8079,8 @@ export default function (pi: ExtensionAPI) {
     // Gate 2 before Gate 3 is critical: if a user explicitly opted in but
     // the API returned 400, we must strip — otherwise the 400 repeats forever.
     if (runtimeOptimizerEnabled) {
+      // The hook receives an opaque provider payload; the following guards
+      // inspect only the object-shaped fields this extension may edit.
       const payload = event.payload as UnknownRecord;
       if (payload && typeof payload.prompt_cache_retention === 'string') {
         if (requestModel) {
@@ -7475,7 +8105,7 @@ export default function (pi: ExtensionAPI) {
     return addOpenAIPromptCacheKey(event.payload, getSessionPromptCacheKey(ctx));
   });
 
-  pi.on("after_provider_response", (event, ctx) => {
+  pi.on('after_provider_response', (event, ctx) => {
     if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     const model = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
     if (!runtimeOptimizerEnabled || !model) return;
@@ -7491,9 +8121,9 @@ export default function (pi: ExtensionAPI) {
       warnedPromptCacheRetention400Models.add(key);
       ctx.ui.notify(
         `⚠️ ${LOG_PREFIX}: ${key} returned HTTP 400 while supportsLongCacheRetention is enabled. ` +
-        getPromptCacheRetentionUnsupportedHint() +
-        ` Run /cache-optimizer doctor for the exact edit location.`,
-        "warning",
+          getPromptCacheRetentionUnsupportedHint() +
+          ` Run /cache-optimizer doctor for the exact edit location.`,
+        'warning',
       );
       return;
     }
@@ -7510,9 +8140,9 @@ export default function (pi: ExtensionAPI) {
         warnedSendSessionAffinityHeaders403Models.add(key403);
         ctx.ui.notify(
           `⚠️ ${LOG_PREFIX}: ${key403} returned HTTP 403 while sendSessionAffinityHeaders is enabled. ` +
-          `The proxy/CDN may be blocking Pi's custom session-affinity headers (session_id, x-client-request-id, x-session-affinity). ` +
-          `Run /cache-optimizer doctor for details and /cache-optimizer fix to set sendSessionAffinityHeaders: false.`,
-          "warning",
+            `The proxy/CDN may be blocking Pi's custom session-affinity headers (session_id, x-client-request-id, x-session-affinity). ` +
+            `Run /cache-optimizer doctor for details and /cache-optimizer fix to set sendSessionAffinityHeaders: false.`,
+          'warning',
         );
         return;
       }
@@ -7528,16 +8158,16 @@ export default function (pi: ExtensionAPI) {
         warnedOpenAISdkHeader403Models.add(key403);
         ctx.ui.notify(
           `⚠️ ${LOG_PREFIX}: ${key403} returned HTTP 403 even though sendSessionAffinityHeaders is not enabled. ` +
-          `The proxy/CDN may be blocking the OpenAI JS SDK User-Agent / X-Stainless-* headers. ` +
-          `Run /cache-optimizer doctor for manual diagnostic guidance; /cache-optimizer fix will not auto-write User-Agent headers.`,
-          "warning",
+            `The proxy/CDN may be blocking the OpenAI JS SDK User-Agent / X-Stainless-* headers. ` +
+            `Run /cache-optimizer doctor for manual diagnostic guidance; /cache-optimizer fix will not auto-write User-Agent headers.`,
+          'warning',
         );
         return;
       }
     }
   });
 
-  pi.on("message_end", async (event, ctx) => {
+  pi.on('message_end', async (event, ctx) => {
     if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     syncSessionHash(ctx);
     const msgRecord = asRecord(event.message);
@@ -7555,9 +8185,9 @@ export default function (pi: ExtensionAPI) {
           warnedAnthropicTtlOrderErrorModels.add(key);
           ctx.ui.notify(
             `⚠️ ${LOG_PREFIX}: ${key} returned an Anthropic cache-control TTL ordering error. ` +
-            `The next request will fall back to the default 5-minute cache TTL. ` +
-            `Run /cache-optimizer fix to set model-level supportsLongCacheRetention: false persistently.`,
-            "warning",
+              `The next request will fall back to the default 5-minute cache TTL. ` +
+              `Run /cache-optimizer fix to set model-level supportsLongCacheRetention: false persistently.`,
+            'warning',
           );
         }
       }
@@ -7573,7 +8203,7 @@ export default function (pi: ExtensionAPI) {
     // returns as a valid (non-undefined) snapshot, which would inflate
     // totalRequests and skew cache hit-rate accuracy. The final successful
     // response is emitted as a separate message_end with real usage data.
-    if (msgRecord?.stopReason === "error" || msgRecord?.stopReason === "aborted") {
+    if (msgRecord?.stopReason === 'error' || msgRecord?.stopReason === 'aborted') {
       return;
     }
 
@@ -7594,7 +8224,9 @@ export default function (pi: ExtensionAPI) {
     // identity (router correctness).
     statsModel = consolidateDirectProviderStatsModel(statsModel, ctx.model, ctx);
     let routedModelChanged = false;
-    if (isVirtualRoutingModel(ctx.model, ctx) && statsModel && !isVirtualRoutingModel(statsModel, ctx)) {
+    if (
+      isVirtualRoutingModel(ctx.model, ctx) && statsModel && !isVirtualRoutingModel(statsModel, ctx)
+    ) {
       const nextRoutedModel: PersistedRoutedModelRef = {
         provider: statsModel.provider,
         id: statsModel.id,
@@ -7604,7 +8236,8 @@ export default function (pi: ExtensionAPI) {
         !lastActualRoutedModel ||
         lastActualRoutedModel.provider !== nextRoutedModel.provider ||
         lastActualRoutedModel.id !== nextRoutedModel.id ||
-        (lastActualRoutedModel.name || lastActualRoutedModel.id) !== (nextRoutedModel.name || nextRoutedModel.id)
+        (lastActualRoutedModel.name || lastActualRoutedModel.id) !==
+          (nextRoutedModel.name || nextRoutedModel.id)
       ) {
         lastActualRoutedModel = nextRoutedModel;
         routedModelChanged = true;
@@ -7614,10 +8247,15 @@ export default function (pi: ExtensionAPI) {
     // Record recent sample (even when usage is missing, for trend diagnosis)
     if (statsModel) {
       const sk = sessionModelKey(statsModel);
-      const missingFields = usage === undefined || (usage.cacheRead === 0 && usage.cacheWrite === 0 && usage.totalInput === 0)
+      const missingFields = usage === undefined ||
+          (usage.cacheRead === 0 && usage.cacheWrite === 0 && usage.totalInput === 0)
         ? true
         : hasMissingUsageFields(event.message, adapter);
-      recordRecentSample(sk, usage ?? { cacheRead: 0, cacheWrite: 0, totalInput: 0 }, missingFields);
+      recordRecentSample(
+        sk,
+        usage ?? { cacheRead: 0, cacheWrite: 0, totalInput: 0 },
+        missingFields,
+      );
     }
 
     if (!usage) {
@@ -7642,6 +8280,18 @@ export default function (pi: ExtensionAPI) {
     await publishStatus(ctx, statsModel);
   });
 
+  /**
+   * Adapt Pi's command context to the shared lifecycle context shape.
+   *
+   * The host supplies the same runtime fields needed by the lifecycle helpers,
+   * but its command and extension context types are declared separately.
+   */
+  function asExtensionContext(commandContext: CommandContext): ExtensionContext {
+    // Pi's runtime command context is the lifecycle context subset used below;
+    // the double assertion bridges the host's separate static declarations.
+    return commandContext as unknown as ExtensionContext;
+  }
+
   // ────────────────────────────────────────────────────────────────
   // Register /cache-optimizer command
   // Subcommands:
@@ -7656,45 +8306,62 @@ export default function (pi: ExtensionAPI) {
   //   reset   — reset current provider/model footer stats bucket (local only)
   //   (no args) — interactive menu (with UI) or help summary
   // ────────────────────────────────────────────────────────────────
-  pi.registerCommand("cache-optimizer", {
-    description: "Configure and diagnose Pi cache behavior",
+  pi.registerCommand('cache-optimizer', {
+    description: 'Configure and diagnose Pi cache behavior',
     handler: async (args: string, cmdCtx) => {
       syncSessionHash(cmdCtx);
       const selectedModel = cmdCtx.model;
-      const model = resolveRouteModel(selectedModel, cmdCtx as unknown as ExtensionContext) ?? selectedModel;
+      const model = resolveRouteModel(selectedModel, asExtensionContext(cmdCtx)) ?? selectedModel;
       const commandParts = args.trim().toLowerCase().split(/\s+/).filter(Boolean);
-      const subcommand = commandParts[0] || "help";
+      const subcommand = commandParts[0] || 'help';
 
-      if (subcommand === "enable") {
+      if (subcommand === 'enable') {
         setRuntimeOptimizerEnabled(true);
         resetCurrentSessionStats();
-        await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
-        await publishStatus(cmdCtx as unknown as ExtensionContext, model);
-        cmdCtx.ui.notify(`✅ Pi Cache Optimizer enabled for this Pi process. Local footer stats were reset for before/after comparison.\n${formatOptimizerRuntimeMode()}`, "info");
-      } else if (subcommand === "disable") {
+        await flushPersistCacheStats(asExtensionContext(cmdCtx));
+        await publishStatus(asExtensionContext(cmdCtx), model);
+        cmdCtx.ui.notify(
+          `✅ Pi Cache Optimizer enabled for this Pi process. Local footer stats were reset for before/after comparison.\n${formatOptimizerRuntimeMode()}`,
+          'info',
+        );
+      } else if (subcommand === 'disable') {
         setRuntimeOptimizerEnabled(false);
         resetCurrentSessionStats();
-        await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
-        await publishStatus(cmdCtx as unknown as ExtensionContext, model);
-        cmdCtx.ui.notify(`⏸️ Pi Cache Optimizer disabled for this Pi process. Local footer stats were reset and will keep collecting while disabled for comparison.\n${formatOptimizerRuntimeMode()}`, "warning");
-      } else if (subcommand === "doctor") {
+        await flushPersistCacheStats(asExtensionContext(cmdCtx));
+        await publishStatus(asExtensionContext(cmdCtx), model);
+        cmdCtx.ui.notify(
+          `⏸️ Pi Cache Optimizer disabled for this Pi process. Local footer stats were reset and will keep collecting while disabled for comparison.\n${formatOptimizerRuntimeMode()}`,
+          'warning',
+        );
+      } else if (subcommand === 'doctor') {
         if (!model) {
-          cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+          cmdCtx.ui.notify(
+            'No active model selected. Select a model first with /model or pi --model.',
+            'warning',
+          );
           return;
         }
-        const diagnosis = buildDoctorDiagnosis(model, { promptCacheRetention400: promptCacheRetention400Models.has(modelKey(model)), anthropicTtlOrderError: anthropicTtlOrderErrorModels.has(modelKey(model)), sessionAffinity403: sendSessionAffinityHeaders403Models.has(modelKey(model)), openAISdkHeader403: openAISdkHeader403Models.has(modelKey(model)) });
+        const diagnosis = buildDoctorDiagnosis(model, {
+          promptCacheRetention400: promptCacheRetention400Models.has(modelKey(model)),
+          anthropicTtlOrderError: anthropicTtlOrderErrorModels.has(modelKey(model)),
+          sessionAffinity403: sendSessionAffinityHeaders403Models.has(modelKey(model)),
+          openAISdkHeader403: openAISdkHeader403Models.has(modelKey(model)),
+        });
         const adapter = selectAdapterForModel(model);
         const sk = model ? sessionModelKey(model) : undefined;
         const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
         const samples = sk ? getRecentSamples(sk) : [];
         const lowHitLines = buildLowHitDiagnosis(model, adapter, statsState, samples);
         const fullDiagnosis = lowHitLines.length > 0
-          ? diagnosis + "\n" + lowHitLines.join("\n")
+          ? diagnosis + '\n' + lowHitLines.join('\n')
           : diagnosis;
-        cmdCtx.ui.notify(fullDiagnosis, "info");
-      } else if (subcommand === "stats") {
+        cmdCtx.ui.notify(fullDiagnosis, 'info');
+      } else if (subcommand === 'stats') {
         if (!model) {
-          cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+          cmdCtx.ui.notify(
+            'No active model selected. Select a model first with /model or pi --model.',
+            'warning',
+          );
           return;
         }
         const adapter = selectAdapterForModel(model);
@@ -7702,61 +8369,78 @@ export default function (pi: ExtensionAPI) {
         const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
         const samples = sk ? getRecentSamples(sk) : [];
         const output = buildStatsOutput(model, adapter, statsState, samples);
-        cmdCtx.ui.notify(output, "info");
-      } else if (subcommand === "config") {
+        cmdCtx.ui.notify(output, 'info');
+      } else if (subcommand === 'config') {
         const configKey = commandParts[1];
         const requestedMode = commandParts[2];
-        if (configKey !== "footer-mode" || !requestedMode || !["session", "total", "process"].includes(requestedMode)) {
+        if (
+          configKey !== 'footer-mode' || !requestedMode ||
+          !['session', 'total', 'process'].includes(requestedMode)
+        ) {
           const resolved = resolveFooterStatsMode(persistedFooterStatsMode);
           cmdCtx.ui.notify(
             `Usage: /cache-optimizer config footer-mode total|session|process\n` +
-            `Current footer mode: ${resolved.mode} (${resolved.source})`,
-            "info",
+              `Current footer mode: ${resolved.mode} (${resolved.source})`,
+            'info',
           );
           return;
         }
 
+        // The validation branch above restricts this string to the accepted
+        // footer modes, but Array.includes cannot carry that narrowing.
         const nextMode = requestedMode as FooterStatsMode;
         try {
           await writePersistedFooterMode(nextMode);
           persistedFooterStatsMode = nextMode;
           lastStatusText = undefined;
-          await publishStatus(cmdCtx as unknown as ExtensionContext, model);
+          await publishStatus(asExtensionContext(cmdCtx), model);
           const resolved = resolveFooterStatsMode(persistedFooterStatsMode);
           cmdCtx.ui.notify(
             `✅ Footer mode set to ${resolved.mode}. Persistent config overrides ${FOOTER_MODE_ENV}.`,
-            "info",
+            'info',
           );
-        } catch (error) {
+        } catch (error: unknown) {
           cmdCtx.ui.notify(
-            `❌ Could not update footer mode config: ${error instanceof Error ? error.message : String(error)}`,
-            "error",
+            `❌ Could not update footer mode config: ${
+              error instanceof Error ? error.message : String(error)
+            }`,
+            'error',
           );
         }
-      } else if (subcommand === "compat") {
+      } else if (subcommand === 'compat') {
         if (!model) {
-          cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+          cmdCtx.ui.notify(
+            'No active model selected. Select a model first with /model or pi --model.',
+            'warning',
+          );
           return;
         }
         const compatResult = buildCompatDiagnosis(model);
         if (compatResult) {
-          cmdCtx.ui.notify(compatResult, "warning");
+          cmdCtx.ui.notify(compatResult, 'warning');
         } else {
           cmdCtx.ui.notify(
-            isAdaptiveThinkingCompatApplicable(model) || isDeepSeekCompatCheckApplicable(model) || isCompatCheckApplicable(model)
-              ? "✅ Compat fully configured."
-              : getCompatCheckNotApplicableLines(model).join("\n"),
-            "info",
+            isAdaptiveThinkingCompatApplicable(model) || isDeepSeekCompatCheckApplicable(model) ||
+              isCompatCheckApplicable(model)
+              ? '✅ Compat fully configured.'
+              : getCompatCheckNotApplicableLines(model).join('\n'),
+            'info',
           );
         }
-      } else if (subcommand === "reset") {
+      } else if (subcommand === 'reset') {
         if (!model) {
-          cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+          cmdCtx.ui.notify(
+            'No active model selected. Select a model first with /model or pi --model.',
+            'warning',
+          );
           return;
         }
         const adapter = selectAdapterForModel(model);
         if (!adapter) {
-          cmdCtx.ui.notify("ℹ️ Active model does not match a cache adapter. No stats to reset.", "info");
+          cmdCtx.ui.notify(
+            'ℹ️ Active model does not match a cache adapter. No stats to reset.',
+            'info',
+          );
           return;
         }
 
@@ -7768,20 +8452,23 @@ export default function (pi: ExtensionAPI) {
         resetStatsForModel(model);
 
         // Persist immediately.
-        await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
+        await flushPersistCacheStats(asExtensionContext(cmdCtx));
 
         // Update footer to show 0/0.
-        await publishStatus(cmdCtx as unknown as ExtensionContext, model);
+        await publishStatus(asExtensionContext(cmdCtx), model);
 
         cmdCtx.ui.notify(
           `✅ Reset local footer cache stats for "${displayKey}". ` +
-          "Upstream provider prompt cache was not modified. " +
-          "New requests will start a fresh local stats bucket for this provider/model.",
-          "info",
+            'Upstream provider prompt cache was not modified. ' +
+            'New requests will start a fresh local stats bucket for this provider/model.',
+          'info',
         );
-      } else if (subcommand === "fix") {
+      } else if (subcommand === 'fix') {
         if (!model) {
-          cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+          cmdCtx.ui.notify(
+            'No active model selected. Select a model first with /model or pi --model.',
+            'warning',
+          );
           return;
         }
 
@@ -7789,7 +8476,7 @@ export default function (pi: ExtensionAPI) {
 
         if (!suggestion) {
           const key = modelKey(model);
-          cmdCtx.ui.notify(`✅ Nothing to fix for "${key}". Compat already configured.`, "info");
+          cmdCtx.ui.notify(`✅ Nothing to fix for "${key}". Compat already configured.`, 'info');
           return;
         }
 
@@ -7797,202 +8484,229 @@ export default function (pi: ExtensionAPI) {
           // No UI — refuse to write, show manual guidance instead.
           const compatResult = buildCompatDiagnosis(model);
           const snippet = formatMissingEntryManualSnippet(
-            suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys,
+            suggestion.providerLabel,
+            suggestion.modelId,
+            suggestion.compatKeys,
           );
           const manualLines = [
             `❌ Non-interactive terminal detected. Auto-fix requires UI confirmation.`,
-            "",
+            '',
             `Edit ${getModelsJsonDisplayPath()} and run /reload.`,
           ];
           if (promptCacheRetention400Models.has(modelKey(model))) {
             manualLines.push(
-              "",
-              "💡 This model returned HTTP 400 for prompt_cache_retention.",
-              "Create or edit the entry below to override supportsLongCacheRetention to false.",
+              '',
+              '💡 This model returned HTTP 400 for prompt_cache_retention.',
+              'Create or edit the entry below to override supportsLongCacheRetention to false.',
             );
           }
           if (anthropicTtlOrderErrorModels.has(modelKey(model))) {
             manualLines.push(
-              "",
-              "💡 This model returned an Anthropic cache-control TTL ordering error.",
-              "Create or edit the entry below to override supportsLongCacheRetention to false.",
+              '',
+              '💡 This model returned an Anthropic cache-control TTL ordering error.',
+              'Create or edit the entry below to override supportsLongCacheRetention to false.',
             );
           }
           if (sendSessionAffinityHeaders403Models.has(modelKey(model))) {
             manualLines.push(
-              "",
-              "💡 This model returned HTTP 403 while sendSessionAffinityHeaders was enabled.",
-              "Create or edit the entry below to override sendSessionAffinityHeaders to false.",
+              '',
+              '💡 This model returned HTTP 403 while sendSessionAffinityHeaders was enabled.',
+              'Create or edit the entry below to override sendSessionAffinityHeaders to false.',
             );
           }
           manualLines.push(
-            "",
+            '',
             "Add these compat keys at Pi's highest-precedence model override path:",
             `providers["${suggestion.providerLabel}"] -> modelOverrides -> "${suggestion.modelId}" -> compat:`,
             formatCompatKeysForInsertion(suggestion.compatKeys),
           );
           if (snippet.length > 0) {
             manualLines.push(
-              "",
-              "If the provider/model is missing (common for API-logged-in channels such as",
+              '',
+              'If the provider/model is missing (common for API-logged-in channels such as',
               `opencode go), add a minimal entry under "providers" (keep existing auth as-is):`,
-              "",
+              '',
               snippet,
             );
           }
           if (compatResult) {
-            manualLines.push("", compatResult);
+            manualLines.push('', compatResult);
           }
-          cmdCtx.ui.notify(manualLines.join("\n"), "warning");
+          cmdCtx.ui.notify(manualLines.join('\n'), 'warning');
           return;
         }
 
         // Read the models.json file
         let originalText: string;
         try {
-          originalText = await readFile(MODELS_JSON_PATH, "utf8");
+          originalText = await readFile(MODELS_JSON_PATH, 'utf8');
         } catch {
-          cmdCtx.ui.notify(`❌ Could not read ${MODELS_JSON_PATH}. File may not exist.`, "error");
+          cmdCtx.ui.notify(`❌ Could not read ${MODELS_JSON_PATH}. File may not exist.`, 'error');
           return;
         }
 
         // Locate the model entry. API-logged-in providers (e.g. opencode go)
         // may not appear in models.json at all.
-        const location = locateModelInJsonc(originalText, suggestion.providerLabel, suggestion.modelId);
+        const location = locateModelInJsonc(
+          originalText,
+          suggestion.providerLabel,
+          suggestion.modelId,
+        );
         if (!location) {
-          const diagnosis = analyzeModelsJsonForMissingEntry(originalText, suggestion.providerLabel, suggestion.modelId);
+          const diagnosis = analyzeModelsJsonForMissingEntry(
+            originalText,
+            suggestion.providerLabel,
+            suggestion.modelId,
+          );
           if (diagnosis && cmdCtx.hasUI) {
             const overrideLocation = locateModelOverrideInJsonc(
-              originalText, suggestion.providerLabel, suggestion.modelId,
+              originalText,
+              suggestion.providerLabel,
+              suggestion.modelId,
             );
             const repairsExistingOverride = (overrideLocation?.modelOverrideObjectBrace ?? -1) >= 0;
             // Prefer a modelOverrides edit when models[] has no target entry.
             const plan = composeModelOverrideInsertion(
-              originalText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys,
+              originalText,
+              suggestion.providerLabel,
+              suggestion.modelId,
+              suggestion.compatKeys,
             );
             if (!plan) {
               cmdCtx.ui.notify(
                 `❌ Could not safely locate a modelOverrides insertion point.\n` +
-                `Falling back to manual guidance. No changes were made.`,
-                "error",
+                  `Falling back to manual guidance. No changes were made.`,
+                'error',
               );
             } else {
-            const checkError = selfCheckMissingEntryInsertion(
-              originalText, plan.modifiedText,
-              suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys,
-            );
-            if (checkError !== null) {
-              // Fall through to manual guidance.
-              cmdCtx.ui.notify(
-                `❌ Self-check would fail for auto-created entry: ${checkError}\n` +
-                `Falling back to manual guidance. No changes were made.`,
-                "error",
+              const checkError = selfCheckMissingEntryInsertion(
+                originalText,
+                plan.modifiedText,
+                suggestion.providerLabel,
+                suggestion.modelId,
+                suggestion.compatKeys,
               );
-              // Continue to manual guidance below.
-            } else {
-              const keysPreview = JSON.stringify(suggestion.compatKeys, null, 2);
-              const ts = backupTimestamp();
-              const backupPath = `${MODELS_JSON_PATH}.backup-cache-optimizer-${ts}`;
-              const previewLines = [
-                `📝 Preview of changes to ${getModelsJsonDisplayPath()}:`,
-                ``,
-                `Location: ${plan.placementLabel}`,
-                `Compat JSON to write:`,
-                keysPreview,
-                ``,
-                `⚠️  Risk notice:`,
-                repairsExistingOverride
-                  ? `  1. This updates the existing modelOverrides entry for "${suggestion.modelId}". Existing auth is not affected.`
-                  : `  1. This creates a modelOverrides entry in models.json. Existing auth (e.g. login API tokens) is not affected.`,
-                `  2. A timestamped backup will be written to: ${backupPath}`,
-                `  3. You must run /reload or restart Pi for the change to take effect.`,
-                `  4. If the file contains comments or unusual formatting, please verify the result after write.`,
-              ];
-              if (promptCacheRetention400Models.has(modelKey(model))) {
-                previewLines.push(
-                  "",
-                  "💡  This fix overrides supportsLongCacheRetention to false because",
-                  "a 400 prompt_cache_retention error was observed for this model.",
-                  "After applying and reloading, Pi will no longer send the",
-                  "prompt_cache_retention parameter to this provider.",
+              if (checkError !== null) {
+                // Fall through to manual guidance.
+                cmdCtx.ui.notify(
+                  `❌ Self-check would fail for auto-created entry: ${checkError}\n` +
+                    `Falling back to manual guidance. No changes were made.`,
+                  'error',
                 );
-              }
-              previewLines.push("", `Apply these changes?`);
-              const confirmed = await cmdCtx.ui.confirm(
-                repairsExistingOverride ? "Cache Optimizer — Fix (model override)" : "Cache Optimizer — Fix (new override)",
-                previewLines.join("\n"),
-              );
-              if (confirmed) {
-                try {
-                  await copyFile(MODELS_JSON_PATH, backupPath);
-                  const tempPath = `${MODELS_JSON_PATH}.${process.pid}.${Date.now()}.fix.tmp`;
-                  await writeFile(tempPath, plan.modifiedText, "utf8");
-                  await rename(tempPath, MODELS_JSON_PATH);
-
-                  const writtenText = await readFile(MODELS_JSON_PATH, "utf8");
-                  const postErr = selfCheckMissingEntryInsertion(
-                    originalText, writtenText,
-                    suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys,
-                  );
-                  if (postErr !== null) {
-                    await copyFile(backupPath, MODELS_JSON_PATH);
-                    cmdCtx.ui.notify(
-                      `❌ Post-write self-check failed: ${postErr}\n` +
-                      `The backup at ${backupPath} has been restored. No changes applied.`,
-                      "error",
-                    );
-                    return;
-                  }
-                  cmdCtx.ui.notify(
-                    `✅ Fix applied to ${getModelsJsonDisplayPath()}.\n` +
-                    `Backup saved to: ${backupPath}\n` +
-                    `Run /reload or restart Pi for the change to take effect.`,
-                    "info",
-                  );
-                } catch (e) {
-                  cmdCtx.ui.notify(
-                    `❌ Write failed: ${e instanceof Error ? e.message : String(e)}`,
-                    "error",
+                // Continue to manual guidance below.
+              } else {
+                const keysPreview = JSON.stringify(suggestion.compatKeys, null, 2);
+                const ts = backupTimestamp();
+                const backupPath = `${MODELS_JSON_PATH}.backup-cache-optimizer-${ts}`;
+                const previewLines = [
+                  `📝 Preview of changes to ${getModelsJsonDisplayPath()}:`,
+                  ``,
+                  `Location: ${plan.placementLabel}`,
+                  `Compat JSON to write:`,
+                  keysPreview,
+                  ``,
+                  `⚠️  Risk notice:`,
+                  repairsExistingOverride
+                    ? `  1. This updates the existing modelOverrides entry for "${suggestion.modelId}". Existing auth is not affected.`
+                    : `  1. This creates a modelOverrides entry in models.json. Existing auth (e.g. login API tokens) is not affected.`,
+                  `  2. A timestamped backup will be written to: ${backupPath}`,
+                  `  3. You must run /reload or restart Pi for the change to take effect.`,
+                  `  4. If the file contains comments or unusual formatting, please verify the result after write.`,
+                ];
+                if (promptCacheRetention400Models.has(modelKey(model))) {
+                  previewLines.push(
+                    '',
+                    '💡  This fix overrides supportsLongCacheRetention to false because',
+                    'a 400 prompt_cache_retention error was observed for this model.',
+                    'After applying and reloading, Pi will no longer send the',
+                    'prompt_cache_retention parameter to this provider.',
                   );
                 }
+                previewLines.push('', `Apply these changes?`);
+                const confirmed = await cmdCtx.ui.confirm(
+                  repairsExistingOverride
+                    ? 'Cache Optimizer — Fix (model override)'
+                    : 'Cache Optimizer — Fix (new override)',
+                  previewLines.join('\n'),
+                );
+                if (confirmed) {
+                  try {
+                    await copyFile(MODELS_JSON_PATH, backupPath);
+                    const tempPath = `${MODELS_JSON_PATH}.${process.pid}.${Date.now()}.fix.tmp`;
+                    await writeFile(tempPath, plan.modifiedText, 'utf8');
+                    await rename(tempPath, MODELS_JSON_PATH);
+
+                    const writtenText = await readFile(MODELS_JSON_PATH, 'utf8');
+                    const postErr = selfCheckMissingEntryInsertion(
+                      originalText,
+                      writtenText,
+                      suggestion.providerLabel,
+                      suggestion.modelId,
+                      suggestion.compatKeys,
+                    );
+                    if (postErr !== null) {
+                      await copyFile(backupPath, MODELS_JSON_PATH);
+                      cmdCtx.ui.notify(
+                        `❌ Post-write self-check failed: ${postErr}\n` +
+                          `The backup at ${backupPath} has been restored. No changes applied.`,
+                        'error',
+                      );
+                      return;
+                    }
+                    cmdCtx.ui.notify(
+                      `✅ Fix applied to ${getModelsJsonDisplayPath()}.\n` +
+                        `Backup saved to: ${backupPath}\n` +
+                        `Run /reload or restart Pi for the change to take effect.`,
+                      'info',
+                    );
+                  } catch (e: unknown) {
+                    cmdCtx.ui.notify(
+                      `❌ Write failed: ${e instanceof Error ? e.message : String(e)}`,
+                      'error',
+                    );
+                  }
+                  return;
+                }
+                cmdCtx.ui.notify('No changes were made. Canceled by user.', 'info');
                 return;
               }
-              cmdCtx.ui.notify("No changes were made. Canceled by user.", "info");
-              return;
-            }
             }
           }
 
           // Non-interactive or no diagnosis: show manual guidance.
           const snippet = diagnosis
-            ? formatMissingEntryManualSnippet(suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys)
+            ? formatMissingEntryManualSnippet(
+              suggestion.providerLabel,
+              suggestion.modelId,
+              suggestion.compatKeys,
+            )
             : formatCompatKeysForInsertion(suggestion.compatKeys);
           const adviceLines: string[] = [];
           if (!diagnosis) {
             adviceLines.push(
               `❌ Could not locate model "${suggestion.modelId}" or provider "${suggestion.providerLabel}" in ${getModelsJsonDisplayPath()}.`,
-              "",
-              "Providers that were added via Pi /login API (e.g. opencode go) do not have",
-              "entries in models.json. You can create a minimal modelOverrides entry by hand:",
+              '',
+              'Providers that were added via Pi /login API (e.g. opencode go) do not have',
+              'entries in models.json. You can create a minimal modelOverrides entry by hand:',
             );
-          } else if (diagnosis.scenario === "provider_missing") {
+          } else if (diagnosis.scenario === 'provider_missing') {
             adviceLines.push(
               `ℹ️ Provider "${suggestion.providerLabel}" does not exist in ${getModelsJsonDisplayPath()}.`,
               `This is common for API-logged-in providers (e.g. /login ...).`,
-              "",
-              "Add the following minimal block under the \"providers\" key (keep your",
-              "existing authentication as-is):",
+              '',
+              'Add the following minimal block under the "providers" key (keep your',
+              'existing authentication as-is):',
             );
           } else {
             adviceLines.push(
               `ℹ️ Model "${suggestion.modelId}" was not found in ${getModelsJsonDisplayPath()}`,
               `under providers["${suggestion.providerLabel}"].`,
-              "",
-              "Add the following modelOverrides entry (keep existing auth):",
+              '',
+              'Add the following modelOverrides entry (keep existing auth):',
             );
           }
-          adviceLines.push("", snippet, "", "Then save and run /reload.");
-          cmdCtx.ui.notify(adviceLines.join("\n"), "warning");
+          adviceLines.push('', snippet, '', 'Then save and run /reload.');
+          cmdCtx.ui.notify(adviceLines.join('\n'), 'warning');
           return;
         }
 
@@ -8005,15 +8719,27 @@ export default function (pi: ExtensionAPI) {
           suggestion.providerLabel,
           suggestion.forceModelLevel,
         );
-        const modifiedText = composeFixInsertion(originalText, location, suggestion.compatKeys, decision.placement);
+        const modifiedText = composeFixInsertion(
+          originalText,
+          location,
+          suggestion.compatKeys,
+          decision.placement,
+        );
 
         // Self-check
-        const checkError = selfCheckFix(originalText, modifiedText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys, decision.placement);
+        const checkError = selfCheckFix(
+          originalText,
+          modifiedText,
+          suggestion.providerLabel,
+          suggestion.modelId,
+          suggestion.compatKeys,
+          decision.placement,
+        );
         if (checkError !== null) {
           cmdCtx.ui.notify(
             `❌ Self-check failed before write: ${checkError}\n` +
-            `No changes were made. Manual edit required.`,
-            "error",
+              `No changes were made. Manual edit required.`,
+            'error',
           );
           return;
         }
@@ -8021,23 +8747,25 @@ export default function (pi: ExtensionAPI) {
         // Build preview snippet as copyable JSON (the surgical editor will
         // insert or repair these exact compat key/value pairs).
         const keysPreview = JSON.stringify(suggestion.compatKeys, null, 2);
-        const targetHasCompat = decision.placement === "provider"
+        const targetHasCompat = decision.placement === 'provider'
           ? location.providerCompatBrace >= 0
-          : decision.placement === "modelOverride"
-            ? location.modelOverrideCompatBrace >= 0
-            : location.compatObjectBrace >= 0;
+          : decision.placement === 'modelOverride'
+          ? location.modelOverrideCompatBrace >= 0
+          : location.compatObjectBrace >= 0;
         const placementDesc = targetHasCompat ? `existing "compat" object` : `new "compat" object`;
-        const locationDesc = decision.placement === "provider"
+        const locationDesc = decision.placement === 'provider'
           ? `providers["${suggestion.providerLabel}"] -> compat (provider level, ${placementDesc})`
-          : decision.placement === "modelOverride"
-            ? `providers["${suggestion.providerLabel}"] -> modelOverrides -> "${suggestion.modelId}" -> compat (${placementDesc})`
-            : `providers["${suggestion.providerLabel}"] -> models -> "${suggestion.modelId}" -> compat (model level, ${placementDesc})`;
+          : decision.placement === 'modelOverride'
+          ? `providers["${suggestion.providerLabel}"] -> modelOverrides -> "${suggestion.modelId}" -> compat (${placementDesc})`
+          : `providers["${suggestion.providerLabel}"] -> models -> "${suggestion.modelId}" -> compat (model level, ${placementDesc})`;
 
         const ts = backupTimestamp();
         const backupPath = `${MODELS_JSON_PATH}.backup-cache-optimizer-${ts}`;
 
-        const scopeRiskLine = decision.placement === "provider"
-          ? `  1. This change applies to ALL ${location.allModelIds.length || 1} model(s) in the "${suggestion.providerLabel}" provider, across all sessions.`
+        const scopeRiskLine = decision.placement === 'provider'
+          ? `  1. This change applies to ALL ${
+            location.allModelIds.length || 1
+          } model(s) in the "${suggestion.providerLabel}" provider, across all sessions.`
           : `  1. This change affects ALL sessions using the "${suggestion.providerLabel}" provider/channel (scoped to model "${suggestion.modelId}").`;
 
         const previewLines = [
@@ -8056,18 +8784,18 @@ export default function (pi: ExtensionAPI) {
         ];
         if (promptCacheRetention400Models.has(modelKey(model))) {
           previewLines.push(
-            "",
-            "💡  This fix overrides supportsLongCacheRetention to false because",
-            "a 400 prompt_cache_retention error was observed for this model.",
-            "After applying and reloading, Pi will no longer send the",
-            "prompt_cache_retention parameter to this provider.",
+            '',
+            '💡  This fix overrides supportsLongCacheRetention to false because',
+            'a 400 prompt_cache_retention error was observed for this model.',
+            'After applying and reloading, Pi will no longer send the',
+            'prompt_cache_retention parameter to this provider.',
           );
         }
-        previewLines.push("", `Apply these changes?`);
+        previewLines.push('', `Apply these changes?`);
 
-        const confirmed = await cmdCtx.ui.confirm("Cache Optimizer — Fix", previewLines.join("\n"));
+        const confirmed = await cmdCtx.ui.confirm('Cache Optimizer — Fix', previewLines.join('\n'));
         if (!confirmed) {
-          cmdCtx.ui.notify("No changes were made. Canceled by user.", "info");
+          cmdCtx.ui.notify('No changes were made. Canceled by user.', 'info');
           return;
         }
 
@@ -8078,128 +8806,171 @@ export default function (pi: ExtensionAPI) {
 
           // Atomic write
           const tempPath = `${MODELS_JSON_PATH}.${process.pid}.${Date.now()}.fix.tmp`;
-          await writeFile(tempPath, modifiedText, "utf8");
+          await writeFile(tempPath, modifiedText, 'utf8');
           await rename(tempPath, MODELS_JSON_PATH);
 
           // Post-write self-check (read back)
-          const writtenText = await readFile(MODELS_JSON_PATH, "utf8");
-          const postCheckError = selfCheckFix(originalText, writtenText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys, decision.placement);
+          const writtenText = await readFile(MODELS_JSON_PATH, 'utf8');
+          const postCheckError = selfCheckFix(
+            originalText,
+            writtenText,
+            suggestion.providerLabel,
+            suggestion.modelId,
+            suggestion.compatKeys,
+            decision.placement,
+          );
           if (postCheckError !== null) {
             // Restore from backup
             await copyFile(backupPath, MODELS_JSON_PATH);
             cmdCtx.ui.notify(
               `❌ Post-write self-check failed: ${postCheckError}\n` +
-              `The backup at ${backupPath} has been restored. No changes applied.`,
-              "error",
+                `The backup at ${backupPath} has been restored. No changes applied.`,
+              'error',
             );
             return;
           }
 
           cmdCtx.ui.notify(
             `✅ Fix applied to ${getModelsJsonDisplayPath()}.\n` +
-            `Backup saved to: ${backupPath}\n` +
-            `Run /reload or restart Pi for the change to take effect.`,
-            "info",
+              `Backup saved to: ${backupPath}\n` +
+              `Run /reload or restart Pi for the change to take effect.`,
+            'info',
           );
-        } catch (writeError) {
+        } catch (writeError: unknown) {
           cmdCtx.ui.notify(
-            `❌ Write failed: ${writeError instanceof Error ? writeError.message : String(writeError)}\n` +
-            `Backup may be at: ${backupPath}`,
-            "error",
+            `❌ Write failed: ${
+              writeError instanceof Error ? writeError.message : String(writeError)
+            }\n` +
+              `Backup may be at: ${backupPath}`,
+            'error',
           );
         }
       } else {
         // Try interactive selection menu when UI supports it
         if (cmdCtx.hasUI) {
           const menuOptions = [
-            "Enable — Turn on runtime optimizations",
-            "Disable — Turn off runtime optimizations",
-            "Doctor — Show cache configuration",
-            "Stats — Show cache stats and trend",
-            "Compat — Show compat suggestion",
-            "Fix — Auto-fix compat issues (writes models.json)",
-            "Footer mode — Choose total, session, or process stats",
-            "Reset — Reset local provider/model stats",
-            "Cancel",
+            'Enable — Turn on runtime optimizations',
+            'Disable — Turn off runtime optimizations',
+            'Doctor — Show cache configuration',
+            'Stats — Show cache stats and trend',
+            'Compat — Show compat suggestion',
+            'Fix — Auto-fix compat issues (writes models.json)',
+            'Footer mode — Choose total, session, or process stats',
+            'Reset — Reset local provider/model stats',
+            'Cancel',
           ];
-          const choice = await cmdCtx.ui.select("Cache Optimizer", menuOptions);
+          const choice = await cmdCtx.ui.select('Cache Optimizer', menuOptions);
           if (choice === menuOptions[0]) {
             setRuntimeOptimizerEnabled(true);
             resetCurrentSessionStats();
-            await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
-            await publishStatus(cmdCtx as unknown as ExtensionContext, model);
-            cmdCtx.ui.notify(`✅ Pi Cache Optimizer enabled for this Pi process. Local footer stats were reset for before/after comparison.\n${formatOptimizerRuntimeMode()}`, "info");
+            await flushPersistCacheStats(asExtensionContext(cmdCtx));
+            await publishStatus(asExtensionContext(cmdCtx), model);
+            cmdCtx.ui.notify(
+              `✅ Pi Cache Optimizer enabled for this Pi process. Local footer stats were reset for before/after comparison.\n${formatOptimizerRuntimeMode()}`,
+              'info',
+            );
           } else if (choice === menuOptions[1]) {
             setRuntimeOptimizerEnabled(false);
             resetCurrentSessionStats();
-            await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
-            await publishStatus(cmdCtx as unknown as ExtensionContext, model);
-            cmdCtx.ui.notify(`⏸️ Pi Cache Optimizer disabled for this Pi process. Local footer stats were reset and will keep collecting while disabled for comparison.\n${formatOptimizerRuntimeMode()}`, "warning");
+            await flushPersistCacheStats(asExtensionContext(cmdCtx));
+            await publishStatus(asExtensionContext(cmdCtx), model);
+            cmdCtx.ui.notify(
+              `⏸️ Pi Cache Optimizer disabled for this Pi process. Local footer stats were reset and will keep collecting while disabled for comparison.\n${formatOptimizerRuntimeMode()}`,
+              'warning',
+            );
           } else if (choice === menuOptions[2]) {
             if (!model) {
-              cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+              cmdCtx.ui.notify(
+                'No active model selected. Select a model first with /model or pi --model.',
+                'warning',
+              );
             } else {
-              const diagnosis = buildDoctorDiagnosis(model, { promptCacheRetention400: promptCacheRetention400Models.has(modelKey(model)), anthropicTtlOrderError: anthropicTtlOrderErrorModels.has(modelKey(model)), sessionAffinity403: sendSessionAffinityHeaders403Models.has(modelKey(model)), openAISdkHeader403: openAISdkHeader403Models.has(modelKey(model)) });
+              const diagnosis = buildDoctorDiagnosis(model, {
+                promptCacheRetention400: promptCacheRetention400Models.has(modelKey(model)),
+                anthropicTtlOrderError: anthropicTtlOrderErrorModels.has(modelKey(model)),
+                sessionAffinity403: sendSessionAffinityHeaders403Models.has(modelKey(model)),
+                openAISdkHeader403: openAISdkHeader403Models.has(modelKey(model)),
+              });
               const adapter = selectAdapterForModel(model);
               const sk = model ? sessionModelKey(model) : undefined;
               const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
               const samples = sk ? getRecentSamples(sk) : [];
               const lowHitLines = buildLowHitDiagnosis(model, adapter, statsState, samples);
               const fullDiagnosis = lowHitLines.length > 0
-                ? diagnosis + "\n" + lowHitLines.join("\n")
+                ? diagnosis + '\n' + lowHitLines.join('\n')
                 : diagnosis;
-              cmdCtx.ui.notify(fullDiagnosis, "info");
+              cmdCtx.ui.notify(fullDiagnosis, 'info');
             }
           } else if (choice === menuOptions[3]) {
             if (!model) {
-              cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+              cmdCtx.ui.notify(
+                'No active model selected. Select a model first with /model or pi --model.',
+                'warning',
+              );
             } else {
               const adapter = selectAdapterForModel(model);
               const sk = model ? sessionModelKey(model) : undefined;
               const statsState = model ? cacheStatsTotalsByModel[modelKey(model)] : undefined;
               const samples = sk ? getRecentSamples(sk) : [];
               const output = buildStatsOutput(model, adapter, statsState, samples);
-              cmdCtx.ui.notify(output, "info");
+              cmdCtx.ui.notify(output, 'info');
             }
           } else if (choice === menuOptions[4]) {
             if (!model) {
-              cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+              cmdCtx.ui.notify(
+                'No active model selected. Select a model first with /model or pi --model.',
+                'warning',
+              );
             } else {
               const compatResult = buildCompatDiagnosis(model);
               if (compatResult) {
-                cmdCtx.ui.notify(compatResult, "warning");
+                cmdCtx.ui.notify(compatResult, 'warning');
               } else {
                 cmdCtx.ui.notify(
-                  isAdaptiveThinkingCompatApplicable(model) || isDeepSeekCompatCheckApplicable(model) || isCompatCheckApplicable(model)
-                    ? "✅ Compat fully configured."
-                    : getCompatCheckNotApplicableLines(model).join("\n"),
-                  "info",
+                  isAdaptiveThinkingCompatApplicable(model) ||
+                    isDeepSeekCompatCheckApplicable(model) || isCompatCheckApplicable(model)
+                    ? '✅ Compat fully configured.'
+                    : getCompatCheckNotApplicableLines(model).join('\n'),
+                  'info',
                 );
               }
             }
           } else if (choice === menuOptions[5]) {
             // Fix — auto-fix compat issues
             if (!model) {
-              cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+              cmdCtx.ui.notify(
+                'No active model selected. Select a model first with /model or pi --model.',
+                'warning',
+              );
               return;
             }
             const suggestion = buildCommandFixSuggestion(model);
             if (!suggestion) {
               const key = modelKey(model);
-              cmdCtx.ui.notify(`✅ Nothing to fix for "${key}". Compat already configured.`, "info");
+              cmdCtx.ui.notify(
+                `✅ Nothing to fix for "${key}". Compat already configured.`,
+                'info',
+              );
               return;
             }
 
             // Read models.json
             let originalText: string;
             try {
-              originalText = await readFile(MODELS_JSON_PATH, "utf8");
+              originalText = await readFile(MODELS_JSON_PATH, 'utf8');
             } catch {
-              cmdCtx.ui.notify(`❌ Could not read ${MODELS_JSON_PATH}. File may not exist.`, "error");
+              cmdCtx.ui.notify(
+                `❌ Could not read ${MODELS_JSON_PATH}. File may not exist.`,
+                'error',
+              );
               return;
             }
 
-            const location = locateModelInJsonc(originalText, suggestion.providerLabel, suggestion.modelId);
+            const location = locateModelInJsonc(
+              originalText,
+              suggestion.providerLabel,
+              suggestion.modelId,
+            );
             const menuDecision = location
               ? chooseFixPlacement(
                 originalText,
@@ -8209,31 +8980,55 @@ export default function (pi: ExtensionAPI) {
                 suggestion.forceModelLevel,
               )
               : undefined;
-            const overridePlan = location
-              ? undefined
-              : composeModelOverrideInsertion(
+            const overridePlan = location ? undefined : composeModelOverrideInsertion(
+              originalText,
+              suggestion.providerLabel,
+              suggestion.modelId,
+              suggestion.compatKeys,
+            );
+            if (!location && !overridePlan) {
+              cmdCtx.ui.notify(
+                `❌ Could not safely locate a modelOverrides insertion point in ${getModelsJsonDisplayPath()}.\n` +
+                  `Manual edit required:\n${
+                    formatMissingEntryManualSnippet(
+                      suggestion.providerLabel,
+                      suggestion.modelId,
+                      suggestion.compatKeys,
+                    )
+                  }\n` +
+                  `Then run /reload.`,
+                'warning',
+              );
+              return;
+            }
+            // The guard above leaves either a complete location decision or
+            // a model-override insertion plan for this branch.
+            const modifiedText = location && menuDecision
+              ? composeFixInsertion(
                 originalText,
+                location,
+                suggestion.compatKeys,
+                menuDecision.placement,
+              )
+              : overridePlan!.modifiedText;
+            const checkError = location && menuDecision
+              ? selfCheckFix(
+                originalText,
+                modifiedText,
+                suggestion.providerLabel,
+                suggestion.modelId,
+                suggestion.compatKeys,
+                menuDecision.placement,
+              )
+              : selfCheckMissingEntryInsertion(
+                originalText,
+                modifiedText,
                 suggestion.providerLabel,
                 suggestion.modelId,
                 suggestion.compatKeys,
               );
-            if (!location && !overridePlan) {
-              cmdCtx.ui.notify(
-                `❌ Could not safely locate a modelOverrides insertion point in ${getModelsJsonDisplayPath()}.\n` +
-                `Manual edit required:\n${formatMissingEntryManualSnippet(suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys)}\n` +
-                `Then run /reload.`,
-                "warning",
-              );
-              return;
-            }
-            const modifiedText = location && menuDecision
-              ? composeFixInsertion(originalText, location, suggestion.compatKeys, menuDecision.placement)
-              : overridePlan!.modifiedText;
-            const checkError = location && menuDecision
-              ? selfCheckFix(originalText, modifiedText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys, menuDecision.placement)
-              : selfCheckMissingEntryInsertion(originalText, modifiedText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys);
             if (checkError !== null) {
-              cmdCtx.ui.notify(`❌ Self-check failed: ${checkError}\nNo changes made.`, "error");
+              cmdCtx.ui.notify(`❌ Self-check failed: ${checkError}\nNo changes made.`, 'error');
               return;
             }
 
@@ -8241,19 +9036,26 @@ export default function (pi: ExtensionAPI) {
             const ts = backupTimestamp();
             const backupPath = `${MODELS_JSON_PATH}.backup-cache-optimizer-${ts}`;
 
-            const menuLocationDesc = overridePlan?.placementLabel ?? (menuDecision?.placement === "provider"
-              ? `providers["${suggestion.providerLabel}"] -> compat (provider level)`
-              : menuDecision?.placement === "modelOverride"
+            const menuLocationDesc = overridePlan?.placementLabel ??
+              (menuDecision?.placement === 'provider'
+                ? `providers["${suggestion.providerLabel}"] -> compat (provider level)`
+                : menuDecision?.placement === 'modelOverride'
                 ? `providers["${suggestion.providerLabel}"] -> modelOverrides -> "${suggestion.modelId}" -> compat`
                 : `providers["${suggestion.providerLabel}"] -> models -> "${suggestion.modelId}" -> compat (model level)`);
-            const menuScopeRiskLine = menuDecision?.placement === "provider"
-              ? `  1. This change applies to ALL ${location?.allModelIds.length || 1} model(s) in the "${suggestion.providerLabel}" provider, across all sessions.`
+            const menuScopeRiskLine = menuDecision?.placement === 'provider'
+              ? `  1. This change applies to ALL ${
+                location?.allModelIds.length || 1
+              } model(s) in the "${suggestion.providerLabel}" provider, across all sessions.`
               : `  1. This change affects ALL sessions using the "${suggestion.providerLabel}" provider/channel (scoped to model "${suggestion.modelId}").`;
 
             const previewLines = [
               `📝 Preview of changes to ${getModelsJsonDisplayPath()}:`,
               `Location: ${menuLocationDesc}`,
-              `Placement: ${menuDecision ? `${menuDecision.placement} level — ${menuDecision.reason}` : "modelOverrides — built-in/API-login-safe model override"}`,
+              `Placement: ${
+                menuDecision
+                  ? `${menuDecision.placement} level — ${menuDecision.reason}`
+                  : 'modelOverrides — built-in/API-login-safe model override'
+              }`,
               `Compat JSON to write:`,
               keysPreview,
               ``,
@@ -8266,83 +9068,117 @@ export default function (pi: ExtensionAPI) {
               `Apply these changes?`,
             ];
 
-            const confirmed = await cmdCtx.ui.confirm("Cache Optimizer — Fix", previewLines.join("\n"));
+            const confirmed = await cmdCtx.ui.confirm(
+              'Cache Optimizer — Fix',
+              previewLines.join('\n'),
+            );
             if (!confirmed) {
-              cmdCtx.ui.notify("No changes were made. Canceled by user.", "info");
+              cmdCtx.ui.notify('No changes were made. Canceled by user.', 'info');
               return;
             }
 
             try {
               await copyFile(MODELS_JSON_PATH, backupPath);
               const tempPath = `${MODELS_JSON_PATH}.${process.pid}.${Date.now()}.fix.tmp`;
-              await writeFile(tempPath, modifiedText, "utf8");
+              await writeFile(tempPath, modifiedText, 'utf8');
               await rename(tempPath, MODELS_JSON_PATH);
 
-              const writtenText = await readFile(MODELS_JSON_PATH, "utf8");
+              const writtenText = await readFile(MODELS_JSON_PATH, 'utf8');
               const postCheck = location && menuDecision
-                ? selfCheckFix(originalText, writtenText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys, menuDecision.placement)
-                : selfCheckMissingEntryInsertion(originalText, writtenText, suggestion.providerLabel, suggestion.modelId, suggestion.compatKeys);
+                ? selfCheckFix(
+                  originalText,
+                  writtenText,
+                  suggestion.providerLabel,
+                  suggestion.modelId,
+                  suggestion.compatKeys,
+                  menuDecision.placement,
+                )
+                : selfCheckMissingEntryInsertion(
+                  originalText,
+                  writtenText,
+                  suggestion.providerLabel,
+                  suggestion.modelId,
+                  suggestion.compatKeys,
+                );
               if (postCheck !== null) {
                 await copyFile(backupPath, MODELS_JSON_PATH);
-                cmdCtx.ui.notify(`❌ Post-write check failed: ${postCheck}\nBackup restored.`, "error");
+                cmdCtx.ui.notify(
+                  `❌ Post-write check failed: ${postCheck}\nBackup restored.`,
+                  'error',
+                );
                 return;
               }
 
               cmdCtx.ui.notify(
                 `✅ Fix applied to ${getModelsJsonDisplayPath()}.` +
-                `\nBackup: ${backupPath}` +
-                `\nRun /reload or restart Pi for the change to take effect.`,
-                "info",
+                  `\nBackup: ${backupPath}` +
+                  `\nRun /reload or restart Pi for the change to take effect.`,
+                'info',
               );
-            } catch (writeError) {
+            } catch (writeError: unknown) {
               cmdCtx.ui.notify(
-                `❌ Write failed: ${writeError instanceof Error ? writeError.message : String(writeError)}`,
-                "error",
+                `❌ Write failed: ${
+                  writeError instanceof Error ? writeError.message : String(writeError)
+                }`,
+                'error',
               );
             }
           } else if (choice === menuOptions[6]) {
-            const modeOptions = ["total — Daily cumulative totals (default)", "session — Current Pi conversation session", "process — Current Pi process only", "Cancel"];
-            const modeChoice = await cmdCtx.ui.select("Footer cache stats mode", modeOptions);
+            const modeOptions = [
+              'total — Daily cumulative totals (default)',
+              'session — Current Pi conversation session',
+              'process — Current Pi process only',
+              'Cancel',
+            ];
+            const modeChoice = await cmdCtx.ui.select('Footer cache stats mode', modeOptions);
             const nextMode = modeChoice === modeOptions[0]
-              ? "total"
+              ? 'total'
               : modeChoice === modeOptions[1]
-                ? "session"
-                : modeChoice === modeOptions[2]
-                  ? "process"
-                  : undefined;
+              ? 'session'
+              : modeChoice === modeOptions[2]
+              ? 'process'
+              : undefined;
             if (nextMode) {
               try {
                 await writePersistedFooterMode(nextMode);
                 persistedFooterStatsMode = nextMode;
                 lastStatusText = undefined;
-                await publishStatus(cmdCtx as unknown as ExtensionContext, model);
+                await publishStatus(asExtensionContext(cmdCtx), model);
                 cmdCtx.ui.notify(
                   `✅ Footer mode set to ${nextMode}. Persistent config overrides ${FOOTER_MODE_ENV}.`,
-                  "info",
+                  'info',
                 );
-              } catch (error) {
+              } catch (error: unknown) {
                 cmdCtx.ui.notify(
-                  `❌ Could not update footer mode config: ${error instanceof Error ? error.message : String(error)}`,
-                  "error",
+                  `❌ Could not update footer mode config: ${
+                    error instanceof Error ? error.message : String(error)
+                  }`,
+                  'error',
                 );
               }
             }
           } else if (choice === menuOptions[7]) {
             if (!model) {
-              cmdCtx.ui.notify("No active model selected. Select a model first with /model or pi --model.", "warning");
+              cmdCtx.ui.notify(
+                'No active model selected. Select a model first with /model or pi --model.',
+                'warning',
+              );
             } else {
               const adapter = selectAdapterForModel(model);
               if (!adapter) {
-                cmdCtx.ui.notify("ℹ️ Active model does not match a cache adapter. No stats to reset.", "info");
+                cmdCtx.ui.notify(
+                  'ℹ️ Active model does not match a cache adapter. No stats to reset.',
+                  'info',
+                );
               } else {
                 const displayKey = modelKey(model);
                 resetStatsForModel(model);
-                await flushPersistCacheStats(cmdCtx as unknown as ExtensionContext);
-                await publishStatus(cmdCtx as unknown as ExtensionContext, model);
+                await flushPersistCacheStats(asExtensionContext(cmdCtx));
+                await publishStatus(asExtensionContext(cmdCtx), model);
                 cmdCtx.ui.notify(
                   `✅ Reset local footer cache stats for "${displayKey}". ` +
-                  "Upstream provider prompt cache was not modified.",
-                  "info",
+                    'Upstream provider prompt cache was not modified.',
+                  'info',
                 );
               }
             }
@@ -8353,27 +9189,40 @@ export default function (pi: ExtensionAPI) {
 
         // Fallback: text help when no interactive UI
         const diagnosis: string[] = [];
-        diagnosis.push("📋 /cache-optimizer commands:");
-        diagnosis.push("  enable  — Enable prompt/cache optimizations for this Pi process");
-        diagnosis.push("  disable — Disable prompt/cache optimizations for this Pi process");
-        diagnosis.push("  doctor  — Show current model/provider/api/baseUrl/compat and low-hit diagnosis");
-        diagnosis.push("  stats   — Show active model stats bucket and recent trend");
-        diagnosis.push("  compat  — Show compat suggestion with edit location");
-        diagnosis.push("  config footer-mode total|session|process — Persist the footer stats mode");
-        diagnosis.push("  fix     — Auto-fix compat issues (writes models.json, requires UI)");
-        diagnosis.push("  reset   — Reset local provider/model stats for current model (does not affect upstream)");
-        diagnosis.push("");
+        diagnosis.push('📋 /cache-optimizer commands:');
+        diagnosis.push('  enable  — Enable prompt/cache optimizations for this Pi process');
+        diagnosis.push('  disable — Disable prompt/cache optimizations for this Pi process');
+        diagnosis.push(
+          '  doctor  — Show current model/provider/api/baseUrl/compat and low-hit diagnosis',
+        );
+        diagnosis.push('  stats   — Show active model stats bucket and recent trend');
+        diagnosis.push('  compat  — Show compat suggestion with edit location');
+        diagnosis.push(
+          '  config footer-mode total|session|process — Persist the footer stats mode',
+        );
+        diagnosis.push('  fix     — Auto-fix compat issues (writes models.json, requires UI)');
+        diagnosis.push(
+          '  reset   — Reset local provider/model stats for current model (does not affect upstream)',
+        );
+        diagnosis.push('');
         diagnosis.push(formatOptimizerRuntimeMode());
         const resolvedFooterMode = resolveFooterStatsMode(persistedFooterStatsMode);
-        diagnosis.push(`Footer stats mode: ${resolvedFooterMode.mode} (${resolvedFooterMode.source})`);
-        diagnosis.push("");
+        diagnosis.push(
+          `Footer stats mode: ${resolvedFooterMode.mode} (${resolvedFooterMode.source})`,
+        );
+        diagnosis.push('');
         if (model) {
           const displayKey = modelKey(model);
           const missing = describeMissingCacheCompatForModel(model);
           if (missing.length > 0) {
-            diagnosis.push(`⚠️  Active model "${displayKey}" missing compat: ${missing.join(", ")}`);
+            diagnosis.push(
+              `⚠️  Active model "${displayKey}" missing compat: ${missing.join(', ')}`,
+            );
             diagnosis.push('Run "/cache-optimizer compat" for edit instructions.');
-          } else if (isAdaptiveThinkingCompatApplicable(model) || isDeepSeekCompatCheckApplicable(model) || isCompatCheckApplicable(model)) {
+          } else if (
+            isAdaptiveThinkingCompatApplicable(model) || isDeepSeekCompatCheckApplicable(model) ||
+            isCompatCheckApplicable(model)
+          ) {
             diagnosis.push(`✅ Active model "${displayKey}": compat fully configured.`);
           } else {
             diagnosis.push(`ℹ️ Active model "${displayKey}": compat check not applicable.`);
@@ -8381,9 +9230,9 @@ export default function (pi: ExtensionAPI) {
             for (const line of detailLines) diagnosis.push(line);
           }
         } else {
-          diagnosis.push("No active model selected.");
+          diagnosis.push('No active model selected.');
         }
-        cmdCtx.ui.notify(diagnosis.join("\n"), "info");
+        cmdCtx.ui.notify(diagnosis.join('\n'), 'info');
       }
     },
   });

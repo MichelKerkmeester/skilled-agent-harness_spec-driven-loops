@@ -1,0 +1,16 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance",
+  "description": "10",
+  "keywords": [],
+  "lastUpdated": "2026-08-08T11:07:16.771Z",
+  "specId": "003",
+  "folderSlug": "maintainability-and-provenance",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix",
+    "008-implement-fork-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

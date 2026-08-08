@@ -1,0 +1,590 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "The forks have different telemetry durability and lifecycle boundaries.",
+    "The two extensions have an explicit DeepSeek ownership exclusion contract.",
+    "Test coverage is modular in deep-pi and concentrated in pi-cache-optimizer.",
+    "DeepPi needs explicit cold-write, malformed-number, and retry fixtures.",
+    "The FakePi harness cannot prove non-interactive report transport.",
+    "The optimizer lacks production lifecycle coverage for message_end accounting and persisted stats.",
+    "No combined-host test enforces one owner across both extensions.",
+    "The declared DeepPi live benchmark entry point is absent.",
+    "DeepPi omits maintained storm and stability counters from its report.",
+    "Both command reports are text-only and lack a versioned machine-readable contract.",
+    "Optimizer recent samples are in-memory while aggregate stats persist.",
+    "Persistence failure state is transient and not durable/reportable.",
+    "DeepPi mixes observed Pi cost with a separate rate-based savings estimate.",
+    "Optimizer stats are token-only unless an explicit pricing layer is added.",
+    "The two forks use different cache metric denominators.",
+    "No controlled cold/warm or extension-overhead benchmark path exists.",
+    "Optimizer provider, persistence, and lifecycle concerns are coupled in one large entry module.",
+    "DeepPi modules are separated but root reset/report wiring is manual.",
+    "Ownership needs a first-class matrix and combined-host contract test.",
+    "Vendored fork provenance and synchronization are manual.",
+    "Current guard and basic load/regression paths are already accepted by sibling packets.",
+    "Remaining live gaps are explicit verification boundaries, not proof that local code paths are absent.",
+    "Correctness and contracts must precede report, persistence, economics, extraction, and provenance work."
+  ],
+  "keyFindings": [
+    {
+      "id": "f-001",
+      "title": "DeepPi telemetry is process-local",
+      "summary": "DeepPi resets in-memory telemetry per session and exposes reports through the UI notify channel; the optimizer has versioned persistent session and total buckets.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi.ts:46-80",
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:27-45",
+        ".pi/extensions/pi-cache-optimizer/index.ts:4066-4103"
+      ],
+      "areas": [
+        "observability",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-002",
+      "title": "DeepSeek ownership is explicit",
+      "summary": "The optimizer returns before its hooks for the two DeepPi-owned direct model IDs, while DeepPi gates its own transforms on the same direct provider and ID predicate.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:1275-1281",
+        ".pi/extensions/pi-cache-optimizer/index.ts:7279-7304",
+        ".pi/extensions/pi-cache-optimizer/index.ts:7540-7542",
+        ".pi/extensions/deep-pi/extensions/deeppi/eligibility.ts:1-26"
+      ],
+      "areas": [
+        "correctness",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-003",
+      "title": "Test layout is asymmetric",
+      "summary": "DeepPi has focused module and integration suites; the optimizer concentrates review coverage in one large suite despite an 8,390-line entry module.",
+      "evidence": [
+        ".pi/extensions/deep-pi/tests",
+        ".pi/extensions/deep-pi/package.json:31-39",
+        ".pi/extensions/pi-cache-optimizer/index.ts:1-8390",
+        ".pi/extensions/pi-cache-optimizer/package.json:34-44"
+      ],
+      "areas": [
+        "test-coverage",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-004",
+      "title": "Share contracts before code",
+      "summary": "The forks share telemetry concepts but differ in provider and routing scope, so a common schema and ownership test is safer than forced implementation sharing.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:88-115",
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:4-25"
+      ],
+      "areas": [
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-005",
+      "title": "DeepPi drops pure cache-write usage",
+      "summary": "The recorder rejects input=0/cacheRead=0 even when cacheWrite is positive, and its counters exclude cacheWrite from miss tokens, denominator, and input cost.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:47-67",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2147-2168",
+        ".pi/extensions/pi-cache-optimizer/index.ts:3630-3667"
+      ],
+      "areas": [
+        "correctness",
+        "cost"
+      ]
+    },
+    {
+      "id": "f-006",
+      "title": "DeepPi lacks failed-attempt filtering",
+      "summary": "DeepPi records matching message_end usage without a stopReason guard; the optimizer skips error and aborted messages to avoid retry inflation.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:130-185",
+        ".pi/extensions/pi-cache-optimizer/index.ts:7566-7577"
+      ],
+      "areas": [
+        "correctness",
+        "observability"
+      ]
+    },
+    {
+      "id": "f-007",
+      "title": "Ownership lists can drift",
+      "summary": "DeepPi eligibility and optimizer ownership each hardcode the same two direct model IDs, creating a double-processing risk when support changes.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/eligibility.ts:1-17",
+        ".pi/extensions/pi-cache-optimizer/index.ts:1275-1281"
+      ],
+      "areas": [
+        "correctness",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-008",
+      "title": "DeepPi trusts numeric usage values",
+      "summary": "DeepPi mutates counters without finite/nonnegative validation, while optimizer normalization rejects malformed numeric fields and tracks missing samples.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:47-67",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2151-2168",
+        ".pi/extensions/pi-cache-optimizer/index.ts:371-382"
+      ],
+      "areas": [
+        "correctness",
+        "observability"
+      ]
+    },
+    {
+      "id": "f-009",
+      "title": "DeepPi lacks boundary telemetry fixtures",
+      "summary": "Current tests do not cover pure cache writes, malformed numeric usage, or failed and aborted usage-bearing message_end events.",
+      "evidence": [
+        ".pi/extensions/deep-pi/tests/telemetry.test.ts:20-38,40-52,142-226",
+        ".pi/extensions/deep-pi/tests/deeppi.integration.test.ts:15-41"
+      ],
+      "areas": [
+        "test-coverage",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-010",
+      "title": "FakePi cannot prove non-interactive report transport",
+      "summary": "The test harness records UI notifications but has no RPC, stdout, or structured command channel for the full /deeppi report.",
+      "evidence": [
+        ".pi/extensions/deep-pi/tests/fake-pi.ts:36-61",
+        ".pi/extensions/deep-pi/tests/deeppi.integration.test.ts:38-41"
+      ],
+      "areas": [
+        "test-coverage",
+        "observability"
+      ]
+    },
+    {
+      "id": "f-011",
+      "title": "Optimizer production accounting lifecycle is untested end to end",
+      "summary": "The optimizer suite does not emit message_end events through persistence and restart, so production hook wiring is not proven by the current tests.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts:10-887",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2147-2277,4066-4103,7279-7577"
+      ],
+      "areas": [
+        "test-coverage",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-012",
+      "title": "No combined-host coexistence contract test",
+      "summary": "The two suites load their extensions separately and do not prove one-owner behavior when both are registered in the same Pi host.",
+      "evidence": [
+        ".pi/extensions/deep-pi/tests/deeppi.integration.test.ts:1-102",
+        ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts:1-8,300-381"
+      ],
+      "areas": [
+        "test-coverage",
+        "correctness",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-013",
+      "title": "Declared DeepPi live benchmark entry point is absent",
+      "summary": "benchmark:live points at scripts/live-benchmark.mjs, but that file is absent and the existence check exits 1.",
+      "evidence": [
+        ".pi/extensions/deep-pi/package.json:51-56",
+        ".pi/extensions/deep-pi (package file inventory)",
+        "command: test -e .pi/extensions/deep-pi/scripts/live-benchmark.mjs → exit 1"
+      ],
+      "areas": [
+        "test-coverage",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-014",
+      "title": "DeepPi report omits maintained storm and stability counters",
+      "summary": "errorsEnhanced, prunedThinking, and preservedThinking are maintained but not passed into the /deeppi report.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/stormbreaker.ts:25-52,140-158",
+        ".pi/extensions/deep-pi/extensions/deeppi/stability.ts:140-155,170-204",
+        ".pi/extensions/deep-pi/extensions/deeppi.ts:64-80"
+      ],
+      "areas": [
+        "observability",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-015",
+      "title": "Both command reports lack a versioned machine-readable contract",
+      "summary": "DeepPi and optimizer commands return human-formatted strings through ctx.ui.notify without a shared schemaVersion or JSON projection.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:94-118",
+        ".pi/extensions/pi-cache-optimizer/index.ts:3747-3783,7659-7705"
+      ],
+      "areas": [
+        "observability",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "f-016",
+      "title": "Optimizer trend samples are not persisted across restart",
+      "summary": "The optimizer retains up to 50 numeric recent samples in memory while persisted files store aggregate buckets only, so restart loses trend and missing-field evidence.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:350-385,3747-3783",
+        ".pi/extensions/pi-cache-optimizer/index.ts:7614-7642",
+        ".pi/extensions/pi-cache-optimizer/index.ts:324-356,4066-4103"
+      ],
+      "areas": [
+        "observability",
+        "retention"
+      ]
+    },
+    {
+      "id": "f-017",
+      "title": "Optimizer persistence failures are not durable reportable health state",
+      "summary": "Write failures trigger logs and a one-time warning, but no last-success, failure-count, or memory-only status survives or appears in stats.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:7007-7052",
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:27-45"
+      ],
+      "areas": [
+        "observability",
+        "reliability"
+      ]
+    },
+    {
+      "id": "f-018",
+      "title": "DeepPi mixes observed cost with a separate rate-based savings estimate",
+      "summary": "Actual input cost uses Pi usage.cost while estimated savings uses model rates and omits output/cache-write economics or reconciliation.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:4-16,47-67,94-118"
+      ],
+      "areas": [
+        "cost",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-019",
+      "title": "Optimizer economics are token-only without optional pricing",
+      "summary": "Persisted optimizer stats retain token counts and ratios but no price metadata or dollar-savings field, appropriately avoiding unsupported proxy assumptions.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:222-229,3645-3670",
+        ".pi/extensions/pi-cache-optimizer/README.md:29-40,62-70"
+      ],
+      "areas": [
+        "cost",
+        "economics"
+      ]
+    },
+    {
+      "id": "f-020",
+      "title": "Fork headline cache metrics use different denominators",
+      "summary": "DeepPi's token hit rate excludes cache writes while optimizer total input includes them and also exposes request and token ratios, so headline percentages are not directly equivalent.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:19-24,60-72",
+        ".pi/extensions/pi-cache-optimizer/index.ts:222-229,3645-3670"
+      ],
+      "areas": [
+        "cost",
+        "observability",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-021",
+      "title": "No controlled cold-warm or extension-overhead benchmark exists",
+      "summary": "The code records sample timestamps but no duration; the declared DeepPi benchmark entry point is absent and prior live evidence was one-request or partial-observability evidence.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:375-385,7614-7621",
+        ".pi/extensions/deep-pi/package.json:51-56",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/implementation-summary.md:85-92,141-143",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/implementation-summary.md:102-124"
+      ],
+      "areas": [
+        "cost",
+        "performance",
+        "test-coverage"
+      ]
+    },
+    {
+      "id": "f-022",
+      "title": "Optimizer entry module couples unrelated contracts",
+      "summary": "The 8,390-line entrypoint contains prompt transforms, provider adapters, normalizers, persistence, routing, diagnostics, commands, and hooks, with a broad test-only export.",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:1-115,2613-2640,6468-6705,7279-8386",
+        ".pi/extensions/pi-cache-optimizer/package.json:18-35"
+      ],
+      "areas": [
+        "maintainability",
+        "architecture"
+      ]
+    },
+    {
+      "id": "f-023",
+      "title": "DeepPi root reset and report wiring is manually maintained",
+      "summary": "The modular fork's root entrypoint manually resets subsystem fields and chooses report inputs, allowing maintained counters to be omitted.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi.ts:1-7,42-80",
+        ".pi/extensions/deep-pi/extensions/deeppi/stability.ts:140-155",
+        ".pi/extensions/deep-pi/extensions/deeppi/stormbreaker.ts:25-52"
+      ],
+      "areas": [
+        "maintainability",
+        "observability"
+      ]
+    },
+    {
+      "id": "f-024",
+      "title": "Ownership lacks a first-class contract artifact",
+      "summary": "DeepPi exports the model list but optimizer repeats literal IDs; no generated matrix or combined-host test forces future edits to update both.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/eligibility.ts:1-17",
+        ".pi/extensions/pi-cache-optimizer/index.ts:1275-1281,7279-7304,7540-7542",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/implementation-summary.md:100-108"
+      ],
+      "areas": [
+        "maintainability",
+        "correctness"
+      ]
+    },
+    {
+      "id": "f-025",
+      "title": "Vendored provenance and synchronization are manual",
+      "summary": "Sibling packets document byte-identical vendored copies with no automatic synchronization or source-drift guard.",
+      "evidence": [
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/implementation-summary.md:137-143",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint/implementation-summary.md:48-65",
+        ".pi/extensions/pi-cache-optimizer/package.json:45-47",
+        ".pi/extensions/deep-pi/package.json:7-14"
+      ],
+      "areas": [
+        "maintainability",
+        "release"
+      ]
+    },
+    {
+      "id": "f-026",
+      "title": "Sibling acceptance proves the current guard boundary but not future ownership changes",
+      "summary": "Prior packets already prove current guard, non-DeepSeek regressions, and basic DeepPi load paths; combined-host, future-ID, cold-write, retry, and report serialization remain unproven.",
+      "evidence": [
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/implementation-summary.md:113-132",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi/implementation-summary.md:97-110",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/implementation-summary.md:102-114"
+      ],
+      "areas": [
+        "evidence-reconciliation",
+        "test-coverage"
+      ]
+    },
+    {
+      "id": "f-027",
+      "title": "Remaining live gaps are explicit verification boundaries",
+      "summary": "RPC report body, an unavailable opencode credential, and the missing benchmark entry point are blocked prerequisites; local formatter and provider tests do not establish real host behavior.",
+      "evidence": [
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/implementation-summary.md:102-124",
+        ".pi/extensions/deep-pi/tests/fake-pi.ts:36-61",
+        ".pi/extensions/deep-pi/package.json:51-56"
+      ],
+      "areas": [
+        "evidence-reconciliation",
+        "test-coverage",
+        "observability"
+      ]
+    },
+    {
+      "id": "f-028",
+      "title": "Correctness-gated staged order is supported by the evidence",
+      "summary": "Deterministic accounting and ownership fixtures should precede report/persistence contracts, then pricing/benchmarking, then broad extraction and provenance automation.",
+      "evidence": [
+        ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts:47-67,130-185",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2147-2168,7566-7643",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/implementation-summary.md:123-143",
+        "specs/cli-external-orchestration/039-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/implementation-summary.md:104-124"
+      ],
+      "areas": [
+        "planning-priority",
+        "correctness",
+        "maintainability"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Treating both extensions as interchangeable implementations",
+      "reason": "Their provider and routing scopes differ.",
+      "iteration": 1
+    },
+    {
+      "direction": "Treating DeepPi's current in-memory report as persistent observability",
+      "reason": "Session reset and no filesystem state.",
+      "iteration": 1
+    },
+    {
+      "direction": "Duplicating hashline race tests",
+      "reason": "Existing suites cover atomic replacement, snapshot races, symlink safety, collisions, overlapping edits, and mixed message ordering.",
+      "iteration": 3
+    },
+    {
+      "direction": "Treating FakePi notification capture as non-interactive report proof",
+      "reason": "The harness has no RPC/stdout channel.",
+      "iteration": 3
+    },
+    {
+      "direction": "Persisting raw messages or provider payloads",
+      "reason": "Numeric-only samples provide diagnosis without sensitive content.",
+      "iteration": 4
+    },
+    {
+      "direction": "Adding another human-only formatter",
+      "reason": "A shared versioned report object should precede text or JSON projections.",
+      "iteration": 4
+    },
+    {
+      "direction": "Inferring dollar prices from model names or adapter families",
+      "reason": "Pricing and routing are external configuration.",
+      "iteration": 5
+    },
+    {
+      "direction": "Replacing provider-reported costs with a local estimate",
+      "reason": "Observed cost and counterfactual estimates serve different purposes.",
+      "iteration": 5
+    },
+    {
+      "direction": "A full optimizer rewrite as the first step",
+      "reason": "Narrow extraction and lifecycle/contract tests have lower risk and higher evidence value.",
+      "iteration": 6
+    },
+    {
+      "direction": "Merging DeepPi and optimizer into one implementation",
+      "reason": "Provider scope, transforms, retry controls, and persistence contracts differ.",
+      "iteration": 6
+    },
+    {
+      "direction": "Repeating the already-proven current two-model guard smoke test as the primary next step",
+      "reason": "Sibling packets contain acceptance receipts for that path.",
+      "iteration": 7
+    },
+    {
+      "direction": "Treating blocked live prerequisites as resolved evidence",
+      "reason": "Credential and RPC limitations are explicitly recorded.",
+      "iteration": 7
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 25,
+    "keyFindings": 28,
+    "convergenceScore": 0.6486,
+    "coverageBySources": {
+      ".pi/extensions/pi-cache-optimizer": 28,
+      ".pi/extensions/deep-pi": 28
+    },
+    "sourceKinds": {
+      "source": 49,
+      "test": 15,
+      "spec": 14
+    },
+    "evidenceDensity": 1
+  },
+  "iterationFindings": [
+    {
+      "iteration": 1,
+      "focus": "Runtime architecture and evidence baseline",
+      "newInfoRatio": 0.95,
+      "findings": [
+        "f-001",
+        "f-002",
+        "f-003",
+        "f-004"
+      ]
+    },
+    {
+      "iteration": 2,
+      "focus": "Correctness boundaries in usage, eligibility, and retries",
+      "newInfoRatio": 0.84,
+      "findings": [
+        "f-005",
+        "f-006",
+        "f-007",
+        "f-008"
+      ]
+    },
+    {
+      "iteration": 3,
+      "focus": "Test coverage and fault-injection seams",
+      "newInfoRatio": 0.78,
+      "findings": [
+        "f-009",
+        "f-010",
+        "f-011",
+        "f-012",
+        "f-013"
+      ]
+    },
+    {
+      "iteration": 4,
+      "focus": "Telemetry and observability surfaces",
+      "newInfoRatio": 0.68,
+      "findings": [
+        "f-014",
+        "f-015",
+        "f-016",
+        "f-017"
+      ]
+    },
+    {
+      "iteration": 5,
+      "focus": "Cost economics and measurement",
+      "newInfoRatio": 0.57,
+      "findings": [
+        "f-018",
+        "f-019",
+        "f-020",
+        "f-021"
+      ]
+    },
+    {
+      "iteration": 6,
+      "focus": "Maintainability and integration boundaries",
+      "newInfoRatio": 0.43,
+      "findings": [
+        "f-022",
+        "f-023",
+        "f-024",
+        "f-025"
+      ]
+    },
+    {
+      "iteration": 7,
+      "focus": "Evidence reconciliation and priority closure",
+      "newInfoRatio": 0.29,
+      "findings": [
+        "f-026",
+        "f-027",
+        "f-028"
+      ]
+    }
+  ],
+  "activeRisks": [
+    "Live provider checks may remain blocked by missing credentials.",
+    "The four limitations in the research brief are accepted baseline context, not new findings.",
+    "Pure cache-write accounting and failed-attempt filtering need explicit regression fixtures.",
+    "Non-interactive report transport remains a host-level verification gap.",
+    "The declared benchmark command cannot produce live evidence until its entry point and credential contract are resolved.",
+    "Current reports cannot be consumed reliably by non-interactive automation without an explicit schema.",
+    "A persistence failure can be visible only in the current process until durable health state exists.",
+    "Cross-fork cache percentages cannot be compared without an explicit denominator contract.",
+    "No live performance claim is supported until the benchmark entry point and controlled replay are available.",
+    "Manual source drift can make the vendored operational copy diverge from upstream provenance.",
+    "Root-level wiring can omit new subsystem state unless report/reset contracts are made explicit.",
+    "Live host transport, credentials, and benchmark execution remain external follow-up prerequisites.",
+    "Implementation has not been performed in this research lineage by design."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "description": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
+  "keywords": [
+    "four",
+    "defects",
+    "found",
+    "four-lineage",
+    "research",
+    "re-confirmed",
+    "against",
+    "live",
+    "source",
+    "while",
+    "authoring",
+    "spec"
+  ],
+  "lastUpdated": "2026-08-08T11:04:47.844Z",
+  "specId": "001",
+  "folderSlug": "correctness-floor",
+  "parentChain": [
+    "cli-external-orchestration",
+    "039-pi-caching-like-reasonix",
+    "008-implement-fork-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

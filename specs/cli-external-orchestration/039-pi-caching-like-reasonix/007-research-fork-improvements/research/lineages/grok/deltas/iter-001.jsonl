@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.95,"status":"complete","focus":"Correctness: ownership boundary and silent paths"}
+{"type":"finding","id":"f-iter001-001","severity":"P1","label":"Duplicated isDeepPiOwned vs DEEPPI_MODEL_IDS allowlists with no shared source of truth","iteration":1}
+{"type":"finding","id":"f-iter001-002","severity":"P1","label":"Asymmetric drift signaling: deep-pi warns, pi-cache-optimizer does not","iteration":1}
+{"type":"finding","id":"f-iter001-003","severity":"P2","label":"session_shutdown unguarded flush needs model-transition test coverage","iteration":1}
+{"type":"finding","id":"f-iter001-004","severity":"P2","label":"Hook model-resolution helper should unify ownership checks across six guards","iteration":1}
+{"type":"observation","id":"obs-iter001-001","packet":"007","classification":"real","iteration":1,"label":"Predicates currently agree on flash/pro but are independently maintained"}
+{"type":"ruled_out","direction":"Broaden isDeepPiOwned to isDeepSeekLikeModel","reason":"Would orphan opencode/deepseek-v4-flash-free; decided in 003","iteration":1}
+{"type":"node","id":"q-correctness","kind":"QUESTION","label":"Ownership boundary correctness gaps"}
+{"type":"node","id":"f-dup-allowlist","kind":"FINDING","label":"Duplicated ownership allowlists"}
+{"type":"edge","id":"e-iter001-001","source":"f-dup-allowlist","target":"q-correctness","relation":"ANSWERS"}

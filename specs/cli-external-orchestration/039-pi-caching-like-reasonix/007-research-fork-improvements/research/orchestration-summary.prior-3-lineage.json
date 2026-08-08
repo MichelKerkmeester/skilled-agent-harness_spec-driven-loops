@@ -1,0 +1,71 @@
+{
+  "run_id": "1786163355542-f6htbk",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/039-pi-caching-like-reasonix/007-research-fork-improvements",
+  "base_artifact_dir": "specs/cli-external-orchestration/039-pi-caching-like-reasonix/007-research-fork-improvements/research",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 2,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "grok",
+      "state_log": "specs/cli-external-orchestration/039-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages/grok/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-08T04:29:19.039Z",
+        "end_at_iso": "2026-08-08T04:32:41.441Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-08-08T04:35:30Z",
+          "deltaMs": 48559
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-08-08T04:36:30Z",
+          "deltaMs": 108559
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-08-08T04:36:00Z",
+          "deltaMs": 78559
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-08-08T04:36:10Z",
+          "deltaMs": 88559
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-08-08T04:37:00Z",
+          "deltaMs": 138559
+        }
+      ]
+    }
+  ]
+}

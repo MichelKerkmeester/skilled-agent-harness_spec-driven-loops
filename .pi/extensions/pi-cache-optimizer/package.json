@@ -28,7 +28,7 @@
     "#extension": "./index.ts"
   },
   "scripts": {
-    "test": "node --import jiti/register tests/review-findings.test.ts",
+    "test": "node --import jiti/register --test tests/*.test.ts",
     "typecheck": "tsc --noEmit --pretty false",
     "check:diff": "git diff --check",
     "check:pack": "npm pack --dry-run --cache node_modules/.cache/npm",
