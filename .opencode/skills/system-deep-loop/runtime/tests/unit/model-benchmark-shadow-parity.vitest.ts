@@ -6,13 +6,14 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
 } from '../../lib/authorized-ledger/index.js';
+import * as modelBenchmarkReducers from '../../lib/model-benchmark-reducers/index.js';
 import {
   MODEL_BENCHMARK_SCORE_WRITE_BACKEND_REF,
   createModelBenchmarkEventRegistry,
@@ -873,6 +874,54 @@ describe('model benchmark shadow parity', () => {
       evidence.find((entry) => entry.path === 'legacy')?.observations ?? [],
       evidence.find((entry) => entry.path === 'ledger')?.observations ?? [],
     )).toEqual([]);
+  }, 30_000);
+
+  it('fails on a reducer-internal divergence a shared-derivation harness could not see', async () => {
+    // Corrupt only the real reducer's own typed fold output (never the raw
+    // event stream both paths read). A harness whose ledger side re-derives
+    // from the same raw events as the legacy oracle -- instead of from this
+    // fold result -- cannot observe this at all, so it reports parity PASS
+    // despite the reducer having computed a wrong artifact digest. The
+    // rebuilt harness must FAIL here.
+    const realFold = modelBenchmarkReducers.foldModelBenchmarkEvents;
+    const foldSpy = vi.spyOn(modelBenchmarkReducers, 'foldModelBenchmarkEvents')
+      .mockImplementation((events, options) => {
+        const real = realFold(events, options);
+        if (real.outcome !== 'projected') return real;
+        return {
+          ...real,
+          projection: {
+            ...real.projection,
+            modelBenchmark: {
+              ...real.projection.modelBenchmark,
+              artifactIndex: {
+                artifacts: real.projection.modelBenchmark.artifactIndex.artifacts.map(
+                  (artifact) => artifact.artifactKind === 'workload-snapshot'
+                    ? { ...artifact, digest: digest('corrupted-workload-snapshot-digest') }
+                    : artifact,
+                ),
+              },
+            },
+          },
+        };
+      });
+    try {
+      const parityFixture = fixture();
+      const outcome = await genericRun(parityFixture);
+      expect(foldSpy).toHaveBeenCalled();
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+    } finally {
+      foldSpy.mockRestore();
+    }
+  }, 30_000);
+
+  it('still reports parity PASS for identical inputs once the reducer fold is genuine again', async () => {
+    const parityFixture = fixture();
+    const outcome = await genericRun(parityFixture);
+    expect(outcome.result, JSON.stringify(outcome.result)).toMatchObject({ ok: true });
   }, 30_000);
 
   it('drives injected payload drift through the complete real substrate', async () => {

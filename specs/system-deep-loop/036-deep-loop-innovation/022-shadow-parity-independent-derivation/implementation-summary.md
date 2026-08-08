@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation"
     last_updated_at: "2026-08-08T03:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Built+verified agent-improvement independent derivation; 2/6 modes done"
-    next_safe_action: "Build 4 remaining converters (2 same-shape, deep-alignment + deep-review harder)"
+    recent_action: "Built+verified model-benchmark + skill-benchmark converters (SOL design call); 4/6 modes done"
+    next_safe_action: "Build deep-alignment (from-scratch oracle) + deep-review (exception-laundering + converter)"
     blockers:
       - "Blocker 1 NOT fully discharged: 2/6 modes done, 4 remain (each needs its own independent oracle)"
     key_files:
       - "implementation-summary.md"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts"
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions:
       - "Is Blocker 1 discharged? Partially — 1 of 6 modes (deep-ai-council) built + verified with a real red-before/green-after divergence test; 5 modes remain unbuilt."
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 022-shadow-parity-independent-derivation |
 | **Level** | 3 |
-| **Status** | In Progress (2/6 modes built + verified: deep-ai-council + agent-improvement; 4 remain) |
+| **Status** | In Progress (4/6 modes built + verified: council + agent-improvement + model-benchmark + skill-benchmark; 2 remain: deep-alignment, deep-review) |
 | **Updated** | 2026-08-08 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**2 of 6 shadow-parity modes built and verified: deep-ai-council (F-006-01) and agent-improvement (F-012-01).** The other four modes remain unbuilt (see Known Limitations).
+**4 of 6 shadow-parity modes built and verified: deep-ai-council (F-006-01), agent-improvement (F-012-01), model-benchmark (F-012-02), skill-benchmark (F-012-03).** The other two modes (deep-alignment F-006-02, deep-review F-012-04) remain (see Known Limitations).
+
+### model-benchmark (F-012-02, scope-out) + skill-benchmark (F-012-03, consume-new-fields)
+
+These two revealed the reducers were lossy for fields the legacy scan reads. GPT-5.6-SOL classified each field (see Known Limitations). **model-benchmark:** the 4 service-locator fields are incidental, so the legacy scan's suffix branch now returns `[]` and the new `modelBenchmarkProjectionFromReducerState` agrees — both sides drop them, parity holds; divergence test `ok:false`/`projection-semantic`, identical inputs `ok:true`; 39/39. **skill-benchmark:** the reducer was fixed (landed) to persist the load-bearing evidence digests; `skillBenchmarkProjectionFromReducerState` now consumes them, matching legacy's sticky last-write semantics (verified field-by-field + a prefix-by-prefix incremental-fold diff, which also caught a real `state.run` vs `state.common.run` bug); divergence `ok:false`, identical `ok:true`; 19/19. Both tsc rc0.
 
 ### agent-improvement (F-012-01)
 
@@ -101,7 +105,8 @@ The deep-ai-council mode was delivered T001-confirm-first, red-before → green-
 ## Known Limitations
 
 1. **Blocker 1 is NOT fully discharged — 2 of 6 modes done.** deep-ai-council and agent-improvement now derive independently and their harnesses fail on injected divergence. The other four modes still compare a projection to a near-copy of itself and would not fail on a planted divergence:
-   - **model-benchmark, skill-benchmark — design decision MADE (GPT-5.6-SOL), skill-benchmark reducer fixed, converters pending.** SOL classified each unrecoverable field: the 4 model-benchmark service fields (`evaluatorServiceRef`/`canaryServiceRef`/`promotionServiceRef`/`sharedServiceContractVersion`) are INCIDENTAL config no typed decision surface reads → scope them out of the comparator (no reducer change). The skill-benchmark evidence digests (`outcomeDigest`/`finalStateDigest`/availability/invocation/exposure/gold/cost) are LOAD-BEARING (integrity identity that cutover would lose) → SOL fixed the skill-benchmark reducer to persist them (`skill-benchmark-reducers/*.ts`; tsc rc0; reducer tests 19/19; landed). `compatibilityEvidenceDigests` was already persisted (prior finding refuted). REMAINING: build the model-benchmark converter (scope-out the 4 fields) and the skill-benchmark converter (consume the newly-persisted typed fields) + divergence tests, then land. Converter starting point at `/tmp/ks/022-mb-sb-converters.patch`.
+   - **model-benchmark, skill-benchmark — DONE + verified + landed.** GPT-5.6-SOL classified each field: the 4 model-benchmark service fields (`evaluatorServiceRef`/`canaryServiceRef`/`promotionServiceRef`/`sharedServiceContractVersion`) are INCIDENTAL → scoped out of the comparator (no reducer change); the skill-benchmark evidence digests are LOAD-BEARING → the reducer was fixed to persist them (landed) and the converter consumes them. Both converters built + verified (model-benchmark 39/39, skill-benchmark 19/19, tsc rc0). Residual (honest): skill-benchmark's `certificateEvidenceDigests` (`evidenceSetDigest`) remains unrecoverable — the reducer uses it only for referential-integrity assertions during fold and never persists it; out of the reducer-fix scope, not exercised by the fixture, documented in code. `compatibilityEvidenceDigests` was already persisted (prior finding refuted).
+   - **deep-alignment (F-006-02), deep-review (F-012-04) — remaining.** deep-alignment needs a from-scratch legacy oracle (no reusable hand-scan). deep-review needs its reducer-exception-laundering removed AND a converter (its ~150 lines of dead code use the wrong deep-research schema).
    - **agent-improvement (done)** carries an honest residual: three fields (`causalEvidence.locusIds` for intervention entries, `ablationDigests`, `blockingVetoCodes` from `promotion_denied`) are unrecoverable from the reducer's current schema and left empty; closing them needs a reducer-schema change (broader blast radius), not a harness change.
    - **deep-alignment** — both sides call the same `projectionView(foldProjection(events))`; there is no existing raw-event hand-scan to reuse as an independent oracle, so it needs a from-scratch legacy oracle (larger effort).
    - **deep-review** — worst shape: `ledgerProjection` launders a reducer exception straight into legacy success, and on a successful fold only spot-checks 5 fields then returns the legacy projection anyway; ~150 lines of dead copy-paste code use the wrong (deep-research) schema and are unusable. Needs the exception-laundering removed AND a genuine from-scratch converter.

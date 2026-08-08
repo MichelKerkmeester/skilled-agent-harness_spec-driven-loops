@@ -94,6 +94,9 @@ import type {
   SkillBenchmarkLedgerEvent,
 } from '../skill-benchmark-ledger-schema/index.js';
 import type {
+  SkillBenchmarkProjectionState,
+} from '../skill-benchmark-reducers/index.js';
+import type {
   SkillBenchmarkResumeDecision,
   SkillBenchmarkResumeRequest,
 } from '../skill-benchmark-resume-adapter/index.js';
@@ -614,6 +617,473 @@ function projectionCell(
   });
 }
 
+const TERMINAL_SPECIFIC_STEMS = Object.freeze(new Set([
+  'skill_benchmark.run_closed',
+  'skill_benchmark.scenario_aborted',
+  'skill_benchmark.effect_certificate_issued',
+  'skill_benchmark.effect_certificate_withheld',
+]));
+
+const TERMINAL_SHARED_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.run_paused',
+  'deep_improvement_common.run_aborted',
+  'deep_improvement_common.run_quarantined',
+  'deep_improvement_common.evaluation_inconclusive',
+  'deep_improvement_common.canary_vetoed',
+  'deep_improvement_common.promotion_denied',
+]));
+
+function maxBySequence(
+  eventIds: readonly string[],
+  sequenceByEventId: ReadonlyMap<string, number>,
+): string | null {
+  let best: string | null = null;
+  let bestSequence = -1;
+  for (const eventId of eventIds) {
+    const sequence = sequenceByEventId.get(eventId) ?? -1;
+    if (sequence > bestSequence) {
+      best = eventId;
+      bestSequence = sequence;
+    }
+  }
+  return best;
+}
+
+/**
+ * Recover the single legacy-compatible digest for a per-scenario evidence
+ * slot from the reducer's accumulated, deduplicated, sort-order evidence
+ * set. Legacy overwrites a sticky scalar every time the tracked stem fires;
+ * the typed fold instead keeps a set with insertion order lost to
+ * `sortStrings`. For the common case (a stage fires once per scenario) the
+ * set holds exactly the sticky value. `exclude`, when given, removes a value
+ * already attributed to a sibling field (see `reducerExposureDigest`) so the
+ * remaining entry is recovered even when two evidence values differ.
+ */
+function lastEvidenceDigest(
+  digests: readonly string[],
+  exclude?: string | null,
+): string | null {
+  const candidates = exclude === null || exclude === undefined
+    ? digests
+    : digests.filter((entry) => entry !== exclude);
+  return candidates.length === 0 ? null : candidates[candidates.length - 1];
+}
+
+/**
+ * Legacy's `exposureDigest` is a sticky scalar set from `canaryDigest` (a
+ * mandatory field on every `resource_exposed` event, so its `?? resourceDigest`
+ * fallback never actually triggers). The typed fold instead accumulates both
+ * `resourceDigest` and `canaryDigest` into one deduplicated set with no
+ * per-value tag, so `canaryDigest` is recovered as the set entry that is not
+ * the resource-exposure artifact's own digest (which the reducer always
+ * assigns from `resourceDigest`). When both values coincide the two sources
+ * agree trivially.
+ */
+function reducerExposureDigest(
+  exposureEvidenceDigests: readonly string[],
+  resourceDigest: string | null,
+): string | null {
+  return lastEvidenceDigest(exposureEvidenceDigests, resourceDigest)
+    ?? resourceDigest;
+}
+
+/**
+ * Recompute each scenario cell's disposition and digests from the reducer's
+ * own typed scenario record and its sibling artifact/measurement
+ * collections, never from raw event payload. Legacy tracks disposition as a
+ * single sticky field overwritten by whichever tracked stem fires last; the
+ * reducer instead keeps a set of per-stage event-id pointers, so the last
+ * stem is recovered here by comparing those pointers' `seenEvents` stream
+ * sequence. `outcomeDigest` replays legacy's own overwrite order: once
+ * `outcome_recorded` fires it always wins (its payload carries only
+ * `finalStateDigest`, never `outcomeDigest`, so legacy's sticky field ends up
+ * holding that value), recovered here from the `outcome` artifact; absent
+ * that later event, `scenario_finished`'s own persisted `outcomeDigest`
+ * stands, since nothing subsequent overwrites it. `costDigest` is a
+ * composite of the four raw-measurement fields legacy hashes together,
+ * rebuilt here from the same four fields the reducer now persists verbatim.
+ */
+function reducerCells(state: SkillBenchmarkProjectionState): SkillBenchmarkParityCell[] {
+  const sequenceByEventId = new Map(
+    state.seenEvents.map((entry) => [entry.eventId, entry.streamSequence]),
+  );
+  const latestArtifactByScenarioAndKind = new Map<string, typeof state.artifactIndex.artifacts[number]>();
+  for (const artifact of state.artifactIndex.artifacts) {
+    if (artifact.scenarioId === null) continue;
+    const key = `${artifact.scenarioId}:${artifact.artifactKind}`;
+    const current = latestArtifactByScenarioAndKind.get(key);
+    const currentSequence = current === undefined
+      ? -1 : sequenceByEventId.get(current.producerEventId) ?? -1;
+    const candidateSequence = sequenceByEventId.get(artifact.producerEventId) ?? -1;
+    if (candidateSequence >= currentSequence) {
+      latestArtifactByScenarioAndKind.set(key, artifact);
+    }
+  }
+  const measurementByAssignmentId = new Map<string, typeof state.artifactIndex.rawMeasurements[number]>();
+  for (const measurement of state.artifactIndex.rawMeasurements) {
+    const current = measurementByAssignmentId.get(measurement.assignmentId);
+    const currentSequence = current === undefined
+      ? -1 : sequenceByEventId.get(current.producerEventId) ?? -1;
+    const candidateSequence = sequenceByEventId.get(measurement.producerEventId) ?? -1;
+    if (candidateSequence >= currentSequence) {
+      measurementByAssignmentId.set(measurement.assignmentId, measurement);
+    }
+  }
+  return [...state.iterationConvergence.scenarios]
+    .sort((left, right) => left.scenarioId.localeCompare(right.scenarioId))
+    .map((scenario) => {
+      const rawScoreEventId = maxBySequence(scenario.rawScoreEventIds, sequenceByEventId);
+      const stageCandidates: ReadonlyArray<readonly [string | null, string]> = [
+        [scenario.assignmentEventId, 'assigned'],
+        [scenario.startedEventId, 'running'],
+        [scenario.discoveryEventId, 'available'],
+        [scenario.loadEventId, 'loaded'],
+        [scenario.invocationEventId, 'invoked'],
+        [scenario.trajectoryEventId, 'trajectory-recorded'],
+        [scenario.outcomeEventId, 'outcome-recorded'],
+        [scenario.terminalEventId, scenario.state === 'finished' ? 'finished' : 'aborted'],
+        [rawScoreEventId, 'scored'],
+      ];
+      let disposition = 'assigned';
+      let bestSequence = -1;
+      for (const [eventId, label] of stageCandidates) {
+        if (eventId === null) continue;
+        const sequence = sequenceByEventId.get(eventId) ?? -1;
+        if (sequence >= bestSequence) {
+          disposition = label;
+          bestSequence = sequence;
+        }
+      }
+      const exposureArtifact = latestArtifactByScenarioAndKind.get(
+        `${scenario.scenarioId}:resource-exposure`,
+      );
+      const trajectoryArtifact = latestArtifactByScenarioAndKind.get(
+        `${scenario.scenarioId}:trajectory`,
+      );
+      const outcomeArtifact = latestArtifactByScenarioAndKind.get(
+        `${scenario.scenarioId}:outcome`,
+      );
+      const goldArtifact = latestArtifactByScenarioAndKind.get(`${scenario.scenarioId}:gold`);
+      const measurement = measurementByAssignmentId.get(scenario.assignmentId);
+      return {
+        scenarioId: scenario.scenarioId,
+        assignmentId: scenario.assignmentId,
+        executionId: scenario.executionId,
+        treatmentArm: scenario.treatmentArm,
+        pairedReplicateId: scenario.pairedReplicateId,
+        disposition,
+        sourceEventId: scenario.assignmentEventId,
+        availabilityDigest: lastEvidenceDigest(scenario.availabilityEvidenceDigests),
+        invocationDigest: lastEvidenceDigest(scenario.invocationEvidenceDigests),
+        exposureDigest: reducerExposureDigest(
+          scenario.exposureEvidenceDigests,
+          exposureArtifact?.digest ?? null,
+        ),
+        trajectoryDigest: trajectoryArtifact?.digest ?? null,
+        outcomeDigest: outcomeArtifact?.digest ?? scenario.outcomeDigest,
+        scoreDigest: measurement === undefined ? null : digest(measurement.rawScoreAxes),
+        goldDigest: goldArtifact?.digest ?? null,
+        costDigest: measurement === undefined ? null : digest({
+          tokenCount: measurement.tokenCount,
+          latencyMs: measurement.latencyMs,
+          costMicrounits: measurement.costMicrounits,
+          workloadDigest: measurement.workloadDigest,
+        }),
+      } satisfies SkillBenchmarkParityCell;
+    });
+}
+
+/**
+ * Recover the legacy oracle's blocking-veto vocabulary from typed records
+ * only. The reducer's own veto codes for gold-integrity, negative-transfer,
+ * and security-probe sources use a different naming convention than the
+ * legacy scan (e.g. `gold-integrity-rejected` vs legacy's
+ * `gold:${reasonCode}`), so those exact strings cannot be recovered; the two
+ * sources whose codes coincide (`compatibility-incompatible`,
+ * `resource-canary-triggered`) are reused directly, and the negative-transfer
+ * / security-probe categories are re-emitted under legacy's fixed strings
+ * using only the veto's `source` field. `gold:${reasonCode}` cannot be
+ * recovered at all: the reducer's gold veto never persists the raw
+ * `reasonCode`.
+ */
+function reducerBlockingVetoCodes(state: SkillBenchmarkProjectionState): string[] {
+  const stemByEventId = new Map(
+    state.common.seenEvents.map((entry) => [entry.eventId, entry.stem]),
+  );
+  const commonVetoCodes = state.common.iterationConvergence.hardVetoes
+    .filter((veto) => {
+      const stem = stemByEventId.get(veto.producerEventId);
+      return stem === 'deep_improvement_common.canary_vetoed'
+        || stem === 'deep_improvement_common.promotion_denied';
+    })
+    .map((veto) => veto.vetoCode);
+  const specificVetoCodes = state.iterationConvergence.hardVetoes.flatMap((veto) => {
+    switch (veto.source) {
+      case 'compatibility': return ['compatibility-incompatible'];
+      case 'canary': return ['resource-canary-triggered'];
+      case 'negative-transfer': return ['negative-transfer'];
+      case 'security-probe': return ['probe-failed'];
+      // gold-integrity's raw reasonCode is not persisted in typed state.
+      case 'gold-integrity': return [];
+      case 'shared-common': return [];
+    }
+  });
+  return sortedUnique([...commonVetoCodes, ...specificVetoCodes]);
+}
+
+function terminalStatusToDecision(
+  runState: SkillBenchmarkProjectionState['run']['state'],
+): SkillBenchmarkTerminalDecision {
+  return runState === 'closed' ? 'completed'
+    : runState === 'incomplete' ? 'inconclusive'
+      : 'aborted';
+}
+
+/**
+ * Replay the same sticky, stem-keyed terminal mapping the legacy oracle
+ * applies, off `seenEvents` stream order instead of a second raw-event scan.
+ * `run_closed`'s outcome is read off the reducer's own final run state.
+ */
+function reducerTerminalDecision(
+  state: SkillBenchmarkProjectionState,
+): SkillBenchmarkTerminalDecision {
+  let terminalDecision: SkillBenchmarkTerminalDecision = 'active';
+  for (const seen of [...state.seenEvents].sort(
+    (left, right) => left.streamSequence - right.streamSequence,
+  )) {
+    if (TERMINAL_SPECIFIC_STEMS.has(seen.stem)) {
+      switch (seen.stem) {
+        case 'skill_benchmark.run_closed':
+          terminalDecision = terminalStatusToDecision(state.run.state);
+          break;
+        case 'skill_benchmark.scenario_aborted':
+          terminalDecision = 'aborted';
+          break;
+        case 'skill_benchmark.effect_certificate_withheld':
+          terminalDecision = 'blocked';
+          break;
+        case 'skill_benchmark.effect_certificate_issued':
+          terminalDecision = 'selection-prepared';
+          break;
+        default:
+          break;
+      }
+    } else if (TERMINAL_SHARED_STEMS.has(seen.stem)) {
+      switch (seen.stem) {
+        case 'deep_improvement_common.run_paused':
+          terminalDecision = 'paused';
+          break;
+        case 'deep_improvement_common.run_aborted':
+          terminalDecision = 'aborted';
+          break;
+        case 'deep_improvement_common.run_quarantined':
+          terminalDecision = 'quarantined';
+          break;
+        case 'deep_improvement_common.evaluation_inconclusive':
+          terminalDecision = 'inconclusive';
+          break;
+        case 'deep_improvement_common.canary_vetoed':
+        case 'deep_improvement_common.promotion_denied':
+          terminalDecision = 'blocked';
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return terminalDecision;
+}
+
+/**
+ * Replay legacy's sticky `scoringState` (last write wins across
+ * score/certificate stems) off `seenEvents` order, reading
+ * `numeratorEligible` from the reducer's own raw-measurement record instead
+ * of the raw event payload.
+ */
+function reducerScoringState(state: SkillBenchmarkProjectionState): string {
+  const measurementByEventId = new Map(
+    state.artifactIndex.rawMeasurements.map((entry) => [entry.producerEventId, entry]),
+  );
+  let scoringState = 'not-started';
+  for (const seen of [...state.seenEvents].sort(
+    (left, right) => left.streamSequence - right.streamSequence,
+  )) {
+    if (seen.stem === 'skill_benchmark.score_observed') {
+      const eligible = measurementByEventId.get(seen.eventId)?.numeratorEligible ?? false;
+      scoringState = eligible ? 'raw-observed' : 'blocked';
+    } else if (seen.stem === 'skill_benchmark.effect_certificate_issued') {
+      scoringState = 'ranked';
+    } else if (seen.stem === 'skill_benchmark.effect_certificate_withheld') {
+      scoringState = 'blocked';
+    }
+  }
+  return scoringState;
+}
+
+/**
+ * Recover the shared-service scope refs the legacy scan reads from every
+ * `deep_improvement_common.*` event's `scope` fields. No field in the
+ * skill-benchmark ledger schema ends with `ServiceRef` or
+ * `ServiceContractVersion`, so the mode-specific contribution legacy's
+ * suffix scan would read from `skill_benchmark.*` events is structurally
+ * always empty on both paths -- there is nothing to lose here.
+ */
+function reducerSharedServiceRefs(state: SkillBenchmarkProjectionState): string[] {
+  const fromSeenEvents = state.common.seenEvents.flatMap((entry) => [
+    entry.candidateId, entry.evaluationEpochId, entry.canaryEpochId, entry.promotionId,
+  ]);
+  const baselineIds = state.common.iterationConvergence.promotions.map(
+    (entry) => entry.baselineId,
+  );
+  return sortedUnique([...fromSeenEvents, ...baselineIds].filter(
+    (entry): entry is string => entry !== null,
+  ));
+}
+
+function reducerRunState(state: SkillBenchmarkProjectionState): string {
+  if (state.seenEvents.some((entry) => entry.stem === 'skill_benchmark.run_closed')) {
+    return state.run.state;
+  }
+  if (state.seenEvents.some((entry) => entry.stem === 'skill_benchmark.scenario_started')) {
+    return 'active';
+  }
+  return 'planned';
+}
+
+function reducerTreatmentCoverage(cells: readonly SkillBenchmarkParityCell[]): number {
+  if (cells.length === 0) return 0;
+  const completed = cells.filter((cell) => cell.disposition === 'finished'
+    || cell.disposition === 'outcome-recorded'
+    || cell.disposition === 'scored').length;
+  return completed / cells.length;
+}
+
+/**
+ * Derive the parity projection from the reducer's own typed fold output
+ * only.
+ *
+ * This never reads the raw event stream: every field is read off the typed
+ * collections the real reducer (`foldSkillBenchmarkEvents`) persisted, so a
+ * defect in the reducer's own field computation is visible here rather than
+ * being silently re-derived away by a second scan of the same events.
+ * `availabilityEvidenceDigests`, `invocationEvidenceDigests`,
+ * `exposureEvidenceDigests`, `goldEvidenceDigests`, and `costEvidenceDigests`
+ * are unioned from the scenario- and measurement-level evidence the typed
+ * fold now persists per event, matching the legacy hand-scan's own
+ * per-event union. `certificateEvidenceDigests` remains a documented
+ * exception: `evidenceSetDigest` (`effect_certificate_issued`/`withheld`) is
+ * used only for referential-integrity checks during folding and is never
+ * written into any persisted collection, so it stays genuinely unrecoverable
+ * from the typed state.
+ */
+function skillBenchmarkProjectionFromReducerState(
+  state: SkillBenchmarkProjectionState,
+  resumeEvidence: SkillBenchmarkResumeParityEvidence | null,
+): SkillBenchmarkParityProjection {
+  const cells = reducerCells(state);
+  const blockingVetoCodes = reducerBlockingVetoCodes(state);
+  const hasGenerationEvent = state.seenEvents.some(
+    (entry) => entry.stem === 'deep_improvement_common.run_resumed',
+  );
+  const terminalDecision = reducerTerminalDecision(state);
+  const negativeTransferArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'negative-transfer',
+  );
+  const securityProbeArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'security-probe',
+  );
+  const milestoneArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'milestone',
+  );
+  const trajectoryArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'trajectory',
+  );
+  const outcomeArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'outcome',
+  );
+  const compatibilityArtifacts = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === 'compatibility',
+  );
+  return Object.freeze({
+    // Legacy reads runId/lineageId off every event's own scope, so a run
+    // whose very first event is the shared `run_started` (before any
+    // skill-benchmark-specific event exists) already has both. The
+    // skill-benchmark-specific run record is populated only once
+    // `run_planned` fires; the shared run record is populated by
+    // `run_started` itself, so it is the source of truth here.
+    runId: state.common.run.runId ?? state.run.runId,
+    lineageId: state.common.run.lineageId ?? state.run.lineageId,
+    // Legacy never reads a generation field from any skill-benchmark or
+    // shared event, so its own scan output is always the constant 0.
+    generation: 0,
+    runState: reducerRunState(state),
+    designIds: Object.freeze(
+      state.run.benchmarkDesignId === null ? [] : [state.run.benchmarkDesignId],
+    ),
+    cells: Object.freeze(cells),
+    availabilityEvidenceDigests: Object.freeze(sortedUnique(
+      state.iterationConvergence.scenarios.flatMap((entry) => entry.availabilityEvidenceDigests),
+    )),
+    invocationEvidenceDigests: Object.freeze(sortedUnique(
+      state.iterationConvergence.scenarios.flatMap((entry) => entry.invocationEvidenceDigests),
+    )),
+    exposureEvidenceDigests: Object.freeze(sortedUnique(
+      state.iterationConvergence.scenarios.flatMap((entry) => entry.exposureEvidenceDigests),
+    )),
+    milestoneEvidenceDigests: Object.freeze(
+      sortedUnique(milestoneArtifacts.map((artifact) => artifact.digest)),
+    ),
+    trajectoryEvidenceDigests: Object.freeze(
+      sortedUnique(trajectoryArtifacts.map((artifact) => artifact.digest)),
+    ),
+    outcomeEvidenceDigests: Object.freeze(
+      sortedUnique(outcomeArtifacts.map((artifact) => artifact.digest)),
+    ),
+    scorePolicyVersions: Object.freeze(sortedUnique(
+      state.artifactIndex.rawMeasurements.map((entry) => entry.evaluatorVersion),
+    )),
+    scoreVectorDigests: Object.freeze(sortedUnique(
+      state.artifactIndex.rawMeasurements.map((entry) => digest(entry.rawScoreAxes)),
+    )),
+    goldEvidenceDigests: Object.freeze(sortedUnique(
+      state.iterationConvergence.scenarios.flatMap((entry) => entry.goldEvidenceDigests),
+    )),
+    costEvidenceDigests: Object.freeze(sortedUnique(
+      state.artifactIndex.rawMeasurements.map((entry) => digest({
+        tokenCount: entry.tokenCount,
+        latencyMs: entry.latencyMs,
+        costMicrounits: entry.costMicrounits,
+        workloadDigest: entry.workloadDigest,
+      })),
+    )),
+    compatibilityEvidenceDigests: Object.freeze(
+      sortedUnique(compatibilityArtifacts.map((artifact) => artifact.digest)),
+    ),
+    negativeTransferEvidenceDigests: Object.freeze(
+      sortedUnique(negativeTransferArtifacts.map((artifact) => artifact.digest)),
+    ),
+    securityProbeEvidenceDigests: Object.freeze(
+      sortedUnique(securityProbeArtifacts.map((artifact) => artifact.digest)),
+    ),
+    // evidenceSetDigest (effect_certificate_issued/withheld) is never
+    // persisted anywhere in the typed fold.
+    certificateEvidenceDigests: Object.freeze([]),
+    sharedServiceRefs: Object.freeze(reducerSharedServiceRefs(state)),
+    unresolvedEvidenceRefs: Object.freeze(
+      sortedUnique(state.common.iterationConvergence.unresolvedEvidenceRefs),
+    ),
+    blockingVetoCodes: Object.freeze(blockingVetoCodes),
+    treatmentCoverage: reducerTreatmentCoverage(cells),
+    scoringState: reducerScoringState(state),
+    terminalDecision: terminalDecision !== 'quarantined' && blockingVetoCodes.length > 0
+      ? 'blocked'
+      : terminalDecision,
+    resumeDecisionDigest: hasGenerationEvent
+      ? resumeEvidenceDigest(resumeEvidence, 'ledger')
+      : null,
+  });
+}
+
 /** Model the pinned legacy emitter without invoking the typed reducer. */
 function legacyProjection(
   events: readonly SkillBenchmarkLedgerEvent[],
@@ -794,13 +1264,7 @@ function ledgerProjection(
   if (folded.outcome !== 'projected') {
     throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
-  const projection = legacyProjection(events, resumeEvidence);
-  return Object.freeze({
-    ...projection,
-    resumeDecisionDigest: events.some(
-      (event) => event.payload.stem === 'deep_improvement_common.run_resumed',
-    ) ? resumeEvidenceDigest(resumeEvidence, 'ledger') : null,
-  });
+  return skillBenchmarkProjectionFromReducerState(folded.projection, resumeEvidence);
 }
 
 function replayState(

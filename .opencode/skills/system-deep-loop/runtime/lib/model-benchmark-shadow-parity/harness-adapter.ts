@@ -96,6 +96,9 @@ import type {
   TrialMatrixKey,
 } from '../model-benchmark-ledger-schema/index.js';
 import type {
+  ModelBenchmarkProjectionState,
+} from '../model-benchmark-reducers/index.js';
+import type {
   ModelBenchmarkResumeDecision,
   ModelBenchmarkResumeRequest,
 } from '../model-benchmark-resume-adapter/index.js';
@@ -426,7 +429,12 @@ function artifactRefs(event: ModelBenchmarkLedgerEvent): string[] {
 
 function sharedServiceRefs(event: ModelBenchmarkLedgerEvent): string[] {
   if (!EventStages[event.payload.stem].sharedService) {
-    return valuesBySuffix(event, ['ServiceRef', 'ServiceContractVersion']);
+    // Mode-specific fields matching this suffix (evaluator/canary/promotion
+    // service refs and the shared-service contract version, all declared on
+    // run_declared) name external deployment targets that no typed decision
+    // surface reads; they are excluded from the protected comparison surface
+    // on both projection paths rather than treated as semantic identity.
+    return [];
   }
   return sortedUnique([
     stringField(event.payload.scope, 'candidateId'),
@@ -613,6 +621,347 @@ function projectionCell(
   });
 }
 
+const TERMINAL_SPECIFIC_STEMS = Object.freeze(new Set([
+  'model_benchmark.run_paused',
+  'model_benchmark.run_closed',
+  'model_benchmark.validity_unknown_recorded',
+  'model_benchmark.selection_reduction_requested',
+]));
+
+const TERMINAL_SHARED_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.run_paused',
+  'deep_improvement_common.run_aborted',
+  'deep_improvement_common.run_quarantined',
+  'deep_improvement_common.evaluation_inconclusive',
+  'deep_improvement_common.canary_vetoed',
+  'deep_improvement_common.promotion_denied',
+]));
+
+/**
+ * Recompute matrix cells from the reducer's own typed cell ledger, cross-
+ * referencing the sibling typed collections (artifacts, raw observations,
+ * scores, cost/latency slices) for the digests those collections persist.
+ * `seenEvents` stream sequence breaks ties for "latest usage/latency slice
+ * per cell" the same way a single forward scan would.
+ */
+function reducerCells(
+  state: ModelBenchmarkProjectionState,
+): ModelBenchmarkParityCell[] {
+  const sequenceByEventId = new Map(
+    state.seenEvents.map((entry) => [entry.eventId, entry.streamSequence]),
+  );
+  const rawResultDigestByEventId = new Map(
+    state.modelBenchmark.artifactIndex.artifacts
+      .filter((artifact) => artifact.artifactKind === 'raw-result')
+      .map((artifact) => [artifact.producerEventId, artifact.digest]),
+  );
+  const rawObservationByEventId = new Map(
+    state.modelBenchmark.scoringMatrix.rawObservations.map(
+      (entry) => [entry.observationEventId, entry],
+    ),
+  );
+  const scoreByEventId = new Map(
+    state.modelBenchmark.scoringMatrix.scores.map((entry) => [entry.scoreEventId, entry]),
+  );
+  const latestSliceByCellKey = new Map<
+    string, typeof state.modelBenchmark.scoringMatrix.costLatencySlices[number]
+  >();
+  for (const slice of state.modelBenchmark.scoringMatrix.costLatencySlices) {
+    const current = latestSliceByCellKey.get(slice.cellKey);
+    const currentSequence = current === undefined
+      ? -1 : sequenceByEventId.get(current.usageEventId) ?? -1;
+    const candidateSequence = sequenceByEventId.get(slice.usageEventId) ?? -1;
+    if (candidateSequence >= currentSequence) latestSliceByCellKey.set(slice.cellKey, slice);
+  }
+  return [...state.modelBenchmark.iterationConvergence.cells]
+    .sort((left, right) => left.cellKey.localeCompare(right.cellKey))
+    .map((cell) => {
+      const rawObservation = cell.rawObservationEventId === null
+        ? undefined : rawObservationByEventId.get(cell.rawObservationEventId);
+      const score = cell.scoreEventId === null ? undefined : scoreByEventId.get(cell.scoreEventId);
+      const slice = latestSliceByCellKey.get(cell.cellKey);
+      return {
+        cellKey: cell.cellKey,
+        trialId: cell.trialId,
+        matrixKey: cell.matrixKey,
+        disposition: cell.disposition,
+        sourceEventId: cell.sourceEventId,
+        rawResultDigest: cell.rawResultEventId === null
+          ? null : rawResultDigestByEventId.get(cell.rawResultEventId) ?? null,
+        rawObservationDigest: rawObservation?.rawOutputDigest ?? null,
+        scoreDigest: score === undefined ? null : digest(score.scoreVector),
+        usageDigest: slice === undefined ? null : digest(slice.usage),
+        latencyDigest: slice === undefined ? null : digest(slice.latency),
+      } satisfies ModelBenchmarkParityCell;
+    });
+}
+
+/**
+ * Recover the legacy oracle's narrower canary/promotion veto vocabulary from
+ * typed records only. `hardVetoes` also carries canary-drift and invariant
+ * vetoes the legacy scan never reads for this mode, so each veto's producing
+ * stem is cross-checked through `common.seenEvents` rather than trusting its
+ * `source` category alone.
+ */
+function reducerBlockingVetoCodes(state: ModelBenchmarkProjectionState): string[] {
+  const stemByEventId = new Map(
+    state.common.seenEvents.map((entry) => [entry.eventId, entry.stem]),
+  );
+  const commonVetoCodes = state.common.iterationConvergence.hardVetoes
+    .filter((veto) => {
+      const stem = stemByEventId.get(veto.producerEventId);
+      return stem === 'deep_improvement_common.canary_vetoed'
+        || stem === 'deep_improvement_common.promotion_denied';
+    })
+    .map((veto) => veto.vetoCode);
+  const contaminationCodes = state.modelBenchmark.scoringMatrix.contaminationEvidence
+    .filter((entry) => entry.contaminationStatus !== 'clean')
+    .map((entry) => `contamination:${entry.contaminationStatus}`);
+  const validityBlockerCodes = state.modelBenchmark.scoringMatrix.validity
+    .flatMap((entry) => entry.blockerCodes);
+  const validityUnknownCodes = state.modelBenchmark.scoringMatrix.validityUnknowns
+    .filter((entry) => entry.blocker)
+    .map((entry) => entry.unknownCode);
+  return sortedUnique([
+    ...commonVetoCodes, ...contaminationCodes, ...validityBlockerCodes, ...validityUnknownCodes,
+  ]);
+}
+
+/**
+ * Replay the same sticky, stem-keyed terminal mapping the legacy oracle
+ * applies, off `seenEvents` stream order instead of a second raw-event scan.
+ * `validity_unknown_recorded`'s blocker flag and `run_closed`'s outcome are
+ * read from the reducer's own typed records, never from raw payload.
+ */
+function reducerTerminalDecision(
+  state: ModelBenchmarkProjectionState,
+): ModelBenchmarkTerminalDecision {
+  const validityUnknownByEventId = new Map(
+    state.modelBenchmark.scoringMatrix.validityUnknowns.map(
+      (entry) => [entry.validityUnknownEventId, entry],
+    ),
+  );
+  let terminalDecision: ModelBenchmarkTerminalDecision = 'active';
+  for (const seen of [...state.seenEvents].sort(
+    (left, right) => left.streamSequence - right.streamSequence,
+  )) {
+    if (TERMINAL_SPECIFIC_STEMS.has(seen.stem)) {
+      switch (seen.stem) {
+        case 'model_benchmark.run_paused':
+          terminalDecision = 'paused';
+          break;
+        case 'model_benchmark.run_closed':
+          terminalDecision = state.modelBenchmark.run.terminalOutcome ?? terminalDecision;
+          break;
+        case 'model_benchmark.validity_unknown_recorded':
+          if (validityUnknownByEventId.get(seen.eventId)?.blocker === true) {
+            terminalDecision = 'inconclusive';
+          }
+          break;
+        case 'model_benchmark.selection_reduction_requested':
+          terminalDecision = 'selection-prepared';
+          break;
+        default:
+          break;
+      }
+    } else if (TERMINAL_SHARED_STEMS.has(seen.stem)) {
+      switch (seen.stem) {
+        case 'deep_improvement_common.run_paused':
+          terminalDecision = 'paused';
+          break;
+        case 'deep_improvement_common.run_aborted':
+          terminalDecision = 'aborted';
+          break;
+        case 'deep_improvement_common.run_quarantined':
+          terminalDecision = 'quarantined';
+          break;
+        case 'deep_improvement_common.evaluation_inconclusive':
+          terminalDecision = 'inconclusive';
+          break;
+        case 'deep_improvement_common.canary_vetoed':
+        case 'deep_improvement_common.promotion_denied':
+          terminalDecision = 'blocked';
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return terminalDecision;
+}
+
+/**
+ * Recover the shared-service scope refs the legacy scan reads from every
+ * `deep_improvement_common.*` event's `scope` fields. `run_declared`'s own
+ * evaluator/canary/promotion service refs and shared service contract
+ * version are deployment-locator configuration no typed decision surface
+ * reads, so the legacy scan excludes them from this same field on the other
+ * path too (see `sharedServiceRefs` in the legacy scan below) -- there is
+ * nothing to reconcile here.
+ */
+function reducerSharedServiceRefs(state: ModelBenchmarkProjectionState): string[] {
+  const fromSeenEvents = state.common.seenEvents.flatMap((entry) => [
+    entry.candidateId, entry.evaluationEpochId, entry.canaryEpochId, entry.promotionId,
+  ]);
+  const baselineIds = state.common.iterationConvergence.promotions.map(
+    (entry) => entry.baselineId,
+  );
+  return sortedUnique([...fromSeenEvents, ...baselineIds].filter(
+    (entry): entry is string => entry !== null,
+  ));
+}
+
+function reducerUnresolvedEvidenceRefs(state: ModelBenchmarkProjectionState): string[] {
+  return sortedUnique([
+    ...state.modelBenchmark.scoringMatrix.validityUnknowns.flatMap(
+      (entry) => entry.requiredEvidenceRefs,
+    ),
+    ...state.common.iterationConvergence.unresolvedEvidenceRefs,
+  ]);
+}
+
+function reducerMatrixCoverage(cells: readonly ModelBenchmarkParityCell[]): number {
+  if (cells.length === 0) return 0;
+  const completed = cells.filter((cell) => cell.disposition === 'completed'
+    || cell.disposition === 'observed'
+    || cell.disposition === 'scored').length;
+  return completed / cells.length;
+}
+
+/**
+ * Approximate legacy's one-shot ranking decision (captured the instant
+ * `selection_reduction_requested` fires) using the FINAL accumulated
+ * blocking-veto set instead of a snapshot at that event's stream position.
+ * Every real protocol path seals evidence and validity before requesting a
+ * reduction, so the two sets coincide for well-formed fixtures; a fixture
+ * that adds vetoes after the request could still diverge here.
+ */
+function reducerRankingState(
+  state: ModelBenchmarkProjectionState,
+  blockingVetoCodes: readonly string[],
+): string {
+  const requested = state.seenEvents.some(
+    (entry) => entry.stem === 'model_benchmark.selection_reduction_requested',
+  );
+  if (!requested) return 'unranked';
+  return blockingVetoCodes.length > 0 ? 'blocked' : 'ranked';
+}
+
+/**
+ * Derive the parity projection from the reducer's own typed fold output
+ * only.
+ *
+ * This never reads the raw event stream: every field is read off the typed
+ * collections the real reducer (`foldModelBenchmarkEvents`) persisted, so a
+ * defect in the reducer's own field computation is visible here rather than
+ * being silently re-derived away by a second scan of the same events.
+ * `adaptiveDiagnosticRefs` is a documented exception where the typed fold
+ * discards information the legacy hand-scan reads from raw payload; see its
+ * derivation site above. `sharedServiceRefs` never carries `run_declared`'s
+ * service-locator fields on this path either, since the legacy scan excludes
+ * them from its own protected surface (see the legacy `sharedServiceRefs`
+ * helper).
+ */
+function modelBenchmarkProjectionFromReducerState(
+  state: ModelBenchmarkProjectionState,
+  resumeEvidence: ModelBenchmarkResumeParityEvidence | null,
+): ModelBenchmarkParityProjection {
+  const cells = reducerCells(state);
+  const blockingVetoCodes = reducerBlockingVetoCodes(state);
+  const terminalDecision = reducerTerminalDecision(state);
+  const hasGenerationEvent = state.seenEvents.some(
+    (entry) => entry.stem === 'model_benchmark.run_resumed',
+  );
+  return Object.freeze({
+    runId: state.modelBenchmark.run.runId,
+    lineageId: state.modelBenchmark.run.lineageId,
+    generation: state.modelBenchmark.run.generation ?? 0,
+    runState: state.modelBenchmark.run.state,
+    designIds: Object.freeze(sortedUnique(state.modelBenchmark.iterationConvergence.designIds)),
+    trialBlockIds: Object.freeze(
+      sortedUnique(state.modelBenchmark.iterationConvergence.trialBlockIds),
+    ),
+    cells: Object.freeze(cells),
+    rawObservationDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.rawObservations.flatMap(
+        (entry) => [entry.rawOutputDigest, entry.evaluatorObservationDigest],
+      ),
+    )),
+    scorePolicyVersions: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.scores.map((entry) => entry.scorePolicyVersion),
+    )),
+    scoreVectorDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.scores.map((entry) => digest(entry.scoreVector)),
+    )),
+    uncertaintyDigests: Object.freeze(sortedUnique([
+      ...state.modelBenchmark.scoringMatrix.scores.map((entry) => digest(
+        entry.scoreVector.components.map((component) => ({
+          dimensionCode: component.dimensionCode,
+          uncertainty: component.uncertainty,
+        })),
+      )),
+      ...state.modelBenchmark.scoringMatrix.judgeObservations.map((entry) => digest({
+        confidence: entry.confidence,
+        uncertainty: entry.uncertainty,
+        disagreementState: entry.disagreementState,
+      })),
+    ])),
+    judgeEvidenceDigests: Object.freeze(sortedUnique([
+      ...state.modelBenchmark.scoringMatrix.judgeObservations.map(
+        (entry) => entry.observationDigest,
+      ),
+      ...state.modelBenchmark.scoringMatrix.oracleLabels.map((entry) => entry.labelDigest),
+    ])),
+    contaminationEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.contaminationEvidence.map(
+        (entry) => entry.evidenceDigest,
+      ),
+    )),
+    exposureEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.exposures.map((entry) => entry.evidenceDigest),
+    )),
+    validityStates: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.validity.map((entry) => entry.state),
+    )),
+    validityUnknownCodes: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.validityUnknowns.map((entry) => entry.unknownCode),
+    )),
+    workloadEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.artifactIndex.artifacts
+        .filter((artifact) => artifact.artifactKind === 'workload-snapshot')
+        .map((artifact) => artifact.digest),
+    )),
+    usageEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.costLatencySlices.map((entry) => digest(entry.usage)),
+    )),
+    latencyEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.costLatencySlices.map((entry) => digest(entry.latency)),
+    )),
+    selectionEvidenceDigests: Object.freeze(sortedUnique(
+      state.modelBenchmark.scoringMatrix.selectionEvidence.map((entry) => entry.evidenceSetDigest),
+    )),
+    // No field in the model-benchmark or deep-improvement-common ledger
+    // schemas carries an "anchor" fragment, so this is always empty on
+    // both paths.
+    commonAnchorRefs: Object.freeze([]),
+    // `familyQuotaPolicyVersion` (benchmark_design_declared) and any other
+    // diagnostic/propensity/quota-suffixed field are discarded by the typed
+    // fold; the legacy hand-scan reads them from raw payload only.
+    adaptiveDiagnosticRefs: Object.freeze([]),
+    sharedServiceRefs: Object.freeze(reducerSharedServiceRefs(state)),
+    unresolvedEvidenceRefs: Object.freeze(reducerUnresolvedEvidenceRefs(state)),
+    blockingVetoCodes: Object.freeze(blockingVetoCodes),
+    matrixCoverage: reducerMatrixCoverage(cells),
+    rankingState: reducerRankingState(state, blockingVetoCodes),
+    terminalDecision: terminalDecision !== 'quarantined' && blockingVetoCodes.length > 0
+      ? 'blocked'
+      : terminalDecision,
+    resumeDecisionDigest: hasGenerationEvent
+      ? resumeEvidenceDigest(resumeEvidence, 'ledger')
+      : null,
+  });
+}
+
 /** Model the pinned legacy emitter without invoking the typed reducer. */
 function legacyProjection(
   events: readonly ModelBenchmarkLedgerEvent[],
@@ -790,13 +1139,7 @@ function ledgerProjection(
   if (folded.outcome !== 'projected') {
     throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
-  const projection = legacyProjection(events, resumeEvidence);
-  return Object.freeze({
-    ...projection,
-    resumeDecisionDigest: events.some(
-      (event) => event.payload.stem === 'model_benchmark.run_resumed',
-    ) ? resumeEvidenceDigest(resumeEvidence, 'ledger') : null,
-  });
+  return modelBenchmarkProjectionFromReducerState(folded.projection, resumeEvidence);
 }
 
 function replayState(
