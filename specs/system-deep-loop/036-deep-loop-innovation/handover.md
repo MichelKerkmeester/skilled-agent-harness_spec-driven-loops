@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "024 T001 done: B5/B6 REFUTED (spec over-scoped); GO=B1/B2/B3/B4/F-018-03/B7"
-    next_safe_action: "Build 024 GO-set per t001-disposition.md in a FRESH worktree; skip refuted B5/B6"
+    recent_action: "024 B1 fencing keystone LANDED 39015ed14c (adversary-hardened); B2/B3/B4/B7 remain"
+    next_safe_action: "Build B2/B3/B4/B7 in worktree 0134 (fresh session); note token-replay residual"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -75,6 +75,27 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   persistence) + identity/policy digest + loop-lock atomic publish + honest metadata. F-002-01 =
   benign, operator-elected. The concurrency-defect surface ~halved; the highest-fabrication-risk
   "two-process single-winner" tests for already-correct code are GONE.
+- **024 B1 + F-018-03 fencing keystone — BUILT + ADVERSARY-HARDENED + LANDED `39015ed14c`** (3 commits:
+  keystone `f6f9f0e2cc` + harness-lease fix `cd894f1e81` + forgery fix `de98bdf299`; 73 files, +652/-130).
+  `appendAuthorized` is now hard-private `#appendAuthorized`, reachable only via a coordinator-minted
+  `FenceCapability` whose token is re-checked against the durable current lease (`peekCurrentLease`); all
+  32 lib callers + 5 idempotent-replay sites migrated (tsc proves completeness); `fence_token` persisted.
+  An independent adversarial pass FOUND + we CLOSED a real forgery hole (no-op-reassert bypass → now
+  token-currency validation, permanent regression test at `authorized-ledger.vitest.ts:331`). Built in
+  worktree `.worktrees/0134-skilled-024-fencing` (node_modules symlinked from the main checkout — clean
+  `git worktree add` off origin tip; keep it for the follow-up increments or `git worktree remove` at
+  closeout). Verify vs origin: tsc rc0, authorized-ledger 31/31, locks-and-fencing 28/28, resume adapters
+  green. **RESIDUAL (documented, elective hardening): token-replay** — `peekCurrentLease` is public and the
+  capability carries only `{resource, fenceToken}`, so an ACTIVE in-process actor that reads the current
+  token can mint a matching capability and pass the fence. OUTSIDE 024's stated threat model (stale
+  writers/files, not active attackers); REQ-002 (superseded-writer rejection) IS met; the gateway proof +
+  prior-head CAS still bound it (no double-commit / content forgery). Full closure needs lease-possession
+  proof (deeper design — operator decision).
+- **REMAINING 024 increments (build in the 0134 worktree; ledger surface is globally-serializing — nothing
+  ledger-adjacent runs beside them): B2** (gateway trusts caller identity — `transition-authorization-gateway.ts:726`),
+  **B3** (policy digest omits captured state — `transition-policy-registry.ts:97-103`), **B4** (loop-lock
+  two-winner — `loop-lock.ts:242-243`), **B7** (honest metadata reconciliation + a final full adversarial
+  pass). Then 025 (needs 024 receipt/proof primitives) → 016 gate → 014/015 (IRREVERSIBLE) → 017 → merge.
 - **Leak-guard mechanics gap (NEW, important):** `land-wt0129.sh`'s 0-deletion guard only catches
   full-file `D` status, NOT content REMOVED from a still-present (modified) file. The
   partial-checkout `specs/` copies in this worktree are near-empty stubs — landing one directly
