@@ -56,6 +56,8 @@ import type {
   AuthorizationGatewayOptions,
   GatewayAllowProof,
   LedgerRecordFrame,
+  PolicyEvaluationInput,
+  PolicyEvaluationResult,
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type { EventTypeRegistry, EventWritePreflight, JsonObject } from '../../lib/event-envelope/index.js';
@@ -1032,5 +1034,93 @@ describe('verified replay and disposable projections', () => {
     );
     expect(report.policyDivergences).toEqual([]);
     expect(report.appliedDecisionIds).toHaveLength(1);
+  });
+});
+
+describe('policy identity digest folds in captured authorization state', () => {
+  // Every definition below shares this one evaluator reference, so
+  // `Function.prototype.toString` is trivially identical across all of them —
+  // any digest difference can only come from captured authorization state.
+  const sharedEvaluate = (input: Readonly<PolicyEvaluationInput>): PolicyEvaluationResult => (
+    input.capabilityId === 'write'
+      ? { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['capability-write'] }
+      : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['capability-write'] }
+  );
+
+  it('gives two policies with identical evaluator source but different captured state different identity digests', () => {
+    const registry = new TransitionPolicyRegistry([
+      {
+        policyId: 'allowlist-a',
+        policyVersion: 1,
+        evaluatorVersion: '1',
+        ruleIds: ['capability-write'],
+        capturedAuthorizationState: { allowedActors: ['actor-a'] },
+        evaluate: sharedEvaluate,
+      },
+      {
+        policyId: 'allowlist-b',
+        policyVersion: 1,
+        evaluatorVersion: '1',
+        ruleIds: ['capability-write'],
+        capturedAuthorizationState: { allowedActors: ['actor-b'] },
+        evaluate: sharedEvaluate,
+      },
+    ]);
+
+    const policyA = registry.resolve('allowlist-a', 1);
+    const policyB = registry.resolve('allowlist-b', 1);
+
+    expect(policyA.evaluate).toBe(sharedEvaluate);
+    expect(policyB.evaluate).toBe(sharedEvaluate);
+    expect(policyA.implementationDigest).not.toBe(policyB.implementationDigest);
+    expect(policyA.digest).not.toBe(policyB.digest);
+  });
+
+  it('re-derives the exact same identity digest for the same evaluator source and captured state across two independent registrations', () => {
+    const buildRegistry = (): TransitionPolicyRegistry => new TransitionPolicyRegistry([{
+      policyId: 'stable-captured-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['capability-write'],
+      capturedAuthorizationState: { allowedActors: ['actor-a'] },
+      evaluate: sharedEvaluate,
+    }]);
+
+    const first = buildRegistry().resolve('stable-captured-policy', 1);
+    const second = buildRegistry().resolve('stable-captured-policy', 1);
+
+    expect(second.implementationDigest).toBe(first.implementationDigest);
+    expect(second.digest).toBe(first.digest);
+  });
+
+  it('gives a policy declaring no captured authorization state a stable deterministic identity digest that does not collide with a declared-state sibling', () => {
+    const buildUncaptured = (): TransitionPolicyRegistry => new TransitionPolicyRegistry([{
+      policyId: 'uncaptured-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['capability-write'],
+      evaluate: sharedEvaluate,
+    }]);
+    const buildCaptured = (): TransitionPolicyRegistry => new TransitionPolicyRegistry([{
+      policyId: 'uncaptured-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['capability-write'],
+      capturedAuthorizationState: { allowedActors: ['actor-a'] },
+      evaluate: sharedEvaluate,
+    }]);
+
+    const first = buildUncaptured().resolve('uncaptured-policy', 1);
+    const second = buildUncaptured().resolve('uncaptured-policy', 1);
+    expect(second.implementationDigest).toBe(first.implementationDigest);
+    expect(second.digest).toBe(first.digest);
+
+    // A policy with no captured state must not collide with one that has
+    // declared captured state, even though both share the exact same
+    // evaluator reference and policy identity fields.
+    const declared = buildCaptured().resolve('uncaptured-policy', 1);
+    expect(declared.evaluate).toBe(sharedEvaluate);
+    expect(declared.implementationDigest).not.toBe(first.implementationDigest);
+    expect(declared.digest).not.toBe(first.digest);
   });
 });

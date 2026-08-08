@@ -65,6 +65,13 @@ function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
 }
 
+/**
+ * Canonical stand-in for "this policy captures no authorization state" so
+ * that omitting captured state still folds a fixed, deterministic value into
+ * the identity digest rather than silently skipping it.
+ */
+const NO_CAPTURED_AUTHORIZATION_STATE: null = null;
+
 function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTransitionPolicy {
   const policyId = requireIdentity(definition.policyId, 'policyId');
   const evaluatorVersion = requireIdentity(definition.evaluatorVersion, 'evaluatorVersion');
@@ -94,13 +101,19 @@ function registerPolicy(definition: TransitionPolicyDefinition): RegisteredTrans
       { policyId, policyVersion: definition.policyVersion },
     );
   }
-  const implementationDigest = sha256Bytes(
-    canonicalBytes(Function.prototype.toString.call(definition.evaluate)),
-  );
+  const evaluatorSource = Function.prototype.toString.call(definition.evaluate);
   const authorizationState = definition.capturedAuthorizationState
     ?? definition.authorizationState
-    ?? null;
+    ?? NO_CAPTURED_AUTHORIZATION_STATE;
   const authorizationStateDigest = sha256Bytes(canonicalBytes(authorizationState));
+  // The identity digest always folds in both the evaluator's source text and
+  // its authorization state (real or the canonical no-state placeholder), so
+  // an unchanged source with a changed captured allowlist cannot keep an
+  // unchanged identity.
+  const implementationDigest = sha256Bytes(canonicalBytes({
+    evaluatorSource,
+    authorizationState,
+  }));
   const digest = sha256Bytes(canonicalBytes({
     policyId,
     policyVersion: definition.policyVersion,
