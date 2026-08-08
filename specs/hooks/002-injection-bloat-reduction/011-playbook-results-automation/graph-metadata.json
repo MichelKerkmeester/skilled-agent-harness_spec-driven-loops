@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 021 established the dated run-label grammar, automatic `benchmark/reports/` destination, seven-file output, and drift-proof index for Lane C `/deep:skill-benchmark` runs",
     "created_at": "2026-08-08T10:42:21.646Z",
-    "last_save_at": "2026-08-08T12:28:02.718Z",
+    "last_save_at": "2026-08-08T16:27:56.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2c4092a423e318bf67f77efce26cabf7556b275da856fea631014ba8fd5fb6e",
+    "source_fingerprint": "sha256:ffa48e6b424d38fcec8277ad8735ebd768764663d6342d2085161f32ade4fd65",
     "source_doc_hashes": {
-      "spec.md": "848f926cc2e7ecde890833426126e59a574442c5474dc740493f66dbb7c817d9",
-      "plan.md": "1ecf12286c8a1f489cbfec5ac52d7b5f74972c302b322ced9ef1ae983a9872d7",
-      "tasks.md": "8c2d3fe7f0ef1fb0fce3e6a1b35508102a33c91c9b0623b0566049d07e90df31",
-      "checklist.md": "edeeee7179bb18bc09a52e087ee51befbbb13f6a6984df16ea221fe85b547cb1",
-      "implementation-summary.md": "1506a4ea90e8029e70e01e448e2c7d07851e014cd491b05d162c67a35062344a"
+      "spec.md": "7639ab69b931b63f49b89a7740150455ed756703fa818b39f6659bde2d8ce886",
+      "plan.md": "c1c90ea1232e861be90acd1dae1d0d66151577f5d351a1578b85743f23f332ae",
+      "tasks.md": "0d8954df6f136e67430fbbbbf410a0e3632b575dc1961e3618b0b4479a1fd421",
+      "checklist.md": "1b748b5f314b5c831f8644d209de7fd9df9ec1abb3f2f379b7cc306e79c3c140",
+      "implementation-summary.md": "2bef4d75f2f0835593f939b76dc98b677d693ba35da89792771039717eb710ea"
     },
     "last_active_child_id": null,
     "last_active_at": null
