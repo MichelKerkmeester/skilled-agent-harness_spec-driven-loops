@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-07T21:24:11Z"
+    last_updated_at: "2026-08-08T04:49:33Z"
     last_updated_by: "claude-code"
-    recent_action: "All 20 findings fixed; F012/F020 deferrals reversed on request"
+    recent_action: "Added before-after.md, literal diff evidence for all 20 findings"
     next_safe_action: "Commit and push to skilled/v4.0.0.0"
     blockers: []
     key_files:
@@ -67,6 +67,7 @@ This is **Phase 5** of the specs-folder relocation specification — a documenta
 **Deliverables**:
 - `review/review-report.md` — the deep-review loop's verdict and findings, scoped to README staleness
 - Fixes applied for every confirmed finding, or an explicit documented deferral per finding
+- `before-after.md` — literal before/after content for all 20 findings, pulled directly from the shipping commits
 
 **Changelog**:
 - When this phase closes, refresh the matching file in `../changelog/` using the parent packet number plus this phase folder name.

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
     "created_at": "2026-08-07T17:29:17Z",
-    "last_save_at": "2026-08-07T21:24:53.796Z",
+    "last_save_at": "2026-08-08T04:50:29.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:faa7982e95051a04622ba191d24736a3b87f3108c1c481f72d0b23c3dc914ed7",
+    "source_fingerprint": "sha256:3b9b72c8560d7ca72d439e2b250c34e323f228702c67278f1b4985147c7fe631",
     "source_doc_hashes": {
-      "spec.md": "f4ba7e47381181a31e836a8b171db11b04ef5edcff6b4d16fe16d7b5bf86720b",
+      "spec.md": "ed028cbb386333846ca71d205166e2904ddd363d270b6ccf738f8a778e5d6c4c",
       "plan.md": "d6ef1714cc7dafeb19d1c72b021facb3bbd1a138f8f381ad776f0937ffc0c140",
       "tasks.md": "52ae0d18e8a16bebaae73726037e51d62f569c7f626395221a7b554548e89ef6",
-      "implementation-summary.md": "81b7b6975873cbadf3df8ab0986ae9d10af8e8a9458a31b91a45d3ee1581c1fb"
+      "implementation-summary.md": "1a9e2f1b384cad5ba68c2205dd7dbfa89c241763307d8c3164406440da87db7a"
     },
     "last_active_child_id": null,
     "last_active_at": null
