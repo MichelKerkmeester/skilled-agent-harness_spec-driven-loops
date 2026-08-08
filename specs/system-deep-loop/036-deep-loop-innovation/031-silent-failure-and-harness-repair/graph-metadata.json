@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Twenty-three findings in three lanes share one shape",
     "created_at": "2026-07-31T01:25:21.556Z",
-    "last_save_at": "2026-08-07T23:13:10.381Z",
+    "last_save_at": "2026-08-08T06:14:58.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6269bcaeae0680bcd2f30e141d306a11a443090805eb503891442b90c1f3d4b2",
+    "source_fingerprint": "sha256:3b45fb03aefeea0e73136ca02ada516434fa53afbefc5e6371805ba33f950d78",
     "source_doc_hashes": {
-      "spec.md": "35db8956c39f3969d7e7bce3cba79682af03cecca186bf8cde153e0f63de8154",
+      "spec.md": "4155d1fe6825130ef3cdadce792d7732e1cea6eb7610aa49a348e6d5c2fff41d",
       "plan.md": "f47c3ac02e23591c2a86151f870a052d5aa5d4b1569b98789d83bd66db29ea23",
-      "tasks.md": "ebe0e420deb11e6a1967fedf05f2660f592128daa785522507670e1bc6e09a48",
+      "tasks.md": "21798f33454a38a940d80c1140547156a1685319d0dd3aaf35d61ca567ff2f63",
       "checklist.md": "9e1c2d086447fc120363695b95d64cab7fc58b5583b2e82882cadb5df18d0fc4",
       "decision-record.md": "ee3c68270b3e325c9a1eff1434228761818c0f393fddb79849e64334b0aae530",
-      "implementation-summary.md": "bf57e63d275692c7a6383059dd2d485fa47929d3f7decd56b8f130b45c53ef8c"
+      "implementation-summary.md": "e616ed900977a90265208166c6f54099ba7cebb15a3724a5c5a5a00f4bcaea61"
     },
     "last_active_child_id": null,
     "last_active_at": null

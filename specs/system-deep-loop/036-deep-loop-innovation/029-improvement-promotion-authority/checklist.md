@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/029-improvement-promotion-authority"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the verification checklist from the WS1 phase-tree proposal"
-    next_safe_action: "Run checklist items after phase execution completes"
+    recent_action: "Landed 11/13 findings as 0d1827eef5 on skilled/v4.0.0.0"
+    next_safe_action: "Re-land F-019-01/F-019-03 confined to the packet root, not process.cwd()"
     blockers: []
     key_files:
       - "checklist.md"

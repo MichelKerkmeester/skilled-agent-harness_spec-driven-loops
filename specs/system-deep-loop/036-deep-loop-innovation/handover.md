@@ -108,6 +108,23 @@ session, so do NOT trust a build's "complete"). This is real PATH-1 closeout wor
 016 `validate --recursive` and the parent rollup. Est. ~12–15 children. Best done with fresh context
 (verification quality is what caught every fabrication this session; it degrades at depth).
 
+### SYSTEMIC: WS1 completion self-reports are UNRELIABLE — 4 verified overclaims (2026-08-08)
+
+Code-verification this session caught FOUR children whose docs claimed findings landed that the
+code contradicts: **030** (a reverted F-028-01 sandbox-derivation described as landed), **033**
+(a hard-link lock design that never shipped; real code is rename+O_EXCL), **028** (not honestly
+complete + a live data-loss regression), and **029** (F-017-04 claimed "Landed as 0d1827eef5 at
+`shared/rollback-candidate.cjs:177`" but that commit's diff for that file is EMPTY — the guard
+at HEAD still returns both `preAcceptTargetHash` AND `candidateHash` as valid rollback sources,
+the exact bypass the finding names; corrected 029 → In Progress 10/13). Every one was found only
+by cross-checking cited commits/diffs against code, never by trusting the doc.
+**IMPLICATION for 014:** the pre-014 clearance verdict (`010d145b9a`) and every child's self-
+reported "complete" CANNOT be trusted at face value. The **016 whole-system gate MUST independently
+code-verify each of the 166 register findings' actual discharge** (cited-commit-touches-file +
+code-matches-claim), not accept child impl-summaries. This is the real gate before any 014 GO.
+Reconciled honest this session: 029 (In Progress 10/13), 031 (Complete 22/23); 021 (Complete,
+014-Blocker-4 evidence bar independently re-verified: suite sha256 digests recomputed, all match).
+
 ## The ledger (confirmed)
 
 - **Spine 001-013 — BUILT + landed.** Research (001-002), census (003), architecture/transition

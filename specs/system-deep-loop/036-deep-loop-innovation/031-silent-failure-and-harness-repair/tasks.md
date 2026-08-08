@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/031-silent-failure-and-harness-repair"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the phased task breakdown from the WS1 phase-tree proposal"
-    next_safe_action: "Execute T001 before any other task"
+    recent_action: "Landed 22/23 findings as 8fc33832c9+8b887bef5f+5611f21a15 (3 lanes)"
+    next_safe_action: "Re-land skill-benchmark-resume-adapter timeout fix without the hang"
     blockers: []
     key_files:
       - "tasks.md"
@@ -57,6 +57,39 @@ _memory:
 | M4 | T013-T019 | Lane C resolvable |
 | M5 | T020-T022 | Delta reported and handed back |
 <!-- /ANCHOR:milestones -->
+
+---
+
+<!-- ANCHOR:ai-exec -->
+## AI Execution Protocol
+
+### Pre-Task Checklist
+Before starting any task, verify:
+1. [ ] `spec.md` scope unchanged
+2. [ ] Current phase identified in `plan.md`
+3. [ ] Task dependencies satisfied
+4. [ ] Relevant P0/P1 `checklist.md` items identified
+5. [ ] No blocking issues in `decision-record.md`
+
+### Execution Rules
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Complete tasks in dependency order |
+| TASK-SCOPE | Stay within task boundary, no scope creep |
+| TASK-VERIFY | Verify each task against its acceptance criteria |
+| TASK-DOC | Update status and evidence immediately on completion |
+
+### Status Reporting Format
+```
+- **Task**: T### - [Description]
+- **Status**: [IN_PROGRESS | COMPLETED | BLOCKED]
+- **Evidence**: [test name + suite digest + candidate SHA]
+- **Next**: T### - [Next task]
+```
+
+### Blocked Task Protocol
+A task marked `[B]` records its blocker inline and is not started until the blocker clears.
+<!-- /ANCHOR:ai-exec -->
 
 ---
 

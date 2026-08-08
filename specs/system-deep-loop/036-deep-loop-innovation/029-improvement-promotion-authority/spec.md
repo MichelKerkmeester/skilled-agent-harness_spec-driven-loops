@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/029-improvement-promotion-authority"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-08-08T03:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 13 scoped findings before any edit"
+    recent_action: "Reconciliation found F-017-04 falsely marked Landed; corrected to 10/13"
+    next_safe_action: "Land F-017-04 (rollback candidate-hash bypass) + F-019-01/F-019-03"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,8 +24,9 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 77
     open_questions:
+      - "F-017-04: shared/rollback-candidate.cjs still accepts either preAcceptTargetHash or candidateHash; 0d1827eef5 never touched this file despite the prior Landed claim"
       - "What is the approval model for autonomous mode: advisory-only, or a candidate-and-target-bound operator receipt?"
       - "Which evaluator identity source replaces candidate frontmatter?"
     answered_questions:
@@ -66,7 +67,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress (10/13 findings landed as `0d1827eef5`; F-017-04 wrongly claimed Landed — not actually touched by that commit; F-019-01/F-019-03 deferred) |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

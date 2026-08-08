@@ -43,7 +43,6 @@
       "checklist.md",
       "decision-record.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
@@ -52,6 +51,7 @@
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
       ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
       ".opencode/commands/deep/assets/deep-model-benchmark-auto.yaml",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
       ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
@@ -96,7 +96,7 @@
       {
         "name": "rollback-candidate.cjs",
         "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-07T23:11:06.835Z",
+    "last_save_at": "2026-08-08T06:14:58.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:93e62d6bc9f21be50eec8ff3e96d4bce375b655a0c391ca553e465e9b2379c80",
+    "source_fingerprint": "sha256:b82398882e5e243674fb3b2f900890dfe54bb092f841abf98351a5b78b196966",
     "source_doc_hashes": {
-      "spec.md": "16aff23e16af2b5f36df9d5434ea11a2ef8368198e9171c6d44ff777d0e264f1",
+      "spec.md": "4a48cf8a648f1fe5693c6c7c098027f0ec64c93ff3dee61e0dd85257f524e9f8",
       "plan.md": "21accf727be4dd496b5a710531569a552e644dfb3b2459ff909cc8199b282af1",
-      "tasks.md": "de8836b7ecda8213b80384c277cccde300c2bd277a7015f9b8f80387096338eb",
+      "tasks.md": "f76aad79ae3d2d4bd68319ade3187047342ecfe7c03e2b8930a06e40c31c67a2",
       "checklist.md": "24e60ac054fd143c2d0ca666d9eef20e465b4be40bc85f79218fc382c8dcacf6",
       "decision-record.md": "c083a8f293b717f97c772deda9a66658c5fabb5a59b36e37ad80b04acdcf712e",
-      "implementation-summary.md": "d6d4fec771409a9973efdb3cee85b4ab9644fe2d190f2ff64d4d3b42c9147c57"
+      "implementation-summary.md": "f8e6baa7ec9bd0f5245b1489d013a988a1ee9ba822d9be37256abd05d947cbfa"
     },
     "last_active_child_id": null,
     "last_active_at": null
