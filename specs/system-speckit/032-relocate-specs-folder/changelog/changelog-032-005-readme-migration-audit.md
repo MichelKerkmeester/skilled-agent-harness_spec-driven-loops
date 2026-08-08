@@ -37,6 +37,10 @@ Three passes. First: a dual-executor `/deep:review` (deepseek-flash completed al
 - Phase 003's `plan.md` Definition of Done: the dispatched fix updated the prose but never checked the 3 DoD boxes as instructed.
 - Phase 004's `graph-metadata.json` stayed `in_progress` despite `spec.md` saying Complete. Root cause, confirmed via a live A/B: 12 checklist items were legitimately deferred N/A but left as `[ ]` instead of `[x]`, which is what the metadata backfill tool's status derivation actually gates on — not the spec.md prose. Flipped all 12 to match the sibling phase's own established convention; status flipped from `in_progress` to `complete`.
 
+### Fixed — follow-up (2026-08-08, on operator request)
+
+- F020's fix (round 1) was correct for what it scoped — the `.opencode/specs` → `specs` prefix swap — but the review had already flagged, and this phase's own docs disclosed, that the example commands in that closed packet's `prompts/README.md` still didn't resolve: a stale track name (`system-spec-kit` vs the real `system-speckit`) and a stale folder depth (`003-continuity-memory-runtime` vs the real `003-memory-and-causal-runtime/001-continuity-memory-runtime`), both leftovers from an unrelated document reorganization. Fixed all 12 references in that file; verified every one resolves against the real repo now.
+
 ### Verification
 
 - `check-no-spec-imports.cjs` exits 0 for real (not masked); both its fixtures still behave correctly; `tsc --noEmit` 0 errors; `index-scope.vitest.ts` 8/8; the harness's all 7 scenarios pass; `validate.sh --recursive --strict` 0/0 across all 6 folders in the parent packet.

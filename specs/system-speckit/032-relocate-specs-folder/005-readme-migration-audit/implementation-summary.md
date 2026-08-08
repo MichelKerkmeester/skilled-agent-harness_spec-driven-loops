@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-08T11:06:31Z"
+    last_updated_at: "2026-08-08T11:36:38Z"
     last_updated_by: "claude-code"
     recent_action: "All findings dispositioned, fixes applied, verified against fixtures and real targets"
     next_safe_action: "Run validate.sh --recursive --strict, then commit and push to skilled/v4.0.0.0"
@@ -51,9 +51,9 @@ _memory:
 
 A dual-executor `/deep:review` loop audited every non-worktree `README.md` in the repo (root included) for content left logically stale by the specs-root topology flip (`003-migration-execution`: `specs/` canonical, `.opencode/specs` a compat symlink). `deepseek-flash` (cli-opencode) completed all 10 iterations; `glm-high` (cli-devin) never spawned a process despite fully-resolved config and confirmed auth — root-caused to a real, confirmed silent-failure gap in `fanout-run.cjs`'s spawn-error path, out of scope for this packet to fix. The single-lineage run converged (CONDITIONAL verdict, iterations 5-9 returned zero new findings, adversarial replay in iteration 10 confirmed no severity changes) with 20 findings (0 P0, 5 P1, 15 P2).
 
-18 of 20 findings were fixed in the first pass; the remaining 2 (F012: `.txt` command-help files outside strict `README.md` scope; F020: a closed historical packet under `specs/**`) were initially deferred exactly as the review itself recommended, then fixed in a follow-up round after the operator explicitly asked for them. All 20 findings are now fixed (F020's prefix fix is correct; its example commands remain unrunnable for an unrelated, disclosed reason -- see Known Limitations).
+18 of 20 findings were fixed in the first pass; the remaining 2 (F012: `.txt` command-help files outside strict `README.md` scope; F020: a closed historical packet under `specs/**`) were initially deferred exactly as the review itself recommended, then fixed in a follow-up round after the operator explicitly asked for them. All 20 findings are now fixed. A later follow-up (2026-08-08) also closed the gap F020's own fix had left open: its example commands used a stale track name and folder depth from an unrelated document reorganization, so they didn't resolve even after the specs-root prefix was fixed — corrected to the real path, verified every reference in that file now resolves.
 
-### Findings fixed (20/20, 26 files; F020's prefix fix is correct; its example commands remain unrunnable for an unrelated, disclosed reason -- see Known Limitations)
+### Findings fixed (20/20, 26 files)
 
 | Finding(s) | File(s) | Fix |
 |---|---|---|
@@ -74,7 +74,7 @@ A dual-executor `/deep:review` loop audited every non-worktree `README.md` in th
 | F019 | (resolved as a side effect of F001) | `system-spec-kit/README.md:846` now explicitly documents the compat-symlink relationship |
 | — (a discovery beyond the review's own list) | `.devin/hooks/README.md` | Cross-reference link canonicalized; found during a follow-up repo-wide census re-run, same class as F010/F011 |
 | F012 | `commands/create/README.txt:160`, `commands/memory/README.txt:323` | Initially deferred as outside this packet's strict `README.md` scope; operator asked for it after review, both `.txt` files canonicalized |
-| F020 | `specs/system-speckit/026-.../003-continuity-refactor-gates/prompts/README.md` | Initially deferred as a closed historical packet; operator chose to canonicalize anyway — 12 `.opencode/specs/` → `specs/` occurrences fixed. Left untouched: the same paths also carry a stale track name (`system-spec-kit` vs the real `system-speckit`) and a stale folder depth (2 levels under `026-...` vs the real 3) predating this migration entirely — a document-reorganization drift, not a specs-root topology issue, out of this packet's scope |
+| F020 | `specs/system-speckit/026-.../003-continuity-refactor-gates/prompts/README.md` | Initially deferred as a closed historical packet; operator chose to canonicalize anyway — 12 `.opencode/specs/` → `specs/` occurrences fixed. Follow-up (2026-08-08): the same paths also carried a stale track name (`system-spec-kit` vs the real `system-speckit`) and a stale folder depth (2 levels under `026-...` vs the real 3), from an unrelated document reorganization — fixed on request, all 12 references verified to resolve now |
 
 ### Findings deferred: none remaining
 
@@ -131,7 +131,7 @@ After the single-lineage run converged, findings were applied file-by-file follo
 
 1. **glm-high never ran.** REQ-003 was amended to accept single-executor coverage with documented root cause rather than re-attempting the failing lineage; the underlying `fanout-run.cjs` silent-failure gap is unfixed (out of scope).
 2. **The 18 "research angle" tree-fence candidates were all false positives.** No genuine diagram/prose staleness beyond the 20 literal-match findings was found; this is reported as a negative result, not assumed as an absence-of-evidence.
-3. **F020's fixed prompts/README.md still points at a self-path that doesn't exist.** The `.opencode/specs` → `specs` canonicalization is correct, but the same paths also carry a stale track name (`system-spec-kit` vs the real `system-speckit`) and a stale folder depth (2 levels under `026-...` vs the real 3) from a later document reorganization, unrelated to this migration. The literal example commands in that file still won't resolve as written; fixing that is a separate, out-of-scope change.
+3. ~~F020's fixed prompts/README.md still points at a self-path that doesn't exist.~~ **Closed 2026-08-08.** The stale track name (`system-spec-kit` → `system-speckit`) and folder depth (`003-continuity-memory-runtime` → `003-memory-and-causal-runtime/001-continuity-memory-runtime`) — a leftover from an unrelated document reorganization, not this migration — are fixed. All 12 path references in that file verified to resolve against the real repo.
 <!-- /ANCHOR:limitations -->
 
 ---

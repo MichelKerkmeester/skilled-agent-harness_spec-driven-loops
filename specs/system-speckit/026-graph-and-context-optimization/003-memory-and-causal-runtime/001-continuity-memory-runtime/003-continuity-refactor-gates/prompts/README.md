@@ -48,29 +48,29 @@ Both prompts are launched via `/deep:start-research-loop` with `--spec-folder` p
 
 **Autonomous mode (recommended):**
 ```bash
-/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 **Confirm mode (pause at each iteration for approval):**
 ```bash
-/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
+/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — HOW to implement with UX and usefulness at the forefront. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 20 --convergence 0.05
 ```
 
 ### Impact prompt (5 iterations)
 
 **Autonomous mode (recommended):**
 ```bash
-/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
+/deep:start-research-loop:auto "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
 ```
 
 **Confirm mode (pause at each iteration for approval):**
 ```bash
-/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
+/deep:start-research-loop:confirm "Wiki-Style Spec Kit Updates — file-level impact analysis. Follow the research prompt at specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md" --spec-folder specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates --max-iterations 5 --convergence 0.05
 ```
 
 ### Lifecycle controls
 
-- **Pause the loop mid-run**: `touch specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/research/.deep-research-pause`. The loop will halt between iterations with a resume message. Delete the sentinel to resume.
+- **Pause the loop mid-run**: `touch specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research/.deep-research-pause`. The loop will halt between iterations with a resume message. Delete the sentinel to resume.
 - **Resume after crash**: re-run the same `/deep:start-research-loop:auto` command. The driver auto-detects the existing config/state/strategy and continues from `last_iteration + 1`.
 - **Restart with clean state**: `/deep:start-research-loop:auto ... --lineage=restart` archives the prior packet under `research/archive/{oldSessionId}/` and starts fresh.
 - **Fork from current state**: `--lineage=fork` branches from the current state as a new session.
@@ -82,18 +82,18 @@ Before launching either prompt, verify the prompt file is well-formed:
 
 ```bash
 # Both prompts should start with `# Research Prompt — ...` (no YAML `---`)
-head -n 1 specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-*.md
+head -n 1 specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-*.md
 
 # Count lines
-wc -l specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-*.md
+wc -l specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-*.md
 
 # Confirm all 11 numbered sections exist in each prompt
-grep -cE '^## [0-9]+\. ' specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md
-grep -cE '^## [0-9]+\. ' specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md
+grep -cE '^## [0-9]+\. ' specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md
+grep -cE '^## [0-9]+\. ' specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md
 
 # Verify iteration counts
-grep -cE '^\*\*Iteration [0-9]+' specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md
-grep -cE '^### Iteration [0-9]+' specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md
+grep -cE '^\*\*Iteration [0-9]+' specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-implementation.md
+grep -cE '^### Iteration [0-9]+' specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/prompts/research-prompt-impact.md
 ```
 
 Expected results:
@@ -106,7 +106,7 @@ Expected results:
 Once the loop runs, outputs land inside the phase 018 spec folder:
 
 ```
-specs/system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates/
+specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/
 ├── prompts/                             # this folder (pre-existing inputs)
 │   ├── README.md
 │   ├── research-prompt-implementation.md
