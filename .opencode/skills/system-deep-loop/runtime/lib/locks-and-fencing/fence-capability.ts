@@ -2,14 +2,15 @@
 // MODULE: Fence Capability
 // ───────────────────────────────────────────────────────────────────
 //
-// An unforgeable, process-local proof that the coordinator revalidated a
-// lease immediately before a guarded primitive is allowed to run. The class
-// itself carries a private brand so no plain object literal or type
-// assertion can satisfy the type structurally; the capability's real state
-// lives only in a module-private WeakMap that a constructed-but-unminted
-// instance is never a key of, so possessing the class does not confer
-// authority. Only `mintFenceCapability` (called from inside the
-// coordinator's own guarded critical section) ever inserts a real entry.
+// A process-local marker naming which resource and fence token a caller
+// claims to hold. The class carries a private brand so no plain object
+// literal or type assertion can satisfy the type structurally, and its
+// claimed state lives only in a module-private WeakMap a constructed-but-
+// unminted instance is never a key of. Neither property makes the claim
+// itself trustworthy: a validator must always re-check the claimed
+// resource and fence token against the coordinator's own durable state
+// before treating a capability as current, never trust the capability's
+// self-reported fields alone.
 
 import type { CanonicalProtectedResource } from './locks-and-fencing-types.js';
 
@@ -17,7 +18,7 @@ import type { CanonicalProtectedResource } from './locks-and-fencing-types.js';
 // 1. OPAQUE CAPABILITY
 // ───────────────────────────────────────────────────────────────────
 
-/** Opaque per-lease authority token; a bare instance carries no minted state. */
+/** Opaque per-lease claim; a bare instance carries no minted state. */
 export class FenceCapability {
   readonly #brand = true;
 }
@@ -25,20 +26,18 @@ export class FenceCapability {
 export interface FenceCapabilityState {
   readonly resource: CanonicalProtectedResource;
   readonly fenceToken: number;
-  /** Re-run the coordinator's current-lease assertion; throws when displaced. */
-  readonly reassert: () => void;
 }
 
 const capabilityState = new WeakMap<FenceCapability, FenceCapabilityState>();
 
-/** Mint one capability bound to state a validator can re-run on demand. */
+/** Mint one capability naming the resource and fence token it claims. */
 export function mintFenceCapability(state: FenceCapabilityState): FenceCapability {
   const capability = new FenceCapability();
   capabilityState.set(capability, state);
   return capability;
 }
 
-/** Resolve a capability's real state, or null when it was never minted here. */
+/** Resolve a capability's claimed state, or null when it was never minted here. */
 export function resolveFenceCapability(
   capability: FenceCapability,
 ): FenceCapabilityState | null {

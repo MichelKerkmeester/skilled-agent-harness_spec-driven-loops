@@ -39,6 +39,8 @@ import {
   LocksAndFencingErrorCodes,
   ProtectedResourceKinds,
 } from '../../lib/locks-and-fencing/index.js';
+import { mintFenceCapability } from '../../lib/locks-and-fencing/fence-capability.js';
+import { invokeAppendAuthorized } from '../../lib/authorized-ledger/append-only-ledger.js';
 import {
   FIXTURE_AUDIT_LEDGER_ID,
   FIXTURE_AUTHORITY,
@@ -324,6 +326,46 @@ describe('coupled authorization and append boundary', () => {
     );
     expect(receipt.sequence).toBe(1);
     await coordinator.release(currentLease);
+  });
+
+  it('rejects a capability minted outside any coordinator, holding no lease at all', async () => {
+    const rootDirectory = temporaryRoot('forged-capability');
+    const registry = createFixtureEventRegistry();
+    const policies = createFixturePolicyRegistry();
+    const authorityProvider = (): typeof FIXTURE_AUTHORITY => FIXTURE_AUTHORITY;
+    const ledger = new AppendOnlyLedger({
+      rootDirectory,
+      ledgerId: FIXTURE_LEDGER_ID,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider,
+    }, registry);
+    const gateway = new TransitionAuthorizationGateway({
+      rootDirectory,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider,
+    }, ledger, policies);
+    const event = createFixtureEvent(registry, 1);
+    const request = await createFixtureRequest(ledger, event, policies, 'forged-capability-request');
+    const authorization = await gateway.authorize(request);
+    expect(authorization.verdict).toBe('allow');
+    if (authorization.verdict !== 'allow') throw new Error('Expected allow');
+
+    // No FencedLeaseCoordinator.acquire ever ran for this resource. The
+    // capability is minted directly, claiming a resource and fence token
+    // with nothing behind the claim.
+    const forged = mintFenceCapability({
+      resource: {
+        kind: ProtectedResourceKinds.LEDGER,
+        atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+        components: { ledgerId: FIXTURE_LEDGER_ID },
+      } as never,
+      fenceToken: 1,
+    });
+
+    await expect(
+      invokeAppendAuthorized(ledger, event, authorization.proof, forged),
+    ).rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.STALE_FENCE });
+    expect(await ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
   });
 
   it('uses one exact allow once, returns the original receipt on retry, and rejects ID conflict', async () => {

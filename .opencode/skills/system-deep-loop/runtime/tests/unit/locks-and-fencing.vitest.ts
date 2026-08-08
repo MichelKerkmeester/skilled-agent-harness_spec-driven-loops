@@ -300,7 +300,7 @@ function acquireRequest(
   };
 }
 
-function createLedgerHarness(rootDirectory: string): LedgerHarness {
+function createLedgerHarness(rootDirectory: string, now?: () => Date): LedgerHarness {
   const registry = createFixtureEventRegistry();
   const policies = createFixturePolicyRegistry();
   const authorityProvider = () => FIXTURE_AUTHORITY;
@@ -309,11 +309,13 @@ function createLedgerHarness(rootDirectory: string): LedgerHarness {
     ledgerId: FIXTURE_LEDGER_ID,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
+    now,
   }, registry);
   const gateway = new TransitionAuthorizationGateway({
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
+    now,
   }, ledger, policies);
   return { ledger, gateway, policies };
 }
@@ -874,7 +876,7 @@ describe('fenced authorized ledger append', () => {
     const root = temporaryRoot('ledger');
     const clock = createClock();
     const coordinator = createCoordinator(root, clock);
-    const harness = createLedgerHarness(root);
+    const harness = createLedgerHarness(root, clock.now);
     const lease = await coordinator.acquire(acquireRequest(
       ledgerResource(FIXTURE_LEDGER_ID),
       'ledger-writer',

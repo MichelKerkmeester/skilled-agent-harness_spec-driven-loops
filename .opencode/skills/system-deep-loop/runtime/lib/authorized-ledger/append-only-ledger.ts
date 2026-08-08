@@ -20,6 +20,7 @@ import {
   readAuthorizationAudit,
 } from './transition-authorization-gateway.js';
 import { resolveFenceCapability } from '../locks-and-fencing/fence-capability.js';
+import { FencedLeaseCoordinator } from '../locks-and-fencing/fenced-lease-coordinator.js';
 import { ProtectedResourceKinds } from '../locks-and-fencing/locks-and-fencing-types.js';
 
 import type {
@@ -484,7 +485,16 @@ export class AppendOnlyLedger {
     });
   }
 
-  /** Reject a capability that is not currently, exactly held for this ledger. */
+  /**
+   * Reject a capability that is not currently, exactly held for this
+   * ledger. The claimed resource and fence token are never trusted on
+   * their own; they are only a lookup key into the coordinator's own
+   * durable state, re-read fresh right here, independent of anything the
+   * capability itself asserts about its own validity. The verification
+   * clock is this ledger's own, so a caller that injects a fixed or
+   * simulated clock into both its coordinator and this ledger keeps lease
+   * expiry judged consistently between the two.
+   */
   #validateCapability(capability: FenceCapability): FenceCapabilityState {
     const fence = resolveFenceCapability(capability);
     if (
@@ -499,16 +509,20 @@ export class AppendOnlyLedger {
         { ledgerId: this.ledgerId },
       );
     }
-    try {
-      fence.reassert();
-    } catch (error: unknown) {
+    const coordinator = new FencedLeaseCoordinator({
+      rootDirectory: this.rootDirectory,
+      now: this.#now,
+    });
+    const current = coordinator.peekCurrentLease(fence.resource);
+    if (!current || current.fenceToken !== fence.fenceToken) {
       throw new AuthorizedLedgerError(
         AuthorizedLedgerErrorCodes.STALE_FENCE,
         'authorization',
         'Domain append fence capability is no longer the current lease',
         {
           ledgerId: this.ledgerId,
-          cause: error instanceof Error ? error.message : String(error),
+          claimedFenceToken: fence.fenceToken,
+          currentFenceToken: current?.fenceToken ?? null,
         },
       );
     }
@@ -729,10 +743,12 @@ export class AppendOnlyLedger {
 
 /**
  * Sole seam into the hard-private append primitive. Not part of this
- * package's public entry (`index.ts`); only the fenced writer and the
- * dedicated white-box test helper import it directly. Reaching this
- * function proves nothing on its own — the supplied capability must still
- * resolve to state minted by `FencedLeaseCoordinator` for this exact ledger.
+ * package's public entry (`index.ts`); only the fenced writer, a
+ * multi-resource caller selecting its own capability out of a guarded
+ * batch, and the dedicated white-box test helper import it directly.
+ * Reaching this function proves nothing on its own — the supplied
+ * capability must still resolve to a claim this ledger independently
+ * confirms is the coordinator's current lease for this exact resource.
  */
 export function invokeAppendAuthorized(
   ledger: AppendOnlyLedger,

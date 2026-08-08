@@ -477,9 +477,6 @@ export class FencedLeaseCoordinator {
             capabilities.push(mintFenceCapability({
               resource: lease.resource,
               fenceToken: lease.fenceToken,
-              reassert: () => {
-                this.#assertCurrentLease(this.#loadState(lease.resource), lease, 'guard');
-              },
             }));
           }
           return commit(Object.freeze(capabilities));
@@ -508,6 +505,19 @@ export class FencedLeaseCoordinator {
         isExpired: state.activeLease !== null && this.#isExpired(state.activeLease),
       });
     });
+  }
+
+  /**
+   * Read the current unexpired lease without acquiring the resource mutex,
+   * so it is safe to call from inside an already-guarded mutation. A
+   * caller-supplied claim about lease ownership is never sufficient on its
+   * own; this is the durable ground truth a validator checks it against.
+   */
+  public peekCurrentLease(resourceInput: ProtectedResourceIdentity): FencedLease | null {
+    const resource = canonicalizeProtectedResource(resourceInput);
+    const state = this.#loadState(resource);
+    if (!state.activeLease || this.#isExpired(state.activeLease)) return null;
+    return state.activeLease;
   }
 
   /** Expose deterministic paths for operator inspection and corruption quarantine. */
