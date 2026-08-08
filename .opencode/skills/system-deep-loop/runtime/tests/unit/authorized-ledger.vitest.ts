@@ -538,25 +538,49 @@ describe('coupled authorization and append boundary', () => {
 });
 
 describe('identity resolver binding', () => {
-  it('stays fail-open with no identityResolver configured, matching shadow-parity harnesses by design', async () => {
+  // Fail-closed control: with no identityResolver configured (the default that every
+  // production caller and shadow-parity harness currently uses), the gateway still
+  // allows the request — legitimate no-resolver flows must keep working — but it must
+  // never persist the caller's forged claim as a verified fact. A downstream reader
+  // that trusts `actor_id`/`capability_id`/`evidence_digest` without also checking the
+  // matching `..._verified` flag is exactly the mistake this control catches.
+  it('records a forged identity as allowed but NOT verified when no resolver can confirm it', async () => {
     const harness = createHarness();
     const event = createFixtureEvent(harness.registry, 1);
+    // capabilityId stays 'write' — the one value the fixture policy itself demands —
+    // so the request is allowed on policy grounds alone; actorId and evidenceDigest
+    // are arbitrary attacker claims nothing here is positioned to verify.
     const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'no-resolver', {
       actorId: 'anyone-claims-this',
+      evidenceDigest: sha256Bytes(canonicalBytes({ fixture: 'forged-with-no-resolver' })),
     });
 
-    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+    const result = await harness.gateway.authorize(request);
+    expect(result.verdict).toBe('allow');
+    if (result.verdict !== 'allow') throw new Error('expected allow');
+    // The claim is still recorded — legitimate flows still work — but honestly.
+    expect(result.decision.actor_id).toBe('anyone-claims-this');
+    expect(result.decision.capability_id).toBe('write');
+    // Never silently trusted: no resolver means nothing was independently confirmed.
+    expect(result.decision.actor_id_verified).toBe(false);
+    expect(result.decision.capability_id_verified).toBe(false);
+    expect(result.decision.evidence_digest_verified).toBe(false);
   });
 
-  it('stays fail-open when the resolver has no opinion for a decision', async () => {
+  it('records identity as unverified when the resolver has no opinion for a decision', async () => {
     const harness = createHarness(undefined, { identityResolver: () => null });
     const event = createFixtureEvent(harness.registry, 1);
     const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'resolver-abstains');
 
-    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+    const result = await harness.gateway.authorize(request);
+    expect(result.verdict).toBe('allow');
+    if (result.verdict !== 'allow') throw new Error('expected allow');
+    expect(result.decision.actor_id_verified).toBe(false);
+    expect(result.decision.capability_id_verified).toBe(false);
+    expect(result.decision.evidence_digest_verified).toBe(false);
   });
 
-  it('allows a request whose identity matches every field the resolver pins', async () => {
+  it('allows and records verified=true only for fields the resolver positively pins and matches', async () => {
     const harness = createHarness(undefined, {
       identityResolver: () => ({
         actorId: 'fixture-actor',
@@ -566,7 +590,13 @@ describe('identity resolver binding', () => {
     const event = createFixtureEvent(harness.registry, 1);
     const request = await createFixtureRequest(harness.ledger, event, harness.policies, 'resolver-matches');
 
-    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+    const result = await harness.gateway.authorize(request);
+    expect(result.verdict).toBe('allow');
+    if (result.verdict !== 'allow') throw new Error('expected allow');
+    expect(result.decision.actor_id_verified).toBe(true);
+    expect(result.decision.capability_id_verified).toBe(true);
+    // evidenceDigest was never pinned by this resolver, so it stays unverified.
+    expect(result.decision.evidence_digest_verified).toBe(false);
   });
 
   it('denies a forged actorId once the resolver pins the expected one', async () => {
@@ -581,7 +611,10 @@ describe('identity resolver binding', () => {
     await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
       verdict: 'deny',
       reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-      decision: expect.objectContaining({ matched_rule_ids: ['identity:actorId'] }),
+      decision: expect.objectContaining({
+        matched_rule_ids: ['identity:actorId'],
+        actor_id_verified: false,
+      }),
     });
   });
 
@@ -597,7 +630,10 @@ describe('identity resolver binding', () => {
     await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
       verdict: 'deny',
       reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-      decision: expect.objectContaining({ matched_rule_ids: ['identity:capabilityId'] }),
+      decision: expect.objectContaining({
+        matched_rule_ids: ['identity:capabilityId'],
+        capability_id_verified: false,
+      }),
     });
   });
 
@@ -613,11 +649,14 @@ describe('identity resolver binding', () => {
     await expect(harness.gateway.authorize(request)).resolves.toMatchObject({
       verdict: 'deny',
       reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
-      decision: expect.objectContaining({ matched_rule_ids: ['identity:evidenceDigest'] }),
+      decision: expect.objectContaining({
+        matched_rule_ids: ['identity:evidenceDigest'],
+        evidence_digest_verified: false,
+      }),
     });
   });
 
-  it('does not check fields the resolver leaves undefined', async () => {
+  it('does not check, and does not mark verified, a field the resolver leaves undefined', async () => {
     const harness = createHarness(undefined, {
       // Only actorId is pinned; capabilityId is left to the policy layer.
       identityResolver: () => ({ actorId: 'fixture-actor' }),
@@ -627,7 +666,13 @@ describe('identity resolver binding', () => {
       capabilityId: 'write',
     });
 
-    await expect(harness.gateway.authorize(request)).resolves.toMatchObject({ verdict: 'allow' });
+    const result = await harness.gateway.authorize(request);
+    expect(result.verdict).toBe('allow');
+    if (result.verdict !== 'allow') throw new Error('expected allow');
+    expect(result.decision.actor_id_verified).toBe(true);
+    // capabilityId was never pinned by this resolver, so it stays unverified
+    // even though it happens to match the fixture default the policy allowed.
+    expect(result.decision.capability_id_verified).toBe(false);
   });
 });
 

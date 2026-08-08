@@ -36,7 +36,9 @@ const DECISION_FIELDS = [
   'requested_event_digest',
   'event_registry_digest',
   'actor_id',
+  'actor_id_verified',
   'capability_id',
+  'capability_id_verified',
   'authority_state',
   'authority_epoch',
   'policy_id',
@@ -46,6 +48,7 @@ const DECISION_FIELDS = [
   'matched_rule_ids',
   'request_digest',
   'evidence_digest',
+  'evidence_digest_verified',
   'correlation_id',
   'causation_id',
   'idempotency_key_digest',
@@ -80,6 +83,10 @@ function isPositiveInteger(value: JsonValue | undefined): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
 }
 
+function isBoolean(value: JsonValue | undefined): value is boolean {
+  return typeof value === 'boolean';
+}
+
 function validateDecisionPayload(payload: Readonly<JsonObject>): boolean {
   const stringFields = [
     'decision_id',
@@ -109,6 +116,13 @@ function validateDecisionPayload(payload: Readonly<JsonObject>): boolean {
     'decision_digest',
   ];
   if (stringFields.some((field) => !isNonEmptyString(payload[field]))) return false;
+  if (
+    !isBoolean(payload.actor_id_verified)
+    || !isBoolean(payload.capability_id_verified)
+    || !isBoolean(payload.evidence_digest_verified)
+  ) {
+    return false;
+  }
   if (!VERDICTS.has(payload.decision as AuthorizationVerdict)) return false;
   if (!AUTHORITY_STATES.has(payload.authority_state as AuthorityState)) return false;
   if (!isNonNegativeInteger(payload.prior_head_sequence)) return false;

@@ -250,7 +250,11 @@ export interface AuthorizationDecisionRecord extends JsonObject {
   readonly requested_event_digest: string;
   readonly event_registry_digest: string;
   readonly actor_id: string;
+  /** True only when a configured identityResolver positively confirmed actor_id against the request. */
+  readonly actor_id_verified: boolean;
   readonly capability_id: string;
+  /** True only when a configured identityResolver positively confirmed capability_id against the request. */
+  readonly capability_id_verified: boolean;
   readonly authority_state: AuthorityState;
   readonly authority_epoch: number;
   readonly policy_id: string;
@@ -260,6 +264,8 @@ export interface AuthorizationDecisionRecord extends JsonObject {
   readonly matched_rule_ids: string[];
   readonly request_digest: string;
   readonly evidence_digest: string;
+  /** True only when a configured identityResolver positively confirmed evidence_digest against the request. */
+  readonly evidence_digest_verified: boolean;
   readonly correlation_id: string;
   readonly causation_id: string | null;
   readonly idempotency_key_digest: string;
@@ -330,8 +336,12 @@ export interface AuthorizationGatewayOptions {
   /**
    * Optional identity binding. Deployments that need to pin a request's
    * actorId/capabilityId/evidenceDigest to a known identity configure this;
-   * a mismatch on any field the resolver returns denies the request. Callers
-   * that never configure a resolver keep today's posture unchanged.
+   * a mismatch on any field the resolver returns denies the request. A field
+   * the resolver never pins — including every field when no resolver is
+   * configured at all — is recorded honestly: the decision persists the
+   * caller-supplied value alongside a `..._verified: false` marker rather
+   * than implying it was checked. Only a field the resolver positively
+   * confirms is persisted `..._verified: true`.
    */
   readonly identityResolver?: (
     context: Readonly<{

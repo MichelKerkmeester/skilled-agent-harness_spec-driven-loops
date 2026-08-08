@@ -81,6 +81,18 @@ interface DecisionOutcome {
   readonly matchedRuleIds: readonly string[];
 }
 
+/** Per-field record of whether a configured resolver positively confirmed the caller's claim. */
+interface IdentityVerification {
+  readonly actorId: boolean;
+  readonly capabilityId: boolean;
+  readonly evidenceDigest: boolean;
+}
+
+/** Mutable carrier so `#evaluate` can report verification results without changing its return shape. */
+interface IdentityVerificationHolder {
+  value: IdentityVerification;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
@@ -92,6 +104,11 @@ const DEFAULT_DECISION_FRESHNESS_MS = 60_000;
 const DEFAULT_EVALUATOR_TIMEOUT_MS = 1_000;
 const PLACEHOLDER_DIGEST = sha256Bytes(canonicalBytes({ unavailable: true }));
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
+const UNVERIFIED_IDENTITY: IdentityVerification = Object.freeze({
+  actorId: false,
+  capabilityId: false,
+  evidenceDigest: false,
+});
 
 // ───────────────────────────────────────────────────────────────────
 // 3. DECISION HELPERS
@@ -572,6 +589,7 @@ export class TransitionAuthorizationGateway {
     }
 
     let outcome: DecisionOutcome;
+    const identityVerification: IdentityVerificationHolder = { value: UNVERIFIED_IDENTITY };
     if (existing) {
       outcome = {
         verdict: AuthorizationVerdicts.DENY,
@@ -579,9 +597,9 @@ export class TransitionAuthorizationGateway {
         matchedRuleIds: [],
       };
     } else {
-      outcome = await this.#evaluate(prepared);
+      outcome = await this.#evaluate(prepared, identityVerification);
     }
-    const decision = this.#buildDecision(prepared, outcome);
+    const decision = this.#buildDecision(prepared, outcome, identityVerification.value);
     try {
       const auditReceipt = await this.#audit.append(decision);
       if (decision.decision === AuthorizationVerdicts.DENY) {
@@ -674,7 +692,10 @@ export class TransitionAuthorizationGateway {
     });
   }
 
-  async #evaluate(context: DecisionContext): Promise<DecisionOutcome> {
+  async #evaluate(
+    context: DecisionContext,
+    identityVerification: IdentityVerificationHolder,
+  ): Promise<DecisionOutcome> {
     const request = context.request;
     if (!request) {
       return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: [] };
@@ -724,8 +745,9 @@ export class TransitionAuthorizationGateway {
       };
     }
     if (this.#options.identityResolver) {
-      const identityDenial = await this.#checkIdentity(request, context);
-      if (identityDenial) return identityDenial;
+      const { denial, verification } = await this.#checkIdentity(request, context);
+      identityVerification.value = verification;
+      if (denial) return denial;
     }
 
     let policy;
@@ -755,35 +777,57 @@ export class TransitionAuthorizationGateway {
   }
 
   /**
-   * Resolve the deployment's expected identity and deny on any field it
-   * pins that the request does not match. Fields the resolver leaves
-   * undefined, or a null resolution, carry no opinion and are not checked.
+   * Resolve the deployment's expected identity and deny on any field it pins
+   * that the request does not match. A field the resolver leaves undefined,
+   * or a null resolution, is not checked for a mismatch — but it is also
+   * never reported as verified: only a field the resolver positively pins
+   * and the request matches earns a `true` in the returned verification map.
    */
   async #checkIdentity(
     request: TransitionAuthorizationRequest,
     context: DecisionContext,
-  ): Promise<DecisionOutcome | null> {
+  ): Promise<Readonly<{ denial: DecisionOutcome | null; verification: IdentityVerification }>> {
     const resolver = this.#options.identityResolver;
-    if (!resolver) return null;
+    if (!resolver) return { denial: null, verification: UNVERIFIED_IDENTITY };
     const expected = await resolver({
       mode: request.mode,
       authority: context.authority,
       evaluationInput: context.evaluationInput,
     });
-    if (!expected) return null;
+    if (!expected) return { denial: null, verification: UNVERIFIED_IDENTITY };
     if (expected.actorId !== undefined && expected.actorId !== request.actorId) {
-      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:actorId'] };
+      return {
+        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:actorId'] },
+        verification: UNVERIFIED_IDENTITY,
+      };
     }
     if (expected.capabilityId !== undefined && expected.capabilityId !== request.capabilityId) {
-      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:capabilityId'] };
+      return {
+        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:capabilityId'] },
+        verification: UNVERIFIED_IDENTITY,
+      };
     }
     if (expected.evidenceDigest !== undefined && expected.evidenceDigest !== request.evidenceDigest) {
-      return { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:evidenceDigest'] };
+      return {
+        denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:evidenceDigest'] },
+        verification: UNVERIFIED_IDENTITY,
+      };
     }
-    return null;
+    return {
+      denial: null,
+      verification: Object.freeze({
+        actorId: expected.actorId !== undefined,
+        capabilityId: expected.capabilityId !== undefined,
+        evidenceDigest: expected.evidenceDigest !== undefined,
+      }),
+    };
   }
 
-  #buildDecision(context: DecisionContext, outcome: DecisionOutcome): AuthorizationDecisionRecord {
+  #buildDecision(
+    context: DecisionContext,
+    outcome: DecisionOutcome,
+    identityVerification: IdentityVerification,
+  ): AuthorizationDecisionRecord {
     const decidedAt = this.#options.now();
     const expiresAt = new Date(decidedAt.getTime() + this.#options.decisionFreshnessMs);
     const input = context.evaluationInput;
@@ -805,7 +849,9 @@ export class TransitionAuthorizationGateway {
       requested_event_digest: input.requestedEventDigest,
       event_registry_digest: this.#ledger.registryDigest,
       actor_id: input.actorId,
+      actor_id_verified: identityVerification.actorId,
       capability_id: input.capabilityId,
+      capability_id_verified: identityVerification.capabilityId,
       authority_state: input.authorityState,
       authority_epoch: input.authorityEpoch,
       policy_id: context.policyId,
@@ -815,6 +861,7 @@ export class TransitionAuthorizationGateway {
       matched_rule_ids: [...outcome.matchedRuleIds],
       request_digest: context.requestDigest,
       evidence_digest: input.evidenceDigest,
+      evidence_digest_verified: identityVerification.evidenceDigest,
       correlation_id: input.correlationId,
       causation_id: input.causationId,
       idempotency_key_digest: input.idempotencyKeyDigest,
