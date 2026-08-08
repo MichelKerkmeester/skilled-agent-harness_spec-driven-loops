@@ -151,7 +151,7 @@ export const SKILL_BENCHMARK_EVENT_ROUTING = Object.freeze({
     'iterationConvergence', 'artifactIndex', 'modeStatus',
   ]),
   'skill_benchmark.resource_exposed': Object.freeze([
-    'artifactIndex', 'modeStatus',
+    'iterationConvergence', 'artifactIndex', 'modeStatus',
   ]),
   'skill_benchmark.milestone_observed': Object.freeze([
     'iterationConvergence', 'artifactIndex', 'modeStatus',
@@ -1046,6 +1046,12 @@ function foldScenarios(
       invocationEventId: null,
       trajectoryEventId: null,
       outcomeEventId: null,
+      availabilityEvidenceDigests: [],
+      invocationEvidenceDigests: [],
+      exposureEvidenceDigests: [],
+      outcomeDigest: null,
+      finalStateDigest: null,
+      goldEvidenceDigests: [],
       rawScoreEventIds: [],
       goldIntegrityEventIds: [],
       compatibilityEventIds: [],
@@ -1085,7 +1091,24 @@ function foldScenarios(
       };
       break;
     }
-    case 'skill_benchmark.scenario_finished':
+    case 'skill_benchmark.scenario_finished': {
+      if (scenario.state !== 'running') {
+        throw new SkillBenchmarkReducerError(
+          'impossible-status-transition',
+          'Only a running scenario can reach a terminal state',
+          'iterationConvergence.scenarios.state',
+        );
+      }
+      const payload = payloadFor(event, event.payload.stem);
+      replacement = {
+        ...scenario,
+        state: 'finished',
+        terminalEventId: event.event_id,
+        outcomeDigest: payload.data.outcomeDigest,
+        finalStateDigest: payload.data.finalStateDigest,
+      };
+      break;
+    }
     case 'skill_benchmark.scenario_aborted': {
       if (scenario.state !== 'running') {
         throw new SkillBenchmarkReducerError(
@@ -1096,23 +1119,26 @@ function foldScenarios(
       }
       replacement = {
         ...scenario,
-        state: event.payload.stem === 'skill_benchmark.scenario_finished'
-          ? 'finished'
-          : 'aborted',
+        state: 'aborted',
         terminalEventId: event.event_id,
       };
       break;
     }
-    case 'skill_benchmark.skill_discovered':
+    case 'skill_benchmark.skill_discovered': {
+      const payload = payloadFor(event, event.payload.stem);
       replacement = {
         ...scenario,
         discoveryEventId: event.event_id,
-        collectionStage: payloadFor(event, event.payload.stem).data.availabilityStatus
-          === 'available'
+        availabilityEvidenceDigests: sortStrings([
+          ...scenario.availabilityEvidenceDigests,
+          payload.data.discoveryEvidenceDigest,
+        ]),
+        collectionStage: payload.data.availabilityStatus === 'available'
           ? 'available'
           : 'blocked',
       };
       break;
+    }
     case 'skill_benchmark.skill_loaded':
       replacement = {
         ...scenario,
@@ -1123,16 +1149,21 @@ function foldScenarios(
           : 'blocked',
       };
       break;
-    case 'skill_benchmark.skill_invoked':
+    case 'skill_benchmark.skill_invoked': {
+      const payload = payloadFor(event, event.payload.stem);
       replacement = {
         ...scenario,
         invocationEventId: event.event_id,
-        collectionStage: payloadFor(event, event.payload.stem).data.invocationStatus
-          === 'invoked'
+        invocationEvidenceDigests: sortStrings([
+          ...scenario.invocationEvidenceDigests,
+          payload.data.activationDigest,
+        ]),
+        collectionStage: payload.data.invocationStatus === 'invoked'
           ? 'invoked'
           : 'blocked',
       };
       break;
+    }
     case 'skill_benchmark.trajectory_recorded':
       replacement = {
         ...scenario,
@@ -1154,15 +1185,22 @@ function foldScenarios(
         collectionStage: 'raw-score-recorded',
       };
       break;
-    case 'skill_benchmark.gold_integrity_recorded':
+    case 'skill_benchmark.gold_integrity_recorded': {
+      const payload = payloadFor(event, event.payload.stem);
       replacement = {
         ...scenario,
         goldIntegrityEventIds: sortStrings([
           ...scenario.goldIntegrityEventIds,
           event.event_id,
         ]),
+        goldEvidenceDigests: sortStrings([
+          ...scenario.goldEvidenceDigests,
+          payload.data.goldDigest,
+          payload.data.provenanceDigest,
+        ]),
       };
       break;
+    }
     case 'skill_benchmark.compatibility_observed':
       replacement = {
         ...scenario,
@@ -1172,7 +1210,18 @@ function foldScenarios(
         ]),
       };
       break;
-    case 'skill_benchmark.resource_exposed':
+    case 'skill_benchmark.resource_exposed': {
+      const payload = payloadFor(event, event.payload.stem);
+      replacement = {
+        ...scenario,
+        exposureEvidenceDigests: sortStrings([
+          ...scenario.exposureEvidenceDigests,
+          payload.data.resourceDigest,
+          payload.data.canaryDigest,
+        ]),
+      };
+      break;
+    }
     case 'skill_benchmark.milestone_observed':
     case 'skill_benchmark.negative_transfer_observed':
     case 'skill_benchmark.security_probe_recorded':
@@ -1429,6 +1478,7 @@ function rawMeasurementsFromEvent(
     tokenCount: payload.data.tokenCount,
     latencyMs: payload.data.latencyMs,
     costMicrounits: payload.data.costMicrounits,
+    workloadDigest: payload.data.workloadDigest,
     goldIntegrityEventId: payload.data.goldIntegrityEventId,
     goldPolicy: payload.data.goldPolicy,
     numeratorEligible: payload.data.numeratorEligible,

@@ -160,6 +160,12 @@ export interface SkillBenchmarkScenarioCell {
   readonly invocationEventId: string | null;
   readonly trajectoryEventId: string | null;
   readonly outcomeEventId: string | null;
+  readonly availabilityEvidenceDigests: string[];
+  readonly invocationEvidenceDigests: string[];
+  readonly exposureEvidenceDigests: string[];
+  readonly outcomeDigest: string | null;
+  readonly finalStateDigest: string | null;
+  readonly goldEvidenceDigests: string[];
   readonly rawScoreEventIds: string[];
   readonly goldIntegrityEventIds: string[];
   readonly compatibilityEventIds: string[];
@@ -274,6 +280,7 @@ export interface SkillBenchmarkRawMeasurement {
   readonly tokenCount: number;
   readonly latencyMs: number;
   readonly costMicrounits: number;
+  readonly workloadDigest: string;
   readonly goldIntegrityEventId: string;
   readonly goldPolicy: 'negative' | 'pending' | 'scored' | 'structural-only';
   readonly numeratorEligible: boolean;
