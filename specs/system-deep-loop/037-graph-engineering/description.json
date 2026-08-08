@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/037-graph-engineering",
+  "description": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
+  "keywords": [
+    "system-deep-loop",
+    "workflows",
+    "iteration-based",
+    "loops",
+    "linear",
+    "dispatch",
+    "externalized",
+    "jsonl",
+    "state",
+    "convergence",
+    "detection"
+  ],
+  "lastUpdated": "2026-08-08T14:32:54.230Z",
+  "specId": "037",
+  "folderSlug": "graph-engineering",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-08-26_15-32__20-iteration-deep-research-completed-on-graph.md"
+  ]
+}
