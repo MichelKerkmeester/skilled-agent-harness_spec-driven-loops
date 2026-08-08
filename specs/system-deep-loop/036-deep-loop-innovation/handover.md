@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "022 discharged 6/6 (origin 3ae10c0111); 024 fencing is the only build left"
-    next_safe_action: "Reconcile 024 P0 set (spec F-014 vs review F001), then build fencing"
+    recent_action: "029 closed 13/13 (f6cdf604a2+ab6aae0a71); 024 build-spec.md written; needs fresh worktree"
+    next_safe_action: "Execute 024/build-spec.md in a FRESH worktree at origin tip (largest blast, fab-prone)"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -55,6 +55,23 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > is DONE. Everything here is grounded against origin `skilled/v4.0.0.0` tip `3ae10c0111` (`git rev-parse`
 > + `git ls-tree` + per-child `spec.md` Status lines) on 2026-08-08. Worktree local HEAD `9229cb8f3e` is
 > BEHIND origin — read state from origin tip, not the working tree.
+
+### SINCE this block (2026-08-08, later): 029 closed + 024 build-spec ready
+
+- **029 improvement-promotion-authority — CLOSED 13/13.** The 3 tail findings landed: code
+  `f6cdf604a2` (F-017-04 rollback-hash forgery + F-019-01 council-root traversal + F-019-03
+  payload symlink-follow — all confirmed-real, red-before/green-after), status doc `ab6aae0a71`.
+  Residual: F-019-01 is a calibrated closure; ADR-003 full config-resolved root stays Proposed.
+- **024 build spec is WRITTEN** at `024-durable-write-boundaries/build-spec.md` (grounded at
+  origin `5410a4bfcb`). P0 sets reconciled (complementary; B1-B7 canonical set; 5 findings
+  LUNA-REFUTED → T001-gate before any fix — the anti-fabrication guard). Execute it in a FRESH
+  worktree at origin tip (this tree is too messy for the atomic migration). Do NOT rush it.
+- **Leak-guard mechanics gap (NEW, important):** `land-wt0129.sh`'s 0-deletion guard only catches
+  full-file `D` status, NOT content REMOVED from a still-present (modified) file. The
+  partial-checkout `specs/` copies in this worktree are near-empty stubs — landing one directly
+  would silently clobber the file's content and the guard would pass it. ALWAYS copy the current
+  `.opencode/specs/` twin over the `specs/` stub first, then verify line-count / diff-vs-origin
+  before landing.
 
 ### State corrected to origin tip `3ae10c0111`
 
