@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-016,cli-codex,,session-continuity,manual,,gpt-5.6-luna,session-continuity,,PASS,"Gate-3 preamble + hook re-run: exit 0, hook.ts created, session-start+user-prompt-submit smoke emit advisor brief, gate3 not asked"

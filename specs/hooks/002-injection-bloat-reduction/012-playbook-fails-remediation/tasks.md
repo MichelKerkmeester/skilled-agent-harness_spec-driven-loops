@@ -14,7 +14,7 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
-    last_updated_at: "2026-08-08T16:27:56Z"
+    last_updated_at: "2026-08-08T19:55:10Z"
     last_updated_by: "claude"
     recent_action: "Authored five-doc remediation design from verified 30-fail reconciliation"
     next_safe_action: "Implement repo fixes and operator actions before rerunning suites"
@@ -30,7 +30,7 @@ _memory:
       - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
       - ".opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts"
     session_dedup:
-      fingerprint: "sha256:03c6055e5f27c37749522cb2bb4a3143b26b48d095ac5d930adf5d3a4af6735d"
+      fingerprint: "sha256:c3ecea52030b2b5308dc512c5b45c7b37a3f28440f5422a1303fb333cd82a2cd"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
     completion_pct: 25

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-014,cli-devin,,commands-and-skills,manual,,swe-1.7,commands-and-skills,,PASS,"devin skills list re-run: exit 0, lists native .opencode/skills hubs (sk-design/sk-code/mcp-tooling/sk-prompt/sk-doc/system-deep-loop); no invented .devin/skills mirrors"

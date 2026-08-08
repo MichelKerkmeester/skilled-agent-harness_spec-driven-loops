@@ -109,6 +109,8 @@ cursor-agent logout
 | `--trust` | (none) | Trusts the workspace without prompting for workspace-trust confirmation |
 | `--approve-mcps` | (none) | Auto-approves all configured MCP servers |
 
+Headless `--mode plan` guarantees the read-only execution boundary, not a separate numbered-plan artifact on text stdout. Use `--output-format stream-json` when event evidence is required; inspect plan content only when the emitted event payload exposes it.
+
 ### Session & Continuity Flags
 
 | Flag | Description |
@@ -235,7 +237,7 @@ Cursor CLI reads project rules from multiple sources, applied automatically: `.c
 
 ## 9. MCP INTEGRATION
 
-`cursor-agent mcp` subcommands: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`. Config file: `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (user) — "the CLI uses the same configuration as the editor". Precedence: project → global → nested. `--approve-mcps` auto-approves all configured servers for a dispatch. Cursor CLI is an MCP *client* only — it discovers and uses configured servers; there is no documented mode of it acting as an MCP server itself.
+`cursor-agent mcp` subcommands: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`. Config file: `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (user) — "the CLI uses the same configuration as the editor". Precedence: project → global → nested. `enable <id>` is an operator trust mutation; a configured but unapproved server is a manual-playbook SKIP with blocker `MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`. `--approve-mcps` auto-approves all configured servers for a dispatch, not for this trust-state inspection. Cursor CLI is an MCP *client* only — it discovers and uses configured servers; there is no documented mode of it acting as an MCP server itself.
 
 ---
 

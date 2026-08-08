@@ -6,6 +6,7 @@ tools:
   - grep
   - find
   - ls
+# Unmapped OpenCode permission keys: external_directory
 ---
 
 # The Prompt-Improver Agent: Prompt Escalation Specialist

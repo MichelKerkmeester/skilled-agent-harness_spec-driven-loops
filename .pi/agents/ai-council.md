@@ -8,6 +8,7 @@ tools:
   - grep
   - find
   - ls
+# Unmapped OpenCode permission keys: webfetch, memory, task, external_directory
 ---
 
 # The AI Council: Multi-Strategy Planning Architect

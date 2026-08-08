@@ -85,17 +85,24 @@ async function main() {
     return approve();
   }
 
-  // Claude delivers shell commands as tool_name "Bash"; Codex delivers the same payload shape
-  // as "exec". One hook serves both, because a second copy would be a second thing to drift.
+  // Claude delivers shell commands as tool_name "Bash"; Codex/Devin deliver the same payload
+  // shape as "exec"; Cursor delivers its shell surface as "Shell". One hook serves all three,
+  // because a second copy would be a second thing to drift. The command field is identical
+  // across every runtime, so only the tool label and the project-dir source vary below.
   const tool = String(payload?.tool_name || '').toLowerCase();
-  if (tool !== 'bash' && tool !== 'exec') return approve();
+  if (tool !== 'bash' && tool !== 'exec' && tool !== 'shell') return approve();
   const command = payload?.tool_input?.command;
   if (typeof command !== 'string' || !GIT_SHAPE.test(command)) return approve();
 
   const tiers = resolveSuppression();
   if (tiers.off) return approve();
 
-  const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.env.CODEX_PROJECT_DIR || process.cwd();
+  // Claude and Codex/Devin carry the project root in `cwd`; Cursor carries it in
+  // `workspace_roots[0]`. A whitespace-only root is treated as absent so a pathological
+  // payload falls through to the env vars and cwd rather than resolving to a bogus directory.
+  const cursorRoot = payload?.workspace_roots?.[0];
+  const cursorRootDir = typeof cursorRoot === 'string' && cursorRoot.trim() ? cursorRoot : '';
+  const projectDir = payload?.cwd || cursorRootDir || process.env.CLAUDE_PROJECT_DIR || process.env.CODEX_PROJECT_DIR || process.cwd();
   const rules = readHardRules(path.join(projectDir, '.opencode', 'skills', 'sk-git', 'SKILL.md'))
     .filter((r) => GIT_CHECKS[r.check] && !tiers.silenced(r.id));
   if (rules.length === 0) return approve();

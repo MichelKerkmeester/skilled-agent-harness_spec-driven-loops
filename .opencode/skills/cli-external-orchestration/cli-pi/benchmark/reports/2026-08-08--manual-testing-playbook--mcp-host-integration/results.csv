@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-011,cli-pi,,mcp-host-integration,manual,,deepseek-v4-flash,mcp-host-integration,,SKIP,documented SKIP: no approved Pi MCP host available for cite-only transport discovery; scenario reclassified

@@ -7,6 +7,7 @@ tools:
   - grep
   - find
   - ls
+# Unmapped OpenCode permission keys: memory, detect_changes, external_directory
 ---
 
 # The Reviewer: Code Quality Guardian

@@ -24,13 +24,13 @@ The `codex cloud` subcommand is the documented remote-task-execution surface per
 
 Operators run the exact prompt and command sequence for `CX-028` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `codex cloud` is a documented subcommand in the live binary's help output, the SKILL.md references it under §3 and the help output names the auth and dispatch flags.
+- Objective: Verify `codex cloud` is a documented subcommand, `codex login status` is checked separately for shared authentication, the live cloud help exposes its current verbs, and SKILL.md references it.
 - Real user request: `Confirm Codex cloud is wired up so I can offload a long task from my laptop later this week.`
-- Prompt: `Confirm codex cloud is listed in help, codex cloud --help documents auth and dispatch flags, and SKILL.md references codex cloud.`
-- Expected execution process: Cross-AI orchestrator runs `codex cloud --help`, captures the output, then greps SKILL.md for "codex cloud" to confirm the skill documents the subcommand.
-- Expected signals: `codex cloud --help` (or `codex --help` showing `cloud` subcommand) exits 0. Help output names at least one auth-related flag such as `--auth` or `login` or a token-related variant. Help output names at least one dispatch-related flag such as `run` or `--task` or `--prompt`. SKILL.md mentions `codex cloud` at least once in §3.
+- Prompt: `Confirm codex cloud is listed in help, check shared authentication with codex login status, inspect codex cloud --help for the current exec/status/list/apply/diff verbs, and confirm SKILL.md references codex cloud.`
+- Expected execution process: Cross-AI orchestrator checks `codex --help` for `cloud` -> runs `codex login status` and preserves its raw output independently -> runs `codex cloud --help` and preserves raw output -> checks for the current cloud verbs -> greps SKILL.md for "codex cloud".
+- Expected signals: `codex cloud --help` (or `codex --help` showing `cloud` subcommand) exits 0. `codex login status` is captured separately and classified from its own output. Cloud help exposes the current `exec`, `status`, `list`, `apply`, and `diff` verbs; it is not required to expose a cloud-local auth flag. SKILL.md mentions `codex cloud` at least once in §3.
 - Desired user-visible outcome: Confirmation that the cloud subcommand is reachable end to end with a documented auth and dispatch contract operators can use for follow-up runs.
-- Pass/fail: PASS if `codex cloud --help` exits 0 AND help output has auth and dispatch flags documented AND SKILL.md references `codex cloud`. FAIL if subcommand is missing from the binary or SKILL.md does not reference it.
+- Pass/fail: PASS if cloud is listed, cloud help exits 0, the current cloud verbs are present, shared `codex login status` output is retained, and SKILL.md references `codex cloud`. FAIL if the subcommand is missing, the cloud help is unclassifiable, or SKILL.md does not reference it.
 
 ---
 
@@ -39,15 +39,15 @@ Operators run the exact prompt and command sequence for `CX-028` and confirm the
 ### Recommended Orchestration Process
 
 1. Verify the live `codex` binary supports `codex cloud` via `codex --help` enumeration.
-2. Run `codex cloud --help` and capture the output.
-3. Confirm auth-related flags appear in the help text.
-4. Confirm dispatch-related flags appear in the help text.
+2. Run `codex login status` and capture its raw output separately.
+3. Run `codex cloud --help` and capture its raw output.
+4. Confirm the current cloud verbs appear in the help text; do not require cloud-local auth flags.
 5. Grep cli-codex SKILL.md for `codex cloud` to confirm skill documentation.
-6. Return a verdict naming the flags and SKILL.md anchor.
+6. Return a verdict naming the cloud verbs, shared login-status result, and SKILL.md anchor.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CX-028 | codex cloud dispatch | Verify codex cloud subcommand exists with documented auth and dispatch flags AND SKILL.md references it | `Confirm codex cloud is listed in help, codex cloud --help documents auth and dispatch flags, and SKILL.md references codex cloud.` | 1. `bash: codex --help 2>&1 \| grep -ciE 'cloud' > /tmp/cli-codex-cx028-cloud-listed.txt && cat /tmp/cli-codex-cx028-cloud-listed.txt` -> 2. `bash: codex cloud --help > /tmp/cli-codex-cx028-help.txt 2>&1` -> 3. `bash: echo "Exit: $?"` -> 4. `bash: grep -ciE '(auth\|login\|token)' /tmp/cli-codex-cx028-help.txt` -> 5. `bash: grep -ciE '(run\|dispatch\|task\|prompt\|exec)' /tmp/cli-codex-cx028-help.txt` -> 6. `bash: grep -ciE 'codex cloud' .opencode/skills/cli-external-orchestration/cli-codex/SKILL.md` | Step 1: cloud appears in `codex --help` (count >= 1); Step 2: help captured; Step 3: exit 0; Step 4: auth-flag mention count >= 1; Step 5: dispatch-flag mention count >= 1; Step 6: SKILL.md mentions `codex cloud` (count >= 1) | `/tmp/cli-codex-cx028-cloud-listed.txt`, `/tmp/cli-codex-cx028-help.txt`, terminal grep counts | PASS if cloud subcommand is listed AND `codex cloud --help` exits 0 AND auth and dispatch flags documented AND SKILL.md references codex cloud; FAIL if any check misses | (1) If cloud is missing from `codex --help`, the live binary version may predate the cloud surface, run `codex --version` and check the cli-codex pinned baseline in cli-reference.md §9; (2) if help exits non-zero, capture stderr and confirm the subcommand spelling; (3) if SKILL.md does not reference codex cloud, the documentation drifted, file a doc-bug |
+| CX-028 | codex cloud dispatch | Verify codex cloud subcommand exists with current verbs, shared login status is separate, AND SKILL.md references it | `Confirm codex cloud is listed in help, check shared authentication with codex login status, inspect codex cloud --help for the current exec/status/list/apply/diff verbs, and confirm SKILL.md references codex cloud.` | 1. `bash: codex --help 2>&1 \| grep -ciE 'cloud' > /tmp/cli-codex-cx028-cloud-listed.txt && cat /tmp/cli-codex-cx028-cloud-listed.txt` -> 2. `bash: codex login status > /tmp/cli-codex-cx028-login-status.txt 2>&1; printf 'login status exit: %s\n' "$?"` -> 3. `bash: codex cloud --help > /tmp/cli-codex-cx028-help.txt 2>&1; printf 'cloud help exit: %s\n' "$?"` -> 4. `bash: grep -ciE '(^|[[:space:]])(exec|status|list|apply|diff)([[:space:]]|$)' /tmp/cli-codex-cx028-help.txt` -> 5. `bash: grep -ciE 'codex cloud' .opencode/skills/cli-external-orchestration/cli-codex/SKILL.md` | Step 1: cloud appears in `codex --help` (count >= 1); Step 2: raw shared login-status output and exit are captured; Step 3: cloud help output and exit 0 are captured; Step 4: the current cloud verb set is present; Step 5: SKILL.md mentions `codex cloud` (count >= 1) | `/tmp/cli-codex-cx028-cloud-listed.txt`, `/tmp/cli-codex-cx028-login-status.txt`, `/tmp/cli-codex-cx028-help.txt`, terminal grep counts | PASS if cloud is listed, `codex cloud --help` exits 0, the current cloud verbs are documented, shared login status is captured, and SKILL.md references codex cloud; FAIL if any check misses | (1) If cloud is missing from `codex --help`, run `codex --version` and classify the binary surface; (2) if cloud help exits non-zero, preserve stderr and confirm the subcommand spelling; (3) classify authentication from `codex login status`, not from cloud help; (4) if SKILL.md does not reference codex cloud, the documentation drifted |
 
 ### Optional Supplemental Checks
 

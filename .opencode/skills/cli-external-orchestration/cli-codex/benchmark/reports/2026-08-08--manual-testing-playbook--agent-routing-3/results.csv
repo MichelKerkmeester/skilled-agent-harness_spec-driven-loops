@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-014,cli-codex,,agent-routing,manual,,gpt-5.6-luna,agent-routing,,PASS,"profile-v2 + Gate-3 preamble re-run: disposable home + auth + debug.config.toml; exit 0, file fixed (i<=arr.length -> i<arr.length), root cause cited"

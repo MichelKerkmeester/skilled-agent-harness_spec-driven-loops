@@ -1,6 +1,6 @@
 ---
 title: "CU-026 -- Git preflight advisory delivery"
-description: "This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It focuses on the preToolUse Shell proxy surfacing the commit-scope-drops-untracked advisory without blocking the command."
+description: "This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It uses the direct `Shell` matcher registration in `.cursor/hooks.json` and the shared hook's Cursor payload contract."
 version: 1.0.0.1
 ---
 
@@ -12,13 +12,13 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It focuses on the `preToolUse` `Shell` proxy surfacing the `commit-scope-drops-untracked` advisory without blocking the command.
+This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It focuses on the `preToolUse` `Shell` matcher invoking the shared hook directly and surfacing the `commit-scope-drops-untracked` advisory without blocking the command.
 
-The advisory is the shared sk-git preflight hook at `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.opencode/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. Cursor does not call the shared hook directly; `.cursor/hooks/git-preflight-advisory.mjs` is a thin proxy that maps the Cursor `Shell` payload onto the shared hook's expected stdin JSON and forwards the shared hook's stdout verbatim.
+The shared sk-git preflight hook at `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` reads the `hard_rules:` from `.opencode/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. `.cursor/hooks.json` invokes that shared hook directly for the `Shell` matcher. The hook accepts `tool_name: "Shell"`, reads `tool_input.command`, and resolves the project from `workspace_roots[0]`; it advises, fails open, and never blocks.
 
 ### Why This Matters
 
-Cursor runs shell commands through the `Shell` tool event. A directory-scoped `git commit --only <dir>` silently excludes untracked files inside the directory and reports success by count. Without the advisory, the operator learns the omission only after the damage. This scenario proves the proxy forwards the advisory into Cursor's context at command time and never blocks the command.
+Cursor runs shell commands through the `Shell` tool event. A directory-scoped `git commit --only <dir>` silently excludes untracked files inside the directory and reports success by count. Without the advisory, the operator learns the omission only after the damage. This scenario proves the direct hook registration forwards the advisory into Cursor's context at command time and never blocks the command.
 
 ---
 
@@ -26,12 +26,12 @@ Cursor runs shell commands through the `Shell` tool event. A directory-scoped `g
 
 Operators run the exact prompt and command sequence for `CU-026` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify the sk-git advisory fires on a directory-scoped commit with an untracked file inside, stays silent on an ordinary commit, and is suppressible — all delivered through the Cursor `preToolUse` `Shell` proxy as `additionalContext` that never blocks.
+- Objective: Verify the sk-git advisory fires on a directory-scoped commit with an untracked file inside, stays silent on an ordinary commit, and is suppressible — all delivered through the Cursor `preToolUse` `Shell` matcher as `additionalContext` that never blocks.
 - Real user request: `Commit the src folder for me` while `src/` holds one modified tracked file and one untracked file.
-- Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Cursor preToolUse Shell payload against a directory-scoped commit that would silently drop an untracked file. Verify the proxy forwards the advisory naming commit-scope-drops-untracked as additionalContext with no denial, and that SKGIT_ADVISORY=0 silences it. Return the advisory text and a PASS/FAIL verdict.`
-- Expected execution process: Create a scratch repo with a modified tracked file and an untracked file under a subdir -> pipe a `Shell` payload for `git commit --only <dir> -m x` through the Cursor proxy -> observe the `⚠ sk-git advisory` line naming `commit-scope-drops-untracked` forwarded verbatim -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary clean commit and confirm silence.
-- Expected signals: the proxy's stdout is the shared hook's `additionalContext` JSON verbatim, containing `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial field; the commit still runs; the suppressed re-run prints nothing; the ordinary commit prints nothing.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and silence evidence.
+- Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Cursor preToolUse Shell payload against a directory-scoped commit that would silently drop an untracked file. Verify the direct hook registration returns the advisory naming commit-scope-drops-untracked as additionalContext with no denial, and that SKGIT_ADVISORY=0 silences it. Return the advisory text and a PASS/FAIL verdict.`
+- Expected execution process: Create a scratch repo with a modified tracked file and an untracked file under a subdir -> write a `Shell` payload with `workspace_roots[0]` set to the scratch repo -> invoke the shared hook configured by `.cursor/hooks.json` -> observe the `⚠ sk-git advisory` line naming `commit-scope-drops-untracked` -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary command and confirm silence.
+- Expected signals: the direct hook's stdout is JSON with `hookSpecificOutput.additionalContext` containing `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial field; the command remains advisory-only; the suppressed re-run prints nothing; the ordinary command prints nothing.
+- Desired user-visible outcome: A concise PASS verdict with the advisory text and silence evidence.
 - Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape.
 
 ---
@@ -41,16 +41,16 @@ Operators run the exact prompt and command sequence for `CU-026` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request and confirm the scenario ID.
-2. Confirm `.cursor/hooks.json` registers `.cursor/hooks/git-preflight-advisory.mjs` under `preToolUse` matcher `Shell`.
+2. Confirm `.cursor/hooks.json` invokes `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` under `preToolUse` matcher `Shell`.
 3. Create a disposable scratch repo with hooks detached.
-4. Pipe the `Shell` trap payload through the Cursor proxy and capture the forwarded advisory.
+4. Write the `Shell` trap payload with `workspace_roots[0]` pointing at the scratch repo and invoke the shared hook directly.
 5. Repeat with `SKGIT_ADVISORY=0` and confirm silence.
 6. Run an ordinary clean commit and confirm silence.
 7. Return a concise user-facing verdict.
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-||---|---|---|---|---|---|---|---|---|
-|| CU-026 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under Cursor preToolUse Shell, stays silent on an ordinary commit, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory under a Cursor preToolUse Shell payload against a directory-scoped commit that would silently drop an untracked file. Verify the proxy forwards the advisory naming commit-scope-drops-untracked as additionalContext with no denial, and that SKGIT_ADVISORY=0 silences it. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: grep -n "git-preflight-advisory.mjs" .cursor/hooks.json` (confirm registration under preToolUse Shell) -> 2. `bash: repo=$(mktemp -d "/tmp/cu-026.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 3. `bash: printf '%s' '{"tool_name":"Shell","tool_input":{"command":"git commit --only src -m x"},"workspace_roots":["'"$repo"'"]}' \| node .cursor/hooks/git-preflight-advisory.mjs` -> 4. `bash: printf '%s' '{"tool_name":"Shell","tool_input":{"command":"git commit --only src -m x"},"workspace_roots":["'"$repo"'"]}' \| SKGIT_ADVISORY=0 node .cursor/hooks/git-preflight-advisory.mjs` | Step 1: registration line present under `preToolUse` matcher `Shell`; Step 3: proxy stdout is the shared hook JSON with `hookSpecificOutput.additionalContext` containing `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no denial field; Step 4: zero stdout | `.cursor/hooks.json` excerpt, captured proxy JSON, silence confirmation, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND Step 4 prints nothing; FAIL if the command is blocked or no advisory appears on the trap shape | Inspect the Step 3 JSON for the rule id; if absent, confirm the proxy resolves the shared hook path and the payload `workspace_roots[0]` points at the scratch repo; confirm the proxy is registered for the `Shell` matcher |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-026 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under the direct Cursor Shell hook, stays silent on an ordinary command, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory under a Cursor preToolUse Shell payload against a directory-scoped commit that would silently drop an untracked file. Verify the direct hook registration returns the advisory naming commit-scope-drops-untracked as additionalContext with no denial, and that SKGIT_ADVISORY=0 silences it. Return the advisory text and a PASS/FAIL verdict.` | 1. `rg -n -e 'git-preflight-advisory.mjs' -e '"matcher": "Shell"' .cursor/hooks.json` -> 2. Create a scratch repo, copy `.opencode/skills/sk-git/SKILL.md`, and prepare a JSON payload with `tool_name: "Shell"`, `tool_input.command`, and `workspace_roots[0]` -> 3. `printf '%s' "$payload" > /private/tmp/cu-026-payload.json; node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs < /private/tmp/cu-026-payload.json` -> 4. Repeat Step 3 with `SKGIT_ADVISORY=0` -> 5. Repeat with `git status --short` | Step 1: direct registration under `preToolUse` matcher `Shell`; Step 3: JSON `hookSpecificOutput.additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, with no denial field; Steps 4-5: zero stdout | `.cursor/hooks.json` excerpt, payload, shared-hook JSON, suppression and ordinary-command silence, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked`, no denial field is present, and suppression is silent; FAIL if the command is blocked or no advisory appears on the trap shape | Inspect the direct hook JSON; if absent, confirm `tool_name: "Shell"`, `workspace_roots[0]`, the scratch repo's `.opencode/skills/sk-git/SKILL.md`, and the `Shell` matcher registration |
 
 ### Optional Supplemental Checks
 
@@ -62,20 +62,19 @@ Operators run the exact prompt and command sequence for `CU-026` and confirm the
 
 ### Playbook Sources
 
-|| File | Role |
-||---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `git-preflight-advisory/git-preflight-advisory.md` | Canonical per-feature execution contract |
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `git-preflight-advisory/git-preflight-advisory.md` | Canonical per-feature execution contract |
 
 ### Implementation And Test Anchors
 
-|| File | Role |
-||---|---|
-|| `.cursor/hooks/git-preflight-advisory.mjs` | The Cursor `Shell` proxy that maps onto the shared hook and forwards stdout verbatim |
-|| `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook the proxy spawns |
-|| `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
-|| `.cursor/hooks.json` | `preToolUse` matcher `Shell` registration of the proxy |
-|| `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
+| File | Role |
+|---|---|
+| `.cursor/hooks.json` | `preToolUse` matcher `Shell` registration invoking the shared hook directly |
+| `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that reads the Cursor `Shell` payload |
+| `../../../../../skills/sk-git/SKILL.md` | The `hard_rules:` frontmatter the hook parses |
+| `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 
 ---
 

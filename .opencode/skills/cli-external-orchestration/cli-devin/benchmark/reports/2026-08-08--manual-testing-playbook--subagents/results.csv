@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-012,cli-devin,,subagents,manual,,swe-1.7,subagents,,PASS,roster filesystem parity re-run: 13/13 .devin/agents AGENT.md symlinks (the authoritative fix); bounded review dispatch env-blocked by Devin cloud outage (cognition.ai unavailable/retryable)

@@ -267,7 +267,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 | Skill | Purpose |
 |-------|---------|
-| `sk-code` (code-review mode) | Shared review doctrine via `code-review/references/review-core.md` |
+| `sk-code` (code-review mode) | Shared review doctrine via `sk-code-review/references/review-core.md` |
 | `sk-code` | Router-selected standards evidence |
 
 ### Caller + Command Integrations

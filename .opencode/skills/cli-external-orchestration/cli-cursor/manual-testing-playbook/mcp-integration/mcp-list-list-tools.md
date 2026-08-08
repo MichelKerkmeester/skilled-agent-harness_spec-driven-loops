@@ -1,6 +1,6 @@
 ---
 title: "CU-011 -- mcp list / list-tools"
-description: "This scenario validates the cursor-agent mcp list and mcp list-tools subcommands for `CU-011`. It focuses on confirming both commands run cleanly whether or not any MCP server is configured on this machine."
+description: "This scenario validates the cursor-agent mcp list and mcp list-tools subcommands for `CU-011`, with an explicit SKIP when a configured server is not operator-approved."
 version: 1.0.0.0
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates `cursor-agent mcp list` and `cursor-agent mcp list-tools <id>` for `CU-011`. It focuses on confirming both commands run cleanly - an empty result is a valid, documented outcome, not a failure - and that `list-tools` surfaces real tool names when at least one server is configured.
+This scenario validates `cursor-agent mcp list` and `cursor-agent mcp list-tools <id>` for `CU-011`. An empty result is a valid outcome; a configured but unapproved server is a trust-state blocker, not permission to mutate the operator's Cursor configuration from the playbook.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ Cursor CLI is an MCP **client** only, per `references/cursor-tools.md` §5 - it 
 
 Operators run the exact prompt and command sequence for `CU-011` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `cursor-agent mcp list` exits 0 whether or not a server is configured, and `cursor-agent mcp list-tools <id>` surfaces tools when one is.
+- Objective: Verify `cursor-agent mcp list` reports the configured MCP state, use `list-tools <id>` only for an approved server, and record the documented SKIP when approval is missing.
 - Real user request: `What MCP servers does Cursor CLI already know about on this machine?`
 - Prompt: `Confirm cursor-agent mcp list runs cleanly and, if any server is configured, list-tools <id> surfaces its tools.`
-- Expected execution process: Operator runs `cursor-agent mcp list` -> records whether the result is empty or populated -> if populated, runs `cursor-agent mcp list-tools <id>` against the first listed server id -> confirms at least one tool name is returned.
-- Expected signals: `cursor-agent mcp list` exits 0 regardless of result content. If at least one server is listed, `cursor-agent mcp list-tools <id>` exits 0 and names at least one tool.
-- Desired user-visible outcome: Confirmation the MCP client subcommand surface is reachable and behaves correctly whether or not any server happens to be configured on this machine - an honest report either way, not an assumed-populated result.
-- Pass/fail: PASS if `mcp list` exits 0 AND (the list is empty OR `list-tools` on a listed server exits 0 with at least one tool). FAIL if `mcp list` itself errors/exits non-zero, or if a listed server's `list-tools` errors out.
+- Expected execution process: Operator runs `cursor-agent mcp list` -> records whether the result is empty or populated -> if populated, records the server approval state without changing it -> runs `list-tools <id>` only for an approved server -> confirms at least one tool name is returned.
+- Expected signals: `cursor-agent mcp list` exits 0. An empty list is valid. A configured but unapproved server records the exact blocker `MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`. An approved server's `list-tools <id>` exits 0 and names at least one tool.
+- Desired user-visible outcome: Confirmation the MCP client subcommand surface is reachable, with the trust boundary visible instead of silently enabling a server.
+- Pass/fail: PASS if `mcp list` exits 0 and the list is empty, or an approved listed server returns tools. SKIP when a configured server is not approved. FAIL if `mcp list` errors/exits non-zero or an approved server's `list-tools` errors out.
 
 ---
 
@@ -40,13 +40,14 @@ Operators run the exact prompt and command sequence for `CU-011` and confirm the
 
 1. Run `cursor-agent mcp list` and capture the output verbatim.
 2. If the list is empty, record that honestly as the observed state (not a failure).
-3. If the list is non-empty, pick the first server id and run `cursor-agent mcp list-tools <id>`.
-4. Confirm at least one tool name is returned.
-5. Return a PASS/FAIL verdict naming the server count and, if any, the tool names observed.
+3. If the list is non-empty, record the first server id and approval state without running `enable`.
+4. If the server is configured but not approved, record `SKIP: MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook.`
+5. If the server is approved, run `cursor-agent mcp list-tools <id>` and confirm at least one tool name is returned.
+6. Return a PASS, SKIP, or FAIL verdict naming the server state and any tool names observed.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CU-011 | mcp list / list-tools | Verify mcp list and list-tools behave correctly whether or not a server is configured | `Confirm cursor-agent mcp list runs cleanly and, if any server is configured, list-tools <id> surfaces its tools.` | 1. `bash: cursor-agent mcp list > /tmp/cli-cursor-cu011-list.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu011-list.txt` -> 2. `bash: cat /tmp/cli-cursor-cu011-list.txt` -> 3. `bash: SERVER_ID=$(grep -oE "^[a-zA-Z0-9_-]+" /tmp/cli-cursor-cu011-list.txt \| head -1)` -> 4. `bash: [ -n "$SERVER_ID" ] && cursor-agent mcp list-tools "$SERVER_ID" > /tmp/cli-cursor-cu011-tools.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu011-tools.txt \|\| echo "no server configured - list-tools step skipped" > /tmp/cli-cursor-cu011-tools.txt` -> 5. `bash: cat /tmp/cli-cursor-cu011-tools.txt` | Step 1: exit 0 recorded regardless of content; Step 2: list contents visible (possibly empty); Step 3: server id extracted if present; Step 4-5: if a server exists, `list-tools` exits 0 and names at least one tool; if none exists, the empty state is recorded honestly | `mcp list` output with exit code, `mcp list-tools` output (or the honest "no server configured" note) | PASS if `mcp list` exits 0 AND (list is empty OR `list-tools` on a listed server exits 0 with >=1 tool named); FAIL if `mcp list` itself errors, or a listed server's `list-tools` errors | (1) Re-run `cursor-agent mcp list` to rule out a transient failure; (2) confirm `.cursor/mcp.json`/`~/.cursor/mcp.json` parse cleanly (see `CU-012`); (3) re-check the extracted server id matches the exact id format `mcp list` printed |
+| CU-011 | mcp list / list-tools | Verify MCP discovery and approval state | `Confirm cursor-agent mcp list runs cleanly and, if an approved server is configured, list-tools <id> surfaces its tools. Do not enable or disable any server.` | 1. `cursor-agent mcp list > /private/tmp/cli-cursor-cu011-list.txt 2>&1; status=$?; printf 'exit=%s\n' "$status" >> /private/tmp/cli-cursor-cu011-list.txt` -> 2. `cat /private/tmp/cli-cursor-cu011-list.txt` -> 3. `read -r SERVER_ID < <(sed -nE 's/^([a-zA-Z0-9_-]+).*$/\1/p' /private/tmp/cli-cursor-cu011-list.txt)` and record the printed approval state -> 4. If the server is configured but unapproved, record `SKIP: MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`; otherwise run `cursor-agent mcp list-tools "$SERVER_ID"` and record its exit and tools | Step 1: list exit 0; an empty list is valid; an unapproved configured server produces the named SKIP blocker; an approved server's list-tools output names at least one tool | `mcp list` output and exit code; approval-state evidence; list-tools output when approved | PASS if the list is empty or an approved server returns tools; SKIP for an unapproved configured server; FAIL if list errors or an approved server's list-tools errors | Do not run `cursor-agent mcp enable` inside the playbook. If approval is required, hand the exact server id and blocker to the operator; after approval, rerun list-tools |
 
 ### Optional Supplemental Checks
 

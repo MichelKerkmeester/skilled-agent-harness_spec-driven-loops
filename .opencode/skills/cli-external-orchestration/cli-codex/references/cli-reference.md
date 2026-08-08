@@ -98,10 +98,10 @@ codex logout
 | `--model` | `-m` | `gpt-5.5` | Model to use — `gpt-5.5` (default), `gpt-5.6-luna`, `gpt-5.6-terra`, `gpt-5.6-sol` |
 | `--config` | `-c` | `key=value` | Override a config.toml value (e.g., `-c model_reasoning_effort="high"`) |
 | `--sandbox` | `-s` | `read-only`, `workspace-write`, `danger-full-access` | Sandbox mode controlling file/shell access |
-| `--ask-for-approval` | `-a` | `untrusted`, `on-request`, `never` | When to prompt for approval before executing actions |
+| `--ask-for-approval` | `-a` | `untrusted`, `on-request`, `never` | Top-level approval policy; place `-a` before `exec` when using the headless form |
 | `--profile` | `-p` | profile-name | Load a named configuration profile |
 | `--image` | `-i` | file-path | Attach an image (PNG or JPEG) to the prompt |
-| `--full-auto` | | (none) | Low-friction mode with relaxed approvals (use sparingly) |
+| `-c approval_policy=never` | | `never` | Headless no-prompt approval policy; `-a never` is the top-level equivalent |
 | `--oss` | | (none) | Use local open-source models via Ollama instead of OpenAI |
 | `--search` | | (none) | Enable live web browsing during the session (top-level flag; precede `exec`: `codex --search exec …`) |
 
@@ -109,7 +109,7 @@ codex logout
 
 | Flag | Description |
 |------|-------------|
-| `--profile <name>` / `-p` | Load a named configuration profile from `[profiles.<name>]` in config.toml |
+| `--profile <name>` / `-p` | Load `$CODEX_HOME/<name>.config.toml` as a named configuration profile |
 | `exec review` | Built-in subcommand for git diff-aware code review (supports `--commit`, `--base`, `--uncommitted`) |
 
 ### Approval Mode Values
@@ -155,11 +155,11 @@ codex exec "Refactor utils.ts to use async/await" --model gpt-5.5
 # With sandbox mode
 codex exec "Add error handling to auth.ts" --sandbox workspace-write --model gpt-5.5
 
-# With approval control
-codex exec "Clean up deprecated files" --ask-for-approval untrusted --model gpt-5.5
+# With approval control (top-level flag before exec)
+codex -a untrusted exec "Clean up deprecated files" --model gpt-5.5
 
-# Full-auto mode (relaxed approvals)
-codex exec "Run the test suite and fix failures" --full-auto --model gpt-5.5
+# Headless no-prompt mode
+codex -a never exec "Run the test suite and fix failures" --model gpt-5.5
 
 # Attach an image
 codex exec "Implement this UI component" --image wireframe.png --model gpt-5.5
@@ -188,7 +188,7 @@ Reasoning effort controls how much "thinking" the model does. There is **no `--r
 
 1. **CLI override:** `-c model_reasoning_effort="high"`
 2. **config.toml:** `model_reasoning_effort = "medium"` (global default matching the skill)
-3. **Profile:** `[profiles.review]` → `model_reasoning_effort = "xhigh"`
+3. **Profile:** `$CODEX_HOME/review.config.toml` → `model_reasoning_effort = "xhigh"`
 4. **Plan mode:** `plan_mode_reasoning_effort = "medium"` (Plan-mode-specific override)
 
 The 8-level effort ladder and its per-model ceilings live in [providers-and-models.md](./providers-and-models.md) §4.
@@ -366,25 +366,18 @@ Place an `instructions.md` in `.codex/` to inject persistent project context int
 ### Directory Structure
 
 ```
-.codex/
-├── config.toml          # Global CLI configuration
-├── instructions.md      # Persistent project context (injected into all sessions)
-└── agents/
-    ├── context.toml
-    ├── debug.toml
-    ├── handover.toml
-    ├── orchestrate.toml
-    ├── deep-research.toml
-    ├── review.toml
-    ├── speckit.toml
-    ├── ai-council.toml
-    └── write.toml
+CODEX_HOME/
+├── config.toml                 # Shared CLI defaults
+├── review.config.toml          # Named profile loaded by -p review
+├── context.config.toml         # Named profile loaded by -p context
+├── debug.config.toml           # Named profile loaded by -p debug
+└── research.config.toml        # Named profile loaded by -p research
 ```
 
 ### config.toml Format
 
 ```toml
-# .codex/config.toml
+# $CODEX_HOME/config.toml
 model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 sandbox_mode = "workspace-write"
@@ -428,15 +421,14 @@ codex exec -p debug "Fix the auth bug" -s workspace-write --model gpt-5.5
 
 ### Profile Configuration
 
-Named profiles allow switching between preset configurations. Profiles are defined in `config.toml` under `[profiles.<name>]` sections:
+Named profiles are layered TOML files in `CODEX_HOME`, loaded by the profile name. A `-p review` invocation reads `$CODEX_HOME/review.config.toml`; it does not read a `[profiles.review]` section from `config.toml`.
 
 ```toml
-# ~/.codex/config.toml or .codex/config.toml
-[profiles.review]
+# $CODEX_HOME/review.config.toml
 sandbox_mode = "read-only"
 model_reasoning_effort = "xhigh"
 
-[profiles.debug]
+# $CODEX_HOME/debug.config.toml
 sandbox_mode = "workspace-write"
 model_reasoning_effort = "xhigh"
 ```
@@ -446,7 +438,7 @@ model_reasoning_effort = "xhigh"
 codex exec -p review "Audit this codebase" --model gpt-5.5
 ```
 
-**Note:** The `.codex/agents/*.toml` files define agent personas for the interactive multi-agent TUI feature (requires `multi_agent` feature flag). They are NOT loaded by the `-p` profile flag. To use agent-specific settings in `codex exec`, define corresponding `[profiles.<name>]` sections in config.toml.
+**Note:** The `.codex/agents/*.toml` files define agent personas for the interactive multi-agent TUI feature (requires `multi_agent` feature flag). They are not loaded by the `-p` profile flag. Keep profile settings in the corresponding `$CODEX_HOME/<name>.config.toml` file.
 
 ---
 
@@ -536,7 +528,7 @@ codex exec resume "$FORK_ID" "Attempt the migration" \
 | `codex logout` | Log out and clear stored OAuth credentials |
 | `codex features` | Display available features and authentication status |
 | `codex mcp` | Manage MCP (Model Context Protocol) server connections |
-| `codex cloud` | Manage cloud-based session storage and sync |
+| `codex cloud` | Manage cloud operations such as `exec`, `status`, `list`, `apply`, and `diff`; use `codex login status` for shared authentication |
 | `codex apply` | Apply a previously generated diff/patch |
 
 ---

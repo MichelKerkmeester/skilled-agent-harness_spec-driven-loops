@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-020,cli-pi,,git-preflight-advisory,manual,,deepseek-v4-flash,git-preflight-advisory,,PASS,"pi git-preflight extension re-run: tool_call/tool_result fires advisory with [commit-scope-drops-untracked], no block property; SKGIT_ADVISORY=0 and non-git both return undefined"

@@ -1,41 +1,63 @@
 ---
-title: "DV-008 -- PermissionRequest auto versus bypass"
-description: "Compare the approval-event path under auto with the bypass path while keeping the hook configuration isolated."
-version: 1.0.0.0
+title: "DV-008 -- PermissionRequest auto versus dangerous"
+description: "Document the unavailable headless PermissionRequest comparison under Devin's canonical permission modes."
+version: 1.0.0.1
 ---
 
-# DV-008 -- PermissionRequest auto versus bypass
+# DV-008 -- PermissionRequest auto versus dangerous
 
 This document captures the realistic user-testing contract, execution flow, source anchors, and validation criteria for `DV-008`.
 
 ## 1. OVERVIEW
 
-Verify the narrow distinction between approval prompting and other hook delivery: `PermissionRequest` fires under `auto` for an approval-needing write, but is not consulted under `bypass`.
+Record a documented `SKIP` for the headless `PermissionRequest` comparison between the canonical `auto` and `dangerous` modes. Current headless Devin does not expose a controllable event path for this comparison.
 
 ### Why This Matters
 
-The bypass mode skips the approval event, not the entire hook system. Treating the two as equivalent would hide the safety boundary this playbook is meant to expose.
+An absent event in two headless traces does not prove permission-mode parity. `PreToolUse` remains a separate hook-coverage claim and must not substitute for evidence about `PermissionRequest` delivery.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Compare `PermissionRequest` evidence for the same write request under `auto` and `bypass`.
-- Real user request: `Show whether Devin asks for approval in auto mode and what changes when the repository dispatch uses bypass.`
-- Prompt: `Create permission-request-marker.txt containing permission-test in this isolated workspace and report whether approval was requested.`
-- Expected execution process: Run the prompt twice with the same isolated `.devin/hooks.v1.json` probe, first with `--permission-mode auto`, then with `--permission-mode bypass`; inspect event logs separately.
-- Expected signals: `PermissionRequest` is observed in the auto run for the approval-needing operation; it is absent from the bypass run. The absence is not evidence that all hooks are disabled.
-- Desired user-visible outcome: A precise approval-event comparison with no mutation of the repository's real hook file.
-- Pass/fail: PASS when the two event traces differ exactly at the approval event; FAIL when bypass is reported as disabling all hooks; SKIP when auth or a required interactive approval prevents the controlled comparison.
+- Objective: Record the unavailable headless `PermissionRequest` comparison without turning missing runtime control into a product failure.
+- Real user request: `Check whether headless Devin exposes a controllable PermissionRequest event under auto and dangerous modes.`
+- Prompt: `Compare PermissionRequest delivery under Devin's auto and dangerous permission modes only if headless Devin exposes a controllable event trigger; otherwise record the specific runtime blocker.`
+- Expected execution process: Inspect the installed CLI's canonical permission modes, confirm that no supported headless control can deterministically trigger `PermissionRequest`, and record the scenario as `SKIP` without running a write probe. Test `PreToolUse` in its dedicated scenario only.
+- Expected signals: The CLI exposes canonical `auto` and `dangerous` modes, but no controllable headless `PermissionRequest` event trigger is available.
+- Desired user-visible outcome: `SKIP` with the exact blocker, not a false failure or a claim derived from `PreToolUse`.
+- Pass/fail: `SKIP` -- blocker: headless Devin exposes no controllable `PermissionRequest` event to compare `auto` versus `dangerous`; the runtime event path is unavailable.
 
 ## 3. TEST EXECUTION
 
-1. `DV008_DIR=$(mktemp -d /tmp/cli-devin-dv008.XXXXXX); mkdir -p "$DV008_DIR/.devin"`
-2. Install an isolated probe configuration using the verified top-level event-key schema; keep the repo config untouched.
-3. `cd "$DV008_DIR" && devin -p "Create permission-request-marker.txt containing permission-test in this isolated workspace and report whether approval was requested." --model adaptive --permission-mode auto </dev/null > auto.txt 2>&1; echo "exit=$?" >> auto.txt`
-4. Repeat with `--permission-mode bypass`, then compare `auto.log` and `bypass.log`.
+### Prompt
 
-| Feature ID | Exact commands | Expected signal | Verdict |
-|---|---|---|---|
-| DV-008 | Same isolated write with `auto` and `bypass` | PermissionRequest only on auto path | PASS/FAIL/SKIP |
+- Prompt: `Compare PermissionRequest delivery under Devin's auto and dangerous permission modes only if headless Devin exposes a controllable event trigger; otherwise record the specific runtime blocker.`
+
+### Commands
+
+1. `devin --help 2>&1 | sed -n '/permission-mode/,+4p'`
+2. Do not run a write comparison unless the installed headless CLI documents a controllable `PermissionRequest` trigger.
+
+### Expected
+
+The help output identifies the canonical permission-mode surface. It does not provide a controllable headless `PermissionRequest` trigger, so this scenario remains a documented `SKIP`. `PreToolUse` evidence is out of scope here.
+
+### Evidence
+
+Capture the relevant `devin --help` excerpt and the blocker string: `headless Devin exposes no controllable PermissionRequest event to compare auto versus dangerous`.
+
+### Pass / Fail
+
+- **SKIP**: Blocker: the headless `PermissionRequest` event path is unavailable and cannot be controlled for an `auto` versus `dangerous` comparison.
+- **PASS**: Available only after Devin exposes and documents a deterministic headless trigger and the comparison is rerun.
+- **FAIL**: Available only after such a trigger exists and the observed event delivery contradicts the documented mode behavior.
+
+### Failure Triage
+
+If a future CLI exposes a controllable trigger, update this scenario to exercise that trigger directly. Keep `PreToolUse` validation in its separate scenario and do not infer `PermissionRequest` behavior from it.
+
+| Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| DV-008 | PermissionRequest auto versus dangerous | Document the unavailable headless comparison | `Compare PermissionRequest delivery under Devin's auto and dangerous permission modes only if headless Devin exposes a controllable event trigger; otherwise record the specific runtime blocker.` | Run `devin --help 2>&1`; do not run a write probe without a controllable trigger. | Canonical modes are visible; no controllable headless event trigger is available. | Help excerpt plus the exact runtime blocker. | `SKIP` -- blocker: headless Devin exposes no controllable `PermissionRequest` event to compare `auto` versus `dangerous`; the event path is unavailable. | Reopen only when the CLI exposes a deterministic trigger; keep `PreToolUse` separate. |
 
 ## 4. SOURCE FILES
 
@@ -44,14 +66,15 @@ The bypass mode skips the approval event, not the entire hook system. Treating t
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Permission and isolation policy |
-| `../../feature-catalog/hooks/` | No catalog entry yet; phase 010 is not present in this packet |
+| `../../feature-catalog/hooks/` | No catalog entry currently covers this scenario |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | PermissionRequest adapter and bypass limitation |
-| `../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Live event matrix |
+| `../../SKILL.md` | Canonical Devin permission modes and hook limitations |
+| `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Historical PermissionRequest behavior |
+| `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Historical hook-event matrix |
 
 ## 5. SOURCE METADATA
 

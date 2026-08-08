@@ -9,6 +9,7 @@ tools:
   - grep
   - find
   - ls
+# Unmapped OpenCode permission keys: memory, external_directory
 ---
 
 # The Markdown Agent: Template-First Markdown Documentation Executor

@@ -1,40 +1,65 @@
 ---
-title: "DV-015 -- Mirrored command invocation"
-description: "Verify a mirrored slash command is recognized and invoked through Devin's print-mode skills surface."
-version: 1.0.0.0
+title: "DV-015 -- Native repository skill invocation"
+description: "Verify that Devin invokes a real repository skill discovered natively from .opencode/skills."
+version: 1.0.0.1
 ---
 
-# DV-015 -- Mirrored command invocation
+# DV-015 -- Native repository skill invocation
 
 This document captures the realistic user-testing contract, execution flow, source anchors, and validation criteria for `DV-015`.
 
 ## 1. OVERVIEW
 
-Invoke `/speckit-plan`, a mirrored command registered under `.devin/skills/`, from a real Devin print session. The scenario is read-only and asks for planning output rather than applying changes.
+Invoke the real `/sk-doc` repository skill from a bounded read-only Devin print session. The skill is discovered natively from `.opencode/skills/sk-doc`; no command-file mirror is involved.
 
 ### Why This Matters
 
-Roster visibility is not enough. The slash-command must resolve to its mirrored skill body when the user actually invokes it.
+Discovery output alone does not prove a repository skill can be used. A direct, read-only invocation verifies that Devin resolves a real native skill without relying on nonexistent command registrations.
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Prove a mirrored command is recognized and returns command-specific behavior.
-- Real user request: `Use /speckit-plan to draft a plan for a harmless documentation change, but do not write it.`
-- Prompt: `/speckit-plan Draft a short plan for adding a manual test scenario to a documentation-only packet. Do not create or modify files.`
-- Expected execution process: Run the slash command through `devin -p`, capture the output, and confirm it produces a plan rather than an unknown-command error or a generic refusal.
-- Expected signals: Output reflects `/speckit-plan` semantics and no file mutation occurs.
-- Desired user-visible outcome: A usable mirrored command invocation.
-- Pass/fail: PASS on command-specific output and clean status; FAIL on unknown-command or silent fallback; SKIP on auth/availability blockers.
+- Objective: Prove that Devin can invoke the real `/sk-doc` repository skill and return skill-specific guidance without modifying files.
+- Real user request: `Use the repository's sk-doc skill to report the required section order for a manual testing scenario.`
+- Prompt: `/sk-doc Inspect the manual-testing-playbook authoring contract and report the required per-feature section order. Do not create or modify files.`
+- Expected execution process: Capture the pre-run worktree status, invoke `/sk-doc` once through print mode under canonical `auto` permission, capture the response, and compare post-run status with the baseline.
+- Expected signals: The response identifies the ordered sections `OVERVIEW`, `SCENARIO CONTRACT`, `TEST EXECUTION`, `SOURCE FILES` or `REFERENCES`, and `SOURCE METADATA`; Devin does not report an unknown skill and the worktree status is unchanged.
+- Desired user-visible outcome: Skill-specific, read-only guidance from a real repository skill.
+- Pass/fail: PASS on skill-specific section-order output and unchanged status; FAIL on unknown-skill handling, generic fallback, incorrect contract output, or mutation; SKIP when Devin authentication or CLI availability prevents invocation.
 
 ## 3. TEST EXECUTION
 
-1. `devin -p "/speckit-plan Draft a short plan for adding a manual test scenario to a documentation-only packet. Do not create or modify files." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv015.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv015.txt`
-2. Inspect the response for command recognition and plan output.
-3. `git status --porcelain`.
+### Prompt
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-015 | `devin -p "/speckit-plan ..." --permission-mode normal` | Command-specific plan, no mutation | PASS/FAIL/SKIP |
+- Prompt: `/sk-doc Inspect the manual-testing-playbook authoring contract and report the required per-feature section order. Do not create or modify files.`
+
+### Commands
+
+1. `git status --porcelain=v1 > /tmp/cli-devin-dv015-before.txt`
+2. `devin -p --model swe --permission-mode auto -- "/sk-doc Inspect the manual-testing-playbook authoring contract and report the required per-feature section order. Do not create or modify files." </dev/null > /tmp/cli-devin-dv015.txt 2>&1`
+3. `git status --porcelain=v1 > /tmp/cli-devin-dv015-after.txt`
+4. `diff -u /tmp/cli-devin-dv015-before.txt /tmp/cli-devin-dv015-after.txt`
+
+### Expected
+
+The response reflects the real `sk-doc` manual-testing-playbook contract, names the five required sections in order, and contains no unknown-skill error. The status diff is empty.
+
+### Evidence
+
+Capture the Devin exit status, `/tmp/cli-devin-dv015.txt`, both status snapshots, and the empty `diff -u` result.
+
+### Pass / Fail
+
+- **PASS**: `/sk-doc` returns the correct ordered section contract and the worktree status is unchanged.
+- **FAIL**: Devin reports an unknown skill, silently falls back to generic output, returns the wrong contract, or mutates the worktree.
+- **SKIP**: Blocker: Devin authentication or CLI availability is missing, so native repository-skill invocation is unavailable.
+
+### Failure Triage
+
+Confirm `/sk-doc` appears in `devin skills list`, verify `.opencode/skills/sk-doc/SKILL.md` exists, then inspect the captured transcript. Diagnose native discovery or invocation directly; do not create command mirrors.
+
+| Feature ID | Feature Name | Scenario Name/Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| DV-015 | Native repository skill invocation | Invoke real `/sk-doc` read-only | `/sk-doc Inspect the manual-testing-playbook authoring contract and report the required per-feature section order. Do not create or modify files.` | Snapshot status; run `devin -p --model swe --permission-mode auto --` with the exact prompt; snapshot and diff status. | Skill-specific five-section order; no unknown-skill error; no mutation. | Transcript, exit status, status snapshots, and empty diff. | PASS on correct skill output and clean status delta; FAIL on fallback, wrong output, or mutation; SKIP only for a specific unavailable auth or CLI runtime. | Confirm native discovery and the real `sk-doc` packet before diagnosing invocation. |
 
 ## 4. SOURCE FILES
 
@@ -42,15 +67,15 @@ Roster visibility is not enough. The slash-command must resolve to its mirrored 
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Slash-command invocation policy |
+| `manual-testing-playbook.md` | Native skill-invocation policy |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Devin skills are the slash-command surface |
-| `../../../../.devin/skills/speckit-plan/SKILL.md` | Mirrored command registration |
-| `../../../../.opencode/commands/speckit/plan.md` | Canonical command body |
+| `../../SKILL.md` | Devin native skill discovery and command-file non-concept |
+| `../../../../sk-doc/SKILL.md` | Real repository skill invoked by the scenario |
+| `../../../../sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Per-feature section-order contract |
 
 ## 5. SOURCE METADATA
 

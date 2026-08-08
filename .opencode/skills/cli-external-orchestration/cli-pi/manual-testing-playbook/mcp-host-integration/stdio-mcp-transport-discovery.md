@@ -1,6 +1,6 @@
 ---
 title: "PI-011 -- Stdio MCP transport discovery"
-description: "This scenario records the existing live confirmation that `pi-mcp-extension` connects native stdio servers from project configuration for `PI-011`; the captured evidence is cited rather than re-run."
+description: "This scenario verifies whether a pinned raw transcript exists for the native stdio MCP connection; without that artifact it records a documented SKIP rather than claiming a live handshake."
 version: 1.0.0.0
 ---
 
@@ -22,13 +22,13 @@ The repository's native MCP servers use command-plus-arguments stdio configurati
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm `pi-mcp-extension` connects a native stdio MCP server and exposes its discovered tool name.
+- Objective: Verify that a pinned raw transcript and digest exist for the native stdio MCP connection before claiming a live tool discovery result.
 - Real user request: `Verify that Pi can connect the project's native stdio MCP server and show its tool in the available-tool list.`
 - Prompt: `List your available tools and include the names discovered from the configured stdio MCP servers. Do not call a tool or modify files.`
-- Expected execution process: Read the existing project MCP config and package evidence -> use the already-captured offline Pi probe -> inspect the bridged tool names and lifecycle state.
-- Expected signals: `mcp_sequential_thinking_sequentialthinking` appears; the existing five-server capture also shows `memory_context` and related `mk-spec-memory` tools; no provider-backed model turn is required for local discovery.
-- Desired user-visible outcome: A confirmed stdio transport connection with exact tool names and a clear distinction between discovery and tool execution.
-- Pass/fail: PASS based on the existing captured live stdio evidence. Do not re-run the package install or MCP probe in this scenario. FAIL if a future repeat omits the expected tool or reports a transport/schema error.
+- Expected execution process: Inspect the project MCP configuration and look for a pinned raw transcript plus its SHA-256 digest. Do not install an optional package, change MCP configuration, or run a provider-backed probe.
+- Expected signals: A pinned transcript contains the exact stdio handshake and discovered tool name, and its recorded digest matches. The implementation summary prose is not a raw transcript.
+- Desired user-visible outcome: PASS only when the reusable evidence artifact is present and verifiable; otherwise a documented SKIP with the current blocker.
+- Pass/fail: SKIP because no pinned raw stdio transcript artifact or digest is present in this worktree, and the optional `pi-mcp-extension` package is not installed or approved. PASS only after such an artifact is pinned and verified. FAIL only when pinned evidence contradicts the documented stdio behavior.
 
 ---
 
@@ -36,18 +36,18 @@ The repository's native MCP servers use command-plus-arguments stdio configurati
 
 ### Recommended Orchestration Process
 
-1. Read `.pi/mcp.json` and the installed package settings.
-2. Read the existing captured live transcript from the MCP integration record.
-3. Verify the exact tool names and lifecycle settings.
+1. Read `.pi/mcp.json` and the current package settings.
+2. Check whether a raw stdio transcript and SHA-256 digest are pinned with the playbook evidence.
+3. If the raw artifact is absent, record `SKIP: no pinned raw stdio transcript artifact or digest is present; the optional pi-mcp-extension package is not installed or approved.`
 4. Do not install another package or mutate MCP config during this playbook run.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-011 | Stdio MCP transport discovery | Confirm native stdio MCP discovery | `List your available tools and include the names discovered from the configured stdio MCP servers. Do not call a tool or modify files.` | Existing captured command: `pi install npm:pi-mcp-extension -l --approve` -> configure `.pi/mcp.json` -> `pi --offline --approve -p "list your available tools"` -> inspect tool listing. This scenario is cite-only and does not re-run it. | `mcp_sequential_thinking_sequentialthinking` appears; the full capture also shows `memory_context` and related `mk-spec-memory` tools | Existing captured live output records `mcp_sequential_thinking_sequentialthinking` in the tool list and records `sequential_thinking` plus `mk-spec-memory` connected. | PASS if the cited capture contains the exact stdio tool evidence. FAIL on a future repeat if the tool is absent or the transport handshake fails. | Re-read `.pi/mcp.json`, confirm `transport: "stdio"`, inspect the package version, and capture stderr before changing config. |
+| PI-011 | Stdio MCP transport discovery | Verify pinned native stdio MCP evidence | `List your available tools and include the names discovered from the configured stdio MCP servers. Do not call a tool or modify files.` | Read `.pi/mcp.json` and the current package settings; verify whether a raw transcript and SHA-256 digest are pinned; do not install or probe. | A pinned raw transcript contains the stdio handshake and expected tool name, with a matching digest | No pinned raw stdio transcript artifact or digest is present in this worktree; the implementation summary is prose only. | SKIP with blocker `no pinned raw stdio transcript artifact or digest is present; the optional pi-mcp-extension package is not installed or approved`; PASS only after pinned evidence is available; FAIL only if pinned evidence contradicts the documented behavior. | Keep the scenario cite-only. If evidence is added, verify its digest and preserve the exact command, stdout, stderr, and package version. |
 
 ### Optional Supplemental Checks
 
-- Repeat in a disposable project after the package version is explicitly reviewed; preserve the old transcript for comparison.
+- Add a disposable-project probe only when the optional package is explicitly approved; preserve the raw transcript, stderr, package version, and digest as new evidence.
 
 ---
 
@@ -66,7 +66,7 @@ The repository's native MCP servers use command-plus-arguments stdio configurati
 | File | Role |
 |---|---|
 | `.pi/mcp.json` | Project stdio server configuration |
-| `.pi/settings.json` | Installed `pi-mcp-extension` package entry |
+| `.pi/settings.json` | Current project package settings; absence of the optional package is not a failure |
 | `../../references/cli-reference.md` | Offline and output capture rules |
 
 ---

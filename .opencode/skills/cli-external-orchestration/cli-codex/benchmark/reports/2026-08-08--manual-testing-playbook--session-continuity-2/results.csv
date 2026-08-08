@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-017,cli-codex,,session-continuity,manual,,gpt-5.6-luna,session-continuity,,PASS,resume re-run: step1 wrote user.ts + emitted session id; codex exec resume wrote validate.ts referencing User; fork sub-check SKIP (no TTY) as designed

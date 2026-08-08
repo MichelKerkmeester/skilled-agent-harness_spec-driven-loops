@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-026,cli-codex,,agent-routing,manual,,gpt-5.6-luna,agent-routing,,PASS,"profile-v2 re-run: disposable home + auth + research.config.toml; exit 0, 29 candidate mentions, 16 dims, 12 HTTPS URLs, recommendation present"

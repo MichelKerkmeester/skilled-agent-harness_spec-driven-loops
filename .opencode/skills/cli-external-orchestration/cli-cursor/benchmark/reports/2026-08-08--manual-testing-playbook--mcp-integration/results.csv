@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-011,cli-cursor,,mcp-integration,manual,,composer-2.5,mcp-integration,,SKIP,documented SKIP: operator MCP-server approval unavailable in headless run; scenario reclassified

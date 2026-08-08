@@ -250,19 +250,21 @@ codex exec "Compare these two design versions and implement the better one." \
 
 ### Cloud Tasks (codex cloud)
 
-**Remote task execution.** The `codex cloud` subcommand enables running tasks in OpenAI's cloud environment rather than locally.
+**Cloud operations.** The `codex cloud` subcommand exposes the current cloud operation verbs. Authentication is shared with the local CLI and is checked with `codex login status`; do not look for a separate cloud-local auth flag.
 
 **Capabilities:**
-- Execute tasks remotely on OpenAI infrastructure
-- Useful for tasks requiring resources not available locally
-- Managed environment with OpenAI's runtime
+- `exec` — start a cloud execution
+- `status` and `list` — inspect cloud work
+- `apply` and `diff` — inspect or apply cloud-produced changes
 
 **Usage:**
 
 ```bash
-# Run a task in the cloud
-codex cloud "Generate comprehensive unit tests for this project" \
-  --model gpt-5.5
+# Check shared authentication before cloud operations
+codex login status
+
+# Inspect the live cloud operation surface
+codex cloud --help
 ```
 
 **Best For:**

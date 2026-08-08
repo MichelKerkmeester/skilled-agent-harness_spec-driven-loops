@@ -267,7 +267,7 @@ Each `.cursor/agents/<name>.md` is a **symlink** to the canonical `.claude/agent
 
 Note: `~/.cursor/agents/` (user-level) is documented by Cursor but a live probe found the CLI did **not** load a profile placed there; only the project-level paths above are verified working. Dispatch remains subject to this repo's own `preToolUse` spec-gate, which is correct behavior.
 
-`cursor-agent --help` does have no dedicated command-file-system concept or `commands` command; commands remain a non-applicable parity category for Cursor, mirroring the Devin-side decision.
+`cursor-agent --help` has no native command-roster listing subcommand. This repository still exposes a `.cursor/commands/` parity surface: the synchronizer derives it from eligible `.opencode/commands/` files, excludes `goal-opencode.md`, and adds the runtime-native `goal-cursor.md`; validate membership with `command-scope.cjs` and validate behavior with a real slash-command invocation.
 
 | Task Type | Execution mode |
 |-----------|-----------------|

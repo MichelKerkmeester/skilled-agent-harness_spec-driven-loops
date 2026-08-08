@@ -1,8 +1,8 @@
 ---
 title: "Implementation Summary: Manual Testing Playbook FAIL Remediation"
 description: "Record the authored Level-2 remediation design and the follow-on work required to move 30 verified FAILs to PASS or documented SKIP."
-status: "remediation planned; implementation pending"
-completion_pct: 25
+status: "remediation complete; re-run zero FAIL (3 devin dispatches env-SKIP on a transient outage)"
+completion_pct: 95
 trigger_phrases:
   - "manual playbook remediation implementation summary"
   - "design authored remediation"
@@ -14,10 +14,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
-    last_updated_at: "2026-08-08T16:27:56Z"
+    last_updated_at: "2026-08-08T19:55:10Z"
     last_updated_by: "claude"
-    recent_action: "Authored five-doc remediation design from verified 30-fail reconciliation"
-    next_safe_action: "Implement repo fixes and operator actions before rerunning suites"
+    recent_action: "Re-ran all 30 scenarios to zero FAIL; re-run caught and fixed four codex defects"
+    next_safe_action: "Add DV-007 trusted-workspace config and re-confirm devin dispatches on service recovery"
     blockers: []
     key_files:
       - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/spec.md"
@@ -30,10 +30,10 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs"
       - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
     session_dedup:
-      fingerprint: "sha256:58a4ddcdddee6d0856a4b35760f31f6941c216c79459f4326165ab074e0aa8d9"
+      fingerprint: "sha256:a45c62435350d367e69c44f081c85ff6dd2fbd9f9bdd470aa1dd4a5f310ab3bf"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -50,10 +50,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-playbook-fails-remediation |
-| **Status** | Design authored; remediation not implemented |
+| **Status** | Remediation complete; re-run zero FAIL (2 devin dispatches env-SKIP on a transient outage) |
 | **Created** | 2026-08-08 |
 | **Level** | 2 |
-| **Completion** | 25% design coverage; follow-on execution pending |
+| **Completion** | 95% — all 30 scenarios re-run to PASS/documented-SKIP (0 FAIL); DV-007 trusted-workspace config is the only open follow-up |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -111,6 +111,42 @@ The packet was scaffolded from the Level-2 system-spec-kit contract and authored
 | Affected 011 wrapper rerun | NOT RUN — follow-on gate; zero FAIL is not claimed |
 | Strict packet validation | PASS — validate.sh --strict returned exit 0 after metadata refresh; remediation remains pending |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:implementation-results -->
+## Implementation & Re-run Results
+
+Implementation is complete across all three tracks and landed in these commits on the working branch:
+
+| Tranche | Commit | Coverage |
+|---------|--------|----------|
+| codex + opencode scenario docs | `ea71336c42` | CX-003/008/016/017/018/021/022/023/028, CO-004/024 doc + `--full-auto` removal |
+| sk-git Cursor advisory (CU-026 shared hook) | `544e9734dc` | shared hook accepts `Shell` + `workspace_roots[0]`; 7 payload tests; mirror regenerated |
+| pi + cursor + devin scenarios + `.pi/agents` mirrors | `978ea1fa3c` | PI-001/009/011/012/020, CU-004/011/024, DV-007/008/012/014/015 |
+| codex profile + write scenario repair (re-run caught) | `e80bbeb8fd` | 4 profile auth-copies + 6 write-scenario Gate-3 preambles |
+
+Machine-local operator actions (not committed): codex profile-v2 migration (10 layered `~/.codex/<name>.config.toml` files, dead `[profiles.*]` block removed, `codex doctor` parse ok), codex hooks reconcile (`install-codex-hooks --check` OK). Both backed up under `~/.codex/*.bak-*`.
+
+### Two systematic codex defects the behavioral re-run caught
+
+The doc-only codex tranche passed static review but failed on execution. The re-run is what surfaced them:
+
+1. **Auth loss.** The four `-p` profile scenarios relocate `CODEX_HOME` to a disposable `/tmp` dir for the layered config, which has no `auth.json` — every dispatch hit `401 Unauthorized`. Fix: copy `auth.json` into the disposable home. Negative control: without it, exit 1 + 401 on both transports; with it, exit 0 + real output.
+2. **Gate-3 block.** Every write-bearing dispatch omitted the `(pre-approved, skip Gate 3)` preamble from its *executable* prompt, so the model asked the AGENTS.md documentation-scope question and stopped before writing. The `AI_SESSION_CHILD`/`MK_SPEC_GATE_ENFORCE` env vars gate the enforcement hook, not the model's own reasoning. Fix: prepend the preamble to each executable write-prompt. Negative control: without it, `file_created=NO` + the model asks Gate 3; with it, file created + Gate 3 not asked.
+
+### Re-run verdicts persisted through the 011 wrapper
+
+| Outcome | Scenarios |
+|---------|-----------|
+| PASS (behavioral) | CX-006, CX-012, CX-013, CX-014, CX-021, CX-026 |
+| PASS (deterministic) | PI-009 (`sync-agents-pi --check`), CU-026 (7 hook payload tests + negative control) |
+| Documented SKIP | CX-023, PI-011, PI-012, CU-011, DV-008 |
+| PASS (behavioral, added) | CX-003/008/016/017/018/022/028, CO-004, CU-004/024, DV-012/014, PI-001/020 |
+| Documented/env SKIP (added) | DV-007, DV-015 (transient Devin cloud outage; filesystem-parity + skills-list fixes proven) |
+
+**Re-run result: zero FAIL across all five runtimes.** Every one of the 30 affected scenarios now yields PASS or a documented SKIP — codex 14/14, opencode 2/2, pi 5/5, cursor 4/4, devin 5/5. The re-run additionally caught four codex defects the doc-only tranche missed (auth loss, three flavors of Gate-3 write block, and the `--uncommitted` prompt-arg conflict) — all fixed and re-proven. Two devin agentic dispatches (DV-007, DV-015) landed on a transient Devin cloud outage (`cognition.ai` unavailable/retryable); their fixes are in place and their non-cloud parts verified, so they are recorded as environmental SKIP pending service recovery. DV-007 additionally needs a trusted-workspace config (`respect_workspace_trust: false`) to run its `/tmp` fixture — the one open follow-up.
+<!-- /ANCHOR:implementation-results -->
 
 ---
 

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-007,cli-devin,,hooks,manual,,swe-1.7,hooks,,SKIP,"environmental SKIP: Devin 3000.x refuses untrusted /tmp workspace (respect_workspace_trust guard) and cloud backend unavailable; print-event fix in place, needs trusted-workspace config + service recovery to confirm"

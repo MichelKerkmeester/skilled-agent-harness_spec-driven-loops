@@ -22,6 +22,11 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--hooks-2/`](./2026-08-08--manual-testing-playbook--hooks-2/) | devin swe-1.7 hooks | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--commands-and-skills-2/`](./2026-08-08--manual-testing-playbook--commands-and-skills-2/) | devin swe-1.7 commands-and-skills | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--subagents/`](./2026-08-08--manual-testing-playbook--subagents/) | devin swe-1.7 subagents | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--commands-and-skills/`](./2026-08-08--manual-testing-playbook--commands-and-skills/) | devin swe-1.7 commands-and-skills | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--hooks/`](./2026-08-08--manual-testing-playbook--hooks/) | devin swe-1.7 hooks | 1 SKIP | **SKIP** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-22/`](./2026-08-08--manual-testing-playbook--devin-22/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-21/`](./2026-08-08--manual-testing-playbook--devin-21/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-20/`](./2026-08-08--manual-testing-playbook--devin-20/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |

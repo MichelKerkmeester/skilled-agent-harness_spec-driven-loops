@@ -22,6 +22,11 @@ Each row below is one run folder. This run family validates the cross-runtime go
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--git-preflight-advisory/`](./2026-08-08--manual-testing-playbook--git-preflight-advisory/) | pi deepseek-v4-flash git-preflight-advisory | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--cli-invocation/`](./2026-08-08--manual-testing-playbook--cli-invocation/) | pi deepseek-v4-flash cli-invocation | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agent-bridge/`](./2026-08-08--manual-testing-playbook--agent-bridge/) | pi deepseek-v4-flash agent-bridge | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--mcp-host-integration-2/`](./2026-08-08--manual-testing-playbook--mcp-host-integration-2/) | pi deepseek-v4-flash mcp-host-integration | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--mcp-host-integration/`](./2026-08-08--manual-testing-playbook--mcp-host-integration/) | pi deepseek-v4-flash mcp-host-integration | 1 SKIP | **SKIP** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-23/`](./2026-08-08--manual-testing-playbook--pi-23/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-22/`](./2026-08-08--manual-testing-playbook--pi-22/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-21/`](./2026-08-08--manual-testing-playbook--pi-21/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |

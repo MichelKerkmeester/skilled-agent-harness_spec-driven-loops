@@ -97,7 +97,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 
 | Flag / Option | Type | Purpose |
 |---------------|------|---------|
-| `[message..]` | positional | One or more positional message strings |
+| `[message..]` | positional | One or more positional message strings; place the message before variadic `-f` flags |
 | `--print-logs` | boolean | Stream logs to stderr |
 | `--log-level` | enum | `DEBUG`, `INFO`, `WARN`, `ERROR` |
 | `--pure` | boolean | Run without external plugins (skill loads disabled) |
@@ -109,7 +109,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `-m`, `--model` | string | Provider/model selector — e.g. `deepseek/deepseek-v4-pro` |
 | `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`) |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) |
-| `-f`, `--file` | array | Attach files to the message |
+| `-f`, `--file` | array | Attach files to the message; the positional message must come first |
 | `--title` | string | Session title (truncated message used when omitted) |
 | `--attach` | string | Attach to a running OpenCode server URL |
 | `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) |
@@ -117,6 +117,8 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `--port` | number | Local server port (random when omitted) |
 | `--variant` | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) |
 | `--thinking` | boolean | Show thinking blocks (default false) |
+
+> **Message/file ordering:** Because `[message..]` is variadic, put the prompt before every `-f`/`--file` flag: `opencode run "prompt" -f /path/to/file`. Putting `-f` first can make the parser consume the prompt as another file argument.
 
 > **`--command` semantics (verified on v1.17.4):** the `run` message is plain text — slash-command syntax inside it (`opencode run "/memory:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`memory/search` for `/memory:search`); a wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`; the raw-text form only measures the model freestyling without the contract. Consequences: (a) any behavior/adherence probe of a slash command MUST use `--command`, and the raw-text form is only valid as a labeled negative control; (b) inside `` !`…` `` template injections `$ARGUMENTS` expands like `"$@"` — one word per argument — so renderer scripts must join argv themselves.
 

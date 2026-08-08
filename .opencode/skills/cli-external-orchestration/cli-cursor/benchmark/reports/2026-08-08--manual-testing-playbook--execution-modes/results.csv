@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-004,cli-cursor,,execution-modes,manual,,composer-2.5,execution-modes,,PASS,"cursor plan-mode re-run: 105 plan signals (graphql/schema/resolver/steps), zero write/edit actions — read-only planning confirmed"

@@ -99,7 +99,7 @@ cursor-agent plugin marketplace
 
 ### What It Is
 
-`cursor-agent mcp` subcommands manage MCP server connections: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`. Configuration lives in `.cursor/mcp.json` (project scope) or `~/.cursor/mcp.json` (user scope) — the same files the Cursor editor reads (see `shared-editor-config.md`). `--approve-mcps` auto-approves all configured servers for a single dispatch, avoiding an interactive per-server prompt.
+`cursor-agent mcp` subcommands manage MCP server connections: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`. Configuration lives in `.cursor/mcp.json` (project scope) or `~/.cursor/mcp.json` (user scope) — the same files the Cursor editor reads (see `shared-editor-config.md`). `enable <id>` is an operator-controlled trust mutation and must not be run by the manual playbook. If a configured server is not approved, record `SKIP: MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`.
 
 ### Relevance to Orchestrated Dispatch
 
@@ -110,7 +110,7 @@ cursor-agent -p "Use the configured GitHub MCP server to list open PRs" \
   --model composer-2.5 --auto-review --sandbox enabled --approve-mcps
 ```
 
-Without `--approve-mcps`, an unapproved MCP server prompt behaves like any other unattended approval — nothing can answer it, and the action stalls or is silently skipped depending on the approval mode in effect.
+Without `--approve-mcps`, an unapproved MCP server prompt behaves like any other unattended approval — nothing can answer it, and the action stalls or is silently skipped depending on the approval mode in effect. `--approve-mcps` applies to a single dispatch; it is not a replacement for the explicit operator approval required by the `mcp list`/`list-tools` playbook scenario.
 
 ---
 

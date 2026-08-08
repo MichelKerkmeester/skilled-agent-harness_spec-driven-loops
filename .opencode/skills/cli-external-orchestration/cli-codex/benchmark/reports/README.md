@@ -22,6 +22,20 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--prompt-templates-2/`](./2026-08-08--manual-testing-playbook--prompt-templates-2/) | codex gpt-5.6-luna prompt-templates | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--sandbox-modes-2/`](./2026-08-08--manual-testing-playbook--sandbox-modes-2/) | codex gpt-5.6-luna sandbox-modes | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--cli-invocation/`](./2026-08-08--manual-testing-playbook--cli-invocation/) | codex gpt-5.6-luna cli-invocation | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-cloud/`](./2026-08-08--manual-testing-playbook--codex-cloud/) | codex gpt-5.6-luna codex-cloud | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--integration-patterns/`](./2026-08-08--manual-testing-playbook--integration-patterns/) | codex gpt-5.6-luna integration-patterns | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--session-continuity-2/`](./2026-08-08--manual-testing-playbook--session-continuity-2/) | codex gpt-5.6-luna session-continuity | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--session-continuity/`](./2026-08-08--manual-testing-playbook--session-continuity/) | codex gpt-5.6-luna session-continuity | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--prompt-templates/`](./2026-08-08--manual-testing-playbook--prompt-templates/) | codex gpt-5.6-luna prompt-templates | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--built-in-tools/`](./2026-08-08--manual-testing-playbook--built-in-tools/) | codex gpt-5.6-luna built-in-tools | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--sandbox-modes/`](./2026-08-08--manual-testing-playbook--sandbox-modes/) | codex gpt-5.6-luna sandbox-modes | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agent-routing-4/`](./2026-08-08--manual-testing-playbook--agent-routing-4/) | codex gpt-5.6-luna agent-routing | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agent-routing-3/`](./2026-08-08--manual-testing-playbook--agent-routing-3/) | codex gpt-5.6-luna agent-routing | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agent-routing-2/`](./2026-08-08--manual-testing-playbook--agent-routing-2/) | codex gpt-5.6-luna agent-routing | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agent-routing/`](./2026-08-08--manual-testing-playbook--agent-routing/) | codex gpt-5.6-luna agent-routing | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-29/`](./2026-08-08--manual-testing-playbook--codex-29/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-28/`](./2026-08-08--manual-testing-playbook--codex-28/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-27/`](./2026-08-08--manual-testing-playbook--codex-27/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |

@@ -1,6 +1,6 @@
 ---
 title: "PI-012 -- Streamable HTTP positive control"
-description: "This scenario uses the documented remote `streamable-http` shape and the existing connected-only lifecycle evidence to establish the MCP positive-control baseline for `PI-012`."
+description: "This scenario records the documented remote `streamable-http` shape separately from stdio lifecycle evidence and SKIPs until a pinned live HTTP handshake is available."
 version: 1.0.0.0
 ---
 
@@ -22,13 +22,13 @@ The package documentation shows a remote `streamable-http` shape, but the curren
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Establish the documented remote transport shape and verify that only eager servers connect automatically while lazy servers remain disconnected until explicitly started.
+- Objective: Record the documented remote transport shape and verify whether a pinned live HTTP handshake exists; do not infer remote connectivity from stdio lifecycle evidence.
 - Real user request: `Check the documented remote MCP shape and prove that Pi's startup list contains only servers configured to connect eagerly.`
 - Prompt: `Report the configured MCP servers, their transport and lifecycle values, and which servers are connected after startup. Do not invoke any tool.`
-- Expected execution process: Read the package's documented streamable-http config shape -> inspect `.pi/mcp.json` lifecycle values -> use the existing live discovery capture -> compare eager and lazy results.
-- Expected signals: The remote `streamable-http` shape is represented as a positive-control config; eager servers appear connected; two lazy servers correctly do not auto-connect.
-- Desired user-visible outcome: A deny-by-default, connected-only baseline that does not equate configured with connected.
-- Pass/fail: PASS for the documented-shape and lifecycle baseline from the existing captured evidence. FAIL if a lazy server auto-connects or an eager server is silently exposed without its configured connection state.
+- Expected execution process: Read the package's documented `streamable-http` shape -> inspect `.pi/mcp.json` lifecycle values -> search for a pinned raw HTTP handshake and digest. Keep any stdio lifecycle evidence in PI-011 and do not install or probe a remote endpoint.
+- Expected signals: The documentation contains the remote transport shape; lifecycle values are recorded as configuration facts; a live remote claim requires a pinned handshake with matching digest.
+- Desired user-visible outcome: A clear separation between documented transport support, stdio startup lifecycle, and verified remote connectivity.
+- Pass/fail: SKIP because no pinned live streamable-HTTP handshake and digest are available. PASS only when that artifact exists and verifies the remote handshake. FAIL only when pinned remote evidence contradicts the documented transport behavior.
 
 ---
 
@@ -38,12 +38,13 @@ The package documentation shows a remote `streamable-http` shape, but the curren
 
 1. Read the package reference for `streamable-http`.
 2. Read `.pi/mcp.json` and record each `lifecycle` value.
-3. Use the existing live capture; do not re-run package installation or rewrite MCP config.
-4. Report transport support and lifecycle evidence as separate claims.
+3. Search the repository for a pinned raw streamable-HTTP transcript and digest.
+4. If no such artifact exists, record `SKIP: no pinned live streamable-HTTP handshake and digest are available.` Do not install a package, contact a remote endpoint, or rewrite MCP config.
+5. Report transport support, stdio lifecycle evidence, and remote handshake evidence as separate claims.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-012 | Streamable HTTP positive control | Establish connected-only MCP startup baseline | `Report the configured MCP servers, their transport and lifecycle values, and which servers are connected after startup. Do not invoke any tool.` | Existing captured command: inspect the documented remote `streamable-http` shape -> inspect `.pi/mcp.json` -> `pi --offline --approve -p "list your available tools"` -> compare eager and lazy server results. This scenario is cite-only and does not re-run it. | The captured five-server probe shows eager `sequential_thinking` and `mk-spec-memory` connected; `mk_skill_advisor` and `code_mode` are lazy and did not auto-connect | Existing captured MCP evidence records the two lazy servers correctly remaining disconnected and attributes the deny-by-default behavior to `lifecycle: eager/lazy`. | PASS for the connected-only baseline. FAIL if lazy servers auto-connect or lifecycle is ignored. A remote transport connection itself must not be claimed beyond the documented shape unless a future transcript shows it. | Check the effective `.pi/mcp.json`, package README, and startup stderr; distinguish missing build artifacts from lifecycle behavior. |
+| PI-012 | Streamable HTTP positive control | Separate documented remote shape from live handshake | `Report the configured MCP servers, their transport and lifecycle values, and which servers are connected after startup. Do not invoke any tool.` | `rg -n 'streamable-http|lifecycle' .opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md .pi/mcp.json`; search for a pinned raw HTTP transcript and digest; do not install or probe. | The reference shows the documented remote shape; lifecycle values are recorded; a remote connection is reported only when a pinned handshake and matching digest exist | No pinned live streamable-HTTP handshake or digest is available; existing lifecycle evidence is not a remote handshake. | SKIP with blocker `no pinned live streamable-HTTP handshake and digest are available`; PASS only after pinned evidence is verified; FAIL only if pinned evidence contradicts the documented behavior. | Keep the remote claim separate from PI-011. Preserve the exact request, response, stderr, package version, and digest if a future probe is approved. |
 
 ### Optional Supplemental Checks
 

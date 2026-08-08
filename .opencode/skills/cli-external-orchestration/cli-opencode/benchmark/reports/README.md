@@ -22,6 +22,8 @@ Each row below is one run folder. This run captures the live-headless-dispatch s
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--prompt-templates/`](./2026-08-08--manual-testing-playbook--prompt-templates/) | opencode opencode-go/deepseek-v4-flash prompt-templates | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--cli-invocation/`](./2026-08-08--manual-testing-playbook--cli-invocation/) | opencode opencode-go/deepseek-v4-flash cli-invocation | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--opencode-45/`](./2026-08-08--manual-testing-playbook--opencode-45/) | opencode opencode-go/deepseek-v4-flash opencode | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--opencode-44/`](./2026-08-08--manual-testing-playbook--opencode-44/) | opencode opencode-go/deepseek-v4-flash opencode | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--opencode-43/`](./2026-08-08--manual-testing-playbook--opencode-43/) | opencode opencode-go/deepseek-v4-flash opencode | 1 PASS | **PASS** | `manual-testing-playbook` |

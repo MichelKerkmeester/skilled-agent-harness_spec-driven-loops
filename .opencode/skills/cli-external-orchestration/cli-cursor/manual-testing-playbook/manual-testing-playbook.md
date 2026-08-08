@@ -28,15 +28,16 @@ Canonical package artifacts:
 - `cloud-worker/`
 - `prompt-templates/`
 - `agents-skills-rules/`
+- `git-preflight-advisory/`
 - `goal-hook/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 25 deterministic scenarios across 10 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 27 deterministic scenarios across 12 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-07-27): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (confirmed-fires, confirmed-non-delivery, the unreviewed prebind design, and phase 011's live-fire-confirmed `Task`-matcher dispatch guard), session continuity (`--continue`/`--resume`), prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch), and the 13-agent/36-command/mirror-integrity roster surfaces added in CU-022..CU-025. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
+Coverage note (2026-07-27): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (confirmed-fires, confirmed-non-delivery, the unreviewed prebind design, and phase 011's live-fire-confirmed `Task`-matcher dispatch guard), session continuity (`--continue`/`--resume`), prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch), the 13-agent/runtime-derived-command/mirror-integrity roster surfaces added in CU-022..CU-025, and the direct Cursor Shell delivery of the sk-git advisory. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
 ### Realistic Test Model
 
@@ -619,8 +620,12 @@ Desired user-visible outcome: A working generation from Composer's own scaffold,
 
 - CU-022: [13-agent roster enumeration](agents-skills-rules/agent-roster-enumeration.md)
 - CU-023: [Mirrored-agent subagent dispatch](agents-skills-rules/mirrored-agent-dispatch.md)
-- CU-024: [36-command roster and invocation](agents-skills-rules/command-roster-invocation.md)
+- CU-024: [Runtime-derived command roster and invocation](agents-skills-rules/command-roster-invocation.md)
 - CU-025: [Agent mirror symlink integrity](agents-skills-rules/agent-mirror-integrity.md)
+
+### Git preflight advisory scenario
+
+- CU-026: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
 
 The `cli-cursor` skill is an orchestrator wrapper around a third-party binary (`cursor-agent`) and does not own a Python or JavaScript test suite of its own. Cross-references in this section point at upstream and adjacent test surfaces:
 
@@ -693,3 +698,7 @@ This category covers the runtime-neutral cross-runtime goal core (`.opencode/hoo
 
 - CU-018: [CLEAR scoring via quality card](../manual-testing-playbook/prompt-templates/clear-scoring-quality-card.md)
 - CU-019: [Composer RCAF template dispatch](../manual-testing-playbook/prompt-templates/composer-rcaf-template-dispatch.md)
+
+### GIT PREFLIGHT ADVISORY
+
+- CU-026: [Git preflight advisory delivery](../manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md)

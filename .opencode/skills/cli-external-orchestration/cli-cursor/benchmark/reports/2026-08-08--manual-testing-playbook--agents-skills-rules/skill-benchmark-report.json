@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "cli-cursor",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-cursor"
+  },
+  "executor": "cursor",
+  "model": "composer-2.5",
+  "variant": "agents-skills-rules",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CU-024",
+      "verdict": "PASS",
+      "reason": "cursor command-roster re-run: /speckit-plan produced 26 plan/scenario/packet signals in output",
+      "stage": "agents-skills-rules",
+      "classKind": "manual",
+      "providerModel": "composer-2.5",
+      "variant": "agents-skills-rules",
+      "evidence": []
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "CU-024",
+    "stage": "agents-skills-rules",
+    "dispatch": "manual",
+    "executor": "cursor",
+    "model": "composer-2.5",
+    "variant": "agents-skills-rules"
+  }
+}

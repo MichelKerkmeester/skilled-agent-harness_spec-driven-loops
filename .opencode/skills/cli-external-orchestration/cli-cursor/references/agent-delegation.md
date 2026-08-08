@@ -89,7 +89,7 @@ cursor-agent -p "Explain how the retry logic works in src/api/client.ts" \
 | **Plan** | `--mode plan` (shorthand: `--plan`) | Read-only | Multi-step planning without any file writes |
 | **Ask** | `--mode ask` | Read-only | Q&A, architecture exploration, code explanation |
 
-Approval flags (`--auto-review`/`--force`) have no effect in `--mode plan`/`--mode ask` — both modes are read-only regardless of what approval flag is passed, since there is nothing for the model to write.
+Approval flags (`--auto-review`/`--force`) have no effect in `--mode plan`/`--mode ask` — both modes are read-only regardless of what approval flag is passed, since there is nothing for the model to write. Headless plan mode does not promise a separate numbered-plan artifact on text stdout; use `--output-format stream-json` for event evidence and inspect content only when an emitted payload exposes it.
 
 ---
 

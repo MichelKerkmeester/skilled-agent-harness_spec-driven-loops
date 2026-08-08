@@ -24,6 +24,10 @@ Each row below is one run folder. Unlike a Lane C skill-benchmark tree, no autom
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--agents-skills-rules/`](./2026-08-08--manual-testing-playbook--agents-skills-rules/) | cursor composer-2.5 agents-skills-rules | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--execution-modes/`](./2026-08-08--manual-testing-playbook--execution-modes/) | cursor composer-2.5 execution-modes | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--git-preflight-advisory/`](./2026-08-08--manual-testing-playbook--git-preflight-advisory/) | cursor composer-2.5 git-preflight-advisory | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--mcp-integration/`](./2026-08-08--manual-testing-playbook--mcp-integration/) | cursor composer-2.5 mcp-integration | 1 SKIP | **SKIP** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--cursor-28/`](./2026-08-08--manual-testing-playbook--cursor-28/) | cursor composer-2.5 cursor | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--cursor-27/`](./2026-08-08--manual-testing-playbook--cursor-27/) | cursor composer-2.5 cursor | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--cursor-26/`](./2026-08-08--manual-testing-playbook--cursor-26/) | cursor composer-2.5 cursor | 1 PASS | **PASS** | `manual-testing-playbook` |

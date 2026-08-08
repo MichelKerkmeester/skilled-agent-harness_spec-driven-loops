@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-018,cli-codex,,integration-patterns,manual,,gpt-5.6-luna,integration-patterns,,PASS,"generate-review-fix loop re-run: create middleware.ts -> review found 29 issue mentions -> fix added validation; all writes exit 0, gate3 not asked"

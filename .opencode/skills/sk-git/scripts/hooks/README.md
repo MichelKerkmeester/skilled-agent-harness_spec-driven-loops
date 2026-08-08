@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The git preflight advisory evaluates a shell command before it runs and surfaces surprising git behavior without changing the command's permission or exit path. The primary hook accepts Claude's `Bash` payload and Codex/Devin's `exec` payload. Cursor, OpenCode, and Pi adapt their native tool events onto the same hard-rule parser, 17 checks, and lazy git context.
+The git preflight advisory evaluates a shell command before it runs and surfaces surprising git behavior without changing the command's permission or exit path. The shared stdin hook accepts Claude's `Bash` payload, Codex/Devin's `exec` payload, and Cursor's `Shell` payload directly — one file, three tool labels. OpenCode and Pi adapt their native tool events onto the same hard-rule parser, 17 checks, and lazy git context through their own plugin and extension.
 
 This layer is advisory only. Any malformed payload, missing rule file, non-repository directory, subprocess timeout, import error, or adapter failure becomes silence or approval. Enforcement remains the responsibility of git's own behavior and the repository's commit and push hooks.
 
@@ -37,10 +37,10 @@ This layer is advisory only. Any malformed payload, missing rule file, non-repos
                               │
              up to 3 findings + omitted-count line
                               │
-          ┌───────────────┬───────────────┬────────────────┐
-          ▼               ▼               ▼                ▼
-  hook context JSON   Cursor proxy    Pi reason     OpenCode next-turn
-  Claude/Codex/Devin  stdout verbatim  no block      system context
+          ┌──────────────────────────┬───────────────┬────────────────┐
+          ▼                          ▼               ▼
+  hook context JSON              Pi reason     OpenCode next-turn
+  Claude/Codex/Devin/Cursor      no block      system context
 ```
 
 ---
@@ -49,10 +49,10 @@ This layer is advisory only. Any malformed payload, missing rule file, non-repos
 
 | File | Responsibility |
 |---|---|
-| `git-preflight-advisory.mjs` | Shared stdin hook for `Bash` and `exec` payloads. Reads the repository from payload `cwd` or the runtime project-directory environment. |
+| `git-preflight-advisory.mjs` | Shared stdin hook for `Bash`, `exec`, and Cursor `Shell` payloads. Reads the repository from payload `cwd`, Cursor's `workspace_roots[0]`, or the runtime project-directory environment. |
 | `../lib/git-rule-checks.mjs` | Shared git shape gate, parser, and 17 checks. |
 | `../lib/git-context.mjs` | Shared lazy repository-state collector. |
-| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Maintained shared adapter registered for Cursor `Shell` payloads; it forwards advisory stdout verbatim. |
+| `.cursor/hooks/git-preflight-advisory.mjs` | Relative mirror symlink to the shared hook. `.cursor/hooks.json` registers the shared hook directly for matcher `Shell`; the symlink only keeps the `.cursor/hooks/` tree browsable and never reshapes the payload. |
 | `.opencode/plugins/mk-git-preflight-advisory.js` | Evaluates OpenCode `bash` calls and drains bounded findings into `experimental.chat.system.transform` on the next turn. It never prints to plugin stdout or stderr. |
 | `.pi/extensions/git-preflight-advisory.ts` | Evaluates Pi `bash` tool calls and returns a warning `reason` without `block: true`. |
 
@@ -96,7 +96,7 @@ Three suppression levels are resolved before repository state is collected:
 - Missing hard-rule frontmatter produces an empty rule set.
 - A check that throws is swallowed by the shared evaluator.
 - Git subprocess failures and timeouts return safe unknown values.
-- Cursor proxy spawn failures produce no output.
+- A Cursor `Shell` payload the shared hook cannot parse fails open exactly as a `Bash` or `exec` one does.
 - Pi catches import and evaluation errors and returns `undefined`.
 - OpenCode catches evaluation and transform errors, never throws, and never writes stdout or stderr.
 - Every surfaced result is warning-only and capped at three findings plus one omitted-count line.

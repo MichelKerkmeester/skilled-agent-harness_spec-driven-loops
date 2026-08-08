@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-004,cli-opencode,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,cli-invocation,,PASS,"opencode run -f re-run: prompt-before-f arg order, exit 0, output names helloWorld_co004, no file-not-found"

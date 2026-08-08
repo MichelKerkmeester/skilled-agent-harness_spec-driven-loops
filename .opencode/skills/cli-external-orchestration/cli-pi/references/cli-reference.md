@@ -21,7 +21,7 @@ Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-o
 
 ## 1. OVERVIEW
 
-Pi is a terminal coding assistant with read, bash, edit, write, grep, find, and ls tools. The pinned install reported version 0.82.1 and a default provider of google. The default config directory was observed as ~/.pi/agent, with PI_CODING_AGENT_DIR as the override. See the local contract pin for evidence.
+Pi is a terminal coding assistant with read, bash, edit, write, grep, find, and ls tools. The installed runtime version must be recorded from `pi --version` at execution time; the authoring probe returned 0.84.1, while the older contract pin is historical evidence rather than a current version gate. The default config directory was observed as ~/.pi/agent, with PI_CODING_AGENT_DIR as the override. See the local contract pin for historical evidence.
 
 This packet separates three headless contracts:
 
@@ -42,7 +42,7 @@ npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 pi --version
 ~~~
 
-The observed version was 0.82.1. The current Pi documentation describes the same npm package and install family at [pi.dev](https://pi.dev/docs/latest).
+Record the observed version at execution time rather than comparing it with a fixed historical value. The current Pi documentation describes the same npm package and install family at [pi.dev](https://pi.dev/docs/latest).
 
 Before every orchestrated dispatch:
 

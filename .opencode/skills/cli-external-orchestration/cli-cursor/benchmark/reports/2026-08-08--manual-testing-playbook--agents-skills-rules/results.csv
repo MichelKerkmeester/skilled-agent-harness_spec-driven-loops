@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-024,cli-cursor,,agents-skills-rules,manual,,composer-2.5,agents-skills-rules,,PASS,cursor command-roster re-run: /speckit-plan produced 26 plan/scenario/packet signals in output

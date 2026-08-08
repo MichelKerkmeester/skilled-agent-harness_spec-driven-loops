@@ -64,7 +64,7 @@ Calling AI (CONDUCTOR)
 
 ### Invocation Pattern
 
-Codex CLI tasks are routed using the `-p` / `--profile` flag with a profile name. Profiles are defined in `config.toml` under `[profiles.<name>]` sections. For git diff reviews, use the built-in `codex exec review` subcommand.
+Codex CLI tasks are routed using the `-p` / `--profile` flag with a profile name. A profile named `review` is loaded from `$CODEX_HOME/review.config.toml`; do not put it in a `[profiles.review]` section in `config.toml`. For git diff reviews, use the built-in `codex exec review` subcommand.
 
 ```bash
 # Profile-based delegation via exec (non-interactive)
@@ -93,36 +93,19 @@ codex exec -p context "Map the dependency graph for src/" \
 
 ### Profile Setup
 
-Profiles must be defined in `config.toml`. Example configuration matching the agent catalog below:
+Profiles are layered files under `CODEX_HOME`. Each file contains the settings for one profile:
 
-```toml
-# .codex/config.toml
-[profiles.review]
-sandbox_mode = "read-only"
-model_reasoning_effort = "xhigh"
-
-[profiles.context]
-sandbox_mode = "read-only"
-model_reasoning_effort = "xhigh"
-
-[profiles.debug]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "xhigh"
-
-[profiles.research]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "xhigh"
-
-[profiles.write]
-sandbox_mode = "workspace-write"
-model_reasoning_effort = "xhigh"
-
-[profiles.ai-council]
-sandbox_mode = "read-only"
-model_reasoning_effort = "xhigh"
+```text
+$CODEX_HOME/
+├── review.config.toml
+├── context.config.toml
+├── debug.config.toml
+├── research.config.toml
+├── write.config.toml
+└── ai-council.config.toml
 ```
 
-**Note:** The `.codex/agents/*.toml` files define agent personas for the interactive multi-agent TUI feature. They are NOT loaded by the `-p` profile flag. To use agent-specific behavior in `codex exec`, define corresponding `[profiles.<name>]` sections in config.toml and include context in the prompt.
+For example, `$CODEX_HOME/review.config.toml` contains `sandbox_mode = "read-only"` and `model_reasoning_effort = "xhigh"`. The `.codex/agents/*.toml` files define personas for the interactive multi-agent TUI; they are not loaded by `-p`.
 
 ### Conductor Rules
 
@@ -321,7 +304,7 @@ jq '.issues[] | select(.severity == "critical")' /tmp/review.json
 | Scenario            | Detection                           | Recovery                                              |
 | ------------------- | ----------------------------------- | ----------------------------------------------------- |
 | Auth failure        | Non-zero exit, auth error in output | Re-run `codex login` (ChatGPT OAuth)                  |
-| Profile not found   | Error: profile not defined          | Verify profile name matches `[profiles.<name>]` in config.toml |
+| Profile not found   | Error: profile not defined          | Verify `$CODEX_HOME/<name>.config.toml` exists and the profile name matches the filename |
 | Sandbox restriction | Permission denied in output         | Upgrade sandbox mode or adjust task scope             |
 | Timeout / hung      | No output within expected time      | Simplify task scope; break into smaller steps         |
 | Low-quality output  | Calling AI validation fails        | Retry with refined prompt; use different agent        |

@@ -52,7 +52,8 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 ### Optional Supplemental Checks
 
 - Repeat Step 2 with `SKGIT_ADVISORY_SKIP=commit-scope-drops-untracked` and confirm the single-rule suppression tier also silences the advisory.
-- Repeat Step 2 with an `exec` payload (`{"tool_name":"exec",...}`) and confirm the same advisory fires, proving the shared hook serves both runtime dialects.
+- Repeat Step 2 with an `exec` payload (`{"tool_name":"exec",...}`) and confirm the same advisory fires, proving the shared hook serves Claude and Codex/Devin alike.
+- Repeat Step 2 with a Cursor `Shell` payload that carries the repository in `workspace_roots` rather than `cwd` (`{"tool_name":"Shell","tool_input":{"command":"git commit --only src -m x"},"workspace_roots":["<repo>"]}`) and confirm the same advisory fires. Cursor reaches the shared hook directly — `.cursor/hooks.json` registers this hook for matcher `Shell`, and the `.cursor/hooks/git-preflight-advisory.mjs` entry is a mirror symlink, not a payload-reshaping proxy.
 
 ---
 
@@ -69,7 +70,7 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 
 || File | Role |
 ||---|---|
-|| `../../scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that evaluates `Bash` and `exec` payloads and emits `additionalContext` |
+|| `../../scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that evaluates `Bash`, `exec`, and Cursor `Shell` payloads and emits `additionalContext` |
 || `../../scripts/lib/git-rule-checks.mjs` | The `commit-scope-drops-untracked` check and the `GIT_SHAPE` gate |
 || `../../scripts/lib/git-context.mjs` | The lazy repository-state collector the check reads |
 || `../../SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |

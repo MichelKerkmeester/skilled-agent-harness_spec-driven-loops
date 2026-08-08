@@ -236,7 +236,7 @@ Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service 
 
 ### Codex Agent Delegation
 
-The calling AI is the conductor; Codex profiles in `.codex/config.toml` `[profiles.<name>]` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
+The calling AI is the conductor; Codex profiles in `$CODEX_HOME/<name>.config.toml` shape HOW Codex processes the task (sandbox, reasoning). Route with `-p <name>` when the task matches a specialization. Full roster and invocation patterns: [agent-delegation.md](./references/agent-delegation.md).
 
 | Task Type | Profile |
 |-----------|---------|
@@ -253,7 +253,7 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Four gotchas that silently break a dispatch and must be honored at routing time:
 
-- **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write` (or `--full-auto`) whenever the task requires edits.
+- **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write`; for headless no-prompt execution use top-level `-a never` before `exec` or `-c approval_policy=never`.
 - **`--search` is a top-level flag, not an `exec` flag** — enable live web search as `codex --search exec …` (it precedes the subcommand). On codex ≥ 0.144 `codex exec --search` hard-fails with `unexpected argument '--search'` (older 0.125 builds accepted it), so treat any `exec … --search` example as stale. Without it, `codex exec` has no web access and answers from training data only — every dispatch needing live data (latest versions, repo facts, advisories) MUST use `codex --search exec …`.
 - **Always pass `-c service_tier="fast"` explicitly** — this routes through the fast tier instead of whatever the caller's `~/.codex/config.toml` defaults to. Explicit means reproducible regardless of who runs it.
 - **No `--reasoning-effort`, `--reasoning`, or `--quiet` flag exists** — set effort with `-c model_reasoning_effort="<level>"`; capture the last message with `-o file.txt`; capture stderr with `2>&1`.
@@ -266,13 +266,13 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 
 1. Verify Codex CLI is installed before first invocation (`command -v codex`).
 2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`; never build a second adapter in this packet.
-3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` (or `--full-auto`) for code generation/file modification — `codex exec` defaults to `read-only`, so omitting causes silent no-op on edit tasks.
+3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` for code generation/file modification — `codex exec` defaults to `read-only`, so omitting it causes silent no-op on edit tasks. For unattended approval, put top-level `-a never` before `exec` or set `-c approval_policy=never`.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
 6. **Redirect codex stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded codex process inherits the loop's stdin (the file after `done < input.jsonl`) and silently consumes the remaining lines — the loop exits after 3-6 iterations with no error. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
 7. **Specify model + effort + service tier explicitly** — never rely on caller environment. Default: `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Honor user overrides verbatim. Use `high`/`xhigh` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate `-p <profile>` when the task matches a specialization (see Section 3 routing table); use `codex exec review` (built-in subcommand) for git diff reviews.
-9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in `--full-auto` or non-interactive mode.
+9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`:
    1. **Fast path (default).** Build from the local `assets/prompt-quality-card.md`, which delegates the framework table + CLEAR check to the canonical card.
    2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../../sk-prompt/sk-prompt-models/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt/sk-prompt-models** packet owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/sk-prompt-models/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
@@ -286,7 +286,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 
 ### ⛔ NEVER
 
-1. Use `--sandbox danger-full-access` without explicit user approval (full shell beyond workspace = damage risk). `--full-auto` (workspace-write + on-request approval) does not require pre-approval.
+1. Use `--sandbox danger-full-access` without explicit user approval (full shell beyond workspace = damage risk). A no-prompt approval policy does not remove the need for explicit scope approval.
 2. Trust Codex output blindly for security-sensitive code, send sensitive data (API keys, passwords, credentials) in prompts, or hammer the API with rapid sequential calls.
 3. Use Codex for tasks where context is already loaded — direct action by the calling AI is faster.
 4. Assume Codex output is correct without verification — cross-reference codebase and project standards.
@@ -297,7 +297,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 1. Codex CLI is not installed and user has not acknowledged (provide `npm i -g @openai/codex`).
 2. Rate limits are persistently exceeded (suggest checking the ChatGPT OAuth account's plan and usage limits).
 3. Codex output conflicts with existing code patterns (present both perspectives; user decides).
-4. Task requires `--sandbox danger-full-access` (describe risks; get explicit user approval). `--full-auto` does not require escalation.
+4. Task requires `--sandbox danger-full-access` (describe risks; get explicit user approval). A no-prompt approval policy still requires explicit scope approval.
 
 ### Memory Handback Protocol
 

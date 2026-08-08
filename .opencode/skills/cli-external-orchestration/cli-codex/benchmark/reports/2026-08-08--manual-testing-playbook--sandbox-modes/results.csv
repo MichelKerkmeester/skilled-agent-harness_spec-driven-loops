@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-006,cli-codex,,sandbox-modes,manual,,gpt-5.6-luna,sandbox-modes,,PASS,"Gate-3 preamble re-run: default home + AI_SESSION_CHILD; exit 0, hello.ts created, gate3 not asked"

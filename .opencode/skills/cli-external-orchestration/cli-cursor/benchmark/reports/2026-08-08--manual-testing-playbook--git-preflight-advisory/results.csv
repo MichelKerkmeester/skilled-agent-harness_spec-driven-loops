@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-026,cli-cursor,,git-preflight-advisory,manual,,composer-2.5,git-preflight-advisory,,PASS,shared hook accepts Cursor Shell tool_name + workspace_roots[0]; 7 payload tests pass; negative control confirms pre-fix silent vs fixed advises

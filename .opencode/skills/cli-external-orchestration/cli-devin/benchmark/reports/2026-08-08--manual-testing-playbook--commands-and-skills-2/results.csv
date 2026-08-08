@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-015,cli-devin,,commands-and-skills,manual,,swe-1.7,commands-and-skills,,SKIP,"environmental SKIP: /sk-doc dispatch blocked by Devin cloud outage (cognition.ai errorKind=unavailable, retryable); native skill routing fix is in place, re-run deferred to service recovery"
