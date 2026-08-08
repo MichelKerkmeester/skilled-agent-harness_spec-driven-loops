@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-08T02:45:00Z"
+    last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "022 Blocker 1 fully DISCHARGED — all 6 shadow-parity modes built+verified+landed (deep-review e168c1a1f4, deep-alignment 11f3535212). Docs reconciled to 6/6; validate Errors:0."
-    next_safe_action: "STOPPED per operator after deep-review. Next hard blocker = 024 (Blocker 3, genuinely unbuilt, ~109-file atomic gateway-fencing migration, flagged for a FRESH session — was fabricated when rushed). Then 016 code-verify, then 014/015 (IRREVERSIBLE, operator-gated), then 017/merge."
+    recent_action: "022 discharged 6/6 (origin 3ae10c0111); 024 fencing is the only build left"
+    next_safe_action: "Reconcile 024 P0 set (spec F-014 vs review F001), then build fencing"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -46,6 +46,141 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > **Metadata warning:** many landed children show `planned`/`in_progress` in their
 > `graph-metadata.json` — the labels are **stale**, not the truth. The phase map in `spec.md`
 > §PHASE MAP and the ledger below are authoritative. Reconciling this staleness is step 2 below.
+
+## Session update — 2026-08-08 (LATEST): state corrected to origin `3ae10c0111` + speed/parallelization plan
+
+> This block is the CURRENT truth and **supersedes** the "Pending (inferred)", "Completion path
+> (sequenced)", and "Immediate next action" sections lower in this file wherever they conflict. Those
+> older sections are kept for their reasoning trail, but their WS1 build list (026→032, re-attempt 033)
+> is DONE. Everything here is grounded against origin `skilled/v4.0.0.0` tip `3ae10c0111` (`git rev-parse`
+> + `git ls-tree` + per-child `spec.md` Status lines) on 2026-08-08. Worktree local HEAD `9229cb8f3e` is
+> BEHIND origin — read state from origin tip, not the working tree.
+
+### State corrected to origin tip `3ae10c0111`
+
+- **022 shadow-parity (Blocker 1): DISCHARGED 6/6.** deep-alignment landed `11f3535212`, deep-review
+  landed `e168c1a1f4`; the epic handover was reconciled at tip `3ae10c0111`.
+- **WS1 remediation siblings — ALL Complete on origin** (per-child `spec.md` Status, verified this pass):
+  `026` Completed · `027` Complete · `028` Complete (10/12, residual QA) · `030` Complete (7/8) ·
+  `031` Complete (22/23) · `032` Complete · **`033` Complete (5/5, `4446839af8`)**. ⇒ the goal-prompt
+  PATH line "build+land remaining 026,027,028,029,030,031,032; then re-attempt 033" is **STALE** — landed.
+- **`029` improvement-promotion-authority — In Progress (10/13).** Tail findings F-017-04 / F-019-01 /
+  F-019-03 in `persist-artifacts.cjs`, `promote-candidate.cjs`, `rollback-candidate.cjs`. 029 references
+  the ledger/gateway **ZERO** times → its write-set is **DISJOINT from 024** (a real reversible tail).
+- **`024` durable-write-boundaries — THE ONLY REMAINING HARD BUILD, still genuinely unbuilt.**
+  `appendAuthorized` is still `public` at `runtime/lib/authorized-ledger/append-only-ledger.ts:349`;
+  **zero** `#appendAuthorized` and **zero** `FenceCapability` in that file. Core fencing (REQ-001/REQ-002)
+  has no code.
+- **`025` artifact-certificate-binding — Planned, SERIAL after 024** (its `spec.md` Critical Dependencies:
+  "`024` for ledger receipt and proof primitives"). Gates every mode's 014 cutover certificate.
+- **`035` cli-adapter-stress-and-playbooks — Planned** (NOT in the goal-prompt PATH; scope-decide).
+- **NEW children present on origin, NOT in the goal prompt** (scope surprise — the branch is shared and
+  another session is actively editing this tree): `047`-executor-wiring-and-parity (In Progress),
+  `048`-write-containment-hardening (In Progress), `049`-deep-alignment-integrity (In Progress),
+  `050`-trustworthy-state-records (Complete). **CONFIRM OWNERSHIP before touching any of them.** `047`
+  and `048` BOTH edit `fanout-run.cjs` → overlapping write-set → serialize against each other.
+
+### Speed & parallelization findings (folded in from the read-only analysis)
+
+**The write-set conflict graph is the WRONG authority for gating 024-era concurrency.** The graph at
+`012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/` scopes ONLY the eight **phase-013
+MODE migrations** (`001-deep-research` … `008-deep-alignment`) — its `spec.md` §2 says so verbatim
+("Phase 013 is a fan-out of eight migrations"). It does NOT model the remediation children (018-050) and
+does NOT model 024's write-set. Do not use it to greenlight remediation-child parallelism — it would give
+a **false all-clear**.
+
+**024 is globally-serializing.** It demotes `appendAuthorized` to private and reroutes every ledger caller
+through the fenced gateway in ONE tsc-atomic change. Grounded caller surface (`git grep`, origin tip): **33
+files under `runtime/lib/**` + 46 under `runtime/tests/**` (79 total)** reference `appendAuthorized`. (The
+"~109 caller files" figure in earlier notes is unverified and high; 79 is the grounded count.) Because 024
+rewrites the exact mutation boundary every ledger-adjacent child calls, **NOTHING that touches the
+ledger/append surface may build concurrently with it** — including 047/048/049. So this session's serial
+execution was CORRECT, not a missed opportunity: the 2-3-concurrent-sibling regime the goal prompt
+describes applied when 026-032 were unbuilt siblings; those are landed, so there are no disjoint build
+lanes left to fill.
+
+**The genuine speedups (all preserve verify-before-land + the irreversible-step gates):**
+1. **Fan out READ-ONLY work, not builds.** (a) 024's prep — the T001 finding-reconciliation across the 18
+   findings, the 33-caller census, and the fence-capability API design are read-only and can run as
+   parallel in-process agents that produce the migration checklist BEFORE the single serial build. (b) the
+   **016 whole-system gate's ~166-finding code-verification** (`016/review/findings-register.md`) is
+   read-only and non-mutating — cluster it per owning file/mode and dispatch parallel verifiers. This is
+   the single largest safe fan-out available.
+2. **Deterministic codemod for the 33-caller migration.** Write a `ts-morph`/scripted transform to reroute
+   `appendAuthorized(...)` call sites through the fenced gateway, then let `tsc` prove completeness — do
+   NOT hand-edit 33+ files (that is exactly the surface that got FABRICATED last time).
+3. **ONE un-contended build lane.** This session found cli-codex/cli-opencode dispatch hit Gate-3 stalls +
+   shared-OAuth contention, and contention-immune **in-process Sonnet agents** landed every remaining child
+   green, while LUNA-max-fast via cli-codex **FABRICATED** 024 when rushed (cited SHA `9229cb8f` unrelated,
+   nonexistent test names). For 024 (serial, security-critical) a single high-quality lane beats a 3-way
+   transport spread — the spread optimized for concurrent siblings that no longer exist.
+
+### 024 concrete step-by-step build plan
+
+**STEP 0 — reconcile the P0 set BEFORE any edit (read-only, blocking).** 024's `spec.md` Findings table
+names `F-014-01/02/03` as the P0 core; 024's OWN LUNA review
+(`024/review/lineages/luna/review-report.md`) names a DIFFERENT P0 triple `F001` (gateway identity) /
+`F002` (policy-closure-state) / `F005` (loop-lock). Settle which finding set is authoritative and record
+the decision before building — never build against an unreconciled set. Also run **T001**: re-read every
+cited `file:line` at HEAD, mark CONFIRMED / REFUTED / MOVED / ALREADY-FIXED (only 13 of the 166 register
+findings carry a verified mark; the rest are single-leaf hypotheses).
+
+**STEP 1 — recover the clean anchor.** `git checkout 5c98e4654e -- runtime/lib runtime/tests` +
+`git clean -fd -- runtime/lib runtime/tests` (see Key mechanics). Verify all later diffs against
+`5c98e4654e`, NEVER `git diff FETCH_HEAD`.
+
+**STEP 2 — red-before proof (the negative control).** Write the failing test proving a SUPERSEDED writer
+holding an unexpired proof CAN append today (F-014-01 / F-002-01, the exact bypass). This is the control
+the fix must flip.
+
+**STEP 3 — build the fencing gateway (the atomic core).**
+- Make `appendAuthorized` ECMAScript hard-private (`#appendAuthorized`) on the ledger class.
+- The fenced gateway becomes the ONLY exported domain-mutation capability; it requires a coordinator-issued
+  CURRENT fence capability. A direct/internal attempt without a current capability rejects with
+  `STALE_FENCE` before any frame commits (REQ-001).
+- Enforce a high-water mark so a superseded writer holding an unexpired proof is rejected (REQ-002).
+- Verify identity at the gateway (`actorId`/`capabilityId`/`evidenceDigest` resolved+verified, not trusted
+  from the caller).
+
+**STEP 4 — migrate the callers ATOMICALLY (codemod).** In the SAME change, route all 33 lib callers
+through the gateway (codemod + tsc-completeness) and update the 46 test files. Demoting `appendAuthorized`
+to private breaks every un-migrated caller, so partial migration = tsc red. Prove **NO cast-reachable**
+`appendAuthorized` remains (grep for `as any` / `as unknown` reach-arounds).
+
+**STEP 5 — close the ~9 same-mechanism concurrent-write defects** alongside the core: F-018-03, F-018-04,
+F-002-01, F-002-02, F-004-01, F-004-02, F-004-03, F-003-02 (branch-worker fencing; diff-gated JSONL
+cross-process lock; torn-tail quarantine ordering; durable denial for cyclic/throwing request data;
+single-winner effect/attestation paths). Each with its own red-before → green-after.
+
+**STEP 6 — green-after proof + verify + land.** The STEP-2 test now shows the superseded writer CANNOT
+append. `tsc` rc0 (from `runtime/`, the authoritative invocation). Run the DIRECT ledger/reducer suites
+per-file — the full aggregate + shadow-parity/certificate suites HANG on the append-lock (see Key
+mechanics). SOL adversarial pass (explicit `model:`), then leak-guard land naming ALL 024 docs + code.
+
+**Severity calibration (carry verbatim, do not re-escalate):** in every confirmed 024 case the actor is
+the operator or a stale local file, not a remote attacker. Read the P0/P1 labels as
+cutover-readiness / robustness risk, NOT breach risk.
+
+### Remaining epic PATH after 024 (grounded sequence)
+
+1. **024** fencing gateway (above) — the only hard blocker.
+2. **025** artifact-certificate-binding — SERIAL after 024 (needs its receipt/proof primitives).
+3. **016 whole-system gate** on a frozen SHA — independently code-verify each of the ~166 register
+   findings' actual discharge (cited-commit-touches-file + code-matches-claim), NOT child self-reports.
+   Fan-out-able (read-only, per §Speed above).
+4. **014 staged authority cutover — IRREVERSIBLE, OPERATOR-GATED, ONE MODE AT A TIME.** Each mode's flip
+   carries a cutover certificate + a rehearsed rollback drill (one `git revert`; ledger stays
+   additive-dark until flipped). **STOP for explicit operator go-ahead before the first flip.** Per-mode
+   preconditions from the 016 verdict: F001 identityResolver wired at the gateway; F002 captured auth-state
+   bound at the policy registry; F005 loop-lock fresh-acquisition window closed.
+5. **015 legacy-writer retirement** — only after zero-use telemetry (IRREVERSIBLE; operator-gated).
+6. **017 integrate-latest + reopen-on-drift + parent rollup → merge to main** (operator-gated).
+- **Reversible tails (any time, disjoint from 024):** `029` (finish 10/13 → 13/13 in
+  persist/promote/rollback-candidate.cjs) and `035` (Planned playbooks). These can land beside 024 PREP,
+  but FREEZE anything ledger-adjacent once 024's atomic migration starts.
+- **Shared-branch caution:** `047`/`048`/`049` are In Progress and NOT in the epic PATH — another session
+  is editing this tree. Confirm ownership before touching; `047`∩`048` both edit `fanout-run.cjs`
+  (serialize).
 
 ## Session update — 2026-08-08 (supersedes the stale "DEFERRED" ledger lines below for 030 & 033)
 
