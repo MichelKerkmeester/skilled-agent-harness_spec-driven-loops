@@ -52,13 +52,28 @@ async function main() {
   const result = guardCore.classifyIntent({ prompt, sessionID, projectDir, env: process.env });
 
   if (result.question) {
+    const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+    const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
+    const observeArgs = {
+      question: result.question,
+      sessionID,
+      lifecycleEpoch,
+      gateState: guardCore.readGateState(stateDir, sessionID),
+      env: process.env,
+      emitted: true,
+      runtime: 'Codex',
+      receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
+    };
     process.stdout.write(JSON.stringify({
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
         additionalContext: result.question,
       },
-    }));
-    return process.exit(0);
+    }), () => {
+      guardCore.observeGate3QuestionDelivery(observeArgs);
+      process.exit(0);
+    });
+    return;
   }
 
   return approve();

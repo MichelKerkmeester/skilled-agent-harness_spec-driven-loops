@@ -1,0 +1,102 @@
+{
+  "sessionId": "fanout-luna-1786120169844-ep05xl",
+  "status": "synthesized",
+  "iterations": 10,
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-001",
+      "question": "Which manual-testing-playbook snippets assert delivery confirmation or observer timing that contradicts the epoch and post-emission contract?",
+      "answer": "None. The matched playbooks cover host-event delivery, Cursor prompt-event non-delivery, prebinding, task dispatch, or generic hook parity.",
+      "evidence": [
+        "cli-cursor/manual-testing-playbook/manual-testing-playbook.md:444,456-464",
+        "cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md:15-33,41-49",
+        "cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md:15-33,41-49"
+      ]
+    },
+    {
+      "id": "q-002",
+      "question": "Which feature-catalog entries inaccurately describe or omit lifecycleEpoch >= 1, post-emission observation, or suppression-flag behavior?",
+      "answer": "The detailed Cursor catalog omits the contract and is P1 must-fix; the root Cursor catalog omits a summary and is P2 optional.",
+      "evidence": [
+        "feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md:28-36,48-70",
+        "feature-catalog/feature-catalog.md:69-77",
+        "system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md:30"
+      ]
+    },
+    {
+      "id": "q-003",
+      "question": "Which matched docs are authoritative test contracts versus illustrative examples, and which findings are must-fix versus optional?",
+      "answer": "The detailed Cursor catalog is the P1 authority; the root catalog is a P2 summary; the matched Cursor hook scenarios are authoritative but aligned; generic Gate-3 setup text is illustrative.",
+      "evidence": [
+        "cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md:2-3,62-83",
+        "feature-catalog/feature-catalog.md:63-77",
+        "cli-cursor/manual-testing-playbook/manual-testing-playbook.md:431-486"
+      ]
+    },
+    {
+      "id": "q-004",
+      "question": "Does the broad surface contain any additional stale assertion outside the first-pass matches after a bounded spot-check?",
+      "answer": "No. The 41-playbook and 1,498-catalog counts, targeted grep, paraphrase sweep, and exact old-contract search found no additional target finding.",
+      "evidence": [
+        "Final inventory counts recorded in iteration-010.md",
+        "No exact old-contract hits in either target surface",
+        "Only two high-signal catalog files"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-detailed-cursor-catalog",
+      "severity": "P1",
+      "classification": "must-fix",
+      "status": "verified",
+      "title": "Detailed Cursor catalog omits observed-delivery invariants",
+      "file": ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
+      "lines": "28-36,48-70",
+      "contradictedOrOmitted": "The entry omits observed hostReceiptStatus, lifecycleEpoch >= 1 with epoch-0 rejection, post-emission observer placement, default-off/fail-open suppression, byte-identical baseline, and the new shared-core exports.",
+      "requiredFollowOn": "Document the existing contract and source/test anchors without changing runtime behavior."
+    },
+    {
+      "id": "f-root-cursor-catalog",
+      "severity": "P2",
+      "classification": "optional",
+      "status": "verified",
+      "title": "Root Cursor catalog omits delivery-contract summary",
+      "file": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+      "lines": "69-77",
+      "contradictedOrOmitted": "The high-level current-reality paragraph omits the observed receipt, epoch floor, observer timing, suppression flag, and byte-identity guarantees.",
+      "requiredFollowOn": "Add a concise summary or pointer; detailed behavior remains owned by the linked Cursor catalog."
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Flag Cursor CU-014 as stale because spec-gate-classify is mentioned",
+      "reason": "The scenario asserts host non-delivery and dormant adapter status, which remains compatible."
+    },
+    {
+      "direction": "Flag all Gate-3 keyword matches across catalogs",
+      "reason": "Non-Cursor matches describe separate governance, routing, Unicode, doctor, or child-session concerns."
+    },
+    {
+      "direction": "Modify shadow-delivery or Gate-3 runtime behavior",
+      "reason": "The review is documentation-only and the frozen default-off/fail-open/byte-identical behavior is correct."
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 2,
+    "p0": 0,
+    "p1": 1,
+    "p2": 1,
+    "playbookFiles": 41,
+    "catalogFiles": 1498,
+    "broadPlaybookMatches": 3,
+    "relevantCatalogMatches": 2,
+    "convergenceScore": 1,
+    "stopPolicy": "max-iterations",
+    "graphTelemetry": "skipped_packet_scope"
+  }
+}

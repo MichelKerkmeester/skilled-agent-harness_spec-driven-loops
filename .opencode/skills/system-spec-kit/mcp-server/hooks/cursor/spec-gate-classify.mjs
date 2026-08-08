@@ -59,11 +59,26 @@ async function main() {
   const result = guardCore.classifyIntent({ prompt, sessionID, projectDir, env: process.env });
 
   if (result.question) {
+    const { stateDir } = guardCore.resolveGuardPaths(projectDir);
+    const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
+    const observeArgs = {
+      question: result.question,
+      sessionID,
+      lifecycleEpoch,
+      gateState: guardCore.readGateState(stateDir, sessionID),
+      env: process.env,
+      emitted: true,
+      runtime: 'Cursor',
+      receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
+    };
     process.stdout.write(JSON.stringify({
       permission: 'allow',
       agent_message: result.question,
-    }));
-    return process.exit(0);
+    }), () => {
+      guardCore.observeGate3QuestionDelivery(observeArgs);
+      process.exit(0);
+    });
+    return;
   }
 
   return approve();

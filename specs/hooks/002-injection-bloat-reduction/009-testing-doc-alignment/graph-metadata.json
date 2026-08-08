@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+  "spec_folder": "hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "testing playbook alignment",
+      "feature catalog freshness",
+      "playbook snippet staleness",
+      "gate3 shadow delivery doc sweep",
+      "testing doc alignment plan",
+      "feature catalog sweep plan",
+      "testing doc alignment tasks",
+      "feature catalog sweep tasks",
+      "testing doc alignment checklist",
+      "feature catalog sweep checklist",
+      "testing doc alignment summary",
+      "feature catalog sweep result"
+    ],
+    "key_topics": [
+      "testing",
+      "playbook",
+      "alignment",
+      "feature",
+      "catalog",
+      "freshness",
+      "snippet",
+      "staleness",
+      "gate3",
+      "shadow",
+      "delivery",
+      "doc"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/README.md",
+      "spec.md",
+      "plan.md",
+      "research/lineages/luna/research.md",
+      "research/lineages/deepseek-go/research.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalog Alignment Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire strictly post-emission, and the shadow-delivery state machine keeps every candidate flag off) may have left manual-testing-playbook snippets and feature-catalog entries repo-wide describing or exercising the older behavior",
+    "created_at": "2026-08-07T16:28:47.746Z",
+    "last_save_at": "2026-08-07T17:40:37.347Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79ffc42d88fd7f98ea63a3aaece85b1d01d188fd03d36a2559bf5bf5f0d8d7c8",
+    "source_doc_hashes": {
+      "spec.md": "e291b3be3316102d5cba56bf79a206c31da91742e4820573e0f8c3d5fcf23933",
+      "plan.md": "8ba02cf664c46dba1a5ff3c2cca948b0ecf4cbd07552d4d5bf29624ebf34fbd8",
+      "tasks.md": "f1c2978540da077b6fb33e667f4bb7ff5e0ace82a7fe08e6c0758635bb096ea4",
+      "checklist.md": "30f9dfcb17981a3c6a360d579b24a973d7f9248ed8556593a60ec4f4ce1b2cdc",
+      "implementation-summary.md": "8c1d417a872a8db6bf9f12d176ca493621e3a96271269bfe60071205b8085362"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

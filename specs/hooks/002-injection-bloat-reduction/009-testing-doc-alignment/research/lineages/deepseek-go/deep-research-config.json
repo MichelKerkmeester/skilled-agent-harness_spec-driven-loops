@@ -1,0 +1,38 @@
+{
+  "topic": "Sweep the repo-wide manual-testing-playbooks and feature-catalogs for snippets and entries now STALE against the changed injection-bloat behavior (observed epoch>=1 receipts, post-emission Gate-3 observers, shadow-delivery flags-off/fail-open). FINDINGS ONLY — do not modify any playbook or catalog file; a later pass implements verified fixes.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": ".opencode/specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+  "createdAt": "2026-08-07T18:35:00Z",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-flash"
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-go-1786120169844-ep05xl",
+    "parentSessionId": "fanout-deepseek-go-1786120169844-ep05xl",
+    "generation": 1,
+    "mode": "new"
+  },
+  "artifactDir": ".opencode/specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/research/lineages/deepseek-go",
+  "loopType": "research",
+  "stopPolicy": "max-iterations",
+  "status": "complete",
+  "resource_map_present": false,
+  "reducer": {
+    "registry": true,
+    "dashboard": true,
+    "progressiveSynthesis": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/*.md": "write-once",
+    "deltas/*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

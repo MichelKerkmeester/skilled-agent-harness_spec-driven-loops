@@ -34,6 +34,7 @@ const DEFAULT_CACHE_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_THRESHOLD_CONFIDENCE = 0.8;
 const DEFAULT_MAX_TOKENS = 80;
 const DEFAULT_BRIDGE_TIMEOUT_MS = 2500;
+const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DEFAULT_NODE_BINARY = 'node';
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
@@ -642,7 +643,7 @@ async function observeShadowDeliveryForRuntime(
   input,
   sessionID,
   lifecycleEvent,
-  deliveryConfirmed = true,
+  deliveryConfirmed = false,
 ) {
   try {
     const renderer = await loadShadowRenderer();
@@ -656,17 +657,90 @@ async function observeShadowDeliveryForRuntime(
   }
 }
 
-function shouldDeliverTransformContribution(input, options, blockId, content, order) {
-  if (!options.deduplicateTransforms) return true;
+async function observeEmittedAdvisorBlock(
+  rendered,
+  input,
+  sessionID,
+  lifecycleEvent,
+) {
+  try {
+    const renderer = await loadShadowRenderer();
+    if (typeof renderer?.observeEmittedAdvisorPolicy !== 'function') return;
+    renderer.observeEmittedAdvisorPolicy(
+      typeof rendered === 'string' ? rendered : null,
+      {
+        ...shadowDeliveryStateFor(input, sessionID, lifecycleEvent, true),
+        runtime: 'OpenCode',
+        candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
+      },
+    );
+  } catch {
+    // Host observation must never alter the active OpenCode transform.
+  }
+}
+
+function transformContributionDecision(input, options, blockId, content, order) {
+  if (!options.deduplicateTransforms) {
+    return { shouldDeliver: true, identity: null, blockId: null, contentHash: null };
+  }
   const identity = messageIdentity.resolveMessageIdentity(input);
   const contentHash = messageIdentity.hashPolicyBlockContent(blockId, content, order);
-  if (!identity || !contentHash) return true;
-  return messageIdentity.recordTransformContribution({
+  if (!identity || !contentHash) {
+    return { shouldDeliver: true, identity: null, blockId: null, contentHash: null };
+  }
+  const decision = messageIdentity.recordTransformContribution({
     identity,
     blockId,
     contentHash,
-    transform: 'mk-skill-advisor',
-  }).shouldDeliver;
+    transform: PLUGIN_ID,
+  });
+  return {
+    ...decision,
+    identity,
+    blockId,
+    contentHash,
+  };
+}
+
+function commitTransformContribution(decision) {
+  if (!decision?.identity || !decision.blockId || !decision.contentHash) return;
+  if (decision.duplicate || decision.shouldDeliver) {
+    messageIdentity.commitTransformDelivery(
+      decision.identity,
+      decision.blockId,
+      decision.contentHash,
+      { transform: PLUGIN_ID },
+    );
+    return;
+  }
+  messageIdentity.releaseTransformReservation(
+    decision.identity,
+    decision.blockId,
+    decision.contentHash,
+  );
+}
+
+function releaseTransformContribution(decision) {
+  if (!decision?.identity || !decision.blockId || !decision.contentHash) return;
+  messageIdentity.releaseTransformReservation(
+    decision.identity,
+    decision.blockId,
+    decision.contentHash,
+  );
+}
+
+function deliverTransformContribution(decision, deliver) {
+  if (!decision?.shouldDeliver) {
+    commitTransformContribution(decision);
+    return;
+  }
+  try {
+    deliver();
+    commitTransformContribution(decision);
+  } catch (error) {
+    releaseTransformContribution(decision);
+    throw error;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -958,6 +1032,12 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           sessionID,
           lifecycleEvent,
         );
+        await observeEmittedAdvisorBlock(
+          rendered,
+          input,
+          sessionID,
+          lifecycleEvent,
+        );
       };
       if (!prompt && sessionID !== '__global__') {
         try {
@@ -999,14 +1079,17 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (!prompt) {
         state.lastBridgeStatus = 'skipped';
         state.lastErrorCode = 'MISSING_PROMPT';
-        if (shouldDeliverTransformContribution(
+        const fallbackDecision = transformContributionDecision(
           input,
           options,
           messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
           FALLBACK_DIRECTIVE,
           1,
-        )) {
+        );
+        deliverTransformContribution(fallbackDecision, () => {
           output.system.push(FALLBACK_DIRECTIVE);
+        });
+        if (fallbackDecision.shouldDeliver) {
           await observeBlock(FALLBACK_DIRECTIVE);
         }
         return;
@@ -1025,28 +1108,36 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
       const advisorBlockOrder = response.brief ? 0 : 1;
-      if (shouldDeliverTransformContribution(
+      const advisorDecision = transformContributionDecision(
         input,
         options,
         advisorBlockId,
         advisorBlock,
         advisorBlockOrder,
-      )) {
+      );
+      deliverTransformContribution(advisorDecision, () => {
         output.system.push(advisorBlock);
+      });
+      if (advisorDecision.shouldDeliver) {
         await observeBlock(advisorBlock);
       }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,
       });
-      if (compiledLine && shouldDeliverTransformContribution(
-        input,
-        options,
-        messageIdentity.POLICY_BLOCK_IDS.RUNTIME_OPENCODE_COMPILED_ROUTE,
-        compiledLine,
-        8,
-      )) {
-        output.system.push(compiledLine);
-        await observeBlock(compiledLine);
+      if (compiledLine) {
+        const compiledDecision = transformContributionDecision(
+          input,
+          options,
+          messageIdentity.POLICY_BLOCK_IDS.RUNTIME_OPENCODE_COMPILED_ROUTE,
+          compiledLine,
+          8,
+        );
+        deliverTransformContribution(compiledDecision, () => {
+          output.system.push(compiledLine);
+        });
+        if (compiledDecision.shouldDeliver) {
+          await observeBlock(compiledLine);
+        }
       }
     } catch {
       state.lastBridgeStatus = 'fail_open';
@@ -1054,16 +1145,20 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       try {
         if (options.enabled
           && Array.isArray(output.system)
-          && !output.system.includes(FALLBACK_DIRECTIVE)
-          && shouldDeliverTransformContribution(
+          && !output.system.includes(FALLBACK_DIRECTIVE)) {
+          const errorFallbackDecision = transformContributionDecision(
             input,
             options,
             messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE,
             FALLBACK_DIRECTIVE,
             1,
-          )) {
-          output.system.push(FALLBACK_DIRECTIVE);
-          await observeBlock(FALLBACK_DIRECTIVE);
+          );
+          deliverTransformContribution(errorFallbackDecision, () => {
+            output.system.push(FALLBACK_DIRECTIVE);
+          });
+          if (errorFallbackDecision.shouldDeliver) {
+            await observeBlock(FALLBACK_DIRECTIVE);
+          }
         }
       } catch {
         // A hostile output container must not turn advisor failure into prompt failure.
@@ -1094,11 +1189,13 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (eventType === 'session.resumed'
         || eventType === 'session.compacted'
         || eventType === 'session.compact') {
+        const sessionID = sessionIdFrom(eventPayload);
         if (options.enabled) {
+          messageIdentity.clearTransformDedupSession(sessionID);
           await observeShadowDeliveryForRuntime(
             null,
             eventPayload,
-            sessionIdFrom(eventPayload),
+            sessionID,
             lifecycleEventFrom(eventPayload, eventType),
             false,
           );

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
+import { evidenceBindsToCell } from './activation-matrix-evidence.mjs';
 
 const phaseDirectory = path.dirname(fileURLToPath(import.meta.url));
 const matrixPath = path.join(phaseDirectory, 'activation-matrix.json');
@@ -21,23 +22,13 @@ function expectedApplicable(runtime, candidate) {
   return false;
 }
 
-function evidencePasses(evidence) {
-  return Boolean(
-    evidence
-      && evidence.status === 'pass'
-      && typeof evidence.artifact === 'string'
-      && evidence.artifact.length > 0
-      && typeof evidence.source === 'string'
-      && evidence.source.length > 0
-      && typeof evidence.observedAt === 'string'
-      && typeof evidence.notes === 'string'
-      && evidence.notes.length > 0,
-  );
+function evidencePairPasses(behavioral, delivery, cell) {
+  return evidenceBindsToCell(behavioral, delivery, cell);
 }
 
 function gateVerdict(cell) {
   if (!cell.applicable) return 'N/A';
-  if (evidencePasses(cell.behavioralEvidence) && evidencePasses(cell.deliveryEvidence)) {
+  if (evidencePairPasses(cell.behavioralEvidence, cell.deliveryEvidence, cell)) {
     return 'activated';
   }
   return 'emit';
@@ -88,7 +79,7 @@ test('fail-open gate emits for every applicable cell without two passing evidenc
   for (const cell of matrix.cells) {
     assert.equal(cell.verdict, gateVerdict(cell), `${cell.runtime}/${cell.candidate} bypassed the fail-open policy`);
     if (!cell.applicable) assert.equal(cell.verdict, 'N/A');
-    if (cell.applicable && (!evidencePasses(cell.behavioralEvidence) || !evidencePasses(cell.deliveryEvidence))) {
+    if (cell.applicable && !evidencePairPasses(cell.behavioralEvidence, cell.deliveryEvidence, cell)) {
       assert.equal(cell.verdict, 'emit');
     }
   }
@@ -99,6 +90,12 @@ test('fail-open gate emits for every applicable cell without two passing evidenc
     source: 'runtime probe',
     observedAt: '2026-08-06T00:00:00Z',
     notes: 'The host receipt is pinned to this cell.',
+    runtime: applicableCells[0].runtime,
+    candidate: applicableCells[0].candidate,
+    contentHash: 'abc123',
+    lifecycleEpoch: 1,
+    hostReceiptStatus: 'observed',
+    artifactDigest: 'digest-abc123',
   };
   for (const status of ['fail', 'unknown', 'ambiguous']) {
     const syntheticCell = {
@@ -108,6 +105,34 @@ test('fail-open gate emits for every applicable cell without two passing evidenc
     };
     assert.equal(gateVerdict(syntheticCell), 'emit');
   }
+
+  const configuredReceiptCell = {
+    ...applicableCells[0],
+    behavioralEvidence: passingDelivery,
+    deliveryEvidence: { ...passingDelivery, hostReceiptStatus: 'configured' },
+  };
+  assert.equal(gateVerdict(configuredReceiptCell), 'emit');
+
+  const mismatchedRuntimeCell = {
+    ...applicableCells[0],
+    behavioralEvidence: passingDelivery,
+    deliveryEvidence: { ...passingDelivery, runtime: 'Cursor' },
+  };
+  assert.equal(gateVerdict(mismatchedRuntimeCell), 'emit');
+
+  const mismatchedHashCell = {
+    ...applicableCells[0],
+    behavioralEvidence: passingDelivery,
+    deliveryEvidence: { ...passingDelivery, contentHash: 'different-hash' },
+  };
+  assert.equal(gateVerdict(mismatchedHashCell), 'emit');
+
+  const wrongEpochCell = {
+    ...applicableCells[0],
+    behavioralEvidence: passingDelivery,
+    deliveryEvidence: { ...passingDelivery, lifecycleEpoch: 2 },
+  };
+  assert.equal(gateVerdict(wrongEpochCell), 'emit');
 
   console.log(`MATRIX_FAIL_OPEN applicable=${applicableCells.length} unproven_emit=${applicableCells.filter((cell) => cell.verdict === 'emit').length} activated=${activatedCells.length} ambiguous_statuses=fail,unknown,ambiguous->emit`);
 });
@@ -140,6 +165,141 @@ test('activation schema exposes the evidence contract without candidate-phase ch
     'source',
     'observedAt',
     'notes',
+    'runtime',
+    'candidate',
+    'contentHash',
+    'lifecycleEpoch',
+    'hostReceiptStatus',
+    'artifactDigest',
   ]);
   assert.deepEqual(schema.$defs.evidence.properties.status.enum, ['pass', 'fail', 'unknown', 'ambiguous']);
+});
+
+function buildPassingObservedEvidence(cell, overrides = {}) {
+  return {
+    status: 'pass',
+    artifact: 'delivery-receipt.json',
+    source: 'runtime probe',
+    observedAt: '2026-08-06T00:00:00Z',
+    notes: 'The host receipt is pinned to this cell.',
+    runtime: cell.runtime,
+    candidate: cell.candidate,
+    contentHash: 'abc123',
+    lifecycleEpoch: 1,
+    hostReceiptStatus: 'observed',
+    artifactDigest: 'digest-abc123',
+    ...overrides,
+  };
+}
+
+async function compileActivationCellValidator() {
+  const { default: Ajv } = await import('ajv');
+  const addFormats = (await import('ajv-formats')).default;
+  const ajv = new Ajv({ allErrors: true, strict: false });
+  addFormats(ajv);
+  ajv.addKeyword({
+    keyword: 'cellEvidenceBinding',
+    type: 'object',
+    schemaType: 'boolean',
+    validate(_schemaValue, cell) {
+      if (cell?.verdict !== 'activated') return true;
+      return evidenceBindsToCell(cell.behavioralEvidence, cell.deliveryEvidence, cell);
+    },
+  });
+  return ajv.compile({
+    ...schema.$defs.cell,
+    $defs: schema.$defs,
+  });
+}
+
+test('shipped evidence validator rejects configured, mismatched, and wrong-epoch activated cells', () => {
+  const cell = {
+    runtime: 'OpenCode',
+    candidate: '002',
+    applicable: true,
+    verdict: 'activated',
+  };
+  const passing = buildPassingObservedEvidence(cell);
+
+  const configuredCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, hostReceiptStatus: 'configured' },
+  };
+  const mismatchedRuntimeCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, runtime: 'Cursor' },
+  };
+  const mismatchedHashCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, contentHash: 'different-hash' },
+  };
+  const wrongEpochCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, lifecycleEpoch: 2 },
+  };
+  const validActivatedCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: passing,
+  };
+
+  assert.equal(evidenceBindsToCell(configuredCell.behavioralEvidence, configuredCell.deliveryEvidence, configuredCell), false);
+  assert.equal(evidenceBindsToCell(mismatchedRuntimeCell.behavioralEvidence, mismatchedRuntimeCell.deliveryEvidence, mismatchedRuntimeCell), false);
+  assert.equal(evidenceBindsToCell(mismatchedHashCell.behavioralEvidence, mismatchedHashCell.deliveryEvidence, mismatchedHashCell), false);
+  assert.equal(evidenceBindsToCell(wrongEpochCell.behavioralEvidence, wrongEpochCell.deliveryEvidence, wrongEpochCell), false);
+  assert.equal(evidenceBindsToCell(validActivatedCell.behavioralEvidence, validActivatedCell.deliveryEvidence, validActivatedCell), true);
+
+  const epochZeroEvidence = buildPassingObservedEvidence(cell, { lifecycleEpoch: 0 });
+  assert.equal(evidenceBindsToCell(epochZeroEvidence, epochZeroEvidence, cell), false);
+  console.log('EVIDENCE_BIND configured=REJECT mismatchedRuntime=REJECT mismatchedHash=REJECT wrongEpoch=REJECT epochZero=REJECT observedBound=ACCEPT');
+});
+
+test('activated cells require the shipped validator; plain schema typing is insufficient alone', async () => {
+  const { default: Ajv } = await import('ajv');
+  const addFormats = (await import('ajv-formats')).default;
+  const plainAjv = new Ajv({ allErrors: true, strict: false });
+  addFormats(plainAjv);
+  const plainValidate = plainAjv.compile({
+    ...schema.$defs.cell,
+    $defs: schema.$defs,
+  });
+
+  const cell = {
+    runtime: 'OpenCode',
+    candidate: '002',
+    applicable: true,
+    verdict: 'activated',
+  };
+  const passing = buildPassingObservedEvidence(cell);
+  const mismatchedRuntimeCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, runtime: 'Cursor' },
+  };
+  const mismatchedHashCell = {
+    ...cell,
+    behavioralEvidence: passing,
+    deliveryEvidence: { ...passing, contentHash: 'different-hash' },
+  };
+
+  assert.equal(plainValidate(mismatchedRuntimeCell), true, 'plain JSON Schema cannot enforce cross-field evidence binding');
+  assert.equal(plainValidate(mismatchedHashCell), true, 'plain JSON Schema cannot enforce matching content hashes');
+
+  const validate = await compileActivationCellValidator();
+  assert.equal(validate(mismatchedRuntimeCell), false, 'mismatched runtime must fail when binding validator is wired');
+  assert.equal(validate(mismatchedHashCell), false, 'mismatched content hash must fail when binding validator is wired');
+  assert.equal(
+    validate({
+      ...cell,
+      behavioralEvidence: passing,
+      deliveryEvidence: passing,
+    }),
+    true,
+    'observed bound evidence must pass when binding validator is wired',
+  );
+  console.log('SCHEMA_ACTIVATED_REJECT plainSchemaAlone=passesMisbound configuredWithValidator=false observedBound=true');
 });

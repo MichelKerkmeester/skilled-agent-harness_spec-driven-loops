@@ -72,6 +72,7 @@ lib/
 +-- shared/                     # Small advisor-local shared helpers
 +-- utils/                      # Small utility functions
 +-- advisor-runtime-values.ts   # Runtime defaults and constants
++-- policy-plan.ts              # Advisor policy delivery-state machine + observed-receipt confirmation (epoch>=1 floor)
 +-- prompt-policy.ts            # Prompt handling policy
 +-- render.ts                   # Prompt-safe output rendering
 +-- subprocess.ts               # Child-process wrapper helpers
@@ -107,6 +108,7 @@ lib/
 +-- generation.ts
 +-- metrics.ts
 +-- normalize-adapter-output.ts
++-- policy-plan.ts
 +-- prompt-cache.ts
 +-- prompt-policy.ts
 +-- render.ts

@@ -1,0 +1,7 @@
+{"type":"iteration","iteration":6,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.54,"status":"insight","focus":"Validate catalog omissions against executable shared-core invariants and runtime adapter ordering"}
+{"type":"source","id":"src-006-tests","label":"spec-gate-core.test.mjs:297-315,380-390,586-647","iteration":6}
+{"type":"invariant","id":"inv-006-001","label":"Epoch zero rejects policy-sink and delivery confirmation; epoch one accepts","iteration":6}
+{"type":"invariant","id":"inv-006-002","label":"Four stdout observers run after emission; Pi observes after output construction","iteration":6}
+{"type":"invariant","id":"inv-006-003","label":"Flag-off relay remains byte-identical and suppression is not consumed","iteration":6}
+{"type":"finding","id":"f-detailed-cursor-catalog","severity":"P1","label":"Detailed Cursor catalog omission confirmed by executable invariant coverage","file":".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md","lines":"28-70","classification":"must-fix","iteration":6}
+{"type":"ruled_out","direction":"Rewrite playbook scenarios to encode the shared-core invariants","reason":"The scenarios are scoped to host event delivery/prebinding and do not contradict the changed shared-core behavior.","iteration":6}

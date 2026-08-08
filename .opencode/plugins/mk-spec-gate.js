@@ -56,7 +56,7 @@ function extractPrompt(input) {
 // resolve a missing sessionID to guardCore.UNKNOWN_SESSION_ID -- the SAME
 // token the core itself defaults to internally (sessionStateKey()). Two
 // different fallback strings here would key the same no-session turn to two
-// different state files, so once classify starts (P1 fix) enforce would
+// different state files, so once classify starts, enforce would
 // never see what classify wrote, and vice versa.
 function sessionIdFrom(input) {
   if (!input || typeof input !== 'object') return guardCore.UNKNOWN_SESSION_ID;
@@ -175,6 +175,12 @@ export default async function MkSpecGatePlugin(ctx) {
           guardCore.sweepStaleGateStates(stateDir, runtimeState);
           return;
         }
+        if (eventType === 'session.resumed'
+          || eventType === 'session.compacted'
+          || eventType === 'session.compact') {
+          guardCore.advanceGate3LifecycleEpoch(String(sessionIdFromEvent(input)), eventType);
+          return;
+        }
         if (eventType === 'session.deleted') {
           guardCore.evictGateState(stateDir, String(sessionIdFromEvent(input)));
         }
@@ -211,7 +217,20 @@ export default async function MkSpecGatePlugin(ctx) {
           projectDir,
           env: process.env,
         });
-        if (result.question) output.system.push(result.question);
+        if (result.question) {
+          output.system.push(result.question);
+          const lifecycleEpoch = guardCore.currentGate3LifecycleEpoch(sessionID);
+          guardCore.observeGate3QuestionDelivery({
+            question: result.question,
+            sessionID,
+            lifecycleEpoch,
+            gateState: guardCore.readGateState(stateDir, sessionID),
+            env: process.env,
+            emitted: true,
+            runtime: 'OpenCode',
+            receipt: guardCore.buildGate3ObservedReceipt(lifecycleEpoch),
+          });
+        }
       } catch (_) {
         // Fail open: a classify error must never block or corrupt the turn.
       }

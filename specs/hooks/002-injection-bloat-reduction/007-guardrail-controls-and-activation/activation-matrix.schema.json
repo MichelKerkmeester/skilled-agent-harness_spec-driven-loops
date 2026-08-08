@@ -78,19 +78,61 @@
       "type": "object",
       "additionalProperties": false,
       "description": "A candidate-owned receipt or behavioral result. A passing record must name the artifact, source, observation time, and result notes.",
-      "required": ["status", "artifact", "source", "observedAt", "notes"],
+      "required": [
+        "status",
+        "artifact",
+        "source",
+        "observedAt",
+        "notes",
+        "runtime",
+        "candidate",
+        "contentHash",
+        "lifecycleEpoch",
+        "hostReceiptStatus",
+        "artifactDigest"
+      ],
       "properties": {
         "status": {"enum": ["pass", "fail", "unknown", "ambiguous"]},
         "artifact": {"type": "string", "minLength": 1},
         "source": {"type": "string", "minLength": 1},
         "observedAt": {"type": "string", "format": "date-time"},
-        "notes": {"type": "string", "minLength": 1}
+        "notes": {"type": "string", "minLength": 1},
+        "runtime": {"type": "string", "minLength": 1},
+        "candidate": {"enum": ["002", "003", "004", "005", "006"]},
+        "contentHash": {"type": "string", "minLength": 1},
+        "lifecycleEpoch": {"type": "integer", "minimum": 0},
+        "hostReceiptStatus": {
+          "enum": ["configured", "observed", "unobserved", "unknown"],
+          "description": "Only hostReceiptStatus 'observed' may pass the activation gate; configured and other statuses keep the cell on emit."
+        },
+        "artifactDigest": {"type": "string", "minLength": 1}
       }
     },
     "passingEvidence": {
       "allOf": [
         {"$ref": "#/$defs/evidence"},
         {"properties": {"status": {"const": "pass"}}}
+      ]
+    },
+    "passingObservedEvidence": {
+      "allOf": [
+        {"$ref": "#/$defs/passingEvidence"},
+        {
+          "properties": {
+            "hostReceiptStatus": {"const": "observed"}
+          },
+          "required": ["hostReceiptStatus"]
+        }
+      ]
+    },
+    "activatedBehavioralEvidence": {
+      "allOf": [
+        {"$ref": "#/$defs/passingObservedEvidence"}
+      ]
+    },
+    "activatedDeliveryEvidence": {
+      "allOf": [
+        {"$ref": "#/$defs/passingObservedEvidence"}
       ]
     },
     "cell": {
@@ -130,12 +172,24 @@
           }
         },
         {
-          "properties": {
-            "applicable": {"const": true},
-            "behavioralEvidence": {"$ref": "#/$defs/passingEvidence"},
-            "deliveryEvidence": {"$ref": "#/$defs/passingEvidence"},
-            "verdict": {"const": "activated"}
-          }
+          "allOf": [
+            {
+              "properties": {
+                "applicable": {"const": true},
+                "verdict": {"const": "activated"}
+              },
+              "required": ["verdict"]
+            },
+            {
+              "properties": {
+                "behavioralEvidence": {"$ref": "#/$defs/activatedBehavioralEvidence"},
+                "deliveryEvidence": {"$ref": "#/$defs/activatedDeliveryEvidence"}
+              },
+              "required": ["behavioralEvidence", "deliveryEvidence"],
+              "cellEvidenceBinding": true,
+              "$comment": "cellEvidenceBinding is a documentation hook only; JSON Schema cannot express cross-field equality between behavioral and delivery evidence or pin those fields to the cell. Consumers validating an activated cell MUST run activation-matrix-evidence.mjs evidenceBindsToCell — schema-alone validation is insufficient."
+            }
+          ]
         }
       ]
     }

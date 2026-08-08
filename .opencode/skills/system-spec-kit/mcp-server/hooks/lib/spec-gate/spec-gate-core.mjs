@@ -28,6 +28,7 @@ import {
   buildDeliveryReceipt,
   GATE_SPEC_FOLDER_QUESTION_ID,
   hashPolicyBlock as hashCanonicalPolicyBlock,
+  recordObservedPolicyDelivery,
 } from '../../../../../system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js';
 import {
   appendFileSync,
@@ -129,8 +130,18 @@ export const GATE_3_DENY_DETAIL = 'DENIED: this Write/Edit needs a bound spec fo
 
 const GATE_3_DELIVERY_KIND = 'gate-question';
 const GATE_3_DELIVERY_HASH_ALGORITHM = 'sha256';
+const GATE_3_RELAY_CANDIDATE = '005';
+const MAX_GATE_3_SHADOW_RECEIPTS = 256;
+const MAX_GATE_3_DELIVERY_STATE_ENTRIES = 256;
+const MAX_GATE_3_LIFECYCLE_SESSIONS = 64;
+const MAX_GATE_3_SHADOW_ERRORS = 16;
+const MAX_GATE_3_SESSION_ID_LENGTH = 256;
+const MAX_GATE_3_FINGERPRINT_LENGTH = 512;
 const GATE_3_DELIVERY_STATE = new Map();
 const GATE_3_SHADOW_RECEIPTS = [];
+const GATE_3_LIFECYCLE_EPOCHS = new Map();
+const GATE_3_SHADOW_ERRORS = [];
+const GATE_3_ERROR_LATCHED = new Set();
 
 function hashGate3DeliveryValue(value) {
   return createHash(GATE_3_DELIVERY_HASH_ALGORITHM)
@@ -141,14 +152,115 @@ function hashGate3DeliveryValue(value) {
 function normalizedGate3Fingerprint(value) {
   if (typeof value !== 'string') return null;
   const normalized = value.trim();
-  return normalized.length > 0 ? normalized : null;
+  if (!normalized.length || normalized.length > MAX_GATE_3_FINGERPRINT_LENGTH) return null;
+  return normalized;
 }
 
 function normalizedGate3Session(sessionID) {
   const normalized = normalizedGate3Fingerprint(sessionID);
-  if (!normalized || normalized === UNKNOWN_SESSION_ID) return null;
+  if (!normalized || normalized.length > MAX_GATE_3_SESSION_ID_LENGTH) return null;
+  if (normalized === UNKNOWN_SESSION_ID) return null;
+  if (normalized === '__global__' || normalized === '<unknown>') return null;
   if (/^(?:unknown|unresolved|ambiguous)(?:$|[-_:])/i.test(normalized)) return null;
   return normalized;
+}
+
+function gate3QuestionHash() {
+  return hashCanonicalPolicyBlock({
+    id: GATE_SPEC_FOLDER_QUESTION_ID,
+    content: GATE_3_QUESTION,
+    order: 4,
+  });
+}
+
+function recordGate3ShadowError(label) {
+  if (GATE_3_SHADOW_ERRORS.length >= MAX_GATE_3_SHADOW_ERRORS) {
+    GATE_3_SHADOW_ERRORS.shift();
+  }
+  GATE_3_SHADOW_ERRORS.push({ label, at: Date.now() });
+}
+
+function boundGate3ErrorLatch() {
+  while (GATE_3_ERROR_LATCHED.size > MAX_GATE_3_LIFECYCLE_SESSIONS) {
+    const oldest = GATE_3_ERROR_LATCHED.values().next().value;
+    if (typeof oldest !== 'string') break;
+    GATE_3_ERROR_LATCHED.delete(oldest);
+  }
+}
+
+function latchGate3SessionFullDelivery(sessionID) {
+  const session = normalizedGate3Session(sessionID);
+  if (!session) return;
+  clearGate3SessionDelivery(sessionID);
+  GATE_3_ERROR_LATCHED.add(session);
+  boundGate3ErrorLatch();
+}
+
+function pushGate3ShadowReceipt(receipt) {
+  if (GATE_3_SHADOW_RECEIPTS.length >= MAX_GATE_3_SHADOW_RECEIPTS) {
+    GATE_3_SHADOW_RECEIPTS.shift();
+  }
+  GATE_3_SHADOW_RECEIPTS.push(receipt);
+}
+
+function boundGate3DeliveryState() {
+  while (GATE_3_DELIVERY_STATE.size > MAX_GATE_3_DELIVERY_STATE_ENTRIES) {
+    const oldest = GATE_3_DELIVERY_STATE.keys().next().value;
+    if (oldest === undefined) break;
+    GATE_3_DELIVERY_STATE.delete(oldest);
+  }
+}
+
+function boundGate3LifecycleEpochs() {
+  while (GATE_3_LIFECYCLE_EPOCHS.size > MAX_GATE_3_LIFECYCLE_SESSIONS) {
+    const oldest = GATE_3_LIFECYCLE_EPOCHS.keys().next().value;
+    if (typeof oldest !== 'string') break;
+    GATE_3_LIFECYCLE_EPOCHS.delete(oldest);
+  }
+}
+
+/** Build an observed host receipt for Gate-3 question delivery tests and adapters. */
+export function buildGate3ObservedReceipt(lifecycleEpoch = 0) {
+  const epoch = validGate3LifecycleEpoch(lifecycleEpoch) ?? 0;
+  const questionHash = gate3QuestionHash();
+  return buildDeliveryReceipt({
+    shadowId: GATE_3_DELIVERY_SHADOW_ID,
+    plannedHash: questionHash,
+    emittedHash: questionHash,
+    byteCount: Buffer.byteLength(GATE_3_QUESTION, 'utf8'),
+    lifecycleEpoch: epoch,
+    transformMessageIdentity: null,
+    hostReceiptStatus: 'observed',
+  });
+}
+
+/** Return the current lifecycle epoch for a confirmed session key. */
+export function currentGate3LifecycleEpoch(sessionID) {
+  const session = normalizedGate3Session(sessionID);
+  if (!session) return 0;
+  return GATE_3_LIFECYCLE_EPOCHS.get(session) ?? 0;
+}
+
+/** Advance lifecycle epoch for a session and clear its delivery shadow state. */
+export function advanceGate3LifecycleEpoch(sessionID, reason) {
+  const session = normalizedGate3Session(sessionID);
+  if (!session) return 0;
+  clearGate3SessionDelivery(sessionID);
+  const next = (GATE_3_LIFECYCLE_EPOCHS.get(session) ?? 0) + 1;
+  GATE_3_LIFECYCLE_EPOCHS.set(session, next);
+  boundGate3LifecycleEpochs();
+  return next;
+}
+
+/** Clear process-local Gate-3 delivery entries for one session. */
+export function clearGate3SessionDelivery(sessionID) {
+  const session = normalizedGate3Session(sessionID);
+  if (!session) return;
+  for (const [key, value] of GATE_3_DELIVERY_STATE.entries()) {
+    if (value?.session === session) {
+      GATE_3_DELIVERY_STATE.delete(key);
+    }
+  }
 }
 
 function validGate3LifecycleEpoch(value) {
@@ -174,10 +286,13 @@ function gate3ReceiptStatus(receipt) {
 }
 
 function gate3DeliveryConfirmed(request) {
-  return request.deliveryConfirmed === true
-    || request.pinnedBehavioralProbe === true
-    || gate3ReceiptStatus(request.receipt) === 'configured'
-    || gate3ReceiptStatus(request.receipt) === 'observed';
+  const receipt = request.receipt;
+  if (!receipt || typeof receipt !== 'object') return false;
+  if (receipt.hostReceiptStatus !== 'observed') return false;
+  const epoch = validGate3LifecycleEpoch(request.lifecycleEpoch);
+  if (epoch === null || epoch < 1) return false;
+  const questionHash = gate3QuestionHash();
+  return receipt.plannedHash === questionHash && receipt.lifecycleEpoch === epoch;
 }
 
 function gate3StateFields(gateState = {}) {
@@ -236,6 +351,9 @@ export function shouldSuppressGate3Delivery(request = {}) {
       return false;
     }
 
+    const session = normalizedGate3Session(request.sessionID);
+    if (session && GATE_3_ERROR_LATCHED.has(session)) return false;
+
     const stateFields = gate3StateFields(request.gateState);
     if (!stateFields || stateFields.status !== 'open') return false;
     const { key } = gate3DeliveryRequestKey(request);
@@ -273,6 +391,29 @@ function gate3ShadowReceipt(request, gateStateHash, key, suppressionEligible) {
   });
 }
 
+function recordGate3ObservedEmission(request = {}) {
+  try {
+    const epoch = validGate3LifecycleEpoch(request.lifecycleEpoch);
+    const sessionId = normalizedGate3Session(request.sessionID);
+    if (epoch === null || epoch <= 0 || !sessionId) return;
+    const runtime = typeof request.runtime === 'string' && request.runtime.length > 0
+      ? request.runtime
+      : 'unknown';
+    recordObservedPolicyDelivery({
+      runtime,
+      candidate: GATE_3_RELAY_CANDIDATE,
+      blockId: GATE_SPEC_FOLDER_QUESTION_ID,
+      content: GATE_3_QUESTION,
+      contentHash: gate3QuestionHash(),
+      lifecycleEpoch: epoch,
+      sessionId,
+      sessionIdentityConfirmed: true,
+    });
+  } catch (_) {
+    // Host observation is fail-open so a throwing sink cannot affect delivery.
+  }
+}
+
 /**
  * Observe a Gate-3 question delivery without changing the returned relay.
  * Confirmed deliveries seed the next shadow decision; no shadow decision is
@@ -298,10 +439,17 @@ export function observeGate3QuestionDelivery(request = {}) {
 
     if (shadowEnabled && !childSession && question === GATE_3_QUESTION) {
       const receipt = gate3ShadowReceipt(safeRequest, gateStateHash, key, suppressionEligible);
-      GATE_3_SHADOW_RECEIPTS.push(receipt);
+      pushGate3ShadowReceipt(receipt);
       if (typeof safeRequest.onShadowReceipt === 'function') {
-        try { safeRequest.onShadowReceipt(receipt); } catch (_) { /* observer failures never affect delivery */ }
+        try { safeRequest.onShadowReceipt(receipt); } catch (_) {
+          recordGate3ShadowError('onShadowReceipt');
+          latchGate3SessionFullDelivery(safeRequest.sessionID);
+        }
       }
+    }
+
+    if (safeRequest.emitted === true && !childSession && question === GATE_3_QUESTION) {
+      recordGate3ObservedEmission(safeRequest);
     }
 
     if (shadowEnabled
@@ -310,11 +458,19 @@ export function observeGate3QuestionDelivery(request = {}) {
       && key !== null
       && gate3DeliveryConfirmed(safeRequest)
       && gate3StateFields(safeRequest.gateState)?.status === 'open') {
-      GATE_3_DELIVERY_STATE.set(key, { gateStateHash, lifecycleEpoch: safeRequest.lifecycleEpoch });
+      const session = normalizedGate3Session(safeRequest.sessionID);
+      GATE_3_DELIVERY_STATE.set(key, {
+        gateStateHash,
+        lifecycleEpoch: safeRequest.lifecycleEpoch,
+        session,
+      });
+      boundGate3DeliveryState();
     }
 
     return { question, suppressionEligible, suppressionConsumed: false };
   } catch (_) {
+    recordGate3ShadowError('observeGate3QuestionDelivery');
+    latchGate3SessionFullDelivery(safeRequest.sessionID);
     return { question, suppressionEligible: false, suppressionConsumed: false };
   }
 }
@@ -328,6 +484,9 @@ export function getGate3ShadowReceipts() {
 export function resetGate3DeliveryShadow() {
   GATE_3_DELIVERY_STATE.clear();
   GATE_3_SHADOW_RECEIPTS.length = 0;
+  GATE_3_LIFECYCLE_EPOCHS.clear();
+  GATE_3_SHADOW_ERRORS.length = 0;
+  GATE_3_ERROR_LATCHED.clear();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -823,7 +982,7 @@ export function extractSpecFolderCandidate(promptText) {
   return null;
 }
 
-// ── Local mirrors of gate-3-classifier's post-trio checks (fix 3) ──────────
+// ── Local mirrors of gate-3-classifier's post-trio checks ──────────────────
 //
 // validateSpecFolderCandidate() in the shared (frozen, out-of-scope) shared
 // classifier checks MANDATORY_SPEC_METADATA_FILES BEFORE it ever checks
@@ -1100,7 +1259,7 @@ export function classifyIntent(request) {
   // Normalized BEFORE the try, but only a truthiness/type check -- it never
   // dereferences a property of `request` itself, so a null/non-object
   // request cannot throw here. The environment + kill-switch read moves
-  // INSIDE the try below (fix 2): request.env on a bare `null` throws before
+  // INSIDE the try below: request.env on a bare `null` throws before
   // any try/catch could intervene, defeating the fail-open contract for the
   // very first line of the function.
   const safeRequest = request && typeof request === 'object' ? request : {};
@@ -1231,7 +1390,7 @@ export function classifyIntent(request) {
  * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null, wouldDeny: boolean }}
  */
 export function evaluateMutation(request) {
-  // See classifyIntent()'s matching comment (fix 2): normalization here is a
+  // See classifyIntent()'s matching comment: normalization here is a
   // truthiness/type check only, never a property read of `request` itself,
   // so a null/non-object request cannot throw before the try below.
   const safeRequest = request && typeof request === 'object' ? request : {};

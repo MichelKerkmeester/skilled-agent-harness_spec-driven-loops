@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":7,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.42,"status":"insight","focus":"Negative-control search for old configured-receipt, epoch-zero, pre-emission, activation-matrix, and suppression assertions"}
+{"type":"observation","id":"obs-007-001","label":"Configured-receipt, epoch-zero, host-receipt, observed-receipt, activation-matrix, policy-sink, and suppression phrases returned no target hits","iteration":7}
+{"type":"observation","id":"obs-007-002","label":"No target documentation contains the changed export names","iteration":7}
+{"type":"invariant","id":"inv-007-001","label":"No P0 stale contract because no target doc explicitly accepts unobserved or epoch-zero delivery","iteration":7}
+{"type":"ruled_out","direction":"Assign P0 severity to catalog omissions","reason":"The omissions can mislead future maintainers but do not currently instruct a contradictory runtime behavior.","iteration":7}

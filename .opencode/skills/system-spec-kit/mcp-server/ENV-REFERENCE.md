@@ -468,6 +468,19 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | `true` | boolean | Content-gated description.json and global-cache writes. **Default ON** (graduated). A per-folder save that changes only the volatile stamp is skipped, the aggregate cache write is gated on a real member delta, and the targeted upsert replaces only the changed entry. Set `false`/`0`/`off` to restore the unconditional legacy write. | `lib/config/capability-flags.ts` |
 | `SPECKIT_ENTITY_CONFIG_PATH` | (unset) | string (path) | Override path to a declarative entity-extraction rules JSON. When unset the built-in rules apply. A malformed or unreadable file falls back to the built-in rules. | `lib/extraction/entity-extractor.ts` |
 
+### Spec Gate (Gate-3)
+
+Runtime-neutral Gate-3 policy envs read by `hooks/lib/spec-gate/spec-gate-core.mjs` and the OpenCode `mk-spec-gate.js` plugin. Full API: [`hooks/lib/spec-gate/README.md`](hooks/lib/spec-gate/README.md).
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `MK_SPEC_GATE_ENFORCE` | (unset) | flag (`"0"`/`"1"`) | Opt-in deny mode. Unset, `evaluateMutation` returns `advise` for a mutation lacking a resolved spec folder; set to an enabled value to promote that to `deny`. Set `0` to force advise even where a wrapper would otherwise enforce. | `hooks/lib/spec-gate/spec-gate-core.mjs` |
+| `MK_SPEC_GATE_DISABLED` | (unset) | flag | When set, the gate is a complete fail-open no-op: no question, no denial, no state writes. | `hooks/lib/spec-gate/spec-gate-core.mjs` |
+| `MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` | (unset) | flag (opt-in) | **Default OFF (shadow).** Opt-in suppression of a repeated Gate-3 question once its prior delivery is confirmed. Confirmable only by an observed receipt whose `lifecycleEpoch >= 1` matches the question hash — epoch 0 never confirms; unknown or unobserved state always emits (fail-open). | `hooks/lib/spec-gate/spec-gate-core.mjs` (`GATE_3_DELIVERY_SUPPRESSION_ENV`) |
+| `AI_SESSION_CHILD` | (unset) | flag (`"1"`) | When `1`, marks a dispatched sub-session with no user turn; `isChildSession` short-circuits both Gate-3 entrypoints to a complete no-op before any state read or write. Pair with `MK_SPEC_GATE_ENFORCE=0` when dispatching a child that must not inherit an enforced gate. | `hooks/lib/spec-gate/spec-gate-core.mjs`, `plugins/mk-spec-gate.js` |
+
+Retention, sweep, and warning-log tuning (`MK_SPEC_GATE_ACTIVE_RETENTION_DAYS`, `MK_SPEC_GATE_ARCHIVE_RETENTION_DAYS`, `MK_SPEC_GATE_SWEEP_INTERVAL_MS`, `MK_SPEC_GATE_WARNING_LOG_MAX_BYTES`) are read by the same core; see its source for defaults.
+
 ---
 
 ## 11. UX AND RESPONSE FORMATTING

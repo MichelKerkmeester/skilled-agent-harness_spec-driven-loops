@@ -11,7 +11,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
-    last_updated_at: "2026-08-07T07:55:49.310Z"
+    last_updated_at: "2026-08-07T15:04:55.106Z"
     last_updated_by: "codex"
     recent_action: "Verified guardrail controls"
     next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
@@ -20,11 +20,12 @@ _memory:
       - "guardrail-negative-controls.test.mjs"
       - "activation-matrix.json"
       - "activation-matrix.schema.json"
+      - "activation-matrix-evidence.mjs"
       - "activation-matrix.test.mjs"
       - "risk-register.md"
       - "rollback-procedure.md"
     session_dedup:
-      fingerprint: "sha256:dd5d22e0dc473ed0a586d9b0a284dea053aa7947e78abb3c57aa35ce5eb5aa1a"
+      fingerprint: "sha256:27bed2254a09046186b8e2da8cdcb7642d396d8481ba9f690c6981fe24ede131"
       session_id: "2026-08-06-hooks-002-007"
       parent_session_id: null
     completion_pct: 100
@@ -63,8 +64,9 @@ This phase defines the terminal governance gate for candidates 002-006 without a
 |------|--------|
 | `guardrail-negative-controls.test.mjs` | Runs the real comment-hygiene guard, the real strict spec validator, and a behavior-scored governor rubric. Fixtures are pinned to an isolated `/private/tmp` (or `/tmp`) root outside `.opencode/specs`, regardless of ambient `TMPDIR`, and removed in `finally`. |
 | `activation-matrix.json` | Enumerates all 30 runtime/candidate cells: six runtimes × candidates 002-006. It records 13 applicable cells as unproven `emit` and 17 inapplicable cells as `N/A`; no cell is `activated`. |
-| `activation-matrix.schema.json` | Defines the cell and evidence contract. Activation requires passing behavioral and delivery evidence; unknown, ambiguous, failed, or missing evidence stays fail-open. |
-| `activation-matrix.test.mjs` | Proves the matrix axes, applicability, evidence shape, fail-open behavior, and zero current activation. |
+| `activation-matrix.schema.json` | Defines the cell and evidence contract. Activation requires passing behavioral and delivery evidence; unknown, ambiguous, failed, or missing evidence stays fail-open. Cross-field equality is not expressible in JSON Schema; `cellEvidenceBinding` documents that consumers must call the shipped validator. |
+| `activation-matrix-evidence.mjs` | Shipped runtime gate exporting `evidenceBindsToCell`. Rejects configured receipts, cell mismatches, and inconsistent behavioral/delivery pairs; only mutually consistent host-observed evidence passes. |
+| `activation-matrix.test.mjs` | Proves the matrix axes, applicability, evidence shape, fail-open behavior, zero current activation, and shipped-validator reject/accept cases. |
 | `risk-register.md` | Maps all seven named central risks to controls or monitoring and rollback signals. |
 | `rollback-procedure.md` | Defines per-block/per-runtime disable, delivery-state clearing, baseline-emission confirmation, and one worked hypothetical cell. |
 
@@ -137,6 +139,7 @@ process_exit_code=0
 | TMPDIR-independent fixture isolation | PASS: normal and hostile `TMPDIR=<phase-directory>` runs each pass 4/4; fixture root remains outside `.opencode/specs` | `guardrail-negative-controls.test.mjs:55-82`; both `node --test` commands exit 0 |
 | Governor scored scenarios | PASS: canonical 4/4, reworded 4/4, marker-dropped 0/4 | `guardrail-negative-controls.test.mjs:319-336`; combined `node --test` exit 0 |
 | Matrix fail-open proof | PASS: 30 cells, 13 applicable, 13 unproven `emit`, 17 `N/A`, 0 activated; fail/unknown/ambiguous synthetic evidence emits | `activation-matrix.test.mjs:61-113`; combined `node --test` exit 0 |
+| Round-2 evidence binding (M5) | PASS: shipped `evidenceBindsToCell` rejects `configured`, mismatched runtime/hash, and wrong epoch; only `hostReceiptStatus=observed` with cell-bound digest passes. Schema types fields only; JSON Schema cannot express cross-field equality. | `activation-matrix-evidence.mjs`, `activation-matrix.test.mjs`; `node --test activation-matrix.test.mjs` exit 0 |
 | Evidence schema | PASS: required cell/evidence fields and statuses are consumed without candidate-phase changes | `activation-matrix.schema.json:76-140`, `activation-matrix.test.mjs:115-145`; exit 0 |
 | Packet validation | PASS: strict non-recursive validation exit 0 with the worktree-status probe isolated; the unisolated run reports only expected dirty-tree freshness | `spec.md:101-127`; `GIT_DIR=/private/tmp/guardrail-no-git-dir SPECKIT_COMPLETION_FRESHNESS=false bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase> --strict --no-recursive` exit 0 |
 | Scope | PASS: no runtime, flag default, or 001-006 file changed | phase-scoped `git diff --name-only` and `git status --short` |
@@ -149,7 +152,9 @@ process_exit_code=0
 
 `risk-register.md:5-13` maps long-context drift, compaction loss, false-negative relevance classifiers, advisory Gate invisibility, Pi override/preload loss, Cursor version drift, and OpenCode transform aliasing to named controls or monitoring. `rollback-procedure.md:5-24` gives the reusable per-cell template: disable the flag, clear delivery state, confirm full baseline emission, set the verdict to `emit`, and re-run controls. `rollback-procedure.md:26-38` works `OpenCode / 003 / policy.governor.v1` through that sequence and leaves the other 29 cells unchanged.
 
-This phase does not activate candidates and does not provide candidate-owned evidence. The matrix remains ready for 002-006 to populate. The normal strict validator sees the required uncommitted phase diff and reports the completion-freshness dirty-tree warning; the passing packet validation above isolates only that git-status probe, while the separate scope audit confirms every changed path is inside this phase. A Codex hook installer check also reported pre-existing drift in the user's external global hook configuration; it was not modified because it is outside the phase folder and not part of this implementation.
+This phase does not activate candidates and does not provide candidate-owned evidence. The matrix remains ready for 002-006 to populate. Host-observation sink wiring (S3) and per-adapter emission-boundary observers (S10/M3) are **fully implemented** in round 6: the sink rejects `lifecycleEpoch <= 0` and requires `artifactDigest` cell binding; stdout-based Gate-3 adapters observe inside the `stdout.write` completion callback; return-based Claude/Pi hooks observe only after the emitted output object is committed, as the final step before `return`. Residual limitation: no post-host-render acknowledgment exists — return-based hooks cannot run code after the host consumes the return; `observed` means emitted-into-response, not confirmed host render.
+
+The normal strict validator sees the required uncommitted phase diff and reports the completion-freshness dirty-tree warning; the passing packet validation above isolates only that git-status probe, while the separate scope audit confirms every changed path is inside this phase. A Codex hook installer check also reported pre-existing drift in the user's external global hook configuration; it was not modified because it is outside the phase folder and not part of this implementation.
 
 The sk-code `run-all-drift-guards.sh` wrapper exited 1 because its repo-wide alignment guard reports the pre-existing baseline backlog (472 findings: 268 errors and 204 warnings); its stack-folder guard passed and its router-sync suite passed 10/10. A targeted alignment scan found no finding naming this phase's files, so the backlog was not modified.
 <!-- /ANCHOR:limitations -->

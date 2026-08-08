@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+  "description": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire",
+  "keywords": [
+    "injection-bloat",
+    "changes",
+    "delivery",
+    "confirmation",
+    "now",
+    "requires",
+    "observed",
+    "receipt",
+    "lifecycleepoch",
+    "gate-3",
+    "observers",
+    "fire"
+  ],
+  "lastUpdated": "2026-08-07T17:07:28.527Z",
+  "specId": "009",
+  "folderSlug": "testing-doc-alignment",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

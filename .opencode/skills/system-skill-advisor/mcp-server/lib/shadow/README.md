@@ -16,6 +16,8 @@ trigger_phrases:
 
 `lib/shadow/` contains the advisor shadow sink. It supports shadow-mode recording or comparison paths without mixing that behavior into scoring, rendering or handler code.
 
+> **Naming note — shadow-*delta* vs shadow-*delivery*.** This directory is the shadow-*delta* sink: it records telemetry deltas for comparison. It is distinct from the shadow-*delivery* state machine in [`../policy-plan.ts`](../policy-plan.ts), which tracks per-block delivery confirmation (observed receipts with `lifecycleEpoch >= 1`) for the default-off suppression path. The two share the word "shadow" but are unrelated subsystems.
+
 Current state:
 
 - Provides a single shadow sink module.

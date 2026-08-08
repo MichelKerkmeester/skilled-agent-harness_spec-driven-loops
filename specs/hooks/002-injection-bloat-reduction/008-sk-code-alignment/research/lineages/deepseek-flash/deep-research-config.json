@@ -1,0 +1,38 @@
+{
+  "topic": "Audit whether this session's injection-bloat shadow-program code changes align with the sk-code opencode-surface standards, and identify which READMEs are now stale. FINDINGS ONLY — do not modify any code or README; a later pass implements the fixes.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": ".opencode/specs/hooks/002-injection-bloat-reduction/008-sk-code-alignment",
+  "createdAt": "2026-08-07T14:10:00Z",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "deepseek/deepseek-v4-flash"
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-flash-1786111571873-6f2oyc",
+    "parentSessionId": "fanout-deepseek-flash-1786111571873-6f2oyc",
+    "generation": 1,
+    "mode": "new"
+  },
+  "artifactDir": ".opencode/specs/hooks/002-injection-bloat-reduction/008-sk-code-alignment/research/lineages/deepseek-flash",
+  "loopType": "research",
+  "stopPolicy": "max-iterations",
+  "status": "complete",
+  "resource_map_present": false,
+  "reducer": {
+    "registry": true,
+    "dashboard": true,
+    "progressiveSynthesis": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/*.md": "write-once",
+    "deltas/*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

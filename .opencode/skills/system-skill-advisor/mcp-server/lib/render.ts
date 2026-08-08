@@ -7,7 +7,12 @@ import { resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './com
 import {
   buildAdvisorRenderPlan,
   evaluateDeliveryState,
+  isObservedDeliveryReceipt,
   observeRenderedAdvisorPolicy,
+  POLICY_COMMENT_HYGIENE_ID,
+  POLICY_GOVERNOR_ID,
+  POLICY_PROOF_OVER_APPEARANCE_ID,
+  recordObservedPolicyDelivery,
   ROUTE_ADVISOR_ID,
   SHADOW_DELIVERY_STATE_MACHINE,
   type DeliveryStateMachine,
@@ -34,9 +39,12 @@ export interface AdvisorBriefRenderOptions {
 }
 
 export interface ShadowDeliveryRenderOptions extends DeliveryStateSignals {
+  readonly runtime?: string;
+  readonly candidate?: string | null;
   readonly stateMachine?: DeliveryStateMachine;
   readonly deliveryConfirmed?: boolean;
   readonly receipt?: DeliveryStateReceipt;
+  readonly transformMessageIdentity?: string | null;
   readonly onShadowLog?: (record: ShadowRouteOnlyLogRecord) => void;
 }
 
@@ -78,7 +86,17 @@ const INSTRUCTION_LABEL_PATTERN =
   /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 const ROUTE_ONLY_SHADOW_ID = 'shadow.route-only.advisor.v1';
+const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 export const ROUTE_ONLY_ESTIMATED_BYTES = 43;
+const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
+
+function directiveBlockIds(): readonly string[] {
+  return Object.freeze([
+    POLICY_COMMENT_HYGIENE_ID,
+    POLICY_GOVERNOR_ID,
+    POLICY_PROOF_OVER_APPEARANCE_ID,
+  ]);
+}
 
 const SHADOW_ROUTE_ONLY_LOG: ShadowRouteOnlyLogRecord[] = [];
 
@@ -211,62 +229,112 @@ function stateSignalsForBlock(options: ShadowDeliveryRenderOptions): ShadowDeliv
   };
 }
 
+function pushShadowRouteOnlyLog(record: ShadowRouteOnlyLogRecord): void {
+  if (SHADOW_ROUTE_ONLY_LOG.length >= MAX_SHADOW_ROUTE_ONLY_LOG) {
+    SHADOW_ROUTE_ONLY_LOG.shift();
+  }
+  SHADOW_ROUTE_ONLY_LOG.push(record);
+}
+
+function directiveBlocksSuppressed(
+  plan: ReturnType<typeof buildAdvisorRenderPlan>,
+  decisions: readonly ReturnType<typeof evaluateDeliveryState>[],
+): boolean {
+  for (const expectedId of directiveBlockIds()) {
+    const blockIndex = plan.blocks.findIndex((block) => block.id === expectedId);
+    if (blockIndex === -1) {
+      return false;
+    }
+    const decision = decisions[blockIndex];
+    if (!decision || decision.state !== 'SUPPRESSED_SAME') {
+      return false;
+    }
+  }
+  return true;
+}
+
+function recordObservedBlockDeliveries(
+  plan: ReturnType<typeof buildAdvisorRenderPlan>,
+  shadowOptions: ShadowDeliveryRenderOptions,
+  machine: DeliveryStateMachine,
+  epoch: number,
+): void {
+  const blockOptions = stateSignalsForBlock(shadowOptions);
+  for (const block of plan.blocks) {
+    const receipt = shadowOptions.receipt;
+    if (!isObservedDeliveryReceipt(receipt, block.contentHash, epoch)) {
+      continue;
+    }
+    machine.recordDelivery({
+      ...blockOptions,
+      blockId: block.id,
+      contentHash: block.contentHash,
+      receipt,
+    });
+  }
+}
+
 function observeShadowRouteOnly(
   rendered: string | null,
   options: ShadowDeliveryRenderOptions | undefined,
 ): void {
-  const plan = buildAdvisorRenderPlan(rendered);
-  const shadowOptions = options ?? {};
-  const machine = shadowOptions.stateMachine ?? SHADOW_DELIVERY_STATE_MACHINE;
-  const epochSnapshot = machine.advanceForSignals(shadowOptions);
-  const blockOptions = stateSignalsForBlock(shadowOptions);
-  const decisions = plan.blocks.map((block) => evaluateDeliveryState({
-    ...blockOptions,
-    blockId: block.id,
-    contentHash: block.contentHash,
-  }, machine));
+  try {
+    const plan = buildAdvisorRenderPlan(rendered);
+    const shadowOptions = options ?? {};
+    const machine = shadowOptions.stateMachine ?? SHADOW_DELIVERY_STATE_MACHINE;
+    const epochSnapshot = machine.advanceForSignals(shadowOptions);
+    const blockOptions = stateSignalsForBlock(shadowOptions);
+    const decisions = plan.blocks.map((block) => evaluateDeliveryState({
+      ...blockOptions,
+      blockId: block.id,
+      contentHash: block.contentHash,
+    }, machine));
 
-  if (shadowOptions.deliveryConfirmed === true || shadowOptions.receipt === 'configured' || shadowOptions.receipt === 'observed') {
-    for (const [index, block] of plan.blocks.entries()) {
-      if (decisions[index]?.state === 'SUPPRESSED_SAME') {
-        continue;
-      }
-      machine.recordDelivery({
-        ...blockOptions,
-        blockId: block.id,
-        contentHash: block.contentHash,
-        deliveryConfirmed: shadowOptions.deliveryConfirmed,
-        receipt: shadowOptions.receipt,
-      });
+    recordObservedBlockDeliveries(plan, shadowOptions, machine, epochSnapshot.epoch);
+
+    const routeIndex = plan.blocks.findIndex((block) => block.id === ROUTE_ADVISOR_ID);
+    const routeDecision = routeIndex === -1 ? null : decisions[routeIndex] ?? null;
+    const routeOnlyEligible = Boolean(
+      routeDecision?.routeOnlyEligible && directiveBlocksSuppressed(plan, decisions),
+    );
+    const routeOnly = routeOnlyEligible
+      ? renderRouteOnlyAdvisorBrief(rendered)
+      : null;
+    const emittedByteCount = rendered === null ? 0 : Buffer.byteLength(rendered, 'utf8');
+    const routeOnlyByteCount = routeOnly === null ? 0 : Buffer.byteLength(routeOnly, 'utf8');
+    const savedBytes = routeOnly === null
+      ? 0
+      : Math.max(0, emittedByteCount - routeOnlyByteCount);
+    const record: ShadowRouteOnlyLogRecord = Object.freeze({
+      shadowId: ROUTE_ONLY_SHADOW_ID,
+      sessionKnown: routeDecision?.sessionKnown ?? epochSnapshot.sessionKnown,
+      epoch: routeDecision?.epoch ?? epochSnapshot.epoch,
+      policySetHash: plan.policySetHash,
+      routeState: routeDecision?.state ?? null,
+      emittedByteCount,
+      routeOnlyByteCount,
+      savedBytes,
+    });
+    pushShadowRouteOnlyLog(record);
+    try {
+      options?.onShadowLog?.(record);
+    } catch {
+      // Observer callbacks must never affect the rendered advisor bytes.
     }
+  } catch {
+    // Shadow measurement is fail-open so a throwing observer cannot block delivery.
   }
-
-  const routeIndex = plan.blocks.findIndex((block) => block.id === ROUTE_ADVISOR_ID);
-  const routeDecision = routeIndex === -1 ? null : decisions[routeIndex] ?? null;
-  const routeOnly = routeDecision?.routeOnlyEligible
-    ? renderRouteOnlyAdvisorBrief(rendered)
-    : null;
-  const emittedByteCount = rendered === null ? 0 : Buffer.byteLength(rendered, 'utf8');
-  const routeOnlyByteCount = routeOnly === null ? 0 : Buffer.byteLength(routeOnly, 'utf8');
-  const record: ShadowRouteOnlyLogRecord = Object.freeze({
-    shadowId: ROUTE_ONLY_SHADOW_ID,
-    sessionKnown: routeDecision?.sessionKnown ?? epochSnapshot.sessionKnown,
-    epoch: routeDecision?.epoch ?? epochSnapshot.epoch,
-    policySetHash: plan.policySetHash,
-    routeState: routeDecision?.state ?? null,
-    emittedByteCount,
-    routeOnlyByteCount,
-    savedBytes: Math.max(0, emittedByteCount - routeOnlyByteCount),
-  });
-  SHADOW_ROUTE_ONLY_LOG.push(record);
-  options?.onShadowLog?.(record);
 }
 
 function observeAdvisorPolicy(
   rendered: string | null,
   options: AdvisorBriefRenderOptions = {},
 ): void {
-  observeRenderedAdvisorPolicy(rendered);
+  try {
+    observeRenderedAdvisorPolicy(rendered);
+  } catch {
+    // Shadow measurement is fail-open so a throwing observer cannot block delivery.
+  }
   observeShadowRouteOnly(rendered, options.deliveryState);
 }
 
@@ -276,6 +344,44 @@ export function observeShadowDelivery(
   deliveryState: ShadowDeliveryRenderOptions = {},
 ): void {
   observeAdvisorPolicy(rendered, { deliveryState });
+}
+
+/**
+ * Record host-observed policy blocks after the runtime places them into the
+ * emitted response. Fail-open: recording errors never change emitted bytes.
+ */
+export function observeEmittedAdvisorPolicy(
+  rendered: string | null,
+  deliveryState: ShadowDeliveryRenderOptions = {},
+): void {
+  try {
+    if (typeof rendered !== 'string' || rendered.length === 0) {
+      return;
+    }
+    const runtime = typeof deliveryState.runtime === 'string' && deliveryState.runtime.length > 0
+      ? deliveryState.runtime
+      : 'unknown';
+    const machine = deliveryState.stateMachine ?? SHADOW_DELIVERY_STATE_MACHINE;
+    const epoch = machine.currentEpoch(deliveryState);
+    const plan = buildAdvisorRenderPlan(rendered);
+    for (const block of plan.blocks) {
+      recordObservedPolicyDelivery({
+        runtime,
+        candidate: deliveryState.candidate ?? OBSERVED_ADVISOR_POLICY_CANDIDATE,
+        blockId: block.id,
+        content: block.content,
+        contentHash: block.contentHash,
+        lifecycleEpoch: epoch,
+        sessionId: deliveryState.sessionId,
+        sessionIdentity: deliveryState.sessionIdentity,
+        sessionIdentityConfirmed: deliveryState.sessionIdentityConfirmed,
+        sessionIdentityAmbiguous: deliveryState.sessionIdentityAmbiguous,
+        transformMessageIdentity: deliveryState.transformMessageIdentity ?? null,
+      });
+    }
+  } catch {
+    // Host observation is fail-open so a throwing sink cannot affect delivery.
+  }
 }
 
 // ───────────────────────────────────────────────────────────────

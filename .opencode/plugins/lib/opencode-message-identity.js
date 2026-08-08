@@ -21,6 +21,9 @@ const UNKNOWN_TRANSFORM_NAME = 'unknown-transform';
 const UNKNOWN_SESSION_ID = '__global__';
 const IDENTITY_SEPARATOR = '\u001f';
 const DEDUP_RECEIPT_SHADOW_ID = 'shadow.opencode-transform-dedup.v1';
+const MAX_IDENTITY_PART_LENGTH = 256;
+const MAX_DELIVERY_KEY_PART_LENGTH = 512;
+const MAX_TRANSFORM_DEDUP_IDENTITIES = 256;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. IDENTITY HELPERS
@@ -38,10 +41,8 @@ function normalizeIdentityPart(value) {
   if (typeof value === 'string') {
     const normalized = value.trim();
     if (!normalized || normalized === UNKNOWN_SESSION_ID) return null;
-    // A part carrying the key separator would let two distinct identities collapse to
-    // the same joined key (e.g. {"a\x1fb","c"} vs {"a","b\x1fc"}). Rather than silently
-    // alias them, treat the part as unresolvable so the caller falls open to full delivery.
     if (normalized.includes(IDENTITY_SEPARATOR)) return null;
+    if (normalized.length > MAX_IDENTITY_PART_LENGTH) return null;
     return normalized;
   }
   if (typeof value === 'number' && Number.isFinite(value)) {
@@ -188,6 +189,7 @@ export function resolveMessageIdentity(input = {}, ordinalOverride) {
 export function createTransformDedupState() {
   return {
     delivered: new Set(),
+    reserved: new Set(),
     identities: new Map(),
     receipts: new Map(),
   };
@@ -203,17 +205,48 @@ export function getSharedTransformDedupState() {
 function stateIsUsable(state) {
   return isRecord(state)
     && state.delivered instanceof Set
+    && state.reserved instanceof Set
     && state.identities instanceof Map
     && state.receipts instanceof Map;
 }
 
+function evictOldestTransformIdentity(state) {
+  const oldestKey = state.identities.keys().next().value;
+  if (typeof oldestKey !== 'string') return;
+  state.identities.delete(oldestKey);
+  state.receipts.delete(oldestKey);
+  for (const delivery of [...state.delivered]) {
+    if (delivery.startsWith(`${oldestKey}${IDENTITY_SEPARATOR}`)) state.delivered.delete(delivery);
+  }
+  for (const reserved of [...state.reserved]) {
+    if (reserved.startsWith(`${oldestKey}${IDENTITY_SEPARATOR}`)) state.reserved.delete(reserved);
+  }
+}
+
+function boundTransformDedupMaps(state) {
+  while (state.identities.size >= MAX_TRANSFORM_DEDUP_IDENTITIES) {
+    evictOldestTransformIdentity(state);
+  }
+}
+
+function safeDeliveryKeyPart(value) {
+  if (typeof value !== 'string' || !value) return null;
+  if (value.includes(IDENTITY_SEPARATOR)) return null;
+  if (value.length > MAX_DELIVERY_KEY_PART_LENGTH) return null;
+  return value;
+}
+
 function deliveryKey(identity, blockId, contentHash) {
-  return [identity.key, blockId, contentHash].join(IDENTITY_SEPARATOR);
+  const safeBlockId = safeDeliveryKeyPart(blockId);
+  const safeContentHash = safeDeliveryKeyPart(contentHash);
+  if (!safeBlockId || !safeContentHash) return null;
+  return [identity.key, safeBlockId, safeContentHash].join(IDENTITY_SEPARATOR);
 }
 
 function receiptFor(state, identity) {
   let receipt = state.receipts.get(identity.key);
   if (!receipt) {
+    boundTransformDedupMaps(state);
     receipt = {
       shadowId: DEDUP_RECEIPT_SHADOW_ID,
       transformMessageIdentity: identity.key,
@@ -228,6 +261,13 @@ function receiptFor(state, identity) {
     state.identities.set(identity.key, identity);
   }
   return receipt;
+}
+
+function reserveDeliveryKey(state, key) {
+  if (state.delivered.has(key)) return 'duplicate';
+  if (state.reserved.has(key)) return 'contended';
+  state.reserved.add(key);
+  return 'reserved';
 }
 
 function checkArguments(identity, blockId, contentHash, state) {
@@ -260,8 +300,8 @@ function checkOptions(transformOrOptions, stateOverride) {
   };
 }
 
-/** Check and register one block delivery, returning true only for duplicates. */
-export function checkAndRegisterDelivery(
+/** Peek whether a block delivery would be a duplicate without registering it. */
+export function isTransformDuplicate(
   identity,
   blockId,
   contentHash,
@@ -271,8 +311,40 @@ export function checkAndRegisterDelivery(
   const options = checkOptions(transformOrOptions, stateOverride);
   const args = checkArguments(identity, blockId, contentHash, options.state);
   if (!args) return false;
-
   const key = deliveryKey(args.identity, args.blockId, args.contentHash);
+  if (!key) return false;
+  return options.state.delivered.has(key) || options.state.reserved.has(key);
+}
+
+/** Release a reserved delivery key when the host did not push output. */
+export function releaseTransformReservation(
+  identity,
+  blockId,
+  contentHash,
+  stateOverride,
+) {
+  const options = checkOptions(undefined, stateOverride);
+  const args = checkArguments(identity, blockId, contentHash, options.state);
+  if (!args) return;
+  const key = deliveryKey(args.identity, args.blockId, args.contentHash);
+  if (!key) return;
+  options.state.reserved.delete(key);
+}
+
+/** Register one block delivery after the host confirms output was pushed. */
+export function commitTransformDelivery(
+  identity,
+  blockId,
+  contentHash,
+  transformOrOptions,
+  stateOverride,
+) {
+  const options = checkOptions(transformOrOptions, stateOverride);
+  const args = checkArguments(identity, blockId, contentHash, options.state);
+  if (!args) return false;
+  const key = deliveryKey(args.identity, args.blockId, args.contentHash);
+  if (!key) return false;
+  options.state.reserved.delete(key);
   const duplicate = options.state.delivered.has(key);
   if (!duplicate) options.state.delivered.add(key);
 
@@ -286,7 +358,22 @@ export function checkAndRegisterDelivery(
   return duplicate;
 }
 
-/** Record a contribution and return the delivery decision plus its receipt. */
+/** Check and register one block delivery, returning true only for duplicates. */
+export function checkAndRegisterDelivery(
+  identity,
+  blockId,
+  contentHash,
+  transformOrOptions,
+  stateOverride,
+) {
+  const duplicate = isTransformDuplicate(identity, blockId, contentHash, transformOrOptions, stateOverride);
+  if (!duplicate) {
+    commitTransformDelivery(identity, blockId, contentHash, transformOrOptions, stateOverride);
+  }
+  return duplicate;
+}
+
+/** Record a contribution decision without registering delivery until the host commits. */
 export function recordTransformContribution({
   identity,
   blockId,
@@ -294,13 +381,29 @@ export function recordTransformContribution({
   transform,
   state = SHARED_TRANSFORM_DEDUP_STATE,
 }) {
-  const duplicate = checkAndRegisterDelivery(identity, blockId, contentHash, {
-    transform,
-    state,
-  });
+  const args = checkArguments(identity, blockId, contentHash, state);
+  if (!args) {
+    return {
+      shouldDeliver: true,
+      duplicate: false,
+      contended: false,
+      receipt: null,
+    };
+  }
+  const key = deliveryKey(args.identity, args.blockId, args.contentHash);
+  if (!key) {
+    return {
+      shouldDeliver: true,
+      duplicate: false,
+      contended: false,
+      receipt: null,
+    };
+  }
+  const reservation = reserveDeliveryKey(state, key);
   return {
-    shouldDeliver: !duplicate,
-    duplicate,
+    shouldDeliver: reservation === 'reserved',
+    duplicate: reservation === 'duplicate',
+    contended: reservation === 'contended',
     receipt: getMultiTransformReceipt(identity, state),
   };
 }
@@ -334,6 +437,7 @@ export function hashPolicyBlockContent(blockId, content, order = 0) {
 export function clearTransformDedupState(state = SHARED_TRANSFORM_DEDUP_STATE) {
   if (!stateIsUsable(state)) return;
   state.delivered.clear();
+  state.reserved.clear();
   state.identities.clear();
   state.receipts.clear();
 }
@@ -350,6 +454,9 @@ export function clearTransformDedupSession(sessionId, state = SHARED_TRANSFORM_D
     state.receipts.delete(key);
     for (const delivery of [...state.delivered]) {
       if (delivery.startsWith(`${key}${IDENTITY_SEPARATOR}`)) state.delivered.delete(delivery);
+    }
+    for (const reserved of [...state.reserved]) {
+      if (reserved.startsWith(`${key}${IDENTITY_SEPARATOR}`)) state.reserved.delete(reserved);
     }
   }
 }

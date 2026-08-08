@@ -27,6 +27,7 @@ description: "Shared classify and enforce logic that turns the spec-folder-befor
 | `isChildSession(env)` | True only when `AI_SESSION_CHILD=1`, so dispatched sub-sessions with no user turn bypass Gate 3 completely. |
 | `resolveGuardPaths(projectDir)` / `appendWarningLog(stateDir, detail)` | State-directory resolution and the shared telemetry log every runtime adapter writes through. |
 | `sweepStaleGateStates(stateDir, runtimeState)` | Throttled cleanup of expired active and archived gate-state files. |
+| `observeGate3QuestionDelivery(request)` / `shouldSuppressGate3Delivery(request)` | Shadow-delivery observation. `observeGate3QuestionDelivery` records that the Gate-3 question was actually emitted (called strictly post-emission by each runtime adapter); `shouldSuppressGate3Delivery` decides whether a repeated question may be suppressed. A question is confirmable only by an observed receipt whose `lifecycleEpoch >= 1` matches the question hash — epoch 0 (no lifecycle boundary yet) never confirms. Suppression is default-off, opt-in via `MK_SPEC_GATE_3_DELIVERY_SUPPRESSION`; unknown or unobserved state always emits (fail-open). Receipt/epoch helpers: `buildGate3ObservedReceipt`, `currentGate3LifecycleEpoch`, `advanceGate3LifecycleEpoch`, `clearGate3SessionDelivery`. |
 
 ## 4. CONSUMERS
 

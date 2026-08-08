@@ -5,6 +5,8 @@
   },
   "devDependencies": {
     "@types/node": "^25.8.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "vitest": "^4.1.6"
   },
   "overrides": {

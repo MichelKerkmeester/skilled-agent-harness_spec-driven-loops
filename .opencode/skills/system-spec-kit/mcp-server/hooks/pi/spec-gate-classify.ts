@@ -25,21 +25,35 @@ export default function specGateClassify(pi: ExtensionAPI): void {
         // to the raw session id (resolveSessionKey handles it).
         sessionFile = undefined;
       }
+      const sessionID = guard.resolveSessionKey({
+        sessionId: ctx.sessionManager.getSessionId(),
+        sessionFile,
+      });
       const result = guard.classifyIntent({
         prompt,
-        sessionID: guard.resolveSessionKey({
-          sessionId: ctx.sessionManager.getSessionId(),
-          sessionFile,
-        }),
+        sessionID,
         projectDir: ctx.cwd,
         env: process.env,
       });
 
       if (result.question) {
-        return {
-          action: "transform",
+        const lifecycleEpoch = guard.currentGate3LifecycleEpoch(sessionID);
+        const observeArgs = {
+          question: result.question,
+          sessionID,
+          lifecycleEpoch,
+          gateState: guard.readGateState(guard.resolveGuardPaths(ctx.cwd).stateDir, sessionID),
+          env: process.env,
+          emitted: true,
+          runtime: "Pi",
+          receipt: guard.buildGate3ObservedReceipt(lifecycleEpoch),
+        };
+        const output = {
+          action: "transform" as const,
           text: `${event.text}\n\n${result.question}`,
         };
+        guard.observeGate3QuestionDelivery(observeArgs);
+        return output;
       }
       return { action: "continue" };
     } catch {

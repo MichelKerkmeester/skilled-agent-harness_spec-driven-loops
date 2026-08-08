@@ -7,6 +7,7 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
+const PI_DISPATCH_CANDIDATE = "006";
 
 interface RawInputStore {
   readonly bySession: Map<string, string>;
@@ -51,6 +52,7 @@ const POLICY_PLAN_MODULE =
 const POLICY_PLAN_FALLBACK_MODULE =
   "../../mcp-server/dist/mcp-server/lib/policy-plan.js";
 const PI_COMPACT_SHADOW_STORE_KEY = Symbol.for("mk.pi.dispatch.compact-shadow");
+const MAX_PI_RECEIPT_SESSIONS = 64;
 
 type PiLifecycleEvent = "startup" | "resume" | "compact";
 type PiDeliveryState = "UNSEEN" | "DELIVERED" | "SUPPRESSED_SAME";
@@ -93,6 +95,16 @@ interface PolicyPlanModule {
     signals: PiDeliveryStateSignals,
     machine: PiDeliveryStateMachine,
   ) => PiDeliveryEpochSnapshot;
+  readonly recordObservedPolicyDelivery: (input: {
+    readonly runtime: string;
+    readonly candidate?: string | null;
+    readonly blockId: string;
+    readonly content: string;
+    readonly contentHash: string;
+    readonly lifecycleEpoch: number;
+    readonly sessionId?: unknown;
+    readonly sessionIdentityConfirmed?: boolean;
+  }) => unknown;
 }
 
 export const PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG = "SPECKIT_PI_COMPACT_DIRECTIVE_PROTOTYPE";
@@ -130,8 +142,8 @@ interface PiCompactShadowStore {
   policyPlan?: PolicyPlanModule | null;
   policyPlanPromise?: Promise<PolicyPlanModule | null>;
   compactHash?: string;
-  resetReasons?: readonly string[];
-  lastReceipt?: PiDispatchShadowReceipt;
+  resetReasonsBySession?: Map<string, readonly string[]>;
+  lastReceiptBySession?: Map<string, PiDispatchShadowReceipt>;
 }
 
 function compactShadowStore(): PiCompactShadowStore {
@@ -170,6 +182,32 @@ async function loadPolicyPlan(): Promise<PolicyPlanModule | null> {
   return store.policyPlan;
 }
 
+function receiptSessionKey(sessionId?: string): string | null {
+  return typeof sessionId === "string" && sessionId.length > 0 ? sessionId : null;
+}
+
+function sessionResetReasons(
+  store: PiCompactShadowStore,
+  sessionId?: string,
+): readonly string[] | undefined {
+  const key = receiptSessionKey(sessionId);
+  if (!key || !store.resetReasonsBySession) return undefined;
+  return store.resetReasonsBySession.get(key);
+}
+
+function setSessionResetReasons(
+  store: PiCompactShadowStore,
+  sessionId: string | undefined,
+  reasons: readonly string[],
+): void {
+  const key = receiptSessionKey(sessionId);
+  if (!key) return;
+  if (!store.resetReasonsBySession) {
+    store.resetReasonsBySession = new Map();
+  }
+  store.resetReasonsBySession.set(key, Object.freeze([...reasons]));
+}
+
 function updateShadowReceipt(
   store: PiCompactShadowStore,
   input: {
@@ -179,8 +217,9 @@ function updateShadowReceipt(
     readonly sessionKnown: boolean;
     readonly resetReasons?: readonly string[];
   },
+  sessionId?: string,
 ): void {
-  store.lastReceipt = Object.freeze({
+  const receipt = Object.freeze({
     compactByteCount: PI_COMPACT_DIRECTIVE_EXECUTED_BYTE_COUNT,
     fullByteCount: PI_SUBAGENT_DISPATCH_DIRECTIVE_BYTE_COUNT,
     emittedByteCount: PI_SUBAGENT_DISPATCH_DIRECTIVE_BYTE_COUNT,
@@ -190,10 +229,29 @@ function updateShadowReceipt(
     sessionKnown: input.sessionKnown,
     resetReasons: Object.freeze([...(input.resetReasons ?? [])]),
   });
+  if (!store.lastReceiptBySession) {
+    store.lastReceiptBySession = new Map();
+  }
+  const key = receiptSessionKey(sessionId);
+  if (!key) return;
+  if (!store.lastReceiptBySession.has(key)) {
+    while (store.lastReceiptBySession.size >= MAX_PI_RECEIPT_SESSIONS) {
+      const oldest = store.lastReceiptBySession.keys().next().value;
+      if (typeof oldest !== "string") break;
+      store.lastReceiptBySession.delete(oldest);
+      store.resetReasonsBySession?.delete(oldest);
+    }
+  }
+  store.lastReceiptBySession.set(key, receipt);
 }
 
-export function getPiDispatchShadowReceipt(): PiDispatchShadowReceipt | null {
-  const receipt = compactShadowStore().lastReceipt;
+export function getPiDispatchShadowReceipt(sessionId?: string): PiDispatchShadowReceipt | null {
+  const store = compactShadowStore();
+  const map = store.lastReceiptBySession;
+  if (!map) return null;
+  const key = receiptSessionKey(sessionId);
+  if (!key) return null;
+  const receipt = map.get(key);
   if (!receipt) return null;
   return Object.freeze({ ...receipt, resetReasons: Object.freeze([...receipt.resetReasons]) });
 }
@@ -202,8 +260,68 @@ export function resetPiDispatchShadowState(): void {
   const store = compactShadowStore();
   store.machine?.clear();
   store.compactHash = undefined;
-  store.resetReasons = undefined;
-  store.lastReceipt = undefined;
+  store.resetReasonsBySession?.clear();
+  store.lastReceiptBySession?.clear();
+  store.policyPlan = undefined;
+  store.policyPlanPromise = undefined;
+}
+
+function forcePiDispatchUnknownReceipt(store: PiCompactShadowStore, sessionId?: string): void {
+  setSessionResetReasons(store, sessionId, ["lifecycle-error"]);
+  updateShadowReceipt(store, {
+    compactHash: store.compactHash ?? "",
+    state: "UNSEEN",
+    epoch: 0,
+    sessionKnown: false,
+    resetReasons: ["lifecycle-error"],
+  }, sessionId);
+}
+
+function latchPiDispatchFailure(store: PiCompactShadowStore, sessionId?: string): void {
+  const key = receiptSessionKey(sessionId);
+  const existingReasons = sessionResetReasons(store, sessionId) ?? [];
+  const reasons = existingReasons.includes("lifecycle-error")
+    ? existingReasons
+    : Object.freeze([...existingReasons, "lifecycle-error"]);
+  setSessionResetReasons(store, sessionId, reasons);
+  const currentReceipt = key ? store.lastReceiptBySession?.get(key) : undefined;
+  updateShadowReceipt(store, {
+    compactHash: currentReceipt?.compactHash ?? store.compactHash ?? "",
+    state: "UNSEEN",
+    epoch: currentReceipt?.epoch ?? 0,
+    sessionKnown: false,
+    resetReasons: reasons,
+  }, sessionId);
+}
+
+function isPiDispatchFailureLatched(store: PiCompactShadowStore, sessionId?: string): boolean {
+  return sessionResetReasons(store, sessionId)?.includes("lifecycle-error") ?? false;
+}
+
+async function observeEmittedPiDispatch(sessionId: string | undefined): Promise<void> {
+  try {
+    const policyPlan = await loadPolicyPlan();
+    if (!policyPlan || !sessionId) return;
+    const store = compactShadowStore();
+    const machine = store.machine ?? (store.machine = new policyPlan.DeliveryStateMachine());
+    const epoch = machine.currentEpoch({ sessionId });
+    const contentHash = policyPlan.hashPolicyBlock({
+      id: policyPlan.RUNTIME_PI_DISPATCH_ID,
+      content: PI_SUBAGENT_DISPATCH_DIRECTIVE,
+    });
+    policyPlan.recordObservedPolicyDelivery({
+      runtime: "Pi",
+      candidate: PI_DISPATCH_CANDIDATE,
+      blockId: policyPlan.RUNTIME_PI_DISPATCH_ID,
+      content: PI_SUBAGENT_DISPATCH_DIRECTIVE,
+      contentHash,
+      lifecycleEpoch: epoch,
+      sessionId,
+      sessionIdentityConfirmed: true,
+    });
+  } catch {
+    // Host observation is fail-open so a throwing sink cannot affect delivery.
+  }
 }
 
 async function observePiCompactDirective(
@@ -214,13 +332,16 @@ async function observePiCompactDirective(
   if (!enabled) {
     store.machine?.clear();
     store.compactHash = undefined;
-    store.resetReasons = undefined;
-    store.lastReceipt = undefined;
+    store.resetReasonsBySession?.clear();
+    store.lastReceiptBySession?.clear();
     return;
   }
 
   const policyPlan = await loadPolicyPlan();
-  if (!policyPlan) return;
+  if (!policyPlan) {
+    forcePiDispatchUnknownReceipt(store, sessionId);
+    return;
+  }
   const machine = store.machine ?? (store.machine = new policyPlan.DeliveryStateMachine());
   const compactHash = store.compactHash ?? (store.compactHash = policyPlan.hashPolicyBlock({
     id: policyPlan.RUNTIME_PI_DISPATCH_ID,
@@ -232,14 +353,17 @@ async function observePiCompactDirective(
     contentHash: compactHash,
   };
   const decision = machine.decideSuppression(request);
-  machine.confirmDelivery({ ...request, deliveryConfirmed: true });
+  if (isPiDispatchFailureLatched(store, sessionId)) {
+    latchPiDispatchFailure(store, sessionId);
+    return;
+  }
   updateShadowReceipt(store, {
     compactHash,
     state: decision.state,
     epoch: decision.epoch,
     sessionKnown: decision.sessionKnown,
-    resetReasons: store.resetReasons,
-  });
+    resetReasons: sessionResetReasons(store, sessionId),
+  }, sessionId);
 }
 
 async function resetPiDispatchLifecycle(
@@ -250,26 +374,29 @@ async function resetPiDispatchLifecycle(
   if (!isPiCompactDirectivePrototypeEnabled()) {
     store.machine?.clear();
     store.compactHash = undefined;
-    store.resetReasons = undefined;
-    store.lastReceipt = undefined;
+    store.resetReasonsBySession?.clear();
+    store.lastReceiptBySession?.clear();
     return;
   }
   const policyPlan = await loadPolicyPlan();
-  if (!policyPlan) return;
+  if (!policyPlan) {
+    forcePiDispatchUnknownReceipt(store, sessionId);
+    return;
+  }
   const machine = store.machine ?? (store.machine = new policyPlan.DeliveryStateMachine());
   const compactHash = store.compactHash ?? (store.compactHash = policyPlan.hashPolicyBlock({
     id: policyPlan.RUNTIME_PI_DISPATCH_ID,
     content: PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE,
   }));
   const epoch = policyPlan.advanceDeliveryEpoch({ sessionId, lifecycleEvent }, machine);
-  store.resetReasons = epoch.reasons;
+  setSessionResetReasons(store, sessionId, epoch.reasons);
   updateShadowReceipt(store, {
     compactHash,
     state: "UNSEEN",
     epoch: epoch.epoch,
     sessionKnown: epoch.sessionKnown,
     resetReasons: epoch.reasons,
-  });
+  }, sessionId);
 }
 
 function sessionStartLifecycleEvent(reason: unknown): PiLifecycleEvent | null {
@@ -289,18 +416,20 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
   pi.on("session_start", async (event, ctx) => {
     const lifecycleEvent = sessionStartLifecycleEvent(event.reason);
     if (!lifecycleEvent) return;
+    const sessionId = sessionIdFromContext(ctx);
     try {
-      await resetPiDispatchLifecycle(sessionIdFromContext(ctx), lifecycleEvent);
+      await resetPiDispatchLifecycle(sessionId, lifecycleEvent);
     } catch {
-      // A shadow reset failure must not alter session startup.
+      forcePiDispatchUnknownReceipt(compactShadowStore(), sessionId);
     }
   });
 
   pi.on("session_compact", async (_event, ctx) => {
+    const sessionId = sessionIdFromContext(ctx);
     try {
-      await resetPiDispatchLifecycle(sessionIdFromContext(ctx), "compact");
+      await resetPiDispatchLifecycle(sessionId, "compact");
     } catch {
-      // A shadow reset failure must not alter compaction recovery.
+      forcePiDispatchUnknownReceipt(compactShadowStore(), sessionId);
     }
   });
 
@@ -314,6 +443,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     }
 
     let context: string | undefined;
+    let advisorFailed = false;
     try {
       if (!event.text.trim()) return;
 
@@ -338,21 +468,26 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
           ?.additionalContext;
       }
     } catch {
-      // Fail open because an advisor bug must never block a user turn.
+      latchPiDispatchFailure(compactShadowStore(), sessionIdFromContext(ctx));
+      advisorFailed = true;
     }
 
-    try {
-      await observePiCompactDirective(
-        sessionIdFromContext(ctx),
-        isPiCompactDirectivePrototypeEnabled(),
-      );
-    } catch {
-      // A shadow candidate failure must never alter the full transform.
+    if (!advisorFailed) {
+      try {
+        await observePiCompactDirective(
+          sessionIdFromContext(ctx),
+          isPiCompactDirectivePrototypeEnabled(),
+        );
+      } catch {
+        latchPiDispatchFailure(compactShadowStore(), sessionIdFromContext(ctx));
+      }
     }
 
     const text = context
       ? `${event.text}\n\n${context}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
       : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
-    return { action: "transform", text };
+    const output = { action: "transform" as const, text };
+    await observeEmittedPiDispatch(sessionIdFromContext(ctx));
+    return output;
   });
 }

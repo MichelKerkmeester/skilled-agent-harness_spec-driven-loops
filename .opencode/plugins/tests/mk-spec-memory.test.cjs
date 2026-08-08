@@ -534,3 +534,40 @@ process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok'
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('a throwing system push releases the transform reservation', async () => {
+  const root = makeTempDir('mk-spec-memory-throwing-push');
+  const binary = writeExecutable(root, 'bridge.js', `
+process.stdin.resume();
+process.stdin.on('end', () => process.stdout.write(JSON.stringify({ status: 'ok', brief: 'throwing push continuity', metadata: {} })));
+`);
+  try {
+    const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+    const shared = identityModule.getSharedTransformDedupState();
+    identityModule.clearTransformDedupState(shared);
+
+    const hooks = await createPlugin(binary, {
+      directory: root,
+      deduplicateTransforms: true,
+      tag: 'throwing-push',
+    });
+    const input = {
+      sessionID: 'memory-throwing-push-session',
+      messageID: 'memory-throwing-push-message',
+      transformCallOrdinal: 0,
+    };
+    const system = [];
+    system.push = () => {
+      throw new Error('host push failed');
+    };
+    const output = { system };
+    await assert.rejects(
+      () => hooks['experimental.chat.system.transform'](input, output),
+      /host push failed/,
+    );
+    assert.equal(shared.reserved.size, 0);
+    assert.equal(shared.delivered.size, 0);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

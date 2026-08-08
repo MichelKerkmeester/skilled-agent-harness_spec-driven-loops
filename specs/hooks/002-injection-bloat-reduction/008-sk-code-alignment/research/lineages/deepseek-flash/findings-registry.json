@@ -1,0 +1,32 @@
+{
+  "openQuestions": [
+    "Whether a future cursor-agent build delivers beforeSubmitPrompt (README already marks unconfirmed)",
+    "Whether the follow-on pass should add observer-timing note to skill-advisor-hook.md SHARED BEHAVIOR"
+  ],
+  "resolvedQuestions": [
+    "Q1: Per-file alignment verdicts for all 12 changed files (11 aligned, 2 concrete gaps)",
+    "Q2: In-directory stale READMEs (none contradicted; three stale-by-omission)",
+    "Q3: Adjacent READMEs (accurate-but-under-specified; no contradictions)",
+    "Q4: Must-fix vs optional split (4 must-fix, 3 optional)",
+    "Q5: Comment hygiene + fail-open (all observers fail open; 4 ephemeral comment labels to strip)"
+  ],
+  "keyFindings": [
+    {"id": "F1", "title": "Magic packet-number candidate literals in 5 files", "severity": "optional", "evidence": "render.ts:369, user-prompt-submit.ts:292, mk-skill-advisor.js:673, spec-gate-core.mjs:403, prompt-advisor.ts:313"},
+    {"id": "F2", "title": "Ephemeral (fix 2)/(fix 3)/(P1 fix) comment labels", "severity": "must-fix", "evidence": "spec-gate-core.mjs:984,1256,1387; mk-spec-gate.js:59"},
+    {"id": "F7", "title": "spec-gate env vars undocumented in ENV-REFERENCE.md", "severity": "must-fix", "evidence": "ENV-REFERENCE.md 799 lines, 0 spec-gate rows"},
+    {"id": "F9", "title": "No README documents the delivery/epoch/observer contract", "severity": "finding", "evidence": "exhaustive grep: zero README matches"},
+    {"id": "F10", "title": "lib/README.md omits policy-plan.ts from both directory trees", "severity": "must-fix", "evidence": "lib/README.md:58-79,101-122"},
+    {"id": "F11", "title": "lib/spec-gate/README.md ENTRYPOINTS omits delivery-observation API + suppression env", "severity": "must-fix", "evidence": "lib/spec-gate/README.md:23-29"},
+    {"id": "F12", "title": "ENV-REFERENCE.md has no spec-gate section", "severity": "must-fix", "evidence": "grep MK_SPEC_GATE -> 0 rows"},
+    {"id": "F15", "title": "All 12 changed files pass verify_alignment_drift.py (0 findings)", "severity": "pass", "evidence": "verifier run, 431 files scanned"},
+    {"id": "F19", "title": "Post-emission observer ordering confirmed with line numbers", "severity": "pass", "evidence": "claude:76, codex:73, cursor:78, devin:79"},
+    {"id": "F20", "title": "Return-based hooks observe as final pre-return step confirmed", "severity": "pass", "evidence": "pi/spec-gate-classify.ts:55, prompt-advisor.ts:489, user-prompt-submit.ts:294"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Treat '004' fallback as behavior defect", "reason": "Behavior frozen and verified; alignment gap only"},
+    {"approach": "Report README contradictions", "reason": "No README made confirmable false claims about the contract"},
+    {"approach": "Flag injection-contract.md as stale", "reason": "Channel statements remain true"},
+    {"approach": "Suspect plugin stdout violation", "reason": "Only hook adapters write their CLI transport; plugins have zero stdout"},
+    {"approach": "Suspect observeRenderedAdvisorPolicy is dead code", "reason": "render.ts calls it for pre-emission shadow measurement"}
+  ]
+}

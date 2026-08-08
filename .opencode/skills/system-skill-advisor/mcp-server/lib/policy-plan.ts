@@ -64,7 +64,10 @@ export interface DeliveryReceipt {
 }
 
 export type DeliveryReceiptMatch = Pick<DeliveryReceipt, 'plannedHash' | 'lifecycleEpoch'>;
-export type DeliveryStateReceipt = DeliveryReceipt | DeliveryReceiptMatch | HostReceiptStatus;
+export type ObservedDeliveryReceiptMatch = DeliveryReceiptMatch & {
+  readonly hostReceiptStatus: 'observed';
+};
+export type DeliveryStateReceipt = DeliveryReceipt | ObservedDeliveryReceiptMatch;
 export type DeliveryReceiptInput = DeliveryReceipt;
 
 export type DeliveryStateName = 'UNSEEN' | 'DELIVERED' | 'SUPPRESSED_SAME';
@@ -156,8 +159,52 @@ export const DELIVERY_RECEIPT_FIELDS = Object.freeze([
   'hostReceiptStatus',
 ] as const);
 
-const SHADOW_RENDER_ID = 'shadow.render.advisor.v1';
 const HASH_ALGORITHM = 'sha256';
+const MAX_DELIVERY_SESSIONS = 64;
+const MAX_POLICY_OBSERVATION_RECEIPTS = 256;
+const MAX_SESSION_ID_LENGTH = 256;
+
+export interface PolicyObservationBinding {
+  readonly runtime: string;
+  readonly candidate: string | null;
+  readonly blockId: string;
+  readonly contentHash: string;
+  readonly lifecycleEpoch: number;
+  readonly sessionIdentity: string;
+  readonly artifactDigest: string;
+  readonly hostReceiptStatus: 'observed';
+}
+
+export interface PolicyObservationRecord {
+  readonly receipt: DeliveryReceipt;
+  readonly binding: PolicyObservationBinding;
+}
+
+export interface ObservedPolicyDeliveryInput extends DeliveryStateSignals {
+  readonly runtime: string;
+  readonly candidate?: string | null;
+  readonly blockId: string;
+  readonly content: string;
+  readonly contentHash: string;
+  readonly lifecycleEpoch: number;
+  readonly transformMessageIdentity?: string | null;
+}
+
+export interface ActivationDeliveryEvidence {
+  readonly status: 'pass';
+  readonly artifact: string;
+  readonly source: string;
+  readonly observedAt: string;
+  readonly notes: string;
+  readonly runtime: string;
+  readonly candidate: string;
+  readonly contentHash: string;
+  readonly lifecycleEpoch: number;
+  readonly hostReceiptStatus: 'observed';
+  readonly artifactDigest: string;
+}
+
+const POLICY_OBSERVATION_SINK: PolicyObservationRecord[] = [];
 
 function currentGateQuestion(): string | undefined {
   try {
@@ -284,6 +331,7 @@ function normalizedSessionId(value: unknown): string | null {
   }
   const normalized = value.trim();
   if (!normalized
+    || normalized.length > MAX_SESSION_ID_LENGTH
     || normalized === '__global__'
     || normalized === '<unknown>'
     || UNKNOWN_SESSION_MARKER.test(normalized)) {
@@ -345,20 +393,23 @@ export function deliveryEpochReasons(
   return Object.freeze([...new Set(reasons)]);
 }
 
-function receiptConfirmsDelivery(
-  receipt: DeliveryStateReceipt | undefined,
-): boolean {
-  if (receipt === 'configured' || receipt === 'observed') {
-    return true;
-  }
-  if (!receipt || typeof receipt !== 'object') {
-    return false;
-  }
-  return 'hostReceiptStatus' in receipt
-    && (receipt.hostReceiptStatus === 'configured' || receipt.hostReceiptStatus === 'observed');
+/** Build a minimal observed-receipt match for tests and host adapters. */
+export function buildObservedReceiptMatch(
+  contentHash: string,
+  lifecycleEpoch = 0,
+): ObservedDeliveryReceiptMatch {
+  return Object.freeze({
+    plannedHash: contentHash,
+    lifecycleEpoch,
+    hostReceiptStatus: 'observed',
+  });
 }
 
-function receiptMatchesDelivery(
+/**
+ * Authoritative delivery contract: only a receipt with hostReceiptStatus
+ * 'observed' and matching block hash plus lifecycle epoch confirms delivery.
+ */
+export function isObservedDeliveryReceipt(
   receipt: DeliveryStateReceipt | undefined,
   contentHash: string,
   epoch: number,
@@ -366,7 +417,23 @@ function receiptMatchesDelivery(
   if (!receipt || typeof receipt !== 'object') {
     return false;
   }
-  return receipt.plannedHash === contentHash && receipt.lifecycleEpoch === epoch;
+  if (!('hostReceiptStatus' in receipt) || receipt.hostReceiptStatus !== 'observed') {
+    return false;
+  }
+  return (
+    receipt.plannedHash === contentHash &&
+    receipt.lifecycleEpoch === epoch &&
+    Number.isInteger(epoch) &&
+    epoch >= 1
+  );
+}
+
+function receiptConfirmsDelivery(
+  receipt: DeliveryStateReceipt | undefined,
+  contentHash: string,
+  epoch: number,
+): boolean {
+  return isObservedDeliveryReceipt(receipt, contentHash, epoch);
 }
 
 interface StoredDeliveryState {
@@ -412,6 +479,16 @@ function snapshot(
 export class DeliveryStateMachine {
   private readonly sessions = new Map<string, SessionDeliveryState>();
 
+  private evictSessionsIfNeeded(): void {
+    while (this.sessions.size >= MAX_DELIVERY_SESSIONS) {
+      const oldestKey = this.sessions.keys().next().value;
+      if (typeof oldestKey !== 'string') {
+        break;
+      }
+      this.sessions.delete(oldestKey);
+    }
+  }
+
   private sessionFor(signals: DeliveryStateSignals, create = true): SessionDeliveryState | null {
     const sessionId = resolveConfirmedSessionId(signals);
     if (!sessionId) {
@@ -421,6 +498,7 @@ export class DeliveryStateMachine {
     if (existing || !create) {
       return existing ?? null;
     }
+    this.evictSessionsIfNeeded();
     const created: SessionDeliveryState = { epoch: 0, blocks: new Map() };
     this.sessions.set(sessionId, created);
     return created;
@@ -508,9 +586,7 @@ export class DeliveryStateMachine {
       return snapshot(input, 'UNSEEN', epochSnapshot.epoch, false);
     }
 
-    const confirmed = input.deliveryConfirmed === true || receiptConfirmsDelivery(input.receipt);
-    const receiptMatches = receiptMatchesDelivery(input.receipt, input.contentHash, session.epoch);
-    if (!confirmed || !receiptMatches) {
+    if (!receiptConfirmsDelivery(input.receipt, input.contentHash, session.epoch)) {
       const existing = session.blocks.get(input.blockId);
       return snapshot(
         input,
@@ -744,20 +820,169 @@ export function buildAdvisorRenderPlan(rendered: string | null): PolicyPlan {
   return buildPolicyPlan({ blocks });
 }
 
-/** Observe a renderer result without writing to or replacing its emitted value. */
-export function observeRenderedAdvisorPolicy(rendered: string | null): void {
+function policyObservationArtifactDigest(binding: {
+  readonly runtime: string;
+  readonly candidate: string | null;
+  readonly blockId: string;
+  readonly contentHash: string;
+  readonly lifecycleEpoch: number;
+  readonly sessionIdentity: string;
+}): string {
+  return hashSerializedInput(JSON.stringify({
+    runtime: binding.runtime,
+    candidate: binding.candidate,
+    blockId: binding.blockId,
+    contentHash: binding.contentHash,
+    lifecycleEpoch: binding.lifecycleEpoch,
+    sessionIdentity: binding.sessionIdentity,
+  }));
+}
+
+/** Record a host-observed delivery receipt into the bounded shadow sink. */
+export function recordPolicyObservationReceipt(input: DeliveryReceiptInput): DeliveryReceipt | null {
   try {
-    const plan = buildAdvisorRenderPlan(rendered);
-    buildDeliveryReceipt({
-      shadowId: SHADOW_RENDER_ID,
-      plannedHash: plan.policySetHash,
-      emittedHash: rendered === null ? null : plan.policySetHash,
-      byteCount: rendered === null ? 0 : Buffer.byteLength(rendered, 'utf8'),
-      lifecycleEpoch: 0,
-      transformMessageIdentity: null,
-      hostReceiptStatus: 'unobserved',
-    });
+    const receipt = buildDeliveryReceipt(input);
+    if (receipt.hostReceiptStatus !== 'observed') {
+      return null;
+    }
+    return receipt;
   } catch {
-    // Shadow measurement is fail-open so an observer cannot affect delivery.
+    return null;
   }
+}
+
+/**
+ * Record an emission-boundary observed delivery with cell binding metadata.
+ * Requires a confirmed session identity and per-block content hash.
+ */
+export function recordObservedPolicyDelivery(
+  input: ObservedPolicyDeliveryInput,
+): PolicyObservationRecord | null {
+  try {
+    const sessionIdentity = resolveConfirmedSessionId(input);
+    if (!sessionIdentity) {
+      return null;
+    }
+    if (!Number.isInteger(input.lifecycleEpoch) || input.lifecycleEpoch <= 0) {
+      return null;
+    }
+    const receipt = recordPolicyObservationReceipt({
+      shadowId: input.blockId,
+      plannedHash: input.contentHash,
+      emittedHash: input.contentHash,
+      byteCount: Buffer.byteLength(input.content, 'utf8'),
+      lifecycleEpoch: input.lifecycleEpoch,
+      transformMessageIdentity: input.transformMessageIdentity ?? null,
+      hostReceiptStatus: 'observed',
+    });
+    if (!receipt) {
+      return null;
+    }
+    const binding = Object.freeze({
+      runtime: input.runtime,
+      candidate: input.candidate ?? null,
+      blockId: input.blockId,
+      contentHash: input.contentHash,
+      lifecycleEpoch: input.lifecycleEpoch,
+      sessionIdentity,
+      artifactDigest: policyObservationArtifactDigest({
+        runtime: input.runtime,
+        candidate: input.candidate ?? null,
+        blockId: input.blockId,
+        contentHash: input.contentHash,
+        lifecycleEpoch: input.lifecycleEpoch,
+        sessionIdentity,
+      }),
+      hostReceiptStatus: 'observed' as const,
+    });
+    const record = Object.freeze({ receipt, binding });
+    if (POLICY_OBSERVATION_SINK.length >= MAX_POLICY_OBSERVATION_RECEIPTS) {
+      POLICY_OBSERVATION_SINK.shift();
+    }
+    POLICY_OBSERVATION_SINK.push(record);
+    return record;
+  } catch {
+    return null;
+  }
+}
+
+/** Return true when a recorded observation binds to the activation-matrix cell. */
+export function observationBindsToCell(
+  record: PolicyObservationRecord,
+  cell: {
+    readonly runtime: string;
+    readonly candidate: string;
+    readonly contentHash: string;
+    readonly lifecycleEpoch: number;
+    readonly artifactDigest?: string;
+  },
+): boolean {
+  const { binding } = record;
+  const expectedDigest = typeof cell.artifactDigest === 'string' && cell.artifactDigest.length > 0
+    ? cell.artifactDigest
+    : policyObservationArtifactDigest({
+      runtime: cell.runtime,
+      candidate: cell.candidate,
+      blockId: binding.blockId,
+      contentHash: cell.contentHash,
+      lifecycleEpoch: cell.lifecycleEpoch,
+      sessionIdentity: binding.sessionIdentity,
+    });
+  return binding.hostReceiptStatus === 'observed'
+    && binding.runtime === cell.runtime
+    && binding.candidate === cell.candidate
+    && binding.contentHash === cell.contentHash
+    && binding.lifecycleEpoch === cell.lifecycleEpoch
+    && typeof binding.artifactDigest === 'string'
+    && binding.artifactDigest.length > 0
+    && binding.artifactDigest === expectedDigest;
+}
+
+/** Build activation-matrix deliveryEvidence from a sink record. */
+export function deliveryEvidenceFromObservation(
+  record: PolicyObservationRecord,
+  overrides: Partial<ActivationDeliveryEvidence> = {},
+): ActivationDeliveryEvidence {
+  const { binding } = record;
+  if (!binding.candidate) {
+    throw new TypeError('Observation record is missing a candidate binding');
+  }
+  return Object.freeze({
+    status: 'pass',
+    artifact: 'policy-observation-sink',
+    source: 'host emission boundary',
+    observedAt: new Date().toISOString(),
+    notes: `Observed ${binding.blockId} after host emission.`,
+    runtime: binding.runtime,
+    candidate: binding.candidate,
+    contentHash: binding.contentHash,
+    lifecycleEpoch: binding.lifecycleEpoch,
+    hostReceiptStatus: 'observed',
+    artifactDigest: binding.artifactDigest,
+    ...overrides,
+  });
+}
+
+/** Read immutable copies of recorded policy observation records. */
+export function getPolicyObservationRecords(): readonly PolicyObservationRecord[] {
+  return Object.freeze(POLICY_OBSERVATION_SINK.map((record) => ({
+    receipt: { ...record.receipt },
+    binding: { ...record.binding },
+  })));
+}
+
+/** Read immutable copies of recorded policy observation receipts. */
+export function getPolicyObservationReceipts(): readonly DeliveryReceipt[] {
+  return Object.freeze(getPolicyObservationRecords().map((record) => ({ ...record.receipt })));
+}
+
+/** Clear the policy observation sink between isolated evaluations. */
+export function clearPolicyObservationSink(): void {
+  POLICY_OBSERVATION_SINK.length = 0;
+}
+
+/** Shadow-only render telemetry; does not record host-observed sink receipts. */
+export function observeRenderedAdvisorPolicy(_rendered: string | null): void {
+  // Shadow route-only measurement runs in render.ts; pre-emission policy-set
+  // receipts are not host-observed and must not seed the activation sink.
 }

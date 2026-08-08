@@ -1,0 +1,71 @@
+{
+  "run_id": "1786120169844-ep05xl",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
+  "base_artifact_dir": ".opencode/specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-go",
+      "state_log": ".opencode/specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/research/lineages/deepseek-go/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-07T16:29:30.675Z",
+        "end_at_iso": "2026-08-07T16:57:05.025Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T18:50:00Z",
+          "deltaMs": 6654975
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T19:05:00Z",
+          "deltaMs": 7554975
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T19:20:00Z",
+          "deltaMs": 8454975
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T19:35:00Z",
+          "deltaMs": 9354975
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T19:50:00Z",
+          "deltaMs": 10254975
+        }
+      ]
+    }
+  ]
+}

@@ -264,7 +264,7 @@ describe("Pi compact directive shadow boundary", () => {
     expect(dispatchDirectiveSuffix(on.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
     expect(Buffer.byteLength(dispatchDirectiveSuffix(on.text), "utf8")).toBe(554);
 
-    const receipt = getPiDispatchShadowReceipt();
+    const receipt = getPiDispatchShadowReceipt("session-shadow");
     expect(receipt).not.toBeNull();
     expect(receipt?.compactByteCount).toBe(PI_COMPACT_DIRECTIVE_EXECUTED_BYTE_COUNT);
     expect(receipt?.compactByteCount).toBeLessThanOrEqual(177);
@@ -278,22 +278,45 @@ describe("Pi compact directive shadow boundary", () => {
       const invocation = await invokePromptAdvisorFailure(`failure-${enabled}`);
       expect(dispatchDirectiveSuffix(invocation.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
       expect(Buffer.byteLength(dispatchDirectiveSuffix(invocation.text), "utf8")).toBe(554);
+      if (enabled) {
+        const receipt = getPiDispatchShadowReceipt(`failure-${enabled}`);
+        expect(receipt?.state).toBe("UNSEEN");
+        expect(receipt?.sessionKnown).toBe(false);
+        expect(receipt?.resetReasons).toContain("lifecycle-error");
+      }
     },
   );
+
+  it("latches to full delivery when policy plan is unavailable", async () => {
+    setCompactPrototypeFlag(true);
+    resetPiDispatchShadowState();
+    const globalState = globalThis as typeof globalThis & {
+      [key: symbol]: { policyPlan?: unknown; policyPlanPromise?: Promise<unknown> } | undefined;
+    };
+    const store = globalState[Symbol.for("mk.pi.dispatch.compact-shadow")];
+    store.policyPlan = null;
+    store.policyPlanPromise = Promise.resolve(null);
+
+    await invokePromptAdvisorInput("run the task", "policy-unavailable-session");
+    const receipt = getPiDispatchShadowReceipt("policy-unavailable-session");
+    expect(receipt?.state).toBe("UNSEEN");
+    expect(receipt?.sessionKnown).toBe(false);
+    expect(receipt?.resetReasons).toContain("lifecycle-error");
+  });
 
   it("keeps the full directive without a host receipt and resets after compaction", async () => {
     setCompactPrototypeFlag(true);
     const first = await invokePromptAdvisorInput("run the task", "session-compact");
-    const firstReceipt = getPiDispatchShadowReceipt();
+    const firstReceipt = getPiDispatchShadowReceipt("session-compact");
     expect(firstReceipt?.state).toBe("UNSEEN");
     expect(dispatchDirectiveSuffix(first.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
 
     await invokePromptAdvisorInput("run the next task", "session-compact");
-    expect(getPiDispatchShadowReceipt()?.state).toBe("UNSEEN");
+    expect(getPiDispatchShadowReceipt("session-compact")?.state).toBe("UNSEEN");
 
     await invokePromptLifecycle("session_compact", { type: "session_compact" }, "session-compact");
     const afterCompaction = await invokePromptAdvisorInput("run after compaction", "session-compact");
-    const resetReceipt = getPiDispatchShadowReceipt();
+    const resetReceipt = getPiDispatchShadowReceipt("session-compact");
     expect(resetReceipt?.state).toBe("UNSEEN");
     expect(resetReceipt?.epoch).toBeGreaterThan(firstReceipt?.epoch ?? 0);
     expect(resetReceipt?.resetReasons).toContain("compact");
@@ -304,11 +327,11 @@ describe("Pi compact directive shadow boundary", () => {
     setCompactPrototypeFlag(true);
     await invokePromptAdvisorInput("run the task", "session-resume");
     await invokePromptAdvisorInput("run the next task", "session-resume");
-    expect(getPiDispatchShadowReceipt()?.state).toBe("UNSEEN");
+    expect(getPiDispatchShadowReceipt("session-resume")?.state).toBe("UNSEEN");
 
     await invokePromptLifecycle("session_start", { reason: "resume" }, "session-resume");
     const afterResume = await invokePromptAdvisorInput("run after resume", "session-resume");
-    const resetReceipt = getPiDispatchShadowReceipt();
+    const resetReceipt = getPiDispatchShadowReceipt("session-resume");
     expect(resetReceipt?.state).toBe("UNSEEN");
     expect(resetReceipt?.resetReasons).toContain("resume");
     expect(dispatchDirectiveSuffix(afterResume.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);

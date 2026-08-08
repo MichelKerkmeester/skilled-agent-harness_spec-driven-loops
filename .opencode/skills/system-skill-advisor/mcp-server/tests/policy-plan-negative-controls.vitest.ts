@@ -7,11 +7,18 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   clearShadowRouteOnlyLog,
   getShadowRouteOnlyLog,
+  GOVERNOR_DIRECTIVE,
+  observeEmittedAdvisorPolicy,
+  observeShadowDelivery,
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
 } from '../lib/render.js';
 import {
   buildAdvisorRenderPlan,
+  buildObservedReceiptMatch,
+  clearPolicyObservationSink,
+  DeliveryStateMachine,
+  isObservedDeliveryReceipt,
   resetShadowDeliveryState,
   ROUTE_ADVISOR_ID,
 } from '../lib/policy-plan.js';
@@ -101,6 +108,39 @@ const NEGATIVE_CONTROLS: readonly NegativeControlCase[] = [
   },
 ];
 
+function seedObservedPolicyDeliveries(
+  rendered: string,
+  sessionId: string,
+  machine: DeliveryStateMachine,
+  lifecycleEpoch = 1,
+): void {
+  machine.advanceEpoch({ sessionId, sessionIdentityConfirmed: true });
+  const plan = buildAdvisorRenderPlan(rendered);
+  for (const block of plan.blocks) {
+    machine.confirmDelivery({
+      sessionId,
+      sessionIdentityConfirmed: true,
+      blockId: block.id,
+      contentHash: block.contentHash,
+      receipt: buildObservedReceiptMatch(block.contentHash, lifecycleEpoch),
+    });
+  }
+}
+
+function shadowOptionsForRendered(
+  rendered: string,
+  name: string,
+  machine: DeliveryStateMachine,
+): AdvisorBriefRenderOptions['deliveryState'] {
+  const sessionId = `negative-control-${name}`;
+  seedObservedPolicyDeliveries(rendered, sessionId, machine);
+  return {
+    sessionId,
+    sessionIdentityConfirmed: true,
+    stateMachine: machine,
+  };
+}
+
 function emittedResponse(
   result: AdvisorBriefRenderableResult,
   options: AdvisorBriefRenderOptions = {},
@@ -111,6 +151,7 @@ function emittedResponse(
 afterEach(() => {
   resetShadowDeliveryState();
   clearShadowRouteOnlyLog();
+  clearPolicyObservationSink();
 });
 
 describe('shadow delivery behavioral negative controls', () => {
@@ -120,17 +161,8 @@ describe('shadow delivery behavioral negative controls', () => {
       resetShadowDeliveryState();
       clearShadowRouteOnlyLog();
       const baseline = emittedResponse(result);
-      const routeBlock = buildAdvisorRenderPlan(baseline).blocks.find((block) => (
-        block.id === ROUTE_ADVISOR_ID
-      ));
-      const deliveryState = {
-        sessionId: `negative-control-${name}`,
-        sessionIdentityConfirmed: true,
-        deliveryConfirmed: true,
-        receipt: routeBlock
-          ? { plannedHash: routeBlock.contentHash, lifecycleEpoch: 0 }
-          : undefined,
-      } as const;
+      const machine = new DeliveryStateMachine();
+      const deliveryState = shadowOptionsForRendered(baseline, name, machine);
       const shadowOptions: AdvisorBriefRenderOptions = { deliveryState };
 
       const first = emittedResponse(result, shadowOptions);
@@ -168,19 +200,9 @@ describe('shadow delivery behavioral negative controls', () => {
   it('keeps the shadow route-only result out of the returned response', () => {
     const result = advisorResult();
     const baseline = emittedResponse(result);
-    const routeBlock = buildAdvisorRenderPlan(baseline).blocks.find((block) => (
-      block.id === ROUTE_ADVISOR_ID
-    ));
+    const machine = new DeliveryStateMachine();
     const options: AdvisorBriefRenderOptions = {
-      deliveryState: {
-        sessionId: 'returned-response-control',
-        sessionIdentityConfirmed: true,
-        deliveryConfirmed: true,
-        receipt: {
-          plannedHash: routeBlock?.contentHash ?? '',
-          lifecycleEpoch: 0,
-        },
-      },
+      deliveryState: shadowOptionsForRendered(baseline, 'returned-response-control', machine),
     };
     emittedResponse(result, options);
     const repeated = emittedResponse(result, options);
@@ -189,6 +211,78 @@ describe('shadow delivery behavioral negative controls', () => {
     expect(repeated).toBe(baseline);
     expect(log?.routeState).toBe('SUPPRESSED_SAME');
     expect(log?.routeOnlyByteCount).toBeGreaterThan(0);
+    expect(log?.savedBytes).toBeGreaterThan(0);
     expect(repeated).not.toBe(renderAdvisorFallbackDirective());
+  });
+
+  it('keeps emitted bytes unchanged when host observation runs after render', () => {
+    const result = advisorResult();
+    const baseline = emittedResponse(result);
+    observeEmittedAdvisorPolicy(baseline, {
+      runtime: 'Claude Code',
+      candidate: '004',
+      sessionId: 'host-observation',
+      sessionIdentityConfirmed: true,
+    });
+    expect(emittedResponse(result)).toBe(baseline);
+    console.log(
+      `HOST_OBSERVATION baselineBytes=${Buffer.byteLength(baseline, 'utf8')} equal=true`,
+    );
+  });
+
+  it('returns identical bytes when a throwing shadow observer runs', () => {
+    const result = advisorResult();
+    const baseline = emittedResponse(result);
+    const throwing = emittedResponse(result, {
+      deliveryState: {
+        onShadowLog: () => {
+          throw new Error('shadow observer failure');
+        },
+      },
+    });
+    expect(Buffer.from(throwing, 'utf8').equals(Buffer.from(baseline, 'utf8'))).toBe(true);
+    console.log(
+      `THROWING_OBSERVER baselineBytes=${Buffer.byteLength(baseline, 'utf8')} equal=true`,
+    );
+  });
+
+  it('reports zero saved bytes when route-only is ineligible', () => {
+    const result = advisorResult();
+    emittedResponse(result, {
+      deliveryState: {
+        sessionId: 'ineligible-savings',
+        sessionIdentityConfirmed: true,
+      },
+    });
+    const log = getShadowRouteOnlyLog().at(-1);
+    expect(log?.routeOnlyByteCount).toBe(0);
+    expect(log?.savedBytes).toBe(0);
+    expect(log?.routeState).toBe('UNSEEN');
+  });
+
+  it('rejects epoch-zero observed receipts for delivery confirmation', () => {
+    const contentHash = 'epoch-floor-hash';
+    const epochZeroReceipt = buildObservedReceiptMatch(contentHash, 0);
+    const epochOneReceipt = buildObservedReceiptMatch(contentHash, 1);
+
+    expect(isObservedDeliveryReceipt(epochZeroReceipt, contentHash, 0)).toBe(false);
+    expect(isObservedDeliveryReceipt(epochOneReceipt, contentHash, 1)).toBe(true);
+    console.log('EPOCH_FLOOR epoch0=REJECT epoch1=ACCEPT');
+  });
+
+  it('reports zero saved bytes when an expected directive block is missing', () => {
+    const result = advisorResult();
+    const baseline = emittedResponse(result);
+    const machine = new DeliveryStateMachine();
+    const missingGovernor = baseline.replace(GOVERNOR_DIRECTIVE, '');
+    seedObservedPolicyDeliveries(missingGovernor, 'missing-directive', machine);
+    observeShadowDelivery(missingGovernor, {
+      sessionId: 'missing-directive',
+      sessionIdentityConfirmed: true,
+      stateMachine: machine,
+    });
+    const log = getShadowRouteOnlyLog().at(-1);
+    expect(log?.savedBytes).toBe(0);
+    expect(log?.routeOnlyByteCount).toBe(0);
   });
 });

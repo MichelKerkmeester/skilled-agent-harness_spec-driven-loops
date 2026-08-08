@@ -5,6 +5,7 @@
 import {
   DeliveryStateMachine,
   buildDeliveryReceipt,
+  buildObservedReceiptMatch,
   buildPolicyPlan,
   DELIVERY_RECEIPT_FIELDS,
   evaluateDeliveryState,
@@ -12,6 +13,7 @@ import {
   hashPolicyBlock,
   hashPolicySet,
   isDeliveryReceipt,
+  isObservedDeliveryReceipt,
   POLICY_BLOCK_IDS,
   POLICY_BLOCK_REGISTRY,
   POLICY_HASH_FIELDS,
@@ -24,8 +26,23 @@ import {
 } from '../lib/policy-plan.js';
 import type { DeliveryReceipt } from '../lib/policy-plan.js';
 
-function observedReceipt(contentHash: string, lifecycleEpoch = 0) {
-  return { plannedHash: contentHash, lifecycleEpoch } as const;
+function observedReceipt(contentHash: string, lifecycleEpoch = 1) {
+  return buildObservedReceiptMatch(contentHash, lifecycleEpoch);
+}
+
+function primeSessionEpoch(
+  machine: DeliveryStateMachine,
+  input: { sessionId: string },
+): void {
+  machine.advanceForSignals({ ...input, lifecycleEvent: 'startup' });
+}
+
+function observedReceiptForSession(
+  machine: DeliveryStateMachine,
+  input: { sessionId: string },
+  contentHash: string,
+) {
+  return observedReceipt(contentHash, machine.currentEpoch(input));
 }
 
 describe('shadow policy planner', () => {
@@ -130,14 +147,15 @@ describe('shadow policy planner', () => {
       sessionKnown: false,
       routeOnlyEligible: false,
     });
-    const confirmed = { ...input, receipt: observedReceipt(input.contentHash) };
+    primeSessionEpoch(machine, input);
+    const confirmed = { ...input, receipt: observedReceiptForSession(machine, input, input.contentHash) };
     expect(machine.confirmDelivery(confirmed)).toMatchObject({
       state: 'DELIVERED',
-      epoch: 0,
+      epoch: 1,
     });
     expect(machine.decideSuppression(input)).toMatchObject({
       state: 'SUPPRESSED_SAME',
-      epoch: 0,
+      epoch: 1,
       routeOnlyEligible: true,
     });
     expect(machine.peek(input).state).toBe('SUPPRESSED_SAME');
@@ -148,14 +166,18 @@ describe('shadow policy planner', () => {
     const original = { sessionId: 'session-dirty', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
     const changed = { ...original, contentHash: 'hash-b' };
 
-    machine.confirmDelivery({ ...original, receipt: observedReceipt(original.contentHash) });
+    primeSessionEpoch(machine, original);
+    machine.confirmDelivery({ ...original, receipt: observedReceiptForSession(machine, original, original.contentHash) });
     expect(machine.decideSuppression(original).state).toBe('SUPPRESSED_SAME');
     expect(machine.peek(changed)).toMatchObject({
       state: 'UNSEEN',
       contentHash: 'hash-b',
       routeOnlyEligible: false,
     });
-    expect(machine.confirmDelivery({ ...changed, receipt: observedReceipt(changed.contentHash) }).state).toBe('DELIVERED');
+    expect(machine.confirmDelivery({
+      ...changed,
+      receipt: observedReceiptForSession(machine, changed, changed.contentHash),
+    }).state).toBe('DELIVERED');
     expect(machine.decideSuppression(changed).state).toBe('SUPPRESSED_SAME');
   });
 
@@ -171,21 +193,22 @@ describe('shadow policy planner', () => {
     const input = { sessionId: 'session-epoch', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
     const secondInput = { ...input, blockId: POLICY_COMMENT_HYGIENE_ID, contentHash: 'hash-b' };
 
-    machine.confirmDelivery({ ...input, receipt: observedReceipt(input.contentHash) });
-    machine.confirmDelivery({ ...secondInput, receipt: observedReceipt(secondInput.contentHash) });
+    primeSessionEpoch(machine, input);
+    machine.confirmDelivery({ ...input, receipt: observedReceiptForSession(machine, input, input.contentHash) });
+    machine.confirmDelivery({ ...secondInput, receipt: observedReceiptForSession(machine, secondInput, secondInput.contentHash) });
     expect(machine.decideSuppression(input).state).toBe('SUPPRESSED_SAME');
     expect(machine.decideSuppression(secondInput).state).toBe('SUPPRESSED_SAME');
     const advanced = machine.advanceForSignals({ ...input, ...signal });
 
-    expect(advanced).toMatchObject({ epoch: 1, sessionKnown: true, advanced: true });
+    expect(advanced).toMatchObject({ epoch: 2, sessionKnown: true, advanced: true });
     expect(machine.peek(input)).toMatchObject({
       state: 'UNSEEN',
-      epoch: 1,
+      epoch: 2,
       routeOnlyEligible: false,
     });
     expect(machine.peek(secondInput)).toMatchObject({
       state: 'UNSEEN',
-      epoch: 1,
+      epoch: 2,
       routeOnlyEligible: false,
     });
   });
@@ -193,7 +216,11 @@ describe('shadow policy planner', () => {
   it('never reads or shares state for unknown or ambiguous identities', () => {
     const machine = new DeliveryStateMachine();
     const confirmed = { sessionId: 'confirmed-session', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
-    machine.confirmDelivery({ ...confirmed, receipt: observedReceipt(confirmed.contentHash) });
+    primeSessionEpoch(machine, confirmed);
+    machine.confirmDelivery({
+      ...confirmed,
+      receipt: observedReceiptForSession(machine, confirmed, confirmed.contentHash),
+    });
     expect(machine.decideSuppression(confirmed).state).toBe('SUPPRESSED_SAME');
 
     const unknown = { blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
@@ -225,6 +252,28 @@ describe('shadow policy planner', () => {
     expect(machine.peek(input).state).toBe('UNSEEN');
   });
 
+  it('rejects configured receipts and bare deliveryConfirmed without observed status', () => {
+    const machine = new DeliveryStateMachine();
+    const input = { sessionId: 'configured-receipt', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
+    const configured = buildDeliveryReceipt({
+      shadowId: 'shadow.configured.v1',
+      plannedHash: input.contentHash,
+      emittedHash: input.contentHash,
+      byteCount: 1,
+      lifecycleEpoch: 0,
+      transformMessageIdentity: null,
+      hostReceiptStatus: 'configured',
+    });
+
+    expect(machine.confirmDelivery({ ...input, deliveryConfirmed: true }).state).toBe('UNSEEN');
+    expect(machine.confirmDelivery({ ...input, receipt: configured }).state).toBe('UNSEEN');
+    expect(isObservedDeliveryReceipt(configured, input.contentHash, 0)).toBe(false);
+    expect(isObservedDeliveryReceipt(observedReceipt(input.contentHash), input.contentHash, 0)).toBe(false);
+    expect(isObservedDeliveryReceipt(observedReceipt(input.contentHash, 1), input.contentHash, 1)).toBe(true);
+    expect(isObservedDeliveryReceipt(observedReceipt(input.contentHash), 'hash-b', 0)).toBe(false);
+    expect(isObservedDeliveryReceipt(observedReceipt(input.contentHash, 1), input.contentHash, 0)).toBe(false);
+  });
+
   it('peek does not create a session or advance an epoch', () => {
     const machine = new DeliveryStateMachine();
     const input = { sessionId: 'peek-only', blockId: ROUTE_ADVISOR_ID, contentHash: 'hash-a' };
@@ -252,6 +301,8 @@ describe('shadow policy planner', () => {
     const lifecycleReplays = 0;
     const fullDeliveries = Math.max(1, 1 + lifecycleReplays);
     let shadowBytes = 0;
+
+    primeSessionEpoch(machine, input);
 
     for (let turn = 0; turn < turns; turn += 1) {
       const decision = machine.decideSuppression(input);

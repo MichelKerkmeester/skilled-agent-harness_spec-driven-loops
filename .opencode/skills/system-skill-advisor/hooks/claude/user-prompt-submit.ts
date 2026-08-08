@@ -17,6 +17,7 @@ import {
 import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
+  observeEmittedAdvisorPolicy,
 } from '../../mcp-server/lib/render.js';
 import type { ShadowDeliveryRenderOptions } from '../../mcp-server/lib/render.js';
 import {
@@ -82,6 +83,7 @@ interface HookDiagnosticInput {
 
 export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
 const MAX_PROMPT_BYTES = 64 * 1024;
+const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -151,9 +153,6 @@ export function deliveryStateOptionsFor(
   input: ClaudeUserPromptSubmitInput,
 ): ShadowDeliveryRenderOptions {
   const hasSessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0;
-  const shadowProbeConfirmed = hasSessionId
-    && input.session_identity_confirmed !== false
-    && input.session_identity_ambiguous !== true;
   return {
     sessionId: input.session_id,
     sessionIdentityConfirmed: input.session_identity_confirmed ?? hasSessionId,
@@ -162,10 +161,7 @@ export function deliveryStateOptionsFor(
     scopeChanged: input.scope_changed === true,
     policySetChanged: input.policy_set_changed === true,
     goalChanged: input.goal_changed === true,
-    deliveryConfirmed: shadowProbeConfirmed,
-    ...(input.delivery_receipt_status
-      ? { receipt: input.delivery_receipt_status }
-      : {}),
+    deliveryConfirmed: false,
   };
 }
 
@@ -270,8 +266,10 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    const renderOptions = { deliveryState: deliveryStateOptionsFor(input) };
+    const deliveryState = deliveryStateOptionsFor(input);
+    const renderOptions = { deliveryState };
     const brief = renderBrief(result, renderOptions);
+    const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions);
     emitDiagnostic({
       workspaceRoot,
       status: result.status,
@@ -283,12 +281,18 @@ export async function handleClaudeUserPromptSubmit(
       skillLabel: skillLabelFor(result),
     }, writeDiagnostic);
 
-    return {
+    const output: ClaudeUserPromptSubmitOutput = {
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: brief ?? renderAdvisorFallbackDirective(),
+        additionalContext: emitted,
       },
     };
+    observeEmittedAdvisorPolicy(emitted, {
+      ...deliveryState,
+      runtime: 'Claude Code',
+      candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
+    });
+    return output;
   } catch {
     emitDiagnostic({
       workspaceRoot: input ? workspaceRootFor(input) : process.cwd(),

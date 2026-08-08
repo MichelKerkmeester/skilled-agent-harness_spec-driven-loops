@@ -42,10 +42,13 @@ function nextSessionID() {
 }
 
 function makeGate3DeliveryRequest(overrides = {}) {
+  const lifecycleEpoch = overrides.lifecycleEpoch ?? 0;
+  const receipt = overrides.receipt
+    ?? (overrides.deliveryConfirmed ? core.buildGate3ObservedReceipt(lifecycleEpoch) : undefined);
   return {
     question: core.GATE_3_QUESTION,
     sessionID: nextSessionID(),
-    lifecycleEpoch: 0,
+    lifecycleEpoch,
     gateState: {
       status: 'open',
       taskScopeFingerprint: 'task-alpha|scope-alpha',
@@ -56,9 +59,17 @@ function makeGate3DeliveryRequest(overrides = {}) {
       [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
       [core.CHILD_SESSION_ENV]: '0',
     },
-    deliveryConfirmed: false,
     ...overrides,
+    receipt,
   };
+}
+
+function observedGate3Request(overrides = {}) {
+  const lifecycleEpoch = overrides.lifecycleEpoch ?? 0;
+  return makeGate3DeliveryRequest({
+    ...overrides,
+    receipt: overrides.receipt ?? core.buildGate3ObservedReceipt(lifecycleEpoch),
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -286,7 +297,7 @@ test('a D answer naming a real folder binds and satisfies (path outranks the ski
 test('Gate-3 delivery flag off preserves byte-identical baseline output', () => {
   core.resetGate3DeliveryShadow();
   const baseline = core.GATE_3_QUESTION;
-  const seededRequest = makeGate3DeliveryRequest({ deliveryConfirmed: true });
+  const seededRequest = observedGate3Request();
   core.observeGate3QuestionDelivery(seededRequest);
   const result = core.observeGate3QuestionDelivery({ ...seededRequest, env: { [core.CHILD_SESSION_ENV]: '0' } });
 
@@ -297,7 +308,7 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
 
   const reenabled = core.observeGate3QuestionDelivery({
     ...seededRequest,
-    deliveryConfirmed: false,
+    receipt: undefined,
   });
   assert.equal(reenabled.suppressionEligible, false, 'turning the flag off must clear delivery state');
   assert.deepEqual(Buffer.from(reenabled.question, 'utf8'), Buffer.from(baseline, 'utf8'));
@@ -306,13 +317,13 @@ test('Gate-3 delivery flag off preserves byte-identical baseline output', () => 
 test('Gate-3 shadow receipt records the planned and emitted full relay', () => {
   core.resetGate3DeliveryShadow();
   const receipts = [];
-  const firstRequest = makeGate3DeliveryRequest({
+  const firstRequest = observedGate3Request({
     sessionID: 'receipt-session',
-    deliveryConfirmed: true,
+    lifecycleEpoch: 1,
     onShadowReceipt: (receipt) => receipts.push(receipt),
   });
   core.observeGate3QuestionDelivery(firstRequest);
-  const repeated = core.observeGate3QuestionDelivery({ ...firstRequest, deliveryConfirmed: false });
+  const repeated = core.observeGate3QuestionDelivery({ ...firstRequest, receipt: undefined });
 
   assert.equal(repeated.suppressionEligible, true);
   assert.equal(repeated.suppressionConsumed, false);
@@ -329,9 +340,8 @@ test('Gate-3 shadow receipt records the planned and emitted full relay', () => {
 test('Gate-3 delivery flag off does not create a shadow receipt', () => {
   core.resetGate3DeliveryShadow();
   const baseline = core.GATE_3_QUESTION;
-  const result = core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+  const result = core.observeGate3QuestionDelivery(observedGate3Request({
     env: { [core.CHILD_SESSION_ENV]: '0' },
-    deliveryConfirmed: true,
   }));
 
   assert.deepEqual(Buffer.from(result.question, 'utf8'), Buffer.from(baseline, 'utf8'));
@@ -363,6 +373,41 @@ test('Gate-3 delivery state hash separates task/scope, answer, epoch, and sessio
   assert.notEqual(baseKey, core.buildGate3DeliveryKey({ sessionID: 'session-beta', lifecycleEpoch: 0, gateStateHash: baseHash }));
   assert.notEqual(baseKey, core.buildGate3DeliveryKey({ sessionID: 'session-alpha', lifecycleEpoch: 1, gateStateHash: baseHash }));
   assert.equal(core.buildGate3DeliveryKey({ sessionID: core.UNKNOWN_SESSION_ID, lifecycleEpoch: 0, gateStateHash: baseHash }), null);
+  assert.equal(core.buildGate3DeliveryKey({ sessionID: '__global__', lifecycleEpoch: 0, gateStateHash: baseHash }), null);
+  assert.equal(core.buildGate3DeliveryKey({ sessionID: '<unknown>', lifecycleEpoch: 0, gateStateHash: baseHash }), null);
+});
+
+test('Gate-3 observed receipt is required to seed delivery suppression state', () => {
+  core.resetGate3DeliveryShadow();
+  const base = makeGate3DeliveryRequest({ sessionID: 'observed-required-session' });
+  core.observeGate3QuestionDelivery(base);
+  assert.equal(
+    core.observeGate3QuestionDelivery({ ...base, receipt: undefined }).suppressionEligible,
+    false,
+  );
+
+  core.resetGate3DeliveryShadow();
+  const seeded = observedGate3Request({ sessionID: 'observed-required-session', lifecycleEpoch: 1 });
+  core.observeGate3QuestionDelivery(seeded);
+  assert.equal(
+    core.observeGate3QuestionDelivery({ ...seeded, receipt: undefined }).suppressionEligible,
+    true,
+  );
+});
+
+test('Gate-3 observer failure latches session so afterFailure suppression stays ineligible', () => {
+  core.resetGate3DeliveryShadow();
+  const seeded = observedGate3Request({ sessionID: 'after-failure-session' });
+  core.observeGate3QuestionDelivery(seeded);
+  core.observeGate3QuestionDelivery({
+    ...seeded,
+    receipt: undefined,
+    onShadowReceipt: () => {
+      throw new Error('sink failure');
+    },
+  });
+  const afterFailure = core.observeGate3QuestionDelivery({ ...seeded, receipt: undefined });
+  assert.equal(afterFailure.suppressionEligible, false);
 });
 
 test('Gate-3 fallback state identity separates delimiter-colliding task and scope pairs', () => {
@@ -401,12 +446,12 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
     null,
   );
 
-  const firstRequest = makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true });
+  const firstRequest = observedGate3Request({ sessionID: 'matrix-session', lifecycleEpoch: 1 });
   record('first positive', core.observeGate3QuestionDelivery(firstRequest), core.GATE_3_QUESTION);
 
   record(
     'repeated unchanged positive',
-    core.observeGate3QuestionDelivery({ ...firstRequest, deliveryConfirmed: false }),
+    core.observeGate3QuestionDelivery({ ...firstRequest, receipt: undefined }),
     core.GATE_3_QUESTION,
   );
   const repeatReceipts = core.getGate3ShadowReceipts();
@@ -420,7 +465,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
   record(
     'invalid answer',
     core.observeGate3QuestionDelivery({
-      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true }),
+      ...observedGate3Request({ sessionID: 'matrix-session' }),
       gateState: { ...firstRequest.gateState, answerState: 'invalid-answer' },
     }),
     core.GATE_3_QUESTION,
@@ -450,7 +495,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
   record(
     'new task/scope',
     core.observeGate3QuestionDelivery({
-      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', deliveryConfirmed: true }),
+      ...observedGate3Request({ sessionID: 'matrix-session' }),
       gateState: { ...firstRequest.gateState, taskScopeFingerprint: 'task-beta|scope-beta' },
     }),
     core.GATE_3_QUESTION,
@@ -459,7 +504,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
   record(
     'recovery',
     core.observeGate3QuestionDelivery({
-      ...makeGate3DeliveryRequest({ sessionID: 'matrix-session', lifecycleEpoch: 1, deliveryConfirmed: true }),
+      ...observedGate3Request({ sessionID: 'matrix-session', lifecycleEpoch: 1 }),
       gateState: { ...firstRequest.gateState, lifecycleState: 'resumed' },
     }),
     core.GATE_3_QUESTION,
@@ -501,9 +546,8 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
     })),
     null,
   );
-  const childFullRelay = core.observeGate3QuestionDelivery(makeGate3DeliveryRequest({
+  const childFullRelay = core.observeGate3QuestionDelivery(observedGate3Request({
     sessionID: 'matrix-child-session',
-    deliveryConfirmed: true,
     env: {
       [core.GATE_3_DELIVERY_SUPPRESSION_ENV]: '1',
       [core.CHILD_SESSION_ENV]: '1',
@@ -537,6 +581,69 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
   const eligibleRows = outcomes.filter((outcome) => outcome.eligible);
   assert.equal(outcomes.length, 11);
   assert.deepEqual(eligibleRows.map((outcome) => outcome.label), ['repeated unchanged positive']);
+});
+
+test('Gate-3 observed emission rejects lifecycle epoch zero at the sink', async () => {
+  const policyPlan = await import('../../../../../system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js');
+  policyPlan.clearPolicyObservationSink();
+  core.resetGate3DeliveryShadow();
+  core.observeGate3QuestionDelivery(observedGate3Request({
+    lifecycleEpoch: 0,
+    emitted: true,
+    sessionID: 'gate3-epoch-zero',
+  }));
+  assert.equal(policyPlan.getPolicyObservationRecords().length, 0);
+});
+
+test('Gate-3 delivery confirmation rejects lifecycle epoch zero', () => {
+  core.resetGate3DeliveryShadow();
+  const epochZeroRequest = observedGate3Request({
+    sessionID: 'gate3-epoch-zero-confirm',
+    lifecycleEpoch: 0,
+  });
+  core.observeGate3QuestionDelivery(epochZeroRequest);
+  const epochZeroRepeat = core.observeGate3QuestionDelivery({
+    ...epochZeroRequest,
+    receipt: undefined,
+  });
+  assert.equal(epochZeroRepeat.suppressionEligible, false);
+
+  core.resetGate3DeliveryShadow();
+  const epochOneRequest = observedGate3Request({
+    sessionID: 'gate3-epoch-one-confirm',
+    lifecycleEpoch: 1,
+  });
+  core.observeGate3QuestionDelivery(epochOneRequest);
+  const epochOneRepeat = core.observeGate3QuestionDelivery({
+    ...epochOneRequest,
+    receipt: undefined,
+  });
+  assert.equal(epochOneRepeat.suppressionEligible, true);
+  console.log('GATE3_EPOCH_FLOOR epoch0=REJECT epoch1=ACCEPT');
+});
+
+test('Gate-3 classify adapters observe only after stdout emission completes', () => {
+  const hooksRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const stdoutAdapters = [
+    'claude/spec-gate-classify.mjs',
+    'codex/spec-gate-classify.mjs',
+    'cursor/spec-gate-classify.mjs',
+    'devin/spec-gate-classify.mjs',
+  ];
+  for (const rel of stdoutAdapters) {
+    const source = readFileSync(join(hooksRoot, rel), 'utf8');
+    assert.match(
+      source,
+      /process\.stdout\.write\([\s\S]*?\), \(\) => \{[\s\S]*?observeGate3QuestionDelivery/,
+    );
+    const writeIndex = source.indexOf('process.stdout.write');
+    const observeIndex = source.indexOf('observeGate3QuestionDelivery');
+    assert.ok(writeIndex !== -1 && observeIndex > writeIndex);
+  }
+  const piSource = readFileSync(join(hooksRoot, 'pi/spec-gate-classify.ts'), 'utf8');
+  const outputIndex = piSource.indexOf('const output = {');
+  const observeIndex = piSource.indexOf('observeGate3QuestionDelivery');
+  assert.ok(outputIndex !== -1 && observeIndex > outputIndex);
 });
 
 test('Gate-3 suppression predicate has no classify or enforcement call site', () => {

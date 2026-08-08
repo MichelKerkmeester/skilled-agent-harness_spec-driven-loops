@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":9,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.24,"status":"insight","focus":"Challenge P1/P2 severity and separate remediation shape for the two Cursor catalog omissions"}
+{"type":"observation","id":"obs-009-001","label":"Detailed catalog authority and adapter-level source table make omission actionable","iteration":9}
+{"type":"observation","id":"obs-009-002","label":"Root catalog explicitly delegates event behavior to the detailed catalog","iteration":9}
+{"type":"invariant","id":"inv-009-001","label":"No P0 because no existing target assertion contradicts epoch floor or observer order","iteration":9}
+{"type":"ruled_out","direction":"Collapse detailed and root findings into one severity","reason":"Their authority and detail levels differ; implementation tracking benefits from a P1 must-fix and P2 optional split.","iteration":9}

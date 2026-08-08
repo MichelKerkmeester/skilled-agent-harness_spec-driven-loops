@@ -52,7 +52,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/session-end.ts` | Handler | Delegates confirmed `sessionEnd` delivery to session stop. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-prebind.mjs` | Script | Initializes validated or explicitly enforced state on confirmed `sessionStart` delivery. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-enforce.mjs` | Script | Enforces Gate-3 policy on confirmed `preToolUse` delivery. |
-| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed. |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs` | Script | Registered advisory classifier whose `beforeSubmitPrompt` delivery remains unconfirmed; on emission it records post-emission Gate-3 question delivery (observed receipt, `lifecycleEpoch >= 1`) feeding the default-off `MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` shadow. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs` | Script | Runs post-edit, code-graph freshness, and dispatch-audit checks on confirmed `postToolUse` delivery. |
 | `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | Script | Applies the task-dispatch guard on a matched `preToolUse` entry. |
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/user-prompt-submit.ts` | Handler | Registered `beforeSubmitPrompt` proxy with unconfirmed delivery. |

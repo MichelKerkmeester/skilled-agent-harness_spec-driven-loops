@@ -273,17 +273,63 @@ function bridgePayload({ request, projectDir, sessionID, options }) {
   return JSON.stringify(payload);
 }
 
-function shouldDeliverTransformContribution(input, options, blockId, content, order) {
-  if (!options.deduplicateTransforms) return true;
+function transformContributionDecision(input, options, blockId, content, order) {
+  if (!options.deduplicateTransforms) {
+    return { shouldDeliver: true, identity: null, blockId: null, contentHash: null };
+  }
   const identity = messageIdentity.resolveMessageIdentity(input);
   const contentHash = messageIdentity.hashPolicyBlockContent(blockId, content, order);
-  if (!identity || !contentHash) return true;
-  return messageIdentity.recordTransformContribution({
+  if (!identity || !contentHash) {
+    return { shouldDeliver: true, identity: null, blockId: null, contentHash: null };
+  }
+  const decision = messageIdentity.recordTransformContribution({
     identity,
     blockId,
     contentHash,
-    transform: 'mk-spec-memory',
-  }).shouldDeliver;
+    transform: PLUGIN_ID,
+  });
+  return { ...decision, identity, blockId, contentHash };
+}
+
+function commitTransformContribution(decision) {
+  if (!decision?.identity || !decision.blockId || !decision.contentHash) return;
+  if (decision.duplicate || decision.shouldDeliver) {
+    messageIdentity.commitTransformDelivery(
+      decision.identity,
+      decision.blockId,
+      decision.contentHash,
+      { transform: PLUGIN_ID },
+    );
+    return;
+  }
+  messageIdentity.releaseTransformReservation(
+    decision.identity,
+    decision.blockId,
+    decision.contentHash,
+  );
+}
+
+function releaseTransformContribution(decision) {
+  if (!decision?.identity || !decision.blockId || !decision.contentHash) return;
+  messageIdentity.releaseTransformReservation(
+    decision.identity,
+    decision.blockId,
+    decision.contentHash,
+  );
+}
+
+function deliverTransformContribution(decision, deliver) {
+  if (!decision?.shouldDeliver) {
+    commitTransformContribution(decision);
+    return;
+  }
+  try {
+    deliver();
+    commitTransformContribution(decision);
+  } catch (error) {
+    releaseTransformContribution(decision);
+    throw error;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -504,15 +550,18 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
     const result = await getContinuity({ sessionID });
     if (!result.brief) return;
     const brief = markedBrief(result.brief, options.maxBriefChars);
-    if (!shouldDeliverTransformContribution(
+    const continuityDecision = transformContributionDecision(
       input,
       options,
       messageIdentity.POLICY_BLOCK_IDS.OPENCODE_CONTINUITY,
       brief.text,
       7,
-    )) return;
-    if (output.system.some((entry) => typeof entry === 'string' && entry.includes(brief.marker))) return;
-    output.system.push(brief.text);
+    );
+    deliverTransformContribution(continuityDecision, () => {
+      if (!output.system.some((entry) => typeof entry === 'string' && entry.includes(brief.marker))) {
+        output.system.push(brief.text);
+      }
+    });
   }
 
   return {
@@ -520,6 +569,12 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
       const eventType = eventTypeFrom(event);
       if (eventType === 'session.created') {
         if (options.enabled) state.runtimeReady = true;
+        return;
+      }
+      if (eventType === 'session.resumed'
+        || eventType === 'session.compacted'
+        || eventType === 'session.compact') {
+        messageIdentity.clearTransformDedupSession(extractEventSessionID(event));
         return;
       }
       if (eventType === 'session.deleted') {

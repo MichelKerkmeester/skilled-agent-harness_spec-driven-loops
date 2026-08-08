@@ -509,7 +509,8 @@ test('Claude source clamps prompts, keeps fallback parity, and flushes fail-open
   assert.match(hookSource, /DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500/);
   assert.match(hookSource, /MAX_PROMPT_BYTES = 64 \* 1024/);
   assert.match(hookSource, /Buffer\.byteLength\(value\.slice/);
-  assert.match(hookSource, /brief \?\? renderAdvisorFallbackDirective\(\)/);
+  assert.match(hookSource, /brief \?\? renderAdvisorFallbackDirective\(renderOptions\)/);
+  assert.match(hookSource, /const output: ClaudeUserPromptSubmitOutput = \{[\s\S]*observeEmittedAdvisorPolicy\(emitted/);
   assert.match(hookSource, /await writeHookOutput\(\{\}\)/);
   assert.match(rendererSource, /export function renderAdvisorFallbackDirective/);
 });
@@ -660,6 +661,10 @@ test('multi-transform receipts record both transform fires and their outcomes', 
     transform: 'mk-skill-advisor',
     state,
   }).shouldDeliver, true);
+  identityModule.commitTransformDelivery(identity, blockId, contentHash, {
+    transform: 'mk-skill-advisor',
+    state,
+  });
   assert.equal(identityModule.recordTransformContribution({
     identity,
     blockId,
@@ -667,6 +672,10 @@ test('multi-transform receipts record both transform fires and their outcomes', 
     transform: 'mk-spec-memory',
     state,
   }).shouldDeliver, false);
+  identityModule.commitTransformDelivery(identity, blockId, contentHash, {
+    transform: 'mk-spec-memory',
+    state,
+  });
 
   const receipt = identityModule.getMultiTransformReceipt(identity, state);
   assert.deepEqual(receipt.transforms.map((entry) => ({
@@ -690,6 +699,7 @@ test('a hostile pre-populated shared dedup state cannot falsely suppress a fresh
     // Pollute the process-global dedup state with a delivered block for one identity.
     const polluter = identityModule.resolveMessageIdentity({ sessionID: 'polluter', messageID: 'm', transformCallOrdinal: 0 });
     identityModule.recordTransformContribution({ identity: polluter, blockId, contentHash, transform: 't', state: shared });
+    identityModule.commitTransformDelivery(polluter, blockId, contentHash, { transform: 't', state: shared });
 
     // A distinct fresh identity's first contribution must still deliver — the polluted global cannot leak across identities.
     const fresh = identityModule.resolveMessageIdentity({ sessionID: 'fresh', messageID: 'm', transformCallOrdinal: 0 });
@@ -703,4 +713,48 @@ test('a hostile pre-populated shared dedup state cannot falsely suppress a fresh
   } finally {
     identityModule.clearTransformDedupState(shared);
   }
+});
+
+test('concurrent transforms reserve delivery before commit so only one may deliver', async () => {
+  const identityModule = await import(pathToFileURL(MESSAGE_IDENTITY_PATH).href);
+  const state = identityModule.createTransformDedupState();
+  const identity = identityModule.resolveMessageIdentity({
+    sessionID: 'concurrent-session',
+    messageID: 'concurrent-message',
+    transformCallOrdinal: 0,
+  });
+  const blockId = identityModule.POLICY_BLOCK_IDS.ADVISOR_ROUTE;
+  const contentHash = identityModule.hashPolicyBlockContent(blockId, 'shared block', 0);
+
+  const first = identityModule.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-skill-advisor',
+    state,
+  });
+  const second = identityModule.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-spec-memory',
+    state,
+  });
+  assert.equal(first.shouldDeliver, true);
+  assert.equal(second.shouldDeliver, false);
+  assert.equal(second.contended, true);
+
+  identityModule.commitTransformDelivery(identity, blockId, contentHash, {
+    transform: 'mk-skill-advisor',
+    state,
+  });
+  const third = identityModule.recordTransformContribution({
+    identity,
+    blockId,
+    contentHash,
+    transform: 'mk-spec-memory',
+    state,
+  });
+  assert.equal(third.shouldDeliver, false);
+  assert.equal(third.duplicate, true);
 });

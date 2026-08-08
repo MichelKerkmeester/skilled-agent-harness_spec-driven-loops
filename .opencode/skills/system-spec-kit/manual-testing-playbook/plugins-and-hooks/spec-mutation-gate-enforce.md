@@ -54,13 +54,13 @@ env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE node .opencode/plugins/tests/mk-
 
 Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
 
-2. Run the shared spec-gate-core unit-test suite (uses `node:test` module mocks):
+2. Run the shared spec-gate-core unit-test suite (uses `node:test` module mocks). Neutralize the same ambient gate vars as step 1 (plus the kill-switch) so the run is hermetic in a child-dispatched shell:
 
 ```bash
-node --experimental-test-module-mocks --test .opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs
+env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE -u MK_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
-Expected: `# tests 67`, `# pass 67`, `# skipped 0`, `# fail 0`.
+Expected: `# tests 87`, `# pass 87`, `# skipped 0`, `# fail 0`.
 
 3. Build a disposable, non-exempt fixture project (deliberately NOT under `/tmp` or `/private/tmp`, which the core always treats as exempt scratch space -- `mktemp -d` with no path argument resolves to `$TMPDIR`, e.g. `/var/folders/.../T/...` on macOS):
 

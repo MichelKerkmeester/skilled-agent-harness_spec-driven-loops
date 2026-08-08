@@ -1,0 +1,30 @@
+{
+  "openQuestions": [
+    "Whether the follow-on pass should also add observer-timing/suppression notes to per-runtime spec-gate hook READMEs",
+    "Whether luna's P1 rating for the detailed Cursor catalog entry should override this lineage's P2 rating"
+  ],
+  "resolvedQuestions": [
+    "Q1: Stale playbook snippets (one: spec-mutation-gate-enforce.md 67→87 count drift, P1 must-fix)",
+    "Q2: Stale feature-catalog entries (none inaccurate; two omission classes: changed-surface catalogs + feature-flag-reference layers)",
+    "Q3: Authoritative test contracts vs illustrative examples (split enumerated)",
+    "Q4: Frozen-behavior documentation (no snippet documents frozen behavior incorrectly; zero flags)",
+    "Q5: Must-fix vs optional split (1 P1 must-fix, 4 P2 optional, 1 out-of-scope pre-existing drift)"
+  ],
+  "keyFindings": [
+    {"id": "F2/F6", "title": "spec-mutation-gate-enforce.md step-2 asserts # tests 67; suite runs 87", "severity": "P1 must-fix", "evidence": "spec-mutation-gate-enforce.md:57-63; live run 87/87 (twice verified)"},
+    {"id": "F9/F11", "title": "cursor-hooks-and-spec-gate.md + claude-hook.md omit post-emission observers, epoch>=1 floor, MK_SPEC_GATE_3_DELIVERY_SUPPRESSION", "severity": "P2 optional (luna: P1 detailed entry)", "evidence": "cursor-hooks-and-spec-gate.md:53-55; claude-hook.md:22"},
+    {"id": "F15", "title": "feature-flag-reference catalog + playbook layers have zero spec-gate env coverage", "severity": "P2 optional", "evidence": "grep MK_SPEC_GATE over feature-flag-reference/ → zero rows"},
+    {"id": "F4/F21", "title": "No playbook/catalog asserts epoch-0 or configured-receipt confirmation (direct + paraphrase net)", "severity": "pass", "evidence": "exhaustive grep, ~50-file paraphrase net → zero matches"},
+    {"id": "F18", "title": "Post-emission observer timing verified at line level in all five adapters", "severity": "pass", "evidence": "claude:70-77, codex:67-74, cursor:74-80, devin:73-80, pi:55-56"},
+    {"id": "F19", "title": "Flags-off/byte-identical/fail-open contract enforced by negative-control fixtures", "severity": "pass", "evidence": "spec-gate-core.test.mjs:297-330; spec-gate-core.mjs:287-295"},
+    {"id": "F30", "title": "mk-spec-gate.test.cjs WS4 import path drift is pre-existing (57c3ed338ca), out of scope", "severity": "out-of-scope note", "evidence": "mk-spec-gate.test.cjs:362-371; git ancestry"},
+    {"id": "F32", "title": "Luna lineage reconciled: complementary findings (cursor catalog omissions); no conflicts", "severity": "pass", "evidence": "luna/research.md + state"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Flag README/catalog contradictions", "reason": "No doc ever asserted the old confirmation contract"},
+    {"approach": "Flag CU-014 dormant-adapter claim", "reason": "Adapter still dormant; observer code does not change delivery status"},
+    {"approach": "Flag codex-hook-parity envelopes", "reason": "Post-emission observer preserves emitted output"},
+    {"approach": "Flag shadow-delta-sink (NC-010)", "reason": "Separate feature from shadow-delivery"},
+    {"approach": "Treat WS4 import failure as change-derived", "reason": "Pre-existing hooks-consolidation drift"}
+  ]
+}
