@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
+  "description": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write",
+  "keywords": [
+    "single-executor",
+    "deep-alignment",
+    "loop",
+    "dispatches",
+    "cli-codex",
+    "leaf",
+    "sandbox",
+    "workspace-write",
+    "because",
+    "required",
+    "bash-write"
+  ],
+  "lastUpdated": "2026-08-08T07:13:06.190Z",
+  "specId": "001",
+  "folderSlug": "cli-codex-read-only-audit-leaf",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "047-executor-wiring-and-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

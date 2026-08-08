@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin allowlist prune",
+      "devin deepseek missing runtime",
+      "fanout mirror parity test",
+      "devin curated four family scope",
+      "prune adaptive opus aliases",
+      "devin prune plan",
+      "deepseek allowlist addition plan",
+      "mirror parity test plan",
+      "devin curated scope enforcement",
+      "devin prune tasks",
+      "deepseek allowlist tasks",
+      "mirror parity tasks"
+    ],
+    "key_topics": [
+      "devin",
+      "allowlist",
+      "prune",
+      "deepseek",
+      "missing",
+      "runtime",
+      "fanout",
+      "mirror",
+      "parity",
+      "test",
+      "curated",
+      "four"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "parity",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "pruned",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the additive parity packet, three gaps remained: nine curated-out aliases (`adaptive`, `opus`, `sonnet`, `claude`, `haiku`, `gpt`, `gemini`, `codex`, `swe-1-6`) were still dispatchable via devin fan-out; the catalog-featured DeepSeek family had NO id in the devin allowlist at all (a dispatch naming `deepseek-v4-pro` was hard-rejected); and the duplicated CJS allowlist in `fanout-run.cjs` could silently drift from the TS source",
+    "created_at": "2026-07-30T05:41:05Z",
+    "last_save_at": "2026-08-08T07:14:09.773Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ef1a512b84b75200833a30669b265f66ea675f686ec21893248be0c18d99bf0a",
+    "source_doc_hashes": {
+      "spec.md": "4130423db0b917f6a971edf6fad53e5a3a43342178e07b85e507962917bfc202",
+      "plan.md": "a67bb64d413a8481f1fdeaf1ff02fdbff90b2273d0abb17af910efd5f1017688",
+      "tasks.md": "635f12ed08ab77cba026e67638c5ee85c6378c4171094250f04e5c2f2e774881",
+      "checklist.md": "6f046a0e8eb4f39ea33e42d36f5ef870522abe9d637588fc00b389d3088ed567",
+      "implementation-summary.md": "9de11c6cf25b29de30d468cdb8e1fc486430af6a2ec3466be2d11b47d3c4760a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

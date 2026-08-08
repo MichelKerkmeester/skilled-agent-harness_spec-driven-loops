@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity",
+  "description": "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path.",
+  "keywords": [
+    "group",
+    "deep-alignment",
+    "loop",
+    "integrity",
+    "trustworthy",
+    "findings-registry",
+    "seal",
+    "state",
+    "contained",
+    "multi-executor",
+    "path"
+  ],
+  "lastUpdated": "2026-08-08T07:12:08.690Z",
+  "specId": "049",
+  "folderSlug": "deep-alignment-integrity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

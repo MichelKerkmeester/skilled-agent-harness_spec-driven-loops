@@ -54,7 +54,7 @@ The hallmark design system — the theme the 012-merge retrospective flagged as 
 - `005-measured-composition-and-retrieval-facets` (`525a4cca7a`) — the 5th phase (research-ranked #4-5): a measured, deterministic `compositionDNA` summary + opt-in retrieval facets in `styles/lib/database/`. Strictly additive + backward-compatible. DB suite 73/73 (+4, zero regressions).
 
 **The quality pass:**
-- **Deep-alignment framework fix** (`a17df48298`, packet `system-deep-loop/038-deep-alignment-multi-executor`) — gave `/deep:alignment` cli-opencode leaf support + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained, no shared-runtime edits, Sonnet-verified.
+- **Deep-alignment framework fix** (`a17df48298`, packet `system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor`) — gave `/deep:alignment` cli-opencode leaf support + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained, no shared-runtime edits, Sonnet-verified.
 - **Deep review** — 3 models × 3 iters (GLM 5.2 + MiniMax-M3 + LUNA-xhigh) → **14 findings** (P0=2, P1=5, P2=7), cross-lineage adjudicated. Registry: `004-hallmark-design-system/review/deep-review-findings-registry.json`.
 - **Remediation** (`ef5157ca72`) — all 14 fixed: **P0 symlink boundary hole closed** (realpath+lstat guard, independently probe-confirmed; the earlier verification tested path-traversal but not symlinks); atomic authored-export refresh; reconciled the stale parent spec (Planned→Complete, 4→5 lanes) + program retrospective (hallmark Planned→Shipped) that had been left after building the lanes; P2 doc-staleness.
 - **Deep alignment (LUNA)** — ran 3 iterations and **SEALED**: the **sk-doc lane PASSED**, 15 artifacts audited, 0 conformance findings (hallmark docs conform to sk-doc canon). This validated the multi-executor fix end-to-end.
@@ -129,5 +129,5 @@ The hallmark design system — the theme the 012-merge retrospective flagged as 
 - Freshness: sync `last_updated_at`→now + backfill per packet before commit, else `CONTINUITY_FRESHNESS` warns.
 - Deep-loop mechanics: fan-out (review) is runtime-driven (reliable); single-executor (alignment) is orchestrator-driven; cli-opencode leaves need a non-opencode orchestrator.
 
-**Related:** `goal.md` (this folder — structured objective + progress), `goal_hallmark-design-system-adoption.md` + `goal_deep-alignment-fix-and-hallmark-deep-loops.md` (Claude-native goal memory), `system-deep-loop/038-deep-alignment-multi-executor` (the framework fix packet).
+**Related:** `goal.md` (this folder — structured objective + progress), `goal_hallmark-design-system-adoption.md` + `goal_deep-alignment-fix-and-hallmark-deep-loops.md` (Claude-native goal memory), `system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor` (the framework fix packet).
 <!-- /ANCHOR:session-notes -->

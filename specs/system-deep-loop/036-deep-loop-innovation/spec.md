@@ -206,7 +206,7 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Phases 001-002 are the read-only research inputs; phases 003-017 are the implementation program. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children; the architecture ADR + the 178-row rec ledger live in 004. Phases 021-032 are the remediation tree for the 166 findings recorded in `016-whole-system-gate/review/`; they are a bounded acceptance set declared in the parent child manifest that phase 021 introduces.
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Phases 001-002 are the read-only research inputs; phases 003-017 are the implementation program. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children; the architecture ADR + the 178-row rec ledger live in 004. Phases 021-032 are the remediation tree for the 166 findings recorded in `016-whole-system-gate/review/`; they are a bounded acceptance set declared in the parent child manifest that phase 021 introduces. Phases 047-050 group the later executor-wiring, write-containment, and deep-alignment packets under themed phase parents (050 is a standalone state-records child).
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -242,6 +242,10 @@ Deferred to the phase that owns the decision (per the SOL review):
 | 030 | 030-runtime-mirror-and-routing-parity/ | Make runtime-mirror and routing parity gates compare what actually differs | Planned |
 | 031 | 031-silent-failure-and-harness-repair/ | Make invalid input fail loudly; repair the harnesses and playbooks that produce evidence | Planned |
 | 032 | 032-docs-drift-and-p2-batch/ | Documentation and registry drift plus the complete P2 backlog; runs last | Planned |
+| 047 | 047-executor-wiring-and-parity/ | Executor wiring + fan-out parity group: cli-codex read-only leaf, cli-devin wiring, the executor/provider/model parity program, devin allowlist parity/prune (phase parent) | In Progress |
+| 048 | 048-write-containment-hardening/ | Fan-out write-containment guard hardening group: cli-codex containment, sibling-lineage scope, concurrent-writer safety (phase parent) | In Progress |
+| 049 | 049-deep-alignment-integrity/ | Deep-alignment loop integrity group: findings-registry seal state + contained multi-executor (phase parent) | In Progress |
+| 050 | 050-trustworthy-state-records/ | Trustworthy deep-loop state records: append-time stamps + stop-policy event-name fix | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

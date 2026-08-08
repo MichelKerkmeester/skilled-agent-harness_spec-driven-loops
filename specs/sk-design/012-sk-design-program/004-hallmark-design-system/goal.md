@@ -61,7 +61,7 @@ Phase-0 cross-ref fixes (stale `014-`/`016-` refs the merge left) folded into La
 
 ## 4. Quality pass over the build
 
-1. **Deep-alignment framework fix** — `a17df48298`, packet `system-deep-loop/038-deep-alignment-multi-executor`. Enabled cli-opencode alignment leaves + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained; no shared-runtime edits; Sonnet-verified guard-for-guard.
+1. **Deep-alignment framework fix** — `a17df48298`, packet `system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor`. Enabled cli-opencode alignment leaves + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained; no shared-runtime edits; Sonnet-verified guard-for-guard.
 2. **Deep review** — 3 models × 3 iters (GLM 5.2 · MiniMax-M3 · LUNA-xhigh), 14 findings (P0=2, P1=5, P2=7), cross-lineage adjudicated.
 3. **Remediation** — `ef5157ca72`, all 14 fixed:
    - **P0 · symlink boundary hole closed** — the Lane-4 allowlist checked only the basename; a symlink could redirect a permitted write into measured data. Now realpath+lstat-rejects symlink destinations; **independently probe-confirmed** (write refused, measured file intact). This was the gap the per-lane verification missed.

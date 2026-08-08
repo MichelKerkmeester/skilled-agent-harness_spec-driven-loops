@@ -25857,7 +25857,7 @@
       "lastUpdated": "2026-07-21T05:58:27.049Z"
     },
     {
-      "specFolder": "system-deep-loop/037-alignment-registry-sealing",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/001-alignment-registry-sealing",
       "description": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to",
       "keywords": [
         "deep-alignment",
@@ -25876,7 +25876,7 @@
       "lastUpdated": "2026-07-21T05:58:27.052Z"
     },
     {
-      "specFolder": "system-deep-loop/038-cli-codex-write-containment",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/001-cli-codex-write-containment",
       "description": "The deep-loop runtime dispatches `codex exec` review/research/alignment iterations with `--sandbox workspace-write` and NO structural",
       "keywords": [
         "deep-loop",
@@ -25895,7 +25895,7 @@
       "lastUpdated": "2026-07-23T06:13:34.669Z"
     },
     {
-      "specFolder": "system-deep-loop/038-deep-alignment-multi-executor",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor",
       "description": "`/deep:alignment` has a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supports cli-opencode",
       "keywords": [
         "deep",
@@ -25916,7 +25916,7 @@
       "lastUpdated": "2026-07-23T05:36:35.046Z"
     },
     {
-      "specFolder": "system-deep-loop/039-cli-codex-read-only-audit-leaf",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
       "description": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write",
       "keywords": [
         "single-executor",
@@ -25934,7 +25934,7 @@
       "lastUpdated": "2026-07-24T08:30:16.855Z"
     },
     {
-      "specFolder": "system-deep-loop/040-trustworthy-state-records",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/050-trustworthy-state-records",
       "description": "Two defects, both surfaced by fan-out runs during unrelated work, both costing completed analysis",
       "keywords": [
         "two",
@@ -25951,7 +25951,7 @@
       "lastUpdated": "2026-07-27T16:10:08.774Z"
     },
     {
-      "specFolder": "system-deep-loop/041-cli-devin-executor-wiring",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/002-cli-devin-executor-wiring",
       "description": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`,",
       "keywords": [
         "executorkinds",
@@ -25970,7 +25970,7 @@
       "lastUpdated": "2026-07-27T17:16:13.903Z"
     },
     {
-      "specFolder": "system-deep-loop/042-fanout-containment-sibling",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/002-fanout-containment-sibling",
       "description": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's",
       "keywords": [
         "fan-out",

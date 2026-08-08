@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/001-cli-codex-write-containment",
+  "description": "The deep-loop runtime dispatches `codex exec` review/research/alignment iterations with `--sandbox workspace-write` and NO structural",
+  "keywords": [
+    "deep-loop",
+    "runtime",
+    "dispatches",
+    "codex",
+    "exec",
+    "review",
+    "research",
+    "alignment",
+    "iterations",
+    "sandbox",
+    "workspace-write",
+    "structural"
+  ],
+  "lastUpdated": "2026-07-23T06:13:34.669Z",
+  "specId": "001",
+  "folderSlug": "cli-codex-write-containment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "048-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

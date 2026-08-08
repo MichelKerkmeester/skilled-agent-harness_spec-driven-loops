@@ -36,7 +36,12 @@
     "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity",
     "system-deep-loop/036-deep-loop-innovation/031-silent-failure-and-harness-repair",
     "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
-    "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
+    "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening",
+    "system-deep-loop/036-deep-loop-innovation/035-cli-adapter-stress-and-playbooks",
+    "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity",
+    "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening",
+    "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity",
+    "system-deep-loop/036-deep-loop-innovation/050-trustworthy-state-records"
   ],
   "manual": {
     "depends_on": [],
@@ -139,12 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "autonomous",
-        "kind": "key_phrase",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "sealed",
         "kind": "key_phrase",
         "path": "handover.md",
@@ -161,23 +160,29 @@
         "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "The ledger (confirmed)",
+        "kind": "heading",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-07T03:30:27.886Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-08T07:19:31.598Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6824f44508bce076cb016a6cbd5b354ffb91663da5008fef89f14704450db49a",
+    "source_fingerprint": "sha256:c76008755a1ef1c87e6b93537f23781c80cb446b40281a97233220b6f819b57c",
     "source_doc_hashes": {
-      "spec.md": "f6f55f0eddf20ee68c4b121b4d33bf3123a3b010deabe4e5bbceca4577afb3ce",
-      "handover.md": "1ebd13d87f17ba6d518573c1ac601b9c9a5e08b9fe2c86e4ca94cc524e2d9c34"
+      "spec.md": "de774ad4905a6c212dcf61b56da7e5692a267d65b06301089b3f3db8526cd59d",
+      "handover.md": "5dd6b6525e5c0fb408f90fb249a78fbaab82a7c17aab30d48b3ea777a77d61b4"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
-    "last_active_at": "2026-08-07T03:30:27.886Z"
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/050-trustworthy-state-records",
+    "last_active_at": "2026-08-08T06:02:21.958Z"
   }
 }
