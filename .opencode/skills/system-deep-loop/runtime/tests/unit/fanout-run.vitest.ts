@@ -818,17 +818,20 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     writeStubBinary(binDir, 'codex');
     writeStubBinary(binDir, 'cursor-agent');
     const cases = [
-      { kind: 'native', label: 'native' },
-      { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol' },
-      { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5' },
-      { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1' },
-      { kind: 'cli-cursor', label: 'cursor', model: 'composer-2.5' },
+      { kind: 'native', label: 'native', sandbox: 'workspace-write' },
+      { kind: 'cli-codex', label: 'codex', model: 'gpt-5.6-sol', sandbox: 'workspace-write' },
+      { kind: 'cli-claude-code', label: 'claude', model: 'claude-fable-5', sandbox: 'workspace-write' },
+      // cli-opencode has no OS-level sandbox flag, so only danger-full-access (which
+      // makes no confinement claim) is a sandbox mode it can honor; workspace-write and
+      // read-only now fail closed instead of being silently downgraded.
+      { kind: 'cli-opencode', label: 'opencode', model: 'opencode-go/glm-5.1', sandbox: 'danger-full-access' },
+      { kind: 'cli-cursor', label: 'cursor', model: 'composer-2.5', sandbox: 'workspace-write' },
     ];
-    for (const lineage of cases) {
+    for (const { sandbox, ...lineage } of cases) {
       const command = buildLineageCommand(
         lineage,
         'contract prompt',
-        'workspace-write',
+        sandbox,
         'acceptEdits',
         {
           env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
@@ -901,7 +904,8 @@ describe('fanout-run.cjs — cli-codex adapter', () => {
     const otherKind = buildLineageCommand(
       { kind: 'cli-opencode', model: 'gpt-5.6-sol', reasoningEffort: 'xhigh', liveTools: { webSearch: 'live' } },
       'secret raw prompt',
-      'read-only',
+      // cli-opencode can only enforce danger-full-access; read-only/workspace-write fail closed.
+      'danger-full-access',
       'plan',
       { executableVersion: 'codex 1.2.3' },
     );
@@ -2037,6 +2041,49 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(result.exitCode).toBe(0);
     expect((summary as { failed?: number }).failed).toBe(0);
     expect((summary as { succeeded?: number }).succeeded).toBe(2);
+  });
+
+  it('dispatches a cli-opencode lineage with no explicit sandboxMode without throwing, and records danger-full-access as effective', async () => {
+    const binDir = makeTempDir('fanout-run-opencode-default-sandbox-bin-');
+    writeStubBinary(binDir, 'opencode');
+
+    const baseDir = makeTempDir('fanout-run-opencode-default-sandbox-base-');
+
+    // No sandboxMode set at all: this is the ordinary caller shape for a cli-opencode
+    // lineage. It must dispatch successfully rather than tripping the unenforceable-
+    // sandbox rejection that only fires on an EXPLICIT read-only/workspace-write ask.
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'default-sandbox', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const hermetic = useHermeticEnv('opencode-default-sandbox');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-opencode-default-sandbox',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const invocationMetadata = JSON.parse(
+      readFileSync(join(baseDir, 'lineages', 'default-sandbox', 'invocation-metadata.json'), 'utf8'),
+    ) as { effectiveConfig?: { sandboxMode?: string } };
+    // Effective sandbox must be the mode the executor can actually honor, not the
+    // generic workspace-write default it can never enforce.
+    expect(invocationMetadata.effectiveConfig?.sandboxMode).toBe('danger-full-access');
   });
 
   it('sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {

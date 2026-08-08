@@ -1518,9 +1518,17 @@ function buildInvocationFingerprintPayload(input) {
 }
 
 function finalizeLineageCommand(input) {
-  let effectiveSandbox = input.resolvedSandbox;
-  if (input.kind === 'cli-opencode' && effectiveSandbox && effectiveSandbox !== 'danger-full-access') {
-    effectiveSandbox = `advisory-${effectiveSandbox}`;
+  // cli-opencode exposes no OS-level sandbox or permission-scoping flag: read-only and
+  // workspace-write are indistinguishable at the command level (buildOpencodeLineageCommand
+  // only branches on danger-full-access), so recording either as the effective sandbox mode
+  // is a false guarantee. A caller that requested confinement must be told the request
+  // cannot be honored rather than silently downgraded to unconfined writes with an advisory
+  // label, so dispatch fails closed instead of proceeding.
+  if (input.kind === 'cli-opencode' && input.resolvedSandbox && input.resolvedSandbox !== 'danger-full-access') {
+    throw inputError(
+      `cli-opencode cannot enforce sandbox mode '${input.resolvedSandbox}': the executor exposes `
+        + 'no confinement flag for it; use \'danger-full-access\' or a dispatch kind that can enforce this sandbox mode',
+    );
   }
   const effectiveConfig = {
     kind: input.kind,
@@ -1529,7 +1537,7 @@ function finalizeLineageCommand(input) {
     model: input.model,
     reasoningEffort: input.reasoningEffort,
     serviceTier: input.serviceTier,
-    sandboxMode: effectiveSandbox,
+    sandboxMode: input.resolvedSandbox,
     permissionMode: input.resolvedPermission,
     webSearch: input.webSearch,
   };
@@ -2294,7 +2302,17 @@ async function main() {
       // is enforced by the prompt ('Do not touch any path outside lineageDir') rather than by a
       // narrower sandbox; a path-scoped workspace-write would be the stronger fix if the CLIs
       // exposed one. Callers can still pass an explicit sandboxMode to override.
-      const resolvedSandbox = resolveSandboxMode(lineage.sandboxMode);
+      //
+      // cli-opencode has no OS-level sandbox flag at all, so the generic workspace-write
+      // default would silently ask it to honor a mode it can never enforce. An UNSPECIFIED
+      // sandboxMode for this kind resolves to danger-full-access instead -- the only mode it
+      // can honestly report as effective -- so ordinary dispatch proceeds normally. A caller
+      // that EXPLICITLY asks for read-only/workspace-write still reaches finalizeLineageCommand
+      // unmodified, where that genuine confinement request is rejected.
+      const resolvedSandbox = lineage.kind === 'cli-opencode'
+        && (lineage.sandboxMode === null || lineage.sandboxMode === undefined)
+        ? 'danger-full-access'
+        : resolveSandboxMode(lineage.sandboxMode);
       const resolvedPermission = resolveClaudePermissionMode(lineage.sandboxMode);
 
       const effectiveSandbox = resolvedSandbox;
@@ -2331,6 +2349,13 @@ async function main() {
       // is deliberately avoided here because relocating the home breaks credential/auth
       // lookup (the "Not logged in" failure the dispatch-env allowlist guards against).
       const stateEnvKey = SPECKIT_STATE_ENV_BY_KIND[lineage.kind];
+      // Resolved once and reused below for write-containment attribution: a claude-code
+      // lineage's own config dir (when it resolves inside the repo, e.g. a repo-local
+      // `.claude*` directory) is a write location that kind legitimately touches outside
+      // lineageDir, so containment must exclude it the same way it excludes sibling dirs.
+      const resolvedClaudeConfigDir = lineage.kind === 'cli-claude-code' && lineage.configDir
+        ? validateClaudeConfigDir(lineage.configDir)
+        : null;
       const extraEnv = {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
         // A fan-out lineage is an orchestrated sub-session running an autonomous
@@ -2344,9 +2369,7 @@ async function main() {
         MK_SPEC_GATE_DISABLED: '1',
         AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
-        ...(lineage.kind === 'cli-claude-code' && lineage.configDir
-          ? { CLAUDE_CONFIG_DIR: validateClaudeConfigDir(lineage.configDir) }
-          : {}),
+        ...(resolvedClaudeConfigDir ? { CLAUDE_CONFIG_DIR: resolvedClaudeConfigDir } : {}),
       };
 
       // Recursion guard (fail closed): the executor stack can already name the hosting
@@ -2393,13 +2416,13 @@ async function main() {
         getGauges: () => latestGauges,
       });
 
-      // A codex leaf runs workspace-write, which can write anywhere in the repo.
-      // Snapshot the out-of-artifact dirty paths BEFORE dispatch so the post-
-      // dispatch guard can isolate the leaf's own NEW out-of-scope writes and
-      // never touch unrelated pre-existing dirty work. Native/cli-opencode/cli-
-      // claude-code lineages are intentionally excluded: their dispatch models may
-      // legitimately write outside lineageDir, and codex is the unguarded path.
-      const containmentEnabled = lineage.kind === 'cli-codex';
+      // Every dispatch kind runs write-containment uniformly: a not-in-HEAD out-of-scope
+      // path is preserved on disk and reported as a non-fatal advisory (never deleted),
+      // and only an in-HEAD breach (git-recoverable via checkout HEAD) is fatal. That
+      // makes monitoring every kind safe even for dispatch models whose CLI may
+      // legitimately write outside lineageDir -- the guard can no longer destroy such a
+      // write, only flag it.
+      const containmentEnabled = true;
       // Sibling lineages run concurrently and write their own artifacts after this
       // leaf's baseline is captured. Those writes are indistinguishable from this
       // leaf's, so treating them as its violations reverts a sibling's legitimate
@@ -2409,11 +2432,16 @@ async function main() {
       const siblingLineageDirs = allLineages
         .filter((other) => other.label !== lineage.label)
         .map((other) => path.join(lineagesDir, other.label));
+      // A dispatch kind's own known legitimate out-of-lineageDir write location (e.g. a
+      // repo-local CLI config dir) is excluded from attribution the same way sibling
+      // dirs are, so a legitimate write is never mistaken for a violation.
+      const kindLegitimateDirs = resolvedClaudeConfigDir ? [resolvedClaudeConfigDir] : [];
+      const containmentUnattributableDirs = [...siblingLineageDirs, ...kindLegitimateDirs];
       const preDispatchDirtyPaths = containmentEnabled
         ? snapshotOutOfScopeDirtyPaths({
           repoRoot: process.cwd(),
           artifactDir: lineageDir,
-          unattributableDirs: siblingLineageDirs,
+          unattributableDirs: containmentUnattributableDirs,
         })
         : [];
 
@@ -2451,21 +2479,40 @@ async function main() {
       const slotAccounting = buildSlotAccounting(hrStart, slotIntervalMs);
       lineageSlotAccounting.set(lineage.label, slotAccounting);
 
-      // Structural write-containment for codex leaves: diff the working tree for
-      // NEW out-of-artifact-dir writes, revert exactly those paths, log a
-      // containment_violation event, and fail the iteration fail-closed. The leaf
-      // must still be free to write its iteration file/delta/state record inside
-      // lineageDir; only OUT-of-lineageDir writes are violations. Fails open when
-      // the artifact dir is outside the git worktree (hermetic test lineages).
+      // Structural write-containment, uniform across every dispatch kind: diff the
+      // working tree for NEW out-of-artifact-dir writes. An in-HEAD breach is
+      // reverted from HEAD (git-recoverable) and fails the iteration fail-closed; a
+      // not-in-HEAD path is preserved on disk and logged as a non-fatal advisory,
+      // never deleted, since it may be a concurrent parent/sibling write this leaf
+      // cannot be proven to own. The leaf must still be free to write its iteration
+      // file/delta/state record inside lineageDir; only OUT-of-lineageDir writes are
+      // violations. Fails open when the artifact dir is outside the git worktree
+      // (hermetic test lineages).
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
           repoRoot: process.cwd(),
           artifactDir: lineageDir,
-          unattributableDirs: siblingLineageDirs,
+          unattributableDirs: containmentUnattributableDirs,
           preDispatchDirtyPaths,
           iteration: attempt,
           label: lineage.label,
         });
+        if (containment.advisories.length > 0) {
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'containment_advisory',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            gauges: latestGauges,
+            violations: containment.advisories.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
+            reverted: containment.revertResult.reverted.filter((r) => r.action === 'preserved_untracked'),
+          });
+        }
         if (containment.violations.length > 0) {
           if (containment.event) {
             appendFanoutStatusLedger(ledgerPath, {

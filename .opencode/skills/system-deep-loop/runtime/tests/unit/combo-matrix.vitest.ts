@@ -106,7 +106,7 @@ function installStubExecutors(names: readonly string[]): { env: NodeJS.ProcessEn
   };
 }
 
-function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefined): string[] {
+function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefined, sandbox: SandboxMode): string[] {
   switch (kind) {
     case 'native': {
       const nativeInput = [
@@ -124,7 +124,12 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
         'stop_policy: convergence',
         'config.fanout_lineage_artifact_dir: /tmp/combo-matrix',
       ].join('\n');
-      return ['run', '--format', 'json', '--dangerously-skip-permissions', '--dir', process.cwd(), '--command', 'deep/review', nativeInput];
+      // --dangerously-skip-permissions is added only for workspace-write/danger-full-access;
+      // a read-only native dispatch must not silently gain write bypass.
+      const bypassFlag = sandbox === 'danger-full-access' || sandbox === 'workspace-write'
+        ? ['--dangerously-skip-permissions']
+        : [];
+      return ['run', '--format', 'json', ...bypassFlag, '--dir', process.cwd(), '--command', 'deep/review', nativeInput];
     }
     case 'cli-codex':
       return ['exec', '--model', model ?? '', '-c', 'model_reasoning_effort=medium', '-c', 'approval_policy=never', '--sandbox', 'read-only', '-'];
@@ -158,6 +163,7 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
     const exercisedKinds = new Set<ExecutorKind>();
     const exercisedModelsByKind: Partial<Record<ExecutorKind, Set<string>>> = {};
     let constructedCombinations = 0;
+    let rejectedCombinations = 0;
     let liveDispatchSkips = 0;
 
     try {
@@ -165,6 +171,30 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
         for (const model of MODELS_BY_KIND[kind]) {
           for (const sandbox of SANDBOX_MODES) {
             const lineage = model === undefined ? { kind } : { kind, model };
+            const modelLabel = model ?? '(none)';
+
+            // cli-opencode exposes no OS-level sandbox flag: only danger-full-access
+            // (which makes no confinement claim) is honest to construct. read-only and
+            // workspace-write must fail closed rather than silently dispatch unconfined.
+            if (kind === 'cli-opencode' && sandbox !== 'danger-full-access') {
+              expect(() => buildLineageCommand(
+                lineage,
+                MATRIX_PROMPT,
+                sandbox,
+                PERMISSION_BY_SANDBOX[sandbox],
+                { env: installed.env, ...MATRIX_OPTIONS },
+              )).toThrow(/cannot enforce sandbox mode/);
+              rejectedCombinations += 1;
+              exercisedKinds.add(kind);
+              if (model !== undefined) {
+                const exercisedModels = exercisedModelsByKind[kind] ?? new Set<string>();
+                exercisedModels.add(model);
+                exercisedModelsByKind[kind] = exercisedModels;
+              }
+              console.log(`[combo-matrix] rejected kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=unenforceable-sandbox`);
+              continue;
+            }
+
             const command = buildLineageCommand(
               lineage,
               MATRIX_PROMPT,
@@ -187,16 +217,15 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
               exercisedModelsByKind[kind] = exercisedModels;
             }
 
-            const modelLabel = model ?? '(none)';
             console.log(`[combo-matrix] constructed kind=${kind} model=${modelLabel} sandbox=${sandbox}`);
             if (CREDENTIALS_GATED_KINDS.has(kind)) {
               liveDispatchSkips += 1;
               console.log(`[combo-matrix] skipped live credentialed dispatch kind=${kind} model=${modelLabel} sandbox=${sandbox} reason=construction coverage only; credentials are intentionally not used`);
             }
 
-            if (model === MODELS_BY_KIND[kind][0] && sandbox === SANDBOX_MODES[0]) {
+            if (model === MODELS_BY_KIND[kind][0] && sandbox === SANDBOX_MODES[0] && !(kind === 'cli-opencode' && sandbox !== 'danger-full-access')) {
               expect(command.command).toBe(COMMAND_BY_KIND[kind]);
-              expect(command.args).toEqual(expectedRepresentativeArgs(kind, model));
+              expect(command.args).toEqual(expectedRepresentativeArgs(kind, model, sandbox));
             }
           }
         }
@@ -206,14 +235,16 @@ describe('fanout-run.cjs — complete executor/model/sandbox construction matrix
         (total, kind) => total + MODELS_BY_KIND[kind].length * SANDBOX_MODES.length,
         0,
       );
-      expect(constructedCombinations).toBe(expectedCombinationCount);
+      expect(constructedCombinations + rejectedCombinations).toBe(expectedCombinationCount);
+      // Every cli-opencode model is rejected for both unenforceable sandbox modes.
+      expect(rejectedCombinations).toBe(MODELS_BY_KIND['cli-opencode'].length * 2);
       expect(new Set(exercisedKinds)).toEqual(new Set(EXECUTOR_KINDS));
       expect([...exercisedModelsByKind['cli-cursor'] ?? []].sort()).toEqual([...CURSOR_SUPPORTED_MODELS].sort());
       expect([...exercisedModelsByKind['cli-devin'] ?? []].sort()).toEqual([...DEVIN_SUPPORTED_MODELS].sort());
       expect([...exercisedModelsByKind['cli-pi'] ?? []].sort()).toEqual([...PI_SUPPORTED_MODELS].sort());
-      expect(liveDispatchSkips).toBe(expectedCombinationCount);
+      expect(liveDispatchSkips).toBe(constructedCombinations);
 
-      console.log(`[combo-matrix] SUMMARY constructed=${constructedCombinations} liveCredentialedDispatch=SKIPPED outOfScope=true skipped=${liveDispatchSkips} credentialGatedKinds=${[...CREDENTIALS_GATED_KINDS].join(',')}`);
+      console.log(`[combo-matrix] SUMMARY constructed=${constructedCombinations} rejected=${rejectedCombinations} liveCredentialedDispatch=SKIPPED outOfScope=true skipped=${liveDispatchSkips} credentialGatedKinds=${[...CREDENTIALS_GATED_KINDS].join(',')}`);
     } finally {
       installed.restore();
     }
