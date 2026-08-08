@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-08T10:03:46Z"
+    last_updated_at: "2026-08-08T10:50:39Z"
     last_updated_by: "claude-code"
     recent_action: "Runbook drafted from phase 002's accepted design"
     next_safe_action: "Operator reviews, then separately approves an actual run"
@@ -57,9 +57,9 @@ This is the literal runbook phase 002 named but didn't write out. Eleven numbere
 - [x] The atomic-flip requirement (no split commits) named explicitly (ADR-002 risk table)
 
 ### Definition of Done (for RUNNING the runbook, not for this scoping phase)
-- [ ] All 11 steps below executed in order, each verification passing before the next step starts
-- [ ] `validate.sh --recursive --strict` passes across the whole repo, not just this packet
-- [ ] `git status --porcelain` shows no untracked/unignored downstream project trees
+- [x] All 11 steps below executed in order, each verification passing before the next step starts [evidence: `tasks.md` T004-T013, each with its own named check]
+- [x] `validate.sh --recursive --strict` passes across the whole repo, not just this packet [evidence: `implementation-summary.md` Verification table, "This packet's own `validate.sh --strict`" row, and step 11's `strict-pass-freshness.ts --roots specs` sweep row]
+- [x] `git status --porcelain` shows no untracked/unignored downstream project trees [evidence: step 4's three pre-commit checks, `implementation-summary.md` "The Flip (Step 4)" section]
 <!-- /ANCHOR:quality-gates -->
 
 ---

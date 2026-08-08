@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
-    last_updated_at: "2026-08-07T17:37:51Z"
+    last_updated_at: "2026-08-08T10:52:13Z"
     last_updated_by: "claude-code"
     recent_action: "Scoped from a repo-wide grep for every remnant"
     next_safe_action: "Execute the removal per plan.md, then verify"

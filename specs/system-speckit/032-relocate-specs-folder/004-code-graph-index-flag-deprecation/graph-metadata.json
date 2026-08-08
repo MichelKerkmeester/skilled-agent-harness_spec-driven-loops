@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "plan.md",
@@ -183,7 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`scripts/setup-maintainer-filters.sh` (removed in this session's step-11 cleanup) installed a git clean/smudge filter keeping `SPECKITCODEGRAPHINDEX{SKILLS,AGENTS,COMMANDS,SPECS,PLUGINS}` `\"true\"` locally for maintainers while committing `\"false\"`",
     "created_at": "2026-08-07T08:47:41Z",
-    "last_save_at": "2026-08-08T10:04:11.223Z",
+    "last_save_at": "2026-08-08T10:52:23.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d038db2df839a1bf26bf75e95d85eeec49ea0a55cdfb925955b085577b65b469",
+    "source_fingerprint": "sha256:c2cf8cedc49d1f71ac2934e21f9e11388e0c36b1713ac7baf5f097a91f10fff5",
     "source_doc_hashes": {
-      "spec.md": "33ffbc088b692f036031115fa8d1e1f7a27bef4f0936bbe237a44f9e060b908f",
+      "spec.md": "ae8e1ef039b7afa52b3a6ed8daaa47c5877fd8bc62f3176f5a4bb97a104827ed",
       "plan.md": "35ce12242313196dc327367cae74c183113ef616b4e018032bb788ecf312fa4d",
-      "tasks.md": "9c502bc8bb2ca79872647f50823a8c3644ea58055d36190e17e2d61ae063ac83",
-      "checklist.md": "36d0e1587500879dfdb5dd0d7fda758e54701b6f4faa6ef702432bde740365ba",
-      "implementation-summary.md": "73634c8e6d30174498fd2d78a1163a4307b4764ce552d30fd7d6167c1de30a8c"
+      "tasks.md": "27114e653723a767dabdb983cdc7c13f99a8476754dad8c08f5a0a9c021095aa",
+      "checklist.md": "a4a5717e8cecf7396aa1085e7dd9e72f17e6d673d290e4c17ab55d8771d809b8",
+      "implementation-summary.md": "e9e3591b1ab77047a93a2f561429eba134b58b65a99458f4535574d91131045b"
     },
     "last_active_child_id": null,
     "last_active_at": null

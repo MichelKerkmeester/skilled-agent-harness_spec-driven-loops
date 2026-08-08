@@ -150,7 +150,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Sequential",
+        "name": "The Flip",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW — the literal commands, the exact order, the exact checks between steps",
     "created_at": "2026-08-06T17:53:46Z",
-    "last_save_at": "2026-08-08T10:04:52.611Z",
+    "last_save_at": "2026-08-08T10:52:23.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d71c312e083edec628fd74123d61c2350d1618e703d5f7ea80c84b211473a696",
+    "source_fingerprint": "sha256:5c9773fcfd4493ed11d55dd89ab5c46964df686332a03b715f9b47d64c5a2466",
     "source_doc_hashes": {
-      "spec.md": "d0c9fac3a35fd8009fb66803a84ddc0c497d1be1955f1df6c80944520f1cc9db",
-      "plan.md": "b7c78bd4355f837704ecbc96a85c7b3c6679b4f0b96ea1928f1f9153733f180d",
-      "tasks.md": "d1dde2141abfe6e3be1176d308443b74442e2297f0286789e2bf4e68e96fb264",
+      "spec.md": "d140075cd6a6e3c71843b766a9c21fbabac25bbeeb4159e9b9f423759b40902b",
+      "plan.md": "10c1525c19eac727352ae132cdf1877a22a2303d2246e89a6dd2527ae69dfed8",
+      "tasks.md": "1936ca12e84d14656172e458405cc38437fd0b7abd2c371bdfd537c861009816",
       "checklist.md": "d4b6877102b85e77283bcd7c299c2508823d77ef13b19b4501926e0332be2def",
       "decision-record.md": "bf3685fd84b164967067de89a4bc057085464082f94dba77143f4bf5c2936d9e",
-      "implementation-summary.md": "db234a79cf5c6bde5b8db02efae3aeb6ff36e55ea56f534f818bda3267e40e72"
+      "implementation-summary.md": "e5f091f15b822a3213aaeefa97e3bf4d1d1b60ce87cde9f29dfa794ba4d8b357"
     },
     "last_active_child_id": null,
     "last_active_at": null
