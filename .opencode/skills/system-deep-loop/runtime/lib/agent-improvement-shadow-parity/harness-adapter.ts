@@ -847,6 +847,414 @@ function legacyProjection(
   });
 }
 
+const TERMINAL_MAPPED_COMMON_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.run_paused',
+  'deep_improvement_common.run_aborted',
+  'deep_improvement_common.run_quarantined',
+  'deep_improvement_common.evaluation_inconclusive',
+  'deep_improvement_common.canary_vetoed',
+  'deep_improvement_common.promotion_denied',
+  'deep_improvement_common.promotion_baseline_restored',
+  'deep_improvement_common.promotion_completed',
+  'deep_improvement_common.run_completed',
+]));
+
+/**
+ * Replay the same sticky, stem-keyed terminal mapping the legacy oracle applies,
+ * but off the reducer's own ordered status provenance instead of a second scan
+ * of the raw events. The provenance list already carries one entry per common
+ * event in causal order, so walking it and keeping the last mapped stem
+ * reproduces the legacy scan's last-write-wins semantics exactly.
+ */
+function reducerTerminalDecision(
+  state: AgentImprovementProjectionState,
+): AgentImprovementTerminalDecision {
+  const status = state.common.modeStatus.statuses.find(
+    (entry) => entry.workstream === 'agent-improvement',
+  );
+  let terminalDecision: AgentImprovementTerminalDecision = 'active';
+  for (const transition of status?.provenance ?? []) {
+    if (!TERMINAL_MAPPED_COMMON_STEMS.has(transition.producerStem)) continue;
+    switch (transition.producerStem) {
+      case 'deep_improvement_common.run_paused':
+        terminalDecision = 'paused';
+        break;
+      case 'deep_improvement_common.run_aborted':
+      case 'deep_improvement_common.canary_vetoed':
+      case 'deep_improvement_common.promotion_denied':
+        terminalDecision = 'blocked';
+        break;
+      case 'deep_improvement_common.run_quarantined':
+        terminalDecision = 'quarantined';
+        break;
+      case 'deep_improvement_common.evaluation_inconclusive':
+        terminalDecision = 'inconclusive';
+        break;
+      case 'deep_improvement_common.promotion_baseline_restored':
+        terminalDecision = 'rolled-back';
+        break;
+      case 'deep_improvement_common.promotion_completed':
+        terminalDecision = 'shipped';
+        break;
+      case 'deep_improvement_common.run_completed':
+        terminalDecision = state.common.iterationConvergence.sessionOutcome === 'promoted'
+          ? 'shipped'
+          : state.common.iterationConvergence.sessionOutcome === 'rolledBack'
+            ? 'rolled-back'
+            : 'completed';
+        break;
+      default:
+        break;
+    }
+  }
+  return terminalDecision;
+}
+
+/**
+ * Recover the legacy oracle's narrower blocking-veto vocabulary from typed
+ * records only. The reducer's own `blockingVetoCodes` tracks a broader set
+ * (known-defect-missed, protected-fixture-exposed, transfer-regression,
+ * critical-invariant-failed) that the legacy hand-scan never reads, so this
+ * cannot reuse that field directly without diverging from what legacy
+ * computes. `promotion_denied`'s reason code is not persisted anywhere in
+ * the reducer's typed fold (no hard-veto record is created for it), so it
+ * cannot be recovered here; every other legacy-tracked source is typed.
+ */
+function reducerBlockingVetoCodes(state: AgentImprovementProjectionState): string[] {
+  const canaryVetoCodes = state.common.iterationConvergence.hardVetoes
+    .filter((veto) => veto.source === 'canary')
+    .map((veto) => veto.vetoCode);
+  const familyRegressionCodes = state.agentImprovement.iterationConvergence.classifications
+    .flatMap((entry) => entry.regressedBehaviorFamilyIds.map(
+      (familyId) => `family-regression:${familyId}`,
+    ));
+  return sortedUnique([...canaryVetoCodes, ...familyRegressionCodes]);
+}
+
+function reducerAgentIrs(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityAgentIr[] {
+  return [...state.agentImprovement.artifactIndex.agentIrVersions]
+    .sort((left, right) => left.agentIrId.localeCompare(right.agentIrId))
+    .map((entry) => ({
+      agentDefinitionId: entry.agentDefinitionId,
+      agentIrId: entry.agentIrId,
+      agentIrDigest: entry.agentIrDigest,
+      schemaVersion: entry.agentIrSchemaVersion,
+      componentIds: Object.freeze(
+        entry.components.map((component) => component.componentId).sort(),
+      ),
+      inheritedClauseIds: Object.freeze(
+        entry.loci.flatMap((locus) => (locus.clauseId === null ? [] : [locus.clauseId])).sort(),
+      ),
+      mutableLocusIds: Object.freeze(
+        entry.loci.filter((locus) => locus.mutability === 'mutable')
+          .map((locus) => locus.locusId).sort(),
+      ),
+      compilerFingerprint: entry.compilerFingerprint,
+    }));
+}
+
+function reducerProposals(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityProposal[] {
+  return [...state.agentImprovement.iterationConvergence.mutations]
+    .sort((left, right) => left.mutationId.localeCompare(right.mutationId))
+    .map((entry) => ({
+      candidateId: entry.candidateId,
+      parentCandidateId: entry.parentCandidateId,
+      agentChangeId: entry.agentChangeId,
+      mutationId: entry.mutationId,
+      lifecycle: entry.lifecycle,
+      targetLocusIds: Object.freeze([...entry.targetLocusIds]),
+      diagnosticEvidenceRefs: Object.freeze([...entry.diagnosticEvidenceRefs]),
+      proposalDigest: entry.mutationProposalDigest,
+      rejectionReasonCode: entry.rejectionReasonCode,
+    }));
+}
+
+function reducerCausalEvidence(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityCausalEvidence[] {
+  const fromTraceSlices = state.agentImprovement.iterationConvergence.traceSlices.map(
+    (entry): AgentImprovementParityCausalEvidence => ({
+      candidateId: entry.candidateId,
+      behaviorFamilyId: entry.behaviorFamilyId,
+      experimentId: 'trace-only',
+      interventionId: null,
+      kind: 'trace-slice',
+      clauseIds: Object.freeze([...entry.clauseIds]),
+      componentIds: Object.freeze([...entry.componentIds]),
+      locusIds: Object.freeze([]),
+      rawObservationDigest: entry.traceSliceDigest,
+      outcome: entry.attributionStatus,
+      uncertainty: entry.attributionUncertainty,
+    }),
+  );
+  // The reducer's intervention record does not persist the raw
+  // ablatedLocusIds/defectLocusId/targetLocusIds fields the legacy hand-scan
+  // reads for locusIds, so a state-only derivation cannot recover them here;
+  // this is a genuine field the typed fold discards, not an oversight.
+  const fromInterventions = state.agentImprovement.iterationConvergence.interventions.map(
+    (entry): AgentImprovementParityCausalEvidence => ({
+      candidateId: entry.candidateId,
+      behaviorFamilyId: '',
+      experimentId: entry.experimentId,
+      interventionId: entry.interventionId,
+      kind: entry.interventionKind,
+      clauseIds: Object.freeze([]),
+      componentIds: Object.freeze([]),
+      locusIds: Object.freeze([]),
+      rawObservationDigest: entry.rawObservationDigest,
+      outcome: entry.outcome,
+      uncertainty: entry.uncertainty,
+    }),
+  );
+  return [...fromTraceSlices, ...fromInterventions]
+    .sort((left, right) => digest(left).localeCompare(digest(right)));
+}
+
+function reducerCoverage(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityCoverage[] {
+  return [...state.agentImprovement.iterationConvergence.coverage]
+    .sort((left, right) => left.behaviorFamilyId.localeCompare(right.behaviorFamilyId))
+    .map((entry) => ({
+      candidateId: entry.candidateId,
+      evaluationEpochId: entry.evaluationEpochId,
+      behaviorFamilyId: entry.behaviorFamilyId,
+      clauseIds: Object.freeze([...entry.clauseIds]),
+      authorityConflictCaseIds: Object.freeze([...entry.authorityConflictCaseIds]),
+      negativeCapabilityCaseIds: Object.freeze([...entry.negativeCapabilityCaseIds]),
+      semanticVariantIds: Object.freeze([...entry.semanticVariantIds]),
+      outcome: entry.coverageOutcome,
+      criticalInvariantOutcome: entry.criticalInvariantOutcome,
+    }));
+}
+
+function reducerTransfers(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityTransfer[] {
+  return [...state.agentImprovement.artifactIndex.transferTrials]
+    .sort((left, right) => left.trialId.localeCompare(right.trialId))
+    .map((entry) => ({
+      candidateId: entry.candidateId,
+      evaluationEpochId: entry.evaluationEpochId,
+      trialId: entry.trialId,
+      sourceExecutorFingerprint: entry.sourceExecutorFingerprint,
+      targetExecutorFingerprint: entry.targetExecutorFingerprint,
+      verifierFingerprint: entry.verifierFingerprint,
+      behaviorFamilyIds: Object.freeze([...entry.behaviorFamilyIds]),
+      rawObservationDigest: entry.rawObservationDigest,
+      outcome: entry.transferOutcome,
+    }));
+}
+
+/**
+ * Merge each sealed manifest with the latest fixture-exposure record for the
+ * same manifestId, using seenEvents stream order (not array position) to
+ * pick "latest" the same way the legacy scan's single forward pass would.
+ */
+function reducerManifests(
+  state: AgentImprovementProjectionState,
+): AgentImprovementParityManifestExposure[] {
+  const sequenceByEventId = new Map(
+    state.seenEvents.map((entry) => [entry.eventId, entry.streamSequence]),
+  );
+  const latestExposureByManifestId = new Map<string, typeof state.agentImprovement.artifactIndex.exposures[number]>();
+  for (const exposure of state.agentImprovement.artifactIndex.exposures) {
+    const current = latestExposureByManifestId.get(exposure.manifestId);
+    const currentSequence = current === undefined
+      ? -1
+      : sequenceByEventId.get(current.producerEventId) ?? -1;
+    const candidateSequence = sequenceByEventId.get(exposure.producerEventId) ?? -1;
+    if (candidateSequence >= currentSequence) {
+      latestExposureByManifestId.set(exposure.manifestId, exposure);
+    }
+  }
+  return [...state.agentImprovement.artifactIndex.manifests]
+    .sort((left, right) => left.manifestId.localeCompare(right.manifestId))
+    .map((entry) => {
+      const exposure = latestExposureByManifestId.get(entry.manifestId);
+      return {
+        evaluationEpochId: entry.evaluationEpochId,
+        manifestId: entry.manifestId,
+        exposureEpochId: entry.exposureEpochId,
+        manifestDigest: entry.manifestDigest,
+        evaluatorCapsuleDigest: entry.evaluatorCapsuleDigest,
+        ringCodes: Object.freeze(entry.rings.map((ring) => ring.ring).sort()),
+        exposureKind: exposure?.exposureKind ?? 'sealed',
+        authorizationDigest: exposure?.authorizedExposureDigest ?? null,
+      } satisfies AgentImprovementParityManifestExposure;
+    });
+}
+
+/**
+ * Legacy tracks canary/promotion disposition and rollback baseline as sticky
+ * globals overwritten in raw event order, not per-instance state. `seenEvents`
+ * already carries stem and stream sequence for every folded common event, so
+ * finding the highest-sequence match among the relevant stems reproduces that
+ * same last-write-wins value without re-reading raw payloads.
+ */
+function latestSeenEventByStems(
+  state: AgentImprovementProjectionState,
+  stems: ReadonlySet<string>,
+): AgentImprovementProjectionState['common']['seenEvents'][number] | null {
+  let latest: AgentImprovementProjectionState['common']['seenEvents'][number] | null = null;
+  for (const entry of state.common.seenEvents) {
+    if (!stems.has(entry.stem)) continue;
+    if (latest === null || entry.streamSequence > latest.streamSequence) latest = entry;
+  }
+  return latest;
+}
+
+const CANARY_DISPOSITION_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.canary_gate_passed',
+  'deep_improvement_common.canary_gate_failed',
+  'deep_improvement_common.canary_vetoed',
+]));
+
+function reducerCanaryDisposition(state: AgentImprovementProjectionState): string | null {
+  const latest = latestSeenEventByStems(state, CANARY_DISPOSITION_STEMS);
+  if (latest === null) return null;
+  return latest.stem === 'deep_improvement_common.canary_gate_passed'
+    ? 'passed'
+    : latest.stem === 'deep_improvement_common.canary_gate_failed'
+      ? 'failed'
+      : 'vetoed';
+}
+
+const PROMOTION_DISPOSITION_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.promotion_proposed',
+  'deep_improvement_common.promotion_authorized',
+  'deep_improvement_common.promotion_denied',
+  'deep_improvement_common.promotion_baseline_restored',
+  'deep_improvement_common.promotion_completed',
+]));
+const ROLLBACK_BASELINE_STEMS = Object.freeze(new Set([
+  'deep_improvement_common.promotion_proposed',
+  'deep_improvement_common.promotion_baseline_restored',
+]));
+
+function reducerPromotionDisposition(state: AgentImprovementProjectionState): string | null {
+  const latest = latestSeenEventByStems(state, PROMOTION_DISPOSITION_STEMS);
+  switch (latest?.stem) {
+    case 'deep_improvement_common.promotion_proposed': return 'proposed';
+    case 'deep_improvement_common.promotion_authorized': return 'authorized';
+    case 'deep_improvement_common.promotion_denied': return 'denied';
+    case 'deep_improvement_common.promotion_baseline_restored': return 'rolled-back';
+    case 'deep_improvement_common.promotion_completed': return 'shipped';
+    default: return null;
+  }
+}
+
+function reducerRollbackTargetBaselineId(state: AgentImprovementProjectionState): string | null {
+  const latest = latestSeenEventByStems(state, ROLLBACK_BASELINE_STEMS);
+  if (latest === null || latest.promotionId === null) return null;
+  const promotion = state.common.iterationConvergence.promotions.find(
+    (entry) => entry.promotionId === latest.promotionId,
+  );
+  return promotion?.baselineId ?? null;
+}
+
+/**
+ * Derive the parity projection from the reducer's own typed fold output only.
+ *
+ * This never reads the raw event stream: every field is read off the typed
+ * collections the real reducer (`foldAgentImprovementEvents`) persisted, so a
+ * defect in the reducer's own field computation is visible here rather than
+ * being silently re-derived away by a second scan of the same events. Two
+ * fields are documented exceptions where the reducer's typed fold discards
+ * information the legacy hand-scan reads from raw payloads (intervention
+ * locus ids, ablation digests, and `promotion_denied`'s reason code); those
+ * are called out at their derivation sites above.
+ */
+function agentImprovementProjectionFromReducerState(
+  state: AgentImprovementProjectionState,
+  resumeEvidence: AgentImprovementResumeParityEvidence | null,
+): AgentImprovementParityProjection {
+  const candidateIds = sortedUnique(
+    state.common.artifactIndex.candidates.map((entry) => entry.candidateId),
+  );
+  const evaluatorEpochIds = sortedUnique([
+    ...state.common.iterationConvergence.evaluatorEpochs.map((entry) => entry.evaluationEpochId),
+    ...state.agentImprovement.iterationConvergence.traceSlices.map((entry) => entry.evaluationEpochId),
+    ...state.agentImprovement.iterationConvergence.coverage.map((entry) => entry.evaluationEpochId),
+    ...state.agentImprovement.artifactIndex.manifests.map((entry) => entry.evaluationEpochId),
+    ...state.agentImprovement.artifactIndex.exposures.map((entry) => entry.evaluationEpochId),
+    ...state.agentImprovement.artifactIndex.transferTrials.map((entry) => entry.evaluationEpochId),
+  ]);
+  const rawTrialDigests = sortedUnique([
+    ...state.common.artifactIndex.rawObservations.map((entry) => entry.rawObservationDigest),
+    ...state.agentImprovement.iterationConvergence.interventions.map((entry) => entry.rawObservationDigest),
+    ...state.agentImprovement.artifactIndex.transferTrials.map((entry) => entry.rawObservationDigest),
+  ]);
+  const scorePolicyVersions = sortedUnique(
+    state.common.artifactIndex.derivedScores.map((entry) => entry.scorePolicyVersion),
+  );
+  const familyOutcomeDigests = sortedUnique(
+    state.agentImprovement.iterationConvergence.coverage.map((entry) => digest({
+      family: entry.behaviorFamilyId,
+      coverage: entry.coverageOutcome,
+      invariant: entry.criticalInvariantOutcome,
+    })),
+  );
+  const frontierCandidateIds = sortedUnique([
+    ...state.common.artifactIndex.derivedScores.map((entry) => entry.candidateId),
+    ...state.agentImprovement.iterationConvergence.classifications
+      .filter((entry) => entry.regressedBehaviorFamilyIds.length === 0)
+      .map((entry) => entry.candidateId),
+  ]);
+  // `ablationDigest` is a raw ablation-only payload field the reducer's
+  // intervention record does not persist, so it cannot be recovered here.
+  const ablationDigests: string[] = [];
+  const canaryDisposition = reducerCanaryDisposition(state);
+  const promotionDisposition = reducerPromotionDisposition(state);
+  const rollbackTargetBaselineId = reducerRollbackTargetBaselineId(state);
+  const unresolvedEvidenceRefs = sortedUnique([
+    ...state.agentImprovement.iterationConvergence.traceSlices
+      .filter((entry) => entry.attributionStatus === 'insufficient-evidence')
+      .map((entry) => entry.failureRef),
+    ...state.agentImprovement.iterationConvergence.coverage
+      .filter((entry) => entry.coverageOutcome !== 'covered')
+      .map((entry) => entry.rawCoverageRef),
+    ...state.agentImprovement.artifactIndex.transferTrials
+      .filter((entry) => entry.transferOutcome !== 'pass')
+      .map((entry) => entry.rawObservationRef),
+    ...state.common.iterationConvergence.unresolvedEvidenceRefs,
+  ]);
+  const hasGenerationEvent = state.common.seenEvents.some(
+    (entry) => entry.stem === 'deep_improvement_common.run_resumed',
+  );
+  return Object.freeze({
+    runId: state.common.run.runId,
+    lineageId: state.common.run.lineageId,
+    generation: state.common.run.generation,
+    agentIrs: Object.freeze(reducerAgentIrs(state)),
+    proposals: Object.freeze(reducerProposals(state)),
+    causalEvidence: Object.freeze(reducerCausalEvidence(state)),
+    coverage: Object.freeze(reducerCoverage(state)),
+    transfers: Object.freeze(reducerTransfers(state)),
+    manifests: Object.freeze(reducerManifests(state)),
+    candidateIds: Object.freeze(candidateIds),
+    evaluatorEpochIds: Object.freeze(evaluatorEpochIds),
+    rawTrialDigests: Object.freeze(rawTrialDigests),
+    scorePolicyVersions: Object.freeze(scorePolicyVersions),
+    familyOutcomeDigests: Object.freeze(familyOutcomeDigests),
+    frontierCandidateIds: Object.freeze(frontierCandidateIds),
+    ablationDigests: Object.freeze(ablationDigests),
+    canaryDisposition,
+    promotionDisposition,
+    rollbackTargetBaselineId,
+    unresolvedEvidenceRefs: Object.freeze(unresolvedEvidenceRefs),
+    blockingVetoCodes: Object.freeze(reducerBlockingVetoCodes(state)),
+    terminalDecision: reducerTerminalDecision(state),
+    resumeDecisionDigest: hasGenerationEvent
+      ? resumeEvidenceDigest(resumeEvidence, 'ledger')
+      : null,
+  });
+}
+
 function ledgerProjection(
   events: readonly AgentImprovementLedgerEvent[],
   resumeEvidence: AgentImprovementResumeParityEvidence | null,
@@ -855,20 +1263,7 @@ function ledgerProjection(
   if (folded.outcome !== 'projected') {
     throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
-  const state = folded.projection;
-  const projection = legacyProjection(events, resumeEvidence);
-  const stateDigest = digest({
-    common: state.common,
-    agentImprovement: state.agentImprovement,
-    streamFrontiers: state.streamFrontiers,
-  });
-  if (!SHA256_PATTERN.test(stateDigest)) throw new TypeError('Reducer projection digest is unavailable');
-  return Object.freeze({
-    ...projection,
-    resumeDecisionDigest: events.some(
-      (event) => event.payload.stem === 'deep_improvement_common.run_resumed',
-    ) ? resumeEvidenceDigest(resumeEvidence, 'ledger') : null,
-  });
+  return agentImprovementProjectionFromReducerState(folded.projection, resumeEvidence);
 }
 
 function replayState(

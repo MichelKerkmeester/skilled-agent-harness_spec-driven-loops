@@ -6,13 +6,14 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
 } from '../../lib/authorized-ledger/index.js';
+import * as agentImprovementReducers from '../../lib/agent-improvement-reducers/index.js';
 import {
   createAgentImprovementEventRegistry,
   prepareAgentImprovementEvent,
@@ -683,6 +684,58 @@ describe('agent improvement shadow parity', () => {
       evidence.find((entry) => entry.path === 'legacy')?.observations ?? [],
       evidence.find((entry) => entry.path === 'ledger')?.observations ?? [],
     )).toEqual([]);
+  }, 30_000);
+
+  it('fails on a reducer-internal divergence a shared-derivation harness could not see', async () => {
+    // Corrupt only the real reducer's own typed fold output (never the raw
+    // event stream both paths read). A harness whose ledger side re-derives
+    // from the same raw events as the legacy oracle -- instead of from this
+    // fold result -- cannot observe this at all, so it reports parity PASS
+    // despite the reducer having computed a wrong agent-IR field. The
+    // rebuilt harness must FAIL here.
+    const realFold = agentImprovementReducers.foldAgentImprovementEvents;
+    const foldSpy = vi.spyOn(agentImprovementReducers, 'foldAgentImprovementEvents')
+      .mockImplementation((events, options) => {
+        const real = realFold(events, options);
+        const versions = real.outcome === 'projected'
+          ? real.projection.agentImprovement.artifactIndex.agentIrVersions
+          : [];
+        if (real.outcome !== 'projected' || versions.length === 0) return real;
+        const [first, ...rest] = versions;
+        return {
+          ...real,
+          projection: {
+            ...real.projection,
+            agentImprovement: {
+              ...real.projection.agentImprovement,
+              artifactIndex: {
+                ...real.projection.agentImprovement.artifactIndex,
+                agentIrVersions: [
+                  { ...first, compilerFingerprint: digest('corrupted-compiler-fingerprint') },
+                  ...rest,
+                ],
+              },
+            },
+          },
+        };
+      });
+    try {
+      const parityFixture = fixture();
+      const outcome = await genericRun(parityFixture);
+      expect(foldSpy).toHaveBeenCalled();
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+    } finally {
+      foldSpy.mockRestore();
+    }
+  }, 30_000);
+
+  it('still reports parity PASS for identical inputs once the reducer fold is genuine again', async () => {
+    const parityFixture = fixture();
+    const outcome = await genericRun(parityFixture);
+    expect(outcome.result, JSON.stringify(outcome.result)).toMatchObject({ ok: true });
   }, 30_000);
 
   it('drives injected payload drift through the complete real substrate', async () => {
