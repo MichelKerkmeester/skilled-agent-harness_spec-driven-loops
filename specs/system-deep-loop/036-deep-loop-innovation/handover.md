@@ -93,6 +93,21 @@ lack dedicated negative tests (incl. `findMissingLineageStateLog` dead code), pe
 (T005/T006) never built. So 028's spec Status is honestly "Complete (10/12 … residual QA items open)",
 NOT a clean Complete. `016` gate (PATH step 2) should account for these residuals.
 
+### WS1 doc-reconciliation debt — GROUNDED, larger than the 5 fixed (2026-08-08)
+
+Confirmed against origin `baf22b0ec3`: the code-landed WS1 + spine children carry a systematic
+DOC debt — the same "code landed, docs not reconciled" gap fixed for 026/027/030/032. Two classes:
+- **Missing impl-summary on origin** (would FAIL the closeout `validate --recursive --strict`):
+  022, 024, 025 (confirmed). 024 is the landed durable-write-boundaries foundation — its completion
+  lives in `024/review-report.md`, so confirm whether impl-summary is required or review-report suffices.
+- **impl-summary present but spec.md Status stale "Planned"**: 021 (IS says COMPLETE), 029, 031.
+- **Spine 004, 006–012**: built+dark per this ledger, spec.md still "Planned" (stale label).
+RECONCILE EACH the same honesty-verified way (confirm code vs HEAD, cross-check the impl-summary
+against the cited landed commits, catch overclaims — fabrications were found in 030/028/033 this
+session, so do NOT trust a build's "complete"). This is real PATH-1 closeout work that gates the
+016 `validate --recursive` and the parent rollup. Est. ~12–15 children. Best done with fresh context
+(verification quality is what caught every fabrication this session; it degrades at depth).
+
 ## The ledger (confirmed)
 
 - **Spine 001-013 — BUILT + landed.** Research (001-002), census (003), architecture/transition
