@@ -432,6 +432,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Restore a compatible coverage-graph database only for later enrichment validation; do not make it a Phase A/B prerequisite. (iteration 18)
 - Freshly build and verify 024's gateway-only fence and its broad caller migration, including negative tests for stale/superseded writers. (iteration 18)
 - Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046. (iteration 18)
+- Execute the deterministic research-mode fixture, independent reducer oracle, malformed-event/partial-success/contradiction cases, and replay/shadow-parity comparison. (iteration 19)
+- Supply a real graph-engineering implementation or explicitly approve a reference-only dependency, and capture a vetted LangGraph source snapshot. (iteration 19)
+- Obtain the owner-approved manifest, merge, or deprecation record for 034 and 036-046. (iteration 19)
+- Restore a compatible coverage-graph database only for optional projection/enrichment validation. (iteration 19)
+- Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication. (iteration 19)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -439,7 +444,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046.
+Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication.
 
 <!-- /ANCHOR:next-focus -->
 

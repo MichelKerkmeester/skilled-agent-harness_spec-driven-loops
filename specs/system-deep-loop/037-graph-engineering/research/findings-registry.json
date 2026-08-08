@@ -385,6 +385,31 @@
       "text": "Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046.",
       "addedAtIteration": 18,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Execute the deterministic research-mode fixture, independent reducer oracle, malformed-event/partial-success/contradiction cases, and replay/shadow-parity comparison.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Supply a real graph-engineering implementation or explicitly approve a reference-only dependency, and capture a vetted LangGraph source snapshot.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Obtain the owner-approved manifest, merge, or deprecation record for 034 and 036-046.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Restore a compatible coverage-graph database only for optional projection/enrichment validation.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -2195,6 +2220,158 @@
         "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
         "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
       ]
+    },
+    {
+      "id": "finding-19-8-dependency-order-and-packet-split-the-supported-order-is-a-owner-approved-034-03",
+      "text": "**Dependency order and packet split.** The supported order is: (a) owner-approved 034/036-046 accounting so the 036 status surface is trustworthy; (b) 024 fencing plus F001 and F005 because they are pre-014 authority/concurrency gates; (c) independently execute the research-mode fixture/replay and shadow-parity oracle; (d) build the graph adapter and guarded graph routing in a follow-up 037 packet; (e) restore the optional database projection and source-corpus documentation. This order preserves the documented additive-dark, shadow-parity, staged cutover, and rollback sequence rather than making graph topology authoritative prematurely. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:128-165] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:250-254] [INFERENCE: dependency ranking from the blast radius of the mutation, identity, locking, fixture, adapter, and projection gaps]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-3-p0-concurrency-prerequisite-f005-s-fresh-lock-partial-record-window-remains-open",
+      "text": "**P0 / concurrency prerequisite — F005's fresh-lock partial-record window remains open.** Fresh acquisition creates the target with `openSync(lockPath, 'wx')` and only then writes JSON; readers parse the target and collapse any parse failure to `null`. The separate temp-file atomic writer does not remove the fresh-create path's window. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245] **Recommendation:** keep F005 in the 036 pre-014 gate and change the fresh acquisition protocol in `runtime/lib/deep-loop/loop-lock.ts` to preserve exclusive claim semantics while publishing a complete record atomically (for example, an exclusive claim inode followed by a validated publication protocol); do not weaken stale-reclaim ownership. **Closure evidence:** a concurrent acquisition/read stress test observes no malformed or transiently absent holder, exactly one winner is recorded, stale reclaim remains single-winner, and the result is included in the 014 cutover certificate.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-2-p0-cutover-prerequisite-f001-identity-resolution-is-optional-at-the-gateway-seam",
+      "text": "**P0 / cutover prerequisite — F001 identity resolution is optional at the gateway seam.** The gateway invokes identity checking only when `identityResolver` is truthy and `#checkIdentity` returns without an opinion when no resolver is configured; the type is optional, and the unit contract explicitly describes no resolver as fail-open behavior. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:726-783] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335] [SOURCE: .opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452] **Recommendation:** in the 036 epic's pre-014 work, make production gateway construction require an owner-approved resolver (including the concrete construction sites such as `runtime/lib/branch-leases-waves/durable-orchestrator.ts:277`), while retaining an explicitly marked fixture-only bypass if the test harness needs one. **Closure evidence:** production construction fails closed without a resolver, resolver output pins the selected actor/capability/evidence identity, mismatches and resolver exceptions deny, and negative tests prove a caller cannot supply an unverified identity.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-1-p0-highest-blast-radius-024-append-boundary-fencing-is-still-unbuilt-and-blocks-",
+      "text": "**P0 / highest blast radius — 024 append-boundary fencing is still unbuilt and blocks authority cutover.** The dated handover says the core fence is absent, `appendAuthorized` is still public, and 024 is not discharged; its concrete scope is to make the primitive private, require a coordinator-issued current fence capability, reject stale/superseded writers, and migrate roughly 109 callers atomically. The live primitive remains `public async appendAuthorized` at `append-only-ledger.ts:349`, while the gateway is only documented as a default-deny boundary. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:128-165] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349] **Recommendation:** keep this in the 036 epic's 024/014 gate: implement the capability/private primitive in `runtime/lib/authorized-ledger/append-only-ledger.ts`, route callers through the gateway, and preserve the append-only evidence contract. **Closure evidence:** a red-before/green-after stale-writer test, a negative test proving no direct or cast-reachable append path, a clean typecheck plus concurrent-write suite, and an independently code-verified 014 certificate.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-5-p1-governance-dependency-canonical-ownership-records-for-034-and-036-046-are-mis",
+      "text": "**P1 / governance dependency — canonical ownership records for 034 and 036-046 are missing.** The parent specification says every phase is an independently executable child and its map jumps from 032 to 047, listing 047-050 but no 034 or 036-046 entries; direct packet inventory likewise contains 035 and 047-050 but no folders for 034 or 036-046. The phase transition rules require independent validation and an integrated recursive validation, so the omission prevents an honest completion/ownership claim. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255] [INFERENCE: based on the direct directory inventory of specs/system-deep-loop/036-deep-loop-innovation, where 034 and 036-046 are absent while 035 and 047-050 are present] **Recommendation:** keep an owner-approved manifest, merge record, or explicit deprecation record in the 036 epic before closeout; for each number record owner, status, source packet, superseding phase, and validation evidence, with intentional omissions made explicit. **Closure evidence:** every ID in 034 and 036-046 is accounted for exactly once, each status links to a real child or signed merge/deprecation record, and `validate.sh --recursive` reports no orphan or duplicate phase.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-6-p1-implementation-gap-graph-engineering-master-supplies-a-packaged-skill-not-a-l",
+      "text": "**P1 / implementation gap — graph-engineering-master supplies a packaged skill, not a local runnable implementation.** Its README identifies `graph-engineering/` as a skill and `dist/graph-engineering.skill` as the package, while the packet's `graph-engineering/` source directory is empty. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38] [INFERENCE: based on the direct empty-directory inventory of specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/] **Recommendation:** put the first graph adapter and its typed state/node/edge, admission, fan-out/fan-in, and shadow-parity tests in a follow-up 037 implementation packet under the system-deep-loop runtime (alongside `runtime/scripts/convergence.cjs`, `fanout-run.cjs`, and `upsert.cjs`), or explicitly record GraphARC as the reference-only dependency; do not treat the packaged skill as executable code. **Closure evidence:** a real source module and tests exist, the DB-independent research-mode fixture runs through the adapter, and no graph adapter can bypass the gateway or become authoritative before 024/014 gates pass.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-4-p1-operational-but-not-control-plane-blocking-the-coverage-graph-database-has-a-",
+      "text": "**P1 / operational but not control-plane blocking — the coverage-graph database has a native ABI mismatch.** The packet records repeated `better-sqlite3 ERR_DLOPEN_FAILED` failures with `NODE_MODULE_VERSION 127 vs 141`, so graph convergence/upsert is skipped and treated as absent. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5] **Recommendation:** handle this in a follow-up tooling/runtime packet, not as a prerequisite for adapter correctness: either rebuild `better-sqlite3` under the Node 25 ABI or run the graph-projection runtime under Node 22 (ABI 127), then pin that choice in the toolchain/lockfile. **Closure evidence:** `require('better-sqlite3')` loads under the declared runtime, coverage-graph convergence and upsert complete without `ERR_DLOPEN_FAILED`, and the graph-off fixture still passes so the database remains optional telemetry rather than a parity gate. [INFERENCE: based on the recorded ABI pair and the existing graph-off fallback contract]",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
+    },
+    {
+      "id": "finding-19-7-p2-research-source-gap-langchain-md-is-url-only-not-a-usable-local-source-snapsh",
+      "text": "**P2 / research-source gap — `LangChain.md` is URL-only, not a usable local source snapshot.** The packet file contains only the LangChain URL and no captured API or persistence content. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1] **Recommendation:** in the follow-up 037 research/implementation packet, pin and summarize the official LangGraph graph API and persistence boundary with retrieval date/checksum, then map only the needed primitives to the adapter; do not introduce a LangChain runtime dependency solely to fill this corpus gap. **Closure evidence:** the packet has a reviewed, versioned source snapshot with provenance, claims are mapped to adapter tests, and the evidence-ledger remains a separate authority/audit plane.",
+      "addedAtIteration": 19,
+      "sources": [
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:57-61,128-165`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:207-255`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:349`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-545,726-783`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts:335`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-245`",
+        "`.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:419-452`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-38`",
+        "`specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1`"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -2473,19 +2650,19 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 18,
+    "iterationsCompleted": 19,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 52,
-    "keyFindings": 111,
+    "carriedForwardOpenQuestions": 57,
+    "keyFindings": 119,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.9,
+    "convergenceScore": 0.72,
     "coverageBySources": {
-      "code": 147,
+      "code": 165,
       "docs.langchain.com": 4,
       "langchain-ai.github.io": 1,
       "other": 64,
