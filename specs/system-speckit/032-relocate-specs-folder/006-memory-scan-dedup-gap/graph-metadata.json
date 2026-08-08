@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-memory-scan-dedup-gap",
-  "spec_folder": "system-speckit/033-memory-scan-dedup-gap",
-  "parent_id": null,
+  "packet_id": "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap",
+  "spec_folder": "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap",
+  "parent_id": "system-speckit/032-relocate-specs-folder",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -107,13 +107,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Close",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Revised twice after real evidence",
     "created_at": "2026-08-07T16:31:56Z",
-    "last_save_at": "2026-08-07T16:57:16.509Z",
+    "last_save_at": "2026-08-08T10:59:59.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d890034f7ff12cc3761ecb08707cc20ce96826b9ce7eeaa8af7f56fe83df3da",
+    "source_fingerprint": "sha256:94ca1bb4b1d35ea2e1accfa0b601e27f41ee962ea6f4f30a2911e8f39591a6d3",
     "source_doc_hashes": {
-      "spec.md": "8cd816f9db6507c4bf40047e052bdcc7a5eca22f892a1ad7daff840ceb84c1f6",
-      "plan.md": "64e46a33e2edd95ee96b836502faab033de83126169aa29e4843bb1dcb8deccf",
-      "tasks.md": "04ff643830fc805d4dfddbf9dc46f0a86afff557fa49a8cba64d6519a635ce91",
-      "checklist.md": "f35400c8b807cf9f3809c01a345836e21a0b5adcf04864dd709259f04fdf981f",
-      "implementation-summary.md": "60a33a8c2d82cceda3d0d9580e3df5ad8d6fd5fe5b760d0d839e7315965029ff"
+      "spec.md": "4699c8591cb36502ad8ed2002292a45c63db82461cbfa503e18826f0164f63ac",
+      "plan.md": "e57906e5af1d27c26b540c15b8b85ab3bd298b829efb5396aaaa0b38dd3dfbeb",
+      "tasks.md": "c19d175888ab20b3ef15a863317daf1a7c9ce37ff6a73f9cf64e346892690c28",
+      "checklist.md": "d8094572c2dae2faae0ccd6b2c8817646202f289e4a6e4c4f387fd1d6f2fca0a",
+      "implementation-summary.md": "cc276a5cf98dcb21bf34ccc9baca53b3351db5f144847a96fbcc286b6f1da55b"
     },
     "last_active_child_id": null,
     "last_active_at": null

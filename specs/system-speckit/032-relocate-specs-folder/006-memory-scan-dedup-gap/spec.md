@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-memory-scan-dedup-gap"
-    last_updated_at: "2026-08-07T19:45:00Z"
+    packet_pointer: "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap"
+    last_updated_at: "2026-08-08T10:58:46Z"
     last_updated_by: "claude-code"
     recent_action: "Investigation closed, no confirmed defect, test landed"
     next_safe_action: "None — packet closed. Reopen only if a fresh duplicate-row pair is found for a different file"
@@ -44,7 +44,18 @@ _memory:
 | **Status** | Complete — investigated, no confirmed defect, no fix warranted; regression test landed |
 | **Created** | 2026-08-07 |
 | **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-speckit/032-relocate-specs-folder |
+| **Phase** | 6 of 6 |
+| **Predecessor** | 005-readme-migration-audit |
+| **Successor** | None |
 <!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-lineage -->
+> **Phase-lineage note (added 2026-08-08, when this packet was re-nested from top-level `033-memory-scan-dedup-gap` into `032/006`):** this investigation was triggered by a duplicate-row anomaly noticed during phase 003's step 9 Memory MCP reindex, but its own conclusion (see Problem Statement below) is that the anomaly is **not caused by the specs-root migration** — every mechanism traced turned out to be either working as designed or an insufficient-evidence coincidence. It is nested here for lineage (the discovery happened during 032's execution), not because the migration is at fault. Read the Status line above and this note together, not the phase number alone.
+<!-- /ANCHOR:phase-lineage -->
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-speckit/033-memory-scan-dedup-gap",
+  "specFolder": "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap",
   "description": "Revised twice after real evidence",
   "keywords": [
     "revised",
@@ -8,11 +8,12 @@
     "real",
     "evidence"
   ],
-  "lastUpdated": "2026-08-07T16:56:14.889Z",
-  "specId": "033",
+  "lastUpdated": "2026-08-08T10:59:50.837Z",
+  "specId": "006",
   "folderSlug": "memory-scan-dedup-gap",
   "parentChain": [
-    "system-speckit"
+    "system-speckit",
+    "032-relocate-specs-folder"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

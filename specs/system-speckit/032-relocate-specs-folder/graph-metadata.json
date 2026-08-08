@@ -9,7 +9,8 @@
     "system-speckit/032-relocate-specs-folder/002-migration-plan",
     "system-speckit/032-relocate-specs-folder/003-migration-execution",
     "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation",
-    "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
+    "system-speckit/032-relocate-specs-folder/005-readme-migration-audit",
+    "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -43,9 +44,16 @@
     "status": "in_progress",
     "key_files": [
       "001-relocation-implications-research/research/research.md",
+      "changelog/README.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "changelog/README.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,12 +68,6 @@
       },
       {
         "name": "Relocate Specs Folder",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -87,19 +89,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before phase 3 executed, the canonical spec-kit tree lived at `.opencode/specs/`",
     "created_at": "2026-08-06T07:50:00.000Z",
-    "last_save_at": "2026-08-08T10:03:15.612Z",
+    "last_save_at": "2026-08-08T11:03:27.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:201c1c1c56451d1065d50ffe713c84c2f5780e18ffe0076f3eba946d1d8a6298",
+    "source_fingerprint": "sha256:6c39a21047a9a26601df191ad48bf015fe2dbc0eaa342f0b0b68680220e13c7f",
     "source_doc_hashes": {
-      "spec.md": "d21e12f588cb6033503c4d7c549a240f762d1236526cb5496fb24765be647c38"
+      "spec.md": "9ee151547efd5cebb7611e4002b63f195e625a158362a2ee5b8efe222a292934"
     },
     "last_active_child_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
     "last_active_at": null

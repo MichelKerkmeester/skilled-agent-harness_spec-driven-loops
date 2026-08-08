@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-08T04:49:33Z"
+    last_updated_at: "2026-08-08T11:04:58Z"
     last_updated_by: "claude-code"
     recent_action: "Added before-after.md, literal diff evidence for all 20 findings"
     next_safe_action: "Commit and push to skilled/v4.0.0.0"
@@ -48,7 +48,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 5 |
 | **Predecessor** | 004-code-graph-index-flag-deprecation |
-| **Successor** | None |
+| **Successor** | 006-memory-scan-dedup-gap |
 | **Handoff Criteria** | `review/review-report.md` present with a verdict; every finding either fixed or explicitly deferred with a reason |
 <!-- /ANCHOR:metadata -->
 

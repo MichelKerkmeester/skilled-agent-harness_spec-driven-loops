@@ -1,6 +1,6 @@
 ---
 title: "Before vs After: The Specs-Root Relocation"
-description: "What all five phases of this packet did to move the canonical spec-kit tree from .opencode/specs to specs/ — the decision, the atomic flip, the tooling fixes, and the documentation cleanup, each grounded in real commits and command output."
+description: "What all six phases of this packet did to move the canonical spec-kit tree from .opencode/specs to specs/ — the decision, the atomic flip, the tooling fixes, the documentation cleanup, and a re-nested investigation, each grounded in real commits and command output."
 trigger_phrases:
   - "specs root relocation before after"
   - "032 relocate specs folder summary"
@@ -10,7 +10,7 @@ contextType: "reference"
 
 # Before vs After: The Specs-Root Relocation
 
-This is the whole packet's story, not one phase's. Five phases, one topology change, four different kinds of work: research, planning, one atomic mutation, and two rounds of cleanup. Every number below traces to a real commit or a real command run against this repo.
+This is the whole packet's story, not one phase's. Six phases, one topology change, five different kinds of work: research, planning, one atomic mutation, two rounds of cleanup, and one re-nested investigation that turned out unrelated. Every number below traces to a real commit or a real command run against this repo.
 
 ---
 
@@ -122,9 +122,22 @@ The flip changed the physical topology; nothing forced every README in the repo 
 
 All 20 findings fixed (2 initially deferred exactly as the review recommended, then fixed on request), 26 non-packet files touched across the two cited fix commits. Full finding-by-finding before/after: `005-readme-migration-audit/before-after.md`.
 
+**A second pass caught what the first missed.** An independent review (a different model, read-only, told explicitly not to trust any doc's claims) audited the whole packet's own completion claims against real repo state and found 12 more issues — 6 in this phase's own documentation (a missing required artifact, a phase whose plan.md still said "Not run" after it ran, wrong numbers, contradictory completion metadata) and 6 in wider tooling the migration had surfaced but nobody had followed up on (a CI workflow watching a path with zero tracked files, a mandatory CI gate genuinely red because of a real runtime dependency on the spec tree, two more stale-path bugs, a dormant exclusion defect, and a regression harness testing the wrong topology). A 3-way parallel fix swarm resolved all 12; two of the dispatched fixes were independently re-verified and one corrected before landing. A third, self-directed pass then caught 2 more gaps in that very fix pass — see `changelog/changelog-032-005-readme-migration-audit.md` for the full three-round account.
+
 ---
 
-## 7. WHAT THE WHOLE PACKET TOUCHED, BY THE NUMBERS
+## 7. PHASE 6 — A RE-NESTED INVESTIGATION THAT TURNED OUT UNRELATED
+
+Not a build phase. During phase 3's step 9 Memory MCP reindex, a duplicate-row anomaly surfaced: two rows for the same file, byte-identical content, one `deprecated` and one `normal`. A separate top-level packet (`033-memory-scan-dedup-gap`) investigated it through two hypotheses — a same-path insert conflation, then a cross-process race — and refuted both against real evidence (a controlled reproduction that passed against `HEAD`, and a `memory_history` audit trail matching an already-correct code path). Conclusion: **very likely not a code bug**, let alone one this migration caused.
+
+Re-nested here on 2026-08-08 as phase 6, for discovery lineage, not fault. Its own `spec.md` carries an explicit phase-lineage note saying so — read the Status line and that note together, not the phase number alone.
+
+**Before**: a suspected memory-index bug with two live hypotheses.
+**After**: both hypotheses refuted with real evidence, one genuine regression test landed (a coverage gap the investigation found regardless of the fix question — "unchanged re-scan against a tier-exempted predecessor" had zero test coverage before this), no code fix shipped because no confirmed defect existed to fix.
+
+---
+
+## 8. WHAT THE WHOLE PACKET TOUCHED, BY THE NUMBERS
 
 | Phase | What it measured | Number |
 |---|---|---|
@@ -136,13 +149,16 @@ All 20 findings fixed (2 initially deferred exactly as the review recommended, t
 | 3, step 9 | Stale Memory MCP index rows deleted | 10,459 |
 | 3, step 11 | Spec folders swept with zero regressions | 1,911 |
 | 4 | Dead env-var reads removed | 5 |
-| 5 | README/doc findings fixed | 20 / 20 |
-| 5 | Non-packet files touched across the two cited documentation-fix commits | 26 |
-| 5 | Real functional/security bugs found via doc audit | 2 |
+| 5 | README/doc findings fixed (round 1) | 20 / 20 |
+| 5 | Non-packet files touched across the two round-1 fix commits | 26 |
+| 5 | Real functional/security bugs found via doc audit (round 1) | 2 |
+| 5 | Independent-review findings fixed (round 2 + self-caught round 3) | 12 / 12 |
+| 6 | Hypotheses investigated and refuted with real evidence | 2 |
+| 6 | Regression tests landed from a non-defect investigation | 1 |
 
 ---
 
-## 8. VERIFIED, RIGHT NOW
+## 9. VERIFIED, RIGHT NOW
 
 ```
 $ ls -ld specs .opencode/specs
@@ -156,8 +172,8 @@ $ grep -n "^specs/" .gitignore
 268:specs/z-future
 ```
 
-`validate.sh --recursive --strict` on the whole `032-relocate-specs-folder` family: 0 errors, 0 warnings, all 6 folders (parent + 5 phases).
+`validate.sh --recursive --strict` on the whole `032-relocate-specs-folder` family: 0 errors, 0 warnings, all 7 folders (parent + 6 phases).
 
 ---
 
-*Per-phase detail: `001-relocation-implications-research/`, `002-migration-plan/`, `003-migration-execution/`, `004-code-graph-index-flag-deprecation/`, `005-readme-migration-audit/`. Finding-level before/after for the documentation audit specifically: `005-readme-migration-audit/before-after.md`.*
+*Per-phase detail: `001-relocation-implications-research/`, `002-migration-plan/`, `003-migration-execution/`, `004-code-graph-index-flag-deprecation/`, `005-readme-migration-audit/`, `006-memory-scan-dedup-gap/`. Finding-level before/after for the documentation audit specifically: `005-readme-migration-audit/before-after.md`. Per-phase changelog history: `changelog/README.md`.*

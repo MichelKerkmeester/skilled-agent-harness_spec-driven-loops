@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder"
-    last_updated_at: "2026-08-08T05:04:05Z"
+    last_updated_at: "2026-08-08T11:02:42Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 5 complete; added relocation-before-after.md; T015 operator review still open"
-    next_safe_action: "Operator reviews the final migrated state (T015 in 003-migration-execution)"
+    recent_action: "Packet closed: 006 re-nested from top-level 033, changelog/ added, T015 confirmed by operator"
+    next_safe_action: "None — packet closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-07-system-speckit-032-relocate"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete — all 6 phases closed, T015 operator review confirmed 2026-08-08 |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -99,9 +99,10 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 |-------|--------|-------|--------|
 | 1 | 001-relocation-implications-research/ | Dual-executor (GLM-5.2 High via cli-devin, Grok 4.5 High via cli-cursor) deep research: implications of moving the specs root outside .opencode | Complete — CONDITIONAL-GO |
 | 2 | 002-migration-plan/ | Design the topology-inversion migration: invert the 21-entry resolver registry, adapt the existing `spec-root-*` primitives, resolve the downstream-ownership policy decision | Complete — both ADRs Accepted |
-| 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | Complete — all 11 steps executed and verified, T015 operator review open |
+| 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | Complete — all 11 steps executed and verified, T015 operator review confirmed 2026-08-08 |
 | 4 | 004-code-graph-index-flag-deprecation/ | Remove the dead `SPECKIT_CODE_GRAPH_INDEX_*` maintainer-mode flag mechanism (git filter, config, doc, dead env-var fallback), discovered as a side effect of phase 3's `scripts/` cleanup | Complete |
 | 5 | 005-readme-migration-audit/ | 10-iter multi-executor `/deep:review` (deepseek-v4-flash + GLM-5.2-high) auditing every README (including the repo root) for content that's logically stale after the specs-root topology flip | Complete — 20/20 findings fixed |
+| 6 | 006-memory-scan-dedup-gap/ | Investigation into a memory-index duplicate-row anomaly noticed during phase 3's step 9 reindex. Re-nested here 2026-08-08 for discovery lineage — its own conclusion is that the anomaly is **not caused by this migration**; see its phase-lineage note | Complete — no confirmed defect, regression test landed |
 
 ### Phase Transition Rules
 
@@ -118,6 +119,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 | 002-migration-plan | 003-migration-execution | Both ADRs Accepted; operator explicitly confirmed proceeding to execution scoping | `decision-record.md` ADR-001 and ADR-002 both status Accepted |
 | 003-migration-execution | 004-code-graph-index-flag-deprecation | Not a sequential dependency — 004 is a self-contained cleanup discovered mid-phase-3, scoped and run independently | `004/tasks.md` T001-T008 all `[x]` with evidence |
 | 004-code-graph-index-flag-deprecation | 005-readme-migration-audit | Not a sequential dependency — 005 audits documentation drift from the same migration, scoped and run independently | `005/review/review-report.md` present with a verdict |
+| 005-readme-migration-audit | 006-memory-scan-dedup-gap | Not a sequential dependency — 006 is a re-nested investigation lineage, not a build phase; already Complete before it moved here | `006/spec.md` phase-lineage note and Status field |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -134,5 +136,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folder `001-relocation-implications-research/` for research state and findings
+- **Whole-packet before/after**: See `relocation-before-after.md` for what all 6 phases did, grounded in real commits and command output
+- **Changelog**: See `changelog/README.md` for the per-phase changelog index
 - **Parent Spec**: See `../spec.md`
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

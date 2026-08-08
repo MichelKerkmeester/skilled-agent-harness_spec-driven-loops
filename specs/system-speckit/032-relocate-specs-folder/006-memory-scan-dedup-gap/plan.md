@@ -8,8 +8,8 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-memory-scan-dedup-gap"
-    last_updated_at: "2026-08-07T19:45:00Z"
+    packet_pointer: "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap"
+    last_updated_at: "2026-08-08T10:58:46Z"
     last_updated_by: "claude-code"
     recent_action: "Executed as planned; stop condition fired at Step 1"
     next_safe_action: "None — packet closed"
