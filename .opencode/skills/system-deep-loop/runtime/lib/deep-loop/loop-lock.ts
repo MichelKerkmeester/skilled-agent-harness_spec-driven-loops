@@ -1,7 +1,7 @@
 // MODULE: Deep-Loop Lock
 
 import { createHash, randomUUID } from 'node:crypto';
-import { closeSync, existsSync, fsyncSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
+import { closeSync, existsSync, fsyncSync, linkSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createConnection, createServer, type Server } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -236,23 +236,35 @@ function writeLoopLockAtomic(lockPath: string, data: LoopLockData): void {
   }
 }
 
+/**
+ * Publish a lock record so it is only ever observable absent or complete.
+ *
+ * A concurrent reader must never see the target path exist with empty or
+ * partial content — that state is indistinguishable from a genuinely dead
+ * owner and would let a second acquirer reclaim a lock that is still being
+ * written. The full record is written to a private temp file and fsynced
+ * first, then published with a single hard-link into the target path: link()
+ * either fails because the path already exists (EEXIST, same exclusivity
+ * contract `openSync(path, 'wx')` gave callers) or it succeeds and the path
+ * instantly carries the complete record — there is no in-between state a
+ * reader can observe. A rename here would silently overwrite an existing
+ * holder instead of failing, which would break that same exclusivity.
+ */
 function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
-  let fd: number | undefined;
+  const tempPath = makeTempPath(lockPath);
   try {
-    fd = openSync(lockPath, 'wx');
-    writeFileSync(fd, `${JSON.stringify(serializeLock(data), null, 2)}\n`, { encoding: 'utf8' });
-    fsyncSync(fd);
+    writeFileSync(tempPath, `${JSON.stringify(serializeLock(data), null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+    fsyncPath(tempPath);
+    linkSync(tempPath, lockPath);
   } catch (error: unknown) {
+    rmSync(tempPath, { force: true });
     const code = errorCode(error);
     if (code === 'EEXIST') {
       return false;
     }
     throw error;
-  } finally {
-    if (typeof fd === 'number') {
-      closeSync(fd);
-    }
   }
+  rmSync(tempPath, { force: true });
 
   try {
     fsyncPath(dirname(lockPath));

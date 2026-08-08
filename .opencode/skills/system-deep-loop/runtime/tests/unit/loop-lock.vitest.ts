@@ -14,6 +14,7 @@ import {
   releaseLoopLock,
   startHeartbeat,
   stopHeartbeat,
+  type LoopLockAcquireResult,
   type LoopLockData,
 } from '../../lib/deep-loop/loop-lock.js';
 import { createHermeticEnv } from '../helpers/spawn-cjs.js';
@@ -201,6 +202,110 @@ describe('loop-lock', () => {
       const winner = results.find((result) => result.acquired);
       expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe(winner?.packetId);
     } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('publishes a lock file atomically: a reader interleaved at the create/publish instant never sees an empty or partial record, and only one of two racing acquirers wins', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'loop-lock-'));
+    const lockPath = join(tempDir, '.deep-loop.lock');
+
+    let hasObserved = false;
+    let observedDuringPublish: { existed: boolean; raw: string | null } | null = null;
+    let concurrentResult: LoopLockAcquireResult | null = null;
+    let loopLockModuleRef: typeof import('../../lib/deep-loop/loop-lock.js') | null = null;
+
+    vi.resetModules();
+    vi.doMock('node:fs', async () => {
+      const actual = await vi.importActual<typeof import('node:fs')>('node:fs');
+
+      // Fires once, at the exact instant the publishing code first makes
+      // `lockPath` exist as a directory entry — whichever mechanism it
+      // uses to do so. Simulates a second acquirer racing in that window:
+      // it records what a concurrent reader would observe on disk right
+      // now, then makes its own live acquire attempt against the same path.
+      const observeConcurrentAcquire = (): void => {
+        if (hasObserved || !loopLockModuleRef) {
+          return;
+        }
+        hasObserved = true;
+
+        const existed = actual.existsSync(lockPath);
+        let raw: string | null = null;
+        if (existed) {
+          try {
+            raw = actual.readFileSync(lockPath, 'utf8');
+          } catch {
+            raw = null;
+          }
+        }
+        observedDuringPublish = { existed, raw };
+
+        concurrentResult = loopLockModuleRef.acquireLoopLock(lockPath, lockData({
+          ownerPid: process.pid,
+          packetId: 'concurrent-observer',
+        }));
+      };
+
+      return {
+        ...actual,
+        // Pre-fix `writeLoopLockExclusive` created the lock path with a
+        // bare O_EXCL open, then wrote its content in a separate call —
+        // this is the empty-file window the defect lived in.
+        openSync(path: Parameters<typeof readFileSync>[0], flags?: string, mode?: number) {
+          const fd = actual.openSync(path as string, (flags ?? 'r') as never, mode as never);
+          if (typeof path === 'string' && path === lockPath && flags === 'wx') {
+            observeConcurrentAcquire();
+          }
+          return fd;
+        },
+        // Post-fix, `lockPath` only starts existing once the full record
+        // is already committed under a private temp name and linked in —
+        // there is no separable create-then-write step left to exploit.
+        linkSync(existingPath: Parameters<typeof readFileSync>[0], newPath: Parameters<typeof readFileSync>[0]) {
+          actual.linkSync(existingPath as string, newPath as string);
+          if (typeof newPath === 'string' && newPath === lockPath) {
+            observeConcurrentAcquire();
+          }
+        },
+      };
+    });
+
+    try {
+      const loopLock = await import('../../lib/deep-loop/loop-lock.js');
+      loopLockModuleRef = loopLock;
+
+      const originalResult = loopLock.acquireLoopLock(lockPath, lockData({
+        ownerPid: process.pid,
+        packetId: 'original-writer',
+      }));
+
+      // Sanity: the interleave actually fired during this acquire.
+      expect(hasObserved).toBe(true);
+      expect(observedDuringPublish).not.toBeNull();
+
+      // ATOMIC-PUBLISH INVARIANT: whatever a concurrent reader saw at the
+      // widened window, it is never an existing-but-empty/partial file.
+      // Either the path did not exist yet, or it already carries a
+      // complete, parseable record.
+      if (observedDuringPublish!.existed) {
+        expect(observedDuringPublish!.raw).not.toBe('');
+        const parsed = JSON.parse(observedDuringPublish!.raw as string);
+        expect(typeof parsed.owner_pid).toBe('number');
+        expect(typeof parsed.packet_id).toBe('string');
+      }
+
+      // Exactly one of the two racing acquires may win — never both.
+      const winners = [originalResult, concurrentResult].filter(
+        (result): result is Extract<LoopLockAcquireResult, { acquired: true }> => result?.acquired === true,
+      );
+      expect(winners).toHaveLength(1);
+
+      const onDisk = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(onDisk.packet_id).toBe(winners[0].lock.packetId);
+    } finally {
+      vi.doUnmock('node:fs');
+      vi.resetModules();
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
