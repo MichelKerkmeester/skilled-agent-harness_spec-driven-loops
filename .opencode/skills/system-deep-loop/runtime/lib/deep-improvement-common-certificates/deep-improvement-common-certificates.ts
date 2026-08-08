@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { AppendOnlyLedger } from '../authorized-ledger/index.js';
+import { firstBoundFieldMismatch } from '../certificate-binding-core/index.js';
 import {
   DeepImprovementCommonWireEventTypes,
 } from '../deep-improvement-common-ledger-schema/index.js';
@@ -38,6 +39,7 @@ import {
 } from './deep-improvement-common-certificate-validation.js';
 
 import type { VerifiedLedgerEvent } from '../authorized-ledger/index.js';
+import type { BoundFieldComparison } from '../certificate-binding-core/index.js';
 import type {
   DeepImprovementCommonEventStem,
   DeepImprovementCommonLedgerEvent,
@@ -356,12 +358,12 @@ function unsignedSharedReceipt(
   const boundary = TRANSITION_BOUNDARIES[facts.transitionKind];
   const fromHead = head(
     'authorized-ledger',
-    Math.max(0, facts.attemptNumber - 1),
+    Math.max(0, facts.resultEventSequence - 1),
     facts.fromHeadHash,
   );
   const resultHead = head(
     'authorized-ledger',
-    facts.attemptNumber,
+    facts.resultEventSequence,
     facts.resultHeadHash,
   );
   return Object.freeze({
@@ -540,6 +542,7 @@ function buildTransitionFacts(
     authorizationDecisionDigest: resultEvent.frame.authorization_ref.decision_digest,
     fromHeadHash: resultEvent.frame.prev_record_hash,
     resultHeadHash: resultEvent.frame.record_hash,
+    resultEventSequence: resultEvent.frame.sequence,
     inputArtifactQualifiedDigests: Object.freeze([...input.inputArtifactQualifiedDigests]),
     outputArtifactQualifiedDigests: Object.freeze([...input.outputArtifactQualifiedDigests]),
     evidenceArtifactQualifiedDigests: Object.freeze([...input.evidenceArtifactQualifiedDigests]),
@@ -586,6 +589,7 @@ async function verifiedArtifactSet(
   const claims: DeepImprovementCommonCertificateArtifactClaim[] = [];
   const byQualifiedDigest = new Map<string, ArtifactEvidence>();
   const byContentDigestMutable = new Map<string, ArtifactEvidence[]>();
+  const claimedOrigins = new Map<string, string>();
   for (const binding of bindings) {
     const verified = await readDeepImprovementCommonArtifact(store, binding, {
       accessRole: 'promotion',
@@ -607,7 +611,7 @@ async function verifiedArtifactSet(
         'Certificate artifact identities must be unique',
       );
     }
-    assertArtifactOrigin(verified, ledgerEvents);
+    assertArtifactOrigin(verified, ledgerEvents, claimedOrigins);
     const evidence = Object.freeze({ claim, material: verified.material });
     claims.push(claim);
     byQualifiedDigest.set(qualified, evidence);
@@ -630,17 +634,33 @@ async function verifiedArtifactSet(
 function assertArtifactOrigin(
   verified: DeepImprovementVerifiedSealedArtifact,
   ledgerEvents: readonly VerifiedLedgerEvent[],
+  claimedOrigins: Map<string, string>,
 ): void {
   const origin = verified.material.originEvent;
   const event = findEvent(ledgerEvents, origin.eventId);
   const payload = eventPayload(event);
+  const qualifiedDigest = verified.binding.reference.qualified_digest;
   if (payload.stem !== origin.eventStem || payload.payloadDigest !== origin.payloadDigest) {
     throw new DeepImprovementCommonCertificateError(
       DeepImprovementCommonCertificateFailureCodes.AUTHORIZATION_INVALID,
-      `artifact:${verified.binding.reference.qualified_digest}:origin`,
+      `artifact:${qualifiedDigest}:origin`,
       'Sealed artifact origin does not resolve to its exact authorized event',
     );
   }
+  // Binds the resolved origin event to this artifact's own identity: an origin
+  // triple that a real event genuinely satisfies may still belong to a
+  // different sealed artifact, so one origin claim may be reused across the
+  // closure only by the artifact identity that first legitimately claimed it.
+  const originKey = `${origin.eventId}:${origin.eventStem}:${origin.payloadDigest}`;
+  const priorClaimant = claimedOrigins.get(originKey);
+  if (priorClaimant !== undefined && priorClaimant !== qualifiedDigest) {
+    throw new DeepImprovementCommonCertificateError(
+      DeepImprovementCommonCertificateFailureCodes.AUTHORIZATION_INVALID,
+      `artifact:${qualifiedDigest}:origin`,
+      'Sealed artifact origin event is already bound to a different artifact identity',
+    );
+  }
+  claimedOrigins.set(originKey, qualifiedDigest);
 }
 
 async function verifyNamedDigestClosure(
@@ -1013,6 +1033,8 @@ function certificateUnsignedReceipt(
   issuer: string,
   issuedAt: string,
   authorityEpoch: number,
+  fromEventSequence: number,
+  resultEventSequence: number,
 ): Omit<BoundaryReceiptPayload, 'certification'> {
   return Object.freeze({
     receipt_id: `dic-certificate:${certificateDigest}`,
@@ -1022,8 +1044,8 @@ function certificateUnsignedReceipt(
     scope_id: body.runId,
     from_state: 'active',
     to_state: body.verdict.toLowerCase().replaceAll('_', '-'),
-    from_head: head('authorized-ledger', 0, body.startHeadHash),
-    result_head: head('authorized-ledger', body.receiptDigests.length, body.finalHeadHash),
+    from_head: head('authorized-ledger', fromEventSequence, body.startHeadHash),
+    result_head: head('authorized-ledger', resultEventSequence, body.finalHeadHash),
     result_event_id: `dic-certificate-event:${certificateDigest}`,
     result_event_type: 'deep-improvement-common.run-certificate',
     result_event_digest: certificateDigest,
@@ -1245,6 +1267,8 @@ export async function issueDeepImprovementCommonRunCertificate<TState extends Js
     input.issuer,
     input.issuedAt,
     authorityEpoch,
+    first.frame.sequence - 1,
+    last.frame.sequence,
   );
   const sharedCertificationReceipt = await certifyShared(
     unsigned,
@@ -1423,6 +1447,87 @@ function failureResult(error: unknown): DeepImprovementCommonOfflineVerification
   });
 }
 
+/**
+ * Every semantic identity field the run-certificate body emits, paired with
+ * the value independently re-derived from the freshly re-read artifact
+ * material and reducer projection. Field-to-material mapping is local data;
+ * the exact-equality compare loop itself is the shared binding core.
+ */
+function semanticBodyFieldComparisons(
+  body: DeepImprovementCommonRunCertificateBody,
+  lineageId: string | null,
+  generation: number,
+  evaluatorMaterial: DeepImprovementEvaluatorCapsuleMaterial,
+  candidateMaterial: DeepImprovementCommonArtifactMaterial & { readonly candidateId: string },
+  baselineMaterial: DeepImprovementCommonArtifactMaterial & { readonly baselineId: string },
+  canaryMaterial: DeepImprovementCommonArtifactMaterial & { readonly canaryEpochId: string },
+  promotionMaterial: DeepImprovementPromotionEvidenceMaterial,
+  evaluator: ArtifactEvidence,
+  candidate: ArtifactEvidence,
+  baseline: ArtifactEvidence,
+  canary: ArtifactEvidence,
+  promotion: ArtifactEvidence,
+  raws: readonly ArtifactEvidence[],
+): readonly BoundFieldComparison[] {
+  return [
+    { field: 'lineageId', emitted: body.lineageId, rederived: lineageId },
+    { field: 'generation', emitted: body.generation, rederived: generation },
+    {
+      field: 'evaluatorEpochId',
+      emitted: body.evaluatorEpochId,
+      rederived: evaluatorMaterial.evaluatorEpochId,
+    },
+    { field: 'candidateId', emitted: body.candidateId, rederived: candidateMaterial.candidateId },
+    { field: 'baselineId', emitted: body.baselineId, rederived: baselineMaterial.baselineId },
+    { field: 'canaryEpochId', emitted: body.canaryEpochId, rederived: canaryMaterial.canaryEpochId },
+    {
+      field: 'evaluatorCapsuleQualifiedDigest',
+      emitted: body.evaluatorCapsuleQualifiedDigest,
+      rederived: evaluator.claim.binding.reference.qualified_digest,
+    },
+    {
+      field: 'candidateInputQualifiedDigest',
+      emitted: body.candidateInputQualifiedDigest,
+      rederived: candidate.claim.binding.reference.qualified_digest,
+    },
+    {
+      field: 'baselineInputQualifiedDigest',
+      emitted: body.baselineInputQualifiedDigest,
+      rederived: baseline.claim.binding.reference.qualified_digest,
+    },
+    {
+      field: 'rawObservationQualifiedDigests',
+      emitted: body.rawObservationQualifiedDigests,
+      rederived: raws.map((entry) => entry.claim.binding.reference.qualified_digest),
+    },
+    {
+      field: 'canaryEpochQualifiedDigest',
+      emitted: body.canaryEpochQualifiedDigest,
+      rederived: canary.claim.binding.reference.qualified_digest,
+    },
+    {
+      field: 'promotionEvidenceQualifiedDigest',
+      emitted: body.promotionEvidenceQualifiedDigest,
+      rederived: promotion.claim.binding.reference.qualified_digest,
+    },
+    {
+      field: 'evaluatorPolicyDigest',
+      emitted: body.evaluatorPolicyDigest,
+      rederived: evaluatorMaterial.policyDigest,
+    },
+    {
+      field: 'budgetDigest',
+      emitted: body.budgetDigest,
+      rederived: digest(evaluatorMaterial.budgetPolicy),
+    },
+    {
+      field: 'vetoEvidenceDigests',
+      emitted: body.vetoEvidenceDigests,
+      rederived: [...promotionMaterial.vetoEvidenceDigests],
+    },
+  ];
+}
+
 /** Independently re-derive the certificate from offline ledger and sealed-store inputs. */
 export async function verifyDeepImprovementCommonCertificateOffline<TState extends JsonObject>(
   input: DeepImprovementCommonOfflineVerificationInput<TState>,
@@ -1503,6 +1608,58 @@ export async function verifyDeepImprovementCommonCertificateOffline<TState exten
         'Artifact-set digest does not recompute',
         artifactSetDigest,
         certificate.body.artifactSetDigest,
+      );
+    }
+    const semanticEvaluator = requiredArtifact(
+      artifacts,
+      DeepImprovementCommonArtifactKinds.EVALUATOR_CAPSULE,
+    );
+    const semanticCandidate = requiredArtifact(
+      artifacts,
+      DeepImprovementCommonArtifactKinds.CANDIDATE_INPUT,
+    );
+    const semanticBaseline = requiredArtifact(
+      artifacts,
+      DeepImprovementCommonArtifactKinds.BASELINE_INPUT,
+    );
+    const semanticCanary = requiredArtifact(
+      artifacts,
+      DeepImprovementCommonArtifactKinds.CANARY_EPOCH,
+    );
+    const semanticPromotion = requiredArtifact(
+      artifacts,
+      DeepImprovementCommonArtifactKinds.PROMOTION_EVIDENCE,
+    );
+    const semanticRaws = rawArtifacts(artifacts);
+    const semanticMismatch = firstBoundFieldMismatch(semanticBodyFieldComparisons(
+      certificate.body,
+      folded.projection.run.lineageId,
+      folded.projection.run.generation,
+      semanticEvaluator.material as DeepImprovementEvaluatorCapsuleMaterial,
+      semanticCandidate.material as DeepImprovementCommonArtifactMaterial & {
+        readonly candidateId: string;
+      },
+      semanticBaseline.material as DeepImprovementCommonArtifactMaterial & {
+        readonly baselineId: string;
+      },
+      semanticCanary.material as DeepImprovementCommonArtifactMaterial & {
+        readonly canaryEpochId: string;
+      },
+      semanticPromotion.material as DeepImprovementPromotionEvidenceMaterial,
+      semanticEvaluator,
+      semanticCandidate,
+      semanticBaseline,
+      semanticCanary,
+      semanticPromotion,
+      semanticRaws,
+    ));
+    if (semanticMismatch) {
+      throw new DeepImprovementCommonCertificateError(
+        DeepImprovementCommonCertificateFailureCodes.ARTIFACT_CLOSURE_INVALID,
+        `certificate:semantic-field:${semanticMismatch.field}`,
+        'Certificate semantic body field does not re-derive from verified artifact material',
+        semanticMismatch.rederivedDigest,
+        semanticMismatch.emittedDigest,
       );
     }
     const replay = await deriveReplayFingerprint(input.replay);
@@ -1599,6 +1756,8 @@ export async function verifyDeepImprovementCommonCertificateOffline<TState exten
       certificate.sharedCertificationReceipt.issuer,
       certificate.sharedCertificationReceipt.issued_at,
       authorityEpoch,
+      first.frame.sequence - 1,
+      last.frame.sequence,
     );
     await verifyShared(
       certificate.sharedCertificationReceipt,

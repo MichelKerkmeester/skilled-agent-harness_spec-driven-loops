@@ -231,7 +231,7 @@ function parseReceiptFacts(value: unknown, location: string): DeepImprovementCom
     'predecessorReceiptDigests', 'runId', 'transitionKind', 'logicalOperationId',
     'effectIdempotencyKey', 'attemptNumber', 'resultEventId', 'resultEventType',
     'resultEventDigest', 'authorizationDecisionDigest', 'fromHeadHash',
-    'resultHeadHash', 'inputArtifactQualifiedDigests',
+    'resultHeadHash', 'resultEventSequence', 'inputArtifactQualifiedDigests',
     'outputArtifactQualifiedDigests', 'evidenceArtifactQualifiedDigests',
     'outcome', 'uncertaintyState', 'serviceVersion', 'replayFingerprint',
     'transitionFingerprint', 'authorityEpoch',
@@ -248,6 +248,7 @@ function parseReceiptFacts(value: unknown, location: string): DeepImprovementCom
   ] as const) field(candidate[name], { kind: 'token' }, `${location}:${name}`);
   field(candidate.transitionKind, { kind: 'enum', values: TRANSITION_KINDS }, `${location}:transitionKind`);
   field(candidate.attemptNumber, { kind: 'integer', minimum: 1 }, `${location}:attemptNumber`);
+  field(candidate.resultEventSequence, { kind: 'integer', minimum: 1 }, `${location}:resultEventSequence`);
   for (const name of [
     'resultEventDigest', 'authorizationDecisionDigest', 'fromHeadHash',
     'resultHeadHash', 'replayFingerprint', 'transitionFingerprint',

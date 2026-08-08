@@ -117,6 +117,7 @@ export interface DeepImprovementCommonTransitionReceiptFacts {
   readonly authorizationDecisionDigest: string;
   readonly fromHeadHash: string;
   readonly resultHeadHash: string;
+  readonly resultEventSequence: number;
   readonly inputArtifactQualifiedDigests: readonly string[];
   readonly outputArtifactQualifiedDigests: readonly string[];
   readonly evidenceArtifactQualifiedDigests: readonly string[];

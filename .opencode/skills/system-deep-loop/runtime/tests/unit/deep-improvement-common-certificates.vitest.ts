@@ -55,6 +55,7 @@ import {
 import {
   AuthorizedEvidenceWriter,
   CertificationProviderRegistry,
+  certifyBoundaryReceipt,
   createEvidenceControlEventRegistry,
   createHmacCertificationProvider,
 } from '../../lib/receipts-and-effect-recovery/index.js';
@@ -113,6 +114,7 @@ interface ScenarioOptions {
   readonly namedDigestField?: 'unresolved' | 'veto';
   readonly staleCanary?: boolean;
   readonly unauthorizedOrigin?: boolean;
+  readonly duplicateBaselineOrigin?: boolean;
 }
 
 const TIMESTAMP = '2026-07-23T09:00:00.000Z';
@@ -653,7 +655,9 @@ async function sealedArtifacts(
       dependency('evaluator', evaluator.reference),
       dependency('incumbent', fixture(2)),
     ],
-    originEvent: origin(events, 'deep_improvement_common.candidate_generated'),
+    originEvent: options.duplicateBaselineOrigin
+      ? origin(events, 'deep_improvement_common.candidate_generated')
+      : origin(events, 'deep_improvement_common.run_started'),
     producerVersion: 'baseline-producer@1',
     locator: locator('baseline'),
   };
@@ -1214,6 +1218,13 @@ describe('deep improvement common certificates', () => {
     });
   });
 
+  it('rejects a sealed artifact that copies a different artifact real origin claim', async () => {
+    await expect(scenario({ duplicateBaselineOrigin: true })).rejects.toMatchObject({
+      code: DeepImprovementCommonCertificateFailureCodes.AUTHORIZATION_INVALID,
+      message: 'Sealed artifact origin event is already bound to a different artifact identity',
+    });
+  });
+
   it('rejects reordered receipts before accepting a recomputed fingerprint', async () => {
     const fixture = await scenario();
     const bundle = structuredClone(fixture.bundle);
@@ -1242,6 +1253,114 @@ describe('deep improvement common certificates', () => {
     expect(result).toMatchObject({
       verdict: 'invalid',
       code: DeepImprovementCommonCertificateFailureCodes.RECEIPT_CHAIN_INVALID,
+    });
+  });
+
+  it('binds transition and certificate receipt heads to the real ledger sequence', async () => {
+    const fixture = await scenario();
+    const events = fixture.verification.projectionEvents;
+    const sequenceFor = (stem: DeepImprovementCommonEventStem): number => {
+      const index = events.findIndex((event) => event.payload.stem === stem);
+      if (index < 0) throw new Error(`Missing event ${stem}`);
+      return index + 1;
+    };
+    const candidateGeneratedReceipt = fixture.bundle.receipts.find((receipt) => (
+      receipt.facts.transitionKind === DeepImprovementCommonTransitionKinds.CANDIDATE_GENERATED
+    ));
+    if (!candidateGeneratedReceipt) throw new Error('Missing candidate-generated receipt');
+    const realSequence = sequenceFor('deep_improvement_common.candidate_generated');
+    expect(candidateGeneratedReceipt.facts.resultEventSequence).toBe(realSequence);
+    expect(candidateGeneratedReceipt.sharedReceipt.result_head.sequence).toBe(realSequence);
+    expect(candidateGeneratedReceipt.sharedReceipt.from_head.sequence).toBe(realSequence - 1);
+    expect(fixture.bundle.certificate.sharedCertificationReceipt.result_head.sequence).toBe(
+      events.length,
+    );
+    expect(fixture.bundle.certificate.sharedCertificationReceipt.from_head.sequence).toBe(0);
+    expect(await verifyDeepImprovementCommonCertificateOffline(fixture.verification))
+      .toMatchObject({ verdict: 'valid' });
+  });
+
+  it('rejects a transition receipt whose published sequence was computed from the retry counter instead of the real ledger position', async () => {
+    const fixture = await scenario();
+    const bundle = structuredClone(fixture.bundle);
+    const receiptIndex = bundle.receipts.findIndex((entry) => (
+      entry.facts.transitionKind === DeepImprovementCommonTransitionKinds.CANDIDATE_GENERATED
+    ));
+    const receipt = bundle.receipts[receiptIndex];
+    if (!receipt) throw new Error('Missing candidate-generated receipt');
+    const { certification: _originalCertification, ...unsignedOriginal } = receipt.sharedReceipt;
+    const legacyUnsigned = {
+      ...unsignedOriginal,
+      from_head: {
+        ...unsignedOriginal.from_head,
+        sequence: Math.max(0, receipt.facts.attemptNumber - 1),
+      },
+      result_head: {
+        ...unsignedOriginal.result_head,
+        sequence: receipt.facts.attemptNumber,
+      },
+    };
+    const profile = fixture.verification.providers.inspect()[0]!;
+    const certification = await certifyBoundaryReceipt(
+      legacyUnsigned,
+      profile,
+      fixture.verification.providers,
+    );
+    bundle.receipts[receiptIndex] = {
+      ...receipt,
+      sharedReceipt: { ...legacyUnsigned, certification },
+    };
+    const result = await verifyDeepImprovementCommonCertificateOffline({
+      ...fixture.verification,
+      bundle,
+    });
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepImprovementCommonCertificateFailureCodes.CERTIFICATION_INVALID,
+    });
+  });
+
+  it('rejects a certificate whose candidateId does not re-derive from the verified candidate artifact', async () => {
+    const fixture = await scenario();
+    const tamperedBody = {
+      ...fixture.bundle.certificate.body,
+      candidateId: 'decoy-candidate-forges-binding',
+    };
+    const tamperedCertificateDigest = digest(tamperedBody);
+    const { certification: _originalCertification, ...unsignedOriginal } = (
+      fixture.bundle.certificate.sharedCertificationReceipt
+    );
+    const legacyUnsigned = {
+      ...unsignedOriginal,
+      receipt_id: `dic-certificate:${tamperedCertificateDigest}`,
+      boundary_id: `dic-certificate-boundary:${tamperedCertificateDigest}`,
+      result_event_id: `dic-certificate-event:${tamperedCertificateDigest}`,
+      result_event_digest: tamperedCertificateDigest,
+      evidence_digest: tamperedCertificateDigest,
+      idempotency_key: `dic-certificate:v1:${tamperedCertificateDigest}`,
+    };
+    const profile = fixture.verification.providers.inspect()[0]!;
+    const certification = await certifyBoundaryReceipt(
+      legacyUnsigned,
+      profile,
+      fixture.verification.providers,
+    );
+    const bundle: DeepImprovementCommonCertificateBundle = {
+      ...fixture.bundle,
+      certificate: {
+        body: tamperedBody,
+        certificateDigest: tamperedCertificateDigest,
+        sharedCertificationReceipt: { ...legacyUnsigned, certification },
+      },
+    };
+    const result = await verifyDeepImprovementCommonCertificateOffline({
+      ...fixture.verification,
+      bundle,
+    });
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepImprovementCommonCertificateFailureCodes.ARTIFACT_CLOSURE_INVALID,
+      evidenceLocation: 'certificate:semantic-field:candidateId',
     });
   });
 });
