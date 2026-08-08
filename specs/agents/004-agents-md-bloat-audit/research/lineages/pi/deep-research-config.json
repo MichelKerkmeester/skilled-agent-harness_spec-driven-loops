@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Audit the root AGENTS.md for removable or reducible bloat: redundancy across sections, over-long prose that could compress, content already authoritative in referenced files, verbose tables/examples, and low-value boilerplate. Read-only (no edits during the loop); produce a ranked findings report of concrete removable/reducible candidates with rationale and rough line savings.",
+  "specFolder": "specs/agents/004-agents-md-bloat-audit",
+  "artifactRoot": "specs/agents/004-agents-md-bloat-audit/research/lineages/pi",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "lineage": {
+    "sessionId": "fanout-pi-1786112914544-75cprl",
+    "parentSessionId": "rsr-2026-08-07T14-28-00Z",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash",
+    "label": "pi"
+  },
+  "status": "complete",
+  "createdAt": "2026-08-07T14:28:34.000Z",
+  "completedAt": "2026-08-07T14:58:00.000Z",
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

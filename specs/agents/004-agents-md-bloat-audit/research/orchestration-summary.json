@@ -1,0 +1,59 @@
+{
+  "run_id": "1786112914544-75cprl",
+  "loop_type": "research",
+  "spec_folder": "specs/agents/004-agents-md-bloat-audit",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/004-agents-md-bloat-audit/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "pi",
+      "state_log": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/004-agents-md-bloat-audit/research/lineages/pi/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-07T14:28:34.548Z",
+        "end_at_iso": "2026-08-07T14:42:04.856Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T14:48:00.000Z",
+          "deltaMs": 235144
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T14:54:00.000Z",
+          "deltaMs": 595144
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-08-07T14:58:00.000Z",
+          "deltaMs": 835144
+        }
+      ]
+    }
+  ]
+}

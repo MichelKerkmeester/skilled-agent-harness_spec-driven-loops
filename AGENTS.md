@@ -55,15 +55,15 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | **Explicit uncertainty** | Prefix claims with "I'M UNCERTAIN ABOUT THIS:"        |
 
 ##### Code Quality
-- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY. See `constitutional/comment-hygiene.md`.
+- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY. See `.opencode/skills/system-spec-kit/constitutional/comment-hygiene.md`.
 
 ##### Dispatch Rules
 
 | Rule | Requirement |
 |------|-------------|
-| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. See `constitutional/cli-dispatch-skill-preload.md`. |
+| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. See `.opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md`. |
 | **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/sk-prompt-models`. |
-| **Fable subagent dispatch** | When the main loop runs on a Fable model, every subagent MUST be dispatched with an explicit `model: "opus"` or `model: "sonnet"`. Forks and model-less dispatches inherit Fable and are forbidden (enforced by the `fable-subagent-guard` PreToolUse hook in `.claude/settings.json`). See `constitutional/fable-subagent-model-policy.md`. |
+| **Fable subagent dispatch** | When the main loop runs on a Fable model, every subagent MUST be dispatched with an explicit `model: "opus"` or `model: "sonnet"`. Forks and model-less dispatches inherit Fable and are forbidden (enforced by the `fable-subagent-guard` PreToolUse hook in `.claude/settings.json`). See `.opencode/skills/system-spec-kit/constitutional/fable-subagent-model-policy.md`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 | **Open Design dispatch** | UI or design work through `design-mcp-open-design` (a nested transport packet of `sk-design`) MUST co-load `sk-design`'s own workflow modes first (the transport never decides taste). Pure transport is exempt. `mcp-figma` is the external sibling Figma transport (a transport mode of the `mcp-tooling` hub, as are the `mcp-refero`/`mcp-mobbin` design-research transports). |
 
@@ -88,8 +88,8 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | Standard                             | Rule                                                                                                                                                 |
 | --------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Confirmed vs inferred**            | For load-bearing claims, prose must distinguish confirmed (with evidence: file:line, command, artifact) from inferred (state what would confirm it). |
-| **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta. See `constitutional/regression-baseline-and-delta.md`.                       |
-| **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting. See `constitutional/finding-is-a-hypothesis.md`.           |
+| **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta. See `.opencode/skills/system-spec-kit/constitutional/regression-baseline-and-delta.md`.                       |
+| **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting. See `.opencode/skills/system-spec-kit/constitutional/finding-is-a-hypothesis.md`.           |
 | **Objective proof plan**              | For machine-state tasks, translate acceptance criteria into 1-5 observable pass/fail checks before changing files. Include exact paths, formats, and exposed boundary cases. |
 | **Observed command evidence**         | A command counts as evidence only after its output and exit status are read. Run focused checks during repair, then rerun the authoritative whole gate. |
 | **Safe negative control**             | When practical and non-destructive, reproduce the exact failing symptom before the fix so the same check proves the change.                         |
@@ -107,7 +107,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 ##### Blast-Radius Management
 
 - **Match effort to blast-radius.** Open non-trivial work with stakes read ("low-blast, reversible" / "high-blast: touches auth + data").
-- **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation. For commit/push, see `main-branch-direct-push.md`.
+- **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation. For commit/push, see `.opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md`.
 - **Name what still speaks the old contract** — Confirm deployed servers, installed clients, caches, and API consumers won't break.
 - **Sanitize by persistence boundary** — Distinguish working-tree removal from sensitive-data eradication. Inventory every persistence location, but keep ordinary removal scoped to the requested surface and do not rewrite history, branches, or reflogs until the rollback is named and the operator approves the destructive action.
 - **Acquire dependencies deliberately** — Prefer tools already available in the project. Installation is a scoped mutation and must pass the same scope, approval, and verification rules as other changes.
@@ -356,13 +356,9 @@ Every spec folder (Level 1+) MUST contain:
 | **Ask before every push to a non-allowlisted remote branch** | Local branch/worktree creation stays unrestricted, but `origin` only ever receives `main`, `skilled/v*` release branches, and anything in `remote-branch-allowlist.txt` without asking. Every other push — new branch or update — needs a fresh, in-the-moment go-ahead; an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. Technical backstop: the pre-push hook blocks it unless `SPECKIT_ALLOW_REMOTE_PUSH=1` is set for that invocation. Full contract: `.opencode/skills/sk-git/references/remote-branch-policy.md`. |
 | **Hold the hyphen-case pilot** | sk-git's `references/`, `assets/`, `feature-catalog/`, and `manual-testing-playbook/` trees are intentionally hyphen-case ahead of the repo-wide naming program. Do NOT revert them to snake_case while that program (sk-doc/017) is pending. |
 
-#### Daemon-Backed CLI Fallbacks
-
-Both daemons also expose additive warm-only CLI fallbacks (`spec-memory.cjs`, `skill-advisor.cjs`); see Daemon CLI Transport Fallback below. Exit `75` is retryable.
-
 #### Code Search Decision Tree
 
-Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
+Full routing + FTS fallback chain: `.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md`
 
 | Need | Use |
 | ------| -----|
@@ -370,8 +366,6 @@ Full routing + FTS fallback chain: `constitutional/gate-tool-routing.md`
 | Known file or path | **Glob** |
 | Concept, intent, "how does X work", or unfamiliar code | **Grep** for likely vocabulary → **Glob** to map the surrounding tree → **Read** to confirm. Widen the pattern rather than trusting a single hit |
 | Bug or exact failure | **Grep** the exact error or symbol, identify callers and consumers, then **Read** the responsible files before editing |
-
-> **Note:** `memory_search` is for spec docs and saved memory only — it does not index arbitrary code.
 
 #### Terminal Command Discipline
 
@@ -510,10 +504,7 @@ Use the agent directory that matches the active runtime/provider profile:
 Any agent writing authored spec-folder docs MUST:
 
 1. **Use templates** from `.opencode/skills/system-spec-kit/templates/`
-2. **Run strict validation** before any completion claim:
-   ```bash
-   bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
-   ```
+2. **Run strict validation** before any completion claim: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`
 
 **Applicable docs:** `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`
 

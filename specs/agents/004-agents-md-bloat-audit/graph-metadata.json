@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/004-agents-md-bloat-audit",
+  "spec_folder": "agents/004-agents-md-bloat-audit",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents.md bloat",
+      "redundancy",
+      "compress",
+      "authoritative",
+      "line savings",
+      "boilerplate",
+      "audit"
+    ],
+    "key_topics": [
+      "agents",
+      "bloat",
+      "redundancy",
+      "compress",
+      "authoritative",
+      "line",
+      "savings",
+      "boilerplate",
+      "audit",
+      "root",
+      "lines",
+      "bytes"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bloat Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Findings Report Lineage",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Root",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Laws",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Methodology Read",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of authoritative files whose pointers are broken or verbose, over-long prose blocks, and low-value boilerplate (emoji decoration, inline mechanics)",
+    "created_at": "2026-08-07T14:53:51.256Z",
+    "last_save_at": "2026-08-07T15:01:48.737Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8fd23778eb855ae26210c7c17d9b3914164a18db17619c3ef30951cba4c8a557",
+    "source_doc_hashes": {
+      "spec.md": "b74a23a6766daf5e9423056bc8d0206335929cd59a675611cef3292b65dd353c",
+      "research/research.md": "549d2767028d8a151cb29ec64c30c26d9fb26c09f5c4feac44665e640052c0bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

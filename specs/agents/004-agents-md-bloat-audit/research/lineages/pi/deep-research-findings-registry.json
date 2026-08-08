@@ -1,0 +1,54 @@
+{
+  "openQuestions": [
+    "Final ranked candidate list with line savings and preserve-set?"
+  ],
+  "resolvedQuestions": [
+    "Which paragraphs are redundant with other parts of AGENTS.md?",
+    "Which content is already authoritative in referenced files?",
+    "Where is prose over-long relative to its normative payload?",
+    "Which tables/examples/boilerplate carry low decision value?"
+  ],
+  "keyFindings": [
+    {"id": "F1-1", "run": 1, "finding": "All 7 constitutional/*.md references dangling; authoritative copies at .opencode/skills/system-spec-kit/constitutional/", "evidence": "file:AGENTS.md:63,66,70,176,181,354,363 + ls spec-kit/constitutional"},
+    {"id": "F1-2", "run": 1, "finding": "Daemon CLI fallback guidance duplicated 3x (L138, L358-361, L416-431); ~10-12 line savings", "evidence": "file:AGENTS.md:138,358-361,416-431"},
+    {"id": "F1-3", "run": 1, "finding": "Final-State Verification (L193-200) and Completion Verification (L202-212) share skeleton; ~6-8 line savings", "evidence": "file:AGENTS.md:193-212"},
+    {"id": "F1-4", "run": 1, "finding": "Resume ladder duplicated (L414, L531); ~2-3 line savings", "evidence": "file:AGENTS.md:414,531"},
+    {"id": "F1-5", "run": 1, "finding": "Gate 3 ask-first (L165-167) restated by VIOLATION RECOVERY (L214-216); ~5-7 line savings (anchor corrected iter 4)", "evidence": "file:AGENTS.md:165-167,214-216"},
+    {"id": "F1-6", "run": 1, "finding": "Code-search routing guidance 3x (L283, L364-372, L375); ~2-4 line savings", "evidence": "file:AGENTS.md:283,364-372,375"},
+    {"id": "F1-7", "run": 1, "finding": "memory_search scope caveat duplicated (L340, L373); ~1-2 line savings", "evidence": "file:AGENTS.md:340,373"},
+    {"id": "F1-8", "run": 1, "finding": "validate.sh --strict duplicated (L204, L499-501); ~2-3 line savings", "evidence": "file:AGENTS.md:204,499-501"},
+    {"id": "F1-9", "run": 1, "finding": "Baseline section map: 555 lines, 47,110 bytes, 10 sections", "evidence": "command: awk section scan"},
+    {"id": "F2-1", "run": 2, "finding": "Git Workspace Safety (L343-357) duplicates sk-git references (passage-verified); ~3-4 line savings (rows are single physical lines)", "evidence": "file:AGENTS.md:343-357; file:remote-branch-policy.md:17,27-30"},
+    {"id": "F2-2", "run": 2, "finding": "Daemon CLI table (L416-431) duplicates ENV-REFERENCE.md semantics; ~8-10 line savings (overlaps F1-2)", "evidence": "file:AGENTS.md:416-431; file:ENV-REFERENCE.md:684,694-698"},
+    {"id": "F2-3", "run": 2, "finding": "MCP Tool Routing (L383-404) duplicates runtime configs; ~8-10 line savings", "evidence": "file:AGENTS.md:383-404; opencode.json/.claude/mcp.json/.codex/config.toml verified"},
+    {"id": "F2-4", "run": 2, "finding": "Spec Folder Documentation (L227-270) duplicates system-spec-kit SKILL.md; ~10-14 line savings", "evidence": "file:AGENTS.md:227-270; SKILL.md 538L, 5 content hits"},
+    {"id": "F2-5", "run": 2, "finding": "Gate 3 prose edge blocks compressible; ~3-5 line savings", "evidence": "file:AGENTS.md:181-187; gate-3-classifier.ts 887L"},
+    {"id": "F2-6", "run": 3, "finding": "REVERSED: Post-Save Review block (L188-191) does NOT duplicate generate-context.js output — staleness candidate, savings withdrawn", "evidence": "command: grep -in review|quality|POST-SAVE generate-context.js"},
+    {"id": "F2-7", "run": 2, "finding": "Quick Reference rows are valid pointers, not bloat; 0 savings", "evidence": "commands/deep/research.md 179L exists"},
+    {"id": "F2-8", "run": 2, "finding": "Agent Routing table pointers valid; 0 savings", "evidence": "ls four agent dirs"},
+    {"id": "F3-1", "run": 3, "finding": "Gate 2 fallback line L138 is 457-char command monster; ~3 byte-level lines (overlaps F1-2)", "evidence": "command: sed -n '138p' | wc -c = 457"},
+    {"id": "F3-2", "run": 3, "finding": "Freshness paragraph L211 compresses ~60%; byte-only (0 physical lines)", "evidence": "file:AGENTS.md:211"},
+    {"id": "F3-3", "run": 3, "finding": "Sanitize-by-persistence bullet L112 halves; byte-only", "evidence": "file:AGENTS.md:112"},
+    {"id": "F3-4", "run": 3, "finding": "L485 caveat restates two-registers; byte-only", "evidence": "file:AGENTS.md:485"},
+    {"id": "F3-5", "run": 3, "finding": "L78 aphorism compresses; byte-only", "evidence": "file:AGENTS.md:78"},
+    {"id": "F3-6", "run": 3, "finding": "Advisor-metadata paragraph L522-527 compresses; ~2-3 lines (overlaps F4-7)", "evidence": "file:AGENTS.md:522-527"},
+    {"id": "F3-7", "run": 3, "finding": "L289 do-not-ask bullet halves; byte-only", "evidence": "file:AGENTS.md:289"},
+    {"id": "F3-8", "run": 3, "finding": "L451-455, L463-466 minor tightening; byte-only", "evidence": "file:AGENTS.md:451-455,463-466"},
+    {"id": "F4-1", "run": 4, "finding": "Header routing prose (L7-9) duplicates sk-code SKILL.md §2; ~2 line savings; Iron Law L11 preserve-set", "evidence": "file:AGENTS.md:7-12; sk-code/SKILL.md:48"},
+    {"id": "F4-2", "run": 4, "finding": "Emoji headings x10: byte-only, lowest priority", "evidence": "file:AGENTS.md:15,123,227,271,337,405,433,456,489,528"},
+    {"id": "F4-3", "run": 4, "finding": "Dispatch Rules table (L65-77) row detail duplicates contracts; ~4-5 line savings", "evidence": "file:AGENTS.md:65-77"},
+    {"id": "F4-4", "run": 4, "finding": "§10 rows carry inline mechanics (L543-552); ~3-4 line savings", "evidence": "file:AGENTS.md:543-552"},
+    {"id": "F4-5", "run": 4, "finding": "Comment-hygiene row (L62-63) duplicates comment-hygiene.md; ~1 line savings", "evidence": "file:AGENTS.md:62-63"},
+    {"id": "F4-6", "run": 4, "finding": "Directive Capsule (L406-409) restates hook contract; ~1-2 line savings", "evidence": "file:AGENTS.md:406-409"},
+    {"id": "F4-7", "run": 4, "finding": "Advisor metadata placement (L516-527) is skill-authoring detail; ~5-6 line savings (overlaps F3-6)", "evidence": "file:AGENTS.md:516-527"},
+    {"id": "F4-8", "run": 4, "finding": "Deduped ledger: ~70-90 physical lines (13-16% of 555) + ~30-40 byte-only", "evidence": "derived from registry with line-range dedupe"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Replace Gate 3 prose entirely with classifier pointer", "reason": "classifier is a TS module, not human-readable", "evidence": "file:gate-3-classifier.ts", "run": 2},
+    {"approach": "Treat F2-6 as duplication of generate-context.js output", "reason": "no such output exists in the script; staleness", "evidence": "command: grep generate-context.js", "run": 3},
+    {"approach": "Count F3-* paragraph compression as line savings", "reason": "single physical lines; byte-only", "evidence": "command: grep anchors", "run": 4}
+  ],
+  "promotedIdeas": [],
+  "rejectedPatterns": [],
+  "blockedStops": []
+}

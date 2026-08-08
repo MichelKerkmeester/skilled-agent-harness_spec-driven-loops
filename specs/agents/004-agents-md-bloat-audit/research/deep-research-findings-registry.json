@@ -1,0 +1,460 @@
+{
+  "mergedFrom": [
+    "pi"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**F1-1. All 7 `constitutional/*.md` references are dangling — authoritative copies live under system-spec-kit.**",
+      "text": "**F1-1. All 7 `constitutional/*.md` references are dangling — authoritative copies live under system-spec-kit.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**F1-2. Daemon CLI fallback guidance appears 3×.**",
+      "text": "**F1-2. Daemon CLI fallback guidance appears 3×.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**F1-3. Final-State Verification vs Completion Verification Rule overlap (~10 lines).**",
+      "text": "**F1-3. Final-State Verification vs Completion Verification Rule overlap (~10 lines).**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**F1-4. Resume ladder duplicated across §6 and §10.**",
+      "text": "**F1-4. Resume ladder duplicated across §6 and §10.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**F1-5. Gate 3 \"ask first\" stated twice.**",
+      "text": "**F1-5. Gate 3 \"ask first\" stated twice.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**F1-6. Code-search routing guidance appears 3×.**",
+      "text": "**F1-6. Code-search routing guidance appears 3×.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "**F1-7. `memory_search` scope caveat duplicated.**",
+      "text": "**F1-7. `memory_search` scope caveat duplicated.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "**F1-8. `validate.sh <spec-folder> --strict` command duplicated.**",
+      "text": "**F1-8. `validate.sh <spec-folder> --strict` command duplicated.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-9",
+      "title": "**F1-9. Baseline section map (for savings math in later iterations).**",
+      "text": "**F1-9. Baseline section map (for savings math in later iterations).**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**F2-1. §5 Git Workspace Safety (L343–357, 15 lines) duplicates sk-git reference docs.**",
+      "text": "**F2-1. §5 Git Workspace Safety (L343–357, 15 lines) duplicates sk-git reference docs.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**F2-2. §6 Daemon CLI table (L416–431) duplicates ENV-REFERENCE.md.**",
+      "text": "**F2-2. §6 Daemon CLI table (L416–431) duplicates ENV-REFERENCE.md.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**F2-3. §5 MCP Tool Routing (L383–404, 22 lines) duplicates the runtime configs.**",
+      "text": "**F2-3. §5 MCP Tool Routing (L383–404, 22 lines) duplicates the runtime configs.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**F2-4. §3 Spec Folder Documentation (L227–270, 44 lines) duplicates system-spec-kit SKILL.md.**",
+      "text": "**F2-4. §3 Spec Folder Documentation (L227–270, 44 lines) duplicates system-spec-kit SKILL.md.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**F2-5. §2 Gate 3 prose (L142–202, 60 lines) partially duplicates gate-3-classifier.ts.**",
+      "text": "**F2-5. §2 Gate 3 prose (L142–202, 60 lines) partially duplicates gate-3-classifier.ts.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**F2-6. §2 Memory Save Rule \"Post-Save Review\" (L166–171) duplicates generate-context.js behavior.**",
+      "text": "**F2-6. §2 Memory Save Rule \"Post-Save Review\" (L166–171) duplicates generate-context.js behavior.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**F2-7. §10 Quick Reference rows are valid pointers, NOT bloat.**",
+      "text": "**F2-7. §10 Quick Reference rows are valid pointers, NOT bloat.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**F2-8. §9 Agent Routing table pointers valid.**",
+      "text": "**F2-8. §9 Agent Routing table pointers valid.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**F3-0. Corrections to prior anchors (re-anchored with nl -ba).**",
+      "text": "**F3-0. Corrections to prior anchors (re-anchored with nl -ba).**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**F3-1. §2 Gate 2 fallback line (L138) is a 457-char command monster.**",
+      "text": "**F3-1. §2 Gate 2 fallback line (L138) is a 457-char command monster.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**F3-2. §2 Completion Verification freshness paragraph (L211) compresses ~60%.**",
+      "text": "**F3-2. §2 Completion Verification freshness paragraph (L211) compresses ~60%.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**F3-3. §1 Blast-Radius \"Sanitize by persistence boundary\" bullet (L112) is ~2× too long.**",
+      "text": "**F3-3. §1 Blast-Radius \"Sanitize by persistence boundary\" bullet (L112) is ~2× too long.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**F3-4. §8 closing caveat (L485) restates §1 \"Two registers\".**",
+      "text": "**F3-4. §8 closing caveat (L485) restates §1 \"Two registers\".**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**F3-5. §1 \"Spend lavishly...\" principle (L78) is metaphor-heavy.**",
+      "text": "**F3-5. §1 \"Spend lavishly...\" principle (L78) is metaphor-heavy.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**F3-6. §9 Advisor-metadata final paragraph (L522–527) compresses.**",
+      "text": "**F3-6. §9 Advisor-metadata final paragraph (L522–527) compresses.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**F3-7. §4 \"Do not ask for permission to continue\" bullet (L289) is padded.**",
+      "text": "**F3-7. §4 \"Do not ask for permission to continue\" bullet (L289) is padded.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "**F3-8. §7 Escalation + §8 Recommendations paragraphs.** Minor tightening, ~2 lines combined. [SOURCE: file:AGENTS.md:451-455, :463-466]",
+      "text": "**F3-8. §7 Escalation + §8 Recommendations paragraphs.** Minor tightening, ~2 lines combined. [SOURCE: file:AGENTS.md:451-455, :463-466]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**F4-0. Accounting correction — physical vs byte savings.**",
+      "text": "**F4-0. Accounting correction — physical vs byte savings.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**F4-1. Header architecture block (L7–12) duplicates sk-code SKILL.md.**",
+      "text": "**F4-1. Header architecture block (L7–12) duplicates sk-code SKILL.md.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**F4-2. Emoji-decorated headings ×10 (L15, L123, L227, L271, L337, L405, L433, L456, L489, L528).**",
+      "text": "**F4-2. Emoji-decorated headings ×10 (L15, L123, L227, L271, L337, L405, L433, L456, L489, L528).**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**F4-3. §1 Dispatch Rules table (L65–77, 13 lines) row detail duplicates constitutional/skill contracts.**",
+      "text": "**F4-3. §1 Dispatch Rules table (L65–77, 13 lines) row detail duplicates constitutional/skill contracts.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**F4-4. §10 rows carry inline mechanics duplicating their commands/sections.**",
+      "text": "**F4-4. §10 rows carry inline mechanics duplicating their commands/sections.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "**F4-5. §1 comment-hygiene row (L62–63) duplicates comment-hygiene.md.**",
+      "text": "**F4-5. §1 comment-hygiene row (L62–63) duplicates comment-hygiene.md.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-7",
+      "title": "**F4-6. §6 Directive Capsule (L406–409, 3 lines) restates the hook injection contract.**",
+      "text": "**F4-6. §6 Directive Capsule (L406–409, 3 lines) restates the hook injection contract.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-8",
+      "title": "**F4-7. §9 \"Advisor metadata placement\" (L516–527, 12 lines) is deep skill-authoring detail.**",
+      "text": "**F4-7. §9 \"Advisor metadata placement\" (L516–527, 12 lines) is deep skill-authoring detail.**",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**F5-1. Verified physical-line arithmetic (all spans recounted via nl -ba, iter 4/5).**",
+      "text": "**F5-1. Verified physical-line arithmetic (all spans recounted via nl -ba, iter 4/5).**",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**F5-2. RANKED CANDIDATE LIST (savings ÷ risk).**",
+      "text": "**F5-2. RANKED CANDIDATE LIST (savings ÷ risk).**",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**F5-3. PRESERVE SET (do not remove).**",
+      "text": "**F5-3. PRESERVE SET (do not remove).**",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**F5-4. Staleness flag (not bloat):** §2 Post-Save Review (L188–191) describes a POST-SAVE QUALITY REVIEW output that generate-context.js does not emit (F2-6). Either the MCP `memory_save` path emits it (UNKNOWN — needs human verification) or the block is stale and should be removed/rewritten. 4 lines at risk. [SOURCE: command: grep generate-context.js]",
+      "text": "**F5-4. Staleness flag (not bloat):** §2 Post-Save Review (L188–191) describes a POST-SAVE QUALITY REVIEW output that generate-context.js does not emit (F2-6). Either the MCP `memory_save` path emits it (UNKNOWN — needs human verification) or the block is stale and should be removed/rewritten. 4 lines at risk. [SOURCE: command: grep generate-context.js]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**F5-5. Sanity check vs baseline.** 555 − 75 = ~480 lines (−13.5%) from physical-line removals alone; byte-compression (F3-*) adds token savings without changing the line count. Risk-adjusted recommendation: Tier 1+2 only (~71 lines) for the first pass; Tier 3 + byte-compression as follow-up. No candidate touches the Four Laws, gates, or verification tables; the Iron Law (L11) is preserve-set.",
+      "text": "**F5-5. Sanity check vs baseline.** 555 − 75 = ~480 lines (−13.5%) from physical-line removals alone; byte-compression (F3-*) adds token savings without changing the line count. Risk-adjusted recommendation: Tier 1+2 only (~71 lines) for the first pass; Tier 3 + byte-compression as follow-up. No candidate touches the Four Laws, gates, or verification tables; the Iron Law (L11) is preserve-set.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-10",
+      "title": "**Verification updates (passage-level): F2-1 CONFIRMED, F2-2 CONFIRMED, F2-6 DOWNGRADED.**",
+      "text": "**Verification updates (passage-level): F2-1 CONFIRMED, F2-2 CONFIRMED, F2-6 DOWNGRADED.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "pi"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 40,
+    "sourceFindings": 40,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.15,
+    "coverageBySources": {}
+  }
+}
