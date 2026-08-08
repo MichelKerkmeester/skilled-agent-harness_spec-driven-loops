@@ -67,7 +67,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress (10/13 findings landed as `0d1827eef5`; F-017-04 wrongly claimed Landed — not actually touched by that commit; F-019-01/F-019-03 deferred) |
+| **Status** | 13/13 findings landed — F-017-04 (rollback-hash forgery), F-019-01 (council-root traversal), F-019-03 (payload symlink-follow) confirmed-real + closed as `f6cdf604a2` (red-before/green-after). Residual: F-019-01 is a calibrated closure; ADR-003 full config-resolved root remains Proposed |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
